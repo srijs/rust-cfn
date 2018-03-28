@@ -8,15 +8,15 @@ pub struct ComputeEnvironment {
 #[derive(Serialize, Deserialize)]
 pub struct ComputeEnvironmentProperties {
     #[serde(rename="ComputeEnvironmentName")]
-    pub compute_environment_name: (),
+    pub compute_environment_name: String,
     #[serde(rename="ComputeResources")]
     pub compute_resources: (),
     #[serde(rename="ServiceRole")]
-    pub service_role: (),
+    pub service_role: String,
     #[serde(rename="State")]
-    pub state: (),
+    pub state: String,
     #[serde(rename="Type")]
-    pub type_: (),
+    pub type_: String,
 }
 
 impl<'a> ::Resource<'a> for ComputeEnvironment {
@@ -48,13 +48,13 @@ pub struct JobDefinitionProperties {
     #[serde(rename="ContainerProperties")]
     pub container_properties: (),
     #[serde(rename="JobDefinitionName")]
-    pub job_definition_name: (),
+    pub job_definition_name: String,
     #[serde(rename="Parameters")]
-    pub parameters: (),
+    pub parameters: String,
     #[serde(rename="RetryStrategy")]
     pub retry_strategy: (),
     #[serde(rename="Type")]
-    pub type_: (),
+    pub type_: String,
 }
 
 impl<'a> ::Resource<'a> for JobDefinition {
@@ -84,13 +84,13 @@ pub struct JobQueue {
 #[derive(Serialize, Deserialize)]
 pub struct JobQueueProperties {
     #[serde(rename="ComputeEnvironmentOrder")]
-    pub compute_environment_order: (),
+    pub compute_environment_order: Vec<()>,
     #[serde(rename="JobQueueName")]
-    pub job_queue_name: (),
+    pub job_queue_name: String,
     #[serde(rename="Priority")]
-    pub priority: (),
+    pub priority: u32,
     #[serde(rename="State")]
-    pub state: (),
+    pub state: String,
 }
 
 impl<'a> ::Resource<'a> for JobQueue {

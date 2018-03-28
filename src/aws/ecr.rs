@@ -10,9 +10,9 @@ pub struct RepositoryProperties {
     #[serde(rename="LifecyclePolicy")]
     pub lifecycle_policy: (),
     #[serde(rename="RepositoryName")]
-    pub repository_name: (),
+    pub repository_name: String,
     #[serde(rename="RepositoryPolicyText")]
-    pub repository_policy_text: (),
+    pub repository_policy_text: String,
 }
 
 impl<'a> ::Resource<'a> for Repository {

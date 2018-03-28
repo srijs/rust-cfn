@@ -8,13 +8,13 @@ pub struct Certificate {
 #[derive(Serialize, Deserialize)]
 pub struct CertificateProperties {
     #[serde(rename="DomainName")]
-    pub domain_name: (),
+    pub domain_name: String,
     #[serde(rename="DomainValidationOptions")]
-    pub domain_validation_options: (),
+    pub domain_validation_options: Vec<()>,
     #[serde(rename="SubjectAlternativeNames")]
-    pub subject_alternative_names: (),
+    pub subject_alternative_names: Vec<String>,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for Certificate {

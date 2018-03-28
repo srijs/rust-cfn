@@ -8,19 +8,19 @@ pub struct Pipeline {
 #[derive(Serialize, Deserialize)]
 pub struct PipelineProperties {
     #[serde(rename="Activate")]
-    pub activate: (),
+    pub activate: bool,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="ParameterObjects")]
-    pub parameter_objects: (),
+    pub parameter_objects: Vec<()>,
     #[serde(rename="ParameterValues")]
-    pub parameter_values: (),
+    pub parameter_values: Vec<()>,
     #[serde(rename="PipelineObjects")]
-    pub pipeline_objects: (),
+    pub pipeline_objects: Vec<()>,
     #[serde(rename="PipelineTags")]
-    pub pipeline_tags: (),
+    pub pipeline_tags: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for Pipeline {

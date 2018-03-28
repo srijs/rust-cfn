@@ -8,9 +8,9 @@ pub struct Alias {
 #[derive(Serialize, Deserialize)]
 pub struct AliasProperties {
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="RoutingStrategy")]
     pub routing_strategy: (),
 }
@@ -42,11 +42,11 @@ pub struct Build {
 #[derive(Serialize, Deserialize)]
 pub struct BuildProperties {
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="StorageLocation")]
     pub storage_location: (),
     #[serde(rename="Version")]
-    pub version: (),
+    pub version: String,
 }
 
 impl<'a> ::Resource<'a> for Build {
@@ -76,27 +76,27 @@ pub struct Fleet {
 #[derive(Serialize, Deserialize)]
 pub struct FleetProperties {
     #[serde(rename="BuildId")]
-    pub build_id: (),
+    pub build_id: String,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="DesiredEC2Instances")]
-    pub desired_ec2_instances: (),
+    pub desired_ec2_instances: u32,
     #[serde(rename="EC2InboundPermissions")]
-    pub ec2_inbound_permissions: (),
+    pub ec2_inbound_permissions: Vec<()>,
     #[serde(rename="EC2InstanceType")]
-    pub ec2_instance_type: (),
+    pub ec2_instance_type: String,
     #[serde(rename="LogPaths")]
-    pub log_paths: (),
+    pub log_paths: Vec<String>,
     #[serde(rename="MaxSize")]
-    pub max_size: (),
+    pub max_size: u32,
     #[serde(rename="MinSize")]
-    pub min_size: (),
+    pub min_size: u32,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="ServerLaunchParameters")]
-    pub server_launch_parameters: (),
+    pub server_launch_parameters: String,
     #[serde(rename="ServerLaunchPath")]
-    pub server_launch_path: (),
+    pub server_launch_path: String,
 }
 
 impl<'a> ::Resource<'a> for Fleet {

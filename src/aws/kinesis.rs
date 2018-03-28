@@ -8,15 +8,15 @@ pub struct Stream {
 #[derive(Serialize, Deserialize)]
 pub struct StreamProperties {
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="RetentionPeriodHours")]
-    pub retention_period_hours: (),
+    pub retention_period_hours: u32,
     #[serde(rename="ShardCount")]
-    pub shard_count: (),
+    pub shard_count: u32,
     #[serde(rename="StreamEncryption")]
     pub stream_encryption: (),
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for Stream {

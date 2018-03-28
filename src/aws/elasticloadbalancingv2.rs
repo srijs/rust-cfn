@@ -8,17 +8,17 @@ pub struct Listener {
 #[derive(Serialize, Deserialize)]
 pub struct ListenerProperties {
     #[serde(rename="Certificates")]
-    pub certificates: (),
+    pub certificates: Vec<()>,
     #[serde(rename="DefaultActions")]
-    pub default_actions: (),
+    pub default_actions: Vec<()>,
     #[serde(rename="LoadBalancerArn")]
-    pub load_balancer_arn: (),
+    pub load_balancer_arn: String,
     #[serde(rename="Port")]
-    pub port: (),
+    pub port: u32,
     #[serde(rename="Protocol")]
-    pub protocol: (),
+    pub protocol: String,
     #[serde(rename="SslPolicy")]
-    pub ssl_policy: (),
+    pub ssl_policy: String,
 }
 
 impl<'a> ::Resource<'a> for Listener {
@@ -48,9 +48,9 @@ pub struct ListenerCertificate {
 #[derive(Serialize, Deserialize)]
 pub struct ListenerCertificateProperties {
     #[serde(rename="Certificates")]
-    pub certificates: (),
+    pub certificates: Vec<()>,
     #[serde(rename="ListenerArn")]
-    pub listener_arn: (),
+    pub listener_arn: String,
 }
 
 impl<'a> ::Resource<'a> for ListenerCertificate {
@@ -80,13 +80,13 @@ pub struct ListenerRule {
 #[derive(Serialize, Deserialize)]
 pub struct ListenerRuleProperties {
     #[serde(rename="Actions")]
-    pub actions: (),
+    pub actions: Vec<()>,
     #[serde(rename="Conditions")]
-    pub conditions: (),
+    pub conditions: Vec<()>,
     #[serde(rename="ListenerArn")]
-    pub listener_arn: (),
+    pub listener_arn: String,
     #[serde(rename="Priority")]
-    pub priority: (),
+    pub priority: u32,
 }
 
 impl<'a> ::Resource<'a> for ListenerRule {
@@ -116,23 +116,23 @@ pub struct LoadBalancer {
 #[derive(Serialize, Deserialize)]
 pub struct LoadBalancerProperties {
     #[serde(rename="IpAddressType")]
-    pub ip_address_type: (),
+    pub ip_address_type: String,
     #[serde(rename="LoadBalancerAttributes")]
-    pub load_balancer_attributes: (),
+    pub load_balancer_attributes: Vec<()>,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="Scheme")]
-    pub scheme: (),
+    pub scheme: String,
     #[serde(rename="SecurityGroups")]
-    pub security_groups: (),
+    pub security_groups: Vec<String>,
     #[serde(rename="SubnetMappings")]
-    pub subnet_mappings: (),
+    pub subnet_mappings: Vec<()>,
     #[serde(rename="Subnets")]
-    pub subnets: (),
+    pub subnets: Vec<String>,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="Type")]
-    pub type_: (),
+    pub type_: String,
 }
 
 impl<'a> ::Resource<'a> for LoadBalancer {
@@ -162,37 +162,37 @@ pub struct TargetGroup {
 #[derive(Serialize, Deserialize)]
 pub struct TargetGroupProperties {
     #[serde(rename="HealthCheckIntervalSeconds")]
-    pub health_check_interval_seconds: (),
+    pub health_check_interval_seconds: u32,
     #[serde(rename="HealthCheckPath")]
-    pub health_check_path: (),
+    pub health_check_path: String,
     #[serde(rename="HealthCheckPort")]
-    pub health_check_port: (),
+    pub health_check_port: String,
     #[serde(rename="HealthCheckProtocol")]
-    pub health_check_protocol: (),
+    pub health_check_protocol: String,
     #[serde(rename="HealthCheckTimeoutSeconds")]
-    pub health_check_timeout_seconds: (),
+    pub health_check_timeout_seconds: u32,
     #[serde(rename="HealthyThresholdCount")]
-    pub healthy_threshold_count: (),
+    pub healthy_threshold_count: u32,
     #[serde(rename="Matcher")]
     pub matcher: (),
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="Port")]
-    pub port: (),
+    pub port: u32,
     #[serde(rename="Protocol")]
-    pub protocol: (),
+    pub protocol: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="TargetGroupAttributes")]
-    pub target_group_attributes: (),
+    pub target_group_attributes: Vec<()>,
     #[serde(rename="TargetType")]
-    pub target_type: (),
+    pub target_type: String,
     #[serde(rename="Targets")]
-    pub targets: (),
+    pub targets: Vec<()>,
     #[serde(rename="UnhealthyThresholdCount")]
-    pub unhealthy_threshold_count: (),
+    pub unhealthy_threshold_count: u32,
     #[serde(rename="VpcId")]
-    pub vpc_id: (),
+    pub vpc_id: String,
 }
 
 impl<'a> ::Resource<'a> for TargetGroup {

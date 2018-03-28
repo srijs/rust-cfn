@@ -8,13 +8,13 @@ pub struct FileSystem {
 #[derive(Serialize, Deserialize)]
 pub struct FileSystemProperties {
     #[serde(rename="Encrypted")]
-    pub encrypted: (),
+    pub encrypted: bool,
     #[serde(rename="FileSystemTags")]
-    pub file_system_tags: (),
+    pub file_system_tags: Vec<()>,
     #[serde(rename="KmsKeyId")]
-    pub kms_key_id: (),
+    pub kms_key_id: String,
     #[serde(rename="PerformanceMode")]
-    pub performance_mode: (),
+    pub performance_mode: String,
 }
 
 impl<'a> ::Resource<'a> for FileSystem {
@@ -44,13 +44,13 @@ pub struct MountTarget {
 #[derive(Serialize, Deserialize)]
 pub struct MountTargetProperties {
     #[serde(rename="FileSystemId")]
-    pub file_system_id: (),
+    pub file_system_id: String,
     #[serde(rename="IpAddress")]
-    pub ip_address: (),
+    pub ip_address: String,
     #[serde(rename="SecurityGroups")]
-    pub security_groups: (),
+    pub security_groups: Vec<String>,
     #[serde(rename="SubnetId")]
-    pub subnet_id: (),
+    pub subnet_id: String,
 }
 
 impl<'a> ::Resource<'a> for MountTarget {

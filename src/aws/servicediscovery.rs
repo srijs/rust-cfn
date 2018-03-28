@@ -8,11 +8,11 @@ pub struct Instance {
 #[derive(Serialize, Deserialize)]
 pub struct InstanceProperties {
     #[serde(rename="InstanceAttributes")]
-    pub instance_attributes: (),
+    pub instance_attributes: String,
     #[serde(rename="InstanceId")]
-    pub instance_id: (),
+    pub instance_id: String,
     #[serde(rename="ServiceId")]
-    pub service_id: (),
+    pub service_id: String,
 }
 
 impl<'a> ::Resource<'a> for Instance {
@@ -42,11 +42,11 @@ pub struct PrivateDnsNamespace {
 #[derive(Serialize, Deserialize)]
 pub struct PrivateDnsNamespaceProperties {
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="Vpc")]
-    pub vpc: (),
+    pub vpc: String,
 }
 
 impl<'a> ::Resource<'a> for PrivateDnsNamespace {
@@ -76,9 +76,9 @@ pub struct PublicDnsNamespace {
 #[derive(Serialize, Deserialize)]
 pub struct PublicDnsNamespaceProperties {
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
 }
 
 impl<'a> ::Resource<'a> for PublicDnsNamespace {
@@ -108,13 +108,13 @@ pub struct Service {
 #[derive(Serialize, Deserialize)]
 pub struct ServiceProperties {
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="DnsConfig")]
     pub dns_config: (),
     #[serde(rename="HealthCheckConfig")]
     pub health_check_config: (),
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
 }
 
 impl<'a> ::Resource<'a> for Service {

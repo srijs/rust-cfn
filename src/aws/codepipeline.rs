@@ -8,19 +8,19 @@ pub struct CustomActionType {
 #[derive(Serialize, Deserialize)]
 pub struct CustomActionTypeProperties {
     #[serde(rename="Category")]
-    pub category: (),
+    pub category: String,
     #[serde(rename="ConfigurationProperties")]
-    pub configuration_properties: (),
+    pub configuration_properties: Vec<()>,
     #[serde(rename="InputArtifactDetails")]
     pub input_artifact_details: (),
     #[serde(rename="OutputArtifactDetails")]
     pub output_artifact_details: (),
     #[serde(rename="Provider")]
-    pub provider: (),
+    pub provider: String,
     #[serde(rename="Settings")]
     pub settings: (),
     #[serde(rename="Version")]
-    pub version: (),
+    pub version: String,
 }
 
 impl<'a> ::Resource<'a> for CustomActionType {
@@ -52,15 +52,15 @@ pub struct PipelineProperties {
     #[serde(rename="ArtifactStore")]
     pub artifact_store: (),
     #[serde(rename="DisableInboundStageTransitions")]
-    pub disable_inbound_stage_transitions: (),
+    pub disable_inbound_stage_transitions: Vec<()>,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="RestartExecutionOnUpdate")]
-    pub restart_execution_on_update: (),
+    pub restart_execution_on_update: bool,
     #[serde(rename="RoleArn")]
-    pub role_arn: (),
+    pub role_arn: String,
     #[serde(rename="Stages")]
-    pub stages: (),
+    pub stages: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for Pipeline {

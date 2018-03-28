@@ -8,17 +8,17 @@ pub struct Workspace {
 #[derive(Serialize, Deserialize)]
 pub struct WorkspaceProperties {
     #[serde(rename="BundleId")]
-    pub bundle_id: (),
+    pub bundle_id: String,
     #[serde(rename="DirectoryId")]
-    pub directory_id: (),
+    pub directory_id: String,
     #[serde(rename="RootVolumeEncryptionEnabled")]
-    pub root_volume_encryption_enabled: (),
+    pub root_volume_encryption_enabled: bool,
     #[serde(rename="UserName")]
-    pub user_name: (),
+    pub user_name: String,
     #[serde(rename="UserVolumeEncryptionEnabled")]
-    pub user_volume_encryption_enabled: (),
+    pub user_volume_encryption_enabled: bool,
     #[serde(rename="VolumeEncryptionKey")]
-    pub volume_encryption_key: (),
+    pub volume_encryption_key: String,
 }
 
 impl<'a> ::Resource<'a> for Workspace {

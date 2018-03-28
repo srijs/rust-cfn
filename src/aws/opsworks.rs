@@ -10,27 +10,27 @@ pub struct AppProperties {
     #[serde(rename="AppSource")]
     pub app_source: (),
     #[serde(rename="Attributes")]
-    pub attributes: (),
+    pub attributes: ::std::collections::HashMap<String, String>,
     #[serde(rename="DataSources")]
-    pub data_sources: (),
+    pub data_sources: Vec<()>,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="Domains")]
-    pub domains: (),
+    pub domains: Vec<String>,
     #[serde(rename="EnableSsl")]
-    pub enable_ssl: (),
+    pub enable_ssl: bool,
     #[serde(rename="Environment")]
-    pub environment: (),
+    pub environment: Vec<()>,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="Shortname")]
-    pub shortname: (),
+    pub shortname: String,
     #[serde(rename="SslConfiguration")]
     pub ssl_configuration: (),
     #[serde(rename="StackId")]
-    pub stack_id: (),
+    pub stack_id: String,
     #[serde(rename="Type")]
-    pub type_: (),
+    pub type_: String,
 }
 
 impl<'a> ::Resource<'a> for App {
@@ -60,9 +60,9 @@ pub struct ElasticLoadBalancerAttachment {
 #[derive(Serialize, Deserialize)]
 pub struct ElasticLoadBalancerAttachmentProperties {
     #[serde(rename="ElasticLoadBalancerName")]
-    pub elastic_load_balancer_name: (),
+    pub elastic_load_balancer_name: String,
     #[serde(rename="LayerId")]
-    pub layer_id: (),
+    pub layer_id: String,
 }
 
 impl<'a> ::Resource<'a> for ElasticLoadBalancerAttachment {
@@ -92,47 +92,47 @@ pub struct Instance {
 #[derive(Serialize, Deserialize)]
 pub struct InstanceProperties {
     #[serde(rename="AgentVersion")]
-    pub agent_version: (),
+    pub agent_version: String,
     #[serde(rename="AmiId")]
-    pub ami_id: (),
+    pub ami_id: String,
     #[serde(rename="Architecture")]
-    pub architecture: (),
+    pub architecture: String,
     #[serde(rename="AutoScalingType")]
-    pub auto_scaling_type: (),
+    pub auto_scaling_type: String,
     #[serde(rename="AvailabilityZone")]
-    pub availability_zone: (),
+    pub availability_zone: String,
     #[serde(rename="BlockDeviceMappings")]
-    pub block_device_mappings: (),
+    pub block_device_mappings: Vec<()>,
     #[serde(rename="EbsOptimized")]
-    pub ebs_optimized: (),
+    pub ebs_optimized: bool,
     #[serde(rename="ElasticIps")]
-    pub elastic_ips: (),
+    pub elastic_ips: Vec<String>,
     #[serde(rename="Hostname")]
-    pub hostname: (),
+    pub hostname: String,
     #[serde(rename="InstallUpdatesOnBoot")]
-    pub install_updates_on_boot: (),
+    pub install_updates_on_boot: bool,
     #[serde(rename="InstanceType")]
-    pub instance_type: (),
+    pub instance_type: String,
     #[serde(rename="LayerIds")]
-    pub layer_ids: (),
+    pub layer_ids: Vec<String>,
     #[serde(rename="Os")]
-    pub os: (),
+    pub os: String,
     #[serde(rename="RootDeviceType")]
-    pub root_device_type: (),
+    pub root_device_type: String,
     #[serde(rename="SshKeyName")]
-    pub ssh_key_name: (),
+    pub ssh_key_name: String,
     #[serde(rename="StackId")]
-    pub stack_id: (),
+    pub stack_id: String,
     #[serde(rename="SubnetId")]
-    pub subnet_id: (),
+    pub subnet_id: String,
     #[serde(rename="Tenancy")]
-    pub tenancy: (),
+    pub tenancy: String,
     #[serde(rename="TimeBasedAutoScaling")]
     pub time_based_auto_scaling: (),
     #[serde(rename="VirtualizationType")]
-    pub virtualization_type: (),
+    pub virtualization_type: String,
     #[serde(rename="Volumes")]
-    pub volumes: (),
+    pub volumes: Vec<String>,
 }
 
 impl<'a> ::Resource<'a> for Instance {
@@ -162,43 +162,43 @@ pub struct Layer {
 #[derive(Serialize, Deserialize)]
 pub struct LayerProperties {
     #[serde(rename="Attributes")]
-    pub attributes: (),
+    pub attributes: ::std::collections::HashMap<String, String>,
     #[serde(rename="AutoAssignElasticIps")]
-    pub auto_assign_elastic_ips: (),
+    pub auto_assign_elastic_ips: bool,
     #[serde(rename="AutoAssignPublicIps")]
-    pub auto_assign_public_ips: (),
+    pub auto_assign_public_ips: bool,
     #[serde(rename="CustomInstanceProfileArn")]
-    pub custom_instance_profile_arn: (),
+    pub custom_instance_profile_arn: String,
     #[serde(rename="CustomJson")]
-    pub custom_json: (),
+    pub custom_json: String,
     #[serde(rename="CustomRecipes")]
     pub custom_recipes: (),
     #[serde(rename="CustomSecurityGroupIds")]
-    pub custom_security_group_ids: (),
+    pub custom_security_group_ids: Vec<String>,
     #[serde(rename="EnableAutoHealing")]
-    pub enable_auto_healing: (),
+    pub enable_auto_healing: bool,
     #[serde(rename="InstallUpdatesOnBoot")]
-    pub install_updates_on_boot: (),
+    pub install_updates_on_boot: bool,
     #[serde(rename="LifecycleEventConfiguration")]
     pub lifecycle_event_configuration: (),
     #[serde(rename="LoadBasedAutoScaling")]
     pub load_based_auto_scaling: (),
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="Packages")]
-    pub packages: (),
+    pub packages: Vec<String>,
     #[serde(rename="Shortname")]
-    pub shortname: (),
+    pub shortname: String,
     #[serde(rename="StackId")]
-    pub stack_id: (),
+    pub stack_id: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="Type")]
-    pub type_: (),
+    pub type_: String,
     #[serde(rename="UseEbsOptimizedInstances")]
-    pub use_ebs_optimized_instances: (),
+    pub use_ebs_optimized_instances: bool,
     #[serde(rename="VolumeConfigurations")]
-    pub volume_configurations: (),
+    pub volume_configurations: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for Layer {
@@ -228,55 +228,55 @@ pub struct Stack {
 #[derive(Serialize, Deserialize)]
 pub struct StackProperties {
     #[serde(rename="AgentVersion")]
-    pub agent_version: (),
+    pub agent_version: String,
     #[serde(rename="Attributes")]
-    pub attributes: (),
+    pub attributes: ::std::collections::HashMap<String, String>,
     #[serde(rename="ChefConfiguration")]
     pub chef_configuration: (),
     #[serde(rename="CloneAppIds")]
-    pub clone_app_ids: (),
+    pub clone_app_ids: Vec<String>,
     #[serde(rename="ClonePermissions")]
-    pub clone_permissions: (),
+    pub clone_permissions: bool,
     #[serde(rename="ConfigurationManager")]
     pub configuration_manager: (),
     #[serde(rename="CustomCookbooksSource")]
     pub custom_cookbooks_source: (),
     #[serde(rename="CustomJson")]
-    pub custom_json: (),
+    pub custom_json: String,
     #[serde(rename="DefaultAvailabilityZone")]
-    pub default_availability_zone: (),
+    pub default_availability_zone: String,
     #[serde(rename="DefaultInstanceProfileArn")]
-    pub default_instance_profile_arn: (),
+    pub default_instance_profile_arn: String,
     #[serde(rename="DefaultOs")]
-    pub default_os: (),
+    pub default_os: String,
     #[serde(rename="DefaultRootDeviceType")]
-    pub default_root_device_type: (),
+    pub default_root_device_type: String,
     #[serde(rename="DefaultSshKeyName")]
-    pub default_ssh_key_name: (),
+    pub default_ssh_key_name: String,
     #[serde(rename="DefaultSubnetId")]
-    pub default_subnet_id: (),
+    pub default_subnet_id: String,
     #[serde(rename="EcsClusterArn")]
-    pub ecs_cluster_arn: (),
+    pub ecs_cluster_arn: String,
     #[serde(rename="ElasticIps")]
-    pub elastic_ips: (),
+    pub elastic_ips: Vec<()>,
     #[serde(rename="HostnameTheme")]
-    pub hostname_theme: (),
+    pub hostname_theme: String,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="RdsDbInstances")]
-    pub rds_db_instances: (),
+    pub rds_db_instances: Vec<()>,
     #[serde(rename="ServiceRoleArn")]
-    pub service_role_arn: (),
+    pub service_role_arn: String,
     #[serde(rename="SourceStackId")]
-    pub source_stack_id: (),
+    pub source_stack_id: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="UseCustomCookbooks")]
-    pub use_custom_cookbooks: (),
+    pub use_custom_cookbooks: bool,
     #[serde(rename="UseOpsworksSecurityGroups")]
-    pub use_opsworks_security_groups: (),
+    pub use_opsworks_security_groups: bool,
     #[serde(rename="VpcId")]
-    pub vpc_id: (),
+    pub vpc_id: String,
 }
 
 impl<'a> ::Resource<'a> for Stack {
@@ -306,13 +306,13 @@ pub struct UserProfile {
 #[derive(Serialize, Deserialize)]
 pub struct UserProfileProperties {
     #[serde(rename="AllowSelfManagement")]
-    pub allow_self_management: (),
+    pub allow_self_management: bool,
     #[serde(rename="IamUserArn")]
-    pub iam_user_arn: (),
+    pub iam_user_arn: String,
     #[serde(rename="SshPublicKey")]
-    pub ssh_public_key: (),
+    pub ssh_public_key: String,
     #[serde(rename="SshUsername")]
-    pub ssh_username: (),
+    pub ssh_username: String,
 }
 
 impl<'a> ::Resource<'a> for UserProfile {
@@ -342,13 +342,13 @@ pub struct Volume {
 #[derive(Serialize, Deserialize)]
 pub struct VolumeProperties {
     #[serde(rename="Ec2VolumeId")]
-    pub ec2_volume_id: (),
+    pub ec2_volume_id: String,
     #[serde(rename="MountPoint")]
-    pub mount_point: (),
+    pub mount_point: String,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="StackId")]
-    pub stack_id: (),
+    pub stack_id: String,
 }
 
 impl<'a> ::Resource<'a> for Volume {

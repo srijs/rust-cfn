@@ -8,13 +8,13 @@ pub struct Application {
 #[derive(Serialize, Deserialize)]
 pub struct ApplicationProperties {
     #[serde(rename="ApplicationCode")]
-    pub application_code: (),
+    pub application_code: String,
     #[serde(rename="ApplicationDescription")]
-    pub application_description: (),
+    pub application_description: String,
     #[serde(rename="ApplicationName")]
-    pub application_name: (),
+    pub application_name: String,
     #[serde(rename="Inputs")]
-    pub inputs: (),
+    pub inputs: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for Application {
@@ -44,7 +44,7 @@ pub struct ApplicationOutput {
 #[derive(Serialize, Deserialize)]
 pub struct ApplicationOutputProperties {
     #[serde(rename="ApplicationName")]
-    pub application_name: (),
+    pub application_name: String,
     #[serde(rename="Output")]
     pub output: (),
 }
@@ -76,7 +76,7 @@ pub struct ApplicationReferenceDataSource {
 #[derive(Serialize, Deserialize)]
 pub struct ApplicationReferenceDataSourceProperties {
     #[serde(rename="ApplicationName")]
-    pub application_name: (),
+    pub application_name: String,
     #[serde(rename="ReferenceDataSource")]
     pub reference_data_source: (),
 }

@@ -8,19 +8,19 @@ pub struct ScalableTarget {
 #[derive(Serialize, Deserialize)]
 pub struct ScalableTargetProperties {
     #[serde(rename="MaxCapacity")]
-    pub max_capacity: (),
+    pub max_capacity: u32,
     #[serde(rename="MinCapacity")]
-    pub min_capacity: (),
+    pub min_capacity: u32,
     #[serde(rename="ResourceId")]
-    pub resource_id: (),
+    pub resource_id: String,
     #[serde(rename="RoleARN")]
-    pub role_arn: (),
+    pub role_arn: String,
     #[serde(rename="ScalableDimension")]
-    pub scalable_dimension: (),
+    pub scalable_dimension: String,
     #[serde(rename="ScheduledActions")]
-    pub scheduled_actions: (),
+    pub scheduled_actions: Vec<()>,
     #[serde(rename="ServiceNamespace")]
-    pub service_namespace: (),
+    pub service_namespace: String,
 }
 
 impl<'a> ::Resource<'a> for ScalableTarget {
@@ -50,17 +50,17 @@ pub struct ScalingPolicy {
 #[derive(Serialize, Deserialize)]
 pub struct ScalingPolicyProperties {
     #[serde(rename="PolicyName")]
-    pub policy_name: (),
+    pub policy_name: String,
     #[serde(rename="PolicyType")]
-    pub policy_type: (),
+    pub policy_type: String,
     #[serde(rename="ResourceId")]
-    pub resource_id: (),
+    pub resource_id: String,
     #[serde(rename="ScalableDimension")]
-    pub scalable_dimension: (),
+    pub scalable_dimension: String,
     #[serde(rename="ScalingTargetId")]
-    pub scaling_target_id: (),
+    pub scaling_target_id: String,
     #[serde(rename="ServiceNamespace")]
-    pub service_namespace: (),
+    pub service_namespace: String,
     #[serde(rename="StepScalingPolicyConfiguration")]
     pub step_scaling_policy_configuration: (),
     #[serde(rename="TargetTrackingScalingPolicyConfiguration")]

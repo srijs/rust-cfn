@@ -8,13 +8,13 @@ pub struct NamedQuery {
 #[derive(Serialize, Deserialize)]
 pub struct NamedQueryProperties {
     #[serde(rename="Database")]
-    pub database: (),
+    pub database: String,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="QueryString")]
-    pub query_string: (),
+    pub query_string: String,
 }
 
 impl<'a> ::Resource<'a> for NamedQuery {

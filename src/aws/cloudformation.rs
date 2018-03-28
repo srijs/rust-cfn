@@ -8,7 +8,7 @@ pub struct CustomResource {
 #[derive(Serialize, Deserialize)]
 pub struct CustomResourceProperties {
     #[serde(rename="ServiceToken")]
-    pub service_token: (),
+    pub service_token: String,
 }
 
 impl<'a> ::Resource<'a> for CustomResource {
@@ -38,15 +38,15 @@ pub struct Stack {
 #[derive(Serialize, Deserialize)]
 pub struct StackProperties {
     #[serde(rename="NotificationARNs")]
-    pub notification_ar_ns: (),
+    pub notification_ar_ns: Vec<String>,
     #[serde(rename="Parameters")]
-    pub parameters: (),
+    pub parameters: ::std::collections::HashMap<String, String>,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="TemplateURL")]
-    pub template_url: (),
+    pub template_url: String,
     #[serde(rename="TimeoutInMinutes")]
-    pub timeout_in_minutes: (),
+    pub timeout_in_minutes: u32,
 }
 
 impl<'a> ::Resource<'a> for Stack {
@@ -76,11 +76,11 @@ pub struct WaitCondition {
 #[derive(Serialize, Deserialize)]
 pub struct WaitConditionProperties {
     #[serde(rename="Count")]
-    pub count: (),
+    pub count: u32,
     #[serde(rename="Handle")]
-    pub handle: (),
+    pub handle: String,
     #[serde(rename="Timeout")]
-    pub timeout: (),
+    pub timeout: String,
 }
 
 impl<'a> ::Resource<'a> for WaitCondition {

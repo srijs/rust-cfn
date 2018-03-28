@@ -8,27 +8,27 @@ pub struct Queue {
 #[derive(Serialize, Deserialize)]
 pub struct QueueProperties {
     #[serde(rename="ContentBasedDeduplication")]
-    pub content_based_deduplication: (),
+    pub content_based_deduplication: bool,
     #[serde(rename="DelaySeconds")]
-    pub delay_seconds: (),
+    pub delay_seconds: u32,
     #[serde(rename="FifoQueue")]
-    pub fifo_queue: (),
+    pub fifo_queue: bool,
     #[serde(rename="KmsDataKeyReusePeriodSeconds")]
-    pub kms_data_key_reuse_period_seconds: (),
+    pub kms_data_key_reuse_period_seconds: u32,
     #[serde(rename="KmsMasterKeyId")]
-    pub kms_master_key_id: (),
+    pub kms_master_key_id: String,
     #[serde(rename="MaximumMessageSize")]
-    pub maximum_message_size: (),
+    pub maximum_message_size: u32,
     #[serde(rename="MessageRetentionPeriod")]
-    pub message_retention_period: (),
+    pub message_retention_period: u32,
     #[serde(rename="QueueName")]
-    pub queue_name: (),
+    pub queue_name: String,
     #[serde(rename="ReceiveMessageWaitTimeSeconds")]
-    pub receive_message_wait_time_seconds: (),
+    pub receive_message_wait_time_seconds: u32,
     #[serde(rename="RedrivePolicy")]
-    pub redrive_policy: (),
+    pub redrive_policy: String,
     #[serde(rename="VisibilityTimeout")]
-    pub visibility_timeout: (),
+    pub visibility_timeout: u32,
 }
 
 impl<'a> ::Resource<'a> for Queue {
@@ -58,9 +58,9 @@ pub struct QueuePolicy {
 #[derive(Serialize, Deserialize)]
 pub struct QueuePolicyProperties {
     #[serde(rename="PolicyDocument")]
-    pub policy_document: (),
+    pub policy_document: String,
     #[serde(rename="Queues")]
-    pub queues: (),
+    pub queues: Vec<String>,
 }
 
 impl<'a> ::Resource<'a> for QueuePolicy {

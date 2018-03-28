@@ -8,25 +8,25 @@ pub struct IdentityPool {
 #[derive(Serialize, Deserialize)]
 pub struct IdentityPoolProperties {
     #[serde(rename="AllowUnauthenticatedIdentities")]
-    pub allow_unauthenticated_identities: (),
+    pub allow_unauthenticated_identities: bool,
     #[serde(rename="CognitoEvents")]
-    pub cognito_events: (),
+    pub cognito_events: String,
     #[serde(rename="CognitoIdentityProviders")]
-    pub cognito_identity_providers: (),
+    pub cognito_identity_providers: Vec<()>,
     #[serde(rename="CognitoStreams")]
     pub cognito_streams: (),
     #[serde(rename="DeveloperProviderName")]
-    pub developer_provider_name: (),
+    pub developer_provider_name: String,
     #[serde(rename="IdentityPoolName")]
-    pub identity_pool_name: (),
+    pub identity_pool_name: String,
     #[serde(rename="OpenIdConnectProviderARNs")]
-    pub open_id_connect_provider_ar_ns: (),
+    pub open_id_connect_provider_ar_ns: Vec<String>,
     #[serde(rename="PushSync")]
     pub push_sync: (),
     #[serde(rename="SamlProviderARNs")]
-    pub saml_provider_ar_ns: (),
+    pub saml_provider_ar_ns: Vec<String>,
     #[serde(rename="SupportedLoginProviders")]
-    pub supported_login_providers: (),
+    pub supported_login_providers: String,
 }
 
 impl<'a> ::Resource<'a> for IdentityPool {
@@ -56,11 +56,11 @@ pub struct IdentityPoolRoleAttachment {
 #[derive(Serialize, Deserialize)]
 pub struct IdentityPoolRoleAttachmentProperties {
     #[serde(rename="IdentityPoolId")]
-    pub identity_pool_id: (),
+    pub identity_pool_id: String,
     #[serde(rename="RoleMappings")]
-    pub role_mappings: (),
+    pub role_mappings: String,
     #[serde(rename="Roles")]
-    pub roles: (),
+    pub roles: String,
 }
 
 impl<'a> ::Resource<'a> for IdentityPoolRoleAttachment {
@@ -92,35 +92,35 @@ pub struct UserPoolProperties {
     #[serde(rename="AdminCreateUserConfig")]
     pub admin_create_user_config: (),
     #[serde(rename="AliasAttributes")]
-    pub alias_attributes: (),
+    pub alias_attributes: Vec<String>,
     #[serde(rename="AutoVerifiedAttributes")]
-    pub auto_verified_attributes: (),
+    pub auto_verified_attributes: Vec<String>,
     #[serde(rename="DeviceConfiguration")]
     pub device_configuration: (),
     #[serde(rename="EmailConfiguration")]
     pub email_configuration: (),
     #[serde(rename="EmailVerificationMessage")]
-    pub email_verification_message: (),
+    pub email_verification_message: String,
     #[serde(rename="EmailVerificationSubject")]
-    pub email_verification_subject: (),
+    pub email_verification_subject: String,
     #[serde(rename="LambdaConfig")]
     pub lambda_config: (),
     #[serde(rename="MfaConfiguration")]
-    pub mfa_configuration: (),
+    pub mfa_configuration: String,
     #[serde(rename="Policies")]
     pub policies: (),
     #[serde(rename="Schema")]
-    pub schema: (),
+    pub schema: Vec<()>,
     #[serde(rename="SmsAuthenticationMessage")]
-    pub sms_authentication_message: (),
+    pub sms_authentication_message: String,
     #[serde(rename="SmsConfiguration")]
     pub sms_configuration: (),
     #[serde(rename="SmsVerificationMessage")]
-    pub sms_verification_message: (),
+    pub sms_verification_message: String,
     #[serde(rename="UserPoolName")]
-    pub user_pool_name: (),
+    pub user_pool_name: String,
     #[serde(rename="UserPoolTags")]
-    pub user_pool_tags: (),
+    pub user_pool_tags: String,
 }
 
 impl<'a> ::Resource<'a> for UserPool {
@@ -150,19 +150,19 @@ pub struct UserPoolClient {
 #[derive(Serialize, Deserialize)]
 pub struct UserPoolClientProperties {
     #[serde(rename="ClientName")]
-    pub client_name: (),
+    pub client_name: String,
     #[serde(rename="ExplicitAuthFlows")]
-    pub explicit_auth_flows: (),
+    pub explicit_auth_flows: Vec<String>,
     #[serde(rename="GenerateSecret")]
-    pub generate_secret: (),
+    pub generate_secret: bool,
     #[serde(rename="ReadAttributes")]
-    pub read_attributes: (),
+    pub read_attributes: Vec<String>,
     #[serde(rename="RefreshTokenValidity")]
-    pub refresh_token_validity: (),
+    pub refresh_token_validity: f64,
     #[serde(rename="UserPoolId")]
-    pub user_pool_id: (),
+    pub user_pool_id: String,
     #[serde(rename="WriteAttributes")]
-    pub write_attributes: (),
+    pub write_attributes: Vec<String>,
 }
 
 impl<'a> ::Resource<'a> for UserPoolClient {
@@ -192,15 +192,15 @@ pub struct UserPoolGroup {
 #[derive(Serialize, Deserialize)]
 pub struct UserPoolGroupProperties {
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="GroupName")]
-    pub group_name: (),
+    pub group_name: String,
     #[serde(rename="Precedence")]
-    pub precedence: (),
+    pub precedence: f64,
     #[serde(rename="RoleArn")]
-    pub role_arn: (),
+    pub role_arn: String,
     #[serde(rename="UserPoolId")]
-    pub user_pool_id: (),
+    pub user_pool_id: String,
 }
 
 impl<'a> ::Resource<'a> for UserPoolGroup {
@@ -230,19 +230,19 @@ pub struct UserPoolUser {
 #[derive(Serialize, Deserialize)]
 pub struct UserPoolUserProperties {
     #[serde(rename="DesiredDeliveryMediums")]
-    pub desired_delivery_mediums: (),
+    pub desired_delivery_mediums: Vec<String>,
     #[serde(rename="ForceAliasCreation")]
-    pub force_alias_creation: (),
+    pub force_alias_creation: bool,
     #[serde(rename="MessageAction")]
-    pub message_action: (),
+    pub message_action: String,
     #[serde(rename="UserAttributes")]
-    pub user_attributes: (),
+    pub user_attributes: Vec<()>,
     #[serde(rename="UserPoolId")]
-    pub user_pool_id: (),
+    pub user_pool_id: String,
     #[serde(rename="Username")]
-    pub username: (),
+    pub username: String,
     #[serde(rename="ValidationData")]
-    pub validation_data: (),
+    pub validation_data: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for UserPoolUser {
@@ -272,11 +272,11 @@ pub struct UserPoolUserToGroupAttachment {
 #[derive(Serialize, Deserialize)]
 pub struct UserPoolUserToGroupAttachmentProperties {
     #[serde(rename="GroupName")]
-    pub group_name: (),
+    pub group_name: String,
     #[serde(rename="UserPoolId")]
-    pub user_pool_id: (),
+    pub user_pool_id: String,
     #[serde(rename="Username")]
-    pub username: (),
+    pub username: String,
 }
 
 impl<'a> ::Resource<'a> for UserPoolUserToGroupAttachment {

@@ -8,7 +8,7 @@ pub struct ConfigurationSet {
 #[derive(Serialize, Deserialize)]
 pub struct ConfigurationSetProperties {
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
 }
 
 impl<'a> ::Resource<'a> for ConfigurationSet {
@@ -38,7 +38,7 @@ pub struct ConfigurationSetEventDestination {
 #[derive(Serialize, Deserialize)]
 pub struct ConfigurationSetEventDestinationProperties {
     #[serde(rename="ConfigurationSetName")]
-    pub configuration_set_name: (),
+    pub configuration_set_name: String,
     #[serde(rename="EventDestination")]
     pub event_destination: (),
 }
@@ -100,11 +100,11 @@ pub struct ReceiptRule {
 #[derive(Serialize, Deserialize)]
 pub struct ReceiptRuleProperties {
     #[serde(rename="After")]
-    pub after: (),
+    pub after: String,
     #[serde(rename="Rule")]
     pub rule: (),
     #[serde(rename="RuleSetName")]
-    pub rule_set_name: (),
+    pub rule_set_name: String,
 }
 
 impl<'a> ::Resource<'a> for ReceiptRule {
@@ -134,7 +134,7 @@ pub struct ReceiptRuleSet {
 #[derive(Serialize, Deserialize)]
 pub struct ReceiptRuleSetProperties {
     #[serde(rename="RuleSetName")]
-    pub rule_set_name: (),
+    pub rule_set_name: String,
 }
 
 impl<'a> ::Resource<'a> for ReceiptRuleSet {

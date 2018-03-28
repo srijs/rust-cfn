@@ -8,9 +8,9 @@ pub struct Certificate {
 #[derive(Serialize, Deserialize)]
 pub struct CertificateProperties {
     #[serde(rename="CertificateSigningRequest")]
-    pub certificate_signing_request: (),
+    pub certificate_signing_request: String,
     #[serde(rename="Status")]
-    pub status: (),
+    pub status: String,
 }
 
 impl<'a> ::Resource<'a> for Certificate {
@@ -40,9 +40,9 @@ pub struct Policy {
 #[derive(Serialize, Deserialize)]
 pub struct PolicyProperties {
     #[serde(rename="PolicyDocument")]
-    pub policy_document: (),
+    pub policy_document: String,
     #[serde(rename="PolicyName")]
-    pub policy_name: (),
+    pub policy_name: String,
 }
 
 impl<'a> ::Resource<'a> for Policy {
@@ -72,9 +72,9 @@ pub struct PolicyPrincipalAttachment {
 #[derive(Serialize, Deserialize)]
 pub struct PolicyPrincipalAttachmentProperties {
     #[serde(rename="PolicyName")]
-    pub policy_name: (),
+    pub policy_name: String,
     #[serde(rename="Principal")]
-    pub principal: (),
+    pub principal: String,
 }
 
 impl<'a> ::Resource<'a> for PolicyPrincipalAttachment {
@@ -106,7 +106,7 @@ pub struct ThingProperties {
     #[serde(rename="AttributePayload")]
     pub attribute_payload: (),
     #[serde(rename="ThingName")]
-    pub thing_name: (),
+    pub thing_name: String,
 }
 
 impl<'a> ::Resource<'a> for Thing {
@@ -136,9 +136,9 @@ pub struct ThingPrincipalAttachment {
 #[derive(Serialize, Deserialize)]
 pub struct ThingPrincipalAttachmentProperties {
     #[serde(rename="Principal")]
-    pub principal: (),
+    pub principal: String,
     #[serde(rename="ThingName")]
-    pub thing_name: (),
+    pub thing_name: String,
 }
 
 impl<'a> ::Resource<'a> for ThingPrincipalAttachment {
@@ -168,7 +168,7 @@ pub struct TopicRule {
 #[derive(Serialize, Deserialize)]
 pub struct TopicRuleProperties {
     #[serde(rename="RuleName")]
-    pub rule_name: (),
+    pub rule_name: String,
     #[serde(rename="TopicRulePayload")]
     pub topic_rule_payload: (),
 }

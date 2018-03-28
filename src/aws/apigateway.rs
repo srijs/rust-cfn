@@ -8,7 +8,7 @@ pub struct Account {
 #[derive(Serialize, Deserialize)]
 pub struct AccountProperties {
     #[serde(rename="CloudWatchRoleArn")]
-    pub cloud_watch_role_arn: (),
+    pub cloud_watch_role_arn: String,
 }
 
 impl<'a> ::Resource<'a> for Account {
@@ -38,17 +38,17 @@ pub struct ApiKey {
 #[derive(Serialize, Deserialize)]
 pub struct ApiKeyProperties {
     #[serde(rename="CustomerId")]
-    pub customer_id: (),
+    pub customer_id: String,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="Enabled")]
-    pub enabled: (),
+    pub enabled: bool,
     #[serde(rename="GenerateDistinctId")]
-    pub generate_distinct_id: (),
+    pub generate_distinct_id: bool,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="StageKeys")]
-    pub stage_keys: (),
+    pub stage_keys: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for ApiKey {
@@ -78,25 +78,25 @@ pub struct Authorizer {
 #[derive(Serialize, Deserialize)]
 pub struct AuthorizerProperties {
     #[serde(rename="AuthType")]
-    pub auth_type: (),
+    pub auth_type: String,
     #[serde(rename="AuthorizerCredentials")]
-    pub authorizer_credentials: (),
+    pub authorizer_credentials: String,
     #[serde(rename="AuthorizerResultTtlInSeconds")]
-    pub authorizer_result_ttl_in_seconds: (),
+    pub authorizer_result_ttl_in_seconds: u32,
     #[serde(rename="AuthorizerUri")]
-    pub authorizer_uri: (),
+    pub authorizer_uri: String,
     #[serde(rename="IdentitySource")]
-    pub identity_source: (),
+    pub identity_source: String,
     #[serde(rename="IdentityValidationExpression")]
-    pub identity_validation_expression: (),
+    pub identity_validation_expression: String,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="ProviderARNs")]
-    pub provider_ar_ns: (),
+    pub provider_ar_ns: Vec<String>,
     #[serde(rename="RestApiId")]
-    pub rest_api_id: (),
+    pub rest_api_id: String,
     #[serde(rename="Type")]
-    pub type_: (),
+    pub type_: String,
 }
 
 impl<'a> ::Resource<'a> for Authorizer {
@@ -126,13 +126,13 @@ pub struct BasePathMapping {
 #[derive(Serialize, Deserialize)]
 pub struct BasePathMappingProperties {
     #[serde(rename="BasePath")]
-    pub base_path: (),
+    pub base_path: String,
     #[serde(rename="DomainName")]
-    pub domain_name: (),
+    pub domain_name: String,
     #[serde(rename="RestApiId")]
-    pub rest_api_id: (),
+    pub rest_api_id: String,
     #[serde(rename="Stage")]
-    pub stage: (),
+    pub stage: String,
 }
 
 impl<'a> ::Resource<'a> for BasePathMapping {
@@ -162,7 +162,7 @@ pub struct ClientCertificate {
 #[derive(Serialize, Deserialize)]
 pub struct ClientCertificateProperties {
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
 }
 
 impl<'a> ::Resource<'a> for ClientCertificate {
@@ -192,13 +192,13 @@ pub struct Deployment {
 #[derive(Serialize, Deserialize)]
 pub struct DeploymentProperties {
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="RestApiId")]
-    pub rest_api_id: (),
+    pub rest_api_id: String,
     #[serde(rename="StageDescription")]
     pub stage_description: (),
     #[serde(rename="StageName")]
-    pub stage_name: (),
+    pub stage_name: String,
 }
 
 impl<'a> ::Resource<'a> for Deployment {
@@ -230,9 +230,9 @@ pub struct DocumentationPartProperties {
     #[serde(rename="Location")]
     pub location: (),
     #[serde(rename="Properties")]
-    pub properties: (),
+    pub properties: String,
     #[serde(rename="RestApiId")]
-    pub rest_api_id: (),
+    pub rest_api_id: String,
 }
 
 impl<'a> ::Resource<'a> for DocumentationPart {
@@ -262,11 +262,11 @@ pub struct DocumentationVersion {
 #[derive(Serialize, Deserialize)]
 pub struct DocumentationVersionProperties {
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="DocumentationVersion")]
-    pub documentation_version: (),
+    pub documentation_version: String,
     #[serde(rename="RestApiId")]
-    pub rest_api_id: (),
+    pub rest_api_id: String,
 }
 
 impl<'a> ::Resource<'a> for DocumentationVersion {
@@ -296,13 +296,13 @@ pub struct DomainName {
 #[derive(Serialize, Deserialize)]
 pub struct DomainNameProperties {
     #[serde(rename="CertificateArn")]
-    pub certificate_arn: (),
+    pub certificate_arn: String,
     #[serde(rename="DomainName")]
-    pub domain_name: (),
+    pub domain_name: String,
     #[serde(rename="EndpointConfiguration")]
     pub endpoint_configuration: (),
     #[serde(rename="RegionalCertificateArn")]
-    pub regional_certificate_arn: (),
+    pub regional_certificate_arn: String,
 }
 
 impl<'a> ::Resource<'a> for DomainName {
@@ -332,15 +332,15 @@ pub struct GatewayResponse {
 #[derive(Serialize, Deserialize)]
 pub struct GatewayResponseProperties {
     #[serde(rename="ResponseParameters")]
-    pub response_parameters: (),
+    pub response_parameters: ::std::collections::HashMap<String, String>,
     #[serde(rename="ResponseTemplates")]
-    pub response_templates: (),
+    pub response_templates: ::std::collections::HashMap<String, String>,
     #[serde(rename="ResponseType")]
-    pub response_type: (),
+    pub response_type: String,
     #[serde(rename="RestApiId")]
-    pub rest_api_id: (),
+    pub rest_api_id: String,
     #[serde(rename="StatusCode")]
-    pub status_code: (),
+    pub status_code: String,
 }
 
 impl<'a> ::Resource<'a> for GatewayResponse {
@@ -370,29 +370,29 @@ pub struct Method {
 #[derive(Serialize, Deserialize)]
 pub struct MethodProperties {
     #[serde(rename="ApiKeyRequired")]
-    pub api_key_required: (),
+    pub api_key_required: bool,
     #[serde(rename="AuthorizationType")]
-    pub authorization_type: (),
+    pub authorization_type: String,
     #[serde(rename="AuthorizerId")]
-    pub authorizer_id: (),
+    pub authorizer_id: String,
     #[serde(rename="HttpMethod")]
-    pub http_method: (),
+    pub http_method: String,
     #[serde(rename="Integration")]
     pub integration: (),
     #[serde(rename="MethodResponses")]
-    pub method_responses: (),
+    pub method_responses: Vec<()>,
     #[serde(rename="OperationName")]
-    pub operation_name: (),
+    pub operation_name: String,
     #[serde(rename="RequestModels")]
-    pub request_models: (),
+    pub request_models: ::std::collections::HashMap<String, String>,
     #[serde(rename="RequestParameters")]
-    pub request_parameters: (),
+    pub request_parameters: ::std::collections::HashMap<String, bool>,
     #[serde(rename="RequestValidatorId")]
-    pub request_validator_id: (),
+    pub request_validator_id: String,
     #[serde(rename="ResourceId")]
-    pub resource_id: (),
+    pub resource_id: String,
     #[serde(rename="RestApiId")]
-    pub rest_api_id: (),
+    pub rest_api_id: String,
 }
 
 impl<'a> ::Resource<'a> for Method {
@@ -422,15 +422,15 @@ pub struct Model {
 #[derive(Serialize, Deserialize)]
 pub struct ModelProperties {
     #[serde(rename="ContentType")]
-    pub content_type: (),
+    pub content_type: String,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="RestApiId")]
-    pub rest_api_id: (),
+    pub rest_api_id: String,
     #[serde(rename="Schema")]
-    pub schema: (),
+    pub schema: String,
 }
 
 impl<'a> ::Resource<'a> for Model {
@@ -460,13 +460,13 @@ pub struct RequestValidator {
 #[derive(Serialize, Deserialize)]
 pub struct RequestValidatorProperties {
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="RestApiId")]
-    pub rest_api_id: (),
+    pub rest_api_id: String,
     #[serde(rename="ValidateRequestBody")]
-    pub validate_request_body: (),
+    pub validate_request_body: bool,
     #[serde(rename="ValidateRequestParameters")]
-    pub validate_request_parameters: (),
+    pub validate_request_parameters: bool,
 }
 
 impl<'a> ::Resource<'a> for RequestValidator {
@@ -496,11 +496,11 @@ pub struct Resource {
 #[derive(Serialize, Deserialize)]
 pub struct ResourceProperties {
     #[serde(rename="ParentId")]
-    pub parent_id: (),
+    pub parent_id: String,
     #[serde(rename="PathPart")]
-    pub path_part: (),
+    pub path_part: String,
     #[serde(rename="RestApiId")]
-    pub rest_api_id: (),
+    pub rest_api_id: String,
 }
 
 impl<'a> ::Resource<'a> for Resource {
@@ -530,27 +530,27 @@ pub struct RestApi {
 #[derive(Serialize, Deserialize)]
 pub struct RestApiProperties {
     #[serde(rename="ApiKeySourceType")]
-    pub api_key_source_type: (),
+    pub api_key_source_type: String,
     #[serde(rename="BinaryMediaTypes")]
-    pub binary_media_types: (),
+    pub binary_media_types: Vec<String>,
     #[serde(rename="Body")]
-    pub body: (),
+    pub body: String,
     #[serde(rename="BodyS3Location")]
     pub body_s3_location: (),
     #[serde(rename="CloneFrom")]
-    pub clone_from: (),
+    pub clone_from: String,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="EndpointConfiguration")]
     pub endpoint_configuration: (),
     #[serde(rename="FailOnWarnings")]
-    pub fail_on_warnings: (),
+    pub fail_on_warnings: bool,
     #[serde(rename="MinimumCompressionSize")]
-    pub minimum_compression_size: (),
+    pub minimum_compression_size: u32,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="Parameters")]
-    pub parameters: (),
+    pub parameters: ::std::collections::HashMap<String, String>,
 }
 
 impl<'a> ::Resource<'a> for RestApi {
@@ -580,25 +580,25 @@ pub struct Stage {
 #[derive(Serialize, Deserialize)]
 pub struct StageProperties {
     #[serde(rename="CacheClusterEnabled")]
-    pub cache_cluster_enabled: (),
+    pub cache_cluster_enabled: bool,
     #[serde(rename="CacheClusterSize")]
-    pub cache_cluster_size: (),
+    pub cache_cluster_size: String,
     #[serde(rename="ClientCertificateId")]
-    pub client_certificate_id: (),
+    pub client_certificate_id: String,
     #[serde(rename="DeploymentId")]
-    pub deployment_id: (),
+    pub deployment_id: String,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="DocumentationVersion")]
-    pub documentation_version: (),
+    pub documentation_version: String,
     #[serde(rename="MethodSettings")]
-    pub method_settings: (),
+    pub method_settings: Vec<()>,
     #[serde(rename="RestApiId")]
-    pub rest_api_id: (),
+    pub rest_api_id: String,
     #[serde(rename="StageName")]
-    pub stage_name: (),
+    pub stage_name: String,
     #[serde(rename="Variables")]
-    pub variables: (),
+    pub variables: ::std::collections::HashMap<String, String>,
 }
 
 impl<'a> ::Resource<'a> for Stage {
@@ -628,15 +628,15 @@ pub struct UsagePlan {
 #[derive(Serialize, Deserialize)]
 pub struct UsagePlanProperties {
     #[serde(rename="ApiStages")]
-    pub api_stages: (),
+    pub api_stages: Vec<()>,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="Quota")]
     pub quota: (),
     #[serde(rename="Throttle")]
     pub throttle: (),
     #[serde(rename="UsagePlanName")]
-    pub usage_plan_name: (),
+    pub usage_plan_name: String,
 }
 
 impl<'a> ::Resource<'a> for UsagePlan {
@@ -666,11 +666,11 @@ pub struct UsagePlanKey {
 #[derive(Serialize, Deserialize)]
 pub struct UsagePlanKeyProperties {
     #[serde(rename="KeyId")]
-    pub key_id: (),
+    pub key_id: String,
     #[serde(rename="KeyType")]
-    pub key_type: (),
+    pub key_type: String,
     #[serde(rename="UsagePlanId")]
-    pub usage_plan_id: (),
+    pub usage_plan_id: String,
 }
 
 impl<'a> ::Resource<'a> for UsagePlanKey {
@@ -700,11 +700,11 @@ pub struct VpcLink {
 #[derive(Serialize, Deserialize)]
 pub struct VpcLinkProperties {
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="TargetArns")]
-    pub target_arns: (),
+    pub target_arns: Vec<String>,
 }
 
 impl<'a> ::Resource<'a> for VpcLink {

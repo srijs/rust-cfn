@@ -8,13 +8,13 @@ pub struct Table {
 #[derive(Serialize, Deserialize)]
 pub struct TableProperties {
     #[serde(rename="AttributeDefinitions")]
-    pub attribute_definitions: (),
+    pub attribute_definitions: Vec<()>,
     #[serde(rename="GlobalSecondaryIndexes")]
-    pub global_secondary_indexes: (),
+    pub global_secondary_indexes: Vec<()>,
     #[serde(rename="KeySchema")]
-    pub key_schema: (),
+    pub key_schema: Vec<()>,
     #[serde(rename="LocalSecondaryIndexes")]
-    pub local_secondary_indexes: (),
+    pub local_secondary_indexes: Vec<()>,
     #[serde(rename="ProvisionedThroughput")]
     pub provisioned_throughput: (),
     #[serde(rename="SSESpecification")]
@@ -22,9 +22,9 @@ pub struct TableProperties {
     #[serde(rename="StreamSpecification")]
     pub stream_specification: (),
     #[serde(rename="TableName")]
-    pub table_name: (),
+    pub table_name: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="TimeToLiveSpecification")]
     pub time_to_live_specification: (),
 }

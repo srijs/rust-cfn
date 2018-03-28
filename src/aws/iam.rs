@@ -8,11 +8,11 @@ pub struct AccessKey {
 #[derive(Serialize, Deserialize)]
 pub struct AccessKeyProperties {
     #[serde(rename="Serial")]
-    pub serial: (),
+    pub serial: u32,
     #[serde(rename="Status")]
-    pub status: (),
+    pub status: String,
     #[serde(rename="UserName")]
-    pub user_name: (),
+    pub user_name: String,
 }
 
 impl<'a> ::Resource<'a> for AccessKey {
@@ -42,13 +42,13 @@ pub struct Group {
 #[derive(Serialize, Deserialize)]
 pub struct GroupProperties {
     #[serde(rename="GroupName")]
-    pub group_name: (),
+    pub group_name: String,
     #[serde(rename="ManagedPolicyArns")]
-    pub managed_policy_arns: (),
+    pub managed_policy_arns: Vec<String>,
     #[serde(rename="Path")]
-    pub path: (),
+    pub path: String,
     #[serde(rename="Policies")]
-    pub policies: (),
+    pub policies: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for Group {
@@ -78,11 +78,11 @@ pub struct InstanceProfile {
 #[derive(Serialize, Deserialize)]
 pub struct InstanceProfileProperties {
     #[serde(rename="InstanceProfileName")]
-    pub instance_profile_name: (),
+    pub instance_profile_name: String,
     #[serde(rename="Path")]
-    pub path: (),
+    pub path: String,
     #[serde(rename="Roles")]
-    pub roles: (),
+    pub roles: Vec<String>,
 }
 
 impl<'a> ::Resource<'a> for InstanceProfile {
@@ -112,19 +112,19 @@ pub struct ManagedPolicy {
 #[derive(Serialize, Deserialize)]
 pub struct ManagedPolicyProperties {
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="Groups")]
-    pub groups: (),
+    pub groups: Vec<String>,
     #[serde(rename="ManagedPolicyName")]
-    pub managed_policy_name: (),
+    pub managed_policy_name: String,
     #[serde(rename="Path")]
-    pub path: (),
+    pub path: String,
     #[serde(rename="PolicyDocument")]
-    pub policy_document: (),
+    pub policy_document: String,
     #[serde(rename="Roles")]
-    pub roles: (),
+    pub roles: Vec<String>,
     #[serde(rename="Users")]
-    pub users: (),
+    pub users: Vec<String>,
 }
 
 impl<'a> ::Resource<'a> for ManagedPolicy {
@@ -154,15 +154,15 @@ pub struct Policy {
 #[derive(Serialize, Deserialize)]
 pub struct PolicyProperties {
     #[serde(rename="Groups")]
-    pub groups: (),
+    pub groups: Vec<String>,
     #[serde(rename="PolicyDocument")]
-    pub policy_document: (),
+    pub policy_document: String,
     #[serde(rename="PolicyName")]
-    pub policy_name: (),
+    pub policy_name: String,
     #[serde(rename="Roles")]
-    pub roles: (),
+    pub roles: Vec<String>,
     #[serde(rename="Users")]
-    pub users: (),
+    pub users: Vec<String>,
 }
 
 impl<'a> ::Resource<'a> for Policy {
@@ -192,15 +192,15 @@ pub struct Role {
 #[derive(Serialize, Deserialize)]
 pub struct RoleProperties {
     #[serde(rename="AssumeRolePolicyDocument")]
-    pub assume_role_policy_document: (),
+    pub assume_role_policy_document: String,
     #[serde(rename="ManagedPolicyArns")]
-    pub managed_policy_arns: (),
+    pub managed_policy_arns: Vec<String>,
     #[serde(rename="Path")]
-    pub path: (),
+    pub path: String,
     #[serde(rename="Policies")]
-    pub policies: (),
+    pub policies: Vec<()>,
     #[serde(rename="RoleName")]
-    pub role_name: (),
+    pub role_name: String,
 }
 
 impl<'a> ::Resource<'a> for Role {
@@ -230,17 +230,17 @@ pub struct User {
 #[derive(Serialize, Deserialize)]
 pub struct UserProperties {
     #[serde(rename="Groups")]
-    pub groups: (),
+    pub groups: Vec<String>,
     #[serde(rename="LoginProfile")]
     pub login_profile: (),
     #[serde(rename="ManagedPolicyArns")]
-    pub managed_policy_arns: (),
+    pub managed_policy_arns: Vec<String>,
     #[serde(rename="Path")]
-    pub path: (),
+    pub path: String,
     #[serde(rename="Policies")]
-    pub policies: (),
+    pub policies: Vec<()>,
     #[serde(rename="UserName")]
-    pub user_name: (),
+    pub user_name: String,
 }
 
 impl<'a> ::Resource<'a> for User {
@@ -270,9 +270,9 @@ pub struct UserToGroupAddition {
 #[derive(Serialize, Deserialize)]
 pub struct UserToGroupAdditionProperties {
     #[serde(rename="GroupName")]
-    pub group_name: (),
+    pub group_name: String,
     #[serde(rename="Users")]
-    pub users: (),
+    pub users: Vec<String>,
 }
 
 impl<'a> ::Resource<'a> for UserToGroupAddition {

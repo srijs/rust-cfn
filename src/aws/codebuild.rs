@@ -10,25 +10,25 @@ pub struct ProjectProperties {
     #[serde(rename="Artifacts")]
     pub artifacts: (),
     #[serde(rename="BadgeEnabled")]
-    pub badge_enabled: (),
+    pub badge_enabled: bool,
     #[serde(rename="Cache")]
     pub cache: (),
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="EncryptionKey")]
-    pub encryption_key: (),
+    pub encryption_key: String,
     #[serde(rename="Environment")]
     pub environment: (),
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="ServiceRole")]
-    pub service_role: (),
+    pub service_role: String,
     #[serde(rename="Source")]
     pub source: (),
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="TimeoutInMinutes")]
-    pub timeout_in_minutes: (),
+    pub timeout_in_minutes: u32,
     #[serde(rename="Triggers")]
     pub triggers: (),
     #[serde(rename="VpcConfig")]

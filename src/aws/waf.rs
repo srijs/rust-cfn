@@ -8,9 +8,9 @@ pub struct ByteMatchSet {
 #[derive(Serialize, Deserialize)]
 pub struct ByteMatchSetProperties {
     #[serde(rename="ByteMatchTuples")]
-    pub byte_match_tuples: (),
+    pub byte_match_tuples: Vec<()>,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
 }
 
 impl<'a> ::Resource<'a> for ByteMatchSet {
@@ -40,9 +40,9 @@ pub struct IPSet {
 #[derive(Serialize, Deserialize)]
 pub struct IPSetProperties {
     #[serde(rename="IPSetDescriptors")]
-    pub ip_set_descriptors: (),
+    pub ip_set_descriptors: Vec<()>,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
 }
 
 impl<'a> ::Resource<'a> for IPSet {
@@ -72,11 +72,11 @@ pub struct Rule {
 #[derive(Serialize, Deserialize)]
 pub struct RuleProperties {
     #[serde(rename="MetricName")]
-    pub metric_name: (),
+    pub metric_name: String,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="Predicates")]
-    pub predicates: (),
+    pub predicates: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for Rule {
@@ -106,9 +106,9 @@ pub struct SizeConstraintSet {
 #[derive(Serialize, Deserialize)]
 pub struct SizeConstraintSetProperties {
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="SizeConstraints")]
-    pub size_constraints: (),
+    pub size_constraints: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for SizeConstraintSet {
@@ -138,9 +138,9 @@ pub struct SqlInjectionMatchSet {
 #[derive(Serialize, Deserialize)]
 pub struct SqlInjectionMatchSetProperties {
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="SqlInjectionMatchTuples")]
-    pub sql_injection_match_tuples: (),
+    pub sql_injection_match_tuples: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for SqlInjectionMatchSet {
@@ -172,11 +172,11 @@ pub struct WebACLProperties {
     #[serde(rename="DefaultAction")]
     pub default_action: (),
     #[serde(rename="MetricName")]
-    pub metric_name: (),
+    pub metric_name: String,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="Rules")]
-    pub rules: (),
+    pub rules: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for WebACL {
@@ -206,9 +206,9 @@ pub struct XssMatchSet {
 #[derive(Serialize, Deserialize)]
 pub struct XssMatchSetProperties {
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="XssMatchTuples")]
-    pub xss_match_tuples: (),
+    pub xss_match_tuples: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for XssMatchSet {

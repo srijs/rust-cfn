@@ -8,9 +8,9 @@ pub struct AssessmentTarget {
 #[derive(Serialize, Deserialize)]
 pub struct AssessmentTargetProperties {
     #[serde(rename="AssessmentTargetName")]
-    pub assessment_target_name: (),
+    pub assessment_target_name: String,
     #[serde(rename="ResourceGroupArn")]
-    pub resource_group_arn: (),
+    pub resource_group_arn: String,
 }
 
 impl<'a> ::Resource<'a> for AssessmentTarget {
@@ -40,15 +40,15 @@ pub struct AssessmentTemplate {
 #[derive(Serialize, Deserialize)]
 pub struct AssessmentTemplateProperties {
     #[serde(rename="AssessmentTargetArn")]
-    pub assessment_target_arn: (),
+    pub assessment_target_arn: String,
     #[serde(rename="AssessmentTemplateName")]
-    pub assessment_template_name: (),
+    pub assessment_template_name: String,
     #[serde(rename="DurationInSeconds")]
-    pub duration_in_seconds: (),
+    pub duration_in_seconds: u32,
     #[serde(rename="RulesPackageArns")]
-    pub rules_package_arns: (),
+    pub rules_package_arns: Vec<String>,
     #[serde(rename="UserAttributesForFindings")]
-    pub user_attributes_for_findings: (),
+    pub user_attributes_for_findings: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for AssessmentTemplate {
@@ -78,7 +78,7 @@ pub struct ResourceGroup {
 #[derive(Serialize, Deserialize)]
 pub struct ResourceGroupProperties {
     #[serde(rename="ResourceGroupTags")]
-    pub resource_group_tags: (),
+    pub resource_group_tags: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for ResourceGroup {

@@ -8,11 +8,11 @@ pub struct Subscription {
 #[derive(Serialize, Deserialize)]
 pub struct SubscriptionProperties {
     #[serde(rename="Endpoint")]
-    pub endpoint: (),
+    pub endpoint: String,
     #[serde(rename="Protocol")]
-    pub protocol: (),
+    pub protocol: String,
     #[serde(rename="TopicArn")]
-    pub topic_arn: (),
+    pub topic_arn: String,
 }
 
 impl<'a> ::Resource<'a> for Subscription {
@@ -42,11 +42,11 @@ pub struct Topic {
 #[derive(Serialize, Deserialize)]
 pub struct TopicProperties {
     #[serde(rename="DisplayName")]
-    pub display_name: (),
+    pub display_name: String,
     #[serde(rename="Subscription")]
-    pub subscription: (),
+    pub subscription: Vec<()>,
     #[serde(rename="TopicName")]
-    pub topic_name: (),
+    pub topic_name: String,
 }
 
 impl<'a> ::Resource<'a> for Topic {
@@ -76,9 +76,9 @@ pub struct TopicPolicy {
 #[derive(Serialize, Deserialize)]
 pub struct TopicPolicyProperties {
     #[serde(rename="PolicyDocument")]
-    pub policy_document: (),
+    pub policy_document: String,
     #[serde(rename="Topics")]
-    pub topics: (),
+    pub topics: Vec<String>,
 }
 
 impl<'a> ::Resource<'a> for TopicPolicy {

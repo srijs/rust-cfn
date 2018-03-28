@@ -8,7 +8,7 @@ pub struct Detector {
 #[derive(Serialize, Deserialize)]
 pub struct DetectorProperties {
     #[serde(rename="Enable")]
-    pub enable: (),
+    pub enable: bool,
 }
 
 impl<'a> ::Resource<'a> for Detector {
@@ -38,15 +38,15 @@ pub struct IPSet {
 #[derive(Serialize, Deserialize)]
 pub struct IPSetProperties {
     #[serde(rename="Activate")]
-    pub activate: (),
+    pub activate: bool,
     #[serde(rename="DetectorId")]
-    pub detector_id: (),
+    pub detector_id: String,
     #[serde(rename="Format")]
-    pub format: (),
+    pub format: String,
     #[serde(rename="Location")]
-    pub location: (),
+    pub location: String,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
 }
 
 impl<'a> ::Resource<'a> for IPSet {
@@ -76,11 +76,11 @@ pub struct Master {
 #[derive(Serialize, Deserialize)]
 pub struct MasterProperties {
     #[serde(rename="DetectorId")]
-    pub detector_id: (),
+    pub detector_id: String,
     #[serde(rename="InvitationId")]
-    pub invitation_id: (),
+    pub invitation_id: String,
     #[serde(rename="MasterId")]
-    pub master_id: (),
+    pub master_id: String,
 }
 
 impl<'a> ::Resource<'a> for Master {
@@ -110,15 +110,15 @@ pub struct Member {
 #[derive(Serialize, Deserialize)]
 pub struct MemberProperties {
     #[serde(rename="DetectorId")]
-    pub detector_id: (),
+    pub detector_id: String,
     #[serde(rename="Email")]
-    pub email: (),
+    pub email: String,
     #[serde(rename="MemberId")]
-    pub member_id: (),
+    pub member_id: String,
     #[serde(rename="Message")]
-    pub message: (),
+    pub message: String,
     #[serde(rename="Status")]
-    pub status: (),
+    pub status: String,
 }
 
 impl<'a> ::Resource<'a> for Member {
@@ -148,15 +148,15 @@ pub struct ThreatIntelSet {
 #[derive(Serialize, Deserialize)]
 pub struct ThreatIntelSetProperties {
     #[serde(rename="Activate")]
-    pub activate: (),
+    pub activate: bool,
     #[serde(rename="DetectorId")]
-    pub detector_id: (),
+    pub detector_id: String,
     #[serde(rename="Format")]
-    pub format: (),
+    pub format: String,
     #[serde(rename="Location")]
-    pub location: (),
+    pub location: String,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
 }
 
 impl<'a> ::Resource<'a> for ThreatIntelSet {

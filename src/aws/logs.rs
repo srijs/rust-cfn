@@ -8,13 +8,13 @@ pub struct Destination {
 #[derive(Serialize, Deserialize)]
 pub struct DestinationProperties {
     #[serde(rename="DestinationName")]
-    pub destination_name: (),
+    pub destination_name: String,
     #[serde(rename="DestinationPolicy")]
-    pub destination_policy: (),
+    pub destination_policy: String,
     #[serde(rename="RoleArn")]
-    pub role_arn: (),
+    pub role_arn: String,
     #[serde(rename="TargetArn")]
-    pub target_arn: (),
+    pub target_arn: String,
 }
 
 impl<'a> ::Resource<'a> for Destination {
@@ -44,9 +44,9 @@ pub struct LogGroup {
 #[derive(Serialize, Deserialize)]
 pub struct LogGroupProperties {
     #[serde(rename="LogGroupName")]
-    pub log_group_name: (),
+    pub log_group_name: String,
     #[serde(rename="RetentionInDays")]
-    pub retention_in_days: (),
+    pub retention_in_days: u32,
 }
 
 impl<'a> ::Resource<'a> for LogGroup {
@@ -76,9 +76,9 @@ pub struct LogStream {
 #[derive(Serialize, Deserialize)]
 pub struct LogStreamProperties {
     #[serde(rename="LogGroupName")]
-    pub log_group_name: (),
+    pub log_group_name: String,
     #[serde(rename="LogStreamName")]
-    pub log_stream_name: (),
+    pub log_stream_name: String,
 }
 
 impl<'a> ::Resource<'a> for LogStream {
@@ -108,11 +108,11 @@ pub struct MetricFilter {
 #[derive(Serialize, Deserialize)]
 pub struct MetricFilterProperties {
     #[serde(rename="FilterPattern")]
-    pub filter_pattern: (),
+    pub filter_pattern: String,
     #[serde(rename="LogGroupName")]
-    pub log_group_name: (),
+    pub log_group_name: String,
     #[serde(rename="MetricTransformations")]
-    pub metric_transformations: (),
+    pub metric_transformations: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for MetricFilter {
@@ -142,13 +142,13 @@ pub struct SubscriptionFilter {
 #[derive(Serialize, Deserialize)]
 pub struct SubscriptionFilterProperties {
     #[serde(rename="DestinationArn")]
-    pub destination_arn: (),
+    pub destination_arn: String,
     #[serde(rename="FilterPattern")]
-    pub filter_pattern: (),
+    pub filter_pattern: String,
     #[serde(rename="LogGroupName")]
-    pub log_group_name: (),
+    pub log_group_name: String,
     #[serde(rename="RoleArn")]
-    pub role_arn: (),
+    pub role_arn: String,
 }
 
 impl<'a> ::Resource<'a> for SubscriptionFilter {

@@ -8,9 +8,9 @@ pub struct Application {
 #[derive(Serialize, Deserialize)]
 pub struct ApplicationProperties {
     #[serde(rename="ApplicationName")]
-    pub application_name: (),
+    pub application_name: String,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="ResourceLifecycleConfig")]
     pub resource_lifecycle_config: (),
 }
@@ -42,9 +42,9 @@ pub struct ApplicationVersion {
 #[derive(Serialize, Deserialize)]
 pub struct ApplicationVersionProperties {
     #[serde(rename="ApplicationName")]
-    pub application_name: (),
+    pub application_name: String,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="SourceBundle")]
     pub source_bundle: (),
 }
@@ -76,17 +76,17 @@ pub struct ConfigurationTemplate {
 #[derive(Serialize, Deserialize)]
 pub struct ConfigurationTemplateProperties {
     #[serde(rename="ApplicationName")]
-    pub application_name: (),
+    pub application_name: String,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="EnvironmentId")]
-    pub environment_id: (),
+    pub environment_id: String,
     #[serde(rename="OptionSettings")]
-    pub option_settings: (),
+    pub option_settings: Vec<()>,
     #[serde(rename="PlatformArn")]
-    pub platform_arn: (),
+    pub platform_arn: String,
     #[serde(rename="SolutionStackName")]
-    pub solution_stack_name: (),
+    pub solution_stack_name: String,
     #[serde(rename="SourceConfiguration")]
     pub source_configuration: (),
 }
@@ -118,27 +118,27 @@ pub struct Environment {
 #[derive(Serialize, Deserialize)]
 pub struct EnvironmentProperties {
     #[serde(rename="ApplicationName")]
-    pub application_name: (),
+    pub application_name: String,
     #[serde(rename="CNAMEPrefix")]
-    pub cname_prefix: (),
+    pub cname_prefix: String,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="EnvironmentName")]
-    pub environment_name: (),
+    pub environment_name: String,
     #[serde(rename="OptionSettings")]
-    pub option_settings: (),
+    pub option_settings: Vec<()>,
     #[serde(rename="PlatformArn")]
-    pub platform_arn: (),
+    pub platform_arn: String,
     #[serde(rename="SolutionStackName")]
-    pub solution_stack_name: (),
+    pub solution_stack_name: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="TemplateName")]
-    pub template_name: (),
+    pub template_name: String,
     #[serde(rename="Tier")]
     pub tier: (),
     #[serde(rename="VersionLabel")]
-    pub version_label: (),
+    pub version_label: String,
 }
 
 impl<'a> ::Resource<'a> for Environment {

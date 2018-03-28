@@ -8,13 +8,13 @@ pub struct CustomerGateway {
 #[derive(Serialize, Deserialize)]
 pub struct CustomerGatewayProperties {
     #[serde(rename="BgpAsn")]
-    pub bgp_asn: (),
+    pub bgp_asn: u32,
     #[serde(rename="IpAddress")]
-    pub ip_address: (),
+    pub ip_address: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="Type")]
-    pub type_: (),
+    pub type_: String,
 }
 
 impl<'a> ::Resource<'a> for CustomerGateway {
@@ -44,17 +44,17 @@ pub struct DHCPOptions {
 #[derive(Serialize, Deserialize)]
 pub struct DHCPOptionsProperties {
     #[serde(rename="DomainName")]
-    pub domain_name: (),
+    pub domain_name: String,
     #[serde(rename="DomainNameServers")]
-    pub domain_name_servers: (),
+    pub domain_name_servers: Vec<String>,
     #[serde(rename="NetbiosNameServers")]
-    pub netbios_name_servers: (),
+    pub netbios_name_servers: Vec<String>,
     #[serde(rename="NetbiosNodeType")]
-    pub netbios_node_type: (),
+    pub netbios_node_type: u32,
     #[serde(rename="NtpServers")]
-    pub ntp_servers: (),
+    pub ntp_servers: Vec<String>,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for DHCPOptions {
@@ -84,9 +84,9 @@ pub struct EIP {
 #[derive(Serialize, Deserialize)]
 pub struct EIPProperties {
     #[serde(rename="Domain")]
-    pub domain: (),
+    pub domain: String,
     #[serde(rename="InstanceId")]
-    pub instance_id: (),
+    pub instance_id: String,
 }
 
 impl<'a> ::Resource<'a> for EIP {
@@ -116,15 +116,15 @@ pub struct EIPAssociation {
 #[derive(Serialize, Deserialize)]
 pub struct EIPAssociationProperties {
     #[serde(rename="AllocationId")]
-    pub allocation_id: (),
+    pub allocation_id: String,
     #[serde(rename="EIP")]
-    pub eip: (),
+    pub eip: String,
     #[serde(rename="InstanceId")]
-    pub instance_id: (),
+    pub instance_id: String,
     #[serde(rename="NetworkInterfaceId")]
-    pub network_interface_id: (),
+    pub network_interface_id: String,
     #[serde(rename="PrivateIpAddress")]
-    pub private_ip_address: (),
+    pub private_ip_address: String,
 }
 
 impl<'a> ::Resource<'a> for EIPAssociation {
@@ -154,7 +154,7 @@ pub struct EgressOnlyInternetGateway {
 #[derive(Serialize, Deserialize)]
 pub struct EgressOnlyInternetGatewayProperties {
     #[serde(rename="VpcId")]
-    pub vpc_id: (),
+    pub vpc_id: String,
 }
 
 impl<'a> ::Resource<'a> for EgressOnlyInternetGateway {
@@ -184,15 +184,15 @@ pub struct FlowLog {
 #[derive(Serialize, Deserialize)]
 pub struct FlowLogProperties {
     #[serde(rename="DeliverLogsPermissionArn")]
-    pub deliver_logs_permission_arn: (),
+    pub deliver_logs_permission_arn: String,
     #[serde(rename="LogGroupName")]
-    pub log_group_name: (),
+    pub log_group_name: String,
     #[serde(rename="ResourceId")]
-    pub resource_id: (),
+    pub resource_id: String,
     #[serde(rename="ResourceType")]
-    pub resource_type: (),
+    pub resource_type: String,
     #[serde(rename="TrafficType")]
-    pub traffic_type: (),
+    pub traffic_type: String,
 }
 
 impl<'a> ::Resource<'a> for FlowLog {
@@ -222,11 +222,11 @@ pub struct Host {
 #[derive(Serialize, Deserialize)]
 pub struct HostProperties {
     #[serde(rename="AutoPlacement")]
-    pub auto_placement: (),
+    pub auto_placement: String,
     #[serde(rename="AvailabilityZone")]
-    pub availability_zone: (),
+    pub availability_zone: String,
     #[serde(rename="InstanceType")]
-    pub instance_type: (),
+    pub instance_type: String,
 }
 
 impl<'a> ::Resource<'a> for Host {
@@ -256,67 +256,67 @@ pub struct Instance {
 #[derive(Serialize, Deserialize)]
 pub struct InstanceProperties {
     #[serde(rename="AdditionalInfo")]
-    pub additional_info: (),
+    pub additional_info: String,
     #[serde(rename="Affinity")]
-    pub affinity: (),
+    pub affinity: String,
     #[serde(rename="AvailabilityZone")]
-    pub availability_zone: (),
+    pub availability_zone: String,
     #[serde(rename="BlockDeviceMappings")]
-    pub block_device_mappings: (),
+    pub block_device_mappings: Vec<()>,
     #[serde(rename="CreditSpecification")]
     pub credit_specification: (),
     #[serde(rename="DisableApiTermination")]
-    pub disable_api_termination: (),
+    pub disable_api_termination: bool,
     #[serde(rename="EbsOptimized")]
-    pub ebs_optimized: (),
+    pub ebs_optimized: bool,
     #[serde(rename="ElasticGpuSpecifications")]
-    pub elastic_gpu_specifications: (),
+    pub elastic_gpu_specifications: Vec<()>,
     #[serde(rename="HostId")]
-    pub host_id: (),
+    pub host_id: String,
     #[serde(rename="IamInstanceProfile")]
-    pub iam_instance_profile: (),
+    pub iam_instance_profile: String,
     #[serde(rename="ImageId")]
-    pub image_id: (),
+    pub image_id: String,
     #[serde(rename="InstanceInitiatedShutdownBehavior")]
-    pub instance_initiated_shutdown_behavior: (),
+    pub instance_initiated_shutdown_behavior: String,
     #[serde(rename="InstanceType")]
-    pub instance_type: (),
+    pub instance_type: String,
     #[serde(rename="Ipv6AddressCount")]
-    pub ipv6_address_count: (),
+    pub ipv6_address_count: u32,
     #[serde(rename="Ipv6Addresses")]
-    pub ipv6_addresses: (),
+    pub ipv6_addresses: Vec<()>,
     #[serde(rename="KernelId")]
-    pub kernel_id: (),
+    pub kernel_id: String,
     #[serde(rename="KeyName")]
-    pub key_name: (),
+    pub key_name: String,
     #[serde(rename="Monitoring")]
-    pub monitoring: (),
+    pub monitoring: bool,
     #[serde(rename="NetworkInterfaces")]
-    pub network_interfaces: (),
+    pub network_interfaces: Vec<()>,
     #[serde(rename="PlacementGroupName")]
-    pub placement_group_name: (),
+    pub placement_group_name: String,
     #[serde(rename="PrivateIpAddress")]
-    pub private_ip_address: (),
+    pub private_ip_address: String,
     #[serde(rename="RamdiskId")]
-    pub ramdisk_id: (),
+    pub ramdisk_id: String,
     #[serde(rename="SecurityGroupIds")]
-    pub security_group_ids: (),
+    pub security_group_ids: Vec<String>,
     #[serde(rename="SecurityGroups")]
-    pub security_groups: (),
+    pub security_groups: Vec<String>,
     #[serde(rename="SourceDestCheck")]
-    pub source_dest_check: (),
+    pub source_dest_check: bool,
     #[serde(rename="SsmAssociations")]
-    pub ssm_associations: (),
+    pub ssm_associations: Vec<()>,
     #[serde(rename="SubnetId")]
-    pub subnet_id: (),
+    pub subnet_id: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="Tenancy")]
-    pub tenancy: (),
+    pub tenancy: String,
     #[serde(rename="UserData")]
-    pub user_data: (),
+    pub user_data: String,
     #[serde(rename="Volumes")]
-    pub volumes: (),
+    pub volumes: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for Instance {
@@ -346,7 +346,7 @@ pub struct InternetGateway {
 #[derive(Serialize, Deserialize)]
 pub struct InternetGatewayProperties {
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for InternetGateway {
@@ -376,11 +376,11 @@ pub struct NatGateway {
 #[derive(Serialize, Deserialize)]
 pub struct NatGatewayProperties {
     #[serde(rename="AllocationId")]
-    pub allocation_id: (),
+    pub allocation_id: String,
     #[serde(rename="SubnetId")]
-    pub subnet_id: (),
+    pub subnet_id: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for NatGateway {
@@ -410,9 +410,9 @@ pub struct NetworkAcl {
 #[derive(Serialize, Deserialize)]
 pub struct NetworkAclProperties {
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="VpcId")]
-    pub vpc_id: (),
+    pub vpc_id: String,
 }
 
 impl<'a> ::Resource<'a> for NetworkAcl {
@@ -442,23 +442,23 @@ pub struct NetworkAclEntry {
 #[derive(Serialize, Deserialize)]
 pub struct NetworkAclEntryProperties {
     #[serde(rename="CidrBlock")]
-    pub cidr_block: (),
+    pub cidr_block: String,
     #[serde(rename="Egress")]
-    pub egress: (),
+    pub egress: bool,
     #[serde(rename="Icmp")]
     pub icmp: (),
     #[serde(rename="Ipv6CidrBlock")]
-    pub ipv6_cidr_block: (),
+    pub ipv6_cidr_block: String,
     #[serde(rename="NetworkAclId")]
-    pub network_acl_id: (),
+    pub network_acl_id: String,
     #[serde(rename="PortRange")]
     pub port_range: (),
     #[serde(rename="Protocol")]
-    pub protocol: (),
+    pub protocol: u32,
     #[serde(rename="RuleAction")]
-    pub rule_action: (),
+    pub rule_action: String,
     #[serde(rename="RuleNumber")]
-    pub rule_number: (),
+    pub rule_number: u32,
 }
 
 impl<'a> ::Resource<'a> for NetworkAclEntry {
@@ -488,27 +488,27 @@ pub struct NetworkInterface {
 #[derive(Serialize, Deserialize)]
 pub struct NetworkInterfaceProperties {
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="GroupSet")]
-    pub group_set: (),
+    pub group_set: Vec<String>,
     #[serde(rename="InterfaceType")]
-    pub interface_type: (),
+    pub interface_type: String,
     #[serde(rename="Ipv6AddressCount")]
-    pub ipv6_address_count: (),
+    pub ipv6_address_count: u32,
     #[serde(rename="Ipv6Addresses")]
     pub ipv6_addresses: (),
     #[serde(rename="PrivateIpAddress")]
-    pub private_ip_address: (),
+    pub private_ip_address: String,
     #[serde(rename="PrivateIpAddresses")]
-    pub private_ip_addresses: (),
+    pub private_ip_addresses: Vec<()>,
     #[serde(rename="SecondaryPrivateIpAddressCount")]
-    pub secondary_private_ip_address_count: (),
+    pub secondary_private_ip_address_count: u32,
     #[serde(rename="SourceDestCheck")]
-    pub source_dest_check: (),
+    pub source_dest_check: bool,
     #[serde(rename="SubnetId")]
-    pub subnet_id: (),
+    pub subnet_id: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for NetworkInterface {
@@ -538,13 +538,13 @@ pub struct NetworkInterfaceAttachment {
 #[derive(Serialize, Deserialize)]
 pub struct NetworkInterfaceAttachmentProperties {
     #[serde(rename="DeleteOnTermination")]
-    pub delete_on_termination: (),
+    pub delete_on_termination: bool,
     #[serde(rename="DeviceIndex")]
-    pub device_index: (),
+    pub device_index: String,
     #[serde(rename="InstanceId")]
-    pub instance_id: (),
+    pub instance_id: String,
     #[serde(rename="NetworkInterfaceId")]
-    pub network_interface_id: (),
+    pub network_interface_id: String,
 }
 
 impl<'a> ::Resource<'a> for NetworkInterfaceAttachment {
@@ -574,11 +574,11 @@ pub struct NetworkInterfacePermission {
 #[derive(Serialize, Deserialize)]
 pub struct NetworkInterfacePermissionProperties {
     #[serde(rename="AwsAccountId")]
-    pub aws_account_id: (),
+    pub aws_account_id: String,
     #[serde(rename="NetworkInterfaceId")]
-    pub network_interface_id: (),
+    pub network_interface_id: String,
     #[serde(rename="Permission")]
-    pub permission: (),
+    pub permission: String,
 }
 
 impl<'a> ::Resource<'a> for NetworkInterfacePermission {
@@ -608,7 +608,7 @@ pub struct PlacementGroup {
 #[derive(Serialize, Deserialize)]
 pub struct PlacementGroupProperties {
     #[serde(rename="Strategy")]
-    pub strategy: (),
+    pub strategy: String,
 }
 
 impl<'a> ::Resource<'a> for PlacementGroup {
@@ -638,23 +638,23 @@ pub struct Route {
 #[derive(Serialize, Deserialize)]
 pub struct RouteProperties {
     #[serde(rename="DestinationCidrBlock")]
-    pub destination_cidr_block: (),
+    pub destination_cidr_block: String,
     #[serde(rename="DestinationIpv6CidrBlock")]
-    pub destination_ipv6_cidr_block: (),
+    pub destination_ipv6_cidr_block: String,
     #[serde(rename="EgressOnlyInternetGatewayId")]
-    pub egress_only_internet_gateway_id: (),
+    pub egress_only_internet_gateway_id: String,
     #[serde(rename="GatewayId")]
-    pub gateway_id: (),
+    pub gateway_id: String,
     #[serde(rename="InstanceId")]
-    pub instance_id: (),
+    pub instance_id: String,
     #[serde(rename="NatGatewayId")]
-    pub nat_gateway_id: (),
+    pub nat_gateway_id: String,
     #[serde(rename="NetworkInterfaceId")]
-    pub network_interface_id: (),
+    pub network_interface_id: String,
     #[serde(rename="RouteTableId")]
-    pub route_table_id: (),
+    pub route_table_id: String,
     #[serde(rename="VpcPeeringConnectionId")]
-    pub vpc_peering_connection_id: (),
+    pub vpc_peering_connection_id: String,
 }
 
 impl<'a> ::Resource<'a> for Route {
@@ -684,9 +684,9 @@ pub struct RouteTable {
 #[derive(Serialize, Deserialize)]
 pub struct RouteTableProperties {
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="VpcId")]
-    pub vpc_id: (),
+    pub vpc_id: String,
 }
 
 impl<'a> ::Resource<'a> for RouteTable {
@@ -716,17 +716,17 @@ pub struct SecurityGroup {
 #[derive(Serialize, Deserialize)]
 pub struct SecurityGroupProperties {
     #[serde(rename="GroupDescription")]
-    pub group_description: (),
+    pub group_description: String,
     #[serde(rename="GroupName")]
-    pub group_name: (),
+    pub group_name: String,
     #[serde(rename="SecurityGroupEgress")]
-    pub security_group_egress: (),
+    pub security_group_egress: Vec<()>,
     #[serde(rename="SecurityGroupIngress")]
-    pub security_group_ingress: (),
+    pub security_group_ingress: Vec<()>,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="VpcId")]
-    pub vpc_id: (),
+    pub vpc_id: String,
 }
 
 impl<'a> ::Resource<'a> for SecurityGroup {
@@ -756,23 +756,23 @@ pub struct SecurityGroupEgress {
 #[derive(Serialize, Deserialize)]
 pub struct SecurityGroupEgressProperties {
     #[serde(rename="CidrIp")]
-    pub cidr_ip: (),
+    pub cidr_ip: String,
     #[serde(rename="CidrIpv6")]
-    pub cidr_ipv6: (),
+    pub cidr_ipv6: String,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="DestinationPrefixListId")]
-    pub destination_prefix_list_id: (),
+    pub destination_prefix_list_id: String,
     #[serde(rename="DestinationSecurityGroupId")]
-    pub destination_security_group_id: (),
+    pub destination_security_group_id: String,
     #[serde(rename="FromPort")]
-    pub from_port: (),
+    pub from_port: u32,
     #[serde(rename="GroupId")]
-    pub group_id: (),
+    pub group_id: String,
     #[serde(rename="IpProtocol")]
-    pub ip_protocol: (),
+    pub ip_protocol: String,
     #[serde(rename="ToPort")]
-    pub to_port: (),
+    pub to_port: u32,
 }
 
 impl<'a> ::Resource<'a> for SecurityGroupEgress {
@@ -802,27 +802,27 @@ pub struct SecurityGroupIngress {
 #[derive(Serialize, Deserialize)]
 pub struct SecurityGroupIngressProperties {
     #[serde(rename="CidrIp")]
-    pub cidr_ip: (),
+    pub cidr_ip: String,
     #[serde(rename="CidrIpv6")]
-    pub cidr_ipv6: (),
+    pub cidr_ipv6: String,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="FromPort")]
-    pub from_port: (),
+    pub from_port: u32,
     #[serde(rename="GroupId")]
-    pub group_id: (),
+    pub group_id: String,
     #[serde(rename="GroupName")]
-    pub group_name: (),
+    pub group_name: String,
     #[serde(rename="IpProtocol")]
-    pub ip_protocol: (),
+    pub ip_protocol: String,
     #[serde(rename="SourceSecurityGroupId")]
-    pub source_security_group_id: (),
+    pub source_security_group_id: String,
     #[serde(rename="SourceSecurityGroupName")]
-    pub source_security_group_name: (),
+    pub source_security_group_name: String,
     #[serde(rename="SourceSecurityGroupOwnerId")]
-    pub source_security_group_owner_id: (),
+    pub source_security_group_owner_id: String,
     #[serde(rename="ToPort")]
-    pub to_port: (),
+    pub to_port: u32,
 }
 
 impl<'a> ::Resource<'a> for SecurityGroupIngress {
@@ -882,19 +882,19 @@ pub struct Subnet {
 #[derive(Serialize, Deserialize)]
 pub struct SubnetProperties {
     #[serde(rename="AssignIpv6AddressOnCreation")]
-    pub assign_ipv6_address_on_creation: (),
+    pub assign_ipv6_address_on_creation: bool,
     #[serde(rename="AvailabilityZone")]
-    pub availability_zone: (),
+    pub availability_zone: String,
     #[serde(rename="CidrBlock")]
-    pub cidr_block: (),
+    pub cidr_block: String,
     #[serde(rename="Ipv6CidrBlock")]
-    pub ipv6_cidr_block: (),
+    pub ipv6_cidr_block: String,
     #[serde(rename="MapPublicIpOnLaunch")]
-    pub map_public_ip_on_launch: (),
+    pub map_public_ip_on_launch: bool,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="VpcId")]
-    pub vpc_id: (),
+    pub vpc_id: String,
 }
 
 impl<'a> ::Resource<'a> for Subnet {
@@ -924,9 +924,9 @@ pub struct SubnetCidrBlock {
 #[derive(Serialize, Deserialize)]
 pub struct SubnetCidrBlockProperties {
     #[serde(rename="Ipv6CidrBlock")]
-    pub ipv6_cidr_block: (),
+    pub ipv6_cidr_block: String,
     #[serde(rename="SubnetId")]
-    pub subnet_id: (),
+    pub subnet_id: String,
 }
 
 impl<'a> ::Resource<'a> for SubnetCidrBlock {
@@ -956,9 +956,9 @@ pub struct SubnetNetworkAclAssociation {
 #[derive(Serialize, Deserialize)]
 pub struct SubnetNetworkAclAssociationProperties {
     #[serde(rename="NetworkAclId")]
-    pub network_acl_id: (),
+    pub network_acl_id: String,
     #[serde(rename="SubnetId")]
-    pub subnet_id: (),
+    pub subnet_id: String,
 }
 
 impl<'a> ::Resource<'a> for SubnetNetworkAclAssociation {
@@ -988,9 +988,9 @@ pub struct SubnetRouteTableAssociation {
 #[derive(Serialize, Deserialize)]
 pub struct SubnetRouteTableAssociationProperties {
     #[serde(rename="RouteTableId")]
-    pub route_table_id: (),
+    pub route_table_id: String,
     #[serde(rename="SubnetId")]
-    pub subnet_id: (),
+    pub subnet_id: String,
 }
 
 impl<'a> ::Resource<'a> for SubnetRouteTableAssociation {
@@ -1020,13 +1020,13 @@ pub struct TrunkInterfaceAssociation {
 #[derive(Serialize, Deserialize)]
 pub struct TrunkInterfaceAssociationProperties {
     #[serde(rename="BranchInterfaceId")]
-    pub branch_interface_id: (),
+    pub branch_interface_id: String,
     #[serde(rename="GREKey")]
-    pub gre_key: (),
+    pub gre_key: u32,
     #[serde(rename="TrunkInterfaceId")]
-    pub trunk_interface_id: (),
+    pub trunk_interface_id: String,
     #[serde(rename="VLANId")]
-    pub vlan_id: (),
+    pub vlan_id: u32,
 }
 
 impl<'a> ::Resource<'a> for TrunkInterfaceAssociation {
@@ -1056,15 +1056,15 @@ pub struct VPC {
 #[derive(Serialize, Deserialize)]
 pub struct VPCProperties {
     #[serde(rename="CidrBlock")]
-    pub cidr_block: (),
+    pub cidr_block: String,
     #[serde(rename="EnableDnsHostnames")]
-    pub enable_dns_hostnames: (),
+    pub enable_dns_hostnames: bool,
     #[serde(rename="EnableDnsSupport")]
-    pub enable_dns_support: (),
+    pub enable_dns_support: bool,
     #[serde(rename="InstanceTenancy")]
-    pub instance_tenancy: (),
+    pub instance_tenancy: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for VPC {
@@ -1094,11 +1094,11 @@ pub struct VPCCidrBlock {
 #[derive(Serialize, Deserialize)]
 pub struct VPCCidrBlockProperties {
     #[serde(rename="AmazonProvidedIpv6CidrBlock")]
-    pub amazon_provided_ipv6_cidr_block: (),
+    pub amazon_provided_ipv6_cidr_block: bool,
     #[serde(rename="CidrBlock")]
-    pub cidr_block: (),
+    pub cidr_block: String,
     #[serde(rename="VpcId")]
-    pub vpc_id: (),
+    pub vpc_id: String,
 }
 
 impl<'a> ::Resource<'a> for VPCCidrBlock {
@@ -1128,9 +1128,9 @@ pub struct VPCDHCPOptionsAssociation {
 #[derive(Serialize, Deserialize)]
 pub struct VPCDHCPOptionsAssociationProperties {
     #[serde(rename="DhcpOptionsId")]
-    pub dhcp_options_id: (),
+    pub dhcp_options_id: String,
     #[serde(rename="VpcId")]
-    pub vpc_id: (),
+    pub vpc_id: String,
 }
 
 impl<'a> ::Resource<'a> for VPCDHCPOptionsAssociation {
@@ -1160,13 +1160,13 @@ pub struct VPCEndpoint {
 #[derive(Serialize, Deserialize)]
 pub struct VPCEndpointProperties {
     #[serde(rename="PolicyDocument")]
-    pub policy_document: (),
+    pub policy_document: String,
     #[serde(rename="RouteTableIds")]
-    pub route_table_ids: (),
+    pub route_table_ids: Vec<String>,
     #[serde(rename="ServiceName")]
-    pub service_name: (),
+    pub service_name: String,
     #[serde(rename="VpcId")]
-    pub vpc_id: (),
+    pub vpc_id: String,
 }
 
 impl<'a> ::Resource<'a> for VPCEndpoint {
@@ -1196,11 +1196,11 @@ pub struct VPCGatewayAttachment {
 #[derive(Serialize, Deserialize)]
 pub struct VPCGatewayAttachmentProperties {
     #[serde(rename="InternetGatewayId")]
-    pub internet_gateway_id: (),
+    pub internet_gateway_id: String,
     #[serde(rename="VpcId")]
-    pub vpc_id: (),
+    pub vpc_id: String,
     #[serde(rename="VpnGatewayId")]
-    pub vpn_gateway_id: (),
+    pub vpn_gateway_id: String,
 }
 
 impl<'a> ::Resource<'a> for VPCGatewayAttachment {
@@ -1230,15 +1230,15 @@ pub struct VPCPeeringConnection {
 #[derive(Serialize, Deserialize)]
 pub struct VPCPeeringConnectionProperties {
     #[serde(rename="PeerOwnerId")]
-    pub peer_owner_id: (),
+    pub peer_owner_id: String,
     #[serde(rename="PeerRoleArn")]
-    pub peer_role_arn: (),
+    pub peer_role_arn: String,
     #[serde(rename="PeerVpcId")]
-    pub peer_vpc_id: (),
+    pub peer_vpc_id: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="VpcId")]
-    pub vpc_id: (),
+    pub vpc_id: String,
 }
 
 impl<'a> ::Resource<'a> for VPCPeeringConnection {
@@ -1268,17 +1268,17 @@ pub struct VPNConnection {
 #[derive(Serialize, Deserialize)]
 pub struct VPNConnectionProperties {
     #[serde(rename="CustomerGatewayId")]
-    pub customer_gateway_id: (),
+    pub customer_gateway_id: String,
     #[serde(rename="StaticRoutesOnly")]
-    pub static_routes_only: (),
+    pub static_routes_only: bool,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="Type")]
-    pub type_: (),
+    pub type_: String,
     #[serde(rename="VpnGatewayId")]
-    pub vpn_gateway_id: (),
+    pub vpn_gateway_id: String,
     #[serde(rename="VpnTunnelOptionsSpecifications")]
-    pub vpn_tunnel_options_specifications: (),
+    pub vpn_tunnel_options_specifications: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for VPNConnection {
@@ -1308,9 +1308,9 @@ pub struct VPNConnectionRoute {
 #[derive(Serialize, Deserialize)]
 pub struct VPNConnectionRouteProperties {
     #[serde(rename="DestinationCidrBlock")]
-    pub destination_cidr_block: (),
+    pub destination_cidr_block: String,
     #[serde(rename="VpnConnectionId")]
-    pub vpn_connection_id: (),
+    pub vpn_connection_id: String,
 }
 
 impl<'a> ::Resource<'a> for VPNConnectionRoute {
@@ -1340,11 +1340,11 @@ pub struct VPNGateway {
 #[derive(Serialize, Deserialize)]
 pub struct VPNGatewayProperties {
     #[serde(rename="AmazonSideAsn")]
-    pub amazon_side_asn: (),
+    pub amazon_side_asn: u64,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="Type")]
-    pub type_: (),
+    pub type_: String,
 }
 
 impl<'a> ::Resource<'a> for VPNGateway {
@@ -1374,9 +1374,9 @@ pub struct VPNGatewayRoutePropagation {
 #[derive(Serialize, Deserialize)]
 pub struct VPNGatewayRoutePropagationProperties {
     #[serde(rename="RouteTableIds")]
-    pub route_table_ids: (),
+    pub route_table_ids: Vec<String>,
     #[serde(rename="VpnGatewayId")]
-    pub vpn_gateway_id: (),
+    pub vpn_gateway_id: String,
 }
 
 impl<'a> ::Resource<'a> for VPNGatewayRoutePropagation {
@@ -1406,23 +1406,23 @@ pub struct Volume {
 #[derive(Serialize, Deserialize)]
 pub struct VolumeProperties {
     #[serde(rename="AutoEnableIO")]
-    pub auto_enable_io: (),
+    pub auto_enable_io: bool,
     #[serde(rename="AvailabilityZone")]
-    pub availability_zone: (),
+    pub availability_zone: String,
     #[serde(rename="Encrypted")]
-    pub encrypted: (),
+    pub encrypted: bool,
     #[serde(rename="Iops")]
-    pub iops: (),
+    pub iops: u32,
     #[serde(rename="KmsKeyId")]
-    pub kms_key_id: (),
+    pub kms_key_id: String,
     #[serde(rename="Size")]
-    pub size: (),
+    pub size: u32,
     #[serde(rename="SnapshotId")]
-    pub snapshot_id: (),
+    pub snapshot_id: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="VolumeType")]
-    pub volume_type: (),
+    pub volume_type: String,
 }
 
 impl<'a> ::Resource<'a> for Volume {
@@ -1452,11 +1452,11 @@ pub struct VolumeAttachment {
 #[derive(Serialize, Deserialize)]
 pub struct VolumeAttachmentProperties {
     #[serde(rename="Device")]
-    pub device: (),
+    pub device: String,
     #[serde(rename="InstanceId")]
-    pub instance_id: (),
+    pub instance_id: String,
     #[serde(rename="VolumeId")]
-    pub volume_id: (),
+    pub volume_id: String,
 }
 
 impl<'a> ::Resource<'a> for VolumeAttachment {

@@ -8,13 +8,13 @@ pub struct Alias {
 #[derive(Serialize, Deserialize)]
 pub struct AliasProperties {
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="FunctionName")]
-    pub function_name: (),
+    pub function_name: String,
     #[serde(rename="FunctionVersion")]
-    pub function_version: (),
+    pub function_version: String,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="RoutingConfig")]
     pub routing_config: (),
 }
@@ -46,15 +46,15 @@ pub struct EventSourceMapping {
 #[derive(Serialize, Deserialize)]
 pub struct EventSourceMappingProperties {
     #[serde(rename="BatchSize")]
-    pub batch_size: (),
+    pub batch_size: u32,
     #[serde(rename="Enabled")]
-    pub enabled: (),
+    pub enabled: bool,
     #[serde(rename="EventSourceArn")]
-    pub event_source_arn: (),
+    pub event_source_arn: String,
     #[serde(rename="FunctionName")]
-    pub function_name: (),
+    pub function_name: String,
     #[serde(rename="StartingPosition")]
-    pub starting_position: (),
+    pub starting_position: String,
 }
 
 impl<'a> ::Resource<'a> for EventSourceMapping {
@@ -88,27 +88,27 @@ pub struct FunctionProperties {
     #[serde(rename="DeadLetterConfig")]
     pub dead_letter_config: (),
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="Environment")]
     pub environment: (),
     #[serde(rename="FunctionName")]
-    pub function_name: (),
+    pub function_name: String,
     #[serde(rename="Handler")]
-    pub handler: (),
+    pub handler: String,
     #[serde(rename="KmsKeyArn")]
-    pub kms_key_arn: (),
+    pub kms_key_arn: String,
     #[serde(rename="MemorySize")]
-    pub memory_size: (),
+    pub memory_size: u32,
     #[serde(rename="ReservedConcurrentExecutions")]
-    pub reserved_concurrent_executions: (),
+    pub reserved_concurrent_executions: u32,
     #[serde(rename="Role")]
-    pub role: (),
+    pub role: String,
     #[serde(rename="Runtime")]
-    pub runtime: (),
+    pub runtime: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="Timeout")]
-    pub timeout: (),
+    pub timeout: u32,
     #[serde(rename="TracingConfig")]
     pub tracing_config: (),
     #[serde(rename="VpcConfig")]
@@ -142,17 +142,17 @@ pub struct Permission {
 #[derive(Serialize, Deserialize)]
 pub struct PermissionProperties {
     #[serde(rename="Action")]
-    pub action: (),
+    pub action: String,
     #[serde(rename="EventSourceToken")]
-    pub event_source_token: (),
+    pub event_source_token: String,
     #[serde(rename="FunctionName")]
-    pub function_name: (),
+    pub function_name: String,
     #[serde(rename="Principal")]
-    pub principal: (),
+    pub principal: String,
     #[serde(rename="SourceAccount")]
-    pub source_account: (),
+    pub source_account: String,
     #[serde(rename="SourceArn")]
-    pub source_arn: (),
+    pub source_arn: String,
 }
 
 impl<'a> ::Resource<'a> for Permission {
@@ -182,11 +182,11 @@ pub struct Version {
 #[derive(Serialize, Deserialize)]
 pub struct VersionProperties {
     #[serde(rename="CodeSha256")]
-    pub code_sha256: (),
+    pub code_sha256: String,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="FunctionName")]
-    pub function_name: (),
+    pub function_name: String,
 }
 
 impl<'a> ::Resource<'a> for Version {

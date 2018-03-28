@@ -8,31 +8,31 @@ pub struct Trail {
 #[derive(Serialize, Deserialize)]
 pub struct TrailProperties {
     #[serde(rename="CloudWatchLogsLogGroupArn")]
-    pub cloud_watch_logs_log_group_arn: (),
+    pub cloud_watch_logs_log_group_arn: String,
     #[serde(rename="CloudWatchLogsRoleArn")]
-    pub cloud_watch_logs_role_arn: (),
+    pub cloud_watch_logs_role_arn: String,
     #[serde(rename="EnableLogFileValidation")]
-    pub enable_log_file_validation: (),
+    pub enable_log_file_validation: bool,
     #[serde(rename="EventSelectors")]
-    pub event_selectors: (),
+    pub event_selectors: Vec<()>,
     #[serde(rename="IncludeGlobalServiceEvents")]
-    pub include_global_service_events: (),
+    pub include_global_service_events: bool,
     #[serde(rename="IsLogging")]
-    pub is_logging: (),
+    pub is_logging: bool,
     #[serde(rename="IsMultiRegionTrail")]
-    pub is_multi_region_trail: (),
+    pub is_multi_region_trail: bool,
     #[serde(rename="KMSKeyId")]
-    pub kms_key_id: (),
+    pub kms_key_id: String,
     #[serde(rename="S3BucketName")]
-    pub s3_bucket_name: (),
+    pub s3_bucket_name: String,
     #[serde(rename="S3KeyPrefix")]
-    pub s3_key_prefix: (),
+    pub s3_key_prefix: String,
     #[serde(rename="SnsTopicName")]
-    pub sns_topic_name: (),
+    pub sns_topic_name: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="TrailName")]
-    pub trail_name: (),
+    pub trail_name: String,
 }
 
 impl<'a> ::Resource<'a> for Trail {

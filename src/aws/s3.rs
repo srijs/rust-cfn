@@ -10,29 +10,29 @@ pub struct BucketProperties {
     #[serde(rename="AccelerateConfiguration")]
     pub accelerate_configuration: (),
     #[serde(rename="AccessControl")]
-    pub access_control: (),
+    pub access_control: String,
     #[serde(rename="AnalyticsConfigurations")]
-    pub analytics_configurations: (),
+    pub analytics_configurations: Vec<()>,
     #[serde(rename="BucketEncryption")]
     pub bucket_encryption: (),
     #[serde(rename="BucketName")]
-    pub bucket_name: (),
+    pub bucket_name: String,
     #[serde(rename="CorsConfiguration")]
     pub cors_configuration: (),
     #[serde(rename="InventoryConfigurations")]
-    pub inventory_configurations: (),
+    pub inventory_configurations: Vec<()>,
     #[serde(rename="LifecycleConfiguration")]
     pub lifecycle_configuration: (),
     #[serde(rename="LoggingConfiguration")]
     pub logging_configuration: (),
     #[serde(rename="MetricsConfigurations")]
-    pub metrics_configurations: (),
+    pub metrics_configurations: Vec<()>,
     #[serde(rename="NotificationConfiguration")]
     pub notification_configuration: (),
     #[serde(rename="ReplicationConfiguration")]
     pub replication_configuration: (),
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="VersioningConfiguration")]
     pub versioning_configuration: (),
     #[serde(rename="WebsiteConfiguration")]
@@ -66,9 +66,9 @@ pub struct BucketPolicy {
 #[derive(Serialize, Deserialize)]
 pub struct BucketPolicyProperties {
     #[serde(rename="Bucket")]
-    pub bucket: (),
+    pub bucket: String,
     #[serde(rename="PolicyDocument")]
-    pub policy_document: (),
+    pub policy_document: String,
 }
 
 impl<'a> ::Resource<'a> for BucketPolicy {

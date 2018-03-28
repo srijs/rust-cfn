@@ -8,63 +8,63 @@ pub struct Cluster {
 #[derive(Serialize, Deserialize)]
 pub struct ClusterProperties {
     #[serde(rename="AllowVersionUpgrade")]
-    pub allow_version_upgrade: (),
+    pub allow_version_upgrade: bool,
     #[serde(rename="AutomatedSnapshotRetentionPeriod")]
-    pub automated_snapshot_retention_period: (),
+    pub automated_snapshot_retention_period: u32,
     #[serde(rename="AvailabilityZone")]
-    pub availability_zone: (),
+    pub availability_zone: String,
     #[serde(rename="ClusterIdentifier")]
-    pub cluster_identifier: (),
+    pub cluster_identifier: String,
     #[serde(rename="ClusterParameterGroupName")]
-    pub cluster_parameter_group_name: (),
+    pub cluster_parameter_group_name: String,
     #[serde(rename="ClusterSecurityGroups")]
-    pub cluster_security_groups: (),
+    pub cluster_security_groups: Vec<String>,
     #[serde(rename="ClusterSubnetGroupName")]
-    pub cluster_subnet_group_name: (),
+    pub cluster_subnet_group_name: String,
     #[serde(rename="ClusterType")]
-    pub cluster_type: (),
+    pub cluster_type: String,
     #[serde(rename="ClusterVersion")]
-    pub cluster_version: (),
+    pub cluster_version: String,
     #[serde(rename="DBName")]
-    pub db_name: (),
+    pub db_name: String,
     #[serde(rename="ElasticIp")]
-    pub elastic_ip: (),
+    pub elastic_ip: String,
     #[serde(rename="Encrypted")]
-    pub encrypted: (),
+    pub encrypted: bool,
     #[serde(rename="HsmClientCertificateIdentifier")]
-    pub hsm_client_certificate_identifier: (),
+    pub hsm_client_certificate_identifier: String,
     #[serde(rename="HsmConfigurationIdentifier")]
-    pub hsm_configuration_identifier: (),
+    pub hsm_configuration_identifier: String,
     #[serde(rename="IamRoles")]
-    pub iam_roles: (),
+    pub iam_roles: Vec<String>,
     #[serde(rename="KmsKeyId")]
-    pub kms_key_id: (),
+    pub kms_key_id: String,
     #[serde(rename="LoggingProperties")]
     pub logging_properties: (),
     #[serde(rename="MasterUserPassword")]
-    pub master_user_password: (),
+    pub master_user_password: String,
     #[serde(rename="MasterUsername")]
-    pub master_username: (),
+    pub master_username: String,
     #[serde(rename="NodeType")]
-    pub node_type: (),
+    pub node_type: String,
     #[serde(rename="NumberOfNodes")]
-    pub number_of_nodes: (),
+    pub number_of_nodes: u32,
     #[serde(rename="OwnerAccount")]
-    pub owner_account: (),
+    pub owner_account: String,
     #[serde(rename="Port")]
-    pub port: (),
+    pub port: u32,
     #[serde(rename="PreferredMaintenanceWindow")]
-    pub preferred_maintenance_window: (),
+    pub preferred_maintenance_window: String,
     #[serde(rename="PubliclyAccessible")]
-    pub publicly_accessible: (),
+    pub publicly_accessible: bool,
     #[serde(rename="SnapshotClusterIdentifier")]
-    pub snapshot_cluster_identifier: (),
+    pub snapshot_cluster_identifier: String,
     #[serde(rename="SnapshotIdentifier")]
-    pub snapshot_identifier: (),
+    pub snapshot_identifier: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="VpcSecurityGroupIds")]
-    pub vpc_security_group_ids: (),
+    pub vpc_security_group_ids: Vec<String>,
 }
 
 impl<'a> ::Resource<'a> for Cluster {
@@ -94,13 +94,13 @@ pub struct ClusterParameterGroup {
 #[derive(Serialize, Deserialize)]
 pub struct ClusterParameterGroupProperties {
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="ParameterGroupFamily")]
-    pub parameter_group_family: (),
+    pub parameter_group_family: String,
     #[serde(rename="Parameters")]
-    pub parameters: (),
+    pub parameters: Vec<()>,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for ClusterParameterGroup {
@@ -130,9 +130,9 @@ pub struct ClusterSecurityGroup {
 #[derive(Serialize, Deserialize)]
 pub struct ClusterSecurityGroupProperties {
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for ClusterSecurityGroup {
@@ -162,13 +162,13 @@ pub struct ClusterSecurityGroupIngress {
 #[derive(Serialize, Deserialize)]
 pub struct ClusterSecurityGroupIngressProperties {
     #[serde(rename="CIDRIP")]
-    pub cidrip: (),
+    pub cidrip: String,
     #[serde(rename="ClusterSecurityGroupName")]
-    pub cluster_security_group_name: (),
+    pub cluster_security_group_name: String,
     #[serde(rename="EC2SecurityGroupName")]
-    pub ec2_security_group_name: (),
+    pub ec2_security_group_name: String,
     #[serde(rename="EC2SecurityGroupOwnerId")]
-    pub ec2_security_group_owner_id: (),
+    pub ec2_security_group_owner_id: String,
 }
 
 impl<'a> ::Resource<'a> for ClusterSecurityGroupIngress {
@@ -198,11 +198,11 @@ pub struct ClusterSubnetGroup {
 #[derive(Serialize, Deserialize)]
 pub struct ClusterSubnetGroupProperties {
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="SubnetIds")]
-    pub subnet_ids: (),
+    pub subnet_ids: Vec<String>,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for ClusterSubnetGroup {

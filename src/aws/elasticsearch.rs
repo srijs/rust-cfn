@@ -8,21 +8,21 @@ pub struct Domain {
 #[derive(Serialize, Deserialize)]
 pub struct DomainProperties {
     #[serde(rename="AccessPolicies")]
-    pub access_policies: (),
+    pub access_policies: String,
     #[serde(rename="AdvancedOptions")]
-    pub advanced_options: (),
+    pub advanced_options: ::std::collections::HashMap<String, String>,
     #[serde(rename="DomainName")]
-    pub domain_name: (),
+    pub domain_name: String,
     #[serde(rename="EBSOptions")]
     pub ebs_options: (),
     #[serde(rename="ElasticsearchClusterConfig")]
     pub elasticsearch_cluster_config: (),
     #[serde(rename="ElasticsearchVersion")]
-    pub elasticsearch_version: (),
+    pub elasticsearch_version: String,
     #[serde(rename="SnapshotOptions")]
     pub snapshot_options: (),
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="VPCOptions")]
     pub vpc_options: (),
 }

@@ -8,41 +8,41 @@ pub struct Alarm {
 #[derive(Serialize, Deserialize)]
 pub struct AlarmProperties {
     #[serde(rename="ActionsEnabled")]
-    pub actions_enabled: (),
+    pub actions_enabled: bool,
     #[serde(rename="AlarmActions")]
-    pub alarm_actions: (),
+    pub alarm_actions: Vec<String>,
     #[serde(rename="AlarmDescription")]
-    pub alarm_description: (),
+    pub alarm_description: String,
     #[serde(rename="AlarmName")]
-    pub alarm_name: (),
+    pub alarm_name: String,
     #[serde(rename="ComparisonOperator")]
-    pub comparison_operator: (),
+    pub comparison_operator: String,
     #[serde(rename="Dimensions")]
-    pub dimensions: (),
+    pub dimensions: Vec<()>,
     #[serde(rename="EvaluateLowSampleCountPercentile")]
-    pub evaluate_low_sample_count_percentile: (),
+    pub evaluate_low_sample_count_percentile: String,
     #[serde(rename="EvaluationPeriods")]
-    pub evaluation_periods: (),
+    pub evaluation_periods: u32,
     #[serde(rename="ExtendedStatistic")]
-    pub extended_statistic: (),
+    pub extended_statistic: String,
     #[serde(rename="InsufficientDataActions")]
-    pub insufficient_data_actions: (),
+    pub insufficient_data_actions: Vec<String>,
     #[serde(rename="MetricName")]
-    pub metric_name: (),
+    pub metric_name: String,
     #[serde(rename="Namespace")]
-    pub namespace: (),
+    pub namespace: String,
     #[serde(rename="OKActions")]
-    pub ok_actions: (),
+    pub ok_actions: Vec<String>,
     #[serde(rename="Period")]
-    pub period: (),
+    pub period: u32,
     #[serde(rename="Statistic")]
-    pub statistic: (),
+    pub statistic: String,
     #[serde(rename="Threshold")]
-    pub threshold: (),
+    pub threshold: f64,
     #[serde(rename="TreatMissingData")]
-    pub treat_missing_data: (),
+    pub treat_missing_data: String,
     #[serde(rename="Unit")]
-    pub unit: (),
+    pub unit: String,
 }
 
 impl<'a> ::Resource<'a> for Alarm {
@@ -72,9 +72,9 @@ pub struct Dashboard {
 #[derive(Serialize, Deserialize)]
 pub struct DashboardProperties {
     #[serde(rename="DashboardBody")]
-    pub dashboard_body: (),
+    pub dashboard_body: String,
     #[serde(rename="DashboardName")]
-    pub dashboard_name: (),
+    pub dashboard_name: String,
 }
 
 impl<'a> ::Resource<'a> for Dashboard {

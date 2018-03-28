@@ -10,35 +10,35 @@ pub struct LoadBalancerProperties {
     #[serde(rename="AccessLoggingPolicy")]
     pub access_logging_policy: (),
     #[serde(rename="AppCookieStickinessPolicy")]
-    pub app_cookie_stickiness_policy: (),
+    pub app_cookie_stickiness_policy: Vec<()>,
     #[serde(rename="AvailabilityZones")]
-    pub availability_zones: (),
+    pub availability_zones: Vec<String>,
     #[serde(rename="ConnectionDrainingPolicy")]
     pub connection_draining_policy: (),
     #[serde(rename="ConnectionSettings")]
     pub connection_settings: (),
     #[serde(rename="CrossZone")]
-    pub cross_zone: (),
+    pub cross_zone: bool,
     #[serde(rename="HealthCheck")]
     pub health_check: (),
     #[serde(rename="Instances")]
-    pub instances: (),
+    pub instances: Vec<String>,
     #[serde(rename="LBCookieStickinessPolicy")]
-    pub lb_cookie_stickiness_policy: (),
+    pub lb_cookie_stickiness_policy: Vec<()>,
     #[serde(rename="Listeners")]
-    pub listeners: (),
+    pub listeners: Vec<()>,
     #[serde(rename="LoadBalancerName")]
-    pub load_balancer_name: (),
+    pub load_balancer_name: String,
     #[serde(rename="Policies")]
-    pub policies: (),
+    pub policies: Vec<()>,
     #[serde(rename="Scheme")]
-    pub scheme: (),
+    pub scheme: String,
     #[serde(rename="SecurityGroups")]
-    pub security_groups: (),
+    pub security_groups: Vec<String>,
     #[serde(rename="Subnets")]
-    pub subnets: (),
+    pub subnets: Vec<String>,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for LoadBalancer {

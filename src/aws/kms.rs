@@ -8,9 +8,9 @@ pub struct Alias {
 #[derive(Serialize, Deserialize)]
 pub struct AliasProperties {
     #[serde(rename="AliasName")]
-    pub alias_name: (),
+    pub alias_name: String,
     #[serde(rename="TargetKeyId")]
-    pub target_key_id: (),
+    pub target_key_id: String,
 }
 
 impl<'a> ::Resource<'a> for Alias {
@@ -40,17 +40,17 @@ pub struct Key {
 #[derive(Serialize, Deserialize)]
 pub struct KeyProperties {
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="EnableKeyRotation")]
-    pub enable_key_rotation: (),
+    pub enable_key_rotation: bool,
     #[serde(rename="Enabled")]
-    pub enabled: (),
+    pub enabled: bool,
     #[serde(rename="KeyPolicy")]
-    pub key_policy: (),
+    pub key_policy: String,
     #[serde(rename="KeyUsage")]
-    pub key_usage: (),
+    pub key_usage: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for Key {

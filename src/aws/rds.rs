@@ -8,43 +8,43 @@ pub struct DBCluster {
 #[derive(Serialize, Deserialize)]
 pub struct DBClusterProperties {
     #[serde(rename="AvailabilityZones")]
-    pub availability_zones: (),
+    pub availability_zones: Vec<String>,
     #[serde(rename="BackupRetentionPeriod")]
-    pub backup_retention_period: (),
+    pub backup_retention_period: u32,
     #[serde(rename="DBClusterIdentifier")]
-    pub db_cluster_identifier: (),
+    pub db_cluster_identifier: String,
     #[serde(rename="DBClusterParameterGroupName")]
-    pub db_cluster_parameter_group_name: (),
+    pub db_cluster_parameter_group_name: String,
     #[serde(rename="DBSubnetGroupName")]
-    pub db_subnet_group_name: (),
+    pub db_subnet_group_name: String,
     #[serde(rename="DatabaseName")]
-    pub database_name: (),
+    pub database_name: String,
     #[serde(rename="Engine")]
-    pub engine: (),
+    pub engine: String,
     #[serde(rename="EngineVersion")]
-    pub engine_version: (),
+    pub engine_version: String,
     #[serde(rename="KmsKeyId")]
-    pub kms_key_id: (),
+    pub kms_key_id: String,
     #[serde(rename="MasterUserPassword")]
-    pub master_user_password: (),
+    pub master_user_password: String,
     #[serde(rename="MasterUsername")]
-    pub master_username: (),
+    pub master_username: String,
     #[serde(rename="Port")]
-    pub port: (),
+    pub port: u32,
     #[serde(rename="PreferredBackupWindow")]
-    pub preferred_backup_window: (),
+    pub preferred_backup_window: String,
     #[serde(rename="PreferredMaintenanceWindow")]
-    pub preferred_maintenance_window: (),
+    pub preferred_maintenance_window: String,
     #[serde(rename="ReplicationSourceIdentifier")]
-    pub replication_source_identifier: (),
+    pub replication_source_identifier: String,
     #[serde(rename="SnapshotIdentifier")]
-    pub snapshot_identifier: (),
+    pub snapshot_identifier: String,
     #[serde(rename="StorageEncrypted")]
-    pub storage_encrypted: (),
+    pub storage_encrypted: bool,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="VpcSecurityGroupIds")]
-    pub vpc_security_group_ids: (),
+    pub vpc_security_group_ids: Vec<String>,
 }
 
 impl<'a> ::Resource<'a> for DBCluster {
@@ -74,13 +74,13 @@ pub struct DBClusterParameterGroup {
 #[derive(Serialize, Deserialize)]
 pub struct DBClusterParameterGroupProperties {
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="Family")]
-    pub family: (),
+    pub family: String,
     #[serde(rename="Parameters")]
-    pub parameters: (),
+    pub parameters: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for DBClusterParameterGroup {
@@ -110,83 +110,83 @@ pub struct DBInstance {
 #[derive(Serialize, Deserialize)]
 pub struct DBInstanceProperties {
     #[serde(rename="AllocatedStorage")]
-    pub allocated_storage: (),
+    pub allocated_storage: String,
     #[serde(rename="AllowMajorVersionUpgrade")]
-    pub allow_major_version_upgrade: (),
+    pub allow_major_version_upgrade: bool,
     #[serde(rename="AutoMinorVersionUpgrade")]
-    pub auto_minor_version_upgrade: (),
+    pub auto_minor_version_upgrade: bool,
     #[serde(rename="AvailabilityZone")]
-    pub availability_zone: (),
+    pub availability_zone: String,
     #[serde(rename="BackupRetentionPeriod")]
-    pub backup_retention_period: (),
+    pub backup_retention_period: String,
     #[serde(rename="CharacterSetName")]
-    pub character_set_name: (),
+    pub character_set_name: String,
     #[serde(rename="CopyTagsToSnapshot")]
-    pub copy_tags_to_snapshot: (),
+    pub copy_tags_to_snapshot: bool,
     #[serde(rename="DBClusterIdentifier")]
-    pub db_cluster_identifier: (),
+    pub db_cluster_identifier: String,
     #[serde(rename="DBInstanceClass")]
-    pub db_instance_class: (),
+    pub db_instance_class: String,
     #[serde(rename="DBInstanceIdentifier")]
-    pub db_instance_identifier: (),
+    pub db_instance_identifier: String,
     #[serde(rename="DBName")]
-    pub db_name: (),
+    pub db_name: String,
     #[serde(rename="DBParameterGroupName")]
-    pub db_parameter_group_name: (),
+    pub db_parameter_group_name: String,
     #[serde(rename="DBSecurityGroups")]
-    pub db_security_groups: (),
+    pub db_security_groups: Vec<String>,
     #[serde(rename="DBSnapshotIdentifier")]
-    pub db_snapshot_identifier: (),
+    pub db_snapshot_identifier: String,
     #[serde(rename="DBSubnetGroupName")]
-    pub db_subnet_group_name: (),
+    pub db_subnet_group_name: String,
     #[serde(rename="Domain")]
-    pub domain: (),
+    pub domain: String,
     #[serde(rename="DomainIAMRoleName")]
-    pub domain_iam_role_name: (),
+    pub domain_iam_role_name: String,
     #[serde(rename="Engine")]
-    pub engine: (),
+    pub engine: String,
     #[serde(rename="EngineVersion")]
-    pub engine_version: (),
+    pub engine_version: String,
     #[serde(rename="Iops")]
-    pub iops: (),
+    pub iops: u32,
     #[serde(rename="KmsKeyId")]
-    pub kms_key_id: (),
+    pub kms_key_id: String,
     #[serde(rename="LicenseModel")]
-    pub license_model: (),
+    pub license_model: String,
     #[serde(rename="MasterUserPassword")]
-    pub master_user_password: (),
+    pub master_user_password: String,
     #[serde(rename="MasterUsername")]
-    pub master_username: (),
+    pub master_username: String,
     #[serde(rename="MonitoringInterval")]
-    pub monitoring_interval: (),
+    pub monitoring_interval: u32,
     #[serde(rename="MonitoringRoleArn")]
-    pub monitoring_role_arn: (),
+    pub monitoring_role_arn: String,
     #[serde(rename="MultiAZ")]
-    pub multi_az: (),
+    pub multi_az: bool,
     #[serde(rename="OptionGroupName")]
-    pub option_group_name: (),
+    pub option_group_name: String,
     #[serde(rename="Port")]
-    pub port: (),
+    pub port: String,
     #[serde(rename="PreferredBackupWindow")]
-    pub preferred_backup_window: (),
+    pub preferred_backup_window: String,
     #[serde(rename="PreferredMaintenanceWindow")]
-    pub preferred_maintenance_window: (),
+    pub preferred_maintenance_window: String,
     #[serde(rename="PubliclyAccessible")]
-    pub publicly_accessible: (),
+    pub publicly_accessible: bool,
     #[serde(rename="SourceDBInstanceIdentifier")]
-    pub source_db_instance_identifier: (),
+    pub source_db_instance_identifier: String,
     #[serde(rename="SourceRegion")]
-    pub source_region: (),
+    pub source_region: String,
     #[serde(rename="StorageEncrypted")]
-    pub storage_encrypted: (),
+    pub storage_encrypted: bool,
     #[serde(rename="StorageType")]
-    pub storage_type: (),
+    pub storage_type: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="Timezone")]
-    pub timezone: (),
+    pub timezone: String,
     #[serde(rename="VPCSecurityGroups")]
-    pub vpc_security_groups: (),
+    pub vpc_security_groups: Vec<String>,
 }
 
 impl<'a> ::Resource<'a> for DBInstance {
@@ -216,13 +216,13 @@ pub struct DBParameterGroup {
 #[derive(Serialize, Deserialize)]
 pub struct DBParameterGroupProperties {
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="Family")]
-    pub family: (),
+    pub family: String,
     #[serde(rename="Parameters")]
-    pub parameters: (),
+    pub parameters: ::std::collections::HashMap<String, String>,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for DBParameterGroup {
@@ -252,13 +252,13 @@ pub struct DBSecurityGroup {
 #[derive(Serialize, Deserialize)]
 pub struct DBSecurityGroupProperties {
     #[serde(rename="DBSecurityGroupIngress")]
-    pub db_security_group_ingress: (),
+    pub db_security_group_ingress: Vec<()>,
     #[serde(rename="EC2VpcId")]
-    pub ec2_vpc_id: (),
+    pub ec2_vpc_id: String,
     #[serde(rename="GroupDescription")]
-    pub group_description: (),
+    pub group_description: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for DBSecurityGroup {
@@ -288,15 +288,15 @@ pub struct DBSecurityGroupIngress {
 #[derive(Serialize, Deserialize)]
 pub struct DBSecurityGroupIngressProperties {
     #[serde(rename="CIDRIP")]
-    pub cidrip: (),
+    pub cidrip: String,
     #[serde(rename="DBSecurityGroupName")]
-    pub db_security_group_name: (),
+    pub db_security_group_name: String,
     #[serde(rename="EC2SecurityGroupId")]
-    pub ec2_security_group_id: (),
+    pub ec2_security_group_id: String,
     #[serde(rename="EC2SecurityGroupName")]
-    pub ec2_security_group_name: (),
+    pub ec2_security_group_name: String,
     #[serde(rename="EC2SecurityGroupOwnerId")]
-    pub ec2_security_group_owner_id: (),
+    pub ec2_security_group_owner_id: String,
 }
 
 impl<'a> ::Resource<'a> for DBSecurityGroupIngress {
@@ -326,13 +326,13 @@ pub struct DBSubnetGroup {
 #[derive(Serialize, Deserialize)]
 pub struct DBSubnetGroupProperties {
     #[serde(rename="DBSubnetGroupDescription")]
-    pub db_subnet_group_description: (),
+    pub db_subnet_group_description: String,
     #[serde(rename="DBSubnetGroupName")]
-    pub db_subnet_group_name: (),
+    pub db_subnet_group_name: String,
     #[serde(rename="SubnetIds")]
-    pub subnet_ids: (),
+    pub subnet_ids: Vec<String>,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for DBSubnetGroup {
@@ -362,15 +362,15 @@ pub struct EventSubscription {
 #[derive(Serialize, Deserialize)]
 pub struct EventSubscriptionProperties {
     #[serde(rename="Enabled")]
-    pub enabled: (),
+    pub enabled: bool,
     #[serde(rename="EventCategories")]
-    pub event_categories: (),
+    pub event_categories: Vec<String>,
     #[serde(rename="SnsTopicArn")]
-    pub sns_topic_arn: (),
+    pub sns_topic_arn: String,
     #[serde(rename="SourceIds")]
-    pub source_ids: (),
+    pub source_ids: Vec<String>,
     #[serde(rename="SourceType")]
-    pub source_type: (),
+    pub source_type: String,
 }
 
 impl<'a> ::Resource<'a> for EventSubscription {
@@ -400,15 +400,15 @@ pub struct OptionGroup {
 #[derive(Serialize, Deserialize)]
 pub struct OptionGroupProperties {
     #[serde(rename="EngineName")]
-    pub engine_name: (),
+    pub engine_name: String,
     #[serde(rename="MajorEngineVersion")]
-    pub major_engine_version: (),
+    pub major_engine_version: String,
     #[serde(rename="OptionConfigurations")]
-    pub option_configurations: (),
+    pub option_configurations: Vec<()>,
     #[serde(rename="OptionGroupDescription")]
-    pub option_group_description: (),
+    pub option_group_description: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for OptionGroup {

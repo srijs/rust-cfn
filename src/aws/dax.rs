@@ -8,29 +8,29 @@ pub struct Cluster {
 #[derive(Serialize, Deserialize)]
 pub struct ClusterProperties {
     #[serde(rename="AvailabilityZones")]
-    pub availability_zones: (),
+    pub availability_zones: Vec<String>,
     #[serde(rename="ClusterName")]
-    pub cluster_name: (),
+    pub cluster_name: String,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="IAMRoleARN")]
-    pub iam_role_arn: (),
+    pub iam_role_arn: String,
     #[serde(rename="NodeType")]
-    pub node_type: (),
+    pub node_type: String,
     #[serde(rename="NotificationTopicARN")]
-    pub notification_topic_arn: (),
+    pub notification_topic_arn: String,
     #[serde(rename="ParameterGroupName")]
-    pub parameter_group_name: (),
+    pub parameter_group_name: String,
     #[serde(rename="PreferredMaintenanceWindow")]
-    pub preferred_maintenance_window: (),
+    pub preferred_maintenance_window: String,
     #[serde(rename="ReplicationFactor")]
-    pub replication_factor: (),
+    pub replication_factor: u32,
     #[serde(rename="SecurityGroupIds")]
-    pub security_group_ids: (),
+    pub security_group_ids: Vec<String>,
     #[serde(rename="SubnetGroupName")]
-    pub subnet_group_name: (),
+    pub subnet_group_name: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: String,
 }
 
 impl<'a> ::Resource<'a> for Cluster {
@@ -60,11 +60,11 @@ pub struct ParameterGroup {
 #[derive(Serialize, Deserialize)]
 pub struct ParameterGroupProperties {
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="ParameterGroupName")]
-    pub parameter_group_name: (),
+    pub parameter_group_name: String,
     #[serde(rename="ParameterNameValues")]
-    pub parameter_name_values: (),
+    pub parameter_name_values: String,
 }
 
 impl<'a> ::Resource<'a> for ParameterGroup {
@@ -94,11 +94,11 @@ pub struct SubnetGroup {
 #[derive(Serialize, Deserialize)]
 pub struct SubnetGroupProperties {
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="SubnetGroupName")]
-    pub subnet_group_name: (),
+    pub subnet_group_name: String,
     #[serde(rename="SubnetIds")]
-    pub subnet_ids: (),
+    pub subnet_ids: Vec<String>,
 }
 
 impl<'a> ::Resource<'a> for SubnetGroup {

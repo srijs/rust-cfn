@@ -40,7 +40,7 @@ pub struct DistributionProperties {
     #[serde(rename="DistributionConfig")]
     pub distribution_config: (),
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for Distribution {
@@ -72,7 +72,7 @@ pub struct StreamingDistributionProperties {
     #[serde(rename="StreamingDistributionConfig")]
     pub streaming_distribution_config: (),
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for StreamingDistribution {

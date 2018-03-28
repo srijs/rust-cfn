@@ -38,7 +38,7 @@ pub struct Connection {
 #[derive(Serialize, Deserialize)]
 pub struct ConnectionProperties {
     #[serde(rename="CatalogId")]
-    pub catalog_id: (),
+    pub catalog_id: String,
     #[serde(rename="ConnectionInput")]
     pub connection_input: (),
 }
@@ -70,21 +70,21 @@ pub struct Crawler {
 #[derive(Serialize, Deserialize)]
 pub struct CrawlerProperties {
     #[serde(rename="Classifiers")]
-    pub classifiers: (),
+    pub classifiers: Vec<String>,
     #[serde(rename="DatabaseName")]
-    pub database_name: (),
+    pub database_name: String,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="Role")]
-    pub role: (),
+    pub role: String,
     #[serde(rename="Schedule")]
     pub schedule: (),
     #[serde(rename="SchemaChangePolicy")]
     pub schema_change_policy: (),
     #[serde(rename="TablePrefix")]
-    pub table_prefix: (),
+    pub table_prefix: String,
     #[serde(rename="Targets")]
     pub targets: (),
 }
@@ -116,7 +116,7 @@ pub struct Database {
 #[derive(Serialize, Deserialize)]
 pub struct DatabaseProperties {
     #[serde(rename="CatalogId")]
-    pub catalog_id: (),
+    pub catalog_id: String,
     #[serde(rename="DatabaseInput")]
     pub database_input: (),
 }
@@ -148,21 +148,21 @@ pub struct DevEndpoint {
 #[derive(Serialize, Deserialize)]
 pub struct DevEndpointProperties {
     #[serde(rename="EndpointName")]
-    pub endpoint_name: (),
+    pub endpoint_name: String,
     #[serde(rename="ExtraJarsS3Path")]
-    pub extra_jars_s3_path: (),
+    pub extra_jars_s3_path: String,
     #[serde(rename="ExtraPythonLibsS3Path")]
-    pub extra_python_libs_s3_path: (),
+    pub extra_python_libs_s3_path: String,
     #[serde(rename="NumberOfNodes")]
-    pub number_of_nodes: (),
+    pub number_of_nodes: u32,
     #[serde(rename="PublicKey")]
-    pub public_key: (),
+    pub public_key: String,
     #[serde(rename="RoleArn")]
-    pub role_arn: (),
+    pub role_arn: String,
     #[serde(rename="SecurityGroupIds")]
-    pub security_group_ids: (),
+    pub security_group_ids: Vec<String>,
     #[serde(rename="SubnetId")]
-    pub subnet_id: (),
+    pub subnet_id: String,
 }
 
 impl<'a> ::Resource<'a> for DevEndpoint {
@@ -192,25 +192,25 @@ pub struct Job {
 #[derive(Serialize, Deserialize)]
 pub struct JobProperties {
     #[serde(rename="AllocatedCapacity")]
-    pub allocated_capacity: (),
+    pub allocated_capacity: f64,
     #[serde(rename="Command")]
     pub command: (),
     #[serde(rename="Connections")]
     pub connections: (),
     #[serde(rename="DefaultArguments")]
-    pub default_arguments: (),
+    pub default_arguments: String,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="ExecutionProperty")]
     pub execution_property: (),
     #[serde(rename="LogUri")]
-    pub log_uri: (),
+    pub log_uri: String,
     #[serde(rename="MaxRetries")]
-    pub max_retries: (),
+    pub max_retries: f64,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="Role")]
-    pub role: (),
+    pub role: String,
 }
 
 impl<'a> ::Resource<'a> for Job {
@@ -240,13 +240,13 @@ pub struct Partition {
 #[derive(Serialize, Deserialize)]
 pub struct PartitionProperties {
     #[serde(rename="CatalogId")]
-    pub catalog_id: (),
+    pub catalog_id: String,
     #[serde(rename="DatabaseName")]
-    pub database_name: (),
+    pub database_name: String,
     #[serde(rename="PartitionInput")]
     pub partition_input: (),
     #[serde(rename="TableName")]
-    pub table_name: (),
+    pub table_name: String,
 }
 
 impl<'a> ::Resource<'a> for Partition {
@@ -276,9 +276,9 @@ pub struct Table {
 #[derive(Serialize, Deserialize)]
 pub struct TableProperties {
     #[serde(rename="CatalogId")]
-    pub catalog_id: (),
+    pub catalog_id: String,
     #[serde(rename="DatabaseName")]
-    pub database_name: (),
+    pub database_name: String,
     #[serde(rename="TableInput")]
     pub table_input: (),
 }
@@ -310,17 +310,17 @@ pub struct Trigger {
 #[derive(Serialize, Deserialize)]
 pub struct TriggerProperties {
     #[serde(rename="Actions")]
-    pub actions: (),
+    pub actions: Vec<()>,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="Predicate")]
     pub predicate: (),
     #[serde(rename="Schedule")]
-    pub schedule: (),
+    pub schedule: String,
     #[serde(rename="Type")]
-    pub type_: (),
+    pub type_: String,
 }
 
 impl<'a> ::Resource<'a> for Trigger {

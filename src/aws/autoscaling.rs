@@ -8,43 +8,43 @@ pub struct AutoScalingGroup {
 #[derive(Serialize, Deserialize)]
 pub struct AutoScalingGroupProperties {
     #[serde(rename="AutoScalingGroupName")]
-    pub auto_scaling_group_name: (),
+    pub auto_scaling_group_name: String,
     #[serde(rename="AvailabilityZones")]
-    pub availability_zones: (),
+    pub availability_zones: Vec<String>,
     #[serde(rename="Cooldown")]
-    pub cooldown: (),
+    pub cooldown: String,
     #[serde(rename="DesiredCapacity")]
-    pub desired_capacity: (),
+    pub desired_capacity: String,
     #[serde(rename="HealthCheckGracePeriod")]
-    pub health_check_grace_period: (),
+    pub health_check_grace_period: u32,
     #[serde(rename="HealthCheckType")]
-    pub health_check_type: (),
+    pub health_check_type: String,
     #[serde(rename="InstanceId")]
-    pub instance_id: (),
+    pub instance_id: String,
     #[serde(rename="LaunchConfigurationName")]
-    pub launch_configuration_name: (),
+    pub launch_configuration_name: String,
     #[serde(rename="LifecycleHookSpecificationList")]
-    pub lifecycle_hook_specification_list: (),
+    pub lifecycle_hook_specification_list: Vec<()>,
     #[serde(rename="LoadBalancerNames")]
-    pub load_balancer_names: (),
+    pub load_balancer_names: Vec<String>,
     #[serde(rename="MaxSize")]
-    pub max_size: (),
+    pub max_size: String,
     #[serde(rename="MetricsCollection")]
-    pub metrics_collection: (),
+    pub metrics_collection: Vec<()>,
     #[serde(rename="MinSize")]
-    pub min_size: (),
+    pub min_size: String,
     #[serde(rename="NotificationConfigurations")]
-    pub notification_configurations: (),
+    pub notification_configurations: Vec<()>,
     #[serde(rename="PlacementGroup")]
-    pub placement_group: (),
+    pub placement_group: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="TargetGroupARNs")]
-    pub target_group_ar_ns: (),
+    pub target_group_ar_ns: Vec<String>,
     #[serde(rename="TerminationPolicies")]
-    pub termination_policies: (),
+    pub termination_policies: Vec<String>,
     #[serde(rename="VPCZoneIdentifier")]
-    pub vpc_zone_identifier: (),
+    pub vpc_zone_identifier: Vec<String>,
 }
 
 impl<'a> ::Resource<'a> for AutoScalingGroup {
@@ -74,39 +74,39 @@ pub struct LaunchConfiguration {
 #[derive(Serialize, Deserialize)]
 pub struct LaunchConfigurationProperties {
     #[serde(rename="AssociatePublicIpAddress")]
-    pub associate_public_ip_address: (),
+    pub associate_public_ip_address: bool,
     #[serde(rename="BlockDeviceMappings")]
-    pub block_device_mappings: (),
+    pub block_device_mappings: Vec<()>,
     #[serde(rename="ClassicLinkVPCId")]
-    pub classic_link_vpc_id: (),
+    pub classic_link_vpc_id: String,
     #[serde(rename="ClassicLinkVPCSecurityGroups")]
-    pub classic_link_vpc_security_groups: (),
+    pub classic_link_vpc_security_groups: Vec<String>,
     #[serde(rename="EbsOptimized")]
-    pub ebs_optimized: (),
+    pub ebs_optimized: bool,
     #[serde(rename="IamInstanceProfile")]
-    pub iam_instance_profile: (),
+    pub iam_instance_profile: String,
     #[serde(rename="ImageId")]
-    pub image_id: (),
+    pub image_id: String,
     #[serde(rename="InstanceId")]
-    pub instance_id: (),
+    pub instance_id: String,
     #[serde(rename="InstanceMonitoring")]
-    pub instance_monitoring: (),
+    pub instance_monitoring: bool,
     #[serde(rename="InstanceType")]
-    pub instance_type: (),
+    pub instance_type: String,
     #[serde(rename="KernelId")]
-    pub kernel_id: (),
+    pub kernel_id: String,
     #[serde(rename="KeyName")]
-    pub key_name: (),
+    pub key_name: String,
     #[serde(rename="PlacementTenancy")]
-    pub placement_tenancy: (),
+    pub placement_tenancy: String,
     #[serde(rename="RamDiskId")]
-    pub ram_disk_id: (),
+    pub ram_disk_id: String,
     #[serde(rename="SecurityGroups")]
-    pub security_groups: (),
+    pub security_groups: Vec<String>,
     #[serde(rename="SpotPrice")]
-    pub spot_price: (),
+    pub spot_price: String,
     #[serde(rename="UserData")]
-    pub user_data: (),
+    pub user_data: String,
 }
 
 impl<'a> ::Resource<'a> for LaunchConfiguration {
@@ -136,21 +136,21 @@ pub struct LifecycleHook {
 #[derive(Serialize, Deserialize)]
 pub struct LifecycleHookProperties {
     #[serde(rename="AutoScalingGroupName")]
-    pub auto_scaling_group_name: (),
+    pub auto_scaling_group_name: String,
     #[serde(rename="DefaultResult")]
-    pub default_result: (),
+    pub default_result: String,
     #[serde(rename="HeartbeatTimeout")]
-    pub heartbeat_timeout: (),
+    pub heartbeat_timeout: u32,
     #[serde(rename="LifecycleHookName")]
-    pub lifecycle_hook_name: (),
+    pub lifecycle_hook_name: String,
     #[serde(rename="LifecycleTransition")]
-    pub lifecycle_transition: (),
+    pub lifecycle_transition: String,
     #[serde(rename="NotificationMetadata")]
-    pub notification_metadata: (),
+    pub notification_metadata: String,
     #[serde(rename="NotificationTargetARN")]
-    pub notification_target_arn: (),
+    pub notification_target_arn: String,
     #[serde(rename="RoleARN")]
-    pub role_arn: (),
+    pub role_arn: String,
 }
 
 impl<'a> ::Resource<'a> for LifecycleHook {
@@ -180,23 +180,23 @@ pub struct ScalingPolicy {
 #[derive(Serialize, Deserialize)]
 pub struct ScalingPolicyProperties {
     #[serde(rename="AdjustmentType")]
-    pub adjustment_type: (),
+    pub adjustment_type: String,
     #[serde(rename="AutoScalingGroupName")]
-    pub auto_scaling_group_name: (),
+    pub auto_scaling_group_name: String,
     #[serde(rename="Cooldown")]
-    pub cooldown: (),
+    pub cooldown: String,
     #[serde(rename="EstimatedInstanceWarmup")]
-    pub estimated_instance_warmup: (),
+    pub estimated_instance_warmup: u32,
     #[serde(rename="MetricAggregationType")]
-    pub metric_aggregation_type: (),
+    pub metric_aggregation_type: String,
     #[serde(rename="MinAdjustmentMagnitude")]
-    pub min_adjustment_magnitude: (),
+    pub min_adjustment_magnitude: u32,
     #[serde(rename="PolicyType")]
-    pub policy_type: (),
+    pub policy_type: String,
     #[serde(rename="ScalingAdjustment")]
-    pub scaling_adjustment: (),
+    pub scaling_adjustment: u32,
     #[serde(rename="StepAdjustments")]
-    pub step_adjustments: (),
+    pub step_adjustments: Vec<()>,
     #[serde(rename="TargetTrackingConfiguration")]
     pub target_tracking_configuration: (),
 }
@@ -228,19 +228,19 @@ pub struct ScheduledAction {
 #[derive(Serialize, Deserialize)]
 pub struct ScheduledActionProperties {
     #[serde(rename="AutoScalingGroupName")]
-    pub auto_scaling_group_name: (),
+    pub auto_scaling_group_name: String,
     #[serde(rename="DesiredCapacity")]
-    pub desired_capacity: (),
+    pub desired_capacity: u32,
     #[serde(rename="EndTime")]
-    pub end_time: (),
+    pub end_time: String,
     #[serde(rename="MaxSize")]
-    pub max_size: (),
+    pub max_size: u32,
     #[serde(rename="MinSize")]
-    pub min_size: (),
+    pub min_size: u32,
     #[serde(rename="Recurrence")]
-    pub recurrence: (),
+    pub recurrence: String,
     #[serde(rename="StartTime")]
-    pub start_time: (),
+    pub start_time: String,
 }
 
 impl<'a> ::Resource<'a> for ScheduledAction {

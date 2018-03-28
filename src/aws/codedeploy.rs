@@ -8,9 +8,9 @@ pub struct Application {
 #[derive(Serialize, Deserialize)]
 pub struct ApplicationProperties {
     #[serde(rename="ApplicationName")]
-    pub application_name: (),
+    pub application_name: String,
     #[serde(rename="ComputePlatform")]
-    pub compute_platform: (),
+    pub compute_platform: String,
 }
 
 impl<'a> ::Resource<'a> for Application {
@@ -40,7 +40,7 @@ pub struct DeploymentConfig {
 #[derive(Serialize, Deserialize)]
 pub struct DeploymentConfigProperties {
     #[serde(rename="DeploymentConfigName")]
-    pub deployment_config_name: (),
+    pub deployment_config_name: String,
     #[serde(rename="MinimumHealthyHosts")]
     pub minimum_healthy_hosts: (),
 }
@@ -74,29 +74,29 @@ pub struct DeploymentGroupProperties {
     #[serde(rename="AlarmConfiguration")]
     pub alarm_configuration: (),
     #[serde(rename="ApplicationName")]
-    pub application_name: (),
+    pub application_name: String,
     #[serde(rename="AutoRollbackConfiguration")]
     pub auto_rollback_configuration: (),
     #[serde(rename="AutoScalingGroups")]
-    pub auto_scaling_groups: (),
+    pub auto_scaling_groups: Vec<String>,
     #[serde(rename="Deployment")]
     pub deployment: (),
     #[serde(rename="DeploymentConfigName")]
-    pub deployment_config_name: (),
+    pub deployment_config_name: String,
     #[serde(rename="DeploymentGroupName")]
-    pub deployment_group_name: (),
+    pub deployment_group_name: String,
     #[serde(rename="DeploymentStyle")]
     pub deployment_style: (),
     #[serde(rename="Ec2TagFilters")]
-    pub ec2_tag_filters: (),
+    pub ec2_tag_filters: Vec<()>,
     #[serde(rename="LoadBalancerInfo")]
     pub load_balancer_info: (),
     #[serde(rename="OnPremisesInstanceTagFilters")]
-    pub on_premises_instance_tag_filters: (),
+    pub on_premises_instance_tag_filters: Vec<()>,
     #[serde(rename="ServiceRoleArn")]
-    pub service_role_arn: (),
+    pub service_role_arn: String,
     #[serde(rename="TriggerConfigurations")]
-    pub trigger_configurations: (),
+    pub trigger_configurations: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for DeploymentGroup {

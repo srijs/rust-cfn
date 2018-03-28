@@ -8,9 +8,9 @@ pub struct DeliveryStream {
 #[derive(Serialize, Deserialize)]
 pub struct DeliveryStreamProperties {
     #[serde(rename="DeliveryStreamName")]
-    pub delivery_stream_name: (),
+    pub delivery_stream_name: String,
     #[serde(rename="DeliveryStreamType")]
-    pub delivery_stream_type: (),
+    pub delivery_stream_type: String,
     #[serde(rename="ElasticsearchDestinationConfiguration")]
     pub elasticsearch_destination_configuration: (),
     #[serde(rename="ExtendedS3DestinationConfiguration")]

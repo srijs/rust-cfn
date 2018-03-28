@@ -8,7 +8,7 @@ pub struct Activity {
 #[derive(Serialize, Deserialize)]
 pub struct ActivityProperties {
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
 }
 
 impl<'a> ::Resource<'a> for Activity {
@@ -38,11 +38,11 @@ pub struct StateMachine {
 #[derive(Serialize, Deserialize)]
 pub struct StateMachineProperties {
     #[serde(rename="DefinitionString")]
-    pub definition_string: (),
+    pub definition_string: String,
     #[serde(rename="RoleArn")]
-    pub role_arn: (),
+    pub role_arn: String,
     #[serde(rename="StateMachineName")]
-    pub state_machine_name: (),
+    pub state_machine_name: String,
 }
 
 impl<'a> ::Resource<'a> for StateMachine {

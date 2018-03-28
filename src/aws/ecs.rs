@@ -8,7 +8,7 @@ pub struct Cluster {
 #[derive(Serialize, Deserialize)]
 pub struct ClusterProperties {
     #[serde(rename="ClusterName")]
-    pub cluster_name: (),
+    pub cluster_name: String,
 }
 
 impl<'a> ::Resource<'a> for Cluster {
@@ -38,31 +38,31 @@ pub struct Service {
 #[derive(Serialize, Deserialize)]
 pub struct ServiceProperties {
     #[serde(rename="Cluster")]
-    pub cluster: (),
+    pub cluster: String,
     #[serde(rename="DeploymentConfiguration")]
     pub deployment_configuration: (),
     #[serde(rename="DesiredCount")]
-    pub desired_count: (),
+    pub desired_count: u32,
     #[serde(rename="HealthCheckGracePeriodSeconds")]
-    pub health_check_grace_period_seconds: (),
+    pub health_check_grace_period_seconds: u32,
     #[serde(rename="LaunchType")]
-    pub launch_type: (),
+    pub launch_type: String,
     #[serde(rename="LoadBalancers")]
-    pub load_balancers: (),
+    pub load_balancers: Vec<()>,
     #[serde(rename="NetworkConfiguration")]
     pub network_configuration: (),
     #[serde(rename="PlacementConstraints")]
-    pub placement_constraints: (),
+    pub placement_constraints: Vec<()>,
     #[serde(rename="PlacementStrategies")]
-    pub placement_strategies: (),
+    pub placement_strategies: Vec<()>,
     #[serde(rename="PlatformVersion")]
-    pub platform_version: (),
+    pub platform_version: String,
     #[serde(rename="Role")]
-    pub role: (),
+    pub role: String,
     #[serde(rename="ServiceName")]
-    pub service_name: (),
+    pub service_name: String,
     #[serde(rename="TaskDefinition")]
-    pub task_definition: (),
+    pub task_definition: String,
 }
 
 impl<'a> ::Resource<'a> for Service {
@@ -92,25 +92,25 @@ pub struct TaskDefinition {
 #[derive(Serialize, Deserialize)]
 pub struct TaskDefinitionProperties {
     #[serde(rename="ContainerDefinitions")]
-    pub container_definitions: (),
+    pub container_definitions: Vec<()>,
     #[serde(rename="Cpu")]
-    pub cpu: (),
+    pub cpu: String,
     #[serde(rename="ExecutionRoleArn")]
-    pub execution_role_arn: (),
+    pub execution_role_arn: String,
     #[serde(rename="Family")]
-    pub family: (),
+    pub family: String,
     #[serde(rename="Memory")]
-    pub memory: (),
+    pub memory: String,
     #[serde(rename="NetworkMode")]
-    pub network_mode: (),
+    pub network_mode: String,
     #[serde(rename="PlacementConstraints")]
-    pub placement_constraints: (),
+    pub placement_constraints: Vec<()>,
     #[serde(rename="RequiresCompatibilities")]
-    pub requires_compatibilities: (),
+    pub requires_compatibilities: Vec<String>,
     #[serde(rename="TaskRoleArn")]
-    pub task_role_arn: (),
+    pub task_role_arn: String,
     #[serde(rename="Volumes")]
-    pub volumes: (),
+    pub volumes: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for TaskDefinition {

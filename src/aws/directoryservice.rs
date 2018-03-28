@@ -8,15 +8,15 @@ pub struct MicrosoftAD {
 #[derive(Serialize, Deserialize)]
 pub struct MicrosoftADProperties {
     #[serde(rename="CreateAlias")]
-    pub create_alias: (),
+    pub create_alias: bool,
     #[serde(rename="EnableSso")]
-    pub enable_sso: (),
+    pub enable_sso: bool,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="Password")]
-    pub password: (),
+    pub password: String,
     #[serde(rename="ShortName")]
-    pub short_name: (),
+    pub short_name: String,
     #[serde(rename="VpcSettings")]
     pub vpc_settings: (),
 }
@@ -48,19 +48,19 @@ pub struct SimpleAD {
 #[derive(Serialize, Deserialize)]
 pub struct SimpleADProperties {
     #[serde(rename="CreateAlias")]
-    pub create_alias: (),
+    pub create_alias: bool,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="EnableSso")]
-    pub enable_sso: (),
+    pub enable_sso: bool,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="Password")]
-    pub password: (),
+    pub password: String,
     #[serde(rename="ShortName")]
-    pub short_name: (),
+    pub short_name: String,
     #[serde(rename="Size")]
-    pub size: (),
+    pub size: String,
     #[serde(rename="VpcSettings")]
     pub vpc_settings: (),
 }

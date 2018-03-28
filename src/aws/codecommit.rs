@@ -8,11 +8,11 @@ pub struct Repository {
 #[derive(Serialize, Deserialize)]
 pub struct RepositoryProperties {
     #[serde(rename="RepositoryDescription")]
-    pub repository_description: (),
+    pub repository_description: String,
     #[serde(rename="RepositoryName")]
-    pub repository_name: (),
+    pub repository_name: String,
     #[serde(rename="Triggers")]
-    pub triggers: (),
+    pub triggers: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for Repository {

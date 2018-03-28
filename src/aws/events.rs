@@ -8,19 +8,19 @@ pub struct Rule {
 #[derive(Serialize, Deserialize)]
 pub struct RuleProperties {
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="EventPattern")]
-    pub event_pattern: (),
+    pub event_pattern: String,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="RoleArn")]
-    pub role_arn: (),
+    pub role_arn: String,
     #[serde(rename="ScheduleExpression")]
-    pub schedule_expression: (),
+    pub schedule_expression: String,
     #[serde(rename="State")]
-    pub state: (),
+    pub state: String,
     #[serde(rename="Targets")]
-    pub targets: (),
+    pub targets: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for Rule {

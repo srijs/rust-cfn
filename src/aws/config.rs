@@ -8,13 +8,13 @@ pub struct ConfigRule {
 #[derive(Serialize, Deserialize)]
 pub struct ConfigRuleProperties {
     #[serde(rename="ConfigRuleName")]
-    pub config_rule_name: (),
+    pub config_rule_name: String,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="InputParameters")]
-    pub input_parameters: (),
+    pub input_parameters: String,
     #[serde(rename="MaximumExecutionFrequency")]
-    pub maximum_execution_frequency: (),
+    pub maximum_execution_frequency: String,
     #[serde(rename="Scope")]
     pub scope: (),
     #[serde(rename="Source")]
@@ -48,11 +48,11 @@ pub struct ConfigurationRecorder {
 #[derive(Serialize, Deserialize)]
 pub struct ConfigurationRecorderProperties {
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="RecordingGroup")]
     pub recording_group: (),
     #[serde(rename="RoleARN")]
-    pub role_arn: (),
+    pub role_arn: String,
 }
 
 impl<'a> ::Resource<'a> for ConfigurationRecorder {
@@ -84,13 +84,13 @@ pub struct DeliveryChannelProperties {
     #[serde(rename="ConfigSnapshotDeliveryProperties")]
     pub config_snapshot_delivery_properties: (),
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="S3BucketName")]
-    pub s3_bucket_name: (),
+    pub s3_bucket_name: String,
     #[serde(rename="S3KeyPrefix")]
-    pub s3_key_prefix: (),
+    pub s3_key_prefix: String,
     #[serde(rename="SnsTopicARN")]
-    pub sns_topic_arn: (),
+    pub sns_topic_arn: String,
 }
 
 impl<'a> ::Resource<'a> for DeliveryChannel {

@@ -8,47 +8,47 @@ pub struct CacheCluster {
 #[derive(Serialize, Deserialize)]
 pub struct CacheClusterProperties {
     #[serde(rename="AZMode")]
-    pub az_mode: (),
+    pub az_mode: String,
     #[serde(rename="AutoMinorVersionUpgrade")]
-    pub auto_minor_version_upgrade: (),
+    pub auto_minor_version_upgrade: bool,
     #[serde(rename="CacheNodeType")]
-    pub cache_node_type: (),
+    pub cache_node_type: String,
     #[serde(rename="CacheParameterGroupName")]
-    pub cache_parameter_group_name: (),
+    pub cache_parameter_group_name: String,
     #[serde(rename="CacheSecurityGroupNames")]
-    pub cache_security_group_names: (),
+    pub cache_security_group_names: Vec<String>,
     #[serde(rename="CacheSubnetGroupName")]
-    pub cache_subnet_group_name: (),
+    pub cache_subnet_group_name: String,
     #[serde(rename="ClusterName")]
-    pub cluster_name: (),
+    pub cluster_name: String,
     #[serde(rename="Engine")]
-    pub engine: (),
+    pub engine: String,
     #[serde(rename="EngineVersion")]
-    pub engine_version: (),
+    pub engine_version: String,
     #[serde(rename="NotificationTopicArn")]
-    pub notification_topic_arn: (),
+    pub notification_topic_arn: String,
     #[serde(rename="NumCacheNodes")]
-    pub num_cache_nodes: (),
+    pub num_cache_nodes: u32,
     #[serde(rename="Port")]
-    pub port: (),
+    pub port: u32,
     #[serde(rename="PreferredAvailabilityZone")]
-    pub preferred_availability_zone: (),
+    pub preferred_availability_zone: String,
     #[serde(rename="PreferredAvailabilityZones")]
-    pub preferred_availability_zones: (),
+    pub preferred_availability_zones: Vec<String>,
     #[serde(rename="PreferredMaintenanceWindow")]
-    pub preferred_maintenance_window: (),
+    pub preferred_maintenance_window: String,
     #[serde(rename="SnapshotArns")]
-    pub snapshot_arns: (),
+    pub snapshot_arns: Vec<String>,
     #[serde(rename="SnapshotName")]
-    pub snapshot_name: (),
+    pub snapshot_name: String,
     #[serde(rename="SnapshotRetentionLimit")]
-    pub snapshot_retention_limit: (),
+    pub snapshot_retention_limit: u32,
     #[serde(rename="SnapshotWindow")]
-    pub snapshot_window: (),
+    pub snapshot_window: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="VpcSecurityGroupIds")]
-    pub vpc_security_group_ids: (),
+    pub vpc_security_group_ids: Vec<String>,
 }
 
 impl<'a> ::Resource<'a> for CacheCluster {
@@ -78,11 +78,11 @@ pub struct ParameterGroup {
 #[derive(Serialize, Deserialize)]
 pub struct ParameterGroupProperties {
     #[serde(rename="CacheParameterGroupFamily")]
-    pub cache_parameter_group_family: (),
+    pub cache_parameter_group_family: String,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="Properties")]
-    pub properties: (),
+    pub properties: ::std::collections::HashMap<String, String>,
 }
 
 impl<'a> ::Resource<'a> for ParameterGroup {
@@ -112,63 +112,63 @@ pub struct ReplicationGroup {
 #[derive(Serialize, Deserialize)]
 pub struct ReplicationGroupProperties {
     #[serde(rename="AtRestEncryptionEnabled")]
-    pub at_rest_encryption_enabled: (),
+    pub at_rest_encryption_enabled: bool,
     #[serde(rename="AuthToken")]
-    pub auth_token: (),
+    pub auth_token: String,
     #[serde(rename="AutoMinorVersionUpgrade")]
-    pub auto_minor_version_upgrade: (),
+    pub auto_minor_version_upgrade: bool,
     #[serde(rename="AutomaticFailoverEnabled")]
-    pub automatic_failover_enabled: (),
+    pub automatic_failover_enabled: bool,
     #[serde(rename="CacheNodeType")]
-    pub cache_node_type: (),
+    pub cache_node_type: String,
     #[serde(rename="CacheParameterGroupName")]
-    pub cache_parameter_group_name: (),
+    pub cache_parameter_group_name: String,
     #[serde(rename="CacheSecurityGroupNames")]
-    pub cache_security_group_names: (),
+    pub cache_security_group_names: Vec<String>,
     #[serde(rename="CacheSubnetGroupName")]
-    pub cache_subnet_group_name: (),
+    pub cache_subnet_group_name: String,
     #[serde(rename="Engine")]
-    pub engine: (),
+    pub engine: String,
     #[serde(rename="EngineVersion")]
-    pub engine_version: (),
+    pub engine_version: String,
     #[serde(rename="NodeGroupConfiguration")]
-    pub node_group_configuration: (),
+    pub node_group_configuration: Vec<()>,
     #[serde(rename="NotificationTopicArn")]
-    pub notification_topic_arn: (),
+    pub notification_topic_arn: String,
     #[serde(rename="NumCacheClusters")]
-    pub num_cache_clusters: (),
+    pub num_cache_clusters: u32,
     #[serde(rename="NumNodeGroups")]
-    pub num_node_groups: (),
+    pub num_node_groups: u32,
     #[serde(rename="Port")]
-    pub port: (),
+    pub port: u32,
     #[serde(rename="PreferredCacheClusterAZs")]
-    pub preferred_cache_cluster_a_zs: (),
+    pub preferred_cache_cluster_a_zs: Vec<String>,
     #[serde(rename="PreferredMaintenanceWindow")]
-    pub preferred_maintenance_window: (),
+    pub preferred_maintenance_window: String,
     #[serde(rename="PrimaryClusterId")]
-    pub primary_cluster_id: (),
+    pub primary_cluster_id: String,
     #[serde(rename="ReplicasPerNodeGroup")]
-    pub replicas_per_node_group: (),
+    pub replicas_per_node_group: u32,
     #[serde(rename="ReplicationGroupDescription")]
-    pub replication_group_description: (),
+    pub replication_group_description: String,
     #[serde(rename="ReplicationGroupId")]
-    pub replication_group_id: (),
+    pub replication_group_id: String,
     #[serde(rename="SecurityGroupIds")]
-    pub security_group_ids: (),
+    pub security_group_ids: Vec<String>,
     #[serde(rename="SnapshotArns")]
-    pub snapshot_arns: (),
+    pub snapshot_arns: Vec<String>,
     #[serde(rename="SnapshotName")]
-    pub snapshot_name: (),
+    pub snapshot_name: String,
     #[serde(rename="SnapshotRetentionLimit")]
-    pub snapshot_retention_limit: (),
+    pub snapshot_retention_limit: u32,
     #[serde(rename="SnapshotWindow")]
-    pub snapshot_window: (),
+    pub snapshot_window: String,
     #[serde(rename="SnapshottingClusterId")]
-    pub snapshotting_cluster_id: (),
+    pub snapshotting_cluster_id: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="TransitEncryptionEnabled")]
-    pub transit_encryption_enabled: (),
+    pub transit_encryption_enabled: bool,
 }
 
 impl<'a> ::Resource<'a> for ReplicationGroup {
@@ -198,7 +198,7 @@ pub struct SecurityGroup {
 #[derive(Serialize, Deserialize)]
 pub struct SecurityGroupProperties {
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
 }
 
 impl<'a> ::Resource<'a> for SecurityGroup {
@@ -228,11 +228,11 @@ pub struct SecurityGroupIngress {
 #[derive(Serialize, Deserialize)]
 pub struct SecurityGroupIngressProperties {
     #[serde(rename="CacheSecurityGroupName")]
-    pub cache_security_group_name: (),
+    pub cache_security_group_name: String,
     #[serde(rename="EC2SecurityGroupName")]
-    pub ec2_security_group_name: (),
+    pub ec2_security_group_name: String,
     #[serde(rename="EC2SecurityGroupOwnerId")]
-    pub ec2_security_group_owner_id: (),
+    pub ec2_security_group_owner_id: String,
 }
 
 impl<'a> ::Resource<'a> for SecurityGroupIngress {
@@ -262,11 +262,11 @@ pub struct SubnetGroup {
 #[derive(Serialize, Deserialize)]
 pub struct SubnetGroupProperties {
     #[serde(rename="CacheSubnetGroupName")]
-    pub cache_subnet_group_name: (),
+    pub cache_subnet_group_name: String,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="SubnetIds")]
-    pub subnet_ids: (),
+    pub subnet_ids: Vec<String>,
 }
 
 impl<'a> ::Resource<'a> for SubnetGroup {

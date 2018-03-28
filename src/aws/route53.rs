@@ -10,7 +10,7 @@ pub struct HealthCheckProperties {
     #[serde(rename="HealthCheckConfig")]
     pub health_check_config: (),
     #[serde(rename="HealthCheckTags")]
-    pub health_check_tags: (),
+    pub health_check_tags: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for HealthCheck {
@@ -42,13 +42,13 @@ pub struct HostedZoneProperties {
     #[serde(rename="HostedZoneConfig")]
     pub hosted_zone_config: (),
     #[serde(rename="HostedZoneTags")]
-    pub hosted_zone_tags: (),
+    pub hosted_zone_tags: Vec<()>,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="QueryLoggingConfig")]
     pub query_logging_config: (),
     #[serde(rename="VPCs")]
-    pub vp_cs: (),
+    pub vp_cs: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for HostedZone {
@@ -80,31 +80,31 @@ pub struct RecordSetProperties {
     #[serde(rename="AliasTarget")]
     pub alias_target: (),
     #[serde(rename="Comment")]
-    pub comment: (),
+    pub comment: String,
     #[serde(rename="Failover")]
-    pub failover: (),
+    pub failover: String,
     #[serde(rename="GeoLocation")]
     pub geo_location: (),
     #[serde(rename="HealthCheckId")]
-    pub health_check_id: (),
+    pub health_check_id: String,
     #[serde(rename="HostedZoneId")]
-    pub hosted_zone_id: (),
+    pub hosted_zone_id: String,
     #[serde(rename="HostedZoneName")]
-    pub hosted_zone_name: (),
+    pub hosted_zone_name: String,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="Region")]
-    pub region: (),
+    pub region: String,
     #[serde(rename="ResourceRecords")]
-    pub resource_records: (),
+    pub resource_records: Vec<String>,
     #[serde(rename="SetIdentifier")]
-    pub set_identifier: (),
+    pub set_identifier: String,
     #[serde(rename="TTL")]
-    pub ttl: (),
+    pub ttl: String,
     #[serde(rename="Type")]
-    pub type_: (),
+    pub type_: String,
     #[serde(rename="Weight")]
-    pub weight: (),
+    pub weight: u32,
 }
 
 impl<'a> ::Resource<'a> for RecordSet {
@@ -134,13 +134,13 @@ pub struct RecordSetGroup {
 #[derive(Serialize, Deserialize)]
 pub struct RecordSetGroupProperties {
     #[serde(rename="Comment")]
-    pub comment: (),
+    pub comment: String,
     #[serde(rename="HostedZoneId")]
-    pub hosted_zone_id: (),
+    pub hosted_zone_id: String,
     #[serde(rename="HostedZoneName")]
-    pub hosted_zone_name: (),
+    pub hosted_zone_name: String,
     #[serde(rename="RecordSets")]
-    pub record_sets: (),
+    pub record_sets: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for RecordSetGroup {

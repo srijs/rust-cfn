@@ -8,7 +8,7 @@ pub struct Domain {
 #[derive(Serialize, Deserialize)]
 pub struct DomainProperties {
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
 }
 
 impl<'a> ::Resource<'a> for Domain {

@@ -8,39 +8,39 @@ pub struct Cluster {
 #[derive(Serialize, Deserialize)]
 pub struct ClusterProperties {
     #[serde(rename="AdditionalInfo")]
-    pub additional_info: (),
+    pub additional_info: String,
     #[serde(rename="Applications")]
-    pub applications: (),
+    pub applications: Vec<()>,
     #[serde(rename="AutoScalingRole")]
-    pub auto_scaling_role: (),
+    pub auto_scaling_role: String,
     #[serde(rename="BootstrapActions")]
-    pub bootstrap_actions: (),
+    pub bootstrap_actions: Vec<()>,
     #[serde(rename="Configurations")]
-    pub configurations: (),
+    pub configurations: Vec<()>,
     #[serde(rename="CustomAmiId")]
-    pub custom_ami_id: (),
+    pub custom_ami_id: String,
     #[serde(rename="EbsRootVolumeSize")]
-    pub ebs_root_volume_size: (),
+    pub ebs_root_volume_size: u32,
     #[serde(rename="Instances")]
     pub instances: (),
     #[serde(rename="JobFlowRole")]
-    pub job_flow_role: (),
+    pub job_flow_role: String,
     #[serde(rename="LogUri")]
-    pub log_uri: (),
+    pub log_uri: String,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="ReleaseLabel")]
-    pub release_label: (),
+    pub release_label: String,
     #[serde(rename="ScaleDownBehavior")]
-    pub scale_down_behavior: (),
+    pub scale_down_behavior: String,
     #[serde(rename="SecurityConfiguration")]
-    pub security_configuration: (),
+    pub security_configuration: String,
     #[serde(rename="ServiceRole")]
-    pub service_role: (),
+    pub service_role: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="VisibleToAllUsers")]
-    pub visible_to_all_users: (),
+    pub visible_to_all_users: bool,
 }
 
 impl<'a> ::Resource<'a> for Cluster {
@@ -70,19 +70,19 @@ pub struct InstanceFleetConfig {
 #[derive(Serialize, Deserialize)]
 pub struct InstanceFleetConfigProperties {
     #[serde(rename="ClusterId")]
-    pub cluster_id: (),
+    pub cluster_id: String,
     #[serde(rename="InstanceFleetType")]
-    pub instance_fleet_type: (),
+    pub instance_fleet_type: String,
     #[serde(rename="InstanceTypeConfigs")]
-    pub instance_type_configs: (),
+    pub instance_type_configs: Vec<()>,
     #[serde(rename="LaunchSpecifications")]
     pub launch_specifications: (),
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="TargetOnDemandCapacity")]
-    pub target_on_demand_capacity: (),
+    pub target_on_demand_capacity: u32,
     #[serde(rename="TargetSpotCapacity")]
-    pub target_spot_capacity: (),
+    pub target_spot_capacity: u32,
 }
 
 impl<'a> ::Resource<'a> for InstanceFleetConfig {
@@ -114,23 +114,23 @@ pub struct InstanceGroupConfigProperties {
     #[serde(rename="AutoScalingPolicy")]
     pub auto_scaling_policy: (),
     #[serde(rename="BidPrice")]
-    pub bid_price: (),
+    pub bid_price: String,
     #[serde(rename="Configurations")]
-    pub configurations: (),
+    pub configurations: Vec<()>,
     #[serde(rename="EbsConfiguration")]
     pub ebs_configuration: (),
     #[serde(rename="InstanceCount")]
-    pub instance_count: (),
+    pub instance_count: u32,
     #[serde(rename="InstanceRole")]
-    pub instance_role: (),
+    pub instance_role: String,
     #[serde(rename="InstanceType")]
-    pub instance_type: (),
+    pub instance_type: String,
     #[serde(rename="JobFlowId")]
-    pub job_flow_id: (),
+    pub job_flow_id: String,
     #[serde(rename="Market")]
-    pub market: (),
+    pub market: String,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
 }
 
 impl<'a> ::Resource<'a> for InstanceGroupConfig {
@@ -160,9 +160,9 @@ pub struct SecurityConfiguration {
 #[derive(Serialize, Deserialize)]
 pub struct SecurityConfigurationProperties {
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="SecurityConfiguration")]
-    pub security_configuration: (),
+    pub security_configuration: String,
 }
 
 impl<'a> ::Resource<'a> for SecurityConfiguration {
@@ -192,13 +192,13 @@ pub struct Step {
 #[derive(Serialize, Deserialize)]
 pub struct StepProperties {
     #[serde(rename="ActionOnFailure")]
-    pub action_on_failure: (),
+    pub action_on_failure: String,
     #[serde(rename="HadoopJarStep")]
     pub hadoop_jar_step: (),
     #[serde(rename="JobFlowId")]
-    pub job_flow_id: (),
+    pub job_flow_id: String,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
 }
 
 impl<'a> ::Resource<'a> for Step {

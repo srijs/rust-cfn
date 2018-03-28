@@ -8,11 +8,11 @@ pub struct Certificate {
 #[derive(Serialize, Deserialize)]
 pub struct CertificateProperties {
     #[serde(rename="CertificateIdentifier")]
-    pub certificate_identifier: (),
+    pub certificate_identifier: String,
     #[serde(rename="CertificatePem")]
-    pub certificate_pem: (),
+    pub certificate_pem: String,
     #[serde(rename="CertificateWallet")]
-    pub certificate_wallet: (),
+    pub certificate_wallet: String,
 }
 
 impl<'a> ::Resource<'a> for Certificate {
@@ -42,37 +42,37 @@ pub struct Endpoint {
 #[derive(Serialize, Deserialize)]
 pub struct EndpointProperties {
     #[serde(rename="CertificateArn")]
-    pub certificate_arn: (),
+    pub certificate_arn: String,
     #[serde(rename="DatabaseName")]
-    pub database_name: (),
+    pub database_name: String,
     #[serde(rename="DynamoDbSettings")]
     pub dynamo_db_settings: (),
     #[serde(rename="EndpointIdentifier")]
-    pub endpoint_identifier: (),
+    pub endpoint_identifier: String,
     #[serde(rename="EndpointType")]
-    pub endpoint_type: (),
+    pub endpoint_type: String,
     #[serde(rename="EngineName")]
-    pub engine_name: (),
+    pub engine_name: String,
     #[serde(rename="ExtraConnectionAttributes")]
-    pub extra_connection_attributes: (),
+    pub extra_connection_attributes: String,
     #[serde(rename="KmsKeyId")]
-    pub kms_key_id: (),
+    pub kms_key_id: String,
     #[serde(rename="MongoDbSettings")]
     pub mongo_db_settings: (),
     #[serde(rename="Password")]
-    pub password: (),
+    pub password: String,
     #[serde(rename="Port")]
-    pub port: (),
+    pub port: u32,
     #[serde(rename="S3Settings")]
     pub s3_settings: (),
     #[serde(rename="ServerName")]
-    pub server_name: (),
+    pub server_name: String,
     #[serde(rename="SslMode")]
-    pub ssl_mode: (),
+    pub ssl_mode: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="Username")]
-    pub username: (),
+    pub username: String,
 }
 
 impl<'a> ::Resource<'a> for Endpoint {
@@ -102,19 +102,19 @@ pub struct EventSubscription {
 #[derive(Serialize, Deserialize)]
 pub struct EventSubscriptionProperties {
     #[serde(rename="Enabled")]
-    pub enabled: (),
+    pub enabled: bool,
     #[serde(rename="EventCategories")]
-    pub event_categories: (),
+    pub event_categories: Vec<String>,
     #[serde(rename="SnsTopicArn")]
-    pub sns_topic_arn: (),
+    pub sns_topic_arn: String,
     #[serde(rename="SourceIds")]
-    pub source_ids: (),
+    pub source_ids: Vec<String>,
     #[serde(rename="SourceType")]
-    pub source_type: (),
+    pub source_type: String,
     #[serde(rename="SubscriptionName")]
-    pub subscription_name: (),
+    pub subscription_name: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for EventSubscription {
@@ -144,33 +144,33 @@ pub struct ReplicationInstance {
 #[derive(Serialize, Deserialize)]
 pub struct ReplicationInstanceProperties {
     #[serde(rename="AllocatedStorage")]
-    pub allocated_storage: (),
+    pub allocated_storage: u32,
     #[serde(rename="AllowMajorVersionUpgrade")]
-    pub allow_major_version_upgrade: (),
+    pub allow_major_version_upgrade: bool,
     #[serde(rename="AutoMinorVersionUpgrade")]
-    pub auto_minor_version_upgrade: (),
+    pub auto_minor_version_upgrade: bool,
     #[serde(rename="AvailabilityZone")]
-    pub availability_zone: (),
+    pub availability_zone: String,
     #[serde(rename="EngineVersion")]
-    pub engine_version: (),
+    pub engine_version: String,
     #[serde(rename="KmsKeyId")]
-    pub kms_key_id: (),
+    pub kms_key_id: String,
     #[serde(rename="MultiAZ")]
-    pub multi_az: (),
+    pub multi_az: bool,
     #[serde(rename="PreferredMaintenanceWindow")]
-    pub preferred_maintenance_window: (),
+    pub preferred_maintenance_window: String,
     #[serde(rename="PubliclyAccessible")]
-    pub publicly_accessible: (),
+    pub publicly_accessible: bool,
     #[serde(rename="ReplicationInstanceClass")]
-    pub replication_instance_class: (),
+    pub replication_instance_class: String,
     #[serde(rename="ReplicationInstanceIdentifier")]
-    pub replication_instance_identifier: (),
+    pub replication_instance_identifier: String,
     #[serde(rename="ReplicationSubnetGroupIdentifier")]
-    pub replication_subnet_group_identifier: (),
+    pub replication_subnet_group_identifier: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="VpcSecurityGroupIds")]
-    pub vpc_security_group_ids: (),
+    pub vpc_security_group_ids: Vec<String>,
 }
 
 impl<'a> ::Resource<'a> for ReplicationInstance {
@@ -200,13 +200,13 @@ pub struct ReplicationSubnetGroup {
 #[derive(Serialize, Deserialize)]
 pub struct ReplicationSubnetGroupProperties {
     #[serde(rename="ReplicationSubnetGroupDescription")]
-    pub replication_subnet_group_description: (),
+    pub replication_subnet_group_description: String,
     #[serde(rename="ReplicationSubnetGroupIdentifier")]
-    pub replication_subnet_group_identifier: (),
+    pub replication_subnet_group_identifier: String,
     #[serde(rename="SubnetIds")]
-    pub subnet_ids: (),
+    pub subnet_ids: Vec<String>,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
 }
 
 impl<'a> ::Resource<'a> for ReplicationSubnetGroup {
@@ -236,23 +236,23 @@ pub struct ReplicationTask {
 #[derive(Serialize, Deserialize)]
 pub struct ReplicationTaskProperties {
     #[serde(rename="CdcStartTime")]
-    pub cdc_start_time: (),
+    pub cdc_start_time: f64,
     #[serde(rename="MigrationType")]
-    pub migration_type: (),
+    pub migration_type: String,
     #[serde(rename="ReplicationInstanceArn")]
-    pub replication_instance_arn: (),
+    pub replication_instance_arn: String,
     #[serde(rename="ReplicationTaskIdentifier")]
-    pub replication_task_identifier: (),
+    pub replication_task_identifier: String,
     #[serde(rename="ReplicationTaskSettings")]
-    pub replication_task_settings: (),
+    pub replication_task_settings: String,
     #[serde(rename="SourceEndpointArn")]
-    pub source_endpoint_arn: (),
+    pub source_endpoint_arn: String,
     #[serde(rename="TableMappings")]
-    pub table_mappings: (),
+    pub table_mappings: String,
     #[serde(rename="Tags")]
-    pub tags: (),
+    pub tags: Vec<()>,
     #[serde(rename="TargetEndpointArn")]
-    pub target_endpoint_arn: (),
+    pub target_endpoint_arn: String,
 }
 
 impl<'a> ::Resource<'a> for ReplicationTask {

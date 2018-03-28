@@ -8,19 +8,19 @@ pub struct EnvironmentEC2 {
 #[derive(Serialize, Deserialize)]
 pub struct EnvironmentEC2Properties {
     #[serde(rename="AutomaticStopTimeMinutes")]
-    pub automatic_stop_time_minutes: (),
+    pub automatic_stop_time_minutes: u32,
     #[serde(rename="Description")]
-    pub description: (),
+    pub description: String,
     #[serde(rename="InstanceType")]
-    pub instance_type: (),
+    pub instance_type: String,
     #[serde(rename="Name")]
-    pub name: (),
+    pub name: String,
     #[serde(rename="OwnerArn")]
-    pub owner_arn: (),
+    pub owner_arn: String,
     #[serde(rename="Repositories")]
-    pub repositories: (),
+    pub repositories: Vec<()>,
     #[serde(rename="SubnetId")]
-    pub subnet_id: (),
+    pub subnet_id: String,
 }
 
 impl<'a> ::Resource<'a> for EnvironmentEC2 {
