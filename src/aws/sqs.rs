@@ -26,7 +26,7 @@ pub struct QueueProperties {
     #[serde(rename="ReceiveMessageWaitTimeSeconds")]
     pub receive_message_wait_time_seconds: u32,
     #[serde(rename="RedrivePolicy")]
-    pub redrive_policy: String,
+    pub redrive_policy: ::serde_json::Value,
     #[serde(rename="VisibilityTimeout")]
     pub visibility_timeout: u32,
 }
@@ -58,7 +58,7 @@ pub struct QueuePolicy {
 #[derive(Serialize, Deserialize)]
 pub struct QueuePolicyProperties {
     #[serde(rename="PolicyDocument")]
-    pub policy_document: String,
+    pub policy_document: ::serde_json::Value,
     #[serde(rename="Queues")]
     pub queues: Vec<String>,
 }

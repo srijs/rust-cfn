@@ -120,7 +120,7 @@ pub struct ManagedPolicyProperties {
     #[serde(rename="Path")]
     pub path: String,
     #[serde(rename="PolicyDocument")]
-    pub policy_document: String,
+    pub policy_document: ::serde_json::Value,
     #[serde(rename="Roles")]
     pub roles: Vec<String>,
     #[serde(rename="Users")]
@@ -156,7 +156,7 @@ pub struct PolicyProperties {
     #[serde(rename="Groups")]
     pub groups: Vec<String>,
     #[serde(rename="PolicyDocument")]
-    pub policy_document: String,
+    pub policy_document: ::serde_json::Value,
     #[serde(rename="PolicyName")]
     pub policy_name: String,
     #[serde(rename="Roles")]
@@ -192,7 +192,7 @@ pub struct Role {
 #[derive(Serialize, Deserialize)]
 pub struct RoleProperties {
     #[serde(rename="AssumeRolePolicyDocument")]
-    pub assume_role_policy_document: String,
+    pub assume_role_policy_document: ::serde_json::Value,
     #[serde(rename="ManagedPolicyArns")]
     pub managed_policy_arns: Vec<String>,
     #[serde(rename="Path")]

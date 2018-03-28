@@ -10,7 +10,7 @@ pub struct RuleProperties {
     #[serde(rename="Description")]
     pub description: String,
     #[serde(rename="EventPattern")]
-    pub event_pattern: String,
+    pub event_pattern: ::serde_json::Value,
     #[serde(rename="Name")]
     pub name: String,
     #[serde(rename="RoleArn")]

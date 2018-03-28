@@ -76,7 +76,7 @@ pub struct TopicPolicy {
 #[derive(Serialize, Deserialize)]
 pub struct TopicPolicyProperties {
     #[serde(rename="PolicyDocument")]
-    pub policy_document: String,
+    pub policy_document: ::serde_json::Value,
     #[serde(rename="Topics")]
     pub topics: Vec<String>,
 }

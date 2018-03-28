@@ -170,7 +170,7 @@ pub struct LayerProperties {
     #[serde(rename="CustomInstanceProfileArn")]
     pub custom_instance_profile_arn: String,
     #[serde(rename="CustomJson")]
-    pub custom_json: String,
+    pub custom_json: ::serde_json::Value,
     #[serde(rename="CustomRecipes")]
     pub custom_recipes: (),
     #[serde(rename="CustomSecurityGroupIds")]
@@ -242,7 +242,7 @@ pub struct StackProperties {
     #[serde(rename="CustomCookbooksSource")]
     pub custom_cookbooks_source: (),
     #[serde(rename="CustomJson")]
-    pub custom_json: String,
+    pub custom_json: ::serde_json::Value,
     #[serde(rename="DefaultAvailabilityZone")]
     pub default_availability_zone: String,
     #[serde(rename="DefaultInstanceProfileArn")]

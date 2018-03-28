@@ -40,7 +40,7 @@ pub struct Policy {
 #[derive(Serialize, Deserialize)]
 pub struct PolicyProperties {
     #[serde(rename="PolicyDocument")]
-    pub policy_document: String,
+    pub policy_document: ::serde_json::Value,
     #[serde(rename="PolicyName")]
     pub policy_name: String,
 }

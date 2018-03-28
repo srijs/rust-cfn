@@ -430,7 +430,7 @@ pub struct ModelProperties {
     #[serde(rename="RestApiId")]
     pub rest_api_id: String,
     #[serde(rename="Schema")]
-    pub schema: String,
+    pub schema: ::serde_json::Value,
 }
 
 impl<'a> ::Resource<'a> for Model {
@@ -534,7 +534,7 @@ pub struct RestApiProperties {
     #[serde(rename="BinaryMediaTypes")]
     pub binary_media_types: Vec<String>,
     #[serde(rename="Body")]
-    pub body: String,
+    pub body: ::serde_json::Value,
     #[serde(rename="BodyS3Location")]
     pub body_s3_location: (),
     #[serde(rename="CloneFrom")]

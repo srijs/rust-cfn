@@ -50,7 +50,7 @@ pub struct JobDefinitionProperties {
     #[serde(rename="JobDefinitionName")]
     pub job_definition_name: String,
     #[serde(rename="Parameters")]
-    pub parameters: String,
+    pub parameters: ::serde_json::Value,
     #[serde(rename="RetryStrategy")]
     pub retry_strategy: (),
     #[serde(rename="Type")]

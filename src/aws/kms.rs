@@ -46,7 +46,7 @@ pub struct KeyProperties {
     #[serde(rename="Enabled")]
     pub enabled: bool,
     #[serde(rename="KeyPolicy")]
-    pub key_policy: String,
+    pub key_policy: ::serde_json::Value,
     #[serde(rename="KeyUsage")]
     pub key_usage: String,
     #[serde(rename="Tags")]

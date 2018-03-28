@@ -8,7 +8,7 @@ pub struct Instance {
 #[derive(Serialize, Deserialize)]
 pub struct InstanceProperties {
     #[serde(rename="InstanceAttributes")]
-    pub instance_attributes: String,
+    pub instance_attributes: ::serde_json::Value,
     #[serde(rename="InstanceId")]
     pub instance_id: String,
     #[serde(rename="ServiceId")]

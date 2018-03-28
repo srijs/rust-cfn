@@ -12,7 +12,7 @@ pub struct ConfigRuleProperties {
     #[serde(rename="Description")]
     pub description: String,
     #[serde(rename="InputParameters")]
-    pub input_parameters: String,
+    pub input_parameters: ::serde_json::Value,
     #[serde(rename="MaximumExecutionFrequency")]
     pub maximum_execution_frequency: String,
     #[serde(rename="Scope")]

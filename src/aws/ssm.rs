@@ -50,7 +50,7 @@ pub struct Document {
 #[derive(Serialize, Deserialize)]
 pub struct DocumentProperties {
     #[serde(rename="Content")]
-    pub content: String,
+    pub content: ::serde_json::Value,
     #[serde(rename="DocumentType")]
     pub document_type: String,
     #[serde(rename="Tags")]
@@ -104,7 +104,7 @@ pub struct MaintenanceWindowTaskProperties {
     #[serde(rename="TaskInvocationParameters")]
     pub task_invocation_parameters: (),
     #[serde(rename="TaskParameters")]
-    pub task_parameters: String,
+    pub task_parameters: ::serde_json::Value,
     #[serde(rename="TaskType")]
     pub task_type: String,
     #[serde(rename="WindowId")]

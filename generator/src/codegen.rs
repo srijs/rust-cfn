@@ -81,29 +81,33 @@ fn generate_property(name: &str, spec: &PropertySpecification, f: &mut Write) ->
     }
 
     writeln!(f, "    #[serde(rename=\"{}\")]", name)?;
+    writeln!(f, "    pub {}: {},", field_name, generate_property_type(spec))?;
+
+    Ok(())
+}
+
+fn generate_property_type(spec: &PropertySpecification) -> String {
     if let Some(ref type_name) = spec.type_ {
         if type_name == "List" {
             if let Some(ref _item_type) = spec.item_type {
-                writeln!(f, "    pub {}: Vec<()>,", field_name)?;
+                format!("Vec<()>")
             } else {
-                writeln!(f, "    pub {}: Vec<{}>,", field_name,
-                    generate_primitive_item_type(spec.primitive_item_type.as_ref().unwrap()))?;
+                format!("Vec<{}>",
+                    generate_primitive_item_type(spec.primitive_item_type.as_ref().unwrap()))
             }
         } else if type_name == "Map" {
             if let Some(ref _item_type) = spec.item_type {
-                writeln!(f, "    pub {}: ::std::collections::HashMap<String, ()>,", field_name)?;
+                format!("::std::collections::HashMap<String, ()>")
             } else {
-                writeln!(f, "    pub {}: ::std::collections::HashMap<String, {}>,", field_name,
-                    generate_primitive_item_type(spec.primitive_item_type.as_ref().unwrap()))?;
+                format!("::std::collections::HashMap<String, {}>",
+                    generate_primitive_item_type(spec.primitive_item_type.as_ref().unwrap()))
             }
         } else {
-            writeln!(f, "    pub {}: (),", field_name)?;
+            format!("()")
         }
     } else {
-        writeln!(f, "    pub {}: {},", field_name, generate_primitive_type(spec.primitive_type.as_ref().unwrap()))?;
+        format!("{}", generate_primitive_type(spec.primitive_type.as_ref().unwrap()))
     }
-
-    Ok(())
 }
 
 fn generate_primitive_type(primitive_type: &PrimitiveType) -> &str {
@@ -114,7 +118,7 @@ fn generate_primitive_type(primitive_type: &PrimitiveType) -> &str {
         &PrimitiveType::Double => "f64",
         &PrimitiveType::Boolean => "bool",
         &PrimitiveType::Timestamp => "String",
-        &PrimitiveType::Json => "String"
+        &PrimitiveType::Json => "::serde_json::Value"
     }
 }
 

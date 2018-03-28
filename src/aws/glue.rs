@@ -198,7 +198,7 @@ pub struct JobProperties {
     #[serde(rename="Connections")]
     pub connections: (),
     #[serde(rename="DefaultArguments")]
-    pub default_arguments: String,
+    pub default_arguments: ::serde_json::Value,
     #[serde(rename="Description")]
     pub description: String,
     #[serde(rename="ExecutionProperty")]

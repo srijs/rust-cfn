@@ -10,7 +10,7 @@ pub struct IdentityPoolProperties {
     #[serde(rename="AllowUnauthenticatedIdentities")]
     pub allow_unauthenticated_identities: bool,
     #[serde(rename="CognitoEvents")]
-    pub cognito_events: String,
+    pub cognito_events: ::serde_json::Value,
     #[serde(rename="CognitoIdentityProviders")]
     pub cognito_identity_providers: Vec<()>,
     #[serde(rename="CognitoStreams")]
@@ -26,7 +26,7 @@ pub struct IdentityPoolProperties {
     #[serde(rename="SamlProviderARNs")]
     pub saml_provider_ar_ns: Vec<String>,
     #[serde(rename="SupportedLoginProviders")]
-    pub supported_login_providers: String,
+    pub supported_login_providers: ::serde_json::Value,
 }
 
 impl<'a> ::Resource<'a> for IdentityPool {
@@ -58,9 +58,9 @@ pub struct IdentityPoolRoleAttachmentProperties {
     #[serde(rename="IdentityPoolId")]
     pub identity_pool_id: String,
     #[serde(rename="RoleMappings")]
-    pub role_mappings: String,
+    pub role_mappings: ::serde_json::Value,
     #[serde(rename="Roles")]
-    pub roles: String,
+    pub roles: ::serde_json::Value,
 }
 
 impl<'a> ::Resource<'a> for IdentityPoolRoleAttachment {
@@ -120,7 +120,7 @@ pub struct UserPoolProperties {
     #[serde(rename="UserPoolName")]
     pub user_pool_name: String,
     #[serde(rename="UserPoolTags")]
-    pub user_pool_tags: String,
+    pub user_pool_tags: ::serde_json::Value,
 }
 
 impl<'a> ::Resource<'a> for UserPool {

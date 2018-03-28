@@ -12,7 +12,7 @@ pub struct RepositoryProperties {
     #[serde(rename="RepositoryName")]
     pub repository_name: String,
     #[serde(rename="RepositoryPolicyText")]
-    pub repository_policy_text: String,
+    pub repository_policy_text: ::serde_json::Value,
 }
 
 impl<'a> ::Resource<'a> for Repository {

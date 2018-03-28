@@ -68,7 +68,7 @@ pub struct BucketPolicyProperties {
     #[serde(rename="Bucket")]
     pub bucket: String,
     #[serde(rename="PolicyDocument")]
-    pub policy_document: String,
+    pub policy_document: ::serde_json::Value,
 }
 
 impl<'a> ::Resource<'a> for BucketPolicy {

@@ -8,7 +8,7 @@ pub struct Cluster {
 #[derive(Serialize, Deserialize)]
 pub struct ClusterProperties {
     #[serde(rename="AdditionalInfo")]
-    pub additional_info: String,
+    pub additional_info: ::serde_json::Value,
     #[serde(rename="Applications")]
     pub applications: Vec<()>,
     #[serde(rename="AutoScalingRole")]
@@ -162,7 +162,7 @@ pub struct SecurityConfigurationProperties {
     #[serde(rename="Name")]
     pub name: String,
     #[serde(rename="SecurityConfiguration")]
-    pub security_configuration: String,
+    pub security_configuration: ::serde_json::Value,
 }
 
 impl<'a> ::Resource<'a> for SecurityConfiguration {

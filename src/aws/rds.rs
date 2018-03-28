@@ -78,7 +78,7 @@ pub struct DBClusterParameterGroupProperties {
     #[serde(rename="Family")]
     pub family: String,
     #[serde(rename="Parameters")]
-    pub parameters: String,
+    pub parameters: ::serde_json::Value,
     #[serde(rename="Tags")]
     pub tags: Vec<()>,
 }

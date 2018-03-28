@@ -1160,7 +1160,7 @@ pub struct VPCEndpoint {
 #[derive(Serialize, Deserialize)]
 pub struct VPCEndpointProperties {
     #[serde(rename="PolicyDocument")]
-    pub policy_document: String,
+    pub policy_document: ::serde_json::Value,
     #[serde(rename="RouteTableIds")]
     pub route_table_ids: Vec<String>,
     #[serde(rename="ServiceName")]

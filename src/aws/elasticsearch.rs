@@ -8,7 +8,7 @@ pub struct Domain {
 #[derive(Serialize, Deserialize)]
 pub struct DomainProperties {
     #[serde(rename="AccessPolicies")]
-    pub access_policies: String,
+    pub access_policies: ::serde_json::Value,
     #[serde(rename="AdvancedOptions")]
     pub advanced_options: ::std::collections::HashMap<String, String>,
     #[serde(rename="DomainName")]
