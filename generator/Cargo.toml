@@ -1,0 +1,12 @@
+[package]
+name = "cfn_generator"
+version = "0.1.0"
+authors = ["Sam Rijs <srijs@airpost.net>"]
+
+[dependencies]
+flate2 = "1.0"
+heck = "0.3"
+itertools = "0.7"
+serde = "1.0"
+serde_derive = "1.0"
+serde_json = "1.0"
