@@ -21,6 +21,8 @@ impl<'a> ::Resource<'a> for Account {
     }
 }
 
+impl ::private::Sealed for Account {}
+
 impl From<AccountProperties> for Account {
     fn from(properties: AccountProperties) -> Account {
         Account { properties }
@@ -59,6 +61,8 @@ impl<'a> ::Resource<'a> for ApiKey {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for ApiKey {}
 
 impl From<ApiKeyProperties> for ApiKey {
     fn from(properties: ApiKeyProperties) -> ApiKey {
@@ -107,6 +111,8 @@ impl<'a> ::Resource<'a> for Authorizer {
     }
 }
 
+impl ::private::Sealed for Authorizer {}
+
 impl From<AuthorizerProperties> for Authorizer {
     fn from(properties: AuthorizerProperties) -> Authorizer {
         Authorizer { properties }
@@ -142,6 +148,8 @@ impl<'a> ::Resource<'a> for BasePathMapping {
     }
 }
 
+impl ::private::Sealed for BasePathMapping {}
+
 impl From<BasePathMappingProperties> for BasePathMapping {
     fn from(properties: BasePathMappingProperties) -> BasePathMapping {
         BasePathMapping { properties }
@@ -170,6 +178,8 @@ impl<'a> ::Resource<'a> for ClientCertificate {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for ClientCertificate {}
 
 impl From<ClientCertificateProperties> for ClientCertificate {
     fn from(properties: ClientCertificateProperties) -> ClientCertificate {
@@ -206,6 +216,8 @@ impl<'a> ::Resource<'a> for Deployment {
     }
 }
 
+impl ::private::Sealed for Deployment {}
+
 impl From<DeploymentProperties> for Deployment {
     fn from(properties: DeploymentProperties) -> Deployment {
         Deployment { properties }
@@ -239,6 +251,8 @@ impl<'a> ::Resource<'a> for DocumentationPart {
     }
 }
 
+impl ::private::Sealed for DocumentationPart {}
+
 impl From<DocumentationPartProperties> for DocumentationPart {
     fn from(properties: DocumentationPartProperties) -> DocumentationPart {
         DocumentationPart { properties }
@@ -271,6 +285,8 @@ impl<'a> ::Resource<'a> for DocumentationVersion {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for DocumentationVersion {}
 
 impl From<DocumentationVersionProperties> for DocumentationVersion {
     fn from(properties: DocumentationVersionProperties) -> DocumentationVersion {
@@ -306,6 +322,8 @@ impl<'a> ::Resource<'a> for DomainName {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for DomainName {}
 
 impl From<DomainNameProperties> for DomainName {
     fn from(properties: DomainNameProperties) -> DomainName {
@@ -343,6 +361,8 @@ impl<'a> ::Resource<'a> for GatewayResponse {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for GatewayResponse {}
 
 impl From<GatewayResponseProperties> for GatewayResponse {
     fn from(properties: GatewayResponseProperties) -> GatewayResponse {
@@ -395,6 +415,8 @@ impl<'a> ::Resource<'a> for Method {
     }
 }
 
+impl ::private::Sealed for Method {}
+
 impl From<MethodProperties> for Method {
     fn from(properties: MethodProperties) -> Method {
         Method { properties }
@@ -432,6 +454,8 @@ impl<'a> ::Resource<'a> for Model {
     }
 }
 
+impl ::private::Sealed for Model {}
+
 impl From<ModelProperties> for Model {
     fn from(properties: ModelProperties) -> Model {
         Model { properties }
@@ -467,6 +491,8 @@ impl<'a> ::Resource<'a> for RequestValidator {
     }
 }
 
+impl ::private::Sealed for RequestValidator {}
+
 impl From<RequestValidatorProperties> for RequestValidator {
     fn from(properties: RequestValidatorProperties) -> RequestValidator {
         RequestValidator { properties }
@@ -499,6 +525,8 @@ impl<'a> ::Resource<'a> for Resource {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for Resource {}
 
 impl From<ResourceProperties> for Resource {
     fn from(properties: ResourceProperties) -> Resource {
@@ -549,6 +577,8 @@ impl<'a> ::Resource<'a> for RestApi {
     }
 }
 
+impl ::private::Sealed for RestApi {}
+
 impl From<RestApiProperties> for RestApi {
     fn from(properties: RestApiProperties) -> RestApi {
         RestApi { properties }
@@ -596,6 +626,8 @@ impl<'a> ::Resource<'a> for Stage {
     }
 }
 
+impl ::private::Sealed for Stage {}
+
 impl From<StageProperties> for Stage {
     fn from(properties: StageProperties) -> Stage {
         Stage { properties }
@@ -633,6 +665,8 @@ impl<'a> ::Resource<'a> for UsagePlan {
     }
 }
 
+impl ::private::Sealed for UsagePlan {}
+
 impl From<UsagePlanProperties> for UsagePlan {
     fn from(properties: UsagePlanProperties) -> UsagePlan {
         UsagePlan { properties }
@@ -666,6 +700,8 @@ impl<'a> ::Resource<'a> for UsagePlanKey {
     }
 }
 
+impl ::private::Sealed for UsagePlanKey {}
+
 impl From<UsagePlanKeyProperties> for UsagePlanKey {
     fn from(properties: UsagePlanKeyProperties) -> UsagePlanKey {
         UsagePlanKey { properties }
@@ -698,6 +734,8 @@ impl<'a> ::Resource<'a> for VpcLink {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for VpcLink {}
 
 impl From<VpcLinkProperties> for VpcLink {
     fn from(properties: VpcLinkProperties) -> VpcLink {

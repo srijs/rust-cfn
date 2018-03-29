@@ -23,6 +23,8 @@ impl<'a> ::Resource<'a> for AssessmentTarget {
     }
 }
 
+impl ::private::Sealed for AssessmentTarget {}
+
 impl From<AssessmentTargetProperties> for AssessmentTarget {
     fn from(properties: AssessmentTargetProperties) -> AssessmentTarget {
         AssessmentTarget { properties }
@@ -60,6 +62,8 @@ impl<'a> ::Resource<'a> for AssessmentTemplate {
     }
 }
 
+impl ::private::Sealed for AssessmentTemplate {}
+
 impl From<AssessmentTemplateProperties> for AssessmentTemplate {
     fn from(properties: AssessmentTemplateProperties) -> AssessmentTemplate {
         AssessmentTemplate { properties }
@@ -88,6 +92,8 @@ impl<'a> ::Resource<'a> for ResourceGroup {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for ResourceGroup {}
 
 impl From<ResourceGroupProperties> for ResourceGroup {
     fn from(properties: ResourceGroupProperties) -> ResourceGroup {

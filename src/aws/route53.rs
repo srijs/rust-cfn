@@ -23,6 +23,8 @@ impl<'a> ::Resource<'a> for HealthCheck {
     }
 }
 
+impl ::private::Sealed for HealthCheck {}
+
 impl From<HealthCheckProperties> for HealthCheck {
     fn from(properties: HealthCheckProperties) -> HealthCheck {
         HealthCheck { properties }
@@ -59,6 +61,8 @@ impl<'a> ::Resource<'a> for HostedZone {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for HostedZone {}
 
 impl From<HostedZoneProperties> for HostedZone {
     fn from(properties: HostedZoneProperties) -> HostedZone {
@@ -115,6 +119,8 @@ impl<'a> ::Resource<'a> for RecordSet {
     }
 }
 
+impl ::private::Sealed for RecordSet {}
+
 impl From<RecordSetProperties> for RecordSet {
     fn from(properties: RecordSetProperties) -> RecordSet {
         RecordSet { properties }
@@ -149,6 +155,8 @@ impl<'a> ::Resource<'a> for RecordSetGroup {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for RecordSetGroup {}
 
 impl From<RecordSetGroupProperties> for RecordSetGroup {
     fn from(properties: RecordSetGroupProperties) -> RecordSetGroup {

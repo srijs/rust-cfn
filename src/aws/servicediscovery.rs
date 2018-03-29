@@ -25,6 +25,8 @@ impl<'a> ::Resource<'a> for Instance {
     }
 }
 
+impl ::private::Sealed for Instance {}
+
 impl From<InstanceProperties> for Instance {
     fn from(properties: InstanceProperties) -> Instance {
         Instance { properties }
@@ -58,6 +60,8 @@ impl<'a> ::Resource<'a> for PrivateDnsNamespace {
     }
 }
 
+impl ::private::Sealed for PrivateDnsNamespace {}
+
 impl From<PrivateDnsNamespaceProperties> for PrivateDnsNamespace {
     fn from(properties: PrivateDnsNamespaceProperties) -> PrivateDnsNamespace {
         PrivateDnsNamespace { properties }
@@ -88,6 +92,8 @@ impl<'a> ::Resource<'a> for PublicDnsNamespace {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for PublicDnsNamespace {}
 
 impl From<PublicDnsNamespaceProperties> for PublicDnsNamespace {
     fn from(properties: PublicDnsNamespaceProperties) -> PublicDnsNamespace {
@@ -123,6 +129,8 @@ impl<'a> ::Resource<'a> for Service {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for Service {}
 
 impl From<ServiceProperties> for Service {
     fn from(properties: ServiceProperties) -> Service {

@@ -49,6 +49,8 @@ impl<'a> ::Resource<'a> for Bucket {
     }
 }
 
+impl ::private::Sealed for Bucket {}
+
 impl From<BucketProperties> for Bucket {
     fn from(properties: BucketProperties) -> Bucket {
         Bucket { properties }
@@ -79,6 +81,8 @@ impl<'a> ::Resource<'a> for BucketPolicy {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for BucketPolicy {}
 
 impl From<BucketPolicyProperties> for BucketPolicy {
     fn from(properties: BucketPolicyProperties) -> BucketPolicy {

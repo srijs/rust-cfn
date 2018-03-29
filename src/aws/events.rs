@@ -33,6 +33,8 @@ impl<'a> ::Resource<'a> for Rule {
     }
 }
 
+impl ::private::Sealed for Rule {}
+
 impl From<RuleProperties> for Rule {
     fn from(properties: RuleProperties) -> Rule {
         Rule { properties }

@@ -25,6 +25,8 @@ impl<'a> ::Resource<'a> for Alias {
     }
 }
 
+impl ::private::Sealed for Alias {}
+
 impl From<AliasProperties> for Alias {
     fn from(properties: AliasProperties) -> Alias {
         Alias { properties }
@@ -57,6 +59,8 @@ impl<'a> ::Resource<'a> for Build {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for Build {}
 
 impl From<BuildProperties> for Build {
     fn from(properties: BuildProperties) -> Build {
@@ -106,6 +110,8 @@ impl<'a> ::Resource<'a> for Fleet {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for Fleet {}
 
 impl From<FleetProperties> for Fleet {
     fn from(properties: FleetProperties) -> Fleet {

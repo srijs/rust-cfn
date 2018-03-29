@@ -25,6 +25,8 @@ impl<'a> ::Resource<'a> for Repository {
     }
 }
 
+impl ::private::Sealed for Repository {}
+
 impl From<RepositoryProperties> for Repository {
     fn from(properties: RepositoryProperties) -> Repository {
         Repository { properties }

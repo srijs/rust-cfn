@@ -23,6 +23,8 @@ impl<'a> ::Resource<'a> for Alias {
     }
 }
 
+impl ::private::Sealed for Alias {}
+
 impl From<AliasProperties> for Alias {
     fn from(properties: AliasProperties) -> Alias {
         Alias { properties }
@@ -61,6 +63,8 @@ impl<'a> ::Resource<'a> for Key {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for Key {}
 
 impl From<KeyProperties> for Key {
     fn from(properties: KeyProperties) -> Key {

@@ -27,6 +27,8 @@ impl<'a> ::Resource<'a> for Destination {
     }
 }
 
+impl ::private::Sealed for Destination {}
+
 impl From<DestinationProperties> for Destination {
     fn from(properties: DestinationProperties) -> Destination {
         Destination { properties }
@@ -58,6 +60,8 @@ impl<'a> ::Resource<'a> for LogGroup {
     }
 }
 
+impl ::private::Sealed for LogGroup {}
+
 impl From<LogGroupProperties> for LogGroup {
     fn from(properties: LogGroupProperties) -> LogGroup {
         LogGroup { properties }
@@ -88,6 +92,8 @@ impl<'a> ::Resource<'a> for LogStream {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for LogStream {}
 
 impl From<LogStreamProperties> for LogStream {
     fn from(properties: LogStreamProperties) -> LogStream {
@@ -121,6 +127,8 @@ impl<'a> ::Resource<'a> for MetricFilter {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for MetricFilter {}
 
 impl From<MetricFilterProperties> for MetricFilter {
     fn from(properties: MetricFilterProperties) -> MetricFilter {
@@ -156,6 +164,8 @@ impl<'a> ::Resource<'a> for SubscriptionFilter {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for SubscriptionFilter {}
 
 impl From<SubscriptionFilterProperties> for SubscriptionFilter {
     fn from(properties: SubscriptionFilterProperties) -> SubscriptionFilter {

@@ -23,6 +23,8 @@ impl<'a> ::Resource<'a> for Application {
     }
 }
 
+impl ::private::Sealed for Application {}
+
 impl From<ApplicationProperties> for Application {
     fn from(properties: ApplicationProperties) -> Application {
         Application { properties }
@@ -53,6 +55,8 @@ impl<'a> ::Resource<'a> for DeploymentConfig {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for DeploymentConfig {}
 
 impl From<DeploymentConfigProperties> for DeploymentConfig {
     fn from(properties: DeploymentConfigProperties) -> DeploymentConfig {
@@ -106,6 +110,8 @@ impl<'a> ::Resource<'a> for DeploymentGroup {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for DeploymentGroup {}
 
 impl From<DeploymentGroupProperties> for DeploymentGroup {
     fn from(properties: DeploymentGroupProperties) -> DeploymentGroup {

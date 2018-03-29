@@ -27,6 +27,8 @@ impl<'a> ::Resource<'a> for Certificate {
     }
 }
 
+impl ::private::Sealed for Certificate {}
+
 impl From<CertificateProperties> for Certificate {
     fn from(properties: CertificateProperties) -> Certificate {
         Certificate { properties }

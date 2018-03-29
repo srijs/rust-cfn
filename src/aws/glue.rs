@@ -21,6 +21,8 @@ impl<'a> ::Resource<'a> for Classifier {
     }
 }
 
+impl ::private::Sealed for Classifier {}
+
 impl From<ClassifierProperties> for Classifier {
     fn from(properties: ClassifierProperties) -> Classifier {
         Classifier { properties }
@@ -51,6 +53,8 @@ impl<'a> ::Resource<'a> for Connection {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for Connection {}
 
 impl From<ConnectionProperties> for Connection {
     fn from(properties: ConnectionProperties) -> Connection {
@@ -97,6 +101,8 @@ impl<'a> ::Resource<'a> for Crawler {
     }
 }
 
+impl ::private::Sealed for Crawler {}
+
 impl From<CrawlerProperties> for Crawler {
     fn from(properties: CrawlerProperties) -> Crawler {
         Crawler { properties }
@@ -127,6 +133,8 @@ impl<'a> ::Resource<'a> for Database {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for Database {}
 
 impl From<DatabaseProperties> for Database {
     fn from(properties: DatabaseProperties) -> Database {
@@ -170,6 +178,8 @@ impl<'a> ::Resource<'a> for DevEndpoint {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for DevEndpoint {}
 
 impl From<DevEndpointProperties> for DevEndpoint {
     fn from(properties: DevEndpointProperties) -> DevEndpoint {
@@ -218,6 +228,8 @@ impl<'a> ::Resource<'a> for Job {
     }
 }
 
+impl ::private::Sealed for Job {}
+
 impl From<JobProperties> for Job {
     fn from(properties: JobProperties) -> Job {
         Job { properties }
@@ -253,6 +265,8 @@ impl<'a> ::Resource<'a> for Partition {
     }
 }
 
+impl ::private::Sealed for Partition {}
+
 impl From<PartitionProperties> for Partition {
     fn from(properties: PartitionProperties) -> Partition {
         Partition { properties }
@@ -285,6 +299,8 @@ impl<'a> ::Resource<'a> for Table {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for Table {}
 
 impl From<TableProperties> for Table {
     fn from(properties: TableProperties) -> Table {
@@ -324,6 +340,8 @@ impl<'a> ::Resource<'a> for Trigger {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for Trigger {}
 
 impl From<TriggerProperties> for Trigger {
     fn from(properties: TriggerProperties) -> Trigger {

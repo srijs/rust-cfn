@@ -25,6 +25,8 @@ impl<'a> ::Resource<'a> for Certificate {
     }
 }
 
+impl ::private::Sealed for Certificate {}
+
 impl From<CertificateProperties> for Certificate {
     fn from(properties: CertificateProperties) -> Certificate {
         Certificate { properties }
@@ -84,6 +86,8 @@ impl<'a> ::Resource<'a> for Endpoint {
     }
 }
 
+impl ::private::Sealed for Endpoint {}
+
 impl From<EndpointProperties> for Endpoint {
     fn from(properties: EndpointProperties) -> Endpoint {
         Endpoint { properties }
@@ -124,6 +128,8 @@ impl<'a> ::Resource<'a> for EventSubscription {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for EventSubscription {}
 
 impl From<EventSubscriptionProperties> for EventSubscription {
     fn from(properties: EventSubscriptionProperties) -> EventSubscription {
@@ -180,6 +186,8 @@ impl<'a> ::Resource<'a> for ReplicationInstance {
     }
 }
 
+impl ::private::Sealed for ReplicationInstance {}
+
 impl From<ReplicationInstanceProperties> for ReplicationInstance {
     fn from(properties: ReplicationInstanceProperties) -> ReplicationInstance {
         ReplicationInstance { properties }
@@ -214,6 +222,8 @@ impl<'a> ::Resource<'a> for ReplicationSubnetGroup {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for ReplicationSubnetGroup {}
 
 impl From<ReplicationSubnetGroupProperties> for ReplicationSubnetGroup {
     fn from(properties: ReplicationSubnetGroupProperties) -> ReplicationSubnetGroup {
@@ -259,6 +269,8 @@ impl<'a> ::Resource<'a> for ReplicationTask {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for ReplicationTask {}
 
 impl From<ReplicationTaskProperties> for ReplicationTask {
     fn from(properties: ReplicationTaskProperties) -> ReplicationTask {

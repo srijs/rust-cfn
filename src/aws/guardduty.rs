@@ -21,6 +21,8 @@ impl<'a> ::Resource<'a> for Detector {
     }
 }
 
+impl ::private::Sealed for Detector {}
+
 impl From<DetectorProperties> for Detector {
     fn from(properties: DetectorProperties) -> Detector {
         Detector { properties }
@@ -58,6 +60,8 @@ impl<'a> ::Resource<'a> for IPSet {
     }
 }
 
+impl ::private::Sealed for IPSet {}
+
 impl From<IPSetProperties> for IPSet {
     fn from(properties: IPSetProperties) -> IPSet {
         IPSet { properties }
@@ -90,6 +94,8 @@ impl<'a> ::Resource<'a> for Master {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for Master {}
 
 impl From<MasterProperties> for Master {
     fn from(properties: MasterProperties) -> Master {
@@ -128,6 +134,8 @@ impl<'a> ::Resource<'a> for Member {
     }
 }
 
+impl ::private::Sealed for Member {}
+
 impl From<MemberProperties> for Member {
     fn from(properties: MemberProperties) -> Member {
         Member { properties }
@@ -164,6 +172,8 @@ impl<'a> ::Resource<'a> for ThreatIntelSet {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for ThreatIntelSet {}
 
 impl From<ThreatIntelSetProperties> for ThreatIntelSet {
     fn from(properties: ThreatIntelSetProperties) -> ThreatIntelSet {

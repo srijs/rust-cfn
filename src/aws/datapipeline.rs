@@ -33,6 +33,8 @@ impl<'a> ::Resource<'a> for Pipeline {
     }
 }
 
+impl ::private::Sealed for Pipeline {}
+
 impl From<PipelineProperties> for Pipeline {
     fn from(properties: PipelineProperties) -> Pipeline {
         Pipeline { properties }

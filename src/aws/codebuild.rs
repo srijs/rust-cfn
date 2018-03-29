@@ -45,6 +45,8 @@ impl<'a> ::Resource<'a> for Project {
     }
 }
 
+impl ::private::Sealed for Project {}
+
 impl From<ProjectProperties> for Project {
     fn from(properties: ProjectProperties) -> Project {
         Project { properties }

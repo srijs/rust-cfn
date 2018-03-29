@@ -25,6 +25,8 @@ impl<'a> ::Resource<'a> for Application {
     }
 }
 
+impl ::private::Sealed for Application {}
+
 impl From<ApplicationProperties> for Application {
     fn from(properties: ApplicationProperties) -> Application {
         Application { properties }
@@ -57,6 +59,8 @@ impl<'a> ::Resource<'a> for ApplicationVersion {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for ApplicationVersion {}
 
 impl From<ApplicationVersionProperties> for ApplicationVersion {
     fn from(properties: ApplicationVersionProperties) -> ApplicationVersion {
@@ -98,6 +102,8 @@ impl<'a> ::Resource<'a> for ConfigurationTemplate {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for ConfigurationTemplate {}
 
 impl From<ConfigurationTemplateProperties> for ConfigurationTemplate {
     fn from(properties: ConfigurationTemplateProperties) -> ConfigurationTemplate {
@@ -147,6 +153,8 @@ impl<'a> ::Resource<'a> for Environment {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for Environment {}
 
 impl From<EnvironmentProperties> for Environment {
     fn from(properties: EnvironmentProperties) -> Environment {

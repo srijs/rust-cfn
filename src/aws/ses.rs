@@ -21,6 +21,8 @@ impl<'a> ::Resource<'a> for ConfigurationSet {
     }
 }
 
+impl ::private::Sealed for ConfigurationSet {}
+
 impl From<ConfigurationSetProperties> for ConfigurationSet {
     fn from(properties: ConfigurationSetProperties) -> ConfigurationSet {
         ConfigurationSet { properties }
@@ -52,6 +54,8 @@ impl<'a> ::Resource<'a> for ConfigurationSetEventDestination {
     }
 }
 
+impl ::private::Sealed for ConfigurationSetEventDestination {}
+
 impl From<ConfigurationSetEventDestinationProperties> for ConfigurationSetEventDestination {
     fn from(properties: ConfigurationSetEventDestinationProperties) -> ConfigurationSetEventDestination {
         ConfigurationSetEventDestination { properties }
@@ -80,6 +84,8 @@ impl<'a> ::Resource<'a> for ReceiptFilter {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for ReceiptFilter {}
 
 impl From<ReceiptFilterProperties> for ReceiptFilter {
     fn from(properties: ReceiptFilterProperties) -> ReceiptFilter {
@@ -114,6 +120,8 @@ impl<'a> ::Resource<'a> for ReceiptRule {
     }
 }
 
+impl ::private::Sealed for ReceiptRule {}
+
 impl From<ReceiptRuleProperties> for ReceiptRule {
     fn from(properties: ReceiptRuleProperties) -> ReceiptRule {
         ReceiptRule { properties }
@@ -143,6 +151,8 @@ impl<'a> ::Resource<'a> for ReceiptRuleSet {
     }
 }
 
+impl ::private::Sealed for ReceiptRuleSet {}
+
 impl From<ReceiptRuleSetProperties> for ReceiptRuleSet {
     fn from(properties: ReceiptRuleSetProperties) -> ReceiptRuleSet {
         ReceiptRuleSet { properties }
@@ -171,6 +181,8 @@ impl<'a> ::Resource<'a> for Template {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for Template {}
 
 impl From<TemplateProperties> for Template {
     fn from(properties: TemplateProperties) -> Template {

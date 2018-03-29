@@ -21,6 +21,8 @@ impl<'a> ::Resource<'a> for CloudFrontOriginAccessIdentity {
     }
 }
 
+impl ::private::Sealed for CloudFrontOriginAccessIdentity {}
+
 impl From<CloudFrontOriginAccessIdentityProperties> for CloudFrontOriginAccessIdentity {
     fn from(properties: CloudFrontOriginAccessIdentityProperties) -> CloudFrontOriginAccessIdentity {
         CloudFrontOriginAccessIdentity { properties }
@@ -52,6 +54,8 @@ impl<'a> ::Resource<'a> for Distribution {
     }
 }
 
+impl ::private::Sealed for Distribution {}
+
 impl From<DistributionProperties> for Distribution {
     fn from(properties: DistributionProperties) -> Distribution {
         Distribution { properties }
@@ -82,6 +86,8 @@ impl<'a> ::Resource<'a> for StreamingDistribution {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for StreamingDistribution {}
 
 impl From<StreamingDistributionProperties> for StreamingDistribution {
     fn from(properties: StreamingDistributionProperties) -> StreamingDistribution {

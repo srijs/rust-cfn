@@ -41,6 +41,8 @@ impl<'a> ::Resource<'a> for Queue {
     }
 }
 
+impl ::private::Sealed for Queue {}
+
 impl From<QueueProperties> for Queue {
     fn from(properties: QueueProperties) -> Queue {
         Queue { properties }
@@ -71,6 +73,8 @@ impl<'a> ::Resource<'a> for QueuePolicy {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for QueuePolicy {}
 
 impl From<QueuePolicyProperties> for QueuePolicy {
     fn from(properties: QueuePolicyProperties) -> QueuePolicy {

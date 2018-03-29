@@ -25,6 +25,8 @@ impl<'a> ::Resource<'a> for Subscription {
     }
 }
 
+impl ::private::Sealed for Subscription {}
+
 impl From<SubscriptionProperties> for Subscription {
     fn from(properties: SubscriptionProperties) -> Subscription {
         Subscription { properties }
@@ -58,6 +60,8 @@ impl<'a> ::Resource<'a> for Topic {
     }
 }
 
+impl ::private::Sealed for Topic {}
+
 impl From<TopicProperties> for Topic {
     fn from(properties: TopicProperties) -> Topic {
         Topic { properties }
@@ -88,6 +92,8 @@ impl<'a> ::Resource<'a> for TopicPolicy {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for TopicPolicy {}
 
 impl From<TopicPolicyProperties> for TopicPolicy {
     fn from(properties: TopicPolicyProperties) -> TopicPolicy {

@@ -23,6 +23,8 @@ impl<'a> ::Resource<'a> for Certificate {
     }
 }
 
+impl ::private::Sealed for Certificate {}
+
 impl From<CertificateProperties> for Certificate {
     fn from(properties: CertificateProperties) -> Certificate {
         Certificate { properties }
@@ -53,6 +55,8 @@ impl<'a> ::Resource<'a> for Policy {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for Policy {}
 
 impl From<PolicyProperties> for Policy {
     fn from(properties: PolicyProperties) -> Policy {
@@ -85,6 +89,8 @@ impl<'a> ::Resource<'a> for PolicyPrincipalAttachment {
     }
 }
 
+impl ::private::Sealed for PolicyPrincipalAttachment {}
+
 impl From<PolicyPrincipalAttachmentProperties> for PolicyPrincipalAttachment {
     fn from(properties: PolicyPrincipalAttachmentProperties) -> PolicyPrincipalAttachment {
         PolicyPrincipalAttachment { properties }
@@ -115,6 +121,8 @@ impl<'a> ::Resource<'a> for Thing {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for Thing {}
 
 impl From<ThingProperties> for Thing {
     fn from(properties: ThingProperties) -> Thing {
@@ -147,6 +155,8 @@ impl<'a> ::Resource<'a> for ThingPrincipalAttachment {
     }
 }
 
+impl ::private::Sealed for ThingPrincipalAttachment {}
+
 impl From<ThingPrincipalAttachmentProperties> for ThingPrincipalAttachment {
     fn from(properties: ThingPrincipalAttachmentProperties) -> ThingPrincipalAttachment {
         ThingPrincipalAttachment { properties }
@@ -177,6 +187,8 @@ impl<'a> ::Resource<'a> for TopicRule {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for TopicRule {}
 
 impl From<TopicRuleProperties> for TopicRule {
     fn from(properties: TopicRuleProperties) -> TopicRule {

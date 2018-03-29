@@ -39,6 +39,8 @@ impl<'a> ::Resource<'a> for Table {
     }
 }
 
+impl ::private::Sealed for Table {}
+
 impl From<TableProperties> for Table {
     fn from(properties: TableProperties) -> Table {
         Table { properties }

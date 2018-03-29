@@ -21,6 +21,8 @@ impl<'a> ::Resource<'a> for Cluster {
     }
 }
 
+impl ::private::Sealed for Cluster {}
+
 impl From<ClusterProperties> for Cluster {
     fn from(properties: ClusterProperties) -> Cluster {
         Cluster { properties }
@@ -74,6 +76,8 @@ impl<'a> ::Resource<'a> for Service {
     }
 }
 
+impl ::private::Sealed for Service {}
+
 impl From<ServiceProperties> for Service {
     fn from(properties: ServiceProperties) -> Service {
         Service { properties }
@@ -120,6 +124,8 @@ impl<'a> ::Resource<'a> for TaskDefinition {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for TaskDefinition {}
 
 impl From<TaskDefinitionProperties> for TaskDefinition {
     fn from(properties: TaskDefinitionProperties) -> TaskDefinition {

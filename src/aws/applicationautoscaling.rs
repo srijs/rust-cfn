@@ -33,6 +33,8 @@ impl<'a> ::Resource<'a> for ScalableTarget {
     }
 }
 
+impl ::private::Sealed for ScalableTarget {}
+
 impl From<ScalableTargetProperties> for ScalableTarget {
     fn from(properties: ScalableTargetProperties) -> ScalableTarget {
         ScalableTarget { properties }
@@ -75,6 +77,8 @@ impl<'a> ::Resource<'a> for ScalingPolicy {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for ScalingPolicy {}
 
 impl From<ScalingPolicyProperties> for ScalingPolicy {
     fn from(properties: ScalingPolicyProperties) -> ScalingPolicy {

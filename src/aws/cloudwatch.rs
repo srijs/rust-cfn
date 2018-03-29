@@ -55,6 +55,8 @@ impl<'a> ::Resource<'a> for Alarm {
     }
 }
 
+impl ::private::Sealed for Alarm {}
+
 impl From<AlarmProperties> for Alarm {
     fn from(properties: AlarmProperties) -> Alarm {
         Alarm { properties }
@@ -85,6 +87,8 @@ impl<'a> ::Resource<'a> for Dashboard {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for Dashboard {}
 
 impl From<DashboardProperties> for Dashboard {
     fn from(properties: DashboardProperties) -> Dashboard {

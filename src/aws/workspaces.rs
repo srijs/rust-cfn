@@ -31,6 +31,8 @@ impl<'a> ::Resource<'a> for Workspace {
     }
 }
 
+impl ::private::Sealed for Workspace {}
+
 impl From<WorkspaceProperties> for Workspace {
     fn from(properties: WorkspaceProperties) -> Workspace {
         Workspace { properties }

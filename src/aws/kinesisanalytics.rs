@@ -27,6 +27,8 @@ impl<'a> ::Resource<'a> for Application {
     }
 }
 
+impl ::private::Sealed for Application {}
+
 impl From<ApplicationProperties> for Application {
     fn from(properties: ApplicationProperties) -> Application {
         Application { properties }
@@ -58,6 +60,8 @@ impl<'a> ::Resource<'a> for ApplicationOutput {
     }
 }
 
+impl ::private::Sealed for ApplicationOutput {}
+
 impl From<ApplicationOutputProperties> for ApplicationOutput {
     fn from(properties: ApplicationOutputProperties) -> ApplicationOutput {
         ApplicationOutput { properties }
@@ -88,6 +92,8 @@ impl<'a> ::Resource<'a> for ApplicationReferenceDataSource {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for ApplicationReferenceDataSource {}
 
 impl From<ApplicationReferenceDataSourceProperties> for ApplicationReferenceDataSource {
     fn from(properties: ApplicationReferenceDataSourceProperties) -> ApplicationReferenceDataSource {

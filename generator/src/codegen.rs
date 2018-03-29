@@ -114,6 +114,8 @@ fn generate_resource_declaration(service: &str, name: &str, spec: &ResourceType,
     writeln!(f, "    }}")?;
     writeln!(f, "}}\n")?;
 
+    writeln!(f, "impl ::private::Sealed for {} {{}}\n", name)?;
+
     writeln!(f, "impl From<{}Properties> for {} {{", name, name)?;
     writeln!(f, "    fn from(properties: {}Properties) -> {} {{", name, name)?;
     writeln!(f, "        {} {{ properties }}", name)?;

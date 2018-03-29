@@ -21,6 +21,8 @@ impl<'a> ::Resource<'a> for Domain {
     }
 }
 
+impl ::private::Sealed for Domain {}
+
 impl From<DomainProperties> for Domain {
     fn from(properties: DomainProperties) -> Domain {
         Domain { properties }

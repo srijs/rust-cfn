@@ -23,6 +23,8 @@ impl<'a> ::Resource<'a> for ByteMatchSet {
     }
 }
 
+impl ::private::Sealed for ByteMatchSet {}
+
 impl From<ByteMatchSetProperties> for ByteMatchSet {
     fn from(properties: ByteMatchSetProperties) -> ByteMatchSet {
         ByteMatchSet { properties }
@@ -53,6 +55,8 @@ impl<'a> ::Resource<'a> for IPSet {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for IPSet {}
 
 impl From<IPSetProperties> for IPSet {
     fn from(properties: IPSetProperties) -> IPSet {
@@ -87,6 +91,8 @@ impl<'a> ::Resource<'a> for Rule {
     }
 }
 
+impl ::private::Sealed for Rule {}
+
 impl From<RuleProperties> for Rule {
     fn from(properties: RuleProperties) -> Rule {
         Rule { properties }
@@ -118,6 +124,8 @@ impl<'a> ::Resource<'a> for SizeConstraintSet {
     }
 }
 
+impl ::private::Sealed for SizeConstraintSet {}
+
 impl From<SizeConstraintSetProperties> for SizeConstraintSet {
     fn from(properties: SizeConstraintSetProperties) -> SizeConstraintSet {
         SizeConstraintSet { properties }
@@ -148,6 +156,8 @@ impl<'a> ::Resource<'a> for SqlInjectionMatchSet {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for SqlInjectionMatchSet {}
 
 impl From<SqlInjectionMatchSetProperties> for SqlInjectionMatchSet {
     fn from(properties: SqlInjectionMatchSetProperties) -> SqlInjectionMatchSet {
@@ -184,6 +194,8 @@ impl<'a> ::Resource<'a> for WebACL {
     }
 }
 
+impl ::private::Sealed for WebACL {}
+
 impl From<WebACLProperties> for WebACL {
     fn from(properties: WebACLProperties) -> WebACL {
         WebACL { properties }
@@ -214,6 +226,8 @@ impl<'a> ::Resource<'a> for XssMatchSet {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for XssMatchSet {}
 
 impl From<XssMatchSetProperties> for XssMatchSet {
     fn from(properties: XssMatchSetProperties) -> XssMatchSet {

@@ -33,6 +33,8 @@ impl<'a> ::Resource<'a> for DeliveryStream {
     }
 }
 
+impl ::private::Sealed for DeliveryStream {}
+
 impl From<DeliveryStreamProperties> for DeliveryStream {
     fn from(properties: DeliveryStreamProperties) -> DeliveryStream {
         DeliveryStream { properties }

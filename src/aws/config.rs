@@ -31,6 +31,8 @@ impl<'a> ::Resource<'a> for ConfigRule {
     }
 }
 
+impl ::private::Sealed for ConfigRule {}
+
 impl From<ConfigRuleProperties> for ConfigRule {
     fn from(properties: ConfigRuleProperties) -> ConfigRule {
         ConfigRule { properties }
@@ -63,6 +65,8 @@ impl<'a> ::Resource<'a> for ConfigurationRecorder {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for ConfigurationRecorder {}
 
 impl From<ConfigurationRecorderProperties> for ConfigurationRecorder {
     fn from(properties: ConfigurationRecorderProperties) -> ConfigurationRecorder {
@@ -100,6 +104,8 @@ impl<'a> ::Resource<'a> for DeliveryChannel {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for DeliveryChannel {}
 
 impl From<DeliveryChannelProperties> for DeliveryChannel {
     fn from(properties: DeliveryChannelProperties) -> DeliveryChannel {

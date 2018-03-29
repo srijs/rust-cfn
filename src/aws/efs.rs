@@ -27,6 +27,8 @@ impl<'a> ::Resource<'a> for FileSystem {
     }
 }
 
+impl ::private::Sealed for FileSystem {}
+
 impl From<FileSystemProperties> for FileSystem {
     fn from(properties: FileSystemProperties) -> FileSystem {
         FileSystem { properties }
@@ -61,6 +63,8 @@ impl<'a> ::Resource<'a> for MountTarget {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for MountTarget {}
 
 impl From<MountTargetProperties> for MountTarget {
     fn from(properties: MountTargetProperties) -> MountTarget {

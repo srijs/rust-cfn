@@ -43,6 +43,8 @@ impl<'a> ::Resource<'a> for App {
     }
 }
 
+impl ::private::Sealed for App {}
+
 impl From<AppProperties> for App {
     fn from(properties: AppProperties) -> App {
         App { properties }
@@ -73,6 +75,8 @@ impl<'a> ::Resource<'a> for ElasticLoadBalancerAttachment {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for ElasticLoadBalancerAttachment {}
 
 impl From<ElasticLoadBalancerAttachmentProperties> for ElasticLoadBalancerAttachment {
     fn from(properties: ElasticLoadBalancerAttachmentProperties) -> ElasticLoadBalancerAttachment {
@@ -143,6 +147,8 @@ impl<'a> ::Resource<'a> for Instance {
     }
 }
 
+impl ::private::Sealed for Instance {}
+
 impl From<InstanceProperties> for Instance {
     fn from(properties: InstanceProperties) -> Instance {
         Instance { properties }
@@ -207,6 +213,8 @@ impl<'a> ::Resource<'a> for Layer {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for Layer {}
 
 impl From<LayerProperties> for Layer {
     fn from(properties: LayerProperties) -> Layer {
@@ -285,6 +293,8 @@ impl<'a> ::Resource<'a> for Stack {
     }
 }
 
+impl ::private::Sealed for Stack {}
+
 impl From<StackProperties> for Stack {
     fn from(properties: StackProperties) -> Stack {
         Stack { properties }
@@ -320,6 +330,8 @@ impl<'a> ::Resource<'a> for UserProfile {
     }
 }
 
+impl ::private::Sealed for UserProfile {}
+
 impl From<UserProfileProperties> for UserProfile {
     fn from(properties: UserProfileProperties) -> UserProfile {
         UserProfile { properties }
@@ -354,6 +366,8 @@ impl<'a> ::Resource<'a> for Volume {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for Volume {}
 
 impl From<VolumeProperties> for Volume {
     fn from(properties: VolumeProperties) -> Volume {

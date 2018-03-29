@@ -77,6 +77,8 @@ impl<'a> ::Resource<'a> for Cluster {
     }
 }
 
+impl ::private::Sealed for Cluster {}
+
 impl From<ClusterProperties> for Cluster {
     fn from(properties: ClusterProperties) -> Cluster {
         Cluster { properties }
@@ -112,6 +114,8 @@ impl<'a> ::Resource<'a> for ClusterParameterGroup {
     }
 }
 
+impl ::private::Sealed for ClusterParameterGroup {}
+
 impl From<ClusterParameterGroupProperties> for ClusterParameterGroup {
     fn from(properties: ClusterParameterGroupProperties) -> ClusterParameterGroup {
         ClusterParameterGroup { properties }
@@ -142,6 +146,8 @@ impl<'a> ::Resource<'a> for ClusterSecurityGroup {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for ClusterSecurityGroup {}
 
 impl From<ClusterSecurityGroupProperties> for ClusterSecurityGroup {
     fn from(properties: ClusterSecurityGroupProperties) -> ClusterSecurityGroup {
@@ -178,6 +184,8 @@ impl<'a> ::Resource<'a> for ClusterSecurityGroupIngress {
     }
 }
 
+impl ::private::Sealed for ClusterSecurityGroupIngress {}
+
 impl From<ClusterSecurityGroupIngressProperties> for ClusterSecurityGroupIngress {
     fn from(properties: ClusterSecurityGroupIngressProperties) -> ClusterSecurityGroupIngress {
         ClusterSecurityGroupIngress { properties }
@@ -210,6 +218,8 @@ impl<'a> ::Resource<'a> for ClusterSubnetGroup {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for ClusterSubnetGroup {}
 
 impl From<ClusterSubnetGroupProperties> for ClusterSubnetGroup {
     fn from(properties: ClusterSubnetGroupProperties) -> ClusterSubnetGroup {

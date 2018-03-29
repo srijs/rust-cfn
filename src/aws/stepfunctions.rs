@@ -21,6 +21,8 @@ impl<'a> ::Resource<'a> for Activity {
     }
 }
 
+impl ::private::Sealed for Activity {}
+
 impl From<ActivityProperties> for Activity {
     fn from(properties: ActivityProperties) -> Activity {
         Activity { properties }
@@ -53,6 +55,8 @@ impl<'a> ::Resource<'a> for StateMachine {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for StateMachine {}
 
 impl From<StateMachineProperties> for StateMachine {
     fn from(properties: StateMachineProperties) -> StateMachine {

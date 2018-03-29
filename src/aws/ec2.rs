@@ -27,6 +27,8 @@ impl<'a> ::Resource<'a> for CustomerGateway {
     }
 }
 
+impl ::private::Sealed for CustomerGateway {}
+
 impl From<CustomerGatewayProperties> for CustomerGateway {
     fn from(properties: CustomerGatewayProperties) -> CustomerGateway {
         CustomerGateway { properties }
@@ -66,6 +68,8 @@ impl<'a> ::Resource<'a> for DHCPOptions {
     }
 }
 
+impl ::private::Sealed for DHCPOptions {}
+
 impl From<DHCPOptionsProperties> for DHCPOptions {
     fn from(properties: DHCPOptionsProperties) -> DHCPOptions {
         DHCPOptions { properties }
@@ -96,6 +100,8 @@ impl<'a> ::Resource<'a> for EIP {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for EIP {}
 
 impl From<EIPProperties> for EIP {
     fn from(properties: EIPProperties) -> EIP {
@@ -134,6 +140,8 @@ impl<'a> ::Resource<'a> for EIPAssociation {
     }
 }
 
+impl ::private::Sealed for EIPAssociation {}
+
 impl From<EIPAssociationProperties> for EIPAssociation {
     fn from(properties: EIPAssociationProperties) -> EIPAssociation {
         EIPAssociation { properties }
@@ -162,6 +170,8 @@ impl<'a> ::Resource<'a> for EgressOnlyInternetGateway {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for EgressOnlyInternetGateway {}
 
 impl From<EgressOnlyInternetGatewayProperties> for EgressOnlyInternetGateway {
     fn from(properties: EgressOnlyInternetGatewayProperties) -> EgressOnlyInternetGateway {
@@ -200,6 +210,8 @@ impl<'a> ::Resource<'a> for FlowLog {
     }
 }
 
+impl ::private::Sealed for FlowLog {}
+
 impl From<FlowLogProperties> for FlowLog {
     fn from(properties: FlowLogProperties) -> FlowLog {
         FlowLog { properties }
@@ -232,6 +244,8 @@ impl<'a> ::Resource<'a> for Host {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for Host {}
 
 impl From<HostProperties> for Host {
     fn from(properties: HostProperties) -> Host {
@@ -322,6 +336,8 @@ impl<'a> ::Resource<'a> for Instance {
     }
 }
 
+impl ::private::Sealed for Instance {}
+
 impl From<InstanceProperties> for Instance {
     fn from(properties: InstanceProperties) -> Instance {
         Instance { properties }
@@ -350,6 +366,8 @@ impl<'a> ::Resource<'a> for InternetGateway {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for InternetGateway {}
 
 impl From<InternetGatewayProperties> for InternetGateway {
     fn from(properties: InternetGatewayProperties) -> InternetGateway {
@@ -384,6 +402,8 @@ impl<'a> ::Resource<'a> for NatGateway {
     }
 }
 
+impl ::private::Sealed for NatGateway {}
+
 impl From<NatGatewayProperties> for NatGateway {
     fn from(properties: NatGatewayProperties) -> NatGateway {
         NatGateway { properties }
@@ -414,6 +434,8 @@ impl<'a> ::Resource<'a> for NetworkAcl {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for NetworkAcl {}
 
 impl From<NetworkAclProperties> for NetworkAcl {
     fn from(properties: NetworkAclProperties) -> NetworkAcl {
@@ -459,6 +481,8 @@ impl<'a> ::Resource<'a> for NetworkAclEntry {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for NetworkAclEntry {}
 
 impl From<NetworkAclEntryProperties> for NetworkAclEntry {
     fn from(properties: NetworkAclEntryProperties) -> NetworkAclEntry {
@@ -509,6 +533,8 @@ impl<'a> ::Resource<'a> for NetworkInterface {
     }
 }
 
+impl ::private::Sealed for NetworkInterface {}
+
 impl From<NetworkInterfaceProperties> for NetworkInterface {
     fn from(properties: NetworkInterfaceProperties) -> NetworkInterface {
         NetworkInterface { properties }
@@ -544,6 +570,8 @@ impl<'a> ::Resource<'a> for NetworkInterfaceAttachment {
     }
 }
 
+impl ::private::Sealed for NetworkInterfaceAttachment {}
+
 impl From<NetworkInterfaceAttachmentProperties> for NetworkInterfaceAttachment {
     fn from(properties: NetworkInterfaceAttachmentProperties) -> NetworkInterfaceAttachment {
         NetworkInterfaceAttachment { properties }
@@ -577,6 +605,8 @@ impl<'a> ::Resource<'a> for NetworkInterfacePermission {
     }
 }
 
+impl ::private::Sealed for NetworkInterfacePermission {}
+
 impl From<NetworkInterfacePermissionProperties> for NetworkInterfacePermission {
     fn from(properties: NetworkInterfacePermissionProperties) -> NetworkInterfacePermission {
         NetworkInterfacePermission { properties }
@@ -605,6 +635,8 @@ impl<'a> ::Resource<'a> for PlacementGroup {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for PlacementGroup {}
 
 impl From<PlacementGroupProperties> for PlacementGroup {
     fn from(properties: PlacementGroupProperties) -> PlacementGroup {
@@ -651,6 +683,8 @@ impl<'a> ::Resource<'a> for Route {
     }
 }
 
+impl ::private::Sealed for Route {}
+
 impl From<RouteProperties> for Route {
     fn from(properties: RouteProperties) -> Route {
         Route { properties }
@@ -681,6 +715,8 @@ impl<'a> ::Resource<'a> for RouteTable {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for RouteTable {}
 
 impl From<RouteTableProperties> for RouteTable {
     fn from(properties: RouteTableProperties) -> RouteTable {
@@ -720,6 +756,8 @@ impl<'a> ::Resource<'a> for SecurityGroup {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for SecurityGroup {}
 
 impl From<SecurityGroupProperties> for SecurityGroup {
     fn from(properties: SecurityGroupProperties) -> SecurityGroup {
@@ -765,6 +803,8 @@ impl<'a> ::Resource<'a> for SecurityGroupEgress {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for SecurityGroupEgress {}
 
 impl From<SecurityGroupEgressProperties> for SecurityGroupEgress {
     fn from(properties: SecurityGroupEgressProperties) -> SecurityGroupEgress {
@@ -815,6 +855,8 @@ impl<'a> ::Resource<'a> for SecurityGroupIngress {
     }
 }
 
+impl ::private::Sealed for SecurityGroupIngress {}
+
 impl From<SecurityGroupIngressProperties> for SecurityGroupIngress {
     fn from(properties: SecurityGroupIngressProperties) -> SecurityGroupIngress {
         SecurityGroupIngress { properties }
@@ -843,6 +885,8 @@ impl<'a> ::Resource<'a> for SpotFleet {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for SpotFleet {}
 
 impl From<SpotFleetProperties> for SpotFleet {
     fn from(properties: SpotFleetProperties) -> SpotFleet {
@@ -885,6 +929,8 @@ impl<'a> ::Resource<'a> for Subnet {
     }
 }
 
+impl ::private::Sealed for Subnet {}
+
 impl From<SubnetProperties> for Subnet {
     fn from(properties: SubnetProperties) -> Subnet {
         Subnet { properties }
@@ -915,6 +961,8 @@ impl<'a> ::Resource<'a> for SubnetCidrBlock {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for SubnetCidrBlock {}
 
 impl From<SubnetCidrBlockProperties> for SubnetCidrBlock {
     fn from(properties: SubnetCidrBlockProperties) -> SubnetCidrBlock {
@@ -947,6 +995,8 @@ impl<'a> ::Resource<'a> for SubnetNetworkAclAssociation {
     }
 }
 
+impl ::private::Sealed for SubnetNetworkAclAssociation {}
+
 impl From<SubnetNetworkAclAssociationProperties> for SubnetNetworkAclAssociation {
     fn from(properties: SubnetNetworkAclAssociationProperties) -> SubnetNetworkAclAssociation {
         SubnetNetworkAclAssociation { properties }
@@ -977,6 +1027,8 @@ impl<'a> ::Resource<'a> for SubnetRouteTableAssociation {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for SubnetRouteTableAssociation {}
 
 impl From<SubnetRouteTableAssociationProperties> for SubnetRouteTableAssociation {
     fn from(properties: SubnetRouteTableAssociationProperties) -> SubnetRouteTableAssociation {
@@ -1012,6 +1064,8 @@ impl<'a> ::Resource<'a> for TrunkInterfaceAssociation {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for TrunkInterfaceAssociation {}
 
 impl From<TrunkInterfaceAssociationProperties> for TrunkInterfaceAssociation {
     fn from(properties: TrunkInterfaceAssociationProperties) -> TrunkInterfaceAssociation {
@@ -1050,6 +1104,8 @@ impl<'a> ::Resource<'a> for VPC {
     }
 }
 
+impl ::private::Sealed for VPC {}
+
 impl From<VPCProperties> for VPC {
     fn from(properties: VPCProperties) -> VPC {
         VPC { properties }
@@ -1083,6 +1139,8 @@ impl<'a> ::Resource<'a> for VPCCidrBlock {
     }
 }
 
+impl ::private::Sealed for VPCCidrBlock {}
+
 impl From<VPCCidrBlockProperties> for VPCCidrBlock {
     fn from(properties: VPCCidrBlockProperties) -> VPCCidrBlock {
         VPCCidrBlock { properties }
@@ -1113,6 +1171,8 @@ impl<'a> ::Resource<'a> for VPCDHCPOptionsAssociation {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for VPCDHCPOptionsAssociation {}
 
 impl From<VPCDHCPOptionsAssociationProperties> for VPCDHCPOptionsAssociation {
     fn from(properties: VPCDHCPOptionsAssociationProperties) -> VPCDHCPOptionsAssociation {
@@ -1149,6 +1209,8 @@ impl<'a> ::Resource<'a> for VPCEndpoint {
     }
 }
 
+impl ::private::Sealed for VPCEndpoint {}
+
 impl From<VPCEndpointProperties> for VPCEndpoint {
     fn from(properties: VPCEndpointProperties) -> VPCEndpoint {
         VPCEndpoint { properties }
@@ -1181,6 +1243,8 @@ impl<'a> ::Resource<'a> for VPCGatewayAttachment {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for VPCGatewayAttachment {}
 
 impl From<VPCGatewayAttachmentProperties> for VPCGatewayAttachment {
     fn from(properties: VPCGatewayAttachmentProperties) -> VPCGatewayAttachment {
@@ -1218,6 +1282,8 @@ impl<'a> ::Resource<'a> for VPCPeeringConnection {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for VPCPeeringConnection {}
 
 impl From<VPCPeeringConnectionProperties> for VPCPeeringConnection {
     fn from(properties: VPCPeeringConnectionProperties) -> VPCPeeringConnection {
@@ -1258,6 +1324,8 @@ impl<'a> ::Resource<'a> for VPNConnection {
     }
 }
 
+impl ::private::Sealed for VPNConnection {}
+
 impl From<VPNConnectionProperties> for VPNConnection {
     fn from(properties: VPNConnectionProperties) -> VPNConnection {
         VPNConnection { properties }
@@ -1288,6 +1356,8 @@ impl<'a> ::Resource<'a> for VPNConnectionRoute {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for VPNConnectionRoute {}
 
 impl From<VPNConnectionRouteProperties> for VPNConnectionRoute {
     fn from(properties: VPNConnectionRouteProperties) -> VPNConnectionRoute {
@@ -1322,6 +1392,8 @@ impl<'a> ::Resource<'a> for VPNGateway {
     }
 }
 
+impl ::private::Sealed for VPNGateway {}
+
 impl From<VPNGatewayProperties> for VPNGateway {
     fn from(properties: VPNGatewayProperties) -> VPNGateway {
         VPNGateway { properties }
@@ -1352,6 +1424,8 @@ impl<'a> ::Resource<'a> for VPNGatewayRoutePropagation {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for VPNGatewayRoutePropagation {}
 
 impl From<VPNGatewayRoutePropagationProperties> for VPNGatewayRoutePropagation {
     fn from(properties: VPNGatewayRoutePropagationProperties) -> VPNGatewayRoutePropagation {
@@ -1398,6 +1472,8 @@ impl<'a> ::Resource<'a> for Volume {
     }
 }
 
+impl ::private::Sealed for Volume {}
+
 impl From<VolumeProperties> for Volume {
     fn from(properties: VolumeProperties) -> Volume {
         Volume { properties }
@@ -1430,6 +1506,8 @@ impl<'a> ::Resource<'a> for VolumeAttachment {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for VolumeAttachment {}
 
 impl From<VolumeAttachmentProperties> for VolumeAttachment {
     fn from(properties: VolumeAttachmentProperties) -> VolumeAttachment {

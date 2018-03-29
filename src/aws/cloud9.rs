@@ -33,6 +33,8 @@ impl<'a> ::Resource<'a> for EnvironmentEC2 {
     }
 }
 
+impl ::private::Sealed for EnvironmentEC2 {}
+
 impl From<EnvironmentEC2Properties> for EnvironmentEC2 {
     fn from(properties: EnvironmentEC2Properties) -> EnvironmentEC2 {
         EnvironmentEC2 { properties }

@@ -31,6 +31,8 @@ impl<'a> ::Resource<'a> for MicrosoftAD {
     }
 }
 
+impl ::private::Sealed for MicrosoftAD {}
+
 impl From<MicrosoftADProperties> for MicrosoftAD {
     fn from(properties: MicrosoftADProperties) -> MicrosoftAD {
         MicrosoftAD { properties }
@@ -73,6 +75,8 @@ impl<'a> ::Resource<'a> for SimpleAD {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for SimpleAD {}
 
 impl From<SimpleADProperties> for SimpleAD {
     fn from(properties: SimpleADProperties) -> SimpleAD {

@@ -33,6 +33,8 @@ impl<'a> ::Resource<'a> for Association {
     }
 }
 
+impl ::private::Sealed for Association {}
+
 impl From<AssociationProperties> for Association {
     fn from(properties: AssociationProperties) -> Association {
         Association { properties }
@@ -65,6 +67,8 @@ impl<'a> ::Resource<'a> for Document {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for Document {}
 
 impl From<DocumentProperties> for Document {
     fn from(properties: DocumentProperties) -> Document {
@@ -119,6 +123,8 @@ impl<'a> ::Resource<'a> for MaintenanceWindowTask {
     }
 }
 
+impl ::private::Sealed for MaintenanceWindowTask {}
+
 impl From<MaintenanceWindowTaskProperties> for MaintenanceWindowTask {
     fn from(properties: MaintenanceWindowTaskProperties) -> MaintenanceWindowTask {
         MaintenanceWindowTask { properties }
@@ -155,6 +161,8 @@ impl<'a> ::Resource<'a> for Parameter {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for Parameter {}
 
 impl From<ParameterProperties> for Parameter {
     fn from(properties: ParameterProperties) -> Parameter {
@@ -204,6 +212,8 @@ impl<'a> ::Resource<'a> for PatchBaseline {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for PatchBaseline {}
 
 impl From<PatchBaselineProperties> for PatchBaseline {
     fn from(properties: PatchBaselineProperties) -> PatchBaseline {

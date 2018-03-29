@@ -29,6 +29,8 @@ impl<'a> ::Resource<'a> for ComputeEnvironment {
     }
 }
 
+impl ::private::Sealed for ComputeEnvironment {}
+
 impl From<ComputeEnvironmentProperties> for ComputeEnvironment {
     fn from(properties: ComputeEnvironmentProperties) -> ComputeEnvironment {
         ComputeEnvironment { properties }
@@ -66,6 +68,8 @@ impl<'a> ::Resource<'a> for JobDefinition {
     }
 }
 
+impl ::private::Sealed for JobDefinition {}
+
 impl From<JobDefinitionProperties> for JobDefinition {
     fn from(properties: JobDefinitionProperties) -> JobDefinition {
         JobDefinition { properties }
@@ -100,6 +104,8 @@ impl<'a> ::Resource<'a> for JobQueue {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for JobQueue {}
 
 impl From<JobQueueProperties> for JobQueue {
     fn from(properties: JobQueueProperties) -> JobQueue {

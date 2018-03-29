@@ -45,6 +45,8 @@ impl<'a> ::Resource<'a> for Trail {
     }
 }
 
+impl ::private::Sealed for Trail {}
+
 impl From<TrailProperties> for Trail {
     fn from(properties: TrailProperties) -> Trail {
         Trail { properties }

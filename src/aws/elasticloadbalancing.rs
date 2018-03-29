@@ -51,6 +51,8 @@ impl<'a> ::Resource<'a> for LoadBalancer {
     }
 }
 
+impl ::private::Sealed for LoadBalancer {}
+
 impl From<LoadBalancerProperties> for LoadBalancer {
     fn from(properties: LoadBalancerProperties) -> LoadBalancer {
         LoadBalancer { properties }

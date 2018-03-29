@@ -29,6 +29,8 @@ impl<'a> ::Resource<'a> for Stream {
     }
 }
 
+impl ::private::Sealed for Stream {}
+
 impl From<StreamProperties> for Stream {
     fn from(properties: StreamProperties) -> Stream {
         Stream { properties }

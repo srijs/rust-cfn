@@ -27,6 +27,8 @@ impl<'a> ::Resource<'a> for NamedQuery {
     }
 }
 
+impl ::private::Sealed for NamedQuery {}
+
 impl From<NamedQueryProperties> for NamedQuery {
     fn from(properties: NamedQueryProperties) -> NamedQuery {
         NamedQuery { properties }

@@ -21,6 +21,8 @@ impl<'a> ::Resource<'a> for CustomResource {
     }
 }
 
+impl ::private::Sealed for CustomResource {}
+
 impl From<CustomResourceProperties> for CustomResource {
     fn from(properties: CustomResourceProperties) -> CustomResource {
         CustomResource { properties }
@@ -58,6 +60,8 @@ impl<'a> ::Resource<'a> for Stack {
     }
 }
 
+impl ::private::Sealed for Stack {}
+
 impl From<StackProperties> for Stack {
     fn from(properties: StackProperties) -> Stack {
         Stack { properties }
@@ -91,6 +95,8 @@ impl<'a> ::Resource<'a> for WaitCondition {
     }
 }
 
+impl ::private::Sealed for WaitCondition {}
+
 impl From<WaitConditionProperties> for WaitCondition {
     fn from(properties: WaitConditionProperties) -> WaitCondition {
         WaitCondition { properties }
@@ -117,6 +123,8 @@ impl<'a> ::Resource<'a> for WaitConditionHandle {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for WaitConditionHandle {}
 
 impl From<WaitConditionHandleProperties> for WaitConditionHandle {
     fn from(properties: WaitConditionHandleProperties) -> WaitConditionHandle {

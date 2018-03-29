@@ -31,6 +31,8 @@ impl<'a> ::Resource<'a> for Listener {
     }
 }
 
+impl ::private::Sealed for Listener {}
+
 impl From<ListenerProperties> for Listener {
     fn from(properties: ListenerProperties) -> Listener {
         Listener { properties }
@@ -61,6 +63,8 @@ impl<'a> ::Resource<'a> for ListenerCertificate {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for ListenerCertificate {}
 
 impl From<ListenerCertificateProperties> for ListenerCertificate {
     fn from(properties: ListenerCertificateProperties) -> ListenerCertificate {
@@ -96,6 +100,8 @@ impl<'a> ::Resource<'a> for ListenerRule {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for ListenerRule {}
 
 impl From<ListenerRuleProperties> for ListenerRule {
     fn from(properties: ListenerRuleProperties) -> ListenerRule {
@@ -141,6 +147,8 @@ impl<'a> ::Resource<'a> for LoadBalancer {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for LoadBalancer {}
 
 impl From<LoadBalancerProperties> for LoadBalancer {
     fn from(properties: LoadBalancerProperties) -> LoadBalancer {
@@ -200,6 +208,8 @@ impl<'a> ::Resource<'a> for TargetGroup {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for TargetGroup {}
 
 impl From<TargetGroupProperties> for TargetGroup {
     fn from(properties: TargetGroupProperties) -> TargetGroup {

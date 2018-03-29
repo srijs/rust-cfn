@@ -39,6 +39,8 @@ impl<'a> ::Resource<'a> for IdentityPool {
     }
 }
 
+impl ::private::Sealed for IdentityPool {}
+
 impl From<IdentityPoolProperties> for IdentityPool {
     fn from(properties: IdentityPoolProperties) -> IdentityPool {
         IdentityPool { properties }
@@ -71,6 +73,8 @@ impl<'a> ::Resource<'a> for IdentityPoolRoleAttachment {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for IdentityPoolRoleAttachment {}
 
 impl From<IdentityPoolRoleAttachmentProperties> for IdentityPoolRoleAttachment {
     fn from(properties: IdentityPoolRoleAttachmentProperties) -> IdentityPoolRoleAttachment {
@@ -131,6 +135,8 @@ impl<'a> ::Resource<'a> for UserPool {
     }
 }
 
+impl ::private::Sealed for UserPool {}
+
 impl From<UserPoolProperties> for UserPool {
     fn from(properties: UserPoolProperties) -> UserPool {
         UserPool { properties }
@@ -172,6 +178,8 @@ impl<'a> ::Resource<'a> for UserPoolClient {
     }
 }
 
+impl ::private::Sealed for UserPoolClient {}
+
 impl From<UserPoolClientProperties> for UserPoolClient {
     fn from(properties: UserPoolClientProperties) -> UserPoolClient {
         UserPoolClient { properties }
@@ -208,6 +216,8 @@ impl<'a> ::Resource<'a> for UserPoolGroup {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for UserPoolGroup {}
 
 impl From<UserPoolGroupProperties> for UserPoolGroup {
     fn from(properties: UserPoolGroupProperties) -> UserPoolGroup {
@@ -250,6 +260,8 @@ impl<'a> ::Resource<'a> for UserPoolUser {
     }
 }
 
+impl ::private::Sealed for UserPoolUser {}
+
 impl From<UserPoolUserProperties> for UserPoolUser {
     fn from(properties: UserPoolUserProperties) -> UserPoolUser {
         UserPoolUser { properties }
@@ -282,6 +294,8 @@ impl<'a> ::Resource<'a> for UserPoolUserToGroupAttachment {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for UserPoolUserToGroupAttachment {}
 
 impl From<UserPoolUserToGroupAttachmentProperties> for UserPoolUserToGroupAttachment {
     fn from(properties: UserPoolUserToGroupAttachmentProperties) -> UserPoolUserToGroupAttachment {

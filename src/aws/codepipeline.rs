@@ -33,6 +33,8 @@ impl<'a> ::Resource<'a> for CustomActionType {
     }
 }
 
+impl ::private::Sealed for CustomActionType {}
+
 impl From<CustomActionTypeProperties> for CustomActionType {
     fn from(properties: CustomActionTypeProperties) -> CustomActionType {
         CustomActionType { properties }
@@ -71,6 +73,8 @@ impl<'a> ::Resource<'a> for Pipeline {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for Pipeline {}
 
 impl From<PipelineProperties> for Pipeline {
     fn from(properties: PipelineProperties) -> Pipeline {

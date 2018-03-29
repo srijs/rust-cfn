@@ -61,6 +61,8 @@ impl<'a> ::Resource<'a> for CacheCluster {
     }
 }
 
+impl ::private::Sealed for CacheCluster {}
+
 impl From<CacheClusterProperties> for CacheCluster {
     fn from(properties: CacheClusterProperties) -> CacheCluster {
         CacheCluster { properties }
@@ -93,6 +95,8 @@ impl<'a> ::Resource<'a> for ParameterGroup {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for ParameterGroup {}
 
 impl From<ParameterGroupProperties> for ParameterGroup {
     fn from(properties: ParameterGroupProperties) -> ParameterGroup {
@@ -179,6 +183,8 @@ impl<'a> ::Resource<'a> for ReplicationGroup {
     }
 }
 
+impl ::private::Sealed for ReplicationGroup {}
+
 impl From<ReplicationGroupProperties> for ReplicationGroup {
     fn from(properties: ReplicationGroupProperties) -> ReplicationGroup {
         ReplicationGroup { properties }
@@ -207,6 +213,8 @@ impl<'a> ::Resource<'a> for SecurityGroup {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for SecurityGroup {}
 
 impl From<SecurityGroupProperties> for SecurityGroup {
     fn from(properties: SecurityGroupProperties) -> SecurityGroup {
@@ -241,6 +249,8 @@ impl<'a> ::Resource<'a> for SecurityGroupIngress {
     }
 }
 
+impl ::private::Sealed for SecurityGroupIngress {}
+
 impl From<SecurityGroupIngressProperties> for SecurityGroupIngress {
     fn from(properties: SecurityGroupIngressProperties) -> SecurityGroupIngress {
         SecurityGroupIngress { properties }
@@ -273,6 +283,8 @@ impl<'a> ::Resource<'a> for SubnetGroup {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for SubnetGroup {}
 
 impl From<SubnetGroupProperties> for SubnetGroup {
     fn from(properties: SubnetGroupProperties) -> SubnetGroup {

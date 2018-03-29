@@ -25,6 +25,8 @@ impl<'a> ::Resource<'a> for AccessKey {
     }
 }
 
+impl ::private::Sealed for AccessKey {}
+
 impl From<AccessKeyProperties> for AccessKey {
     fn from(properties: AccessKeyProperties) -> AccessKey {
         AccessKey { properties }
@@ -60,6 +62,8 @@ impl<'a> ::Resource<'a> for Group {
     }
 }
 
+impl ::private::Sealed for Group {}
+
 impl From<GroupProperties> for Group {
     fn from(properties: GroupProperties) -> Group {
         Group { properties }
@@ -92,6 +96,8 @@ impl<'a> ::Resource<'a> for InstanceProfile {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for InstanceProfile {}
 
 impl From<InstanceProfileProperties> for InstanceProfile {
     fn from(properties: InstanceProfileProperties) -> InstanceProfile {
@@ -134,6 +140,8 @@ impl<'a> ::Resource<'a> for ManagedPolicy {
     }
 }
 
+impl ::private::Sealed for ManagedPolicy {}
+
 impl From<ManagedPolicyProperties> for ManagedPolicy {
     fn from(properties: ManagedPolicyProperties) -> ManagedPolicy {
         ManagedPolicy { properties }
@@ -171,6 +179,8 @@ impl<'a> ::Resource<'a> for Policy {
     }
 }
 
+impl ::private::Sealed for Policy {}
+
 impl From<PolicyProperties> for Policy {
     fn from(properties: PolicyProperties) -> Policy {
         Policy { properties }
@@ -207,6 +217,8 @@ impl<'a> ::Resource<'a> for Role {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for Role {}
 
 impl From<RoleProperties> for Role {
     fn from(properties: RoleProperties) -> Role {
@@ -247,6 +259,8 @@ impl<'a> ::Resource<'a> for User {
     }
 }
 
+impl ::private::Sealed for User {}
+
 impl From<UserProperties> for User {
     fn from(properties: UserProperties) -> User {
         User { properties }
@@ -277,6 +291,8 @@ impl<'a> ::Resource<'a> for UserToGroupAddition {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for UserToGroupAddition {}
 
 impl From<UserToGroupAdditionProperties> for UserToGroupAddition {
     fn from(properties: UserToGroupAdditionProperties) -> UserToGroupAddition {

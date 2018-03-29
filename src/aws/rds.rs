@@ -57,6 +57,8 @@ impl<'a> ::Resource<'a> for DBCluster {
     }
 }
 
+impl ::private::Sealed for DBCluster {}
+
 impl From<DBClusterProperties> for DBCluster {
     fn from(properties: DBClusterProperties) -> DBCluster {
         DBCluster { properties }
@@ -91,6 +93,8 @@ impl<'a> ::Resource<'a> for DBClusterParameterGroup {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for DBClusterParameterGroup {}
 
 impl From<DBClusterParameterGroupProperties> for DBClusterParameterGroup {
     fn from(properties: DBClusterParameterGroupProperties) -> DBClusterParameterGroup {
@@ -197,6 +201,8 @@ impl<'a> ::Resource<'a> for DBInstance {
     }
 }
 
+impl ::private::Sealed for DBInstance {}
+
 impl From<DBInstanceProperties> for DBInstance {
     fn from(properties: DBInstanceProperties) -> DBInstance {
         DBInstance { properties }
@@ -232,6 +238,8 @@ impl<'a> ::Resource<'a> for DBParameterGroup {
     }
 }
 
+impl ::private::Sealed for DBParameterGroup {}
+
 impl From<DBParameterGroupProperties> for DBParameterGroup {
     fn from(properties: DBParameterGroupProperties) -> DBParameterGroup {
         DBParameterGroup { properties }
@@ -266,6 +274,8 @@ impl<'a> ::Resource<'a> for DBSecurityGroup {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for DBSecurityGroup {}
 
 impl From<DBSecurityGroupProperties> for DBSecurityGroup {
     fn from(properties: DBSecurityGroupProperties) -> DBSecurityGroup {
@@ -304,6 +314,8 @@ impl<'a> ::Resource<'a> for DBSecurityGroupIngress {
     }
 }
 
+impl ::private::Sealed for DBSecurityGroupIngress {}
+
 impl From<DBSecurityGroupIngressProperties> for DBSecurityGroupIngress {
     fn from(properties: DBSecurityGroupIngressProperties) -> DBSecurityGroupIngress {
         DBSecurityGroupIngress { properties }
@@ -338,6 +350,8 @@ impl<'a> ::Resource<'a> for DBSubnetGroup {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for DBSubnetGroup {}
 
 impl From<DBSubnetGroupProperties> for DBSubnetGroup {
     fn from(properties: DBSubnetGroupProperties) -> DBSubnetGroup {
@@ -376,6 +390,8 @@ impl<'a> ::Resource<'a> for EventSubscription {
     }
 }
 
+impl ::private::Sealed for EventSubscription {}
+
 impl From<EventSubscriptionProperties> for EventSubscription {
     fn from(properties: EventSubscriptionProperties) -> EventSubscription {
         EventSubscription { properties }
@@ -412,6 +428,8 @@ impl<'a> ::Resource<'a> for OptionGroup {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for OptionGroup {}
 
 impl From<OptionGroupProperties> for OptionGroup {
     fn from(properties: OptionGroupProperties) -> OptionGroup {

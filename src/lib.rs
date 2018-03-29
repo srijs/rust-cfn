@@ -75,7 +75,7 @@ struct ResourceInner {
     properties: serde_json::Value
 }
 
-pub trait Resource<'a>: Sized {
+pub trait Resource<'a>: Sized + private::Sealed {
     const TYPE: &'static str;
     type Properties: Into<Self> + private::Properties<'a>;
 
@@ -84,6 +84,8 @@ pub trait Resource<'a>: Sized {
 }
 
 mod private {
+    pub trait Sealed {}
+
     pub trait Properties<'a>: ::serde::Serialize + ::serde::de::Deserialize<'a> {}
     impl<'a, P> Properties<'a> for P where P: ::serde::Serialize + ::serde::de::Deserialize<'a> {}
 }

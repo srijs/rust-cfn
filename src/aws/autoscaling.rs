@@ -57,6 +57,8 @@ impl<'a> ::Resource<'a> for AutoScalingGroup {
     }
 }
 
+impl ::private::Sealed for AutoScalingGroup {}
+
 impl From<AutoScalingGroupProperties> for AutoScalingGroup {
     fn from(properties: AutoScalingGroupProperties) -> AutoScalingGroup {
         AutoScalingGroup { properties }
@@ -118,6 +120,8 @@ impl<'a> ::Resource<'a> for LaunchConfiguration {
     }
 }
 
+impl ::private::Sealed for LaunchConfiguration {}
+
 impl From<LaunchConfigurationProperties> for LaunchConfiguration {
     fn from(properties: LaunchConfigurationProperties) -> LaunchConfiguration {
         LaunchConfiguration { properties }
@@ -160,6 +164,8 @@ impl<'a> ::Resource<'a> for LifecycleHook {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for LifecycleHook {}
 
 impl From<LifecycleHookProperties> for LifecycleHook {
     fn from(properties: LifecycleHookProperties) -> LifecycleHook {
@@ -208,6 +214,8 @@ impl<'a> ::Resource<'a> for ScalingPolicy {
     }
 }
 
+impl ::private::Sealed for ScalingPolicy {}
+
 impl From<ScalingPolicyProperties> for ScalingPolicy {
     fn from(properties: ScalingPolicyProperties) -> ScalingPolicy {
         ScalingPolicy { properties }
@@ -248,6 +256,8 @@ impl<'a> ::Resource<'a> for ScheduledAction {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for ScheduledAction {}
 
 impl From<ScheduledActionProperties> for ScheduledAction {
     fn from(properties: ScheduledActionProperties) -> ScheduledAction {

@@ -53,6 +53,8 @@ impl<'a> ::Resource<'a> for Cluster {
     }
 }
 
+impl ::private::Sealed for Cluster {}
+
 impl From<ClusterProperties> for Cluster {
     fn from(properties: ClusterProperties) -> Cluster {
         Cluster { properties }
@@ -93,6 +95,8 @@ impl<'a> ::Resource<'a> for InstanceFleetConfig {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for InstanceFleetConfig {}
 
 impl From<InstanceFleetConfigProperties> for InstanceFleetConfig {
     fn from(properties: InstanceFleetConfigProperties) -> InstanceFleetConfig {
@@ -141,6 +145,8 @@ impl<'a> ::Resource<'a> for InstanceGroupConfig {
     }
 }
 
+impl ::private::Sealed for InstanceGroupConfig {}
+
 impl From<InstanceGroupConfigProperties> for InstanceGroupConfig {
     fn from(properties: InstanceGroupConfigProperties) -> InstanceGroupConfig {
         InstanceGroupConfig { properties }
@@ -171,6 +177,8 @@ impl<'a> ::Resource<'a> for SecurityConfiguration {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for SecurityConfiguration {}
 
 impl From<SecurityConfigurationProperties> for SecurityConfiguration {
     fn from(properties: SecurityConfigurationProperties) -> SecurityConfiguration {
@@ -206,6 +214,8 @@ impl<'a> ::Resource<'a> for Step {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for Step {}
 
 impl From<StepProperties> for Step {
     fn from(properties: StepProperties) -> Step {

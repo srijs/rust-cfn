@@ -29,6 +29,8 @@ impl<'a> ::Resource<'a> for Alias {
     }
 }
 
+impl ::private::Sealed for Alias {}
+
 impl From<AliasProperties> for Alias {
     fn from(properties: AliasProperties) -> Alias {
         Alias { properties }
@@ -65,6 +67,8 @@ impl<'a> ::Resource<'a> for EventSourceMapping {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for EventSourceMapping {}
 
 impl From<EventSourceMappingProperties> for EventSourceMapping {
     fn from(properties: EventSourceMappingProperties) -> EventSourceMapping {
@@ -123,6 +127,8 @@ impl<'a> ::Resource<'a> for Function {
     }
 }
 
+impl ::private::Sealed for Function {}
+
 impl From<FunctionProperties> for Function {
     fn from(properties: FunctionProperties) -> Function {
         Function { properties }
@@ -162,6 +168,8 @@ impl<'a> ::Resource<'a> for Permission {
     }
 }
 
+impl ::private::Sealed for Permission {}
+
 impl From<PermissionProperties> for Permission {
     fn from(properties: PermissionProperties) -> Permission {
         Permission { properties }
@@ -194,6 +202,8 @@ impl<'a> ::Resource<'a> for Version {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for Version {}
 
 impl From<VersionProperties> for Version {
     fn from(properties: VersionProperties) -> Version {

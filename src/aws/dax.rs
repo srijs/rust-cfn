@@ -43,6 +43,8 @@ impl<'a> ::Resource<'a> for Cluster {
     }
 }
 
+impl ::private::Sealed for Cluster {}
+
 impl From<ClusterProperties> for Cluster {
     fn from(properties: ClusterProperties) -> Cluster {
         Cluster { properties }
@@ -76,6 +78,8 @@ impl<'a> ::Resource<'a> for ParameterGroup {
     }
 }
 
+impl ::private::Sealed for ParameterGroup {}
+
 impl From<ParameterGroupProperties> for ParameterGroup {
     fn from(properties: ParameterGroupProperties) -> ParameterGroup {
         ParameterGroup { properties }
@@ -108,6 +112,8 @@ impl<'a> ::Resource<'a> for SubnetGroup {
         &mut self.properties
     }
 }
+
+impl ::private::Sealed for SubnetGroup {}
 
 impl From<SubnetGroupProperties> for SubnetGroup {
     fn from(properties: SubnetGroupProperties) -> SubnetGroup {
