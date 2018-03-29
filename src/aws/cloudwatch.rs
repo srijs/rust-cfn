@@ -1,4 +1,4 @@
-/// The [`AWS::CloudWatch::Alarm`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cw-alarm.html) resource.
+/// The [`AWS::CloudWatch::Alarm`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cw-alarm.html) resource type.
 pub struct Alarm {
     properties: AlarmProperties
 }
@@ -61,7 +61,7 @@ impl From<AlarmProperties> for Alarm {
     }
 }
 
-/// The [`AWS::CloudWatch::Dashboard`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-dashboard.html) resource.
+/// The [`AWS::CloudWatch::Dashboard`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-dashboard.html) resource type.
 pub struct Dashboard {
     properties: DashboardProperties
 }
@@ -93,6 +93,7 @@ impl From<DashboardProperties> for Dashboard {
 }
 
 pub mod alarm {
+    /// The [`AWS::CloudWatch::Alarm.Dimension`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cw-dimension.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Dimension {
         #[serde(rename="Name")]

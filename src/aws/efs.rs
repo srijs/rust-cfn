@@ -1,4 +1,4 @@
-/// The [`AWS::EFS::FileSystem`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html) resource.
+/// The [`AWS::EFS::FileSystem`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html) resource type.
 pub struct FileSystem {
     properties: FileSystemProperties
 }
@@ -33,7 +33,7 @@ impl From<FileSystemProperties> for FileSystem {
     }
 }
 
-/// The [`AWS::EFS::MountTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-mounttarget.html) resource.
+/// The [`AWS::EFS::MountTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-mounttarget.html) resource type.
 pub struct MountTarget {
     properties: MountTargetProperties
 }
@@ -69,6 +69,7 @@ impl From<MountTargetProperties> for MountTarget {
 }
 
 pub mod file_system {
+    /// The [`AWS::EFS::FileSystem.ElasticFileSystemTag`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-filesystemtags.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ElasticFileSystemTag {
         #[serde(rename="Key")]

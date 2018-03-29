@@ -1,4 +1,4 @@
-/// The [`AWS::Cloud9::EnvironmentEC2`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloud9-environmentec2.html) resource.
+/// The [`AWS::Cloud9::EnvironmentEC2`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloud9-environmentec2.html) resource type.
 pub struct EnvironmentEC2 {
     properties: EnvironmentEC2Properties
 }
@@ -40,6 +40,7 @@ impl From<EnvironmentEC2Properties> for EnvironmentEC2 {
 }
 
 pub mod environment_ec2 {
+    /// The [`AWS::Cloud9::EnvironmentEC2.Repository`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloud9-environmentec2-repository.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Repository {
         #[serde(rename="PathComponent")]

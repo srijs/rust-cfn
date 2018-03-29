@@ -1,4 +1,4 @@
-/// The [`AWS::Route53::HealthCheck`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-healthcheck.html) resource.
+/// The [`AWS::Route53::HealthCheck`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-healthcheck.html) resource type.
 pub struct HealthCheck {
     properties: HealthCheckProperties
 }
@@ -29,7 +29,7 @@ impl From<HealthCheckProperties> for HealthCheck {
     }
 }
 
-/// The [`AWS::Route53::HostedZone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone.html) resource.
+/// The [`AWS::Route53::HostedZone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone.html) resource type.
 pub struct HostedZone {
     properties: HostedZoneProperties
 }
@@ -66,7 +66,7 @@ impl From<HostedZoneProperties> for HostedZone {
     }
 }
 
-/// The [`AWS::Route53::RecordSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html) resource.
+/// The [`AWS::Route53::RecordSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html) resource type.
 pub struct RecordSet {
     properties: RecordSetProperties
 }
@@ -121,7 +121,7 @@ impl From<RecordSetProperties> for RecordSet {
     }
 }
 
-/// The [`AWS::Route53::RecordSetGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-recordsetgroup.html) resource.
+/// The [`AWS::Route53::RecordSetGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-recordsetgroup.html) resource type.
 pub struct RecordSetGroup {
     properties: RecordSetGroupProperties
 }
@@ -157,6 +157,7 @@ impl From<RecordSetGroupProperties> for RecordSetGroup {
 }
 
 pub mod health_check {
+    /// The [`AWS::Route53::HealthCheck.AlarmIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-alarmidentifier.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct AlarmIdentifier {
         #[serde(rename="Name")]
@@ -165,6 +166,7 @@ pub mod health_check {
         pub region: String,
     }
 
+    /// The [`AWS::Route53::HealthCheck.HealthCheckConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct HealthCheckConfig {
         #[serde(rename="AlarmIdentifier")]
@@ -201,6 +203,7 @@ pub mod health_check {
         pub type_: String,
     }
 
+    /// The [`AWS::Route53::HealthCheck.HealthCheckTag`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthchecktag.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct HealthCheckTag {
         #[serde(rename="Key")]
@@ -212,12 +215,14 @@ pub mod health_check {
 }
 
 pub mod hosted_zone {
+    /// The [`AWS::Route53::HostedZone.HostedZoneConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzoneconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct HostedZoneConfig {
         #[serde(rename="Comment")]
         pub comment: String,
     }
 
+    /// The [`AWS::Route53::HostedZone.HostedZoneTag`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzonetags.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct HostedZoneTag {
         #[serde(rename="Key")]
@@ -226,12 +231,14 @@ pub mod hosted_zone {
         pub value: String,
     }
 
+    /// The [`AWS::Route53::HostedZone.QueryLoggingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-queryloggingconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct QueryLoggingConfig {
         #[serde(rename="CloudWatchLogsLogGroupArn")]
         pub cloud_watch_logs_log_group_arn: String,
     }
 
+    /// The [`AWS::Route53::HostedZone.VPC`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone-hostedzonevpcs.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct VPC {
         #[serde(rename="VPCId")]
@@ -243,6 +250,7 @@ pub mod hosted_zone {
 }
 
 pub mod record_set {
+    /// The [`AWS::Route53::RecordSet.AliasTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct AliasTarget {
         #[serde(rename="DNSName")]
@@ -253,6 +261,7 @@ pub mod record_set {
         pub hosted_zone_id: String,
     }
 
+    /// The [`AWS::Route53::RecordSet.GeoLocation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset-geolocation.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct GeoLocation {
         #[serde(rename="ContinentCode")]
@@ -266,6 +275,7 @@ pub mod record_set {
 }
 
 pub mod record_set_group {
+    /// The [`AWS::Route53::RecordSetGroup.AliasTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct AliasTarget {
         #[serde(rename="DNSName")]
@@ -276,6 +286,7 @@ pub mod record_set_group {
         pub hosted_zone_id: String,
     }
 
+    /// The [`AWS::Route53::RecordSetGroup.GeoLocation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset-geolocation.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct GeoLocation {
         #[serde(rename="ContinentCode")]
@@ -286,6 +297,7 @@ pub mod record_set_group {
         pub subdivision_code: String,
     }
 
+    /// The [`AWS::Route53::RecordSetGroup.RecordSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct RecordSet {
         #[serde(rename="AliasTarget")]

@@ -1,4 +1,4 @@
-/// The [`AWS::ECS::Cluster`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-cluster.html) resource.
+/// The [`AWS::ECS::Cluster`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-cluster.html) resource type.
 pub struct Cluster {
     properties: ClusterProperties
 }
@@ -27,7 +27,7 @@ impl From<ClusterProperties> for Cluster {
     }
 }
 
-/// The [`AWS::ECS::Service`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html) resource.
+/// The [`AWS::ECS::Service`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html) resource type.
 pub struct Service {
     properties: ServiceProperties
 }
@@ -80,7 +80,7 @@ impl From<ServiceProperties> for Service {
     }
 }
 
-/// The [`AWS::ECS::TaskDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html) resource.
+/// The [`AWS::ECS::TaskDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html) resource type.
 pub struct TaskDefinition {
     properties: TaskDefinitionProperties
 }
@@ -128,6 +128,7 @@ impl From<TaskDefinitionProperties> for TaskDefinition {
 }
 
 pub mod service {
+    /// The [`AWS::ECS::Service.AwsVpcConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-awsvpcconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct AwsVpcConfiguration {
         #[serde(rename="AssignPublicIp")]
@@ -138,6 +139,7 @@ pub mod service {
         pub subnets: Vec<String>,
     }
 
+    /// The [`AWS::ECS::Service.DeploymentConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-deploymentconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct DeploymentConfiguration {
         #[serde(rename="MaximumPercent")]
@@ -146,6 +148,7 @@ pub mod service {
         pub minimum_healthy_percent: u32,
     }
 
+    /// The [`AWS::ECS::Service.LoadBalancer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-loadbalancers.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct LoadBalancer {
         #[serde(rename="ContainerName")]
@@ -158,12 +161,14 @@ pub mod service {
         pub target_group_arn: String,
     }
 
+    /// The [`AWS::ECS::Service.NetworkConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-networkconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct NetworkConfiguration {
         #[serde(rename="AwsvpcConfiguration")]
         pub awsvpc_configuration: AwsVpcConfiguration,
     }
 
+    /// The [`AWS::ECS::Service.PlacementConstraint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-placementconstraint.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct PlacementConstraint {
         #[serde(rename="Expression")]
@@ -172,6 +177,7 @@ pub mod service {
         pub type_: String,
     }
 
+    /// The [`AWS::ECS::Service.PlacementStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-placementstrategy.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct PlacementStrategy {
         #[serde(rename="Field")]
@@ -183,6 +189,7 @@ pub mod service {
 }
 
 pub mod task_definition {
+    /// The [`AWS::ECS::TaskDefinition.ContainerDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ContainerDefinition {
         #[serde(rename="Command")]
@@ -241,6 +248,7 @@ pub mod task_definition {
         pub working_directory: String,
     }
 
+    /// The [`AWS::ECS::TaskDefinition.Device`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-device.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Device {
         #[serde(rename="ContainerPath")]
@@ -251,6 +259,7 @@ pub mod task_definition {
         pub permissions: Vec<String>,
     }
 
+    /// The [`AWS::ECS::TaskDefinition.HostEntry`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-hostentry.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct HostEntry {
         #[serde(rename="Hostname")]
@@ -259,12 +268,14 @@ pub mod task_definition {
         pub ip_address: String,
     }
 
+    /// The [`AWS::ECS::TaskDefinition.HostVolumeProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volumes-host.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct HostVolumeProperties {
         #[serde(rename="SourcePath")]
         pub source_path: String,
     }
 
+    /// The [`AWS::ECS::TaskDefinition.KernelCapabilities`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-kernelcapabilities.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct KernelCapabilities {
         #[serde(rename="Add")]
@@ -273,6 +284,7 @@ pub mod task_definition {
         pub drop: Vec<String>,
     }
 
+    /// The [`AWS::ECS::TaskDefinition.KeyValuePair`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-environment.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct KeyValuePair {
         #[serde(rename="Name")]
@@ -281,6 +293,7 @@ pub mod task_definition {
         pub value: String,
     }
 
+    /// The [`AWS::ECS::TaskDefinition.LinuxParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-linuxparameters.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct LinuxParameters {
         #[serde(rename="Capabilities")]
@@ -291,6 +304,7 @@ pub mod task_definition {
         pub init_process_enabled: bool,
     }
 
+    /// The [`AWS::ECS::TaskDefinition.LogConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-logconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct LogConfiguration {
         #[serde(rename="LogDriver")]
@@ -299,6 +313,7 @@ pub mod task_definition {
         pub options: ::std::collections::HashMap<String, String>,
     }
 
+    /// The [`AWS::ECS::TaskDefinition.MountPoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-mountpoints.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct MountPoint {
         #[serde(rename="ContainerPath")]
@@ -309,6 +324,7 @@ pub mod task_definition {
         pub source_volume: String,
     }
 
+    /// The [`AWS::ECS::TaskDefinition.PortMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-portmappings.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct PortMapping {
         #[serde(rename="ContainerPort")]
@@ -319,6 +335,7 @@ pub mod task_definition {
         pub protocol: String,
     }
 
+    /// The [`AWS::ECS::TaskDefinition.TaskDefinitionPlacementConstraint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-taskdefinitionplacementconstraint.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct TaskDefinitionPlacementConstraint {
         #[serde(rename="Expression")]
@@ -327,6 +344,7 @@ pub mod task_definition {
         pub type_: String,
     }
 
+    /// The [`AWS::ECS::TaskDefinition.Ulimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-ulimit.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Ulimit {
         #[serde(rename="HardLimit")]
@@ -337,6 +355,7 @@ pub mod task_definition {
         pub soft_limit: u32,
     }
 
+    /// The [`AWS::ECS::TaskDefinition.Volume`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volumes.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Volume {
         #[serde(rename="Host")]
@@ -345,6 +364,7 @@ pub mod task_definition {
         pub name: String,
     }
 
+    /// The [`AWS::ECS::TaskDefinition.VolumeFrom`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-volumesfrom.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct VolumeFrom {
         #[serde(rename="ReadOnly")]

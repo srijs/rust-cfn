@@ -1,4 +1,4 @@
-/// The [`AWS::SNS::Subscription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html) resource.
+/// The [`AWS::SNS::Subscription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html) resource type.
 pub struct Subscription {
     properties: SubscriptionProperties
 }
@@ -31,7 +31,7 @@ impl From<SubscriptionProperties> for Subscription {
     }
 }
 
-/// The [`AWS::SNS::Topic`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html) resource.
+/// The [`AWS::SNS::Topic`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html) resource type.
 pub struct Topic {
     properties: TopicProperties
 }
@@ -64,7 +64,7 @@ impl From<TopicProperties> for Topic {
     }
 }
 
-/// The [`AWS::SNS::TopicPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html) resource.
+/// The [`AWS::SNS::TopicPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html) resource type.
 pub struct TopicPolicy {
     properties: TopicPolicyProperties
 }
@@ -96,6 +96,7 @@ impl From<TopicPolicyProperties> for TopicPolicy {
 }
 
 pub mod topic {
+    /// The [`AWS::SNS::Topic.Subscription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-subscription.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Subscription {
         #[serde(rename="Endpoint")]

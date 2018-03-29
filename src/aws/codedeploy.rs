@@ -1,4 +1,4 @@
-/// The [`AWS::CodeDeploy::Application`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-application.html) resource.
+/// The [`AWS::CodeDeploy::Application`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-application.html) resource type.
 pub struct Application {
     properties: ApplicationProperties
 }
@@ -29,7 +29,7 @@ impl From<ApplicationProperties> for Application {
     }
 }
 
-/// The [`AWS::CodeDeploy::DeploymentConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentconfig.html) resource.
+/// The [`AWS::CodeDeploy::DeploymentConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentconfig.html) resource type.
 pub struct DeploymentConfig {
     properties: DeploymentConfigProperties
 }
@@ -60,7 +60,7 @@ impl From<DeploymentConfigProperties> for DeploymentConfig {
     }
 }
 
-/// The [`AWS::CodeDeploy::DeploymentGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html) resource.
+/// The [`AWS::CodeDeploy::DeploymentGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html) resource type.
 pub struct DeploymentGroup {
     properties: DeploymentGroupProperties
 }
@@ -114,6 +114,7 @@ impl From<DeploymentGroupProperties> for DeploymentGroup {
 }
 
 pub mod deployment_config {
+    /// The [`AWS::CodeDeploy::DeploymentConfig.MinimumHealthyHosts`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-minimumhealthyhosts.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct MinimumHealthyHosts {
         #[serde(rename="Type")]
@@ -125,12 +126,14 @@ pub mod deployment_config {
 }
 
 pub mod deployment_group {
+    /// The [`AWS::CodeDeploy::DeploymentGroup.Alarm`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-alarm.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Alarm {
         #[serde(rename="Name")]
         pub name: String,
     }
 
+    /// The [`AWS::CodeDeploy::DeploymentGroup.AlarmConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-alarmconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct AlarmConfiguration {
         #[serde(rename="Alarms")]
@@ -141,6 +144,7 @@ pub mod deployment_group {
         pub ignore_poll_alarm_failure: bool,
     }
 
+    /// The [`AWS::CodeDeploy::DeploymentGroup.AutoRollbackConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-autorollbackconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct AutoRollbackConfiguration {
         #[serde(rename="Enabled")]
@@ -149,6 +153,7 @@ pub mod deployment_group {
         pub events: Vec<String>,
     }
 
+    /// The [`AWS::CodeDeploy::DeploymentGroup.Deployment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Deployment {
         #[serde(rename="Description")]
@@ -159,6 +164,7 @@ pub mod deployment_group {
         pub revision: RevisionLocation,
     }
 
+    /// The [`AWS::CodeDeploy::DeploymentGroup.DeploymentStyle`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deploymentstyle.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct DeploymentStyle {
         #[serde(rename="DeploymentOption")]
@@ -167,6 +173,7 @@ pub mod deployment_group {
         pub deployment_type: String,
     }
 
+    /// The [`AWS::CodeDeploy::DeploymentGroup.EC2TagFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ec2tagfilters.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct EC2TagFilter {
         #[serde(rename="Key")]
@@ -177,12 +184,14 @@ pub mod deployment_group {
         pub value: String,
     }
 
+    /// The [`AWS::CodeDeploy::DeploymentGroup.ELBInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-elbinfo.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ELBInfo {
         #[serde(rename="Name")]
         pub name: String,
     }
 
+    /// The [`AWS::CodeDeploy::DeploymentGroup.GitHubLocation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment-revision-githublocation.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct GitHubLocation {
         #[serde(rename="CommitId")]
@@ -191,6 +200,7 @@ pub mod deployment_group {
         pub repository: String,
     }
 
+    /// The [`AWS::CodeDeploy::DeploymentGroup.LoadBalancerInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-loadbalancerinfo.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct LoadBalancerInfo {
         #[serde(rename="ElbInfoList")]
@@ -199,6 +209,7 @@ pub mod deployment_group {
         pub target_group_info_list: Vec<TargetGroupInfo>,
     }
 
+    /// The [`AWS::CodeDeploy::DeploymentGroup.RevisionLocation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment-revision.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct RevisionLocation {
         #[serde(rename="GitHubLocation")]
@@ -209,6 +220,7 @@ pub mod deployment_group {
         pub s3_location: S3Location,
     }
 
+    /// The [`AWS::CodeDeploy::DeploymentGroup.S3Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment-revision-s3location.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct S3Location {
         #[serde(rename="Bucket")]
@@ -223,6 +235,7 @@ pub mod deployment_group {
         pub version: String,
     }
 
+    /// The [`AWS::CodeDeploy::DeploymentGroup.TagFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-onpremisesinstancetagfilters.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct TagFilter {
         #[serde(rename="Key")]
@@ -233,12 +246,14 @@ pub mod deployment_group {
         pub value: String,
     }
 
+    /// The [`AWS::CodeDeploy::DeploymentGroup.TargetGroupInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-targetgroupinfo.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct TargetGroupInfo {
         #[serde(rename="Name")]
         pub name: String,
     }
 
+    /// The [`AWS::CodeDeploy::DeploymentGroup.TriggerConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-triggerconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct TriggerConfig {
         #[serde(rename="TriggerEvents")]

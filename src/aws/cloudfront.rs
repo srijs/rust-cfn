@@ -1,4 +1,4 @@
-/// The [`AWS::CloudFront::CloudFrontOriginAccessIdentity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-cloudfrontoriginaccessidentity.html) resource.
+/// The [`AWS::CloudFront::CloudFrontOriginAccessIdentity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-cloudfrontoriginaccessidentity.html) resource type.
 pub struct CloudFrontOriginAccessIdentity {
     properties: CloudFrontOriginAccessIdentityProperties
 }
@@ -27,7 +27,7 @@ impl From<CloudFrontOriginAccessIdentityProperties> for CloudFrontOriginAccessId
     }
 }
 
-/// The [`AWS::CloudFront::Distribution`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html) resource.
+/// The [`AWS::CloudFront::Distribution`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html) resource type.
 pub struct Distribution {
     properties: DistributionProperties
 }
@@ -58,7 +58,7 @@ impl From<DistributionProperties> for Distribution {
     }
 }
 
-/// The [`AWS::CloudFront::StreamingDistribution`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-streamingdistribution.html) resource.
+/// The [`AWS::CloudFront::StreamingDistribution`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-streamingdistribution.html) resource type.
 pub struct StreamingDistribution {
     properties: StreamingDistributionProperties
 }
@@ -90,6 +90,7 @@ impl From<StreamingDistributionProperties> for StreamingDistribution {
 }
 
 pub mod cloud_front_origin_access_identity {
+    /// The [`AWS::CloudFront::CloudFrontOriginAccessIdentity.CloudFrontOriginAccessIdentityConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cloudfrontoriginaccessidentity-cloudfrontoriginaccessidentityconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct CloudFrontOriginAccessIdentityConfig {
         #[serde(rename="Comment")]
@@ -99,6 +100,7 @@ pub mod cloud_front_origin_access_identity {
 }
 
 pub mod distribution {
+    /// The [`AWS::CloudFront::Distribution.CacheBehavior`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct CacheBehavior {
         #[serde(rename="AllowedMethods")]
@@ -129,6 +131,7 @@ pub mod distribution {
         pub viewer_protocol_policy: String,
     }
 
+    /// The [`AWS::CloudFront::Distribution.Cookies`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cookies.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Cookies {
         #[serde(rename="Forward")]
@@ -137,6 +140,7 @@ pub mod distribution {
         pub whitelisted_names: Vec<String>,
     }
 
+    /// The [`AWS::CloudFront::Distribution.CustomErrorResponse`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customerrorresponse.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct CustomErrorResponse {
         #[serde(rename="ErrorCachingMinTTL")]
@@ -149,6 +153,7 @@ pub mod distribution {
         pub response_page_path: String,
     }
 
+    /// The [`AWS::CloudFront::Distribution.CustomOriginConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customoriginconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct CustomOriginConfig {
         #[serde(rename="HTTPPort")]
@@ -165,6 +170,7 @@ pub mod distribution {
         pub origin_ssl_protocols: Vec<String>,
     }
 
+    /// The [`AWS::CloudFront::Distribution.DefaultCacheBehavior`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct DefaultCacheBehavior {
         #[serde(rename="AllowedMethods")]
@@ -193,6 +199,7 @@ pub mod distribution {
         pub viewer_protocol_policy: String,
     }
 
+    /// The [`AWS::CloudFront::Distribution.DistributionConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct DistributionConfig {
         #[serde(rename="Aliases")]
@@ -227,6 +234,7 @@ pub mod distribution {
         pub web_acl_id: String,
     }
 
+    /// The [`AWS::CloudFront::Distribution.ForwardedValues`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-forwardedvalues.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ForwardedValues {
         #[serde(rename="Cookies")]
@@ -239,6 +247,7 @@ pub mod distribution {
         pub query_string_cache_keys: Vec<String>,
     }
 
+    /// The [`AWS::CloudFront::Distribution.GeoRestriction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-georestriction.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct GeoRestriction {
         #[serde(rename="Locations")]
@@ -247,6 +256,7 @@ pub mod distribution {
         pub restriction_type: String,
     }
 
+    /// The [`AWS::CloudFront::Distribution.LambdaFunctionAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-lambdafunctionassociation.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct LambdaFunctionAssociation {
         #[serde(rename="EventType")]
@@ -255,6 +265,7 @@ pub mod distribution {
         pub lambda_function_arn: String,
     }
 
+    /// The [`AWS::CloudFront::Distribution.Logging`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-logging.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Logging {
         #[serde(rename="Bucket")]
@@ -265,6 +276,7 @@ pub mod distribution {
         pub prefix: String,
     }
 
+    /// The [`AWS::CloudFront::Distribution.Origin`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Origin {
         #[serde(rename="CustomOriginConfig")]
@@ -281,6 +293,7 @@ pub mod distribution {
         pub s3_origin_config: S3OriginConfig,
     }
 
+    /// The [`AWS::CloudFront::Distribution.OriginCustomHeader`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origincustomheader.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct OriginCustomHeader {
         #[serde(rename="HeaderName")]
@@ -289,18 +302,21 @@ pub mod distribution {
         pub header_value: String,
     }
 
+    /// The [`AWS::CloudFront::Distribution.Restrictions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-restrictions.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Restrictions {
         #[serde(rename="GeoRestriction")]
         pub geo_restriction: GeoRestriction,
     }
 
+    /// The [`AWS::CloudFront::Distribution.S3OriginConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-s3originconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct S3OriginConfig {
         #[serde(rename="OriginAccessIdentity")]
         pub origin_access_identity: String,
     }
 
+    /// The [`AWS::CloudFront::Distribution.ViewerCertificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-viewercertificate.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ViewerCertificate {
         #[serde(rename="AcmCertificateArn")]
@@ -318,6 +334,7 @@ pub mod distribution {
 }
 
 pub mod streaming_distribution {
+    /// The [`AWS::CloudFront::StreamingDistribution.Logging`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-logging.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Logging {
         #[serde(rename="Bucket")]
@@ -328,6 +345,7 @@ pub mod streaming_distribution {
         pub prefix: String,
     }
 
+    /// The [`AWS::CloudFront::StreamingDistribution.S3Origin`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-s3origin.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct S3Origin {
         #[serde(rename="DomainName")]
@@ -336,6 +354,7 @@ pub mod streaming_distribution {
         pub origin_access_identity: String,
     }
 
+    /// The [`AWS::CloudFront::StreamingDistribution.StreamingDistributionConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-streamingdistributionconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct StreamingDistributionConfig {
         #[serde(rename="Aliases")]
@@ -354,6 +373,7 @@ pub mod streaming_distribution {
         pub trusted_signers: TrustedSigners,
     }
 
+    /// The [`AWS::CloudFront::StreamingDistribution.TrustedSigners`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-trustedsigners.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct TrustedSigners {
         #[serde(rename="AwsAccountNumbers")]

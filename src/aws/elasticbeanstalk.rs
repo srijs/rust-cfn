@@ -1,4 +1,4 @@
-/// The [`AWS::ElasticBeanstalk::Application`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk.html) resource.
+/// The [`AWS::ElasticBeanstalk::Application`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk.html) resource type.
 pub struct Application {
     properties: ApplicationProperties
 }
@@ -31,7 +31,7 @@ impl From<ApplicationProperties> for Application {
     }
 }
 
-/// The [`AWS::ElasticBeanstalk::ApplicationVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-version.html) resource.
+/// The [`AWS::ElasticBeanstalk::ApplicationVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-version.html) resource type.
 pub struct ApplicationVersion {
     properties: ApplicationVersionProperties
 }
@@ -64,7 +64,7 @@ impl From<ApplicationVersionProperties> for ApplicationVersion {
     }
 }
 
-/// The [`AWS::ElasticBeanstalk::ConfigurationTemplate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticbeanstalk-configurationtemplate.html) resource.
+/// The [`AWS::ElasticBeanstalk::ConfigurationTemplate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticbeanstalk-configurationtemplate.html) resource type.
 pub struct ConfigurationTemplate {
     properties: ConfigurationTemplateProperties
 }
@@ -105,7 +105,7 @@ impl From<ConfigurationTemplateProperties> for ConfigurationTemplate {
     }
 }
 
-/// The [`AWS::ElasticBeanstalk::Environment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment.html) resource.
+/// The [`AWS::ElasticBeanstalk::Environment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment.html) resource type.
 pub struct Environment {
     properties: EnvironmentProperties
 }
@@ -155,6 +155,7 @@ impl From<EnvironmentProperties> for Environment {
 }
 
 pub mod application {
+    /// The [`AWS::ElasticBeanstalk::Application.ApplicationResourceLifecycleConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-applicationresourcelifecycleconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ApplicationResourceLifecycleConfig {
         #[serde(rename="ServiceRole")]
@@ -163,6 +164,7 @@ pub mod application {
         pub version_lifecycle_config: ApplicationVersionLifecycleConfig,
     }
 
+    /// The [`AWS::ElasticBeanstalk::Application.ApplicationVersionLifecycleConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-applicationversionlifecycleconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ApplicationVersionLifecycleConfig {
         #[serde(rename="MaxAgeRule")]
@@ -171,6 +173,7 @@ pub mod application {
         pub max_count_rule: MaxCountRule,
     }
 
+    /// The [`AWS::ElasticBeanstalk::Application.MaxAgeRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-maxagerule.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct MaxAgeRule {
         #[serde(rename="DeleteSourceFromS3")]
@@ -181,6 +184,7 @@ pub mod application {
         pub max_age_in_days: u32,
     }
 
+    /// The [`AWS::ElasticBeanstalk::Application.MaxCountRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-maxcountrule.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct MaxCountRule {
         #[serde(rename="DeleteSourceFromS3")]
@@ -194,6 +198,7 @@ pub mod application {
 }
 
 pub mod application_version {
+    /// The [`AWS::ElasticBeanstalk::ApplicationVersion.SourceBundle`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-sourcebundle.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct SourceBundle {
         #[serde(rename="S3Bucket")]
@@ -205,6 +210,7 @@ pub mod application_version {
 }
 
 pub mod configuration_template {
+    /// The [`AWS::ElasticBeanstalk::ConfigurationTemplate.ConfigurationOptionSetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-configurationtemplate-configurationoptionsetting.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ConfigurationOptionSetting {
         #[serde(rename="Namespace")]
@@ -217,6 +223,7 @@ pub mod configuration_template {
         pub value: String,
     }
 
+    /// The [`AWS::ElasticBeanstalk::ConfigurationTemplate.SourceConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-configurationtemplate-sourceconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct SourceConfiguration {
         #[serde(rename="ApplicationName")]
@@ -228,6 +235,7 @@ pub mod configuration_template {
 }
 
 pub mod environment {
+    /// The [`AWS::ElasticBeanstalk::Environment.OptionSetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-option-settings.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct OptionSetting {
         #[serde(rename="Namespace")]
@@ -240,6 +248,7 @@ pub mod environment {
         pub value: String,
     }
 
+    /// The [`AWS::ElasticBeanstalk::Environment.Tier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment-tier.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Tier {
         #[serde(rename="Name")]

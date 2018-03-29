@@ -1,4 +1,4 @@
-/// The [`AWS::OpsWorks::App`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-app.html) resource.
+/// The [`AWS::OpsWorks::App`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-app.html) resource type.
 pub struct App {
     properties: AppProperties
 }
@@ -49,7 +49,7 @@ impl From<AppProperties> for App {
     }
 }
 
-/// The [`AWS::OpsWorks::ElasticLoadBalancerAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-elbattachment.html) resource.
+/// The [`AWS::OpsWorks::ElasticLoadBalancerAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-elbattachment.html) resource type.
 pub struct ElasticLoadBalancerAttachment {
     properties: ElasticLoadBalancerAttachmentProperties
 }
@@ -80,7 +80,7 @@ impl From<ElasticLoadBalancerAttachmentProperties> for ElasticLoadBalancerAttach
     }
 }
 
-/// The [`AWS::OpsWorks::Instance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-instance.html) resource.
+/// The [`AWS::OpsWorks::Instance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-instance.html) resource type.
 pub struct Instance {
     properties: InstanceProperties
 }
@@ -149,7 +149,7 @@ impl From<InstanceProperties> for Instance {
     }
 }
 
-/// The [`AWS::OpsWorks::Layer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-layer.html) resource.
+/// The [`AWS::OpsWorks::Layer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-layer.html) resource type.
 pub struct Layer {
     properties: LayerProperties
 }
@@ -214,7 +214,7 @@ impl From<LayerProperties> for Layer {
     }
 }
 
-/// The [`AWS::OpsWorks::Stack`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-stack.html) resource.
+/// The [`AWS::OpsWorks::Stack`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-stack.html) resource type.
 pub struct Stack {
     properties: StackProperties
 }
@@ -291,7 +291,7 @@ impl From<StackProperties> for Stack {
     }
 }
 
-/// The [`AWS::OpsWorks::UserProfile`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-userprofile.html) resource.
+/// The [`AWS::OpsWorks::UserProfile`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-userprofile.html) resource type.
 pub struct UserProfile {
     properties: UserProfileProperties
 }
@@ -326,7 +326,7 @@ impl From<UserProfileProperties> for UserProfile {
     }
 }
 
-/// The [`AWS::OpsWorks::Volume`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-volume.html) resource.
+/// The [`AWS::OpsWorks::Volume`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-volume.html) resource type.
 pub struct Volume {
     properties: VolumeProperties
 }
@@ -362,6 +362,7 @@ impl From<VolumeProperties> for Volume {
 }
 
 pub mod app {
+    /// The [`AWS::OpsWorks::App.DataSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-datasource.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct DataSource {
         #[serde(rename="Arn")]
@@ -372,6 +373,7 @@ pub mod app {
         pub type_: String,
     }
 
+    /// The [`AWS::OpsWorks::App.EnvironmentVariable`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-environment.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct EnvironmentVariable {
         #[serde(rename="Key")]
@@ -382,6 +384,7 @@ pub mod app {
         pub value: String,
     }
 
+    /// The [`AWS::OpsWorks::App.Source`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-source.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Source {
         #[serde(rename="Password")]
@@ -398,6 +401,7 @@ pub mod app {
         pub username: String,
     }
 
+    /// The [`AWS::OpsWorks::App.SslConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-sslconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct SslConfiguration {
         #[serde(rename="Certificate")]
@@ -411,6 +415,7 @@ pub mod app {
 }
 
 pub mod instance {
+    /// The [`AWS::OpsWorks::Instance.BlockDeviceMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-instance-blockdevicemapping.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct BlockDeviceMapping {
         #[serde(rename="DeviceName")]
@@ -423,6 +428,7 @@ pub mod instance {
         pub virtual_name: String,
     }
 
+    /// The [`AWS::OpsWorks::Instance.EbsBlockDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-instance-ebsblockdevice.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct EbsBlockDevice {
         #[serde(rename="DeleteOnTermination")]
@@ -437,6 +443,7 @@ pub mod instance {
         pub volume_type: String,
     }
 
+    /// The [`AWS::OpsWorks::Instance.TimeBasedAutoScaling`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-instance-timebasedautoscaling.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct TimeBasedAutoScaling {
         #[serde(rename="Friday")]
@@ -458,6 +465,7 @@ pub mod instance {
 }
 
 pub mod layer {
+    /// The [`AWS::OpsWorks::Layer.AutoScalingThresholds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-loadbasedautoscaling-autoscalingthresholds.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct AutoScalingThresholds {
         #[serde(rename="CpuThreshold")]
@@ -474,12 +482,14 @@ pub mod layer {
         pub thresholds_wait_time: u32,
     }
 
+    /// The [`AWS::OpsWorks::Layer.LifecycleEventConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-lifecycleeventconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct LifecycleEventConfiguration {
         #[serde(rename="ShutdownEventConfiguration")]
         pub shutdown_event_configuration: ShutdownEventConfiguration,
     }
 
+    /// The [`AWS::OpsWorks::Layer.LoadBasedAutoScaling`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-loadbasedautoscaling.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct LoadBasedAutoScaling {
         #[serde(rename="DownScaling")]
@@ -490,6 +500,7 @@ pub mod layer {
         pub up_scaling: AutoScalingThresholds,
     }
 
+    /// The [`AWS::OpsWorks::Layer.Recipes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-recipes.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Recipes {
         #[serde(rename="Configure")]
@@ -504,6 +515,7 @@ pub mod layer {
         pub undeploy: Vec<String>,
     }
 
+    /// The [`AWS::OpsWorks::Layer.ShutdownEventConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-lifecycleeventconfiguration-shutdowneventconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ShutdownEventConfiguration {
         #[serde(rename="DelayUntilElbConnectionsDrained")]
@@ -512,6 +524,7 @@ pub mod layer {
         pub execution_timeout: u32,
     }
 
+    /// The [`AWS::OpsWorks::Layer.VolumeConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-volumeconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct VolumeConfiguration {
         #[serde(rename="Iops")]
@@ -531,6 +544,7 @@ pub mod layer {
 }
 
 pub mod stack {
+    /// The [`AWS::OpsWorks::Stack.ChefConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-chefconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ChefConfiguration {
         #[serde(rename="BerkshelfVersion")]
@@ -539,6 +553,7 @@ pub mod stack {
         pub manage_berkshelf: bool,
     }
 
+    /// The [`AWS::OpsWorks::Stack.ElasticIp`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-elasticip.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ElasticIp {
         #[serde(rename="Ip")]
@@ -547,6 +562,7 @@ pub mod stack {
         pub name: String,
     }
 
+    /// The [`AWS::OpsWorks::Stack.RdsDbInstance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-rdsdbinstance.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct RdsDbInstance {
         #[serde(rename="DbPassword")]
@@ -557,6 +573,7 @@ pub mod stack {
         pub rds_db_instance_arn: String,
     }
 
+    /// The [`AWS::OpsWorks::Stack.Source`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-source.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Source {
         #[serde(rename="Password")]
@@ -573,6 +590,7 @@ pub mod stack {
         pub username: String,
     }
 
+    /// The [`AWS::OpsWorks::Stack.StackConfigurationManager`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-stackconfigmanager.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct StackConfigurationManager {
         #[serde(rename="Name")]

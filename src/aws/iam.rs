@@ -1,4 +1,4 @@
-/// The [`AWS::IAM::AccessKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html) resource.
+/// The [`AWS::IAM::AccessKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html) resource type.
 pub struct AccessKey {
     properties: AccessKeyProperties
 }
@@ -31,7 +31,7 @@ impl From<AccessKeyProperties> for AccessKey {
     }
 }
 
-/// The [`AWS::IAM::Group`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html) resource.
+/// The [`AWS::IAM::Group`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html) resource type.
 pub struct Group {
     properties: GroupProperties
 }
@@ -66,7 +66,7 @@ impl From<GroupProperties> for Group {
     }
 }
 
-/// The [`AWS::IAM::InstanceProfile`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html) resource.
+/// The [`AWS::IAM::InstanceProfile`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html) resource type.
 pub struct InstanceProfile {
     properties: InstanceProfileProperties
 }
@@ -99,7 +99,7 @@ impl From<InstanceProfileProperties> for InstanceProfile {
     }
 }
 
-/// The [`AWS::IAM::ManagedPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-managedpolicy.html) resource.
+/// The [`AWS::IAM::ManagedPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-managedpolicy.html) resource type.
 pub struct ManagedPolicy {
     properties: ManagedPolicyProperties
 }
@@ -140,7 +140,7 @@ impl From<ManagedPolicyProperties> for ManagedPolicy {
     }
 }
 
-/// The [`AWS::IAM::Policy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html) resource.
+/// The [`AWS::IAM::Policy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html) resource type.
 pub struct Policy {
     properties: PolicyProperties
 }
@@ -177,7 +177,7 @@ impl From<PolicyProperties> for Policy {
     }
 }
 
-/// The [`AWS::IAM::Role`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html) resource.
+/// The [`AWS::IAM::Role`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html) resource type.
 pub struct Role {
     properties: RoleProperties
 }
@@ -214,7 +214,7 @@ impl From<RoleProperties> for Role {
     }
 }
 
-/// The [`AWS::IAM::User`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html) resource.
+/// The [`AWS::IAM::User`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html) resource type.
 pub struct User {
     properties: UserProperties
 }
@@ -253,7 +253,7 @@ impl From<UserProperties> for User {
     }
 }
 
-/// The [`AWS::IAM::UserToGroupAddition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-addusertogroup.html) resource.
+/// The [`AWS::IAM::UserToGroupAddition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-addusertogroup.html) resource type.
 pub struct UserToGroupAddition {
     properties: UserToGroupAdditionProperties
 }
@@ -285,6 +285,7 @@ impl From<UserToGroupAdditionProperties> for UserToGroupAddition {
 }
 
 pub mod group {
+    /// The [`AWS::IAM::Group.Policy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Policy {
         #[serde(rename="PolicyDocument")]
@@ -296,6 +297,7 @@ pub mod group {
 }
 
 pub mod role {
+    /// The [`AWS::IAM::Role.Policy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Policy {
         #[serde(rename="PolicyDocument")]
@@ -307,6 +309,7 @@ pub mod role {
 }
 
 pub mod user {
+    /// The [`AWS::IAM::User.LoginProfile`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user-loginprofile.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct LoginProfile {
         #[serde(rename="Password")]
@@ -315,6 +318,7 @@ pub mod user {
         pub password_reset_required: bool,
     }
 
+    /// The [`AWS::IAM::User.Policy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Policy {
         #[serde(rename="PolicyDocument")]

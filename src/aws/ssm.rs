@@ -1,4 +1,4 @@
-/// The [`AWS::SSM::Association`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-association.html) resource.
+/// The [`AWS::SSM::Association`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-association.html) resource type.
 pub struct Association {
     properties: AssociationProperties
 }
@@ -39,7 +39,7 @@ impl From<AssociationProperties> for Association {
     }
 }
 
-/// The [`AWS::SSM::Document`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-document.html) resource.
+/// The [`AWS::SSM::Document`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-document.html) resource type.
 pub struct Document {
     properties: DocumentProperties
 }
@@ -72,7 +72,7 @@ impl From<DocumentProperties> for Document {
     }
 }
 
-/// The [`AWS::SSM::MaintenanceWindowTask`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-maintenancewindowtask.html) resource.
+/// The [`AWS::SSM::MaintenanceWindowTask`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-maintenancewindowtask.html) resource type.
 pub struct MaintenanceWindowTask {
     properties: MaintenanceWindowTaskProperties
 }
@@ -125,7 +125,7 @@ impl From<MaintenanceWindowTaskProperties> for MaintenanceWindowTask {
     }
 }
 
-/// The [`AWS::SSM::Parameter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-parameter.html) resource.
+/// The [`AWS::SSM::Parameter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-parameter.html) resource type.
 pub struct Parameter {
     properties: ParameterProperties
 }
@@ -162,7 +162,7 @@ impl From<ParameterProperties> for Parameter {
     }
 }
 
-/// The [`AWS::SSM::PatchBaseline`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-patchbaseline.html) resource.
+/// The [`AWS::SSM::PatchBaseline`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-patchbaseline.html) resource type.
 pub struct PatchBaseline {
     properties: PatchBaselineProperties
 }
@@ -212,12 +212,14 @@ impl From<PatchBaselineProperties> for PatchBaseline {
 }
 
 pub mod association {
+    /// The [`AWS::SSM::Association.ParameterValues`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-association-parametervalues.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ParameterValues {
         #[serde(rename="ParameterValues")]
         pub parameter_values: Vec<String>,
     }
 
+    /// The [`AWS::SSM::Association.Target`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-association-target.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Target {
         #[serde(rename="Key")]
@@ -229,6 +231,7 @@ pub mod association {
 }
 
 pub mod maintenance_window_task {
+    /// The [`AWS::SSM::MaintenanceWindowTask.LoggingInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-logginginfo.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct LoggingInfo {
         #[serde(rename="Region")]
@@ -239,6 +242,7 @@ pub mod maintenance_window_task {
         pub s3_prefix: String,
     }
 
+    /// The [`AWS::SSM::MaintenanceWindowTask.MaintenanceWindowAutomationParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowautomationparameters.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct MaintenanceWindowAutomationParameters {
         #[serde(rename="DocumentVersion")]
@@ -247,6 +251,7 @@ pub mod maintenance_window_task {
         pub parameters: ::json::Value,
     }
 
+    /// The [`AWS::SSM::MaintenanceWindowTask.MaintenanceWindowLambdaParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowlambdaparameters.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct MaintenanceWindowLambdaParameters {
         #[serde(rename="ClientContext")]
@@ -257,6 +262,7 @@ pub mod maintenance_window_task {
         pub qualifier: String,
     }
 
+    /// The [`AWS::SSM::MaintenanceWindowTask.MaintenanceWindowRunCommandParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowruncommandparameters.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct MaintenanceWindowRunCommandParameters {
         #[serde(rename="Comment")]
@@ -279,6 +285,7 @@ pub mod maintenance_window_task {
         pub timeout_seconds: u32,
     }
 
+    /// The [`AWS::SSM::MaintenanceWindowTask.MaintenanceWindowStepFunctionsParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowstepfunctionsparameters.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct MaintenanceWindowStepFunctionsParameters {
         #[serde(rename="Input")]
@@ -287,6 +294,7 @@ pub mod maintenance_window_task {
         pub name: String,
     }
 
+    /// The [`AWS::SSM::MaintenanceWindowTask.NotificationConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-notificationconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct NotificationConfig {
         #[serde(rename="NotificationArn")]
@@ -297,6 +305,7 @@ pub mod maintenance_window_task {
         pub notification_type: String,
     }
 
+    /// The [`AWS::SSM::MaintenanceWindowTask.Target`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-target.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Target {
         #[serde(rename="Key")]
@@ -305,6 +314,7 @@ pub mod maintenance_window_task {
         pub values: Vec<String>,
     }
 
+    /// The [`AWS::SSM::MaintenanceWindowTask.TaskInvocationParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-taskinvocationparameters.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct TaskInvocationParameters {
         #[serde(rename="MaintenanceWindowAutomationParameters")]
@@ -320,6 +330,7 @@ pub mod maintenance_window_task {
 }
 
 pub mod patch_baseline {
+    /// The [`AWS::SSM::PatchBaseline.PatchFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-patchfilter.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct PatchFilter {
         #[serde(rename="Key")]
@@ -328,12 +339,14 @@ pub mod patch_baseline {
         pub values: Vec<String>,
     }
 
+    /// The [`AWS::SSM::PatchBaseline.PatchFilterGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-patchfiltergroup.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct PatchFilterGroup {
         #[serde(rename="PatchFilters")]
         pub patch_filters: Vec<PatchFilter>,
     }
 
+    /// The [`AWS::SSM::PatchBaseline.PatchSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-patchsource.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct PatchSource {
         #[serde(rename="Configuration")]
@@ -344,6 +357,7 @@ pub mod patch_baseline {
         pub products: Vec<String>,
     }
 
+    /// The [`AWS::SSM::PatchBaseline.Rule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-rule.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Rule {
         #[serde(rename="ApproveAfterDays")]
@@ -356,6 +370,7 @@ pub mod patch_baseline {
         pub patch_filter_group: PatchFilterGroup,
     }
 
+    /// The [`AWS::SSM::PatchBaseline.RuleGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-rulegroup.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct RuleGroup {
         #[serde(rename="PatchRules")]

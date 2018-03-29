@@ -1,4 +1,4 @@
-/// The [`AWS::DataPipeline::Pipeline`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datapipeline-pipeline.html) resource.
+/// The [`AWS::DataPipeline::Pipeline`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datapipeline-pipeline.html) resource type.
 pub struct Pipeline {
     properties: PipelineProperties
 }
@@ -40,6 +40,7 @@ impl From<PipelineProperties> for Pipeline {
 }
 
 pub mod pipeline {
+    /// The [`AWS::DataPipeline::Pipeline.Field`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-pipelineobjects-fields.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Field {
         #[serde(rename="Key")]
@@ -50,6 +51,7 @@ pub mod pipeline {
         pub string_value: String,
     }
 
+    /// The [`AWS::DataPipeline::Pipeline.ParameterAttribute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parameterobjects-attributes.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ParameterAttribute {
         #[serde(rename="Key")]
@@ -58,6 +60,7 @@ pub mod pipeline {
         pub string_value: String,
     }
 
+    /// The [`AWS::DataPipeline::Pipeline.ParameterObject`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parameterobjects.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ParameterObject {
         #[serde(rename="Attributes")]
@@ -66,6 +69,7 @@ pub mod pipeline {
         pub id: String,
     }
 
+    /// The [`AWS::DataPipeline::Pipeline.ParameterValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parametervalues.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ParameterValue {
         #[serde(rename="Id")]
@@ -74,6 +78,7 @@ pub mod pipeline {
         pub string_value: String,
     }
 
+    /// The [`AWS::DataPipeline::Pipeline.PipelineObject`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-pipelineobjects.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct PipelineObject {
         #[serde(rename="Fields")]
@@ -84,6 +89,7 @@ pub mod pipeline {
         pub name: String,
     }
 
+    /// The [`AWS::DataPipeline::Pipeline.PipelineTag`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-pipelinetags.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct PipelineTag {
         #[serde(rename="Key")]

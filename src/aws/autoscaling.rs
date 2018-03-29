@@ -1,4 +1,4 @@
-/// The [`AWS::AutoScaling::AutoScalingGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html) resource.
+/// The [`AWS::AutoScaling::AutoScalingGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html) resource type.
 pub struct AutoScalingGroup {
     properties: AutoScalingGroupProperties
 }
@@ -63,7 +63,7 @@ impl From<AutoScalingGroupProperties> for AutoScalingGroup {
     }
 }
 
-/// The [`AWS::AutoScaling::LaunchConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig.html) resource.
+/// The [`AWS::AutoScaling::LaunchConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig.html) resource type.
 pub struct LaunchConfiguration {
     properties: LaunchConfigurationProperties
 }
@@ -124,7 +124,7 @@ impl From<LaunchConfigurationProperties> for LaunchConfiguration {
     }
 }
 
-/// The [`AWS::AutoScaling::LifecycleHook`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-as-lifecyclehook.html) resource.
+/// The [`AWS::AutoScaling::LifecycleHook`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-as-lifecyclehook.html) resource type.
 pub struct LifecycleHook {
     properties: LifecycleHookProperties
 }
@@ -167,7 +167,7 @@ impl From<LifecycleHookProperties> for LifecycleHook {
     }
 }
 
-/// The [`AWS::AutoScaling::ScalingPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-policy.html) resource.
+/// The [`AWS::AutoScaling::ScalingPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-policy.html) resource type.
 pub struct ScalingPolicy {
     properties: ScalingPolicyProperties
 }
@@ -214,7 +214,7 @@ impl From<ScalingPolicyProperties> for ScalingPolicy {
     }
 }
 
-/// The [`AWS::AutoScaling::ScheduledAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-as-scheduledaction.html) resource.
+/// The [`AWS::AutoScaling::ScheduledAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-as-scheduledaction.html) resource type.
 pub struct ScheduledAction {
     properties: ScheduledActionProperties
 }
@@ -256,6 +256,7 @@ impl From<ScheduledActionProperties> for ScheduledAction {
 }
 
 pub mod auto_scaling_group {
+    /// The [`AWS::AutoScaling::AutoScalingGroup.LifecycleHookSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-lifecyclehookspecification.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct LifecycleHookSpecification {
         #[serde(rename="DefaultResult")]
@@ -274,6 +275,7 @@ pub mod auto_scaling_group {
         pub role_arn: String,
     }
 
+    /// The [`AWS::AutoScaling::AutoScalingGroup.MetricsCollection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-metricscollection.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct MetricsCollection {
         #[serde(rename="Granularity")]
@@ -282,6 +284,7 @@ pub mod auto_scaling_group {
         pub metrics: Vec<String>,
     }
 
+    /// The [`AWS::AutoScaling::AutoScalingGroup.NotificationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-notificationconfigurations.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct NotificationConfiguration {
         #[serde(rename="NotificationTypes")]
@@ -290,6 +293,7 @@ pub mod auto_scaling_group {
         pub topic_arn: String,
     }
 
+    /// The [`AWS::AutoScaling::AutoScalingGroup.TagProperty`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-tags.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct TagProperty {
         #[serde(rename="Key")]
@@ -303,6 +307,7 @@ pub mod auto_scaling_group {
 }
 
 pub mod launch_configuration {
+    /// The [`AWS::AutoScaling::LaunchConfiguration.BlockDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig-blockdev-template.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct BlockDevice {
         #[serde(rename="DeleteOnTermination")]
@@ -319,6 +324,7 @@ pub mod launch_configuration {
         pub volume_type: String,
     }
 
+    /// The [`AWS::AutoScaling::LaunchConfiguration.BlockDeviceMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig-blockdev-mapping.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct BlockDeviceMapping {
         #[serde(rename="DeviceName")]
@@ -334,6 +340,7 @@ pub mod launch_configuration {
 }
 
 pub mod scaling_policy {
+    /// The [`AWS::AutoScaling::ScalingPolicy.CustomizedMetricSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-customizedmetricspecification.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct CustomizedMetricSpecification {
         #[serde(rename="Dimensions")]
@@ -348,6 +355,7 @@ pub mod scaling_policy {
         pub unit: String,
     }
 
+    /// The [`AWS::AutoScaling::ScalingPolicy.MetricDimension`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-metricdimension.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct MetricDimension {
         #[serde(rename="Name")]
@@ -356,6 +364,7 @@ pub mod scaling_policy {
         pub value: String,
     }
 
+    /// The [`AWS::AutoScaling::ScalingPolicy.PredefinedMetricSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-predefinedmetricspecification.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct PredefinedMetricSpecification {
         #[serde(rename="PredefinedMetricType")]
@@ -364,6 +373,7 @@ pub mod scaling_policy {
         pub resource_label: String,
     }
 
+    /// The [`AWS::AutoScaling::ScalingPolicy.StepAdjustment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-stepadjustments.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct StepAdjustment {
         #[serde(rename="MetricIntervalLowerBound")]
@@ -374,6 +384,7 @@ pub mod scaling_policy {
         pub scaling_adjustment: u32,
     }
 
+    /// The [`AWS::AutoScaling::ScalingPolicy.TargetTrackingConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-targettrackingconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct TargetTrackingConfiguration {
         #[serde(rename="CustomizedMetricSpecification")]

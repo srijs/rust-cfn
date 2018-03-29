@@ -1,4 +1,4 @@
-/// The [`AWS::ElastiCache::CacheCluster`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html) resource.
+/// The [`AWS::ElastiCache::CacheCluster`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html) resource type.
 pub struct CacheCluster {
     properties: CacheClusterProperties
 }
@@ -67,7 +67,7 @@ impl From<CacheClusterProperties> for CacheCluster {
     }
 }
 
-/// The [`AWS::ElastiCache::ParameterGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-parameter-group.html) resource.
+/// The [`AWS::ElastiCache::ParameterGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-parameter-group.html) resource type.
 pub struct ParameterGroup {
     properties: ParameterGroupProperties
 }
@@ -100,7 +100,7 @@ impl From<ParameterGroupProperties> for ParameterGroup {
     }
 }
 
-/// The [`AWS::ElastiCache::ReplicationGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html) resource.
+/// The [`AWS::ElastiCache::ReplicationGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html) resource type.
 pub struct ReplicationGroup {
     properties: ReplicationGroupProperties
 }
@@ -185,7 +185,7 @@ impl From<ReplicationGroupProperties> for ReplicationGroup {
     }
 }
 
-/// The [`AWS::ElastiCache::SecurityGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-security-group.html) resource.
+/// The [`AWS::ElastiCache::SecurityGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-security-group.html) resource type.
 pub struct SecurityGroup {
     properties: SecurityGroupProperties
 }
@@ -214,7 +214,7 @@ impl From<SecurityGroupProperties> for SecurityGroup {
     }
 }
 
-/// The [`AWS::ElastiCache::SecurityGroupIngress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-security-group-ingress.html) resource.
+/// The [`AWS::ElastiCache::SecurityGroupIngress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-security-group-ingress.html) resource type.
 pub struct SecurityGroupIngress {
     properties: SecurityGroupIngressProperties
 }
@@ -247,7 +247,7 @@ impl From<SecurityGroupIngressProperties> for SecurityGroupIngress {
     }
 }
 
-/// The [`AWS::ElastiCache::SubnetGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-subnetgroup.html) resource.
+/// The [`AWS::ElastiCache::SubnetGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-subnetgroup.html) resource type.
 pub struct SubnetGroup {
     properties: SubnetGroupProperties
 }
@@ -281,6 +281,7 @@ impl From<SubnetGroupProperties> for SubnetGroup {
 }
 
 pub mod replication_group {
+    /// The [`AWS::ElastiCache::ReplicationGroup.NodeGroupConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-replicationgroup-nodegroupconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct NodeGroupConfiguration {
         #[serde(rename="PrimaryAvailabilityZone")]

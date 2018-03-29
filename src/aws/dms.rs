@@ -1,4 +1,4 @@
-/// The [`AWS::DMS::Certificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-certificate.html) resource.
+/// The [`AWS::DMS::Certificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-certificate.html) resource type.
 pub struct Certificate {
     properties: CertificateProperties
 }
@@ -31,7 +31,7 @@ impl From<CertificateProperties> for Certificate {
     }
 }
 
-/// The [`AWS::DMS::Endpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html) resource.
+/// The [`AWS::DMS::Endpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html) resource type.
 pub struct Endpoint {
     properties: EndpointProperties
 }
@@ -90,7 +90,7 @@ impl From<EndpointProperties> for Endpoint {
     }
 }
 
-/// The [`AWS::DMS::EventSubscription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-eventsubscription.html) resource.
+/// The [`AWS::DMS::EventSubscription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-eventsubscription.html) resource type.
 pub struct EventSubscription {
     properties: EventSubscriptionProperties
 }
@@ -131,7 +131,7 @@ impl From<EventSubscriptionProperties> for EventSubscription {
     }
 }
 
-/// The [`AWS::DMS::ReplicationInstance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationinstance.html) resource.
+/// The [`AWS::DMS::ReplicationInstance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationinstance.html) resource type.
 pub struct ReplicationInstance {
     properties: ReplicationInstanceProperties
 }
@@ -186,7 +186,7 @@ impl From<ReplicationInstanceProperties> for ReplicationInstance {
     }
 }
 
-/// The [`AWS::DMS::ReplicationSubnetGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationsubnetgroup.html) resource.
+/// The [`AWS::DMS::ReplicationSubnetGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationsubnetgroup.html) resource type.
 pub struct ReplicationSubnetGroup {
     properties: ReplicationSubnetGroupProperties
 }
@@ -221,7 +221,7 @@ impl From<ReplicationSubnetGroupProperties> for ReplicationSubnetGroup {
     }
 }
 
-/// The [`AWS::DMS::ReplicationTask`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationtask.html) resource.
+/// The [`AWS::DMS::ReplicationTask`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationtask.html) resource type.
 pub struct ReplicationTask {
     properties: ReplicationTaskProperties
 }
@@ -267,12 +267,14 @@ impl From<ReplicationTaskProperties> for ReplicationTask {
 }
 
 pub mod endpoint {
+    /// The [`AWS::DMS::Endpoint.DynamoDbSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-dynamodbsettings.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct DynamoDbSettings {
         #[serde(rename="ServiceAccessRoleArn")]
         pub service_access_role_arn: String,
     }
 
+    /// The [`AWS::DMS::Endpoint.MongoDbSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct MongoDbSettings {
         #[serde(rename="AuthMechanism")]
@@ -299,6 +301,7 @@ pub mod endpoint {
         pub username: String,
     }
 
+    /// The [`AWS::DMS::Endpoint.S3Settings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-s3settings.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct S3Settings {
         #[serde(rename="BucketFolder")]

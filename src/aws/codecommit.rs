@@ -1,4 +1,4 @@
-/// The [`AWS::CodeCommit::Repository`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codecommit-repository.html) resource.
+/// The [`AWS::CodeCommit::Repository`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codecommit-repository.html) resource type.
 pub struct Repository {
     properties: RepositoryProperties
 }
@@ -32,6 +32,7 @@ impl From<RepositoryProperties> for Repository {
 }
 
 pub mod repository {
+    /// The [`AWS::CodeCommit::Repository.RepositoryTrigger`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codecommit-repository-repositorytrigger.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct RepositoryTrigger {
         #[serde(rename="Branches")]

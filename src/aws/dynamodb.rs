@@ -1,4 +1,4 @@
-/// The [`AWS::DynamoDB::Table`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html) resource.
+/// The [`AWS::DynamoDB::Table`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html) resource type.
 pub struct Table {
     properties: TableProperties
 }
@@ -46,6 +46,7 @@ impl From<TableProperties> for Table {
 }
 
 pub mod table {
+    /// The [`AWS::DynamoDB::Table.AttributeDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-attributedef.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct AttributeDefinition {
         #[serde(rename="AttributeName")]
@@ -54,6 +55,7 @@ pub mod table {
         pub attribute_type: String,
     }
 
+    /// The [`AWS::DynamoDB::Table.GlobalSecondaryIndex`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-gsi.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct GlobalSecondaryIndex {
         #[serde(rename="IndexName")]
@@ -66,6 +68,7 @@ pub mod table {
         pub provisioned_throughput: ProvisionedThroughput,
     }
 
+    /// The [`AWS::DynamoDB::Table.KeySchema`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-keyschema.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct KeySchema {
         #[serde(rename="AttributeName")]
@@ -74,6 +77,7 @@ pub mod table {
         pub key_type: String,
     }
 
+    /// The [`AWS::DynamoDB::Table.LocalSecondaryIndex`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-lsi.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct LocalSecondaryIndex {
         #[serde(rename="IndexName")]
@@ -84,6 +88,7 @@ pub mod table {
         pub projection: Projection,
     }
 
+    /// The [`AWS::DynamoDB::Table.Projection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-projectionobject.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Projection {
         #[serde(rename="NonKeyAttributes")]
@@ -92,6 +97,7 @@ pub mod table {
         pub projection_type: String,
     }
 
+    /// The [`AWS::DynamoDB::Table.ProvisionedThroughput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-provisionedthroughput.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ProvisionedThroughput {
         #[serde(rename="ReadCapacityUnits")]
@@ -100,18 +106,21 @@ pub mod table {
         pub write_capacity_units: u64,
     }
 
+    /// The [`AWS::DynamoDB::Table.SSESpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-ssespecification.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct SSESpecification {
         #[serde(rename="SSEEnabled")]
         pub sse_enabled: bool,
     }
 
+    /// The [`AWS::DynamoDB::Table.StreamSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-streamspecification.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct StreamSpecification {
         #[serde(rename="StreamViewType")]
         pub stream_view_type: String,
     }
 
+    /// The [`AWS::DynamoDB::Table.TimeToLiveSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-timetolivespecification.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct TimeToLiveSpecification {
         #[serde(rename="AttributeName")]

@@ -1,4 +1,4 @@
-/// The [`AWS::Elasticsearch::Domain`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html) resource.
+/// The [`AWS::Elasticsearch::Domain`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html) resource type.
 pub struct Domain {
     properties: DomainProperties
 }
@@ -44,6 +44,7 @@ impl From<DomainProperties> for Domain {
 }
 
 pub mod domain {
+    /// The [`AWS::Elasticsearch::Domain.EBSOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-ebsoptions.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct EBSOptions {
         #[serde(rename="EBSEnabled")]
@@ -56,6 +57,7 @@ pub mod domain {
         pub volume_type: String,
     }
 
+    /// The [`AWS::Elasticsearch::Domain.ElasticsearchClusterConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-elasticsearchclusterconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ElasticsearchClusterConfig {
         #[serde(rename="DedicatedMasterCount")]
@@ -72,12 +74,14 @@ pub mod domain {
         pub zone_awareness_enabled: bool,
     }
 
+    /// The [`AWS::Elasticsearch::Domain.SnapshotOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-snapshotoptions.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct SnapshotOptions {
         #[serde(rename="AutomatedSnapshotStartHour")]
         pub automated_snapshot_start_hour: u32,
     }
 
+    /// The [`AWS::Elasticsearch::Domain.VPCOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-vpcoptions.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct VPCOptions {
         #[serde(rename="SecurityGroupIds")]

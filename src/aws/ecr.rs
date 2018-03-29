@@ -1,4 +1,4 @@
-/// The [`AWS::ECR::Repository`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html) resource.
+/// The [`AWS::ECR::Repository`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html) resource type.
 pub struct Repository {
     properties: RepositoryProperties
 }
@@ -32,6 +32,7 @@ impl From<RepositoryProperties> for Repository {
 }
 
 pub mod repository {
+    /// The [`AWS::ECR::Repository.LifecyclePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-repository-lifecyclepolicy.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct LifecyclePolicy {
         #[serde(rename="LifecyclePolicyText")]

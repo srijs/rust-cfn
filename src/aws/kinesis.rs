@@ -1,4 +1,4 @@
-/// The [`AWS::Kinesis::Stream`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-stream.html) resource.
+/// The [`AWS::Kinesis::Stream`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-stream.html) resource type.
 pub struct Stream {
     properties: StreamProperties
 }
@@ -36,6 +36,7 @@ impl From<StreamProperties> for Stream {
 }
 
 pub mod stream {
+    /// The [`AWS::Kinesis::Stream.StreamEncryption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesis-stream-streamencryption.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct StreamEncryption {
         #[serde(rename="EncryptionType")]

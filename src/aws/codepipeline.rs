@@ -1,4 +1,4 @@
-/// The [`AWS::CodePipeline::CustomActionType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-customactiontype.html) resource.
+/// The [`AWS::CodePipeline::CustomActionType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-customactiontype.html) resource type.
 pub struct CustomActionType {
     properties: CustomActionTypeProperties
 }
@@ -39,7 +39,7 @@ impl From<CustomActionTypeProperties> for CustomActionType {
     }
 }
 
-/// The [`AWS::CodePipeline::Pipeline`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-pipeline.html) resource.
+/// The [`AWS::CodePipeline::Pipeline`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-pipeline.html) resource type.
 pub struct Pipeline {
     properties: PipelineProperties
 }
@@ -79,6 +79,7 @@ impl From<PipelineProperties> for Pipeline {
 }
 
 pub mod custom_action_type {
+    /// The [`AWS::CodePipeline::CustomActionType.ArtifactDetails`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-artifactdetails.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ArtifactDetails {
         #[serde(rename="MaximumCount")]
@@ -87,6 +88,7 @@ pub mod custom_action_type {
         pub minimum_count: u32,
     }
 
+    /// The [`AWS::CodePipeline::CustomActionType.ConfigurationProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-configurationproperties.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ConfigurationProperties {
         #[serde(rename="Description")]
@@ -105,6 +107,7 @@ pub mod custom_action_type {
         pub type_: String,
     }
 
+    /// The [`AWS::CodePipeline::CustomActionType.Settings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-settings.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Settings {
         #[serde(rename="EntityUrlTemplate")]
@@ -120,6 +123,7 @@ pub mod custom_action_type {
 }
 
 pub mod pipeline {
+    /// The [`AWS::CodePipeline::Pipeline.ActionDeclaration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ActionDeclaration {
         #[serde(rename="ActionTypeId")]
@@ -138,6 +142,7 @@ pub mod pipeline {
         pub run_order: u32,
     }
 
+    /// The [`AWS::CodePipeline::Pipeline.ActionTypeId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-actiontypeid.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ActionTypeId {
         #[serde(rename="Category")]
@@ -150,6 +155,7 @@ pub mod pipeline {
         pub version: String,
     }
 
+    /// The [`AWS::CodePipeline::Pipeline.ArtifactStore`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-artifactstore.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ArtifactStore {
         #[serde(rename="EncryptionKey")]
@@ -160,6 +166,7 @@ pub mod pipeline {
         pub type_: String,
     }
 
+    /// The [`AWS::CodePipeline::Pipeline.BlockerDeclaration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-blockers.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct BlockerDeclaration {
         #[serde(rename="Name")]
@@ -168,6 +175,7 @@ pub mod pipeline {
         pub type_: String,
     }
 
+    /// The [`AWS::CodePipeline::Pipeline.EncryptionKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-artifactstore-encryptionkey.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct EncryptionKey {
         #[serde(rename="Id")]
@@ -176,18 +184,21 @@ pub mod pipeline {
         pub type_: String,
     }
 
+    /// The [`AWS::CodePipeline::Pipeline.InputArtifact`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-inputartifacts.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct InputArtifact {
         #[serde(rename="Name")]
         pub name: String,
     }
 
+    /// The [`AWS::CodePipeline::Pipeline.OutputArtifact`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-outputartifacts.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct OutputArtifact {
         #[serde(rename="Name")]
         pub name: String,
     }
 
+    /// The [`AWS::CodePipeline::Pipeline.StageDeclaration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct StageDeclaration {
         #[serde(rename="Actions")]
@@ -198,6 +209,7 @@ pub mod pipeline {
         pub name: String,
     }
 
+    /// The [`AWS::CodePipeline::Pipeline.StageTransition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-disableinboundstagetransitions.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct StageTransition {
         #[serde(rename="Reason")]

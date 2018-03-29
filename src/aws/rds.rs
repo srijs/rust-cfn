@@ -1,4 +1,4 @@
-/// The [`AWS::RDS::DBCluster`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html) resource.
+/// The [`AWS::RDS::DBCluster`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html) resource type.
 pub struct DBCluster {
     properties: DBClusterProperties
 }
@@ -63,7 +63,7 @@ impl From<DBClusterProperties> for DBCluster {
     }
 }
 
-/// The [`AWS::RDS::DBClusterParameterGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbclusterparametergroup.html) resource.
+/// The [`AWS::RDS::DBClusterParameterGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbclusterparametergroup.html) resource type.
 pub struct DBClusterParameterGroup {
     properties: DBClusterParameterGroupProperties
 }
@@ -98,7 +98,7 @@ impl From<DBClusterParameterGroupProperties> for DBClusterParameterGroup {
     }
 }
 
-/// The [`AWS::RDS::DBInstance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html) resource.
+/// The [`AWS::RDS::DBInstance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html) resource type.
 pub struct DBInstance {
     properties: DBInstanceProperties
 }
@@ -203,7 +203,7 @@ impl From<DBInstanceProperties> for DBInstance {
     }
 }
 
-/// The [`AWS::RDS::DBParameterGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbparametergroup.html) resource.
+/// The [`AWS::RDS::DBParameterGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbparametergroup.html) resource type.
 pub struct DBParameterGroup {
     properties: DBParameterGroupProperties
 }
@@ -238,7 +238,7 @@ impl From<DBParameterGroupProperties> for DBParameterGroup {
     }
 }
 
-/// The [`AWS::RDS::DBSecurityGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-security-group.html) resource.
+/// The [`AWS::RDS::DBSecurityGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-security-group.html) resource type.
 pub struct DBSecurityGroup {
     properties: DBSecurityGroupProperties
 }
@@ -273,7 +273,7 @@ impl From<DBSecurityGroupProperties> for DBSecurityGroup {
     }
 }
 
-/// The [`AWS::RDS::DBSecurityGroupIngress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-security-group-ingress.html) resource.
+/// The [`AWS::RDS::DBSecurityGroupIngress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-security-group-ingress.html) resource type.
 pub struct DBSecurityGroupIngress {
     properties: DBSecurityGroupIngressProperties
 }
@@ -310,7 +310,7 @@ impl From<DBSecurityGroupIngressProperties> for DBSecurityGroupIngress {
     }
 }
 
-/// The [`AWS::RDS::DBSubnetGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbsubnet-group.html) resource.
+/// The [`AWS::RDS::DBSubnetGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbsubnet-group.html) resource type.
 pub struct DBSubnetGroup {
     properties: DBSubnetGroupProperties
 }
@@ -345,7 +345,7 @@ impl From<DBSubnetGroupProperties> for DBSubnetGroup {
     }
 }
 
-/// The [`AWS::RDS::EventSubscription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-eventsubscription.html) resource.
+/// The [`AWS::RDS::EventSubscription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-eventsubscription.html) resource type.
 pub struct EventSubscription {
     properties: EventSubscriptionProperties
 }
@@ -382,7 +382,7 @@ impl From<EventSubscriptionProperties> for EventSubscription {
     }
 }
 
-/// The [`AWS::RDS::OptionGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-optiongroup.html) resource.
+/// The [`AWS::RDS::OptionGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-optiongroup.html) resource type.
 pub struct OptionGroup {
     properties: OptionGroupProperties
 }
@@ -420,6 +420,7 @@ impl From<OptionGroupProperties> for OptionGroup {
 }
 
 pub mod db_security_group {
+    /// The [`AWS::RDS::DBSecurityGroup.Ingress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-security-group-rule.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Ingress {
         #[serde(rename="CIDRIP")]
@@ -435,6 +436,7 @@ pub mod db_security_group {
 }
 
 pub mod option_group {
+    /// The [`AWS::RDS::OptionGroup.OptionConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-optiongroup-optionconfigurations.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct OptionConfiguration {
         #[serde(rename="DBSecurityGroupMemberships")]
@@ -451,6 +453,7 @@ pub mod option_group {
         pub vpc_security_group_memberships: Vec<String>,
     }
 
+    /// The [`AWS::RDS::OptionGroup.OptionSetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-optiongroup-optionconfigurations-optionsettings.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct OptionSetting {
         #[serde(rename="Name")]

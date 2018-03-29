@@ -1,4 +1,4 @@
-/// The [`AWS::Events::Rule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html) resource.
+/// The [`AWS::Events::Rule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html) resource type.
 pub struct Rule {
     properties: RuleProperties
 }
@@ -40,6 +40,7 @@ impl From<RuleProperties> for Rule {
 }
 
 pub mod rule {
+    /// The [`AWS::Events::Rule.EcsParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-ecsparameters.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct EcsParameters {
         #[serde(rename="TaskCount")]
@@ -48,6 +49,7 @@ pub mod rule {
         pub task_definition_arn: String,
     }
 
+    /// The [`AWS::Events::Rule.InputTransformer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-inputtransformer.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct InputTransformer {
         #[serde(rename="InputPathsMap")]
@@ -56,18 +58,21 @@ pub mod rule {
         pub input_template: String,
     }
 
+    /// The [`AWS::Events::Rule.KinesisParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-kinesisparameters.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct KinesisParameters {
         #[serde(rename="PartitionKeyPath")]
         pub partition_key_path: String,
     }
 
+    /// The [`AWS::Events::Rule.RunCommandParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-runcommandparameters.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct RunCommandParameters {
         #[serde(rename="RunCommandTargets")]
         pub run_command_targets: Vec<RunCommandTarget>,
     }
 
+    /// The [`AWS::Events::Rule.RunCommandTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-runcommandtarget.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct RunCommandTarget {
         #[serde(rename="Key")]
@@ -76,6 +81,7 @@ pub mod rule {
         pub values: Vec<String>,
     }
 
+    /// The [`AWS::Events::Rule.Target`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-target.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Target {
         #[serde(rename="Arn")]

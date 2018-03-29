@@ -1,4 +1,4 @@
-/// The [`AWS::Cognito::IdentityPool`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypool.html) resource.
+/// The [`AWS::Cognito::IdentityPool`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypool.html) resource type.
 pub struct IdentityPool {
     properties: IdentityPoolProperties
 }
@@ -45,7 +45,7 @@ impl From<IdentityPoolProperties> for IdentityPool {
     }
 }
 
-/// The [`AWS::Cognito::IdentityPoolRoleAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolroleattachment.html) resource.
+/// The [`AWS::Cognito::IdentityPoolRoleAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolroleattachment.html) resource type.
 pub struct IdentityPoolRoleAttachment {
     properties: IdentityPoolRoleAttachmentProperties
 }
@@ -78,7 +78,7 @@ impl From<IdentityPoolRoleAttachmentProperties> for IdentityPoolRoleAttachment {
     }
 }
 
-/// The [`AWS::Cognito::UserPool`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html) resource.
+/// The [`AWS::Cognito::UserPool`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html) resource type.
 pub struct UserPool {
     properties: UserPoolProperties
 }
@@ -137,7 +137,7 @@ impl From<UserPoolProperties> for UserPool {
     }
 }
 
-/// The [`AWS::Cognito::UserPoolClient`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolclient.html) resource.
+/// The [`AWS::Cognito::UserPoolClient`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolclient.html) resource type.
 pub struct UserPoolClient {
     properties: UserPoolClientProperties
 }
@@ -178,7 +178,7 @@ impl From<UserPoolClientProperties> for UserPoolClient {
     }
 }
 
-/// The [`AWS::Cognito::UserPoolGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolgroup.html) resource.
+/// The [`AWS::Cognito::UserPoolGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolgroup.html) resource type.
 pub struct UserPoolGroup {
     properties: UserPoolGroupProperties
 }
@@ -215,7 +215,7 @@ impl From<UserPoolGroupProperties> for UserPoolGroup {
     }
 }
 
-/// The [`AWS::Cognito::UserPoolUser`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpooluser.html) resource.
+/// The [`AWS::Cognito::UserPoolUser`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpooluser.html) resource type.
 pub struct UserPoolUser {
     properties: UserPoolUserProperties
 }
@@ -256,7 +256,7 @@ impl From<UserPoolUserProperties> for UserPoolUser {
     }
 }
 
-/// The [`AWS::Cognito::UserPoolUserToGroupAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolusertogroupattachment.html) resource.
+/// The [`AWS::Cognito::UserPoolUserToGroupAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolusertogroupattachment.html) resource type.
 pub struct UserPoolUserToGroupAttachment {
     properties: UserPoolUserToGroupAttachmentProperties
 }
@@ -290,6 +290,7 @@ impl From<UserPoolUserToGroupAttachmentProperties> for UserPoolUserToGroupAttach
 }
 
 pub mod identity_pool {
+    /// The [`AWS::Cognito::IdentityPool.CognitoIdentityProvider`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypool-cognitoidentityprovider.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct CognitoIdentityProvider {
         #[serde(rename="ClientId")]
@@ -300,6 +301,7 @@ pub mod identity_pool {
         pub server_side_token_check: bool,
     }
 
+    /// The [`AWS::Cognito::IdentityPool.CognitoStreams`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypool-cognitostreams.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct CognitoStreams {
         #[serde(rename="RoleArn")]
@@ -310,6 +312,7 @@ pub mod identity_pool {
         pub streaming_status: String,
     }
 
+    /// The [`AWS::Cognito::IdentityPool.PushSync`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypool-pushsync.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct PushSync {
         #[serde(rename="ApplicationArns")]
@@ -321,6 +324,7 @@ pub mod identity_pool {
 }
 
 pub mod identity_pool_role_attachment {
+    /// The [`AWS::Cognito::IdentityPoolRoleAttachment.MappingRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypoolroleattachment-mappingrule.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct MappingRule {
         #[serde(rename="Claim")]
@@ -333,6 +337,7 @@ pub mod identity_pool_role_attachment {
         pub value: String,
     }
 
+    /// The [`AWS::Cognito::IdentityPoolRoleAttachment.RoleMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypoolroleattachment-rolemapping.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct RoleMapping {
         #[serde(rename="AmbiguousRoleResolution")]
@@ -343,6 +348,7 @@ pub mod identity_pool_role_attachment {
         pub type_: String,
     }
 
+    /// The [`AWS::Cognito::IdentityPoolRoleAttachment.RulesConfigurationType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypoolroleattachment-rulesconfigurationtype.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct RulesConfigurationType {
         #[serde(rename="Rules")]
@@ -352,6 +358,7 @@ pub mod identity_pool_role_attachment {
 }
 
 pub mod user_pool {
+    /// The [`AWS::Cognito::UserPool.AdminCreateUserConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-admincreateuserconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct AdminCreateUserConfig {
         #[serde(rename="AllowAdminCreateUserOnly")]
@@ -362,6 +369,7 @@ pub mod user_pool {
         pub unused_account_validity_days: f64,
     }
 
+    /// The [`AWS::Cognito::UserPool.DeviceConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-deviceconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct DeviceConfiguration {
         #[serde(rename="ChallengeRequiredOnNewDevice")]
@@ -370,6 +378,7 @@ pub mod user_pool {
         pub device_only_remembered_on_user_prompt: bool,
     }
 
+    /// The [`AWS::Cognito::UserPool.EmailConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-emailconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct EmailConfiguration {
         #[serde(rename="ReplyToEmailAddress")]
@@ -378,6 +387,7 @@ pub mod user_pool {
         pub source_arn: String,
     }
 
+    /// The [`AWS::Cognito::UserPool.InviteMessageTemplate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-invitemessagetemplate.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct InviteMessageTemplate {
         #[serde(rename="EmailMessage")]
@@ -388,6 +398,7 @@ pub mod user_pool {
         pub sms_message: String,
     }
 
+    /// The [`AWS::Cognito::UserPool.LambdaConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-lambdaconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct LambdaConfig {
         #[serde(rename="CreateAuthChallenge")]
@@ -408,6 +419,7 @@ pub mod user_pool {
         pub verify_auth_challenge_response: String,
     }
 
+    /// The [`AWS::Cognito::UserPool.NumberAttributeConstraints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-numberattributeconstraints.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct NumberAttributeConstraints {
         #[serde(rename="MaxValue")]
@@ -416,6 +428,7 @@ pub mod user_pool {
         pub min_value: String,
     }
 
+    /// The [`AWS::Cognito::UserPool.PasswordPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-passwordpolicy.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct PasswordPolicy {
         #[serde(rename="MinimumLength")]
@@ -430,12 +443,14 @@ pub mod user_pool {
         pub require_uppercase: bool,
     }
 
+    /// The [`AWS::Cognito::UserPool.Policies`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-policies.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Policies {
         #[serde(rename="PasswordPolicy")]
         pub password_policy: PasswordPolicy,
     }
 
+    /// The [`AWS::Cognito::UserPool.SchemaAttribute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-schemaattribute.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct SchemaAttribute {
         #[serde(rename="AttributeDataType")]
@@ -454,6 +469,7 @@ pub mod user_pool {
         pub string_attribute_constraints: StringAttributeConstraints,
     }
 
+    /// The [`AWS::Cognito::UserPool.SmsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-smsconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct SmsConfiguration {
         #[serde(rename="ExternalId")]
@@ -462,6 +478,7 @@ pub mod user_pool {
         pub sns_caller_arn: String,
     }
 
+    /// The [`AWS::Cognito::UserPool.StringAttributeConstraints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-stringattributeconstraints.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct StringAttributeConstraints {
         #[serde(rename="MaxLength")]
@@ -473,6 +490,7 @@ pub mod user_pool {
 }
 
 pub mod user_pool_user {
+    /// The [`AWS::Cognito::UserPoolUser.AttributeType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpooluser-attributetype.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct AttributeType {
         #[serde(rename="Name")]

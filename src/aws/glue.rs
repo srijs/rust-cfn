@@ -1,4 +1,4 @@
-/// The [`AWS::Glue::Classifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-classifier.html) resource.
+/// The [`AWS::Glue::Classifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-classifier.html) resource type.
 pub struct Classifier {
     properties: ClassifierProperties
 }
@@ -27,7 +27,7 @@ impl From<ClassifierProperties> for Classifier {
     }
 }
 
-/// The [`AWS::Glue::Connection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-connection.html) resource.
+/// The [`AWS::Glue::Connection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-connection.html) resource type.
 pub struct Connection {
     properties: ConnectionProperties
 }
@@ -58,7 +58,7 @@ impl From<ConnectionProperties> for Connection {
     }
 }
 
-/// The [`AWS::Glue::Crawler`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-crawler.html) resource.
+/// The [`AWS::Glue::Crawler`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-crawler.html) resource type.
 pub struct Crawler {
     properties: CrawlerProperties
 }
@@ -103,7 +103,7 @@ impl From<CrawlerProperties> for Crawler {
     }
 }
 
-/// The [`AWS::Glue::Database`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-database.html) resource.
+/// The [`AWS::Glue::Database`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-database.html) resource type.
 pub struct Database {
     properties: DatabaseProperties
 }
@@ -134,7 +134,7 @@ impl From<DatabaseProperties> for Database {
     }
 }
 
-/// The [`AWS::Glue::DevEndpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-devendpoint.html) resource.
+/// The [`AWS::Glue::DevEndpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-devendpoint.html) resource type.
 pub struct DevEndpoint {
     properties: DevEndpointProperties
 }
@@ -177,7 +177,7 @@ impl From<DevEndpointProperties> for DevEndpoint {
     }
 }
 
-/// The [`AWS::Glue::Job`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-job.html) resource.
+/// The [`AWS::Glue::Job`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-job.html) resource type.
 pub struct Job {
     properties: JobProperties
 }
@@ -224,7 +224,7 @@ impl From<JobProperties> for Job {
     }
 }
 
-/// The [`AWS::Glue::Partition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-partition.html) resource.
+/// The [`AWS::Glue::Partition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-partition.html) resource type.
 pub struct Partition {
     properties: PartitionProperties
 }
@@ -259,7 +259,7 @@ impl From<PartitionProperties> for Partition {
     }
 }
 
-/// The [`AWS::Glue::Table`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-table.html) resource.
+/// The [`AWS::Glue::Table`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-table.html) resource type.
 pub struct Table {
     properties: TableProperties
 }
@@ -292,7 +292,7 @@ impl From<TableProperties> for Table {
     }
 }
 
-/// The [`AWS::Glue::Trigger`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-trigger.html) resource.
+/// The [`AWS::Glue::Trigger`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-trigger.html) resource type.
 pub struct Trigger {
     properties: TriggerProperties
 }
@@ -332,6 +332,7 @@ impl From<TriggerProperties> for Trigger {
 }
 
 pub mod classifier {
+    /// The [`AWS::Glue::Classifier.GrokClassifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-grokclassifier.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct GrokClassifier {
         #[serde(rename="Classification")]
@@ -347,6 +348,7 @@ pub mod classifier {
 }
 
 pub mod connection {
+    /// The [`AWS::Glue::Connection.ConnectionInput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-connectioninput.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ConnectionInput {
         #[serde(rename="ConnectionProperties")]
@@ -363,6 +365,7 @@ pub mod connection {
         pub physical_connection_requirements: PhysicalConnectionRequirements,
     }
 
+    /// The [`AWS::Glue::Connection.PhysicalConnectionRequirements`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-physicalconnectionrequirements.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct PhysicalConnectionRequirements {
         #[serde(rename="AvailabilityZone")]
@@ -376,6 +379,7 @@ pub mod connection {
 }
 
 pub mod crawler {
+    /// The [`AWS::Glue::Crawler.JdbcTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-jdbctarget.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct JdbcTarget {
         #[serde(rename="ConnectionName")]
@@ -386,6 +390,7 @@ pub mod crawler {
         pub path: String,
     }
 
+    /// The [`AWS::Glue::Crawler.S3Target`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-s3target.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct S3Target {
         #[serde(rename="Exclusions")]
@@ -394,12 +399,14 @@ pub mod crawler {
         pub path: String,
     }
 
+    /// The [`AWS::Glue::Crawler.Schedule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-schedule.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Schedule {
         #[serde(rename="ScheduleExpression")]
         pub schedule_expression: String,
     }
 
+    /// The [`AWS::Glue::Crawler.SchemaChangePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-schemachangepolicy.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct SchemaChangePolicy {
         #[serde(rename="DeleteBehavior")]
@@ -408,6 +415,7 @@ pub mod crawler {
         pub update_behavior: String,
     }
 
+    /// The [`AWS::Glue::Crawler.Targets`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-targets.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Targets {
         #[serde(rename="JdbcTargets")]
@@ -419,6 +427,7 @@ pub mod crawler {
 }
 
 pub mod database {
+    /// The [`AWS::Glue::Database.DatabaseInput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-database-databaseinput.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct DatabaseInput {
         #[serde(rename="Description")]
@@ -434,18 +443,21 @@ pub mod database {
 }
 
 pub mod job {
+    /// The [`AWS::Glue::Job.ConnectionsList`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-connectionslist.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ConnectionsList {
         #[serde(rename="Connections")]
         pub connections: Vec<String>,
     }
 
+    /// The [`AWS::Glue::Job.ExecutionProperty`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-executionproperty.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ExecutionProperty {
         #[serde(rename="MaxConcurrentRuns")]
         pub max_concurrent_runs: f64,
     }
 
+    /// The [`AWS::Glue::Job.JobCommand`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-jobcommand.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct JobCommand {
         #[serde(rename="Name")]
@@ -457,6 +469,7 @@ pub mod job {
 }
 
 pub mod partition {
+    /// The [`AWS::Glue::Partition.Column`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-column.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Column {
         #[serde(rename="Comment")]
@@ -467,6 +480,7 @@ pub mod partition {
         pub type_: String,
     }
 
+    /// The [`AWS::Glue::Partition.Order`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-order.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Order {
         #[serde(rename="Column")]
@@ -475,6 +489,7 @@ pub mod partition {
         pub sort_order: u32,
     }
 
+    /// The [`AWS::Glue::Partition.PartitionInput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-partitioninput.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct PartitionInput {
         #[serde(rename="Parameters")]
@@ -485,6 +500,7 @@ pub mod partition {
         pub values: Vec<String>,
     }
 
+    /// The [`AWS::Glue::Partition.SerdeInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-serdeinfo.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct SerdeInfo {
         #[serde(rename="Name")]
@@ -495,6 +511,7 @@ pub mod partition {
         pub serialization_library: String,
     }
 
+    /// The [`AWS::Glue::Partition.SkewedInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-skewedinfo.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct SkewedInfo {
         #[serde(rename="SkewedColumnNames")]
@@ -505,6 +522,7 @@ pub mod partition {
         pub skewed_column_values: Vec<String>,
     }
 
+    /// The [`AWS::Glue::Partition.StorageDescriptor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-storagedescriptor.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct StorageDescriptor {
         #[serde(rename="BucketColumns")]
@@ -536,6 +554,7 @@ pub mod partition {
 }
 
 pub mod table {
+    /// The [`AWS::Glue::Table.Column`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-column.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Column {
         #[serde(rename="Comment")]
@@ -546,6 +565,7 @@ pub mod table {
         pub type_: String,
     }
 
+    /// The [`AWS::Glue::Table.Order`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-order.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Order {
         #[serde(rename="Column")]
@@ -554,6 +574,7 @@ pub mod table {
         pub sort_order: u32,
     }
 
+    /// The [`AWS::Glue::Table.SerdeInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-serdeinfo.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct SerdeInfo {
         #[serde(rename="Name")]
@@ -564,6 +585,7 @@ pub mod table {
         pub serialization_library: String,
     }
 
+    /// The [`AWS::Glue::Table.SkewedInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-skewedinfo.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct SkewedInfo {
         #[serde(rename="SkewedColumnNames")]
@@ -574,6 +596,7 @@ pub mod table {
         pub skewed_column_values: Vec<String>,
     }
 
+    /// The [`AWS::Glue::Table.StorageDescriptor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-storagedescriptor.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct StorageDescriptor {
         #[serde(rename="BucketColumns")]
@@ -602,6 +625,7 @@ pub mod table {
         pub stored_as_sub_directories: bool,
     }
 
+    /// The [`AWS::Glue::Table.TableInput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-tableinput.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct TableInput {
         #[serde(rename="Description")]
@@ -629,6 +653,7 @@ pub mod table {
 }
 
 pub mod trigger {
+    /// The [`AWS::Glue::Trigger.Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-action.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Action {
         #[serde(rename="Arguments")]
@@ -637,6 +662,7 @@ pub mod trigger {
         pub job_name: String,
     }
 
+    /// The [`AWS::Glue::Trigger.Condition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-condition.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Condition {
         #[serde(rename="JobName")]
@@ -647,6 +673,7 @@ pub mod trigger {
         pub state: String,
     }
 
+    /// The [`AWS::Glue::Trigger.Predicate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-predicate.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Predicate {
         #[serde(rename="Conditions")]

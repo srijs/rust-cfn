@@ -1,4 +1,4 @@
-/// The [`AWS::Batch::ComputeEnvironment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-computeenvironment.html) resource.
+/// The [`AWS::Batch::ComputeEnvironment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-computeenvironment.html) resource type.
 pub struct ComputeEnvironment {
     properties: ComputeEnvironmentProperties
 }
@@ -35,7 +35,7 @@ impl From<ComputeEnvironmentProperties> for ComputeEnvironment {
     }
 }
 
-/// The [`AWS::Batch::JobDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html) resource.
+/// The [`AWS::Batch::JobDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html) resource type.
 pub struct JobDefinition {
     properties: JobDefinitionProperties
 }
@@ -72,7 +72,7 @@ impl From<JobDefinitionProperties> for JobDefinition {
     }
 }
 
-/// The [`AWS::Batch::JobQueue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobqueue.html) resource.
+/// The [`AWS::Batch::JobQueue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobqueue.html) resource type.
 pub struct JobQueue {
     properties: JobQueueProperties
 }
@@ -108,6 +108,7 @@ impl From<JobQueueProperties> for JobQueue {
 }
 
 pub mod compute_environment {
+    /// The [`AWS::Batch::ComputeEnvironment.ComputeResources`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ComputeResources {
         #[serde(rename="BidPercentage")]
@@ -141,6 +142,7 @@ pub mod compute_environment {
 }
 
 pub mod job_definition {
+    /// The [`AWS::Batch::JobDefinition.ContainerProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-containerproperties.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ContainerProperties {
         #[serde(rename="Command")]
@@ -169,6 +171,7 @@ pub mod job_definition {
         pub volumes: Vec<Volumes>,
     }
 
+    /// The [`AWS::Batch::JobDefinition.Environment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-environment.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Environment {
         #[serde(rename="Name")]
@@ -177,6 +180,7 @@ pub mod job_definition {
         pub value: String,
     }
 
+    /// The [`AWS::Batch::JobDefinition.MountPoints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-mountpoints.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct MountPoints {
         #[serde(rename="ContainerPath")]
@@ -187,12 +191,14 @@ pub mod job_definition {
         pub source_volume: String,
     }
 
+    /// The [`AWS::Batch::JobDefinition.RetryStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-retrystrategy.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct RetryStrategy {
         #[serde(rename="Attempts")]
         pub attempts: u32,
     }
 
+    /// The [`AWS::Batch::JobDefinition.Ulimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ulimit.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Ulimit {
         #[serde(rename="HardLimit")]
@@ -203,6 +209,7 @@ pub mod job_definition {
         pub soft_limit: u32,
     }
 
+    /// The [`AWS::Batch::JobDefinition.Volumes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-volumes.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Volumes {
         #[serde(rename="Host")]
@@ -211,6 +218,7 @@ pub mod job_definition {
         pub name: String,
     }
 
+    /// The [`AWS::Batch::JobDefinition.VolumesHost`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-volumeshost.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct VolumesHost {
         #[serde(rename="SourcePath")]
@@ -220,6 +228,7 @@ pub mod job_definition {
 }
 
 pub mod job_queue {
+    /// The [`AWS::Batch::JobQueue.ComputeEnvironmentOrder`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobqueue-computeenvironmentorder.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ComputeEnvironmentOrder {
         #[serde(rename="ComputeEnvironment")]

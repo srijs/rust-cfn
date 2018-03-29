@@ -1,4 +1,4 @@
-/// The [`AWS::SES::ConfigurationSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-configurationset.html) resource.
+/// The [`AWS::SES::ConfigurationSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-configurationset.html) resource type.
 pub struct ConfigurationSet {
     properties: ConfigurationSetProperties
 }
@@ -27,7 +27,7 @@ impl From<ConfigurationSetProperties> for ConfigurationSet {
     }
 }
 
-/// The [`AWS::SES::ConfigurationSetEventDestination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-configurationseteventdestination.html) resource.
+/// The [`AWS::SES::ConfigurationSetEventDestination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-configurationseteventdestination.html) resource type.
 pub struct ConfigurationSetEventDestination {
     properties: ConfigurationSetEventDestinationProperties
 }
@@ -58,7 +58,7 @@ impl From<ConfigurationSetEventDestinationProperties> for ConfigurationSetEventD
     }
 }
 
-/// The [`AWS::SES::ReceiptFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-receiptfilter.html) resource.
+/// The [`AWS::SES::ReceiptFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-receiptfilter.html) resource type.
 pub struct ReceiptFilter {
     properties: ReceiptFilterProperties
 }
@@ -87,7 +87,7 @@ impl From<ReceiptFilterProperties> for ReceiptFilter {
     }
 }
 
-/// The [`AWS::SES::ReceiptRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-receiptrule.html) resource.
+/// The [`AWS::SES::ReceiptRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-receiptrule.html) resource type.
 pub struct ReceiptRule {
     properties: ReceiptRuleProperties
 }
@@ -120,7 +120,7 @@ impl From<ReceiptRuleProperties> for ReceiptRule {
     }
 }
 
-/// The [`AWS::SES::ReceiptRuleSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-receiptruleset.html) resource.
+/// The [`AWS::SES::ReceiptRuleSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-receiptruleset.html) resource type.
 pub struct ReceiptRuleSet {
     properties: ReceiptRuleSetProperties
 }
@@ -149,7 +149,7 @@ impl From<ReceiptRuleSetProperties> for ReceiptRuleSet {
     }
 }
 
-/// The [`AWS::SES::Template`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-template.html) resource.
+/// The [`AWS::SES::Template`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-template.html) resource type.
 pub struct Template {
     properties: TemplateProperties
 }
@@ -179,12 +179,14 @@ impl From<TemplateProperties> for Template {
 }
 
 pub mod configuration_set_event_destination {
+    /// The [`AWS::SES::ConfigurationSetEventDestination.CloudWatchDestination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-cloudwatchdestination.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct CloudWatchDestination {
         #[serde(rename="DimensionConfigurations")]
         pub dimension_configurations: Vec<DimensionConfiguration>,
     }
 
+    /// The [`AWS::SES::ConfigurationSetEventDestination.DimensionConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-dimensionconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct DimensionConfiguration {
         #[serde(rename="DefaultDimensionValue")]
@@ -195,6 +197,7 @@ pub mod configuration_set_event_destination {
         pub dimension_value_source: String,
     }
 
+    /// The [`AWS::SES::ConfigurationSetEventDestination.EventDestination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-eventdestination.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct EventDestination {
         #[serde(rename="CloudWatchDestination")]
@@ -209,6 +212,7 @@ pub mod configuration_set_event_destination {
         pub name: String,
     }
 
+    /// The [`AWS::SES::ConfigurationSetEventDestination.KinesisFirehoseDestination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-kinesisfirehosedestination.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct KinesisFirehoseDestination {
         #[serde(rename="DeliveryStreamARN")]
@@ -220,6 +224,7 @@ pub mod configuration_set_event_destination {
 }
 
 pub mod receipt_filter {
+    /// The [`AWS::SES::ReceiptFilter.Filter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptfilter-filter.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Filter {
         #[serde(rename="IpFilter")]
@@ -228,6 +233,7 @@ pub mod receipt_filter {
         pub name: String,
     }
 
+    /// The [`AWS::SES::ReceiptFilter.IpFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptfilter-ipfilter.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct IpFilter {
         #[serde(rename="Cidr")]
@@ -239,6 +245,7 @@ pub mod receipt_filter {
 }
 
 pub mod receipt_rule {
+    /// The [`AWS::SES::ReceiptRule.Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-action.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Action {
         #[serde(rename="AddHeaderAction")]
@@ -257,6 +264,7 @@ pub mod receipt_rule {
         pub workmail_action: WorkmailAction,
     }
 
+    /// The [`AWS::SES::ReceiptRule.AddHeaderAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-addheaderaction.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct AddHeaderAction {
         #[serde(rename="HeaderName")]
@@ -265,6 +273,7 @@ pub mod receipt_rule {
         pub header_value: String,
     }
 
+    /// The [`AWS::SES::ReceiptRule.BounceAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-bounceaction.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct BounceAction {
         #[serde(rename="Message")]
@@ -279,6 +288,7 @@ pub mod receipt_rule {
         pub topic_arn: String,
     }
 
+    /// The [`AWS::SES::ReceiptRule.LambdaAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-lambdaaction.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct LambdaAction {
         #[serde(rename="FunctionArn")]
@@ -289,6 +299,7 @@ pub mod receipt_rule {
         pub topic_arn: String,
     }
 
+    /// The [`AWS::SES::ReceiptRule.Rule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-rule.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Rule {
         #[serde(rename="Actions")]
@@ -305,6 +316,7 @@ pub mod receipt_rule {
         pub tls_policy: String,
     }
 
+    /// The [`AWS::SES::ReceiptRule.S3Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-s3action.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct S3Action {
         #[serde(rename="BucketName")]
@@ -317,6 +329,7 @@ pub mod receipt_rule {
         pub topic_arn: String,
     }
 
+    /// The [`AWS::SES::ReceiptRule.SNSAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-snsaction.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct SNSAction {
         #[serde(rename="Encoding")]
@@ -325,6 +338,7 @@ pub mod receipt_rule {
         pub topic_arn: String,
     }
 
+    /// The [`AWS::SES::ReceiptRule.StopAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-stopaction.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct StopAction {
         #[serde(rename="Scope")]
@@ -333,6 +347,7 @@ pub mod receipt_rule {
         pub topic_arn: String,
     }
 
+    /// The [`AWS::SES::ReceiptRule.WorkmailAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-workmailaction.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct WorkmailAction {
         #[serde(rename="OrganizationArn")]
@@ -344,6 +359,7 @@ pub mod receipt_rule {
 }
 
 pub mod template {
+    /// The [`AWS::SES::Template.Template`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-template-template.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Template {
         #[serde(rename="HtmlPart")]

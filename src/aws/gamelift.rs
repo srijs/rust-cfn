@@ -1,4 +1,4 @@
-/// The [`AWS::GameLift::Alias`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-alias.html) resource.
+/// The [`AWS::GameLift::Alias`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-alias.html) resource type.
 pub struct Alias {
     properties: AliasProperties
 }
@@ -31,7 +31,7 @@ impl From<AliasProperties> for Alias {
     }
 }
 
-/// The [`AWS::GameLift::Build`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-build.html) resource.
+/// The [`AWS::GameLift::Build`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-build.html) resource type.
 pub struct Build {
     properties: BuildProperties
 }
@@ -64,7 +64,7 @@ impl From<BuildProperties> for Build {
     }
 }
 
-/// The [`AWS::GameLift::Fleet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html) resource.
+/// The [`AWS::GameLift::Fleet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html) resource type.
 pub struct Fleet {
     properties: FleetProperties
 }
@@ -114,6 +114,7 @@ impl From<FleetProperties> for Fleet {
 }
 
 pub mod alias {
+    /// The [`AWS::GameLift::Alias.RoutingStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-alias-routingstrategy.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct RoutingStrategy {
         #[serde(rename="FleetId")]
@@ -127,6 +128,7 @@ pub mod alias {
 }
 
 pub mod build {
+    /// The [`AWS::GameLift::Build.S3Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-build-storagelocation.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct S3Location {
         #[serde(rename="Bucket")]
@@ -140,6 +142,7 @@ pub mod build {
 }
 
 pub mod fleet {
+    /// The [`AWS::GameLift::Fleet.IpPermission`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-ec2inboundpermission.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct IpPermission {
         #[serde(rename="FromPort")]

@@ -1,4 +1,4 @@
-/// The [`AWS::CertificateManager::Certificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-certificatemanager-certificate.html) resource.
+/// The [`AWS::CertificateManager::Certificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-certificatemanager-certificate.html) resource type.
 pub struct Certificate {
     properties: CertificateProperties
 }
@@ -34,6 +34,7 @@ impl From<CertificateProperties> for Certificate {
 }
 
 pub mod certificate {
+    /// The [`AWS::CertificateManager::Certificate.DomainValidationOption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-certificatemanager-certificate-domainvalidationoption.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct DomainValidationOption {
         #[serde(rename="DomainName")]

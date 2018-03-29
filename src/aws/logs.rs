@@ -1,4 +1,4 @@
-/// The [`AWS::Logs::Destination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-destination.html) resource.
+/// The [`AWS::Logs::Destination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-destination.html) resource type.
 pub struct Destination {
     properties: DestinationProperties
 }
@@ -33,7 +33,7 @@ impl From<DestinationProperties> for Destination {
     }
 }
 
-/// The [`AWS::Logs::LogGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html) resource.
+/// The [`AWS::Logs::LogGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html) resource type.
 pub struct LogGroup {
     properties: LogGroupProperties
 }
@@ -64,7 +64,7 @@ impl From<LogGroupProperties> for LogGroup {
     }
 }
 
-/// The [`AWS::Logs::LogStream`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-logstream.html) resource.
+/// The [`AWS::Logs::LogStream`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-logstream.html) resource type.
 pub struct LogStream {
     properties: LogStreamProperties
 }
@@ -95,7 +95,7 @@ impl From<LogStreamProperties> for LogStream {
     }
 }
 
-/// The [`AWS::Logs::MetricFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-metricfilter.html) resource.
+/// The [`AWS::Logs::MetricFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-metricfilter.html) resource type.
 pub struct MetricFilter {
     properties: MetricFilterProperties
 }
@@ -128,7 +128,7 @@ impl From<MetricFilterProperties> for MetricFilter {
     }
 }
 
-/// The [`AWS::Logs::SubscriptionFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-subscriptionfilter.html) resource.
+/// The [`AWS::Logs::SubscriptionFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-subscriptionfilter.html) resource type.
 pub struct SubscriptionFilter {
     properties: SubscriptionFilterProperties
 }
@@ -164,6 +164,7 @@ impl From<SubscriptionFilterProperties> for SubscriptionFilter {
 }
 
 pub mod metric_filter {
+    /// The [`AWS::Logs::MetricFilter.MetricTransformation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-metricfilter-metrictransformation.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct MetricTransformation {
         #[serde(rename="MetricName")]

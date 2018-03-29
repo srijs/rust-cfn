@@ -1,4 +1,4 @@
-/// The [`AWS::Lambda::Alias`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-alias.html) resource.
+/// The [`AWS::Lambda::Alias`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-alias.html) resource type.
 pub struct Alias {
     properties: AliasProperties
 }
@@ -35,7 +35,7 @@ impl From<AliasProperties> for Alias {
     }
 }
 
-/// The [`AWS::Lambda::EventSourceMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html) resource.
+/// The [`AWS::Lambda::EventSourceMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html) resource type.
 pub struct EventSourceMapping {
     properties: EventSourceMappingProperties
 }
@@ -72,7 +72,7 @@ impl From<EventSourceMappingProperties> for EventSourceMapping {
     }
 }
 
-/// The [`AWS::Lambda::Function`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html) resource.
+/// The [`AWS::Lambda::Function`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html) resource type.
 pub struct Function {
     properties: FunctionProperties
 }
@@ -129,7 +129,7 @@ impl From<FunctionProperties> for Function {
     }
 }
 
-/// The [`AWS::Lambda::Permission`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html) resource.
+/// The [`AWS::Lambda::Permission`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html) resource type.
 pub struct Permission {
     properties: PermissionProperties
 }
@@ -168,7 +168,7 @@ impl From<PermissionProperties> for Permission {
     }
 }
 
-/// The [`AWS::Lambda::Version`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-version.html) resource.
+/// The [`AWS::Lambda::Version`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-version.html) resource type.
 pub struct Version {
     properties: VersionProperties
 }
@@ -202,12 +202,14 @@ impl From<VersionProperties> for Version {
 }
 
 pub mod alias {
+    /// The [`AWS::Lambda::Alias.AliasRoutingConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-alias-aliasroutingconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct AliasRoutingConfiguration {
         #[serde(rename="AdditionalVersionWeights")]
         pub additional_version_weights: Vec<VersionWeight>,
     }
 
+    /// The [`AWS::Lambda::Alias.VersionWeight`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-alias-versionweight.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct VersionWeight {
         #[serde(rename="FunctionVersion")]
@@ -219,6 +221,7 @@ pub mod alias {
 }
 
 pub mod function {
+    /// The [`AWS::Lambda::Function.Code`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-code.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Code {
         #[serde(rename="S3Bucket")]
@@ -231,24 +234,28 @@ pub mod function {
         pub zip_file: String,
     }
 
+    /// The [`AWS::Lambda::Function.DeadLetterConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-deadletterconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct DeadLetterConfig {
         #[serde(rename="TargetArn")]
         pub target_arn: String,
     }
 
+    /// The [`AWS::Lambda::Function.Environment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-environment.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Environment {
         #[serde(rename="Variables")]
         pub variables: ::std::collections::HashMap<String, String>,
     }
 
+    /// The [`AWS::Lambda::Function.TracingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-tracingconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct TracingConfig {
         #[serde(rename="Mode")]
         pub mode: String,
     }
 
+    /// The [`AWS::Lambda::Function.VpcConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-vpcconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct VpcConfig {
         #[serde(rename="SecurityGroupIds")]

@@ -1,4 +1,4 @@
-/// The [`AWS::S3::Bucket`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html) resource.
+/// The [`AWS::S3::Bucket`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html) resource type.
 pub struct Bucket {
     properties: BucketProperties
 }
@@ -55,7 +55,7 @@ impl From<BucketProperties> for Bucket {
     }
 }
 
-/// The [`AWS::S3::BucketPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-policy.html) resource.
+/// The [`AWS::S3::BucketPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-policy.html) resource type.
 pub struct BucketPolicy {
     properties: BucketPolicyProperties
 }
@@ -87,24 +87,28 @@ impl From<BucketPolicyProperties> for BucketPolicy {
 }
 
 pub mod bucket {
+    /// The [`AWS::S3::Bucket.AbortIncompleteMultipartUpload`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-abortincompletemultipartupload.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct AbortIncompleteMultipartUpload {
         #[serde(rename="DaysAfterInitiation")]
         pub days_after_initiation: u32,
     }
 
+    /// The [`AWS::S3::Bucket.AccelerateConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-accelerateconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct AccelerateConfiguration {
         #[serde(rename="AccelerationStatus")]
         pub acceleration_status: String,
     }
 
+    /// The [`AWS::S3::Bucket.AccessControlTranslation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-accesscontroltranslation.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct AccessControlTranslation {
         #[serde(rename="Owner")]
         pub owner: String,
     }
 
+    /// The [`AWS::S3::Bucket.AnalyticsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-analyticsconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct AnalyticsConfiguration {
         #[serde(rename="Id")]
@@ -117,18 +121,21 @@ pub mod bucket {
         pub tag_filters: Vec<TagFilter>,
     }
 
+    /// The [`AWS::S3::Bucket.BucketEncryption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-bucketencryption.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct BucketEncryption {
         #[serde(rename="ServerSideEncryptionConfiguration")]
         pub server_side_encryption_configuration: Vec<ServerSideEncryptionRule>,
     }
 
+    /// The [`AWS::S3::Bucket.CorsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-cors.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct CorsConfiguration {
         #[serde(rename="CorsRules")]
         pub cors_rules: Vec<CorsRule>,
     }
 
+    /// The [`AWS::S3::Bucket.CorsRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-cors-corsrule.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct CorsRule {
         #[serde(rename="AllowedHeaders")]
@@ -145,6 +152,7 @@ pub mod bucket {
         pub max_age: u32,
     }
 
+    /// The [`AWS::S3::Bucket.DataExport`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-dataexport.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct DataExport {
         #[serde(rename="Destination")]
@@ -153,6 +161,7 @@ pub mod bucket {
         pub output_schema_version: String,
     }
 
+    /// The [`AWS::S3::Bucket.Destination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-destination.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Destination {
         #[serde(rename="BucketAccountId")]
@@ -165,12 +174,14 @@ pub mod bucket {
         pub prefix: String,
     }
 
+    /// The [`AWS::S3::Bucket.EncryptionConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-encryptionconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct EncryptionConfiguration {
         #[serde(rename="ReplicaKmsKeyID")]
         pub replica_kms_key_id: String,
     }
 
+    /// The [`AWS::S3::Bucket.FilterRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfiguration-config-filter-s3key-rules.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct FilterRule {
         #[serde(rename="Name")]
@@ -179,6 +190,7 @@ pub mod bucket {
         pub value: String,
     }
 
+    /// The [`AWS::S3::Bucket.InventoryConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-inventoryconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct InventoryConfiguration {
         #[serde(rename="Destination")]
@@ -197,6 +209,7 @@ pub mod bucket {
         pub schedule_frequency: String,
     }
 
+    /// The [`AWS::S3::Bucket.LambdaConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig-lambdaconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct LambdaConfiguration {
         #[serde(rename="Event")]
@@ -207,12 +220,14 @@ pub mod bucket {
         pub function: String,
     }
 
+    /// The [`AWS::S3::Bucket.LifecycleConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct LifecycleConfiguration {
         #[serde(rename="Rules")]
         pub rules: Vec<Rule>,
     }
 
+    /// The [`AWS::S3::Bucket.LoggingConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-loggingconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct LoggingConfiguration {
         #[serde(rename="DestinationBucketName")]
@@ -221,6 +236,7 @@ pub mod bucket {
         pub log_file_prefix: String,
     }
 
+    /// The [`AWS::S3::Bucket.MetricsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-metricsconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct MetricsConfiguration {
         #[serde(rename="Id")]
@@ -231,6 +247,7 @@ pub mod bucket {
         pub tag_filters: Vec<TagFilter>,
     }
 
+    /// The [`AWS::S3::Bucket.NoncurrentVersionTransition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule-noncurrentversiontransition.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct NoncurrentVersionTransition {
         #[serde(rename="StorageClass")]
@@ -239,6 +256,7 @@ pub mod bucket {
         pub transition_in_days: u32,
     }
 
+    /// The [`AWS::S3::Bucket.NotificationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct NotificationConfiguration {
         #[serde(rename="LambdaConfigurations")]
@@ -249,12 +267,14 @@ pub mod bucket {
         pub topic_configurations: Vec<TopicConfiguration>,
     }
 
+    /// The [`AWS::S3::Bucket.NotificationFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfiguration-config-filter.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct NotificationFilter {
         #[serde(rename="S3Key")]
         pub s3_key: S3KeyFilter,
     }
 
+    /// The [`AWS::S3::Bucket.QueueConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig-queueconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct QueueConfiguration {
         #[serde(rename="Event")]
@@ -265,6 +285,7 @@ pub mod bucket {
         pub queue: String,
     }
 
+    /// The [`AWS::S3::Bucket.RedirectAllRequestsTo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration-redirectallrequeststo.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct RedirectAllRequestsTo {
         #[serde(rename="HostName")]
@@ -273,6 +294,7 @@ pub mod bucket {
         pub protocol: String,
     }
 
+    /// The [`AWS::S3::Bucket.RedirectRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration-routingrules-redirectrule.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct RedirectRule {
         #[serde(rename="HostName")]
@@ -287,6 +309,7 @@ pub mod bucket {
         pub replace_key_with: String,
     }
 
+    /// The [`AWS::S3::Bucket.ReplicationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ReplicationConfiguration {
         #[serde(rename="Role")]
@@ -295,6 +318,7 @@ pub mod bucket {
         pub rules: Vec<ReplicationRule>,
     }
 
+    /// The [`AWS::S3::Bucket.ReplicationDestination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration-rules-destination.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ReplicationDestination {
         #[serde(rename="AccessControlTranslation")]
@@ -309,6 +333,7 @@ pub mod bucket {
         pub storage_class: String,
     }
 
+    /// The [`AWS::S3::Bucket.ReplicationRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration-rules.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ReplicationRule {
         #[serde(rename="Destination")]
@@ -323,6 +348,7 @@ pub mod bucket {
         pub status: String,
     }
 
+    /// The [`AWS::S3::Bucket.RoutingRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration-routingrules.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct RoutingRule {
         #[serde(rename="RedirectRule")]
@@ -331,6 +357,7 @@ pub mod bucket {
         pub routing_rule_condition: RoutingRuleCondition,
     }
 
+    /// The [`AWS::S3::Bucket.RoutingRuleCondition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration-routingrules-routingrulecondition.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct RoutingRuleCondition {
         #[serde(rename="HttpErrorCodeReturnedEquals")]
@@ -339,6 +366,7 @@ pub mod bucket {
         pub key_prefix_equals: String,
     }
 
+    /// The [`AWS::S3::Bucket.Rule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Rule {
         #[serde(rename="AbortIncompleteMultipartUpload")]
@@ -367,12 +395,14 @@ pub mod bucket {
         pub transitions: Vec<Transition>,
     }
 
+    /// The [`AWS::S3::Bucket.S3KeyFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfiguration-config-filter-s3key.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct S3KeyFilter {
         #[serde(rename="Rules")]
         pub rules: Vec<FilterRule>,
     }
 
+    /// The [`AWS::S3::Bucket.ServerSideEncryptionByDefault`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionbydefault.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ServerSideEncryptionByDefault {
         #[serde(rename="KMSMasterKeyID")]
@@ -381,30 +411,35 @@ pub mod bucket {
         pub sse_algorithm: String,
     }
 
+    /// The [`AWS::S3::Bucket.ServerSideEncryptionRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionrule.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ServerSideEncryptionRule {
         #[serde(rename="ServerSideEncryptionByDefault")]
         pub server_side_encryption_by_default: ServerSideEncryptionByDefault,
     }
 
+    /// The [`AWS::S3::Bucket.SourceSelectionCriteria`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-sourceselectioncriteria.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct SourceSelectionCriteria {
         #[serde(rename="SseKmsEncryptedObjects")]
         pub sse_kms_encrypted_objects: SseKmsEncryptedObjects,
     }
 
+    /// The [`AWS::S3::Bucket.SseKmsEncryptedObjects`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-ssekmsencryptedobjects.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct SseKmsEncryptedObjects {
         #[serde(rename="Status")]
         pub status: String,
     }
 
+    /// The [`AWS::S3::Bucket.StorageClassAnalysis`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-storageclassanalysis.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct StorageClassAnalysis {
         #[serde(rename="DataExport")]
         pub data_export: DataExport,
     }
 
+    /// The [`AWS::S3::Bucket.TagFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-tagfilter.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct TagFilter {
         #[serde(rename="Key")]
@@ -413,6 +448,7 @@ pub mod bucket {
         pub value: String,
     }
 
+    /// The [`AWS::S3::Bucket.TopicConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig-topicconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct TopicConfiguration {
         #[serde(rename="Event")]
@@ -423,6 +459,7 @@ pub mod bucket {
         pub topic: String,
     }
 
+    /// The [`AWS::S3::Bucket.Transition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule-transition.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Transition {
         #[serde(rename="StorageClass")]
@@ -433,12 +470,14 @@ pub mod bucket {
         pub transition_in_days: u32,
     }
 
+    /// The [`AWS::S3::Bucket.VersioningConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-versioningconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct VersioningConfiguration {
         #[serde(rename="Status")]
         pub status: String,
     }
 
+    /// The [`AWS::S3::Bucket.WebsiteConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct WebsiteConfiguration {
         #[serde(rename="ErrorDocument")]

@@ -77,10 +77,15 @@ struct ResourceInner {
 
 pub trait Resource<'a>: Sized {
     const TYPE: &'static str;
-    type Properties: Into<Self> + serde::Serialize + serde::de::Deserialize<'a>;
+    type Properties: Into<Self> + private::Properties<'a>;
 
     fn properties(&self) -> &Self::Properties;
     fn properties_mut(&mut self) -> &mut Self::Properties;
+}
+
+mod private {
+    pub trait Properties<'a>: ::serde::Serialize + ::serde::de::Deserialize<'a> {}
+    impl<'a, P> Properties<'a> for P where P: ::serde::Serialize + ::serde::de::Deserialize<'a> {}
 }
 
 #[derive(Serialize, Deserialize)]

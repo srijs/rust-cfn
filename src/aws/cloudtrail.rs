@@ -1,4 +1,4 @@
-/// The [`AWS::CloudTrail::Trail`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html) resource.
+/// The [`AWS::CloudTrail::Trail`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html) resource type.
 pub struct Trail {
     properties: TrailProperties
 }
@@ -52,6 +52,7 @@ impl From<TrailProperties> for Trail {
 }
 
 pub mod trail {
+    /// The [`AWS::CloudTrail::Trail.DataResource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-dataresource.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct DataResource {
         #[serde(rename="Type")]
@@ -60,6 +61,7 @@ pub mod trail {
         pub values: Vec<String>,
     }
 
+    /// The [`AWS::CloudTrail::Trail.EventSelector`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-eventselector.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct EventSelector {
         #[serde(rename="DataResources")]

@@ -1,4 +1,4 @@
-/// The [`AWS::ElasticLoadBalancing::LoadBalancer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb.html) resource.
+/// The [`AWS::ElasticLoadBalancing::LoadBalancer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb.html) resource type.
 pub struct LoadBalancer {
     properties: LoadBalancerProperties
 }
@@ -58,6 +58,7 @@ impl From<LoadBalancerProperties> for LoadBalancer {
 }
 
 pub mod load_balancer {
+    /// The [`AWS::ElasticLoadBalancing::LoadBalancer.AccessLoggingPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-accessloggingpolicy.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct AccessLoggingPolicy {
         #[serde(rename="EmitInterval")]
@@ -70,6 +71,7 @@ pub mod load_balancer {
         pub s3_bucket_prefix: String,
     }
 
+    /// The [`AWS::ElasticLoadBalancing::LoadBalancer.AppCookieStickinessPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-AppCookieStickinessPolicy.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct AppCookieStickinessPolicy {
         #[serde(rename="CookieName")]
@@ -78,6 +80,7 @@ pub mod load_balancer {
         pub policy_name: String,
     }
 
+    /// The [`AWS::ElasticLoadBalancing::LoadBalancer.ConnectionDrainingPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-connectiondrainingpolicy.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ConnectionDrainingPolicy {
         #[serde(rename="Enabled")]
@@ -86,12 +89,14 @@ pub mod load_balancer {
         pub timeout: u32,
     }
 
+    /// The [`AWS::ElasticLoadBalancing::LoadBalancer.ConnectionSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-connectionsettings.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ConnectionSettings {
         #[serde(rename="IdleTimeout")]
         pub idle_timeout: u32,
     }
 
+    /// The [`AWS::ElasticLoadBalancing::LoadBalancer.HealthCheck`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-health-check.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct HealthCheck {
         #[serde(rename="HealthyThreshold")]
@@ -106,6 +111,7 @@ pub mod load_balancer {
         pub unhealthy_threshold: String,
     }
 
+    /// The [`AWS::ElasticLoadBalancing::LoadBalancer.LBCookieStickinessPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-LBCookieStickinessPolicy.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct LBCookieStickinessPolicy {
         #[serde(rename="CookieExpirationPeriod")]
@@ -114,6 +120,7 @@ pub mod load_balancer {
         pub policy_name: String,
     }
 
+    /// The [`AWS::ElasticLoadBalancing::LoadBalancer.Listeners`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-listener.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Listeners {
         #[serde(rename="InstancePort")]
@@ -130,6 +137,7 @@ pub mod load_balancer {
         pub ssl_certificate_id: String,
     }
 
+    /// The [`AWS::ElasticLoadBalancing::LoadBalancer.Policies`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-policy.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Policies {
         #[serde(rename="Attributes")]

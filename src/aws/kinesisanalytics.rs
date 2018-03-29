@@ -1,4 +1,4 @@
-/// The [`AWS::KinesisAnalytics::Application`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalytics-application.html) resource.
+/// The [`AWS::KinesisAnalytics::Application`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalytics-application.html) resource type.
 pub struct Application {
     properties: ApplicationProperties
 }
@@ -33,7 +33,7 @@ impl From<ApplicationProperties> for Application {
     }
 }
 
-/// The [`AWS::KinesisAnalytics::ApplicationOutput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalytics-applicationoutput.html) resource.
+/// The [`AWS::KinesisAnalytics::ApplicationOutput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalytics-applicationoutput.html) resource type.
 pub struct ApplicationOutput {
     properties: ApplicationOutputProperties
 }
@@ -64,7 +64,7 @@ impl From<ApplicationOutputProperties> for ApplicationOutput {
     }
 }
 
-/// The [`AWS::KinesisAnalytics::ApplicationReferenceDataSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalytics-applicationreferencedatasource.html) resource.
+/// The [`AWS::KinesisAnalytics::ApplicationReferenceDataSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalytics-applicationreferencedatasource.html) resource type.
 pub struct ApplicationReferenceDataSource {
     properties: ApplicationReferenceDataSourceProperties
 }
@@ -96,6 +96,7 @@ impl From<ApplicationReferenceDataSourceProperties> for ApplicationReferenceData
 }
 
 pub mod application {
+    /// The [`AWS::KinesisAnalytics::Application.CSVMappingParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-csvmappingparameters.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct CSVMappingParameters {
         #[serde(rename="RecordColumnDelimiter")]
@@ -104,6 +105,7 @@ pub mod application {
         pub record_row_delimiter: String,
     }
 
+    /// The [`AWS::KinesisAnalytics::Application.Input`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-input.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Input {
         #[serde(rename="InputParallelism")]
@@ -120,6 +122,7 @@ pub mod application {
         pub name_prefix: String,
     }
 
+    /// The [`AWS::KinesisAnalytics::Application.InputLambdaProcessor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputlambdaprocessor.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct InputLambdaProcessor {
         #[serde(rename="ResourceARN")]
@@ -128,18 +131,21 @@ pub mod application {
         pub role_arn: String,
     }
 
+    /// The [`AWS::KinesisAnalytics::Application.InputParallelism`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputparallelism.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct InputParallelism {
         #[serde(rename="Count")]
         pub count: u32,
     }
 
+    /// The [`AWS::KinesisAnalytics::Application.InputProcessingConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputprocessingconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct InputProcessingConfiguration {
         #[serde(rename="InputLambdaProcessor")]
         pub input_lambda_processor: InputLambdaProcessor,
     }
 
+    /// The [`AWS::KinesisAnalytics::Application.InputSchema`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputschema.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct InputSchema {
         #[serde(rename="RecordColumns")]
@@ -150,12 +156,14 @@ pub mod application {
         pub record_format: RecordFormat,
     }
 
+    /// The [`AWS::KinesisAnalytics::Application.JSONMappingParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-jsonmappingparameters.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct JSONMappingParameters {
         #[serde(rename="RecordRowPath")]
         pub record_row_path: String,
     }
 
+    /// The [`AWS::KinesisAnalytics::Application.KinesisFirehoseInput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-kinesisfirehoseinput.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct KinesisFirehoseInput {
         #[serde(rename="ResourceARN")]
@@ -164,6 +172,7 @@ pub mod application {
         pub role_arn: String,
     }
 
+    /// The [`AWS::KinesisAnalytics::Application.KinesisStreamsInput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-kinesisstreamsinput.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct KinesisStreamsInput {
         #[serde(rename="ResourceARN")]
@@ -172,6 +181,7 @@ pub mod application {
         pub role_arn: String,
     }
 
+    /// The [`AWS::KinesisAnalytics::Application.MappingParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-mappingparameters.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct MappingParameters {
         #[serde(rename="CSVMappingParameters")]
@@ -180,6 +190,7 @@ pub mod application {
         pub json_mapping_parameters: JSONMappingParameters,
     }
 
+    /// The [`AWS::KinesisAnalytics::Application.RecordColumn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-recordcolumn.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct RecordColumn {
         #[serde(rename="Mapping")]
@@ -190,6 +201,7 @@ pub mod application {
         pub sql_type: String,
     }
 
+    /// The [`AWS::KinesisAnalytics::Application.RecordFormat`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-recordformat.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct RecordFormat {
         #[serde(rename="MappingParameters")]
@@ -201,12 +213,14 @@ pub mod application {
 }
 
 pub mod application_output {
+    /// The [`AWS::KinesisAnalytics::ApplicationOutput.DestinationSchema`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-destinationschema.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct DestinationSchema {
         #[serde(rename="RecordFormatType")]
         pub record_format_type: String,
     }
 
+    /// The [`AWS::KinesisAnalytics::ApplicationOutput.KinesisFirehoseOutput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-kinesisfirehoseoutput.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct KinesisFirehoseOutput {
         #[serde(rename="ResourceARN")]
@@ -215,6 +229,7 @@ pub mod application_output {
         pub role_arn: String,
     }
 
+    /// The [`AWS::KinesisAnalytics::ApplicationOutput.KinesisStreamsOutput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-kinesisstreamsoutput.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct KinesisStreamsOutput {
         #[serde(rename="ResourceARN")]
@@ -223,6 +238,7 @@ pub mod application_output {
         pub role_arn: String,
     }
 
+    /// The [`AWS::KinesisAnalytics::ApplicationOutput.LambdaOutput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-lambdaoutput.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct LambdaOutput {
         #[serde(rename="ResourceARN")]
@@ -231,6 +247,7 @@ pub mod application_output {
         pub role_arn: String,
     }
 
+    /// The [`AWS::KinesisAnalytics::ApplicationOutput.Output`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-output.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Output {
         #[serde(rename="DestinationSchema")]
@@ -248,6 +265,7 @@ pub mod application_output {
 }
 
 pub mod application_reference_data_source {
+    /// The [`AWS::KinesisAnalytics::ApplicationReferenceDataSource.CSVMappingParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-csvmappingparameters.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct CSVMappingParameters {
         #[serde(rename="RecordColumnDelimiter")]
@@ -256,12 +274,14 @@ pub mod application_reference_data_source {
         pub record_row_delimiter: String,
     }
 
+    /// The [`AWS::KinesisAnalytics::ApplicationReferenceDataSource.JSONMappingParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-jsonmappingparameters.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct JSONMappingParameters {
         #[serde(rename="RecordRowPath")]
         pub record_row_path: String,
     }
 
+    /// The [`AWS::KinesisAnalytics::ApplicationReferenceDataSource.MappingParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-mappingparameters.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct MappingParameters {
         #[serde(rename="CSVMappingParameters")]
@@ -270,6 +290,7 @@ pub mod application_reference_data_source {
         pub json_mapping_parameters: JSONMappingParameters,
     }
 
+    /// The [`AWS::KinesisAnalytics::ApplicationReferenceDataSource.RecordColumn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-recordcolumn.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct RecordColumn {
         #[serde(rename="Mapping")]
@@ -280,6 +301,7 @@ pub mod application_reference_data_source {
         pub sql_type: String,
     }
 
+    /// The [`AWS::KinesisAnalytics::ApplicationReferenceDataSource.RecordFormat`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-recordformat.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct RecordFormat {
         #[serde(rename="MappingParameters")]
@@ -288,6 +310,7 @@ pub mod application_reference_data_source {
         pub record_format_type: String,
     }
 
+    /// The [`AWS::KinesisAnalytics::ApplicationReferenceDataSource.ReferenceDataSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-referencedatasource.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ReferenceDataSource {
         #[serde(rename="ReferenceSchema")]
@@ -298,6 +321,7 @@ pub mod application_reference_data_source {
         pub table_name: String,
     }
 
+    /// The [`AWS::KinesisAnalytics::ApplicationReferenceDataSource.ReferenceSchema`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-referenceschema.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ReferenceSchema {
         #[serde(rename="RecordColumns")]
@@ -308,6 +332,7 @@ pub mod application_reference_data_source {
         pub record_format: RecordFormat,
     }
 
+    /// The [`AWS::KinesisAnalytics::ApplicationReferenceDataSource.S3ReferenceDataSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-s3referencedatasource.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct S3ReferenceDataSource {
         #[serde(rename="BucketARN")]

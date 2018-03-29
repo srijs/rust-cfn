@@ -1,4 +1,4 @@
-/// The [`AWS::DirectoryService::MicrosoftAD`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-microsoftad.html) resource.
+/// The [`AWS::DirectoryService::MicrosoftAD`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-microsoftad.html) resource type.
 pub struct MicrosoftAD {
     properties: MicrosoftADProperties
 }
@@ -37,7 +37,7 @@ impl From<MicrosoftADProperties> for MicrosoftAD {
     }
 }
 
-/// The [`AWS::DirectoryService::SimpleAD`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-simplead.html) resource.
+/// The [`AWS::DirectoryService::SimpleAD`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-simplead.html) resource type.
 pub struct SimpleAD {
     properties: SimpleADProperties
 }
@@ -81,6 +81,7 @@ impl From<SimpleADProperties> for SimpleAD {
 }
 
 pub mod microsoft_ad {
+    /// The [`AWS::DirectoryService::MicrosoftAD.VpcSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-directoryservice-microsoftad-vpcsettings.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct VpcSettings {
         #[serde(rename="SubnetIds")]
@@ -92,6 +93,7 @@ pub mod microsoft_ad {
 }
 
 pub mod simple_ad {
+    /// The [`AWS::DirectoryService::SimpleAD.VpcSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-directoryservice-simplead-vpcsettings.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct VpcSettings {
         #[serde(rename="SubnetIds")]

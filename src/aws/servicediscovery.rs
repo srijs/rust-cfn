@@ -1,4 +1,4 @@
-/// The [`AWS::ServiceDiscovery::Instance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-instance.html) resource.
+/// The [`AWS::ServiceDiscovery::Instance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-instance.html) resource type.
 pub struct Instance {
     properties: InstanceProperties
 }
@@ -31,7 +31,7 @@ impl From<InstanceProperties> for Instance {
     }
 }
 
-/// The [`AWS::ServiceDiscovery::PrivateDnsNamespace`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-privatednsnamespace.html) resource.
+/// The [`AWS::ServiceDiscovery::PrivateDnsNamespace`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-privatednsnamespace.html) resource type.
 pub struct PrivateDnsNamespace {
     properties: PrivateDnsNamespaceProperties
 }
@@ -64,7 +64,7 @@ impl From<PrivateDnsNamespaceProperties> for PrivateDnsNamespace {
     }
 }
 
-/// The [`AWS::ServiceDiscovery::PublicDnsNamespace`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-publicdnsnamespace.html) resource.
+/// The [`AWS::ServiceDiscovery::PublicDnsNamespace`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-publicdnsnamespace.html) resource type.
 pub struct PublicDnsNamespace {
     properties: PublicDnsNamespaceProperties
 }
@@ -95,7 +95,7 @@ impl From<PublicDnsNamespaceProperties> for PublicDnsNamespace {
     }
 }
 
-/// The [`AWS::ServiceDiscovery::Service`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-service.html) resource.
+/// The [`AWS::ServiceDiscovery::Service`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-service.html) resource type.
 pub struct Service {
     properties: ServiceProperties
 }
@@ -131,6 +131,7 @@ impl From<ServiceProperties> for Service {
 }
 
 pub mod service {
+    /// The [`AWS::ServiceDiscovery::Service.DnsConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-dnsconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct DnsConfig {
         #[serde(rename="DnsRecords")]
@@ -139,6 +140,7 @@ pub mod service {
         pub namespace_id: String,
     }
 
+    /// The [`AWS::ServiceDiscovery::Service.DnsRecord`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-dnsrecord.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct DnsRecord {
         #[serde(rename="TTL")]
@@ -147,6 +149,7 @@ pub mod service {
         pub type_: String,
     }
 
+    /// The [`AWS::ServiceDiscovery::Service.HealthCheckConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-healthcheckconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct HealthCheckConfig {
         #[serde(rename="FailureThreshold")]

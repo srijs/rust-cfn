@@ -1,4 +1,4 @@
-/// The [`AWS::Inspector::AssessmentTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttarget.html) resource.
+/// The [`AWS::Inspector::AssessmentTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttarget.html) resource type.
 pub struct AssessmentTarget {
     properties: AssessmentTargetProperties
 }
@@ -29,7 +29,7 @@ impl From<AssessmentTargetProperties> for AssessmentTarget {
     }
 }
 
-/// The [`AWS::Inspector::AssessmentTemplate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttemplate.html) resource.
+/// The [`AWS::Inspector::AssessmentTemplate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttemplate.html) resource type.
 pub struct AssessmentTemplate {
     properties: AssessmentTemplateProperties
 }
@@ -66,7 +66,7 @@ impl From<AssessmentTemplateProperties> for AssessmentTemplate {
     }
 }
 
-/// The [`AWS::Inspector::ResourceGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-resourcegroup.html) resource.
+/// The [`AWS::Inspector::ResourceGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-resourcegroup.html) resource type.
 pub struct ResourceGroup {
     properties: ResourceGroupProperties
 }

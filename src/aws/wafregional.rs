@@ -1,4 +1,4 @@
-/// The [`AWS::WAFRegional::ByteMatchSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-bytematchset.html) resource.
+/// The [`AWS::WAFRegional::ByteMatchSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-bytematchset.html) resource type.
 pub struct ByteMatchSet {
     properties: ByteMatchSetProperties
 }
@@ -29,7 +29,7 @@ impl From<ByteMatchSetProperties> for ByteMatchSet {
     }
 }
 
-/// The [`AWS::WAFRegional::IPSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-ipset.html) resource.
+/// The [`AWS::WAFRegional::IPSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-ipset.html) resource type.
 pub struct IPSet {
     properties: IPSetProperties
 }
@@ -60,7 +60,7 @@ impl From<IPSetProperties> for IPSet {
     }
 }
 
-/// The [`AWS::WAFRegional::Rule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-rule.html) resource.
+/// The [`AWS::WAFRegional::Rule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-rule.html) resource type.
 pub struct Rule {
     properties: RuleProperties
 }
@@ -93,7 +93,7 @@ impl From<RuleProperties> for Rule {
     }
 }
 
-/// The [`AWS::WAFRegional::SizeConstraintSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-sizeconstraintset.html) resource.
+/// The [`AWS::WAFRegional::SizeConstraintSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-sizeconstraintset.html) resource type.
 pub struct SizeConstraintSet {
     properties: SizeConstraintSetProperties
 }
@@ -124,7 +124,7 @@ impl From<SizeConstraintSetProperties> for SizeConstraintSet {
     }
 }
 
-/// The [`AWS::WAFRegional::SqlInjectionMatchSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-sqlinjectionmatchset.html) resource.
+/// The [`AWS::WAFRegional::SqlInjectionMatchSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-sqlinjectionmatchset.html) resource type.
 pub struct SqlInjectionMatchSet {
     properties: SqlInjectionMatchSetProperties
 }
@@ -155,7 +155,7 @@ impl From<SqlInjectionMatchSetProperties> for SqlInjectionMatchSet {
     }
 }
 
-/// The [`AWS::WAFRegional::WebACL`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-webacl.html) resource.
+/// The [`AWS::WAFRegional::WebACL`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-webacl.html) resource type.
 pub struct WebACL {
     properties: WebACLProperties
 }
@@ -190,7 +190,7 @@ impl From<WebACLProperties> for WebACL {
     }
 }
 
-/// The [`AWS::WAFRegional::WebACLAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-webaclassociation.html) resource.
+/// The [`AWS::WAFRegional::WebACLAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-webaclassociation.html) resource type.
 pub struct WebACLAssociation {
     properties: WebACLAssociationProperties
 }
@@ -221,7 +221,7 @@ impl From<WebACLAssociationProperties> for WebACLAssociation {
     }
 }
 
-/// The [`AWS::WAFRegional::XssMatchSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-xssmatchset.html) resource.
+/// The [`AWS::WAFRegional::XssMatchSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-xssmatchset.html) resource type.
 pub struct XssMatchSet {
     properties: XssMatchSetProperties
 }
@@ -253,6 +253,7 @@ impl From<XssMatchSetProperties> for XssMatchSet {
 }
 
 pub mod byte_match_set {
+    /// The [`AWS::WAFRegional::ByteMatchSet.ByteMatchTuple`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-bytematchset-bytematchtuple.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ByteMatchTuple {
         #[serde(rename="FieldToMatch")]
@@ -267,6 +268,7 @@ pub mod byte_match_set {
         pub text_transformation: String,
     }
 
+    /// The [`AWS::WAFRegional::ByteMatchSet.FieldToMatch`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-bytematchset-fieldtomatch.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct FieldToMatch {
         #[serde(rename="Data")]
@@ -278,6 +280,7 @@ pub mod byte_match_set {
 }
 
 pub mod ip_set {
+    /// The [`AWS::WAFRegional::IPSet.IPSetDescriptor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-ipset-ipsetdescriptor.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct IPSetDescriptor {
         #[serde(rename="Type")]
@@ -289,6 +292,7 @@ pub mod ip_set {
 }
 
 pub mod rule {
+    /// The [`AWS::WAFRegional::Rule.Predicate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-rule-predicate.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Predicate {
         #[serde(rename="DataId")]
@@ -302,6 +306,7 @@ pub mod rule {
 }
 
 pub mod size_constraint_set {
+    /// The [`AWS::WAFRegional::SizeConstraintSet.FieldToMatch`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-sizeconstraintset-fieldtomatch.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct FieldToMatch {
         #[serde(rename="Data")]
@@ -310,6 +315,7 @@ pub mod size_constraint_set {
         pub type_: String,
     }
 
+    /// The [`AWS::WAFRegional::SizeConstraintSet.SizeConstraint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-sizeconstraintset-sizeconstraint.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct SizeConstraint {
         #[serde(rename="ComparisonOperator")]
@@ -325,6 +331,7 @@ pub mod size_constraint_set {
 }
 
 pub mod sql_injection_match_set {
+    /// The [`AWS::WAFRegional::SqlInjectionMatchSet.FieldToMatch`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-sqlinjectionmatchset-fieldtomatch.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct FieldToMatch {
         #[serde(rename="Data")]
@@ -333,6 +340,7 @@ pub mod sql_injection_match_set {
         pub type_: String,
     }
 
+    /// The [`AWS::WAFRegional::SqlInjectionMatchSet.SqlInjectionMatchTuple`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-sqlinjectionmatchset-sqlinjectionmatchtuple.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct SqlInjectionMatchTuple {
         #[serde(rename="FieldToMatch")]
@@ -344,12 +352,14 @@ pub mod sql_injection_match_set {
 }
 
 pub mod web_acl {
+    /// The [`AWS::WAFRegional::WebACL.Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-webacl-action.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Action {
         #[serde(rename="Type")]
         pub type_: String,
     }
 
+    /// The [`AWS::WAFRegional::WebACL.Rule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-webacl-rule.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Rule {
         #[serde(rename="Action")]
@@ -363,6 +373,7 @@ pub mod web_acl {
 }
 
 pub mod xss_match_set {
+    /// The [`AWS::WAFRegional::XssMatchSet.FieldToMatch`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-xssmatchset-fieldtomatch.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct FieldToMatch {
         #[serde(rename="Data")]
@@ -371,6 +382,7 @@ pub mod xss_match_set {
         pub type_: String,
     }
 
+    /// The [`AWS::WAFRegional::XssMatchSet.XssMatchTuple`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-xssmatchset-xssmatchtuple.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct XssMatchTuple {
         #[serde(rename="FieldToMatch")]

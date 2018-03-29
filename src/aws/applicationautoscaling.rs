@@ -1,4 +1,4 @@
-/// The [`AWS::ApplicationAutoScaling::ScalableTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalabletarget.html) resource.
+/// The [`AWS::ApplicationAutoScaling::ScalableTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalabletarget.html) resource type.
 pub struct ScalableTarget {
     properties: ScalableTargetProperties
 }
@@ -39,7 +39,7 @@ impl From<ScalableTargetProperties> for ScalableTarget {
     }
 }
 
-/// The [`AWS::ApplicationAutoScaling::ScalingPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalingpolicy.html) resource.
+/// The [`AWS::ApplicationAutoScaling::ScalingPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalingpolicy.html) resource type.
 pub struct ScalingPolicy {
     properties: ScalingPolicyProperties
 }
@@ -83,6 +83,7 @@ impl From<ScalingPolicyProperties> for ScalingPolicy {
 }
 
 pub mod scalable_target {
+    /// The [`AWS::ApplicationAutoScaling::ScalableTarget.ScalableTargetAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalabletarget-scalabletargetaction.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ScalableTargetAction {
         #[serde(rename="MaxCapacity")]
@@ -91,6 +92,7 @@ pub mod scalable_target {
         pub min_capacity: u32,
     }
 
+    /// The [`AWS::ApplicationAutoScaling::ScalableTarget.ScheduledAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalabletarget-scheduledaction.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ScheduledAction {
         #[serde(rename="EndTime")]
@@ -108,6 +110,7 @@ pub mod scalable_target {
 }
 
 pub mod scaling_policy {
+    /// The [`AWS::ApplicationAutoScaling::ScalingPolicy.CustomizedMetricSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-customizedmetricspecification.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct CustomizedMetricSpecification {
         #[serde(rename="Dimensions")]
@@ -122,6 +125,7 @@ pub mod scaling_policy {
         pub unit: String,
     }
 
+    /// The [`AWS::ApplicationAutoScaling::ScalingPolicy.MetricDimension`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-metricdimension.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct MetricDimension {
         #[serde(rename="Name")]
@@ -130,6 +134,7 @@ pub mod scaling_policy {
         pub value: String,
     }
 
+    /// The [`AWS::ApplicationAutoScaling::ScalingPolicy.PredefinedMetricSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predefinedmetricspecification.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct PredefinedMetricSpecification {
         #[serde(rename="PredefinedMetricType")]
@@ -138,6 +143,7 @@ pub mod scaling_policy {
         pub resource_label: String,
     }
 
+    /// The [`AWS::ApplicationAutoScaling::ScalingPolicy.StepAdjustment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration-stepadjustment.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct StepAdjustment {
         #[serde(rename="MetricIntervalLowerBound")]
@@ -148,6 +154,7 @@ pub mod scaling_policy {
         pub scaling_adjustment: u32,
     }
 
+    /// The [`AWS::ApplicationAutoScaling::ScalingPolicy.StepScalingPolicyConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct StepScalingPolicyConfiguration {
         #[serde(rename="AdjustmentType")]
@@ -162,6 +169,7 @@ pub mod scaling_policy {
         pub step_adjustments: Vec<StepAdjustment>,
     }
 
+    /// The [`AWS::ApplicationAutoScaling::ScalingPolicy.TargetTrackingScalingPolicyConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingscalingpolicyconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct TargetTrackingScalingPolicyConfiguration {
         #[serde(rename="CustomizedMetricSpecification")]

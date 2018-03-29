@@ -1,4 +1,4 @@
-/// The [`AWS::ApiGateway::Account`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-account.html) resource.
+/// The [`AWS::ApiGateway::Account`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-account.html) resource type.
 pub struct Account {
     properties: AccountProperties
 }
@@ -27,7 +27,7 @@ impl From<AccountProperties> for Account {
     }
 }
 
-/// The [`AWS::ApiGateway::ApiKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-apikey.html) resource.
+/// The [`AWS::ApiGateway::ApiKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-apikey.html) resource type.
 pub struct ApiKey {
     properties: ApiKeyProperties
 }
@@ -66,7 +66,7 @@ impl From<ApiKeyProperties> for ApiKey {
     }
 }
 
-/// The [`AWS::ApiGateway::Authorizer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-authorizer.html) resource.
+/// The [`AWS::ApiGateway::Authorizer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-authorizer.html) resource type.
 pub struct Authorizer {
     properties: AuthorizerProperties
 }
@@ -113,7 +113,7 @@ impl From<AuthorizerProperties> for Authorizer {
     }
 }
 
-/// The [`AWS::ApiGateway::BasePathMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-basepathmapping.html) resource.
+/// The [`AWS::ApiGateway::BasePathMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-basepathmapping.html) resource type.
 pub struct BasePathMapping {
     properties: BasePathMappingProperties
 }
@@ -148,7 +148,7 @@ impl From<BasePathMappingProperties> for BasePathMapping {
     }
 }
 
-/// The [`AWS::ApiGateway::ClientCertificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-clientcertificate.html) resource.
+/// The [`AWS::ApiGateway::ClientCertificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-clientcertificate.html) resource type.
 pub struct ClientCertificate {
     properties: ClientCertificateProperties
 }
@@ -177,7 +177,7 @@ impl From<ClientCertificateProperties> for ClientCertificate {
     }
 }
 
-/// The [`AWS::ApiGateway::Deployment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-deployment.html) resource.
+/// The [`AWS::ApiGateway::Deployment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-deployment.html) resource type.
 pub struct Deployment {
     properties: DeploymentProperties
 }
@@ -212,7 +212,7 @@ impl From<DeploymentProperties> for Deployment {
     }
 }
 
-/// The [`AWS::ApiGateway::DocumentationPart`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-documentationpart.html) resource.
+/// The [`AWS::ApiGateway::DocumentationPart`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-documentationpart.html) resource type.
 pub struct DocumentationPart {
     properties: DocumentationPartProperties
 }
@@ -245,7 +245,7 @@ impl From<DocumentationPartProperties> for DocumentationPart {
     }
 }
 
-/// The [`AWS::ApiGateway::DocumentationVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-documentationversion.html) resource.
+/// The [`AWS::ApiGateway::DocumentationVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-documentationversion.html) resource type.
 pub struct DocumentationVersion {
     properties: DocumentationVersionProperties
 }
@@ -278,7 +278,7 @@ impl From<DocumentationVersionProperties> for DocumentationVersion {
     }
 }
 
-/// The [`AWS::ApiGateway::DomainName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainname.html) resource.
+/// The [`AWS::ApiGateway::DomainName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainname.html) resource type.
 pub struct DomainName {
     properties: DomainNameProperties
 }
@@ -313,7 +313,7 @@ impl From<DomainNameProperties> for DomainName {
     }
 }
 
-/// The [`AWS::ApiGateway::GatewayResponse`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-gatewayresponse.html) resource.
+/// The [`AWS::ApiGateway::GatewayResponse`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-gatewayresponse.html) resource type.
 pub struct GatewayResponse {
     properties: GatewayResponseProperties
 }
@@ -350,7 +350,7 @@ impl From<GatewayResponseProperties> for GatewayResponse {
     }
 }
 
-/// The [`AWS::ApiGateway::Method`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-method.html) resource.
+/// The [`AWS::ApiGateway::Method`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-method.html) resource type.
 pub struct Method {
     properties: MethodProperties
 }
@@ -401,7 +401,7 @@ impl From<MethodProperties> for Method {
     }
 }
 
-/// The [`AWS::ApiGateway::Model`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-model.html) resource.
+/// The [`AWS::ApiGateway::Model`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-model.html) resource type.
 pub struct Model {
     properties: ModelProperties
 }
@@ -438,7 +438,7 @@ impl From<ModelProperties> for Model {
     }
 }
 
-/// The [`AWS::ApiGateway::RequestValidator`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-requestvalidator.html) resource.
+/// The [`AWS::ApiGateway::RequestValidator`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-requestvalidator.html) resource type.
 pub struct RequestValidator {
     properties: RequestValidatorProperties
 }
@@ -473,7 +473,7 @@ impl From<RequestValidatorProperties> for RequestValidator {
     }
 }
 
-/// The [`AWS::ApiGateway::Resource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-resource.html) resource.
+/// The [`AWS::ApiGateway::Resource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-resource.html) resource type.
 pub struct Resource {
     properties: ResourceProperties
 }
@@ -506,7 +506,7 @@ impl From<ResourceProperties> for Resource {
     }
 }
 
-/// The [`AWS::ApiGateway::RestApi`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html) resource.
+/// The [`AWS::ApiGateway::RestApi`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html) resource type.
 pub struct RestApi {
     properties: RestApiProperties
 }
@@ -555,7 +555,7 @@ impl From<RestApiProperties> for RestApi {
     }
 }
 
-/// The [`AWS::ApiGateway::Stage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html) resource.
+/// The [`AWS::ApiGateway::Stage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html) resource type.
 pub struct Stage {
     properties: StageProperties
 }
@@ -602,7 +602,7 @@ impl From<StageProperties> for Stage {
     }
 }
 
-/// The [`AWS::ApiGateway::UsagePlan`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-usageplan.html) resource.
+/// The [`AWS::ApiGateway::UsagePlan`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-usageplan.html) resource type.
 pub struct UsagePlan {
     properties: UsagePlanProperties
 }
@@ -639,7 +639,7 @@ impl From<UsagePlanProperties> for UsagePlan {
     }
 }
 
-/// The [`AWS::ApiGateway::UsagePlanKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-usageplankey.html) resource.
+/// The [`AWS::ApiGateway::UsagePlanKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-usageplankey.html) resource type.
 pub struct UsagePlanKey {
     properties: UsagePlanKeyProperties
 }
@@ -672,7 +672,7 @@ impl From<UsagePlanKeyProperties> for UsagePlanKey {
     }
 }
 
-/// The [`AWS::ApiGateway::VpcLink`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-vpclink.html) resource.
+/// The [`AWS::ApiGateway::VpcLink`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-vpclink.html) resource type.
 pub struct VpcLink {
     properties: VpcLinkProperties
 }
@@ -706,6 +706,7 @@ impl From<VpcLinkProperties> for VpcLink {
 }
 
 pub mod api_key {
+    /// The [`AWS::ApiGateway::ApiKey.StageKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-apikey-stagekey.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct StageKey {
         #[serde(rename="RestApiId")]
@@ -717,6 +718,7 @@ pub mod api_key {
 }
 
 pub mod deployment {
+    /// The [`AWS::ApiGateway::Deployment.MethodSetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription-methodsetting.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct MethodSetting {
         #[serde(rename="CacheDataEncrypted")]
@@ -741,6 +743,7 @@ pub mod deployment {
         pub throttling_rate_limit: f64,
     }
 
+    /// The [`AWS::ApiGateway::Deployment.StageDescription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct StageDescription {
         #[serde(rename="CacheClusterEnabled")]
@@ -778,6 +781,7 @@ pub mod deployment {
 }
 
 pub mod documentation_part {
+    /// The [`AWS::ApiGateway::DocumentationPart.Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-documentationpart-location.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Location {
         #[serde(rename="Method")]
@@ -795,6 +799,7 @@ pub mod documentation_part {
 }
 
 pub mod domain_name {
+    /// The [`AWS::ApiGateway::DomainName.EndpointConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-domainname-endpointconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct EndpointConfiguration {
         #[serde(rename="Types")]
@@ -804,6 +809,7 @@ pub mod domain_name {
 }
 
 pub mod method {
+    /// The [`AWS::ApiGateway::Method.Integration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-method-integration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Integration {
         #[serde(rename="CacheKeyParameters")]
@@ -830,6 +836,7 @@ pub mod method {
         pub uri: String,
     }
 
+    /// The [`AWS::ApiGateway::Method.IntegrationResponse`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-method-integration-integrationresponse.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct IntegrationResponse {
         #[serde(rename="ContentHandling")]
@@ -844,6 +851,7 @@ pub mod method {
         pub status_code: String,
     }
 
+    /// The [`AWS::ApiGateway::Method.MethodResponse`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-method-methodresponse.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct MethodResponse {
         #[serde(rename="ResponseModels")]
@@ -857,12 +865,14 @@ pub mod method {
 }
 
 pub mod rest_api {
+    /// The [`AWS::ApiGateway::RestApi.EndpointConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-restapi-endpointconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct EndpointConfiguration {
         #[serde(rename="Types")]
         pub types: Vec<String>,
     }
 
+    /// The [`AWS::ApiGateway::RestApi.S3Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-restapi-s3location.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct S3Location {
         #[serde(rename="Bucket")]
@@ -878,6 +888,7 @@ pub mod rest_api {
 }
 
 pub mod stage {
+    /// The [`AWS::ApiGateway::Stage.MethodSetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-stage-methodsetting.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct MethodSetting {
         #[serde(rename="CacheDataEncrypted")]
@@ -905,6 +916,7 @@ pub mod stage {
 }
 
 pub mod usage_plan {
+    /// The [`AWS::ApiGateway::UsagePlan.ApiStage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-apistage.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ApiStage {
         #[serde(rename="ApiId")]
@@ -913,6 +925,7 @@ pub mod usage_plan {
         pub stage: String,
     }
 
+    /// The [`AWS::ApiGateway::UsagePlan.QuotaSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-quotasettings.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct QuotaSettings {
         #[serde(rename="Limit")]
@@ -923,6 +936,7 @@ pub mod usage_plan {
         pub period: String,
     }
 
+    /// The [`AWS::ApiGateway::UsagePlan.ThrottleSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-throttlesettings.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ThrottleSettings {
         #[serde(rename="BurstLimit")]

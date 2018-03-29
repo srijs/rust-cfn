@@ -1,4 +1,4 @@
-/// The [`AWS::KinesisFirehose::DeliveryStream`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisfirehose-deliverystream.html) resource.
+/// The [`AWS::KinesisFirehose::DeliveryStream`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisfirehose-deliverystream.html) resource type.
 pub struct DeliveryStream {
     properties: DeliveryStreamProperties
 }
@@ -40,6 +40,7 @@ impl From<DeliveryStreamProperties> for DeliveryStream {
 }
 
 pub mod delivery_stream {
+    /// The [`AWS::KinesisFirehose::DeliveryStream.BufferingHints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-bufferinghints.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct BufferingHints {
         #[serde(rename="IntervalInSeconds")]
@@ -48,6 +49,7 @@ pub mod delivery_stream {
         pub size_in_m_bs: u32,
     }
 
+    /// The [`AWS::KinesisFirehose::DeliveryStream.CloudWatchLoggingOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-cloudwatchloggingoptions.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct CloudWatchLoggingOptions {
         #[serde(rename="Enabled")]
@@ -58,6 +60,7 @@ pub mod delivery_stream {
         pub log_stream_name: String,
     }
 
+    /// The [`AWS::KinesisFirehose::DeliveryStream.CopyCommand`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-copycommand.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct CopyCommand {
         #[serde(rename="CopyOptions")]
@@ -68,6 +71,7 @@ pub mod delivery_stream {
         pub data_table_name: String,
     }
 
+    /// The [`AWS::KinesisFirehose::DeliveryStream.ElasticsearchBufferingHints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchbufferinghints.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ElasticsearchBufferingHints {
         #[serde(rename="IntervalInSeconds")]
@@ -76,6 +80,7 @@ pub mod delivery_stream {
         pub size_in_m_bs: u32,
     }
 
+    /// The [`AWS::KinesisFirehose::DeliveryStream.ElasticsearchDestinationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchdestinationconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ElasticsearchDestinationConfiguration {
         #[serde(rename="BufferingHints")]
@@ -102,12 +107,14 @@ pub mod delivery_stream {
         pub type_name: String,
     }
 
+    /// The [`AWS::KinesisFirehose::DeliveryStream.ElasticsearchRetryOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchretryoptions.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ElasticsearchRetryOptions {
         #[serde(rename="DurationInSeconds")]
         pub duration_in_seconds: u32,
     }
 
+    /// The [`AWS::KinesisFirehose::DeliveryStream.EncryptionConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-encryptionconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct EncryptionConfiguration {
         #[serde(rename="KMSEncryptionConfig")]
@@ -116,6 +123,7 @@ pub mod delivery_stream {
         pub no_encryption_config: String,
     }
 
+    /// The [`AWS::KinesisFirehose::DeliveryStream.ExtendedS3DestinationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-extendeds3destinationconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ExtendedS3DestinationConfiguration {
         #[serde(rename="BucketARN")]
@@ -140,12 +148,14 @@ pub mod delivery_stream {
         pub s3_backup_mode: String,
     }
 
+    /// The [`AWS::KinesisFirehose::DeliveryStream.KMSEncryptionConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-kmsencryptionconfig.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct KMSEncryptionConfig {
         #[serde(rename="AWSKMSKeyARN")]
         pub awskms_key_arn: String,
     }
 
+    /// The [`AWS::KinesisFirehose::DeliveryStream.KinesisStreamSourceConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-kinesisstreamsourceconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct KinesisStreamSourceConfiguration {
         #[serde(rename="KinesisStreamARN")]
@@ -154,6 +164,7 @@ pub mod delivery_stream {
         pub role_arn: String,
     }
 
+    /// The [`AWS::KinesisFirehose::DeliveryStream.ProcessingConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-processingconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ProcessingConfiguration {
         #[serde(rename="Enabled")]
@@ -162,6 +173,7 @@ pub mod delivery_stream {
         pub processors: Vec<Processor>,
     }
 
+    /// The [`AWS::KinesisFirehose::DeliveryStream.Processor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-processor.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Processor {
         #[serde(rename="Parameters")]
@@ -170,6 +182,7 @@ pub mod delivery_stream {
         pub type_: String,
     }
 
+    /// The [`AWS::KinesisFirehose::DeliveryStream.ProcessorParameter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-processorparameter.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ProcessorParameter {
         #[serde(rename="ParameterName")]
@@ -178,6 +191,7 @@ pub mod delivery_stream {
         pub parameter_value: String,
     }
 
+    /// The [`AWS::KinesisFirehose::DeliveryStream.RedshiftDestinationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-redshiftdestinationconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct RedshiftDestinationConfiguration {
         #[serde(rename="CloudWatchLoggingOptions")]
@@ -198,6 +212,7 @@ pub mod delivery_stream {
         pub username: String,
     }
 
+    /// The [`AWS::KinesisFirehose::DeliveryStream.S3DestinationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-s3destinationconfiguration.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct S3DestinationConfiguration {
         #[serde(rename="BucketARN")]

@@ -1,4 +1,4 @@
-/// The [`AWS::ElasticLoadBalancingV2::Listener`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listener.html) resource.
+/// The [`AWS::ElasticLoadBalancingV2::Listener`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listener.html) resource type.
 pub struct Listener {
     properties: ListenerProperties
 }
@@ -37,7 +37,7 @@ impl From<ListenerProperties> for Listener {
     }
 }
 
-/// The [`AWS::ElasticLoadBalancingV2::ListenerCertificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenercertificate.html) resource.
+/// The [`AWS::ElasticLoadBalancingV2::ListenerCertificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenercertificate.html) resource type.
 pub struct ListenerCertificate {
     properties: ListenerCertificateProperties
 }
@@ -68,7 +68,7 @@ impl From<ListenerCertificateProperties> for ListenerCertificate {
     }
 }
 
-/// The [`AWS::ElasticLoadBalancingV2::ListenerRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html) resource.
+/// The [`AWS::ElasticLoadBalancingV2::ListenerRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html) resource type.
 pub struct ListenerRule {
     properties: ListenerRuleProperties
 }
@@ -103,7 +103,7 @@ impl From<ListenerRuleProperties> for ListenerRule {
     }
 }
 
-/// The [`AWS::ElasticLoadBalancingV2::LoadBalancer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html) resource.
+/// The [`AWS::ElasticLoadBalancingV2::LoadBalancer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html) resource type.
 pub struct LoadBalancer {
     properties: LoadBalancerProperties
 }
@@ -148,7 +148,7 @@ impl From<LoadBalancerProperties> for LoadBalancer {
     }
 }
 
-/// The [`AWS::ElasticLoadBalancingV2::TargetGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html) resource.
+/// The [`AWS::ElasticLoadBalancingV2::TargetGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html) resource type.
 pub struct TargetGroup {
     properties: TargetGroupProperties
 }
@@ -208,6 +208,7 @@ impl From<TargetGroupProperties> for TargetGroup {
 }
 
 pub mod listener {
+    /// The [`AWS::ElasticLoadBalancingV2::Listener.Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-defaultactions.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Action {
         #[serde(rename="TargetGroupArn")]
@@ -216,6 +217,7 @@ pub mod listener {
         pub type_: String,
     }
 
+    /// The [`AWS::ElasticLoadBalancingV2::Listener.Certificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-certificates.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Certificate {
         #[serde(rename="CertificateArn")]
@@ -225,6 +227,7 @@ pub mod listener {
 }
 
 pub mod listener_certificate {
+    /// The [`AWS::ElasticLoadBalancingV2::ListenerCertificate.Certificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-certificates.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Certificate {
         #[serde(rename="CertificateArn")]
@@ -234,6 +237,7 @@ pub mod listener_certificate {
 }
 
 pub mod listener_rule {
+    /// The [`AWS::ElasticLoadBalancingV2::ListenerRule.Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-actions.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Action {
         #[serde(rename="TargetGroupArn")]
@@ -242,6 +246,7 @@ pub mod listener_rule {
         pub type_: String,
     }
 
+    /// The [`AWS::ElasticLoadBalancingV2::ListenerRule.RuleCondition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-conditions.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct RuleCondition {
         #[serde(rename="Field")]
@@ -253,6 +258,7 @@ pub mod listener_rule {
 }
 
 pub mod load_balancer {
+    /// The [`AWS::ElasticLoadBalancingV2::LoadBalancer.LoadBalancerAttribute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattributes.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct LoadBalancerAttribute {
         #[serde(rename="Key")]
@@ -261,6 +267,7 @@ pub mod load_balancer {
         pub value: String,
     }
 
+    /// The [`AWS::ElasticLoadBalancingV2::LoadBalancer.SubnetMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-subnetmapping.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct SubnetMapping {
         #[serde(rename="AllocationId")]
@@ -272,12 +279,14 @@ pub mod load_balancer {
 }
 
 pub mod target_group {
+    /// The [`AWS::ElasticLoadBalancingV2::TargetGroup.Matcher`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-matcher.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Matcher {
         #[serde(rename="HttpCode")]
         pub http_code: String,
     }
 
+    /// The [`AWS::ElasticLoadBalancingV2::TargetGroup.TargetDescription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetdescription.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct TargetDescription {
         #[serde(rename="AvailabilityZone")]
@@ -288,6 +297,7 @@ pub mod target_group {
         pub port: u32,
     }
 
+    /// The [`AWS::ElasticLoadBalancingV2::TargetGroup.TargetGroupAttribute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetgroupattribute.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct TargetGroupAttribute {
         #[serde(rename="Key")]

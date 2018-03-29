@@ -77,6 +77,7 @@ fn factor_joined_specs<X, A, B>(either: EitherOrBoth<(X, A), (X, B)>) -> (X, Opt
 }
 
 fn generate_property_declaration(service: &str, resource_name: &str, name: &str, spec: &PropertyType, f: &mut Write) -> io::Result<()> {
+    writeln!(f, "    /// The [`AWS::{}::{}.{}`]({}) property type.", service, resource_name, name, spec.documentation)?;
     writeln!(f, "    #[derive(Serialize, Deserialize)]")?;
     writeln!(f, "    pub struct {} {{", name)?;
     for (ref property_name, ref property_spec) in spec.properties.iter() {
@@ -88,7 +89,7 @@ fn generate_property_declaration(service: &str, resource_name: &str, name: &str,
 }
 
 fn generate_resource_declaration(service: &str, name: &str, spec: &ResourceType, f: &mut Write) -> io::Result<()> {
-    writeln!(f, "/// The [`AWS::{}::{}`]({}) resource.", service, name, spec.documentation)?;
+    writeln!(f, "/// The [`AWS::{}::{}`]({}) resource type.", service, name, spec.documentation)?;
     writeln!(f, "pub struct {} {{", name)?;
     writeln!(f, "    properties: {}Properties", name)?;
     writeln!(f, "}}\n")?;

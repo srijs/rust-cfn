@@ -1,4 +1,4 @@
-/// The [`AWS::Config::ConfigRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configrule.html) resource.
+/// The [`AWS::Config::ConfigRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configrule.html) resource type.
 pub struct ConfigRule {
     properties: ConfigRuleProperties
 }
@@ -37,7 +37,7 @@ impl From<ConfigRuleProperties> for ConfigRule {
     }
 }
 
-/// The [`AWS::Config::ConfigurationRecorder`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configurationrecorder.html) resource.
+/// The [`AWS::Config::ConfigurationRecorder`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configurationrecorder.html) resource type.
 pub struct ConfigurationRecorder {
     properties: ConfigurationRecorderProperties
 }
@@ -70,7 +70,7 @@ impl From<ConfigurationRecorderProperties> for ConfigurationRecorder {
     }
 }
 
-/// The [`AWS::Config::DeliveryChannel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-deliverychannel.html) resource.
+/// The [`AWS::Config::DeliveryChannel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-deliverychannel.html) resource type.
 pub struct DeliveryChannel {
     properties: DeliveryChannelProperties
 }
@@ -108,6 +108,7 @@ impl From<DeliveryChannelProperties> for DeliveryChannel {
 }
 
 pub mod config_rule {
+    /// The [`AWS::Config::ConfigRule.Scope`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-scope.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Scope {
         #[serde(rename="ComplianceResourceId")]
@@ -120,6 +121,7 @@ pub mod config_rule {
         pub tag_value: String,
     }
 
+    /// The [`AWS::Config::ConfigRule.Source`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-source.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct Source {
         #[serde(rename="Owner")]
@@ -130,6 +132,7 @@ pub mod config_rule {
         pub source_identifier: String,
     }
 
+    /// The [`AWS::Config::ConfigRule.SourceDetail`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-source-sourcedetails.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct SourceDetail {
         #[serde(rename="EventSource")]
@@ -143,6 +146,7 @@ pub mod config_rule {
 }
 
 pub mod configuration_recorder {
+    /// The [`AWS::Config::ConfigurationRecorder.RecordingGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordinggroup.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct RecordingGroup {
         #[serde(rename="AllSupported")]
@@ -156,6 +160,7 @@ pub mod configuration_recorder {
 }
 
 pub mod delivery_channel {
+    /// The [`AWS::Config::DeliveryChannel.ConfigSnapshotDeliveryProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-deliverychannel-configsnapshotdeliveryproperties.html) property type.
     #[derive(Serialize, Deserialize)]
     pub struct ConfigSnapshotDeliveryProperties {
         #[serde(rename="DeliveryFrequency")]
