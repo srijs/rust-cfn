@@ -1,23 +1,33 @@
+//! Types for the `DataPipeline` service.
+
 /// The [`AWS::DataPipeline::Pipeline`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datapipeline-pipeline.html) resource type.
+#[derive(Debug)]
 pub struct Pipeline {
     properties: PipelineProperties
 }
 
 /// Properties for the `Pipeline` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct PipelineProperties {
+    /// Property `Activate`.
     #[serde(rename="Activate")]
     pub activate: bool,
+    /// Property `Description`.
     #[serde(rename="Description")]
     pub description: String,
+    /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
+    /// Property `ParameterObjects`.
     #[serde(rename="ParameterObjects")]
     pub parameter_objects: Vec<self::pipeline::ParameterObject>,
+    /// Property `ParameterValues`.
     #[serde(rename="ParameterValues")]
     pub parameter_values: Vec<self::pipeline::ParameterValue>,
+    /// Property `PipelineObjects`.
     #[serde(rename="PipelineObjects")]
     pub pipeline_objects: Vec<self::pipeline::PipelineObject>,
+    /// Property `PipelineTags`.
     #[serde(rename="PipelineTags")]
     pub pipeline_tags: Vec<self::pipeline::PipelineTag>,
 }
@@ -42,63 +52,77 @@ impl From<PipelineProperties> for Pipeline {
 }
 
 pub mod pipeline {
+    //! Property types for the `Pipeline` resource.
+
     /// The [`AWS::DataPipeline::Pipeline.Field`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-pipelineobjects-fields.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct Field {
+        /// Property `Key`.
         #[serde(rename="Key")]
         pub key: String,
+        /// Property `RefValue`.
         #[serde(rename="RefValue")]
         pub ref_value: String,
+        /// Property `StringValue`.
         #[serde(rename="StringValue")]
         pub string_value: String,
     }
 
     /// The [`AWS::DataPipeline::Pipeline.ParameterAttribute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parameterobjects-attributes.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct ParameterAttribute {
+        /// Property `Key`.
         #[serde(rename="Key")]
         pub key: String,
+        /// Property `StringValue`.
         #[serde(rename="StringValue")]
         pub string_value: String,
     }
 
     /// The [`AWS::DataPipeline::Pipeline.ParameterObject`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parameterobjects.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct ParameterObject {
+        /// Property `Attributes`.
         #[serde(rename="Attributes")]
         pub attributes: Vec<ParameterAttribute>,
+        /// Property `Id`.
         #[serde(rename="Id")]
         pub id: String,
     }
 
     /// The [`AWS::DataPipeline::Pipeline.ParameterValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parametervalues.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct ParameterValue {
+        /// Property `Id`.
         #[serde(rename="Id")]
         pub id: String,
+        /// Property `StringValue`.
         #[serde(rename="StringValue")]
         pub string_value: String,
     }
 
     /// The [`AWS::DataPipeline::Pipeline.PipelineObject`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-pipelineobjects.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct PipelineObject {
+        /// Property `Fields`.
         #[serde(rename="Fields")]
         pub fields: Vec<Field>,
+        /// Property `Id`.
         #[serde(rename="Id")]
         pub id: String,
+        /// Property `Name`.
         #[serde(rename="Name")]
         pub name: String,
     }
 
     /// The [`AWS::DataPipeline::Pipeline.PipelineTag`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-pipelinetags.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct PipelineTag {
+        /// Property `Key`.
         #[serde(rename="Key")]
         pub key: String,
+        /// Property `Value`.
         #[serde(rename="Value")]
         pub value: String,
     }
-
 }
-

@@ -1,11 +1,15 @@
+//! Types for the `StepFunctions` service.
+
 /// The [`AWS::StepFunctions::Activity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-activity.html) resource type.
+#[derive(Debug)]
 pub struct Activity {
     properties: ActivityProperties
 }
 
 /// Properties for the `Activity` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct ActivityProperties {
+    /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
 }
@@ -30,17 +34,21 @@ impl From<ActivityProperties> for Activity {
 }
 
 /// The [`AWS::StepFunctions::StateMachine`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html) resource type.
+#[derive(Debug)]
 pub struct StateMachine {
     properties: StateMachineProperties
 }
 
 /// Properties for the `StateMachine` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct StateMachineProperties {
+    /// Property `DefinitionString`.
     #[serde(rename="DefinitionString")]
     pub definition_string: String,
+    /// Property `RoleArn`.
     #[serde(rename="RoleArn")]
     pub role_arn: String,
+    /// Property `StateMachineName`.
     #[serde(rename="StateMachineName")]
     pub state_machine_name: String,
 }
@@ -63,4 +71,3 @@ impl From<StateMachineProperties> for StateMachine {
         StateMachine { properties }
     }
 }
-

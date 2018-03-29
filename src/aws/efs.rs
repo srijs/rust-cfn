@@ -1,17 +1,24 @@
+//! Types for the `EFS` service.
+
 /// The [`AWS::EFS::FileSystem`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html) resource type.
+#[derive(Debug)]
 pub struct FileSystem {
     properties: FileSystemProperties
 }
 
 /// Properties for the `FileSystem` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct FileSystemProperties {
+    /// Property `Encrypted`.
     #[serde(rename="Encrypted")]
     pub encrypted: bool,
+    /// Property `FileSystemTags`.
     #[serde(rename="FileSystemTags")]
     pub file_system_tags: Vec<self::file_system::ElasticFileSystemTag>,
+    /// Property `KmsKeyId`.
     #[serde(rename="KmsKeyId")]
     pub kms_key_id: String,
+    /// Property `PerformanceMode`.
     #[serde(rename="PerformanceMode")]
     pub performance_mode: String,
 }
@@ -36,19 +43,24 @@ impl From<FileSystemProperties> for FileSystem {
 }
 
 /// The [`AWS::EFS::MountTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-mounttarget.html) resource type.
+#[derive(Debug)]
 pub struct MountTarget {
     properties: MountTargetProperties
 }
 
 /// Properties for the `MountTarget` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct MountTargetProperties {
+    /// Property `FileSystemId`.
     #[serde(rename="FileSystemId")]
     pub file_system_id: String,
+    /// Property `IpAddress`.
     #[serde(rename="IpAddress")]
     pub ip_address: String,
+    /// Property `SecurityGroups`.
     #[serde(rename="SecurityGroups")]
     pub security_groups: Vec<String>,
+    /// Property `SubnetId`.
     #[serde(rename="SubnetId")]
     pub subnet_id: String,
 }
@@ -73,14 +85,16 @@ impl From<MountTargetProperties> for MountTarget {
 }
 
 pub mod file_system {
+    //! Property types for the `FileSystem` resource.
+
     /// The [`AWS::EFS::FileSystem.ElasticFileSystemTag`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-filesystemtags.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct ElasticFileSystemTag {
+        /// Property `Key`.
         #[serde(rename="Key")]
         pub key: String,
+        /// Property `Value`.
         #[serde(rename="Value")]
         pub value: String,
     }
-
 }
-

@@ -1,17 +1,24 @@
+//! Types for the `EC2` service.
+
 /// The [`AWS::EC2::CustomerGateway`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-customer-gateway.html) resource type.
+#[derive(Debug)]
 pub struct CustomerGateway {
     properties: CustomerGatewayProperties
 }
 
 /// Properties for the `CustomerGateway` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct CustomerGatewayProperties {
+    /// Property `BgpAsn`.
     #[serde(rename="BgpAsn")]
     pub bgp_asn: u32,
+    /// Property `IpAddress`.
     #[serde(rename="IpAddress")]
     pub ip_address: String,
+    /// Property `Tags`.
     #[serde(rename="Tags")]
     pub tags: ::Tags,
+    /// Property `Type`.
     #[serde(rename="Type")]
     pub type_: String,
 }
@@ -36,23 +43,30 @@ impl From<CustomerGatewayProperties> for CustomerGateway {
 }
 
 /// The [`AWS::EC2::DHCPOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-dhcp-options.html) resource type.
+#[derive(Debug)]
 pub struct DHCPOptions {
     properties: DHCPOptionsProperties
 }
 
 /// Properties for the `DHCPOptions` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct DHCPOptionsProperties {
+    /// Property `DomainName`.
     #[serde(rename="DomainName")]
     pub domain_name: String,
+    /// Property `DomainNameServers`.
     #[serde(rename="DomainNameServers")]
     pub domain_name_servers: Vec<String>,
+    /// Property `NetbiosNameServers`.
     #[serde(rename="NetbiosNameServers")]
     pub netbios_name_servers: Vec<String>,
+    /// Property `NetbiosNodeType`.
     #[serde(rename="NetbiosNodeType")]
     pub netbios_node_type: u32,
+    /// Property `NtpServers`.
     #[serde(rename="NtpServers")]
     pub ntp_servers: Vec<String>,
+    /// Property `Tags`.
     #[serde(rename="Tags")]
     pub tags: ::Tags,
 }
@@ -77,15 +91,18 @@ impl From<DHCPOptionsProperties> for DHCPOptions {
 }
 
 /// The [`AWS::EC2::EIP`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-eip.html) resource type.
+#[derive(Debug)]
 pub struct EIP {
     properties: EIPProperties
 }
 
 /// Properties for the `EIP` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct EIPProperties {
+    /// Property `Domain`.
     #[serde(rename="Domain")]
     pub domain: String,
+    /// Property `InstanceId`.
     #[serde(rename="InstanceId")]
     pub instance_id: String,
 }
@@ -110,21 +127,27 @@ impl From<EIPProperties> for EIP {
 }
 
 /// The [`AWS::EC2::EIPAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-eip-association.html) resource type.
+#[derive(Debug)]
 pub struct EIPAssociation {
     properties: EIPAssociationProperties
 }
 
 /// Properties for the `EIPAssociation` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct EIPAssociationProperties {
+    /// Property `AllocationId`.
     #[serde(rename="AllocationId")]
     pub allocation_id: String,
+    /// Property `EIP`.
     #[serde(rename="EIP")]
     pub eip: String,
+    /// Property `InstanceId`.
     #[serde(rename="InstanceId")]
     pub instance_id: String,
+    /// Property `NetworkInterfaceId`.
     #[serde(rename="NetworkInterfaceId")]
     pub network_interface_id: String,
+    /// Property `PrivateIpAddress`.
     #[serde(rename="PrivateIpAddress")]
     pub private_ip_address: String,
 }
@@ -149,13 +172,15 @@ impl From<EIPAssociationProperties> for EIPAssociation {
 }
 
 /// The [`AWS::EC2::EgressOnlyInternetGateway`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-egressonlyinternetgateway.html) resource type.
+#[derive(Debug)]
 pub struct EgressOnlyInternetGateway {
     properties: EgressOnlyInternetGatewayProperties
 }
 
 /// Properties for the `EgressOnlyInternetGateway` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct EgressOnlyInternetGatewayProperties {
+    /// Property `VpcId`.
     #[serde(rename="VpcId")]
     pub vpc_id: String,
 }
@@ -180,21 +205,27 @@ impl From<EgressOnlyInternetGatewayProperties> for EgressOnlyInternetGateway {
 }
 
 /// The [`AWS::EC2::FlowLog`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html) resource type.
+#[derive(Debug)]
 pub struct FlowLog {
     properties: FlowLogProperties
 }
 
 /// Properties for the `FlowLog` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct FlowLogProperties {
+    /// Property `DeliverLogsPermissionArn`.
     #[serde(rename="DeliverLogsPermissionArn")]
     pub deliver_logs_permission_arn: String,
+    /// Property `LogGroupName`.
     #[serde(rename="LogGroupName")]
     pub log_group_name: String,
+    /// Property `ResourceId`.
     #[serde(rename="ResourceId")]
     pub resource_id: String,
+    /// Property `ResourceType`.
     #[serde(rename="ResourceType")]
     pub resource_type: String,
+    /// Property `TrafficType`.
     #[serde(rename="TrafficType")]
     pub traffic_type: String,
 }
@@ -219,17 +250,21 @@ impl From<FlowLogProperties> for FlowLog {
 }
 
 /// The [`AWS::EC2::Host`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-host.html) resource type.
+#[derive(Debug)]
 pub struct Host {
     properties: HostProperties
 }
 
 /// Properties for the `Host` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct HostProperties {
+    /// Property `AutoPlacement`.
     #[serde(rename="AutoPlacement")]
     pub auto_placement: String,
+    /// Property `AvailabilityZone`.
     #[serde(rename="AvailabilityZone")]
     pub availability_zone: String,
+    /// Property `InstanceType`.
     #[serde(rename="InstanceType")]
     pub instance_type: String,
 }
@@ -254,73 +289,105 @@ impl From<HostProperties> for Host {
 }
 
 /// The [`AWS::EC2::Instance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html) resource type.
+#[derive(Debug)]
 pub struct Instance {
     properties: InstanceProperties
 }
 
 /// Properties for the `Instance` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct InstanceProperties {
+    /// Property `AdditionalInfo`.
     #[serde(rename="AdditionalInfo")]
     pub additional_info: String,
+    /// Property `Affinity`.
     #[serde(rename="Affinity")]
     pub affinity: String,
+    /// Property `AvailabilityZone`.
     #[serde(rename="AvailabilityZone")]
     pub availability_zone: String,
+    /// Property `BlockDeviceMappings`.
     #[serde(rename="BlockDeviceMappings")]
     pub block_device_mappings: Vec<self::instance::BlockDeviceMapping>,
+    /// Property `CreditSpecification`.
     #[serde(rename="CreditSpecification")]
     pub credit_specification: self::instance::CreditSpecification,
+    /// Property `DisableApiTermination`.
     #[serde(rename="DisableApiTermination")]
     pub disable_api_termination: bool,
+    /// Property `EbsOptimized`.
     #[serde(rename="EbsOptimized")]
     pub ebs_optimized: bool,
+    /// Property `ElasticGpuSpecifications`.
     #[serde(rename="ElasticGpuSpecifications")]
     pub elastic_gpu_specifications: Vec<self::instance::ElasticGpuSpecification>,
+    /// Property `HostId`.
     #[serde(rename="HostId")]
     pub host_id: String,
+    /// Property `IamInstanceProfile`.
     #[serde(rename="IamInstanceProfile")]
     pub iam_instance_profile: String,
+    /// Property `ImageId`.
     #[serde(rename="ImageId")]
     pub image_id: String,
+    /// Property `InstanceInitiatedShutdownBehavior`.
     #[serde(rename="InstanceInitiatedShutdownBehavior")]
     pub instance_initiated_shutdown_behavior: String,
+    /// Property `InstanceType`.
     #[serde(rename="InstanceType")]
     pub instance_type: String,
+    /// Property `Ipv6AddressCount`.
     #[serde(rename="Ipv6AddressCount")]
     pub ipv6_address_count: u32,
+    /// Property `Ipv6Addresses`.
     #[serde(rename="Ipv6Addresses")]
     pub ipv6_addresses: Vec<self::instance::InstanceIpv6Address>,
+    /// Property `KernelId`.
     #[serde(rename="KernelId")]
     pub kernel_id: String,
+    /// Property `KeyName`.
     #[serde(rename="KeyName")]
     pub key_name: String,
+    /// Property `Monitoring`.
     #[serde(rename="Monitoring")]
     pub monitoring: bool,
+    /// Property `NetworkInterfaces`.
     #[serde(rename="NetworkInterfaces")]
     pub network_interfaces: Vec<self::instance::NetworkInterface>,
+    /// Property `PlacementGroupName`.
     #[serde(rename="PlacementGroupName")]
     pub placement_group_name: String,
+    /// Property `PrivateIpAddress`.
     #[serde(rename="PrivateIpAddress")]
     pub private_ip_address: String,
+    /// Property `RamdiskId`.
     #[serde(rename="RamdiskId")]
     pub ramdisk_id: String,
+    /// Property `SecurityGroupIds`.
     #[serde(rename="SecurityGroupIds")]
     pub security_group_ids: Vec<String>,
+    /// Property `SecurityGroups`.
     #[serde(rename="SecurityGroups")]
     pub security_groups: Vec<String>,
+    /// Property `SourceDestCheck`.
     #[serde(rename="SourceDestCheck")]
     pub source_dest_check: bool,
+    /// Property `SsmAssociations`.
     #[serde(rename="SsmAssociations")]
     pub ssm_associations: Vec<self::instance::SsmAssociation>,
+    /// Property `SubnetId`.
     #[serde(rename="SubnetId")]
     pub subnet_id: String,
+    /// Property `Tags`.
     #[serde(rename="Tags")]
     pub tags: ::Tags,
+    /// Property `Tenancy`.
     #[serde(rename="Tenancy")]
     pub tenancy: String,
+    /// Property `UserData`.
     #[serde(rename="UserData")]
     pub user_data: String,
+    /// Property `Volumes`.
     #[serde(rename="Volumes")]
     pub volumes: Vec<self::instance::Volume>,
 }
@@ -345,13 +412,15 @@ impl From<InstanceProperties> for Instance {
 }
 
 /// The [`AWS::EC2::InternetGateway`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-internetgateway.html) resource type.
+#[derive(Debug)]
 pub struct InternetGateway {
     properties: InternetGatewayProperties
 }
 
 /// Properties for the `InternetGateway` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct InternetGatewayProperties {
+    /// Property `Tags`.
     #[serde(rename="Tags")]
     pub tags: ::Tags,
 }
@@ -376,17 +445,21 @@ impl From<InternetGatewayProperties> for InternetGateway {
 }
 
 /// The [`AWS::EC2::NatGateway`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-natgateway.html) resource type.
+#[derive(Debug)]
 pub struct NatGateway {
     properties: NatGatewayProperties
 }
 
 /// Properties for the `NatGateway` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct NatGatewayProperties {
+    /// Property `AllocationId`.
     #[serde(rename="AllocationId")]
     pub allocation_id: String,
+    /// Property `SubnetId`.
     #[serde(rename="SubnetId")]
     pub subnet_id: String,
+    /// Property `Tags`.
     #[serde(rename="Tags")]
     pub tags: ::Tags,
 }
@@ -411,15 +484,18 @@ impl From<NatGatewayProperties> for NatGateway {
 }
 
 /// The [`AWS::EC2::NetworkAcl`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl.html) resource type.
+#[derive(Debug)]
 pub struct NetworkAcl {
     properties: NetworkAclProperties
 }
 
 /// Properties for the `NetworkAcl` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct NetworkAclProperties {
+    /// Property `Tags`.
     #[serde(rename="Tags")]
     pub tags: ::Tags,
+    /// Property `VpcId`.
     #[serde(rename="VpcId")]
     pub vpc_id: String,
 }
@@ -444,29 +520,39 @@ impl From<NetworkAclProperties> for NetworkAcl {
 }
 
 /// The [`AWS::EC2::NetworkAclEntry`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl-entry.html) resource type.
+#[derive(Debug)]
 pub struct NetworkAclEntry {
     properties: NetworkAclEntryProperties
 }
 
 /// Properties for the `NetworkAclEntry` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct NetworkAclEntryProperties {
+    /// Property `CidrBlock`.
     #[serde(rename="CidrBlock")]
     pub cidr_block: String,
+    /// Property `Egress`.
     #[serde(rename="Egress")]
     pub egress: bool,
+    /// Property `Icmp`.
     #[serde(rename="Icmp")]
     pub icmp: self::network_acl_entry::Icmp,
+    /// Property `Ipv6CidrBlock`.
     #[serde(rename="Ipv6CidrBlock")]
     pub ipv6_cidr_block: String,
+    /// Property `NetworkAclId`.
     #[serde(rename="NetworkAclId")]
     pub network_acl_id: String,
+    /// Property `PortRange`.
     #[serde(rename="PortRange")]
     pub port_range: self::network_acl_entry::PortRange,
+    /// Property `Protocol`.
     #[serde(rename="Protocol")]
     pub protocol: u32,
+    /// Property `RuleAction`.
     #[serde(rename="RuleAction")]
     pub rule_action: String,
+    /// Property `RuleNumber`.
     #[serde(rename="RuleNumber")]
     pub rule_number: u32,
 }
@@ -491,33 +577,45 @@ impl From<NetworkAclEntryProperties> for NetworkAclEntry {
 }
 
 /// The [`AWS::EC2::NetworkInterface`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-interface.html) resource type.
+#[derive(Debug)]
 pub struct NetworkInterface {
     properties: NetworkInterfaceProperties
 }
 
 /// Properties for the `NetworkInterface` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct NetworkInterfaceProperties {
+    /// Property `Description`.
     #[serde(rename="Description")]
     pub description: String,
+    /// Property `GroupSet`.
     #[serde(rename="GroupSet")]
     pub group_set: Vec<String>,
+    /// Property `InterfaceType`.
     #[serde(rename="InterfaceType")]
     pub interface_type: String,
+    /// Property `Ipv6AddressCount`.
     #[serde(rename="Ipv6AddressCount")]
     pub ipv6_address_count: u32,
+    /// Property `Ipv6Addresses`.
     #[serde(rename="Ipv6Addresses")]
     pub ipv6_addresses: self::network_interface::InstanceIpv6Address,
+    /// Property `PrivateIpAddress`.
     #[serde(rename="PrivateIpAddress")]
     pub private_ip_address: String,
+    /// Property `PrivateIpAddresses`.
     #[serde(rename="PrivateIpAddresses")]
     pub private_ip_addresses: Vec<self::network_interface::PrivateIpAddressSpecification>,
+    /// Property `SecondaryPrivateIpAddressCount`.
     #[serde(rename="SecondaryPrivateIpAddressCount")]
     pub secondary_private_ip_address_count: u32,
+    /// Property `SourceDestCheck`.
     #[serde(rename="SourceDestCheck")]
     pub source_dest_check: bool,
+    /// Property `SubnetId`.
     #[serde(rename="SubnetId")]
     pub subnet_id: String,
+    /// Property `Tags`.
     #[serde(rename="Tags")]
     pub tags: ::Tags,
 }
@@ -542,19 +640,24 @@ impl From<NetworkInterfaceProperties> for NetworkInterface {
 }
 
 /// The [`AWS::EC2::NetworkInterfaceAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-interface-attachment.html) resource type.
+#[derive(Debug)]
 pub struct NetworkInterfaceAttachment {
     properties: NetworkInterfaceAttachmentProperties
 }
 
 /// Properties for the `NetworkInterfaceAttachment` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct NetworkInterfaceAttachmentProperties {
+    /// Property `DeleteOnTermination`.
     #[serde(rename="DeleteOnTermination")]
     pub delete_on_termination: bool,
+    /// Property `DeviceIndex`.
     #[serde(rename="DeviceIndex")]
     pub device_index: String,
+    /// Property `InstanceId`.
     #[serde(rename="InstanceId")]
     pub instance_id: String,
+    /// Property `NetworkInterfaceId`.
     #[serde(rename="NetworkInterfaceId")]
     pub network_interface_id: String,
 }
@@ -579,17 +682,21 @@ impl From<NetworkInterfaceAttachmentProperties> for NetworkInterfaceAttachment {
 }
 
 /// The [`AWS::EC2::NetworkInterfacePermission`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinterfacepermission.html) resource type.
+#[derive(Debug)]
 pub struct NetworkInterfacePermission {
     properties: NetworkInterfacePermissionProperties
 }
 
 /// Properties for the `NetworkInterfacePermission` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct NetworkInterfacePermissionProperties {
+    /// Property `AwsAccountId`.
     #[serde(rename="AwsAccountId")]
     pub aws_account_id: String,
+    /// Property `NetworkInterfaceId`.
     #[serde(rename="NetworkInterfaceId")]
     pub network_interface_id: String,
+    /// Property `Permission`.
     #[serde(rename="Permission")]
     pub permission: String,
 }
@@ -614,13 +721,15 @@ impl From<NetworkInterfacePermissionProperties> for NetworkInterfacePermission {
 }
 
 /// The [`AWS::EC2::PlacementGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-placementgroup.html) resource type.
+#[derive(Debug)]
 pub struct PlacementGroup {
     properties: PlacementGroupProperties
 }
 
 /// Properties for the `PlacementGroup` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct PlacementGroupProperties {
+    /// Property `Strategy`.
     #[serde(rename="Strategy")]
     pub strategy: String,
 }
@@ -645,29 +754,39 @@ impl From<PlacementGroupProperties> for PlacementGroup {
 }
 
 /// The [`AWS::EC2::Route`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html) resource type.
+#[derive(Debug)]
 pub struct Route {
     properties: RouteProperties
 }
 
 /// Properties for the `Route` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct RouteProperties {
+    /// Property `DestinationCidrBlock`.
     #[serde(rename="DestinationCidrBlock")]
     pub destination_cidr_block: String,
+    /// Property `DestinationIpv6CidrBlock`.
     #[serde(rename="DestinationIpv6CidrBlock")]
     pub destination_ipv6_cidr_block: String,
+    /// Property `EgressOnlyInternetGatewayId`.
     #[serde(rename="EgressOnlyInternetGatewayId")]
     pub egress_only_internet_gateway_id: String,
+    /// Property `GatewayId`.
     #[serde(rename="GatewayId")]
     pub gateway_id: String,
+    /// Property `InstanceId`.
     #[serde(rename="InstanceId")]
     pub instance_id: String,
+    /// Property `NatGatewayId`.
     #[serde(rename="NatGatewayId")]
     pub nat_gateway_id: String,
+    /// Property `NetworkInterfaceId`.
     #[serde(rename="NetworkInterfaceId")]
     pub network_interface_id: String,
+    /// Property `RouteTableId`.
     #[serde(rename="RouteTableId")]
     pub route_table_id: String,
+    /// Property `VpcPeeringConnectionId`.
     #[serde(rename="VpcPeeringConnectionId")]
     pub vpc_peering_connection_id: String,
 }
@@ -692,15 +811,18 @@ impl From<RouteProperties> for Route {
 }
 
 /// The [`AWS::EC2::RouteTable`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route-table.html) resource type.
+#[derive(Debug)]
 pub struct RouteTable {
     properties: RouteTableProperties
 }
 
 /// Properties for the `RouteTable` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct RouteTableProperties {
+    /// Property `Tags`.
     #[serde(rename="Tags")]
     pub tags: ::Tags,
+    /// Property `VpcId`.
     #[serde(rename="VpcId")]
     pub vpc_id: String,
 }
@@ -725,23 +847,30 @@ impl From<RouteTableProperties> for RouteTable {
 }
 
 /// The [`AWS::EC2::SecurityGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html) resource type.
+#[derive(Debug)]
 pub struct SecurityGroup {
     properties: SecurityGroupProperties
 }
 
 /// Properties for the `SecurityGroup` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct SecurityGroupProperties {
+    /// Property `GroupDescription`.
     #[serde(rename="GroupDescription")]
     pub group_description: String,
+    /// Property `GroupName`.
     #[serde(rename="GroupName")]
     pub group_name: String,
+    /// Property `SecurityGroupEgress`.
     #[serde(rename="SecurityGroupEgress")]
     pub security_group_egress: Vec<self::security_group::Egress>,
+    /// Property `SecurityGroupIngress`.
     #[serde(rename="SecurityGroupIngress")]
     pub security_group_ingress: Vec<self::security_group::Ingress>,
+    /// Property `Tags`.
     #[serde(rename="Tags")]
     pub tags: ::Tags,
+    /// Property `VpcId`.
     #[serde(rename="VpcId")]
     pub vpc_id: String,
 }
@@ -766,29 +895,39 @@ impl From<SecurityGroupProperties> for SecurityGroup {
 }
 
 /// The [`AWS::EC2::SecurityGroupEgress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-security-group-egress.html) resource type.
+#[derive(Debug)]
 pub struct SecurityGroupEgress {
     properties: SecurityGroupEgressProperties
 }
 
 /// Properties for the `SecurityGroupEgress` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct SecurityGroupEgressProperties {
+    /// Property `CidrIp`.
     #[serde(rename="CidrIp")]
     pub cidr_ip: String,
+    /// Property `CidrIpv6`.
     #[serde(rename="CidrIpv6")]
     pub cidr_ipv6: String,
+    /// Property `Description`.
     #[serde(rename="Description")]
     pub description: String,
+    /// Property `DestinationPrefixListId`.
     #[serde(rename="DestinationPrefixListId")]
     pub destination_prefix_list_id: String,
+    /// Property `DestinationSecurityGroupId`.
     #[serde(rename="DestinationSecurityGroupId")]
     pub destination_security_group_id: String,
+    /// Property `FromPort`.
     #[serde(rename="FromPort")]
     pub from_port: u32,
+    /// Property `GroupId`.
     #[serde(rename="GroupId")]
     pub group_id: String,
+    /// Property `IpProtocol`.
     #[serde(rename="IpProtocol")]
     pub ip_protocol: String,
+    /// Property `ToPort`.
     #[serde(rename="ToPort")]
     pub to_port: u32,
 }
@@ -813,33 +952,45 @@ impl From<SecurityGroupEgressProperties> for SecurityGroupEgress {
 }
 
 /// The [`AWS::EC2::SecurityGroupIngress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html) resource type.
+#[derive(Debug)]
 pub struct SecurityGroupIngress {
     properties: SecurityGroupIngressProperties
 }
 
 /// Properties for the `SecurityGroupIngress` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct SecurityGroupIngressProperties {
+    /// Property `CidrIp`.
     #[serde(rename="CidrIp")]
     pub cidr_ip: String,
+    /// Property `CidrIpv6`.
     #[serde(rename="CidrIpv6")]
     pub cidr_ipv6: String,
+    /// Property `Description`.
     #[serde(rename="Description")]
     pub description: String,
+    /// Property `FromPort`.
     #[serde(rename="FromPort")]
     pub from_port: u32,
+    /// Property `GroupId`.
     #[serde(rename="GroupId")]
     pub group_id: String,
+    /// Property `GroupName`.
     #[serde(rename="GroupName")]
     pub group_name: String,
+    /// Property `IpProtocol`.
     #[serde(rename="IpProtocol")]
     pub ip_protocol: String,
+    /// Property `SourceSecurityGroupId`.
     #[serde(rename="SourceSecurityGroupId")]
     pub source_security_group_id: String,
+    /// Property `SourceSecurityGroupName`.
     #[serde(rename="SourceSecurityGroupName")]
     pub source_security_group_name: String,
+    /// Property `SourceSecurityGroupOwnerId`.
     #[serde(rename="SourceSecurityGroupOwnerId")]
     pub source_security_group_owner_id: String,
+    /// Property `ToPort`.
     #[serde(rename="ToPort")]
     pub to_port: u32,
 }
@@ -864,13 +1015,15 @@ impl From<SecurityGroupIngressProperties> for SecurityGroupIngress {
 }
 
 /// The [`AWS::EC2::SpotFleet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-spotfleet.html) resource type.
+#[derive(Debug)]
 pub struct SpotFleet {
     properties: SpotFleetProperties
 }
 
 /// Properties for the `SpotFleet` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct SpotFleetProperties {
+    /// Property `SpotFleetRequestConfigData`.
     #[serde(rename="SpotFleetRequestConfigData")]
     pub spot_fleet_request_config_data: self::spot_fleet::SpotFleetRequestConfigData,
 }
@@ -895,25 +1048,33 @@ impl From<SpotFleetProperties> for SpotFleet {
 }
 
 /// The [`AWS::EC2::Subnet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html) resource type.
+#[derive(Debug)]
 pub struct Subnet {
     properties: SubnetProperties
 }
 
 /// Properties for the `Subnet` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct SubnetProperties {
+    /// Property `AssignIpv6AddressOnCreation`.
     #[serde(rename="AssignIpv6AddressOnCreation")]
     pub assign_ipv6_address_on_creation: bool,
+    /// Property `AvailabilityZone`.
     #[serde(rename="AvailabilityZone")]
     pub availability_zone: String,
+    /// Property `CidrBlock`.
     #[serde(rename="CidrBlock")]
     pub cidr_block: String,
+    /// Property `Ipv6CidrBlock`.
     #[serde(rename="Ipv6CidrBlock")]
     pub ipv6_cidr_block: String,
+    /// Property `MapPublicIpOnLaunch`.
     #[serde(rename="MapPublicIpOnLaunch")]
     pub map_public_ip_on_launch: bool,
+    /// Property `Tags`.
     #[serde(rename="Tags")]
     pub tags: ::Tags,
+    /// Property `VpcId`.
     #[serde(rename="VpcId")]
     pub vpc_id: String,
 }
@@ -938,15 +1099,18 @@ impl From<SubnetProperties> for Subnet {
 }
 
 /// The [`AWS::EC2::SubnetCidrBlock`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnetcidrblock.html) resource type.
+#[derive(Debug)]
 pub struct SubnetCidrBlock {
     properties: SubnetCidrBlockProperties
 }
 
 /// Properties for the `SubnetCidrBlock` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct SubnetCidrBlockProperties {
+    /// Property `Ipv6CidrBlock`.
     #[serde(rename="Ipv6CidrBlock")]
     pub ipv6_cidr_block: String,
+    /// Property `SubnetId`.
     #[serde(rename="SubnetId")]
     pub subnet_id: String,
 }
@@ -971,15 +1135,18 @@ impl From<SubnetCidrBlockProperties> for SubnetCidrBlock {
 }
 
 /// The [`AWS::EC2::SubnetNetworkAclAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet-network-acl-assoc.html) resource type.
+#[derive(Debug)]
 pub struct SubnetNetworkAclAssociation {
     properties: SubnetNetworkAclAssociationProperties
 }
 
 /// Properties for the `SubnetNetworkAclAssociation` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct SubnetNetworkAclAssociationProperties {
+    /// Property `NetworkAclId`.
     #[serde(rename="NetworkAclId")]
     pub network_acl_id: String,
+    /// Property `SubnetId`.
     #[serde(rename="SubnetId")]
     pub subnet_id: String,
 }
@@ -1004,15 +1171,18 @@ impl From<SubnetNetworkAclAssociationProperties> for SubnetNetworkAclAssociation
 }
 
 /// The [`AWS::EC2::SubnetRouteTableAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet-route-table-assoc.html) resource type.
+#[derive(Debug)]
 pub struct SubnetRouteTableAssociation {
     properties: SubnetRouteTableAssociationProperties
 }
 
 /// Properties for the `SubnetRouteTableAssociation` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct SubnetRouteTableAssociationProperties {
+    /// Property `RouteTableId`.
     #[serde(rename="RouteTableId")]
     pub route_table_id: String,
+    /// Property `SubnetId`.
     #[serde(rename="SubnetId")]
     pub subnet_id: String,
 }
@@ -1037,19 +1207,24 @@ impl From<SubnetRouteTableAssociationProperties> for SubnetRouteTableAssociation
 }
 
 /// The [`AWS::EC2::TrunkInterfaceAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trunkinterfaceassociation.html) resource type.
+#[derive(Debug)]
 pub struct TrunkInterfaceAssociation {
     properties: TrunkInterfaceAssociationProperties
 }
 
 /// Properties for the `TrunkInterfaceAssociation` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct TrunkInterfaceAssociationProperties {
+    /// Property `BranchInterfaceId`.
     #[serde(rename="BranchInterfaceId")]
     pub branch_interface_id: String,
+    /// Property `GREKey`.
     #[serde(rename="GREKey")]
     pub gre_key: u32,
+    /// Property `TrunkInterfaceId`.
     #[serde(rename="TrunkInterfaceId")]
     pub trunk_interface_id: String,
+    /// Property `VLANId`.
     #[serde(rename="VLANId")]
     pub vlan_id: u32,
 }
@@ -1074,21 +1249,27 @@ impl From<TrunkInterfaceAssociationProperties> for TrunkInterfaceAssociation {
 }
 
 /// The [`AWS::EC2::VPC`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc.html) resource type.
+#[derive(Debug)]
 pub struct VPC {
     properties: VPCProperties
 }
 
 /// Properties for the `VPC` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct VPCProperties {
+    /// Property `CidrBlock`.
     #[serde(rename="CidrBlock")]
     pub cidr_block: String,
+    /// Property `EnableDnsHostnames`.
     #[serde(rename="EnableDnsHostnames")]
     pub enable_dns_hostnames: bool,
+    /// Property `EnableDnsSupport`.
     #[serde(rename="EnableDnsSupport")]
     pub enable_dns_support: bool,
+    /// Property `InstanceTenancy`.
     #[serde(rename="InstanceTenancy")]
     pub instance_tenancy: String,
+    /// Property `Tags`.
     #[serde(rename="Tags")]
     pub tags: ::Tags,
 }
@@ -1113,17 +1294,21 @@ impl From<VPCProperties> for VPC {
 }
 
 /// The [`AWS::EC2::VPCCidrBlock`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpccidrblock.html) resource type.
+#[derive(Debug)]
 pub struct VPCCidrBlock {
     properties: VPCCidrBlockProperties
 }
 
 /// Properties for the `VPCCidrBlock` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct VPCCidrBlockProperties {
+    /// Property `AmazonProvidedIpv6CidrBlock`.
     #[serde(rename="AmazonProvidedIpv6CidrBlock")]
     pub amazon_provided_ipv6_cidr_block: bool,
+    /// Property `CidrBlock`.
     #[serde(rename="CidrBlock")]
     pub cidr_block: String,
+    /// Property `VpcId`.
     #[serde(rename="VpcId")]
     pub vpc_id: String,
 }
@@ -1148,15 +1333,18 @@ impl From<VPCCidrBlockProperties> for VPCCidrBlock {
 }
 
 /// The [`AWS::EC2::VPCDHCPOptionsAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc-dhcp-options-assoc.html) resource type.
+#[derive(Debug)]
 pub struct VPCDHCPOptionsAssociation {
     properties: VPCDHCPOptionsAssociationProperties
 }
 
 /// Properties for the `VPCDHCPOptionsAssociation` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct VPCDHCPOptionsAssociationProperties {
+    /// Property `DhcpOptionsId`.
     #[serde(rename="DhcpOptionsId")]
     pub dhcp_options_id: String,
+    /// Property `VpcId`.
     #[serde(rename="VpcId")]
     pub vpc_id: String,
 }
@@ -1181,19 +1369,24 @@ impl From<VPCDHCPOptionsAssociationProperties> for VPCDHCPOptionsAssociation {
 }
 
 /// The [`AWS::EC2::VPCEndpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpoint.html) resource type.
+#[derive(Debug)]
 pub struct VPCEndpoint {
     properties: VPCEndpointProperties
 }
 
 /// Properties for the `VPCEndpoint` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct VPCEndpointProperties {
+    /// Property `PolicyDocument`.
     #[serde(rename="PolicyDocument")]
     pub policy_document: ::json::Value,
+    /// Property `RouteTableIds`.
     #[serde(rename="RouteTableIds")]
     pub route_table_ids: Vec<String>,
+    /// Property `ServiceName`.
     #[serde(rename="ServiceName")]
     pub service_name: String,
+    /// Property `VpcId`.
     #[serde(rename="VpcId")]
     pub vpc_id: String,
 }
@@ -1218,17 +1411,21 @@ impl From<VPCEndpointProperties> for VPCEndpoint {
 }
 
 /// The [`AWS::EC2::VPCGatewayAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc-gateway-attachment.html) resource type.
+#[derive(Debug)]
 pub struct VPCGatewayAttachment {
     properties: VPCGatewayAttachmentProperties
 }
 
 /// Properties for the `VPCGatewayAttachment` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct VPCGatewayAttachmentProperties {
+    /// Property `InternetGatewayId`.
     #[serde(rename="InternetGatewayId")]
     pub internet_gateway_id: String,
+    /// Property `VpcId`.
     #[serde(rename="VpcId")]
     pub vpc_id: String,
+    /// Property `VpnGatewayId`.
     #[serde(rename="VpnGatewayId")]
     pub vpn_gateway_id: String,
 }
@@ -1253,21 +1450,27 @@ impl From<VPCGatewayAttachmentProperties> for VPCGatewayAttachment {
 }
 
 /// The [`AWS::EC2::VPCPeeringConnection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcpeeringconnection.html) resource type.
+#[derive(Debug)]
 pub struct VPCPeeringConnection {
     properties: VPCPeeringConnectionProperties
 }
 
 /// Properties for the `VPCPeeringConnection` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct VPCPeeringConnectionProperties {
+    /// Property `PeerOwnerId`.
     #[serde(rename="PeerOwnerId")]
     pub peer_owner_id: String,
+    /// Property `PeerRoleArn`.
     #[serde(rename="PeerRoleArn")]
     pub peer_role_arn: String,
+    /// Property `PeerVpcId`.
     #[serde(rename="PeerVpcId")]
     pub peer_vpc_id: String,
+    /// Property `Tags`.
     #[serde(rename="Tags")]
     pub tags: ::Tags,
+    /// Property `VpcId`.
     #[serde(rename="VpcId")]
     pub vpc_id: String,
 }
@@ -1292,23 +1495,30 @@ impl From<VPCPeeringConnectionProperties> for VPCPeeringConnection {
 }
 
 /// The [`AWS::EC2::VPNConnection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-connection.html) resource type.
+#[derive(Debug)]
 pub struct VPNConnection {
     properties: VPNConnectionProperties
 }
 
 /// Properties for the `VPNConnection` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct VPNConnectionProperties {
+    /// Property `CustomerGatewayId`.
     #[serde(rename="CustomerGatewayId")]
     pub customer_gateway_id: String,
+    /// Property `StaticRoutesOnly`.
     #[serde(rename="StaticRoutesOnly")]
     pub static_routes_only: bool,
+    /// Property `Tags`.
     #[serde(rename="Tags")]
     pub tags: ::Tags,
+    /// Property `Type`.
     #[serde(rename="Type")]
     pub type_: String,
+    /// Property `VpnGatewayId`.
     #[serde(rename="VpnGatewayId")]
     pub vpn_gateway_id: String,
+    /// Property `VpnTunnelOptionsSpecifications`.
     #[serde(rename="VpnTunnelOptionsSpecifications")]
     pub vpn_tunnel_options_specifications: Vec<self::vpn_connection::VpnTunnelOptionsSpecification>,
 }
@@ -1333,15 +1543,18 @@ impl From<VPNConnectionProperties> for VPNConnection {
 }
 
 /// The [`AWS::EC2::VPNConnectionRoute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-connection-route.html) resource type.
+#[derive(Debug)]
 pub struct VPNConnectionRoute {
     properties: VPNConnectionRouteProperties
 }
 
 /// Properties for the `VPNConnectionRoute` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct VPNConnectionRouteProperties {
+    /// Property `DestinationCidrBlock`.
     #[serde(rename="DestinationCidrBlock")]
     pub destination_cidr_block: String,
+    /// Property `VpnConnectionId`.
     #[serde(rename="VpnConnectionId")]
     pub vpn_connection_id: String,
 }
@@ -1366,17 +1579,21 @@ impl From<VPNConnectionRouteProperties> for VPNConnectionRoute {
 }
 
 /// The [`AWS::EC2::VPNGateway`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-gateway.html) resource type.
+#[derive(Debug)]
 pub struct VPNGateway {
     properties: VPNGatewayProperties
 }
 
 /// Properties for the `VPNGateway` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct VPNGatewayProperties {
+    /// Property `AmazonSideAsn`.
     #[serde(rename="AmazonSideAsn")]
     pub amazon_side_asn: u64,
+    /// Property `Tags`.
     #[serde(rename="Tags")]
     pub tags: ::Tags,
+    /// Property `Type`.
     #[serde(rename="Type")]
     pub type_: String,
 }
@@ -1401,15 +1618,18 @@ impl From<VPNGatewayProperties> for VPNGateway {
 }
 
 /// The [`AWS::EC2::VPNGatewayRoutePropagation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-gatewayrouteprop.html) resource type.
+#[derive(Debug)]
 pub struct VPNGatewayRoutePropagation {
     properties: VPNGatewayRoutePropagationProperties
 }
 
 /// Properties for the `VPNGatewayRoutePropagation` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct VPNGatewayRoutePropagationProperties {
+    /// Property `RouteTableIds`.
     #[serde(rename="RouteTableIds")]
     pub route_table_ids: Vec<String>,
+    /// Property `VpnGatewayId`.
     #[serde(rename="VpnGatewayId")]
     pub vpn_gateway_id: String,
 }
@@ -1434,29 +1654,39 @@ impl From<VPNGatewayRoutePropagationProperties> for VPNGatewayRoutePropagation {
 }
 
 /// The [`AWS::EC2::Volume`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volume.html) resource type.
+#[derive(Debug)]
 pub struct Volume {
     properties: VolumeProperties
 }
 
 /// Properties for the `Volume` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct VolumeProperties {
+    /// Property `AutoEnableIO`.
     #[serde(rename="AutoEnableIO")]
     pub auto_enable_io: bool,
+    /// Property `AvailabilityZone`.
     #[serde(rename="AvailabilityZone")]
     pub availability_zone: String,
+    /// Property `Encrypted`.
     #[serde(rename="Encrypted")]
     pub encrypted: bool,
+    /// Property `Iops`.
     #[serde(rename="Iops")]
     pub iops: u32,
+    /// Property `KmsKeyId`.
     #[serde(rename="KmsKeyId")]
     pub kms_key_id: String,
+    /// Property `Size`.
     #[serde(rename="Size")]
     pub size: u32,
+    /// Property `SnapshotId`.
     #[serde(rename="SnapshotId")]
     pub snapshot_id: String,
+    /// Property `Tags`.
     #[serde(rename="Tags")]
     pub tags: ::Tags,
+    /// Property `VolumeType`.
     #[serde(rename="VolumeType")]
     pub volume_type: String,
 }
@@ -1481,17 +1711,21 @@ impl From<VolumeProperties> for Volume {
 }
 
 /// The [`AWS::EC2::VolumeAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volumeattachment.html) resource type.
+#[derive(Debug)]
 pub struct VolumeAttachment {
     properties: VolumeAttachmentProperties
 }
 
 /// Properties for the `VolumeAttachment` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct VolumeAttachmentProperties {
+    /// Property `Device`.
     #[serde(rename="Device")]
     pub device: String,
+    /// Property `InstanceId`.
     #[serde(rename="InstanceId")]
     pub instance_id: String,
+    /// Property `VolumeId`.
     #[serde(rename="VolumeId")]
     pub volume_id: String,
 }
@@ -1516,404 +1750,526 @@ impl From<VolumeAttachmentProperties> for VolumeAttachment {
 }
 
 pub mod instance {
+    //! Property types for the `Instance` resource.
+
     /// The [`AWS::EC2::Instance.AssociationParameter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-ssmassociations-associationparameters.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct AssociationParameter {
+        /// Property `Key`.
         #[serde(rename="Key")]
         pub key: String,
+        /// Property `Value`.
         #[serde(rename="Value")]
         pub value: Vec<String>,
     }
 
     /// The [`AWS::EC2::Instance.BlockDeviceMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-blockdev-mapping.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct BlockDeviceMapping {
+        /// Property `DeviceName`.
         #[serde(rename="DeviceName")]
         pub device_name: String,
+        /// Property `Ebs`.
         #[serde(rename="Ebs")]
         pub ebs: Ebs,
+        /// Property `NoDevice`.
         #[serde(rename="NoDevice")]
         pub no_device: NoDevice,
+        /// Property `VirtualName`.
         #[serde(rename="VirtualName")]
         pub virtual_name: String,
     }
 
     /// The [`AWS::EC2::Instance.CreditSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-creditspecification.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct CreditSpecification {
+        /// Property `CPUCredits`.
         #[serde(rename="CPUCredits")]
         pub cpu_credits: String,
     }
 
     /// The [`AWS::EC2::Instance.Ebs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-blockdev-template.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct Ebs {
+        /// Property `DeleteOnTermination`.
         #[serde(rename="DeleteOnTermination")]
         pub delete_on_termination: bool,
+        /// Property `Encrypted`.
         #[serde(rename="Encrypted")]
         pub encrypted: bool,
+        /// Property `Iops`.
         #[serde(rename="Iops")]
         pub iops: u32,
+        /// Property `SnapshotId`.
         #[serde(rename="SnapshotId")]
         pub snapshot_id: String,
+        /// Property `VolumeSize`.
         #[serde(rename="VolumeSize")]
         pub volume_size: u32,
+        /// Property `VolumeType`.
         #[serde(rename="VolumeType")]
         pub volume_type: String,
     }
 
     /// The [`AWS::EC2::Instance.ElasticGpuSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-elasticgpuspecification.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct ElasticGpuSpecification {
+        /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,
     }
 
     /// The [`AWS::EC2::Instance.InstanceIpv6Address`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-instanceipv6address.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct InstanceIpv6Address {
+        /// Property `Ipv6Address`.
         #[serde(rename="Ipv6Address")]
         pub ipv6_address: String,
     }
 
     /// The [`AWS::EC2::Instance.NetworkInterface`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-network-iface-embedded.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct NetworkInterface {
+        /// Property `AssociatePublicIpAddress`.
         #[serde(rename="AssociatePublicIpAddress")]
         pub associate_public_ip_address: bool,
+        /// Property `DeleteOnTermination`.
         #[serde(rename="DeleteOnTermination")]
         pub delete_on_termination: bool,
+        /// Property `Description`.
         #[serde(rename="Description")]
         pub description: String,
+        /// Property `DeviceIndex`.
         #[serde(rename="DeviceIndex")]
         pub device_index: String,
+        /// Property `GroupSet`.
         #[serde(rename="GroupSet")]
         pub group_set: Vec<String>,
+        /// Property `Ipv6AddressCount`.
         #[serde(rename="Ipv6AddressCount")]
         pub ipv6_address_count: u32,
+        /// Property `Ipv6Addresses`.
         #[serde(rename="Ipv6Addresses")]
         pub ipv6_addresses: Vec<InstanceIpv6Address>,
+        /// Property `NetworkInterfaceId`.
         #[serde(rename="NetworkInterfaceId")]
         pub network_interface_id: String,
+        /// Property `PrivateIpAddress`.
         #[serde(rename="PrivateIpAddress")]
         pub private_ip_address: String,
+        /// Property `PrivateIpAddresses`.
         #[serde(rename="PrivateIpAddresses")]
         pub private_ip_addresses: Vec<PrivateIpAddressSpecification>,
+        /// Property `SecondaryPrivateIpAddressCount`.
         #[serde(rename="SecondaryPrivateIpAddressCount")]
         pub secondary_private_ip_address_count: u32,
+        /// Property `SubnetId`.
         #[serde(rename="SubnetId")]
         pub subnet_id: String,
     }
 
     /// The [`AWS::EC2::Instance.NoDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-nodevice.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct NoDevice {
     }
 
     /// The [`AWS::EC2::Instance.PrivateIpAddressSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-network-interface-privateipspec.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct PrivateIpAddressSpecification {
+        /// Property `Primary`.
         #[serde(rename="Primary")]
         pub primary: bool,
+        /// Property `PrivateIpAddress`.
         #[serde(rename="PrivateIpAddress")]
         pub private_ip_address: String,
     }
 
     /// The [`AWS::EC2::Instance.SsmAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-ssmassociations.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct SsmAssociation {
+        /// Property `AssociationParameters`.
         #[serde(rename="AssociationParameters")]
         pub association_parameters: Vec<AssociationParameter>,
+        /// Property `DocumentName`.
         #[serde(rename="DocumentName")]
         pub document_name: String,
     }
 
     /// The [`AWS::EC2::Instance.Volume`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-mount-point.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct Volume {
+        /// Property `Device`.
         #[serde(rename="Device")]
         pub device: String,
+        /// Property `VolumeId`.
         #[serde(rename="VolumeId")]
         pub volume_id: String,
     }
-
 }
 
 pub mod network_acl_entry {
+    //! Property types for the `NetworkAclEntry` resource.
+
     /// The [`AWS::EC2::NetworkAclEntry.Icmp`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-icmp.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct Icmp {
+        /// Property `Code`.
         #[serde(rename="Code")]
         pub code: u32,
+        /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: u32,
     }
 
     /// The [`AWS::EC2::NetworkAclEntry.PortRange`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-portrange.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct PortRange {
+        /// Property `From`.
         #[serde(rename="From")]
         pub from: u32,
+        /// Property `To`.
         #[serde(rename="To")]
         pub to: u32,
     }
-
 }
 
 pub mod network_interface {
+    //! Property types for the `NetworkInterface` resource.
+
     /// The [`AWS::EC2::NetworkInterface.InstanceIpv6Address`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinterface-instanceipv6address.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct InstanceIpv6Address {
+        /// Property `Ipv6Address`.
         #[serde(rename="Ipv6Address")]
         pub ipv6_address: String,
     }
 
     /// The [`AWS::EC2::NetworkInterface.PrivateIpAddressSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-network-interface-privateipspec.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct PrivateIpAddressSpecification {
+        /// Property `Primary`.
         #[serde(rename="Primary")]
         pub primary: bool,
+        /// Property `PrivateIpAddress`.
         #[serde(rename="PrivateIpAddress")]
         pub private_ip_address: String,
     }
-
 }
 
 pub mod security_group {
+    //! Property types for the `SecurityGroup` resource.
+
     /// The [`AWS::EC2::SecurityGroup.Egress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-rule.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct Egress {
+        /// Property `CidrIp`.
         #[serde(rename="CidrIp")]
         pub cidr_ip: String,
+        /// Property `CidrIpv6`.
         #[serde(rename="CidrIpv6")]
         pub cidr_ipv6: String,
+        /// Property `Description`.
         #[serde(rename="Description")]
         pub description: String,
+        /// Property `DestinationPrefixListId`.
         #[serde(rename="DestinationPrefixListId")]
         pub destination_prefix_list_id: String,
+        /// Property `DestinationSecurityGroupId`.
         #[serde(rename="DestinationSecurityGroupId")]
         pub destination_security_group_id: String,
+        /// Property `FromPort`.
         #[serde(rename="FromPort")]
         pub from_port: u32,
+        /// Property `IpProtocol`.
         #[serde(rename="IpProtocol")]
         pub ip_protocol: String,
+        /// Property `ToPort`.
         #[serde(rename="ToPort")]
         pub to_port: u32,
     }
 
     /// The [`AWS::EC2::SecurityGroup.Ingress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-rule.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct Ingress {
+        /// Property `CidrIp`.
         #[serde(rename="CidrIp")]
         pub cidr_ip: String,
+        /// Property `CidrIpv6`.
         #[serde(rename="CidrIpv6")]
         pub cidr_ipv6: String,
+        /// Property `Description`.
         #[serde(rename="Description")]
         pub description: String,
+        /// Property `FromPort`.
         #[serde(rename="FromPort")]
         pub from_port: u32,
+        /// Property `IpProtocol`.
         #[serde(rename="IpProtocol")]
         pub ip_protocol: String,
+        /// Property `SourceSecurityGroupId`.
         #[serde(rename="SourceSecurityGroupId")]
         pub source_security_group_id: String,
+        /// Property `SourceSecurityGroupName`.
         #[serde(rename="SourceSecurityGroupName")]
         pub source_security_group_name: String,
+        /// Property `SourceSecurityGroupOwnerId`.
         #[serde(rename="SourceSecurityGroupOwnerId")]
         pub source_security_group_owner_id: String,
+        /// Property `ToPort`.
         #[serde(rename="ToPort")]
         pub to_port: u32,
     }
-
 }
 
 pub mod spot_fleet {
+    //! Property types for the `SpotFleet` resource.
+
     /// The [`AWS::EC2::SpotFleet.BlockDeviceMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct BlockDeviceMapping {
+        /// Property `DeviceName`.
         #[serde(rename="DeviceName")]
         pub device_name: String,
+        /// Property `Ebs`.
         #[serde(rename="Ebs")]
         pub ebs: EbsBlockDevice,
+        /// Property `NoDevice`.
         #[serde(rename="NoDevice")]
         pub no_device: String,
+        /// Property `VirtualName`.
         #[serde(rename="VirtualName")]
         pub virtual_name: String,
     }
 
     /// The [`AWS::EC2::SpotFleet.EbsBlockDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings-ebs.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct EbsBlockDevice {
+        /// Property `DeleteOnTermination`.
         #[serde(rename="DeleteOnTermination")]
         pub delete_on_termination: bool,
+        /// Property `Encrypted`.
         #[serde(rename="Encrypted")]
         pub encrypted: bool,
+        /// Property `Iops`.
         #[serde(rename="Iops")]
         pub iops: u32,
+        /// Property `SnapshotId`.
         #[serde(rename="SnapshotId")]
         pub snapshot_id: String,
+        /// Property `VolumeSize`.
         #[serde(rename="VolumeSize")]
         pub volume_size: u32,
+        /// Property `VolumeType`.
         #[serde(rename="VolumeType")]
         pub volume_type: String,
     }
 
     /// The [`AWS::EC2::SpotFleet.GroupIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-securitygroups.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct GroupIdentifier {
+        /// Property `GroupId`.
         #[serde(rename="GroupId")]
         pub group_id: String,
     }
 
     /// The [`AWS::EC2::SpotFleet.IamInstanceProfileSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-iaminstanceprofile.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct IamInstanceProfileSpecification {
+        /// Property `Arn`.
         #[serde(rename="Arn")]
         pub arn: String,
     }
 
     /// The [`AWS::EC2::SpotFleet.InstanceIpv6Address`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-instanceipv6address.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct InstanceIpv6Address {
+        /// Property `Ipv6Address`.
         #[serde(rename="Ipv6Address")]
         pub ipv6_address: String,
     }
 
     /// The [`AWS::EC2::SpotFleet.InstanceNetworkInterfaceSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct InstanceNetworkInterfaceSpecification {
+        /// Property `AssociatePublicIpAddress`.
         #[serde(rename="AssociatePublicIpAddress")]
         pub associate_public_ip_address: bool,
+        /// Property `DeleteOnTermination`.
         #[serde(rename="DeleteOnTermination")]
         pub delete_on_termination: bool,
+        /// Property `Description`.
         #[serde(rename="Description")]
         pub description: String,
+        /// Property `DeviceIndex`.
         #[serde(rename="DeviceIndex")]
         pub device_index: u32,
+        /// Property `Groups`.
         #[serde(rename="Groups")]
         pub groups: Vec<String>,
+        /// Property `Ipv6AddressCount`.
         #[serde(rename="Ipv6AddressCount")]
         pub ipv6_address_count: u32,
+        /// Property `Ipv6Addresses`.
         #[serde(rename="Ipv6Addresses")]
         pub ipv6_addresses: Vec<InstanceIpv6Address>,
+        /// Property `NetworkInterfaceId`.
         #[serde(rename="NetworkInterfaceId")]
         pub network_interface_id: String,
+        /// Property `PrivateIpAddresses`.
         #[serde(rename="PrivateIpAddresses")]
         pub private_ip_addresses: Vec<PrivateIpAddressSpecification>,
+        /// Property `SecondaryPrivateIpAddressCount`.
         #[serde(rename="SecondaryPrivateIpAddressCount")]
         pub secondary_private_ip_address_count: u32,
+        /// Property `SubnetId`.
         #[serde(rename="SubnetId")]
         pub subnet_id: String,
     }
 
     /// The [`AWS::EC2::SpotFleet.PrivateIpAddressSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces-privateipaddresses.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct PrivateIpAddressSpecification {
+        /// Property `Primary`.
         #[serde(rename="Primary")]
         pub primary: bool,
+        /// Property `PrivateIpAddress`.
         #[serde(rename="PrivateIpAddress")]
         pub private_ip_address: String,
     }
 
     /// The [`AWS::EC2::SpotFleet.SpotFleetLaunchSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct SpotFleetLaunchSpecification {
+        /// Property `BlockDeviceMappings`.
         #[serde(rename="BlockDeviceMappings")]
         pub block_device_mappings: Vec<BlockDeviceMapping>,
+        /// Property `EbsOptimized`.
         #[serde(rename="EbsOptimized")]
         pub ebs_optimized: bool,
+        /// Property `IamInstanceProfile`.
         #[serde(rename="IamInstanceProfile")]
         pub iam_instance_profile: IamInstanceProfileSpecification,
+        /// Property `ImageId`.
         #[serde(rename="ImageId")]
         pub image_id: String,
+        /// Property `InstanceType`.
         #[serde(rename="InstanceType")]
         pub instance_type: String,
+        /// Property `KernelId`.
         #[serde(rename="KernelId")]
         pub kernel_id: String,
+        /// Property `KeyName`.
         #[serde(rename="KeyName")]
         pub key_name: String,
+        /// Property `Monitoring`.
         #[serde(rename="Monitoring")]
         pub monitoring: SpotFleetMonitoring,
+        /// Property `NetworkInterfaces`.
         #[serde(rename="NetworkInterfaces")]
         pub network_interfaces: Vec<InstanceNetworkInterfaceSpecification>,
+        /// Property `Placement`.
         #[serde(rename="Placement")]
         pub placement: SpotPlacement,
+        /// Property `RamdiskId`.
         #[serde(rename="RamdiskId")]
         pub ramdisk_id: String,
+        /// Property `SecurityGroups`.
         #[serde(rename="SecurityGroups")]
         pub security_groups: Vec<GroupIdentifier>,
+        /// Property `SpotPrice`.
         #[serde(rename="SpotPrice")]
         pub spot_price: String,
+        /// Property `SubnetId`.
         #[serde(rename="SubnetId")]
         pub subnet_id: String,
+        /// Property `TagSpecifications`.
         #[serde(rename="TagSpecifications")]
         pub tag_specifications: Vec<SpotFleetTagSpecification>,
+        /// Property `UserData`.
         #[serde(rename="UserData")]
         pub user_data: String,
+        /// Property `WeightedCapacity`.
         #[serde(rename="WeightedCapacity")]
         pub weighted_capacity: f64,
     }
 
     /// The [`AWS::EC2::SpotFleet.SpotFleetMonitoring`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-monitoring.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct SpotFleetMonitoring {
+        /// Property `Enabled`.
         #[serde(rename="Enabled")]
         pub enabled: bool,
     }
 
     /// The [`AWS::EC2::SpotFleet.SpotFleetRequestConfigData`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct SpotFleetRequestConfigData {
+        /// Property `AllocationStrategy`.
         #[serde(rename="AllocationStrategy")]
         pub allocation_strategy: String,
+        /// Property `ExcessCapacityTerminationPolicy`.
         #[serde(rename="ExcessCapacityTerminationPolicy")]
         pub excess_capacity_termination_policy: String,
+        /// Property `IamFleetRole`.
         #[serde(rename="IamFleetRole")]
         pub iam_fleet_role: String,
+        /// Property `LaunchSpecifications`.
         #[serde(rename="LaunchSpecifications")]
         pub launch_specifications: Vec<SpotFleetLaunchSpecification>,
+        /// Property `ReplaceUnhealthyInstances`.
         #[serde(rename="ReplaceUnhealthyInstances")]
         pub replace_unhealthy_instances: bool,
+        /// Property `SpotPrice`.
         #[serde(rename="SpotPrice")]
         pub spot_price: String,
+        /// Property `TargetCapacity`.
         #[serde(rename="TargetCapacity")]
         pub target_capacity: u32,
+        /// Property `TerminateInstancesWithExpiration`.
         #[serde(rename="TerminateInstancesWithExpiration")]
         pub terminate_instances_with_expiration: bool,
+        /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,
+        /// Property `ValidFrom`.
         #[serde(rename="ValidFrom")]
         pub valid_from: String,
+        /// Property `ValidUntil`.
         #[serde(rename="ValidUntil")]
         pub valid_until: String,
     }
 
     /// The [`AWS::EC2::SpotFleet.SpotFleetTagSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-tagspecifications.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct SpotFleetTagSpecification {
+        /// Property `ResourceType`.
         #[serde(rename="ResourceType")]
         pub resource_type: String,
     }
 
     /// The [`AWS::EC2::SpotFleet.SpotPlacement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-placement.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct SpotPlacement {
+        /// Property `AvailabilityZone`.
         #[serde(rename="AvailabilityZone")]
         pub availability_zone: String,
+        /// Property `GroupName`.
         #[serde(rename="GroupName")]
         pub group_name: String,
     }
-
 }
 
 pub mod vpn_connection {
+    //! Property types for the `VPNConnection` resource.
+
     /// The [`AWS::EC2::VPNConnection.VpnTunnelOptionsSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-vpntunneloptionsspecification.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct VpnTunnelOptionsSpecification {
+        /// Property `PreSharedKey`.
         #[serde(rename="PreSharedKey")]
         pub pre_shared_key: String,
+        /// Property `TunnelInsideCidr`.
         #[serde(rename="TunnelInsideCidr")]
         pub tunnel_inside_cidr: String,
     }
-
 }
-

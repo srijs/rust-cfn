@@ -1,11 +1,15 @@
+//! Types for the `GuardDuty` service.
+
 /// The [`AWS::GuardDuty::Detector`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-detector.html) resource type.
+#[derive(Debug)]
 pub struct Detector {
     properties: DetectorProperties
 }
 
 /// Properties for the `Detector` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct DetectorProperties {
+    /// Property `Enable`.
     #[serde(rename="Enable")]
     pub enable: bool,
 }
@@ -30,21 +34,27 @@ impl From<DetectorProperties> for Detector {
 }
 
 /// The [`AWS::GuardDuty::IPSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-ipset.html) resource type.
+#[derive(Debug)]
 pub struct IPSet {
     properties: IPSetProperties
 }
 
 /// Properties for the `IPSet` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct IPSetProperties {
+    /// Property `Activate`.
     #[serde(rename="Activate")]
     pub activate: bool,
+    /// Property `DetectorId`.
     #[serde(rename="DetectorId")]
     pub detector_id: String,
+    /// Property `Format`.
     #[serde(rename="Format")]
     pub format: String,
+    /// Property `Location`.
     #[serde(rename="Location")]
     pub location: String,
+    /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
 }
@@ -69,17 +79,21 @@ impl From<IPSetProperties> for IPSet {
 }
 
 /// The [`AWS::GuardDuty::Master`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-master.html) resource type.
+#[derive(Debug)]
 pub struct Master {
     properties: MasterProperties
 }
 
 /// Properties for the `Master` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct MasterProperties {
+    /// Property `DetectorId`.
     #[serde(rename="DetectorId")]
     pub detector_id: String,
+    /// Property `InvitationId`.
     #[serde(rename="InvitationId")]
     pub invitation_id: String,
+    /// Property `MasterId`.
     #[serde(rename="MasterId")]
     pub master_id: String,
 }
@@ -104,21 +118,27 @@ impl From<MasterProperties> for Master {
 }
 
 /// The [`AWS::GuardDuty::Member`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-member.html) resource type.
+#[derive(Debug)]
 pub struct Member {
     properties: MemberProperties
 }
 
 /// Properties for the `Member` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct MemberProperties {
+    /// Property `DetectorId`.
     #[serde(rename="DetectorId")]
     pub detector_id: String,
+    /// Property `Email`.
     #[serde(rename="Email")]
     pub email: String,
+    /// Property `MemberId`.
     #[serde(rename="MemberId")]
     pub member_id: String,
+    /// Property `Message`.
     #[serde(rename="Message")]
     pub message: String,
+    /// Property `Status`.
     #[serde(rename="Status")]
     pub status: String,
 }
@@ -143,21 +163,27 @@ impl From<MemberProperties> for Member {
 }
 
 /// The [`AWS::GuardDuty::ThreatIntelSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-threatintelset.html) resource type.
+#[derive(Debug)]
 pub struct ThreatIntelSet {
     properties: ThreatIntelSetProperties
 }
 
 /// Properties for the `ThreatIntelSet` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct ThreatIntelSetProperties {
+    /// Property `Activate`.
     #[serde(rename="Activate")]
     pub activate: bool,
+    /// Property `DetectorId`.
     #[serde(rename="DetectorId")]
     pub detector_id: String,
+    /// Property `Format`.
     #[serde(rename="Format")]
     pub format: String,
+    /// Property `Location`.
     #[serde(rename="Location")]
     pub location: String,
+    /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
 }
@@ -180,4 +206,3 @@ impl From<ThreatIntelSetProperties> for ThreatIntelSet {
         ThreatIntelSet { properties }
     }
 }
-

@@ -1,13 +1,18 @@
+//! Types for the `KMS` service.
+
 /// The [`AWS::KMS::Alias`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-alias.html) resource type.
+#[derive(Debug)]
 pub struct Alias {
     properties: AliasProperties
 }
 
 /// Properties for the `Alias` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct AliasProperties {
+    /// Property `AliasName`.
     #[serde(rename="AliasName")]
     pub alias_name: String,
+    /// Property `TargetKeyId`.
     #[serde(rename="TargetKeyId")]
     pub target_key_id: String,
 }
@@ -32,23 +37,30 @@ impl From<AliasProperties> for Alias {
 }
 
 /// The [`AWS::KMS::Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html) resource type.
+#[derive(Debug)]
 pub struct Key {
     properties: KeyProperties
 }
 
 /// Properties for the `Key` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct KeyProperties {
+    /// Property `Description`.
     #[serde(rename="Description")]
     pub description: String,
+    /// Property `EnableKeyRotation`.
     #[serde(rename="EnableKeyRotation")]
     pub enable_key_rotation: bool,
+    /// Property `Enabled`.
     #[serde(rename="Enabled")]
     pub enabled: bool,
+    /// Property `KeyPolicy`.
     #[serde(rename="KeyPolicy")]
     pub key_policy: ::json::Value,
+    /// Property `KeyUsage`.
     #[serde(rename="KeyUsage")]
     pub key_usage: String,
+    /// Property `Tags`.
     #[serde(rename="Tags")]
     pub tags: ::Tags,
 }
@@ -71,4 +83,3 @@ impl From<KeyProperties> for Key {
         Key { properties }
     }
 }
-

@@ -1,15 +1,21 @@
+//! Types for the `ServiceDiscovery` service.
+
 /// The [`AWS::ServiceDiscovery::Instance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-instance.html) resource type.
+#[derive(Debug)]
 pub struct Instance {
     properties: InstanceProperties
 }
 
 /// Properties for the `Instance` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct InstanceProperties {
+    /// Property `InstanceAttributes`.
     #[serde(rename="InstanceAttributes")]
     pub instance_attributes: ::json::Value,
+    /// Property `InstanceId`.
     #[serde(rename="InstanceId")]
     pub instance_id: String,
+    /// Property `ServiceId`.
     #[serde(rename="ServiceId")]
     pub service_id: String,
 }
@@ -34,17 +40,21 @@ impl From<InstanceProperties> for Instance {
 }
 
 /// The [`AWS::ServiceDiscovery::PrivateDnsNamespace`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-privatednsnamespace.html) resource type.
+#[derive(Debug)]
 pub struct PrivateDnsNamespace {
     properties: PrivateDnsNamespaceProperties
 }
 
 /// Properties for the `PrivateDnsNamespace` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct PrivateDnsNamespaceProperties {
+    /// Property `Description`.
     #[serde(rename="Description")]
     pub description: String,
+    /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
+    /// Property `Vpc`.
     #[serde(rename="Vpc")]
     pub vpc: String,
 }
@@ -69,15 +79,18 @@ impl From<PrivateDnsNamespaceProperties> for PrivateDnsNamespace {
 }
 
 /// The [`AWS::ServiceDiscovery::PublicDnsNamespace`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-publicdnsnamespace.html) resource type.
+#[derive(Debug)]
 pub struct PublicDnsNamespace {
     properties: PublicDnsNamespaceProperties
 }
 
 /// Properties for the `PublicDnsNamespace` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct PublicDnsNamespaceProperties {
+    /// Property `Description`.
     #[serde(rename="Description")]
     pub description: String,
+    /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
 }
@@ -102,19 +115,24 @@ impl From<PublicDnsNamespaceProperties> for PublicDnsNamespace {
 }
 
 /// The [`AWS::ServiceDiscovery::Service`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-service.html) resource type.
+#[derive(Debug)]
 pub struct Service {
     properties: ServiceProperties
 }
 
 /// Properties for the `Service` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct ServiceProperties {
+    /// Property `Description`.
     #[serde(rename="Description")]
     pub description: String,
+    /// Property `DnsConfig`.
     #[serde(rename="DnsConfig")]
     pub dns_config: self::service::DnsConfig,
+    /// Property `HealthCheckConfig`.
     #[serde(rename="HealthCheckConfig")]
     pub health_check_config: self::service::HealthCheckConfig,
+    /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
 }
@@ -139,34 +157,41 @@ impl From<ServiceProperties> for Service {
 }
 
 pub mod service {
+    //! Property types for the `Service` resource.
+
     /// The [`AWS::ServiceDiscovery::Service.DnsConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-dnsconfig.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct DnsConfig {
+        /// Property `DnsRecords`.
         #[serde(rename="DnsRecords")]
         pub dns_records: Vec<DnsRecord>,
+        /// Property `NamespaceId`.
         #[serde(rename="NamespaceId")]
         pub namespace_id: String,
     }
 
     /// The [`AWS::ServiceDiscovery::Service.DnsRecord`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-dnsrecord.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct DnsRecord {
+        /// Property `TTL`.
         #[serde(rename="TTL")]
         pub ttl: String,
+        /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,
     }
 
     /// The [`AWS::ServiceDiscovery::Service.HealthCheckConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-healthcheckconfig.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct HealthCheckConfig {
+        /// Property `FailureThreshold`.
         #[serde(rename="FailureThreshold")]
         pub failure_threshold: f64,
+        /// Property `ResourcePath`.
         #[serde(rename="ResourcePath")]
         pub resource_path: String,
+        /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,
     }
-
 }
-

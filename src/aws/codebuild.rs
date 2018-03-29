@@ -1,35 +1,51 @@
+//! Types for the `CodeBuild` service.
+
 /// The [`AWS::CodeBuild::Project`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html) resource type.
+#[derive(Debug)]
 pub struct Project {
     properties: ProjectProperties
 }
 
 /// Properties for the `Project` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct ProjectProperties {
+    /// Property `Artifacts`.
     #[serde(rename="Artifacts")]
     pub artifacts: self::project::Artifacts,
+    /// Property `BadgeEnabled`.
     #[serde(rename="BadgeEnabled")]
     pub badge_enabled: bool,
+    /// Property `Cache`.
     #[serde(rename="Cache")]
     pub cache: self::project::ProjectCache,
+    /// Property `Description`.
     #[serde(rename="Description")]
     pub description: String,
+    /// Property `EncryptionKey`.
     #[serde(rename="EncryptionKey")]
     pub encryption_key: String,
+    /// Property `Environment`.
     #[serde(rename="Environment")]
     pub environment: self::project::Environment,
+    /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
+    /// Property `ServiceRole`.
     #[serde(rename="ServiceRole")]
     pub service_role: String,
+    /// Property `Source`.
     #[serde(rename="Source")]
     pub source: self::project::Source,
+    /// Property `Tags`.
     #[serde(rename="Tags")]
     pub tags: ::Tags,
+    /// Property `TimeoutInMinutes`.
     #[serde(rename="TimeoutInMinutes")]
     pub timeout_in_minutes: u32,
+    /// Property `Triggers`.
     #[serde(rename="Triggers")]
     pub triggers: self::project::ProjectTriggers,
+    /// Property `VpcConfig`.
     #[serde(rename="VpcConfig")]
     pub vpc_config: self::project::VpcConfig,
 }
@@ -54,101 +70,129 @@ impl From<ProjectProperties> for Project {
 }
 
 pub mod project {
+    //! Property types for the `Project` resource.
+
     /// The [`AWS::CodeBuild::Project.Artifacts`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-artifacts.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct Artifacts {
+        /// Property `Location`.
         #[serde(rename="Location")]
         pub location: String,
+        /// Property `Name`.
         #[serde(rename="Name")]
         pub name: String,
+        /// Property `NamespaceType`.
         #[serde(rename="NamespaceType")]
         pub namespace_type: String,
+        /// Property `Packaging`.
         #[serde(rename="Packaging")]
         pub packaging: String,
+        /// Property `Path`.
         #[serde(rename="Path")]
         pub path: String,
+        /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,
     }
 
     /// The [`AWS::CodeBuild::Project.Environment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environment.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct Environment {
+        /// Property `ComputeType`.
         #[serde(rename="ComputeType")]
         pub compute_type: String,
+        /// Property `EnvironmentVariables`.
         #[serde(rename="EnvironmentVariables")]
         pub environment_variables: Vec<EnvironmentVariable>,
+        /// Property `Image`.
         #[serde(rename="Image")]
         pub image: String,
+        /// Property `PrivilegedMode`.
         #[serde(rename="PrivilegedMode")]
         pub privileged_mode: bool,
+        /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,
     }
 
     /// The [`AWS::CodeBuild::Project.EnvironmentVariable`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environmentvariable.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct EnvironmentVariable {
+        /// Property `Name`.
         #[serde(rename="Name")]
         pub name: String,
+        /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,
+        /// Property `Value`.
         #[serde(rename="Value")]
         pub value: String,
     }
 
     /// The [`AWS::CodeBuild::Project.ProjectCache`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projectcache.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct ProjectCache {
+        /// Property `Location`.
         #[serde(rename="Location")]
         pub location: String,
+        /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,
     }
 
     /// The [`AWS::CodeBuild::Project.ProjectTriggers`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projecttriggers.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct ProjectTriggers {
+        /// Property `Webhook`.
         #[serde(rename="Webhook")]
         pub webhook: bool,
     }
 
     /// The [`AWS::CodeBuild::Project.Source`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-source.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct Source {
+        /// Property `Auth`.
         #[serde(rename="Auth")]
         pub auth: SourceAuth,
+        /// Property `BuildSpec`.
         #[serde(rename="BuildSpec")]
         pub build_spec: String,
+        /// Property `GitCloneDepth`.
         #[serde(rename="GitCloneDepth")]
         pub git_clone_depth: u32,
+        /// Property `InsecureSsl`.
         #[serde(rename="InsecureSsl")]
         pub insecure_ssl: bool,
+        /// Property `Location`.
         #[serde(rename="Location")]
         pub location: String,
+        /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,
     }
 
     /// The [`AWS::CodeBuild::Project.SourceAuth`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-sourceauth.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct SourceAuth {
+        /// Property `Resource`.
         #[serde(rename="Resource")]
         pub resource: String,
+        /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,
     }
 
     /// The [`AWS::CodeBuild::Project.VpcConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-vpcconfig.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct VpcConfig {
+        /// Property `SecurityGroupIds`.
         #[serde(rename="SecurityGroupIds")]
         pub security_group_ids: Vec<String>,
+        /// Property `Subnets`.
         #[serde(rename="Subnets")]
         pub subnets: Vec<String>,
+        /// Property `VpcId`.
         #[serde(rename="VpcId")]
         pub vpc_id: String,
     }
-
 }
-

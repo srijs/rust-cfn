@@ -38,6 +38,8 @@ pub fn generate<P: AsRef<Path>>(spec: Specification, base_path: P) -> io::Result
         let file_path = base_path.as_ref().join(format!("{}.rs", service_name.to_lowercase()));
         let mut file = File::create(file_path)?;
 
+        writeln!(file, "//! Types for the `{}` service.", service_name)?;
+
         if let Some(resource_specs) = resource_specs_opt {
             for (_, resource_name, resource_spec) in resource_specs {
                 resources.push((service_name.to_owned(), resource_name.to_owned()));
@@ -48,11 +50,13 @@ pub fn generate<P: AsRef<Path>>(spec: Specification, base_path: P) -> io::Result
         if let Some(property_specs) = property_specs_opt {
             let properties_by_resource = property_specs.group_by(|&(_, ref resource_name, _, _)| resource_name.to_owned());
             for (resource_name, resource_property_specs) in properties_by_resource.into_iter() {
+                writeln!(file, "")?;
                 writeln!(file, "pub mod {} {{", resource_name.to_snake_case())?;
+                writeln!(file, "    //! Property types for the `{}` resource.", resource_name)?;
                 for (_, resource_name, property_name, property_spec) in resource_property_specs {
                     generate_property_declaration(&service_name, &resource_name, &property_name, &property_spec, &mut file)?;
                 }
-                writeln!(file, "}}\n")?;
+                writeln!(file, "}}")?;
             }
         }
     }
@@ -60,6 +64,7 @@ pub fn generate<P: AsRef<Path>>(spec: Specification, base_path: P) -> io::Result
     {
         let mod_file_path = base_path.as_ref().join("mod.rs");
         let mut mod_file = File::create(mod_file_path)?;
+        write!(mod_file, "//! Types for CloudFormation resources and their properties.\n")?;
         for service_name in services {
             writeln!(mod_file, "pub mod {};", service_name.to_lowercase())?;
         }
@@ -77,25 +82,28 @@ fn factor_joined_specs<X, A, B>(either: EitherOrBoth<(X, A), (X, B)>) -> (X, Opt
 }
 
 fn generate_property_declaration(service: &str, resource_name: &str, name: &str, spec: &PropertyType, f: &mut Write) -> io::Result<()> {
+    writeln!(f, "")?;
     writeln!(f, "    /// The [`AWS::{}::{}.{}`]({}) property type.", service, resource_name, name, spec.documentation)?;
-    writeln!(f, "    #[derive(Serialize, Deserialize)]")?;
+    writeln!(f, "    #[derive(Debug, Serialize, Deserialize)]")?;
     writeln!(f, "    pub struct {} {{", name)?;
     for (ref property_name, ref property_spec) in spec.properties.iter() {
         generate_field(None, property_name, property_spec, "    ", f)?;
     }
-    writeln!(f, "    }}\n")?;
+    writeln!(f, "    }}")?;
 
     Ok(())
 }
 
 fn generate_resource_declaration(service: &str, name: &str, spec: &ResourceType, f: &mut Write) -> io::Result<()> {
+    writeln!(f, "")?;
     writeln!(f, "/// The [`AWS::{}::{}`]({}) resource type.", service, name, spec.documentation)?;
+    writeln!(f, "#[derive(Debug)]")?;
     writeln!(f, "pub struct {} {{", name)?;
     writeln!(f, "    properties: {}Properties", name)?;
     writeln!(f, "}}\n")?;
 
     writeln!(f, "/// Properties for the `{}` resource.", name)?;
-    writeln!(f, "#[derive(Serialize, Deserialize)]")?;
+    writeln!(f, "#[derive(Debug, Serialize, Deserialize)]")?;
     writeln!(f, "pub struct {}Properties {{", name)?;
     let namespace = name.to_snake_case();
     for (ref property_name, ref property_spec) in spec.properties.iter() {
@@ -120,18 +128,19 @@ fn generate_resource_declaration(service: &str, name: &str, spec: &ResourceType,
     writeln!(f, "    fn from(properties: {}Properties) -> {} {{", name, name)?;
     writeln!(f, "        {} {{ properties }}", name)?;
     writeln!(f, "    }}")?;
-    writeln!(f, "}}\n")?;
+    writeln!(f, "}}")?;
 
     Ok(())
 }
 
 fn generate_field(namespace_opt: Option<&str>, name: &str, spec: &PropertySpecification, indent: &str, f: &mut Write) -> io::Result<()> {
     let mut field_name = name.to_snake_case();
-    
+
     if field_name == "type" {
         field_name = "type_".into();
     }
 
+    writeln!(f, "    {}/// Property `{}`.", indent, name)?;
     writeln!(f, "    {}#[serde(rename=\"{}\")]", indent, name)?;
     writeln!(f, "    {}pub {}: {},", indent, field_name, generate_field_type(namespace_opt, spec))?;
 

@@ -1,13 +1,18 @@
+//! Types for the `Inspector` service.
+
 /// The [`AWS::Inspector::AssessmentTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttarget.html) resource type.
+#[derive(Debug)]
 pub struct AssessmentTarget {
     properties: AssessmentTargetProperties
 }
 
 /// Properties for the `AssessmentTarget` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct AssessmentTargetProperties {
+    /// Property `AssessmentTargetName`.
     #[serde(rename="AssessmentTargetName")]
     pub assessment_target_name: String,
+    /// Property `ResourceGroupArn`.
     #[serde(rename="ResourceGroupArn")]
     pub resource_group_arn: String,
 }
@@ -32,21 +37,27 @@ impl From<AssessmentTargetProperties> for AssessmentTarget {
 }
 
 /// The [`AWS::Inspector::AssessmentTemplate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttemplate.html) resource type.
+#[derive(Debug)]
 pub struct AssessmentTemplate {
     properties: AssessmentTemplateProperties
 }
 
 /// Properties for the `AssessmentTemplate` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct AssessmentTemplateProperties {
+    /// Property `AssessmentTargetArn`.
     #[serde(rename="AssessmentTargetArn")]
     pub assessment_target_arn: String,
+    /// Property `AssessmentTemplateName`.
     #[serde(rename="AssessmentTemplateName")]
     pub assessment_template_name: String,
+    /// Property `DurationInSeconds`.
     #[serde(rename="DurationInSeconds")]
     pub duration_in_seconds: u32,
+    /// Property `RulesPackageArns`.
     #[serde(rename="RulesPackageArns")]
     pub rules_package_arns: Vec<String>,
+    /// Property `UserAttributesForFindings`.
     #[serde(rename="UserAttributesForFindings")]
     pub user_attributes_for_findings: ::Tags,
 }
@@ -71,13 +82,15 @@ impl From<AssessmentTemplateProperties> for AssessmentTemplate {
 }
 
 /// The [`AWS::Inspector::ResourceGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-resourcegroup.html) resource type.
+#[derive(Debug)]
 pub struct ResourceGroup {
     properties: ResourceGroupProperties
 }
 
 /// Properties for the `ResourceGroup` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct ResourceGroupProperties {
+    /// Property `ResourceGroupTags`.
     #[serde(rename="ResourceGroupTags")]
     pub resource_group_tags: ::Tags,
 }
@@ -100,4 +113,3 @@ impl From<ResourceGroupProperties> for ResourceGroup {
         ResourceGroup { properties }
     }
 }
-

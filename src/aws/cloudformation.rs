@@ -1,11 +1,15 @@
+//! Types for the `CloudFormation` service.
+
 /// The [`AWS::CloudFormation::CustomResource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cfn-customresource.html) resource type.
+#[derive(Debug)]
 pub struct CustomResource {
     properties: CustomResourceProperties
 }
 
 /// Properties for the `CustomResource` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct CustomResourceProperties {
+    /// Property `ServiceToken`.
     #[serde(rename="ServiceToken")]
     pub service_token: String,
 }
@@ -30,21 +34,27 @@ impl From<CustomResourceProperties> for CustomResource {
 }
 
 /// The [`AWS::CloudFormation::Stack`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html) resource type.
+#[derive(Debug)]
 pub struct Stack {
     properties: StackProperties
 }
 
 /// Properties for the `Stack` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct StackProperties {
+    /// Property `NotificationARNs`.
     #[serde(rename="NotificationARNs")]
     pub notification_ar_ns: Vec<String>,
+    /// Property `Parameters`.
     #[serde(rename="Parameters")]
     pub parameters: ::std::collections::HashMap<String, String>,
+    /// Property `Tags`.
     #[serde(rename="Tags")]
     pub tags: ::Tags,
+    /// Property `TemplateURL`.
     #[serde(rename="TemplateURL")]
     pub template_url: String,
+    /// Property `TimeoutInMinutes`.
     #[serde(rename="TimeoutInMinutes")]
     pub timeout_in_minutes: u32,
 }
@@ -69,17 +79,21 @@ impl From<StackProperties> for Stack {
 }
 
 /// The [`AWS::CloudFormation::WaitCondition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waitcondition.html) resource type.
+#[derive(Debug)]
 pub struct WaitCondition {
     properties: WaitConditionProperties
 }
 
 /// Properties for the `WaitCondition` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct WaitConditionProperties {
+    /// Property `Count`.
     #[serde(rename="Count")]
     pub count: u32,
+    /// Property `Handle`.
     #[serde(rename="Handle")]
     pub handle: String,
+    /// Property `Timeout`.
     #[serde(rename="Timeout")]
     pub timeout: String,
 }
@@ -104,12 +118,13 @@ impl From<WaitConditionProperties> for WaitCondition {
 }
 
 /// The [`AWS::CloudFormation::WaitConditionHandle`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waitconditionhandle.html) resource type.
+#[derive(Debug)]
 pub struct WaitConditionHandle {
     properties: WaitConditionHandleProperties
 }
 
 /// Properties for the `WaitConditionHandle` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct WaitConditionHandleProperties {
 }
 
@@ -131,4 +146,3 @@ impl From<WaitConditionHandleProperties> for WaitConditionHandle {
         WaitConditionHandle { properties }
     }
 }
-

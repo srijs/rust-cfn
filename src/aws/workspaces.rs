@@ -1,21 +1,30 @@
+//! Types for the `WorkSpaces` service.
+
 /// The [`AWS::WorkSpaces::Workspace`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspaces-workspace.html) resource type.
+#[derive(Debug)]
 pub struct Workspace {
     properties: WorkspaceProperties
 }
 
 /// Properties for the `Workspace` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct WorkspaceProperties {
+    /// Property `BundleId`.
     #[serde(rename="BundleId")]
     pub bundle_id: String,
+    /// Property `DirectoryId`.
     #[serde(rename="DirectoryId")]
     pub directory_id: String,
+    /// Property `RootVolumeEncryptionEnabled`.
     #[serde(rename="RootVolumeEncryptionEnabled")]
     pub root_volume_encryption_enabled: bool,
+    /// Property `UserName`.
     #[serde(rename="UserName")]
     pub user_name: String,
+    /// Property `UserVolumeEncryptionEnabled`.
     #[serde(rename="UserVolumeEncryptionEnabled")]
     pub user_volume_encryption_enabled: bool,
+    /// Property `VolumeEncryptionKey`.
     #[serde(rename="VolumeEncryptionKey")]
     pub volume_encryption_key: String,
 }
@@ -38,4 +47,3 @@ impl From<WorkspaceProperties> for Workspace {
         Workspace { properties }
     }
 }
-

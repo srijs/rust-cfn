@@ -1,3 +1,4 @@
+//! Types for CloudFormation resources and their properties.
 pub mod apigateway;
 pub mod applicationautoscaling;
 pub mod athena;

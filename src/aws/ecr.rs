@@ -1,15 +1,21 @@
+//! Types for the `ECR` service.
+
 /// The [`AWS::ECR::Repository`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html) resource type.
+#[derive(Debug)]
 pub struct Repository {
     properties: RepositoryProperties
 }
 
 /// Properties for the `Repository` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct RepositoryProperties {
+    /// Property `LifecyclePolicy`.
     #[serde(rename="LifecyclePolicy")]
     pub lifecycle_policy: self::repository::LifecyclePolicy,
+    /// Property `RepositoryName`.
     #[serde(rename="RepositoryName")]
     pub repository_name: String,
+    /// Property `RepositoryPolicyText`.
     #[serde(rename="RepositoryPolicyText")]
     pub repository_policy_text: ::json::Value,
 }
@@ -34,14 +40,16 @@ impl From<RepositoryProperties> for Repository {
 }
 
 pub mod repository {
+    //! Property types for the `Repository` resource.
+
     /// The [`AWS::ECR::Repository.LifecyclePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-repository-lifecyclepolicy.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct LifecyclePolicy {
+        /// Property `LifecyclePolicyText`.
         #[serde(rename="LifecyclePolicyText")]
         pub lifecycle_policy_text: String,
+        /// Property `RegistryId`.
         #[serde(rename="RegistryId")]
         pub registry_id: String,
     }
-
 }
-

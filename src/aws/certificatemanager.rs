@@ -1,17 +1,24 @@
+//! Types for the `CertificateManager` service.
+
 /// The [`AWS::CertificateManager::Certificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-certificatemanager-certificate.html) resource type.
+#[derive(Debug)]
 pub struct Certificate {
     properties: CertificateProperties
 }
 
 /// Properties for the `Certificate` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct CertificateProperties {
+    /// Property `DomainName`.
     #[serde(rename="DomainName")]
     pub domain_name: String,
+    /// Property `DomainValidationOptions`.
     #[serde(rename="DomainValidationOptions")]
     pub domain_validation_options: Vec<self::certificate::DomainValidationOption>,
+    /// Property `SubjectAlternativeNames`.
     #[serde(rename="SubjectAlternativeNames")]
     pub subject_alternative_names: Vec<String>,
+    /// Property `Tags`.
     #[serde(rename="Tags")]
     pub tags: ::Tags,
 }
@@ -36,14 +43,16 @@ impl From<CertificateProperties> for Certificate {
 }
 
 pub mod certificate {
+    //! Property types for the `Certificate` resource.
+
     /// The [`AWS::CertificateManager::Certificate.DomainValidationOption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-certificatemanager-certificate-domainvalidationoption.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct DomainValidationOption {
+        /// Property `DomainName`.
         #[serde(rename="DomainName")]
         pub domain_name: String,
+        /// Property `ValidationDomain`.
         #[serde(rename="ValidationDomain")]
         pub validation_domain: String,
     }
-
 }
-

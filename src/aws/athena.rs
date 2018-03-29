@@ -1,17 +1,24 @@
+//! Types for the `Athena` service.
+
 /// The [`AWS::Athena::NamedQuery`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-namedquery.html) resource type.
+#[derive(Debug)]
 pub struct NamedQuery {
     properties: NamedQueryProperties
 }
 
 /// Properties for the `NamedQuery` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct NamedQueryProperties {
+    /// Property `Database`.
     #[serde(rename="Database")]
     pub database: String,
+    /// Property `Description`.
     #[serde(rename="Description")]
     pub description: String,
+    /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
+    /// Property `QueryString`.
     #[serde(rename="QueryString")]
     pub query_string: String,
 }
@@ -34,4 +41,3 @@ impl From<NamedQueryProperties> for NamedQuery {
         NamedQuery { properties }
     }
 }
-

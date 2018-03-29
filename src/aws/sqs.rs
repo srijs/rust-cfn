@@ -1,31 +1,45 @@
+//! Types for the `SQS` service.
+
 /// The [`AWS::SQS::Queue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html) resource type.
+#[derive(Debug)]
 pub struct Queue {
     properties: QueueProperties
 }
 
 /// Properties for the `Queue` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct QueueProperties {
+    /// Property `ContentBasedDeduplication`.
     #[serde(rename="ContentBasedDeduplication")]
     pub content_based_deduplication: bool,
+    /// Property `DelaySeconds`.
     #[serde(rename="DelaySeconds")]
     pub delay_seconds: u32,
+    /// Property `FifoQueue`.
     #[serde(rename="FifoQueue")]
     pub fifo_queue: bool,
+    /// Property `KmsDataKeyReusePeriodSeconds`.
     #[serde(rename="KmsDataKeyReusePeriodSeconds")]
     pub kms_data_key_reuse_period_seconds: u32,
+    /// Property `KmsMasterKeyId`.
     #[serde(rename="KmsMasterKeyId")]
     pub kms_master_key_id: String,
+    /// Property `MaximumMessageSize`.
     #[serde(rename="MaximumMessageSize")]
     pub maximum_message_size: u32,
+    /// Property `MessageRetentionPeriod`.
     #[serde(rename="MessageRetentionPeriod")]
     pub message_retention_period: u32,
+    /// Property `QueueName`.
     #[serde(rename="QueueName")]
     pub queue_name: String,
+    /// Property `ReceiveMessageWaitTimeSeconds`.
     #[serde(rename="ReceiveMessageWaitTimeSeconds")]
     pub receive_message_wait_time_seconds: u32,
+    /// Property `RedrivePolicy`.
     #[serde(rename="RedrivePolicy")]
     pub redrive_policy: ::json::Value,
+    /// Property `VisibilityTimeout`.
     #[serde(rename="VisibilityTimeout")]
     pub visibility_timeout: u32,
 }
@@ -50,15 +64,18 @@ impl From<QueueProperties> for Queue {
 }
 
 /// The [`AWS::SQS::QueuePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-policy.html) resource type.
+#[derive(Debug)]
 pub struct QueuePolicy {
     properties: QueuePolicyProperties
 }
 
 /// Properties for the `QueuePolicy` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct QueuePolicyProperties {
+    /// Property `PolicyDocument`.
     #[serde(rename="PolicyDocument")]
     pub policy_document: ::json::Value,
+    /// Property `Queues`.
     #[serde(rename="Queues")]
     pub queues: Vec<String>,
 }
@@ -81,4 +98,3 @@ impl From<QueuePolicyProperties> for QueuePolicy {
         QueuePolicy { properties }
     }
 }
-

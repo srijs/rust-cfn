@@ -1,17 +1,24 @@
+//! Types for the `Logs` service.
+
 /// The [`AWS::Logs::Destination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-destination.html) resource type.
+#[derive(Debug)]
 pub struct Destination {
     properties: DestinationProperties
 }
 
 /// Properties for the `Destination` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct DestinationProperties {
+    /// Property `DestinationName`.
     #[serde(rename="DestinationName")]
     pub destination_name: String,
+    /// Property `DestinationPolicy`.
     #[serde(rename="DestinationPolicy")]
     pub destination_policy: String,
+    /// Property `RoleArn`.
     #[serde(rename="RoleArn")]
     pub role_arn: String,
+    /// Property `TargetArn`.
     #[serde(rename="TargetArn")]
     pub target_arn: String,
 }
@@ -36,15 +43,18 @@ impl From<DestinationProperties> for Destination {
 }
 
 /// The [`AWS::Logs::LogGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html) resource type.
+#[derive(Debug)]
 pub struct LogGroup {
     properties: LogGroupProperties
 }
 
 /// Properties for the `LogGroup` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct LogGroupProperties {
+    /// Property `LogGroupName`.
     #[serde(rename="LogGroupName")]
     pub log_group_name: String,
+    /// Property `RetentionInDays`.
     #[serde(rename="RetentionInDays")]
     pub retention_in_days: u32,
 }
@@ -69,15 +79,18 @@ impl From<LogGroupProperties> for LogGroup {
 }
 
 /// The [`AWS::Logs::LogStream`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-logstream.html) resource type.
+#[derive(Debug)]
 pub struct LogStream {
     properties: LogStreamProperties
 }
 
 /// Properties for the `LogStream` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct LogStreamProperties {
+    /// Property `LogGroupName`.
     #[serde(rename="LogGroupName")]
     pub log_group_name: String,
+    /// Property `LogStreamName`.
     #[serde(rename="LogStreamName")]
     pub log_stream_name: String,
 }
@@ -102,17 +115,21 @@ impl From<LogStreamProperties> for LogStream {
 }
 
 /// The [`AWS::Logs::MetricFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-metricfilter.html) resource type.
+#[derive(Debug)]
 pub struct MetricFilter {
     properties: MetricFilterProperties
 }
 
 /// Properties for the `MetricFilter` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct MetricFilterProperties {
+    /// Property `FilterPattern`.
     #[serde(rename="FilterPattern")]
     pub filter_pattern: String,
+    /// Property `LogGroupName`.
     #[serde(rename="LogGroupName")]
     pub log_group_name: String,
+    /// Property `MetricTransformations`.
     #[serde(rename="MetricTransformations")]
     pub metric_transformations: Vec<self::metric_filter::MetricTransformation>,
 }
@@ -137,19 +154,24 @@ impl From<MetricFilterProperties> for MetricFilter {
 }
 
 /// The [`AWS::Logs::SubscriptionFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-subscriptionfilter.html) resource type.
+#[derive(Debug)]
 pub struct SubscriptionFilter {
     properties: SubscriptionFilterProperties
 }
 
 /// Properties for the `SubscriptionFilter` resource.
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct SubscriptionFilterProperties {
+    /// Property `DestinationArn`.
     #[serde(rename="DestinationArn")]
     pub destination_arn: String,
+    /// Property `FilterPattern`.
     #[serde(rename="FilterPattern")]
     pub filter_pattern: String,
+    /// Property `LogGroupName`.
     #[serde(rename="LogGroupName")]
     pub log_group_name: String,
+    /// Property `RoleArn`.
     #[serde(rename="RoleArn")]
     pub role_arn: String,
 }
@@ -174,16 +196,19 @@ impl From<SubscriptionFilterProperties> for SubscriptionFilter {
 }
 
 pub mod metric_filter {
+    //! Property types for the `MetricFilter` resource.
+
     /// The [`AWS::Logs::MetricFilter.MetricTransformation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-metricfilter-metrictransformation.html) property type.
-    #[derive(Serialize, Deserialize)]
+    #[derive(Debug, Serialize, Deserialize)]
     pub struct MetricTransformation {
+        /// Property `MetricName`.
         #[serde(rename="MetricName")]
         pub metric_name: String,
+        /// Property `MetricNamespace`.
         #[serde(rename="MetricNamespace")]
         pub metric_namespace: String,
+        /// Property `MetricValue`.
         #[serde(rename="MetricValue")]
         pub metric_value: String,
     }
-
 }
-
