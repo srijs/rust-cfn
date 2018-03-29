@@ -1,5 +1,4 @@
 /// The [`AWS::CodePipeline::CustomActionType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-customactiontype.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct CustomActionType {
     properties: CustomActionTypeProperties
 }
@@ -41,7 +40,6 @@ impl From<CustomActionTypeProperties> for CustomActionType {
 }
 
 /// The [`AWS::CodePipeline::Pipeline`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-pipeline.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Pipeline {
     properties: PipelineProperties
 }

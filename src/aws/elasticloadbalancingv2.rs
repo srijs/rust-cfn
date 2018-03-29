@@ -1,5 +1,4 @@
 /// The [`AWS::ElasticLoadBalancingV2::Listener`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listener.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Listener {
     properties: ListenerProperties
 }
@@ -39,7 +38,6 @@ impl From<ListenerProperties> for Listener {
 }
 
 /// The [`AWS::ElasticLoadBalancingV2::ListenerCertificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenercertificate.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct ListenerCertificate {
     properties: ListenerCertificateProperties
 }
@@ -71,7 +69,6 @@ impl From<ListenerCertificateProperties> for ListenerCertificate {
 }
 
 /// The [`AWS::ElasticLoadBalancingV2::ListenerRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct ListenerRule {
     properties: ListenerRuleProperties
 }
@@ -107,7 +104,6 @@ impl From<ListenerRuleProperties> for ListenerRule {
 }
 
 /// The [`AWS::ElasticLoadBalancingV2::LoadBalancer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct LoadBalancer {
     properties: LoadBalancerProperties
 }
@@ -153,7 +149,6 @@ impl From<LoadBalancerProperties> for LoadBalancer {
 }
 
 /// The [`AWS::ElasticLoadBalancingV2::TargetGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct TargetGroup {
     properties: TargetGroupProperties
 }

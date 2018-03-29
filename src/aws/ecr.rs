@@ -1,5 +1,4 @@
 /// The [`AWS::ECR::Repository`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Repository {
     properties: RepositoryProperties
 }

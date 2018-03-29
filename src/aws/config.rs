@@ -1,5 +1,4 @@
 /// The [`AWS::Config::ConfigRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configrule.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct ConfigRule {
     properties: ConfigRuleProperties
 }
@@ -39,7 +38,6 @@ impl From<ConfigRuleProperties> for ConfigRule {
 }
 
 /// The [`AWS::Config::ConfigurationRecorder`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configurationrecorder.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct ConfigurationRecorder {
     properties: ConfigurationRecorderProperties
 }
@@ -73,7 +71,6 @@ impl From<ConfigurationRecorderProperties> for ConfigurationRecorder {
 }
 
 /// The [`AWS::Config::DeliveryChannel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-deliverychannel.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct DeliveryChannel {
     properties: DeliveryChannelProperties
 }

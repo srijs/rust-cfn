@@ -1,5 +1,4 @@
 /// The [`AWS::SNS::Subscription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Subscription {
     properties: SubscriptionProperties
 }
@@ -33,7 +32,6 @@ impl From<SubscriptionProperties> for Subscription {
 }
 
 /// The [`AWS::SNS::Topic`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Topic {
     properties: TopicProperties
 }
@@ -67,7 +65,6 @@ impl From<TopicProperties> for Topic {
 }
 
 /// The [`AWS::SNS::TopicPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct TopicPolicy {
     properties: TopicPolicyProperties
 }

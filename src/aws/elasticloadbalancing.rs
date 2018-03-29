@@ -1,5 +1,4 @@
 /// The [`AWS::ElasticLoadBalancing::LoadBalancer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct LoadBalancer {
     properties: LoadBalancerProperties
 }

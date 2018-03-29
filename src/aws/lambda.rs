@@ -1,5 +1,4 @@
 /// The [`AWS::Lambda::Alias`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-alias.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Alias {
     properties: AliasProperties
 }
@@ -37,7 +36,6 @@ impl From<AliasProperties> for Alias {
 }
 
 /// The [`AWS::Lambda::EventSourceMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct EventSourceMapping {
     properties: EventSourceMappingProperties
 }
@@ -75,7 +73,6 @@ impl From<EventSourceMappingProperties> for EventSourceMapping {
 }
 
 /// The [`AWS::Lambda::Function`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Function {
     properties: FunctionProperties
 }
@@ -133,7 +130,6 @@ impl From<FunctionProperties> for Function {
 }
 
 /// The [`AWS::Lambda::Permission`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Permission {
     properties: PermissionProperties
 }
@@ -173,7 +169,6 @@ impl From<PermissionProperties> for Permission {
 }
 
 /// The [`AWS::Lambda::Version`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-version.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Version {
     properties: VersionProperties
 }

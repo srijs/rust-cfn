@@ -1,5 +1,4 @@
 /// The [`AWS::IoT::Certificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-certificate.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Certificate {
     properties: CertificateProperties
 }
@@ -31,7 +30,6 @@ impl From<CertificateProperties> for Certificate {
 }
 
 /// The [`AWS::IoT::Policy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policy.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Policy {
     properties: PolicyProperties
 }
@@ -63,7 +61,6 @@ impl From<PolicyProperties> for Policy {
 }
 
 /// The [`AWS::IoT::PolicyPrincipalAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policyprincipalattachment.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct PolicyPrincipalAttachment {
     properties: PolicyPrincipalAttachmentProperties
 }
@@ -95,7 +92,6 @@ impl From<PolicyPrincipalAttachmentProperties> for PolicyPrincipalAttachment {
 }
 
 /// The [`AWS::IoT::Thing`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thing.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Thing {
     properties: ThingProperties
 }
@@ -127,7 +123,6 @@ impl From<ThingProperties> for Thing {
 }
 
 /// The [`AWS::IoT::ThingPrincipalAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thingprincipalattachment.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct ThingPrincipalAttachment {
     properties: ThingPrincipalAttachmentProperties
 }
@@ -159,7 +154,6 @@ impl From<ThingPrincipalAttachmentProperties> for ThingPrincipalAttachment {
 }
 
 /// The [`AWS::IoT::TopicRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-topicrule.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct TopicRule {
     properties: TopicRuleProperties
 }

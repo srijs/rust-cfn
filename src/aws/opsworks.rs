@@ -1,5 +1,4 @@
 /// The [`AWS::OpsWorks::App`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-app.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct App {
     properties: AppProperties
 }
@@ -51,7 +50,6 @@ impl From<AppProperties> for App {
 }
 
 /// The [`AWS::OpsWorks::ElasticLoadBalancerAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-elbattachment.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct ElasticLoadBalancerAttachment {
     properties: ElasticLoadBalancerAttachmentProperties
 }
@@ -83,7 +81,6 @@ impl From<ElasticLoadBalancerAttachmentProperties> for ElasticLoadBalancerAttach
 }
 
 /// The [`AWS::OpsWorks::Instance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-instance.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Instance {
     properties: InstanceProperties
 }
@@ -153,7 +150,6 @@ impl From<InstanceProperties> for Instance {
 }
 
 /// The [`AWS::OpsWorks::Layer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-layer.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Layer {
     properties: LayerProperties
 }
@@ -219,7 +215,6 @@ impl From<LayerProperties> for Layer {
 }
 
 /// The [`AWS::OpsWorks::Stack`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-stack.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Stack {
     properties: StackProperties
 }
@@ -297,7 +292,6 @@ impl From<StackProperties> for Stack {
 }
 
 /// The [`AWS::OpsWorks::UserProfile`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-userprofile.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct UserProfile {
     properties: UserProfileProperties
 }
@@ -333,7 +327,6 @@ impl From<UserProfileProperties> for UserProfile {
 }
 
 /// The [`AWS::OpsWorks::Volume`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-volume.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Volume {
     properties: VolumeProperties
 }

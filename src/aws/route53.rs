@@ -1,5 +1,4 @@
 /// The [`AWS::Route53::HealthCheck`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-healthcheck.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct HealthCheck {
     properties: HealthCheckProperties
 }
@@ -31,7 +30,6 @@ impl From<HealthCheckProperties> for HealthCheck {
 }
 
 /// The [`AWS::Route53::HostedZone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct HostedZone {
     properties: HostedZoneProperties
 }
@@ -69,7 +67,6 @@ impl From<HostedZoneProperties> for HostedZone {
 }
 
 /// The [`AWS::Route53::RecordSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct RecordSet {
     properties: RecordSetProperties
 }
@@ -125,7 +122,6 @@ impl From<RecordSetProperties> for RecordSet {
 }
 
 /// The [`AWS::Route53::RecordSetGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-recordsetgroup.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct RecordSetGroup {
     properties: RecordSetGroupProperties
 }

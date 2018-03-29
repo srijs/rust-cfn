@@ -1,5 +1,4 @@
 /// The [`AWS::CertificateManager::Certificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-certificatemanager-certificate.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Certificate {
     properties: CertificateProperties
 }

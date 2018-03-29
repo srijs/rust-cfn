@@ -1,5 +1,4 @@
 /// The [`AWS::Cloud9::EnvironmentEC2`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloud9-environmentec2.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct EnvironmentEC2 {
     properties: EnvironmentEC2Properties
 }

@@ -1,5 +1,4 @@
 /// The [`AWS::WAF::ByteMatchSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-bytematchset.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct ByteMatchSet {
     properties: ByteMatchSetProperties
 }
@@ -31,7 +30,6 @@ impl From<ByteMatchSetProperties> for ByteMatchSet {
 }
 
 /// The [`AWS::WAF::IPSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-ipset.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct IPSet {
     properties: IPSetProperties
 }
@@ -63,7 +61,6 @@ impl From<IPSetProperties> for IPSet {
 }
 
 /// The [`AWS::WAF::Rule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-rule.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Rule {
     properties: RuleProperties
 }
@@ -97,7 +94,6 @@ impl From<RuleProperties> for Rule {
 }
 
 /// The [`AWS::WAF::SizeConstraintSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-sizeconstraintset.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct SizeConstraintSet {
     properties: SizeConstraintSetProperties
 }
@@ -129,7 +125,6 @@ impl From<SizeConstraintSetProperties> for SizeConstraintSet {
 }
 
 /// The [`AWS::WAF::SqlInjectionMatchSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-sqlinjectionmatchset.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct SqlInjectionMatchSet {
     properties: SqlInjectionMatchSetProperties
 }
@@ -161,7 +156,6 @@ impl From<SqlInjectionMatchSetProperties> for SqlInjectionMatchSet {
 }
 
 /// The [`AWS::WAF::WebACL`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-webacl.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct WebACL {
     properties: WebACLProperties
 }
@@ -197,7 +191,6 @@ impl From<WebACLProperties> for WebACL {
 }
 
 /// The [`AWS::WAF::XssMatchSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-waf-xssmatchset.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct XssMatchSet {
     properties: XssMatchSetProperties
 }

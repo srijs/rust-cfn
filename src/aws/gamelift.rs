@@ -1,5 +1,4 @@
 /// The [`AWS::GameLift::Alias`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-alias.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Alias {
     properties: AliasProperties
 }
@@ -33,7 +32,6 @@ impl From<AliasProperties> for Alias {
 }
 
 /// The [`AWS::GameLift::Build`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-build.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Build {
     properties: BuildProperties
 }
@@ -67,7 +65,6 @@ impl From<BuildProperties> for Build {
 }
 
 /// The [`AWS::GameLift::Fleet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Fleet {
     properties: FleetProperties
 }

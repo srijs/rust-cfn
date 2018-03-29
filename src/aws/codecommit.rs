@@ -1,5 +1,4 @@
 /// The [`AWS::CodeCommit::Repository`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codecommit-repository.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Repository {
     properties: RepositoryProperties
 }

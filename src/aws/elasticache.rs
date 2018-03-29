@@ -1,5 +1,4 @@
 /// The [`AWS::ElastiCache::CacheCluster`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct CacheCluster {
     properties: CacheClusterProperties
 }
@@ -69,7 +68,6 @@ impl From<CacheClusterProperties> for CacheCluster {
 }
 
 /// The [`AWS::ElastiCache::ParameterGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-parameter-group.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct ParameterGroup {
     properties: ParameterGroupProperties
 }
@@ -103,7 +101,6 @@ impl From<ParameterGroupProperties> for ParameterGroup {
 }
 
 /// The [`AWS::ElastiCache::ReplicationGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct ReplicationGroup {
     properties: ReplicationGroupProperties
 }
@@ -189,7 +186,6 @@ impl From<ReplicationGroupProperties> for ReplicationGroup {
 }
 
 /// The [`AWS::ElastiCache::SecurityGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-security-group.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct SecurityGroup {
     properties: SecurityGroupProperties
 }
@@ -219,7 +215,6 @@ impl From<SecurityGroupProperties> for SecurityGroup {
 }
 
 /// The [`AWS::ElastiCache::SecurityGroupIngress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-security-group-ingress.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct SecurityGroupIngress {
     properties: SecurityGroupIngressProperties
 }
@@ -253,7 +248,6 @@ impl From<SecurityGroupIngressProperties> for SecurityGroupIngress {
 }
 
 /// The [`AWS::ElastiCache::SubnetGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-subnetgroup.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct SubnetGroup {
     properties: SubnetGroupProperties
 }

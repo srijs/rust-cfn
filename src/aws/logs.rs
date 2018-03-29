@@ -1,5 +1,4 @@
 /// The [`AWS::Logs::Destination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-destination.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Destination {
     properties: DestinationProperties
 }
@@ -35,7 +34,6 @@ impl From<DestinationProperties> for Destination {
 }
 
 /// The [`AWS::Logs::LogGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct LogGroup {
     properties: LogGroupProperties
 }
@@ -67,7 +65,6 @@ impl From<LogGroupProperties> for LogGroup {
 }
 
 /// The [`AWS::Logs::LogStream`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-logstream.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct LogStream {
     properties: LogStreamProperties
 }
@@ -99,7 +96,6 @@ impl From<LogStreamProperties> for LogStream {
 }
 
 /// The [`AWS::Logs::MetricFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-metricfilter.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct MetricFilter {
     properties: MetricFilterProperties
 }
@@ -133,7 +129,6 @@ impl From<MetricFilterProperties> for MetricFilter {
 }
 
 /// The [`AWS::Logs::SubscriptionFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-subscriptionfilter.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct SubscriptionFilter {
     properties: SubscriptionFilterProperties
 }

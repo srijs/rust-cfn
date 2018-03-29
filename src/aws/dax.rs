@@ -1,5 +1,4 @@
 /// The [`AWS::DAX::Cluster`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-cluster.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Cluster {
     properties: ClusterProperties
 }
@@ -51,7 +50,6 @@ impl From<ClusterProperties> for Cluster {
 }
 
 /// The [`AWS::DAX::ParameterGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-parametergroup.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct ParameterGroup {
     properties: ParameterGroupProperties
 }
@@ -85,7 +83,6 @@ impl From<ParameterGroupProperties> for ParameterGroup {
 }
 
 /// The [`AWS::DAX::SubnetGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-subnetgroup.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct SubnetGroup {
     properties: SubnetGroupProperties
 }

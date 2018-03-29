@@ -1,5 +1,4 @@
 /// The [`AWS::CodeDeploy::Application`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-application.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Application {
     properties: ApplicationProperties
 }
@@ -31,7 +30,6 @@ impl From<ApplicationProperties> for Application {
 }
 
 /// The [`AWS::CodeDeploy::DeploymentConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentconfig.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct DeploymentConfig {
     properties: DeploymentConfigProperties
 }
@@ -63,7 +61,6 @@ impl From<DeploymentConfigProperties> for DeploymentConfig {
 }
 
 /// The [`AWS::CodeDeploy::DeploymentGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct DeploymentGroup {
     properties: DeploymentGroupProperties
 }

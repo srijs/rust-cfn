@@ -1,5 +1,4 @@
 /// The [`AWS::CloudTrail::Trail`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Trail {
     properties: TrailProperties
 }

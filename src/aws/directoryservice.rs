@@ -1,5 +1,4 @@
 /// The [`AWS::DirectoryService::MicrosoftAD`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-microsoftad.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct MicrosoftAD {
     properties: MicrosoftADProperties
 }
@@ -39,7 +38,6 @@ impl From<MicrosoftADProperties> for MicrosoftAD {
 }
 
 /// The [`AWS::DirectoryService::SimpleAD`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-simplead.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct SimpleAD {
     properties: SimpleADProperties
 }

@@ -1,5 +1,4 @@
 /// The [`AWS::Events::Rule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Rule {
     properties: RuleProperties
 }

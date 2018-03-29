@@ -1,5 +1,4 @@
 /// The [`AWS::CloudFormation::CustomResource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cfn-customresource.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct CustomResource {
     properties: CustomResourceProperties
 }
@@ -29,7 +28,6 @@ impl From<CustomResourceProperties> for CustomResource {
 }
 
 /// The [`AWS::CloudFormation::Stack`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Stack {
     properties: StackProperties
 }
@@ -67,7 +65,6 @@ impl From<StackProperties> for Stack {
 }
 
 /// The [`AWS::CloudFormation::WaitCondition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waitcondition.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct WaitCondition {
     properties: WaitConditionProperties
 }
@@ -101,7 +98,6 @@ impl From<WaitConditionProperties> for WaitCondition {
 }
 
 /// The [`AWS::CloudFormation::WaitConditionHandle`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waitconditionhandle.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct WaitConditionHandle {
     properties: WaitConditionHandleProperties
 }

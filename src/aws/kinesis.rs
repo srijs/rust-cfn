@@ -1,5 +1,4 @@
 /// The [`AWS::Kinesis::Stream`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-stream.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Stream {
     properties: StreamProperties
 }

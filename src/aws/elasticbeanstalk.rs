@@ -1,5 +1,4 @@
 /// The [`AWS::ElasticBeanstalk::Application`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Application {
     properties: ApplicationProperties
 }
@@ -33,7 +32,6 @@ impl From<ApplicationProperties> for Application {
 }
 
 /// The [`AWS::ElasticBeanstalk::ApplicationVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-version.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct ApplicationVersion {
     properties: ApplicationVersionProperties
 }
@@ -67,7 +65,6 @@ impl From<ApplicationVersionProperties> for ApplicationVersion {
 }
 
 /// The [`AWS::ElasticBeanstalk::ConfigurationTemplate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticbeanstalk-configurationtemplate.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct ConfigurationTemplate {
     properties: ConfigurationTemplateProperties
 }
@@ -109,7 +106,6 @@ impl From<ConfigurationTemplateProperties> for ConfigurationTemplate {
 }
 
 /// The [`AWS::ElasticBeanstalk::Environment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Environment {
     properties: EnvironmentProperties
 }

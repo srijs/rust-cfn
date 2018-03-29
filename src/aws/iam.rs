@@ -1,5 +1,4 @@
 /// The [`AWS::IAM::AccessKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct AccessKey {
     properties: AccessKeyProperties
 }
@@ -33,7 +32,6 @@ impl From<AccessKeyProperties> for AccessKey {
 }
 
 /// The [`AWS::IAM::Group`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Group {
     properties: GroupProperties
 }
@@ -69,7 +67,6 @@ impl From<GroupProperties> for Group {
 }
 
 /// The [`AWS::IAM::InstanceProfile`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct InstanceProfile {
     properties: InstanceProfileProperties
 }
@@ -103,7 +100,6 @@ impl From<InstanceProfileProperties> for InstanceProfile {
 }
 
 /// The [`AWS::IAM::ManagedPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-managedpolicy.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct ManagedPolicy {
     properties: ManagedPolicyProperties
 }
@@ -145,7 +141,6 @@ impl From<ManagedPolicyProperties> for ManagedPolicy {
 }
 
 /// The [`AWS::IAM::Policy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Policy {
     properties: PolicyProperties
 }
@@ -183,7 +178,6 @@ impl From<PolicyProperties> for Policy {
 }
 
 /// The [`AWS::IAM::Role`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Role {
     properties: RoleProperties
 }
@@ -221,7 +215,6 @@ impl From<RoleProperties> for Role {
 }
 
 /// The [`AWS::IAM::User`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct User {
     properties: UserProperties
 }
@@ -261,7 +254,6 @@ impl From<UserProperties> for User {
 }
 
 /// The [`AWS::IAM::UserToGroupAddition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-addusertogroup.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct UserToGroupAddition {
     properties: UserToGroupAdditionProperties
 }

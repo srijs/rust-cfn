@@ -1,5 +1,4 @@
 /// The [`AWS::ECS::Cluster`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-cluster.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Cluster {
     properties: ClusterProperties
 }
@@ -29,7 +28,6 @@ impl From<ClusterProperties> for Cluster {
 }
 
 /// The [`AWS::ECS::Service`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Service {
     properties: ServiceProperties
 }
@@ -83,7 +81,6 @@ impl From<ServiceProperties> for Service {
 }
 
 /// The [`AWS::ECS::TaskDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct TaskDefinition {
     properties: TaskDefinitionProperties
 }

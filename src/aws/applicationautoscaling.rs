@@ -1,5 +1,4 @@
 /// The [`AWS::ApplicationAutoScaling::ScalableTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalabletarget.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct ScalableTarget {
     properties: ScalableTargetProperties
 }
@@ -41,7 +40,6 @@ impl From<ScalableTargetProperties> for ScalableTarget {
 }
 
 /// The [`AWS::ApplicationAutoScaling::ScalingPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalingpolicy.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct ScalingPolicy {
     properties: ScalingPolicyProperties
 }

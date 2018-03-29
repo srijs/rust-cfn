@@ -1,5 +1,4 @@
 /// The [`AWS::CloudFront::CloudFrontOriginAccessIdentity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-cloudfrontoriginaccessidentity.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct CloudFrontOriginAccessIdentity {
     properties: CloudFrontOriginAccessIdentityProperties
 }
@@ -29,7 +28,6 @@ impl From<CloudFrontOriginAccessIdentityProperties> for CloudFrontOriginAccessId
 }
 
 /// The [`AWS::CloudFront::Distribution`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Distribution {
     properties: DistributionProperties
 }
@@ -61,7 +59,6 @@ impl From<DistributionProperties> for Distribution {
 }
 
 /// The [`AWS::CloudFront::StreamingDistribution`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-streamingdistribution.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct StreamingDistribution {
     properties: StreamingDistributionProperties
 }

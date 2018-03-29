@@ -1,5 +1,4 @@
 /// The [`AWS::KinesisFirehose::DeliveryStream`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisfirehose-deliverystream.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct DeliveryStream {
     properties: DeliveryStreamProperties
 }

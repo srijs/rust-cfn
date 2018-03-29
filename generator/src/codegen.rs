@@ -89,7 +89,6 @@ fn generate_property_declaration(service: &str, resource_name: &str, name: &str,
 
 fn generate_resource_declaration(service: &str, name: &str, spec: &ResourceType, f: &mut Write) -> io::Result<()> {
     writeln!(f, "/// The [`AWS::{}::{}`]({}) resource.", service, name, spec.documentation)?;
-    writeln!(f, "#[derive(Serialize, Deserialize)]")?;
     writeln!(f, "pub struct {} {{", name)?;
     writeln!(f, "    properties: {}Properties", name)?;
     writeln!(f, "}}\n")?;

@@ -1,5 +1,4 @@
 /// The [`AWS::DMS::Certificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-certificate.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Certificate {
     properties: CertificateProperties
 }
@@ -33,7 +32,6 @@ impl From<CertificateProperties> for Certificate {
 }
 
 /// The [`AWS::DMS::Endpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Endpoint {
     properties: EndpointProperties
 }
@@ -93,7 +91,6 @@ impl From<EndpointProperties> for Endpoint {
 }
 
 /// The [`AWS::DMS::EventSubscription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-eventsubscription.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct EventSubscription {
     properties: EventSubscriptionProperties
 }
@@ -135,7 +132,6 @@ impl From<EventSubscriptionProperties> for EventSubscription {
 }
 
 /// The [`AWS::DMS::ReplicationInstance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationinstance.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct ReplicationInstance {
     properties: ReplicationInstanceProperties
 }
@@ -191,7 +187,6 @@ impl From<ReplicationInstanceProperties> for ReplicationInstance {
 }
 
 /// The [`AWS::DMS::ReplicationSubnetGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationsubnetgroup.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct ReplicationSubnetGroup {
     properties: ReplicationSubnetGroupProperties
 }
@@ -227,7 +222,6 @@ impl From<ReplicationSubnetGroupProperties> for ReplicationSubnetGroup {
 }
 
 /// The [`AWS::DMS::ReplicationTask`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationtask.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct ReplicationTask {
     properties: ReplicationTaskProperties
 }

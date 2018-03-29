@@ -1,5 +1,4 @@
 /// The [`AWS::Inspector::AssessmentTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttarget.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct AssessmentTarget {
     properties: AssessmentTargetProperties
 }
@@ -31,7 +30,6 @@ impl From<AssessmentTargetProperties> for AssessmentTarget {
 }
 
 /// The [`AWS::Inspector::AssessmentTemplate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttemplate.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct AssessmentTemplate {
     properties: AssessmentTemplateProperties
 }
@@ -69,7 +67,6 @@ impl From<AssessmentTemplateProperties> for AssessmentTemplate {
 }
 
 /// The [`AWS::Inspector::ResourceGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-resourcegroup.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct ResourceGroup {
     properties: ResourceGroupProperties
 }

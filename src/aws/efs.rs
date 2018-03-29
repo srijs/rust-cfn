@@ -1,5 +1,4 @@
 /// The [`AWS::EFS::FileSystem`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct FileSystem {
     properties: FileSystemProperties
 }
@@ -35,7 +34,6 @@ impl From<FileSystemProperties> for FileSystem {
 }
 
 /// The [`AWS::EFS::MountTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-mounttarget.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct MountTarget {
     properties: MountTargetProperties
 }

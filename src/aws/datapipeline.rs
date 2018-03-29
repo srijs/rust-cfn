@@ -1,5 +1,4 @@
 /// The [`AWS::DataPipeline::Pipeline`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datapipeline-pipeline.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Pipeline {
     properties: PipelineProperties
 }

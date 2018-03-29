@@ -1,5 +1,4 @@
 /// The [`AWS::SQS::Queue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Queue {
     properties: QueueProperties
 }
@@ -49,7 +48,6 @@ impl From<QueueProperties> for Queue {
 }
 
 /// The [`AWS::SQS::QueuePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-policy.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct QueuePolicy {
     properties: QueuePolicyProperties
 }

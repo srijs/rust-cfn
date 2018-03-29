@@ -1,5 +1,4 @@
 /// The [`AWS::S3::Bucket`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Bucket {
     properties: BucketProperties
 }
@@ -57,7 +56,6 @@ impl From<BucketProperties> for Bucket {
 }
 
 /// The [`AWS::S3::BucketPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-policy.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct BucketPolicy {
     properties: BucketPolicyProperties
 }

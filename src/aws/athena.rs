@@ -1,5 +1,4 @@
 /// The [`AWS::Athena::NamedQuery`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-namedquery.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct NamedQuery {
     properties: NamedQueryProperties
 }

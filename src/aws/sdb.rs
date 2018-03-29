@@ -1,5 +1,4 @@
 /// The [`AWS::SDB::Domain`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-simpledb.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Domain {
     properties: DomainProperties
 }

@@ -1,5 +1,4 @@
 /// The [`AWS::CloudWatch::Alarm`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cw-alarm.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Alarm {
     properties: AlarmProperties
 }
@@ -63,7 +62,6 @@ impl From<AlarmProperties> for Alarm {
 }
 
 /// The [`AWS::CloudWatch::Dashboard`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-dashboard.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Dashboard {
     properties: DashboardProperties
 }

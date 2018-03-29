@@ -1,5 +1,4 @@
 /// The [`AWS::RDS::DBCluster`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct DBCluster {
     properties: DBClusterProperties
 }
@@ -65,7 +64,6 @@ impl From<DBClusterProperties> for DBCluster {
 }
 
 /// The [`AWS::RDS::DBClusterParameterGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbclusterparametergroup.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct DBClusterParameterGroup {
     properties: DBClusterParameterGroupProperties
 }
@@ -101,7 +99,6 @@ impl From<DBClusterParameterGroupProperties> for DBClusterParameterGroup {
 }
 
 /// The [`AWS::RDS::DBInstance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct DBInstance {
     properties: DBInstanceProperties
 }
@@ -207,7 +204,6 @@ impl From<DBInstanceProperties> for DBInstance {
 }
 
 /// The [`AWS::RDS::DBParameterGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbparametergroup.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct DBParameterGroup {
     properties: DBParameterGroupProperties
 }
@@ -243,7 +239,6 @@ impl From<DBParameterGroupProperties> for DBParameterGroup {
 }
 
 /// The [`AWS::RDS::DBSecurityGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-security-group.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct DBSecurityGroup {
     properties: DBSecurityGroupProperties
 }
@@ -279,7 +274,6 @@ impl From<DBSecurityGroupProperties> for DBSecurityGroup {
 }
 
 /// The [`AWS::RDS::DBSecurityGroupIngress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-security-group-ingress.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct DBSecurityGroupIngress {
     properties: DBSecurityGroupIngressProperties
 }
@@ -317,7 +311,6 @@ impl From<DBSecurityGroupIngressProperties> for DBSecurityGroupIngress {
 }
 
 /// The [`AWS::RDS::DBSubnetGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbsubnet-group.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct DBSubnetGroup {
     properties: DBSubnetGroupProperties
 }
@@ -353,7 +346,6 @@ impl From<DBSubnetGroupProperties> for DBSubnetGroup {
 }
 
 /// The [`AWS::RDS::EventSubscription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-eventsubscription.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct EventSubscription {
     properties: EventSubscriptionProperties
 }
@@ -391,7 +383,6 @@ impl From<EventSubscriptionProperties> for EventSubscription {
 }
 
 /// The [`AWS::RDS::OptionGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-optiongroup.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct OptionGroup {
     properties: OptionGroupProperties
 }

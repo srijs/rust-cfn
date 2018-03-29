@@ -1,5 +1,4 @@
 /// The [`AWS::StepFunctions::Activity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-activity.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Activity {
     properties: ActivityProperties
 }
@@ -29,7 +28,6 @@ impl From<ActivityProperties> for Activity {
 }
 
 /// The [`AWS::StepFunctions::StateMachine`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct StateMachine {
     properties: StateMachineProperties
 }

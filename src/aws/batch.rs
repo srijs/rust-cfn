@@ -1,5 +1,4 @@
 /// The [`AWS::Batch::ComputeEnvironment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-computeenvironment.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct ComputeEnvironment {
     properties: ComputeEnvironmentProperties
 }
@@ -37,7 +36,6 @@ impl From<ComputeEnvironmentProperties> for ComputeEnvironment {
 }
 
 /// The [`AWS::Batch::JobDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct JobDefinition {
     properties: JobDefinitionProperties
 }
@@ -75,7 +73,6 @@ impl From<JobDefinitionProperties> for JobDefinition {
 }
 
 /// The [`AWS::Batch::JobQueue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobqueue.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct JobQueue {
     properties: JobQueueProperties
 }

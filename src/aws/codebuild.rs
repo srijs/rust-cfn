@@ -1,5 +1,4 @@
 /// The [`AWS::CodeBuild::Project`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Project {
     properties: ProjectProperties
 }

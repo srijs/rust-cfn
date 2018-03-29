@@ -1,5 +1,4 @@
 /// The [`AWS::GuardDuty::Detector`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-detector.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Detector {
     properties: DetectorProperties
 }
@@ -29,7 +28,6 @@ impl From<DetectorProperties> for Detector {
 }
 
 /// The [`AWS::GuardDuty::IPSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-ipset.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct IPSet {
     properties: IPSetProperties
 }
@@ -67,7 +65,6 @@ impl From<IPSetProperties> for IPSet {
 }
 
 /// The [`AWS::GuardDuty::Master`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-master.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Master {
     properties: MasterProperties
 }
@@ -101,7 +98,6 @@ impl From<MasterProperties> for Master {
 }
 
 /// The [`AWS::GuardDuty::Member`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-member.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct Member {
     properties: MemberProperties
 }
@@ -139,7 +135,6 @@ impl From<MemberProperties> for Member {
 }
 
 /// The [`AWS::GuardDuty::ThreatIntelSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-threatintelset.html) resource.
-#[derive(Serialize, Deserialize)]
 pub struct ThreatIntelSet {
     properties: ThreatIntelSetProperties
 }
