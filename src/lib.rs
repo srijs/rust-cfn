@@ -52,7 +52,7 @@ impl Template {
 }
 
 /// Specifies the stack resources and their properties, such as an Amazon Elastic Compute Cloud instance or an Amazon Simple Storage Service bucket.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Default, Serialize, Deserialize)]
 pub struct Resources(HashMap<String, ResourceInner>);
 
 impl Resources {
@@ -117,7 +117,7 @@ mod private {
 }
 
 /// Set of tags (key-value pairs) that can be used to identify and organise resources.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Default, Serialize, Deserialize)]
 pub struct Tags(Vec<Tag>);
 
 impl Tags {
