@@ -84,11 +84,15 @@ impl Resources {
     }
 }
 
+fn empty_object() -> serde_json::Value {
+    serde_json::Value::Object(Default::default())
+}
+
 #[derive(Debug, Serialize, Deserialize)]
 struct ResourceInner {
     #[serde(rename = "Type")]
     tag: String,
-    #[serde(rename = "Properties")]
+    #[serde(rename = "Properties", default = "empty_object")]
     properties: serde_json::Value
 }
 
