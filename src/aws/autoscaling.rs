@@ -11,61 +11,78 @@ pub struct AutoScalingGroup {
 pub struct AutoScalingGroupProperties {
     /// Property `AutoScalingGroupName`.
     #[serde(rename="AutoScalingGroupName")]
-    pub auto_scaling_group_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub auto_scaling_group_name: Option<String>,
     /// Property `AvailabilityZones`.
     #[serde(rename="AvailabilityZones")]
-    pub availability_zones: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub availability_zones: Option<Vec<String>>,
     /// Property `Cooldown`.
     #[serde(rename="Cooldown")]
-    pub cooldown: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cooldown: Option<String>,
     /// Property `DesiredCapacity`.
     #[serde(rename="DesiredCapacity")]
-    pub desired_capacity: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub desired_capacity: Option<String>,
     /// Property `HealthCheckGracePeriod`.
     #[serde(rename="HealthCheckGracePeriod")]
-    pub health_check_grace_period: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub health_check_grace_period: Option<u32>,
     /// Property `HealthCheckType`.
     #[serde(rename="HealthCheckType")]
-    pub health_check_type: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub health_check_type: Option<String>,
     /// Property `InstanceId`.
     #[serde(rename="InstanceId")]
-    pub instance_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub instance_id: Option<String>,
     /// Property `LaunchConfigurationName`.
     #[serde(rename="LaunchConfigurationName")]
-    pub launch_configuration_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub launch_configuration_name: Option<String>,
     /// Property `LifecycleHookSpecificationList`.
     #[serde(rename="LifecycleHookSpecificationList")]
-    pub lifecycle_hook_specification_list: Vec<self::auto_scaling_group::LifecycleHookSpecification>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub lifecycle_hook_specification_list: Option<Vec<self::auto_scaling_group::LifecycleHookSpecification>>,
     /// Property `LoadBalancerNames`.
     #[serde(rename="LoadBalancerNames")]
-    pub load_balancer_names: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub load_balancer_names: Option<Vec<String>>,
     /// Property `MaxSize`.
     #[serde(rename="MaxSize")]
     pub max_size: String,
     /// Property `MetricsCollection`.
     #[serde(rename="MetricsCollection")]
-    pub metrics_collection: Vec<self::auto_scaling_group::MetricsCollection>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub metrics_collection: Option<Vec<self::auto_scaling_group::MetricsCollection>>,
     /// Property `MinSize`.
     #[serde(rename="MinSize")]
     pub min_size: String,
     /// Property `NotificationConfigurations`.
     #[serde(rename="NotificationConfigurations")]
-    pub notification_configurations: Vec<self::auto_scaling_group::NotificationConfiguration>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub notification_configurations: Option<Vec<self::auto_scaling_group::NotificationConfiguration>>,
     /// Property `PlacementGroup`.
     #[serde(rename="PlacementGroup")]
-    pub placement_group: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub placement_group: Option<String>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: Vec<self::auto_scaling_group::TagProperty>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<Vec<self::auto_scaling_group::TagProperty>>,
     /// Property `TargetGroupARNs`.
     #[serde(rename="TargetGroupARNs")]
-    pub target_group_ar_ns: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub target_group_ar_ns: Option<Vec<String>>,
     /// Property `TerminationPolicies`.
     #[serde(rename="TerminationPolicies")]
-    pub termination_policies: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub termination_policies: Option<Vec<String>>,
     /// Property `VPCZoneIdentifier`.
     #[serde(rename="VPCZoneIdentifier")]
-    pub vpc_zone_identifier: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub vpc_zone_identifier: Option<Vec<String>>,
 }
 
 impl<'a> ::Resource<'a> for AutoScalingGroup {
@@ -98,55 +115,70 @@ pub struct LaunchConfiguration {
 pub struct LaunchConfigurationProperties {
     /// Property `AssociatePublicIpAddress`.
     #[serde(rename="AssociatePublicIpAddress")]
-    pub associate_public_ip_address: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub associate_public_ip_address: Option<bool>,
     /// Property `BlockDeviceMappings`.
     #[serde(rename="BlockDeviceMappings")]
-    pub block_device_mappings: Vec<self::launch_configuration::BlockDeviceMapping>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub block_device_mappings: Option<Vec<self::launch_configuration::BlockDeviceMapping>>,
     /// Property `ClassicLinkVPCId`.
     #[serde(rename="ClassicLinkVPCId")]
-    pub classic_link_vpc_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub classic_link_vpc_id: Option<String>,
     /// Property `ClassicLinkVPCSecurityGroups`.
     #[serde(rename="ClassicLinkVPCSecurityGroups")]
-    pub classic_link_vpc_security_groups: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub classic_link_vpc_security_groups: Option<Vec<String>>,
     /// Property `EbsOptimized`.
     #[serde(rename="EbsOptimized")]
-    pub ebs_optimized: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ebs_optimized: Option<bool>,
     /// Property `IamInstanceProfile`.
     #[serde(rename="IamInstanceProfile")]
-    pub iam_instance_profile: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub iam_instance_profile: Option<String>,
     /// Property `ImageId`.
     #[serde(rename="ImageId")]
     pub image_id: String,
     /// Property `InstanceId`.
     #[serde(rename="InstanceId")]
-    pub instance_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub instance_id: Option<String>,
     /// Property `InstanceMonitoring`.
     #[serde(rename="InstanceMonitoring")]
-    pub instance_monitoring: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub instance_monitoring: Option<bool>,
     /// Property `InstanceType`.
     #[serde(rename="InstanceType")]
     pub instance_type: String,
     /// Property `KernelId`.
     #[serde(rename="KernelId")]
-    pub kernel_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub kernel_id: Option<String>,
     /// Property `KeyName`.
     #[serde(rename="KeyName")]
-    pub key_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub key_name: Option<String>,
     /// Property `PlacementTenancy`.
     #[serde(rename="PlacementTenancy")]
-    pub placement_tenancy: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub placement_tenancy: Option<String>,
     /// Property `RamDiskId`.
     #[serde(rename="RamDiskId")]
-    pub ram_disk_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ram_disk_id: Option<String>,
     /// Property `SecurityGroups`.
     #[serde(rename="SecurityGroups")]
-    pub security_groups: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub security_groups: Option<Vec<String>>,
     /// Property `SpotPrice`.
     #[serde(rename="SpotPrice")]
-    pub spot_price: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub spot_price: Option<String>,
     /// Property `UserData`.
     #[serde(rename="UserData")]
-    pub user_data: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub user_data: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for LaunchConfiguration {
@@ -182,25 +214,31 @@ pub struct LifecycleHookProperties {
     pub auto_scaling_group_name: String,
     /// Property `DefaultResult`.
     #[serde(rename="DefaultResult")]
-    pub default_result: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub default_result: Option<String>,
     /// Property `HeartbeatTimeout`.
     #[serde(rename="HeartbeatTimeout")]
-    pub heartbeat_timeout: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub heartbeat_timeout: Option<u32>,
     /// Property `LifecycleHookName`.
     #[serde(rename="LifecycleHookName")]
-    pub lifecycle_hook_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub lifecycle_hook_name: Option<String>,
     /// Property `LifecycleTransition`.
     #[serde(rename="LifecycleTransition")]
     pub lifecycle_transition: String,
     /// Property `NotificationMetadata`.
     #[serde(rename="NotificationMetadata")]
-    pub notification_metadata: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub notification_metadata: Option<String>,
     /// Property `NotificationTargetARN`.
     #[serde(rename="NotificationTargetARN")]
-    pub notification_target_arn: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub notification_target_arn: Option<String>,
     /// Property `RoleARN`.
     #[serde(rename="RoleARN")]
-    pub role_arn: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub role_arn: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for LifecycleHook {
@@ -233,34 +271,43 @@ pub struct ScalingPolicy {
 pub struct ScalingPolicyProperties {
     /// Property `AdjustmentType`.
     #[serde(rename="AdjustmentType")]
-    pub adjustment_type: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub adjustment_type: Option<String>,
     /// Property `AutoScalingGroupName`.
     #[serde(rename="AutoScalingGroupName")]
     pub auto_scaling_group_name: String,
     /// Property `Cooldown`.
     #[serde(rename="Cooldown")]
-    pub cooldown: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cooldown: Option<String>,
     /// Property `EstimatedInstanceWarmup`.
     #[serde(rename="EstimatedInstanceWarmup")]
-    pub estimated_instance_warmup: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub estimated_instance_warmup: Option<u32>,
     /// Property `MetricAggregationType`.
     #[serde(rename="MetricAggregationType")]
-    pub metric_aggregation_type: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub metric_aggregation_type: Option<String>,
     /// Property `MinAdjustmentMagnitude`.
     #[serde(rename="MinAdjustmentMagnitude")]
-    pub min_adjustment_magnitude: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub min_adjustment_magnitude: Option<u32>,
     /// Property `PolicyType`.
     #[serde(rename="PolicyType")]
-    pub policy_type: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub policy_type: Option<String>,
     /// Property `ScalingAdjustment`.
     #[serde(rename="ScalingAdjustment")]
-    pub scaling_adjustment: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub scaling_adjustment: Option<u32>,
     /// Property `StepAdjustments`.
     #[serde(rename="StepAdjustments")]
-    pub step_adjustments: Vec<self::scaling_policy::StepAdjustment>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub step_adjustments: Option<Vec<self::scaling_policy::StepAdjustment>>,
     /// Property `TargetTrackingConfiguration`.
     #[serde(rename="TargetTrackingConfiguration")]
-    pub target_tracking_configuration: self::scaling_policy::TargetTrackingConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub target_tracking_configuration: Option<self::scaling_policy::TargetTrackingConfiguration>,
 }
 
 impl<'a> ::Resource<'a> for ScalingPolicy {
@@ -296,22 +343,28 @@ pub struct ScheduledActionProperties {
     pub auto_scaling_group_name: String,
     /// Property `DesiredCapacity`.
     #[serde(rename="DesiredCapacity")]
-    pub desired_capacity: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub desired_capacity: Option<u32>,
     /// Property `EndTime`.
     #[serde(rename="EndTime")]
-    pub end_time: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub end_time: Option<String>,
     /// Property `MaxSize`.
     #[serde(rename="MaxSize")]
-    pub max_size: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub max_size: Option<u32>,
     /// Property `MinSize`.
     #[serde(rename="MinSize")]
-    pub min_size: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub min_size: Option<u32>,
     /// Property `Recurrence`.
     #[serde(rename="Recurrence")]
-    pub recurrence: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub recurrence: Option<String>,
     /// Property `StartTime`.
     #[serde(rename="StartTime")]
-    pub start_time: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub start_time: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for ScheduledAction {
@@ -341,10 +394,12 @@ pub mod auto_scaling_group {
     pub struct LifecycleHookSpecification {
         /// Property `DefaultResult`.
         #[serde(rename="DefaultResult")]
-        pub default_result: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub default_result: Option<String>,
         /// Property `HeartbeatTimeout`.
         #[serde(rename="HeartbeatTimeout")]
-        pub heartbeat_timeout: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub heartbeat_timeout: Option<u32>,
         /// Property `LifecycleHookName`.
         #[serde(rename="LifecycleHookName")]
         pub lifecycle_hook_name: String,
@@ -353,13 +408,16 @@ pub mod auto_scaling_group {
         pub lifecycle_transition: String,
         /// Property `NotificationMetadata`.
         #[serde(rename="NotificationMetadata")]
-        pub notification_metadata: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub notification_metadata: Option<String>,
         /// Property `NotificationTargetARN`.
         #[serde(rename="NotificationTargetARN")]
-        pub notification_target_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub notification_target_arn: Option<String>,
         /// Property `RoleARN`.
         #[serde(rename="RoleARN")]
-        pub role_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub role_arn: Option<String>,
     }
 
     /// The [`AWS::AutoScaling::AutoScalingGroup.MetricsCollection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-metricscollection.html) property type.
@@ -370,7 +428,8 @@ pub mod auto_scaling_group {
         pub granularity: String,
         /// Property `Metrics`.
         #[serde(rename="Metrics")]
-        pub metrics: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub metrics: Option<Vec<String>>,
     }
 
     /// The [`AWS::AutoScaling::AutoScalingGroup.NotificationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-notificationconfigurations.html) property type.
@@ -378,7 +437,8 @@ pub mod auto_scaling_group {
     pub struct NotificationConfiguration {
         /// Property `NotificationTypes`.
         #[serde(rename="NotificationTypes")]
-        pub notification_types: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub notification_types: Option<Vec<String>>,
         /// Property `TopicARN`.
         #[serde(rename="TopicARN")]
         pub topic_arn: String,
@@ -407,22 +467,28 @@ pub mod launch_configuration {
     pub struct BlockDevice {
         /// Property `DeleteOnTermination`.
         #[serde(rename="DeleteOnTermination")]
-        pub delete_on_termination: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub delete_on_termination: Option<bool>,
         /// Property `Encrypted`.
         #[serde(rename="Encrypted")]
-        pub encrypted: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub encrypted: Option<bool>,
         /// Property `Iops`.
         #[serde(rename="Iops")]
-        pub iops: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub iops: Option<u32>,
         /// Property `SnapshotId`.
         #[serde(rename="SnapshotId")]
-        pub snapshot_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub snapshot_id: Option<String>,
         /// Property `VolumeSize`.
         #[serde(rename="VolumeSize")]
-        pub volume_size: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub volume_size: Option<u32>,
         /// Property `VolumeType`.
         #[serde(rename="VolumeType")]
-        pub volume_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub volume_type: Option<String>,
     }
 
     /// The [`AWS::AutoScaling::LaunchConfiguration.BlockDeviceMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig-blockdev-mapping.html) property type.
@@ -433,13 +499,16 @@ pub mod launch_configuration {
         pub device_name: String,
         /// Property `Ebs`.
         #[serde(rename="Ebs")]
-        pub ebs: BlockDevice,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ebs: Option<BlockDevice>,
         /// Property `NoDevice`.
         #[serde(rename="NoDevice")]
-        pub no_device: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub no_device: Option<bool>,
         /// Property `VirtualName`.
         #[serde(rename="VirtualName")]
-        pub virtual_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub virtual_name: Option<String>,
     }
 }
 
@@ -451,7 +520,8 @@ pub mod scaling_policy {
     pub struct CustomizedMetricSpecification {
         /// Property `Dimensions`.
         #[serde(rename="Dimensions")]
-        pub dimensions: Vec<MetricDimension>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub dimensions: Option<Vec<MetricDimension>>,
         /// Property `MetricName`.
         #[serde(rename="MetricName")]
         pub metric_name: String,
@@ -463,7 +533,8 @@ pub mod scaling_policy {
         pub statistic: String,
         /// Property `Unit`.
         #[serde(rename="Unit")]
-        pub unit: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub unit: Option<String>,
     }
 
     /// The [`AWS::AutoScaling::ScalingPolicy.MetricDimension`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-metricdimension.html) property type.
@@ -485,7 +556,8 @@ pub mod scaling_policy {
         pub predefined_metric_type: String,
         /// Property `ResourceLabel`.
         #[serde(rename="ResourceLabel")]
-        pub resource_label: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub resource_label: Option<String>,
     }
 
     /// The [`AWS::AutoScaling::ScalingPolicy.StepAdjustment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-stepadjustments.html) property type.
@@ -493,10 +565,12 @@ pub mod scaling_policy {
     pub struct StepAdjustment {
         /// Property `MetricIntervalLowerBound`.
         #[serde(rename="MetricIntervalLowerBound")]
-        pub metric_interval_lower_bound: f64,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub metric_interval_lower_bound: Option<f64>,
         /// Property `MetricIntervalUpperBound`.
         #[serde(rename="MetricIntervalUpperBound")]
-        pub metric_interval_upper_bound: f64,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub metric_interval_upper_bound: Option<f64>,
         /// Property `ScalingAdjustment`.
         #[serde(rename="ScalingAdjustment")]
         pub scaling_adjustment: u32,
@@ -507,13 +581,16 @@ pub mod scaling_policy {
     pub struct TargetTrackingConfiguration {
         /// Property `CustomizedMetricSpecification`.
         #[serde(rename="CustomizedMetricSpecification")]
-        pub customized_metric_specification: CustomizedMetricSpecification,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub customized_metric_specification: Option<CustomizedMetricSpecification>,
         /// Property `DisableScaleIn`.
         #[serde(rename="DisableScaleIn")]
-        pub disable_scale_in: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub disable_scale_in: Option<bool>,
         /// Property `PredefinedMetricSpecification`.
         #[serde(rename="PredefinedMetricSpecification")]
-        pub predefined_metric_specification: PredefinedMetricSpecification,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub predefined_metric_specification: Option<PredefinedMetricSpecification>,
         /// Property `TargetValue`.
         #[serde(rename="TargetValue")]
         pub target_value: f64,

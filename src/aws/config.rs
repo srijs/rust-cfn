@@ -11,19 +11,24 @@ pub struct ConfigRule {
 pub struct ConfigRuleProperties {
     /// Property `ConfigRuleName`.
     #[serde(rename="ConfigRuleName")]
-    pub config_rule_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub config_rule_name: Option<String>,
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `InputParameters`.
     #[serde(rename="InputParameters")]
-    pub input_parameters: ::json::Value,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub input_parameters: Option<::json::Value>,
     /// Property `MaximumExecutionFrequency`.
     #[serde(rename="MaximumExecutionFrequency")]
-    pub maximum_execution_frequency: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub maximum_execution_frequency: Option<String>,
     /// Property `Scope`.
     #[serde(rename="Scope")]
-    pub scope: self::config_rule::Scope,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub scope: Option<self::config_rule::Scope>,
     /// Property `Source`.
     #[serde(rename="Source")]
     pub source: self::config_rule::Source,
@@ -59,10 +64,12 @@ pub struct ConfigurationRecorder {
 pub struct ConfigurationRecorderProperties {
     /// Property `Name`.
     #[serde(rename="Name")]
-    pub name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     /// Property `RecordingGroup`.
     #[serde(rename="RecordingGroup")]
-    pub recording_group: self::configuration_recorder::RecordingGroup,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub recording_group: Option<self::configuration_recorder::RecordingGroup>,
     /// Property `RoleARN`.
     #[serde(rename="RoleARN")]
     pub role_arn: String,
@@ -98,19 +105,23 @@ pub struct DeliveryChannel {
 pub struct DeliveryChannelProperties {
     /// Property `ConfigSnapshotDeliveryProperties`.
     #[serde(rename="ConfigSnapshotDeliveryProperties")]
-    pub config_snapshot_delivery_properties: self::delivery_channel::ConfigSnapshotDeliveryProperties,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub config_snapshot_delivery_properties: Option<self::delivery_channel::ConfigSnapshotDeliveryProperties>,
     /// Property `Name`.
     #[serde(rename="Name")]
-    pub name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     /// Property `S3BucketName`.
     #[serde(rename="S3BucketName")]
     pub s3_bucket_name: String,
     /// Property `S3KeyPrefix`.
     #[serde(rename="S3KeyPrefix")]
-    pub s3_key_prefix: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub s3_key_prefix: Option<String>,
     /// Property `SnsTopicARN`.
     #[serde(rename="SnsTopicARN")]
-    pub sns_topic_arn: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sns_topic_arn: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for DeliveryChannel {
@@ -140,16 +151,20 @@ pub mod config_rule {
     pub struct Scope {
         /// Property `ComplianceResourceId`.
         #[serde(rename="ComplianceResourceId")]
-        pub compliance_resource_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub compliance_resource_id: Option<String>,
         /// Property `ComplianceResourceTypes`.
         #[serde(rename="ComplianceResourceTypes")]
-        pub compliance_resource_types: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub compliance_resource_types: Option<Vec<String>>,
         /// Property `TagKey`.
         #[serde(rename="TagKey")]
-        pub tag_key: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub tag_key: Option<String>,
         /// Property `TagValue`.
         #[serde(rename="TagValue")]
-        pub tag_value: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub tag_value: Option<String>,
     }
 
     /// The [`AWS::Config::ConfigRule.Source`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-source.html) property type.
@@ -160,7 +175,8 @@ pub mod config_rule {
         pub owner: String,
         /// Property `SourceDetails`.
         #[serde(rename="SourceDetails")]
-        pub source_details: Vec<SourceDetail>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub source_details: Option<Vec<SourceDetail>>,
         /// Property `SourceIdentifier`.
         #[serde(rename="SourceIdentifier")]
         pub source_identifier: String,
@@ -174,7 +190,8 @@ pub mod config_rule {
         pub event_source: String,
         /// Property `MaximumExecutionFrequency`.
         #[serde(rename="MaximumExecutionFrequency")]
-        pub maximum_execution_frequency: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub maximum_execution_frequency: Option<String>,
         /// Property `MessageType`.
         #[serde(rename="MessageType")]
         pub message_type: String,
@@ -189,13 +206,16 @@ pub mod configuration_recorder {
     pub struct RecordingGroup {
         /// Property `AllSupported`.
         #[serde(rename="AllSupported")]
-        pub all_supported: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub all_supported: Option<bool>,
         /// Property `IncludeGlobalResourceTypes`.
         #[serde(rename="IncludeGlobalResourceTypes")]
-        pub include_global_resource_types: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub include_global_resource_types: Option<bool>,
         /// Property `ResourceTypes`.
         #[serde(rename="ResourceTypes")]
-        pub resource_types: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub resource_types: Option<Vec<String>>,
     }
 }
 
@@ -207,6 +227,7 @@ pub mod delivery_channel {
     pub struct ConfigSnapshotDeliveryProperties {
         /// Property `DeliveryFrequency`.
         #[serde(rename="DeliveryFrequency")]
-        pub delivery_frequency: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub delivery_frequency: Option<String>,
     }
 }

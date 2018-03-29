@@ -53,10 +53,12 @@ pub struct LogGroup {
 pub struct LogGroupProperties {
     /// Property `LogGroupName`.
     #[serde(rename="LogGroupName")]
-    pub log_group_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub log_group_name: Option<String>,
     /// Property `RetentionInDays`.
     #[serde(rename="RetentionInDays")]
-    pub retention_in_days: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub retention_in_days: Option<u32>,
 }
 
 impl<'a> ::Resource<'a> for LogGroup {
@@ -92,7 +94,8 @@ pub struct LogStreamProperties {
     pub log_group_name: String,
     /// Property `LogStreamName`.
     #[serde(rename="LogStreamName")]
-    pub log_stream_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub log_stream_name: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for LogStream {
@@ -173,7 +176,8 @@ pub struct SubscriptionFilterProperties {
     pub log_group_name: String,
     /// Property `RoleArn`.
     #[serde(rename="RoleArn")]
-    pub role_arn: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub role_arn: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for SubscriptionFilter {

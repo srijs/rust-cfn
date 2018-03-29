@@ -50,7 +50,8 @@ pub struct StateMachineProperties {
     pub role_arn: String,
     /// Property `StateMachineName`.
     #[serde(rename="StateMachineName")]
-    pub state_machine_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub state_machine_name: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for StateMachine {

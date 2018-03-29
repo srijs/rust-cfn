@@ -11,31 +11,40 @@ pub struct Domain {
 pub struct DomainProperties {
     /// Property `AccessPolicies`.
     #[serde(rename="AccessPolicies")]
-    pub access_policies: ::json::Value,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub access_policies: Option<::json::Value>,
     /// Property `AdvancedOptions`.
     #[serde(rename="AdvancedOptions")]
-    pub advanced_options: ::std::collections::HashMap<String, String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub advanced_options: Option<::std::collections::HashMap<String, String>>,
     /// Property `DomainName`.
     #[serde(rename="DomainName")]
-    pub domain_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub domain_name: Option<String>,
     /// Property `EBSOptions`.
     #[serde(rename="EBSOptions")]
-    pub ebs_options: self::domain::EBSOptions,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ebs_options: Option<self::domain::EBSOptions>,
     /// Property `ElasticsearchClusterConfig`.
     #[serde(rename="ElasticsearchClusterConfig")]
-    pub elasticsearch_cluster_config: self::domain::ElasticsearchClusterConfig,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub elasticsearch_cluster_config: Option<self::domain::ElasticsearchClusterConfig>,
     /// Property `ElasticsearchVersion`.
     #[serde(rename="ElasticsearchVersion")]
-    pub elasticsearch_version: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub elasticsearch_version: Option<String>,
     /// Property `SnapshotOptions`.
     #[serde(rename="SnapshotOptions")]
-    pub snapshot_options: self::domain::SnapshotOptions,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub snapshot_options: Option<self::domain::SnapshotOptions>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
     /// Property `VPCOptions`.
     #[serde(rename="VPCOptions")]
-    pub vpc_options: self::domain::VPCOptions,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub vpc_options: Option<self::domain::VPCOptions>,
 }
 
 impl<'a> ::Resource<'a> for Domain {
@@ -65,16 +74,20 @@ pub mod domain {
     pub struct EBSOptions {
         /// Property `EBSEnabled`.
         #[serde(rename="EBSEnabled")]
-        pub ebs_enabled: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ebs_enabled: Option<bool>,
         /// Property `Iops`.
         #[serde(rename="Iops")]
-        pub iops: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub iops: Option<u32>,
         /// Property `VolumeSize`.
         #[serde(rename="VolumeSize")]
-        pub volume_size: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub volume_size: Option<u32>,
         /// Property `VolumeType`.
         #[serde(rename="VolumeType")]
-        pub volume_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub volume_type: Option<String>,
     }
 
     /// The [`AWS::Elasticsearch::Domain.ElasticsearchClusterConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-elasticsearchclusterconfig.html) property type.
@@ -82,22 +95,28 @@ pub mod domain {
     pub struct ElasticsearchClusterConfig {
         /// Property `DedicatedMasterCount`.
         #[serde(rename="DedicatedMasterCount")]
-        pub dedicated_master_count: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub dedicated_master_count: Option<u32>,
         /// Property `DedicatedMasterEnabled`.
         #[serde(rename="DedicatedMasterEnabled")]
-        pub dedicated_master_enabled: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub dedicated_master_enabled: Option<bool>,
         /// Property `DedicatedMasterType`.
         #[serde(rename="DedicatedMasterType")]
-        pub dedicated_master_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub dedicated_master_type: Option<String>,
         /// Property `InstanceCount`.
         #[serde(rename="InstanceCount")]
-        pub instance_count: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub instance_count: Option<u32>,
         /// Property `InstanceType`.
         #[serde(rename="InstanceType")]
-        pub instance_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub instance_type: Option<String>,
         /// Property `ZoneAwarenessEnabled`.
         #[serde(rename="ZoneAwarenessEnabled")]
-        pub zone_awareness_enabled: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub zone_awareness_enabled: Option<bool>,
     }
 
     /// The [`AWS::Elasticsearch::Domain.SnapshotOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-snapshotoptions.html) property type.
@@ -105,7 +124,8 @@ pub mod domain {
     pub struct SnapshotOptions {
         /// Property `AutomatedSnapshotStartHour`.
         #[serde(rename="AutomatedSnapshotStartHour")]
-        pub automated_snapshot_start_hour: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub automated_snapshot_start_hour: Option<u32>,
     }
 
     /// The [`AWS::Elasticsearch::Domain.VPCOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-vpcoptions.html) property type.
@@ -113,9 +133,11 @@ pub mod domain {
     pub struct VPCOptions {
         /// Property `SecurityGroupIds`.
         #[serde(rename="SecurityGroupIds")]
-        pub security_group_ids: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub security_group_ids: Option<Vec<String>>,
         /// Property `SubnetIds`.
         #[serde(rename="SubnetIds")]
-        pub subnet_ids: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub subnet_ids: Option<Vec<String>>,
     }
 }

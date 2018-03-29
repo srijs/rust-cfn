@@ -47,7 +47,8 @@ pub struct DistributionProperties {
     pub distribution_config: self::distribution::DistributionConfig,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
 }
 
 impl<'a> ::Resource<'a> for Distribution {
@@ -125,40 +126,49 @@ pub mod distribution {
     pub struct CacheBehavior {
         /// Property `AllowedMethods`.
         #[serde(rename="AllowedMethods")]
-        pub allowed_methods: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub allowed_methods: Option<Vec<String>>,
         /// Property `CachedMethods`.
         #[serde(rename="CachedMethods")]
-        pub cached_methods: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub cached_methods: Option<Vec<String>>,
         /// Property `Compress`.
         #[serde(rename="Compress")]
-        pub compress: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub compress: Option<bool>,
         /// Property `DefaultTTL`.
         #[serde(rename="DefaultTTL")]
-        pub default_ttl: f64,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub default_ttl: Option<f64>,
         /// Property `ForwardedValues`.
         #[serde(rename="ForwardedValues")]
         pub forwarded_values: ForwardedValues,
         /// Property `LambdaFunctionAssociations`.
         #[serde(rename="LambdaFunctionAssociations")]
-        pub lambda_function_associations: Vec<LambdaFunctionAssociation>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub lambda_function_associations: Option<Vec<LambdaFunctionAssociation>>,
         /// Property `MaxTTL`.
         #[serde(rename="MaxTTL")]
-        pub max_ttl: f64,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub max_ttl: Option<f64>,
         /// Property `MinTTL`.
         #[serde(rename="MinTTL")]
-        pub min_ttl: f64,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub min_ttl: Option<f64>,
         /// Property `PathPattern`.
         #[serde(rename="PathPattern")]
         pub path_pattern: String,
         /// Property `SmoothStreaming`.
         #[serde(rename="SmoothStreaming")]
-        pub smooth_streaming: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub smooth_streaming: Option<bool>,
         /// Property `TargetOriginId`.
         #[serde(rename="TargetOriginId")]
         pub target_origin_id: String,
         /// Property `TrustedSigners`.
         #[serde(rename="TrustedSigners")]
-        pub trusted_signers: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub trusted_signers: Option<Vec<String>>,
         /// Property `ViewerProtocolPolicy`.
         #[serde(rename="ViewerProtocolPolicy")]
         pub viewer_protocol_policy: String,
@@ -172,7 +182,8 @@ pub mod distribution {
         pub forward: String,
         /// Property `WhitelistedNames`.
         #[serde(rename="WhitelistedNames")]
-        pub whitelisted_names: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub whitelisted_names: Option<Vec<String>>,
     }
 
     /// The [`AWS::CloudFront::Distribution.CustomErrorResponse`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customerrorresponse.html) property type.
@@ -180,16 +191,19 @@ pub mod distribution {
     pub struct CustomErrorResponse {
         /// Property `ErrorCachingMinTTL`.
         #[serde(rename="ErrorCachingMinTTL")]
-        pub error_caching_min_ttl: f64,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub error_caching_min_ttl: Option<f64>,
         /// Property `ErrorCode`.
         #[serde(rename="ErrorCode")]
         pub error_code: u32,
         /// Property `ResponseCode`.
         #[serde(rename="ResponseCode")]
-        pub response_code: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub response_code: Option<u32>,
         /// Property `ResponsePagePath`.
         #[serde(rename="ResponsePagePath")]
-        pub response_page_path: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub response_page_path: Option<String>,
     }
 
     /// The [`AWS::CloudFront::Distribution.CustomOriginConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customoriginconfig.html) property type.
@@ -197,22 +211,27 @@ pub mod distribution {
     pub struct CustomOriginConfig {
         /// Property `HTTPPort`.
         #[serde(rename="HTTPPort")]
-        pub http_port: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub http_port: Option<u32>,
         /// Property `HTTPSPort`.
         #[serde(rename="HTTPSPort")]
-        pub https_port: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub https_port: Option<u32>,
         /// Property `OriginKeepaliveTimeout`.
         #[serde(rename="OriginKeepaliveTimeout")]
-        pub origin_keepalive_timeout: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub origin_keepalive_timeout: Option<u32>,
         /// Property `OriginProtocolPolicy`.
         #[serde(rename="OriginProtocolPolicy")]
         pub origin_protocol_policy: String,
         /// Property `OriginReadTimeout`.
         #[serde(rename="OriginReadTimeout")]
-        pub origin_read_timeout: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub origin_read_timeout: Option<u32>,
         /// Property `OriginSSLProtocols`.
         #[serde(rename="OriginSSLProtocols")]
-        pub origin_ssl_protocols: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub origin_ssl_protocols: Option<Vec<String>>,
     }
 
     /// The [`AWS::CloudFront::Distribution.DefaultCacheBehavior`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html) property type.
@@ -220,37 +239,46 @@ pub mod distribution {
     pub struct DefaultCacheBehavior {
         /// Property `AllowedMethods`.
         #[serde(rename="AllowedMethods")]
-        pub allowed_methods: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub allowed_methods: Option<Vec<String>>,
         /// Property `CachedMethods`.
         #[serde(rename="CachedMethods")]
-        pub cached_methods: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub cached_methods: Option<Vec<String>>,
         /// Property `Compress`.
         #[serde(rename="Compress")]
-        pub compress: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub compress: Option<bool>,
         /// Property `DefaultTTL`.
         #[serde(rename="DefaultTTL")]
-        pub default_ttl: f64,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub default_ttl: Option<f64>,
         /// Property `ForwardedValues`.
         #[serde(rename="ForwardedValues")]
         pub forwarded_values: ForwardedValues,
         /// Property `LambdaFunctionAssociations`.
         #[serde(rename="LambdaFunctionAssociations")]
-        pub lambda_function_associations: Vec<LambdaFunctionAssociation>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub lambda_function_associations: Option<Vec<LambdaFunctionAssociation>>,
         /// Property `MaxTTL`.
         #[serde(rename="MaxTTL")]
-        pub max_ttl: f64,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub max_ttl: Option<f64>,
         /// Property `MinTTL`.
         #[serde(rename="MinTTL")]
-        pub min_ttl: f64,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub min_ttl: Option<f64>,
         /// Property `SmoothStreaming`.
         #[serde(rename="SmoothStreaming")]
-        pub smooth_streaming: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub smooth_streaming: Option<bool>,
         /// Property `TargetOriginId`.
         #[serde(rename="TargetOriginId")]
         pub target_origin_id: String,
         /// Property `TrustedSigners`.
         #[serde(rename="TrustedSigners")]
-        pub trusted_signers: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub trusted_signers: Option<Vec<String>>,
         /// Property `ViewerProtocolPolicy`.
         #[serde(rename="ViewerProtocolPolicy")]
         pub viewer_protocol_policy: String,
@@ -261,49 +289,63 @@ pub mod distribution {
     pub struct DistributionConfig {
         /// Property `Aliases`.
         #[serde(rename="Aliases")]
-        pub aliases: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub aliases: Option<Vec<String>>,
         /// Property `CacheBehaviors`.
         #[serde(rename="CacheBehaviors")]
-        pub cache_behaviors: Vec<CacheBehavior>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub cache_behaviors: Option<Vec<CacheBehavior>>,
         /// Property `Comment`.
         #[serde(rename="Comment")]
-        pub comment: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub comment: Option<String>,
         /// Property `CustomErrorResponses`.
         #[serde(rename="CustomErrorResponses")]
-        pub custom_error_responses: Vec<CustomErrorResponse>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub custom_error_responses: Option<Vec<CustomErrorResponse>>,
         /// Property `DefaultCacheBehavior`.
         #[serde(rename="DefaultCacheBehavior")]
-        pub default_cache_behavior: DefaultCacheBehavior,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub default_cache_behavior: Option<DefaultCacheBehavior>,
         /// Property `DefaultRootObject`.
         #[serde(rename="DefaultRootObject")]
-        pub default_root_object: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub default_root_object: Option<String>,
         /// Property `Enabled`.
         #[serde(rename="Enabled")]
         pub enabled: bool,
         /// Property `HttpVersion`.
         #[serde(rename="HttpVersion")]
-        pub http_version: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub http_version: Option<String>,
         /// Property `IPV6Enabled`.
         #[serde(rename="IPV6Enabled")]
-        pub ipv6_enabled: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ipv6_enabled: Option<bool>,
         /// Property `Logging`.
         #[serde(rename="Logging")]
-        pub logging: Logging,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub logging: Option<Logging>,
         /// Property `Origins`.
         #[serde(rename="Origins")]
-        pub origins: Vec<Origin>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub origins: Option<Vec<Origin>>,
         /// Property `PriceClass`.
         #[serde(rename="PriceClass")]
-        pub price_class: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub price_class: Option<String>,
         /// Property `Restrictions`.
         #[serde(rename="Restrictions")]
-        pub restrictions: Restrictions,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub restrictions: Option<Restrictions>,
         /// Property `ViewerCertificate`.
         #[serde(rename="ViewerCertificate")]
-        pub viewer_certificate: ViewerCertificate,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub viewer_certificate: Option<ViewerCertificate>,
         /// Property `WebACLId`.
         #[serde(rename="WebACLId")]
-        pub web_acl_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub web_acl_id: Option<String>,
     }
 
     /// The [`AWS::CloudFront::Distribution.ForwardedValues`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-forwardedvalues.html) property type.
@@ -311,16 +353,19 @@ pub mod distribution {
     pub struct ForwardedValues {
         /// Property `Cookies`.
         #[serde(rename="Cookies")]
-        pub cookies: Cookies,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub cookies: Option<Cookies>,
         /// Property `Headers`.
         #[serde(rename="Headers")]
-        pub headers: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub headers: Option<Vec<String>>,
         /// Property `QueryString`.
         #[serde(rename="QueryString")]
         pub query_string: bool,
         /// Property `QueryStringCacheKeys`.
         #[serde(rename="QueryStringCacheKeys")]
-        pub query_string_cache_keys: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub query_string_cache_keys: Option<Vec<String>>,
     }
 
     /// The [`AWS::CloudFront::Distribution.GeoRestriction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-georestriction.html) property type.
@@ -328,7 +373,8 @@ pub mod distribution {
     pub struct GeoRestriction {
         /// Property `Locations`.
         #[serde(rename="Locations")]
-        pub locations: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub locations: Option<Vec<String>>,
         /// Property `RestrictionType`.
         #[serde(rename="RestrictionType")]
         pub restriction_type: String,
@@ -339,10 +385,12 @@ pub mod distribution {
     pub struct LambdaFunctionAssociation {
         /// Property `EventType`.
         #[serde(rename="EventType")]
-        pub event_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub event_type: Option<String>,
         /// Property `LambdaFunctionARN`.
         #[serde(rename="LambdaFunctionARN")]
-        pub lambda_function_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub lambda_function_arn: Option<String>,
     }
 
     /// The [`AWS::CloudFront::Distribution.Logging`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-logging.html) property type.
@@ -353,10 +401,12 @@ pub mod distribution {
         pub bucket: String,
         /// Property `IncludeCookies`.
         #[serde(rename="IncludeCookies")]
-        pub include_cookies: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub include_cookies: Option<bool>,
         /// Property `Prefix`.
         #[serde(rename="Prefix")]
-        pub prefix: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub prefix: Option<String>,
     }
 
     /// The [`AWS::CloudFront::Distribution.Origin`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html) property type.
@@ -364,7 +414,8 @@ pub mod distribution {
     pub struct Origin {
         /// Property `CustomOriginConfig`.
         #[serde(rename="CustomOriginConfig")]
-        pub custom_origin_config: CustomOriginConfig,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub custom_origin_config: Option<CustomOriginConfig>,
         /// Property `DomainName`.
         #[serde(rename="DomainName")]
         pub domain_name: String,
@@ -373,13 +424,16 @@ pub mod distribution {
         pub id: String,
         /// Property `OriginCustomHeaders`.
         #[serde(rename="OriginCustomHeaders")]
-        pub origin_custom_headers: Vec<OriginCustomHeader>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub origin_custom_headers: Option<Vec<OriginCustomHeader>>,
         /// Property `OriginPath`.
         #[serde(rename="OriginPath")]
-        pub origin_path: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub origin_path: Option<String>,
         /// Property `S3OriginConfig`.
         #[serde(rename="S3OriginConfig")]
-        pub s3_origin_config: S3OriginConfig,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub s3_origin_config: Option<S3OriginConfig>,
     }
 
     /// The [`AWS::CloudFront::Distribution.OriginCustomHeader`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origincustomheader.html) property type.
@@ -406,7 +460,8 @@ pub mod distribution {
     pub struct S3OriginConfig {
         /// Property `OriginAccessIdentity`.
         #[serde(rename="OriginAccessIdentity")]
-        pub origin_access_identity: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub origin_access_identity: Option<String>,
     }
 
     /// The [`AWS::CloudFront::Distribution.ViewerCertificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-viewercertificate.html) property type.
@@ -414,19 +469,24 @@ pub mod distribution {
     pub struct ViewerCertificate {
         /// Property `AcmCertificateArn`.
         #[serde(rename="AcmCertificateArn")]
-        pub acm_certificate_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub acm_certificate_arn: Option<String>,
         /// Property `CloudFrontDefaultCertificate`.
         #[serde(rename="CloudFrontDefaultCertificate")]
-        pub cloud_front_default_certificate: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub cloud_front_default_certificate: Option<bool>,
         /// Property `IamCertificateId`.
         #[serde(rename="IamCertificateId")]
-        pub iam_certificate_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub iam_certificate_id: Option<String>,
         /// Property `MinimumProtocolVersion`.
         #[serde(rename="MinimumProtocolVersion")]
-        pub minimum_protocol_version: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub minimum_protocol_version: Option<String>,
         /// Property `SslSupportMethod`.
         #[serde(rename="SslSupportMethod")]
-        pub ssl_support_method: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ssl_support_method: Option<String>,
     }
 }
 
@@ -463,7 +523,8 @@ pub mod streaming_distribution {
     pub struct StreamingDistributionConfig {
         /// Property `Aliases`.
         #[serde(rename="Aliases")]
-        pub aliases: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub aliases: Option<Vec<String>>,
         /// Property `Comment`.
         #[serde(rename="Comment")]
         pub comment: String,
@@ -472,10 +533,12 @@ pub mod streaming_distribution {
         pub enabled: bool,
         /// Property `Logging`.
         #[serde(rename="Logging")]
-        pub logging: Logging,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub logging: Option<Logging>,
         /// Property `PriceClass`.
         #[serde(rename="PriceClass")]
-        pub price_class: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub price_class: Option<String>,
         /// Property `S3Origin`.
         #[serde(rename="S3Origin")]
         pub s3_origin: S3Origin,
@@ -489,7 +552,8 @@ pub mod streaming_distribution {
     pub struct TrustedSigners {
         /// Property `AwsAccountNumbers`.
         #[serde(rename="AwsAccountNumbers")]
-        pub aws_account_numbers: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub aws_account_numbers: Option<Vec<String>>,
         /// Property `Enabled`.
         #[serde(rename="Enabled")]
         pub enabled: bool,

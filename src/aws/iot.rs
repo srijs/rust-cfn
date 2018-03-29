@@ -50,7 +50,8 @@ pub struct PolicyProperties {
     pub policy_document: ::json::Value,
     /// Property `PolicyName`.
     #[serde(rename="PolicyName")]
-    pub policy_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub policy_name: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for Policy {
@@ -119,10 +120,12 @@ pub struct Thing {
 pub struct ThingProperties {
     /// Property `AttributePayload`.
     #[serde(rename="AttributePayload")]
-    pub attribute_payload: self::thing::AttributePayload,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub attribute_payload: Option<self::thing::AttributePayload>,
     /// Property `ThingName`.
     #[serde(rename="ThingName")]
-    pub thing_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub thing_name: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for Thing {
@@ -191,7 +194,8 @@ pub struct TopicRule {
 pub struct TopicRuleProperties {
     /// Property `RuleName`.
     #[serde(rename="RuleName")]
-    pub rule_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub rule_name: Option<String>,
     /// Property `TopicRulePayload`.
     #[serde(rename="TopicRulePayload")]
     pub topic_rule_payload: self::topic_rule::TopicRulePayload,
@@ -224,7 +228,8 @@ pub mod thing {
     pub struct AttributePayload {
         /// Property `Attributes`.
         #[serde(rename="Attributes")]
-        pub attributes: ::std::collections::HashMap<String, String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub attributes: Option<::std::collections::HashMap<String, String>>,
     }
 }
 
@@ -236,40 +241,52 @@ pub mod topic_rule {
     pub struct Action {
         /// Property `CloudwatchAlarm`.
         #[serde(rename="CloudwatchAlarm")]
-        pub cloudwatch_alarm: CloudwatchAlarmAction,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub cloudwatch_alarm: Option<CloudwatchAlarmAction>,
         /// Property `CloudwatchMetric`.
         #[serde(rename="CloudwatchMetric")]
-        pub cloudwatch_metric: CloudwatchMetricAction,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub cloudwatch_metric: Option<CloudwatchMetricAction>,
         /// Property `DynamoDB`.
         #[serde(rename="DynamoDB")]
-        pub dynamo_db: DynamoDBAction,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub dynamo_db: Option<DynamoDBAction>,
         /// Property `DynamoDBv2`.
         #[serde(rename="DynamoDBv2")]
-        pub dynamo_d_bv2: DynamoDBv2Action,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub dynamo_d_bv2: Option<DynamoDBv2Action>,
         /// Property `Elasticsearch`.
         #[serde(rename="Elasticsearch")]
-        pub elasticsearch: ElasticsearchAction,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub elasticsearch: Option<ElasticsearchAction>,
         /// Property `Firehose`.
         #[serde(rename="Firehose")]
-        pub firehose: FirehoseAction,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub firehose: Option<FirehoseAction>,
         /// Property `Kinesis`.
         #[serde(rename="Kinesis")]
-        pub kinesis: KinesisAction,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub kinesis: Option<KinesisAction>,
         /// Property `Lambda`.
         #[serde(rename="Lambda")]
-        pub lambda: LambdaAction,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub lambda: Option<LambdaAction>,
         /// Property `Republish`.
         #[serde(rename="Republish")]
-        pub republish: RepublishAction,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub republish: Option<RepublishAction>,
         /// Property `S3`.
         #[serde(rename="S3")]
-        pub s3: S3Action,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub s3: Option<S3Action>,
         /// Property `Sns`.
         #[serde(rename="Sns")]
-        pub sns: SnsAction,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub sns: Option<SnsAction>,
         /// Property `Sqs`.
         #[serde(rename="Sqs")]
-        pub sqs: SqsAction,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub sqs: Option<SqsAction>,
     }
 
     /// The [`AWS::IoT::TopicRule.CloudwatchAlarmAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchalarmaction.html) property type.
@@ -300,7 +317,8 @@ pub mod topic_rule {
         pub metric_namespace: String,
         /// Property `MetricTimestamp`.
         #[serde(rename="MetricTimestamp")]
-        pub metric_timestamp: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub metric_timestamp: Option<String>,
         /// Property `MetricUnit`.
         #[serde(rename="MetricUnit")]
         pub metric_unit: String,
@@ -320,22 +338,27 @@ pub mod topic_rule {
         pub hash_key_field: String,
         /// Property `HashKeyType`.
         #[serde(rename="HashKeyType")]
-        pub hash_key_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub hash_key_type: Option<String>,
         /// Property `HashKeyValue`.
         #[serde(rename="HashKeyValue")]
         pub hash_key_value: String,
         /// Property `PayloadField`.
         #[serde(rename="PayloadField")]
-        pub payload_field: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub payload_field: Option<String>,
         /// Property `RangeKeyField`.
         #[serde(rename="RangeKeyField")]
-        pub range_key_field: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub range_key_field: Option<String>,
         /// Property `RangeKeyType`.
         #[serde(rename="RangeKeyType")]
-        pub range_key_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub range_key_type: Option<String>,
         /// Property `RangeKeyValue`.
         #[serde(rename="RangeKeyValue")]
-        pub range_key_value: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub range_key_value: Option<String>,
         /// Property `RoleArn`.
         #[serde(rename="RoleArn")]
         pub role_arn: String,
@@ -349,10 +372,12 @@ pub mod topic_rule {
     pub struct DynamoDBv2Action {
         /// Property `PutItem`.
         #[serde(rename="PutItem")]
-        pub put_item: PutItemInput,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub put_item: Option<PutItemInput>,
         /// Property `RoleArn`.
         #[serde(rename="RoleArn")]
-        pub role_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub role_arn: Option<String>,
     }
 
     /// The [`AWS::IoT::TopicRule.ElasticsearchAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-elasticsearchaction.html) property type.
@@ -386,7 +411,8 @@ pub mod topic_rule {
         pub role_arn: String,
         /// Property `Separator`.
         #[serde(rename="Separator")]
-        pub separator: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub separator: Option<String>,
     }
 
     /// The [`AWS::IoT::TopicRule.KinesisAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-kinesisaction.html) property type.
@@ -394,7 +420,8 @@ pub mod topic_rule {
     pub struct KinesisAction {
         /// Property `PartitionKey`.
         #[serde(rename="PartitionKey")]
-        pub partition_key: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub partition_key: Option<String>,
         /// Property `RoleArn`.
         #[serde(rename="RoleArn")]
         pub role_arn: String,
@@ -408,7 +435,8 @@ pub mod topic_rule {
     pub struct LambdaAction {
         /// Property `FunctionArn`.
         #[serde(rename="FunctionArn")]
-        pub function_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub function_arn: Option<String>,
     }
 
     /// The [`AWS::IoT::TopicRule.PutItemInput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-putiteminput.html) property type.
@@ -449,7 +477,8 @@ pub mod topic_rule {
     pub struct SnsAction {
         /// Property `MessageFormat`.
         #[serde(rename="MessageFormat")]
-        pub message_format: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub message_format: Option<String>,
         /// Property `RoleArn`.
         #[serde(rename="RoleArn")]
         pub role_arn: String,
@@ -469,7 +498,8 @@ pub mod topic_rule {
         pub role_arn: String,
         /// Property `UseBase64`.
         #[serde(rename="UseBase64")]
-        pub use_base64: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub use_base64: Option<bool>,
     }
 
     /// The [`AWS::IoT::TopicRule.TopicRulePayload`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-topicrulepayload.html) property type.
@@ -480,10 +510,12 @@ pub mod topic_rule {
         pub actions: Vec<Action>,
         /// Property `AwsIotSqlVersion`.
         #[serde(rename="AwsIotSqlVersion")]
-        pub aws_iot_sql_version: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub aws_iot_sql_version: Option<String>,
         /// Property `Description`.
         #[serde(rename="Description")]
-        pub description: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub description: Option<String>,
         /// Property `RuleDisabled`.
         #[serde(rename="RuleDisabled")]
         pub rule_disabled: bool,

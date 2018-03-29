@@ -14,13 +14,16 @@ pub struct CertificateProperties {
     pub domain_name: String,
     /// Property `DomainValidationOptions`.
     #[serde(rename="DomainValidationOptions")]
-    pub domain_validation_options: Vec<self::certificate::DomainValidationOption>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub domain_validation_options: Option<Vec<self::certificate::DomainValidationOption>>,
     /// Property `SubjectAlternativeNames`.
     #[serde(rename="SubjectAlternativeNames")]
-    pub subject_alternative_names: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub subject_alternative_names: Option<Vec<String>>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
 }
 
 impl<'a> ::Resource<'a> for Certificate {

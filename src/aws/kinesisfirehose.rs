@@ -11,25 +11,32 @@ pub struct DeliveryStream {
 pub struct DeliveryStreamProperties {
     /// Property `DeliveryStreamName`.
     #[serde(rename="DeliveryStreamName")]
-    pub delivery_stream_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub delivery_stream_name: Option<String>,
     /// Property `DeliveryStreamType`.
     #[serde(rename="DeliveryStreamType")]
-    pub delivery_stream_type: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub delivery_stream_type: Option<String>,
     /// Property `ElasticsearchDestinationConfiguration`.
     #[serde(rename="ElasticsearchDestinationConfiguration")]
-    pub elasticsearch_destination_configuration: self::delivery_stream::ElasticsearchDestinationConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub elasticsearch_destination_configuration: Option<self::delivery_stream::ElasticsearchDestinationConfiguration>,
     /// Property `ExtendedS3DestinationConfiguration`.
     #[serde(rename="ExtendedS3DestinationConfiguration")]
-    pub extended_s3_destination_configuration: self::delivery_stream::ExtendedS3DestinationConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub extended_s3_destination_configuration: Option<self::delivery_stream::ExtendedS3DestinationConfiguration>,
     /// Property `KinesisStreamSourceConfiguration`.
     #[serde(rename="KinesisStreamSourceConfiguration")]
-    pub kinesis_stream_source_configuration: self::delivery_stream::KinesisStreamSourceConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub kinesis_stream_source_configuration: Option<self::delivery_stream::KinesisStreamSourceConfiguration>,
     /// Property `RedshiftDestinationConfiguration`.
     #[serde(rename="RedshiftDestinationConfiguration")]
-    pub redshift_destination_configuration: self::delivery_stream::RedshiftDestinationConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub redshift_destination_configuration: Option<self::delivery_stream::RedshiftDestinationConfiguration>,
     /// Property `S3DestinationConfiguration`.
     #[serde(rename="S3DestinationConfiguration")]
-    pub s3_destination_configuration: self::delivery_stream::S3DestinationConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub s3_destination_configuration: Option<self::delivery_stream::S3DestinationConfiguration>,
 }
 
 impl<'a> ::Resource<'a> for DeliveryStream {
@@ -70,13 +77,16 @@ pub mod delivery_stream {
     pub struct CloudWatchLoggingOptions {
         /// Property `Enabled`.
         #[serde(rename="Enabled")]
-        pub enabled: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub enabled: Option<bool>,
         /// Property `LogGroupName`.
         #[serde(rename="LogGroupName")]
-        pub log_group_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub log_group_name: Option<String>,
         /// Property `LogStreamName`.
         #[serde(rename="LogStreamName")]
-        pub log_stream_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub log_stream_name: Option<String>,
     }
 
     /// The [`AWS::KinesisFirehose::DeliveryStream.CopyCommand`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-copycommand.html) property type.
@@ -84,10 +94,12 @@ pub mod delivery_stream {
     pub struct CopyCommand {
         /// Property `CopyOptions`.
         #[serde(rename="CopyOptions")]
-        pub copy_options: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub copy_options: Option<String>,
         /// Property `DataTableColumns`.
         #[serde(rename="DataTableColumns")]
-        pub data_table_columns: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub data_table_columns: Option<String>,
         /// Property `DataTableName`.
         #[serde(rename="DataTableName")]
         pub data_table_name: String,
@@ -112,7 +124,8 @@ pub mod delivery_stream {
         pub buffering_hints: ElasticsearchBufferingHints,
         /// Property `CloudWatchLoggingOptions`.
         #[serde(rename="CloudWatchLoggingOptions")]
-        pub cloud_watch_logging_options: CloudWatchLoggingOptions,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub cloud_watch_logging_options: Option<CloudWatchLoggingOptions>,
         /// Property `DomainARN`.
         #[serde(rename="DomainARN")]
         pub domain_arn: String,
@@ -124,7 +137,8 @@ pub mod delivery_stream {
         pub index_rotation_period: String,
         /// Property `ProcessingConfiguration`.
         #[serde(rename="ProcessingConfiguration")]
-        pub processing_configuration: ProcessingConfiguration,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub processing_configuration: Option<ProcessingConfiguration>,
         /// Property `RetryOptions`.
         #[serde(rename="RetryOptions")]
         pub retry_options: ElasticsearchRetryOptions,
@@ -155,10 +169,12 @@ pub mod delivery_stream {
     pub struct EncryptionConfiguration {
         /// Property `KMSEncryptionConfig`.
         #[serde(rename="KMSEncryptionConfig")]
-        pub kms_encryption_config: KMSEncryptionConfig,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub kms_encryption_config: Option<KMSEncryptionConfig>,
         /// Property `NoEncryptionConfig`.
         #[serde(rename="NoEncryptionConfig")]
-        pub no_encryption_config: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub no_encryption_config: Option<String>,
     }
 
     /// The [`AWS::KinesisFirehose::DeliveryStream.ExtendedS3DestinationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-extendeds3destinationconfiguration.html) property type.
@@ -172,28 +188,33 @@ pub mod delivery_stream {
         pub buffering_hints: BufferingHints,
         /// Property `CloudWatchLoggingOptions`.
         #[serde(rename="CloudWatchLoggingOptions")]
-        pub cloud_watch_logging_options: CloudWatchLoggingOptions,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub cloud_watch_logging_options: Option<CloudWatchLoggingOptions>,
         /// Property `CompressionFormat`.
         #[serde(rename="CompressionFormat")]
         pub compression_format: String,
         /// Property `EncryptionConfiguration`.
         #[serde(rename="EncryptionConfiguration")]
-        pub encryption_configuration: EncryptionConfiguration,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub encryption_configuration: Option<EncryptionConfiguration>,
         /// Property `Prefix`.
         #[serde(rename="Prefix")]
         pub prefix: String,
         /// Property `ProcessingConfiguration`.
         #[serde(rename="ProcessingConfiguration")]
-        pub processing_configuration: ProcessingConfiguration,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub processing_configuration: Option<ProcessingConfiguration>,
         /// Property `RoleARN`.
         #[serde(rename="RoleARN")]
         pub role_arn: String,
         /// Property `S3BackupConfiguration`.
         #[serde(rename="S3BackupConfiguration")]
-        pub s3_backup_configuration: S3DestinationConfiguration,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub s3_backup_configuration: Option<S3DestinationConfiguration>,
         /// Property `S3BackupMode`.
         #[serde(rename="S3BackupMode")]
-        pub s3_backup_mode: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub s3_backup_mode: Option<String>,
     }
 
     /// The [`AWS::KinesisFirehose::DeliveryStream.KMSEncryptionConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-kmsencryptionconfig.html) property type.
@@ -253,7 +274,8 @@ pub mod delivery_stream {
     pub struct RedshiftDestinationConfiguration {
         /// Property `CloudWatchLoggingOptions`.
         #[serde(rename="CloudWatchLoggingOptions")]
-        pub cloud_watch_logging_options: CloudWatchLoggingOptions,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub cloud_watch_logging_options: Option<CloudWatchLoggingOptions>,
         /// Property `ClusterJDBCURL`.
         #[serde(rename="ClusterJDBCURL")]
         pub cluster_jdbcurl: String,
@@ -265,7 +287,8 @@ pub mod delivery_stream {
         pub password: String,
         /// Property `ProcessingConfiguration`.
         #[serde(rename="ProcessingConfiguration")]
-        pub processing_configuration: ProcessingConfiguration,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub processing_configuration: Option<ProcessingConfiguration>,
         /// Property `RoleARN`.
         #[serde(rename="RoleARN")]
         pub role_arn: String,
@@ -288,16 +311,19 @@ pub mod delivery_stream {
         pub buffering_hints: BufferingHints,
         /// Property `CloudWatchLoggingOptions`.
         #[serde(rename="CloudWatchLoggingOptions")]
-        pub cloud_watch_logging_options: CloudWatchLoggingOptions,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub cloud_watch_logging_options: Option<CloudWatchLoggingOptions>,
         /// Property `CompressionFormat`.
         #[serde(rename="CompressionFormat")]
         pub compression_format: String,
         /// Property `EncryptionConfiguration`.
         #[serde(rename="EncryptionConfiguration")]
-        pub encryption_configuration: EncryptionConfiguration,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub encryption_configuration: Option<EncryptionConfiguration>,
         /// Property `Prefix`.
         #[serde(rename="Prefix")]
-        pub prefix: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub prefix: Option<String>,
         /// Property `RoleARN`.
         #[serde(rename="RoleARN")]
         pub role_arn: String,

@@ -47,22 +47,27 @@ pub struct Key {
 pub struct KeyProperties {
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `EnableKeyRotation`.
     #[serde(rename="EnableKeyRotation")]
-    pub enable_key_rotation: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub enable_key_rotation: Option<bool>,
     /// Property `Enabled`.
     #[serde(rename="Enabled")]
-    pub enabled: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub enabled: Option<bool>,
     /// Property `KeyPolicy`.
     #[serde(rename="KeyPolicy")]
     pub key_policy: ::json::Value,
     /// Property `KeyUsage`.
     #[serde(rename="KeyUsage")]
-    pub key_usage: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub key_usage: Option<String>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
 }
 
 impl<'a> ::Resource<'a> for Key {

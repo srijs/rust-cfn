@@ -17,7 +17,8 @@ pub struct CustomerGatewayProperties {
     pub ip_address: String,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
     /// Property `Type`.
     #[serde(rename="Type")]
     pub type_: String,
@@ -53,22 +54,28 @@ pub struct DHCPOptions {
 pub struct DHCPOptionsProperties {
     /// Property `DomainName`.
     #[serde(rename="DomainName")]
-    pub domain_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub domain_name: Option<String>,
     /// Property `DomainNameServers`.
     #[serde(rename="DomainNameServers")]
-    pub domain_name_servers: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub domain_name_servers: Option<Vec<String>>,
     /// Property `NetbiosNameServers`.
     #[serde(rename="NetbiosNameServers")]
-    pub netbios_name_servers: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub netbios_name_servers: Option<Vec<String>>,
     /// Property `NetbiosNodeType`.
     #[serde(rename="NetbiosNodeType")]
-    pub netbios_node_type: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub netbios_node_type: Option<u32>,
     /// Property `NtpServers`.
     #[serde(rename="NtpServers")]
-    pub ntp_servers: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ntp_servers: Option<Vec<String>>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
 }
 
 impl<'a> ::Resource<'a> for DHCPOptions {
@@ -101,10 +108,12 @@ pub struct EIP {
 pub struct EIPProperties {
     /// Property `Domain`.
     #[serde(rename="Domain")]
-    pub domain: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub domain: Option<String>,
     /// Property `InstanceId`.
     #[serde(rename="InstanceId")]
-    pub instance_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub instance_id: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for EIP {
@@ -137,19 +146,24 @@ pub struct EIPAssociation {
 pub struct EIPAssociationProperties {
     /// Property `AllocationId`.
     #[serde(rename="AllocationId")]
-    pub allocation_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub allocation_id: Option<String>,
     /// Property `EIP`.
     #[serde(rename="EIP")]
-    pub eip: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub eip: Option<String>,
     /// Property `InstanceId`.
     #[serde(rename="InstanceId")]
-    pub instance_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub instance_id: Option<String>,
     /// Property `NetworkInterfaceId`.
     #[serde(rename="NetworkInterfaceId")]
-    pub network_interface_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub network_interface_id: Option<String>,
     /// Property `PrivateIpAddress`.
     #[serde(rename="PrivateIpAddress")]
-    pub private_ip_address: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub private_ip_address: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for EIPAssociation {
@@ -260,7 +274,8 @@ pub struct Host {
 pub struct HostProperties {
     /// Property `AutoPlacement`.
     #[serde(rename="AutoPlacement")]
-    pub auto_placement: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub auto_placement: Option<String>,
     /// Property `AvailabilityZone`.
     #[serde(rename="AvailabilityZone")]
     pub availability_zone: String,
@@ -299,97 +314,127 @@ pub struct Instance {
 pub struct InstanceProperties {
     /// Property `AdditionalInfo`.
     #[serde(rename="AdditionalInfo")]
-    pub additional_info: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub additional_info: Option<String>,
     /// Property `Affinity`.
     #[serde(rename="Affinity")]
-    pub affinity: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub affinity: Option<String>,
     /// Property `AvailabilityZone`.
     #[serde(rename="AvailabilityZone")]
-    pub availability_zone: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub availability_zone: Option<String>,
     /// Property `BlockDeviceMappings`.
     #[serde(rename="BlockDeviceMappings")]
-    pub block_device_mappings: Vec<self::instance::BlockDeviceMapping>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub block_device_mappings: Option<Vec<self::instance::BlockDeviceMapping>>,
     /// Property `CreditSpecification`.
     #[serde(rename="CreditSpecification")]
-    pub credit_specification: self::instance::CreditSpecification,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub credit_specification: Option<self::instance::CreditSpecification>,
     /// Property `DisableApiTermination`.
     #[serde(rename="DisableApiTermination")]
-    pub disable_api_termination: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub disable_api_termination: Option<bool>,
     /// Property `EbsOptimized`.
     #[serde(rename="EbsOptimized")]
-    pub ebs_optimized: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ebs_optimized: Option<bool>,
     /// Property `ElasticGpuSpecifications`.
     #[serde(rename="ElasticGpuSpecifications")]
-    pub elastic_gpu_specifications: Vec<self::instance::ElasticGpuSpecification>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub elastic_gpu_specifications: Option<Vec<self::instance::ElasticGpuSpecification>>,
     /// Property `HostId`.
     #[serde(rename="HostId")]
-    pub host_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub host_id: Option<String>,
     /// Property `IamInstanceProfile`.
     #[serde(rename="IamInstanceProfile")]
-    pub iam_instance_profile: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub iam_instance_profile: Option<String>,
     /// Property `ImageId`.
     #[serde(rename="ImageId")]
     pub image_id: String,
     /// Property `InstanceInitiatedShutdownBehavior`.
     #[serde(rename="InstanceInitiatedShutdownBehavior")]
-    pub instance_initiated_shutdown_behavior: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub instance_initiated_shutdown_behavior: Option<String>,
     /// Property `InstanceType`.
     #[serde(rename="InstanceType")]
-    pub instance_type: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub instance_type: Option<String>,
     /// Property `Ipv6AddressCount`.
     #[serde(rename="Ipv6AddressCount")]
-    pub ipv6_address_count: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ipv6_address_count: Option<u32>,
     /// Property `Ipv6Addresses`.
     #[serde(rename="Ipv6Addresses")]
-    pub ipv6_addresses: Vec<self::instance::InstanceIpv6Address>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ipv6_addresses: Option<Vec<self::instance::InstanceIpv6Address>>,
     /// Property `KernelId`.
     #[serde(rename="KernelId")]
-    pub kernel_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub kernel_id: Option<String>,
     /// Property `KeyName`.
     #[serde(rename="KeyName")]
-    pub key_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub key_name: Option<String>,
     /// Property `Monitoring`.
     #[serde(rename="Monitoring")]
-    pub monitoring: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub monitoring: Option<bool>,
     /// Property `NetworkInterfaces`.
     #[serde(rename="NetworkInterfaces")]
-    pub network_interfaces: Vec<self::instance::NetworkInterface>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub network_interfaces: Option<Vec<self::instance::NetworkInterface>>,
     /// Property `PlacementGroupName`.
     #[serde(rename="PlacementGroupName")]
-    pub placement_group_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub placement_group_name: Option<String>,
     /// Property `PrivateIpAddress`.
     #[serde(rename="PrivateIpAddress")]
-    pub private_ip_address: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub private_ip_address: Option<String>,
     /// Property `RamdiskId`.
     #[serde(rename="RamdiskId")]
-    pub ramdisk_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ramdisk_id: Option<String>,
     /// Property `SecurityGroupIds`.
     #[serde(rename="SecurityGroupIds")]
-    pub security_group_ids: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub security_group_ids: Option<Vec<String>>,
     /// Property `SecurityGroups`.
     #[serde(rename="SecurityGroups")]
-    pub security_groups: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub security_groups: Option<Vec<String>>,
     /// Property `SourceDestCheck`.
     #[serde(rename="SourceDestCheck")]
-    pub source_dest_check: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub source_dest_check: Option<bool>,
     /// Property `SsmAssociations`.
     #[serde(rename="SsmAssociations")]
-    pub ssm_associations: Vec<self::instance::SsmAssociation>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ssm_associations: Option<Vec<self::instance::SsmAssociation>>,
     /// Property `SubnetId`.
     #[serde(rename="SubnetId")]
-    pub subnet_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub subnet_id: Option<String>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
     /// Property `Tenancy`.
     #[serde(rename="Tenancy")]
-    pub tenancy: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tenancy: Option<String>,
     /// Property `UserData`.
     #[serde(rename="UserData")]
-    pub user_data: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub user_data: Option<String>,
     /// Property `Volumes`.
     #[serde(rename="Volumes")]
-    pub volumes: Vec<self::instance::Volume>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub volumes: Option<Vec<self::instance::Volume>>,
 }
 
 impl<'a> ::Resource<'a> for Instance {
@@ -422,7 +467,8 @@ pub struct InternetGateway {
 pub struct InternetGatewayProperties {
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
 }
 
 impl<'a> ::Resource<'a> for InternetGateway {
@@ -461,7 +507,8 @@ pub struct NatGatewayProperties {
     pub subnet_id: String,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
 }
 
 impl<'a> ::Resource<'a> for NatGateway {
@@ -494,7 +541,8 @@ pub struct NetworkAcl {
 pub struct NetworkAclProperties {
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
     /// Property `VpcId`.
     #[serde(rename="VpcId")]
     pub vpc_id: String,
@@ -533,19 +581,23 @@ pub struct NetworkAclEntryProperties {
     pub cidr_block: String,
     /// Property `Egress`.
     #[serde(rename="Egress")]
-    pub egress: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub egress: Option<bool>,
     /// Property `Icmp`.
     #[serde(rename="Icmp")]
-    pub icmp: self::network_acl_entry::Icmp,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub icmp: Option<self::network_acl_entry::Icmp>,
     /// Property `Ipv6CidrBlock`.
     #[serde(rename="Ipv6CidrBlock")]
-    pub ipv6_cidr_block: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ipv6_cidr_block: Option<String>,
     /// Property `NetworkAclId`.
     #[serde(rename="NetworkAclId")]
     pub network_acl_id: String,
     /// Property `PortRange`.
     #[serde(rename="PortRange")]
-    pub port_range: self::network_acl_entry::PortRange,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub port_range: Option<self::network_acl_entry::PortRange>,
     /// Property `Protocol`.
     #[serde(rename="Protocol")]
     pub protocol: u32,
@@ -587,37 +639,47 @@ pub struct NetworkInterface {
 pub struct NetworkInterfaceProperties {
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `GroupSet`.
     #[serde(rename="GroupSet")]
-    pub group_set: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub group_set: Option<Vec<String>>,
     /// Property `InterfaceType`.
     #[serde(rename="InterfaceType")]
-    pub interface_type: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub interface_type: Option<String>,
     /// Property `Ipv6AddressCount`.
     #[serde(rename="Ipv6AddressCount")]
-    pub ipv6_address_count: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ipv6_address_count: Option<u32>,
     /// Property `Ipv6Addresses`.
     #[serde(rename="Ipv6Addresses")]
-    pub ipv6_addresses: self::network_interface::InstanceIpv6Address,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ipv6_addresses: Option<self::network_interface::InstanceIpv6Address>,
     /// Property `PrivateIpAddress`.
     #[serde(rename="PrivateIpAddress")]
-    pub private_ip_address: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub private_ip_address: Option<String>,
     /// Property `PrivateIpAddresses`.
     #[serde(rename="PrivateIpAddresses")]
-    pub private_ip_addresses: Vec<self::network_interface::PrivateIpAddressSpecification>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub private_ip_addresses: Option<Vec<self::network_interface::PrivateIpAddressSpecification>>,
     /// Property `SecondaryPrivateIpAddressCount`.
     #[serde(rename="SecondaryPrivateIpAddressCount")]
-    pub secondary_private_ip_address_count: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub secondary_private_ip_address_count: Option<u32>,
     /// Property `SourceDestCheck`.
     #[serde(rename="SourceDestCheck")]
-    pub source_dest_check: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub source_dest_check: Option<bool>,
     /// Property `SubnetId`.
     #[serde(rename="SubnetId")]
     pub subnet_id: String,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
 }
 
 impl<'a> ::Resource<'a> for NetworkInterface {
@@ -650,7 +712,8 @@ pub struct NetworkInterfaceAttachment {
 pub struct NetworkInterfaceAttachmentProperties {
     /// Property `DeleteOnTermination`.
     #[serde(rename="DeleteOnTermination")]
-    pub delete_on_termination: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub delete_on_termination: Option<bool>,
     /// Property `DeviceIndex`.
     #[serde(rename="DeviceIndex")]
     pub device_index: String,
@@ -731,7 +794,8 @@ pub struct PlacementGroup {
 pub struct PlacementGroupProperties {
     /// Property `Strategy`.
     #[serde(rename="Strategy")]
-    pub strategy: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub strategy: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for PlacementGroup {
@@ -764,31 +828,39 @@ pub struct Route {
 pub struct RouteProperties {
     /// Property `DestinationCidrBlock`.
     #[serde(rename="DestinationCidrBlock")]
-    pub destination_cidr_block: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub destination_cidr_block: Option<String>,
     /// Property `DestinationIpv6CidrBlock`.
     #[serde(rename="DestinationIpv6CidrBlock")]
-    pub destination_ipv6_cidr_block: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub destination_ipv6_cidr_block: Option<String>,
     /// Property `EgressOnlyInternetGatewayId`.
     #[serde(rename="EgressOnlyInternetGatewayId")]
-    pub egress_only_internet_gateway_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub egress_only_internet_gateway_id: Option<String>,
     /// Property `GatewayId`.
     #[serde(rename="GatewayId")]
-    pub gateway_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub gateway_id: Option<String>,
     /// Property `InstanceId`.
     #[serde(rename="InstanceId")]
-    pub instance_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub instance_id: Option<String>,
     /// Property `NatGatewayId`.
     #[serde(rename="NatGatewayId")]
-    pub nat_gateway_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub nat_gateway_id: Option<String>,
     /// Property `NetworkInterfaceId`.
     #[serde(rename="NetworkInterfaceId")]
-    pub network_interface_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub network_interface_id: Option<String>,
     /// Property `RouteTableId`.
     #[serde(rename="RouteTableId")]
     pub route_table_id: String,
     /// Property `VpcPeeringConnectionId`.
     #[serde(rename="VpcPeeringConnectionId")]
-    pub vpc_peering_connection_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub vpc_peering_connection_id: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for Route {
@@ -821,7 +893,8 @@ pub struct RouteTable {
 pub struct RouteTableProperties {
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
     /// Property `VpcId`.
     #[serde(rename="VpcId")]
     pub vpc_id: String,
@@ -860,19 +933,24 @@ pub struct SecurityGroupProperties {
     pub group_description: String,
     /// Property `GroupName`.
     #[serde(rename="GroupName")]
-    pub group_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub group_name: Option<String>,
     /// Property `SecurityGroupEgress`.
     #[serde(rename="SecurityGroupEgress")]
-    pub security_group_egress: Vec<self::security_group::Egress>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub security_group_egress: Option<Vec<self::security_group::Egress>>,
     /// Property `SecurityGroupIngress`.
     #[serde(rename="SecurityGroupIngress")]
-    pub security_group_ingress: Vec<self::security_group::Ingress>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub security_group_ingress: Option<Vec<self::security_group::Ingress>>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
     /// Property `VpcId`.
     #[serde(rename="VpcId")]
-    pub vpc_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub vpc_id: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for SecurityGroup {
@@ -905,22 +983,28 @@ pub struct SecurityGroupEgress {
 pub struct SecurityGroupEgressProperties {
     /// Property `CidrIp`.
     #[serde(rename="CidrIp")]
-    pub cidr_ip: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cidr_ip: Option<String>,
     /// Property `CidrIpv6`.
     #[serde(rename="CidrIpv6")]
-    pub cidr_ipv6: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cidr_ipv6: Option<String>,
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `DestinationPrefixListId`.
     #[serde(rename="DestinationPrefixListId")]
-    pub destination_prefix_list_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub destination_prefix_list_id: Option<String>,
     /// Property `DestinationSecurityGroupId`.
     #[serde(rename="DestinationSecurityGroupId")]
-    pub destination_security_group_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub destination_security_group_id: Option<String>,
     /// Property `FromPort`.
     #[serde(rename="FromPort")]
-    pub from_port: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub from_port: Option<u32>,
     /// Property `GroupId`.
     #[serde(rename="GroupId")]
     pub group_id: String,
@@ -929,7 +1013,8 @@ pub struct SecurityGroupEgressProperties {
     pub ip_protocol: String,
     /// Property `ToPort`.
     #[serde(rename="ToPort")]
-    pub to_port: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub to_port: Option<u32>,
 }
 
 impl<'a> ::Resource<'a> for SecurityGroupEgress {
@@ -962,37 +1047,47 @@ pub struct SecurityGroupIngress {
 pub struct SecurityGroupIngressProperties {
     /// Property `CidrIp`.
     #[serde(rename="CidrIp")]
-    pub cidr_ip: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cidr_ip: Option<String>,
     /// Property `CidrIpv6`.
     #[serde(rename="CidrIpv6")]
-    pub cidr_ipv6: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cidr_ipv6: Option<String>,
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `FromPort`.
     #[serde(rename="FromPort")]
-    pub from_port: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub from_port: Option<u32>,
     /// Property `GroupId`.
     #[serde(rename="GroupId")]
-    pub group_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub group_id: Option<String>,
     /// Property `GroupName`.
     #[serde(rename="GroupName")]
-    pub group_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub group_name: Option<String>,
     /// Property `IpProtocol`.
     #[serde(rename="IpProtocol")]
     pub ip_protocol: String,
     /// Property `SourceSecurityGroupId`.
     #[serde(rename="SourceSecurityGroupId")]
-    pub source_security_group_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub source_security_group_id: Option<String>,
     /// Property `SourceSecurityGroupName`.
     #[serde(rename="SourceSecurityGroupName")]
-    pub source_security_group_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub source_security_group_name: Option<String>,
     /// Property `SourceSecurityGroupOwnerId`.
     #[serde(rename="SourceSecurityGroupOwnerId")]
-    pub source_security_group_owner_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub source_security_group_owner_id: Option<String>,
     /// Property `ToPort`.
     #[serde(rename="ToPort")]
-    pub to_port: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub to_port: Option<u32>,
 }
 
 impl<'a> ::Resource<'a> for SecurityGroupIngress {
@@ -1058,22 +1153,27 @@ pub struct Subnet {
 pub struct SubnetProperties {
     /// Property `AssignIpv6AddressOnCreation`.
     #[serde(rename="AssignIpv6AddressOnCreation")]
-    pub assign_ipv6_address_on_creation: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub assign_ipv6_address_on_creation: Option<bool>,
     /// Property `AvailabilityZone`.
     #[serde(rename="AvailabilityZone")]
-    pub availability_zone: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub availability_zone: Option<String>,
     /// Property `CidrBlock`.
     #[serde(rename="CidrBlock")]
     pub cidr_block: String,
     /// Property `Ipv6CidrBlock`.
     #[serde(rename="Ipv6CidrBlock")]
-    pub ipv6_cidr_block: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ipv6_cidr_block: Option<String>,
     /// Property `MapPublicIpOnLaunch`.
     #[serde(rename="MapPublicIpOnLaunch")]
-    pub map_public_ip_on_launch: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub map_public_ip_on_launch: Option<bool>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
     /// Property `VpcId`.
     #[serde(rename="VpcId")]
     pub vpc_id: String,
@@ -1220,13 +1320,15 @@ pub struct TrunkInterfaceAssociationProperties {
     pub branch_interface_id: String,
     /// Property `GREKey`.
     #[serde(rename="GREKey")]
-    pub gre_key: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub gre_key: Option<u32>,
     /// Property `TrunkInterfaceId`.
     #[serde(rename="TrunkInterfaceId")]
     pub trunk_interface_id: String,
     /// Property `VLANId`.
     #[serde(rename="VLANId")]
-    pub vlan_id: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub vlan_id: Option<u32>,
 }
 
 impl<'a> ::Resource<'a> for TrunkInterfaceAssociation {
@@ -1262,16 +1364,20 @@ pub struct VPCProperties {
     pub cidr_block: String,
     /// Property `EnableDnsHostnames`.
     #[serde(rename="EnableDnsHostnames")]
-    pub enable_dns_hostnames: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub enable_dns_hostnames: Option<bool>,
     /// Property `EnableDnsSupport`.
     #[serde(rename="EnableDnsSupport")]
-    pub enable_dns_support: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub enable_dns_support: Option<bool>,
     /// Property `InstanceTenancy`.
     #[serde(rename="InstanceTenancy")]
-    pub instance_tenancy: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub instance_tenancy: Option<String>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
 }
 
 impl<'a> ::Resource<'a> for VPC {
@@ -1304,10 +1410,12 @@ pub struct VPCCidrBlock {
 pub struct VPCCidrBlockProperties {
     /// Property `AmazonProvidedIpv6CidrBlock`.
     #[serde(rename="AmazonProvidedIpv6CidrBlock")]
-    pub amazon_provided_ipv6_cidr_block: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub amazon_provided_ipv6_cidr_block: Option<bool>,
     /// Property `CidrBlock`.
     #[serde(rename="CidrBlock")]
-    pub cidr_block: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cidr_block: Option<String>,
     /// Property `VpcId`.
     #[serde(rename="VpcId")]
     pub vpc_id: String,
@@ -1379,10 +1487,12 @@ pub struct VPCEndpoint {
 pub struct VPCEndpointProperties {
     /// Property `PolicyDocument`.
     #[serde(rename="PolicyDocument")]
-    pub policy_document: ::json::Value,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub policy_document: Option<::json::Value>,
     /// Property `RouteTableIds`.
     #[serde(rename="RouteTableIds")]
-    pub route_table_ids: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub route_table_ids: Option<Vec<String>>,
     /// Property `ServiceName`.
     #[serde(rename="ServiceName")]
     pub service_name: String,
@@ -1421,13 +1531,15 @@ pub struct VPCGatewayAttachment {
 pub struct VPCGatewayAttachmentProperties {
     /// Property `InternetGatewayId`.
     #[serde(rename="InternetGatewayId")]
-    pub internet_gateway_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub internet_gateway_id: Option<String>,
     /// Property `VpcId`.
     #[serde(rename="VpcId")]
     pub vpc_id: String,
     /// Property `VpnGatewayId`.
     #[serde(rename="VpnGatewayId")]
-    pub vpn_gateway_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub vpn_gateway_id: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for VPCGatewayAttachment {
@@ -1460,16 +1572,19 @@ pub struct VPCPeeringConnection {
 pub struct VPCPeeringConnectionProperties {
     /// Property `PeerOwnerId`.
     #[serde(rename="PeerOwnerId")]
-    pub peer_owner_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub peer_owner_id: Option<String>,
     /// Property `PeerRoleArn`.
     #[serde(rename="PeerRoleArn")]
-    pub peer_role_arn: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub peer_role_arn: Option<String>,
     /// Property `PeerVpcId`.
     #[serde(rename="PeerVpcId")]
     pub peer_vpc_id: String,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
     /// Property `VpcId`.
     #[serde(rename="VpcId")]
     pub vpc_id: String,
@@ -1508,10 +1623,12 @@ pub struct VPNConnectionProperties {
     pub customer_gateway_id: String,
     /// Property `StaticRoutesOnly`.
     #[serde(rename="StaticRoutesOnly")]
-    pub static_routes_only: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub static_routes_only: Option<bool>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
     /// Property `Type`.
     #[serde(rename="Type")]
     pub type_: String,
@@ -1520,7 +1637,8 @@ pub struct VPNConnectionProperties {
     pub vpn_gateway_id: String,
     /// Property `VpnTunnelOptionsSpecifications`.
     #[serde(rename="VpnTunnelOptionsSpecifications")]
-    pub vpn_tunnel_options_specifications: Vec<self::vpn_connection::VpnTunnelOptionsSpecification>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub vpn_tunnel_options_specifications: Option<Vec<self::vpn_connection::VpnTunnelOptionsSpecification>>,
 }
 
 impl<'a> ::Resource<'a> for VPNConnection {
@@ -1589,10 +1707,12 @@ pub struct VPNGateway {
 pub struct VPNGatewayProperties {
     /// Property `AmazonSideAsn`.
     #[serde(rename="AmazonSideAsn")]
-    pub amazon_side_asn: u64,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub amazon_side_asn: Option<u64>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
     /// Property `Type`.
     #[serde(rename="Type")]
     pub type_: String,
@@ -1664,31 +1784,39 @@ pub struct Volume {
 pub struct VolumeProperties {
     /// Property `AutoEnableIO`.
     #[serde(rename="AutoEnableIO")]
-    pub auto_enable_io: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub auto_enable_io: Option<bool>,
     /// Property `AvailabilityZone`.
     #[serde(rename="AvailabilityZone")]
     pub availability_zone: String,
     /// Property `Encrypted`.
     #[serde(rename="Encrypted")]
-    pub encrypted: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub encrypted: Option<bool>,
     /// Property `Iops`.
     #[serde(rename="Iops")]
-    pub iops: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub iops: Option<u32>,
     /// Property `KmsKeyId`.
     #[serde(rename="KmsKeyId")]
-    pub kms_key_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub kms_key_id: Option<String>,
     /// Property `Size`.
     #[serde(rename="Size")]
-    pub size: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub size: Option<u32>,
     /// Property `SnapshotId`.
     #[serde(rename="SnapshotId")]
-    pub snapshot_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub snapshot_id: Option<String>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
     /// Property `VolumeType`.
     #[serde(rename="VolumeType")]
-    pub volume_type: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub volume_type: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for Volume {
@@ -1771,13 +1899,16 @@ pub mod instance {
         pub device_name: String,
         /// Property `Ebs`.
         #[serde(rename="Ebs")]
-        pub ebs: Ebs,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ebs: Option<Ebs>,
         /// Property `NoDevice`.
         #[serde(rename="NoDevice")]
-        pub no_device: NoDevice,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub no_device: Option<NoDevice>,
         /// Property `VirtualName`.
         #[serde(rename="VirtualName")]
-        pub virtual_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub virtual_name: Option<String>,
     }
 
     /// The [`AWS::EC2::Instance.CreditSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-creditspecification.html) property type.
@@ -1785,7 +1916,8 @@ pub mod instance {
     pub struct CreditSpecification {
         /// Property `CPUCredits`.
         #[serde(rename="CPUCredits")]
-        pub cpu_credits: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub cpu_credits: Option<String>,
     }
 
     /// The [`AWS::EC2::Instance.Ebs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-blockdev-template.html) property type.
@@ -1793,22 +1925,28 @@ pub mod instance {
     pub struct Ebs {
         /// Property `DeleteOnTermination`.
         #[serde(rename="DeleteOnTermination")]
-        pub delete_on_termination: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub delete_on_termination: Option<bool>,
         /// Property `Encrypted`.
         #[serde(rename="Encrypted")]
-        pub encrypted: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub encrypted: Option<bool>,
         /// Property `Iops`.
         #[serde(rename="Iops")]
-        pub iops: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub iops: Option<u32>,
         /// Property `SnapshotId`.
         #[serde(rename="SnapshotId")]
-        pub snapshot_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub snapshot_id: Option<String>,
         /// Property `VolumeSize`.
         #[serde(rename="VolumeSize")]
-        pub volume_size: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub volume_size: Option<u32>,
         /// Property `VolumeType`.
         #[serde(rename="VolumeType")]
-        pub volume_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub volume_type: Option<String>,
     }
 
     /// The [`AWS::EC2::Instance.ElasticGpuSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-elasticgpuspecification.html) property type.
@@ -1832,40 +1970,51 @@ pub mod instance {
     pub struct NetworkInterface {
         /// Property `AssociatePublicIpAddress`.
         #[serde(rename="AssociatePublicIpAddress")]
-        pub associate_public_ip_address: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub associate_public_ip_address: Option<bool>,
         /// Property `DeleteOnTermination`.
         #[serde(rename="DeleteOnTermination")]
-        pub delete_on_termination: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub delete_on_termination: Option<bool>,
         /// Property `Description`.
         #[serde(rename="Description")]
-        pub description: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub description: Option<String>,
         /// Property `DeviceIndex`.
         #[serde(rename="DeviceIndex")]
         pub device_index: String,
         /// Property `GroupSet`.
         #[serde(rename="GroupSet")]
-        pub group_set: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub group_set: Option<Vec<String>>,
         /// Property `Ipv6AddressCount`.
         #[serde(rename="Ipv6AddressCount")]
-        pub ipv6_address_count: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ipv6_address_count: Option<u32>,
         /// Property `Ipv6Addresses`.
         #[serde(rename="Ipv6Addresses")]
-        pub ipv6_addresses: Vec<InstanceIpv6Address>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ipv6_addresses: Option<Vec<InstanceIpv6Address>>,
         /// Property `NetworkInterfaceId`.
         #[serde(rename="NetworkInterfaceId")]
-        pub network_interface_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub network_interface_id: Option<String>,
         /// Property `PrivateIpAddress`.
         #[serde(rename="PrivateIpAddress")]
-        pub private_ip_address: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub private_ip_address: Option<String>,
         /// Property `PrivateIpAddresses`.
         #[serde(rename="PrivateIpAddresses")]
-        pub private_ip_addresses: Vec<PrivateIpAddressSpecification>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub private_ip_addresses: Option<Vec<PrivateIpAddressSpecification>>,
         /// Property `SecondaryPrivateIpAddressCount`.
         #[serde(rename="SecondaryPrivateIpAddressCount")]
-        pub secondary_private_ip_address_count: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub secondary_private_ip_address_count: Option<u32>,
         /// Property `SubnetId`.
         #[serde(rename="SubnetId")]
-        pub subnet_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub subnet_id: Option<String>,
     }
 
     /// The [`AWS::EC2::Instance.NoDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-nodevice.html) property type.
@@ -1889,7 +2038,8 @@ pub mod instance {
     pub struct SsmAssociation {
         /// Property `AssociationParameters`.
         #[serde(rename="AssociationParameters")]
-        pub association_parameters: Vec<AssociationParameter>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub association_parameters: Option<Vec<AssociationParameter>>,
         /// Property `DocumentName`.
         #[serde(rename="DocumentName")]
         pub document_name: String,
@@ -1915,10 +2065,12 @@ pub mod network_acl_entry {
     pub struct Icmp {
         /// Property `Code`.
         #[serde(rename="Code")]
-        pub code: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub code: Option<u32>,
         /// Property `Type`.
         #[serde(rename="Type")]
-        pub type_: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub type_: Option<u32>,
     }
 
     /// The [`AWS::EC2::NetworkAclEntry.PortRange`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-portrange.html) property type.
@@ -1926,10 +2078,12 @@ pub mod network_acl_entry {
     pub struct PortRange {
         /// Property `From`.
         #[serde(rename="From")]
-        pub from: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub from: Option<u32>,
         /// Property `To`.
         #[serde(rename="To")]
-        pub to: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub to: Option<u32>,
     }
 }
 
@@ -1964,28 +2118,35 @@ pub mod security_group {
     pub struct Egress {
         /// Property `CidrIp`.
         #[serde(rename="CidrIp")]
-        pub cidr_ip: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub cidr_ip: Option<String>,
         /// Property `CidrIpv6`.
         #[serde(rename="CidrIpv6")]
-        pub cidr_ipv6: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub cidr_ipv6: Option<String>,
         /// Property `Description`.
         #[serde(rename="Description")]
-        pub description: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub description: Option<String>,
         /// Property `DestinationPrefixListId`.
         #[serde(rename="DestinationPrefixListId")]
-        pub destination_prefix_list_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub destination_prefix_list_id: Option<String>,
         /// Property `DestinationSecurityGroupId`.
         #[serde(rename="DestinationSecurityGroupId")]
-        pub destination_security_group_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub destination_security_group_id: Option<String>,
         /// Property `FromPort`.
         #[serde(rename="FromPort")]
-        pub from_port: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub from_port: Option<u32>,
         /// Property `IpProtocol`.
         #[serde(rename="IpProtocol")]
         pub ip_protocol: String,
         /// Property `ToPort`.
         #[serde(rename="ToPort")]
-        pub to_port: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub to_port: Option<u32>,
     }
 
     /// The [`AWS::EC2::SecurityGroup.Ingress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-rule.html) property type.
@@ -1993,31 +2154,39 @@ pub mod security_group {
     pub struct Ingress {
         /// Property `CidrIp`.
         #[serde(rename="CidrIp")]
-        pub cidr_ip: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub cidr_ip: Option<String>,
         /// Property `CidrIpv6`.
         #[serde(rename="CidrIpv6")]
-        pub cidr_ipv6: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub cidr_ipv6: Option<String>,
         /// Property `Description`.
         #[serde(rename="Description")]
-        pub description: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub description: Option<String>,
         /// Property `FromPort`.
         #[serde(rename="FromPort")]
-        pub from_port: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub from_port: Option<u32>,
         /// Property `IpProtocol`.
         #[serde(rename="IpProtocol")]
         pub ip_protocol: String,
         /// Property `SourceSecurityGroupId`.
         #[serde(rename="SourceSecurityGroupId")]
-        pub source_security_group_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub source_security_group_id: Option<String>,
         /// Property `SourceSecurityGroupName`.
         #[serde(rename="SourceSecurityGroupName")]
-        pub source_security_group_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub source_security_group_name: Option<String>,
         /// Property `SourceSecurityGroupOwnerId`.
         #[serde(rename="SourceSecurityGroupOwnerId")]
-        pub source_security_group_owner_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub source_security_group_owner_id: Option<String>,
         /// Property `ToPort`.
         #[serde(rename="ToPort")]
-        pub to_port: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub to_port: Option<u32>,
     }
 }
 
@@ -2032,13 +2201,16 @@ pub mod spot_fleet {
         pub device_name: String,
         /// Property `Ebs`.
         #[serde(rename="Ebs")]
-        pub ebs: EbsBlockDevice,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ebs: Option<EbsBlockDevice>,
         /// Property `NoDevice`.
         #[serde(rename="NoDevice")]
-        pub no_device: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub no_device: Option<String>,
         /// Property `VirtualName`.
         #[serde(rename="VirtualName")]
-        pub virtual_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub virtual_name: Option<String>,
     }
 
     /// The [`AWS::EC2::SpotFleet.EbsBlockDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings-ebs.html) property type.
@@ -2046,22 +2218,28 @@ pub mod spot_fleet {
     pub struct EbsBlockDevice {
         /// Property `DeleteOnTermination`.
         #[serde(rename="DeleteOnTermination")]
-        pub delete_on_termination: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub delete_on_termination: Option<bool>,
         /// Property `Encrypted`.
         #[serde(rename="Encrypted")]
-        pub encrypted: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub encrypted: Option<bool>,
         /// Property `Iops`.
         #[serde(rename="Iops")]
-        pub iops: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub iops: Option<u32>,
         /// Property `SnapshotId`.
         #[serde(rename="SnapshotId")]
-        pub snapshot_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub snapshot_id: Option<String>,
         /// Property `VolumeSize`.
         #[serde(rename="VolumeSize")]
-        pub volume_size: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub volume_size: Option<u32>,
         /// Property `VolumeType`.
         #[serde(rename="VolumeType")]
-        pub volume_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub volume_type: Option<String>,
     }
 
     /// The [`AWS::EC2::SpotFleet.GroupIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-securitygroups.html) property type.
@@ -2077,7 +2255,8 @@ pub mod spot_fleet {
     pub struct IamInstanceProfileSpecification {
         /// Property `Arn`.
         #[serde(rename="Arn")]
-        pub arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub arn: Option<String>,
     }
 
     /// The [`AWS::EC2::SpotFleet.InstanceIpv6Address`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-instanceipv6address.html) property type.
@@ -2093,37 +2272,48 @@ pub mod spot_fleet {
     pub struct InstanceNetworkInterfaceSpecification {
         /// Property `AssociatePublicIpAddress`.
         #[serde(rename="AssociatePublicIpAddress")]
-        pub associate_public_ip_address: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub associate_public_ip_address: Option<bool>,
         /// Property `DeleteOnTermination`.
         #[serde(rename="DeleteOnTermination")]
-        pub delete_on_termination: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub delete_on_termination: Option<bool>,
         /// Property `Description`.
         #[serde(rename="Description")]
-        pub description: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub description: Option<String>,
         /// Property `DeviceIndex`.
         #[serde(rename="DeviceIndex")]
-        pub device_index: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub device_index: Option<u32>,
         /// Property `Groups`.
         #[serde(rename="Groups")]
-        pub groups: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub groups: Option<Vec<String>>,
         /// Property `Ipv6AddressCount`.
         #[serde(rename="Ipv6AddressCount")]
-        pub ipv6_address_count: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ipv6_address_count: Option<u32>,
         /// Property `Ipv6Addresses`.
         #[serde(rename="Ipv6Addresses")]
-        pub ipv6_addresses: Vec<InstanceIpv6Address>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ipv6_addresses: Option<Vec<InstanceIpv6Address>>,
         /// Property `NetworkInterfaceId`.
         #[serde(rename="NetworkInterfaceId")]
-        pub network_interface_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub network_interface_id: Option<String>,
         /// Property `PrivateIpAddresses`.
         #[serde(rename="PrivateIpAddresses")]
-        pub private_ip_addresses: Vec<PrivateIpAddressSpecification>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub private_ip_addresses: Option<Vec<PrivateIpAddressSpecification>>,
         /// Property `SecondaryPrivateIpAddressCount`.
         #[serde(rename="SecondaryPrivateIpAddressCount")]
-        pub secondary_private_ip_address_count: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub secondary_private_ip_address_count: Option<u32>,
         /// Property `SubnetId`.
         #[serde(rename="SubnetId")]
-        pub subnet_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub subnet_id: Option<String>,
     }
 
     /// The [`AWS::EC2::SpotFleet.PrivateIpAddressSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces-privateipaddresses.html) property type.
@@ -2131,7 +2321,8 @@ pub mod spot_fleet {
     pub struct PrivateIpAddressSpecification {
         /// Property `Primary`.
         #[serde(rename="Primary")]
-        pub primary: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub primary: Option<bool>,
         /// Property `PrivateIpAddress`.
         #[serde(rename="PrivateIpAddress")]
         pub private_ip_address: String,
@@ -2142,13 +2333,16 @@ pub mod spot_fleet {
     pub struct SpotFleetLaunchSpecification {
         /// Property `BlockDeviceMappings`.
         #[serde(rename="BlockDeviceMappings")]
-        pub block_device_mappings: Vec<BlockDeviceMapping>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub block_device_mappings: Option<Vec<BlockDeviceMapping>>,
         /// Property `EbsOptimized`.
         #[serde(rename="EbsOptimized")]
-        pub ebs_optimized: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ebs_optimized: Option<bool>,
         /// Property `IamInstanceProfile`.
         #[serde(rename="IamInstanceProfile")]
-        pub iam_instance_profile: IamInstanceProfileSpecification,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub iam_instance_profile: Option<IamInstanceProfileSpecification>,
         /// Property `ImageId`.
         #[serde(rename="ImageId")]
         pub image_id: String,
@@ -2157,40 +2351,52 @@ pub mod spot_fleet {
         pub instance_type: String,
         /// Property `KernelId`.
         #[serde(rename="KernelId")]
-        pub kernel_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub kernel_id: Option<String>,
         /// Property `KeyName`.
         #[serde(rename="KeyName")]
-        pub key_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub key_name: Option<String>,
         /// Property `Monitoring`.
         #[serde(rename="Monitoring")]
-        pub monitoring: SpotFleetMonitoring,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub monitoring: Option<SpotFleetMonitoring>,
         /// Property `NetworkInterfaces`.
         #[serde(rename="NetworkInterfaces")]
-        pub network_interfaces: Vec<InstanceNetworkInterfaceSpecification>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub network_interfaces: Option<Vec<InstanceNetworkInterfaceSpecification>>,
         /// Property `Placement`.
         #[serde(rename="Placement")]
-        pub placement: SpotPlacement,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub placement: Option<SpotPlacement>,
         /// Property `RamdiskId`.
         #[serde(rename="RamdiskId")]
-        pub ramdisk_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ramdisk_id: Option<String>,
         /// Property `SecurityGroups`.
         #[serde(rename="SecurityGroups")]
-        pub security_groups: Vec<GroupIdentifier>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub security_groups: Option<Vec<GroupIdentifier>>,
         /// Property `SpotPrice`.
         #[serde(rename="SpotPrice")]
-        pub spot_price: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub spot_price: Option<String>,
         /// Property `SubnetId`.
         #[serde(rename="SubnetId")]
-        pub subnet_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub subnet_id: Option<String>,
         /// Property `TagSpecifications`.
         #[serde(rename="TagSpecifications")]
-        pub tag_specifications: Vec<SpotFleetTagSpecification>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub tag_specifications: Option<Vec<SpotFleetTagSpecification>>,
         /// Property `UserData`.
         #[serde(rename="UserData")]
-        pub user_data: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub user_data: Option<String>,
         /// Property `WeightedCapacity`.
         #[serde(rename="WeightedCapacity")]
-        pub weighted_capacity: f64,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub weighted_capacity: Option<f64>,
     }
 
     /// The [`AWS::EC2::SpotFleet.SpotFleetMonitoring`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-monitoring.html) property type.
@@ -2198,7 +2404,8 @@ pub mod spot_fleet {
     pub struct SpotFleetMonitoring {
         /// Property `Enabled`.
         #[serde(rename="Enabled")]
-        pub enabled: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub enabled: Option<bool>,
     }
 
     /// The [`AWS::EC2::SpotFleet.SpotFleetRequestConfigData`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html) property type.
@@ -2206,10 +2413,12 @@ pub mod spot_fleet {
     pub struct SpotFleetRequestConfigData {
         /// Property `AllocationStrategy`.
         #[serde(rename="AllocationStrategy")]
-        pub allocation_strategy: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub allocation_strategy: Option<String>,
         /// Property `ExcessCapacityTerminationPolicy`.
         #[serde(rename="ExcessCapacityTerminationPolicy")]
-        pub excess_capacity_termination_policy: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub excess_capacity_termination_policy: Option<String>,
         /// Property `IamFleetRole`.
         #[serde(rename="IamFleetRole")]
         pub iam_fleet_role: String,
@@ -2218,25 +2427,31 @@ pub mod spot_fleet {
         pub launch_specifications: Vec<SpotFleetLaunchSpecification>,
         /// Property `ReplaceUnhealthyInstances`.
         #[serde(rename="ReplaceUnhealthyInstances")]
-        pub replace_unhealthy_instances: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub replace_unhealthy_instances: Option<bool>,
         /// Property `SpotPrice`.
         #[serde(rename="SpotPrice")]
-        pub spot_price: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub spot_price: Option<String>,
         /// Property `TargetCapacity`.
         #[serde(rename="TargetCapacity")]
         pub target_capacity: u32,
         /// Property `TerminateInstancesWithExpiration`.
         #[serde(rename="TerminateInstancesWithExpiration")]
-        pub terminate_instances_with_expiration: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub terminate_instances_with_expiration: Option<bool>,
         /// Property `Type`.
         #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub type_: Option<String>,
         /// Property `ValidFrom`.
         #[serde(rename="ValidFrom")]
-        pub valid_from: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub valid_from: Option<String>,
         /// Property `ValidUntil`.
         #[serde(rename="ValidUntil")]
-        pub valid_until: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub valid_until: Option<String>,
     }
 
     /// The [`AWS::EC2::SpotFleet.SpotFleetTagSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-tagspecifications.html) property type.
@@ -2244,7 +2459,8 @@ pub mod spot_fleet {
     pub struct SpotFleetTagSpecification {
         /// Property `ResourceType`.
         #[serde(rename="ResourceType")]
-        pub resource_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub resource_type: Option<String>,
     }
 
     /// The [`AWS::EC2::SpotFleet.SpotPlacement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-placement.html) property type.
@@ -2252,10 +2468,12 @@ pub mod spot_fleet {
     pub struct SpotPlacement {
         /// Property `AvailabilityZone`.
         #[serde(rename="AvailabilityZone")]
-        pub availability_zone: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub availability_zone: Option<String>,
         /// Property `GroupName`.
         #[serde(rename="GroupName")]
-        pub group_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub group_name: Option<String>,
     }
 }
 
@@ -2267,9 +2485,11 @@ pub mod vpn_connection {
     pub struct VpnTunnelOptionsSpecification {
         /// Property `PreSharedKey`.
         #[serde(rename="PreSharedKey")]
-        pub pre_shared_key: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub pre_shared_key: Option<String>,
         /// Property `TunnelInsideCidr`.
         #[serde(rename="TunnelInsideCidr")]
-        pub tunnel_inside_cidr: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub tunnel_inside_cidr: Option<String>,
     }
 }

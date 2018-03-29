@@ -26,7 +26,8 @@ pub struct ScalableTargetProperties {
     pub scalable_dimension: String,
     /// Property `ScheduledActions`.
     #[serde(rename="ScheduledActions")]
-    pub scheduled_actions: Vec<self::scalable_target::ScheduledAction>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub scheduled_actions: Option<Vec<self::scalable_target::ScheduledAction>>,
     /// Property `ServiceNamespace`.
     #[serde(rename="ServiceNamespace")]
     pub service_namespace: String,
@@ -68,22 +69,28 @@ pub struct ScalingPolicyProperties {
     pub policy_type: String,
     /// Property `ResourceId`.
     #[serde(rename="ResourceId")]
-    pub resource_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub resource_id: Option<String>,
     /// Property `ScalableDimension`.
     #[serde(rename="ScalableDimension")]
-    pub scalable_dimension: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub scalable_dimension: Option<String>,
     /// Property `ScalingTargetId`.
     #[serde(rename="ScalingTargetId")]
-    pub scaling_target_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub scaling_target_id: Option<String>,
     /// Property `ServiceNamespace`.
     #[serde(rename="ServiceNamespace")]
-    pub service_namespace: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub service_namespace: Option<String>,
     /// Property `StepScalingPolicyConfiguration`.
     #[serde(rename="StepScalingPolicyConfiguration")]
-    pub step_scaling_policy_configuration: self::scaling_policy::StepScalingPolicyConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub step_scaling_policy_configuration: Option<self::scaling_policy::StepScalingPolicyConfiguration>,
     /// Property `TargetTrackingScalingPolicyConfiguration`.
     #[serde(rename="TargetTrackingScalingPolicyConfiguration")]
-    pub target_tracking_scaling_policy_configuration: self::scaling_policy::TargetTrackingScalingPolicyConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub target_tracking_scaling_policy_configuration: Option<self::scaling_policy::TargetTrackingScalingPolicyConfiguration>,
 }
 
 impl<'a> ::Resource<'a> for ScalingPolicy {
@@ -113,10 +120,12 @@ pub mod scalable_target {
     pub struct ScalableTargetAction {
         /// Property `MaxCapacity`.
         #[serde(rename="MaxCapacity")]
-        pub max_capacity: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub max_capacity: Option<u32>,
         /// Property `MinCapacity`.
         #[serde(rename="MinCapacity")]
-        pub min_capacity: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub min_capacity: Option<u32>,
     }
 
     /// The [`AWS::ApplicationAutoScaling::ScalableTarget.ScheduledAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalabletarget-scheduledaction.html) property type.
@@ -124,10 +133,12 @@ pub mod scalable_target {
     pub struct ScheduledAction {
         /// Property `EndTime`.
         #[serde(rename="EndTime")]
-        pub end_time: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub end_time: Option<String>,
         /// Property `ScalableTargetAction`.
         #[serde(rename="ScalableTargetAction")]
-        pub scalable_target_action: ScalableTargetAction,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub scalable_target_action: Option<ScalableTargetAction>,
         /// Property `Schedule`.
         #[serde(rename="Schedule")]
         pub schedule: String,
@@ -136,7 +147,8 @@ pub mod scalable_target {
         pub scheduled_action_name: String,
         /// Property `StartTime`.
         #[serde(rename="StartTime")]
-        pub start_time: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub start_time: Option<String>,
     }
 }
 
@@ -148,7 +160,8 @@ pub mod scaling_policy {
     pub struct CustomizedMetricSpecification {
         /// Property `Dimensions`.
         #[serde(rename="Dimensions")]
-        pub dimensions: Vec<MetricDimension>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub dimensions: Option<Vec<MetricDimension>>,
         /// Property `MetricName`.
         #[serde(rename="MetricName")]
         pub metric_name: String,
@@ -160,7 +173,8 @@ pub mod scaling_policy {
         pub statistic: String,
         /// Property `Unit`.
         #[serde(rename="Unit")]
-        pub unit: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub unit: Option<String>,
     }
 
     /// The [`AWS::ApplicationAutoScaling::ScalingPolicy.MetricDimension`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-metricdimension.html) property type.
@@ -182,7 +196,8 @@ pub mod scaling_policy {
         pub predefined_metric_type: String,
         /// Property `ResourceLabel`.
         #[serde(rename="ResourceLabel")]
-        pub resource_label: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub resource_label: Option<String>,
     }
 
     /// The [`AWS::ApplicationAutoScaling::ScalingPolicy.StepAdjustment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration-stepadjustment.html) property type.
@@ -190,10 +205,12 @@ pub mod scaling_policy {
     pub struct StepAdjustment {
         /// Property `MetricIntervalLowerBound`.
         #[serde(rename="MetricIntervalLowerBound")]
-        pub metric_interval_lower_bound: f64,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub metric_interval_lower_bound: Option<f64>,
         /// Property `MetricIntervalUpperBound`.
         #[serde(rename="MetricIntervalUpperBound")]
-        pub metric_interval_upper_bound: f64,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub metric_interval_upper_bound: Option<f64>,
         /// Property `ScalingAdjustment`.
         #[serde(rename="ScalingAdjustment")]
         pub scaling_adjustment: u32,
@@ -204,19 +221,24 @@ pub mod scaling_policy {
     pub struct StepScalingPolicyConfiguration {
         /// Property `AdjustmentType`.
         #[serde(rename="AdjustmentType")]
-        pub adjustment_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub adjustment_type: Option<String>,
         /// Property `Cooldown`.
         #[serde(rename="Cooldown")]
-        pub cooldown: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub cooldown: Option<u32>,
         /// Property `MetricAggregationType`.
         #[serde(rename="MetricAggregationType")]
-        pub metric_aggregation_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub metric_aggregation_type: Option<String>,
         /// Property `MinAdjustmentMagnitude`.
         #[serde(rename="MinAdjustmentMagnitude")]
-        pub min_adjustment_magnitude: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub min_adjustment_magnitude: Option<u32>,
         /// Property `StepAdjustments`.
         #[serde(rename="StepAdjustments")]
-        pub step_adjustments: Vec<StepAdjustment>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub step_adjustments: Option<Vec<StepAdjustment>>,
     }
 
     /// The [`AWS::ApplicationAutoScaling::ScalingPolicy.TargetTrackingScalingPolicyConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingscalingpolicyconfiguration.html) property type.
@@ -224,19 +246,24 @@ pub mod scaling_policy {
     pub struct TargetTrackingScalingPolicyConfiguration {
         /// Property `CustomizedMetricSpecification`.
         #[serde(rename="CustomizedMetricSpecification")]
-        pub customized_metric_specification: CustomizedMetricSpecification,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub customized_metric_specification: Option<CustomizedMetricSpecification>,
         /// Property `DisableScaleIn`.
         #[serde(rename="DisableScaleIn")]
-        pub disable_scale_in: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub disable_scale_in: Option<bool>,
         /// Property `PredefinedMetricSpecification`.
         #[serde(rename="PredefinedMetricSpecification")]
-        pub predefined_metric_specification: PredefinedMetricSpecification,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub predefined_metric_specification: Option<PredefinedMetricSpecification>,
         /// Property `ScaleInCooldown`.
         #[serde(rename="ScaleInCooldown")]
-        pub scale_in_cooldown: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub scale_in_cooldown: Option<u32>,
         /// Property `ScaleOutCooldown`.
         #[serde(rename="ScaleOutCooldown")]
-        pub scale_out_cooldown: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub scale_out_cooldown: Option<u32>,
         /// Property `TargetValue`.
         #[serde(rename="TargetValue")]
         pub target_value: f64,

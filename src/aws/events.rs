@@ -11,25 +11,32 @@ pub struct Rule {
 pub struct RuleProperties {
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `EventPattern`.
     #[serde(rename="EventPattern")]
-    pub event_pattern: ::json::Value,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub event_pattern: Option<::json::Value>,
     /// Property `Name`.
     #[serde(rename="Name")]
-    pub name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     /// Property `RoleArn`.
     #[serde(rename="RoleArn")]
-    pub role_arn: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub role_arn: Option<String>,
     /// Property `ScheduleExpression`.
     #[serde(rename="ScheduleExpression")]
-    pub schedule_expression: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub schedule_expression: Option<String>,
     /// Property `State`.
     #[serde(rename="State")]
-    pub state: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub state: Option<String>,
     /// Property `Targets`.
     #[serde(rename="Targets")]
-    pub targets: Vec<self::rule::Target>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub targets: Option<Vec<self::rule::Target>>,
 }
 
 impl<'a> ::Resource<'a> for Rule {
@@ -59,7 +66,8 @@ pub mod rule {
     pub struct EcsParameters {
         /// Property `TaskCount`.
         #[serde(rename="TaskCount")]
-        pub task_count: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub task_count: Option<u32>,
         /// Property `TaskDefinitionArn`.
         #[serde(rename="TaskDefinitionArn")]
         pub task_definition_arn: String,
@@ -70,7 +78,8 @@ pub mod rule {
     pub struct InputTransformer {
         /// Property `InputPathsMap`.
         #[serde(rename="InputPathsMap")]
-        pub input_paths_map: ::std::collections::HashMap<String, String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub input_paths_map: Option<::std::collections::HashMap<String, String>>,
         /// Property `InputTemplate`.
         #[serde(rename="InputTemplate")]
         pub input_template: String,
@@ -111,27 +120,34 @@ pub mod rule {
         pub arn: String,
         /// Property `EcsParameters`.
         #[serde(rename="EcsParameters")]
-        pub ecs_parameters: EcsParameters,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ecs_parameters: Option<EcsParameters>,
         /// Property `Id`.
         #[serde(rename="Id")]
         pub id: String,
         /// Property `Input`.
         #[serde(rename="Input")]
-        pub input: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub input: Option<String>,
         /// Property `InputPath`.
         #[serde(rename="InputPath")]
-        pub input_path: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub input_path: Option<String>,
         /// Property `InputTransformer`.
         #[serde(rename="InputTransformer")]
-        pub input_transformer: InputTransformer,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub input_transformer: Option<InputTransformer>,
         /// Property `KinesisParameters`.
         #[serde(rename="KinesisParameters")]
-        pub kinesis_parameters: KinesisParameters,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub kinesis_parameters: Option<KinesisParameters>,
         /// Property `RoleArn`.
         #[serde(rename="RoleArn")]
-        pub role_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub role_arn: Option<String>,
         /// Property `RunCommandParameters`.
         #[serde(rename="RunCommandParameters")]
-        pub run_command_parameters: RunCommandParameters,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub run_command_parameters: Option<RunCommandParameters>,
     }
 }

@@ -11,34 +11,42 @@ pub struct Alarm {
 pub struct AlarmProperties {
     /// Property `ActionsEnabled`.
     #[serde(rename="ActionsEnabled")]
-    pub actions_enabled: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub actions_enabled: Option<bool>,
     /// Property `AlarmActions`.
     #[serde(rename="AlarmActions")]
-    pub alarm_actions: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub alarm_actions: Option<Vec<String>>,
     /// Property `AlarmDescription`.
     #[serde(rename="AlarmDescription")]
-    pub alarm_description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub alarm_description: Option<String>,
     /// Property `AlarmName`.
     #[serde(rename="AlarmName")]
-    pub alarm_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub alarm_name: Option<String>,
     /// Property `ComparisonOperator`.
     #[serde(rename="ComparisonOperator")]
     pub comparison_operator: String,
     /// Property `Dimensions`.
     #[serde(rename="Dimensions")]
-    pub dimensions: Vec<self::alarm::Dimension>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub dimensions: Option<Vec<self::alarm::Dimension>>,
     /// Property `EvaluateLowSampleCountPercentile`.
     #[serde(rename="EvaluateLowSampleCountPercentile")]
-    pub evaluate_low_sample_count_percentile: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub evaluate_low_sample_count_percentile: Option<String>,
     /// Property `EvaluationPeriods`.
     #[serde(rename="EvaluationPeriods")]
     pub evaluation_periods: u32,
     /// Property `ExtendedStatistic`.
     #[serde(rename="ExtendedStatistic")]
-    pub extended_statistic: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub extended_statistic: Option<String>,
     /// Property `InsufficientDataActions`.
     #[serde(rename="InsufficientDataActions")]
-    pub insufficient_data_actions: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub insufficient_data_actions: Option<Vec<String>>,
     /// Property `MetricName`.
     #[serde(rename="MetricName")]
     pub metric_name: String,
@@ -47,22 +55,26 @@ pub struct AlarmProperties {
     pub namespace: String,
     /// Property `OKActions`.
     #[serde(rename="OKActions")]
-    pub ok_actions: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ok_actions: Option<Vec<String>>,
     /// Property `Period`.
     #[serde(rename="Period")]
     pub period: u32,
     /// Property `Statistic`.
     #[serde(rename="Statistic")]
-    pub statistic: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub statistic: Option<String>,
     /// Property `Threshold`.
     #[serde(rename="Threshold")]
     pub threshold: f64,
     /// Property `TreatMissingData`.
     #[serde(rename="TreatMissingData")]
-    pub treat_missing_data: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub treat_missing_data: Option<String>,
     /// Property `Unit`.
     #[serde(rename="Unit")]
-    pub unit: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub unit: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for Alarm {
@@ -98,7 +110,8 @@ pub struct DashboardProperties {
     pub dashboard_body: String,
     /// Property `DashboardName`.
     #[serde(rename="DashboardName")]
-    pub dashboard_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub dashboard_name: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for Dashboard {

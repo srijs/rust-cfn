@@ -11,16 +11,20 @@ pub struct FileSystem {
 pub struct FileSystemProperties {
     /// Property `Encrypted`.
     #[serde(rename="Encrypted")]
-    pub encrypted: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub encrypted: Option<bool>,
     /// Property `FileSystemTags`.
     #[serde(rename="FileSystemTags")]
-    pub file_system_tags: Vec<self::file_system::ElasticFileSystemTag>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub file_system_tags: Option<Vec<self::file_system::ElasticFileSystemTag>>,
     /// Property `KmsKeyId`.
     #[serde(rename="KmsKeyId")]
-    pub kms_key_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub kms_key_id: Option<String>,
     /// Property `PerformanceMode`.
     #[serde(rename="PerformanceMode")]
-    pub performance_mode: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub performance_mode: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for FileSystem {
@@ -56,7 +60,8 @@ pub struct MountTargetProperties {
     pub file_system_id: String,
     /// Property `IpAddress`.
     #[serde(rename="IpAddress")]
-    pub ip_address: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ip_address: Option<String>,
     /// Property `SecurityGroups`.
     #[serde(rename="SecurityGroups")]
     pub security_groups: Vec<String>,

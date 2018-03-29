@@ -14,31 +14,40 @@ pub struct IdentityPoolProperties {
     pub allow_unauthenticated_identities: bool,
     /// Property `CognitoEvents`.
     #[serde(rename="CognitoEvents")]
-    pub cognito_events: ::json::Value,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cognito_events: Option<::json::Value>,
     /// Property `CognitoIdentityProviders`.
     #[serde(rename="CognitoIdentityProviders")]
-    pub cognito_identity_providers: Vec<self::identity_pool::CognitoIdentityProvider>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cognito_identity_providers: Option<Vec<self::identity_pool::CognitoIdentityProvider>>,
     /// Property `CognitoStreams`.
     #[serde(rename="CognitoStreams")]
-    pub cognito_streams: self::identity_pool::CognitoStreams,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cognito_streams: Option<self::identity_pool::CognitoStreams>,
     /// Property `DeveloperProviderName`.
     #[serde(rename="DeveloperProviderName")]
-    pub developer_provider_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub developer_provider_name: Option<String>,
     /// Property `IdentityPoolName`.
     #[serde(rename="IdentityPoolName")]
-    pub identity_pool_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub identity_pool_name: Option<String>,
     /// Property `OpenIdConnectProviderARNs`.
     #[serde(rename="OpenIdConnectProviderARNs")]
-    pub open_id_connect_provider_ar_ns: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub open_id_connect_provider_ar_ns: Option<Vec<String>>,
     /// Property `PushSync`.
     #[serde(rename="PushSync")]
-    pub push_sync: self::identity_pool::PushSync,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub push_sync: Option<self::identity_pool::PushSync>,
     /// Property `SamlProviderARNs`.
     #[serde(rename="SamlProviderARNs")]
-    pub saml_provider_ar_ns: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub saml_provider_ar_ns: Option<Vec<String>>,
     /// Property `SupportedLoginProviders`.
     #[serde(rename="SupportedLoginProviders")]
-    pub supported_login_providers: ::json::Value,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub supported_login_providers: Option<::json::Value>,
 }
 
 impl<'a> ::Resource<'a> for IdentityPool {
@@ -74,10 +83,12 @@ pub struct IdentityPoolRoleAttachmentProperties {
     pub identity_pool_id: String,
     /// Property `RoleMappings`.
     #[serde(rename="RoleMappings")]
-    pub role_mappings: ::json::Value,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub role_mappings: Option<::json::Value>,
     /// Property `Roles`.
     #[serde(rename="Roles")]
-    pub roles: ::json::Value,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub roles: Option<::json::Value>,
 }
 
 impl<'a> ::Resource<'a> for IdentityPoolRoleAttachment {
@@ -110,52 +121,68 @@ pub struct UserPool {
 pub struct UserPoolProperties {
     /// Property `AdminCreateUserConfig`.
     #[serde(rename="AdminCreateUserConfig")]
-    pub admin_create_user_config: self::user_pool::AdminCreateUserConfig,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub admin_create_user_config: Option<self::user_pool::AdminCreateUserConfig>,
     /// Property `AliasAttributes`.
     #[serde(rename="AliasAttributes")]
-    pub alias_attributes: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub alias_attributes: Option<Vec<String>>,
     /// Property `AutoVerifiedAttributes`.
     #[serde(rename="AutoVerifiedAttributes")]
-    pub auto_verified_attributes: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub auto_verified_attributes: Option<Vec<String>>,
     /// Property `DeviceConfiguration`.
     #[serde(rename="DeviceConfiguration")]
-    pub device_configuration: self::user_pool::DeviceConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub device_configuration: Option<self::user_pool::DeviceConfiguration>,
     /// Property `EmailConfiguration`.
     #[serde(rename="EmailConfiguration")]
-    pub email_configuration: self::user_pool::EmailConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub email_configuration: Option<self::user_pool::EmailConfiguration>,
     /// Property `EmailVerificationMessage`.
     #[serde(rename="EmailVerificationMessage")]
-    pub email_verification_message: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub email_verification_message: Option<String>,
     /// Property `EmailVerificationSubject`.
     #[serde(rename="EmailVerificationSubject")]
-    pub email_verification_subject: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub email_verification_subject: Option<String>,
     /// Property `LambdaConfig`.
     #[serde(rename="LambdaConfig")]
-    pub lambda_config: self::user_pool::LambdaConfig,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub lambda_config: Option<self::user_pool::LambdaConfig>,
     /// Property `MfaConfiguration`.
     #[serde(rename="MfaConfiguration")]
-    pub mfa_configuration: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub mfa_configuration: Option<String>,
     /// Property `Policies`.
     #[serde(rename="Policies")]
-    pub policies: self::user_pool::Policies,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub policies: Option<self::user_pool::Policies>,
     /// Property `Schema`.
     #[serde(rename="Schema")]
-    pub schema: Vec<self::user_pool::SchemaAttribute>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub schema: Option<Vec<self::user_pool::SchemaAttribute>>,
     /// Property `SmsAuthenticationMessage`.
     #[serde(rename="SmsAuthenticationMessage")]
-    pub sms_authentication_message: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sms_authentication_message: Option<String>,
     /// Property `SmsConfiguration`.
     #[serde(rename="SmsConfiguration")]
-    pub sms_configuration: self::user_pool::SmsConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sms_configuration: Option<self::user_pool::SmsConfiguration>,
     /// Property `SmsVerificationMessage`.
     #[serde(rename="SmsVerificationMessage")]
-    pub sms_verification_message: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sms_verification_message: Option<String>,
     /// Property `UserPoolName`.
     #[serde(rename="UserPoolName")]
-    pub user_pool_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub user_pool_name: Option<String>,
     /// Property `UserPoolTags`.
     #[serde(rename="UserPoolTags")]
-    pub user_pool_tags: ::json::Value,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub user_pool_tags: Option<::json::Value>,
 }
 
 impl<'a> ::Resource<'a> for UserPool {
@@ -188,25 +215,31 @@ pub struct UserPoolClient {
 pub struct UserPoolClientProperties {
     /// Property `ClientName`.
     #[serde(rename="ClientName")]
-    pub client_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub client_name: Option<String>,
     /// Property `ExplicitAuthFlows`.
     #[serde(rename="ExplicitAuthFlows")]
-    pub explicit_auth_flows: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub explicit_auth_flows: Option<Vec<String>>,
     /// Property `GenerateSecret`.
     #[serde(rename="GenerateSecret")]
-    pub generate_secret: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub generate_secret: Option<bool>,
     /// Property `ReadAttributes`.
     #[serde(rename="ReadAttributes")]
-    pub read_attributes: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub read_attributes: Option<Vec<String>>,
     /// Property `RefreshTokenValidity`.
     #[serde(rename="RefreshTokenValidity")]
-    pub refresh_token_validity: f64,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub refresh_token_validity: Option<f64>,
     /// Property `UserPoolId`.
     #[serde(rename="UserPoolId")]
     pub user_pool_id: String,
     /// Property `WriteAttributes`.
     #[serde(rename="WriteAttributes")]
-    pub write_attributes: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub write_attributes: Option<Vec<String>>,
 }
 
 impl<'a> ::Resource<'a> for UserPoolClient {
@@ -239,16 +272,20 @@ pub struct UserPoolGroup {
 pub struct UserPoolGroupProperties {
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `GroupName`.
     #[serde(rename="GroupName")]
-    pub group_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub group_name: Option<String>,
     /// Property `Precedence`.
     #[serde(rename="Precedence")]
-    pub precedence: f64,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub precedence: Option<f64>,
     /// Property `RoleArn`.
     #[serde(rename="RoleArn")]
-    pub role_arn: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub role_arn: Option<String>,
     /// Property `UserPoolId`.
     #[serde(rename="UserPoolId")]
     pub user_pool_id: String,
@@ -284,25 +321,31 @@ pub struct UserPoolUser {
 pub struct UserPoolUserProperties {
     /// Property `DesiredDeliveryMediums`.
     #[serde(rename="DesiredDeliveryMediums")]
-    pub desired_delivery_mediums: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub desired_delivery_mediums: Option<Vec<String>>,
     /// Property `ForceAliasCreation`.
     #[serde(rename="ForceAliasCreation")]
-    pub force_alias_creation: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub force_alias_creation: Option<bool>,
     /// Property `MessageAction`.
     #[serde(rename="MessageAction")]
-    pub message_action: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub message_action: Option<String>,
     /// Property `UserAttributes`.
     #[serde(rename="UserAttributes")]
-    pub user_attributes: Vec<self::user_pool_user::AttributeType>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub user_attributes: Option<Vec<self::user_pool_user::AttributeType>>,
     /// Property `UserPoolId`.
     #[serde(rename="UserPoolId")]
     pub user_pool_id: String,
     /// Property `Username`.
     #[serde(rename="Username")]
-    pub username: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub username: Option<String>,
     /// Property `ValidationData`.
     #[serde(rename="ValidationData")]
-    pub validation_data: Vec<self::user_pool_user::AttributeType>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub validation_data: Option<Vec<self::user_pool_user::AttributeType>>,
 }
 
 impl<'a> ::Resource<'a> for UserPoolUser {
@@ -371,13 +414,16 @@ pub mod identity_pool {
     pub struct CognitoIdentityProvider {
         /// Property `ClientId`.
         #[serde(rename="ClientId")]
-        pub client_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub client_id: Option<String>,
         /// Property `ProviderName`.
         #[serde(rename="ProviderName")]
-        pub provider_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub provider_name: Option<String>,
         /// Property `ServerSideTokenCheck`.
         #[serde(rename="ServerSideTokenCheck")]
-        pub server_side_token_check: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub server_side_token_check: Option<bool>,
     }
 
     /// The [`AWS::Cognito::IdentityPool.CognitoStreams`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypool-cognitostreams.html) property type.
@@ -385,13 +431,16 @@ pub mod identity_pool {
     pub struct CognitoStreams {
         /// Property `RoleArn`.
         #[serde(rename="RoleArn")]
-        pub role_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub role_arn: Option<String>,
         /// Property `StreamName`.
         #[serde(rename="StreamName")]
-        pub stream_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub stream_name: Option<String>,
         /// Property `StreamingStatus`.
         #[serde(rename="StreamingStatus")]
-        pub streaming_status: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub streaming_status: Option<String>,
     }
 
     /// The [`AWS::Cognito::IdentityPool.PushSync`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypool-pushsync.html) property type.
@@ -399,10 +448,12 @@ pub mod identity_pool {
     pub struct PushSync {
         /// Property `ApplicationArns`.
         #[serde(rename="ApplicationArns")]
-        pub application_arns: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub application_arns: Option<Vec<String>>,
         /// Property `RoleArn`.
         #[serde(rename="RoleArn")]
-        pub role_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub role_arn: Option<String>,
     }
 }
 
@@ -431,10 +482,12 @@ pub mod identity_pool_role_attachment {
     pub struct RoleMapping {
         /// Property `AmbiguousRoleResolution`.
         #[serde(rename="AmbiguousRoleResolution")]
-        pub ambiguous_role_resolution: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ambiguous_role_resolution: Option<String>,
         /// Property `RulesConfiguration`.
         #[serde(rename="RulesConfiguration")]
-        pub rules_configuration: RulesConfigurationType,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub rules_configuration: Option<RulesConfigurationType>,
         /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,
@@ -457,13 +510,16 @@ pub mod user_pool {
     pub struct AdminCreateUserConfig {
         /// Property `AllowAdminCreateUserOnly`.
         #[serde(rename="AllowAdminCreateUserOnly")]
-        pub allow_admin_create_user_only: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub allow_admin_create_user_only: Option<bool>,
         /// Property `InviteMessageTemplate`.
         #[serde(rename="InviteMessageTemplate")]
-        pub invite_message_template: InviteMessageTemplate,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub invite_message_template: Option<InviteMessageTemplate>,
         /// Property `UnusedAccountValidityDays`.
         #[serde(rename="UnusedAccountValidityDays")]
-        pub unused_account_validity_days: f64,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub unused_account_validity_days: Option<f64>,
     }
 
     /// The [`AWS::Cognito::UserPool.DeviceConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-deviceconfiguration.html) property type.
@@ -471,10 +527,12 @@ pub mod user_pool {
     pub struct DeviceConfiguration {
         /// Property `ChallengeRequiredOnNewDevice`.
         #[serde(rename="ChallengeRequiredOnNewDevice")]
-        pub challenge_required_on_new_device: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub challenge_required_on_new_device: Option<bool>,
         /// Property `DeviceOnlyRememberedOnUserPrompt`.
         #[serde(rename="DeviceOnlyRememberedOnUserPrompt")]
-        pub device_only_remembered_on_user_prompt: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub device_only_remembered_on_user_prompt: Option<bool>,
     }
 
     /// The [`AWS::Cognito::UserPool.EmailConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-emailconfiguration.html) property type.
@@ -482,10 +540,12 @@ pub mod user_pool {
     pub struct EmailConfiguration {
         /// Property `ReplyToEmailAddress`.
         #[serde(rename="ReplyToEmailAddress")]
-        pub reply_to_email_address: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub reply_to_email_address: Option<String>,
         /// Property `SourceArn`.
         #[serde(rename="SourceArn")]
-        pub source_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub source_arn: Option<String>,
     }
 
     /// The [`AWS::Cognito::UserPool.InviteMessageTemplate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-invitemessagetemplate.html) property type.
@@ -493,13 +553,16 @@ pub mod user_pool {
     pub struct InviteMessageTemplate {
         /// Property `EmailMessage`.
         #[serde(rename="EmailMessage")]
-        pub email_message: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub email_message: Option<String>,
         /// Property `EmailSubject`.
         #[serde(rename="EmailSubject")]
-        pub email_subject: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub email_subject: Option<String>,
         /// Property `SMSMessage`.
         #[serde(rename="SMSMessage")]
-        pub sms_message: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub sms_message: Option<String>,
     }
 
     /// The [`AWS::Cognito::UserPool.LambdaConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-lambdaconfig.html) property type.
@@ -507,28 +570,36 @@ pub mod user_pool {
     pub struct LambdaConfig {
         /// Property `CreateAuthChallenge`.
         #[serde(rename="CreateAuthChallenge")]
-        pub create_auth_challenge: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub create_auth_challenge: Option<String>,
         /// Property `CustomMessage`.
         #[serde(rename="CustomMessage")]
-        pub custom_message: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub custom_message: Option<String>,
         /// Property `DefineAuthChallenge`.
         #[serde(rename="DefineAuthChallenge")]
-        pub define_auth_challenge: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub define_auth_challenge: Option<String>,
         /// Property `PostAuthentication`.
         #[serde(rename="PostAuthentication")]
-        pub post_authentication: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub post_authentication: Option<String>,
         /// Property `PostConfirmation`.
         #[serde(rename="PostConfirmation")]
-        pub post_confirmation: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub post_confirmation: Option<String>,
         /// Property `PreAuthentication`.
         #[serde(rename="PreAuthentication")]
-        pub pre_authentication: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub pre_authentication: Option<String>,
         /// Property `PreSignUp`.
         #[serde(rename="PreSignUp")]
-        pub pre_sign_up: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub pre_sign_up: Option<String>,
         /// Property `VerifyAuthChallengeResponse`.
         #[serde(rename="VerifyAuthChallengeResponse")]
-        pub verify_auth_challenge_response: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub verify_auth_challenge_response: Option<String>,
     }
 
     /// The [`AWS::Cognito::UserPool.NumberAttributeConstraints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-numberattributeconstraints.html) property type.
@@ -536,10 +607,12 @@ pub mod user_pool {
     pub struct NumberAttributeConstraints {
         /// Property `MaxValue`.
         #[serde(rename="MaxValue")]
-        pub max_value: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub max_value: Option<String>,
         /// Property `MinValue`.
         #[serde(rename="MinValue")]
-        pub min_value: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub min_value: Option<String>,
     }
 
     /// The [`AWS::Cognito::UserPool.PasswordPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-passwordpolicy.html) property type.
@@ -547,19 +620,24 @@ pub mod user_pool {
     pub struct PasswordPolicy {
         /// Property `MinimumLength`.
         #[serde(rename="MinimumLength")]
-        pub minimum_length: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub minimum_length: Option<u32>,
         /// Property `RequireLowercase`.
         #[serde(rename="RequireLowercase")]
-        pub require_lowercase: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub require_lowercase: Option<bool>,
         /// Property `RequireNumbers`.
         #[serde(rename="RequireNumbers")]
-        pub require_numbers: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub require_numbers: Option<bool>,
         /// Property `RequireSymbols`.
         #[serde(rename="RequireSymbols")]
-        pub require_symbols: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub require_symbols: Option<bool>,
         /// Property `RequireUppercase`.
         #[serde(rename="RequireUppercase")]
-        pub require_uppercase: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub require_uppercase: Option<bool>,
     }
 
     /// The [`AWS::Cognito::UserPool.Policies`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-policies.html) property type.
@@ -567,7 +645,8 @@ pub mod user_pool {
     pub struct Policies {
         /// Property `PasswordPolicy`.
         #[serde(rename="PasswordPolicy")]
-        pub password_policy: PasswordPolicy,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub password_policy: Option<PasswordPolicy>,
     }
 
     /// The [`AWS::Cognito::UserPool.SchemaAttribute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-schemaattribute.html) property type.
@@ -575,25 +654,32 @@ pub mod user_pool {
     pub struct SchemaAttribute {
         /// Property `AttributeDataType`.
         #[serde(rename="AttributeDataType")]
-        pub attribute_data_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub attribute_data_type: Option<String>,
         /// Property `DeveloperOnlyAttribute`.
         #[serde(rename="DeveloperOnlyAttribute")]
-        pub developer_only_attribute: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub developer_only_attribute: Option<bool>,
         /// Property `Mutable`.
         #[serde(rename="Mutable")]
-        pub mutable: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub mutable: Option<bool>,
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
         /// Property `NumberAttributeConstraints`.
         #[serde(rename="NumberAttributeConstraints")]
-        pub number_attribute_constraints: NumberAttributeConstraints,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub number_attribute_constraints: Option<NumberAttributeConstraints>,
         /// Property `Required`.
         #[serde(rename="Required")]
-        pub required: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub required: Option<bool>,
         /// Property `StringAttributeConstraints`.
         #[serde(rename="StringAttributeConstraints")]
-        pub string_attribute_constraints: StringAttributeConstraints,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub string_attribute_constraints: Option<StringAttributeConstraints>,
     }
 
     /// The [`AWS::Cognito::UserPool.SmsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-smsconfiguration.html) property type.
@@ -601,10 +687,12 @@ pub mod user_pool {
     pub struct SmsConfiguration {
         /// Property `ExternalId`.
         #[serde(rename="ExternalId")]
-        pub external_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub external_id: Option<String>,
         /// Property `SnsCallerArn`.
         #[serde(rename="SnsCallerArn")]
-        pub sns_caller_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub sns_caller_arn: Option<String>,
     }
 
     /// The [`AWS::Cognito::UserPool.StringAttributeConstraints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-stringattributeconstraints.html) property type.
@@ -612,10 +700,12 @@ pub mod user_pool {
     pub struct StringAttributeConstraints {
         /// Property `MaxLength`.
         #[serde(rename="MaxLength")]
-        pub max_length: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub max_length: Option<String>,
         /// Property `MinLength`.
         #[serde(rename="MinLength")]
-        pub min_length: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub min_length: Option<String>,
     }
 }
 
@@ -627,9 +717,11 @@ pub mod user_pool_user {
     pub struct AttributeType {
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
         /// Property `Value`.
         #[serde(rename="Value")]
-        pub value: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub value: Option<String>,
     }
 }

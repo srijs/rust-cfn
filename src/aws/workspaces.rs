@@ -17,16 +17,19 @@ pub struct WorkspaceProperties {
     pub directory_id: String,
     /// Property `RootVolumeEncryptionEnabled`.
     #[serde(rename="RootVolumeEncryptionEnabled")]
-    pub root_volume_encryption_enabled: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub root_volume_encryption_enabled: Option<bool>,
     /// Property `UserName`.
     #[serde(rename="UserName")]
     pub user_name: String,
     /// Property `UserVolumeEncryptionEnabled`.
     #[serde(rename="UserVolumeEncryptionEnabled")]
-    pub user_volume_encryption_enabled: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub user_volume_encryption_enabled: Option<bool>,
     /// Property `VolumeEncryptionKey`.
     #[serde(rename="VolumeEncryptionKey")]
-    pub volume_encryption_key: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub volume_encryption_key: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for Workspace {

@@ -11,25 +11,32 @@ pub struct Cluster {
 pub struct ClusterProperties {
     /// Property `AdditionalInfo`.
     #[serde(rename="AdditionalInfo")]
-    pub additional_info: ::json::Value,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub additional_info: Option<::json::Value>,
     /// Property `Applications`.
     #[serde(rename="Applications")]
-    pub applications: Vec<self::cluster::Application>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub applications: Option<Vec<self::cluster::Application>>,
     /// Property `AutoScalingRole`.
     #[serde(rename="AutoScalingRole")]
-    pub auto_scaling_role: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub auto_scaling_role: Option<String>,
     /// Property `BootstrapActions`.
     #[serde(rename="BootstrapActions")]
-    pub bootstrap_actions: Vec<self::cluster::BootstrapActionConfig>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub bootstrap_actions: Option<Vec<self::cluster::BootstrapActionConfig>>,
     /// Property `Configurations`.
     #[serde(rename="Configurations")]
-    pub configurations: Vec<self::cluster::Configuration>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub configurations: Option<Vec<self::cluster::Configuration>>,
     /// Property `CustomAmiId`.
     #[serde(rename="CustomAmiId")]
-    pub custom_ami_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub custom_ami_id: Option<String>,
     /// Property `EbsRootVolumeSize`.
     #[serde(rename="EbsRootVolumeSize")]
-    pub ebs_root_volume_size: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ebs_root_volume_size: Option<u32>,
     /// Property `Instances`.
     #[serde(rename="Instances")]
     pub instances: self::cluster::JobFlowInstancesConfig,
@@ -38,28 +45,34 @@ pub struct ClusterProperties {
     pub job_flow_role: String,
     /// Property `LogUri`.
     #[serde(rename="LogUri")]
-    pub log_uri: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub log_uri: Option<String>,
     /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
     /// Property `ReleaseLabel`.
     #[serde(rename="ReleaseLabel")]
-    pub release_label: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub release_label: Option<String>,
     /// Property `ScaleDownBehavior`.
     #[serde(rename="ScaleDownBehavior")]
-    pub scale_down_behavior: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub scale_down_behavior: Option<String>,
     /// Property `SecurityConfiguration`.
     #[serde(rename="SecurityConfiguration")]
-    pub security_configuration: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub security_configuration: Option<String>,
     /// Property `ServiceRole`.
     #[serde(rename="ServiceRole")]
     pub service_role: String,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
     /// Property `VisibleToAllUsers`.
     #[serde(rename="VisibleToAllUsers")]
-    pub visible_to_all_users: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub visible_to_all_users: Option<bool>,
 }
 
 impl<'a> ::Resource<'a> for Cluster {
@@ -98,19 +111,24 @@ pub struct InstanceFleetConfigProperties {
     pub instance_fleet_type: String,
     /// Property `InstanceTypeConfigs`.
     #[serde(rename="InstanceTypeConfigs")]
-    pub instance_type_configs: Vec<self::instance_fleet_config::InstanceTypeConfig>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub instance_type_configs: Option<Vec<self::instance_fleet_config::InstanceTypeConfig>>,
     /// Property `LaunchSpecifications`.
     #[serde(rename="LaunchSpecifications")]
-    pub launch_specifications: self::instance_fleet_config::InstanceFleetProvisioningSpecifications,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub launch_specifications: Option<self::instance_fleet_config::InstanceFleetProvisioningSpecifications>,
     /// Property `Name`.
     #[serde(rename="Name")]
-    pub name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     /// Property `TargetOnDemandCapacity`.
     #[serde(rename="TargetOnDemandCapacity")]
-    pub target_on_demand_capacity: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub target_on_demand_capacity: Option<u32>,
     /// Property `TargetSpotCapacity`.
     #[serde(rename="TargetSpotCapacity")]
-    pub target_spot_capacity: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub target_spot_capacity: Option<u32>,
 }
 
 impl<'a> ::Resource<'a> for InstanceFleetConfig {
@@ -143,16 +161,20 @@ pub struct InstanceGroupConfig {
 pub struct InstanceGroupConfigProperties {
     /// Property `AutoScalingPolicy`.
     #[serde(rename="AutoScalingPolicy")]
-    pub auto_scaling_policy: self::instance_group_config::AutoScalingPolicy,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub auto_scaling_policy: Option<self::instance_group_config::AutoScalingPolicy>,
     /// Property `BidPrice`.
     #[serde(rename="BidPrice")]
-    pub bid_price: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub bid_price: Option<String>,
     /// Property `Configurations`.
     #[serde(rename="Configurations")]
-    pub configurations: Vec<self::instance_group_config::Configuration>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub configurations: Option<Vec<self::instance_group_config::Configuration>>,
     /// Property `EbsConfiguration`.
     #[serde(rename="EbsConfiguration")]
-    pub ebs_configuration: self::instance_group_config::EbsConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ebs_configuration: Option<self::instance_group_config::EbsConfiguration>,
     /// Property `InstanceCount`.
     #[serde(rename="InstanceCount")]
     pub instance_count: u32,
@@ -167,10 +189,12 @@ pub struct InstanceGroupConfigProperties {
     pub job_flow_id: String,
     /// Property `Market`.
     #[serde(rename="Market")]
-    pub market: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub market: Option<String>,
     /// Property `Name`.
     #[serde(rename="Name")]
-    pub name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for InstanceGroupConfig {
@@ -203,7 +227,8 @@ pub struct SecurityConfiguration {
 pub struct SecurityConfigurationProperties {
     /// Property `Name`.
     #[serde(rename="Name")]
-    pub name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     /// Property `SecurityConfiguration`.
     #[serde(rename="SecurityConfiguration")]
     pub security_configuration: ::json::Value,
@@ -278,16 +303,20 @@ pub mod cluster {
     pub struct Application {
         /// Property `AdditionalInfo`.
         #[serde(rename="AdditionalInfo")]
-        pub additional_info: ::std::collections::HashMap<String, String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub additional_info: Option<::std::collections::HashMap<String, String>>,
         /// Property `Args`.
         #[serde(rename="Args")]
-        pub args: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub args: Option<Vec<String>>,
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
         /// Property `Version`.
         #[serde(rename="Version")]
-        pub version: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub version: Option<String>,
     }
 
     /// The [`AWS::EMR::Cluster.AutoScalingPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-autoscalingpolicy.html) property type.
@@ -320,28 +349,33 @@ pub mod cluster {
         pub comparison_operator: String,
         /// Property `Dimensions`.
         #[serde(rename="Dimensions")]
-        pub dimensions: Vec<MetricDimension>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub dimensions: Option<Vec<MetricDimension>>,
         /// Property `EvaluationPeriods`.
         #[serde(rename="EvaluationPeriods")]
-        pub evaluation_periods: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub evaluation_periods: Option<u32>,
         /// Property `MetricName`.
         #[serde(rename="MetricName")]
         pub metric_name: String,
         /// Property `Namespace`.
         #[serde(rename="Namespace")]
-        pub namespace: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub namespace: Option<String>,
         /// Property `Period`.
         #[serde(rename="Period")]
         pub period: u32,
         /// Property `Statistic`.
         #[serde(rename="Statistic")]
-        pub statistic: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub statistic: Option<String>,
         /// Property `Threshold`.
         #[serde(rename="Threshold")]
         pub threshold: f64,
         /// Property `Unit`.
         #[serde(rename="Unit")]
-        pub unit: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub unit: Option<String>,
     }
 
     /// The [`AWS::EMR::Cluster.Configuration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-configuration.html) property type.
@@ -349,13 +383,16 @@ pub mod cluster {
     pub struct Configuration {
         /// Property `Classification`.
         #[serde(rename="Classification")]
-        pub classification: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub classification: Option<String>,
         /// Property `ConfigurationProperties`.
         #[serde(rename="ConfigurationProperties")]
-        pub configuration_properties: ::std::collections::HashMap<String, String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub configuration_properties: Option<::std::collections::HashMap<String, String>>,
         /// Property `Configurations`.
         #[serde(rename="Configurations")]
-        pub configurations: Vec<Configuration>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub configurations: Option<Vec<Configuration>>,
     }
 
     /// The [`AWS::EMR::Cluster.EbsBlockDeviceConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-ebsblockdeviceconfig.html) property type.
@@ -366,7 +403,8 @@ pub mod cluster {
         pub volume_specification: VolumeSpecification,
         /// Property `VolumesPerInstance`.
         #[serde(rename="VolumesPerInstance")]
-        pub volumes_per_instance: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub volumes_per_instance: Option<u32>,
     }
 
     /// The [`AWS::EMR::Cluster.EbsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-ebsconfiguration.html) property type.
@@ -374,10 +412,12 @@ pub mod cluster {
     pub struct EbsConfiguration {
         /// Property `EbsBlockDeviceConfigs`.
         #[serde(rename="EbsBlockDeviceConfigs")]
-        pub ebs_block_device_configs: Vec<EbsBlockDeviceConfig>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ebs_block_device_configs: Option<Vec<EbsBlockDeviceConfig>>,
         /// Property `EbsOptimized`.
         #[serde(rename="EbsOptimized")]
-        pub ebs_optimized: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ebs_optimized: Option<bool>,
     }
 
     /// The [`AWS::EMR::Cluster.InstanceFleetConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancefleetconfig.html) property type.
@@ -385,19 +425,24 @@ pub mod cluster {
     pub struct InstanceFleetConfig {
         /// Property `InstanceTypeConfigs`.
         #[serde(rename="InstanceTypeConfigs")]
-        pub instance_type_configs: Vec<InstanceTypeConfig>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub instance_type_configs: Option<Vec<InstanceTypeConfig>>,
         /// Property `LaunchSpecifications`.
         #[serde(rename="LaunchSpecifications")]
-        pub launch_specifications: InstanceFleetProvisioningSpecifications,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub launch_specifications: Option<InstanceFleetProvisioningSpecifications>,
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
         /// Property `TargetOnDemandCapacity`.
         #[serde(rename="TargetOnDemandCapacity")]
-        pub target_on_demand_capacity: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub target_on_demand_capacity: Option<u32>,
         /// Property `TargetSpotCapacity`.
         #[serde(rename="TargetSpotCapacity")]
-        pub target_spot_capacity: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub target_spot_capacity: Option<u32>,
     }
 
     /// The [`AWS::EMR::Cluster.InstanceFleetProvisioningSpecifications`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancefleetprovisioningspecifications.html) property type.
@@ -413,16 +458,20 @@ pub mod cluster {
     pub struct InstanceGroupConfig {
         /// Property `AutoScalingPolicy`.
         #[serde(rename="AutoScalingPolicy")]
-        pub auto_scaling_policy: AutoScalingPolicy,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub auto_scaling_policy: Option<AutoScalingPolicy>,
         /// Property `BidPrice`.
         #[serde(rename="BidPrice")]
-        pub bid_price: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub bid_price: Option<String>,
         /// Property `Configurations`.
         #[serde(rename="Configurations")]
-        pub configurations: Vec<Configuration>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub configurations: Option<Vec<Configuration>>,
         /// Property `EbsConfiguration`.
         #[serde(rename="EbsConfiguration")]
-        pub ebs_configuration: EbsConfiguration,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ebs_configuration: Option<EbsConfiguration>,
         /// Property `InstanceCount`.
         #[serde(rename="InstanceCount")]
         pub instance_count: u32,
@@ -431,10 +480,12 @@ pub mod cluster {
         pub instance_type: String,
         /// Property `Market`.
         #[serde(rename="Market")]
-        pub market: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub market: Option<String>,
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
     }
 
     /// The [`AWS::EMR::Cluster.InstanceTypeConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancetypeconfig.html) property type.
@@ -442,22 +493,27 @@ pub mod cluster {
     pub struct InstanceTypeConfig {
         /// Property `BidPrice`.
         #[serde(rename="BidPrice")]
-        pub bid_price: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub bid_price: Option<String>,
         /// Property `BidPriceAsPercentageOfOnDemandPrice`.
         #[serde(rename="BidPriceAsPercentageOfOnDemandPrice")]
-        pub bid_price_as_percentage_of_on_demand_price: f64,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub bid_price_as_percentage_of_on_demand_price: Option<f64>,
         /// Property `Configurations`.
         #[serde(rename="Configurations")]
-        pub configurations: Vec<Configuration>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub configurations: Option<Vec<Configuration>>,
         /// Property `EbsConfiguration`.
         #[serde(rename="EbsConfiguration")]
-        pub ebs_configuration: EbsConfiguration,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ebs_configuration: Option<EbsConfiguration>,
         /// Property `InstanceType`.
         #[serde(rename="InstanceType")]
         pub instance_type: String,
         /// Property `WeightedCapacity`.
         #[serde(rename="WeightedCapacity")]
-        pub weighted_capacity: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub weighted_capacity: Option<u32>,
     }
 
     /// The [`AWS::EMR::Cluster.JobFlowInstancesConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-jobflowinstancesconfig.html) property type.
@@ -465,46 +521,60 @@ pub mod cluster {
     pub struct JobFlowInstancesConfig {
         /// Property `AdditionalMasterSecurityGroups`.
         #[serde(rename="AdditionalMasterSecurityGroups")]
-        pub additional_master_security_groups: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub additional_master_security_groups: Option<Vec<String>>,
         /// Property `AdditionalSlaveSecurityGroups`.
         #[serde(rename="AdditionalSlaveSecurityGroups")]
-        pub additional_slave_security_groups: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub additional_slave_security_groups: Option<Vec<String>>,
         /// Property `CoreInstanceFleet`.
         #[serde(rename="CoreInstanceFleet")]
-        pub core_instance_fleet: InstanceFleetConfig,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub core_instance_fleet: Option<InstanceFleetConfig>,
         /// Property `CoreInstanceGroup`.
         #[serde(rename="CoreInstanceGroup")]
-        pub core_instance_group: InstanceGroupConfig,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub core_instance_group: Option<InstanceGroupConfig>,
         /// Property `Ec2KeyName`.
         #[serde(rename="Ec2KeyName")]
-        pub ec2_key_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ec2_key_name: Option<String>,
         /// Property `Ec2SubnetId`.
         #[serde(rename="Ec2SubnetId")]
-        pub ec2_subnet_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ec2_subnet_id: Option<String>,
         /// Property `EmrManagedMasterSecurityGroup`.
         #[serde(rename="EmrManagedMasterSecurityGroup")]
-        pub emr_managed_master_security_group: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub emr_managed_master_security_group: Option<String>,
         /// Property `EmrManagedSlaveSecurityGroup`.
         #[serde(rename="EmrManagedSlaveSecurityGroup")]
-        pub emr_managed_slave_security_group: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub emr_managed_slave_security_group: Option<String>,
         /// Property `HadoopVersion`.
         #[serde(rename="HadoopVersion")]
-        pub hadoop_version: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub hadoop_version: Option<String>,
         /// Property `MasterInstanceFleet`.
         #[serde(rename="MasterInstanceFleet")]
-        pub master_instance_fleet: InstanceFleetConfig,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub master_instance_fleet: Option<InstanceFleetConfig>,
         /// Property `MasterInstanceGroup`.
         #[serde(rename="MasterInstanceGroup")]
-        pub master_instance_group: InstanceGroupConfig,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub master_instance_group: Option<InstanceGroupConfig>,
         /// Property `Placement`.
         #[serde(rename="Placement")]
-        pub placement: PlacementType,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub placement: Option<PlacementType>,
         /// Property `ServiceAccessSecurityGroup`.
         #[serde(rename="ServiceAccessSecurityGroup")]
-        pub service_access_security_group: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub service_access_security_group: Option<String>,
         /// Property `TerminationProtected`.
         #[serde(rename="TerminationProtected")]
-        pub termination_protected: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub termination_protected: Option<bool>,
     }
 
     /// The [`AWS::EMR::Cluster.MetricDimension`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-metricdimension.html) property type.
@@ -531,7 +601,8 @@ pub mod cluster {
     pub struct ScalingAction {
         /// Property `Market`.
         #[serde(rename="Market")]
-        pub market: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub market: Option<String>,
         /// Property `SimpleScalingPolicyConfiguration`.
         #[serde(rename="SimpleScalingPolicyConfiguration")]
         pub simple_scaling_policy_configuration: SimpleScalingPolicyConfiguration,
@@ -556,7 +627,8 @@ pub mod cluster {
         pub action: ScalingAction,
         /// Property `Description`.
         #[serde(rename="Description")]
-        pub description: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub description: Option<String>,
         /// Property `Name`.
         #[serde(rename="Name")]
         pub name: String,
@@ -578,7 +650,8 @@ pub mod cluster {
     pub struct ScriptBootstrapActionConfig {
         /// Property `Args`.
         #[serde(rename="Args")]
-        pub args: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub args: Option<Vec<String>>,
         /// Property `Path`.
         #[serde(rename="Path")]
         pub path: String,
@@ -589,10 +662,12 @@ pub mod cluster {
     pub struct SimpleScalingPolicyConfiguration {
         /// Property `AdjustmentType`.
         #[serde(rename="AdjustmentType")]
-        pub adjustment_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub adjustment_type: Option<String>,
         /// Property `CoolDown`.
         #[serde(rename="CoolDown")]
-        pub cool_down: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub cool_down: Option<u32>,
         /// Property `ScalingAdjustment`.
         #[serde(rename="ScalingAdjustment")]
         pub scaling_adjustment: u32,
@@ -603,7 +678,8 @@ pub mod cluster {
     pub struct SpotProvisioningSpecification {
         /// Property `BlockDurationMinutes`.
         #[serde(rename="BlockDurationMinutes")]
-        pub block_duration_minutes: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub block_duration_minutes: Option<u32>,
         /// Property `TimeoutAction`.
         #[serde(rename="TimeoutAction")]
         pub timeout_action: String,
@@ -617,7 +693,8 @@ pub mod cluster {
     pub struct VolumeSpecification {
         /// Property `Iops`.
         #[serde(rename="Iops")]
-        pub iops: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub iops: Option<u32>,
         /// Property `SizeInGB`.
         #[serde(rename="SizeInGB")]
         pub size_in_gb: u32,
@@ -635,13 +712,16 @@ pub mod instance_fleet_config {
     pub struct Configuration {
         /// Property `Classification`.
         #[serde(rename="Classification")]
-        pub classification: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub classification: Option<String>,
         /// Property `ConfigurationProperties`.
         #[serde(rename="ConfigurationProperties")]
-        pub configuration_properties: ::std::collections::HashMap<String, String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub configuration_properties: Option<::std::collections::HashMap<String, String>>,
         /// Property `Configurations`.
         #[serde(rename="Configurations")]
-        pub configurations: Vec<Configuration>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub configurations: Option<Vec<Configuration>>,
     }
 
     /// The [`AWS::EMR::InstanceFleetConfig.EbsBlockDeviceConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-ebsblockdeviceconfig.html) property type.
@@ -652,7 +732,8 @@ pub mod instance_fleet_config {
         pub volume_specification: VolumeSpecification,
         /// Property `VolumesPerInstance`.
         #[serde(rename="VolumesPerInstance")]
-        pub volumes_per_instance: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub volumes_per_instance: Option<u32>,
     }
 
     /// The [`AWS::EMR::InstanceFleetConfig.EbsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-ebsconfiguration.html) property type.
@@ -660,10 +741,12 @@ pub mod instance_fleet_config {
     pub struct EbsConfiguration {
         /// Property `EbsBlockDeviceConfigs`.
         #[serde(rename="EbsBlockDeviceConfigs")]
-        pub ebs_block_device_configs: Vec<EbsBlockDeviceConfig>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ebs_block_device_configs: Option<Vec<EbsBlockDeviceConfig>>,
         /// Property `EbsOptimized`.
         #[serde(rename="EbsOptimized")]
-        pub ebs_optimized: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ebs_optimized: Option<bool>,
     }
 
     /// The [`AWS::EMR::InstanceFleetConfig.InstanceFleetProvisioningSpecifications`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-instancefleetprovisioningspecifications.html) property type.
@@ -679,22 +762,27 @@ pub mod instance_fleet_config {
     pub struct InstanceTypeConfig {
         /// Property `BidPrice`.
         #[serde(rename="BidPrice")]
-        pub bid_price: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub bid_price: Option<String>,
         /// Property `BidPriceAsPercentageOfOnDemandPrice`.
         #[serde(rename="BidPriceAsPercentageOfOnDemandPrice")]
-        pub bid_price_as_percentage_of_on_demand_price: f64,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub bid_price_as_percentage_of_on_demand_price: Option<f64>,
         /// Property `Configurations`.
         #[serde(rename="Configurations")]
-        pub configurations: Vec<Configuration>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub configurations: Option<Vec<Configuration>>,
         /// Property `EbsConfiguration`.
         #[serde(rename="EbsConfiguration")]
-        pub ebs_configuration: EbsConfiguration,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ebs_configuration: Option<EbsConfiguration>,
         /// Property `InstanceType`.
         #[serde(rename="InstanceType")]
         pub instance_type: String,
         /// Property `WeightedCapacity`.
         #[serde(rename="WeightedCapacity")]
-        pub weighted_capacity: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub weighted_capacity: Option<u32>,
     }
 
     /// The [`AWS::EMR::InstanceFleetConfig.SpotProvisioningSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-spotprovisioningspecification.html) property type.
@@ -702,7 +790,8 @@ pub mod instance_fleet_config {
     pub struct SpotProvisioningSpecification {
         /// Property `BlockDurationMinutes`.
         #[serde(rename="BlockDurationMinutes")]
-        pub block_duration_minutes: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub block_duration_minutes: Option<u32>,
         /// Property `TimeoutAction`.
         #[serde(rename="TimeoutAction")]
         pub timeout_action: String,
@@ -716,7 +805,8 @@ pub mod instance_fleet_config {
     pub struct VolumeSpecification {
         /// Property `Iops`.
         #[serde(rename="Iops")]
-        pub iops: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub iops: Option<u32>,
         /// Property `SizeInGB`.
         #[serde(rename="SizeInGB")]
         pub size_in_gb: u32,
@@ -748,28 +838,33 @@ pub mod instance_group_config {
         pub comparison_operator: String,
         /// Property `Dimensions`.
         #[serde(rename="Dimensions")]
-        pub dimensions: Vec<MetricDimension>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub dimensions: Option<Vec<MetricDimension>>,
         /// Property `EvaluationPeriods`.
         #[serde(rename="EvaluationPeriods")]
-        pub evaluation_periods: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub evaluation_periods: Option<u32>,
         /// Property `MetricName`.
         #[serde(rename="MetricName")]
         pub metric_name: String,
         /// Property `Namespace`.
         #[serde(rename="Namespace")]
-        pub namespace: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub namespace: Option<String>,
         /// Property `Period`.
         #[serde(rename="Period")]
         pub period: u32,
         /// Property `Statistic`.
         #[serde(rename="Statistic")]
-        pub statistic: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub statistic: Option<String>,
         /// Property `Threshold`.
         #[serde(rename="Threshold")]
         pub threshold: f64,
         /// Property `Unit`.
         #[serde(rename="Unit")]
-        pub unit: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub unit: Option<String>,
     }
 
     /// The [`AWS::EMR::InstanceGroupConfig.Configuration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-configuration.html) property type.
@@ -777,13 +872,16 @@ pub mod instance_group_config {
     pub struct Configuration {
         /// Property `Classification`.
         #[serde(rename="Classification")]
-        pub classification: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub classification: Option<String>,
         /// Property `ConfigurationProperties`.
         #[serde(rename="ConfigurationProperties")]
-        pub configuration_properties: ::std::collections::HashMap<String, String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub configuration_properties: Option<::std::collections::HashMap<String, String>>,
         /// Property `Configurations`.
         #[serde(rename="Configurations")]
-        pub configurations: Vec<Configuration>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub configurations: Option<Vec<Configuration>>,
     }
 
     /// The [`AWS::EMR::InstanceGroupConfig.EbsBlockDeviceConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig.html) property type.
@@ -794,7 +892,8 @@ pub mod instance_group_config {
         pub volume_specification: VolumeSpecification,
         /// Property `VolumesPerInstance`.
         #[serde(rename="VolumesPerInstance")]
-        pub volumes_per_instance: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub volumes_per_instance: Option<u32>,
     }
 
     /// The [`AWS::EMR::InstanceGroupConfig.EbsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration.html) property type.
@@ -802,10 +901,12 @@ pub mod instance_group_config {
     pub struct EbsConfiguration {
         /// Property `EbsBlockDeviceConfigs`.
         #[serde(rename="EbsBlockDeviceConfigs")]
-        pub ebs_block_device_configs: Vec<EbsBlockDeviceConfig>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ebs_block_device_configs: Option<Vec<EbsBlockDeviceConfig>>,
         /// Property `EbsOptimized`.
         #[serde(rename="EbsOptimized")]
-        pub ebs_optimized: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ebs_optimized: Option<bool>,
     }
 
     /// The [`AWS::EMR::InstanceGroupConfig.MetricDimension`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-metricdimension.html) property type.
@@ -824,7 +925,8 @@ pub mod instance_group_config {
     pub struct ScalingAction {
         /// Property `Market`.
         #[serde(rename="Market")]
-        pub market: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub market: Option<String>,
         /// Property `SimpleScalingPolicyConfiguration`.
         #[serde(rename="SimpleScalingPolicyConfiguration")]
         pub simple_scaling_policy_configuration: SimpleScalingPolicyConfiguration,
@@ -849,7 +951,8 @@ pub mod instance_group_config {
         pub action: ScalingAction,
         /// Property `Description`.
         #[serde(rename="Description")]
-        pub description: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub description: Option<String>,
         /// Property `Name`.
         #[serde(rename="Name")]
         pub name: String,
@@ -871,10 +974,12 @@ pub mod instance_group_config {
     pub struct SimpleScalingPolicyConfiguration {
         /// Property `AdjustmentType`.
         #[serde(rename="AdjustmentType")]
-        pub adjustment_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub adjustment_type: Option<String>,
         /// Property `CoolDown`.
         #[serde(rename="CoolDown")]
-        pub cool_down: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub cool_down: Option<u32>,
         /// Property `ScalingAdjustment`.
         #[serde(rename="ScalingAdjustment")]
         pub scaling_adjustment: u32,
@@ -885,7 +990,8 @@ pub mod instance_group_config {
     pub struct VolumeSpecification {
         /// Property `Iops`.
         #[serde(rename="Iops")]
-        pub iops: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub iops: Option<u32>,
         /// Property `SizeInGB`.
         #[serde(rename="SizeInGB")]
         pub size_in_gb: u32,
@@ -903,16 +1009,19 @@ pub mod step {
     pub struct HadoopJarStepConfig {
         /// Property `Args`.
         #[serde(rename="Args")]
-        pub args: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub args: Option<Vec<String>>,
         /// Property `Jar`.
         #[serde(rename="Jar")]
         pub jar: String,
         /// Property `MainClass`.
         #[serde(rename="MainClass")]
-        pub main_class: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub main_class: Option<String>,
         /// Property `StepProperties`.
         #[serde(rename="StepProperties")]
-        pub step_properties: Vec<KeyValue>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub step_properties: Option<Vec<KeyValue>>,
     }
 
     /// The [`AWS::EMR::Step.KeyValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-step-keyvalue.html) property type.
@@ -920,9 +1029,11 @@ pub mod step {
     pub struct KeyValue {
         /// Property `Key`.
         #[serde(rename="Key")]
-        pub key: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub key: Option<String>,
         /// Property `Value`.
         #[serde(rename="Value")]
-        pub value: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub value: Option<String>,
     }
 }

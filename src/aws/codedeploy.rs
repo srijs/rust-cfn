@@ -11,10 +11,12 @@ pub struct Application {
 pub struct ApplicationProperties {
     /// Property `ApplicationName`.
     #[serde(rename="ApplicationName")]
-    pub application_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub application_name: Option<String>,
     /// Property `ComputePlatform`.
     #[serde(rename="ComputePlatform")]
-    pub compute_platform: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub compute_platform: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for Application {
@@ -47,10 +49,12 @@ pub struct DeploymentConfig {
 pub struct DeploymentConfigProperties {
     /// Property `DeploymentConfigName`.
     #[serde(rename="DeploymentConfigName")]
-    pub deployment_config_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub deployment_config_name: Option<String>,
     /// Property `MinimumHealthyHosts`.
     #[serde(rename="MinimumHealthyHosts")]
-    pub minimum_healthy_hosts: self::deployment_config::MinimumHealthyHosts,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub minimum_healthy_hosts: Option<self::deployment_config::MinimumHealthyHosts>,
 }
 
 impl<'a> ::Resource<'a> for DeploymentConfig {
@@ -83,43 +87,54 @@ pub struct DeploymentGroup {
 pub struct DeploymentGroupProperties {
     /// Property `AlarmConfiguration`.
     #[serde(rename="AlarmConfiguration")]
-    pub alarm_configuration: self::deployment_group::AlarmConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub alarm_configuration: Option<self::deployment_group::AlarmConfiguration>,
     /// Property `ApplicationName`.
     #[serde(rename="ApplicationName")]
     pub application_name: String,
     /// Property `AutoRollbackConfiguration`.
     #[serde(rename="AutoRollbackConfiguration")]
-    pub auto_rollback_configuration: self::deployment_group::AutoRollbackConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub auto_rollback_configuration: Option<self::deployment_group::AutoRollbackConfiguration>,
     /// Property `AutoScalingGroups`.
     #[serde(rename="AutoScalingGroups")]
-    pub auto_scaling_groups: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub auto_scaling_groups: Option<Vec<String>>,
     /// Property `Deployment`.
     #[serde(rename="Deployment")]
-    pub deployment: self::deployment_group::Deployment,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub deployment: Option<self::deployment_group::Deployment>,
     /// Property `DeploymentConfigName`.
     #[serde(rename="DeploymentConfigName")]
-    pub deployment_config_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub deployment_config_name: Option<String>,
     /// Property `DeploymentGroupName`.
     #[serde(rename="DeploymentGroupName")]
-    pub deployment_group_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub deployment_group_name: Option<String>,
     /// Property `DeploymentStyle`.
     #[serde(rename="DeploymentStyle")]
-    pub deployment_style: self::deployment_group::DeploymentStyle,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub deployment_style: Option<self::deployment_group::DeploymentStyle>,
     /// Property `Ec2TagFilters`.
     #[serde(rename="Ec2TagFilters")]
-    pub ec2_tag_filters: Vec<self::deployment_group::EC2TagFilter>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ec2_tag_filters: Option<Vec<self::deployment_group::EC2TagFilter>>,
     /// Property `LoadBalancerInfo`.
     #[serde(rename="LoadBalancerInfo")]
-    pub load_balancer_info: self::deployment_group::LoadBalancerInfo,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub load_balancer_info: Option<self::deployment_group::LoadBalancerInfo>,
     /// Property `OnPremisesInstanceTagFilters`.
     #[serde(rename="OnPremisesInstanceTagFilters")]
-    pub on_premises_instance_tag_filters: Vec<self::deployment_group::TagFilter>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub on_premises_instance_tag_filters: Option<Vec<self::deployment_group::TagFilter>>,
     /// Property `ServiceRoleArn`.
     #[serde(rename="ServiceRoleArn")]
     pub service_role_arn: String,
     /// Property `TriggerConfigurations`.
     #[serde(rename="TriggerConfigurations")]
-    pub trigger_configurations: Vec<self::deployment_group::TriggerConfig>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub trigger_configurations: Option<Vec<self::deployment_group::TriggerConfig>>,
 }
 
 impl<'a> ::Resource<'a> for DeploymentGroup {
@@ -164,7 +179,8 @@ pub mod deployment_group {
     pub struct Alarm {
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
     }
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.AlarmConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-alarmconfiguration.html) property type.
@@ -172,13 +188,16 @@ pub mod deployment_group {
     pub struct AlarmConfiguration {
         /// Property `Alarms`.
         #[serde(rename="Alarms")]
-        pub alarms: Vec<Alarm>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub alarms: Option<Vec<Alarm>>,
         /// Property `Enabled`.
         #[serde(rename="Enabled")]
-        pub enabled: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub enabled: Option<bool>,
         /// Property `IgnorePollAlarmFailure`.
         #[serde(rename="IgnorePollAlarmFailure")]
-        pub ignore_poll_alarm_failure: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ignore_poll_alarm_failure: Option<bool>,
     }
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.AutoRollbackConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-autorollbackconfiguration.html) property type.
@@ -186,10 +205,12 @@ pub mod deployment_group {
     pub struct AutoRollbackConfiguration {
         /// Property `Enabled`.
         #[serde(rename="Enabled")]
-        pub enabled: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub enabled: Option<bool>,
         /// Property `Events`.
         #[serde(rename="Events")]
-        pub events: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub events: Option<Vec<String>>,
     }
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.Deployment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment.html) property type.
@@ -197,10 +218,12 @@ pub mod deployment_group {
     pub struct Deployment {
         /// Property `Description`.
         #[serde(rename="Description")]
-        pub description: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub description: Option<String>,
         /// Property `IgnoreApplicationStopFailures`.
         #[serde(rename="IgnoreApplicationStopFailures")]
-        pub ignore_application_stop_failures: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ignore_application_stop_failures: Option<bool>,
         /// Property `Revision`.
         #[serde(rename="Revision")]
         pub revision: RevisionLocation,
@@ -211,10 +234,12 @@ pub mod deployment_group {
     pub struct DeploymentStyle {
         /// Property `DeploymentOption`.
         #[serde(rename="DeploymentOption")]
-        pub deployment_option: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub deployment_option: Option<String>,
         /// Property `DeploymentType`.
         #[serde(rename="DeploymentType")]
-        pub deployment_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub deployment_type: Option<String>,
     }
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.EC2TagFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ec2tagfilters.html) property type.
@@ -222,13 +247,16 @@ pub mod deployment_group {
     pub struct EC2TagFilter {
         /// Property `Key`.
         #[serde(rename="Key")]
-        pub key: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub key: Option<String>,
         /// Property `Type`.
         #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub type_: Option<String>,
         /// Property `Value`.
         #[serde(rename="Value")]
-        pub value: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub value: Option<String>,
     }
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.ELBInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-elbinfo.html) property type.
@@ -236,7 +264,8 @@ pub mod deployment_group {
     pub struct ELBInfo {
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
     }
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.GitHubLocation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment-revision-githublocation.html) property type.
@@ -255,10 +284,12 @@ pub mod deployment_group {
     pub struct LoadBalancerInfo {
         /// Property `ElbInfoList`.
         #[serde(rename="ElbInfoList")]
-        pub elb_info_list: Vec<ELBInfo>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub elb_info_list: Option<Vec<ELBInfo>>,
         /// Property `TargetGroupInfoList`.
         #[serde(rename="TargetGroupInfoList")]
-        pub target_group_info_list: Vec<TargetGroupInfo>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub target_group_info_list: Option<Vec<TargetGroupInfo>>,
     }
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.RevisionLocation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment-revision.html) property type.
@@ -266,13 +297,16 @@ pub mod deployment_group {
     pub struct RevisionLocation {
         /// Property `GitHubLocation`.
         #[serde(rename="GitHubLocation")]
-        pub git_hub_location: GitHubLocation,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub git_hub_location: Option<GitHubLocation>,
         /// Property `RevisionType`.
         #[serde(rename="RevisionType")]
-        pub revision_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub revision_type: Option<String>,
         /// Property `S3Location`.
         #[serde(rename="S3Location")]
-        pub s3_location: S3Location,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub s3_location: Option<S3Location>,
     }
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.S3Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment-revision-s3location.html) property type.
@@ -283,16 +317,19 @@ pub mod deployment_group {
         pub bucket: String,
         /// Property `BundleType`.
         #[serde(rename="BundleType")]
-        pub bundle_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub bundle_type: Option<String>,
         /// Property `ETag`.
         #[serde(rename="ETag")]
-        pub e_tag: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub e_tag: Option<String>,
         /// Property `Key`.
         #[serde(rename="Key")]
         pub key: String,
         /// Property `Version`.
         #[serde(rename="Version")]
-        pub version: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub version: Option<String>,
     }
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.TagFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-onpremisesinstancetagfilters.html) property type.
@@ -300,13 +337,16 @@ pub mod deployment_group {
     pub struct TagFilter {
         /// Property `Key`.
         #[serde(rename="Key")]
-        pub key: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub key: Option<String>,
         /// Property `Type`.
         #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub type_: Option<String>,
         /// Property `Value`.
         #[serde(rename="Value")]
-        pub value: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub value: Option<String>,
     }
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.TargetGroupInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-targetgroupinfo.html) property type.
@@ -314,7 +354,8 @@ pub mod deployment_group {
     pub struct TargetGroupInfo {
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
     }
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.TriggerConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-triggerconfig.html) property type.
@@ -322,12 +363,15 @@ pub mod deployment_group {
     pub struct TriggerConfig {
         /// Property `TriggerEvents`.
         #[serde(rename="TriggerEvents")]
-        pub trigger_events: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub trigger_events: Option<Vec<String>>,
         /// Property `TriggerName`.
         #[serde(rename="TriggerName")]
-        pub trigger_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub trigger_name: Option<String>,
         /// Property `TriggerTargetArn`.
         #[serde(rename="TriggerTargetArn")]
-        pub trigger_target_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub trigger_target_arn: Option<String>,
     }
 }

@@ -11,13 +11,16 @@ pub struct Subscription {
 pub struct SubscriptionProperties {
     /// Property `Endpoint`.
     #[serde(rename="Endpoint")]
-    pub endpoint: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub endpoint: Option<String>,
     /// Property `Protocol`.
     #[serde(rename="Protocol")]
-    pub protocol: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub protocol: Option<String>,
     /// Property `TopicArn`.
     #[serde(rename="TopicArn")]
-    pub topic_arn: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub topic_arn: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for Subscription {
@@ -50,13 +53,16 @@ pub struct Topic {
 pub struct TopicProperties {
     /// Property `DisplayName`.
     #[serde(rename="DisplayName")]
-    pub display_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub display_name: Option<String>,
     /// Property `Subscription`.
     #[serde(rename="Subscription")]
-    pub subscription: Vec<self::topic::Subscription>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub subscription: Option<Vec<self::topic::Subscription>>,
     /// Property `TopicName`.
     #[serde(rename="TopicName")]
-    pub topic_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub topic_name: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for Topic {

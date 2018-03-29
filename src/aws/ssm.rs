@@ -11,25 +11,31 @@ pub struct Association {
 pub struct AssociationProperties {
     /// Property `AssociationName`.
     #[serde(rename="AssociationName")]
-    pub association_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub association_name: Option<String>,
     /// Property `DocumentVersion`.
     #[serde(rename="DocumentVersion")]
-    pub document_version: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub document_version: Option<String>,
     /// Property `InstanceId`.
     #[serde(rename="InstanceId")]
-    pub instance_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub instance_id: Option<String>,
     /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
     /// Property `Parameters`.
     #[serde(rename="Parameters")]
-    pub parameters: ::std::collections::HashMap<String, self::association::ParameterValues>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub parameters: Option<::std::collections::HashMap<String, self::association::ParameterValues>>,
     /// Property `ScheduleExpression`.
     #[serde(rename="ScheduleExpression")]
-    pub schedule_expression: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub schedule_expression: Option<String>,
     /// Property `Targets`.
     #[serde(rename="Targets")]
-    pub targets: Vec<self::association::Target>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub targets: Option<Vec<self::association::Target>>,
 }
 
 impl<'a> ::Resource<'a> for Association {
@@ -65,10 +71,12 @@ pub struct DocumentProperties {
     pub content: ::json::Value,
     /// Property `DocumentType`.
     #[serde(rename="DocumentType")]
-    pub document_type: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub document_type: Option<String>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
 }
 
 impl<'a> ::Resource<'a> for Document {
@@ -101,10 +109,12 @@ pub struct MaintenanceWindowTask {
 pub struct MaintenanceWindowTaskProperties {
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `LoggingInfo`.
     #[serde(rename="LoggingInfo")]
-    pub logging_info: self::maintenance_window_task::LoggingInfo,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub logging_info: Option<self::maintenance_window_task::LoggingInfo>,
     /// Property `MaxConcurrency`.
     #[serde(rename="MaxConcurrency")]
     pub max_concurrency: String,
@@ -113,7 +123,8 @@ pub struct MaintenanceWindowTaskProperties {
     pub max_errors: String,
     /// Property `Name`.
     #[serde(rename="Name")]
-    pub name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     /// Property `Priority`.
     #[serde(rename="Priority")]
     pub priority: u32,
@@ -128,16 +139,19 @@ pub struct MaintenanceWindowTaskProperties {
     pub task_arn: String,
     /// Property `TaskInvocationParameters`.
     #[serde(rename="TaskInvocationParameters")]
-    pub task_invocation_parameters: self::maintenance_window_task::TaskInvocationParameters,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub task_invocation_parameters: Option<self::maintenance_window_task::TaskInvocationParameters>,
     /// Property `TaskParameters`.
     #[serde(rename="TaskParameters")]
-    pub task_parameters: ::json::Value,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub task_parameters: Option<::json::Value>,
     /// Property `TaskType`.
     #[serde(rename="TaskType")]
     pub task_type: String,
     /// Property `WindowId`.
     #[serde(rename="WindowId")]
-    pub window_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub window_id: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for MaintenanceWindowTask {
@@ -170,13 +184,16 @@ pub struct Parameter {
 pub struct ParameterProperties {
     /// Property `AllowedPattern`.
     #[serde(rename="AllowedPattern")]
-    pub allowed_pattern: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub allowed_pattern: Option<String>,
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `Name`.
     #[serde(rename="Name")]
-    pub name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     /// Property `Type`.
     #[serde(rename="Type")]
     pub type_: String,
@@ -215,37 +232,47 @@ pub struct PatchBaseline {
 pub struct PatchBaselineProperties {
     /// Property `ApprovalRules`.
     #[serde(rename="ApprovalRules")]
-    pub approval_rules: self::patch_baseline::RuleGroup,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub approval_rules: Option<self::patch_baseline::RuleGroup>,
     /// Property `ApprovedPatches`.
     #[serde(rename="ApprovedPatches")]
-    pub approved_patches: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub approved_patches: Option<Vec<String>>,
     /// Property `ApprovedPatchesComplianceLevel`.
     #[serde(rename="ApprovedPatchesComplianceLevel")]
-    pub approved_patches_compliance_level: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub approved_patches_compliance_level: Option<String>,
     /// Property `ApprovedPatchesEnableNonSecurity`.
     #[serde(rename="ApprovedPatchesEnableNonSecurity")]
-    pub approved_patches_enable_non_security: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub approved_patches_enable_non_security: Option<bool>,
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `GlobalFilters`.
     #[serde(rename="GlobalFilters")]
-    pub global_filters: self::patch_baseline::PatchFilterGroup,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub global_filters: Option<self::patch_baseline::PatchFilterGroup>,
     /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
     /// Property `OperatingSystem`.
     #[serde(rename="OperatingSystem")]
-    pub operating_system: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub operating_system: Option<String>,
     /// Property `PatchGroups`.
     #[serde(rename="PatchGroups")]
-    pub patch_groups: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub patch_groups: Option<Vec<String>>,
     /// Property `RejectedPatches`.
     #[serde(rename="RejectedPatches")]
-    pub rejected_patches: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub rejected_patches: Option<Vec<String>>,
     /// Property `Sources`.
     #[serde(rename="Sources")]
-    pub sources: Vec<self::patch_baseline::PatchSource>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sources: Option<Vec<self::patch_baseline::PatchSource>>,
 }
 
 impl<'a> ::Resource<'a> for PatchBaseline {
@@ -304,7 +331,8 @@ pub mod maintenance_window_task {
         pub s3_bucket: String,
         /// Property `S3Prefix`.
         #[serde(rename="S3Prefix")]
-        pub s3_prefix: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub s3_prefix: Option<String>,
     }
 
     /// The [`AWS::SSM::MaintenanceWindowTask.MaintenanceWindowAutomationParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowautomationparameters.html) property type.
@@ -312,10 +340,12 @@ pub mod maintenance_window_task {
     pub struct MaintenanceWindowAutomationParameters {
         /// Property `DocumentVersion`.
         #[serde(rename="DocumentVersion")]
-        pub document_version: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub document_version: Option<String>,
         /// Property `Parameters`.
         #[serde(rename="Parameters")]
-        pub parameters: ::json::Value,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub parameters: Option<::json::Value>,
     }
 
     /// The [`AWS::SSM::MaintenanceWindowTask.MaintenanceWindowLambdaParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowlambdaparameters.html) property type.
@@ -323,13 +353,16 @@ pub mod maintenance_window_task {
     pub struct MaintenanceWindowLambdaParameters {
         /// Property `ClientContext`.
         #[serde(rename="ClientContext")]
-        pub client_context: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub client_context: Option<String>,
         /// Property `Payload`.
         #[serde(rename="Payload")]
-        pub payload: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub payload: Option<String>,
         /// Property `Qualifier`.
         #[serde(rename="Qualifier")]
-        pub qualifier: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub qualifier: Option<String>,
     }
 
     /// The [`AWS::SSM::MaintenanceWindowTask.MaintenanceWindowRunCommandParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowruncommandparameters.html) property type.
@@ -337,31 +370,40 @@ pub mod maintenance_window_task {
     pub struct MaintenanceWindowRunCommandParameters {
         /// Property `Comment`.
         #[serde(rename="Comment")]
-        pub comment: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub comment: Option<String>,
         /// Property `DocumentHash`.
         #[serde(rename="DocumentHash")]
-        pub document_hash: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub document_hash: Option<String>,
         /// Property `DocumentHashType`.
         #[serde(rename="DocumentHashType")]
-        pub document_hash_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub document_hash_type: Option<String>,
         /// Property `NotificationConfig`.
         #[serde(rename="NotificationConfig")]
-        pub notification_config: NotificationConfig,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub notification_config: Option<NotificationConfig>,
         /// Property `OutputS3BucketName`.
         #[serde(rename="OutputS3BucketName")]
-        pub output_s3_bucket_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub output_s3_bucket_name: Option<String>,
         /// Property `OutputS3KeyPrefix`.
         #[serde(rename="OutputS3KeyPrefix")]
-        pub output_s3_key_prefix: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub output_s3_key_prefix: Option<String>,
         /// Property `Parameters`.
         #[serde(rename="Parameters")]
-        pub parameters: ::json::Value,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub parameters: Option<::json::Value>,
         /// Property `ServiceRoleArn`.
         #[serde(rename="ServiceRoleArn")]
-        pub service_role_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub service_role_arn: Option<String>,
         /// Property `TimeoutSeconds`.
         #[serde(rename="TimeoutSeconds")]
-        pub timeout_seconds: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub timeout_seconds: Option<u32>,
     }
 
     /// The [`AWS::SSM::MaintenanceWindowTask.MaintenanceWindowStepFunctionsParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowstepfunctionsparameters.html) property type.
@@ -369,10 +411,12 @@ pub mod maintenance_window_task {
     pub struct MaintenanceWindowStepFunctionsParameters {
         /// Property `Input`.
         #[serde(rename="Input")]
-        pub input: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub input: Option<String>,
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
     }
 
     /// The [`AWS::SSM::MaintenanceWindowTask.NotificationConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-notificationconfig.html) property type.
@@ -383,10 +427,12 @@ pub mod maintenance_window_task {
         pub notification_arn: String,
         /// Property `NotificationEvents`.
         #[serde(rename="NotificationEvents")]
-        pub notification_events: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub notification_events: Option<Vec<String>>,
         /// Property `NotificationType`.
         #[serde(rename="NotificationType")]
-        pub notification_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub notification_type: Option<String>,
     }
 
     /// The [`AWS::SSM::MaintenanceWindowTask.Target`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-target.html) property type.
@@ -397,7 +443,8 @@ pub mod maintenance_window_task {
         pub key: String,
         /// Property `Values`.
         #[serde(rename="Values")]
-        pub values: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub values: Option<Vec<String>>,
     }
 
     /// The [`AWS::SSM::MaintenanceWindowTask.TaskInvocationParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-taskinvocationparameters.html) property type.
@@ -405,16 +452,20 @@ pub mod maintenance_window_task {
     pub struct TaskInvocationParameters {
         /// Property `MaintenanceWindowAutomationParameters`.
         #[serde(rename="MaintenanceWindowAutomationParameters")]
-        pub maintenance_window_automation_parameters: MaintenanceWindowAutomationParameters,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub maintenance_window_automation_parameters: Option<MaintenanceWindowAutomationParameters>,
         /// Property `MaintenanceWindowLambdaParameters`.
         #[serde(rename="MaintenanceWindowLambdaParameters")]
-        pub maintenance_window_lambda_parameters: MaintenanceWindowLambdaParameters,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub maintenance_window_lambda_parameters: Option<MaintenanceWindowLambdaParameters>,
         /// Property `MaintenanceWindowRunCommandParameters`.
         #[serde(rename="MaintenanceWindowRunCommandParameters")]
-        pub maintenance_window_run_command_parameters: MaintenanceWindowRunCommandParameters,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub maintenance_window_run_command_parameters: Option<MaintenanceWindowRunCommandParameters>,
         /// Property `MaintenanceWindowStepFunctionsParameters`.
         #[serde(rename="MaintenanceWindowStepFunctionsParameters")]
-        pub maintenance_window_step_functions_parameters: MaintenanceWindowStepFunctionsParameters,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub maintenance_window_step_functions_parameters: Option<MaintenanceWindowStepFunctionsParameters>,
     }
 }
 
@@ -426,10 +477,12 @@ pub mod patch_baseline {
     pub struct PatchFilter {
         /// Property `Key`.
         #[serde(rename="Key")]
-        pub key: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub key: Option<String>,
         /// Property `Values`.
         #[serde(rename="Values")]
-        pub values: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub values: Option<Vec<String>>,
     }
 
     /// The [`AWS::SSM::PatchBaseline.PatchFilterGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-patchfiltergroup.html) property type.
@@ -437,7 +490,8 @@ pub mod patch_baseline {
     pub struct PatchFilterGroup {
         /// Property `PatchFilters`.
         #[serde(rename="PatchFilters")]
-        pub patch_filters: Vec<PatchFilter>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub patch_filters: Option<Vec<PatchFilter>>,
     }
 
     /// The [`AWS::SSM::PatchBaseline.PatchSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-patchsource.html) property type.
@@ -445,13 +499,16 @@ pub mod patch_baseline {
     pub struct PatchSource {
         /// Property `Configuration`.
         #[serde(rename="Configuration")]
-        pub configuration: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub configuration: Option<String>,
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
         /// Property `Products`.
         #[serde(rename="Products")]
-        pub products: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub products: Option<Vec<String>>,
     }
 
     /// The [`AWS::SSM::PatchBaseline.Rule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-rule.html) property type.
@@ -459,16 +516,20 @@ pub mod patch_baseline {
     pub struct Rule {
         /// Property `ApproveAfterDays`.
         #[serde(rename="ApproveAfterDays")]
-        pub approve_after_days: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub approve_after_days: Option<u32>,
         /// Property `ComplianceLevel`.
         #[serde(rename="ComplianceLevel")]
-        pub compliance_level: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub compliance_level: Option<String>,
         /// Property `EnableNonSecurity`.
         #[serde(rename="EnableNonSecurity")]
-        pub enable_non_security: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub enable_non_security: Option<bool>,
         /// Property `PatchFilterGroup`.
         #[serde(rename="PatchFilterGroup")]
-        pub patch_filter_group: PatchFilterGroup,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub patch_filter_group: Option<PatchFilterGroup>,
     }
 
     /// The [`AWS::SSM::PatchBaseline.RuleGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-rulegroup.html) property type.
@@ -476,6 +537,7 @@ pub mod patch_baseline {
     pub struct RuleGroup {
         /// Property `PatchRules`.
         #[serde(rename="PatchRules")]
-        pub patch_rules: Vec<Rule>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub patch_rules: Option<Vec<Rule>>,
     }
 }

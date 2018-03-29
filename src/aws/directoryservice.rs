@@ -11,10 +11,12 @@ pub struct MicrosoftAD {
 pub struct MicrosoftADProperties {
     /// Property `CreateAlias`.
     #[serde(rename="CreateAlias")]
-    pub create_alias: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub create_alias: Option<bool>,
     /// Property `EnableSso`.
     #[serde(rename="EnableSso")]
-    pub enable_sso: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub enable_sso: Option<bool>,
     /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
@@ -23,7 +25,8 @@ pub struct MicrosoftADProperties {
     pub password: String,
     /// Property `ShortName`.
     #[serde(rename="ShortName")]
-    pub short_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub short_name: Option<String>,
     /// Property `VpcSettings`.
     #[serde(rename="VpcSettings")]
     pub vpc_settings: self::microsoft_ad::VpcSettings,
@@ -59,13 +62,16 @@ pub struct SimpleAD {
 pub struct SimpleADProperties {
     /// Property `CreateAlias`.
     #[serde(rename="CreateAlias")]
-    pub create_alias: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub create_alias: Option<bool>,
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `EnableSso`.
     #[serde(rename="EnableSso")]
-    pub enable_sso: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub enable_sso: Option<bool>,
     /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
@@ -74,7 +80,8 @@ pub struct SimpleADProperties {
     pub password: String,
     /// Property `ShortName`.
     #[serde(rename="ShortName")]
-    pub short_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub short_name: Option<String>,
     /// Property `Size`.
     #[serde(rename="Size")]
     pub size: String,

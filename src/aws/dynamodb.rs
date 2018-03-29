@@ -11,34 +11,42 @@ pub struct Table {
 pub struct TableProperties {
     /// Property `AttributeDefinitions`.
     #[serde(rename="AttributeDefinitions")]
-    pub attribute_definitions: Vec<self::table::AttributeDefinition>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub attribute_definitions: Option<Vec<self::table::AttributeDefinition>>,
     /// Property `GlobalSecondaryIndexes`.
     #[serde(rename="GlobalSecondaryIndexes")]
-    pub global_secondary_indexes: Vec<self::table::GlobalSecondaryIndex>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub global_secondary_indexes: Option<Vec<self::table::GlobalSecondaryIndex>>,
     /// Property `KeySchema`.
     #[serde(rename="KeySchema")]
     pub key_schema: Vec<self::table::KeySchema>,
     /// Property `LocalSecondaryIndexes`.
     #[serde(rename="LocalSecondaryIndexes")]
-    pub local_secondary_indexes: Vec<self::table::LocalSecondaryIndex>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub local_secondary_indexes: Option<Vec<self::table::LocalSecondaryIndex>>,
     /// Property `ProvisionedThroughput`.
     #[serde(rename="ProvisionedThroughput")]
     pub provisioned_throughput: self::table::ProvisionedThroughput,
     /// Property `SSESpecification`.
     #[serde(rename="SSESpecification")]
-    pub sse_specification: self::table::SSESpecification,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sse_specification: Option<self::table::SSESpecification>,
     /// Property `StreamSpecification`.
     #[serde(rename="StreamSpecification")]
-    pub stream_specification: self::table::StreamSpecification,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub stream_specification: Option<self::table::StreamSpecification>,
     /// Property `TableName`.
     #[serde(rename="TableName")]
-    pub table_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub table_name: Option<String>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
     /// Property `TimeToLiveSpecification`.
     #[serde(rename="TimeToLiveSpecification")]
-    pub time_to_live_specification: self::table::TimeToLiveSpecification,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub time_to_live_specification: Option<self::table::TimeToLiveSpecification>,
 }
 
 impl<'a> ::Resource<'a> for Table {
@@ -121,10 +129,12 @@ pub mod table {
     pub struct Projection {
         /// Property `NonKeyAttributes`.
         #[serde(rename="NonKeyAttributes")]
-        pub non_key_attributes: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub non_key_attributes: Option<Vec<String>>,
         /// Property `ProjectionType`.
         #[serde(rename="ProjectionType")]
-        pub projection_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub projection_type: Option<String>,
     }
 
     /// The [`AWS::DynamoDB::Table.ProvisionedThroughput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-provisionedthroughput.html) property type.

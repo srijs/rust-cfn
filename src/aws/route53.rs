@@ -14,7 +14,8 @@ pub struct HealthCheckProperties {
     pub health_check_config: self::health_check::HealthCheckConfig,
     /// Property `HealthCheckTags`.
     #[serde(rename="HealthCheckTags")]
-    pub health_check_tags: Vec<self::health_check::HealthCheckTag>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub health_check_tags: Option<Vec<self::health_check::HealthCheckTag>>,
 }
 
 impl<'a> ::Resource<'a> for HealthCheck {
@@ -47,19 +48,23 @@ pub struct HostedZone {
 pub struct HostedZoneProperties {
     /// Property `HostedZoneConfig`.
     #[serde(rename="HostedZoneConfig")]
-    pub hosted_zone_config: self::hosted_zone::HostedZoneConfig,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub hosted_zone_config: Option<self::hosted_zone::HostedZoneConfig>,
     /// Property `HostedZoneTags`.
     #[serde(rename="HostedZoneTags")]
-    pub hosted_zone_tags: Vec<self::hosted_zone::HostedZoneTag>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub hosted_zone_tags: Option<Vec<self::hosted_zone::HostedZoneTag>>,
     /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
     /// Property `QueryLoggingConfig`.
     #[serde(rename="QueryLoggingConfig")]
-    pub query_logging_config: self::hosted_zone::QueryLoggingConfig,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub query_logging_config: Option<self::hosted_zone::QueryLoggingConfig>,
     /// Property `VPCs`.
     #[serde(rename="VPCs")]
-    pub vp_cs: Vec<self::hosted_zone::VPC>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub vp_cs: Option<Vec<self::hosted_zone::VPC>>,
 }
 
 impl<'a> ::Resource<'a> for HostedZone {
@@ -92,46 +97,58 @@ pub struct RecordSet {
 pub struct RecordSetProperties {
     /// Property `AliasTarget`.
     #[serde(rename="AliasTarget")]
-    pub alias_target: self::record_set::AliasTarget,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub alias_target: Option<self::record_set::AliasTarget>,
     /// Property `Comment`.
     #[serde(rename="Comment")]
-    pub comment: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub comment: Option<String>,
     /// Property `Failover`.
     #[serde(rename="Failover")]
-    pub failover: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub failover: Option<String>,
     /// Property `GeoLocation`.
     #[serde(rename="GeoLocation")]
-    pub geo_location: self::record_set::GeoLocation,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub geo_location: Option<self::record_set::GeoLocation>,
     /// Property `HealthCheckId`.
     #[serde(rename="HealthCheckId")]
-    pub health_check_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub health_check_id: Option<String>,
     /// Property `HostedZoneId`.
     #[serde(rename="HostedZoneId")]
-    pub hosted_zone_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub hosted_zone_id: Option<String>,
     /// Property `HostedZoneName`.
     #[serde(rename="HostedZoneName")]
-    pub hosted_zone_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub hosted_zone_name: Option<String>,
     /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
     /// Property `Region`.
     #[serde(rename="Region")]
-    pub region: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub region: Option<String>,
     /// Property `ResourceRecords`.
     #[serde(rename="ResourceRecords")]
-    pub resource_records: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub resource_records: Option<Vec<String>>,
     /// Property `SetIdentifier`.
     #[serde(rename="SetIdentifier")]
-    pub set_identifier: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub set_identifier: Option<String>,
     /// Property `TTL`.
     #[serde(rename="TTL")]
-    pub ttl: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ttl: Option<String>,
     /// Property `Type`.
     #[serde(rename="Type")]
     pub type_: String,
     /// Property `Weight`.
     #[serde(rename="Weight")]
-    pub weight: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub weight: Option<u32>,
 }
 
 impl<'a> ::Resource<'a> for RecordSet {
@@ -164,16 +181,20 @@ pub struct RecordSetGroup {
 pub struct RecordSetGroupProperties {
     /// Property `Comment`.
     #[serde(rename="Comment")]
-    pub comment: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub comment: Option<String>,
     /// Property `HostedZoneId`.
     #[serde(rename="HostedZoneId")]
-    pub hosted_zone_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub hosted_zone_id: Option<String>,
     /// Property `HostedZoneName`.
     #[serde(rename="HostedZoneName")]
-    pub hosted_zone_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub hosted_zone_name: Option<String>,
     /// Property `RecordSets`.
     #[serde(rename="RecordSets")]
-    pub record_sets: Vec<self::record_set_group::RecordSet>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub record_sets: Option<Vec<self::record_set_group::RecordSet>>,
 }
 
 impl<'a> ::Resource<'a> for RecordSetGroup {
@@ -214,49 +235,64 @@ pub mod health_check {
     pub struct HealthCheckConfig {
         /// Property `AlarmIdentifier`.
         #[serde(rename="AlarmIdentifier")]
-        pub alarm_identifier: AlarmIdentifier,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub alarm_identifier: Option<AlarmIdentifier>,
         /// Property `ChildHealthChecks`.
         #[serde(rename="ChildHealthChecks")]
-        pub child_health_checks: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub child_health_checks: Option<Vec<String>>,
         /// Property `EnableSNI`.
         #[serde(rename="EnableSNI")]
-        pub enable_sni: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub enable_sni: Option<bool>,
         /// Property `FailureThreshold`.
         #[serde(rename="FailureThreshold")]
-        pub failure_threshold: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub failure_threshold: Option<u32>,
         /// Property `FullyQualifiedDomainName`.
         #[serde(rename="FullyQualifiedDomainName")]
-        pub fully_qualified_domain_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub fully_qualified_domain_name: Option<String>,
         /// Property `HealthThreshold`.
         #[serde(rename="HealthThreshold")]
-        pub health_threshold: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub health_threshold: Option<u32>,
         /// Property `IPAddress`.
         #[serde(rename="IPAddress")]
-        pub ip_address: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ip_address: Option<String>,
         /// Property `InsufficientDataHealthStatus`.
         #[serde(rename="InsufficientDataHealthStatus")]
-        pub insufficient_data_health_status: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub insufficient_data_health_status: Option<String>,
         /// Property `Inverted`.
         #[serde(rename="Inverted")]
-        pub inverted: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub inverted: Option<bool>,
         /// Property `MeasureLatency`.
         #[serde(rename="MeasureLatency")]
-        pub measure_latency: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub measure_latency: Option<bool>,
         /// Property `Port`.
         #[serde(rename="Port")]
-        pub port: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub port: Option<u32>,
         /// Property `Regions`.
         #[serde(rename="Regions")]
-        pub regions: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub regions: Option<Vec<String>>,
         /// Property `RequestInterval`.
         #[serde(rename="RequestInterval")]
-        pub request_interval: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub request_interval: Option<u32>,
         /// Property `ResourcePath`.
         #[serde(rename="ResourcePath")]
-        pub resource_path: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub resource_path: Option<String>,
         /// Property `SearchString`.
         #[serde(rename="SearchString")]
-        pub search_string: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub search_string: Option<String>,
         /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,
@@ -282,7 +318,8 @@ pub mod hosted_zone {
     pub struct HostedZoneConfig {
         /// Property `Comment`.
         #[serde(rename="Comment")]
-        pub comment: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub comment: Option<String>,
     }
 
     /// The [`AWS::Route53::HostedZone.HostedZoneTag`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzonetags.html) property type.
@@ -327,7 +364,8 @@ pub mod record_set {
         pub dns_name: String,
         /// Property `EvaluateTargetHealth`.
         #[serde(rename="EvaluateTargetHealth")]
-        pub evaluate_target_health: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub evaluate_target_health: Option<bool>,
         /// Property `HostedZoneId`.
         #[serde(rename="HostedZoneId")]
         pub hosted_zone_id: String,
@@ -338,13 +376,16 @@ pub mod record_set {
     pub struct GeoLocation {
         /// Property `ContinentCode`.
         #[serde(rename="ContinentCode")]
-        pub continent_code: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub continent_code: Option<String>,
         /// Property `CountryCode`.
         #[serde(rename="CountryCode")]
-        pub country_code: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub country_code: Option<String>,
         /// Property `SubdivisionCode`.
         #[serde(rename="SubdivisionCode")]
-        pub subdivision_code: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub subdivision_code: Option<String>,
     }
 }
 
@@ -359,7 +400,8 @@ pub mod record_set_group {
         pub dns_name: String,
         /// Property `EvaluateTargetHealth`.
         #[serde(rename="EvaluateTargetHealth")]
-        pub evaluate_target_health: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub evaluate_target_health: Option<bool>,
         /// Property `HostedZoneId`.
         #[serde(rename="HostedZoneId")]
         pub hosted_zone_id: String,
@@ -370,13 +412,16 @@ pub mod record_set_group {
     pub struct GeoLocation {
         /// Property `ContinentCode`.
         #[serde(rename="ContinentCode")]
-        pub continent_code: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub continent_code: Option<String>,
         /// Property `CountryCode`.
         #[serde(rename="CountryCode")]
-        pub country_code: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub country_code: Option<String>,
         /// Property `SubdivisionCode`.
         #[serde(rename="SubdivisionCode")]
-        pub subdivision_code: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub subdivision_code: Option<String>,
     }
 
     /// The [`AWS::Route53::RecordSetGroup.RecordSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html) property type.
@@ -384,45 +429,57 @@ pub mod record_set_group {
     pub struct RecordSet {
         /// Property `AliasTarget`.
         #[serde(rename="AliasTarget")]
-        pub alias_target: AliasTarget,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub alias_target: Option<AliasTarget>,
         /// Property `Comment`.
         #[serde(rename="Comment")]
-        pub comment: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub comment: Option<String>,
         /// Property `Failover`.
         #[serde(rename="Failover")]
-        pub failover: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub failover: Option<String>,
         /// Property `GeoLocation`.
         #[serde(rename="GeoLocation")]
-        pub geo_location: GeoLocation,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub geo_location: Option<GeoLocation>,
         /// Property `HealthCheckId`.
         #[serde(rename="HealthCheckId")]
-        pub health_check_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub health_check_id: Option<String>,
         /// Property `HostedZoneId`.
         #[serde(rename="HostedZoneId")]
-        pub hosted_zone_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub hosted_zone_id: Option<String>,
         /// Property `HostedZoneName`.
         #[serde(rename="HostedZoneName")]
-        pub hosted_zone_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub hosted_zone_name: Option<String>,
         /// Property `Name`.
         #[serde(rename="Name")]
         pub name: String,
         /// Property `Region`.
         #[serde(rename="Region")]
-        pub region: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub region: Option<String>,
         /// Property `ResourceRecords`.
         #[serde(rename="ResourceRecords")]
-        pub resource_records: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub resource_records: Option<Vec<String>>,
         /// Property `SetIdentifier`.
         #[serde(rename="SetIdentifier")]
-        pub set_identifier: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub set_identifier: Option<String>,
         /// Property `TTL`.
         #[serde(rename="TTL")]
-        pub ttl: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ttl: Option<String>,
         /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,
         /// Property `Weight`.
         #[serde(rename="Weight")]
-        pub weight: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub weight: Option<u32>,
     }
 }

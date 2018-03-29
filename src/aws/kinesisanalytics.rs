@@ -11,13 +11,16 @@ pub struct Application {
 pub struct ApplicationProperties {
     /// Property `ApplicationCode`.
     #[serde(rename="ApplicationCode")]
-    pub application_code: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub application_code: Option<String>,
     /// Property `ApplicationDescription`.
     #[serde(rename="ApplicationDescription")]
-    pub application_description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub application_description: Option<String>,
     /// Property `ApplicationName`.
     #[serde(rename="ApplicationName")]
-    pub application_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub application_name: Option<String>,
     /// Property `Inputs`.
     #[serde(rename="Inputs")]
     pub inputs: Vec<self::application::Input>,
@@ -133,19 +136,23 @@ pub mod application {
     pub struct Input {
         /// Property `InputParallelism`.
         #[serde(rename="InputParallelism")]
-        pub input_parallelism: InputParallelism,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub input_parallelism: Option<InputParallelism>,
         /// Property `InputProcessingConfiguration`.
         #[serde(rename="InputProcessingConfiguration")]
-        pub input_processing_configuration: InputProcessingConfiguration,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub input_processing_configuration: Option<InputProcessingConfiguration>,
         /// Property `InputSchema`.
         #[serde(rename="InputSchema")]
         pub input_schema: InputSchema,
         /// Property `KinesisFirehoseInput`.
         #[serde(rename="KinesisFirehoseInput")]
-        pub kinesis_firehose_input: KinesisFirehoseInput,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub kinesis_firehose_input: Option<KinesisFirehoseInput>,
         /// Property `KinesisStreamsInput`.
         #[serde(rename="KinesisStreamsInput")]
-        pub kinesis_streams_input: KinesisStreamsInput,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub kinesis_streams_input: Option<KinesisStreamsInput>,
         /// Property `NamePrefix`.
         #[serde(rename="NamePrefix")]
         pub name_prefix: String,
@@ -167,7 +174,8 @@ pub mod application {
     pub struct InputParallelism {
         /// Property `Count`.
         #[serde(rename="Count")]
-        pub count: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub count: Option<u32>,
     }
 
     /// The [`AWS::KinesisAnalytics::Application.InputProcessingConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputprocessingconfiguration.html) property type.
@@ -175,7 +183,8 @@ pub mod application {
     pub struct InputProcessingConfiguration {
         /// Property `InputLambdaProcessor`.
         #[serde(rename="InputLambdaProcessor")]
-        pub input_lambda_processor: InputLambdaProcessor,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub input_lambda_processor: Option<InputLambdaProcessor>,
     }
 
     /// The [`AWS::KinesisAnalytics::Application.InputSchema`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputschema.html) property type.
@@ -186,7 +195,8 @@ pub mod application {
         pub record_columns: Vec<RecordColumn>,
         /// Property `RecordEncoding`.
         #[serde(rename="RecordEncoding")]
-        pub record_encoding: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub record_encoding: Option<String>,
         /// Property `RecordFormat`.
         #[serde(rename="RecordFormat")]
         pub record_format: RecordFormat,
@@ -227,10 +237,12 @@ pub mod application {
     pub struct MappingParameters {
         /// Property `CSVMappingParameters`.
         #[serde(rename="CSVMappingParameters")]
-        pub csv_mapping_parameters: CSVMappingParameters,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub csv_mapping_parameters: Option<CSVMappingParameters>,
         /// Property `JSONMappingParameters`.
         #[serde(rename="JSONMappingParameters")]
-        pub json_mapping_parameters: JSONMappingParameters,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub json_mapping_parameters: Option<JSONMappingParameters>,
     }
 
     /// The [`AWS::KinesisAnalytics::Application.RecordColumn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-recordcolumn.html) property type.
@@ -238,7 +250,8 @@ pub mod application {
     pub struct RecordColumn {
         /// Property `Mapping`.
         #[serde(rename="Mapping")]
-        pub mapping: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub mapping: Option<String>,
         /// Property `Name`.
         #[serde(rename="Name")]
         pub name: String,
@@ -252,7 +265,8 @@ pub mod application {
     pub struct RecordFormat {
         /// Property `MappingParameters`.
         #[serde(rename="MappingParameters")]
-        pub mapping_parameters: MappingParameters,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub mapping_parameters: Option<MappingParameters>,
         /// Property `RecordFormatType`.
         #[serde(rename="RecordFormatType")]
         pub record_format_type: String,
@@ -267,7 +281,8 @@ pub mod application_output {
     pub struct DestinationSchema {
         /// Property `RecordFormatType`.
         #[serde(rename="RecordFormatType")]
-        pub record_format_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub record_format_type: Option<String>,
     }
 
     /// The [`AWS::KinesisAnalytics::ApplicationOutput.KinesisFirehoseOutput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-kinesisfirehoseoutput.html) property type.
@@ -311,16 +326,20 @@ pub mod application_output {
         pub destination_schema: DestinationSchema,
         /// Property `KinesisFirehoseOutput`.
         #[serde(rename="KinesisFirehoseOutput")]
-        pub kinesis_firehose_output: KinesisFirehoseOutput,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub kinesis_firehose_output: Option<KinesisFirehoseOutput>,
         /// Property `KinesisStreamsOutput`.
         #[serde(rename="KinesisStreamsOutput")]
-        pub kinesis_streams_output: KinesisStreamsOutput,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub kinesis_streams_output: Option<KinesisStreamsOutput>,
         /// Property `LambdaOutput`.
         #[serde(rename="LambdaOutput")]
-        pub lambda_output: LambdaOutput,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub lambda_output: Option<LambdaOutput>,
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
     }
 }
 
@@ -351,10 +370,12 @@ pub mod application_reference_data_source {
     pub struct MappingParameters {
         /// Property `CSVMappingParameters`.
         #[serde(rename="CSVMappingParameters")]
-        pub csv_mapping_parameters: CSVMappingParameters,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub csv_mapping_parameters: Option<CSVMappingParameters>,
         /// Property `JSONMappingParameters`.
         #[serde(rename="JSONMappingParameters")]
-        pub json_mapping_parameters: JSONMappingParameters,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub json_mapping_parameters: Option<JSONMappingParameters>,
     }
 
     /// The [`AWS::KinesisAnalytics::ApplicationReferenceDataSource.RecordColumn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-recordcolumn.html) property type.
@@ -362,7 +383,8 @@ pub mod application_reference_data_source {
     pub struct RecordColumn {
         /// Property `Mapping`.
         #[serde(rename="Mapping")]
-        pub mapping: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub mapping: Option<String>,
         /// Property `Name`.
         #[serde(rename="Name")]
         pub name: String,
@@ -376,7 +398,8 @@ pub mod application_reference_data_source {
     pub struct RecordFormat {
         /// Property `MappingParameters`.
         #[serde(rename="MappingParameters")]
-        pub mapping_parameters: MappingParameters,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub mapping_parameters: Option<MappingParameters>,
         /// Property `RecordFormatType`.
         #[serde(rename="RecordFormatType")]
         pub record_format_type: String,
@@ -390,10 +413,12 @@ pub mod application_reference_data_source {
         pub reference_schema: ReferenceSchema,
         /// Property `S3ReferenceDataSource`.
         #[serde(rename="S3ReferenceDataSource")]
-        pub s3_reference_data_source: S3ReferenceDataSource,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub s3_reference_data_source: Option<S3ReferenceDataSource>,
         /// Property `TableName`.
         #[serde(rename="TableName")]
-        pub table_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub table_name: Option<String>,
     }
 
     /// The [`AWS::KinesisAnalytics::ApplicationReferenceDataSource.ReferenceSchema`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-referenceschema.html) property type.
@@ -404,7 +429,8 @@ pub mod application_reference_data_source {
         pub record_columns: Vec<RecordColumn>,
         /// Property `RecordEncoding`.
         #[serde(rename="RecordEncoding")]
-        pub record_encoding: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub record_encoding: Option<String>,
         /// Property `RecordFormat`.
         #[serde(rename="RecordFormat")]
         pub record_format: RecordFormat,

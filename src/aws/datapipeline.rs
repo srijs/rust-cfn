@@ -11,10 +11,12 @@ pub struct Pipeline {
 pub struct PipelineProperties {
     /// Property `Activate`.
     #[serde(rename="Activate")]
-    pub activate: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub activate: Option<bool>,
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
@@ -23,13 +25,16 @@ pub struct PipelineProperties {
     pub parameter_objects: Vec<self::pipeline::ParameterObject>,
     /// Property `ParameterValues`.
     #[serde(rename="ParameterValues")]
-    pub parameter_values: Vec<self::pipeline::ParameterValue>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub parameter_values: Option<Vec<self::pipeline::ParameterValue>>,
     /// Property `PipelineObjects`.
     #[serde(rename="PipelineObjects")]
-    pub pipeline_objects: Vec<self::pipeline::PipelineObject>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub pipeline_objects: Option<Vec<self::pipeline::PipelineObject>>,
     /// Property `PipelineTags`.
     #[serde(rename="PipelineTags")]
-    pub pipeline_tags: Vec<self::pipeline::PipelineTag>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub pipeline_tags: Option<Vec<self::pipeline::PipelineTag>>,
 }
 
 impl<'a> ::Resource<'a> for Pipeline {
@@ -62,10 +67,12 @@ pub mod pipeline {
         pub key: String,
         /// Property `RefValue`.
         #[serde(rename="RefValue")]
-        pub ref_value: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ref_value: Option<String>,
         /// Property `StringValue`.
         #[serde(rename="StringValue")]
-        pub string_value: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub string_value: Option<String>,
     }
 
     /// The [`AWS::DataPipeline::Pipeline.ParameterAttribute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parameterobjects-attributes.html) property type.

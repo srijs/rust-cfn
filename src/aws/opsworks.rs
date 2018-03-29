@@ -11,34 +11,43 @@ pub struct App {
 pub struct AppProperties {
     /// Property `AppSource`.
     #[serde(rename="AppSource")]
-    pub app_source: self::app::Source,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub app_source: Option<self::app::Source>,
     /// Property `Attributes`.
     #[serde(rename="Attributes")]
-    pub attributes: ::std::collections::HashMap<String, String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub attributes: Option<::std::collections::HashMap<String, String>>,
     /// Property `DataSources`.
     #[serde(rename="DataSources")]
-    pub data_sources: Vec<self::app::DataSource>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub data_sources: Option<Vec<self::app::DataSource>>,
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `Domains`.
     #[serde(rename="Domains")]
-    pub domains: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub domains: Option<Vec<String>>,
     /// Property `EnableSsl`.
     #[serde(rename="EnableSsl")]
-    pub enable_ssl: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub enable_ssl: Option<bool>,
     /// Property `Environment`.
     #[serde(rename="Environment")]
-    pub environment: Vec<self::app::EnvironmentVariable>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub environment: Option<Vec<self::app::EnvironmentVariable>>,
     /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
     /// Property `Shortname`.
     #[serde(rename="Shortname")]
-    pub shortname: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub shortname: Option<String>,
     /// Property `SslConfiguration`.
     #[serde(rename="SslConfiguration")]
-    pub ssl_configuration: self::app::SslConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ssl_configuration: Option<self::app::SslConfiguration>,
     /// Property `StackId`.
     #[serde(rename="StackId")]
     pub stack_id: String,
@@ -113,34 +122,44 @@ pub struct Instance {
 pub struct InstanceProperties {
     /// Property `AgentVersion`.
     #[serde(rename="AgentVersion")]
-    pub agent_version: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub agent_version: Option<String>,
     /// Property `AmiId`.
     #[serde(rename="AmiId")]
-    pub ami_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ami_id: Option<String>,
     /// Property `Architecture`.
     #[serde(rename="Architecture")]
-    pub architecture: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub architecture: Option<String>,
     /// Property `AutoScalingType`.
     #[serde(rename="AutoScalingType")]
-    pub auto_scaling_type: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub auto_scaling_type: Option<String>,
     /// Property `AvailabilityZone`.
     #[serde(rename="AvailabilityZone")]
-    pub availability_zone: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub availability_zone: Option<String>,
     /// Property `BlockDeviceMappings`.
     #[serde(rename="BlockDeviceMappings")]
-    pub block_device_mappings: Vec<self::instance::BlockDeviceMapping>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub block_device_mappings: Option<Vec<self::instance::BlockDeviceMapping>>,
     /// Property `EbsOptimized`.
     #[serde(rename="EbsOptimized")]
-    pub ebs_optimized: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ebs_optimized: Option<bool>,
     /// Property `ElasticIps`.
     #[serde(rename="ElasticIps")]
-    pub elastic_ips: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub elastic_ips: Option<Vec<String>>,
     /// Property `Hostname`.
     #[serde(rename="Hostname")]
-    pub hostname: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub hostname: Option<String>,
     /// Property `InstallUpdatesOnBoot`.
     #[serde(rename="InstallUpdatesOnBoot")]
-    pub install_updates_on_boot: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub install_updates_on_boot: Option<bool>,
     /// Property `InstanceType`.
     #[serde(rename="InstanceType")]
     pub instance_type: String,
@@ -149,31 +168,39 @@ pub struct InstanceProperties {
     pub layer_ids: Vec<String>,
     /// Property `Os`.
     #[serde(rename="Os")]
-    pub os: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub os: Option<String>,
     /// Property `RootDeviceType`.
     #[serde(rename="RootDeviceType")]
-    pub root_device_type: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub root_device_type: Option<String>,
     /// Property `SshKeyName`.
     #[serde(rename="SshKeyName")]
-    pub ssh_key_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ssh_key_name: Option<String>,
     /// Property `StackId`.
     #[serde(rename="StackId")]
     pub stack_id: String,
     /// Property `SubnetId`.
     #[serde(rename="SubnetId")]
-    pub subnet_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub subnet_id: Option<String>,
     /// Property `Tenancy`.
     #[serde(rename="Tenancy")]
-    pub tenancy: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tenancy: Option<String>,
     /// Property `TimeBasedAutoScaling`.
     #[serde(rename="TimeBasedAutoScaling")]
-    pub time_based_auto_scaling: self::instance::TimeBasedAutoScaling,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub time_based_auto_scaling: Option<self::instance::TimeBasedAutoScaling>,
     /// Property `VirtualizationType`.
     #[serde(rename="VirtualizationType")]
-    pub virtualization_type: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub virtualization_type: Option<String>,
     /// Property `Volumes`.
     #[serde(rename="Volumes")]
-    pub volumes: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub volumes: Option<Vec<String>>,
 }
 
 impl<'a> ::Resource<'a> for Instance {
@@ -206,7 +233,8 @@ pub struct Layer {
 pub struct LayerProperties {
     /// Property `Attributes`.
     #[serde(rename="Attributes")]
-    pub attributes: ::std::collections::HashMap<String, String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub attributes: Option<::std::collections::HashMap<String, String>>,
     /// Property `AutoAssignElasticIps`.
     #[serde(rename="AutoAssignElasticIps")]
     pub auto_assign_elastic_ips: bool,
@@ -215,34 +243,42 @@ pub struct LayerProperties {
     pub auto_assign_public_ips: bool,
     /// Property `CustomInstanceProfileArn`.
     #[serde(rename="CustomInstanceProfileArn")]
-    pub custom_instance_profile_arn: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub custom_instance_profile_arn: Option<String>,
     /// Property `CustomJson`.
     #[serde(rename="CustomJson")]
-    pub custom_json: ::json::Value,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub custom_json: Option<::json::Value>,
     /// Property `CustomRecipes`.
     #[serde(rename="CustomRecipes")]
-    pub custom_recipes: self::layer::Recipes,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub custom_recipes: Option<self::layer::Recipes>,
     /// Property `CustomSecurityGroupIds`.
     #[serde(rename="CustomSecurityGroupIds")]
-    pub custom_security_group_ids: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub custom_security_group_ids: Option<Vec<String>>,
     /// Property `EnableAutoHealing`.
     #[serde(rename="EnableAutoHealing")]
     pub enable_auto_healing: bool,
     /// Property `InstallUpdatesOnBoot`.
     #[serde(rename="InstallUpdatesOnBoot")]
-    pub install_updates_on_boot: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub install_updates_on_boot: Option<bool>,
     /// Property `LifecycleEventConfiguration`.
     #[serde(rename="LifecycleEventConfiguration")]
-    pub lifecycle_event_configuration: self::layer::LifecycleEventConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub lifecycle_event_configuration: Option<self::layer::LifecycleEventConfiguration>,
     /// Property `LoadBasedAutoScaling`.
     #[serde(rename="LoadBasedAutoScaling")]
-    pub load_based_auto_scaling: self::layer::LoadBasedAutoScaling,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub load_based_auto_scaling: Option<self::layer::LoadBasedAutoScaling>,
     /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
     /// Property `Packages`.
     #[serde(rename="Packages")]
-    pub packages: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub packages: Option<Vec<String>>,
     /// Property `Shortname`.
     #[serde(rename="Shortname")]
     pub shortname: String,
@@ -251,16 +287,19 @@ pub struct LayerProperties {
     pub stack_id: String,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
     /// Property `Type`.
     #[serde(rename="Type")]
     pub type_: String,
     /// Property `UseEbsOptimizedInstances`.
     #[serde(rename="UseEbsOptimizedInstances")]
-    pub use_ebs_optimized_instances: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub use_ebs_optimized_instances: Option<bool>,
     /// Property `VolumeConfigurations`.
     #[serde(rename="VolumeConfigurations")]
-    pub volume_configurations: Vec<self::layer::VolumeConfiguration>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub volume_configurations: Option<Vec<self::layer::VolumeConfiguration>>,
 }
 
 impl<'a> ::Resource<'a> for Layer {
@@ -293,79 +332,101 @@ pub struct Stack {
 pub struct StackProperties {
     /// Property `AgentVersion`.
     #[serde(rename="AgentVersion")]
-    pub agent_version: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub agent_version: Option<String>,
     /// Property `Attributes`.
     #[serde(rename="Attributes")]
-    pub attributes: ::std::collections::HashMap<String, String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub attributes: Option<::std::collections::HashMap<String, String>>,
     /// Property `ChefConfiguration`.
     #[serde(rename="ChefConfiguration")]
-    pub chef_configuration: self::stack::ChefConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub chef_configuration: Option<self::stack::ChefConfiguration>,
     /// Property `CloneAppIds`.
     #[serde(rename="CloneAppIds")]
-    pub clone_app_ids: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub clone_app_ids: Option<Vec<String>>,
     /// Property `ClonePermissions`.
     #[serde(rename="ClonePermissions")]
-    pub clone_permissions: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub clone_permissions: Option<bool>,
     /// Property `ConfigurationManager`.
     #[serde(rename="ConfigurationManager")]
-    pub configuration_manager: self::stack::StackConfigurationManager,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub configuration_manager: Option<self::stack::StackConfigurationManager>,
     /// Property `CustomCookbooksSource`.
     #[serde(rename="CustomCookbooksSource")]
-    pub custom_cookbooks_source: self::stack::Source,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub custom_cookbooks_source: Option<self::stack::Source>,
     /// Property `CustomJson`.
     #[serde(rename="CustomJson")]
-    pub custom_json: ::json::Value,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub custom_json: Option<::json::Value>,
     /// Property `DefaultAvailabilityZone`.
     #[serde(rename="DefaultAvailabilityZone")]
-    pub default_availability_zone: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub default_availability_zone: Option<String>,
     /// Property `DefaultInstanceProfileArn`.
     #[serde(rename="DefaultInstanceProfileArn")]
     pub default_instance_profile_arn: String,
     /// Property `DefaultOs`.
     #[serde(rename="DefaultOs")]
-    pub default_os: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub default_os: Option<String>,
     /// Property `DefaultRootDeviceType`.
     #[serde(rename="DefaultRootDeviceType")]
-    pub default_root_device_type: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub default_root_device_type: Option<String>,
     /// Property `DefaultSshKeyName`.
     #[serde(rename="DefaultSshKeyName")]
-    pub default_ssh_key_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub default_ssh_key_name: Option<String>,
     /// Property `DefaultSubnetId`.
     #[serde(rename="DefaultSubnetId")]
-    pub default_subnet_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub default_subnet_id: Option<String>,
     /// Property `EcsClusterArn`.
     #[serde(rename="EcsClusterArn")]
-    pub ecs_cluster_arn: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ecs_cluster_arn: Option<String>,
     /// Property `ElasticIps`.
     #[serde(rename="ElasticIps")]
-    pub elastic_ips: Vec<self::stack::ElasticIp>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub elastic_ips: Option<Vec<self::stack::ElasticIp>>,
     /// Property `HostnameTheme`.
     #[serde(rename="HostnameTheme")]
-    pub hostname_theme: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub hostname_theme: Option<String>,
     /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
     /// Property `RdsDbInstances`.
     #[serde(rename="RdsDbInstances")]
-    pub rds_db_instances: Vec<self::stack::RdsDbInstance>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub rds_db_instances: Option<Vec<self::stack::RdsDbInstance>>,
     /// Property `ServiceRoleArn`.
     #[serde(rename="ServiceRoleArn")]
     pub service_role_arn: String,
     /// Property `SourceStackId`.
     #[serde(rename="SourceStackId")]
-    pub source_stack_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub source_stack_id: Option<String>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
     /// Property `UseCustomCookbooks`.
     #[serde(rename="UseCustomCookbooks")]
-    pub use_custom_cookbooks: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub use_custom_cookbooks: Option<bool>,
     /// Property `UseOpsworksSecurityGroups`.
     #[serde(rename="UseOpsworksSecurityGroups")]
-    pub use_opsworks_security_groups: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub use_opsworks_security_groups: Option<bool>,
     /// Property `VpcId`.
     #[serde(rename="VpcId")]
-    pub vpc_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub vpc_id: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for Stack {
@@ -398,16 +459,19 @@ pub struct UserProfile {
 pub struct UserProfileProperties {
     /// Property `AllowSelfManagement`.
     #[serde(rename="AllowSelfManagement")]
-    pub allow_self_management: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub allow_self_management: Option<bool>,
     /// Property `IamUserArn`.
     #[serde(rename="IamUserArn")]
     pub iam_user_arn: String,
     /// Property `SshPublicKey`.
     #[serde(rename="SshPublicKey")]
-    pub ssh_public_key: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ssh_public_key: Option<String>,
     /// Property `SshUsername`.
     #[serde(rename="SshUsername")]
-    pub ssh_username: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ssh_username: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for UserProfile {
@@ -443,10 +507,12 @@ pub struct VolumeProperties {
     pub ec2_volume_id: String,
     /// Property `MountPoint`.
     #[serde(rename="MountPoint")]
-    pub mount_point: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub mount_point: Option<String>,
     /// Property `Name`.
     #[serde(rename="Name")]
-    pub name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     /// Property `StackId`.
     #[serde(rename="StackId")]
     pub stack_id: String,
@@ -479,13 +545,16 @@ pub mod app {
     pub struct DataSource {
         /// Property `Arn`.
         #[serde(rename="Arn")]
-        pub arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub arn: Option<String>,
         /// Property `DatabaseName`.
         #[serde(rename="DatabaseName")]
-        pub database_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub database_name: Option<String>,
         /// Property `Type`.
         #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub type_: Option<String>,
     }
 
     /// The [`AWS::OpsWorks::App.EnvironmentVariable`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-environment.html) property type.
@@ -496,7 +565,8 @@ pub mod app {
         pub key: String,
         /// Property `Secure`.
         #[serde(rename="Secure")]
-        pub secure: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub secure: Option<bool>,
         /// Property `Value`.
         #[serde(rename="Value")]
         pub value: String,
@@ -507,22 +577,28 @@ pub mod app {
     pub struct Source {
         /// Property `Password`.
         #[serde(rename="Password")]
-        pub password: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub password: Option<String>,
         /// Property `Revision`.
         #[serde(rename="Revision")]
-        pub revision: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub revision: Option<String>,
         /// Property `SshKey`.
         #[serde(rename="SshKey")]
-        pub ssh_key: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ssh_key: Option<String>,
         /// Property `Type`.
         #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub type_: Option<String>,
         /// Property `Url`.
         #[serde(rename="Url")]
-        pub url: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub url: Option<String>,
         /// Property `Username`.
         #[serde(rename="Username")]
-        pub username: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub username: Option<String>,
     }
 
     /// The [`AWS::OpsWorks::App.SslConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-sslconfiguration.html) property type.
@@ -530,13 +606,16 @@ pub mod app {
     pub struct SslConfiguration {
         /// Property `Certificate`.
         #[serde(rename="Certificate")]
-        pub certificate: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub certificate: Option<String>,
         /// Property `Chain`.
         #[serde(rename="Chain")]
-        pub chain: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub chain: Option<String>,
         /// Property `PrivateKey`.
         #[serde(rename="PrivateKey")]
-        pub private_key: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub private_key: Option<String>,
     }
 }
 
@@ -548,16 +627,20 @@ pub mod instance {
     pub struct BlockDeviceMapping {
         /// Property `DeviceName`.
         #[serde(rename="DeviceName")]
-        pub device_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub device_name: Option<String>,
         /// Property `Ebs`.
         #[serde(rename="Ebs")]
-        pub ebs: EbsBlockDevice,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ebs: Option<EbsBlockDevice>,
         /// Property `NoDevice`.
         #[serde(rename="NoDevice")]
-        pub no_device: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub no_device: Option<String>,
         /// Property `VirtualName`.
         #[serde(rename="VirtualName")]
-        pub virtual_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub virtual_name: Option<String>,
     }
 
     /// The [`AWS::OpsWorks::Instance.EbsBlockDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-instance-ebsblockdevice.html) property type.
@@ -565,19 +648,24 @@ pub mod instance {
     pub struct EbsBlockDevice {
         /// Property `DeleteOnTermination`.
         #[serde(rename="DeleteOnTermination")]
-        pub delete_on_termination: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub delete_on_termination: Option<bool>,
         /// Property `Iops`.
         #[serde(rename="Iops")]
-        pub iops: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub iops: Option<u32>,
         /// Property `SnapshotId`.
         #[serde(rename="SnapshotId")]
-        pub snapshot_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub snapshot_id: Option<String>,
         /// Property `VolumeSize`.
         #[serde(rename="VolumeSize")]
-        pub volume_size: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub volume_size: Option<u32>,
         /// Property `VolumeType`.
         #[serde(rename="VolumeType")]
-        pub volume_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub volume_type: Option<String>,
     }
 
     /// The [`AWS::OpsWorks::Instance.TimeBasedAutoScaling`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-instance-timebasedautoscaling.html) property type.
@@ -585,25 +673,32 @@ pub mod instance {
     pub struct TimeBasedAutoScaling {
         /// Property `Friday`.
         #[serde(rename="Friday")]
-        pub friday: ::std::collections::HashMap<String, String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub friday: Option<::std::collections::HashMap<String, String>>,
         /// Property `Monday`.
         #[serde(rename="Monday")]
-        pub monday: ::std::collections::HashMap<String, String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub monday: Option<::std::collections::HashMap<String, String>>,
         /// Property `Saturday`.
         #[serde(rename="Saturday")]
-        pub saturday: ::std::collections::HashMap<String, String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub saturday: Option<::std::collections::HashMap<String, String>>,
         /// Property `Sunday`.
         #[serde(rename="Sunday")]
-        pub sunday: ::std::collections::HashMap<String, String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub sunday: Option<::std::collections::HashMap<String, String>>,
         /// Property `Thursday`.
         #[serde(rename="Thursday")]
-        pub thursday: ::std::collections::HashMap<String, String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub thursday: Option<::std::collections::HashMap<String, String>>,
         /// Property `Tuesday`.
         #[serde(rename="Tuesday")]
-        pub tuesday: ::std::collections::HashMap<String, String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub tuesday: Option<::std::collections::HashMap<String, String>>,
         /// Property `Wednesday`.
         #[serde(rename="Wednesday")]
-        pub wednesday: ::std::collections::HashMap<String, String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub wednesday: Option<::std::collections::HashMap<String, String>>,
     }
 }
 
@@ -615,22 +710,28 @@ pub mod layer {
     pub struct AutoScalingThresholds {
         /// Property `CpuThreshold`.
         #[serde(rename="CpuThreshold")]
-        pub cpu_threshold: f64,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub cpu_threshold: Option<f64>,
         /// Property `IgnoreMetricsTime`.
         #[serde(rename="IgnoreMetricsTime")]
-        pub ignore_metrics_time: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ignore_metrics_time: Option<u32>,
         /// Property `InstanceCount`.
         #[serde(rename="InstanceCount")]
-        pub instance_count: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub instance_count: Option<u32>,
         /// Property `LoadThreshold`.
         #[serde(rename="LoadThreshold")]
-        pub load_threshold: f64,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub load_threshold: Option<f64>,
         /// Property `MemoryThreshold`.
         #[serde(rename="MemoryThreshold")]
-        pub memory_threshold: f64,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub memory_threshold: Option<f64>,
         /// Property `ThresholdsWaitTime`.
         #[serde(rename="ThresholdsWaitTime")]
-        pub thresholds_wait_time: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub thresholds_wait_time: Option<u32>,
     }
 
     /// The [`AWS::OpsWorks::Layer.LifecycleEventConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-lifecycleeventconfiguration.html) property type.
@@ -638,7 +739,8 @@ pub mod layer {
     pub struct LifecycleEventConfiguration {
         /// Property `ShutdownEventConfiguration`.
         #[serde(rename="ShutdownEventConfiguration")]
-        pub shutdown_event_configuration: ShutdownEventConfiguration,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub shutdown_event_configuration: Option<ShutdownEventConfiguration>,
     }
 
     /// The [`AWS::OpsWorks::Layer.LoadBasedAutoScaling`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-loadbasedautoscaling.html) property type.
@@ -646,13 +748,16 @@ pub mod layer {
     pub struct LoadBasedAutoScaling {
         /// Property `DownScaling`.
         #[serde(rename="DownScaling")]
-        pub down_scaling: AutoScalingThresholds,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub down_scaling: Option<AutoScalingThresholds>,
         /// Property `Enable`.
         #[serde(rename="Enable")]
-        pub enable: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub enable: Option<bool>,
         /// Property `UpScaling`.
         #[serde(rename="UpScaling")]
-        pub up_scaling: AutoScalingThresholds,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub up_scaling: Option<AutoScalingThresholds>,
     }
 
     /// The [`AWS::OpsWorks::Layer.Recipes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-recipes.html) property type.
@@ -660,19 +765,24 @@ pub mod layer {
     pub struct Recipes {
         /// Property `Configure`.
         #[serde(rename="Configure")]
-        pub configure: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub configure: Option<Vec<String>>,
         /// Property `Deploy`.
         #[serde(rename="Deploy")]
-        pub deploy: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub deploy: Option<Vec<String>>,
         /// Property `Setup`.
         #[serde(rename="Setup")]
-        pub setup: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub setup: Option<Vec<String>>,
         /// Property `Shutdown`.
         #[serde(rename="Shutdown")]
-        pub shutdown: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub shutdown: Option<Vec<String>>,
         /// Property `Undeploy`.
         #[serde(rename="Undeploy")]
-        pub undeploy: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub undeploy: Option<Vec<String>>,
     }
 
     /// The [`AWS::OpsWorks::Layer.ShutdownEventConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-lifecycleeventconfiguration-shutdowneventconfiguration.html) property type.
@@ -680,10 +790,12 @@ pub mod layer {
     pub struct ShutdownEventConfiguration {
         /// Property `DelayUntilElbConnectionsDrained`.
         #[serde(rename="DelayUntilElbConnectionsDrained")]
-        pub delay_until_elb_connections_drained: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub delay_until_elb_connections_drained: Option<bool>,
         /// Property `ExecutionTimeout`.
         #[serde(rename="ExecutionTimeout")]
-        pub execution_timeout: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub execution_timeout: Option<u32>,
     }
 
     /// The [`AWS::OpsWorks::Layer.VolumeConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-volumeconfiguration.html) property type.
@@ -691,22 +803,28 @@ pub mod layer {
     pub struct VolumeConfiguration {
         /// Property `Iops`.
         #[serde(rename="Iops")]
-        pub iops: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub iops: Option<u32>,
         /// Property `MountPoint`.
         #[serde(rename="MountPoint")]
-        pub mount_point: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub mount_point: Option<String>,
         /// Property `NumberOfDisks`.
         #[serde(rename="NumberOfDisks")]
-        pub number_of_disks: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub number_of_disks: Option<u32>,
         /// Property `RaidLevel`.
         #[serde(rename="RaidLevel")]
-        pub raid_level: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub raid_level: Option<u32>,
         /// Property `Size`.
         #[serde(rename="Size")]
-        pub size: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub size: Option<u32>,
         /// Property `VolumeType`.
         #[serde(rename="VolumeType")]
-        pub volume_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub volume_type: Option<String>,
     }
 }
 
@@ -718,10 +836,12 @@ pub mod stack {
     pub struct ChefConfiguration {
         /// Property `BerkshelfVersion`.
         #[serde(rename="BerkshelfVersion")]
-        pub berkshelf_version: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub berkshelf_version: Option<String>,
         /// Property `ManageBerkshelf`.
         #[serde(rename="ManageBerkshelf")]
-        pub manage_berkshelf: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub manage_berkshelf: Option<bool>,
     }
 
     /// The [`AWS::OpsWorks::Stack.ElasticIp`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-elasticip.html) property type.
@@ -732,7 +852,8 @@ pub mod stack {
         pub ip: String,
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
     }
 
     /// The [`AWS::OpsWorks::Stack.RdsDbInstance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-rdsdbinstance.html) property type.
@@ -754,22 +875,28 @@ pub mod stack {
     pub struct Source {
         /// Property `Password`.
         #[serde(rename="Password")]
-        pub password: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub password: Option<String>,
         /// Property `Revision`.
         #[serde(rename="Revision")]
-        pub revision: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub revision: Option<String>,
         /// Property `SshKey`.
         #[serde(rename="SshKey")]
-        pub ssh_key: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ssh_key: Option<String>,
         /// Property `Type`.
         #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub type_: Option<String>,
         /// Property `Url`.
         #[serde(rename="Url")]
-        pub url: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub url: Option<String>,
         /// Property `Username`.
         #[serde(rename="Username")]
-        pub username: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub username: Option<String>,
     }
 
     /// The [`AWS::OpsWorks::Stack.StackConfigurationManager`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-stackconfigmanager.html) property type.
@@ -777,9 +904,11 @@ pub mod stack {
     pub struct StackConfigurationManager {
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
         /// Property `Version`.
         #[serde(rename="Version")]
-        pub version: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub version: Option<String>,
     }
 }

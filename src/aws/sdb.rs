@@ -11,7 +11,8 @@ pub struct Domain {
 pub struct DomainProperties {
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for Domain {

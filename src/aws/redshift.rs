@@ -11,55 +11,70 @@ pub struct Cluster {
 pub struct ClusterProperties {
     /// Property `AllowVersionUpgrade`.
     #[serde(rename="AllowVersionUpgrade")]
-    pub allow_version_upgrade: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub allow_version_upgrade: Option<bool>,
     /// Property `AutomatedSnapshotRetentionPeriod`.
     #[serde(rename="AutomatedSnapshotRetentionPeriod")]
-    pub automated_snapshot_retention_period: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub automated_snapshot_retention_period: Option<u32>,
     /// Property `AvailabilityZone`.
     #[serde(rename="AvailabilityZone")]
-    pub availability_zone: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub availability_zone: Option<String>,
     /// Property `ClusterIdentifier`.
     #[serde(rename="ClusterIdentifier")]
-    pub cluster_identifier: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cluster_identifier: Option<String>,
     /// Property `ClusterParameterGroupName`.
     #[serde(rename="ClusterParameterGroupName")]
-    pub cluster_parameter_group_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cluster_parameter_group_name: Option<String>,
     /// Property `ClusterSecurityGroups`.
     #[serde(rename="ClusterSecurityGroups")]
-    pub cluster_security_groups: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cluster_security_groups: Option<Vec<String>>,
     /// Property `ClusterSubnetGroupName`.
     #[serde(rename="ClusterSubnetGroupName")]
-    pub cluster_subnet_group_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cluster_subnet_group_name: Option<String>,
     /// Property `ClusterType`.
     #[serde(rename="ClusterType")]
     pub cluster_type: String,
     /// Property `ClusterVersion`.
     #[serde(rename="ClusterVersion")]
-    pub cluster_version: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cluster_version: Option<String>,
     /// Property `DBName`.
     #[serde(rename="DBName")]
     pub db_name: String,
     /// Property `ElasticIp`.
     #[serde(rename="ElasticIp")]
-    pub elastic_ip: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub elastic_ip: Option<String>,
     /// Property `Encrypted`.
     #[serde(rename="Encrypted")]
-    pub encrypted: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub encrypted: Option<bool>,
     /// Property `HsmClientCertificateIdentifier`.
     #[serde(rename="HsmClientCertificateIdentifier")]
-    pub hsm_client_certificate_identifier: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub hsm_client_certificate_identifier: Option<String>,
     /// Property `HsmConfigurationIdentifier`.
     #[serde(rename="HsmConfigurationIdentifier")]
-    pub hsm_configuration_identifier: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub hsm_configuration_identifier: Option<String>,
     /// Property `IamRoles`.
     #[serde(rename="IamRoles")]
-    pub iam_roles: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub iam_roles: Option<Vec<String>>,
     /// Property `KmsKeyId`.
     #[serde(rename="KmsKeyId")]
-    pub kms_key_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub kms_key_id: Option<String>,
     /// Property `LoggingProperties`.
     #[serde(rename="LoggingProperties")]
-    pub logging_properties: self::cluster::LoggingProperties,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub logging_properties: Option<self::cluster::LoggingProperties>,
     /// Property `MasterUserPassword`.
     #[serde(rename="MasterUserPassword")]
     pub master_user_password: String,
@@ -71,31 +86,40 @@ pub struct ClusterProperties {
     pub node_type: String,
     /// Property `NumberOfNodes`.
     #[serde(rename="NumberOfNodes")]
-    pub number_of_nodes: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub number_of_nodes: Option<u32>,
     /// Property `OwnerAccount`.
     #[serde(rename="OwnerAccount")]
-    pub owner_account: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub owner_account: Option<String>,
     /// Property `Port`.
     #[serde(rename="Port")]
-    pub port: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub port: Option<u32>,
     /// Property `PreferredMaintenanceWindow`.
     #[serde(rename="PreferredMaintenanceWindow")]
-    pub preferred_maintenance_window: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub preferred_maintenance_window: Option<String>,
     /// Property `PubliclyAccessible`.
     #[serde(rename="PubliclyAccessible")]
-    pub publicly_accessible: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub publicly_accessible: Option<bool>,
     /// Property `SnapshotClusterIdentifier`.
     #[serde(rename="SnapshotClusterIdentifier")]
-    pub snapshot_cluster_identifier: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub snapshot_cluster_identifier: Option<String>,
     /// Property `SnapshotIdentifier`.
     #[serde(rename="SnapshotIdentifier")]
-    pub snapshot_identifier: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub snapshot_identifier: Option<String>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
     /// Property `VpcSecurityGroupIds`.
     #[serde(rename="VpcSecurityGroupIds")]
-    pub vpc_security_group_ids: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub vpc_security_group_ids: Option<Vec<String>>,
 }
 
 impl<'a> ::Resource<'a> for Cluster {
@@ -134,10 +158,12 @@ pub struct ClusterParameterGroupProperties {
     pub parameter_group_family: String,
     /// Property `Parameters`.
     #[serde(rename="Parameters")]
-    pub parameters: Vec<self::cluster_parameter_group::Parameter>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub parameters: Option<Vec<self::cluster_parameter_group::Parameter>>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
 }
 
 impl<'a> ::Resource<'a> for ClusterParameterGroup {
@@ -173,7 +199,8 @@ pub struct ClusterSecurityGroupProperties {
     pub description: String,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
 }
 
 impl<'a> ::Resource<'a> for ClusterSecurityGroup {
@@ -206,16 +233,19 @@ pub struct ClusterSecurityGroupIngress {
 pub struct ClusterSecurityGroupIngressProperties {
     /// Property `CIDRIP`.
     #[serde(rename="CIDRIP")]
-    pub cidrip: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cidrip: Option<String>,
     /// Property `ClusterSecurityGroupName`.
     #[serde(rename="ClusterSecurityGroupName")]
     pub cluster_security_group_name: String,
     /// Property `EC2SecurityGroupName`.
     #[serde(rename="EC2SecurityGroupName")]
-    pub ec2_security_group_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ec2_security_group_name: Option<String>,
     /// Property `EC2SecurityGroupOwnerId`.
     #[serde(rename="EC2SecurityGroupOwnerId")]
-    pub ec2_security_group_owner_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ec2_security_group_owner_id: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for ClusterSecurityGroupIngress {
@@ -254,7 +284,8 @@ pub struct ClusterSubnetGroupProperties {
     pub subnet_ids: Vec<String>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
 }
 
 impl<'a> ::Resource<'a> for ClusterSubnetGroup {
@@ -287,7 +318,8 @@ pub mod cluster {
         pub bucket_name: String,
         /// Property `S3KeyPrefix`.
         #[serde(rename="S3KeyPrefix")]
-        pub s3_key_prefix: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub s3_key_prefix: Option<String>,
     }
 }
 

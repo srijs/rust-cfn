@@ -14,7 +14,8 @@ pub struct CustomActionTypeProperties {
     pub category: String,
     /// Property `ConfigurationProperties`.
     #[serde(rename="ConfigurationProperties")]
-    pub configuration_properties: Vec<self::custom_action_type::ConfigurationProperties>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub configuration_properties: Option<Vec<self::custom_action_type::ConfigurationProperties>>,
     /// Property `InputArtifactDetails`.
     #[serde(rename="InputArtifactDetails")]
     pub input_artifact_details: self::custom_action_type::ArtifactDetails,
@@ -26,10 +27,12 @@ pub struct CustomActionTypeProperties {
     pub provider: String,
     /// Property `Settings`.
     #[serde(rename="Settings")]
-    pub settings: self::custom_action_type::Settings,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub settings: Option<self::custom_action_type::Settings>,
     /// Property `Version`.
     #[serde(rename="Version")]
-    pub version: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub version: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for CustomActionType {
@@ -65,13 +68,16 @@ pub struct PipelineProperties {
     pub artifact_store: self::pipeline::ArtifactStore,
     /// Property `DisableInboundStageTransitions`.
     #[serde(rename="DisableInboundStageTransitions")]
-    pub disable_inbound_stage_transitions: Vec<self::pipeline::StageTransition>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub disable_inbound_stage_transitions: Option<Vec<self::pipeline::StageTransition>>,
     /// Property `Name`.
     #[serde(rename="Name")]
-    pub name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     /// Property `RestartExecutionOnUpdate`.
     #[serde(rename="RestartExecutionOnUpdate")]
-    pub restart_execution_on_update: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub restart_execution_on_update: Option<bool>,
     /// Property `RoleArn`.
     #[serde(rename="RoleArn")]
     pub role_arn: String,
@@ -118,7 +124,8 @@ pub mod custom_action_type {
     pub struct ConfigurationProperties {
         /// Property `Description`.
         #[serde(rename="Description")]
-        pub description: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub description: Option<String>,
         /// Property `Key`.
         #[serde(rename="Key")]
         pub key: bool,
@@ -127,7 +134,8 @@ pub mod custom_action_type {
         pub name: String,
         /// Property `Queryable`.
         #[serde(rename="Queryable")]
-        pub queryable: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub queryable: Option<bool>,
         /// Property `Required`.
         #[serde(rename="Required")]
         pub required: bool,
@@ -136,7 +144,8 @@ pub mod custom_action_type {
         pub secret: bool,
         /// Property `Type`.
         #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub type_: Option<String>,
     }
 
     /// The [`AWS::CodePipeline::CustomActionType.Settings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-settings.html) property type.
@@ -144,16 +153,20 @@ pub mod custom_action_type {
     pub struct Settings {
         /// Property `EntityUrlTemplate`.
         #[serde(rename="EntityUrlTemplate")]
-        pub entity_url_template: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub entity_url_template: Option<String>,
         /// Property `ExecutionUrlTemplate`.
         #[serde(rename="ExecutionUrlTemplate")]
-        pub execution_url_template: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub execution_url_template: Option<String>,
         /// Property `RevisionUrlTemplate`.
         #[serde(rename="RevisionUrlTemplate")]
-        pub revision_url_template: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub revision_url_template: Option<String>,
         /// Property `ThirdPartyConfigurationUrl`.
         #[serde(rename="ThirdPartyConfigurationUrl")]
-        pub third_party_configuration_url: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub third_party_configuration_url: Option<String>,
     }
 }
 
@@ -168,22 +181,27 @@ pub mod pipeline {
         pub action_type_id: ActionTypeId,
         /// Property `Configuration`.
         #[serde(rename="Configuration")]
-        pub configuration: ::json::Value,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub configuration: Option<::json::Value>,
         /// Property `InputArtifacts`.
         #[serde(rename="InputArtifacts")]
-        pub input_artifacts: Vec<InputArtifact>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub input_artifacts: Option<Vec<InputArtifact>>,
         /// Property `Name`.
         #[serde(rename="Name")]
         pub name: String,
         /// Property `OutputArtifacts`.
         #[serde(rename="OutputArtifacts")]
-        pub output_artifacts: Vec<OutputArtifact>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub output_artifacts: Option<Vec<OutputArtifact>>,
         /// Property `RoleArn`.
         #[serde(rename="RoleArn")]
-        pub role_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub role_arn: Option<String>,
         /// Property `RunOrder`.
         #[serde(rename="RunOrder")]
-        pub run_order: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub run_order: Option<u32>,
     }
 
     /// The [`AWS::CodePipeline::Pipeline.ActionTypeId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-actiontypeid.html) property type.
@@ -208,7 +226,8 @@ pub mod pipeline {
     pub struct ArtifactStore {
         /// Property `EncryptionKey`.
         #[serde(rename="EncryptionKey")]
-        pub encryption_key: EncryptionKey,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub encryption_key: Option<EncryptionKey>,
         /// Property `Location`.
         #[serde(rename="Location")]
         pub location: String,
@@ -263,7 +282,8 @@ pub mod pipeline {
         pub actions: Vec<ActionDeclaration>,
         /// Property `Blockers`.
         #[serde(rename="Blockers")]
-        pub blockers: Vec<BlockerDeclaration>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub blockers: Option<Vec<BlockerDeclaration>>,
         /// Property `Name`.
         #[serde(rename="Name")]
         pub name: String,

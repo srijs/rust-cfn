@@ -14,22 +14,27 @@ pub struct ProjectProperties {
     pub artifacts: self::project::Artifacts,
     /// Property `BadgeEnabled`.
     #[serde(rename="BadgeEnabled")]
-    pub badge_enabled: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub badge_enabled: Option<bool>,
     /// Property `Cache`.
     #[serde(rename="Cache")]
-    pub cache: self::project::ProjectCache,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cache: Option<self::project::ProjectCache>,
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `EncryptionKey`.
     #[serde(rename="EncryptionKey")]
-    pub encryption_key: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub encryption_key: Option<String>,
     /// Property `Environment`.
     #[serde(rename="Environment")]
     pub environment: self::project::Environment,
     /// Property `Name`.
     #[serde(rename="Name")]
-    pub name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     /// Property `ServiceRole`.
     #[serde(rename="ServiceRole")]
     pub service_role: String,
@@ -38,16 +43,20 @@ pub struct ProjectProperties {
     pub source: self::project::Source,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
     /// Property `TimeoutInMinutes`.
     #[serde(rename="TimeoutInMinutes")]
-    pub timeout_in_minutes: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub timeout_in_minutes: Option<u32>,
     /// Property `Triggers`.
     #[serde(rename="Triggers")]
-    pub triggers: self::project::ProjectTriggers,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub triggers: Option<self::project::ProjectTriggers>,
     /// Property `VpcConfig`.
     #[serde(rename="VpcConfig")]
-    pub vpc_config: self::project::VpcConfig,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub vpc_config: Option<self::project::VpcConfig>,
 }
 
 impl<'a> ::Resource<'a> for Project {
@@ -77,19 +86,24 @@ pub mod project {
     pub struct Artifacts {
         /// Property `Location`.
         #[serde(rename="Location")]
-        pub location: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub location: Option<String>,
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
         /// Property `NamespaceType`.
         #[serde(rename="NamespaceType")]
-        pub namespace_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub namespace_type: Option<String>,
         /// Property `Packaging`.
         #[serde(rename="Packaging")]
-        pub packaging: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub packaging: Option<String>,
         /// Property `Path`.
         #[serde(rename="Path")]
-        pub path: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub path: Option<String>,
         /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,
@@ -103,13 +117,15 @@ pub mod project {
         pub compute_type: String,
         /// Property `EnvironmentVariables`.
         #[serde(rename="EnvironmentVariables")]
-        pub environment_variables: Vec<EnvironmentVariable>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub environment_variables: Option<Vec<EnvironmentVariable>>,
         /// Property `Image`.
         #[serde(rename="Image")]
         pub image: String,
         /// Property `PrivilegedMode`.
         #[serde(rename="PrivilegedMode")]
-        pub privileged_mode: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub privileged_mode: Option<bool>,
         /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,
@@ -123,7 +139,8 @@ pub mod project {
         pub name: String,
         /// Property `Type`.
         #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub type_: Option<String>,
         /// Property `Value`.
         #[serde(rename="Value")]
         pub value: String,
@@ -134,7 +151,8 @@ pub mod project {
     pub struct ProjectCache {
         /// Property `Location`.
         #[serde(rename="Location")]
-        pub location: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub location: Option<String>,
         /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,
@@ -145,7 +163,8 @@ pub mod project {
     pub struct ProjectTriggers {
         /// Property `Webhook`.
         #[serde(rename="Webhook")]
-        pub webhook: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub webhook: Option<bool>,
     }
 
     /// The [`AWS::CodeBuild::Project.Source`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-source.html) property type.
@@ -153,19 +172,24 @@ pub mod project {
     pub struct Source {
         /// Property `Auth`.
         #[serde(rename="Auth")]
-        pub auth: SourceAuth,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub auth: Option<SourceAuth>,
         /// Property `BuildSpec`.
         #[serde(rename="BuildSpec")]
-        pub build_spec: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub build_spec: Option<String>,
         /// Property `GitCloneDepth`.
         #[serde(rename="GitCloneDepth")]
-        pub git_clone_depth: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub git_clone_depth: Option<u32>,
         /// Property `InsecureSsl`.
         #[serde(rename="InsecureSsl")]
-        pub insecure_ssl: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub insecure_ssl: Option<bool>,
         /// Property `Location`.
         #[serde(rename="Location")]
-        pub location: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub location: Option<String>,
         /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,
@@ -176,7 +200,8 @@ pub mod project {
     pub struct SourceAuth {
         /// Property `Resource`.
         #[serde(rename="Resource")]
-        pub resource: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub resource: Option<String>,
         /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,

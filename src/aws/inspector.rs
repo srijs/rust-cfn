@@ -11,7 +11,8 @@ pub struct AssessmentTarget {
 pub struct AssessmentTargetProperties {
     /// Property `AssessmentTargetName`.
     #[serde(rename="AssessmentTargetName")]
-    pub assessment_target_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub assessment_target_name: Option<String>,
     /// Property `ResourceGroupArn`.
     #[serde(rename="ResourceGroupArn")]
     pub resource_group_arn: String,
@@ -50,7 +51,8 @@ pub struct AssessmentTemplateProperties {
     pub assessment_target_arn: String,
     /// Property `AssessmentTemplateName`.
     #[serde(rename="AssessmentTemplateName")]
-    pub assessment_template_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub assessment_template_name: Option<String>,
     /// Property `DurationInSeconds`.
     #[serde(rename="DurationInSeconds")]
     pub duration_in_seconds: u32,
@@ -59,7 +61,8 @@ pub struct AssessmentTemplateProperties {
     pub rules_package_arns: Vec<String>,
     /// Property `UserAttributesForFindings`.
     #[serde(rename="UserAttributesForFindings")]
-    pub user_attributes_for_findings: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub user_attributes_for_findings: Option<::Tags>,
 }
 
 impl<'a> ::Resource<'a> for AssessmentTemplate {

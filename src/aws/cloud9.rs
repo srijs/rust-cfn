@@ -11,25 +11,31 @@ pub struct EnvironmentEC2 {
 pub struct EnvironmentEC2Properties {
     /// Property `AutomaticStopTimeMinutes`.
     #[serde(rename="AutomaticStopTimeMinutes")]
-    pub automatic_stop_time_minutes: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub automatic_stop_time_minutes: Option<u32>,
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `InstanceType`.
     #[serde(rename="InstanceType")]
     pub instance_type: String,
     /// Property `Name`.
     #[serde(rename="Name")]
-    pub name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     /// Property `OwnerArn`.
     #[serde(rename="OwnerArn")]
-    pub owner_arn: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub owner_arn: Option<String>,
     /// Property `Repositories`.
     #[serde(rename="Repositories")]
-    pub repositories: Vec<self::environment_ec2::Repository>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub repositories: Option<Vec<self::environment_ec2::Repository>>,
     /// Property `SubnetId`.
     #[serde(rename="SubnetId")]
-    pub subnet_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub subnet_id: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for EnvironmentEC2 {

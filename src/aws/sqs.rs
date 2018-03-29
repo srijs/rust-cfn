@@ -11,37 +11,48 @@ pub struct Queue {
 pub struct QueueProperties {
     /// Property `ContentBasedDeduplication`.
     #[serde(rename="ContentBasedDeduplication")]
-    pub content_based_deduplication: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub content_based_deduplication: Option<bool>,
     /// Property `DelaySeconds`.
     #[serde(rename="DelaySeconds")]
-    pub delay_seconds: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub delay_seconds: Option<u32>,
     /// Property `FifoQueue`.
     #[serde(rename="FifoQueue")]
-    pub fifo_queue: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub fifo_queue: Option<bool>,
     /// Property `KmsDataKeyReusePeriodSeconds`.
     #[serde(rename="KmsDataKeyReusePeriodSeconds")]
-    pub kms_data_key_reuse_period_seconds: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub kms_data_key_reuse_period_seconds: Option<u32>,
     /// Property `KmsMasterKeyId`.
     #[serde(rename="KmsMasterKeyId")]
-    pub kms_master_key_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub kms_master_key_id: Option<String>,
     /// Property `MaximumMessageSize`.
     #[serde(rename="MaximumMessageSize")]
-    pub maximum_message_size: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub maximum_message_size: Option<u32>,
     /// Property `MessageRetentionPeriod`.
     #[serde(rename="MessageRetentionPeriod")]
-    pub message_retention_period: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub message_retention_period: Option<u32>,
     /// Property `QueueName`.
     #[serde(rename="QueueName")]
-    pub queue_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub queue_name: Option<String>,
     /// Property `ReceiveMessageWaitTimeSeconds`.
     #[serde(rename="ReceiveMessageWaitTimeSeconds")]
-    pub receive_message_wait_time_seconds: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub receive_message_wait_time_seconds: Option<u32>,
     /// Property `RedrivePolicy`.
     #[serde(rename="RedrivePolicy")]
-    pub redrive_policy: ::json::Value,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub redrive_policy: Option<::json::Value>,
     /// Property `VisibilityTimeout`.
     #[serde(rename="VisibilityTimeout")]
-    pub visibility_timeout: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub visibility_timeout: Option<u32>,
 }
 
 impl<'a> ::Resource<'a> for Queue {

@@ -14,7 +14,8 @@ pub struct InstanceProperties {
     pub instance_attributes: ::json::Value,
     /// Property `InstanceId`.
     #[serde(rename="InstanceId")]
-    pub instance_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub instance_id: Option<String>,
     /// Property `ServiceId`.
     #[serde(rename="ServiceId")]
     pub service_id: String,
@@ -50,7 +51,8 @@ pub struct PrivateDnsNamespace {
 pub struct PrivateDnsNamespaceProperties {
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
@@ -89,7 +91,8 @@ pub struct PublicDnsNamespace {
 pub struct PublicDnsNamespaceProperties {
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
@@ -125,16 +128,19 @@ pub struct Service {
 pub struct ServiceProperties {
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `DnsConfig`.
     #[serde(rename="DnsConfig")]
     pub dns_config: self::service::DnsConfig,
     /// Property `HealthCheckConfig`.
     #[serde(rename="HealthCheckConfig")]
-    pub health_check_config: self::service::HealthCheckConfig,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub health_check_config: Option<self::service::HealthCheckConfig>,
     /// Property `Name`.
     #[serde(rename="Name")]
-    pub name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for Service {
@@ -186,10 +192,12 @@ pub mod service {
     pub struct HealthCheckConfig {
         /// Property `FailureThreshold`.
         #[serde(rename="FailureThreshold")]
-        pub failure_threshold: f64,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub failure_threshold: Option<f64>,
         /// Property `ResourcePath`.
         #[serde(rename="ResourcePath")]
-        pub resource_path: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub resource_path: Option<String>,
         /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,

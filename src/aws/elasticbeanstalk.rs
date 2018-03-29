@@ -11,13 +11,16 @@ pub struct Application {
 pub struct ApplicationProperties {
     /// Property `ApplicationName`.
     #[serde(rename="ApplicationName")]
-    pub application_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub application_name: Option<String>,
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `ResourceLifecycleConfig`.
     #[serde(rename="ResourceLifecycleConfig")]
-    pub resource_lifecycle_config: self::application::ApplicationResourceLifecycleConfig,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub resource_lifecycle_config: Option<self::application::ApplicationResourceLifecycleConfig>,
 }
 
 impl<'a> ::Resource<'a> for Application {
@@ -53,7 +56,8 @@ pub struct ApplicationVersionProperties {
     pub application_name: String,
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `SourceBundle`.
     #[serde(rename="SourceBundle")]
     pub source_bundle: self::application_version::SourceBundle,
@@ -92,22 +96,28 @@ pub struct ConfigurationTemplateProperties {
     pub application_name: String,
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `EnvironmentId`.
     #[serde(rename="EnvironmentId")]
-    pub environment_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub environment_id: Option<String>,
     /// Property `OptionSettings`.
     #[serde(rename="OptionSettings")]
-    pub option_settings: Vec<self::configuration_template::ConfigurationOptionSetting>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub option_settings: Option<Vec<self::configuration_template::ConfigurationOptionSetting>>,
     /// Property `PlatformArn`.
     #[serde(rename="PlatformArn")]
-    pub platform_arn: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub platform_arn: Option<String>,
     /// Property `SolutionStackName`.
     #[serde(rename="SolutionStackName")]
-    pub solution_stack_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub solution_stack_name: Option<String>,
     /// Property `SourceConfiguration`.
     #[serde(rename="SourceConfiguration")]
-    pub source_configuration: self::configuration_template::SourceConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub source_configuration: Option<self::configuration_template::SourceConfiguration>,
 }
 
 impl<'a> ::Resource<'a> for ConfigurationTemplate {
@@ -143,34 +153,44 @@ pub struct EnvironmentProperties {
     pub application_name: String,
     /// Property `CNAMEPrefix`.
     #[serde(rename="CNAMEPrefix")]
-    pub cname_prefix: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cname_prefix: Option<String>,
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `EnvironmentName`.
     #[serde(rename="EnvironmentName")]
-    pub environment_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub environment_name: Option<String>,
     /// Property `OptionSettings`.
     #[serde(rename="OptionSettings")]
-    pub option_settings: Vec<self::environment::OptionSetting>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub option_settings: Option<Vec<self::environment::OptionSetting>>,
     /// Property `PlatformArn`.
     #[serde(rename="PlatformArn")]
-    pub platform_arn: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub platform_arn: Option<String>,
     /// Property `SolutionStackName`.
     #[serde(rename="SolutionStackName")]
-    pub solution_stack_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub solution_stack_name: Option<String>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
     /// Property `TemplateName`.
     #[serde(rename="TemplateName")]
-    pub template_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub template_name: Option<String>,
     /// Property `Tier`.
     #[serde(rename="Tier")]
-    pub tier: self::environment::Tier,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tier: Option<self::environment::Tier>,
     /// Property `VersionLabel`.
     #[serde(rename="VersionLabel")]
-    pub version_label: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub version_label: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for Environment {
@@ -200,10 +220,12 @@ pub mod application {
     pub struct ApplicationResourceLifecycleConfig {
         /// Property `ServiceRole`.
         #[serde(rename="ServiceRole")]
-        pub service_role: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub service_role: Option<String>,
         /// Property `VersionLifecycleConfig`.
         #[serde(rename="VersionLifecycleConfig")]
-        pub version_lifecycle_config: ApplicationVersionLifecycleConfig,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub version_lifecycle_config: Option<ApplicationVersionLifecycleConfig>,
     }
 
     /// The [`AWS::ElasticBeanstalk::Application.ApplicationVersionLifecycleConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-applicationversionlifecycleconfig.html) property type.
@@ -211,10 +233,12 @@ pub mod application {
     pub struct ApplicationVersionLifecycleConfig {
         /// Property `MaxAgeRule`.
         #[serde(rename="MaxAgeRule")]
-        pub max_age_rule: MaxAgeRule,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub max_age_rule: Option<MaxAgeRule>,
         /// Property `MaxCountRule`.
         #[serde(rename="MaxCountRule")]
-        pub max_count_rule: MaxCountRule,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub max_count_rule: Option<MaxCountRule>,
     }
 
     /// The [`AWS::ElasticBeanstalk::Application.MaxAgeRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-maxagerule.html) property type.
@@ -222,13 +246,16 @@ pub mod application {
     pub struct MaxAgeRule {
         /// Property `DeleteSourceFromS3`.
         #[serde(rename="DeleteSourceFromS3")]
-        pub delete_source_from_s3: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub delete_source_from_s3: Option<bool>,
         /// Property `Enabled`.
         #[serde(rename="Enabled")]
-        pub enabled: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub enabled: Option<bool>,
         /// Property `MaxAgeInDays`.
         #[serde(rename="MaxAgeInDays")]
-        pub max_age_in_days: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub max_age_in_days: Option<u32>,
     }
 
     /// The [`AWS::ElasticBeanstalk::Application.MaxCountRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-maxcountrule.html) property type.
@@ -236,13 +263,16 @@ pub mod application {
     pub struct MaxCountRule {
         /// Property `DeleteSourceFromS3`.
         #[serde(rename="DeleteSourceFromS3")]
-        pub delete_source_from_s3: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub delete_source_from_s3: Option<bool>,
         /// Property `Enabled`.
         #[serde(rename="Enabled")]
-        pub enabled: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub enabled: Option<bool>,
         /// Property `MaxCount`.
         #[serde(rename="MaxCount")]
-        pub max_count: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub max_count: Option<u32>,
     }
 }
 
@@ -275,10 +305,12 @@ pub mod configuration_template {
         pub option_name: String,
         /// Property `ResourceName`.
         #[serde(rename="ResourceName")]
-        pub resource_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub resource_name: Option<String>,
         /// Property `Value`.
         #[serde(rename="Value")]
-        pub value: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub value: Option<String>,
     }
 
     /// The [`AWS::ElasticBeanstalk::ConfigurationTemplate.SourceConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-configurationtemplate-sourceconfiguration.html) property type.
@@ -307,10 +339,12 @@ pub mod environment {
         pub option_name: String,
         /// Property `ResourceName`.
         #[serde(rename="ResourceName")]
-        pub resource_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub resource_name: Option<String>,
         /// Property `Value`.
         #[serde(rename="Value")]
-        pub value: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub value: Option<String>,
     }
 
     /// The [`AWS::ElasticBeanstalk::Environment.Tier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment-tier.html) property type.
@@ -318,12 +352,15 @@ pub mod environment {
     pub struct Tier {
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
         /// Property `Type`.
         #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub type_: Option<String>,
         /// Property `Version`.
         #[serde(rename="Version")]
-        pub version: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub version: Option<String>,
     }
 }

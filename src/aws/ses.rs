@@ -11,7 +11,8 @@ pub struct ConfigurationSet {
 pub struct ConfigurationSetProperties {
     /// Property `Name`.
     #[serde(rename="Name")]
-    pub name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for ConfigurationSet {
@@ -113,7 +114,8 @@ pub struct ReceiptRule {
 pub struct ReceiptRuleProperties {
     /// Property `After`.
     #[serde(rename="After")]
-    pub after: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub after: Option<String>,
     /// Property `Rule`.
     #[serde(rename="Rule")]
     pub rule: self::receipt_rule::Rule,
@@ -152,7 +154,8 @@ pub struct ReceiptRuleSet {
 pub struct ReceiptRuleSetProperties {
     /// Property `RuleSetName`.
     #[serde(rename="RuleSetName")]
-    pub rule_set_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub rule_set_name: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for ReceiptRuleSet {
@@ -185,7 +188,8 @@ pub struct Template {
 pub struct TemplateProperties {
     /// Property `Template`.
     #[serde(rename="Template")]
-    pub template: self::template::Template,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub template: Option<self::template::Template>,
 }
 
 impl<'a> ::Resource<'a> for Template {
@@ -215,7 +219,8 @@ pub mod configuration_set_event_destination {
     pub struct CloudWatchDestination {
         /// Property `DimensionConfigurations`.
         #[serde(rename="DimensionConfigurations")]
-        pub dimension_configurations: Vec<DimensionConfiguration>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub dimension_configurations: Option<Vec<DimensionConfiguration>>,
     }
 
     /// The [`AWS::SES::ConfigurationSetEventDestination.DimensionConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-dimensionconfiguration.html) property type.
@@ -237,19 +242,23 @@ pub mod configuration_set_event_destination {
     pub struct EventDestination {
         /// Property `CloudWatchDestination`.
         #[serde(rename="CloudWatchDestination")]
-        pub cloud_watch_destination: CloudWatchDestination,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub cloud_watch_destination: Option<CloudWatchDestination>,
         /// Property `Enabled`.
         #[serde(rename="Enabled")]
-        pub enabled: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub enabled: Option<bool>,
         /// Property `KinesisFirehoseDestination`.
         #[serde(rename="KinesisFirehoseDestination")]
-        pub kinesis_firehose_destination: KinesisFirehoseDestination,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub kinesis_firehose_destination: Option<KinesisFirehoseDestination>,
         /// Property `MatchingEventTypes`.
         #[serde(rename="MatchingEventTypes")]
         pub matching_event_types: Vec<String>,
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
     }
 
     /// The [`AWS::SES::ConfigurationSetEventDestination.KinesisFirehoseDestination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-kinesisfirehosedestination.html) property type.
@@ -275,7 +284,8 @@ pub mod receipt_filter {
         pub ip_filter: IpFilter,
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
     }
 
     /// The [`AWS::SES::ReceiptFilter.IpFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptfilter-ipfilter.html) property type.
@@ -298,25 +308,32 @@ pub mod receipt_rule {
     pub struct Action {
         /// Property `AddHeaderAction`.
         #[serde(rename="AddHeaderAction")]
-        pub add_header_action: AddHeaderAction,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub add_header_action: Option<AddHeaderAction>,
         /// Property `BounceAction`.
         #[serde(rename="BounceAction")]
-        pub bounce_action: BounceAction,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub bounce_action: Option<BounceAction>,
         /// Property `LambdaAction`.
         #[serde(rename="LambdaAction")]
-        pub lambda_action: LambdaAction,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub lambda_action: Option<LambdaAction>,
         /// Property `S3Action`.
         #[serde(rename="S3Action")]
-        pub s3_action: S3Action,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub s3_action: Option<S3Action>,
         /// Property `SNSAction`.
         #[serde(rename="SNSAction")]
-        pub sns_action: SNSAction,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub sns_action: Option<SNSAction>,
         /// Property `StopAction`.
         #[serde(rename="StopAction")]
-        pub stop_action: StopAction,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub stop_action: Option<StopAction>,
         /// Property `WorkmailAction`.
         #[serde(rename="WorkmailAction")]
-        pub workmail_action: WorkmailAction,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub workmail_action: Option<WorkmailAction>,
     }
 
     /// The [`AWS::SES::ReceiptRule.AddHeaderAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-addheaderaction.html) property type.
@@ -344,10 +361,12 @@ pub mod receipt_rule {
         pub smtp_reply_code: String,
         /// Property `StatusCode`.
         #[serde(rename="StatusCode")]
-        pub status_code: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub status_code: Option<String>,
         /// Property `TopicArn`.
         #[serde(rename="TopicArn")]
-        pub topic_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub topic_arn: Option<String>,
     }
 
     /// The [`AWS::SES::ReceiptRule.LambdaAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-lambdaaction.html) property type.
@@ -358,10 +377,12 @@ pub mod receipt_rule {
         pub function_arn: String,
         /// Property `InvocationType`.
         #[serde(rename="InvocationType")]
-        pub invocation_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub invocation_type: Option<String>,
         /// Property `TopicArn`.
         #[serde(rename="TopicArn")]
-        pub topic_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub topic_arn: Option<String>,
     }
 
     /// The [`AWS::SES::ReceiptRule.Rule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-rule.html) property type.
@@ -369,22 +390,28 @@ pub mod receipt_rule {
     pub struct Rule {
         /// Property `Actions`.
         #[serde(rename="Actions")]
-        pub actions: Vec<Action>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub actions: Option<Vec<Action>>,
         /// Property `Enabled`.
         #[serde(rename="Enabled")]
-        pub enabled: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub enabled: Option<bool>,
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
         /// Property `Recipients`.
         #[serde(rename="Recipients")]
-        pub recipients: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub recipients: Option<Vec<String>>,
         /// Property `ScanEnabled`.
         #[serde(rename="ScanEnabled")]
-        pub scan_enabled: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub scan_enabled: Option<bool>,
         /// Property `TlsPolicy`.
         #[serde(rename="TlsPolicy")]
-        pub tls_policy: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub tls_policy: Option<String>,
     }
 
     /// The [`AWS::SES::ReceiptRule.S3Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-s3action.html) property type.
@@ -395,13 +422,16 @@ pub mod receipt_rule {
         pub bucket_name: String,
         /// Property `KmsKeyArn`.
         #[serde(rename="KmsKeyArn")]
-        pub kms_key_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub kms_key_arn: Option<String>,
         /// Property `ObjectKeyPrefix`.
         #[serde(rename="ObjectKeyPrefix")]
-        pub object_key_prefix: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub object_key_prefix: Option<String>,
         /// Property `TopicArn`.
         #[serde(rename="TopicArn")]
-        pub topic_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub topic_arn: Option<String>,
     }
 
     /// The [`AWS::SES::ReceiptRule.SNSAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-snsaction.html) property type.
@@ -409,10 +439,12 @@ pub mod receipt_rule {
     pub struct SNSAction {
         /// Property `Encoding`.
         #[serde(rename="Encoding")]
-        pub encoding: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub encoding: Option<String>,
         /// Property `TopicArn`.
         #[serde(rename="TopicArn")]
-        pub topic_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub topic_arn: Option<String>,
     }
 
     /// The [`AWS::SES::ReceiptRule.StopAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-stopaction.html) property type.
@@ -423,7 +455,8 @@ pub mod receipt_rule {
         pub scope: String,
         /// Property `TopicArn`.
         #[serde(rename="TopicArn")]
-        pub topic_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub topic_arn: Option<String>,
     }
 
     /// The [`AWS::SES::ReceiptRule.WorkmailAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-workmailaction.html) property type.
@@ -434,7 +467,8 @@ pub mod receipt_rule {
         pub organization_arn: String,
         /// Property `TopicArn`.
         #[serde(rename="TopicArn")]
-        pub topic_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub topic_arn: Option<String>,
     }
 }
 
@@ -446,15 +480,19 @@ pub mod template {
     pub struct Template {
         /// Property `HtmlPart`.
         #[serde(rename="HtmlPart")]
-        pub html_part: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub html_part: Option<String>,
         /// Property `SubjectPart`.
         #[serde(rename="SubjectPart")]
-        pub subject_part: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub subject_part: Option<String>,
         /// Property `TemplateName`.
         #[serde(rename="TemplateName")]
-        pub template_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub template_name: Option<String>,
         /// Property `TextPart`.
         #[serde(rename="TextPart")]
-        pub text_part: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub text_part: Option<String>,
     }
 }

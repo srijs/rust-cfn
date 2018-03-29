@@ -11,13 +11,16 @@ pub struct Repository {
 pub struct RepositoryProperties {
     /// Property `LifecyclePolicy`.
     #[serde(rename="LifecyclePolicy")]
-    pub lifecycle_policy: self::repository::LifecyclePolicy,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub lifecycle_policy: Option<self::repository::LifecyclePolicy>,
     /// Property `RepositoryName`.
     #[serde(rename="RepositoryName")]
-    pub repository_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub repository_name: Option<String>,
     /// Property `RepositoryPolicyText`.
     #[serde(rename="RepositoryPolicyText")]
-    pub repository_policy_text: ::json::Value,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub repository_policy_text: Option<::json::Value>,
 }
 
 impl<'a> ::Resource<'a> for Repository {
@@ -47,9 +50,11 @@ pub mod repository {
     pub struct LifecyclePolicy {
         /// Property `LifecyclePolicyText`.
         #[serde(rename="LifecyclePolicyText")]
-        pub lifecycle_policy_text: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub lifecycle_policy_text: Option<String>,
         /// Property `RegistryId`.
         #[serde(rename="RegistryId")]
-        pub registry_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub registry_id: Option<String>,
     }
 }

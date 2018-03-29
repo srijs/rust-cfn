@@ -11,13 +11,15 @@ pub struct Repository {
 pub struct RepositoryProperties {
     /// Property `RepositoryDescription`.
     #[serde(rename="RepositoryDescription")]
-    pub repository_description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub repository_description: Option<String>,
     /// Property `RepositoryName`.
     #[serde(rename="RepositoryName")]
     pub repository_name: String,
     /// Property `Triggers`.
     #[serde(rename="Triggers")]
-    pub triggers: Vec<self::repository::RepositoryTrigger>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub triggers: Option<Vec<self::repository::RepositoryTrigger>>,
 }
 
 impl<'a> ::Resource<'a> for Repository {
@@ -47,18 +49,23 @@ pub mod repository {
     pub struct RepositoryTrigger {
         /// Property `Branches`.
         #[serde(rename="Branches")]
-        pub branches: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub branches: Option<Vec<String>>,
         /// Property `CustomData`.
         #[serde(rename="CustomData")]
-        pub custom_data: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub custom_data: Option<String>,
         /// Property `DestinationArn`.
         #[serde(rename="DestinationArn")]
-        pub destination_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub destination_arn: Option<String>,
         /// Property `Events`.
         #[serde(rename="Events")]
-        pub events: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub events: Option<Vec<String>>,
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
     }
 }

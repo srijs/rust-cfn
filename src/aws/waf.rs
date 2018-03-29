@@ -11,7 +11,8 @@ pub struct ByteMatchSet {
 pub struct ByteMatchSetProperties {
     /// Property `ByteMatchTuples`.
     #[serde(rename="ByteMatchTuples")]
-    pub byte_match_tuples: Vec<self::byte_match_set::ByteMatchTuple>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub byte_match_tuples: Option<Vec<self::byte_match_set::ByteMatchTuple>>,
     /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
@@ -47,7 +48,8 @@ pub struct IPSet {
 pub struct IPSetProperties {
     /// Property `IPSetDescriptors`.
     #[serde(rename="IPSetDescriptors")]
-    pub ip_set_descriptors: Vec<self::ip_set::IPSetDescriptor>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ip_set_descriptors: Option<Vec<self::ip_set::IPSetDescriptor>>,
     /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
@@ -89,7 +91,8 @@ pub struct RuleProperties {
     pub name: String,
     /// Property `Predicates`.
     #[serde(rename="Predicates")]
-    pub predicates: Vec<self::rule::Predicate>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub predicates: Option<Vec<self::rule::Predicate>>,
 }
 
 impl<'a> ::Resource<'a> for Rule {
@@ -161,7 +164,8 @@ pub struct SqlInjectionMatchSetProperties {
     pub name: String,
     /// Property `SqlInjectionMatchTuples`.
     #[serde(rename="SqlInjectionMatchTuples")]
-    pub sql_injection_match_tuples: Vec<self::sql_injection_match_set::SqlInjectionMatchTuple>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sql_injection_match_tuples: Option<Vec<self::sql_injection_match_set::SqlInjectionMatchTuple>>,
 }
 
 impl<'a> ::Resource<'a> for SqlInjectionMatchSet {
@@ -203,7 +207,8 @@ pub struct WebACLProperties {
     pub name: String,
     /// Property `Rules`.
     #[serde(rename="Rules")]
-    pub rules: Vec<self::web_acl::ActivatedRule>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub rules: Option<Vec<self::web_acl::ActivatedRule>>,
 }
 
 impl<'a> ::Resource<'a> for WebACL {
@@ -275,10 +280,12 @@ pub mod byte_match_set {
         pub positional_constraint: String,
         /// Property `TargetString`.
         #[serde(rename="TargetString")]
-        pub target_string: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub target_string: Option<String>,
         /// Property `TargetStringBase64`.
         #[serde(rename="TargetStringBase64")]
-        pub target_string_base64: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub target_string_base64: Option<String>,
         /// Property `TextTransformation`.
         #[serde(rename="TextTransformation")]
         pub text_transformation: String,
@@ -289,7 +296,8 @@ pub mod byte_match_set {
     pub struct FieldToMatch {
         /// Property `Data`.
         #[serde(rename="Data")]
-        pub data: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub data: Option<String>,
         /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,
@@ -337,7 +345,8 @@ pub mod size_constraint_set {
     pub struct FieldToMatch {
         /// Property `Data`.
         #[serde(rename="Data")]
-        pub data: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub data: Option<String>,
         /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,
@@ -369,7 +378,8 @@ pub mod sql_injection_match_set {
     pub struct FieldToMatch {
         /// Property `Data`.
         #[serde(rename="Data")]
-        pub data: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub data: Option<String>,
         /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,
@@ -421,7 +431,8 @@ pub mod xss_match_set {
     pub struct FieldToMatch {
         /// Property `Data`.
         #[serde(rename="Data")]
-        pub data: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub data: Option<String>,
         /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,

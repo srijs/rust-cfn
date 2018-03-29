@@ -11,7 +11,8 @@ pub struct Alias {
 pub struct AliasProperties {
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
@@ -50,13 +51,16 @@ pub struct Build {
 pub struct BuildProperties {
     /// Property `Name`.
     #[serde(rename="Name")]
-    pub name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     /// Property `StorageLocation`.
     #[serde(rename="StorageLocation")]
-    pub storage_location: self::build::S3Location,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub storage_location: Option<self::build::S3Location>,
     /// Property `Version`.
     #[serde(rename="Version")]
-    pub version: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub version: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for Build {
@@ -92,31 +96,37 @@ pub struct FleetProperties {
     pub build_id: String,
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `DesiredEC2Instances`.
     #[serde(rename="DesiredEC2Instances")]
     pub desired_ec2_instances: u32,
     /// Property `EC2InboundPermissions`.
     #[serde(rename="EC2InboundPermissions")]
-    pub ec2_inbound_permissions: Vec<self::fleet::IpPermission>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ec2_inbound_permissions: Option<Vec<self::fleet::IpPermission>>,
     /// Property `EC2InstanceType`.
     #[serde(rename="EC2InstanceType")]
     pub ec2_instance_type: String,
     /// Property `LogPaths`.
     #[serde(rename="LogPaths")]
-    pub log_paths: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub log_paths: Option<Vec<String>>,
     /// Property `MaxSize`.
     #[serde(rename="MaxSize")]
-    pub max_size: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub max_size: Option<u32>,
     /// Property `MinSize`.
     #[serde(rename="MinSize")]
-    pub min_size: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub min_size: Option<u32>,
     /// Property `Name`.
     #[serde(rename="Name")]
     pub name: String,
     /// Property `ServerLaunchParameters`.
     #[serde(rename="ServerLaunchParameters")]
-    pub server_launch_parameters: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub server_launch_parameters: Option<String>,
     /// Property `ServerLaunchPath`.
     #[serde(rename="ServerLaunchPath")]
     pub server_launch_path: String,
@@ -149,10 +159,12 @@ pub mod alias {
     pub struct RoutingStrategy {
         /// Property `FleetId`.
         #[serde(rename="FleetId")]
-        pub fleet_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub fleet_id: Option<String>,
         /// Property `Message`.
         #[serde(rename="Message")]
-        pub message: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub message: Option<String>,
         /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,

@@ -11,67 +11,85 @@ pub struct CacheCluster {
 pub struct CacheClusterProperties {
     /// Property `AZMode`.
     #[serde(rename="AZMode")]
-    pub az_mode: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub az_mode: Option<String>,
     /// Property `AutoMinorVersionUpgrade`.
     #[serde(rename="AutoMinorVersionUpgrade")]
-    pub auto_minor_version_upgrade: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub auto_minor_version_upgrade: Option<bool>,
     /// Property `CacheNodeType`.
     #[serde(rename="CacheNodeType")]
     pub cache_node_type: String,
     /// Property `CacheParameterGroupName`.
     #[serde(rename="CacheParameterGroupName")]
-    pub cache_parameter_group_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cache_parameter_group_name: Option<String>,
     /// Property `CacheSecurityGroupNames`.
     #[serde(rename="CacheSecurityGroupNames")]
-    pub cache_security_group_names: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cache_security_group_names: Option<Vec<String>>,
     /// Property `CacheSubnetGroupName`.
     #[serde(rename="CacheSubnetGroupName")]
-    pub cache_subnet_group_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cache_subnet_group_name: Option<String>,
     /// Property `ClusterName`.
     #[serde(rename="ClusterName")]
-    pub cluster_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cluster_name: Option<String>,
     /// Property `Engine`.
     #[serde(rename="Engine")]
     pub engine: String,
     /// Property `EngineVersion`.
     #[serde(rename="EngineVersion")]
-    pub engine_version: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub engine_version: Option<String>,
     /// Property `NotificationTopicArn`.
     #[serde(rename="NotificationTopicArn")]
-    pub notification_topic_arn: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub notification_topic_arn: Option<String>,
     /// Property `NumCacheNodes`.
     #[serde(rename="NumCacheNodes")]
     pub num_cache_nodes: u32,
     /// Property `Port`.
     #[serde(rename="Port")]
-    pub port: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub port: Option<u32>,
     /// Property `PreferredAvailabilityZone`.
     #[serde(rename="PreferredAvailabilityZone")]
-    pub preferred_availability_zone: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub preferred_availability_zone: Option<String>,
     /// Property `PreferredAvailabilityZones`.
     #[serde(rename="PreferredAvailabilityZones")]
-    pub preferred_availability_zones: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub preferred_availability_zones: Option<Vec<String>>,
     /// Property `PreferredMaintenanceWindow`.
     #[serde(rename="PreferredMaintenanceWindow")]
-    pub preferred_maintenance_window: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub preferred_maintenance_window: Option<String>,
     /// Property `SnapshotArns`.
     #[serde(rename="SnapshotArns")]
-    pub snapshot_arns: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub snapshot_arns: Option<Vec<String>>,
     /// Property `SnapshotName`.
     #[serde(rename="SnapshotName")]
-    pub snapshot_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub snapshot_name: Option<String>,
     /// Property `SnapshotRetentionLimit`.
     #[serde(rename="SnapshotRetentionLimit")]
-    pub snapshot_retention_limit: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub snapshot_retention_limit: Option<u32>,
     /// Property `SnapshotWindow`.
     #[serde(rename="SnapshotWindow")]
-    pub snapshot_window: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub snapshot_window: Option<String>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
     /// Property `VpcSecurityGroupIds`.
     #[serde(rename="VpcSecurityGroupIds")]
-    pub vpc_security_group_ids: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub vpc_security_group_ids: Option<Vec<String>>,
 }
 
 impl<'a> ::Resource<'a> for CacheCluster {
@@ -110,7 +128,8 @@ pub struct ParameterGroupProperties {
     pub description: String,
     /// Property `Properties`.
     #[serde(rename="Properties")]
-    pub properties: ::std::collections::HashMap<String, String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub properties: Option<::std::collections::HashMap<String, String>>,
 }
 
 impl<'a> ::Resource<'a> for ParameterGroup {
@@ -143,91 +162,119 @@ pub struct ReplicationGroup {
 pub struct ReplicationGroupProperties {
     /// Property `AtRestEncryptionEnabled`.
     #[serde(rename="AtRestEncryptionEnabled")]
-    pub at_rest_encryption_enabled: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub at_rest_encryption_enabled: Option<bool>,
     /// Property `AuthToken`.
     #[serde(rename="AuthToken")]
-    pub auth_token: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub auth_token: Option<String>,
     /// Property `AutoMinorVersionUpgrade`.
     #[serde(rename="AutoMinorVersionUpgrade")]
-    pub auto_minor_version_upgrade: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub auto_minor_version_upgrade: Option<bool>,
     /// Property `AutomaticFailoverEnabled`.
     #[serde(rename="AutomaticFailoverEnabled")]
-    pub automatic_failover_enabled: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub automatic_failover_enabled: Option<bool>,
     /// Property `CacheNodeType`.
     #[serde(rename="CacheNodeType")]
-    pub cache_node_type: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cache_node_type: Option<String>,
     /// Property `CacheParameterGroupName`.
     #[serde(rename="CacheParameterGroupName")]
-    pub cache_parameter_group_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cache_parameter_group_name: Option<String>,
     /// Property `CacheSecurityGroupNames`.
     #[serde(rename="CacheSecurityGroupNames")]
-    pub cache_security_group_names: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cache_security_group_names: Option<Vec<String>>,
     /// Property `CacheSubnetGroupName`.
     #[serde(rename="CacheSubnetGroupName")]
-    pub cache_subnet_group_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cache_subnet_group_name: Option<String>,
     /// Property `Engine`.
     #[serde(rename="Engine")]
-    pub engine: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub engine: Option<String>,
     /// Property `EngineVersion`.
     #[serde(rename="EngineVersion")]
-    pub engine_version: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub engine_version: Option<String>,
     /// Property `NodeGroupConfiguration`.
     #[serde(rename="NodeGroupConfiguration")]
-    pub node_group_configuration: Vec<self::replication_group::NodeGroupConfiguration>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub node_group_configuration: Option<Vec<self::replication_group::NodeGroupConfiguration>>,
     /// Property `NotificationTopicArn`.
     #[serde(rename="NotificationTopicArn")]
-    pub notification_topic_arn: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub notification_topic_arn: Option<String>,
     /// Property `NumCacheClusters`.
     #[serde(rename="NumCacheClusters")]
-    pub num_cache_clusters: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub num_cache_clusters: Option<u32>,
     /// Property `NumNodeGroups`.
     #[serde(rename="NumNodeGroups")]
-    pub num_node_groups: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub num_node_groups: Option<u32>,
     /// Property `Port`.
     #[serde(rename="Port")]
-    pub port: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub port: Option<u32>,
     /// Property `PreferredCacheClusterAZs`.
     #[serde(rename="PreferredCacheClusterAZs")]
-    pub preferred_cache_cluster_a_zs: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub preferred_cache_cluster_a_zs: Option<Vec<String>>,
     /// Property `PreferredMaintenanceWindow`.
     #[serde(rename="PreferredMaintenanceWindow")]
-    pub preferred_maintenance_window: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub preferred_maintenance_window: Option<String>,
     /// Property `PrimaryClusterId`.
     #[serde(rename="PrimaryClusterId")]
-    pub primary_cluster_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub primary_cluster_id: Option<String>,
     /// Property `ReplicasPerNodeGroup`.
     #[serde(rename="ReplicasPerNodeGroup")]
-    pub replicas_per_node_group: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub replicas_per_node_group: Option<u32>,
     /// Property `ReplicationGroupDescription`.
     #[serde(rename="ReplicationGroupDescription")]
     pub replication_group_description: String,
     /// Property `ReplicationGroupId`.
     #[serde(rename="ReplicationGroupId")]
-    pub replication_group_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub replication_group_id: Option<String>,
     /// Property `SecurityGroupIds`.
     #[serde(rename="SecurityGroupIds")]
-    pub security_group_ids: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub security_group_ids: Option<Vec<String>>,
     /// Property `SnapshotArns`.
     #[serde(rename="SnapshotArns")]
-    pub snapshot_arns: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub snapshot_arns: Option<Vec<String>>,
     /// Property `SnapshotName`.
     #[serde(rename="SnapshotName")]
-    pub snapshot_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub snapshot_name: Option<String>,
     /// Property `SnapshotRetentionLimit`.
     #[serde(rename="SnapshotRetentionLimit")]
-    pub snapshot_retention_limit: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub snapshot_retention_limit: Option<u32>,
     /// Property `SnapshotWindow`.
     #[serde(rename="SnapshotWindow")]
-    pub snapshot_window: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub snapshot_window: Option<String>,
     /// Property `SnapshottingClusterId`.
     #[serde(rename="SnapshottingClusterId")]
-    pub snapshotting_cluster_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub snapshotting_cluster_id: Option<String>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
     /// Property `TransitEncryptionEnabled`.
     #[serde(rename="TransitEncryptionEnabled")]
-    pub transit_encryption_enabled: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub transit_encryption_enabled: Option<bool>,
 }
 
 impl<'a> ::Resource<'a> for ReplicationGroup {
@@ -299,7 +346,8 @@ pub struct SecurityGroupIngressProperties {
     pub ec2_security_group_name: String,
     /// Property `EC2SecurityGroupOwnerId`.
     #[serde(rename="EC2SecurityGroupOwnerId")]
-    pub ec2_security_group_owner_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ec2_security_group_owner_id: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for SecurityGroupIngress {
@@ -332,7 +380,8 @@ pub struct SubnetGroup {
 pub struct SubnetGroupProperties {
     /// Property `CacheSubnetGroupName`.
     #[serde(rename="CacheSubnetGroupName")]
-    pub cache_subnet_group_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cache_subnet_group_name: Option<String>,
     /// Property `Description`.
     #[serde(rename="Description")]
     pub description: String,
@@ -368,15 +417,19 @@ pub mod replication_group {
     pub struct NodeGroupConfiguration {
         /// Property `PrimaryAvailabilityZone`.
         #[serde(rename="PrimaryAvailabilityZone")]
-        pub primary_availability_zone: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub primary_availability_zone: Option<String>,
         /// Property `ReplicaAvailabilityZones`.
         #[serde(rename="ReplicaAvailabilityZones")]
-        pub replica_availability_zones: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub replica_availability_zones: Option<Vec<String>>,
         /// Property `ReplicaCount`.
         #[serde(rename="ReplicaCount")]
-        pub replica_count: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub replica_count: Option<u32>,
         /// Property `Slots`.
         #[serde(rename="Slots")]
-        pub slots: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub slots: Option<String>,
     }
 }

@@ -11,43 +11,54 @@ pub struct Trail {
 pub struct TrailProperties {
     /// Property `CloudWatchLogsLogGroupArn`.
     #[serde(rename="CloudWatchLogsLogGroupArn")]
-    pub cloud_watch_logs_log_group_arn: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cloud_watch_logs_log_group_arn: Option<String>,
     /// Property `CloudWatchLogsRoleArn`.
     #[serde(rename="CloudWatchLogsRoleArn")]
-    pub cloud_watch_logs_role_arn: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cloud_watch_logs_role_arn: Option<String>,
     /// Property `EnableLogFileValidation`.
     #[serde(rename="EnableLogFileValidation")]
-    pub enable_log_file_validation: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub enable_log_file_validation: Option<bool>,
     /// Property `EventSelectors`.
     #[serde(rename="EventSelectors")]
-    pub event_selectors: Vec<self::trail::EventSelector>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub event_selectors: Option<Vec<self::trail::EventSelector>>,
     /// Property `IncludeGlobalServiceEvents`.
     #[serde(rename="IncludeGlobalServiceEvents")]
-    pub include_global_service_events: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub include_global_service_events: Option<bool>,
     /// Property `IsLogging`.
     #[serde(rename="IsLogging")]
     pub is_logging: bool,
     /// Property `IsMultiRegionTrail`.
     #[serde(rename="IsMultiRegionTrail")]
-    pub is_multi_region_trail: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub is_multi_region_trail: Option<bool>,
     /// Property `KMSKeyId`.
     #[serde(rename="KMSKeyId")]
-    pub kms_key_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub kms_key_id: Option<String>,
     /// Property `S3BucketName`.
     #[serde(rename="S3BucketName")]
     pub s3_bucket_name: String,
     /// Property `S3KeyPrefix`.
     #[serde(rename="S3KeyPrefix")]
-    pub s3_key_prefix: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub s3_key_prefix: Option<String>,
     /// Property `SnsTopicName`.
     #[serde(rename="SnsTopicName")]
-    pub sns_topic_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sns_topic_name: Option<String>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
     /// Property `TrailName`.
     #[serde(rename="TrailName")]
-    pub trail_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub trail_name: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for Trail {
@@ -80,7 +91,8 @@ pub mod trail {
         pub type_: String,
         /// Property `Values`.
         #[serde(rename="Values")]
-        pub values: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub values: Option<Vec<String>>,
     }
 
     /// The [`AWS::CloudTrail::Trail.EventSelector`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-eventselector.html) property type.
@@ -88,12 +100,15 @@ pub mod trail {
     pub struct EventSelector {
         /// Property `DataResources`.
         #[serde(rename="DataResources")]
-        pub data_resources: Vec<DataResource>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub data_resources: Option<Vec<DataResource>>,
         /// Property `IncludeManagementEvents`.
         #[serde(rename="IncludeManagementEvents")]
-        pub include_management_events: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub include_management_events: Option<bool>,
         /// Property `ReadWriteType`.
         #[serde(rename="ReadWriteType")]
-        pub read_write_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub read_write_type: Option<String>,
     }
 }

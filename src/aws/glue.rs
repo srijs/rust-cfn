@@ -11,7 +11,8 @@ pub struct Classifier {
 pub struct ClassifierProperties {
     /// Property `GrokClassifier`.
     #[serde(rename="GrokClassifier")]
-    pub grok_classifier: self::classifier::GrokClassifier,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub grok_classifier: Option<self::classifier::GrokClassifier>,
 }
 
 impl<'a> ::Resource<'a> for Classifier {
@@ -80,28 +81,34 @@ pub struct Crawler {
 pub struct CrawlerProperties {
     /// Property `Classifiers`.
     #[serde(rename="Classifiers")]
-    pub classifiers: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub classifiers: Option<Vec<String>>,
     /// Property `DatabaseName`.
     #[serde(rename="DatabaseName")]
     pub database_name: String,
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `Name`.
     #[serde(rename="Name")]
-    pub name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     /// Property `Role`.
     #[serde(rename="Role")]
     pub role: String,
     /// Property `Schedule`.
     #[serde(rename="Schedule")]
-    pub schedule: self::crawler::Schedule,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub schedule: Option<self::crawler::Schedule>,
     /// Property `SchemaChangePolicy`.
     #[serde(rename="SchemaChangePolicy")]
-    pub schema_change_policy: self::crawler::SchemaChangePolicy,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub schema_change_policy: Option<self::crawler::SchemaChangePolicy>,
     /// Property `TablePrefix`.
     #[serde(rename="TablePrefix")]
-    pub table_prefix: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub table_prefix: Option<String>,
     /// Property `Targets`.
     #[serde(rename="Targets")]
     pub targets: self::crawler::Targets,
@@ -173,16 +180,20 @@ pub struct DevEndpoint {
 pub struct DevEndpointProperties {
     /// Property `EndpointName`.
     #[serde(rename="EndpointName")]
-    pub endpoint_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub endpoint_name: Option<String>,
     /// Property `ExtraJarsS3Path`.
     #[serde(rename="ExtraJarsS3Path")]
-    pub extra_jars_s3_path: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub extra_jars_s3_path: Option<String>,
     /// Property `ExtraPythonLibsS3Path`.
     #[serde(rename="ExtraPythonLibsS3Path")]
-    pub extra_python_libs_s3_path: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub extra_python_libs_s3_path: Option<String>,
     /// Property `NumberOfNodes`.
     #[serde(rename="NumberOfNodes")]
-    pub number_of_nodes: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub number_of_nodes: Option<u32>,
     /// Property `PublicKey`.
     #[serde(rename="PublicKey")]
     pub public_key: String,
@@ -191,10 +202,12 @@ pub struct DevEndpointProperties {
     pub role_arn: String,
     /// Property `SecurityGroupIds`.
     #[serde(rename="SecurityGroupIds")]
-    pub security_group_ids: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub security_group_ids: Option<Vec<String>>,
     /// Property `SubnetId`.
     #[serde(rename="SubnetId")]
-    pub subnet_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub subnet_id: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for DevEndpoint {
@@ -227,31 +240,39 @@ pub struct Job {
 pub struct JobProperties {
     /// Property `AllocatedCapacity`.
     #[serde(rename="AllocatedCapacity")]
-    pub allocated_capacity: f64,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub allocated_capacity: Option<f64>,
     /// Property `Command`.
     #[serde(rename="Command")]
     pub command: self::job::JobCommand,
     /// Property `Connections`.
     #[serde(rename="Connections")]
-    pub connections: self::job::ConnectionsList,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub connections: Option<self::job::ConnectionsList>,
     /// Property `DefaultArguments`.
     #[serde(rename="DefaultArguments")]
-    pub default_arguments: ::json::Value,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub default_arguments: Option<::json::Value>,
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `ExecutionProperty`.
     #[serde(rename="ExecutionProperty")]
-    pub execution_property: self::job::ExecutionProperty,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub execution_property: Option<self::job::ExecutionProperty>,
     /// Property `LogUri`.
     #[serde(rename="LogUri")]
-    pub log_uri: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub log_uri: Option<String>,
     /// Property `MaxRetries`.
     #[serde(rename="MaxRetries")]
-    pub max_retries: f64,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub max_retries: Option<f64>,
     /// Property `Name`.
     #[serde(rename="Name")]
-    pub name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     /// Property `Role`.
     #[serde(rename="Role")]
     pub role: String,
@@ -371,16 +392,20 @@ pub struct TriggerProperties {
     pub actions: Vec<self::trigger::Action>,
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `Name`.
     #[serde(rename="Name")]
-    pub name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     /// Property `Predicate`.
     #[serde(rename="Predicate")]
-    pub predicate: self::trigger::Predicate,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub predicate: Option<self::trigger::Predicate>,
     /// Property `Schedule`.
     #[serde(rename="Schedule")]
-    pub schedule: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub schedule: Option<String>,
     /// Property `Type`.
     #[serde(rename="Type")]
     pub type_: String,
@@ -416,13 +441,15 @@ pub mod classifier {
         pub classification: String,
         /// Property `CustomPatterns`.
         #[serde(rename="CustomPatterns")]
-        pub custom_patterns: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub custom_patterns: Option<String>,
         /// Property `GrokPattern`.
         #[serde(rename="GrokPattern")]
         pub grok_pattern: String,
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
     }
 }
 
@@ -440,16 +467,20 @@ pub mod connection {
         pub connection_type: String,
         /// Property `Description`.
         #[serde(rename="Description")]
-        pub description: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub description: Option<String>,
         /// Property `MatchCriteria`.
         #[serde(rename="MatchCriteria")]
-        pub match_criteria: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub match_criteria: Option<Vec<String>>,
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
         /// Property `PhysicalConnectionRequirements`.
         #[serde(rename="PhysicalConnectionRequirements")]
-        pub physical_connection_requirements: PhysicalConnectionRequirements,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub physical_connection_requirements: Option<PhysicalConnectionRequirements>,
     }
 
     /// The [`AWS::Glue::Connection.PhysicalConnectionRequirements`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-physicalconnectionrequirements.html) property type.
@@ -457,13 +488,16 @@ pub mod connection {
     pub struct PhysicalConnectionRequirements {
         /// Property `AvailabilityZone`.
         #[serde(rename="AvailabilityZone")]
-        pub availability_zone: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub availability_zone: Option<String>,
         /// Property `SecurityGroupIdList`.
         #[serde(rename="SecurityGroupIdList")]
-        pub security_group_id_list: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub security_group_id_list: Option<Vec<String>>,
         /// Property `SubnetId`.
         #[serde(rename="SubnetId")]
-        pub subnet_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub subnet_id: Option<String>,
     }
 }
 
@@ -475,13 +509,16 @@ pub mod crawler {
     pub struct JdbcTarget {
         /// Property `ConnectionName`.
         #[serde(rename="ConnectionName")]
-        pub connection_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub connection_name: Option<String>,
         /// Property `Exclusions`.
         #[serde(rename="Exclusions")]
-        pub exclusions: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub exclusions: Option<Vec<String>>,
         /// Property `Path`.
         #[serde(rename="Path")]
-        pub path: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub path: Option<String>,
     }
 
     /// The [`AWS::Glue::Crawler.S3Target`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-s3target.html) property type.
@@ -489,10 +526,12 @@ pub mod crawler {
     pub struct S3Target {
         /// Property `Exclusions`.
         #[serde(rename="Exclusions")]
-        pub exclusions: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub exclusions: Option<Vec<String>>,
         /// Property `Path`.
         #[serde(rename="Path")]
-        pub path: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub path: Option<String>,
     }
 
     /// The [`AWS::Glue::Crawler.Schedule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-schedule.html) property type.
@@ -500,7 +539,8 @@ pub mod crawler {
     pub struct Schedule {
         /// Property `ScheduleExpression`.
         #[serde(rename="ScheduleExpression")]
-        pub schedule_expression: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub schedule_expression: Option<String>,
     }
 
     /// The [`AWS::Glue::Crawler.SchemaChangePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-schemachangepolicy.html) property type.
@@ -508,10 +548,12 @@ pub mod crawler {
     pub struct SchemaChangePolicy {
         /// Property `DeleteBehavior`.
         #[serde(rename="DeleteBehavior")]
-        pub delete_behavior: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub delete_behavior: Option<String>,
         /// Property `UpdateBehavior`.
         #[serde(rename="UpdateBehavior")]
-        pub update_behavior: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub update_behavior: Option<String>,
     }
 
     /// The [`AWS::Glue::Crawler.Targets`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-targets.html) property type.
@@ -519,10 +561,12 @@ pub mod crawler {
     pub struct Targets {
         /// Property `JdbcTargets`.
         #[serde(rename="JdbcTargets")]
-        pub jdbc_targets: Vec<JdbcTarget>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub jdbc_targets: Option<Vec<JdbcTarget>>,
         /// Property `S3Targets`.
         #[serde(rename="S3Targets")]
-        pub s3_targets: Vec<S3Target>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub s3_targets: Option<Vec<S3Target>>,
     }
 }
 
@@ -534,16 +578,20 @@ pub mod database {
     pub struct DatabaseInput {
         /// Property `Description`.
         #[serde(rename="Description")]
-        pub description: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub description: Option<String>,
         /// Property `LocationUri`.
         #[serde(rename="LocationUri")]
-        pub location_uri: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub location_uri: Option<String>,
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
         /// Property `Parameters`.
         #[serde(rename="Parameters")]
-        pub parameters: ::json::Value,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub parameters: Option<::json::Value>,
     }
 }
 
@@ -555,7 +603,8 @@ pub mod job {
     pub struct ConnectionsList {
         /// Property `Connections`.
         #[serde(rename="Connections")]
-        pub connections: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub connections: Option<Vec<String>>,
     }
 
     /// The [`AWS::Glue::Job.ExecutionProperty`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-executionproperty.html) property type.
@@ -563,7 +612,8 @@ pub mod job {
     pub struct ExecutionProperty {
         /// Property `MaxConcurrentRuns`.
         #[serde(rename="MaxConcurrentRuns")]
-        pub max_concurrent_runs: f64,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub max_concurrent_runs: Option<f64>,
     }
 
     /// The [`AWS::Glue::Job.JobCommand`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-jobcommand.html) property type.
@@ -571,10 +621,12 @@ pub mod job {
     pub struct JobCommand {
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
         /// Property `ScriptLocation`.
         #[serde(rename="ScriptLocation")]
-        pub script_location: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub script_location: Option<String>,
     }
 }
 
@@ -586,13 +638,15 @@ pub mod partition {
     pub struct Column {
         /// Property `Comment`.
         #[serde(rename="Comment")]
-        pub comment: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub comment: Option<String>,
         /// Property `Name`.
         #[serde(rename="Name")]
         pub name: String,
         /// Property `Type`.
         #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub type_: Option<String>,
     }
 
     /// The [`AWS::Glue::Partition.Order`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-order.html) property type.
@@ -603,7 +657,8 @@ pub mod partition {
         pub column: String,
         /// Property `SortOrder`.
         #[serde(rename="SortOrder")]
-        pub sort_order: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub sort_order: Option<u32>,
     }
 
     /// The [`AWS::Glue::Partition.PartitionInput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-partitioninput.html) property type.
@@ -611,10 +666,12 @@ pub mod partition {
     pub struct PartitionInput {
         /// Property `Parameters`.
         #[serde(rename="Parameters")]
-        pub parameters: ::json::Value,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub parameters: Option<::json::Value>,
         /// Property `StorageDescriptor`.
         #[serde(rename="StorageDescriptor")]
-        pub storage_descriptor: StorageDescriptor,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub storage_descriptor: Option<StorageDescriptor>,
         /// Property `Values`.
         #[serde(rename="Values")]
         pub values: Vec<String>,
@@ -625,13 +682,16 @@ pub mod partition {
     pub struct SerdeInfo {
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
         /// Property `Parameters`.
         #[serde(rename="Parameters")]
-        pub parameters: ::json::Value,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub parameters: Option<::json::Value>,
         /// Property `SerializationLibrary`.
         #[serde(rename="SerializationLibrary")]
-        pub serialization_library: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub serialization_library: Option<String>,
     }
 
     /// The [`AWS::Glue::Partition.SkewedInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-skewedinfo.html) property type.
@@ -639,13 +699,16 @@ pub mod partition {
     pub struct SkewedInfo {
         /// Property `SkewedColumnNames`.
         #[serde(rename="SkewedColumnNames")]
-        pub skewed_column_names: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub skewed_column_names: Option<Vec<String>>,
         /// Property `SkewedColumnValueLocationMaps`.
         #[serde(rename="SkewedColumnValueLocationMaps")]
-        pub skewed_column_value_location_maps: ::json::Value,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub skewed_column_value_location_maps: Option<::json::Value>,
         /// Property `SkewedColumnValues`.
         #[serde(rename="SkewedColumnValues")]
-        pub skewed_column_values: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub skewed_column_values: Option<Vec<String>>,
     }
 
     /// The [`AWS::Glue::Partition.StorageDescriptor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-storagedescriptor.html) property type.
@@ -653,40 +716,52 @@ pub mod partition {
     pub struct StorageDescriptor {
         /// Property `BucketColumns`.
         #[serde(rename="BucketColumns")]
-        pub bucket_columns: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub bucket_columns: Option<Vec<String>>,
         /// Property `Columns`.
         #[serde(rename="Columns")]
-        pub columns: Vec<Column>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub columns: Option<Vec<Column>>,
         /// Property `Compressed`.
         #[serde(rename="Compressed")]
-        pub compressed: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub compressed: Option<bool>,
         /// Property `InputFormat`.
         #[serde(rename="InputFormat")]
-        pub input_format: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub input_format: Option<String>,
         /// Property `Location`.
         #[serde(rename="Location")]
-        pub location: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub location: Option<String>,
         /// Property `NumberOfBuckets`.
         #[serde(rename="NumberOfBuckets")]
-        pub number_of_buckets: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub number_of_buckets: Option<u32>,
         /// Property `OutputFormat`.
         #[serde(rename="OutputFormat")]
-        pub output_format: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub output_format: Option<String>,
         /// Property `Parameters`.
         #[serde(rename="Parameters")]
-        pub parameters: ::json::Value,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub parameters: Option<::json::Value>,
         /// Property `SerdeInfo`.
         #[serde(rename="SerdeInfo")]
-        pub serde_info: SerdeInfo,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub serde_info: Option<SerdeInfo>,
         /// Property `SkewedInfo`.
         #[serde(rename="SkewedInfo")]
-        pub skewed_info: SkewedInfo,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub skewed_info: Option<SkewedInfo>,
         /// Property `SortColumns`.
         #[serde(rename="SortColumns")]
-        pub sort_columns: Vec<Order>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub sort_columns: Option<Vec<Order>>,
         /// Property `StoredAsSubDirectories`.
         #[serde(rename="StoredAsSubDirectories")]
-        pub stored_as_sub_directories: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub stored_as_sub_directories: Option<bool>,
     }
 }
 
@@ -698,13 +773,15 @@ pub mod table {
     pub struct Column {
         /// Property `Comment`.
         #[serde(rename="Comment")]
-        pub comment: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub comment: Option<String>,
         /// Property `Name`.
         #[serde(rename="Name")]
         pub name: String,
         /// Property `Type`.
         #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub type_: Option<String>,
     }
 
     /// The [`AWS::Glue::Table.Order`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-order.html) property type.
@@ -723,13 +800,16 @@ pub mod table {
     pub struct SerdeInfo {
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
         /// Property `Parameters`.
         #[serde(rename="Parameters")]
-        pub parameters: ::json::Value,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub parameters: Option<::json::Value>,
         /// Property `SerializationLibrary`.
         #[serde(rename="SerializationLibrary")]
-        pub serialization_library: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub serialization_library: Option<String>,
     }
 
     /// The [`AWS::Glue::Table.SkewedInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-skewedinfo.html) property type.
@@ -737,13 +817,16 @@ pub mod table {
     pub struct SkewedInfo {
         /// Property `SkewedColumnNames`.
         #[serde(rename="SkewedColumnNames")]
-        pub skewed_column_names: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub skewed_column_names: Option<Vec<String>>,
         /// Property `SkewedColumnValueLocationMaps`.
         #[serde(rename="SkewedColumnValueLocationMaps")]
-        pub skewed_column_value_location_maps: ::json::Value,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub skewed_column_value_location_maps: Option<::json::Value>,
         /// Property `SkewedColumnValues`.
         #[serde(rename="SkewedColumnValues")]
-        pub skewed_column_values: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub skewed_column_values: Option<Vec<String>>,
     }
 
     /// The [`AWS::Glue::Table.StorageDescriptor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-storagedescriptor.html) property type.
@@ -751,40 +834,52 @@ pub mod table {
     pub struct StorageDescriptor {
         /// Property `BucketColumns`.
         #[serde(rename="BucketColumns")]
-        pub bucket_columns: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub bucket_columns: Option<Vec<String>>,
         /// Property `Columns`.
         #[serde(rename="Columns")]
-        pub columns: Vec<Column>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub columns: Option<Vec<Column>>,
         /// Property `Compressed`.
         #[serde(rename="Compressed")]
-        pub compressed: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub compressed: Option<bool>,
         /// Property `InputFormat`.
         #[serde(rename="InputFormat")]
-        pub input_format: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub input_format: Option<String>,
         /// Property `Location`.
         #[serde(rename="Location")]
-        pub location: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub location: Option<String>,
         /// Property `NumberOfBuckets`.
         #[serde(rename="NumberOfBuckets")]
-        pub number_of_buckets: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub number_of_buckets: Option<u32>,
         /// Property `OutputFormat`.
         #[serde(rename="OutputFormat")]
-        pub output_format: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub output_format: Option<String>,
         /// Property `Parameters`.
         #[serde(rename="Parameters")]
-        pub parameters: ::json::Value,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub parameters: Option<::json::Value>,
         /// Property `SerdeInfo`.
         #[serde(rename="SerdeInfo")]
-        pub serde_info: SerdeInfo,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub serde_info: Option<SerdeInfo>,
         /// Property `SkewedInfo`.
         #[serde(rename="SkewedInfo")]
-        pub skewed_info: SkewedInfo,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub skewed_info: Option<SkewedInfo>,
         /// Property `SortColumns`.
         #[serde(rename="SortColumns")]
-        pub sort_columns: Vec<Order>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub sort_columns: Option<Vec<Order>>,
         /// Property `StoredAsSubDirectories`.
         #[serde(rename="StoredAsSubDirectories")]
-        pub stored_as_sub_directories: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub stored_as_sub_directories: Option<bool>,
     }
 
     /// The [`AWS::Glue::Table.TableInput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-tableinput.html) property type.
@@ -792,34 +887,44 @@ pub mod table {
     pub struct TableInput {
         /// Property `Description`.
         #[serde(rename="Description")]
-        pub description: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub description: Option<String>,
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
         /// Property `Owner`.
         #[serde(rename="Owner")]
-        pub owner: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub owner: Option<String>,
         /// Property `Parameters`.
         #[serde(rename="Parameters")]
-        pub parameters: ::json::Value,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub parameters: Option<::json::Value>,
         /// Property `PartitionKeys`.
         #[serde(rename="PartitionKeys")]
-        pub partition_keys: Vec<Column>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub partition_keys: Option<Vec<Column>>,
         /// Property `Retention`.
         #[serde(rename="Retention")]
-        pub retention: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub retention: Option<u32>,
         /// Property `StorageDescriptor`.
         #[serde(rename="StorageDescriptor")]
-        pub storage_descriptor: StorageDescriptor,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub storage_descriptor: Option<StorageDescriptor>,
         /// Property `TableType`.
         #[serde(rename="TableType")]
-        pub table_type: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub table_type: Option<String>,
         /// Property `ViewExpandedText`.
         #[serde(rename="ViewExpandedText")]
-        pub view_expanded_text: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub view_expanded_text: Option<String>,
         /// Property `ViewOriginalText`.
         #[serde(rename="ViewOriginalText")]
-        pub view_original_text: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub view_original_text: Option<String>,
     }
 }
 
@@ -831,10 +936,12 @@ pub mod trigger {
     pub struct Action {
         /// Property `Arguments`.
         #[serde(rename="Arguments")]
-        pub arguments: ::json::Value,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub arguments: Option<::json::Value>,
         /// Property `JobName`.
         #[serde(rename="JobName")]
-        pub job_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub job_name: Option<String>,
     }
 
     /// The [`AWS::Glue::Trigger.Condition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-condition.html) property type.
@@ -842,13 +949,16 @@ pub mod trigger {
     pub struct Condition {
         /// Property `JobName`.
         #[serde(rename="JobName")]
-        pub job_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub job_name: Option<String>,
         /// Property `LogicalOperator`.
         #[serde(rename="LogicalOperator")]
-        pub logical_operator: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub logical_operator: Option<String>,
         /// Property `State`.
         #[serde(rename="State")]
-        pub state: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub state: Option<String>,
     }
 
     /// The [`AWS::Glue::Trigger.Predicate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-predicate.html) property type.
@@ -856,9 +966,11 @@ pub mod trigger {
     pub struct Predicate {
         /// Property `Conditions`.
         #[serde(rename="Conditions")]
-        pub conditions: Vec<Condition>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub conditions: Option<Vec<Condition>>,
         /// Property `Logical`.
         #[serde(rename="Logical")]
-        pub logical: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub logical: Option<String>,
     }
 }

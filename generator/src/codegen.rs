@@ -142,7 +142,12 @@ fn generate_field(namespace_opt: Option<&str>, name: &str, spec: &PropertySpecif
 
     writeln!(f, "    {}/// Property `{}`.", indent, name)?;
     writeln!(f, "    {}#[serde(rename=\"{}\")]", indent, name)?;
-    writeln!(f, "    {}pub {}: {},", indent, field_name, generate_field_type(namespace_opt, spec))?;
+    if spec.required.unwrap_or(true) {
+        writeln!(f, "    {}pub {}: {},", indent, field_name, generate_field_type(namespace_opt, spec))?;
+    } else {
+        writeln!(f, "    {}#[serde(skip_serializing_if = \"Option::is_none\")]", indent)?;
+        writeln!(f, "    {}pub {}: Option<{}>,", indent, field_name, generate_field_type(namespace_opt, spec))?;
+    }
 
     Ok(())
 }

@@ -11,7 +11,8 @@ pub struct Alias {
 pub struct AliasProperties {
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `FunctionName`.
     #[serde(rename="FunctionName")]
     pub function_name: String,
@@ -23,7 +24,8 @@ pub struct AliasProperties {
     pub name: String,
     /// Property `RoutingConfig`.
     #[serde(rename="RoutingConfig")]
-    pub routing_config: self::alias::AliasRoutingConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub routing_config: Option<self::alias::AliasRoutingConfiguration>,
 }
 
 impl<'a> ::Resource<'a> for Alias {
@@ -56,10 +58,12 @@ pub struct EventSourceMapping {
 pub struct EventSourceMappingProperties {
     /// Property `BatchSize`.
     #[serde(rename="BatchSize")]
-    pub batch_size: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub batch_size: Option<u32>,
     /// Property `Enabled`.
     #[serde(rename="Enabled")]
-    pub enabled: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub enabled: Option<bool>,
     /// Property `EventSourceArn`.
     #[serde(rename="EventSourceArn")]
     pub event_source_arn: String,
@@ -104,28 +108,35 @@ pub struct FunctionProperties {
     pub code: self::function::Code,
     /// Property `DeadLetterConfig`.
     #[serde(rename="DeadLetterConfig")]
-    pub dead_letter_config: self::function::DeadLetterConfig,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub dead_letter_config: Option<self::function::DeadLetterConfig>,
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `Environment`.
     #[serde(rename="Environment")]
-    pub environment: self::function::Environment,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub environment: Option<self::function::Environment>,
     /// Property `FunctionName`.
     #[serde(rename="FunctionName")]
-    pub function_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub function_name: Option<String>,
     /// Property `Handler`.
     #[serde(rename="Handler")]
     pub handler: String,
     /// Property `KmsKeyArn`.
     #[serde(rename="KmsKeyArn")]
-    pub kms_key_arn: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub kms_key_arn: Option<String>,
     /// Property `MemorySize`.
     #[serde(rename="MemorySize")]
-    pub memory_size: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub memory_size: Option<u32>,
     /// Property `ReservedConcurrentExecutions`.
     #[serde(rename="ReservedConcurrentExecutions")]
-    pub reserved_concurrent_executions: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reserved_concurrent_executions: Option<u32>,
     /// Property `Role`.
     #[serde(rename="Role")]
     pub role: String,
@@ -134,16 +145,20 @@ pub struct FunctionProperties {
     pub runtime: String,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
     /// Property `Timeout`.
     #[serde(rename="Timeout")]
-    pub timeout: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub timeout: Option<u32>,
     /// Property `TracingConfig`.
     #[serde(rename="TracingConfig")]
-    pub tracing_config: self::function::TracingConfig,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tracing_config: Option<self::function::TracingConfig>,
     /// Property `VpcConfig`.
     #[serde(rename="VpcConfig")]
-    pub vpc_config: self::function::VpcConfig,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub vpc_config: Option<self::function::VpcConfig>,
 }
 
 impl<'a> ::Resource<'a> for Function {
@@ -179,7 +194,8 @@ pub struct PermissionProperties {
     pub action: String,
     /// Property `EventSourceToken`.
     #[serde(rename="EventSourceToken")]
-    pub event_source_token: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub event_source_token: Option<String>,
     /// Property `FunctionName`.
     #[serde(rename="FunctionName")]
     pub function_name: String,
@@ -188,10 +204,12 @@ pub struct PermissionProperties {
     pub principal: String,
     /// Property `SourceAccount`.
     #[serde(rename="SourceAccount")]
-    pub source_account: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub source_account: Option<String>,
     /// Property `SourceArn`.
     #[serde(rename="SourceArn")]
-    pub source_arn: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub source_arn: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for Permission {
@@ -224,10 +242,12 @@ pub struct Version {
 pub struct VersionProperties {
     /// Property `CodeSha256`.
     #[serde(rename="CodeSha256")]
-    pub code_sha256: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub code_sha256: Option<String>,
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `FunctionName`.
     #[serde(rename="FunctionName")]
     pub function_name: String,
@@ -283,16 +303,20 @@ pub mod function {
     pub struct Code {
         /// Property `S3Bucket`.
         #[serde(rename="S3Bucket")]
-        pub s3_bucket: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub s3_bucket: Option<String>,
         /// Property `S3Key`.
         #[serde(rename="S3Key")]
-        pub s3_key: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub s3_key: Option<String>,
         /// Property `S3ObjectVersion`.
         #[serde(rename="S3ObjectVersion")]
-        pub s3_object_version: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub s3_object_version: Option<String>,
         /// Property `ZipFile`.
         #[serde(rename="ZipFile")]
-        pub zip_file: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub zip_file: Option<String>,
     }
 
     /// The [`AWS::Lambda::Function.DeadLetterConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-deadletterconfig.html) property type.
@@ -300,7 +324,8 @@ pub mod function {
     pub struct DeadLetterConfig {
         /// Property `TargetArn`.
         #[serde(rename="TargetArn")]
-        pub target_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub target_arn: Option<String>,
     }
 
     /// The [`AWS::Lambda::Function.Environment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-environment.html) property type.
@@ -308,7 +333,8 @@ pub mod function {
     pub struct Environment {
         /// Property `Variables`.
         #[serde(rename="Variables")]
-        pub variables: ::std::collections::HashMap<String, String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub variables: Option<::std::collections::HashMap<String, String>>,
     }
 
     /// The [`AWS::Lambda::Function.TracingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-tracingconfig.html) property type.
@@ -316,7 +342,8 @@ pub mod function {
     pub struct TracingConfig {
         /// Property `Mode`.
         #[serde(rename="Mode")]
-        pub mode: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub mode: Option<String>,
     }
 
     /// The [`AWS::Lambda::Function.VpcConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-vpcconfig.html) property type.

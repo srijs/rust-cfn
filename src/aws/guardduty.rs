@@ -56,7 +56,8 @@ pub struct IPSetProperties {
     pub location: String,
     /// Property `Name`.
     #[serde(rename="Name")]
-    pub name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for IPSet {
@@ -137,10 +138,12 @@ pub struct MemberProperties {
     pub member_id: String,
     /// Property `Message`.
     #[serde(rename="Message")]
-    pub message: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub message: Option<String>,
     /// Property `Status`.
     #[serde(rename="Status")]
-    pub status: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub status: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for Member {
@@ -185,7 +188,8 @@ pub struct ThreatIntelSetProperties {
     pub location: String,
     /// Property `Name`.
     #[serde(rename="Name")]
-    pub name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for ThreatIntelSet {

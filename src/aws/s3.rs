@@ -11,49 +11,64 @@ pub struct Bucket {
 pub struct BucketProperties {
     /// Property `AccelerateConfiguration`.
     #[serde(rename="AccelerateConfiguration")]
-    pub accelerate_configuration: self::bucket::AccelerateConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub accelerate_configuration: Option<self::bucket::AccelerateConfiguration>,
     /// Property `AccessControl`.
     #[serde(rename="AccessControl")]
-    pub access_control: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub access_control: Option<String>,
     /// Property `AnalyticsConfigurations`.
     #[serde(rename="AnalyticsConfigurations")]
-    pub analytics_configurations: Vec<self::bucket::AnalyticsConfiguration>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub analytics_configurations: Option<Vec<self::bucket::AnalyticsConfiguration>>,
     /// Property `BucketEncryption`.
     #[serde(rename="BucketEncryption")]
-    pub bucket_encryption: self::bucket::BucketEncryption,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub bucket_encryption: Option<self::bucket::BucketEncryption>,
     /// Property `BucketName`.
     #[serde(rename="BucketName")]
-    pub bucket_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub bucket_name: Option<String>,
     /// Property `CorsConfiguration`.
     #[serde(rename="CorsConfiguration")]
-    pub cors_configuration: self::bucket::CorsConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cors_configuration: Option<self::bucket::CorsConfiguration>,
     /// Property `InventoryConfigurations`.
     #[serde(rename="InventoryConfigurations")]
-    pub inventory_configurations: Vec<self::bucket::InventoryConfiguration>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub inventory_configurations: Option<Vec<self::bucket::InventoryConfiguration>>,
     /// Property `LifecycleConfiguration`.
     #[serde(rename="LifecycleConfiguration")]
-    pub lifecycle_configuration: self::bucket::LifecycleConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub lifecycle_configuration: Option<self::bucket::LifecycleConfiguration>,
     /// Property `LoggingConfiguration`.
     #[serde(rename="LoggingConfiguration")]
-    pub logging_configuration: self::bucket::LoggingConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub logging_configuration: Option<self::bucket::LoggingConfiguration>,
     /// Property `MetricsConfigurations`.
     #[serde(rename="MetricsConfigurations")]
-    pub metrics_configurations: Vec<self::bucket::MetricsConfiguration>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub metrics_configurations: Option<Vec<self::bucket::MetricsConfiguration>>,
     /// Property `NotificationConfiguration`.
     #[serde(rename="NotificationConfiguration")]
-    pub notification_configuration: self::bucket::NotificationConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub notification_configuration: Option<self::bucket::NotificationConfiguration>,
     /// Property `ReplicationConfiguration`.
     #[serde(rename="ReplicationConfiguration")]
-    pub replication_configuration: self::bucket::ReplicationConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub replication_configuration: Option<self::bucket::ReplicationConfiguration>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
     /// Property `VersioningConfiguration`.
     #[serde(rename="VersioningConfiguration")]
-    pub versioning_configuration: self::bucket::VersioningConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub versioning_configuration: Option<self::bucket::VersioningConfiguration>,
     /// Property `WebsiteConfiguration`.
     #[serde(rename="WebsiteConfiguration")]
-    pub website_configuration: self::bucket::WebsiteConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub website_configuration: Option<self::bucket::WebsiteConfiguration>,
 }
 
 impl<'a> ::Resource<'a> for Bucket {
@@ -146,13 +161,15 @@ pub mod bucket {
         pub id: String,
         /// Property `Prefix`.
         #[serde(rename="Prefix")]
-        pub prefix: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub prefix: Option<String>,
         /// Property `StorageClassAnalysis`.
         #[serde(rename="StorageClassAnalysis")]
         pub storage_class_analysis: StorageClassAnalysis,
         /// Property `TagFilters`.
         #[serde(rename="TagFilters")]
-        pub tag_filters: Vec<TagFilter>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub tag_filters: Option<Vec<TagFilter>>,
     }
 
     /// The [`AWS::S3::Bucket.BucketEncryption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-bucketencryption.html) property type.
@@ -176,7 +193,8 @@ pub mod bucket {
     pub struct CorsRule {
         /// Property `AllowedHeaders`.
         #[serde(rename="AllowedHeaders")]
-        pub allowed_headers: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub allowed_headers: Option<Vec<String>>,
         /// Property `AllowedMethods`.
         #[serde(rename="AllowedMethods")]
         pub allowed_methods: Vec<String>,
@@ -185,13 +203,16 @@ pub mod bucket {
         pub allowed_origins: Vec<String>,
         /// Property `ExposedHeaders`.
         #[serde(rename="ExposedHeaders")]
-        pub exposed_headers: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub exposed_headers: Option<Vec<String>>,
         /// Property `Id`.
         #[serde(rename="Id")]
-        pub id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub id: Option<String>,
         /// Property `MaxAge`.
         #[serde(rename="MaxAge")]
-        pub max_age: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub max_age: Option<u32>,
     }
 
     /// The [`AWS::S3::Bucket.DataExport`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-dataexport.html) property type.
@@ -210,7 +231,8 @@ pub mod bucket {
     pub struct Destination {
         /// Property `BucketAccountId`.
         #[serde(rename="BucketAccountId")]
-        pub bucket_account_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub bucket_account_id: Option<String>,
         /// Property `BucketArn`.
         #[serde(rename="BucketArn")]
         pub bucket_arn: String,
@@ -219,7 +241,8 @@ pub mod bucket {
         pub format: String,
         /// Property `Prefix`.
         #[serde(rename="Prefix")]
-        pub prefix: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub prefix: Option<String>,
     }
 
     /// The [`AWS::S3::Bucket.EncryptionConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-encryptionconfiguration.html) property type.
@@ -258,10 +281,12 @@ pub mod bucket {
         pub included_object_versions: String,
         /// Property `OptionalFields`.
         #[serde(rename="OptionalFields")]
-        pub optional_fields: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub optional_fields: Option<Vec<String>>,
         /// Property `Prefix`.
         #[serde(rename="Prefix")]
-        pub prefix: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub prefix: Option<String>,
         /// Property `ScheduleFrequency`.
         #[serde(rename="ScheduleFrequency")]
         pub schedule_frequency: String,
@@ -275,7 +300,8 @@ pub mod bucket {
         pub event: String,
         /// Property `Filter`.
         #[serde(rename="Filter")]
-        pub filter: NotificationFilter,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub filter: Option<NotificationFilter>,
         /// Property `Function`.
         #[serde(rename="Function")]
         pub function: String,
@@ -294,10 +320,12 @@ pub mod bucket {
     pub struct LoggingConfiguration {
         /// Property `DestinationBucketName`.
         #[serde(rename="DestinationBucketName")]
-        pub destination_bucket_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub destination_bucket_name: Option<String>,
         /// Property `LogFilePrefix`.
         #[serde(rename="LogFilePrefix")]
-        pub log_file_prefix: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub log_file_prefix: Option<String>,
     }
 
     /// The [`AWS::S3::Bucket.MetricsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-metricsconfiguration.html) property type.
@@ -308,10 +336,12 @@ pub mod bucket {
         pub id: String,
         /// Property `Prefix`.
         #[serde(rename="Prefix")]
-        pub prefix: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub prefix: Option<String>,
         /// Property `TagFilters`.
         #[serde(rename="TagFilters")]
-        pub tag_filters: Vec<TagFilter>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub tag_filters: Option<Vec<TagFilter>>,
     }
 
     /// The [`AWS::S3::Bucket.NoncurrentVersionTransition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule-noncurrentversiontransition.html) property type.
@@ -330,13 +360,16 @@ pub mod bucket {
     pub struct NotificationConfiguration {
         /// Property `LambdaConfigurations`.
         #[serde(rename="LambdaConfigurations")]
-        pub lambda_configurations: Vec<LambdaConfiguration>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub lambda_configurations: Option<Vec<LambdaConfiguration>>,
         /// Property `QueueConfigurations`.
         #[serde(rename="QueueConfigurations")]
-        pub queue_configurations: Vec<QueueConfiguration>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub queue_configurations: Option<Vec<QueueConfiguration>>,
         /// Property `TopicConfigurations`.
         #[serde(rename="TopicConfigurations")]
-        pub topic_configurations: Vec<TopicConfiguration>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub topic_configurations: Option<Vec<TopicConfiguration>>,
     }
 
     /// The [`AWS::S3::Bucket.NotificationFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfiguration-config-filter.html) property type.
@@ -355,7 +388,8 @@ pub mod bucket {
         pub event: String,
         /// Property `Filter`.
         #[serde(rename="Filter")]
-        pub filter: NotificationFilter,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub filter: Option<NotificationFilter>,
         /// Property `Queue`.
         #[serde(rename="Queue")]
         pub queue: String,
@@ -369,7 +403,8 @@ pub mod bucket {
         pub host_name: String,
         /// Property `Protocol`.
         #[serde(rename="Protocol")]
-        pub protocol: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub protocol: Option<String>,
     }
 
     /// The [`AWS::S3::Bucket.RedirectRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration-routingrules-redirectrule.html) property type.
@@ -377,19 +412,24 @@ pub mod bucket {
     pub struct RedirectRule {
         /// Property `HostName`.
         #[serde(rename="HostName")]
-        pub host_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub host_name: Option<String>,
         /// Property `HttpRedirectCode`.
         #[serde(rename="HttpRedirectCode")]
-        pub http_redirect_code: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub http_redirect_code: Option<String>,
         /// Property `Protocol`.
         #[serde(rename="Protocol")]
-        pub protocol: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub protocol: Option<String>,
         /// Property `ReplaceKeyPrefixWith`.
         #[serde(rename="ReplaceKeyPrefixWith")]
-        pub replace_key_prefix_with: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub replace_key_prefix_with: Option<String>,
         /// Property `ReplaceKeyWith`.
         #[serde(rename="ReplaceKeyWith")]
-        pub replace_key_with: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub replace_key_with: Option<String>,
     }
 
     /// The [`AWS::S3::Bucket.ReplicationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration.html) property type.
@@ -408,19 +448,23 @@ pub mod bucket {
     pub struct ReplicationDestination {
         /// Property `AccessControlTranslation`.
         #[serde(rename="AccessControlTranslation")]
-        pub access_control_translation: AccessControlTranslation,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub access_control_translation: Option<AccessControlTranslation>,
         /// Property `Account`.
         #[serde(rename="Account")]
-        pub account: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub account: Option<String>,
         /// Property `Bucket`.
         #[serde(rename="Bucket")]
         pub bucket: String,
         /// Property `EncryptionConfiguration`.
         #[serde(rename="EncryptionConfiguration")]
-        pub encryption_configuration: EncryptionConfiguration,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub encryption_configuration: Option<EncryptionConfiguration>,
         /// Property `StorageClass`.
         #[serde(rename="StorageClass")]
-        pub storage_class: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub storage_class: Option<String>,
     }
 
     /// The [`AWS::S3::Bucket.ReplicationRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration-rules.html) property type.
@@ -431,13 +475,15 @@ pub mod bucket {
         pub destination: ReplicationDestination,
         /// Property `Id`.
         #[serde(rename="Id")]
-        pub id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub id: Option<String>,
         /// Property `Prefix`.
         #[serde(rename="Prefix")]
         pub prefix: String,
         /// Property `SourceSelectionCriteria`.
         #[serde(rename="SourceSelectionCriteria")]
-        pub source_selection_criteria: SourceSelectionCriteria,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub source_selection_criteria: Option<SourceSelectionCriteria>,
         /// Property `Status`.
         #[serde(rename="Status")]
         pub status: String,
@@ -451,7 +497,8 @@ pub mod bucket {
         pub redirect_rule: RedirectRule,
         /// Property `RoutingRuleCondition`.
         #[serde(rename="RoutingRuleCondition")]
-        pub routing_rule_condition: RoutingRuleCondition,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub routing_rule_condition: Option<RoutingRuleCondition>,
     }
 
     /// The [`AWS::S3::Bucket.RoutingRuleCondition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration-routingrules-routingrulecondition.html) property type.
@@ -459,10 +506,12 @@ pub mod bucket {
     pub struct RoutingRuleCondition {
         /// Property `HttpErrorCodeReturnedEquals`.
         #[serde(rename="HttpErrorCodeReturnedEquals")]
-        pub http_error_code_returned_equals: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub http_error_code_returned_equals: Option<String>,
         /// Property `KeyPrefixEquals`.
         #[serde(rename="KeyPrefixEquals")]
-        pub key_prefix_equals: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub key_prefix_equals: Option<String>,
     }
 
     /// The [`AWS::S3::Bucket.Rule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule.html) property type.
@@ -470,40 +519,51 @@ pub mod bucket {
     pub struct Rule {
         /// Property `AbortIncompleteMultipartUpload`.
         #[serde(rename="AbortIncompleteMultipartUpload")]
-        pub abort_incomplete_multipart_upload: AbortIncompleteMultipartUpload,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub abort_incomplete_multipart_upload: Option<AbortIncompleteMultipartUpload>,
         /// Property `ExpirationDate`.
         #[serde(rename="ExpirationDate")]
-        pub expiration_date: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub expiration_date: Option<String>,
         /// Property `ExpirationInDays`.
         #[serde(rename="ExpirationInDays")]
-        pub expiration_in_days: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub expiration_in_days: Option<u32>,
         /// Property `Id`.
         #[serde(rename="Id")]
-        pub id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub id: Option<String>,
         /// Property `NoncurrentVersionExpirationInDays`.
         #[serde(rename="NoncurrentVersionExpirationInDays")]
-        pub noncurrent_version_expiration_in_days: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub noncurrent_version_expiration_in_days: Option<u32>,
         /// Property `NoncurrentVersionTransition`.
         #[serde(rename="NoncurrentVersionTransition")]
-        pub noncurrent_version_transition: NoncurrentVersionTransition,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub noncurrent_version_transition: Option<NoncurrentVersionTransition>,
         /// Property `NoncurrentVersionTransitions`.
         #[serde(rename="NoncurrentVersionTransitions")]
-        pub noncurrent_version_transitions: Vec<NoncurrentVersionTransition>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub noncurrent_version_transitions: Option<Vec<NoncurrentVersionTransition>>,
         /// Property `Prefix`.
         #[serde(rename="Prefix")]
-        pub prefix: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub prefix: Option<String>,
         /// Property `Status`.
         #[serde(rename="Status")]
         pub status: String,
         /// Property `TagFilters`.
         #[serde(rename="TagFilters")]
-        pub tag_filters: Vec<TagFilter>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub tag_filters: Option<Vec<TagFilter>>,
         /// Property `Transition`.
         #[serde(rename="Transition")]
-        pub transition: Transition,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub transition: Option<Transition>,
         /// Property `Transitions`.
         #[serde(rename="Transitions")]
-        pub transitions: Vec<Transition>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub transitions: Option<Vec<Transition>>,
     }
 
     /// The [`AWS::S3::Bucket.S3KeyFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfiguration-config-filter-s3key.html) property type.
@@ -519,7 +579,8 @@ pub mod bucket {
     pub struct ServerSideEncryptionByDefault {
         /// Property `KMSMasterKeyID`.
         #[serde(rename="KMSMasterKeyID")]
-        pub kms_master_key_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub kms_master_key_id: Option<String>,
         /// Property `SSEAlgorithm`.
         #[serde(rename="SSEAlgorithm")]
         pub sse_algorithm: String,
@@ -530,7 +591,8 @@ pub mod bucket {
     pub struct ServerSideEncryptionRule {
         /// Property `ServerSideEncryptionByDefault`.
         #[serde(rename="ServerSideEncryptionByDefault")]
-        pub server_side_encryption_by_default: ServerSideEncryptionByDefault,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub server_side_encryption_by_default: Option<ServerSideEncryptionByDefault>,
     }
 
     /// The [`AWS::S3::Bucket.SourceSelectionCriteria`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-sourceselectioncriteria.html) property type.
@@ -554,7 +616,8 @@ pub mod bucket {
     pub struct StorageClassAnalysis {
         /// Property `DataExport`.
         #[serde(rename="DataExport")]
-        pub data_export: DataExport,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub data_export: Option<DataExport>,
     }
 
     /// The [`AWS::S3::Bucket.TagFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-tagfilter.html) property type.
@@ -576,7 +639,8 @@ pub mod bucket {
         pub event: String,
         /// Property `Filter`.
         #[serde(rename="Filter")]
-        pub filter: NotificationFilter,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub filter: Option<NotificationFilter>,
         /// Property `Topic`.
         #[serde(rename="Topic")]
         pub topic: String,
@@ -590,10 +654,12 @@ pub mod bucket {
         pub storage_class: String,
         /// Property `TransitionDate`.
         #[serde(rename="TransitionDate")]
-        pub transition_date: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub transition_date: Option<String>,
         /// Property `TransitionInDays`.
         #[serde(rename="TransitionInDays")]
-        pub transition_in_days: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub transition_in_days: Option<u32>,
     }
 
     /// The [`AWS::S3::Bucket.VersioningConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-versioningconfig.html) property type.
@@ -609,15 +675,19 @@ pub mod bucket {
     pub struct WebsiteConfiguration {
         /// Property `ErrorDocument`.
         #[serde(rename="ErrorDocument")]
-        pub error_document: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub error_document: Option<String>,
         /// Property `IndexDocument`.
         #[serde(rename="IndexDocument")]
-        pub index_document: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub index_document: Option<String>,
         /// Property `RedirectAllRequestsTo`.
         #[serde(rename="RedirectAllRequestsTo")]
-        pub redirect_all_requests_to: RedirectAllRequestsTo,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub redirect_all_requests_to: Option<RedirectAllRequestsTo>,
         /// Property `RoutingRules`.
         #[serde(rename="RoutingRules")]
-        pub routing_rules: Vec<RoutingRule>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub routing_rules: Option<Vec<RoutingRule>>,
     }
 }

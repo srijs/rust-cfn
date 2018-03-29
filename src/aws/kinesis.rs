@@ -11,19 +11,23 @@ pub struct Stream {
 pub struct StreamProperties {
     /// Property `Name`.
     #[serde(rename="Name")]
-    pub name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     /// Property `RetentionPeriodHours`.
     #[serde(rename="RetentionPeriodHours")]
-    pub retention_period_hours: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub retention_period_hours: Option<u32>,
     /// Property `ShardCount`.
     #[serde(rename="ShardCount")]
     pub shard_count: u32,
     /// Property `StreamEncryption`.
     #[serde(rename="StreamEncryption")]
-    pub stream_encryption: self::stream::StreamEncryption,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub stream_encryption: Option<self::stream::StreamEncryption>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
 }
 
 impl<'a> ::Resource<'a> for Stream {

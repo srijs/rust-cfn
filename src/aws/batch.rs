@@ -11,7 +11,8 @@ pub struct ComputeEnvironment {
 pub struct ComputeEnvironmentProperties {
     /// Property `ComputeEnvironmentName`.
     #[serde(rename="ComputeEnvironmentName")]
-    pub compute_environment_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub compute_environment_name: Option<String>,
     /// Property `ComputeResources`.
     #[serde(rename="ComputeResources")]
     pub compute_resources: self::compute_environment::ComputeResources,
@@ -20,7 +21,8 @@ pub struct ComputeEnvironmentProperties {
     pub service_role: String,
     /// Property `State`.
     #[serde(rename="State")]
-    pub state: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub state: Option<String>,
     /// Property `Type`.
     #[serde(rename="Type")]
     pub type_: String,
@@ -59,13 +61,16 @@ pub struct JobDefinitionProperties {
     pub container_properties: self::job_definition::ContainerProperties,
     /// Property `JobDefinitionName`.
     #[serde(rename="JobDefinitionName")]
-    pub job_definition_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub job_definition_name: Option<String>,
     /// Property `Parameters`.
     #[serde(rename="Parameters")]
-    pub parameters: ::json::Value,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub parameters: Option<::json::Value>,
     /// Property `RetryStrategy`.
     #[serde(rename="RetryStrategy")]
-    pub retry_strategy: self::job_definition::RetryStrategy,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub retry_strategy: Option<self::job_definition::RetryStrategy>,
     /// Property `Type`.
     #[serde(rename="Type")]
     pub type_: String,
@@ -104,13 +109,15 @@ pub struct JobQueueProperties {
     pub compute_environment_order: Vec<self::job_queue::ComputeEnvironmentOrder>,
     /// Property `JobQueueName`.
     #[serde(rename="JobQueueName")]
-    pub job_queue_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub job_queue_name: Option<String>,
     /// Property `Priority`.
     #[serde(rename="Priority")]
     pub priority: u32,
     /// Property `State`.
     #[serde(rename="State")]
-    pub state: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub state: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for JobQueue {
@@ -140,16 +147,20 @@ pub mod compute_environment {
     pub struct ComputeResources {
         /// Property `BidPercentage`.
         #[serde(rename="BidPercentage")]
-        pub bid_percentage: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub bid_percentage: Option<u32>,
         /// Property `DesiredvCpus`.
         #[serde(rename="DesiredvCpus")]
-        pub desiredv_cpus: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub desiredv_cpus: Option<u32>,
         /// Property `Ec2KeyPair`.
         #[serde(rename="Ec2KeyPair")]
-        pub ec2_key_pair: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ec2_key_pair: Option<String>,
         /// Property `ImageId`.
         #[serde(rename="ImageId")]
-        pub image_id: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub image_id: Option<String>,
         /// Property `InstanceRole`.
         #[serde(rename="InstanceRole")]
         pub instance_role: String,
@@ -167,13 +178,15 @@ pub mod compute_environment {
         pub security_group_ids: Vec<String>,
         /// Property `SpotIamFleetRole`.
         #[serde(rename="SpotIamFleetRole")]
-        pub spot_iam_fleet_role: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub spot_iam_fleet_role: Option<String>,
         /// Property `Subnets`.
         #[serde(rename="Subnets")]
         pub subnets: Vec<String>,
         /// Property `Tags`.
         #[serde(rename="Tags")]
-        pub tags: ::json::Value,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub tags: Option<::json::Value>,
         /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,
@@ -188,40 +201,49 @@ pub mod job_definition {
     pub struct ContainerProperties {
         /// Property `Command`.
         #[serde(rename="Command")]
-        pub command: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub command: Option<Vec<String>>,
         /// Property `Environment`.
         #[serde(rename="Environment")]
-        pub environment: Vec<Environment>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub environment: Option<Vec<Environment>>,
         /// Property `Image`.
         #[serde(rename="Image")]
         pub image: String,
         /// Property `JobRoleArn`.
         #[serde(rename="JobRoleArn")]
-        pub job_role_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub job_role_arn: Option<String>,
         /// Property `Memory`.
         #[serde(rename="Memory")]
         pub memory: u32,
         /// Property `MountPoints`.
         #[serde(rename="MountPoints")]
-        pub mount_points: Vec<MountPoints>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub mount_points: Option<Vec<MountPoints>>,
         /// Property `Privileged`.
         #[serde(rename="Privileged")]
-        pub privileged: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub privileged: Option<bool>,
         /// Property `ReadonlyRootFilesystem`.
         #[serde(rename="ReadonlyRootFilesystem")]
-        pub readonly_root_filesystem: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub readonly_root_filesystem: Option<bool>,
         /// Property `Ulimits`.
         #[serde(rename="Ulimits")]
-        pub ulimits: Vec<Ulimit>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ulimits: Option<Vec<Ulimit>>,
         /// Property `User`.
         #[serde(rename="User")]
-        pub user: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub user: Option<String>,
         /// Property `Vcpus`.
         #[serde(rename="Vcpus")]
         pub vcpus: u32,
         /// Property `Volumes`.
         #[serde(rename="Volumes")]
-        pub volumes: Vec<Volumes>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub volumes: Option<Vec<Volumes>>,
     }
 
     /// The [`AWS::Batch::JobDefinition.Environment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-environment.html) property type.
@@ -229,10 +251,12 @@ pub mod job_definition {
     pub struct Environment {
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
         /// Property `Value`.
         #[serde(rename="Value")]
-        pub value: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub value: Option<String>,
     }
 
     /// The [`AWS::Batch::JobDefinition.MountPoints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-mountpoints.html) property type.
@@ -240,13 +264,16 @@ pub mod job_definition {
     pub struct MountPoints {
         /// Property `ContainerPath`.
         #[serde(rename="ContainerPath")]
-        pub container_path: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub container_path: Option<String>,
         /// Property `ReadOnly`.
         #[serde(rename="ReadOnly")]
-        pub read_only: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub read_only: Option<bool>,
         /// Property `SourceVolume`.
         #[serde(rename="SourceVolume")]
-        pub source_volume: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub source_volume: Option<String>,
     }
 
     /// The [`AWS::Batch::JobDefinition.RetryStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-retrystrategy.html) property type.
@@ -254,7 +281,8 @@ pub mod job_definition {
     pub struct RetryStrategy {
         /// Property `Attempts`.
         #[serde(rename="Attempts")]
-        pub attempts: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub attempts: Option<u32>,
     }
 
     /// The [`AWS::Batch::JobDefinition.Ulimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ulimit.html) property type.
@@ -276,10 +304,12 @@ pub mod job_definition {
     pub struct Volumes {
         /// Property `Host`.
         #[serde(rename="Host")]
-        pub host: VolumesHost,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub host: Option<VolumesHost>,
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
     }
 
     /// The [`AWS::Batch::JobDefinition.VolumesHost`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-volumeshost.html) property type.
@@ -287,7 +317,8 @@ pub mod job_definition {
     pub struct VolumesHost {
         /// Property `SourcePath`.
         #[serde(rename="SourcePath")]
-        pub source_path: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub source_path: Option<String>,
     }
 }
 

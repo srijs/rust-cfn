@@ -14,10 +14,12 @@ pub struct NamedQueryProperties {
     pub database: String,
     /// Property `Description`.
     #[serde(rename="Description")]
-    pub description: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     /// Property `Name`.
     #[serde(rename="Name")]
-    pub name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     /// Property `QueryString`.
     #[serde(rename="QueryString")]
     pub query_string: String,

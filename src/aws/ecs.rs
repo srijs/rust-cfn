@@ -11,7 +11,8 @@ pub struct Cluster {
 pub struct ClusterProperties {
     /// Property `ClusterName`.
     #[serde(rename="ClusterName")]
-    pub cluster_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cluster_name: Option<String>,
 }
 
 impl<'a> ::Resource<'a> for Cluster {
@@ -44,40 +45,52 @@ pub struct Service {
 pub struct ServiceProperties {
     /// Property `Cluster`.
     #[serde(rename="Cluster")]
-    pub cluster: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cluster: Option<String>,
     /// Property `DeploymentConfiguration`.
     #[serde(rename="DeploymentConfiguration")]
-    pub deployment_configuration: self::service::DeploymentConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub deployment_configuration: Option<self::service::DeploymentConfiguration>,
     /// Property `DesiredCount`.
     #[serde(rename="DesiredCount")]
-    pub desired_count: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub desired_count: Option<u32>,
     /// Property `HealthCheckGracePeriodSeconds`.
     #[serde(rename="HealthCheckGracePeriodSeconds")]
-    pub health_check_grace_period_seconds: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub health_check_grace_period_seconds: Option<u32>,
     /// Property `LaunchType`.
     #[serde(rename="LaunchType")]
-    pub launch_type: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub launch_type: Option<String>,
     /// Property `LoadBalancers`.
     #[serde(rename="LoadBalancers")]
-    pub load_balancers: Vec<self::service::LoadBalancer>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub load_balancers: Option<Vec<self::service::LoadBalancer>>,
     /// Property `NetworkConfiguration`.
     #[serde(rename="NetworkConfiguration")]
-    pub network_configuration: self::service::NetworkConfiguration,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub network_configuration: Option<self::service::NetworkConfiguration>,
     /// Property `PlacementConstraints`.
     #[serde(rename="PlacementConstraints")]
-    pub placement_constraints: Vec<self::service::PlacementConstraint>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub placement_constraints: Option<Vec<self::service::PlacementConstraint>>,
     /// Property `PlacementStrategies`.
     #[serde(rename="PlacementStrategies")]
-    pub placement_strategies: Vec<self::service::PlacementStrategy>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub placement_strategies: Option<Vec<self::service::PlacementStrategy>>,
     /// Property `PlatformVersion`.
     #[serde(rename="PlatformVersion")]
-    pub platform_version: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub platform_version: Option<String>,
     /// Property `Role`.
     #[serde(rename="Role")]
-    pub role: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub role: Option<String>,
     /// Property `ServiceName`.
     #[serde(rename="ServiceName")]
-    pub service_name: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub service_name: Option<String>,
     /// Property `TaskDefinition`.
     #[serde(rename="TaskDefinition")]
     pub task_definition: String,
@@ -113,34 +126,44 @@ pub struct TaskDefinition {
 pub struct TaskDefinitionProperties {
     /// Property `ContainerDefinitions`.
     #[serde(rename="ContainerDefinitions")]
-    pub container_definitions: Vec<self::task_definition::ContainerDefinition>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub container_definitions: Option<Vec<self::task_definition::ContainerDefinition>>,
     /// Property `Cpu`.
     #[serde(rename="Cpu")]
-    pub cpu: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cpu: Option<String>,
     /// Property `ExecutionRoleArn`.
     #[serde(rename="ExecutionRoleArn")]
-    pub execution_role_arn: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub execution_role_arn: Option<String>,
     /// Property `Family`.
     #[serde(rename="Family")]
-    pub family: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub family: Option<String>,
     /// Property `Memory`.
     #[serde(rename="Memory")]
-    pub memory: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub memory: Option<String>,
     /// Property `NetworkMode`.
     #[serde(rename="NetworkMode")]
-    pub network_mode: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub network_mode: Option<String>,
     /// Property `PlacementConstraints`.
     #[serde(rename="PlacementConstraints")]
-    pub placement_constraints: Vec<self::task_definition::TaskDefinitionPlacementConstraint>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub placement_constraints: Option<Vec<self::task_definition::TaskDefinitionPlacementConstraint>>,
     /// Property `RequiresCompatibilities`.
     #[serde(rename="RequiresCompatibilities")]
-    pub requires_compatibilities: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub requires_compatibilities: Option<Vec<String>>,
     /// Property `TaskRoleArn`.
     #[serde(rename="TaskRoleArn")]
-    pub task_role_arn: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub task_role_arn: Option<String>,
     /// Property `Volumes`.
     #[serde(rename="Volumes")]
-    pub volumes: Vec<self::task_definition::Volume>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub volumes: Option<Vec<self::task_definition::Volume>>,
 }
 
 impl<'a> ::Resource<'a> for TaskDefinition {
@@ -170,10 +193,12 @@ pub mod service {
     pub struct AwsVpcConfiguration {
         /// Property `AssignPublicIp`.
         #[serde(rename="AssignPublicIp")]
-        pub assign_public_ip: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub assign_public_ip: Option<String>,
         /// Property `SecurityGroups`.
         #[serde(rename="SecurityGroups")]
-        pub security_groups: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub security_groups: Option<Vec<String>>,
         /// Property `Subnets`.
         #[serde(rename="Subnets")]
         pub subnets: Vec<String>,
@@ -184,10 +209,12 @@ pub mod service {
     pub struct DeploymentConfiguration {
         /// Property `MaximumPercent`.
         #[serde(rename="MaximumPercent")]
-        pub maximum_percent: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub maximum_percent: Option<u32>,
         /// Property `MinimumHealthyPercent`.
         #[serde(rename="MinimumHealthyPercent")]
-        pub minimum_healthy_percent: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub minimum_healthy_percent: Option<u32>,
     }
 
     /// The [`AWS::ECS::Service.LoadBalancer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-loadbalancers.html) property type.
@@ -195,16 +222,19 @@ pub mod service {
     pub struct LoadBalancer {
         /// Property `ContainerName`.
         #[serde(rename="ContainerName")]
-        pub container_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub container_name: Option<String>,
         /// Property `ContainerPort`.
         #[serde(rename="ContainerPort")]
         pub container_port: u32,
         /// Property `LoadBalancerName`.
         #[serde(rename="LoadBalancerName")]
-        pub load_balancer_name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub load_balancer_name: Option<String>,
         /// Property `TargetGroupArn`.
         #[serde(rename="TargetGroupArn")]
-        pub target_group_arn: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub target_group_arn: Option<String>,
     }
 
     /// The [`AWS::ECS::Service.NetworkConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-networkconfiguration.html) property type.
@@ -212,7 +242,8 @@ pub mod service {
     pub struct NetworkConfiguration {
         /// Property `AwsvpcConfiguration`.
         #[serde(rename="AwsvpcConfiguration")]
-        pub awsvpc_configuration: AwsVpcConfiguration,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub awsvpc_configuration: Option<AwsVpcConfiguration>,
     }
 
     /// The [`AWS::ECS::Service.PlacementConstraint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-placementconstraint.html) property type.
@@ -220,7 +251,8 @@ pub mod service {
     pub struct PlacementConstraint {
         /// Property `Expression`.
         #[serde(rename="Expression")]
-        pub expression: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub expression: Option<String>,
         /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,
@@ -231,7 +263,8 @@ pub mod service {
     pub struct PlacementStrategy {
         /// Property `Field`.
         #[serde(rename="Field")]
-        pub field: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub field: Option<String>,
         /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,
@@ -246,85 +279,112 @@ pub mod task_definition {
     pub struct ContainerDefinition {
         /// Property `Command`.
         #[serde(rename="Command")]
-        pub command: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub command: Option<Vec<String>>,
         /// Property `Cpu`.
         #[serde(rename="Cpu")]
-        pub cpu: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub cpu: Option<u32>,
         /// Property `DisableNetworking`.
         #[serde(rename="DisableNetworking")]
-        pub disable_networking: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub disable_networking: Option<bool>,
         /// Property `DnsSearchDomains`.
         #[serde(rename="DnsSearchDomains")]
-        pub dns_search_domains: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub dns_search_domains: Option<Vec<String>>,
         /// Property `DnsServers`.
         #[serde(rename="DnsServers")]
-        pub dns_servers: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub dns_servers: Option<Vec<String>>,
         /// Property `DockerLabels`.
         #[serde(rename="DockerLabels")]
-        pub docker_labels: ::std::collections::HashMap<String, String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub docker_labels: Option<::std::collections::HashMap<String, String>>,
         /// Property `DockerSecurityOptions`.
         #[serde(rename="DockerSecurityOptions")]
-        pub docker_security_options: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub docker_security_options: Option<Vec<String>>,
         /// Property `EntryPoint`.
         #[serde(rename="EntryPoint")]
-        pub entry_point: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub entry_point: Option<Vec<String>>,
         /// Property `Environment`.
         #[serde(rename="Environment")]
-        pub environment: Vec<KeyValuePair>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub environment: Option<Vec<KeyValuePair>>,
         /// Property `Essential`.
         #[serde(rename="Essential")]
-        pub essential: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub essential: Option<bool>,
         /// Property `ExtraHosts`.
         #[serde(rename="ExtraHosts")]
-        pub extra_hosts: Vec<HostEntry>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub extra_hosts: Option<Vec<HostEntry>>,
         /// Property `Hostname`.
         #[serde(rename="Hostname")]
-        pub hostname: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub hostname: Option<String>,
         /// Property `Image`.
         #[serde(rename="Image")]
-        pub image: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub image: Option<String>,
         /// Property `Links`.
         #[serde(rename="Links")]
-        pub links: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub links: Option<Vec<String>>,
         /// Property `LinuxParameters`.
         #[serde(rename="LinuxParameters")]
-        pub linux_parameters: LinuxParameters,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub linux_parameters: Option<LinuxParameters>,
         /// Property `LogConfiguration`.
         #[serde(rename="LogConfiguration")]
-        pub log_configuration: LogConfiguration,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub log_configuration: Option<LogConfiguration>,
         /// Property `Memory`.
         #[serde(rename="Memory")]
-        pub memory: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub memory: Option<u32>,
         /// Property `MemoryReservation`.
         #[serde(rename="MemoryReservation")]
-        pub memory_reservation: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub memory_reservation: Option<u32>,
         /// Property `MountPoints`.
         #[serde(rename="MountPoints")]
-        pub mount_points: Vec<MountPoint>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub mount_points: Option<Vec<MountPoint>>,
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
         /// Property `PortMappings`.
         #[serde(rename="PortMappings")]
-        pub port_mappings: Vec<PortMapping>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub port_mappings: Option<Vec<PortMapping>>,
         /// Property `Privileged`.
         #[serde(rename="Privileged")]
-        pub privileged: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub privileged: Option<bool>,
         /// Property `ReadonlyRootFilesystem`.
         #[serde(rename="ReadonlyRootFilesystem")]
-        pub readonly_root_filesystem: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub readonly_root_filesystem: Option<bool>,
         /// Property `Ulimits`.
         #[serde(rename="Ulimits")]
-        pub ulimits: Vec<Ulimit>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub ulimits: Option<Vec<Ulimit>>,
         /// Property `User`.
         #[serde(rename="User")]
-        pub user: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub user: Option<String>,
         /// Property `VolumesFrom`.
         #[serde(rename="VolumesFrom")]
-        pub volumes_from: Vec<VolumeFrom>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub volumes_from: Option<Vec<VolumeFrom>>,
         /// Property `WorkingDirectory`.
         #[serde(rename="WorkingDirectory")]
-        pub working_directory: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub working_directory: Option<String>,
     }
 
     /// The [`AWS::ECS::TaskDefinition.Device`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-device.html) property type.
@@ -332,13 +392,15 @@ pub mod task_definition {
     pub struct Device {
         /// Property `ContainerPath`.
         #[serde(rename="ContainerPath")]
-        pub container_path: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub container_path: Option<String>,
         /// Property `HostPath`.
         #[serde(rename="HostPath")]
         pub host_path: String,
         /// Property `Permissions`.
         #[serde(rename="Permissions")]
-        pub permissions: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub permissions: Option<Vec<String>>,
     }
 
     /// The [`AWS::ECS::TaskDefinition.HostEntry`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-hostentry.html) property type.
@@ -357,7 +419,8 @@ pub mod task_definition {
     pub struct HostVolumeProperties {
         /// Property `SourcePath`.
         #[serde(rename="SourcePath")]
-        pub source_path: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub source_path: Option<String>,
     }
 
     /// The [`AWS::ECS::TaskDefinition.KernelCapabilities`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-kernelcapabilities.html) property type.
@@ -365,10 +428,12 @@ pub mod task_definition {
     pub struct KernelCapabilities {
         /// Property `Add`.
         #[serde(rename="Add")]
-        pub add: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub add: Option<Vec<String>>,
         /// Property `Drop`.
         #[serde(rename="Drop")]
-        pub drop: Vec<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub drop: Option<Vec<String>>,
     }
 
     /// The [`AWS::ECS::TaskDefinition.KeyValuePair`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-environment.html) property type.
@@ -376,10 +441,12 @@ pub mod task_definition {
     pub struct KeyValuePair {
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
         /// Property `Value`.
         #[serde(rename="Value")]
-        pub value: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub value: Option<String>,
     }
 
     /// The [`AWS::ECS::TaskDefinition.LinuxParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-linuxparameters.html) property type.
@@ -387,13 +454,16 @@ pub mod task_definition {
     pub struct LinuxParameters {
         /// Property `Capabilities`.
         #[serde(rename="Capabilities")]
-        pub capabilities: KernelCapabilities,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub capabilities: Option<KernelCapabilities>,
         /// Property `Devices`.
         #[serde(rename="Devices")]
-        pub devices: Vec<Device>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub devices: Option<Vec<Device>>,
         /// Property `InitProcessEnabled`.
         #[serde(rename="InitProcessEnabled")]
-        pub init_process_enabled: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub init_process_enabled: Option<bool>,
     }
 
     /// The [`AWS::ECS::TaskDefinition.LogConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-logconfiguration.html) property type.
@@ -404,7 +474,8 @@ pub mod task_definition {
         pub log_driver: String,
         /// Property `Options`.
         #[serde(rename="Options")]
-        pub options: ::std::collections::HashMap<String, String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub options: Option<::std::collections::HashMap<String, String>>,
     }
 
     /// The [`AWS::ECS::TaskDefinition.MountPoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-mountpoints.html) property type.
@@ -412,13 +483,16 @@ pub mod task_definition {
     pub struct MountPoint {
         /// Property `ContainerPath`.
         #[serde(rename="ContainerPath")]
-        pub container_path: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub container_path: Option<String>,
         /// Property `ReadOnly`.
         #[serde(rename="ReadOnly")]
-        pub read_only: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub read_only: Option<bool>,
         /// Property `SourceVolume`.
         #[serde(rename="SourceVolume")]
-        pub source_volume: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub source_volume: Option<String>,
     }
 
     /// The [`AWS::ECS::TaskDefinition.PortMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-portmappings.html) property type.
@@ -426,13 +500,16 @@ pub mod task_definition {
     pub struct PortMapping {
         /// Property `ContainerPort`.
         #[serde(rename="ContainerPort")]
-        pub container_port: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub container_port: Option<u32>,
         /// Property `HostPort`.
         #[serde(rename="HostPort")]
-        pub host_port: u32,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub host_port: Option<u32>,
         /// Property `Protocol`.
         #[serde(rename="Protocol")]
-        pub protocol: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub protocol: Option<String>,
     }
 
     /// The [`AWS::ECS::TaskDefinition.TaskDefinitionPlacementConstraint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-taskdefinitionplacementconstraint.html) property type.
@@ -440,7 +517,8 @@ pub mod task_definition {
     pub struct TaskDefinitionPlacementConstraint {
         /// Property `Expression`.
         #[serde(rename="Expression")]
-        pub expression: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub expression: Option<String>,
         /// Property `Type`.
         #[serde(rename="Type")]
         pub type_: String,
@@ -465,10 +543,12 @@ pub mod task_definition {
     pub struct Volume {
         /// Property `Host`.
         #[serde(rename="Host")]
-        pub host: HostVolumeProperties,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub host: Option<HostVolumeProperties>,
         /// Property `Name`.
         #[serde(rename="Name")]
-        pub name: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub name: Option<String>,
     }
 
     /// The [`AWS::ECS::TaskDefinition.VolumeFrom`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-volumesfrom.html) property type.
@@ -476,9 +556,11 @@ pub mod task_definition {
     pub struct VolumeFrom {
         /// Property `ReadOnly`.
         #[serde(rename="ReadOnly")]
-        pub read_only: bool,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub read_only: Option<bool>,
         /// Property `SourceContainer`.
         #[serde(rename="SourceContainer")]
-        pub source_container: String,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        pub source_container: Option<String>,
     }
 }

@@ -44,19 +44,23 @@ pub struct Stack {
 pub struct StackProperties {
     /// Property `NotificationARNs`.
     #[serde(rename="NotificationARNs")]
-    pub notification_ar_ns: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub notification_ar_ns: Option<Vec<String>>,
     /// Property `Parameters`.
     #[serde(rename="Parameters")]
-    pub parameters: ::std::collections::HashMap<String, String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub parameters: Option<::std::collections::HashMap<String, String>>,
     /// Property `Tags`.
     #[serde(rename="Tags")]
-    pub tags: ::Tags,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Tags>,
     /// Property `TemplateURL`.
     #[serde(rename="TemplateURL")]
     pub template_url: String,
     /// Property `TimeoutInMinutes`.
     #[serde(rename="TimeoutInMinutes")]
-    pub timeout_in_minutes: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub timeout_in_minutes: Option<u32>,
 }
 
 impl<'a> ::Resource<'a> for Stack {
@@ -89,7 +93,8 @@ pub struct WaitCondition {
 pub struct WaitConditionProperties {
     /// Property `Count`.
     #[serde(rename="Count")]
-    pub count: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub count: Option<u32>,
     /// Property `Handle`.
     #[serde(rename="Handle")]
     pub handle: String,
