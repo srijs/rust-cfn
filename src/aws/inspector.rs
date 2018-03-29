@@ -48,7 +48,7 @@ pub struct AssessmentTemplateProperties {
     #[serde(rename="RulesPackageArns")]
     pub rules_package_arns: Vec<String>,
     #[serde(rename="UserAttributesForFindings")]
-    pub user_attributes_for_findings: Vec<()>,
+    pub user_attributes_for_findings: ::Tags,
 }
 
 impl<'a> ::Resource<'a> for AssessmentTemplate {
@@ -78,7 +78,7 @@ pub struct ResourceGroup {
 #[derive(Serialize, Deserialize)]
 pub struct ResourceGroupProperties {
     #[serde(rename="ResourceGroupTags")]
-    pub resource_group_tags: Vec<()>,
+    pub resource_group_tags: ::Tags,
 }
 
 impl<'a> ::Resource<'a> for ResourceGroup {

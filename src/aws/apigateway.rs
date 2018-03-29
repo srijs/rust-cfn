@@ -48,7 +48,7 @@ pub struct ApiKeyProperties {
     #[serde(rename="Name")]
     pub name: String,
     #[serde(rename="StageKeys")]
-    pub stage_keys: Vec<()>,
+    pub stage_keys: Vec<self::api_key::StageKey>,
 }
 
 impl<'a> ::Resource<'a> for ApiKey {
@@ -196,7 +196,7 @@ pub struct DeploymentProperties {
     #[serde(rename="RestApiId")]
     pub rest_api_id: String,
     #[serde(rename="StageDescription")]
-    pub stage_description: (),
+    pub stage_description: self::deployment::StageDescription,
     #[serde(rename="StageName")]
     pub stage_name: String,
 }
@@ -228,7 +228,7 @@ pub struct DocumentationPart {
 #[derive(Serialize, Deserialize)]
 pub struct DocumentationPartProperties {
     #[serde(rename="Location")]
-    pub location: (),
+    pub location: self::documentation_part::Location,
     #[serde(rename="Properties")]
     pub properties: String,
     #[serde(rename="RestApiId")]
@@ -300,7 +300,7 @@ pub struct DomainNameProperties {
     #[serde(rename="DomainName")]
     pub domain_name: String,
     #[serde(rename="EndpointConfiguration")]
-    pub endpoint_configuration: (),
+    pub endpoint_configuration: self::domain_name::EndpointConfiguration,
     #[serde(rename="RegionalCertificateArn")]
     pub regional_certificate_arn: String,
 }
@@ -378,9 +378,9 @@ pub struct MethodProperties {
     #[serde(rename="HttpMethod")]
     pub http_method: String,
     #[serde(rename="Integration")]
-    pub integration: (),
+    pub integration: self::method::Integration,
     #[serde(rename="MethodResponses")]
-    pub method_responses: Vec<()>,
+    pub method_responses: Vec<self::method::MethodResponse>,
     #[serde(rename="OperationName")]
     pub operation_name: String,
     #[serde(rename="RequestModels")]
@@ -430,7 +430,7 @@ pub struct ModelProperties {
     #[serde(rename="RestApiId")]
     pub rest_api_id: String,
     #[serde(rename="Schema")]
-    pub schema: ::serde_json::Value,
+    pub schema: ::json::Value,
 }
 
 impl<'a> ::Resource<'a> for Model {
@@ -534,15 +534,15 @@ pub struct RestApiProperties {
     #[serde(rename="BinaryMediaTypes")]
     pub binary_media_types: Vec<String>,
     #[serde(rename="Body")]
-    pub body: ::serde_json::Value,
+    pub body: ::json::Value,
     #[serde(rename="BodyS3Location")]
-    pub body_s3_location: (),
+    pub body_s3_location: self::rest_api::S3Location,
     #[serde(rename="CloneFrom")]
     pub clone_from: String,
     #[serde(rename="Description")]
     pub description: String,
     #[serde(rename="EndpointConfiguration")]
-    pub endpoint_configuration: (),
+    pub endpoint_configuration: self::rest_api::EndpointConfiguration,
     #[serde(rename="FailOnWarnings")]
     pub fail_on_warnings: bool,
     #[serde(rename="MinimumCompressionSize")]
@@ -592,7 +592,7 @@ pub struct StageProperties {
     #[serde(rename="DocumentationVersion")]
     pub documentation_version: String,
     #[serde(rename="MethodSettings")]
-    pub method_settings: Vec<()>,
+    pub method_settings: Vec<self::stage::MethodSetting>,
     #[serde(rename="RestApiId")]
     pub rest_api_id: String,
     #[serde(rename="StageName")]
@@ -628,13 +628,13 @@ pub struct UsagePlan {
 #[derive(Serialize, Deserialize)]
 pub struct UsagePlanProperties {
     #[serde(rename="ApiStages")]
-    pub api_stages: Vec<()>,
+    pub api_stages: Vec<self::usage_plan::ApiStage>,
     #[serde(rename="Description")]
     pub description: String,
     #[serde(rename="Quota")]
-    pub quota: (),
+    pub quota: self::usage_plan::QuotaSettings,
     #[serde(rename="Throttle")]
-    pub throttle: (),
+    pub throttle: self::usage_plan::ThrottleSettings,
     #[serde(rename="UsagePlanName")]
     pub usage_plan_name: String,
 }
@@ -722,5 +722,233 @@ impl From<VpcLinkProperties> for VpcLink {
     fn from(properties: VpcLinkProperties) -> VpcLink {
         VpcLink { properties }
     }
+}
+
+pub mod api_key {
+    #[derive(Serialize, Deserialize)]
+    pub struct StageKey {
+        #[serde(rename="RestApiId")]
+        pub rest_api_id: String,
+        #[serde(rename="StageName")]
+        pub stage_name: String,
+    }
+
+}
+
+pub mod deployment {
+    #[derive(Serialize, Deserialize)]
+    pub struct MethodSetting {
+        #[serde(rename="CacheDataEncrypted")]
+        pub cache_data_encrypted: bool,
+        #[serde(rename="CacheTtlInSeconds")]
+        pub cache_ttl_in_seconds: u32,
+        #[serde(rename="CachingEnabled")]
+        pub caching_enabled: bool,
+        #[serde(rename="DataTraceEnabled")]
+        pub data_trace_enabled: bool,
+        #[serde(rename="HttpMethod")]
+        pub http_method: String,
+        #[serde(rename="LoggingLevel")]
+        pub logging_level: String,
+        #[serde(rename="MetricsEnabled")]
+        pub metrics_enabled: bool,
+        #[serde(rename="ResourcePath")]
+        pub resource_path: String,
+        #[serde(rename="ThrottlingBurstLimit")]
+        pub throttling_burst_limit: u32,
+        #[serde(rename="ThrottlingRateLimit")]
+        pub throttling_rate_limit: f64,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct StageDescription {
+        #[serde(rename="CacheClusterEnabled")]
+        pub cache_cluster_enabled: bool,
+        #[serde(rename="CacheClusterSize")]
+        pub cache_cluster_size: String,
+        #[serde(rename="CacheDataEncrypted")]
+        pub cache_data_encrypted: bool,
+        #[serde(rename="CacheTtlInSeconds")]
+        pub cache_ttl_in_seconds: u32,
+        #[serde(rename="CachingEnabled")]
+        pub caching_enabled: bool,
+        #[serde(rename="ClientCertificateId")]
+        pub client_certificate_id: String,
+        #[serde(rename="DataTraceEnabled")]
+        pub data_trace_enabled: bool,
+        #[serde(rename="Description")]
+        pub description: String,
+        #[serde(rename="DocumentationVersion")]
+        pub documentation_version: String,
+        #[serde(rename="LoggingLevel")]
+        pub logging_level: String,
+        #[serde(rename="MethodSettings")]
+        pub method_settings: Vec<MethodSetting>,
+        #[serde(rename="MetricsEnabled")]
+        pub metrics_enabled: bool,
+        #[serde(rename="ThrottlingBurstLimit")]
+        pub throttling_burst_limit: u32,
+        #[serde(rename="ThrottlingRateLimit")]
+        pub throttling_rate_limit: f64,
+        #[serde(rename="Variables")]
+        pub variables: ::std::collections::HashMap<String, String>,
+    }
+
+}
+
+pub mod documentation_part {
+    #[derive(Serialize, Deserialize)]
+    pub struct Location {
+        #[serde(rename="Method")]
+        pub method: String,
+        #[serde(rename="Name")]
+        pub name: String,
+        #[serde(rename="Path")]
+        pub path: String,
+        #[serde(rename="StatusCode")]
+        pub status_code: String,
+        #[serde(rename="Type")]
+        pub type_: String,
+    }
+
+}
+
+pub mod domain_name {
+    #[derive(Serialize, Deserialize)]
+    pub struct EndpointConfiguration {
+        #[serde(rename="Types")]
+        pub types: Vec<String>,
+    }
+
+}
+
+pub mod method {
+    #[derive(Serialize, Deserialize)]
+    pub struct Integration {
+        #[serde(rename="CacheKeyParameters")]
+        pub cache_key_parameters: Vec<String>,
+        #[serde(rename="CacheNamespace")]
+        pub cache_namespace: String,
+        #[serde(rename="ContentHandling")]
+        pub content_handling: String,
+        #[serde(rename="Credentials")]
+        pub credentials: String,
+        #[serde(rename="IntegrationHttpMethod")]
+        pub integration_http_method: String,
+        #[serde(rename="IntegrationResponses")]
+        pub integration_responses: Vec<IntegrationResponse>,
+        #[serde(rename="PassthroughBehavior")]
+        pub passthrough_behavior: String,
+        #[serde(rename="RequestParameters")]
+        pub request_parameters: ::std::collections::HashMap<String, String>,
+        #[serde(rename="RequestTemplates")]
+        pub request_templates: ::std::collections::HashMap<String, String>,
+        #[serde(rename="Type")]
+        pub type_: String,
+        #[serde(rename="Uri")]
+        pub uri: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct IntegrationResponse {
+        #[serde(rename="ContentHandling")]
+        pub content_handling: String,
+        #[serde(rename="ResponseParameters")]
+        pub response_parameters: ::std::collections::HashMap<String, String>,
+        #[serde(rename="ResponseTemplates")]
+        pub response_templates: ::std::collections::HashMap<String, String>,
+        #[serde(rename="SelectionPattern")]
+        pub selection_pattern: String,
+        #[serde(rename="StatusCode")]
+        pub status_code: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct MethodResponse {
+        #[serde(rename="ResponseModels")]
+        pub response_models: ::std::collections::HashMap<String, String>,
+        #[serde(rename="ResponseParameters")]
+        pub response_parameters: ::std::collections::HashMap<String, bool>,
+        #[serde(rename="StatusCode")]
+        pub status_code: String,
+    }
+
+}
+
+pub mod rest_api {
+    #[derive(Serialize, Deserialize)]
+    pub struct EndpointConfiguration {
+        #[serde(rename="Types")]
+        pub types: Vec<String>,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct S3Location {
+        #[serde(rename="Bucket")]
+        pub bucket: String,
+        #[serde(rename="ETag")]
+        pub e_tag: String,
+        #[serde(rename="Key")]
+        pub key: String,
+        #[serde(rename="Version")]
+        pub version: String,
+    }
+
+}
+
+pub mod stage {
+    #[derive(Serialize, Deserialize)]
+    pub struct MethodSetting {
+        #[serde(rename="CacheDataEncrypted")]
+        pub cache_data_encrypted: bool,
+        #[serde(rename="CacheTtlInSeconds")]
+        pub cache_ttl_in_seconds: u32,
+        #[serde(rename="CachingEnabled")]
+        pub caching_enabled: bool,
+        #[serde(rename="DataTraceEnabled")]
+        pub data_trace_enabled: bool,
+        #[serde(rename="HttpMethod")]
+        pub http_method: String,
+        #[serde(rename="LoggingLevel")]
+        pub logging_level: String,
+        #[serde(rename="MetricsEnabled")]
+        pub metrics_enabled: bool,
+        #[serde(rename="ResourcePath")]
+        pub resource_path: String,
+        #[serde(rename="ThrottlingBurstLimit")]
+        pub throttling_burst_limit: u32,
+        #[serde(rename="ThrottlingRateLimit")]
+        pub throttling_rate_limit: f64,
+    }
+
+}
+
+pub mod usage_plan {
+    #[derive(Serialize, Deserialize)]
+    pub struct ApiStage {
+        #[serde(rename="ApiId")]
+        pub api_id: String,
+        #[serde(rename="Stage")]
+        pub stage: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct QuotaSettings {
+        #[serde(rename="Limit")]
+        pub limit: u32,
+        #[serde(rename="Offset")]
+        pub offset: u32,
+        #[serde(rename="Period")]
+        pub period: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct ThrottleSettings {
+        #[serde(rename="BurstLimit")]
+        pub burst_limit: u32,
+        #[serde(rename="RateLimit")]
+        pub rate_limit: f64,
+    }
+
 }
 

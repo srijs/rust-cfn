@@ -48,7 +48,7 @@ pub struct GroupProperties {
     #[serde(rename="Path")]
     pub path: String,
     #[serde(rename="Policies")]
-    pub policies: Vec<()>,
+    pub policies: Vec<self::group::Policy>,
 }
 
 impl<'a> ::Resource<'a> for Group {
@@ -120,7 +120,7 @@ pub struct ManagedPolicyProperties {
     #[serde(rename="Path")]
     pub path: String,
     #[serde(rename="PolicyDocument")]
-    pub policy_document: ::serde_json::Value,
+    pub policy_document: ::json::Value,
     #[serde(rename="Roles")]
     pub roles: Vec<String>,
     #[serde(rename="Users")]
@@ -156,7 +156,7 @@ pub struct PolicyProperties {
     #[serde(rename="Groups")]
     pub groups: Vec<String>,
     #[serde(rename="PolicyDocument")]
-    pub policy_document: ::serde_json::Value,
+    pub policy_document: ::json::Value,
     #[serde(rename="PolicyName")]
     pub policy_name: String,
     #[serde(rename="Roles")]
@@ -192,13 +192,13 @@ pub struct Role {
 #[derive(Serialize, Deserialize)]
 pub struct RoleProperties {
     #[serde(rename="AssumeRolePolicyDocument")]
-    pub assume_role_policy_document: ::serde_json::Value,
+    pub assume_role_policy_document: ::json::Value,
     #[serde(rename="ManagedPolicyArns")]
     pub managed_policy_arns: Vec<String>,
     #[serde(rename="Path")]
     pub path: String,
     #[serde(rename="Policies")]
-    pub policies: Vec<()>,
+    pub policies: Vec<self::role::Policy>,
     #[serde(rename="RoleName")]
     pub role_name: String,
 }
@@ -232,13 +232,13 @@ pub struct UserProperties {
     #[serde(rename="Groups")]
     pub groups: Vec<String>,
     #[serde(rename="LoginProfile")]
-    pub login_profile: (),
+    pub login_profile: self::user::LoginProfile,
     #[serde(rename="ManagedPolicyArns")]
     pub managed_policy_arns: Vec<String>,
     #[serde(rename="Path")]
     pub path: String,
     #[serde(rename="Policies")]
-    pub policies: Vec<()>,
+    pub policies: Vec<self::user::Policy>,
     #[serde(rename="UserName")]
     pub user_name: String,
 }
@@ -290,5 +290,46 @@ impl From<UserToGroupAdditionProperties> for UserToGroupAddition {
     fn from(properties: UserToGroupAdditionProperties) -> UserToGroupAddition {
         UserToGroupAddition { properties }
     }
+}
+
+pub mod group {
+    #[derive(Serialize, Deserialize)]
+    pub struct Policy {
+        #[serde(rename="PolicyDocument")]
+        pub policy_document: ::json::Value,
+        #[serde(rename="PolicyName")]
+        pub policy_name: String,
+    }
+
+}
+
+pub mod role {
+    #[derive(Serialize, Deserialize)]
+    pub struct Policy {
+        #[serde(rename="PolicyDocument")]
+        pub policy_document: ::json::Value,
+        #[serde(rename="PolicyName")]
+        pub policy_name: String,
+    }
+
+}
+
+pub mod user {
+    #[derive(Serialize, Deserialize)]
+    pub struct LoginProfile {
+        #[serde(rename="Password")]
+        pub password: String,
+        #[serde(rename="PasswordResetRequired")]
+        pub password_reset_required: bool,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct Policy {
+        #[serde(rename="PolicyDocument")]
+        pub policy_document: ::json::Value,
+        #[serde(rename="PolicyName")]
+        pub policy_name: String,
+    }
+
 }
 

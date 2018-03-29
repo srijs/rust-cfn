@@ -16,7 +16,7 @@ pub struct AliasProperties {
     #[serde(rename="Name")]
     pub name: String,
     #[serde(rename="RoutingConfig")]
-    pub routing_config: (),
+    pub routing_config: self::alias::AliasRoutingConfiguration,
 }
 
 impl<'a> ::Resource<'a> for Alias {
@@ -84,13 +84,13 @@ pub struct Function {
 #[derive(Serialize, Deserialize)]
 pub struct FunctionProperties {
     #[serde(rename="Code")]
-    pub code: (),
+    pub code: self::function::Code,
     #[serde(rename="DeadLetterConfig")]
-    pub dead_letter_config: (),
+    pub dead_letter_config: self::function::DeadLetterConfig,
     #[serde(rename="Description")]
     pub description: String,
     #[serde(rename="Environment")]
-    pub environment: (),
+    pub environment: self::function::Environment,
     #[serde(rename="FunctionName")]
     pub function_name: String,
     #[serde(rename="Handler")]
@@ -106,13 +106,13 @@ pub struct FunctionProperties {
     #[serde(rename="Runtime")]
     pub runtime: String,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
     #[serde(rename="Timeout")]
     pub timeout: u32,
     #[serde(rename="TracingConfig")]
-    pub tracing_config: (),
+    pub tracing_config: self::function::TracingConfig,
     #[serde(rename="VpcConfig")]
-    pub vpc_config: (),
+    pub vpc_config: self::function::VpcConfig,
 }
 
 impl<'a> ::Resource<'a> for Function {
@@ -204,5 +204,63 @@ impl From<VersionProperties> for Version {
     fn from(properties: VersionProperties) -> Version {
         Version { properties }
     }
+}
+
+pub mod alias {
+    #[derive(Serialize, Deserialize)]
+    pub struct AliasRoutingConfiguration {
+        #[serde(rename="AdditionalVersionWeights")]
+        pub additional_version_weights: Vec<VersionWeight>,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct VersionWeight {
+        #[serde(rename="FunctionVersion")]
+        pub function_version: String,
+        #[serde(rename="FunctionWeight")]
+        pub function_weight: f64,
+    }
+
+}
+
+pub mod function {
+    #[derive(Serialize, Deserialize)]
+    pub struct Code {
+        #[serde(rename="S3Bucket")]
+        pub s3_bucket: String,
+        #[serde(rename="S3Key")]
+        pub s3_key: String,
+        #[serde(rename="S3ObjectVersion")]
+        pub s3_object_version: String,
+        #[serde(rename="ZipFile")]
+        pub zip_file: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct DeadLetterConfig {
+        #[serde(rename="TargetArn")]
+        pub target_arn: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct Environment {
+        #[serde(rename="Variables")]
+        pub variables: ::std::collections::HashMap<String, String>,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct TracingConfig {
+        #[serde(rename="Mode")]
+        pub mode: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct VpcConfig {
+        #[serde(rename="SecurityGroupIds")]
+        pub security_group_ids: Vec<String>,
+        #[serde(rename="SubnetIds")]
+        pub subnet_ids: Vec<String>,
+    }
+
 }
 

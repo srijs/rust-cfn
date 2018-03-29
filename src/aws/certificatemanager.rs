@@ -10,11 +10,11 @@ pub struct CertificateProperties {
     #[serde(rename="DomainName")]
     pub domain_name: String,
     #[serde(rename="DomainValidationOptions")]
-    pub domain_validation_options: Vec<()>,
+    pub domain_validation_options: Vec<self::certificate::DomainValidationOption>,
     #[serde(rename="SubjectAlternativeNames")]
     pub subject_alternative_names: Vec<String>,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
 }
 
 impl<'a> ::Resource<'a> for Certificate {
@@ -32,5 +32,16 @@ impl From<CertificateProperties> for Certificate {
     fn from(properties: CertificateProperties) -> Certificate {
         Certificate { properties }
     }
+}
+
+pub mod certificate {
+    #[derive(Serialize, Deserialize)]
+    pub struct DomainValidationOption {
+        #[serde(rename="DomainName")]
+        pub domain_name: String,
+        #[serde(rename="ValidationDomain")]
+        pub validation_domain: String,
+    }
+
 }
 

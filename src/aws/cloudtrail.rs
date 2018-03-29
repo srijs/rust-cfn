@@ -14,7 +14,7 @@ pub struct TrailProperties {
     #[serde(rename="EnableLogFileValidation")]
     pub enable_log_file_validation: bool,
     #[serde(rename="EventSelectors")]
-    pub event_selectors: Vec<()>,
+    pub event_selectors: Vec<self::trail::EventSelector>,
     #[serde(rename="IncludeGlobalServiceEvents")]
     pub include_global_service_events: bool,
     #[serde(rename="IsLogging")]
@@ -30,7 +30,7 @@ pub struct TrailProperties {
     #[serde(rename="SnsTopicName")]
     pub sns_topic_name: String,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
     #[serde(rename="TrailName")]
     pub trail_name: String,
 }
@@ -50,5 +50,26 @@ impl From<TrailProperties> for Trail {
     fn from(properties: TrailProperties) -> Trail {
         Trail { properties }
     }
+}
+
+pub mod trail {
+    #[derive(Serialize, Deserialize)]
+    pub struct DataResource {
+        #[serde(rename="Type")]
+        pub type_: String,
+        #[serde(rename="Values")]
+        pub values: Vec<String>,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct EventSelector {
+        #[serde(rename="DataResources")]
+        pub data_resources: Vec<DataResource>,
+        #[serde(rename="IncludeManagementEvents")]
+        pub include_management_events: bool,
+        #[serde(rename="ReadWriteType")]
+        pub read_write_type: String,
+    }
+
 }
 

@@ -42,7 +42,7 @@ pub struct StackProperties {
     #[serde(rename="Parameters")]
     pub parameters: ::std::collections::HashMap<String, String>,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
     #[serde(rename="TemplateURL")]
     pub template_url: String,
     #[serde(rename="TimeoutInMinutes")]

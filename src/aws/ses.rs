@@ -40,7 +40,7 @@ pub struct ConfigurationSetEventDestinationProperties {
     #[serde(rename="ConfigurationSetName")]
     pub configuration_set_name: String,
     #[serde(rename="EventDestination")]
-    pub event_destination: (),
+    pub event_destination: self::configuration_set_event_destination::EventDestination,
 }
 
 impl<'a> ::Resource<'a> for ConfigurationSetEventDestination {
@@ -70,7 +70,7 @@ pub struct ReceiptFilter {
 #[derive(Serialize, Deserialize)]
 pub struct ReceiptFilterProperties {
     #[serde(rename="Filter")]
-    pub filter: (),
+    pub filter: self::receipt_filter::Filter,
 }
 
 impl<'a> ::Resource<'a> for ReceiptFilter {
@@ -102,7 +102,7 @@ pub struct ReceiptRuleProperties {
     #[serde(rename="After")]
     pub after: String,
     #[serde(rename="Rule")]
-    pub rule: (),
+    pub rule: self::receipt_rule::Rule,
     #[serde(rename="RuleSetName")]
     pub rule_set_name: String,
 }
@@ -164,7 +164,7 @@ pub struct Template {
 #[derive(Serialize, Deserialize)]
 pub struct TemplateProperties {
     #[serde(rename="Template")]
-    pub template: (),
+    pub template: self::template::Template,
 }
 
 impl<'a> ::Resource<'a> for Template {
@@ -182,5 +182,185 @@ impl From<TemplateProperties> for Template {
     fn from(properties: TemplateProperties) -> Template {
         Template { properties }
     }
+}
+
+pub mod configuration_set_event_destination {
+    #[derive(Serialize, Deserialize)]
+    pub struct CloudWatchDestination {
+        #[serde(rename="DimensionConfigurations")]
+        pub dimension_configurations: Vec<DimensionConfiguration>,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct DimensionConfiguration {
+        #[serde(rename="DefaultDimensionValue")]
+        pub default_dimension_value: String,
+        #[serde(rename="DimensionName")]
+        pub dimension_name: String,
+        #[serde(rename="DimensionValueSource")]
+        pub dimension_value_source: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct EventDestination {
+        #[serde(rename="CloudWatchDestination")]
+        pub cloud_watch_destination: CloudWatchDestination,
+        #[serde(rename="Enabled")]
+        pub enabled: bool,
+        #[serde(rename="KinesisFirehoseDestination")]
+        pub kinesis_firehose_destination: KinesisFirehoseDestination,
+        #[serde(rename="MatchingEventTypes")]
+        pub matching_event_types: Vec<String>,
+        #[serde(rename="Name")]
+        pub name: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct KinesisFirehoseDestination {
+        #[serde(rename="DeliveryStreamARN")]
+        pub delivery_stream_arn: String,
+        #[serde(rename="IAMRoleARN")]
+        pub iam_role_arn: String,
+    }
+
+}
+
+pub mod receipt_filter {
+    #[derive(Serialize, Deserialize)]
+    pub struct Filter {
+        #[serde(rename="IpFilter")]
+        pub ip_filter: IpFilter,
+        #[serde(rename="Name")]
+        pub name: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct IpFilter {
+        #[serde(rename="Cidr")]
+        pub cidr: String,
+        #[serde(rename="Policy")]
+        pub policy: String,
+    }
+
+}
+
+pub mod receipt_rule {
+    #[derive(Serialize, Deserialize)]
+    pub struct Action {
+        #[serde(rename="AddHeaderAction")]
+        pub add_header_action: AddHeaderAction,
+        #[serde(rename="BounceAction")]
+        pub bounce_action: BounceAction,
+        #[serde(rename="LambdaAction")]
+        pub lambda_action: LambdaAction,
+        #[serde(rename="S3Action")]
+        pub s3_action: S3Action,
+        #[serde(rename="SNSAction")]
+        pub sns_action: SNSAction,
+        #[serde(rename="StopAction")]
+        pub stop_action: StopAction,
+        #[serde(rename="WorkmailAction")]
+        pub workmail_action: WorkmailAction,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct AddHeaderAction {
+        #[serde(rename="HeaderName")]
+        pub header_name: String,
+        #[serde(rename="HeaderValue")]
+        pub header_value: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct BounceAction {
+        #[serde(rename="Message")]
+        pub message: String,
+        #[serde(rename="Sender")]
+        pub sender: String,
+        #[serde(rename="SmtpReplyCode")]
+        pub smtp_reply_code: String,
+        #[serde(rename="StatusCode")]
+        pub status_code: String,
+        #[serde(rename="TopicArn")]
+        pub topic_arn: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct LambdaAction {
+        #[serde(rename="FunctionArn")]
+        pub function_arn: String,
+        #[serde(rename="InvocationType")]
+        pub invocation_type: String,
+        #[serde(rename="TopicArn")]
+        pub topic_arn: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct Rule {
+        #[serde(rename="Actions")]
+        pub actions: Vec<Action>,
+        #[serde(rename="Enabled")]
+        pub enabled: bool,
+        #[serde(rename="Name")]
+        pub name: String,
+        #[serde(rename="Recipients")]
+        pub recipients: Vec<String>,
+        #[serde(rename="ScanEnabled")]
+        pub scan_enabled: bool,
+        #[serde(rename="TlsPolicy")]
+        pub tls_policy: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct S3Action {
+        #[serde(rename="BucketName")]
+        pub bucket_name: String,
+        #[serde(rename="KmsKeyArn")]
+        pub kms_key_arn: String,
+        #[serde(rename="ObjectKeyPrefix")]
+        pub object_key_prefix: String,
+        #[serde(rename="TopicArn")]
+        pub topic_arn: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct SNSAction {
+        #[serde(rename="Encoding")]
+        pub encoding: String,
+        #[serde(rename="TopicArn")]
+        pub topic_arn: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct StopAction {
+        #[serde(rename="Scope")]
+        pub scope: String,
+        #[serde(rename="TopicArn")]
+        pub topic_arn: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct WorkmailAction {
+        #[serde(rename="OrganizationArn")]
+        pub organization_arn: String,
+        #[serde(rename="TopicArn")]
+        pub topic_arn: String,
+    }
+
+}
+
+pub mod template {
+    #[derive(Serialize, Deserialize)]
+    pub struct Template {
+        #[serde(rename="HtmlPart")]
+        pub html_part: String,
+        #[serde(rename="SubjectPart")]
+        pub subject_part: String,
+        #[serde(rename="TemplateName")]
+        pub template_name: String,
+        #[serde(rename="TextPart")]
+        pub text_part: String,
+    }
+
 }
 

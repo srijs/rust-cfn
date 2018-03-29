@@ -18,7 +18,7 @@ pub struct AlarmProperties {
     #[serde(rename="ComparisonOperator")]
     pub comparison_operator: String,
     #[serde(rename="Dimensions")]
-    pub dimensions: Vec<()>,
+    pub dimensions: Vec<self::alarm::Dimension>,
     #[serde(rename="EvaluateLowSampleCountPercentile")]
     pub evaluate_low_sample_count_percentile: String,
     #[serde(rename="EvaluationPeriods")]
@@ -92,5 +92,16 @@ impl From<DashboardProperties> for Dashboard {
     fn from(properties: DashboardProperties) -> Dashboard {
         Dashboard { properties }
     }
+}
+
+pub mod alarm {
+    #[derive(Serialize, Deserialize)]
+    pub struct Dimension {
+        #[serde(rename="Name")]
+        pub name: String,
+        #[serde(rename="Value")]
+        pub value: String,
+    }
+
 }
 

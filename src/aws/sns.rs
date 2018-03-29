@@ -44,7 +44,7 @@ pub struct TopicProperties {
     #[serde(rename="DisplayName")]
     pub display_name: String,
     #[serde(rename="Subscription")]
-    pub subscription: Vec<()>,
+    pub subscription: Vec<self::topic::Subscription>,
     #[serde(rename="TopicName")]
     pub topic_name: String,
 }
@@ -76,7 +76,7 @@ pub struct TopicPolicy {
 #[derive(Serialize, Deserialize)]
 pub struct TopicPolicyProperties {
     #[serde(rename="PolicyDocument")]
-    pub policy_document: ::serde_json::Value,
+    pub policy_document: ::json::Value,
     #[serde(rename="Topics")]
     pub topics: Vec<String>,
 }
@@ -96,5 +96,16 @@ impl From<TopicPolicyProperties> for TopicPolicy {
     fn from(properties: TopicPolicyProperties) -> TopicPolicy {
         TopicPolicy { properties }
     }
+}
+
+pub mod topic {
+    #[derive(Serialize, Deserialize)]
+    pub struct Subscription {
+        #[serde(rename="Endpoint")]
+        pub endpoint: String,
+        #[serde(rename="Protocol")]
+        pub protocol: String,
+    }
+
 }
 

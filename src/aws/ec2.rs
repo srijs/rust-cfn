@@ -12,7 +12,7 @@ pub struct CustomerGatewayProperties {
     #[serde(rename="IpAddress")]
     pub ip_address: String,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
     #[serde(rename="Type")]
     pub type_: String,
 }
@@ -54,7 +54,7 @@ pub struct DHCPOptionsProperties {
     #[serde(rename="NtpServers")]
     pub ntp_servers: Vec<String>,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
 }
 
 impl<'a> ::Resource<'a> for DHCPOptions {
@@ -262,15 +262,15 @@ pub struct InstanceProperties {
     #[serde(rename="AvailabilityZone")]
     pub availability_zone: String,
     #[serde(rename="BlockDeviceMappings")]
-    pub block_device_mappings: Vec<()>,
+    pub block_device_mappings: Vec<self::instance::BlockDeviceMapping>,
     #[serde(rename="CreditSpecification")]
-    pub credit_specification: (),
+    pub credit_specification: self::instance::CreditSpecification,
     #[serde(rename="DisableApiTermination")]
     pub disable_api_termination: bool,
     #[serde(rename="EbsOptimized")]
     pub ebs_optimized: bool,
     #[serde(rename="ElasticGpuSpecifications")]
-    pub elastic_gpu_specifications: Vec<()>,
+    pub elastic_gpu_specifications: Vec<self::instance::ElasticGpuSpecification>,
     #[serde(rename="HostId")]
     pub host_id: String,
     #[serde(rename="IamInstanceProfile")]
@@ -284,7 +284,7 @@ pub struct InstanceProperties {
     #[serde(rename="Ipv6AddressCount")]
     pub ipv6_address_count: u32,
     #[serde(rename="Ipv6Addresses")]
-    pub ipv6_addresses: Vec<()>,
+    pub ipv6_addresses: Vec<self::instance::InstanceIpv6Address>,
     #[serde(rename="KernelId")]
     pub kernel_id: String,
     #[serde(rename="KeyName")]
@@ -292,7 +292,7 @@ pub struct InstanceProperties {
     #[serde(rename="Monitoring")]
     pub monitoring: bool,
     #[serde(rename="NetworkInterfaces")]
-    pub network_interfaces: Vec<()>,
+    pub network_interfaces: Vec<self::instance::NetworkInterface>,
     #[serde(rename="PlacementGroupName")]
     pub placement_group_name: String,
     #[serde(rename="PrivateIpAddress")]
@@ -306,17 +306,17 @@ pub struct InstanceProperties {
     #[serde(rename="SourceDestCheck")]
     pub source_dest_check: bool,
     #[serde(rename="SsmAssociations")]
-    pub ssm_associations: Vec<()>,
+    pub ssm_associations: Vec<self::instance::SsmAssociation>,
     #[serde(rename="SubnetId")]
     pub subnet_id: String,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
     #[serde(rename="Tenancy")]
     pub tenancy: String,
     #[serde(rename="UserData")]
     pub user_data: String,
     #[serde(rename="Volumes")]
-    pub volumes: Vec<()>,
+    pub volumes: Vec<self::instance::Volume>,
 }
 
 impl<'a> ::Resource<'a> for Instance {
@@ -346,7 +346,7 @@ pub struct InternetGateway {
 #[derive(Serialize, Deserialize)]
 pub struct InternetGatewayProperties {
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
 }
 
 impl<'a> ::Resource<'a> for InternetGateway {
@@ -380,7 +380,7 @@ pub struct NatGatewayProperties {
     #[serde(rename="SubnetId")]
     pub subnet_id: String,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
 }
 
 impl<'a> ::Resource<'a> for NatGateway {
@@ -410,7 +410,7 @@ pub struct NetworkAcl {
 #[derive(Serialize, Deserialize)]
 pub struct NetworkAclProperties {
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
     #[serde(rename="VpcId")]
     pub vpc_id: String,
 }
@@ -446,13 +446,13 @@ pub struct NetworkAclEntryProperties {
     #[serde(rename="Egress")]
     pub egress: bool,
     #[serde(rename="Icmp")]
-    pub icmp: (),
+    pub icmp: self::network_acl_entry::Icmp,
     #[serde(rename="Ipv6CidrBlock")]
     pub ipv6_cidr_block: String,
     #[serde(rename="NetworkAclId")]
     pub network_acl_id: String,
     #[serde(rename="PortRange")]
-    pub port_range: (),
+    pub port_range: self::network_acl_entry::PortRange,
     #[serde(rename="Protocol")]
     pub protocol: u32,
     #[serde(rename="RuleAction")]
@@ -496,11 +496,11 @@ pub struct NetworkInterfaceProperties {
     #[serde(rename="Ipv6AddressCount")]
     pub ipv6_address_count: u32,
     #[serde(rename="Ipv6Addresses")]
-    pub ipv6_addresses: (),
+    pub ipv6_addresses: self::network_interface::InstanceIpv6Address,
     #[serde(rename="PrivateIpAddress")]
     pub private_ip_address: String,
     #[serde(rename="PrivateIpAddresses")]
-    pub private_ip_addresses: Vec<()>,
+    pub private_ip_addresses: Vec<self::network_interface::PrivateIpAddressSpecification>,
     #[serde(rename="SecondaryPrivateIpAddressCount")]
     pub secondary_private_ip_address_count: u32,
     #[serde(rename="SourceDestCheck")]
@@ -508,7 +508,7 @@ pub struct NetworkInterfaceProperties {
     #[serde(rename="SubnetId")]
     pub subnet_id: String,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
 }
 
 impl<'a> ::Resource<'a> for NetworkInterface {
@@ -684,7 +684,7 @@ pub struct RouteTable {
 #[derive(Serialize, Deserialize)]
 pub struct RouteTableProperties {
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
     #[serde(rename="VpcId")]
     pub vpc_id: String,
 }
@@ -720,11 +720,11 @@ pub struct SecurityGroupProperties {
     #[serde(rename="GroupName")]
     pub group_name: String,
     #[serde(rename="SecurityGroupEgress")]
-    pub security_group_egress: Vec<()>,
+    pub security_group_egress: Vec<self::security_group::Egress>,
     #[serde(rename="SecurityGroupIngress")]
-    pub security_group_ingress: Vec<()>,
+    pub security_group_ingress: Vec<self::security_group::Ingress>,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
     #[serde(rename="VpcId")]
     pub vpc_id: String,
 }
@@ -852,7 +852,7 @@ pub struct SpotFleet {
 #[derive(Serialize, Deserialize)]
 pub struct SpotFleetProperties {
     #[serde(rename="SpotFleetRequestConfigData")]
-    pub spot_fleet_request_config_data: (),
+    pub spot_fleet_request_config_data: self::spot_fleet::SpotFleetRequestConfigData,
 }
 
 impl<'a> ::Resource<'a> for SpotFleet {
@@ -892,7 +892,7 @@ pub struct SubnetProperties {
     #[serde(rename="MapPublicIpOnLaunch")]
     pub map_public_ip_on_launch: bool,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
     #[serde(rename="VpcId")]
     pub vpc_id: String,
 }
@@ -1064,7 +1064,7 @@ pub struct VPCProperties {
     #[serde(rename="InstanceTenancy")]
     pub instance_tenancy: String,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
 }
 
 impl<'a> ::Resource<'a> for VPC {
@@ -1160,7 +1160,7 @@ pub struct VPCEndpoint {
 #[derive(Serialize, Deserialize)]
 pub struct VPCEndpointProperties {
     #[serde(rename="PolicyDocument")]
-    pub policy_document: ::serde_json::Value,
+    pub policy_document: ::json::Value,
     #[serde(rename="RouteTableIds")]
     pub route_table_ids: Vec<String>,
     #[serde(rename="ServiceName")]
@@ -1236,7 +1236,7 @@ pub struct VPCPeeringConnectionProperties {
     #[serde(rename="PeerVpcId")]
     pub peer_vpc_id: String,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
     #[serde(rename="VpcId")]
     pub vpc_id: String,
 }
@@ -1272,13 +1272,13 @@ pub struct VPNConnectionProperties {
     #[serde(rename="StaticRoutesOnly")]
     pub static_routes_only: bool,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
     #[serde(rename="Type")]
     pub type_: String,
     #[serde(rename="VpnGatewayId")]
     pub vpn_gateway_id: String,
     #[serde(rename="VpnTunnelOptionsSpecifications")]
-    pub vpn_tunnel_options_specifications: Vec<()>,
+    pub vpn_tunnel_options_specifications: Vec<self::vpn_connection::VpnTunnelOptionsSpecification>,
 }
 
 impl<'a> ::Resource<'a> for VPNConnection {
@@ -1342,7 +1342,7 @@ pub struct VPNGatewayProperties {
     #[serde(rename="AmazonSideAsn")]
     pub amazon_side_asn: u64,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
     #[serde(rename="Type")]
     pub type_: String,
 }
@@ -1420,7 +1420,7 @@ pub struct VolumeProperties {
     #[serde(rename="SnapshotId")]
     pub snapshot_id: String,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
     #[serde(rename="VolumeType")]
     pub volume_type: String,
 }
@@ -1474,5 +1474,377 @@ impl From<VolumeAttachmentProperties> for VolumeAttachment {
     fn from(properties: VolumeAttachmentProperties) -> VolumeAttachment {
         VolumeAttachment { properties }
     }
+}
+
+pub mod instance {
+    #[derive(Serialize, Deserialize)]
+    pub struct AssociationParameter {
+        #[serde(rename="Key")]
+        pub key: String,
+        #[serde(rename="Value")]
+        pub value: Vec<String>,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct BlockDeviceMapping {
+        #[serde(rename="DeviceName")]
+        pub device_name: String,
+        #[serde(rename="Ebs")]
+        pub ebs: Ebs,
+        #[serde(rename="NoDevice")]
+        pub no_device: NoDevice,
+        #[serde(rename="VirtualName")]
+        pub virtual_name: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct CreditSpecification {
+        #[serde(rename="CPUCredits")]
+        pub cpu_credits: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct Ebs {
+        #[serde(rename="DeleteOnTermination")]
+        pub delete_on_termination: bool,
+        #[serde(rename="Encrypted")]
+        pub encrypted: bool,
+        #[serde(rename="Iops")]
+        pub iops: u32,
+        #[serde(rename="SnapshotId")]
+        pub snapshot_id: String,
+        #[serde(rename="VolumeSize")]
+        pub volume_size: u32,
+        #[serde(rename="VolumeType")]
+        pub volume_type: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct ElasticGpuSpecification {
+        #[serde(rename="Type")]
+        pub type_: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct InstanceIpv6Address {
+        #[serde(rename="Ipv6Address")]
+        pub ipv6_address: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct NetworkInterface {
+        #[serde(rename="AssociatePublicIpAddress")]
+        pub associate_public_ip_address: bool,
+        #[serde(rename="DeleteOnTermination")]
+        pub delete_on_termination: bool,
+        #[serde(rename="Description")]
+        pub description: String,
+        #[serde(rename="DeviceIndex")]
+        pub device_index: String,
+        #[serde(rename="GroupSet")]
+        pub group_set: Vec<String>,
+        #[serde(rename="Ipv6AddressCount")]
+        pub ipv6_address_count: u32,
+        #[serde(rename="Ipv6Addresses")]
+        pub ipv6_addresses: Vec<InstanceIpv6Address>,
+        #[serde(rename="NetworkInterfaceId")]
+        pub network_interface_id: String,
+        #[serde(rename="PrivateIpAddress")]
+        pub private_ip_address: String,
+        #[serde(rename="PrivateIpAddresses")]
+        pub private_ip_addresses: Vec<PrivateIpAddressSpecification>,
+        #[serde(rename="SecondaryPrivateIpAddressCount")]
+        pub secondary_private_ip_address_count: u32,
+        #[serde(rename="SubnetId")]
+        pub subnet_id: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct NoDevice {
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct PrivateIpAddressSpecification {
+        #[serde(rename="Primary")]
+        pub primary: bool,
+        #[serde(rename="PrivateIpAddress")]
+        pub private_ip_address: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct SsmAssociation {
+        #[serde(rename="AssociationParameters")]
+        pub association_parameters: Vec<AssociationParameter>,
+        #[serde(rename="DocumentName")]
+        pub document_name: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct Volume {
+        #[serde(rename="Device")]
+        pub device: String,
+        #[serde(rename="VolumeId")]
+        pub volume_id: String,
+    }
+
+}
+
+pub mod network_acl_entry {
+    #[derive(Serialize, Deserialize)]
+    pub struct Icmp {
+        #[serde(rename="Code")]
+        pub code: u32,
+        #[serde(rename="Type")]
+        pub type_: u32,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct PortRange {
+        #[serde(rename="From")]
+        pub from: u32,
+        #[serde(rename="To")]
+        pub to: u32,
+    }
+
+}
+
+pub mod network_interface {
+    #[derive(Serialize, Deserialize)]
+    pub struct InstanceIpv6Address {
+        #[serde(rename="Ipv6Address")]
+        pub ipv6_address: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct PrivateIpAddressSpecification {
+        #[serde(rename="Primary")]
+        pub primary: bool,
+        #[serde(rename="PrivateIpAddress")]
+        pub private_ip_address: String,
+    }
+
+}
+
+pub mod security_group {
+    #[derive(Serialize, Deserialize)]
+    pub struct Egress {
+        #[serde(rename="CidrIp")]
+        pub cidr_ip: String,
+        #[serde(rename="CidrIpv6")]
+        pub cidr_ipv6: String,
+        #[serde(rename="Description")]
+        pub description: String,
+        #[serde(rename="DestinationPrefixListId")]
+        pub destination_prefix_list_id: String,
+        #[serde(rename="DestinationSecurityGroupId")]
+        pub destination_security_group_id: String,
+        #[serde(rename="FromPort")]
+        pub from_port: u32,
+        #[serde(rename="IpProtocol")]
+        pub ip_protocol: String,
+        #[serde(rename="ToPort")]
+        pub to_port: u32,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct Ingress {
+        #[serde(rename="CidrIp")]
+        pub cidr_ip: String,
+        #[serde(rename="CidrIpv6")]
+        pub cidr_ipv6: String,
+        #[serde(rename="Description")]
+        pub description: String,
+        #[serde(rename="FromPort")]
+        pub from_port: u32,
+        #[serde(rename="IpProtocol")]
+        pub ip_protocol: String,
+        #[serde(rename="SourceSecurityGroupId")]
+        pub source_security_group_id: String,
+        #[serde(rename="SourceSecurityGroupName")]
+        pub source_security_group_name: String,
+        #[serde(rename="SourceSecurityGroupOwnerId")]
+        pub source_security_group_owner_id: String,
+        #[serde(rename="ToPort")]
+        pub to_port: u32,
+    }
+
+}
+
+pub mod spot_fleet {
+    #[derive(Serialize, Deserialize)]
+    pub struct BlockDeviceMapping {
+        #[serde(rename="DeviceName")]
+        pub device_name: String,
+        #[serde(rename="Ebs")]
+        pub ebs: EbsBlockDevice,
+        #[serde(rename="NoDevice")]
+        pub no_device: String,
+        #[serde(rename="VirtualName")]
+        pub virtual_name: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct EbsBlockDevice {
+        #[serde(rename="DeleteOnTermination")]
+        pub delete_on_termination: bool,
+        #[serde(rename="Encrypted")]
+        pub encrypted: bool,
+        #[serde(rename="Iops")]
+        pub iops: u32,
+        #[serde(rename="SnapshotId")]
+        pub snapshot_id: String,
+        #[serde(rename="VolumeSize")]
+        pub volume_size: u32,
+        #[serde(rename="VolumeType")]
+        pub volume_type: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct GroupIdentifier {
+        #[serde(rename="GroupId")]
+        pub group_id: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct IamInstanceProfileSpecification {
+        #[serde(rename="Arn")]
+        pub arn: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct InstanceIpv6Address {
+        #[serde(rename="Ipv6Address")]
+        pub ipv6_address: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct InstanceNetworkInterfaceSpecification {
+        #[serde(rename="AssociatePublicIpAddress")]
+        pub associate_public_ip_address: bool,
+        #[serde(rename="DeleteOnTermination")]
+        pub delete_on_termination: bool,
+        #[serde(rename="Description")]
+        pub description: String,
+        #[serde(rename="DeviceIndex")]
+        pub device_index: u32,
+        #[serde(rename="Groups")]
+        pub groups: Vec<String>,
+        #[serde(rename="Ipv6AddressCount")]
+        pub ipv6_address_count: u32,
+        #[serde(rename="Ipv6Addresses")]
+        pub ipv6_addresses: Vec<InstanceIpv6Address>,
+        #[serde(rename="NetworkInterfaceId")]
+        pub network_interface_id: String,
+        #[serde(rename="PrivateIpAddresses")]
+        pub private_ip_addresses: Vec<PrivateIpAddressSpecification>,
+        #[serde(rename="SecondaryPrivateIpAddressCount")]
+        pub secondary_private_ip_address_count: u32,
+        #[serde(rename="SubnetId")]
+        pub subnet_id: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct PrivateIpAddressSpecification {
+        #[serde(rename="Primary")]
+        pub primary: bool,
+        #[serde(rename="PrivateIpAddress")]
+        pub private_ip_address: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct SpotFleetLaunchSpecification {
+        #[serde(rename="BlockDeviceMappings")]
+        pub block_device_mappings: Vec<BlockDeviceMapping>,
+        #[serde(rename="EbsOptimized")]
+        pub ebs_optimized: bool,
+        #[serde(rename="IamInstanceProfile")]
+        pub iam_instance_profile: IamInstanceProfileSpecification,
+        #[serde(rename="ImageId")]
+        pub image_id: String,
+        #[serde(rename="InstanceType")]
+        pub instance_type: String,
+        #[serde(rename="KernelId")]
+        pub kernel_id: String,
+        #[serde(rename="KeyName")]
+        pub key_name: String,
+        #[serde(rename="Monitoring")]
+        pub monitoring: SpotFleetMonitoring,
+        #[serde(rename="NetworkInterfaces")]
+        pub network_interfaces: Vec<InstanceNetworkInterfaceSpecification>,
+        #[serde(rename="Placement")]
+        pub placement: SpotPlacement,
+        #[serde(rename="RamdiskId")]
+        pub ramdisk_id: String,
+        #[serde(rename="SecurityGroups")]
+        pub security_groups: Vec<GroupIdentifier>,
+        #[serde(rename="SpotPrice")]
+        pub spot_price: String,
+        #[serde(rename="SubnetId")]
+        pub subnet_id: String,
+        #[serde(rename="TagSpecifications")]
+        pub tag_specifications: Vec<SpotFleetTagSpecification>,
+        #[serde(rename="UserData")]
+        pub user_data: String,
+        #[serde(rename="WeightedCapacity")]
+        pub weighted_capacity: f64,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct SpotFleetMonitoring {
+        #[serde(rename="Enabled")]
+        pub enabled: bool,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct SpotFleetRequestConfigData {
+        #[serde(rename="AllocationStrategy")]
+        pub allocation_strategy: String,
+        #[serde(rename="ExcessCapacityTerminationPolicy")]
+        pub excess_capacity_termination_policy: String,
+        #[serde(rename="IamFleetRole")]
+        pub iam_fleet_role: String,
+        #[serde(rename="LaunchSpecifications")]
+        pub launch_specifications: Vec<SpotFleetLaunchSpecification>,
+        #[serde(rename="ReplaceUnhealthyInstances")]
+        pub replace_unhealthy_instances: bool,
+        #[serde(rename="SpotPrice")]
+        pub spot_price: String,
+        #[serde(rename="TargetCapacity")]
+        pub target_capacity: u32,
+        #[serde(rename="TerminateInstancesWithExpiration")]
+        pub terminate_instances_with_expiration: bool,
+        #[serde(rename="Type")]
+        pub type_: String,
+        #[serde(rename="ValidFrom")]
+        pub valid_from: String,
+        #[serde(rename="ValidUntil")]
+        pub valid_until: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct SpotFleetTagSpecification {
+        #[serde(rename="ResourceType")]
+        pub resource_type: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct SpotPlacement {
+        #[serde(rename="AvailabilityZone")]
+        pub availability_zone: String,
+        #[serde(rename="GroupName")]
+        pub group_name: String,
+    }
+
+}
+
+pub mod vpn_connection {
+    #[derive(Serialize, Deserialize)]
+    pub struct VpnTunnelOptionsSpecification {
+        #[serde(rename="PreSharedKey")]
+        pub pre_shared_key: String,
+        #[serde(rename="TunnelInsideCidr")]
+        pub tunnel_inside_cidr: String,
+    }
+
 }
 

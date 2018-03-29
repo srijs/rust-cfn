@@ -30,7 +30,7 @@ pub struct ClusterProperties {
     #[serde(rename="SubnetGroupName")]
     pub subnet_group_name: String,
     #[serde(rename="Tags")]
-    pub tags: ::serde_json::Value,
+    pub tags: ::json::Value,
 }
 
 impl<'a> ::Resource<'a> for Cluster {
@@ -64,7 +64,7 @@ pub struct ParameterGroupProperties {
     #[serde(rename="ParameterGroupName")]
     pub parameter_group_name: String,
     #[serde(rename="ParameterNameValues")]
-    pub parameter_name_values: ::serde_json::Value,
+    pub parameter_name_values: ::json::Value,
 }
 
 impl<'a> ::Resource<'a> for ParameterGroup {

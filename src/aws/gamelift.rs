@@ -12,7 +12,7 @@ pub struct AliasProperties {
     #[serde(rename="Name")]
     pub name: String,
     #[serde(rename="RoutingStrategy")]
-    pub routing_strategy: (),
+    pub routing_strategy: self::alias::RoutingStrategy,
 }
 
 impl<'a> ::Resource<'a> for Alias {
@@ -44,7 +44,7 @@ pub struct BuildProperties {
     #[serde(rename="Name")]
     pub name: String,
     #[serde(rename="StorageLocation")]
-    pub storage_location: (),
+    pub storage_location: self::build::S3Location,
     #[serde(rename="Version")]
     pub version: String,
 }
@@ -82,7 +82,7 @@ pub struct FleetProperties {
     #[serde(rename="DesiredEC2Instances")]
     pub desired_ec2_instances: u32,
     #[serde(rename="EC2InboundPermissions")]
-    pub ec2_inbound_permissions: Vec<()>,
+    pub ec2_inbound_permissions: Vec<self::fleet::IpPermission>,
     #[serde(rename="EC2InstanceType")]
     pub ec2_instance_type: String,
     #[serde(rename="LogPaths")]
@@ -114,5 +114,46 @@ impl From<FleetProperties> for Fleet {
     fn from(properties: FleetProperties) -> Fleet {
         Fleet { properties }
     }
+}
+
+pub mod alias {
+    #[derive(Serialize, Deserialize)]
+    pub struct RoutingStrategy {
+        #[serde(rename="FleetId")]
+        pub fleet_id: String,
+        #[serde(rename="Message")]
+        pub message: String,
+        #[serde(rename="Type")]
+        pub type_: String,
+    }
+
+}
+
+pub mod build {
+    #[derive(Serialize, Deserialize)]
+    pub struct S3Location {
+        #[serde(rename="Bucket")]
+        pub bucket: String,
+        #[serde(rename="Key")]
+        pub key: String,
+        #[serde(rename="RoleArn")]
+        pub role_arn: String,
+    }
+
+}
+
+pub mod fleet {
+    #[derive(Serialize, Deserialize)]
+    pub struct IpPermission {
+        #[serde(rename="FromPort")]
+        pub from_port: u32,
+        #[serde(rename="IpRange")]
+        pub ip_range: String,
+        #[serde(rename="Protocol")]
+        pub protocol: String,
+        #[serde(rename="ToPort")]
+        pub to_port: u32,
+    }
+
 }
 

@@ -8,23 +8,23 @@ pub struct Domain {
 #[derive(Serialize, Deserialize)]
 pub struct DomainProperties {
     #[serde(rename="AccessPolicies")]
-    pub access_policies: ::serde_json::Value,
+    pub access_policies: ::json::Value,
     #[serde(rename="AdvancedOptions")]
     pub advanced_options: ::std::collections::HashMap<String, String>,
     #[serde(rename="DomainName")]
     pub domain_name: String,
     #[serde(rename="EBSOptions")]
-    pub ebs_options: (),
+    pub ebs_options: self::domain::EBSOptions,
     #[serde(rename="ElasticsearchClusterConfig")]
-    pub elasticsearch_cluster_config: (),
+    pub elasticsearch_cluster_config: self::domain::ElasticsearchClusterConfig,
     #[serde(rename="ElasticsearchVersion")]
     pub elasticsearch_version: String,
     #[serde(rename="SnapshotOptions")]
-    pub snapshot_options: (),
+    pub snapshot_options: self::domain::SnapshotOptions,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
     #[serde(rename="VPCOptions")]
-    pub vpc_options: (),
+    pub vpc_options: self::domain::VPCOptions,
 }
 
 impl<'a> ::Resource<'a> for Domain {
@@ -42,5 +42,50 @@ impl From<DomainProperties> for Domain {
     fn from(properties: DomainProperties) -> Domain {
         Domain { properties }
     }
+}
+
+pub mod domain {
+    #[derive(Serialize, Deserialize)]
+    pub struct EBSOptions {
+        #[serde(rename="EBSEnabled")]
+        pub ebs_enabled: bool,
+        #[serde(rename="Iops")]
+        pub iops: u32,
+        #[serde(rename="VolumeSize")]
+        pub volume_size: u32,
+        #[serde(rename="VolumeType")]
+        pub volume_type: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct ElasticsearchClusterConfig {
+        #[serde(rename="DedicatedMasterCount")]
+        pub dedicated_master_count: u32,
+        #[serde(rename="DedicatedMasterEnabled")]
+        pub dedicated_master_enabled: bool,
+        #[serde(rename="DedicatedMasterType")]
+        pub dedicated_master_type: String,
+        #[serde(rename="InstanceCount")]
+        pub instance_count: u32,
+        #[serde(rename="InstanceType")]
+        pub instance_type: String,
+        #[serde(rename="ZoneAwarenessEnabled")]
+        pub zone_awareness_enabled: bool,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct SnapshotOptions {
+        #[serde(rename="AutomatedSnapshotStartHour")]
+        pub automated_snapshot_start_hour: u32,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct VPCOptions {
+        #[serde(rename="SecurityGroupIds")]
+        pub security_group_ids: Vec<String>,
+        #[serde(rename="SubnetIds")]
+        pub subnet_ids: Vec<String>,
+    }
+
 }
 

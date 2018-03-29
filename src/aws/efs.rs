@@ -10,7 +10,7 @@ pub struct FileSystemProperties {
     #[serde(rename="Encrypted")]
     pub encrypted: bool,
     #[serde(rename="FileSystemTags")]
-    pub file_system_tags: Vec<()>,
+    pub file_system_tags: Vec<self::file_system::ElasticFileSystemTag>,
     #[serde(rename="KmsKeyId")]
     pub kms_key_id: String,
     #[serde(rename="PerformanceMode")]
@@ -68,5 +68,16 @@ impl From<MountTargetProperties> for MountTarget {
     fn from(properties: MountTargetProperties) -> MountTarget {
         MountTarget { properties }
     }
+}
+
+pub mod file_system {
+    #[derive(Serialize, Deserialize)]
+    pub struct ElasticFileSystemTag {
+        #[serde(rename="Key")]
+        pub key: String,
+        #[serde(rename="Value")]
+        pub value: String,
+    }
+
 }
 

@@ -2,11 +2,15 @@ extern crate serde;
 #[macro_use] extern crate serde_derive;
 extern crate serde_json;
 
-pub mod aws;
-
 use std::collections::HashMap;
 
 use serde::Deserialize;
+
+pub mod aws;
+
+pub mod json {
+    pub use serde_json::{Value, Number};
+}
 
 #[derive(Serialize, Deserialize)]
 pub struct Template {
@@ -77,6 +81,26 @@ pub trait Resource<'a>: Sized {
 
     fn properties(&self) -> &Self::Properties;
     fn properties_mut(&mut self) -> &mut Self::Properties;
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct Tags(Vec<Tag>);
+
+impl Tags {
+    pub fn add<K: Into<String>, V: Into<String>>(&mut self, key: K, value: V) {
+        self.0.push(Tag {
+            key: key.into(),
+            value: value.into()
+        })
+    }
+}
+
+#[derive(Serialize, Deserialize)]
+struct Tag {
+    #[serde(rename = "Key")]
+    key: String,
+    #[serde(rename = "Value")]
+    value: String
 }
 
 #[cfg(test)]

@@ -12,13 +12,13 @@ pub struct ConfigRuleProperties {
     #[serde(rename="Description")]
     pub description: String,
     #[serde(rename="InputParameters")]
-    pub input_parameters: ::serde_json::Value,
+    pub input_parameters: ::json::Value,
     #[serde(rename="MaximumExecutionFrequency")]
     pub maximum_execution_frequency: String,
     #[serde(rename="Scope")]
-    pub scope: (),
+    pub scope: self::config_rule::Scope,
     #[serde(rename="Source")]
-    pub source: (),
+    pub source: self::config_rule::Source,
 }
 
 impl<'a> ::Resource<'a> for ConfigRule {
@@ -50,7 +50,7 @@ pub struct ConfigurationRecorderProperties {
     #[serde(rename="Name")]
     pub name: String,
     #[serde(rename="RecordingGroup")]
-    pub recording_group: (),
+    pub recording_group: self::configuration_recorder::RecordingGroup,
     #[serde(rename="RoleARN")]
     pub role_arn: String,
 }
@@ -82,7 +82,7 @@ pub struct DeliveryChannel {
 #[derive(Serialize, Deserialize)]
 pub struct DeliveryChannelProperties {
     #[serde(rename="ConfigSnapshotDeliveryProperties")]
-    pub config_snapshot_delivery_properties: (),
+    pub config_snapshot_delivery_properties: self::delivery_channel::ConfigSnapshotDeliveryProperties,
     #[serde(rename="Name")]
     pub name: String,
     #[serde(rename="S3BucketName")]
@@ -108,5 +108,62 @@ impl From<DeliveryChannelProperties> for DeliveryChannel {
     fn from(properties: DeliveryChannelProperties) -> DeliveryChannel {
         DeliveryChannel { properties }
     }
+}
+
+pub mod config_rule {
+    #[derive(Serialize, Deserialize)]
+    pub struct Scope {
+        #[serde(rename="ComplianceResourceId")]
+        pub compliance_resource_id: String,
+        #[serde(rename="ComplianceResourceTypes")]
+        pub compliance_resource_types: Vec<String>,
+        #[serde(rename="TagKey")]
+        pub tag_key: String,
+        #[serde(rename="TagValue")]
+        pub tag_value: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct Source {
+        #[serde(rename="Owner")]
+        pub owner: String,
+        #[serde(rename="SourceDetails")]
+        pub source_details: Vec<SourceDetail>,
+        #[serde(rename="SourceIdentifier")]
+        pub source_identifier: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct SourceDetail {
+        #[serde(rename="EventSource")]
+        pub event_source: String,
+        #[serde(rename="MaximumExecutionFrequency")]
+        pub maximum_execution_frequency: String,
+        #[serde(rename="MessageType")]
+        pub message_type: String,
+    }
+
+}
+
+pub mod configuration_recorder {
+    #[derive(Serialize, Deserialize)]
+    pub struct RecordingGroup {
+        #[serde(rename="AllSupported")]
+        pub all_supported: bool,
+        #[serde(rename="IncludeGlobalResourceTypes")]
+        pub include_global_resource_types: bool,
+        #[serde(rename="ResourceTypes")]
+        pub resource_types: Vec<String>,
+    }
+
+}
+
+pub mod delivery_channel {
+    #[derive(Serialize, Deserialize)]
+    pub struct ConfigSnapshotDeliveryProperties {
+        #[serde(rename="DeliveryFrequency")]
+        pub delivery_frequency: String,
+    }
+
 }
 

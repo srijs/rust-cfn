@@ -8,7 +8,7 @@ pub struct Classifier {
 #[derive(Serialize, Deserialize)]
 pub struct ClassifierProperties {
     #[serde(rename="GrokClassifier")]
-    pub grok_classifier: (),
+    pub grok_classifier: self::classifier::GrokClassifier,
 }
 
 impl<'a> ::Resource<'a> for Classifier {
@@ -40,7 +40,7 @@ pub struct ConnectionProperties {
     #[serde(rename="CatalogId")]
     pub catalog_id: String,
     #[serde(rename="ConnectionInput")]
-    pub connection_input: (),
+    pub connection_input: self::connection::ConnectionInput,
 }
 
 impl<'a> ::Resource<'a> for Connection {
@@ -80,13 +80,13 @@ pub struct CrawlerProperties {
     #[serde(rename="Role")]
     pub role: String,
     #[serde(rename="Schedule")]
-    pub schedule: (),
+    pub schedule: self::crawler::Schedule,
     #[serde(rename="SchemaChangePolicy")]
-    pub schema_change_policy: (),
+    pub schema_change_policy: self::crawler::SchemaChangePolicy,
     #[serde(rename="TablePrefix")]
     pub table_prefix: String,
     #[serde(rename="Targets")]
-    pub targets: (),
+    pub targets: self::crawler::Targets,
 }
 
 impl<'a> ::Resource<'a> for Crawler {
@@ -118,7 +118,7 @@ pub struct DatabaseProperties {
     #[serde(rename="CatalogId")]
     pub catalog_id: String,
     #[serde(rename="DatabaseInput")]
-    pub database_input: (),
+    pub database_input: self::database::DatabaseInput,
 }
 
 impl<'a> ::Resource<'a> for Database {
@@ -194,15 +194,15 @@ pub struct JobProperties {
     #[serde(rename="AllocatedCapacity")]
     pub allocated_capacity: f64,
     #[serde(rename="Command")]
-    pub command: (),
+    pub command: self::job::JobCommand,
     #[serde(rename="Connections")]
-    pub connections: (),
+    pub connections: self::job::ConnectionsList,
     #[serde(rename="DefaultArguments")]
-    pub default_arguments: ::serde_json::Value,
+    pub default_arguments: ::json::Value,
     #[serde(rename="Description")]
     pub description: String,
     #[serde(rename="ExecutionProperty")]
-    pub execution_property: (),
+    pub execution_property: self::job::ExecutionProperty,
     #[serde(rename="LogUri")]
     pub log_uri: String,
     #[serde(rename="MaxRetries")]
@@ -244,7 +244,7 @@ pub struct PartitionProperties {
     #[serde(rename="DatabaseName")]
     pub database_name: String,
     #[serde(rename="PartitionInput")]
-    pub partition_input: (),
+    pub partition_input: self::partition::PartitionInput,
     #[serde(rename="TableName")]
     pub table_name: String,
 }
@@ -280,7 +280,7 @@ pub struct TableProperties {
     #[serde(rename="DatabaseName")]
     pub database_name: String,
     #[serde(rename="TableInput")]
-    pub table_input: (),
+    pub table_input: self::table::TableInput,
 }
 
 impl<'a> ::Resource<'a> for Table {
@@ -310,13 +310,13 @@ pub struct Trigger {
 #[derive(Serialize, Deserialize)]
 pub struct TriggerProperties {
     #[serde(rename="Actions")]
-    pub actions: Vec<()>,
+    pub actions: Vec<self::trigger::Action>,
     #[serde(rename="Description")]
     pub description: String,
     #[serde(rename="Name")]
     pub name: String,
     #[serde(rename="Predicate")]
-    pub predicate: (),
+    pub predicate: self::trigger::Predicate,
     #[serde(rename="Schedule")]
     pub schedule: String,
     #[serde(rename="Type")]
@@ -338,5 +338,331 @@ impl From<TriggerProperties> for Trigger {
     fn from(properties: TriggerProperties) -> Trigger {
         Trigger { properties }
     }
+}
+
+pub mod classifier {
+    #[derive(Serialize, Deserialize)]
+    pub struct GrokClassifier {
+        #[serde(rename="Classification")]
+        pub classification: String,
+        #[serde(rename="CustomPatterns")]
+        pub custom_patterns: String,
+        #[serde(rename="GrokPattern")]
+        pub grok_pattern: String,
+        #[serde(rename="Name")]
+        pub name: String,
+    }
+
+}
+
+pub mod connection {
+    #[derive(Serialize, Deserialize)]
+    pub struct ConnectionInput {
+        #[serde(rename="ConnectionProperties")]
+        pub connection_properties: ::json::Value,
+        #[serde(rename="ConnectionType")]
+        pub connection_type: String,
+        #[serde(rename="Description")]
+        pub description: String,
+        #[serde(rename="MatchCriteria")]
+        pub match_criteria: Vec<String>,
+        #[serde(rename="Name")]
+        pub name: String,
+        #[serde(rename="PhysicalConnectionRequirements")]
+        pub physical_connection_requirements: PhysicalConnectionRequirements,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct PhysicalConnectionRequirements {
+        #[serde(rename="AvailabilityZone")]
+        pub availability_zone: String,
+        #[serde(rename="SecurityGroupIdList")]
+        pub security_group_id_list: Vec<String>,
+        #[serde(rename="SubnetId")]
+        pub subnet_id: String,
+    }
+
+}
+
+pub mod crawler {
+    #[derive(Serialize, Deserialize)]
+    pub struct JdbcTarget {
+        #[serde(rename="ConnectionName")]
+        pub connection_name: String,
+        #[serde(rename="Exclusions")]
+        pub exclusions: Vec<String>,
+        #[serde(rename="Path")]
+        pub path: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct S3Target {
+        #[serde(rename="Exclusions")]
+        pub exclusions: Vec<String>,
+        #[serde(rename="Path")]
+        pub path: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct Schedule {
+        #[serde(rename="ScheduleExpression")]
+        pub schedule_expression: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct SchemaChangePolicy {
+        #[serde(rename="DeleteBehavior")]
+        pub delete_behavior: String,
+        #[serde(rename="UpdateBehavior")]
+        pub update_behavior: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct Targets {
+        #[serde(rename="JdbcTargets")]
+        pub jdbc_targets: Vec<JdbcTarget>,
+        #[serde(rename="S3Targets")]
+        pub s3_targets: Vec<S3Target>,
+    }
+
+}
+
+pub mod database {
+    #[derive(Serialize, Deserialize)]
+    pub struct DatabaseInput {
+        #[serde(rename="Description")]
+        pub description: String,
+        #[serde(rename="LocationUri")]
+        pub location_uri: String,
+        #[serde(rename="Name")]
+        pub name: String,
+        #[serde(rename="Parameters")]
+        pub parameters: ::json::Value,
+    }
+
+}
+
+pub mod job {
+    #[derive(Serialize, Deserialize)]
+    pub struct ConnectionsList {
+        #[serde(rename="Connections")]
+        pub connections: Vec<String>,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct ExecutionProperty {
+        #[serde(rename="MaxConcurrentRuns")]
+        pub max_concurrent_runs: f64,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct JobCommand {
+        #[serde(rename="Name")]
+        pub name: String,
+        #[serde(rename="ScriptLocation")]
+        pub script_location: String,
+    }
+
+}
+
+pub mod partition {
+    #[derive(Serialize, Deserialize)]
+    pub struct Column {
+        #[serde(rename="Comment")]
+        pub comment: String,
+        #[serde(rename="Name")]
+        pub name: String,
+        #[serde(rename="Type")]
+        pub type_: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct Order {
+        #[serde(rename="Column")]
+        pub column: String,
+        #[serde(rename="SortOrder")]
+        pub sort_order: u32,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct PartitionInput {
+        #[serde(rename="Parameters")]
+        pub parameters: ::json::Value,
+        #[serde(rename="StorageDescriptor")]
+        pub storage_descriptor: StorageDescriptor,
+        #[serde(rename="Values")]
+        pub values: Vec<String>,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct SerdeInfo {
+        #[serde(rename="Name")]
+        pub name: String,
+        #[serde(rename="Parameters")]
+        pub parameters: ::json::Value,
+        #[serde(rename="SerializationLibrary")]
+        pub serialization_library: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct SkewedInfo {
+        #[serde(rename="SkewedColumnNames")]
+        pub skewed_column_names: Vec<String>,
+        #[serde(rename="SkewedColumnValueLocationMaps")]
+        pub skewed_column_value_location_maps: ::json::Value,
+        #[serde(rename="SkewedColumnValues")]
+        pub skewed_column_values: Vec<String>,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct StorageDescriptor {
+        #[serde(rename="BucketColumns")]
+        pub bucket_columns: Vec<String>,
+        #[serde(rename="Columns")]
+        pub columns: Vec<Column>,
+        #[serde(rename="Compressed")]
+        pub compressed: bool,
+        #[serde(rename="InputFormat")]
+        pub input_format: String,
+        #[serde(rename="Location")]
+        pub location: String,
+        #[serde(rename="NumberOfBuckets")]
+        pub number_of_buckets: u32,
+        #[serde(rename="OutputFormat")]
+        pub output_format: String,
+        #[serde(rename="Parameters")]
+        pub parameters: ::json::Value,
+        #[serde(rename="SerdeInfo")]
+        pub serde_info: SerdeInfo,
+        #[serde(rename="SkewedInfo")]
+        pub skewed_info: SkewedInfo,
+        #[serde(rename="SortColumns")]
+        pub sort_columns: Vec<Order>,
+        #[serde(rename="StoredAsSubDirectories")]
+        pub stored_as_sub_directories: bool,
+    }
+
+}
+
+pub mod table {
+    #[derive(Serialize, Deserialize)]
+    pub struct Column {
+        #[serde(rename="Comment")]
+        pub comment: String,
+        #[serde(rename="Name")]
+        pub name: String,
+        #[serde(rename="Type")]
+        pub type_: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct Order {
+        #[serde(rename="Column")]
+        pub column: String,
+        #[serde(rename="SortOrder")]
+        pub sort_order: u32,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct SerdeInfo {
+        #[serde(rename="Name")]
+        pub name: String,
+        #[serde(rename="Parameters")]
+        pub parameters: ::json::Value,
+        #[serde(rename="SerializationLibrary")]
+        pub serialization_library: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct SkewedInfo {
+        #[serde(rename="SkewedColumnNames")]
+        pub skewed_column_names: Vec<String>,
+        #[serde(rename="SkewedColumnValueLocationMaps")]
+        pub skewed_column_value_location_maps: ::json::Value,
+        #[serde(rename="SkewedColumnValues")]
+        pub skewed_column_values: Vec<String>,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct StorageDescriptor {
+        #[serde(rename="BucketColumns")]
+        pub bucket_columns: Vec<String>,
+        #[serde(rename="Columns")]
+        pub columns: Vec<Column>,
+        #[serde(rename="Compressed")]
+        pub compressed: bool,
+        #[serde(rename="InputFormat")]
+        pub input_format: String,
+        #[serde(rename="Location")]
+        pub location: String,
+        #[serde(rename="NumberOfBuckets")]
+        pub number_of_buckets: u32,
+        #[serde(rename="OutputFormat")]
+        pub output_format: String,
+        #[serde(rename="Parameters")]
+        pub parameters: ::json::Value,
+        #[serde(rename="SerdeInfo")]
+        pub serde_info: SerdeInfo,
+        #[serde(rename="SkewedInfo")]
+        pub skewed_info: SkewedInfo,
+        #[serde(rename="SortColumns")]
+        pub sort_columns: Vec<Order>,
+        #[serde(rename="StoredAsSubDirectories")]
+        pub stored_as_sub_directories: bool,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct TableInput {
+        #[serde(rename="Description")]
+        pub description: String,
+        #[serde(rename="Name")]
+        pub name: String,
+        #[serde(rename="Owner")]
+        pub owner: String,
+        #[serde(rename="Parameters")]
+        pub parameters: ::json::Value,
+        #[serde(rename="PartitionKeys")]
+        pub partition_keys: Vec<Column>,
+        #[serde(rename="Retention")]
+        pub retention: u32,
+        #[serde(rename="StorageDescriptor")]
+        pub storage_descriptor: StorageDescriptor,
+        #[serde(rename="TableType")]
+        pub table_type: String,
+        #[serde(rename="ViewExpandedText")]
+        pub view_expanded_text: String,
+        #[serde(rename="ViewOriginalText")]
+        pub view_original_text: String,
+    }
+
+}
+
+pub mod trigger {
+    #[derive(Serialize, Deserialize)]
+    pub struct Action {
+        #[serde(rename="Arguments")]
+        pub arguments: ::json::Value,
+        #[serde(rename="JobName")]
+        pub job_name: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct Condition {
+        #[serde(rename="JobName")]
+        pub job_name: String,
+        #[serde(rename="LogicalOperator")]
+        pub logical_operator: String,
+        #[serde(rename="State")]
+        pub state: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct Predicate {
+        #[serde(rename="Conditions")]
+        pub conditions: Vec<Condition>,
+        #[serde(rename="Logical")]
+        pub logical: String,
+    }
+
 }
 

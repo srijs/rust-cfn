@@ -112,7 +112,7 @@ pub struct MetricFilterProperties {
     #[serde(rename="LogGroupName")]
     pub log_group_name: String,
     #[serde(rename="MetricTransformations")]
-    pub metric_transformations: Vec<()>,
+    pub metric_transformations: Vec<self::metric_filter::MetricTransformation>,
 }
 
 impl<'a> ::Resource<'a> for MetricFilter {
@@ -166,5 +166,18 @@ impl From<SubscriptionFilterProperties> for SubscriptionFilter {
     fn from(properties: SubscriptionFilterProperties) -> SubscriptionFilter {
         SubscriptionFilter { properties }
     }
+}
+
+pub mod metric_filter {
+    #[derive(Serialize, Deserialize)]
+    pub struct MetricTransformation {
+        #[serde(rename="MetricName")]
+        pub metric_name: String,
+        #[serde(rename="MetricNamespace")]
+        pub metric_namespace: String,
+        #[serde(rename="MetricValue")]
+        pub metric_value: String,
+    }
+
 }
 

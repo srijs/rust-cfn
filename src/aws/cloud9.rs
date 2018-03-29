@@ -18,7 +18,7 @@ pub struct EnvironmentEC2Properties {
     #[serde(rename="OwnerArn")]
     pub owner_arn: String,
     #[serde(rename="Repositories")]
-    pub repositories: Vec<()>,
+    pub repositories: Vec<self::environment_ec2::Repository>,
     #[serde(rename="SubnetId")]
     pub subnet_id: String,
 }
@@ -38,5 +38,16 @@ impl From<EnvironmentEC2Properties> for EnvironmentEC2 {
     fn from(properties: EnvironmentEC2Properties) -> EnvironmentEC2 {
         EnvironmentEC2 { properties }
     }
+}
+
+pub mod environment_ec2 {
+    #[derive(Serialize, Deserialize)]
+    pub struct Repository {
+        #[serde(rename="PathComponent")]
+        pub path_component: String,
+        #[serde(rename="RepositoryUrl")]
+        pub repository_url: String,
+    }
+
 }
 

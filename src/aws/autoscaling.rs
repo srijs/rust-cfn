@@ -24,21 +24,21 @@ pub struct AutoScalingGroupProperties {
     #[serde(rename="LaunchConfigurationName")]
     pub launch_configuration_name: String,
     #[serde(rename="LifecycleHookSpecificationList")]
-    pub lifecycle_hook_specification_list: Vec<()>,
+    pub lifecycle_hook_specification_list: Vec<self::auto_scaling_group::LifecycleHookSpecification>,
     #[serde(rename="LoadBalancerNames")]
     pub load_balancer_names: Vec<String>,
     #[serde(rename="MaxSize")]
     pub max_size: String,
     #[serde(rename="MetricsCollection")]
-    pub metrics_collection: Vec<()>,
+    pub metrics_collection: Vec<self::auto_scaling_group::MetricsCollection>,
     #[serde(rename="MinSize")]
     pub min_size: String,
     #[serde(rename="NotificationConfigurations")]
-    pub notification_configurations: Vec<()>,
+    pub notification_configurations: Vec<self::auto_scaling_group::NotificationConfiguration>,
     #[serde(rename="PlacementGroup")]
     pub placement_group: String,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: Vec<self::auto_scaling_group::TagProperty>,
     #[serde(rename="TargetGroupARNs")]
     pub target_group_ar_ns: Vec<String>,
     #[serde(rename="TerminationPolicies")]
@@ -76,7 +76,7 @@ pub struct LaunchConfigurationProperties {
     #[serde(rename="AssociatePublicIpAddress")]
     pub associate_public_ip_address: bool,
     #[serde(rename="BlockDeviceMappings")]
-    pub block_device_mappings: Vec<()>,
+    pub block_device_mappings: Vec<self::launch_configuration::BlockDeviceMapping>,
     #[serde(rename="ClassicLinkVPCId")]
     pub classic_link_vpc_id: String,
     #[serde(rename="ClassicLinkVPCSecurityGroups")]
@@ -196,9 +196,9 @@ pub struct ScalingPolicyProperties {
     #[serde(rename="ScalingAdjustment")]
     pub scaling_adjustment: u32,
     #[serde(rename="StepAdjustments")]
-    pub step_adjustments: Vec<()>,
+    pub step_adjustments: Vec<self::scaling_policy::StepAdjustment>,
     #[serde(rename="TargetTrackingConfiguration")]
-    pub target_tracking_configuration: (),
+    pub target_tracking_configuration: self::scaling_policy::TargetTrackingConfiguration,
 }
 
 impl<'a> ::Resource<'a> for ScalingPolicy {
@@ -258,5 +258,138 @@ impl From<ScheduledActionProperties> for ScheduledAction {
     fn from(properties: ScheduledActionProperties) -> ScheduledAction {
         ScheduledAction { properties }
     }
+}
+
+pub mod auto_scaling_group {
+    #[derive(Serialize, Deserialize)]
+    pub struct LifecycleHookSpecification {
+        #[serde(rename="DefaultResult")]
+        pub default_result: String,
+        #[serde(rename="HeartbeatTimeout")]
+        pub heartbeat_timeout: u32,
+        #[serde(rename="LifecycleHookName")]
+        pub lifecycle_hook_name: String,
+        #[serde(rename="LifecycleTransition")]
+        pub lifecycle_transition: String,
+        #[serde(rename="NotificationMetadata")]
+        pub notification_metadata: String,
+        #[serde(rename="NotificationTargetARN")]
+        pub notification_target_arn: String,
+        #[serde(rename="RoleARN")]
+        pub role_arn: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct MetricsCollection {
+        #[serde(rename="Granularity")]
+        pub granularity: String,
+        #[serde(rename="Metrics")]
+        pub metrics: Vec<String>,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct NotificationConfiguration {
+        #[serde(rename="NotificationTypes")]
+        pub notification_types: Vec<String>,
+        #[serde(rename="TopicARN")]
+        pub topic_arn: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct TagProperty {
+        #[serde(rename="Key")]
+        pub key: String,
+        #[serde(rename="PropagateAtLaunch")]
+        pub propagate_at_launch: bool,
+        #[serde(rename="Value")]
+        pub value: String,
+    }
+
+}
+
+pub mod launch_configuration {
+    #[derive(Serialize, Deserialize)]
+    pub struct BlockDevice {
+        #[serde(rename="DeleteOnTermination")]
+        pub delete_on_termination: bool,
+        #[serde(rename="Encrypted")]
+        pub encrypted: bool,
+        #[serde(rename="Iops")]
+        pub iops: u32,
+        #[serde(rename="SnapshotId")]
+        pub snapshot_id: String,
+        #[serde(rename="VolumeSize")]
+        pub volume_size: u32,
+        #[serde(rename="VolumeType")]
+        pub volume_type: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct BlockDeviceMapping {
+        #[serde(rename="DeviceName")]
+        pub device_name: String,
+        #[serde(rename="Ebs")]
+        pub ebs: BlockDevice,
+        #[serde(rename="NoDevice")]
+        pub no_device: bool,
+        #[serde(rename="VirtualName")]
+        pub virtual_name: String,
+    }
+
+}
+
+pub mod scaling_policy {
+    #[derive(Serialize, Deserialize)]
+    pub struct CustomizedMetricSpecification {
+        #[serde(rename="Dimensions")]
+        pub dimensions: Vec<MetricDimension>,
+        #[serde(rename="MetricName")]
+        pub metric_name: String,
+        #[serde(rename="Namespace")]
+        pub namespace: String,
+        #[serde(rename="Statistic")]
+        pub statistic: String,
+        #[serde(rename="Unit")]
+        pub unit: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct MetricDimension {
+        #[serde(rename="Name")]
+        pub name: String,
+        #[serde(rename="Value")]
+        pub value: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct PredefinedMetricSpecification {
+        #[serde(rename="PredefinedMetricType")]
+        pub predefined_metric_type: String,
+        #[serde(rename="ResourceLabel")]
+        pub resource_label: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct StepAdjustment {
+        #[serde(rename="MetricIntervalLowerBound")]
+        pub metric_interval_lower_bound: f64,
+        #[serde(rename="MetricIntervalUpperBound")]
+        pub metric_interval_upper_bound: f64,
+        #[serde(rename="ScalingAdjustment")]
+        pub scaling_adjustment: u32,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct TargetTrackingConfiguration {
+        #[serde(rename="CustomizedMetricSpecification")]
+        pub customized_metric_specification: CustomizedMetricSpecification,
+        #[serde(rename="DisableScaleIn")]
+        pub disable_scale_in: bool,
+        #[serde(rename="PredefinedMetricSpecification")]
+        pub predefined_metric_specification: PredefinedMetricSpecification,
+        #[serde(rename="TargetValue")]
+        pub target_value: f64,
+    }
+
 }
 

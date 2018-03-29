@@ -8,9 +8,9 @@ pub struct HealthCheck {
 #[derive(Serialize, Deserialize)]
 pub struct HealthCheckProperties {
     #[serde(rename="HealthCheckConfig")]
-    pub health_check_config: (),
+    pub health_check_config: self::health_check::HealthCheckConfig,
     #[serde(rename="HealthCheckTags")]
-    pub health_check_tags: Vec<()>,
+    pub health_check_tags: Vec<self::health_check::HealthCheckTag>,
 }
 
 impl<'a> ::Resource<'a> for HealthCheck {
@@ -40,15 +40,15 @@ pub struct HostedZone {
 #[derive(Serialize, Deserialize)]
 pub struct HostedZoneProperties {
     #[serde(rename="HostedZoneConfig")]
-    pub hosted_zone_config: (),
+    pub hosted_zone_config: self::hosted_zone::HostedZoneConfig,
     #[serde(rename="HostedZoneTags")]
-    pub hosted_zone_tags: Vec<()>,
+    pub hosted_zone_tags: Vec<self::hosted_zone::HostedZoneTag>,
     #[serde(rename="Name")]
     pub name: String,
     #[serde(rename="QueryLoggingConfig")]
-    pub query_logging_config: (),
+    pub query_logging_config: self::hosted_zone::QueryLoggingConfig,
     #[serde(rename="VPCs")]
-    pub vp_cs: Vec<()>,
+    pub vp_cs: Vec<self::hosted_zone::VPC>,
 }
 
 impl<'a> ::Resource<'a> for HostedZone {
@@ -78,13 +78,13 @@ pub struct RecordSet {
 #[derive(Serialize, Deserialize)]
 pub struct RecordSetProperties {
     #[serde(rename="AliasTarget")]
-    pub alias_target: (),
+    pub alias_target: self::record_set::AliasTarget,
     #[serde(rename="Comment")]
     pub comment: String,
     #[serde(rename="Failover")]
     pub failover: String,
     #[serde(rename="GeoLocation")]
-    pub geo_location: (),
+    pub geo_location: self::record_set::GeoLocation,
     #[serde(rename="HealthCheckId")]
     pub health_check_id: String,
     #[serde(rename="HostedZoneId")]
@@ -140,7 +140,7 @@ pub struct RecordSetGroupProperties {
     #[serde(rename="HostedZoneName")]
     pub hosted_zone_name: String,
     #[serde(rename="RecordSets")]
-    pub record_sets: Vec<()>,
+    pub record_sets: Vec<self::record_set_group::RecordSet>,
 }
 
 impl<'a> ::Resource<'a> for RecordSetGroup {
@@ -158,5 +158,169 @@ impl From<RecordSetGroupProperties> for RecordSetGroup {
     fn from(properties: RecordSetGroupProperties) -> RecordSetGroup {
         RecordSetGroup { properties }
     }
+}
+
+pub mod health_check {
+    #[derive(Serialize, Deserialize)]
+    pub struct AlarmIdentifier {
+        #[serde(rename="Name")]
+        pub name: String,
+        #[serde(rename="Region")]
+        pub region: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct HealthCheckConfig {
+        #[serde(rename="AlarmIdentifier")]
+        pub alarm_identifier: AlarmIdentifier,
+        #[serde(rename="ChildHealthChecks")]
+        pub child_health_checks: Vec<String>,
+        #[serde(rename="EnableSNI")]
+        pub enable_sni: bool,
+        #[serde(rename="FailureThreshold")]
+        pub failure_threshold: u32,
+        #[serde(rename="FullyQualifiedDomainName")]
+        pub fully_qualified_domain_name: String,
+        #[serde(rename="HealthThreshold")]
+        pub health_threshold: u32,
+        #[serde(rename="IPAddress")]
+        pub ip_address: String,
+        #[serde(rename="InsufficientDataHealthStatus")]
+        pub insufficient_data_health_status: String,
+        #[serde(rename="Inverted")]
+        pub inverted: bool,
+        #[serde(rename="MeasureLatency")]
+        pub measure_latency: bool,
+        #[serde(rename="Port")]
+        pub port: u32,
+        #[serde(rename="Regions")]
+        pub regions: Vec<String>,
+        #[serde(rename="RequestInterval")]
+        pub request_interval: u32,
+        #[serde(rename="ResourcePath")]
+        pub resource_path: String,
+        #[serde(rename="SearchString")]
+        pub search_string: String,
+        #[serde(rename="Type")]
+        pub type_: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct HealthCheckTag {
+        #[serde(rename="Key")]
+        pub key: String,
+        #[serde(rename="Value")]
+        pub value: String,
+    }
+
+}
+
+pub mod hosted_zone {
+    #[derive(Serialize, Deserialize)]
+    pub struct HostedZoneConfig {
+        #[serde(rename="Comment")]
+        pub comment: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct HostedZoneTag {
+        #[serde(rename="Key")]
+        pub key: String,
+        #[serde(rename="Value")]
+        pub value: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct QueryLoggingConfig {
+        #[serde(rename="CloudWatchLogsLogGroupArn")]
+        pub cloud_watch_logs_log_group_arn: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct VPC {
+        #[serde(rename="VPCId")]
+        pub vpc_id: String,
+        #[serde(rename="VPCRegion")]
+        pub vpc_region: String,
+    }
+
+}
+
+pub mod record_set {
+    #[derive(Serialize, Deserialize)]
+    pub struct AliasTarget {
+        #[serde(rename="DNSName")]
+        pub dns_name: String,
+        #[serde(rename="EvaluateTargetHealth")]
+        pub evaluate_target_health: bool,
+        #[serde(rename="HostedZoneId")]
+        pub hosted_zone_id: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct GeoLocation {
+        #[serde(rename="ContinentCode")]
+        pub continent_code: String,
+        #[serde(rename="CountryCode")]
+        pub country_code: String,
+        #[serde(rename="SubdivisionCode")]
+        pub subdivision_code: String,
+    }
+
+}
+
+pub mod record_set_group {
+    #[derive(Serialize, Deserialize)]
+    pub struct AliasTarget {
+        #[serde(rename="DNSName")]
+        pub dns_name: String,
+        #[serde(rename="EvaluateTargetHealth")]
+        pub evaluate_target_health: bool,
+        #[serde(rename="HostedZoneId")]
+        pub hosted_zone_id: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct GeoLocation {
+        #[serde(rename="ContinentCode")]
+        pub continent_code: String,
+        #[serde(rename="CountryCode")]
+        pub country_code: String,
+        #[serde(rename="SubdivisionCode")]
+        pub subdivision_code: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct RecordSet {
+        #[serde(rename="AliasTarget")]
+        pub alias_target: AliasTarget,
+        #[serde(rename="Comment")]
+        pub comment: String,
+        #[serde(rename="Failover")]
+        pub failover: String,
+        #[serde(rename="GeoLocation")]
+        pub geo_location: GeoLocation,
+        #[serde(rename="HealthCheckId")]
+        pub health_check_id: String,
+        #[serde(rename="HostedZoneId")]
+        pub hosted_zone_id: String,
+        #[serde(rename="HostedZoneName")]
+        pub hosted_zone_name: String,
+        #[serde(rename="Name")]
+        pub name: String,
+        #[serde(rename="Region")]
+        pub region: String,
+        #[serde(rename="ResourceRecords")]
+        pub resource_records: Vec<String>,
+        #[serde(rename="SetIdentifier")]
+        pub set_identifier: String,
+        #[serde(rename="TTL")]
+        pub ttl: String,
+        #[serde(rename="Type")]
+        pub type_: String,
+        #[serde(rename="Weight")]
+        pub weight: u32,
+    }
+
 }
 

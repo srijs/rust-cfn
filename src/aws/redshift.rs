@@ -40,7 +40,7 @@ pub struct ClusterProperties {
     #[serde(rename="KmsKeyId")]
     pub kms_key_id: String,
     #[serde(rename="LoggingProperties")]
-    pub logging_properties: (),
+    pub logging_properties: self::cluster::LoggingProperties,
     #[serde(rename="MasterUserPassword")]
     pub master_user_password: String,
     #[serde(rename="MasterUsername")]
@@ -62,7 +62,7 @@ pub struct ClusterProperties {
     #[serde(rename="SnapshotIdentifier")]
     pub snapshot_identifier: String,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
     #[serde(rename="VpcSecurityGroupIds")]
     pub vpc_security_group_ids: Vec<String>,
 }
@@ -98,9 +98,9 @@ pub struct ClusterParameterGroupProperties {
     #[serde(rename="ParameterGroupFamily")]
     pub parameter_group_family: String,
     #[serde(rename="Parameters")]
-    pub parameters: Vec<()>,
+    pub parameters: Vec<self::cluster_parameter_group::Parameter>,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
 }
 
 impl<'a> ::Resource<'a> for ClusterParameterGroup {
@@ -132,7 +132,7 @@ pub struct ClusterSecurityGroupProperties {
     #[serde(rename="Description")]
     pub description: String,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
 }
 
 impl<'a> ::Resource<'a> for ClusterSecurityGroup {
@@ -202,7 +202,7 @@ pub struct ClusterSubnetGroupProperties {
     #[serde(rename="SubnetIds")]
     pub subnet_ids: Vec<String>,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
 }
 
 impl<'a> ::Resource<'a> for ClusterSubnetGroup {
@@ -220,5 +220,27 @@ impl From<ClusterSubnetGroupProperties> for ClusterSubnetGroup {
     fn from(properties: ClusterSubnetGroupProperties) -> ClusterSubnetGroup {
         ClusterSubnetGroup { properties }
     }
+}
+
+pub mod cluster {
+    #[derive(Serialize, Deserialize)]
+    pub struct LoggingProperties {
+        #[serde(rename="BucketName")]
+        pub bucket_name: String,
+        #[serde(rename="S3KeyPrefix")]
+        pub s3_key_prefix: String,
+    }
+
+}
+
+pub mod cluster_parameter_group {
+    #[derive(Serialize, Deserialize)]
+    pub struct Parameter {
+        #[serde(rename="ParameterName")]
+        pub parameter_name: String,
+        #[serde(rename="ParameterValue")]
+        pub parameter_value: String,
+    }
+
 }
 

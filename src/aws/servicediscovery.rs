@@ -8,7 +8,7 @@ pub struct Instance {
 #[derive(Serialize, Deserialize)]
 pub struct InstanceProperties {
     #[serde(rename="InstanceAttributes")]
-    pub instance_attributes: ::serde_json::Value,
+    pub instance_attributes: ::json::Value,
     #[serde(rename="InstanceId")]
     pub instance_id: String,
     #[serde(rename="ServiceId")]
@@ -110,9 +110,9 @@ pub struct ServiceProperties {
     #[serde(rename="Description")]
     pub description: String,
     #[serde(rename="DnsConfig")]
-    pub dns_config: (),
+    pub dns_config: self::service::DnsConfig,
     #[serde(rename="HealthCheckConfig")]
-    pub health_check_config: (),
+    pub health_check_config: self::service::HealthCheckConfig,
     #[serde(rename="Name")]
     pub name: String,
 }
@@ -132,5 +132,34 @@ impl From<ServiceProperties> for Service {
     fn from(properties: ServiceProperties) -> Service {
         Service { properties }
     }
+}
+
+pub mod service {
+    #[derive(Serialize, Deserialize)]
+    pub struct DnsConfig {
+        #[serde(rename="DnsRecords")]
+        pub dns_records: Vec<DnsRecord>,
+        #[serde(rename="NamespaceId")]
+        pub namespace_id: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct DnsRecord {
+        #[serde(rename="TTL")]
+        pub ttl: String,
+        #[serde(rename="Type")]
+        pub type_: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct HealthCheckConfig {
+        #[serde(rename="FailureThreshold")]
+        pub failure_threshold: f64,
+        #[serde(rename="ResourcePath")]
+        pub resource_path: String,
+        #[serde(rename="Type")]
+        pub type_: String,
+    }
+
 }
 

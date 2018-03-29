@@ -20,16 +20,24 @@ pub struct Specification {
     /// of allowed value for each property, and their update behavior. For more information,
     /// see `PropertySpecification`. If a resource doesn't have subproperties, this section is omitted.
     #[serde(rename="PropertyTypes")]
-    pub property_types: Option<BTreeMap<String, PropertySpecification>>,
+    pub property_types: Option<BTreeMap<String, PropertyType>>,
     /// The list of resources and information about each resource's properties, such as its
     /// property names, which properties are requires, and their update behavior. For more
     /// information, see `ResourceSpecification`. 
     #[serde(rename="ResourceTypes")]
-    pub resource_types: BTreeMap<String, ResourceSpecification>
+    pub resource_types: BTreeMap<String, ResourceType>
 }
 
 #[derive(Deserialize)]
-pub struct ResourceSpecification {
+pub struct PropertyType {
+    #[serde(rename="Documentation")]
+    pub documentation: String,
+    #[serde(rename="Properties")]
+    pub properties: BTreeMap<String, PropertySpecification>
+}
+
+#[derive(Deserialize)]
+pub struct ResourceType {
     /// A list of resource attributes that you can use in an Fn::GetAtt function. For each
     /// attribute, this section provides the attribute name and the type of value that AWS
     /// CloudFormation returns. 
@@ -57,7 +65,7 @@ pub struct AttributeSpecification {
     /// For example, if the type value is List and the primitive item type value is String, the
     /// Fn::GetAtt function returns a list of strings.
     #[serde(rename="PrimitiveItemType")]
-    pub primitive_item_type: Option<PrimitiveItemType>,
+    pub primitive_item_type: Option<PrimitiveType>,
     /// For primitive return values, the type of primitive value that the Fn::GetAtt function
     /// returns for the attribute. A primitive type is a basic data type for resource property
     /// values. The valid primitive types are String, Long, Integer, Double, Boolean, Timestamp
@@ -97,7 +105,7 @@ pub struct PropertySpecification {
     /// you can specify a list of strings for the property. If the type value is Map and the item
     /// type value is Boolean, you can specify a string to Boolean mapping for the property.
     #[serde(rename="PrimitiveItemType")]
-    pub primitive_item_type: Option<PrimitiveItemType>,
+    pub primitive_item_type: Option<PrimitiveType>,
     /// For primitive values, the valid primitive type for the property. A primitive type is a
     /// basic data type for resource property values. The valid primitive types are String, Long,
     /// Integer, Double, Boolean, Timestamp or Json. If valid values are a non-primitive type,
@@ -132,16 +140,6 @@ pub enum PrimitiveType {
     Boolean,
     Timestamp,
     Json
-}
-
-#[derive(Deserialize)]
-pub enum PrimitiveItemType {
-    String,
-    Long,
-    Integer,
-    Double,
-    Boolean,
-    Timestamp
 }
 
 #[derive(Deserialize)]

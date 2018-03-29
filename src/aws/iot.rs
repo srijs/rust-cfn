@@ -40,7 +40,7 @@ pub struct Policy {
 #[derive(Serialize, Deserialize)]
 pub struct PolicyProperties {
     #[serde(rename="PolicyDocument")]
-    pub policy_document: ::serde_json::Value,
+    pub policy_document: ::json::Value,
     #[serde(rename="PolicyName")]
     pub policy_name: String,
 }
@@ -104,7 +104,7 @@ pub struct Thing {
 #[derive(Serialize, Deserialize)]
 pub struct ThingProperties {
     #[serde(rename="AttributePayload")]
-    pub attribute_payload: (),
+    pub attribute_payload: self::thing::AttributePayload,
     #[serde(rename="ThingName")]
     pub thing_name: String,
 }
@@ -170,7 +170,7 @@ pub struct TopicRuleProperties {
     #[serde(rename="RuleName")]
     pub rule_name: String,
     #[serde(rename="TopicRulePayload")]
-    pub topic_rule_payload: (),
+    pub topic_rule_payload: self::topic_rule::TopicRulePayload,
 }
 
 impl<'a> ::Resource<'a> for TopicRule {
@@ -188,5 +188,201 @@ impl From<TopicRuleProperties> for TopicRule {
     fn from(properties: TopicRuleProperties) -> TopicRule {
         TopicRule { properties }
     }
+}
+
+pub mod thing {
+    #[derive(Serialize, Deserialize)]
+    pub struct AttributePayload {
+        #[serde(rename="Attributes")]
+        pub attributes: ::std::collections::HashMap<String, String>,
+    }
+
+}
+
+pub mod topic_rule {
+    #[derive(Serialize, Deserialize)]
+    pub struct Action {
+        #[serde(rename="CloudwatchAlarm")]
+        pub cloudwatch_alarm: CloudwatchAlarmAction,
+        #[serde(rename="CloudwatchMetric")]
+        pub cloudwatch_metric: CloudwatchMetricAction,
+        #[serde(rename="DynamoDB")]
+        pub dynamo_db: DynamoDBAction,
+        #[serde(rename="DynamoDBv2")]
+        pub dynamo_d_bv2: DynamoDBv2Action,
+        #[serde(rename="Elasticsearch")]
+        pub elasticsearch: ElasticsearchAction,
+        #[serde(rename="Firehose")]
+        pub firehose: FirehoseAction,
+        #[serde(rename="Kinesis")]
+        pub kinesis: KinesisAction,
+        #[serde(rename="Lambda")]
+        pub lambda: LambdaAction,
+        #[serde(rename="Republish")]
+        pub republish: RepublishAction,
+        #[serde(rename="S3")]
+        pub s3: S3Action,
+        #[serde(rename="Sns")]
+        pub sns: SnsAction,
+        #[serde(rename="Sqs")]
+        pub sqs: SqsAction,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct CloudwatchAlarmAction {
+        #[serde(rename="AlarmName")]
+        pub alarm_name: String,
+        #[serde(rename="RoleArn")]
+        pub role_arn: String,
+        #[serde(rename="StateReason")]
+        pub state_reason: String,
+        #[serde(rename="StateValue")]
+        pub state_value: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct CloudwatchMetricAction {
+        #[serde(rename="MetricName")]
+        pub metric_name: String,
+        #[serde(rename="MetricNamespace")]
+        pub metric_namespace: String,
+        #[serde(rename="MetricTimestamp")]
+        pub metric_timestamp: String,
+        #[serde(rename="MetricUnit")]
+        pub metric_unit: String,
+        #[serde(rename="MetricValue")]
+        pub metric_value: String,
+        #[serde(rename="RoleArn")]
+        pub role_arn: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct DynamoDBAction {
+        #[serde(rename="HashKeyField")]
+        pub hash_key_field: String,
+        #[serde(rename="HashKeyType")]
+        pub hash_key_type: String,
+        #[serde(rename="HashKeyValue")]
+        pub hash_key_value: String,
+        #[serde(rename="PayloadField")]
+        pub payload_field: String,
+        #[serde(rename="RangeKeyField")]
+        pub range_key_field: String,
+        #[serde(rename="RangeKeyType")]
+        pub range_key_type: String,
+        #[serde(rename="RangeKeyValue")]
+        pub range_key_value: String,
+        #[serde(rename="RoleArn")]
+        pub role_arn: String,
+        #[serde(rename="TableName")]
+        pub table_name: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct DynamoDBv2Action {
+        #[serde(rename="PutItem")]
+        pub put_item: PutItemInput,
+        #[serde(rename="RoleArn")]
+        pub role_arn: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct ElasticsearchAction {
+        #[serde(rename="Endpoint")]
+        pub endpoint: String,
+        #[serde(rename="Id")]
+        pub id: String,
+        #[serde(rename="Index")]
+        pub index: String,
+        #[serde(rename="RoleArn")]
+        pub role_arn: String,
+        #[serde(rename="Type")]
+        pub type_: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct FirehoseAction {
+        #[serde(rename="DeliveryStreamName")]
+        pub delivery_stream_name: String,
+        #[serde(rename="RoleArn")]
+        pub role_arn: String,
+        #[serde(rename="Separator")]
+        pub separator: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct KinesisAction {
+        #[serde(rename="PartitionKey")]
+        pub partition_key: String,
+        #[serde(rename="RoleArn")]
+        pub role_arn: String,
+        #[serde(rename="StreamName")]
+        pub stream_name: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct LambdaAction {
+        #[serde(rename="FunctionArn")]
+        pub function_arn: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct PutItemInput {
+        #[serde(rename="TableName")]
+        pub table_name: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct RepublishAction {
+        #[serde(rename="RoleArn")]
+        pub role_arn: String,
+        #[serde(rename="Topic")]
+        pub topic: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct S3Action {
+        #[serde(rename="BucketName")]
+        pub bucket_name: String,
+        #[serde(rename="Key")]
+        pub key: String,
+        #[serde(rename="RoleArn")]
+        pub role_arn: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct SnsAction {
+        #[serde(rename="MessageFormat")]
+        pub message_format: String,
+        #[serde(rename="RoleArn")]
+        pub role_arn: String,
+        #[serde(rename="TargetArn")]
+        pub target_arn: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct SqsAction {
+        #[serde(rename="QueueUrl")]
+        pub queue_url: String,
+        #[serde(rename="RoleArn")]
+        pub role_arn: String,
+        #[serde(rename="UseBase64")]
+        pub use_base64: bool,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct TopicRulePayload {
+        #[serde(rename="Actions")]
+        pub actions: Vec<Action>,
+        #[serde(rename="AwsIotSqlVersion")]
+        pub aws_iot_sql_version: String,
+        #[serde(rename="Description")]
+        pub description: String,
+        #[serde(rename="RuleDisabled")]
+        pub rule_disabled: bool,
+        #[serde(rename="Sql")]
+        pub sql: String,
+    }
+
 }
 

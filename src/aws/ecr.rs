@@ -8,11 +8,11 @@ pub struct Repository {
 #[derive(Serialize, Deserialize)]
 pub struct RepositoryProperties {
     #[serde(rename="LifecyclePolicy")]
-    pub lifecycle_policy: (),
+    pub lifecycle_policy: self::repository::LifecyclePolicy,
     #[serde(rename="RepositoryName")]
     pub repository_name: String,
     #[serde(rename="RepositoryPolicyText")]
-    pub repository_policy_text: ::serde_json::Value,
+    pub repository_policy_text: ::json::Value,
 }
 
 impl<'a> ::Resource<'a> for Repository {
@@ -30,5 +30,16 @@ impl From<RepositoryProperties> for Repository {
     fn from(properties: RepositoryProperties) -> Repository {
         Repository { properties }
     }
+}
+
+pub mod repository {
+    #[derive(Serialize, Deserialize)]
+    pub struct LifecyclePolicy {
+        #[serde(rename="LifecyclePolicyText")]
+        pub lifecycle_policy_text: String,
+        #[serde(rename="RegistryId")]
+        pub registry_id: String,
+    }
+
 }
 

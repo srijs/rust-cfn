@@ -16,11 +16,11 @@ pub struct AssociationProperties {
     #[serde(rename="Name")]
     pub name: String,
     #[serde(rename="Parameters")]
-    pub parameters: ::std::collections::HashMap<String, ()>,
+    pub parameters: ::std::collections::HashMap<String, self::association::ParameterValues>,
     #[serde(rename="ScheduleExpression")]
     pub schedule_expression: String,
     #[serde(rename="Targets")]
-    pub targets: Vec<()>,
+    pub targets: Vec<self::association::Target>,
 }
 
 impl<'a> ::Resource<'a> for Association {
@@ -50,11 +50,11 @@ pub struct Document {
 #[derive(Serialize, Deserialize)]
 pub struct DocumentProperties {
     #[serde(rename="Content")]
-    pub content: ::serde_json::Value,
+    pub content: ::json::Value,
     #[serde(rename="DocumentType")]
     pub document_type: String,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
 }
 
 impl<'a> ::Resource<'a> for Document {
@@ -86,7 +86,7 @@ pub struct MaintenanceWindowTaskProperties {
     #[serde(rename="Description")]
     pub description: String,
     #[serde(rename="LoggingInfo")]
-    pub logging_info: (),
+    pub logging_info: self::maintenance_window_task::LoggingInfo,
     #[serde(rename="MaxConcurrency")]
     pub max_concurrency: String,
     #[serde(rename="MaxErrors")]
@@ -98,13 +98,13 @@ pub struct MaintenanceWindowTaskProperties {
     #[serde(rename="ServiceRoleArn")]
     pub service_role_arn: String,
     #[serde(rename="Targets")]
-    pub targets: Vec<()>,
+    pub targets: Vec<self::maintenance_window_task::Target>,
     #[serde(rename="TaskArn")]
     pub task_arn: String,
     #[serde(rename="TaskInvocationParameters")]
-    pub task_invocation_parameters: (),
+    pub task_invocation_parameters: self::maintenance_window_task::TaskInvocationParameters,
     #[serde(rename="TaskParameters")]
-    pub task_parameters: ::serde_json::Value,
+    pub task_parameters: ::json::Value,
     #[serde(rename="TaskType")]
     pub task_type: String,
     #[serde(rename="WindowId")]
@@ -176,7 +176,7 @@ pub struct PatchBaseline {
 #[derive(Serialize, Deserialize)]
 pub struct PatchBaselineProperties {
     #[serde(rename="ApprovalRules")]
-    pub approval_rules: (),
+    pub approval_rules: self::patch_baseline::RuleGroup,
     #[serde(rename="ApprovedPatches")]
     pub approved_patches: Vec<String>,
     #[serde(rename="ApprovedPatchesComplianceLevel")]
@@ -186,7 +186,7 @@ pub struct PatchBaselineProperties {
     #[serde(rename="Description")]
     pub description: String,
     #[serde(rename="GlobalFilters")]
-    pub global_filters: (),
+    pub global_filters: self::patch_baseline::PatchFilterGroup,
     #[serde(rename="Name")]
     pub name: String,
     #[serde(rename="OperatingSystem")]
@@ -196,7 +196,7 @@ pub struct PatchBaselineProperties {
     #[serde(rename="RejectedPatches")]
     pub rejected_patches: Vec<String>,
     #[serde(rename="Sources")]
-    pub sources: Vec<()>,
+    pub sources: Vec<self::patch_baseline::PatchSource>,
 }
 
 impl<'a> ::Resource<'a> for PatchBaseline {
@@ -214,5 +214,158 @@ impl From<PatchBaselineProperties> for PatchBaseline {
     fn from(properties: PatchBaselineProperties) -> PatchBaseline {
         PatchBaseline { properties }
     }
+}
+
+pub mod association {
+    #[derive(Serialize, Deserialize)]
+    pub struct ParameterValues {
+        #[serde(rename="ParameterValues")]
+        pub parameter_values: Vec<String>,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct Target {
+        #[serde(rename="Key")]
+        pub key: String,
+        #[serde(rename="Values")]
+        pub values: Vec<String>,
+    }
+
+}
+
+pub mod maintenance_window_task {
+    #[derive(Serialize, Deserialize)]
+    pub struct LoggingInfo {
+        #[serde(rename="Region")]
+        pub region: String,
+        #[serde(rename="S3Bucket")]
+        pub s3_bucket: String,
+        #[serde(rename="S3Prefix")]
+        pub s3_prefix: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct MaintenanceWindowAutomationParameters {
+        #[serde(rename="DocumentVersion")]
+        pub document_version: String,
+        #[serde(rename="Parameters")]
+        pub parameters: ::json::Value,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct MaintenanceWindowLambdaParameters {
+        #[serde(rename="ClientContext")]
+        pub client_context: String,
+        #[serde(rename="Payload")]
+        pub payload: String,
+        #[serde(rename="Qualifier")]
+        pub qualifier: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct MaintenanceWindowRunCommandParameters {
+        #[serde(rename="Comment")]
+        pub comment: String,
+        #[serde(rename="DocumentHash")]
+        pub document_hash: String,
+        #[serde(rename="DocumentHashType")]
+        pub document_hash_type: String,
+        #[serde(rename="NotificationConfig")]
+        pub notification_config: NotificationConfig,
+        #[serde(rename="OutputS3BucketName")]
+        pub output_s3_bucket_name: String,
+        #[serde(rename="OutputS3KeyPrefix")]
+        pub output_s3_key_prefix: String,
+        #[serde(rename="Parameters")]
+        pub parameters: ::json::Value,
+        #[serde(rename="ServiceRoleArn")]
+        pub service_role_arn: String,
+        #[serde(rename="TimeoutSeconds")]
+        pub timeout_seconds: u32,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct MaintenanceWindowStepFunctionsParameters {
+        #[serde(rename="Input")]
+        pub input: String,
+        #[serde(rename="Name")]
+        pub name: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct NotificationConfig {
+        #[serde(rename="NotificationArn")]
+        pub notification_arn: String,
+        #[serde(rename="NotificationEvents")]
+        pub notification_events: Vec<String>,
+        #[serde(rename="NotificationType")]
+        pub notification_type: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct Target {
+        #[serde(rename="Key")]
+        pub key: String,
+        #[serde(rename="Values")]
+        pub values: Vec<String>,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct TaskInvocationParameters {
+        #[serde(rename="MaintenanceWindowAutomationParameters")]
+        pub maintenance_window_automation_parameters: MaintenanceWindowAutomationParameters,
+        #[serde(rename="MaintenanceWindowLambdaParameters")]
+        pub maintenance_window_lambda_parameters: MaintenanceWindowLambdaParameters,
+        #[serde(rename="MaintenanceWindowRunCommandParameters")]
+        pub maintenance_window_run_command_parameters: MaintenanceWindowRunCommandParameters,
+        #[serde(rename="MaintenanceWindowStepFunctionsParameters")]
+        pub maintenance_window_step_functions_parameters: MaintenanceWindowStepFunctionsParameters,
+    }
+
+}
+
+pub mod patch_baseline {
+    #[derive(Serialize, Deserialize)]
+    pub struct PatchFilter {
+        #[serde(rename="Key")]
+        pub key: String,
+        #[serde(rename="Values")]
+        pub values: Vec<String>,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct PatchFilterGroup {
+        #[serde(rename="PatchFilters")]
+        pub patch_filters: Vec<PatchFilter>,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct PatchSource {
+        #[serde(rename="Configuration")]
+        pub configuration: String,
+        #[serde(rename="Name")]
+        pub name: String,
+        #[serde(rename="Products")]
+        pub products: Vec<String>,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct Rule {
+        #[serde(rename="ApproveAfterDays")]
+        pub approve_after_days: u32,
+        #[serde(rename="ComplianceLevel")]
+        pub compliance_level: String,
+        #[serde(rename="EnableNonSecurity")]
+        pub enable_non_security: bool,
+        #[serde(rename="PatchFilterGroup")]
+        pub patch_filter_group: PatchFilterGroup,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct RuleGroup {
+        #[serde(rename="PatchRules")]
+        pub patch_rules: Vec<Rule>,
+    }
+
 }
 

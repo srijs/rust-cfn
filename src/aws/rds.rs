@@ -42,7 +42,7 @@ pub struct DBClusterProperties {
     #[serde(rename="StorageEncrypted")]
     pub storage_encrypted: bool,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
     #[serde(rename="VpcSecurityGroupIds")]
     pub vpc_security_group_ids: Vec<String>,
 }
@@ -78,9 +78,9 @@ pub struct DBClusterParameterGroupProperties {
     #[serde(rename="Family")]
     pub family: String,
     #[serde(rename="Parameters")]
-    pub parameters: ::serde_json::Value,
+    pub parameters: ::json::Value,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
 }
 
 impl<'a> ::Resource<'a> for DBClusterParameterGroup {
@@ -182,7 +182,7 @@ pub struct DBInstanceProperties {
     #[serde(rename="StorageType")]
     pub storage_type: String,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
     #[serde(rename="Timezone")]
     pub timezone: String,
     #[serde(rename="VPCSecurityGroups")]
@@ -222,7 +222,7 @@ pub struct DBParameterGroupProperties {
     #[serde(rename="Parameters")]
     pub parameters: ::std::collections::HashMap<String, String>,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
 }
 
 impl<'a> ::Resource<'a> for DBParameterGroup {
@@ -252,13 +252,13 @@ pub struct DBSecurityGroup {
 #[derive(Serialize, Deserialize)]
 pub struct DBSecurityGroupProperties {
     #[serde(rename="DBSecurityGroupIngress")]
-    pub db_security_group_ingress: Vec<()>,
+    pub db_security_group_ingress: Vec<self::db_security_group::Ingress>,
     #[serde(rename="EC2VpcId")]
     pub ec2_vpc_id: String,
     #[serde(rename="GroupDescription")]
     pub group_description: String,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
 }
 
 impl<'a> ::Resource<'a> for DBSecurityGroup {
@@ -332,7 +332,7 @@ pub struct DBSubnetGroupProperties {
     #[serde(rename="SubnetIds")]
     pub subnet_ids: Vec<String>,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
 }
 
 impl<'a> ::Resource<'a> for DBSubnetGroup {
@@ -404,11 +404,11 @@ pub struct OptionGroupProperties {
     #[serde(rename="MajorEngineVersion")]
     pub major_engine_version: String,
     #[serde(rename="OptionConfigurations")]
-    pub option_configurations: Vec<()>,
+    pub option_configurations: Vec<self::option_group::OptionConfiguration>,
     #[serde(rename="OptionGroupDescription")]
     pub option_group_description: String,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
 }
 
 impl<'a> ::Resource<'a> for OptionGroup {
@@ -426,5 +426,47 @@ impl From<OptionGroupProperties> for OptionGroup {
     fn from(properties: OptionGroupProperties) -> OptionGroup {
         OptionGroup { properties }
     }
+}
+
+pub mod db_security_group {
+    #[derive(Serialize, Deserialize)]
+    pub struct Ingress {
+        #[serde(rename="CIDRIP")]
+        pub cidrip: String,
+        #[serde(rename="EC2SecurityGroupId")]
+        pub ec2_security_group_id: String,
+        #[serde(rename="EC2SecurityGroupName")]
+        pub ec2_security_group_name: String,
+        #[serde(rename="EC2SecurityGroupOwnerId")]
+        pub ec2_security_group_owner_id: String,
+    }
+
+}
+
+pub mod option_group {
+    #[derive(Serialize, Deserialize)]
+    pub struct OptionConfiguration {
+        #[serde(rename="DBSecurityGroupMemberships")]
+        pub db_security_group_memberships: Vec<String>,
+        #[serde(rename="OptionName")]
+        pub option_name: String,
+        #[serde(rename="OptionSettings")]
+        pub option_settings: OptionSetting,
+        #[serde(rename="OptionVersion")]
+        pub option_version: String,
+        #[serde(rename="Port")]
+        pub port: u32,
+        #[serde(rename="VpcSecurityGroupMemberships")]
+        pub vpc_security_group_memberships: Vec<String>,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct OptionSetting {
+        #[serde(rename="Name")]
+        pub name: String,
+        #[serde(rename="Value")]
+        pub value: String,
+    }
+
 }
 

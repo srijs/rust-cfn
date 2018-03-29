@@ -8,9 +8,9 @@ pub struct Listener {
 #[derive(Serialize, Deserialize)]
 pub struct ListenerProperties {
     #[serde(rename="Certificates")]
-    pub certificates: Vec<()>,
+    pub certificates: Vec<self::listener::Certificate>,
     #[serde(rename="DefaultActions")]
-    pub default_actions: Vec<()>,
+    pub default_actions: Vec<self::listener::Action>,
     #[serde(rename="LoadBalancerArn")]
     pub load_balancer_arn: String,
     #[serde(rename="Port")]
@@ -48,7 +48,7 @@ pub struct ListenerCertificate {
 #[derive(Serialize, Deserialize)]
 pub struct ListenerCertificateProperties {
     #[serde(rename="Certificates")]
-    pub certificates: Vec<()>,
+    pub certificates: Vec<self::listener_certificate::Certificate>,
     #[serde(rename="ListenerArn")]
     pub listener_arn: String,
 }
@@ -80,9 +80,9 @@ pub struct ListenerRule {
 #[derive(Serialize, Deserialize)]
 pub struct ListenerRuleProperties {
     #[serde(rename="Actions")]
-    pub actions: Vec<()>,
+    pub actions: Vec<self::listener_rule::Action>,
     #[serde(rename="Conditions")]
-    pub conditions: Vec<()>,
+    pub conditions: Vec<self::listener_rule::RuleCondition>,
     #[serde(rename="ListenerArn")]
     pub listener_arn: String,
     #[serde(rename="Priority")]
@@ -118,7 +118,7 @@ pub struct LoadBalancerProperties {
     #[serde(rename="IpAddressType")]
     pub ip_address_type: String,
     #[serde(rename="LoadBalancerAttributes")]
-    pub load_balancer_attributes: Vec<()>,
+    pub load_balancer_attributes: Vec<self::load_balancer::LoadBalancerAttribute>,
     #[serde(rename="Name")]
     pub name: String,
     #[serde(rename="Scheme")]
@@ -126,11 +126,11 @@ pub struct LoadBalancerProperties {
     #[serde(rename="SecurityGroups")]
     pub security_groups: Vec<String>,
     #[serde(rename="SubnetMappings")]
-    pub subnet_mappings: Vec<()>,
+    pub subnet_mappings: Vec<self::load_balancer::SubnetMapping>,
     #[serde(rename="Subnets")]
     pub subnets: Vec<String>,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
     #[serde(rename="Type")]
     pub type_: String,
 }
@@ -174,7 +174,7 @@ pub struct TargetGroupProperties {
     #[serde(rename="HealthyThresholdCount")]
     pub healthy_threshold_count: u32,
     #[serde(rename="Matcher")]
-    pub matcher: (),
+    pub matcher: self::target_group::Matcher,
     #[serde(rename="Name")]
     pub name: String,
     #[serde(rename="Port")]
@@ -182,13 +182,13 @@ pub struct TargetGroupProperties {
     #[serde(rename="Protocol")]
     pub protocol: String,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
     #[serde(rename="TargetGroupAttributes")]
-    pub target_group_attributes: Vec<()>,
+    pub target_group_attributes: Vec<self::target_group::TargetGroupAttribute>,
     #[serde(rename="TargetType")]
     pub target_type: String,
     #[serde(rename="Targets")]
-    pub targets: Vec<()>,
+    pub targets: Vec<self::target_group::TargetDescription>,
     #[serde(rename="UnhealthyThresholdCount")]
     pub unhealthy_threshold_count: u32,
     #[serde(rename="VpcId")]
@@ -210,5 +210,96 @@ impl From<TargetGroupProperties> for TargetGroup {
     fn from(properties: TargetGroupProperties) -> TargetGroup {
         TargetGroup { properties }
     }
+}
+
+pub mod listener {
+    #[derive(Serialize, Deserialize)]
+    pub struct Action {
+        #[serde(rename="TargetGroupArn")]
+        pub target_group_arn: String,
+        #[serde(rename="Type")]
+        pub type_: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct Certificate {
+        #[serde(rename="CertificateArn")]
+        pub certificate_arn: String,
+    }
+
+}
+
+pub mod listener_certificate {
+    #[derive(Serialize, Deserialize)]
+    pub struct Certificate {
+        #[serde(rename="CertificateArn")]
+        pub certificate_arn: String,
+    }
+
+}
+
+pub mod listener_rule {
+    #[derive(Serialize, Deserialize)]
+    pub struct Action {
+        #[serde(rename="TargetGroupArn")]
+        pub target_group_arn: String,
+        #[serde(rename="Type")]
+        pub type_: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct RuleCondition {
+        #[serde(rename="Field")]
+        pub field: String,
+        #[serde(rename="Values")]
+        pub values: Vec<String>,
+    }
+
+}
+
+pub mod load_balancer {
+    #[derive(Serialize, Deserialize)]
+    pub struct LoadBalancerAttribute {
+        #[serde(rename="Key")]
+        pub key: String,
+        #[serde(rename="Value")]
+        pub value: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct SubnetMapping {
+        #[serde(rename="AllocationId")]
+        pub allocation_id: String,
+        #[serde(rename="SubnetId")]
+        pub subnet_id: String,
+    }
+
+}
+
+pub mod target_group {
+    #[derive(Serialize, Deserialize)]
+    pub struct Matcher {
+        #[serde(rename="HttpCode")]
+        pub http_code: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct TargetDescription {
+        #[serde(rename="AvailabilityZone")]
+        pub availability_zone: String,
+        #[serde(rename="Id")]
+        pub id: String,
+        #[serde(rename="Port")]
+        pub port: u32,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct TargetGroupAttribute {
+        #[serde(rename="Key")]
+        pub key: String,
+        #[serde(rename="Value")]
+        pub value: String,
+    }
+
 }
 

@@ -46,7 +46,7 @@ pub struct CacheClusterProperties {
     #[serde(rename="SnapshotWindow")]
     pub snapshot_window: String,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
     #[serde(rename="VpcSecurityGroupIds")]
     pub vpc_security_group_ids: Vec<String>,
 }
@@ -132,7 +132,7 @@ pub struct ReplicationGroupProperties {
     #[serde(rename="EngineVersion")]
     pub engine_version: String,
     #[serde(rename="NodeGroupConfiguration")]
-    pub node_group_configuration: Vec<()>,
+    pub node_group_configuration: Vec<self::replication_group::NodeGroupConfiguration>,
     #[serde(rename="NotificationTopicArn")]
     pub notification_topic_arn: String,
     #[serde(rename="NumCacheClusters")]
@@ -166,7 +166,7 @@ pub struct ReplicationGroupProperties {
     #[serde(rename="SnapshottingClusterId")]
     pub snapshotting_cluster_id: String,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
     #[serde(rename="TransitEncryptionEnabled")]
     pub transit_encryption_enabled: bool,
 }
@@ -284,5 +284,20 @@ impl From<SubnetGroupProperties> for SubnetGroup {
     fn from(properties: SubnetGroupProperties) -> SubnetGroup {
         SubnetGroup { properties }
     }
+}
+
+pub mod replication_group {
+    #[derive(Serialize, Deserialize)]
+    pub struct NodeGroupConfiguration {
+        #[serde(rename="PrimaryAvailabilityZone")]
+        pub primary_availability_zone: String,
+        #[serde(rename="ReplicaAvailabilityZones")]
+        pub replica_availability_zones: Vec<String>,
+        #[serde(rename="ReplicaCount")]
+        pub replica_count: u32,
+        #[serde(rename="Slots")]
+        pub slots: String,
+    }
+
 }
 

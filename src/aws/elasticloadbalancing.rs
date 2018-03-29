@@ -8,29 +8,29 @@ pub struct LoadBalancer {
 #[derive(Serialize, Deserialize)]
 pub struct LoadBalancerProperties {
     #[serde(rename="AccessLoggingPolicy")]
-    pub access_logging_policy: (),
+    pub access_logging_policy: self::load_balancer::AccessLoggingPolicy,
     #[serde(rename="AppCookieStickinessPolicy")]
-    pub app_cookie_stickiness_policy: Vec<()>,
+    pub app_cookie_stickiness_policy: Vec<self::load_balancer::AppCookieStickinessPolicy>,
     #[serde(rename="AvailabilityZones")]
     pub availability_zones: Vec<String>,
     #[serde(rename="ConnectionDrainingPolicy")]
-    pub connection_draining_policy: (),
+    pub connection_draining_policy: self::load_balancer::ConnectionDrainingPolicy,
     #[serde(rename="ConnectionSettings")]
-    pub connection_settings: (),
+    pub connection_settings: self::load_balancer::ConnectionSettings,
     #[serde(rename="CrossZone")]
     pub cross_zone: bool,
     #[serde(rename="HealthCheck")]
-    pub health_check: (),
+    pub health_check: self::load_balancer::HealthCheck,
     #[serde(rename="Instances")]
     pub instances: Vec<String>,
     #[serde(rename="LBCookieStickinessPolicy")]
-    pub lb_cookie_stickiness_policy: Vec<()>,
+    pub lb_cookie_stickiness_policy: Vec<self::load_balancer::LBCookieStickinessPolicy>,
     #[serde(rename="Listeners")]
-    pub listeners: Vec<()>,
+    pub listeners: Vec<self::load_balancer::Listeners>,
     #[serde(rename="LoadBalancerName")]
     pub load_balancer_name: String,
     #[serde(rename="Policies")]
-    pub policies: Vec<()>,
+    pub policies: Vec<self::load_balancer::Policies>,
     #[serde(rename="Scheme")]
     pub scheme: String,
     #[serde(rename="SecurityGroups")]
@@ -38,7 +38,7 @@ pub struct LoadBalancerProperties {
     #[serde(rename="Subnets")]
     pub subnets: Vec<String>,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
 }
 
 impl<'a> ::Resource<'a> for LoadBalancer {
@@ -56,5 +56,94 @@ impl From<LoadBalancerProperties> for LoadBalancer {
     fn from(properties: LoadBalancerProperties) -> LoadBalancer {
         LoadBalancer { properties }
     }
+}
+
+pub mod load_balancer {
+    #[derive(Serialize, Deserialize)]
+    pub struct AccessLoggingPolicy {
+        #[serde(rename="EmitInterval")]
+        pub emit_interval: u32,
+        #[serde(rename="Enabled")]
+        pub enabled: bool,
+        #[serde(rename="S3BucketName")]
+        pub s3_bucket_name: String,
+        #[serde(rename="S3BucketPrefix")]
+        pub s3_bucket_prefix: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct AppCookieStickinessPolicy {
+        #[serde(rename="CookieName")]
+        pub cookie_name: String,
+        #[serde(rename="PolicyName")]
+        pub policy_name: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct ConnectionDrainingPolicy {
+        #[serde(rename="Enabled")]
+        pub enabled: bool,
+        #[serde(rename="Timeout")]
+        pub timeout: u32,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct ConnectionSettings {
+        #[serde(rename="IdleTimeout")]
+        pub idle_timeout: u32,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct HealthCheck {
+        #[serde(rename="HealthyThreshold")]
+        pub healthy_threshold: String,
+        #[serde(rename="Interval")]
+        pub interval: String,
+        #[serde(rename="Target")]
+        pub target: String,
+        #[serde(rename="Timeout")]
+        pub timeout: String,
+        #[serde(rename="UnhealthyThreshold")]
+        pub unhealthy_threshold: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct LBCookieStickinessPolicy {
+        #[serde(rename="CookieExpirationPeriod")]
+        pub cookie_expiration_period: String,
+        #[serde(rename="PolicyName")]
+        pub policy_name: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct Listeners {
+        #[serde(rename="InstancePort")]
+        pub instance_port: String,
+        #[serde(rename="InstanceProtocol")]
+        pub instance_protocol: String,
+        #[serde(rename="LoadBalancerPort")]
+        pub load_balancer_port: String,
+        #[serde(rename="PolicyNames")]
+        pub policy_names: Vec<String>,
+        #[serde(rename="Protocol")]
+        pub protocol: String,
+        #[serde(rename="SSLCertificateId")]
+        pub ssl_certificate_id: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct Policies {
+        #[serde(rename="Attributes")]
+        pub attributes: Vec<::json::Value>,
+        #[serde(rename="InstancePorts")]
+        pub instance_ports: Vec<String>,
+        #[serde(rename="LoadBalancerPorts")]
+        pub load_balancer_ports: Vec<String>,
+        #[serde(rename="PolicyName")]
+        pub policy_name: String,
+        #[serde(rename="PolicyType")]
+        pub policy_type: String,
+    }
+
 }
 

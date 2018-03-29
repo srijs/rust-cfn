@@ -8,7 +8,7 @@ pub struct ByteMatchSet {
 #[derive(Serialize, Deserialize)]
 pub struct ByteMatchSetProperties {
     #[serde(rename="ByteMatchTuples")]
-    pub byte_match_tuples: Vec<()>,
+    pub byte_match_tuples: Vec<self::byte_match_set::ByteMatchTuple>,
     #[serde(rename="Name")]
     pub name: String,
 }
@@ -40,7 +40,7 @@ pub struct IPSet {
 #[derive(Serialize, Deserialize)]
 pub struct IPSetProperties {
     #[serde(rename="IPSetDescriptors")]
-    pub ip_set_descriptors: Vec<()>,
+    pub ip_set_descriptors: Vec<self::ip_set::IPSetDescriptor>,
     #[serde(rename="Name")]
     pub name: String,
 }
@@ -76,7 +76,7 @@ pub struct RuleProperties {
     #[serde(rename="Name")]
     pub name: String,
     #[serde(rename="Predicates")]
-    pub predicates: Vec<()>,
+    pub predicates: Vec<self::rule::Predicate>,
 }
 
 impl<'a> ::Resource<'a> for Rule {
@@ -108,7 +108,7 @@ pub struct SizeConstraintSetProperties {
     #[serde(rename="Name")]
     pub name: String,
     #[serde(rename="SizeConstraints")]
-    pub size_constraints: Vec<()>,
+    pub size_constraints: Vec<self::size_constraint_set::SizeConstraint>,
 }
 
 impl<'a> ::Resource<'a> for SizeConstraintSet {
@@ -140,7 +140,7 @@ pub struct SqlInjectionMatchSetProperties {
     #[serde(rename="Name")]
     pub name: String,
     #[serde(rename="SqlInjectionMatchTuples")]
-    pub sql_injection_match_tuples: Vec<()>,
+    pub sql_injection_match_tuples: Vec<self::sql_injection_match_set::SqlInjectionMatchTuple>,
 }
 
 impl<'a> ::Resource<'a> for SqlInjectionMatchSet {
@@ -170,13 +170,13 @@ pub struct WebACL {
 #[derive(Serialize, Deserialize)]
 pub struct WebACLProperties {
     #[serde(rename="DefaultAction")]
-    pub default_action: (),
+    pub default_action: self::web_acl::WafAction,
     #[serde(rename="MetricName")]
     pub metric_name: String,
     #[serde(rename="Name")]
     pub name: String,
     #[serde(rename="Rules")]
-    pub rules: Vec<()>,
+    pub rules: Vec<self::web_acl::ActivatedRule>,
 }
 
 impl<'a> ::Resource<'a> for WebACL {
@@ -208,7 +208,7 @@ pub struct XssMatchSetProperties {
     #[serde(rename="Name")]
     pub name: String,
     #[serde(rename="XssMatchTuples")]
-    pub xss_match_tuples: Vec<()>,
+    pub xss_match_tuples: Vec<self::xss_match_set::XssMatchTuple>,
 }
 
 impl<'a> ::Resource<'a> for XssMatchSet {
@@ -226,5 +226,134 @@ impl From<XssMatchSetProperties> for XssMatchSet {
     fn from(properties: XssMatchSetProperties) -> XssMatchSet {
         XssMatchSet { properties }
     }
+}
+
+pub mod byte_match_set {
+    #[derive(Serialize, Deserialize)]
+    pub struct ByteMatchTuple {
+        #[serde(rename="FieldToMatch")]
+        pub field_to_match: FieldToMatch,
+        #[serde(rename="PositionalConstraint")]
+        pub positional_constraint: String,
+        #[serde(rename="TargetString")]
+        pub target_string: String,
+        #[serde(rename="TargetStringBase64")]
+        pub target_string_base64: String,
+        #[serde(rename="TextTransformation")]
+        pub text_transformation: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct FieldToMatch {
+        #[serde(rename="Data")]
+        pub data: String,
+        #[serde(rename="Type")]
+        pub type_: String,
+    }
+
+}
+
+pub mod ip_set {
+    #[derive(Serialize, Deserialize)]
+    pub struct IPSetDescriptor {
+        #[serde(rename="Type")]
+        pub type_: String,
+        #[serde(rename="Value")]
+        pub value: String,
+    }
+
+}
+
+pub mod rule {
+    #[derive(Serialize, Deserialize)]
+    pub struct Predicate {
+        #[serde(rename="DataId")]
+        pub data_id: String,
+        #[serde(rename="Negated")]
+        pub negated: bool,
+        #[serde(rename="Type")]
+        pub type_: String,
+    }
+
+}
+
+pub mod size_constraint_set {
+    #[derive(Serialize, Deserialize)]
+    pub struct FieldToMatch {
+        #[serde(rename="Data")]
+        pub data: String,
+        #[serde(rename="Type")]
+        pub type_: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct SizeConstraint {
+        #[serde(rename="ComparisonOperator")]
+        pub comparison_operator: String,
+        #[serde(rename="FieldToMatch")]
+        pub field_to_match: FieldToMatch,
+        #[serde(rename="Size")]
+        pub size: u32,
+        #[serde(rename="TextTransformation")]
+        pub text_transformation: String,
+    }
+
+}
+
+pub mod sql_injection_match_set {
+    #[derive(Serialize, Deserialize)]
+    pub struct FieldToMatch {
+        #[serde(rename="Data")]
+        pub data: String,
+        #[serde(rename="Type")]
+        pub type_: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct SqlInjectionMatchTuple {
+        #[serde(rename="FieldToMatch")]
+        pub field_to_match: FieldToMatch,
+        #[serde(rename="TextTransformation")]
+        pub text_transformation: String,
+    }
+
+}
+
+pub mod web_acl {
+    #[derive(Serialize, Deserialize)]
+    pub struct ActivatedRule {
+        #[serde(rename="Action")]
+        pub action: WafAction,
+        #[serde(rename="Priority")]
+        pub priority: u32,
+        #[serde(rename="RuleId")]
+        pub rule_id: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct WafAction {
+        #[serde(rename="Type")]
+        pub type_: String,
+    }
+
+}
+
+pub mod xss_match_set {
+    #[derive(Serialize, Deserialize)]
+    pub struct FieldToMatch {
+        #[serde(rename="Data")]
+        pub data: String,
+        #[serde(rename="Type")]
+        pub type_: String,
+    }
+
+    #[derive(Serialize, Deserialize)]
+    pub struct XssMatchTuple {
+        #[serde(rename="FieldToMatch")]
+        pub field_to_match: FieldToMatch,
+        #[serde(rename="TextTransformation")]
+        pub text_transformation: String,
+    }
+
 }
 

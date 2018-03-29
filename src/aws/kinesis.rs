@@ -14,9 +14,9 @@ pub struct StreamProperties {
     #[serde(rename="ShardCount")]
     pub shard_count: u32,
     #[serde(rename="StreamEncryption")]
-    pub stream_encryption: (),
+    pub stream_encryption: self::stream::StreamEncryption,
     #[serde(rename="Tags")]
-    pub tags: Vec<()>,
+    pub tags: ::Tags,
 }
 
 impl<'a> ::Resource<'a> for Stream {
@@ -34,5 +34,16 @@ impl From<StreamProperties> for Stream {
     fn from(properties: StreamProperties) -> Stream {
         Stream { properties }
     }
+}
+
+pub mod stream {
+    #[derive(Serialize, Deserialize)]
+    pub struct StreamEncryption {
+        #[serde(rename="EncryptionType")]
+        pub encryption_type: String,
+        #[serde(rename="KeyId")]
+        pub key_id: String,
+    }
+
 }
 

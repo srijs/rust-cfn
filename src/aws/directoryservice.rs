@@ -18,7 +18,7 @@ pub struct MicrosoftADProperties {
     #[serde(rename="ShortName")]
     pub short_name: String,
     #[serde(rename="VpcSettings")]
-    pub vpc_settings: (),
+    pub vpc_settings: self::microsoft_ad::VpcSettings,
 }
 
 impl<'a> ::Resource<'a> for MicrosoftAD {
@@ -62,7 +62,7 @@ pub struct SimpleADProperties {
     #[serde(rename="Size")]
     pub size: String,
     #[serde(rename="VpcSettings")]
-    pub vpc_settings: (),
+    pub vpc_settings: self::simple_ad::VpcSettings,
 }
 
 impl<'a> ::Resource<'a> for SimpleAD {
@@ -80,5 +80,27 @@ impl From<SimpleADProperties> for SimpleAD {
     fn from(properties: SimpleADProperties) -> SimpleAD {
         SimpleAD { properties }
     }
+}
+
+pub mod microsoft_ad {
+    #[derive(Serialize, Deserialize)]
+    pub struct VpcSettings {
+        #[serde(rename="SubnetIds")]
+        pub subnet_ids: Vec<String>,
+        #[serde(rename="VpcId")]
+        pub vpc_id: String,
+    }
+
+}
+
+pub mod simple_ad {
+    #[derive(Serialize, Deserialize)]
+    pub struct VpcSettings {
+        #[serde(rename="SubnetIds")]
+        pub subnet_ids: Vec<String>,
+        #[serde(rename="VpcId")]
+        pub vpc_id: String,
+    }
+
 }
 
