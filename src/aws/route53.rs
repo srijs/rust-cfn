@@ -10,12 +10,12 @@ pub struct HealthCheck {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct HealthCheckProperties {
     /// Property `HealthCheckConfig`.
-    #[serde(rename="HealthCheckConfig")]
-    pub health_check_config: self::health_check::HealthCheckConfig,
+    #[serde(rename = "HealthCheckConfig")]
+    pub health_check_config: ::Value<self::health_check::HealthCheckConfig>,
     /// Property `HealthCheckTags`.
-    #[serde(rename="HealthCheckTags")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub health_check_tags: Option<Vec<self::health_check::HealthCheckTag>>,
+    #[serde(rename = "HealthCheckTags")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub health_check_tags: Option<::ValueList<self::health_check::HealthCheckTag>>,
 }
 
 impl<'a> ::Resource<'a> for HealthCheck {
@@ -47,24 +47,24 @@ pub struct HostedZone {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct HostedZoneProperties {
     /// Property `HostedZoneConfig`.
-    #[serde(rename="HostedZoneConfig")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub hosted_zone_config: Option<self::hosted_zone::HostedZoneConfig>,
+    #[serde(rename = "HostedZoneConfig")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub hosted_zone_config: Option<::Value<self::hosted_zone::HostedZoneConfig>>,
     /// Property `HostedZoneTags`.
-    #[serde(rename="HostedZoneTags")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub hosted_zone_tags: Option<Vec<self::hosted_zone::HostedZoneTag>>,
+    #[serde(rename = "HostedZoneTags")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub hosted_zone_tags: Option<::ValueList<self::hosted_zone::HostedZoneTag>>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    pub name: String,
+    #[serde(rename = "Name")]
+    pub name: ::Value<String>,
     /// Property `QueryLoggingConfig`.
-    #[serde(rename="QueryLoggingConfig")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub query_logging_config: Option<self::hosted_zone::QueryLoggingConfig>,
+    #[serde(rename = "QueryLoggingConfig")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub query_logging_config: Option<::Value<self::hosted_zone::QueryLoggingConfig>>,
     /// Property `VPCs`.
-    #[serde(rename="VPCs")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub vp_cs: Option<Vec<self::hosted_zone::VPC>>,
+    #[serde(rename = "VPCs")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub vp_cs: Option<::ValueList<self::hosted_zone::VPC>>,
 }
 
 impl<'a> ::Resource<'a> for HostedZone {
@@ -96,59 +96,59 @@ pub struct RecordSet {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct RecordSetProperties {
     /// Property `AliasTarget`.
-    #[serde(rename="AliasTarget")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub alias_target: Option<self::record_set::AliasTarget>,
+    #[serde(rename = "AliasTarget")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub alias_target: Option<::Value<self::record_set::AliasTarget>>,
     /// Property `Comment`.
-    #[serde(rename="Comment")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub comment: Option<String>,
+    #[serde(rename = "Comment")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub comment: Option<::Value<String>>,
     /// Property `Failover`.
-    #[serde(rename="Failover")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub failover: Option<String>,
+    #[serde(rename = "Failover")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub failover: Option<::Value<String>>,
     /// Property `GeoLocation`.
-    #[serde(rename="GeoLocation")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub geo_location: Option<self::record_set::GeoLocation>,
+    #[serde(rename = "GeoLocation")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub geo_location: Option<::Value<self::record_set::GeoLocation>>,
     /// Property `HealthCheckId`.
-    #[serde(rename="HealthCheckId")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub health_check_id: Option<String>,
+    #[serde(rename = "HealthCheckId")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub health_check_id: Option<::Value<String>>,
     /// Property `HostedZoneId`.
-    #[serde(rename="HostedZoneId")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub hosted_zone_id: Option<String>,
+    #[serde(rename = "HostedZoneId")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub hosted_zone_id: Option<::Value<String>>,
     /// Property `HostedZoneName`.
-    #[serde(rename="HostedZoneName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub hosted_zone_name: Option<String>,
+    #[serde(rename = "HostedZoneName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub hosted_zone_name: Option<::Value<String>>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    pub name: String,
+    #[serde(rename = "Name")]
+    pub name: ::Value<String>,
     /// Property `Region`.
-    #[serde(rename="Region")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub region: Option<String>,
+    #[serde(rename = "Region")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub region: Option<::Value<String>>,
     /// Property `ResourceRecords`.
-    #[serde(rename="ResourceRecords")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub resource_records: Option<Vec<String>>,
+    #[serde(rename = "ResourceRecords")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub resource_records: Option<::ValueList<String>>,
     /// Property `SetIdentifier`.
-    #[serde(rename="SetIdentifier")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub set_identifier: Option<String>,
+    #[serde(rename = "SetIdentifier")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub set_identifier: Option<::Value<String>>,
     /// Property `TTL`.
-    #[serde(rename="TTL")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ttl: Option<String>,
+    #[serde(rename = "TTL")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub ttl: Option<::Value<String>>,
     /// Property `Type`.
-    #[serde(rename="Type")]
-    pub type_: String,
+    #[serde(rename = "Type")]
+    pub type_: ::Value<String>,
     /// Property `Weight`.
-    #[serde(rename="Weight")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub weight: Option<u32>,
+    #[serde(rename = "Weight")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub weight: Option<::Value<u32>>,
 }
 
 impl<'a> ::Resource<'a> for RecordSet {
@@ -180,21 +180,21 @@ pub struct RecordSetGroup {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct RecordSetGroupProperties {
     /// Property `Comment`.
-    #[serde(rename="Comment")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub comment: Option<String>,
+    #[serde(rename = "Comment")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub comment: Option<::Value<String>>,
     /// Property `HostedZoneId`.
-    #[serde(rename="HostedZoneId")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub hosted_zone_id: Option<String>,
+    #[serde(rename = "HostedZoneId")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub hosted_zone_id: Option<::Value<String>>,
     /// Property `HostedZoneName`.
-    #[serde(rename="HostedZoneName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub hosted_zone_name: Option<String>,
+    #[serde(rename = "HostedZoneName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub hosted_zone_name: Option<::Value<String>>,
     /// Property `RecordSets`.
-    #[serde(rename="RecordSets")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub record_sets: Option<Vec<self::record_set_group::RecordSet>>,
+    #[serde(rename = "RecordSets")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub record_sets: Option<::ValueList<self::record_set_group::RecordSet>>,
 }
 
 impl<'a> ::Resource<'a> for RecordSetGroup {
@@ -223,91 +223,97 @@ pub mod health_check {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct AlarmIdentifier {
         /// Property `Name`.
-        #[serde(rename="Name")]
-        pub name: String,
+        #[serde(rename = "Name")]
+        pub name: ::Value<String>,
         /// Property `Region`.
-        #[serde(rename="Region")]
-        pub region: String,
+        #[serde(rename = "Region")]
+        pub region: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(AlarmIdentifier);
 
     /// The [`AWS::Route53::HealthCheck.HealthCheckConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct HealthCheckConfig {
         /// Property `AlarmIdentifier`.
-        #[serde(rename="AlarmIdentifier")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub alarm_identifier: Option<AlarmIdentifier>,
+        #[serde(rename = "AlarmIdentifier")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub alarm_identifier: Option<::Value<AlarmIdentifier>>,
         /// Property `ChildHealthChecks`.
-        #[serde(rename="ChildHealthChecks")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub child_health_checks: Option<Vec<String>>,
+        #[serde(rename = "ChildHealthChecks")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub child_health_checks: Option<::ValueList<String>>,
         /// Property `EnableSNI`.
-        #[serde(rename="EnableSNI")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub enable_sni: Option<bool>,
+        #[serde(rename = "EnableSNI")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub enable_sni: Option<::Value<bool>>,
         /// Property `FailureThreshold`.
-        #[serde(rename="FailureThreshold")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub failure_threshold: Option<u32>,
+        #[serde(rename = "FailureThreshold")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub failure_threshold: Option<::Value<u32>>,
         /// Property `FullyQualifiedDomainName`.
-        #[serde(rename="FullyQualifiedDomainName")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub fully_qualified_domain_name: Option<String>,
+        #[serde(rename = "FullyQualifiedDomainName")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub fully_qualified_domain_name: Option<::Value<String>>,
         /// Property `HealthThreshold`.
-        #[serde(rename="HealthThreshold")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub health_threshold: Option<u32>,
+        #[serde(rename = "HealthThreshold")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub health_threshold: Option<::Value<u32>>,
         /// Property `IPAddress`.
-        #[serde(rename="IPAddress")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub ip_address: Option<String>,
+        #[serde(rename = "IPAddress")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub ip_address: Option<::Value<String>>,
         /// Property `InsufficientDataHealthStatus`.
-        #[serde(rename="InsufficientDataHealthStatus")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub insufficient_data_health_status: Option<String>,
+        #[serde(rename = "InsufficientDataHealthStatus")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub insufficient_data_health_status: Option<::Value<String>>,
         /// Property `Inverted`.
-        #[serde(rename="Inverted")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub inverted: Option<bool>,
+        #[serde(rename = "Inverted")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub inverted: Option<::Value<bool>>,
         /// Property `MeasureLatency`.
-        #[serde(rename="MeasureLatency")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub measure_latency: Option<bool>,
+        #[serde(rename = "MeasureLatency")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub measure_latency: Option<::Value<bool>>,
         /// Property `Port`.
-        #[serde(rename="Port")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub port: Option<u32>,
+        #[serde(rename = "Port")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub port: Option<::Value<u32>>,
         /// Property `Regions`.
-        #[serde(rename="Regions")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub regions: Option<Vec<String>>,
+        #[serde(rename = "Regions")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub regions: Option<::ValueList<String>>,
         /// Property `RequestInterval`.
-        #[serde(rename="RequestInterval")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub request_interval: Option<u32>,
+        #[serde(rename = "RequestInterval")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub request_interval: Option<::Value<u32>>,
         /// Property `ResourcePath`.
-        #[serde(rename="ResourcePath")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub resource_path: Option<String>,
+        #[serde(rename = "ResourcePath")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub resource_path: Option<::Value<String>>,
         /// Property `SearchString`.
-        #[serde(rename="SearchString")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub search_string: Option<String>,
+        #[serde(rename = "SearchString")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub search_string: Option<::Value<String>>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(rename = "Type")]
+        pub type_: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(HealthCheckConfig);
 
     /// The [`AWS::Route53::HealthCheck.HealthCheckTag`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthchecktag.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct HealthCheckTag {
         /// Property `Key`.
-        #[serde(rename="Key")]
-        pub key: String,
+        #[serde(rename = "Key")]
+        pub key: ::Value<String>,
         /// Property `Value`.
-        #[serde(rename="Value")]
-        pub value: String,
+        #[serde(rename = "Value")]
+        pub value: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(HealthCheckTag);
 }
 
 pub mod hosted_zone {
@@ -317,40 +323,48 @@ pub mod hosted_zone {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct HostedZoneConfig {
         /// Property `Comment`.
-        #[serde(rename="Comment")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub comment: Option<String>,
+        #[serde(rename = "Comment")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub comment: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(HostedZoneConfig);
 
     /// The [`AWS::Route53::HostedZone.HostedZoneTag`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzonetags.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct HostedZoneTag {
         /// Property `Key`.
-        #[serde(rename="Key")]
-        pub key: String,
+        #[serde(rename = "Key")]
+        pub key: ::Value<String>,
         /// Property `Value`.
-        #[serde(rename="Value")]
-        pub value: String,
+        #[serde(rename = "Value")]
+        pub value: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(HostedZoneTag);
 
     /// The [`AWS::Route53::HostedZone.QueryLoggingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-queryloggingconfig.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct QueryLoggingConfig {
         /// Property `CloudWatchLogsLogGroupArn`.
-        #[serde(rename="CloudWatchLogsLogGroupArn")]
-        pub cloud_watch_logs_log_group_arn: String,
+        #[serde(rename = "CloudWatchLogsLogGroupArn")]
+        pub cloud_watch_logs_log_group_arn: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(QueryLoggingConfig);
 
     /// The [`AWS::Route53::HostedZone.VPC`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone-hostedzonevpcs.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct VPC {
         /// Property `VPCId`.
-        #[serde(rename="VPCId")]
-        pub vpc_id: String,
+        #[serde(rename = "VPCId")]
+        pub vpc_id: ::Value<String>,
         /// Property `VPCRegion`.
-        #[serde(rename="VPCRegion")]
-        pub vpc_region: String,
+        #[serde(rename = "VPCRegion")]
+        pub vpc_region: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(VPC);
 }
 
 pub mod record_set {
@@ -360,33 +374,37 @@ pub mod record_set {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct AliasTarget {
         /// Property `DNSName`.
-        #[serde(rename="DNSName")]
-        pub dns_name: String,
+        #[serde(rename = "DNSName")]
+        pub dns_name: ::Value<String>,
         /// Property `EvaluateTargetHealth`.
-        #[serde(rename="EvaluateTargetHealth")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub evaluate_target_health: Option<bool>,
+        #[serde(rename = "EvaluateTargetHealth")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub evaluate_target_health: Option<::Value<bool>>,
         /// Property `HostedZoneId`.
-        #[serde(rename="HostedZoneId")]
-        pub hosted_zone_id: String,
+        #[serde(rename = "HostedZoneId")]
+        pub hosted_zone_id: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(AliasTarget);
 
     /// The [`AWS::Route53::RecordSet.GeoLocation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset-geolocation.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct GeoLocation {
         /// Property `ContinentCode`.
-        #[serde(rename="ContinentCode")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub continent_code: Option<String>,
+        #[serde(rename = "ContinentCode")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub continent_code: Option<::Value<String>>,
         /// Property `CountryCode`.
-        #[serde(rename="CountryCode")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub country_code: Option<String>,
+        #[serde(rename = "CountryCode")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub country_code: Option<::Value<String>>,
         /// Property `SubdivisionCode`.
-        #[serde(rename="SubdivisionCode")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub subdivision_code: Option<String>,
+        #[serde(rename = "SubdivisionCode")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub subdivision_code: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(GeoLocation);
 }
 
 pub mod record_set_group {
@@ -396,90 +414,96 @@ pub mod record_set_group {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct AliasTarget {
         /// Property `DNSName`.
-        #[serde(rename="DNSName")]
-        pub dns_name: String,
+        #[serde(rename = "DNSName")]
+        pub dns_name: ::Value<String>,
         /// Property `EvaluateTargetHealth`.
-        #[serde(rename="EvaluateTargetHealth")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub evaluate_target_health: Option<bool>,
+        #[serde(rename = "EvaluateTargetHealth")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub evaluate_target_health: Option<::Value<bool>>,
         /// Property `HostedZoneId`.
-        #[serde(rename="HostedZoneId")]
-        pub hosted_zone_id: String,
+        #[serde(rename = "HostedZoneId")]
+        pub hosted_zone_id: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(AliasTarget);
 
     /// The [`AWS::Route53::RecordSetGroup.GeoLocation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset-geolocation.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct GeoLocation {
         /// Property `ContinentCode`.
-        #[serde(rename="ContinentCode")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub continent_code: Option<String>,
+        #[serde(rename = "ContinentCode")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub continent_code: Option<::Value<String>>,
         /// Property `CountryCode`.
-        #[serde(rename="CountryCode")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub country_code: Option<String>,
+        #[serde(rename = "CountryCode")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub country_code: Option<::Value<String>>,
         /// Property `SubdivisionCode`.
-        #[serde(rename="SubdivisionCode")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub subdivision_code: Option<String>,
+        #[serde(rename = "SubdivisionCode")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub subdivision_code: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(GeoLocation);
 
     /// The [`AWS::Route53::RecordSetGroup.RecordSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct RecordSet {
         /// Property `AliasTarget`.
-        #[serde(rename="AliasTarget")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub alias_target: Option<AliasTarget>,
+        #[serde(rename = "AliasTarget")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub alias_target: Option<::Value<AliasTarget>>,
         /// Property `Comment`.
-        #[serde(rename="Comment")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub comment: Option<String>,
+        #[serde(rename = "Comment")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub comment: Option<::Value<String>>,
         /// Property `Failover`.
-        #[serde(rename="Failover")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub failover: Option<String>,
+        #[serde(rename = "Failover")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub failover: Option<::Value<String>>,
         /// Property `GeoLocation`.
-        #[serde(rename="GeoLocation")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub geo_location: Option<GeoLocation>,
+        #[serde(rename = "GeoLocation")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub geo_location: Option<::Value<GeoLocation>>,
         /// Property `HealthCheckId`.
-        #[serde(rename="HealthCheckId")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub health_check_id: Option<String>,
+        #[serde(rename = "HealthCheckId")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub health_check_id: Option<::Value<String>>,
         /// Property `HostedZoneId`.
-        #[serde(rename="HostedZoneId")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub hosted_zone_id: Option<String>,
+        #[serde(rename = "HostedZoneId")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub hosted_zone_id: Option<::Value<String>>,
         /// Property `HostedZoneName`.
-        #[serde(rename="HostedZoneName")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub hosted_zone_name: Option<String>,
+        #[serde(rename = "HostedZoneName")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub hosted_zone_name: Option<::Value<String>>,
         /// Property `Name`.
-        #[serde(rename="Name")]
-        pub name: String,
+        #[serde(rename = "Name")]
+        pub name: ::Value<String>,
         /// Property `Region`.
-        #[serde(rename="Region")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub region: Option<String>,
+        #[serde(rename = "Region")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub region: Option<::Value<String>>,
         /// Property `ResourceRecords`.
-        #[serde(rename="ResourceRecords")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub resource_records: Option<Vec<String>>,
+        #[serde(rename = "ResourceRecords")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub resource_records: Option<::ValueList<String>>,
         /// Property `SetIdentifier`.
-        #[serde(rename="SetIdentifier")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub set_identifier: Option<String>,
+        #[serde(rename = "SetIdentifier")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub set_identifier: Option<::Value<String>>,
         /// Property `TTL`.
-        #[serde(rename="TTL")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub ttl: Option<String>,
+        #[serde(rename = "TTL")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub ttl: Option<::Value<String>>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(rename = "Type")]
+        pub type_: ::Value<String>,
         /// Property `Weight`.
-        #[serde(rename="Weight")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub weight: Option<u32>,
+        #[serde(rename = "Weight")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub weight: Option<::Value<u32>>,
     }
+
+    cfn_internal__inherit_codec_impls!(RecordSet);
 }

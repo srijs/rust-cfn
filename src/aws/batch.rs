@@ -10,22 +10,22 @@ pub struct ComputeEnvironment {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ComputeEnvironmentProperties {
     /// Property `ComputeEnvironmentName`.
-    #[serde(rename="ComputeEnvironmentName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub compute_environment_name: Option<String>,
+    #[serde(rename = "ComputeEnvironmentName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub compute_environment_name: Option<::Value<String>>,
     /// Property `ComputeResources`.
-    #[serde(rename="ComputeResources")]
-    pub compute_resources: self::compute_environment::ComputeResources,
+    #[serde(rename = "ComputeResources")]
+    pub compute_resources: ::Value<self::compute_environment::ComputeResources>,
     /// Property `ServiceRole`.
-    #[serde(rename="ServiceRole")]
-    pub service_role: String,
+    #[serde(rename = "ServiceRole")]
+    pub service_role: ::Value<String>,
     /// Property `State`.
-    #[serde(rename="State")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub state: Option<String>,
+    #[serde(rename = "State")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub state: Option<::Value<String>>,
     /// Property `Type`.
-    #[serde(rename="Type")]
-    pub type_: String,
+    #[serde(rename = "Type")]
+    pub type_: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for ComputeEnvironment {
@@ -57,23 +57,23 @@ pub struct JobDefinition {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct JobDefinitionProperties {
     /// Property `ContainerProperties`.
-    #[serde(rename="ContainerProperties")]
-    pub container_properties: self::job_definition::ContainerProperties,
+    #[serde(rename = "ContainerProperties")]
+    pub container_properties: ::Value<self::job_definition::ContainerProperties>,
     /// Property `JobDefinitionName`.
-    #[serde(rename="JobDefinitionName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub job_definition_name: Option<String>,
+    #[serde(rename = "JobDefinitionName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub job_definition_name: Option<::Value<String>>,
     /// Property `Parameters`.
-    #[serde(rename="Parameters")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub parameters: Option<::json::Value>,
+    #[serde(rename = "Parameters")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub parameters: Option<::Value<::json::Value>>,
     /// Property `RetryStrategy`.
-    #[serde(rename="RetryStrategy")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub retry_strategy: Option<self::job_definition::RetryStrategy>,
+    #[serde(rename = "RetryStrategy")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub retry_strategy: Option<::Value<self::job_definition::RetryStrategy>>,
     /// Property `Type`.
-    #[serde(rename="Type")]
-    pub type_: String,
+    #[serde(rename = "Type")]
+    pub type_: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for JobDefinition {
@@ -105,19 +105,19 @@ pub struct JobQueue {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct JobQueueProperties {
     /// Property `ComputeEnvironmentOrder`.
-    #[serde(rename="ComputeEnvironmentOrder")]
-    pub compute_environment_order: Vec<self::job_queue::ComputeEnvironmentOrder>,
+    #[serde(rename = "ComputeEnvironmentOrder")]
+    pub compute_environment_order: ::ValueList<self::job_queue::ComputeEnvironmentOrder>,
     /// Property `JobQueueName`.
-    #[serde(rename="JobQueueName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub job_queue_name: Option<String>,
+    #[serde(rename = "JobQueueName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub job_queue_name: Option<::Value<String>>,
     /// Property `Priority`.
-    #[serde(rename="Priority")]
-    pub priority: u32,
+    #[serde(rename = "Priority")]
+    pub priority: ::Value<u32>,
     /// Property `State`.
-    #[serde(rename="State")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub state: Option<String>,
+    #[serde(rename = "State")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub state: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for JobQueue {
@@ -146,51 +146,53 @@ pub mod compute_environment {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct ComputeResources {
         /// Property `BidPercentage`.
-        #[serde(rename="BidPercentage")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub bid_percentage: Option<u32>,
+        #[serde(rename = "BidPercentage")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub bid_percentage: Option<::Value<u32>>,
         /// Property `DesiredvCpus`.
-        #[serde(rename="DesiredvCpus")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub desiredv_cpus: Option<u32>,
+        #[serde(rename = "DesiredvCpus")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub desiredv_cpus: Option<::Value<u32>>,
         /// Property `Ec2KeyPair`.
-        #[serde(rename="Ec2KeyPair")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub ec2_key_pair: Option<String>,
+        #[serde(rename = "Ec2KeyPair")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub ec2_key_pair: Option<::Value<String>>,
         /// Property `ImageId`.
-        #[serde(rename="ImageId")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub image_id: Option<String>,
+        #[serde(rename = "ImageId")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub image_id: Option<::Value<String>>,
         /// Property `InstanceRole`.
-        #[serde(rename="InstanceRole")]
-        pub instance_role: String,
+        #[serde(rename = "InstanceRole")]
+        pub instance_role: ::Value<String>,
         /// Property `InstanceTypes`.
-        #[serde(rename="InstanceTypes")]
-        pub instance_types: Vec<String>,
+        #[serde(rename = "InstanceTypes")]
+        pub instance_types: ::ValueList<String>,
         /// Property `MaxvCpus`.
-        #[serde(rename="MaxvCpus")]
-        pub maxv_cpus: u32,
+        #[serde(rename = "MaxvCpus")]
+        pub maxv_cpus: ::Value<u32>,
         /// Property `MinvCpus`.
-        #[serde(rename="MinvCpus")]
-        pub minv_cpus: u32,
+        #[serde(rename = "MinvCpus")]
+        pub minv_cpus: ::Value<u32>,
         /// Property `SecurityGroupIds`.
-        #[serde(rename="SecurityGroupIds")]
-        pub security_group_ids: Vec<String>,
+        #[serde(rename = "SecurityGroupIds")]
+        pub security_group_ids: ::ValueList<String>,
         /// Property `SpotIamFleetRole`.
-        #[serde(rename="SpotIamFleetRole")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub spot_iam_fleet_role: Option<String>,
+        #[serde(rename = "SpotIamFleetRole")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub spot_iam_fleet_role: Option<::Value<String>>,
         /// Property `Subnets`.
-        #[serde(rename="Subnets")]
-        pub subnets: Vec<String>,
+        #[serde(rename = "Subnets")]
+        pub subnets: ::ValueList<String>,
         /// Property `Tags`.
-        #[serde(rename="Tags")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub tags: Option<::json::Value>,
+        #[serde(rename = "Tags")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub tags: Option<::Value<::json::Value>>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(rename = "Type")]
+        pub type_: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(ComputeResources);
 }
 
 pub mod job_definition {
@@ -200,126 +202,140 @@ pub mod job_definition {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct ContainerProperties {
         /// Property `Command`.
-        #[serde(rename="Command")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub command: Option<Vec<String>>,
+        #[serde(rename = "Command")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub command: Option<::ValueList<String>>,
         /// Property `Environment`.
-        #[serde(rename="Environment")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub environment: Option<Vec<Environment>>,
+        #[serde(rename = "Environment")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub environment: Option<::ValueList<Environment>>,
         /// Property `Image`.
-        #[serde(rename="Image")]
-        pub image: String,
+        #[serde(rename = "Image")]
+        pub image: ::Value<String>,
         /// Property `JobRoleArn`.
-        #[serde(rename="JobRoleArn")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub job_role_arn: Option<String>,
+        #[serde(rename = "JobRoleArn")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub job_role_arn: Option<::Value<String>>,
         /// Property `Memory`.
-        #[serde(rename="Memory")]
-        pub memory: u32,
+        #[serde(rename = "Memory")]
+        pub memory: ::Value<u32>,
         /// Property `MountPoints`.
-        #[serde(rename="MountPoints")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub mount_points: Option<Vec<MountPoints>>,
+        #[serde(rename = "MountPoints")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub mount_points: Option<::ValueList<MountPoints>>,
         /// Property `Privileged`.
-        #[serde(rename="Privileged")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub privileged: Option<bool>,
+        #[serde(rename = "Privileged")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub privileged: Option<::Value<bool>>,
         /// Property `ReadonlyRootFilesystem`.
-        #[serde(rename="ReadonlyRootFilesystem")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub readonly_root_filesystem: Option<bool>,
+        #[serde(rename = "ReadonlyRootFilesystem")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub readonly_root_filesystem: Option<::Value<bool>>,
         /// Property `Ulimits`.
-        #[serde(rename="Ulimits")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub ulimits: Option<Vec<Ulimit>>,
+        #[serde(rename = "Ulimits")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub ulimits: Option<::ValueList<Ulimit>>,
         /// Property `User`.
-        #[serde(rename="User")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub user: Option<String>,
+        #[serde(rename = "User")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub user: Option<::Value<String>>,
         /// Property `Vcpus`.
-        #[serde(rename="Vcpus")]
-        pub vcpus: u32,
+        #[serde(rename = "Vcpus")]
+        pub vcpus: ::Value<u32>,
         /// Property `Volumes`.
-        #[serde(rename="Volumes")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub volumes: Option<Vec<Volumes>>,
+        #[serde(rename = "Volumes")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub volumes: Option<::ValueList<Volumes>>,
     }
+
+    cfn_internal__inherit_codec_impls!(ContainerProperties);
 
     /// The [`AWS::Batch::JobDefinition.Environment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-environment.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Environment {
         /// Property `Name`.
-        #[serde(rename="Name")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub name: Option<String>,
+        #[serde(rename = "Name")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub name: Option<::Value<String>>,
         /// Property `Value`.
-        #[serde(rename="Value")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub value: Option<String>,
+        #[serde(rename = "Value")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub value: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(Environment);
 
     /// The [`AWS::Batch::JobDefinition.MountPoints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-mountpoints.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct MountPoints {
         /// Property `ContainerPath`.
-        #[serde(rename="ContainerPath")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub container_path: Option<String>,
+        #[serde(rename = "ContainerPath")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub container_path: Option<::Value<String>>,
         /// Property `ReadOnly`.
-        #[serde(rename="ReadOnly")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub read_only: Option<bool>,
+        #[serde(rename = "ReadOnly")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub read_only: Option<::Value<bool>>,
         /// Property `SourceVolume`.
-        #[serde(rename="SourceVolume")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub source_volume: Option<String>,
+        #[serde(rename = "SourceVolume")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub source_volume: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(MountPoints);
 
     /// The [`AWS::Batch::JobDefinition.RetryStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-retrystrategy.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct RetryStrategy {
         /// Property `Attempts`.
-        #[serde(rename="Attempts")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub attempts: Option<u32>,
+        #[serde(rename = "Attempts")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub attempts: Option<::Value<u32>>,
     }
+
+    cfn_internal__inherit_codec_impls!(RetryStrategy);
 
     /// The [`AWS::Batch::JobDefinition.Ulimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ulimit.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Ulimit {
         /// Property `HardLimit`.
-        #[serde(rename="HardLimit")]
-        pub hard_limit: u32,
+        #[serde(rename = "HardLimit")]
+        pub hard_limit: ::Value<u32>,
         /// Property `Name`.
-        #[serde(rename="Name")]
-        pub name: String,
+        #[serde(rename = "Name")]
+        pub name: ::Value<String>,
         /// Property `SoftLimit`.
-        #[serde(rename="SoftLimit")]
-        pub soft_limit: u32,
+        #[serde(rename = "SoftLimit")]
+        pub soft_limit: ::Value<u32>,
     }
+
+    cfn_internal__inherit_codec_impls!(Ulimit);
 
     /// The [`AWS::Batch::JobDefinition.Volumes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-volumes.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Volumes {
         /// Property `Host`.
-        #[serde(rename="Host")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub host: Option<VolumesHost>,
+        #[serde(rename = "Host")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub host: Option<::Value<VolumesHost>>,
         /// Property `Name`.
-        #[serde(rename="Name")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub name: Option<String>,
+        #[serde(rename = "Name")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub name: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(Volumes);
 
     /// The [`AWS::Batch::JobDefinition.VolumesHost`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-volumeshost.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct VolumesHost {
         /// Property `SourcePath`.
-        #[serde(rename="SourcePath")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub source_path: Option<String>,
+        #[serde(rename = "SourcePath")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub source_path: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(VolumesHost);
 }
 
 pub mod job_queue {
@@ -329,10 +345,12 @@ pub mod job_queue {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct ComputeEnvironmentOrder {
         /// Property `ComputeEnvironment`.
-        #[serde(rename="ComputeEnvironment")]
-        pub compute_environment: String,
+        #[serde(rename = "ComputeEnvironment")]
+        pub compute_environment: ::Value<String>,
         /// Property `Order`.
-        #[serde(rename="Order")]
-        pub order: u32,
+        #[serde(rename = "Order")]
+        pub order: ::Value<u32>,
     }
+
+    cfn_internal__inherit_codec_impls!(ComputeEnvironmentOrder);
 }

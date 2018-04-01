@@ -10,50 +10,50 @@ pub struct Cluster {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ClusterProperties {
     /// Property `AvailabilityZones`.
-    #[serde(rename="AvailabilityZones")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub availability_zones: Option<Vec<String>>,
+    #[serde(rename = "AvailabilityZones")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub availability_zones: Option<::ValueList<String>>,
     /// Property `ClusterName`.
-    #[serde(rename="ClusterName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub cluster_name: Option<String>,
+    #[serde(rename = "ClusterName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub cluster_name: Option<::Value<String>>,
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `IAMRoleARN`.
-    #[serde(rename="IAMRoleARN")]
-    pub iam_role_arn: String,
+    #[serde(rename = "IAMRoleARN")]
+    pub iam_role_arn: ::Value<String>,
     /// Property `NodeType`.
-    #[serde(rename="NodeType")]
-    pub node_type: String,
+    #[serde(rename = "NodeType")]
+    pub node_type: ::Value<String>,
     /// Property `NotificationTopicARN`.
-    #[serde(rename="NotificationTopicARN")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub notification_topic_arn: Option<String>,
+    #[serde(rename = "NotificationTopicARN")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub notification_topic_arn: Option<::Value<String>>,
     /// Property `ParameterGroupName`.
-    #[serde(rename="ParameterGroupName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub parameter_group_name: Option<String>,
+    #[serde(rename = "ParameterGroupName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub parameter_group_name: Option<::Value<String>>,
     /// Property `PreferredMaintenanceWindow`.
-    #[serde(rename="PreferredMaintenanceWindow")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub preferred_maintenance_window: Option<String>,
+    #[serde(rename = "PreferredMaintenanceWindow")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub preferred_maintenance_window: Option<::Value<String>>,
     /// Property `ReplicationFactor`.
-    #[serde(rename="ReplicationFactor")]
-    pub replication_factor: u32,
+    #[serde(rename = "ReplicationFactor")]
+    pub replication_factor: ::Value<u32>,
     /// Property `SecurityGroupIds`.
-    #[serde(rename="SecurityGroupIds")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub security_group_ids: Option<Vec<String>>,
+    #[serde(rename = "SecurityGroupIds")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub security_group_ids: Option<::ValueList<String>>,
     /// Property `SubnetGroupName`.
-    #[serde(rename="SubnetGroupName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub subnet_group_name: Option<String>,
+    #[serde(rename = "SubnetGroupName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub subnet_group_name: Option<::Value<String>>,
     /// Property `Tags`.
-    #[serde(rename="Tags")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub tags: Option<::json::Value>,
+    #[serde(rename = "Tags")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::Value<::json::Value>>,
 }
 
 impl<'a> ::Resource<'a> for Cluster {
@@ -85,17 +85,17 @@ pub struct ParameterGroup {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ParameterGroupProperties {
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `ParameterGroupName`.
-    #[serde(rename="ParameterGroupName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub parameter_group_name: Option<String>,
+    #[serde(rename = "ParameterGroupName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub parameter_group_name: Option<::Value<String>>,
     /// Property `ParameterNameValues`.
-    #[serde(rename="ParameterNameValues")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub parameter_name_values: Option<::json::Value>,
+    #[serde(rename = "ParameterNameValues")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub parameter_name_values: Option<::Value<::json::Value>>,
 }
 
 impl<'a> ::Resource<'a> for ParameterGroup {
@@ -127,16 +127,16 @@ pub struct SubnetGroup {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SubnetGroupProperties {
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `SubnetGroupName`.
-    #[serde(rename="SubnetGroupName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub subnet_group_name: Option<String>,
+    #[serde(rename = "SubnetGroupName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub subnet_group_name: Option<::Value<String>>,
     /// Property `SubnetIds`.
-    #[serde(rename="SubnetIds")]
-    pub subnet_ids: Vec<String>,
+    #[serde(rename = "SubnetIds")]
+    pub subnet_ids: ::ValueList<String>,
 }
 
 impl<'a> ::Resource<'a> for SubnetGroup {

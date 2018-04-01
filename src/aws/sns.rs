@@ -10,17 +10,17 @@ pub struct Subscription {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SubscriptionProperties {
     /// Property `Endpoint`.
-    #[serde(rename="Endpoint")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub endpoint: Option<String>,
+    #[serde(rename = "Endpoint")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub endpoint: Option<::Value<String>>,
     /// Property `Protocol`.
-    #[serde(rename="Protocol")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub protocol: Option<String>,
+    #[serde(rename = "Protocol")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub protocol: Option<::Value<String>>,
     /// Property `TopicArn`.
-    #[serde(rename="TopicArn")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub topic_arn: Option<String>,
+    #[serde(rename = "TopicArn")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub topic_arn: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for Subscription {
@@ -52,17 +52,17 @@ pub struct Topic {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TopicProperties {
     /// Property `DisplayName`.
-    #[serde(rename="DisplayName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub display_name: Option<String>,
+    #[serde(rename = "DisplayName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub display_name: Option<::Value<String>>,
     /// Property `Subscription`.
-    #[serde(rename="Subscription")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub subscription: Option<Vec<self::topic::Subscription>>,
+    #[serde(rename = "Subscription")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub subscription: Option<::ValueList<self::topic::Subscription>>,
     /// Property `TopicName`.
-    #[serde(rename="TopicName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub topic_name: Option<String>,
+    #[serde(rename = "TopicName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub topic_name: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for Topic {
@@ -94,11 +94,11 @@ pub struct TopicPolicy {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TopicPolicyProperties {
     /// Property `PolicyDocument`.
-    #[serde(rename="PolicyDocument")]
-    pub policy_document: ::json::Value,
+    #[serde(rename = "PolicyDocument")]
+    pub policy_document: ::Value<::json::Value>,
     /// Property `Topics`.
-    #[serde(rename="Topics")]
-    pub topics: Vec<String>,
+    #[serde(rename = "Topics")]
+    pub topics: ::ValueList<String>,
 }
 
 impl<'a> ::Resource<'a> for TopicPolicy {
@@ -127,10 +127,12 @@ pub mod topic {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Subscription {
         /// Property `Endpoint`.
-        #[serde(rename="Endpoint")]
-        pub endpoint: String,
+        #[serde(rename = "Endpoint")]
+        pub endpoint: ::Value<String>,
         /// Property `Protocol`.
-        #[serde(rename="Protocol")]
-        pub protocol: String,
+        #[serde(rename = "Protocol")]
+        pub protocol: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(Subscription);
 }

@@ -10,17 +10,17 @@ pub struct Repository {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct RepositoryProperties {
     /// Property `LifecyclePolicy`.
-    #[serde(rename="LifecyclePolicy")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub lifecycle_policy: Option<self::repository::LifecyclePolicy>,
+    #[serde(rename = "LifecyclePolicy")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub lifecycle_policy: Option<::Value<self::repository::LifecyclePolicy>>,
     /// Property `RepositoryName`.
-    #[serde(rename="RepositoryName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub repository_name: Option<String>,
+    #[serde(rename = "RepositoryName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub repository_name: Option<::Value<String>>,
     /// Property `RepositoryPolicyText`.
-    #[serde(rename="RepositoryPolicyText")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub repository_policy_text: Option<::json::Value>,
+    #[serde(rename = "RepositoryPolicyText")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub repository_policy_text: Option<::Value<::json::Value>>,
 }
 
 impl<'a> ::Resource<'a> for Repository {
@@ -49,12 +49,14 @@ pub mod repository {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct LifecyclePolicy {
         /// Property `LifecyclePolicyText`.
-        #[serde(rename="LifecyclePolicyText")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub lifecycle_policy_text: Option<String>,
+        #[serde(rename = "LifecyclePolicyText")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub lifecycle_policy_text: Option<::Value<String>>,
         /// Property `RegistryId`.
-        #[serde(rename="RegistryId")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub registry_id: Option<String>,
+        #[serde(rename = "RegistryId")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub registry_id: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(LifecyclePolicy);
 }

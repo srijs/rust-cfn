@@ -10,16 +10,16 @@ pub struct AccessKey {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AccessKeyProperties {
     /// Property `Serial`.
-    #[serde(rename="Serial")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub serial: Option<u32>,
+    #[serde(rename = "Serial")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub serial: Option<::Value<u32>>,
     /// Property `Status`.
-    #[serde(rename="Status")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub status: Option<String>,
+    #[serde(rename = "Status")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub status: Option<::Value<String>>,
     /// Property `UserName`.
-    #[serde(rename="UserName")]
-    pub user_name: String,
+    #[serde(rename = "UserName")]
+    pub user_name: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for AccessKey {
@@ -51,21 +51,21 @@ pub struct Group {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct GroupProperties {
     /// Property `GroupName`.
-    #[serde(rename="GroupName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub group_name: Option<String>,
+    #[serde(rename = "GroupName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub group_name: Option<::Value<String>>,
     /// Property `ManagedPolicyArns`.
-    #[serde(rename="ManagedPolicyArns")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub managed_policy_arns: Option<Vec<String>>,
+    #[serde(rename = "ManagedPolicyArns")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub managed_policy_arns: Option<::ValueList<String>>,
     /// Property `Path`.
-    #[serde(rename="Path")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub path: Option<String>,
+    #[serde(rename = "Path")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub path: Option<::Value<String>>,
     /// Property `Policies`.
-    #[serde(rename="Policies")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub policies: Option<Vec<self::group::Policy>>,
+    #[serde(rename = "Policies")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub policies: Option<::ValueList<self::group::Policy>>,
 }
 
 impl<'a> ::Resource<'a> for Group {
@@ -97,16 +97,16 @@ pub struct InstanceProfile {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct InstanceProfileProperties {
     /// Property `InstanceProfileName`.
-    #[serde(rename="InstanceProfileName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub instance_profile_name: Option<String>,
+    #[serde(rename = "InstanceProfileName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub instance_profile_name: Option<::Value<String>>,
     /// Property `Path`.
-    #[serde(rename="Path")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub path: Option<String>,
+    #[serde(rename = "Path")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub path: Option<::Value<String>>,
     /// Property `Roles`.
-    #[serde(rename="Roles")]
-    pub roles: Vec<String>,
+    #[serde(rename = "Roles")]
+    pub roles: ::ValueList<String>,
 }
 
 impl<'a> ::Resource<'a> for InstanceProfile {
@@ -138,32 +138,32 @@ pub struct ManagedPolicy {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ManagedPolicyProperties {
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `Groups`.
-    #[serde(rename="Groups")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub groups: Option<Vec<String>>,
+    #[serde(rename = "Groups")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub groups: Option<::ValueList<String>>,
     /// Property `ManagedPolicyName`.
-    #[serde(rename="ManagedPolicyName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub managed_policy_name: Option<String>,
+    #[serde(rename = "ManagedPolicyName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub managed_policy_name: Option<::Value<String>>,
     /// Property `Path`.
-    #[serde(rename="Path")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub path: Option<String>,
+    #[serde(rename = "Path")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub path: Option<::Value<String>>,
     /// Property `PolicyDocument`.
-    #[serde(rename="PolicyDocument")]
-    pub policy_document: ::json::Value,
+    #[serde(rename = "PolicyDocument")]
+    pub policy_document: ::Value<::json::Value>,
     /// Property `Roles`.
-    #[serde(rename="Roles")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub roles: Option<Vec<String>>,
+    #[serde(rename = "Roles")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub roles: Option<::ValueList<String>>,
     /// Property `Users`.
-    #[serde(rename="Users")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub users: Option<Vec<String>>,
+    #[serde(rename = "Users")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub users: Option<::ValueList<String>>,
 }
 
 impl<'a> ::Resource<'a> for ManagedPolicy {
@@ -195,23 +195,23 @@ pub struct Policy {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct PolicyProperties {
     /// Property `Groups`.
-    #[serde(rename="Groups")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub groups: Option<Vec<String>>,
+    #[serde(rename = "Groups")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub groups: Option<::ValueList<String>>,
     /// Property `PolicyDocument`.
-    #[serde(rename="PolicyDocument")]
-    pub policy_document: ::json::Value,
+    #[serde(rename = "PolicyDocument")]
+    pub policy_document: ::Value<::json::Value>,
     /// Property `PolicyName`.
-    #[serde(rename="PolicyName")]
-    pub policy_name: String,
+    #[serde(rename = "PolicyName")]
+    pub policy_name: ::Value<String>,
     /// Property `Roles`.
-    #[serde(rename="Roles")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub roles: Option<Vec<String>>,
+    #[serde(rename = "Roles")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub roles: Option<::ValueList<String>>,
     /// Property `Users`.
-    #[serde(rename="Users")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub users: Option<Vec<String>>,
+    #[serde(rename = "Users")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub users: Option<::ValueList<String>>,
 }
 
 impl<'a> ::Resource<'a> for Policy {
@@ -243,24 +243,24 @@ pub struct Role {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct RoleProperties {
     /// Property `AssumeRolePolicyDocument`.
-    #[serde(rename="AssumeRolePolicyDocument")]
-    pub assume_role_policy_document: ::json::Value,
+    #[serde(rename = "AssumeRolePolicyDocument")]
+    pub assume_role_policy_document: ::Value<::json::Value>,
     /// Property `ManagedPolicyArns`.
-    #[serde(rename="ManagedPolicyArns")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub managed_policy_arns: Option<Vec<String>>,
+    #[serde(rename = "ManagedPolicyArns")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub managed_policy_arns: Option<::ValueList<String>>,
     /// Property `Path`.
-    #[serde(rename="Path")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub path: Option<String>,
+    #[serde(rename = "Path")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub path: Option<::Value<String>>,
     /// Property `Policies`.
-    #[serde(rename="Policies")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub policies: Option<Vec<self::role::Policy>>,
+    #[serde(rename = "Policies")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub policies: Option<::ValueList<self::role::Policy>>,
     /// Property `RoleName`.
-    #[serde(rename="RoleName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub role_name: Option<String>,
+    #[serde(rename = "RoleName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub role_name: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for Role {
@@ -292,29 +292,29 @@ pub struct User {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct UserProperties {
     /// Property `Groups`.
-    #[serde(rename="Groups")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub groups: Option<Vec<String>>,
+    #[serde(rename = "Groups")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub groups: Option<::ValueList<String>>,
     /// Property `LoginProfile`.
-    #[serde(rename="LoginProfile")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub login_profile: Option<self::user::LoginProfile>,
+    #[serde(rename = "LoginProfile")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub login_profile: Option<::Value<self::user::LoginProfile>>,
     /// Property `ManagedPolicyArns`.
-    #[serde(rename="ManagedPolicyArns")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub managed_policy_arns: Option<Vec<String>>,
+    #[serde(rename = "ManagedPolicyArns")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub managed_policy_arns: Option<::ValueList<String>>,
     /// Property `Path`.
-    #[serde(rename="Path")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub path: Option<String>,
+    #[serde(rename = "Path")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub path: Option<::Value<String>>,
     /// Property `Policies`.
-    #[serde(rename="Policies")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub policies: Option<Vec<self::user::Policy>>,
+    #[serde(rename = "Policies")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub policies: Option<::ValueList<self::user::Policy>>,
     /// Property `UserName`.
-    #[serde(rename="UserName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub user_name: Option<String>,
+    #[serde(rename = "UserName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub user_name: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for User {
@@ -346,11 +346,11 @@ pub struct UserToGroupAddition {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct UserToGroupAdditionProperties {
     /// Property `GroupName`.
-    #[serde(rename="GroupName")]
-    pub group_name: String,
+    #[serde(rename = "GroupName")]
+    pub group_name: ::Value<String>,
     /// Property `Users`.
-    #[serde(rename="Users")]
-    pub users: Vec<String>,
+    #[serde(rename = "Users")]
+    pub users: ::ValueList<String>,
 }
 
 impl<'a> ::Resource<'a> for UserToGroupAddition {
@@ -379,12 +379,14 @@ pub mod group {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Policy {
         /// Property `PolicyDocument`.
-        #[serde(rename="PolicyDocument")]
-        pub policy_document: ::json::Value,
+        #[serde(rename = "PolicyDocument")]
+        pub policy_document: ::Value<::json::Value>,
         /// Property `PolicyName`.
-        #[serde(rename="PolicyName")]
-        pub policy_name: String,
+        #[serde(rename = "PolicyName")]
+        pub policy_name: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(Policy);
 }
 
 pub mod role {
@@ -394,12 +396,14 @@ pub mod role {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Policy {
         /// Property `PolicyDocument`.
-        #[serde(rename="PolicyDocument")]
-        pub policy_document: ::json::Value,
+        #[serde(rename = "PolicyDocument")]
+        pub policy_document: ::Value<::json::Value>,
         /// Property `PolicyName`.
-        #[serde(rename="PolicyName")]
-        pub policy_name: String,
+        #[serde(rename = "PolicyName")]
+        pub policy_name: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(Policy);
 }
 
 pub mod user {
@@ -409,22 +413,26 @@ pub mod user {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct LoginProfile {
         /// Property `Password`.
-        #[serde(rename="Password")]
-        pub password: String,
+        #[serde(rename = "Password")]
+        pub password: ::Value<String>,
         /// Property `PasswordResetRequired`.
-        #[serde(rename="PasswordResetRequired")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub password_reset_required: Option<bool>,
+        #[serde(rename = "PasswordResetRequired")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub password_reset_required: Option<::Value<bool>>,
     }
+
+    cfn_internal__inherit_codec_impls!(LoginProfile);
 
     /// The [`AWS::IAM::User.Policy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Policy {
         /// Property `PolicyDocument`.
-        #[serde(rename="PolicyDocument")]
-        pub policy_document: ::json::Value,
+        #[serde(rename = "PolicyDocument")]
+        pub policy_document: ::Value<::json::Value>,
         /// Property `PolicyName`.
-        #[serde(rename="PolicyName")]
-        pub policy_name: String,
+        #[serde(rename = "PolicyName")]
+        pub policy_name: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(Policy);
 }

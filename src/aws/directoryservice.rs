@@ -10,26 +10,26 @@ pub struct MicrosoftAD {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct MicrosoftADProperties {
     /// Property `CreateAlias`.
-    #[serde(rename="CreateAlias")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub create_alias: Option<bool>,
+    #[serde(rename = "CreateAlias")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub create_alias: Option<::Value<bool>>,
     /// Property `EnableSso`.
-    #[serde(rename="EnableSso")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub enable_sso: Option<bool>,
+    #[serde(rename = "EnableSso")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub enable_sso: Option<::Value<bool>>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    pub name: String,
+    #[serde(rename = "Name")]
+    pub name: ::Value<String>,
     /// Property `Password`.
-    #[serde(rename="Password")]
-    pub password: String,
+    #[serde(rename = "Password")]
+    pub password: ::Value<String>,
     /// Property `ShortName`.
-    #[serde(rename="ShortName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub short_name: Option<String>,
+    #[serde(rename = "ShortName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub short_name: Option<::Value<String>>,
     /// Property `VpcSettings`.
-    #[serde(rename="VpcSettings")]
-    pub vpc_settings: self::microsoft_ad::VpcSettings,
+    #[serde(rename = "VpcSettings")]
+    pub vpc_settings: ::Value<self::microsoft_ad::VpcSettings>,
 }
 
 impl<'a> ::Resource<'a> for MicrosoftAD {
@@ -61,33 +61,33 @@ pub struct SimpleAD {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SimpleADProperties {
     /// Property `CreateAlias`.
-    #[serde(rename="CreateAlias")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub create_alias: Option<bool>,
+    #[serde(rename = "CreateAlias")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub create_alias: Option<::Value<bool>>,
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `EnableSso`.
-    #[serde(rename="EnableSso")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub enable_sso: Option<bool>,
+    #[serde(rename = "EnableSso")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub enable_sso: Option<::Value<bool>>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    pub name: String,
+    #[serde(rename = "Name")]
+    pub name: ::Value<String>,
     /// Property `Password`.
-    #[serde(rename="Password")]
-    pub password: String,
+    #[serde(rename = "Password")]
+    pub password: ::Value<String>,
     /// Property `ShortName`.
-    #[serde(rename="ShortName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub short_name: Option<String>,
+    #[serde(rename = "ShortName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub short_name: Option<::Value<String>>,
     /// Property `Size`.
-    #[serde(rename="Size")]
-    pub size: String,
+    #[serde(rename = "Size")]
+    pub size: ::Value<String>,
     /// Property `VpcSettings`.
-    #[serde(rename="VpcSettings")]
-    pub vpc_settings: self::simple_ad::VpcSettings,
+    #[serde(rename = "VpcSettings")]
+    pub vpc_settings: ::Value<self::simple_ad::VpcSettings>,
 }
 
 impl<'a> ::Resource<'a> for SimpleAD {
@@ -116,12 +116,14 @@ pub mod microsoft_ad {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct VpcSettings {
         /// Property `SubnetIds`.
-        #[serde(rename="SubnetIds")]
-        pub subnet_ids: Vec<String>,
+        #[serde(rename = "SubnetIds")]
+        pub subnet_ids: ::ValueList<String>,
         /// Property `VpcId`.
-        #[serde(rename="VpcId")]
-        pub vpc_id: String,
+        #[serde(rename = "VpcId")]
+        pub vpc_id: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(VpcSettings);
 }
 
 pub mod simple_ad {
@@ -131,10 +133,12 @@ pub mod simple_ad {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct VpcSettings {
         /// Property `SubnetIds`.
-        #[serde(rename="SubnetIds")]
-        pub subnet_ids: Vec<String>,
+        #[serde(rename = "SubnetIds")]
+        pub subnet_ids: ::ValueList<String>,
         /// Property `VpcId`.
-        #[serde(rename="VpcId")]
-        pub vpc_id: String,
+        #[serde(rename = "VpcId")]
+        pub vpc_id: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(VpcSettings);
 }

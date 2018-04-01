@@ -10,12 +10,12 @@ pub struct ByteMatchSet {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ByteMatchSetProperties {
     /// Property `ByteMatchTuples`.
-    #[serde(rename="ByteMatchTuples")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub byte_match_tuples: Option<Vec<self::byte_match_set::ByteMatchTuple>>,
+    #[serde(rename = "ByteMatchTuples")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub byte_match_tuples: Option<::ValueList<self::byte_match_set::ByteMatchTuple>>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    pub name: String,
+    #[serde(rename = "Name")]
+    pub name: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for ByteMatchSet {
@@ -47,12 +47,12 @@ pub struct IPSet {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct IPSetProperties {
     /// Property `IPSetDescriptors`.
-    #[serde(rename="IPSetDescriptors")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ip_set_descriptors: Option<Vec<self::ip_set::IPSetDescriptor>>,
+    #[serde(rename = "IPSetDescriptors")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub ip_set_descriptors: Option<::ValueList<self::ip_set::IPSetDescriptor>>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    pub name: String,
+    #[serde(rename = "Name")]
+    pub name: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for IPSet {
@@ -84,15 +84,15 @@ pub struct Rule {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct RuleProperties {
     /// Property `MetricName`.
-    #[serde(rename="MetricName")]
-    pub metric_name: String,
+    #[serde(rename = "MetricName")]
+    pub metric_name: ::Value<String>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    pub name: String,
+    #[serde(rename = "Name")]
+    pub name: ::Value<String>,
     /// Property `Predicates`.
-    #[serde(rename="Predicates")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub predicates: Option<Vec<self::rule::Predicate>>,
+    #[serde(rename = "Predicates")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub predicates: Option<::ValueList<self::rule::Predicate>>,
 }
 
 impl<'a> ::Resource<'a> for Rule {
@@ -124,11 +124,11 @@ pub struct SizeConstraintSet {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SizeConstraintSetProperties {
     /// Property `Name`.
-    #[serde(rename="Name")]
-    pub name: String,
+    #[serde(rename = "Name")]
+    pub name: ::Value<String>,
     /// Property `SizeConstraints`.
-    #[serde(rename="SizeConstraints")]
-    pub size_constraints: Vec<self::size_constraint_set::SizeConstraint>,
+    #[serde(rename = "SizeConstraints")]
+    pub size_constraints: ::ValueList<self::size_constraint_set::SizeConstraint>,
 }
 
 impl<'a> ::Resource<'a> for SizeConstraintSet {
@@ -160,12 +160,12 @@ pub struct SqlInjectionMatchSet {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SqlInjectionMatchSetProperties {
     /// Property `Name`.
-    #[serde(rename="Name")]
-    pub name: String,
+    #[serde(rename = "Name")]
+    pub name: ::Value<String>,
     /// Property `SqlInjectionMatchTuples`.
-    #[serde(rename="SqlInjectionMatchTuples")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub sql_injection_match_tuples: Option<Vec<self::sql_injection_match_set::SqlInjectionMatchTuple>>,
+    #[serde(rename = "SqlInjectionMatchTuples")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub sql_injection_match_tuples: Option<::ValueList<self::sql_injection_match_set::SqlInjectionMatchTuple>>,
 }
 
 impl<'a> ::Resource<'a> for SqlInjectionMatchSet {
@@ -197,18 +197,18 @@ pub struct WebACL {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct WebACLProperties {
     /// Property `DefaultAction`.
-    #[serde(rename="DefaultAction")]
-    pub default_action: self::web_acl::WafAction,
+    #[serde(rename = "DefaultAction")]
+    pub default_action: ::Value<self::web_acl::WafAction>,
     /// Property `MetricName`.
-    #[serde(rename="MetricName")]
-    pub metric_name: String,
+    #[serde(rename = "MetricName")]
+    pub metric_name: ::Value<String>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    pub name: String,
+    #[serde(rename = "Name")]
+    pub name: ::Value<String>,
     /// Property `Rules`.
-    #[serde(rename="Rules")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub rules: Option<Vec<self::web_acl::ActivatedRule>>,
+    #[serde(rename = "Rules")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub rules: Option<::ValueList<self::web_acl::ActivatedRule>>,
 }
 
 impl<'a> ::Resource<'a> for WebACL {
@@ -240,11 +240,11 @@ pub struct XssMatchSet {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct XssMatchSetProperties {
     /// Property `Name`.
-    #[serde(rename="Name")]
-    pub name: String,
+    #[serde(rename = "Name")]
+    pub name: ::Value<String>,
     /// Property `XssMatchTuples`.
-    #[serde(rename="XssMatchTuples")]
-    pub xss_match_tuples: Vec<self::xss_match_set::XssMatchTuple>,
+    #[serde(rename = "XssMatchTuples")]
+    pub xss_match_tuples: ::ValueList<self::xss_match_set::XssMatchTuple>,
 }
 
 impl<'a> ::Resource<'a> for XssMatchSet {
@@ -273,35 +273,39 @@ pub mod byte_match_set {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct ByteMatchTuple {
         /// Property `FieldToMatch`.
-        #[serde(rename="FieldToMatch")]
-        pub field_to_match: FieldToMatch,
+        #[serde(rename = "FieldToMatch")]
+        pub field_to_match: ::Value<FieldToMatch>,
         /// Property `PositionalConstraint`.
-        #[serde(rename="PositionalConstraint")]
-        pub positional_constraint: String,
+        #[serde(rename = "PositionalConstraint")]
+        pub positional_constraint: ::Value<String>,
         /// Property `TargetString`.
-        #[serde(rename="TargetString")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub target_string: Option<String>,
+        #[serde(rename = "TargetString")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub target_string: Option<::Value<String>>,
         /// Property `TargetStringBase64`.
-        #[serde(rename="TargetStringBase64")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub target_string_base64: Option<String>,
+        #[serde(rename = "TargetStringBase64")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub target_string_base64: Option<::Value<String>>,
         /// Property `TextTransformation`.
-        #[serde(rename="TextTransformation")]
-        pub text_transformation: String,
+        #[serde(rename = "TextTransformation")]
+        pub text_transformation: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(ByteMatchTuple);
 
     /// The [`AWS::WAF::ByteMatchSet.FieldToMatch`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-bytematchset-bytematchtuples-fieldtomatch.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct FieldToMatch {
         /// Property `Data`.
-        #[serde(rename="Data")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub data: Option<String>,
+        #[serde(rename = "Data")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub data: Option<::Value<String>>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(rename = "Type")]
+        pub type_: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(FieldToMatch);
 }
 
 pub mod ip_set {
@@ -311,12 +315,14 @@ pub mod ip_set {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct IPSetDescriptor {
         /// Property `Type`.
-        #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(rename = "Type")]
+        pub type_: ::Value<String>,
         /// Property `Value`.
-        #[serde(rename="Value")]
-        pub value: String,
+        #[serde(rename = "Value")]
+        pub value: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(IPSetDescriptor);
 }
 
 pub mod rule {
@@ -326,15 +332,17 @@ pub mod rule {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Predicate {
         /// Property `DataId`.
-        #[serde(rename="DataId")]
-        pub data_id: String,
+        #[serde(rename = "DataId")]
+        pub data_id: ::Value<String>,
         /// Property `Negated`.
-        #[serde(rename="Negated")]
-        pub negated: bool,
+        #[serde(rename = "Negated")]
+        pub negated: ::Value<bool>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(rename = "Type")]
+        pub type_: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(Predicate);
 }
 
 pub mod size_constraint_set {
@@ -344,30 +352,34 @@ pub mod size_constraint_set {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct FieldToMatch {
         /// Property `Data`.
-        #[serde(rename="Data")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub data: Option<String>,
+        #[serde(rename = "Data")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub data: Option<::Value<String>>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(rename = "Type")]
+        pub type_: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(FieldToMatch);
 
     /// The [`AWS::WAF::SizeConstraintSet.SizeConstraint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-sizeconstraintset-sizeconstraint.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct SizeConstraint {
         /// Property `ComparisonOperator`.
-        #[serde(rename="ComparisonOperator")]
-        pub comparison_operator: String,
+        #[serde(rename = "ComparisonOperator")]
+        pub comparison_operator: ::Value<String>,
         /// Property `FieldToMatch`.
-        #[serde(rename="FieldToMatch")]
-        pub field_to_match: FieldToMatch,
+        #[serde(rename = "FieldToMatch")]
+        pub field_to_match: ::Value<FieldToMatch>,
         /// Property `Size`.
-        #[serde(rename="Size")]
-        pub size: u32,
+        #[serde(rename = "Size")]
+        pub size: ::Value<u32>,
         /// Property `TextTransformation`.
-        #[serde(rename="TextTransformation")]
-        pub text_transformation: String,
+        #[serde(rename = "TextTransformation")]
+        pub text_transformation: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(SizeConstraint);
 }
 
 pub mod sql_injection_match_set {
@@ -377,24 +389,28 @@ pub mod sql_injection_match_set {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct FieldToMatch {
         /// Property `Data`.
-        #[serde(rename="Data")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub data: Option<String>,
+        #[serde(rename = "Data")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub data: Option<::Value<String>>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(rename = "Type")]
+        pub type_: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(FieldToMatch);
 
     /// The [`AWS::WAF::SqlInjectionMatchSet.SqlInjectionMatchTuple`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-sqlinjectionmatchset-sqlinjectionmatchtuples.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct SqlInjectionMatchTuple {
         /// Property `FieldToMatch`.
-        #[serde(rename="FieldToMatch")]
-        pub field_to_match: FieldToMatch,
+        #[serde(rename = "FieldToMatch")]
+        pub field_to_match: ::Value<FieldToMatch>,
         /// Property `TextTransformation`.
-        #[serde(rename="TextTransformation")]
-        pub text_transformation: String,
+        #[serde(rename = "TextTransformation")]
+        pub text_transformation: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(SqlInjectionMatchTuple);
 }
 
 pub mod web_acl {
@@ -404,23 +420,27 @@ pub mod web_acl {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct ActivatedRule {
         /// Property `Action`.
-        #[serde(rename="Action")]
-        pub action: WafAction,
+        #[serde(rename = "Action")]
+        pub action: ::Value<WafAction>,
         /// Property `Priority`.
-        #[serde(rename="Priority")]
-        pub priority: u32,
+        #[serde(rename = "Priority")]
+        pub priority: ::Value<u32>,
         /// Property `RuleId`.
-        #[serde(rename="RuleId")]
-        pub rule_id: String,
+        #[serde(rename = "RuleId")]
+        pub rule_id: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(ActivatedRule);
 
     /// The [`AWS::WAF::WebACL.WafAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-webacl-action.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct WafAction {
         /// Property `Type`.
-        #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(rename = "Type")]
+        pub type_: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(WafAction);
 }
 
 pub mod xss_match_set {
@@ -430,22 +450,26 @@ pub mod xss_match_set {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct FieldToMatch {
         /// Property `Data`.
-        #[serde(rename="Data")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub data: Option<String>,
+        #[serde(rename = "Data")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub data: Option<::Value<String>>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(rename = "Type")]
+        pub type_: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(FieldToMatch);
 
     /// The [`AWS::WAF::XssMatchSet.XssMatchTuple`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-xssmatchset-xssmatchtuple.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct XssMatchTuple {
         /// Property `FieldToMatch`.
-        #[serde(rename="FieldToMatch")]
-        pub field_to_match: FieldToMatch,
+        #[serde(rename = "FieldToMatch")]
+        pub field_to_match: ::Value<FieldToMatch>,
         /// Property `TextTransformation`.
-        #[serde(rename="TextTransformation")]
-        pub text_transformation: String,
+        #[serde(rename = "TextTransformation")]
+        pub text_transformation: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(XssMatchTuple);
 }

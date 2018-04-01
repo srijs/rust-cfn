@@ -10,8 +10,8 @@ pub struct Activity {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ActivityProperties {
     /// Property `Name`.
-    #[serde(rename="Name")]
-    pub name: String,
+    #[serde(rename = "Name")]
+    pub name: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for Activity {
@@ -43,15 +43,15 @@ pub struct StateMachine {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct StateMachineProperties {
     /// Property `DefinitionString`.
-    #[serde(rename="DefinitionString")]
-    pub definition_string: String,
+    #[serde(rename = "DefinitionString")]
+    pub definition_string: ::Value<String>,
     /// Property `RoleArn`.
-    #[serde(rename="RoleArn")]
-    pub role_arn: String,
+    #[serde(rename = "RoleArn")]
+    pub role_arn: ::Value<String>,
     /// Property `StateMachineName`.
-    #[serde(rename="StateMachineName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub state_machine_name: Option<String>,
+    #[serde(rename = "StateMachineName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub state_machine_name: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for StateMachine {

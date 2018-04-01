@@ -10,71 +10,71 @@ pub struct Alarm {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AlarmProperties {
     /// Property `ActionsEnabled`.
-    #[serde(rename="ActionsEnabled")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub actions_enabled: Option<bool>,
+    #[serde(rename = "ActionsEnabled")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub actions_enabled: Option<::Value<bool>>,
     /// Property `AlarmActions`.
-    #[serde(rename="AlarmActions")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub alarm_actions: Option<Vec<String>>,
+    #[serde(rename = "AlarmActions")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub alarm_actions: Option<::ValueList<String>>,
     /// Property `AlarmDescription`.
-    #[serde(rename="AlarmDescription")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub alarm_description: Option<String>,
+    #[serde(rename = "AlarmDescription")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub alarm_description: Option<::Value<String>>,
     /// Property `AlarmName`.
-    #[serde(rename="AlarmName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub alarm_name: Option<String>,
+    #[serde(rename = "AlarmName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub alarm_name: Option<::Value<String>>,
     /// Property `ComparisonOperator`.
-    #[serde(rename="ComparisonOperator")]
-    pub comparison_operator: String,
+    #[serde(rename = "ComparisonOperator")]
+    pub comparison_operator: ::Value<String>,
     /// Property `Dimensions`.
-    #[serde(rename="Dimensions")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub dimensions: Option<Vec<self::alarm::Dimension>>,
+    #[serde(rename = "Dimensions")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub dimensions: Option<::ValueList<self::alarm::Dimension>>,
     /// Property `EvaluateLowSampleCountPercentile`.
-    #[serde(rename="EvaluateLowSampleCountPercentile")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub evaluate_low_sample_count_percentile: Option<String>,
+    #[serde(rename = "EvaluateLowSampleCountPercentile")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub evaluate_low_sample_count_percentile: Option<::Value<String>>,
     /// Property `EvaluationPeriods`.
-    #[serde(rename="EvaluationPeriods")]
-    pub evaluation_periods: u32,
+    #[serde(rename = "EvaluationPeriods")]
+    pub evaluation_periods: ::Value<u32>,
     /// Property `ExtendedStatistic`.
-    #[serde(rename="ExtendedStatistic")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub extended_statistic: Option<String>,
+    #[serde(rename = "ExtendedStatistic")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub extended_statistic: Option<::Value<String>>,
     /// Property `InsufficientDataActions`.
-    #[serde(rename="InsufficientDataActions")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub insufficient_data_actions: Option<Vec<String>>,
+    #[serde(rename = "InsufficientDataActions")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub insufficient_data_actions: Option<::ValueList<String>>,
     /// Property `MetricName`.
-    #[serde(rename="MetricName")]
-    pub metric_name: String,
+    #[serde(rename = "MetricName")]
+    pub metric_name: ::Value<String>,
     /// Property `Namespace`.
-    #[serde(rename="Namespace")]
-    pub namespace: String,
+    #[serde(rename = "Namespace")]
+    pub namespace: ::Value<String>,
     /// Property `OKActions`.
-    #[serde(rename="OKActions")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ok_actions: Option<Vec<String>>,
+    #[serde(rename = "OKActions")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub ok_actions: Option<::ValueList<String>>,
     /// Property `Period`.
-    #[serde(rename="Period")]
-    pub period: u32,
+    #[serde(rename = "Period")]
+    pub period: ::Value<u32>,
     /// Property `Statistic`.
-    #[serde(rename="Statistic")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub statistic: Option<String>,
+    #[serde(rename = "Statistic")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub statistic: Option<::Value<String>>,
     /// Property `Threshold`.
-    #[serde(rename="Threshold")]
-    pub threshold: f64,
+    #[serde(rename = "Threshold")]
+    pub threshold: ::Value<f64>,
     /// Property `TreatMissingData`.
-    #[serde(rename="TreatMissingData")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub treat_missing_data: Option<String>,
+    #[serde(rename = "TreatMissingData")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub treat_missing_data: Option<::Value<String>>,
     /// Property `Unit`.
-    #[serde(rename="Unit")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub unit: Option<String>,
+    #[serde(rename = "Unit")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub unit: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for Alarm {
@@ -106,12 +106,12 @@ pub struct Dashboard {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DashboardProperties {
     /// Property `DashboardBody`.
-    #[serde(rename="DashboardBody")]
-    pub dashboard_body: String,
+    #[serde(rename = "DashboardBody")]
+    pub dashboard_body: ::Value<String>,
     /// Property `DashboardName`.
-    #[serde(rename="DashboardName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub dashboard_name: Option<String>,
+    #[serde(rename = "DashboardName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub dashboard_name: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for Dashboard {
@@ -140,10 +140,12 @@ pub mod alarm {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Dimension {
         /// Property `Name`.
-        #[serde(rename="Name")]
-        pub name: String,
+        #[serde(rename = "Name")]
+        pub name: ::Value<String>,
         /// Property `Value`.
-        #[serde(rename="Value")]
-        pub value: String,
+        #[serde(rename = "Value")]
+        pub value: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(Dimension);
 }

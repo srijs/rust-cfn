@@ -89,7 +89,8 @@ fn generate_property_declaration(service: &str, resource_name: &str, name: &str,
     for (ref property_name, ref property_spec) in spec.properties.iter() {
         generate_field(None, property_name, property_spec, "    ", f)?;
     }
-    writeln!(f, "    }}")?;
+    writeln!(f, "    }}\n")?;
+    writeln!(f, "    cfn_internal__inherit_codec_impls!({});", name)?;
 
     Ok(())
 }
@@ -141,11 +142,11 @@ fn generate_field(namespace_opt: Option<&str>, name: &str, spec: &PropertySpecif
     }
 
     writeln!(f, "    {}/// Property `{}`.", indent, name)?;
-    writeln!(f, "    {}#[serde(rename=\"{}\")]", indent, name)?;
+    writeln!(f, "    {}#[serde(rename = \"{}\")]", indent, name)?;
     if spec.required.unwrap_or(true) {
         writeln!(f, "    {}pub {}: {},", indent, field_name, generate_field_type(namespace_opt, spec))?;
     } else {
-        writeln!(f, "    {}#[serde(skip_serializing_if = \"Option::is_none\")]", indent)?;
+        writeln!(f, "    {}#[serde(default, skip_serializing_if = \"Option::is_none\")]", indent)?;
         writeln!(f, "    {}pub {}: Option<{}>,", indent, field_name, generate_field_type(namespace_opt, spec))?;
     }
 
@@ -156,32 +157,30 @@ fn generate_field_type(namespace_opt: Option<&str>, spec: &PropertySpecification
     if let Some(ref type_name) = spec.type_ {
         if type_name == "List" {
             if let Some(ref item_type) = spec.item_type {
-                if item_type == "Tag" {
-                    "::Tags".to_owned()
-                } else {
-                    format!("Vec<{}>", generate_type(namespace_opt, item_type))
-                }
+                format!("::ValueList<{}>", generate_type(namespace_opt, item_type))
             } else {
-                format!("Vec<{}>",
+                format!("::ValueList<{}>",
                     generate_primitive_type(spec.primitive_item_type.as_ref().unwrap()))
             }
         } else if type_name == "Map" {
             if let Some(ref item_type) = spec.item_type {
-                format!("::std::collections::HashMap<String, {}>", generate_type(namespace_opt, item_type))
+                format!("::std::collections::HashMap<String, ::Value<{}>>", generate_type(namespace_opt, item_type))
             } else {
-                format!("::std::collections::HashMap<String, {}>",
+                format!("::std::collections::HashMap<String, ::Value<{}>>",
                     generate_primitive_type(spec.primitive_item_type.as_ref().unwrap()))
             }
         } else {
-            generate_type(namespace_opt, type_name)
+            format!("::Value<{}>", generate_type(namespace_opt, type_name))
         }
     } else {
-        format!("{}", generate_primitive_type(spec.primitive_type.as_ref().unwrap()))
+        format!("::Value<{}>", generate_primitive_type(spec.primitive_type.as_ref().unwrap()))
     }
 }
 
 fn generate_type(namespace_opt: Option<&str>, name: &str) -> String {
-    if let Some(namespace) = namespace_opt {
+    if name == "Tag" {
+        "::Tag".to_owned()
+    } else if let Some(namespace) = namespace_opt {
         format!("self::{}::{}", namespace, name)
     } else {
         name.to_owned()

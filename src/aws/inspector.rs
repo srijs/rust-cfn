@@ -10,12 +10,12 @@ pub struct AssessmentTarget {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AssessmentTargetProperties {
     /// Property `AssessmentTargetName`.
-    #[serde(rename="AssessmentTargetName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub assessment_target_name: Option<String>,
+    #[serde(rename = "AssessmentTargetName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub assessment_target_name: Option<::Value<String>>,
     /// Property `ResourceGroupArn`.
-    #[serde(rename="ResourceGroupArn")]
-    pub resource_group_arn: String,
+    #[serde(rename = "ResourceGroupArn")]
+    pub resource_group_arn: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for AssessmentTarget {
@@ -47,22 +47,22 @@ pub struct AssessmentTemplate {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AssessmentTemplateProperties {
     /// Property `AssessmentTargetArn`.
-    #[serde(rename="AssessmentTargetArn")]
-    pub assessment_target_arn: String,
+    #[serde(rename = "AssessmentTargetArn")]
+    pub assessment_target_arn: ::Value<String>,
     /// Property `AssessmentTemplateName`.
-    #[serde(rename="AssessmentTemplateName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub assessment_template_name: Option<String>,
+    #[serde(rename = "AssessmentTemplateName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub assessment_template_name: Option<::Value<String>>,
     /// Property `DurationInSeconds`.
-    #[serde(rename="DurationInSeconds")]
-    pub duration_in_seconds: u32,
+    #[serde(rename = "DurationInSeconds")]
+    pub duration_in_seconds: ::Value<u32>,
     /// Property `RulesPackageArns`.
-    #[serde(rename="RulesPackageArns")]
-    pub rules_package_arns: Vec<String>,
+    #[serde(rename = "RulesPackageArns")]
+    pub rules_package_arns: ::ValueList<String>,
     /// Property `UserAttributesForFindings`.
-    #[serde(rename="UserAttributesForFindings")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub user_attributes_for_findings: Option<::Tags>,
+    #[serde(rename = "UserAttributesForFindings")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub user_attributes_for_findings: Option<::ValueList<::Tag>>,
 }
 
 impl<'a> ::Resource<'a> for AssessmentTemplate {
@@ -94,8 +94,8 @@ pub struct ResourceGroup {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ResourceGroupProperties {
     /// Property `ResourceGroupTags`.
-    #[serde(rename="ResourceGroupTags")]
-    pub resource_group_tags: ::Tags,
+    #[serde(rename = "ResourceGroupTags")]
+    pub resource_group_tags: ::ValueList<::Tag>,
 }
 
 impl<'a> ::Resource<'a> for ResourceGroup {

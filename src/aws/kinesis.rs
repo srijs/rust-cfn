@@ -10,24 +10,24 @@ pub struct Stream {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct StreamProperties {
     /// Property `Name`.
-    #[serde(rename="Name")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    #[serde(rename = "Name")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<::Value<String>>,
     /// Property `RetentionPeriodHours`.
-    #[serde(rename="RetentionPeriodHours")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub retention_period_hours: Option<u32>,
+    #[serde(rename = "RetentionPeriodHours")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub retention_period_hours: Option<::Value<u32>>,
     /// Property `ShardCount`.
-    #[serde(rename="ShardCount")]
-    pub shard_count: u32,
+    #[serde(rename = "ShardCount")]
+    pub shard_count: ::Value<u32>,
     /// Property `StreamEncryption`.
-    #[serde(rename="StreamEncryption")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub stream_encryption: Option<self::stream::StreamEncryption>,
+    #[serde(rename = "StreamEncryption")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub stream_encryption: Option<::Value<self::stream::StreamEncryption>>,
     /// Property `Tags`.
-    #[serde(rename="Tags")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub tags: Option<::Tags>,
+    #[serde(rename = "Tags")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::ValueList<::Tag>>,
 }
 
 impl<'a> ::Resource<'a> for Stream {
@@ -56,10 +56,12 @@ pub mod stream {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct StreamEncryption {
         /// Property `EncryptionType`.
-        #[serde(rename="EncryptionType")]
-        pub encryption_type: String,
+        #[serde(rename = "EncryptionType")]
+        pub encryption_type: ::Value<String>,
         /// Property `KeyId`.
-        #[serde(rename="KeyId")]
-        pub key_id: String,
+        #[serde(rename = "KeyId")]
+        pub key_id: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(StreamEncryption);
 }

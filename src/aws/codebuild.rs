@@ -10,53 +10,53 @@ pub struct Project {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ProjectProperties {
     /// Property `Artifacts`.
-    #[serde(rename="Artifacts")]
-    pub artifacts: self::project::Artifacts,
+    #[serde(rename = "Artifacts")]
+    pub artifacts: ::Value<self::project::Artifacts>,
     /// Property `BadgeEnabled`.
-    #[serde(rename="BadgeEnabled")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub badge_enabled: Option<bool>,
+    #[serde(rename = "BadgeEnabled")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub badge_enabled: Option<::Value<bool>>,
     /// Property `Cache`.
-    #[serde(rename="Cache")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub cache: Option<self::project::ProjectCache>,
+    #[serde(rename = "Cache")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub cache: Option<::Value<self::project::ProjectCache>>,
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `EncryptionKey`.
-    #[serde(rename="EncryptionKey")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub encryption_key: Option<String>,
+    #[serde(rename = "EncryptionKey")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub encryption_key: Option<::Value<String>>,
     /// Property `Environment`.
-    #[serde(rename="Environment")]
-    pub environment: self::project::Environment,
+    #[serde(rename = "Environment")]
+    pub environment: ::Value<self::project::Environment>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    #[serde(rename = "Name")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<::Value<String>>,
     /// Property `ServiceRole`.
-    #[serde(rename="ServiceRole")]
-    pub service_role: String,
+    #[serde(rename = "ServiceRole")]
+    pub service_role: ::Value<String>,
     /// Property `Source`.
-    #[serde(rename="Source")]
-    pub source: self::project::Source,
+    #[serde(rename = "Source")]
+    pub source: ::Value<self::project::Source>,
     /// Property `Tags`.
-    #[serde(rename="Tags")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub tags: Option<::Tags>,
+    #[serde(rename = "Tags")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::ValueList<::Tag>>,
     /// Property `TimeoutInMinutes`.
-    #[serde(rename="TimeoutInMinutes")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub timeout_in_minutes: Option<u32>,
+    #[serde(rename = "TimeoutInMinutes")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub timeout_in_minutes: Option<::Value<u32>>,
     /// Property `Triggers`.
-    #[serde(rename="Triggers")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub triggers: Option<self::project::ProjectTriggers>,
+    #[serde(rename = "Triggers")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub triggers: Option<::Value<self::project::ProjectTriggers>>,
     /// Property `VpcConfig`.
-    #[serde(rename="VpcConfig")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub vpc_config: Option<self::project::VpcConfig>,
+    #[serde(rename = "VpcConfig")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub vpc_config: Option<::Value<self::project::VpcConfig>>,
 }
 
 impl<'a> ::Resource<'a> for Project {
@@ -85,139 +85,155 @@ pub mod project {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Artifacts {
         /// Property `Location`.
-        #[serde(rename="Location")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub location: Option<String>,
+        #[serde(rename = "Location")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub location: Option<::Value<String>>,
         /// Property `Name`.
-        #[serde(rename="Name")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub name: Option<String>,
+        #[serde(rename = "Name")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub name: Option<::Value<String>>,
         /// Property `NamespaceType`.
-        #[serde(rename="NamespaceType")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub namespace_type: Option<String>,
+        #[serde(rename = "NamespaceType")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub namespace_type: Option<::Value<String>>,
         /// Property `Packaging`.
-        #[serde(rename="Packaging")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub packaging: Option<String>,
+        #[serde(rename = "Packaging")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub packaging: Option<::Value<String>>,
         /// Property `Path`.
-        #[serde(rename="Path")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub path: Option<String>,
+        #[serde(rename = "Path")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub path: Option<::Value<String>>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(rename = "Type")]
+        pub type_: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(Artifacts);
 
     /// The [`AWS::CodeBuild::Project.Environment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environment.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Environment {
         /// Property `ComputeType`.
-        #[serde(rename="ComputeType")]
-        pub compute_type: String,
+        #[serde(rename = "ComputeType")]
+        pub compute_type: ::Value<String>,
         /// Property `EnvironmentVariables`.
-        #[serde(rename="EnvironmentVariables")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub environment_variables: Option<Vec<EnvironmentVariable>>,
+        #[serde(rename = "EnvironmentVariables")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub environment_variables: Option<::ValueList<EnvironmentVariable>>,
         /// Property `Image`.
-        #[serde(rename="Image")]
-        pub image: String,
+        #[serde(rename = "Image")]
+        pub image: ::Value<String>,
         /// Property `PrivilegedMode`.
-        #[serde(rename="PrivilegedMode")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub privileged_mode: Option<bool>,
+        #[serde(rename = "PrivilegedMode")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub privileged_mode: Option<::Value<bool>>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(rename = "Type")]
+        pub type_: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(Environment);
 
     /// The [`AWS::CodeBuild::Project.EnvironmentVariable`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environmentvariable.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct EnvironmentVariable {
         /// Property `Name`.
-        #[serde(rename="Name")]
-        pub name: String,
+        #[serde(rename = "Name")]
+        pub name: ::Value<String>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub type_: Option<String>,
+        #[serde(rename = "Type")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub type_: Option<::Value<String>>,
         /// Property `Value`.
-        #[serde(rename="Value")]
-        pub value: String,
+        #[serde(rename = "Value")]
+        pub value: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(EnvironmentVariable);
 
     /// The [`AWS::CodeBuild::Project.ProjectCache`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projectcache.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct ProjectCache {
         /// Property `Location`.
-        #[serde(rename="Location")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub location: Option<String>,
+        #[serde(rename = "Location")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub location: Option<::Value<String>>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(rename = "Type")]
+        pub type_: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(ProjectCache);
 
     /// The [`AWS::CodeBuild::Project.ProjectTriggers`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projecttriggers.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct ProjectTriggers {
         /// Property `Webhook`.
-        #[serde(rename="Webhook")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub webhook: Option<bool>,
+        #[serde(rename = "Webhook")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub webhook: Option<::Value<bool>>,
     }
+
+    cfn_internal__inherit_codec_impls!(ProjectTriggers);
 
     /// The [`AWS::CodeBuild::Project.Source`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-source.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Source {
         /// Property `Auth`.
-        #[serde(rename="Auth")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub auth: Option<SourceAuth>,
+        #[serde(rename = "Auth")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub auth: Option<::Value<SourceAuth>>,
         /// Property `BuildSpec`.
-        #[serde(rename="BuildSpec")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub build_spec: Option<String>,
+        #[serde(rename = "BuildSpec")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub build_spec: Option<::Value<String>>,
         /// Property `GitCloneDepth`.
-        #[serde(rename="GitCloneDepth")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub git_clone_depth: Option<u32>,
+        #[serde(rename = "GitCloneDepth")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub git_clone_depth: Option<::Value<u32>>,
         /// Property `InsecureSsl`.
-        #[serde(rename="InsecureSsl")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub insecure_ssl: Option<bool>,
+        #[serde(rename = "InsecureSsl")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub insecure_ssl: Option<::Value<bool>>,
         /// Property `Location`.
-        #[serde(rename="Location")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub location: Option<String>,
+        #[serde(rename = "Location")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub location: Option<::Value<String>>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(rename = "Type")]
+        pub type_: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(Source);
 
     /// The [`AWS::CodeBuild::Project.SourceAuth`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-sourceauth.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct SourceAuth {
         /// Property `Resource`.
-        #[serde(rename="Resource")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub resource: Option<String>,
+        #[serde(rename = "Resource")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub resource: Option<::Value<String>>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(rename = "Type")]
+        pub type_: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(SourceAuth);
 
     /// The [`AWS::CodeBuild::Project.VpcConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-vpcconfig.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct VpcConfig {
         /// Property `SecurityGroupIds`.
-        #[serde(rename="SecurityGroupIds")]
-        pub security_group_ids: Vec<String>,
+        #[serde(rename = "SecurityGroupIds")]
+        pub security_group_ids: ::ValueList<String>,
         /// Property `Subnets`.
-        #[serde(rename="Subnets")]
-        pub subnets: Vec<String>,
+        #[serde(rename = "Subnets")]
+        pub subnets: ::ValueList<String>,
         /// Property `VpcId`.
-        #[serde(rename="VpcId")]
-        pub vpc_id: String,
+        #[serde(rename = "VpcId")]
+        pub vpc_id: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(VpcConfig);
 }

@@ -10,19 +10,19 @@ pub struct NamedQuery {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct NamedQueryProperties {
     /// Property `Database`.
-    #[serde(rename="Database")]
-    pub database: String,
+    #[serde(rename = "Database")]
+    pub database: ::Value<String>,
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    #[serde(rename = "Name")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<::Value<String>>,
     /// Property `QueryString`.
-    #[serde(rename="QueryString")]
-    pub query_string: String,
+    #[serde(rename = "QueryString")]
+    pub query_string: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for NamedQuery {

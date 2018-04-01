@@ -10,55 +10,55 @@ pub struct Trail {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TrailProperties {
     /// Property `CloudWatchLogsLogGroupArn`.
-    #[serde(rename="CloudWatchLogsLogGroupArn")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub cloud_watch_logs_log_group_arn: Option<String>,
+    #[serde(rename = "CloudWatchLogsLogGroupArn")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub cloud_watch_logs_log_group_arn: Option<::Value<String>>,
     /// Property `CloudWatchLogsRoleArn`.
-    #[serde(rename="CloudWatchLogsRoleArn")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub cloud_watch_logs_role_arn: Option<String>,
+    #[serde(rename = "CloudWatchLogsRoleArn")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub cloud_watch_logs_role_arn: Option<::Value<String>>,
     /// Property `EnableLogFileValidation`.
-    #[serde(rename="EnableLogFileValidation")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub enable_log_file_validation: Option<bool>,
+    #[serde(rename = "EnableLogFileValidation")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub enable_log_file_validation: Option<::Value<bool>>,
     /// Property `EventSelectors`.
-    #[serde(rename="EventSelectors")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub event_selectors: Option<Vec<self::trail::EventSelector>>,
+    #[serde(rename = "EventSelectors")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub event_selectors: Option<::ValueList<self::trail::EventSelector>>,
     /// Property `IncludeGlobalServiceEvents`.
-    #[serde(rename="IncludeGlobalServiceEvents")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub include_global_service_events: Option<bool>,
+    #[serde(rename = "IncludeGlobalServiceEvents")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub include_global_service_events: Option<::Value<bool>>,
     /// Property `IsLogging`.
-    #[serde(rename="IsLogging")]
-    pub is_logging: bool,
+    #[serde(rename = "IsLogging")]
+    pub is_logging: ::Value<bool>,
     /// Property `IsMultiRegionTrail`.
-    #[serde(rename="IsMultiRegionTrail")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub is_multi_region_trail: Option<bool>,
+    #[serde(rename = "IsMultiRegionTrail")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub is_multi_region_trail: Option<::Value<bool>>,
     /// Property `KMSKeyId`.
-    #[serde(rename="KMSKeyId")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub kms_key_id: Option<String>,
+    #[serde(rename = "KMSKeyId")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub kms_key_id: Option<::Value<String>>,
     /// Property `S3BucketName`.
-    #[serde(rename="S3BucketName")]
-    pub s3_bucket_name: String,
+    #[serde(rename = "S3BucketName")]
+    pub s3_bucket_name: ::Value<String>,
     /// Property `S3KeyPrefix`.
-    #[serde(rename="S3KeyPrefix")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub s3_key_prefix: Option<String>,
+    #[serde(rename = "S3KeyPrefix")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub s3_key_prefix: Option<::Value<String>>,
     /// Property `SnsTopicName`.
-    #[serde(rename="SnsTopicName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub sns_topic_name: Option<String>,
+    #[serde(rename = "SnsTopicName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub sns_topic_name: Option<::Value<String>>,
     /// Property `Tags`.
-    #[serde(rename="Tags")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub tags: Option<::Tags>,
+    #[serde(rename = "Tags")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::ValueList<::Tag>>,
     /// Property `TrailName`.
-    #[serde(rename="TrailName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub trail_name: Option<String>,
+    #[serde(rename = "TrailName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub trail_name: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for Trail {
@@ -87,28 +87,32 @@ pub mod trail {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct DataResource {
         /// Property `Type`.
-        #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(rename = "Type")]
+        pub type_: ::Value<String>,
         /// Property `Values`.
-        #[serde(rename="Values")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub values: Option<Vec<String>>,
+        #[serde(rename = "Values")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub values: Option<::ValueList<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(DataResource);
 
     /// The [`AWS::CloudTrail::Trail.EventSelector`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-eventselector.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct EventSelector {
         /// Property `DataResources`.
-        #[serde(rename="DataResources")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub data_resources: Option<Vec<DataResource>>,
+        #[serde(rename = "DataResources")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub data_resources: Option<::ValueList<DataResource>>,
         /// Property `IncludeManagementEvents`.
-        #[serde(rename="IncludeManagementEvents")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub include_management_events: Option<bool>,
+        #[serde(rename = "IncludeManagementEvents")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub include_management_events: Option<::Value<bool>>,
         /// Property `ReadWriteType`.
-        #[serde(rename="ReadWriteType")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub read_write_type: Option<String>,
+        #[serde(rename = "ReadWriteType")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub read_write_type: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(EventSelector);
 }

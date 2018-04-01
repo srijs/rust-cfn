@@ -10,11 +10,11 @@ pub struct Alias {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AliasProperties {
     /// Property `AliasName`.
-    #[serde(rename="AliasName")]
-    pub alias_name: String,
+    #[serde(rename = "AliasName")]
+    pub alias_name: ::Value<String>,
     /// Property `TargetKeyId`.
-    #[serde(rename="TargetKeyId")]
-    pub target_key_id: String,
+    #[serde(rename = "TargetKeyId")]
+    pub target_key_id: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for Alias {
@@ -46,28 +46,28 @@ pub struct Key {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct KeyProperties {
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `EnableKeyRotation`.
-    #[serde(rename="EnableKeyRotation")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub enable_key_rotation: Option<bool>,
+    #[serde(rename = "EnableKeyRotation")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub enable_key_rotation: Option<::Value<bool>>,
     /// Property `Enabled`.
-    #[serde(rename="Enabled")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub enabled: Option<bool>,
+    #[serde(rename = "Enabled")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub enabled: Option<::Value<bool>>,
     /// Property `KeyPolicy`.
-    #[serde(rename="KeyPolicy")]
-    pub key_policy: ::json::Value,
+    #[serde(rename = "KeyPolicy")]
+    pub key_policy: ::Value<::json::Value>,
     /// Property `KeyUsage`.
-    #[serde(rename="KeyUsage")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub key_usage: Option<String>,
+    #[serde(rename = "KeyUsage")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub key_usage: Option<::Value<String>>,
     /// Property `Tags`.
-    #[serde(rename="Tags")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub tags: Option<::Tags>,
+    #[serde(rename = "Tags")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::ValueList<::Tag>>,
 }
 
 impl<'a> ::Resource<'a> for Key {

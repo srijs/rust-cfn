@@ -10,26 +10,26 @@ pub struct Workspace {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct WorkspaceProperties {
     /// Property `BundleId`.
-    #[serde(rename="BundleId")]
-    pub bundle_id: String,
+    #[serde(rename = "BundleId")]
+    pub bundle_id: ::Value<String>,
     /// Property `DirectoryId`.
-    #[serde(rename="DirectoryId")]
-    pub directory_id: String,
+    #[serde(rename = "DirectoryId")]
+    pub directory_id: ::Value<String>,
     /// Property `RootVolumeEncryptionEnabled`.
-    #[serde(rename="RootVolumeEncryptionEnabled")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub root_volume_encryption_enabled: Option<bool>,
+    #[serde(rename = "RootVolumeEncryptionEnabled")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub root_volume_encryption_enabled: Option<::Value<bool>>,
     /// Property `UserName`.
-    #[serde(rename="UserName")]
-    pub user_name: String,
+    #[serde(rename = "UserName")]
+    pub user_name: ::Value<String>,
     /// Property `UserVolumeEncryptionEnabled`.
-    #[serde(rename="UserVolumeEncryptionEnabled")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub user_volume_encryption_enabled: Option<bool>,
+    #[serde(rename = "UserVolumeEncryptionEnabled")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub user_volume_encryption_enabled: Option<::Value<bool>>,
     /// Property `VolumeEncryptionKey`.
-    #[serde(rename="VolumeEncryptionKey")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub volume_encryption_key: Option<String>,
+    #[serde(rename = "VolumeEncryptionKey")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub volume_encryption_key: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for Workspace {

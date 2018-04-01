@@ -10,29 +10,29 @@ pub struct CustomActionType {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CustomActionTypeProperties {
     /// Property `Category`.
-    #[serde(rename="Category")]
-    pub category: String,
+    #[serde(rename = "Category")]
+    pub category: ::Value<String>,
     /// Property `ConfigurationProperties`.
-    #[serde(rename="ConfigurationProperties")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub configuration_properties: Option<Vec<self::custom_action_type::ConfigurationProperties>>,
+    #[serde(rename = "ConfigurationProperties")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub configuration_properties: Option<::ValueList<self::custom_action_type::ConfigurationProperties>>,
     /// Property `InputArtifactDetails`.
-    #[serde(rename="InputArtifactDetails")]
-    pub input_artifact_details: self::custom_action_type::ArtifactDetails,
+    #[serde(rename = "InputArtifactDetails")]
+    pub input_artifact_details: ::Value<self::custom_action_type::ArtifactDetails>,
     /// Property `OutputArtifactDetails`.
-    #[serde(rename="OutputArtifactDetails")]
-    pub output_artifact_details: self::custom_action_type::ArtifactDetails,
+    #[serde(rename = "OutputArtifactDetails")]
+    pub output_artifact_details: ::Value<self::custom_action_type::ArtifactDetails>,
     /// Property `Provider`.
-    #[serde(rename="Provider")]
-    pub provider: String,
+    #[serde(rename = "Provider")]
+    pub provider: ::Value<String>,
     /// Property `Settings`.
-    #[serde(rename="Settings")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub settings: Option<self::custom_action_type::Settings>,
+    #[serde(rename = "Settings")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub settings: Option<::Value<self::custom_action_type::Settings>>,
     /// Property `Version`.
-    #[serde(rename="Version")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub version: Option<String>,
+    #[serde(rename = "Version")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub version: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for CustomActionType {
@@ -64,26 +64,26 @@ pub struct Pipeline {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct PipelineProperties {
     /// Property `ArtifactStore`.
-    #[serde(rename="ArtifactStore")]
-    pub artifact_store: self::pipeline::ArtifactStore,
+    #[serde(rename = "ArtifactStore")]
+    pub artifact_store: ::Value<self::pipeline::ArtifactStore>,
     /// Property `DisableInboundStageTransitions`.
-    #[serde(rename="DisableInboundStageTransitions")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub disable_inbound_stage_transitions: Option<Vec<self::pipeline::StageTransition>>,
+    #[serde(rename = "DisableInboundStageTransitions")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub disable_inbound_stage_transitions: Option<::ValueList<self::pipeline::StageTransition>>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    #[serde(rename = "Name")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<::Value<String>>,
     /// Property `RestartExecutionOnUpdate`.
-    #[serde(rename="RestartExecutionOnUpdate")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub restart_execution_on_update: Option<bool>,
+    #[serde(rename = "RestartExecutionOnUpdate")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub restart_execution_on_update: Option<::Value<bool>>,
     /// Property `RoleArn`.
-    #[serde(rename="RoleArn")]
-    pub role_arn: String,
+    #[serde(rename = "RoleArn")]
+    pub role_arn: ::Value<String>,
     /// Property `Stages`.
-    #[serde(rename="Stages")]
-    pub stages: Vec<self::pipeline::StageDeclaration>,
+    #[serde(rename = "Stages")]
+    pub stages: ::ValueList<self::pipeline::StageDeclaration>,
 }
 
 impl<'a> ::Resource<'a> for Pipeline {
@@ -112,62 +112,68 @@ pub mod custom_action_type {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct ArtifactDetails {
         /// Property `MaximumCount`.
-        #[serde(rename="MaximumCount")]
-        pub maximum_count: u32,
+        #[serde(rename = "MaximumCount")]
+        pub maximum_count: ::Value<u32>,
         /// Property `MinimumCount`.
-        #[serde(rename="MinimumCount")]
-        pub minimum_count: u32,
+        #[serde(rename = "MinimumCount")]
+        pub minimum_count: ::Value<u32>,
     }
+
+    cfn_internal__inherit_codec_impls!(ArtifactDetails);
 
     /// The [`AWS::CodePipeline::CustomActionType.ConfigurationProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-configurationproperties.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct ConfigurationProperties {
         /// Property `Description`.
-        #[serde(rename="Description")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub description: Option<String>,
+        #[serde(rename = "Description")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub description: Option<::Value<String>>,
         /// Property `Key`.
-        #[serde(rename="Key")]
-        pub key: bool,
+        #[serde(rename = "Key")]
+        pub key: ::Value<bool>,
         /// Property `Name`.
-        #[serde(rename="Name")]
-        pub name: String,
+        #[serde(rename = "Name")]
+        pub name: ::Value<String>,
         /// Property `Queryable`.
-        #[serde(rename="Queryable")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub queryable: Option<bool>,
+        #[serde(rename = "Queryable")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub queryable: Option<::Value<bool>>,
         /// Property `Required`.
-        #[serde(rename="Required")]
-        pub required: bool,
+        #[serde(rename = "Required")]
+        pub required: ::Value<bool>,
         /// Property `Secret`.
-        #[serde(rename="Secret")]
-        pub secret: bool,
+        #[serde(rename = "Secret")]
+        pub secret: ::Value<bool>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub type_: Option<String>,
+        #[serde(rename = "Type")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub type_: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(ConfigurationProperties);
 
     /// The [`AWS::CodePipeline::CustomActionType.Settings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-settings.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Settings {
         /// Property `EntityUrlTemplate`.
-        #[serde(rename="EntityUrlTemplate")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub entity_url_template: Option<String>,
+        #[serde(rename = "EntityUrlTemplate")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub entity_url_template: Option<::Value<String>>,
         /// Property `ExecutionUrlTemplate`.
-        #[serde(rename="ExecutionUrlTemplate")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub execution_url_template: Option<String>,
+        #[serde(rename = "ExecutionUrlTemplate")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub execution_url_template: Option<::Value<String>>,
         /// Property `RevisionUrlTemplate`.
-        #[serde(rename="RevisionUrlTemplate")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub revision_url_template: Option<String>,
+        #[serde(rename = "RevisionUrlTemplate")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub revision_url_template: Option<::Value<String>>,
         /// Property `ThirdPartyConfigurationUrl`.
-        #[serde(rename="ThirdPartyConfigurationUrl")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub third_party_configuration_url: Option<String>,
+        #[serde(rename = "ThirdPartyConfigurationUrl")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub third_party_configuration_url: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(Settings);
 }
 
 pub mod pipeline {
@@ -177,126 +183,144 @@ pub mod pipeline {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct ActionDeclaration {
         /// Property `ActionTypeId`.
-        #[serde(rename="ActionTypeId")]
-        pub action_type_id: ActionTypeId,
+        #[serde(rename = "ActionTypeId")]
+        pub action_type_id: ::Value<ActionTypeId>,
         /// Property `Configuration`.
-        #[serde(rename="Configuration")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub configuration: Option<::json::Value>,
+        #[serde(rename = "Configuration")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub configuration: Option<::Value<::json::Value>>,
         /// Property `InputArtifacts`.
-        #[serde(rename="InputArtifacts")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub input_artifacts: Option<Vec<InputArtifact>>,
+        #[serde(rename = "InputArtifacts")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub input_artifacts: Option<::ValueList<InputArtifact>>,
         /// Property `Name`.
-        #[serde(rename="Name")]
-        pub name: String,
+        #[serde(rename = "Name")]
+        pub name: ::Value<String>,
         /// Property `OutputArtifacts`.
-        #[serde(rename="OutputArtifacts")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub output_artifacts: Option<Vec<OutputArtifact>>,
+        #[serde(rename = "OutputArtifacts")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub output_artifacts: Option<::ValueList<OutputArtifact>>,
         /// Property `RoleArn`.
-        #[serde(rename="RoleArn")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub role_arn: Option<String>,
+        #[serde(rename = "RoleArn")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub role_arn: Option<::Value<String>>,
         /// Property `RunOrder`.
-        #[serde(rename="RunOrder")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub run_order: Option<u32>,
+        #[serde(rename = "RunOrder")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub run_order: Option<::Value<u32>>,
     }
+
+    cfn_internal__inherit_codec_impls!(ActionDeclaration);
 
     /// The [`AWS::CodePipeline::Pipeline.ActionTypeId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-actiontypeid.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct ActionTypeId {
         /// Property `Category`.
-        #[serde(rename="Category")]
-        pub category: String,
+        #[serde(rename = "Category")]
+        pub category: ::Value<String>,
         /// Property `Owner`.
-        #[serde(rename="Owner")]
-        pub owner: String,
+        #[serde(rename = "Owner")]
+        pub owner: ::Value<String>,
         /// Property `Provider`.
-        #[serde(rename="Provider")]
-        pub provider: String,
+        #[serde(rename = "Provider")]
+        pub provider: ::Value<String>,
         /// Property `Version`.
-        #[serde(rename="Version")]
-        pub version: String,
+        #[serde(rename = "Version")]
+        pub version: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(ActionTypeId);
 
     /// The [`AWS::CodePipeline::Pipeline.ArtifactStore`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-artifactstore.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct ArtifactStore {
         /// Property `EncryptionKey`.
-        #[serde(rename="EncryptionKey")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub encryption_key: Option<EncryptionKey>,
+        #[serde(rename = "EncryptionKey")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub encryption_key: Option<::Value<EncryptionKey>>,
         /// Property `Location`.
-        #[serde(rename="Location")]
-        pub location: String,
+        #[serde(rename = "Location")]
+        pub location: ::Value<String>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(rename = "Type")]
+        pub type_: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(ArtifactStore);
 
     /// The [`AWS::CodePipeline::Pipeline.BlockerDeclaration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-blockers.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct BlockerDeclaration {
         /// Property `Name`.
-        #[serde(rename="Name")]
-        pub name: String,
+        #[serde(rename = "Name")]
+        pub name: ::Value<String>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(rename = "Type")]
+        pub type_: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(BlockerDeclaration);
 
     /// The [`AWS::CodePipeline::Pipeline.EncryptionKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-artifactstore-encryptionkey.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct EncryptionKey {
         /// Property `Id`.
-        #[serde(rename="Id")]
-        pub id: String,
+        #[serde(rename = "Id")]
+        pub id: ::Value<String>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(rename = "Type")]
+        pub type_: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(EncryptionKey);
 
     /// The [`AWS::CodePipeline::Pipeline.InputArtifact`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-inputartifacts.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct InputArtifact {
         /// Property `Name`.
-        #[serde(rename="Name")]
-        pub name: String,
+        #[serde(rename = "Name")]
+        pub name: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(InputArtifact);
 
     /// The [`AWS::CodePipeline::Pipeline.OutputArtifact`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-outputartifacts.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct OutputArtifact {
         /// Property `Name`.
-        #[serde(rename="Name")]
-        pub name: String,
+        #[serde(rename = "Name")]
+        pub name: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(OutputArtifact);
 
     /// The [`AWS::CodePipeline::Pipeline.StageDeclaration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct StageDeclaration {
         /// Property `Actions`.
-        #[serde(rename="Actions")]
-        pub actions: Vec<ActionDeclaration>,
+        #[serde(rename = "Actions")]
+        pub actions: ::ValueList<ActionDeclaration>,
         /// Property `Blockers`.
-        #[serde(rename="Blockers")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub blockers: Option<Vec<BlockerDeclaration>>,
+        #[serde(rename = "Blockers")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub blockers: Option<::ValueList<BlockerDeclaration>>,
         /// Property `Name`.
-        #[serde(rename="Name")]
-        pub name: String,
+        #[serde(rename = "Name")]
+        pub name: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(StageDeclaration);
 
     /// The [`AWS::CodePipeline::Pipeline.StageTransition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-disableinboundstagetransitions.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct StageTransition {
         /// Property `Reason`.
-        #[serde(rename="Reason")]
-        pub reason: String,
+        #[serde(rename = "Reason")]
+        pub reason: ::Value<String>,
         /// Property `StageName`.
-        #[serde(rename="StageName")]
-        pub stage_name: String,
+        #[serde(rename = "StageName")]
+        pub stage_name: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(StageTransition);
 }

@@ -13,7 +13,11 @@ use std::collections::HashMap;
 
 use serde::Deserialize;
 
+#[macro_use] mod codec;
+mod types;
 pub mod aws;
+
+pub use types::*;
 
 pub mod json {
     //! Types for raw JSON values.
@@ -114,34 +118,4 @@ mod private {
 
     pub trait Properties<'a>: ::serde::Serialize + ::serde::de::Deserialize<'a> {}
     impl<'a, P> Properties<'a> for P where P: ::serde::Serialize + ::serde::de::Deserialize<'a> {}
-}
-
-/// Set of tags (key-value pairs) that can be used to identify and organise resources.
-#[derive(Debug, Default, Serialize, Deserialize)]
-pub struct Tags(Vec<Tag>);
-
-impl Tags {
-    /// Add a key-value pair to the set of tags.
-    pub fn add<K: Into<String>, V: Into<String>>(&mut self, key: K, value: V) {
-        self.0.push(Tag {
-            key: key.into(),
-            value: value.into()
-        })
-    }
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-struct Tag {
-    #[serde(rename = "Key")]
-    key: String,
-    #[serde(rename = "Value")]
-    value: String
-}
-
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        assert_eq!(2 + 2, 4);
-    }
 }

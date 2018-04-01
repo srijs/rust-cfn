@@ -10,17 +10,17 @@ pub struct Application {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ApplicationProperties {
     /// Property `ApplicationName`.
-    #[serde(rename="ApplicationName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub application_name: Option<String>,
+    #[serde(rename = "ApplicationName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub application_name: Option<::Value<String>>,
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `ResourceLifecycleConfig`.
-    #[serde(rename="ResourceLifecycleConfig")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub resource_lifecycle_config: Option<self::application::ApplicationResourceLifecycleConfig>,
+    #[serde(rename = "ResourceLifecycleConfig")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub resource_lifecycle_config: Option<::Value<self::application::ApplicationResourceLifecycleConfig>>,
 }
 
 impl<'a> ::Resource<'a> for Application {
@@ -52,15 +52,15 @@ pub struct ApplicationVersion {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ApplicationVersionProperties {
     /// Property `ApplicationName`.
-    #[serde(rename="ApplicationName")]
-    pub application_name: String,
+    #[serde(rename = "ApplicationName")]
+    pub application_name: ::Value<String>,
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `SourceBundle`.
-    #[serde(rename="SourceBundle")]
-    pub source_bundle: self::application_version::SourceBundle,
+    #[serde(rename = "SourceBundle")]
+    pub source_bundle: ::Value<self::application_version::SourceBundle>,
 }
 
 impl<'a> ::Resource<'a> for ApplicationVersion {
@@ -92,32 +92,32 @@ pub struct ConfigurationTemplate {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ConfigurationTemplateProperties {
     /// Property `ApplicationName`.
-    #[serde(rename="ApplicationName")]
-    pub application_name: String,
+    #[serde(rename = "ApplicationName")]
+    pub application_name: ::Value<String>,
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `EnvironmentId`.
-    #[serde(rename="EnvironmentId")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub environment_id: Option<String>,
+    #[serde(rename = "EnvironmentId")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub environment_id: Option<::Value<String>>,
     /// Property `OptionSettings`.
-    #[serde(rename="OptionSettings")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub option_settings: Option<Vec<self::configuration_template::ConfigurationOptionSetting>>,
+    #[serde(rename = "OptionSettings")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub option_settings: Option<::ValueList<self::configuration_template::ConfigurationOptionSetting>>,
     /// Property `PlatformArn`.
-    #[serde(rename="PlatformArn")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub platform_arn: Option<String>,
+    #[serde(rename = "PlatformArn")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub platform_arn: Option<::Value<String>>,
     /// Property `SolutionStackName`.
-    #[serde(rename="SolutionStackName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub solution_stack_name: Option<String>,
+    #[serde(rename = "SolutionStackName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub solution_stack_name: Option<::Value<String>>,
     /// Property `SourceConfiguration`.
-    #[serde(rename="SourceConfiguration")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub source_configuration: Option<self::configuration_template::SourceConfiguration>,
+    #[serde(rename = "SourceConfiguration")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub source_configuration: Option<::Value<self::configuration_template::SourceConfiguration>>,
 }
 
 impl<'a> ::Resource<'a> for ConfigurationTemplate {
@@ -149,48 +149,48 @@ pub struct Environment {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct EnvironmentProperties {
     /// Property `ApplicationName`.
-    #[serde(rename="ApplicationName")]
-    pub application_name: String,
+    #[serde(rename = "ApplicationName")]
+    pub application_name: ::Value<String>,
     /// Property `CNAMEPrefix`.
-    #[serde(rename="CNAMEPrefix")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub cname_prefix: Option<String>,
+    #[serde(rename = "CNAMEPrefix")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub cname_prefix: Option<::Value<String>>,
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `EnvironmentName`.
-    #[serde(rename="EnvironmentName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub environment_name: Option<String>,
+    #[serde(rename = "EnvironmentName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub environment_name: Option<::Value<String>>,
     /// Property `OptionSettings`.
-    #[serde(rename="OptionSettings")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub option_settings: Option<Vec<self::environment::OptionSetting>>,
+    #[serde(rename = "OptionSettings")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub option_settings: Option<::ValueList<self::environment::OptionSetting>>,
     /// Property `PlatformArn`.
-    #[serde(rename="PlatformArn")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub platform_arn: Option<String>,
+    #[serde(rename = "PlatformArn")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub platform_arn: Option<::Value<String>>,
     /// Property `SolutionStackName`.
-    #[serde(rename="SolutionStackName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub solution_stack_name: Option<String>,
+    #[serde(rename = "SolutionStackName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub solution_stack_name: Option<::Value<String>>,
     /// Property `Tags`.
-    #[serde(rename="Tags")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub tags: Option<::Tags>,
+    #[serde(rename = "Tags")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::ValueList<::Tag>>,
     /// Property `TemplateName`.
-    #[serde(rename="TemplateName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub template_name: Option<String>,
+    #[serde(rename = "TemplateName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub template_name: Option<::Value<String>>,
     /// Property `Tier`.
-    #[serde(rename="Tier")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub tier: Option<self::environment::Tier>,
+    #[serde(rename = "Tier")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub tier: Option<::Value<self::environment::Tier>>,
     /// Property `VersionLabel`.
-    #[serde(rename="VersionLabel")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub version_label: Option<String>,
+    #[serde(rename = "VersionLabel")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub version_label: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for Environment {
@@ -219,61 +219,69 @@ pub mod application {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct ApplicationResourceLifecycleConfig {
         /// Property `ServiceRole`.
-        #[serde(rename="ServiceRole")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub service_role: Option<String>,
+        #[serde(rename = "ServiceRole")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub service_role: Option<::Value<String>>,
         /// Property `VersionLifecycleConfig`.
-        #[serde(rename="VersionLifecycleConfig")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub version_lifecycle_config: Option<ApplicationVersionLifecycleConfig>,
+        #[serde(rename = "VersionLifecycleConfig")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub version_lifecycle_config: Option<::Value<ApplicationVersionLifecycleConfig>>,
     }
+
+    cfn_internal__inherit_codec_impls!(ApplicationResourceLifecycleConfig);
 
     /// The [`AWS::ElasticBeanstalk::Application.ApplicationVersionLifecycleConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-applicationversionlifecycleconfig.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct ApplicationVersionLifecycleConfig {
         /// Property `MaxAgeRule`.
-        #[serde(rename="MaxAgeRule")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub max_age_rule: Option<MaxAgeRule>,
+        #[serde(rename = "MaxAgeRule")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub max_age_rule: Option<::Value<MaxAgeRule>>,
         /// Property `MaxCountRule`.
-        #[serde(rename="MaxCountRule")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub max_count_rule: Option<MaxCountRule>,
+        #[serde(rename = "MaxCountRule")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub max_count_rule: Option<::Value<MaxCountRule>>,
     }
+
+    cfn_internal__inherit_codec_impls!(ApplicationVersionLifecycleConfig);
 
     /// The [`AWS::ElasticBeanstalk::Application.MaxAgeRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-maxagerule.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct MaxAgeRule {
         /// Property `DeleteSourceFromS3`.
-        #[serde(rename="DeleteSourceFromS3")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub delete_source_from_s3: Option<bool>,
+        #[serde(rename = "DeleteSourceFromS3")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub delete_source_from_s3: Option<::Value<bool>>,
         /// Property `Enabled`.
-        #[serde(rename="Enabled")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub enabled: Option<bool>,
+        #[serde(rename = "Enabled")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub enabled: Option<::Value<bool>>,
         /// Property `MaxAgeInDays`.
-        #[serde(rename="MaxAgeInDays")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub max_age_in_days: Option<u32>,
+        #[serde(rename = "MaxAgeInDays")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub max_age_in_days: Option<::Value<u32>>,
     }
+
+    cfn_internal__inherit_codec_impls!(MaxAgeRule);
 
     /// The [`AWS::ElasticBeanstalk::Application.MaxCountRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-maxcountrule.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct MaxCountRule {
         /// Property `DeleteSourceFromS3`.
-        #[serde(rename="DeleteSourceFromS3")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub delete_source_from_s3: Option<bool>,
+        #[serde(rename = "DeleteSourceFromS3")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub delete_source_from_s3: Option<::Value<bool>>,
         /// Property `Enabled`.
-        #[serde(rename="Enabled")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub enabled: Option<bool>,
+        #[serde(rename = "Enabled")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub enabled: Option<::Value<bool>>,
         /// Property `MaxCount`.
-        #[serde(rename="MaxCount")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub max_count: Option<u32>,
+        #[serde(rename = "MaxCount")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub max_count: Option<::Value<u32>>,
     }
+
+    cfn_internal__inherit_codec_impls!(MaxCountRule);
 }
 
 pub mod application_version {
@@ -283,12 +291,14 @@ pub mod application_version {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct SourceBundle {
         /// Property `S3Bucket`.
-        #[serde(rename="S3Bucket")]
-        pub s3_bucket: String,
+        #[serde(rename = "S3Bucket")]
+        pub s3_bucket: ::Value<String>,
         /// Property `S3Key`.
-        #[serde(rename="S3Key")]
-        pub s3_key: String,
+        #[serde(rename = "S3Key")]
+        pub s3_key: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(SourceBundle);
 }
 
 pub mod configuration_template {
@@ -298,31 +308,35 @@ pub mod configuration_template {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct ConfigurationOptionSetting {
         /// Property `Namespace`.
-        #[serde(rename="Namespace")]
-        pub namespace: String,
+        #[serde(rename = "Namespace")]
+        pub namespace: ::Value<String>,
         /// Property `OptionName`.
-        #[serde(rename="OptionName")]
-        pub option_name: String,
+        #[serde(rename = "OptionName")]
+        pub option_name: ::Value<String>,
         /// Property `ResourceName`.
-        #[serde(rename="ResourceName")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub resource_name: Option<String>,
+        #[serde(rename = "ResourceName")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub resource_name: Option<::Value<String>>,
         /// Property `Value`.
-        #[serde(rename="Value")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub value: Option<String>,
+        #[serde(rename = "Value")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub value: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(ConfigurationOptionSetting);
 
     /// The [`AWS::ElasticBeanstalk::ConfigurationTemplate.SourceConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-configurationtemplate-sourceconfiguration.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct SourceConfiguration {
         /// Property `ApplicationName`.
-        #[serde(rename="ApplicationName")]
-        pub application_name: String,
+        #[serde(rename = "ApplicationName")]
+        pub application_name: ::Value<String>,
         /// Property `TemplateName`.
-        #[serde(rename="TemplateName")]
-        pub template_name: String,
+        #[serde(rename = "TemplateName")]
+        pub template_name: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(SourceConfiguration);
 }
 
 pub mod environment {
@@ -332,35 +346,39 @@ pub mod environment {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct OptionSetting {
         /// Property `Namespace`.
-        #[serde(rename="Namespace")]
-        pub namespace: String,
+        #[serde(rename = "Namespace")]
+        pub namespace: ::Value<String>,
         /// Property `OptionName`.
-        #[serde(rename="OptionName")]
-        pub option_name: String,
+        #[serde(rename = "OptionName")]
+        pub option_name: ::Value<String>,
         /// Property `ResourceName`.
-        #[serde(rename="ResourceName")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub resource_name: Option<String>,
+        #[serde(rename = "ResourceName")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub resource_name: Option<::Value<String>>,
         /// Property `Value`.
-        #[serde(rename="Value")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub value: Option<String>,
+        #[serde(rename = "Value")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub value: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(OptionSetting);
 
     /// The [`AWS::ElasticBeanstalk::Environment.Tier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment-tier.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Tier {
         /// Property `Name`.
-        #[serde(rename="Name")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub name: Option<String>,
+        #[serde(rename = "Name")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub name: Option<::Value<String>>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub type_: Option<String>,
+        #[serde(rename = "Type")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub type_: Option<::Value<String>>,
         /// Property `Version`.
-        #[serde(rename="Version")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub version: Option<String>,
+        #[serde(rename = "Version")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub version: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(Tier);
 }

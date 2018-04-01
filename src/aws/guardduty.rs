@@ -10,8 +10,8 @@ pub struct Detector {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DetectorProperties {
     /// Property `Enable`.
-    #[serde(rename="Enable")]
-    pub enable: bool,
+    #[serde(rename = "Enable")]
+    pub enable: ::Value<bool>,
 }
 
 impl<'a> ::Resource<'a> for Detector {
@@ -43,21 +43,21 @@ pub struct IPSet {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct IPSetProperties {
     /// Property `Activate`.
-    #[serde(rename="Activate")]
-    pub activate: bool,
+    #[serde(rename = "Activate")]
+    pub activate: ::Value<bool>,
     /// Property `DetectorId`.
-    #[serde(rename="DetectorId")]
-    pub detector_id: String,
+    #[serde(rename = "DetectorId")]
+    pub detector_id: ::Value<String>,
     /// Property `Format`.
-    #[serde(rename="Format")]
-    pub format: String,
+    #[serde(rename = "Format")]
+    pub format: ::Value<String>,
     /// Property `Location`.
-    #[serde(rename="Location")]
-    pub location: String,
+    #[serde(rename = "Location")]
+    pub location: ::Value<String>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    #[serde(rename = "Name")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for IPSet {
@@ -89,14 +89,14 @@ pub struct Master {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct MasterProperties {
     /// Property `DetectorId`.
-    #[serde(rename="DetectorId")]
-    pub detector_id: String,
+    #[serde(rename = "DetectorId")]
+    pub detector_id: ::Value<String>,
     /// Property `InvitationId`.
-    #[serde(rename="InvitationId")]
-    pub invitation_id: String,
+    #[serde(rename = "InvitationId")]
+    pub invitation_id: ::Value<String>,
     /// Property `MasterId`.
-    #[serde(rename="MasterId")]
-    pub master_id: String,
+    #[serde(rename = "MasterId")]
+    pub master_id: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for Master {
@@ -128,22 +128,22 @@ pub struct Member {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct MemberProperties {
     /// Property `DetectorId`.
-    #[serde(rename="DetectorId")]
-    pub detector_id: String,
+    #[serde(rename = "DetectorId")]
+    pub detector_id: ::Value<String>,
     /// Property `Email`.
-    #[serde(rename="Email")]
-    pub email: String,
+    #[serde(rename = "Email")]
+    pub email: ::Value<String>,
     /// Property `MemberId`.
-    #[serde(rename="MemberId")]
-    pub member_id: String,
+    #[serde(rename = "MemberId")]
+    pub member_id: ::Value<String>,
     /// Property `Message`.
-    #[serde(rename="Message")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub message: Option<String>,
+    #[serde(rename = "Message")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub message: Option<::Value<String>>,
     /// Property `Status`.
-    #[serde(rename="Status")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub status: Option<String>,
+    #[serde(rename = "Status")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub status: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for Member {
@@ -175,21 +175,21 @@ pub struct ThreatIntelSet {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ThreatIntelSetProperties {
     /// Property `Activate`.
-    #[serde(rename="Activate")]
-    pub activate: bool,
+    #[serde(rename = "Activate")]
+    pub activate: ::Value<bool>,
     /// Property `DetectorId`.
-    #[serde(rename="DetectorId")]
-    pub detector_id: String,
+    #[serde(rename = "DetectorId")]
+    pub detector_id: ::Value<String>,
     /// Property `Format`.
-    #[serde(rename="Format")]
-    pub format: String,
+    #[serde(rename = "Format")]
+    pub format: ::Value<String>,
     /// Property `Location`.
-    #[serde(rename="Location")]
-    pub location: String,
+    #[serde(rename = "Location")]
+    pub location: ::Value<String>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    #[serde(rename = "Name")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for ThreatIntelSet {

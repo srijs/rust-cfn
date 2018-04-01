@@ -10,9 +10,9 @@ pub struct Domain {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DomainProperties {
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for Domain {

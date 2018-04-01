@@ -10,15 +10,15 @@ pub struct Instance {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct InstanceProperties {
     /// Property `InstanceAttributes`.
-    #[serde(rename="InstanceAttributes")]
-    pub instance_attributes: ::json::Value,
+    #[serde(rename = "InstanceAttributes")]
+    pub instance_attributes: ::Value<::json::Value>,
     /// Property `InstanceId`.
-    #[serde(rename="InstanceId")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub instance_id: Option<String>,
+    #[serde(rename = "InstanceId")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub instance_id: Option<::Value<String>>,
     /// Property `ServiceId`.
-    #[serde(rename="ServiceId")]
-    pub service_id: String,
+    #[serde(rename = "ServiceId")]
+    pub service_id: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for Instance {
@@ -50,15 +50,15 @@ pub struct PrivateDnsNamespace {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct PrivateDnsNamespaceProperties {
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    pub name: String,
+    #[serde(rename = "Name")]
+    pub name: ::Value<String>,
     /// Property `Vpc`.
-    #[serde(rename="Vpc")]
-    pub vpc: String,
+    #[serde(rename = "Vpc")]
+    pub vpc: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for PrivateDnsNamespace {
@@ -90,12 +90,12 @@ pub struct PublicDnsNamespace {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct PublicDnsNamespaceProperties {
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    pub name: String,
+    #[serde(rename = "Name")]
+    pub name: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for PublicDnsNamespace {
@@ -127,20 +127,20 @@ pub struct Service {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ServiceProperties {
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `DnsConfig`.
-    #[serde(rename="DnsConfig")]
-    pub dns_config: self::service::DnsConfig,
+    #[serde(rename = "DnsConfig")]
+    pub dns_config: ::Value<self::service::DnsConfig>,
     /// Property `HealthCheckConfig`.
-    #[serde(rename="HealthCheckConfig")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub health_check_config: Option<self::service::HealthCheckConfig>,
+    #[serde(rename = "HealthCheckConfig")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub health_check_config: Option<::Value<self::service::HealthCheckConfig>>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    #[serde(rename = "Name")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for Service {
@@ -169,37 +169,43 @@ pub mod service {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct DnsConfig {
         /// Property `DnsRecords`.
-        #[serde(rename="DnsRecords")]
-        pub dns_records: Vec<DnsRecord>,
+        #[serde(rename = "DnsRecords")]
+        pub dns_records: ::ValueList<DnsRecord>,
         /// Property `NamespaceId`.
-        #[serde(rename="NamespaceId")]
-        pub namespace_id: String,
+        #[serde(rename = "NamespaceId")]
+        pub namespace_id: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(DnsConfig);
 
     /// The [`AWS::ServiceDiscovery::Service.DnsRecord`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-dnsrecord.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct DnsRecord {
         /// Property `TTL`.
-        #[serde(rename="TTL")]
-        pub ttl: String,
+        #[serde(rename = "TTL")]
+        pub ttl: ::Value<String>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(rename = "Type")]
+        pub type_: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(DnsRecord);
 
     /// The [`AWS::ServiceDiscovery::Service.HealthCheckConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-healthcheckconfig.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct HealthCheckConfig {
         /// Property `FailureThreshold`.
-        #[serde(rename="FailureThreshold")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub failure_threshold: Option<f64>,
+        #[serde(rename = "FailureThreshold")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub failure_threshold: Option<::Value<f64>>,
         /// Property `ResourcePath`.
-        #[serde(rename="ResourcePath")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub resource_path: Option<String>,
+        #[serde(rename = "ResourcePath")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub resource_path: Option<::Value<String>>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(rename = "Type")]
+        pub type_: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(HealthCheckConfig);
 }

@@ -10,32 +10,32 @@ pub struct EnvironmentEC2 {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct EnvironmentEC2Properties {
     /// Property `AutomaticStopTimeMinutes`.
-    #[serde(rename="AutomaticStopTimeMinutes")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub automatic_stop_time_minutes: Option<u32>,
+    #[serde(rename = "AutomaticStopTimeMinutes")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub automatic_stop_time_minutes: Option<::Value<u32>>,
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `InstanceType`.
-    #[serde(rename="InstanceType")]
-    pub instance_type: String,
+    #[serde(rename = "InstanceType")]
+    pub instance_type: ::Value<String>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    #[serde(rename = "Name")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<::Value<String>>,
     /// Property `OwnerArn`.
-    #[serde(rename="OwnerArn")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub owner_arn: Option<String>,
+    #[serde(rename = "OwnerArn")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub owner_arn: Option<::Value<String>>,
     /// Property `Repositories`.
-    #[serde(rename="Repositories")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub repositories: Option<Vec<self::environment_ec2::Repository>>,
+    #[serde(rename = "Repositories")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub repositories: Option<::ValueList<self::environment_ec2::Repository>>,
     /// Property `SubnetId`.
-    #[serde(rename="SubnetId")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub subnet_id: Option<String>,
+    #[serde(rename = "SubnetId")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub subnet_id: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for EnvironmentEC2 {
@@ -64,10 +64,12 @@ pub mod environment_ec2 {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Repository {
         /// Property `PathComponent`.
-        #[serde(rename="PathComponent")]
-        pub path_component: String,
+        #[serde(rename = "PathComponent")]
+        pub path_component: ::Value<String>,
         /// Property `RepositoryUrl`.
-        #[serde(rename="RepositoryUrl")]
-        pub repository_url: String,
+        #[serde(rename = "RepositoryUrl")]
+        pub repository_url: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(Repository);
 }

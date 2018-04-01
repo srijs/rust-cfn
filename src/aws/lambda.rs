@@ -10,22 +10,22 @@ pub struct Alias {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AliasProperties {
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `FunctionName`.
-    #[serde(rename="FunctionName")]
-    pub function_name: String,
+    #[serde(rename = "FunctionName")]
+    pub function_name: ::Value<String>,
     /// Property `FunctionVersion`.
-    #[serde(rename="FunctionVersion")]
-    pub function_version: String,
+    #[serde(rename = "FunctionVersion")]
+    pub function_version: ::Value<String>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    pub name: String,
+    #[serde(rename = "Name")]
+    pub name: ::Value<String>,
     /// Property `RoutingConfig`.
-    #[serde(rename="RoutingConfig")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub routing_config: Option<self::alias::AliasRoutingConfiguration>,
+    #[serde(rename = "RoutingConfig")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub routing_config: Option<::Value<self::alias::AliasRoutingConfiguration>>,
 }
 
 impl<'a> ::Resource<'a> for Alias {
@@ -57,22 +57,22 @@ pub struct EventSourceMapping {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct EventSourceMappingProperties {
     /// Property `BatchSize`.
-    #[serde(rename="BatchSize")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub batch_size: Option<u32>,
+    #[serde(rename = "BatchSize")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub batch_size: Option<::Value<u32>>,
     /// Property `Enabled`.
-    #[serde(rename="Enabled")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub enabled: Option<bool>,
+    #[serde(rename = "Enabled")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub enabled: Option<::Value<bool>>,
     /// Property `EventSourceArn`.
-    #[serde(rename="EventSourceArn")]
-    pub event_source_arn: String,
+    #[serde(rename = "EventSourceArn")]
+    pub event_source_arn: ::Value<String>,
     /// Property `FunctionName`.
-    #[serde(rename="FunctionName")]
-    pub function_name: String,
+    #[serde(rename = "FunctionName")]
+    pub function_name: ::Value<String>,
     /// Property `StartingPosition`.
-    #[serde(rename="StartingPosition")]
-    pub starting_position: String,
+    #[serde(rename = "StartingPosition")]
+    pub starting_position: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for EventSourceMapping {
@@ -104,61 +104,61 @@ pub struct Function {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct FunctionProperties {
     /// Property `Code`.
-    #[serde(rename="Code")]
-    pub code: self::function::Code,
+    #[serde(rename = "Code")]
+    pub code: ::Value<self::function::Code>,
     /// Property `DeadLetterConfig`.
-    #[serde(rename="DeadLetterConfig")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub dead_letter_config: Option<self::function::DeadLetterConfig>,
+    #[serde(rename = "DeadLetterConfig")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub dead_letter_config: Option<::Value<self::function::DeadLetterConfig>>,
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `Environment`.
-    #[serde(rename="Environment")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub environment: Option<self::function::Environment>,
+    #[serde(rename = "Environment")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub environment: Option<::Value<self::function::Environment>>,
     /// Property `FunctionName`.
-    #[serde(rename="FunctionName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub function_name: Option<String>,
+    #[serde(rename = "FunctionName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub function_name: Option<::Value<String>>,
     /// Property `Handler`.
-    #[serde(rename="Handler")]
-    pub handler: String,
+    #[serde(rename = "Handler")]
+    pub handler: ::Value<String>,
     /// Property `KmsKeyArn`.
-    #[serde(rename="KmsKeyArn")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub kms_key_arn: Option<String>,
+    #[serde(rename = "KmsKeyArn")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub kms_key_arn: Option<::Value<String>>,
     /// Property `MemorySize`.
-    #[serde(rename="MemorySize")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub memory_size: Option<u32>,
+    #[serde(rename = "MemorySize")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub memory_size: Option<::Value<u32>>,
     /// Property `ReservedConcurrentExecutions`.
-    #[serde(rename="ReservedConcurrentExecutions")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub reserved_concurrent_executions: Option<u32>,
+    #[serde(rename = "ReservedConcurrentExecutions")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub reserved_concurrent_executions: Option<::Value<u32>>,
     /// Property `Role`.
-    #[serde(rename="Role")]
-    pub role: String,
+    #[serde(rename = "Role")]
+    pub role: ::Value<String>,
     /// Property `Runtime`.
-    #[serde(rename="Runtime")]
-    pub runtime: String,
+    #[serde(rename = "Runtime")]
+    pub runtime: ::Value<String>,
     /// Property `Tags`.
-    #[serde(rename="Tags")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub tags: Option<::Tags>,
+    #[serde(rename = "Tags")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::ValueList<::Tag>>,
     /// Property `Timeout`.
-    #[serde(rename="Timeout")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub timeout: Option<u32>,
+    #[serde(rename = "Timeout")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub timeout: Option<::Value<u32>>,
     /// Property `TracingConfig`.
-    #[serde(rename="TracingConfig")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub tracing_config: Option<self::function::TracingConfig>,
+    #[serde(rename = "TracingConfig")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub tracing_config: Option<::Value<self::function::TracingConfig>>,
     /// Property `VpcConfig`.
-    #[serde(rename="VpcConfig")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub vpc_config: Option<self::function::VpcConfig>,
+    #[serde(rename = "VpcConfig")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub vpc_config: Option<::Value<self::function::VpcConfig>>,
 }
 
 impl<'a> ::Resource<'a> for Function {
@@ -190,26 +190,26 @@ pub struct Permission {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct PermissionProperties {
     /// Property `Action`.
-    #[serde(rename="Action")]
-    pub action: String,
+    #[serde(rename = "Action")]
+    pub action: ::Value<String>,
     /// Property `EventSourceToken`.
-    #[serde(rename="EventSourceToken")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub event_source_token: Option<String>,
+    #[serde(rename = "EventSourceToken")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub event_source_token: Option<::Value<String>>,
     /// Property `FunctionName`.
-    #[serde(rename="FunctionName")]
-    pub function_name: String,
+    #[serde(rename = "FunctionName")]
+    pub function_name: ::Value<String>,
     /// Property `Principal`.
-    #[serde(rename="Principal")]
-    pub principal: String,
+    #[serde(rename = "Principal")]
+    pub principal: ::Value<String>,
     /// Property `SourceAccount`.
-    #[serde(rename="SourceAccount")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub source_account: Option<String>,
+    #[serde(rename = "SourceAccount")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub source_account: Option<::Value<String>>,
     /// Property `SourceArn`.
-    #[serde(rename="SourceArn")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub source_arn: Option<String>,
+    #[serde(rename = "SourceArn")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub source_arn: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for Permission {
@@ -241,16 +241,16 @@ pub struct Version {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct VersionProperties {
     /// Property `CodeSha256`.
-    #[serde(rename="CodeSha256")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub code_sha256: Option<String>,
+    #[serde(rename = "CodeSha256")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub code_sha256: Option<::Value<String>>,
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `FunctionName`.
-    #[serde(rename="FunctionName")]
-    pub function_name: String,
+    #[serde(rename = "FunctionName")]
+    pub function_name: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for Version {
@@ -279,20 +279,24 @@ pub mod alias {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct AliasRoutingConfiguration {
         /// Property `AdditionalVersionWeights`.
-        #[serde(rename="AdditionalVersionWeights")]
-        pub additional_version_weights: Vec<VersionWeight>,
+        #[serde(rename = "AdditionalVersionWeights")]
+        pub additional_version_weights: ::ValueList<VersionWeight>,
     }
+
+    cfn_internal__inherit_codec_impls!(AliasRoutingConfiguration);
 
     /// The [`AWS::Lambda::Alias.VersionWeight`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-alias-versionweight.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct VersionWeight {
         /// Property `FunctionVersion`.
-        #[serde(rename="FunctionVersion")]
-        pub function_version: String,
+        #[serde(rename = "FunctionVersion")]
+        pub function_version: ::Value<String>,
         /// Property `FunctionWeight`.
-        #[serde(rename="FunctionWeight")]
-        pub function_weight: f64,
+        #[serde(rename = "FunctionWeight")]
+        pub function_weight: ::Value<f64>,
     }
+
+    cfn_internal__inherit_codec_impls!(VersionWeight);
 }
 
 pub mod function {
@@ -302,58 +306,68 @@ pub mod function {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Code {
         /// Property `S3Bucket`.
-        #[serde(rename="S3Bucket")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub s3_bucket: Option<String>,
+        #[serde(rename = "S3Bucket")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub s3_bucket: Option<::Value<String>>,
         /// Property `S3Key`.
-        #[serde(rename="S3Key")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub s3_key: Option<String>,
+        #[serde(rename = "S3Key")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub s3_key: Option<::Value<String>>,
         /// Property `S3ObjectVersion`.
-        #[serde(rename="S3ObjectVersion")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub s3_object_version: Option<String>,
+        #[serde(rename = "S3ObjectVersion")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub s3_object_version: Option<::Value<String>>,
         /// Property `ZipFile`.
-        #[serde(rename="ZipFile")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub zip_file: Option<String>,
+        #[serde(rename = "ZipFile")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub zip_file: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(Code);
 
     /// The [`AWS::Lambda::Function.DeadLetterConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-deadletterconfig.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct DeadLetterConfig {
         /// Property `TargetArn`.
-        #[serde(rename="TargetArn")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub target_arn: Option<String>,
+        #[serde(rename = "TargetArn")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub target_arn: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(DeadLetterConfig);
 
     /// The [`AWS::Lambda::Function.Environment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-environment.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Environment {
         /// Property `Variables`.
-        #[serde(rename="Variables")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub variables: Option<::std::collections::HashMap<String, String>>,
+        #[serde(rename = "Variables")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub variables: Option<::std::collections::HashMap<String, ::Value<String>>>,
     }
+
+    cfn_internal__inherit_codec_impls!(Environment);
 
     /// The [`AWS::Lambda::Function.TracingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-tracingconfig.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct TracingConfig {
         /// Property `Mode`.
-        #[serde(rename="Mode")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub mode: Option<String>,
+        #[serde(rename = "Mode")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub mode: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(TracingConfig);
 
     /// The [`AWS::Lambda::Function.VpcConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-vpcconfig.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct VpcConfig {
         /// Property `SecurityGroupIds`.
-        #[serde(rename="SecurityGroupIds")]
-        pub security_group_ids: Vec<String>,
+        #[serde(rename = "SecurityGroupIds")]
+        pub security_group_ids: ::ValueList<String>,
         /// Property `SubnetIds`.
-        #[serde(rename="SubnetIds")]
-        pub subnet_ids: Vec<String>,
+        #[serde(rename = "SubnetIds")]
+        pub subnet_ids: ::ValueList<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(VpcConfig);
 }

@@ -10,20 +10,20 @@ pub struct Certificate {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CertificateProperties {
     /// Property `DomainName`.
-    #[serde(rename="DomainName")]
-    pub domain_name: String,
+    #[serde(rename = "DomainName")]
+    pub domain_name: ::Value<String>,
     /// Property `DomainValidationOptions`.
-    #[serde(rename="DomainValidationOptions")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub domain_validation_options: Option<Vec<self::certificate::DomainValidationOption>>,
+    #[serde(rename = "DomainValidationOptions")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub domain_validation_options: Option<::ValueList<self::certificate::DomainValidationOption>>,
     /// Property `SubjectAlternativeNames`.
-    #[serde(rename="SubjectAlternativeNames")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub subject_alternative_names: Option<Vec<String>>,
+    #[serde(rename = "SubjectAlternativeNames")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub subject_alternative_names: Option<::ValueList<String>>,
     /// Property `Tags`.
-    #[serde(rename="Tags")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub tags: Option<::Tags>,
+    #[serde(rename = "Tags")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::ValueList<::Tag>>,
 }
 
 impl<'a> ::Resource<'a> for Certificate {
@@ -52,10 +52,12 @@ pub mod certificate {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct DomainValidationOption {
         /// Property `DomainName`.
-        #[serde(rename="DomainName")]
-        pub domain_name: String,
+        #[serde(rename = "DomainName")]
+        pub domain_name: ::Value<String>,
         /// Property `ValidationDomain`.
-        #[serde(rename="ValidationDomain")]
-        pub validation_domain: String,
+        #[serde(rename = "ValidationDomain")]
+        pub validation_domain: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(DomainValidationOption);
 }

@@ -10,9 +10,9 @@ pub struct Account {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AccountProperties {
     /// Property `CloudWatchRoleArn`.
-    #[serde(rename="CloudWatchRoleArn")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub cloud_watch_role_arn: Option<String>,
+    #[serde(rename = "CloudWatchRoleArn")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub cloud_watch_role_arn: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for Account {
@@ -44,29 +44,29 @@ pub struct ApiKey {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ApiKeyProperties {
     /// Property `CustomerId`.
-    #[serde(rename="CustomerId")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub customer_id: Option<String>,
+    #[serde(rename = "CustomerId")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub customer_id: Option<::Value<String>>,
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `Enabled`.
-    #[serde(rename="Enabled")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub enabled: Option<bool>,
+    #[serde(rename = "Enabled")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub enabled: Option<::Value<bool>>,
     /// Property `GenerateDistinctId`.
-    #[serde(rename="GenerateDistinctId")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub generate_distinct_id: Option<bool>,
+    #[serde(rename = "GenerateDistinctId")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub generate_distinct_id: Option<::Value<bool>>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    #[serde(rename = "Name")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<::Value<String>>,
     /// Property `StageKeys`.
-    #[serde(rename="StageKeys")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub stage_keys: Option<Vec<self::api_key::StageKey>>,
+    #[serde(rename = "StageKeys")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub stage_keys: Option<::ValueList<self::api_key::StageKey>>,
 }
 
 impl<'a> ::Resource<'a> for ApiKey {
@@ -98,44 +98,44 @@ pub struct Authorizer {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AuthorizerProperties {
     /// Property `AuthType`.
-    #[serde(rename="AuthType")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub auth_type: Option<String>,
+    #[serde(rename = "AuthType")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub auth_type: Option<::Value<String>>,
     /// Property `AuthorizerCredentials`.
-    #[serde(rename="AuthorizerCredentials")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub authorizer_credentials: Option<String>,
+    #[serde(rename = "AuthorizerCredentials")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub authorizer_credentials: Option<::Value<String>>,
     /// Property `AuthorizerResultTtlInSeconds`.
-    #[serde(rename="AuthorizerResultTtlInSeconds")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub authorizer_result_ttl_in_seconds: Option<u32>,
+    #[serde(rename = "AuthorizerResultTtlInSeconds")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub authorizer_result_ttl_in_seconds: Option<::Value<u32>>,
     /// Property `AuthorizerUri`.
-    #[serde(rename="AuthorizerUri")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub authorizer_uri: Option<String>,
+    #[serde(rename = "AuthorizerUri")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub authorizer_uri: Option<::Value<String>>,
     /// Property `IdentitySource`.
-    #[serde(rename="IdentitySource")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub identity_source: Option<String>,
+    #[serde(rename = "IdentitySource")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub identity_source: Option<::Value<String>>,
     /// Property `IdentityValidationExpression`.
-    #[serde(rename="IdentityValidationExpression")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub identity_validation_expression: Option<String>,
+    #[serde(rename = "IdentityValidationExpression")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub identity_validation_expression: Option<::Value<String>>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    #[serde(rename = "Name")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<::Value<String>>,
     /// Property `ProviderARNs`.
-    #[serde(rename="ProviderARNs")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub provider_ar_ns: Option<Vec<String>>,
+    #[serde(rename = "ProviderARNs")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub provider_ar_ns: Option<::ValueList<String>>,
     /// Property `RestApiId`.
-    #[serde(rename="RestApiId")]
-    pub rest_api_id: String,
+    #[serde(rename = "RestApiId")]
+    pub rest_api_id: ::Value<String>,
     /// Property `Type`.
-    #[serde(rename="Type")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub type_: Option<String>,
+    #[serde(rename = "Type")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub type_: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for Authorizer {
@@ -167,20 +167,20 @@ pub struct BasePathMapping {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BasePathMappingProperties {
     /// Property `BasePath`.
-    #[serde(rename="BasePath")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub base_path: Option<String>,
+    #[serde(rename = "BasePath")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub base_path: Option<::Value<String>>,
     /// Property `DomainName`.
-    #[serde(rename="DomainName")]
-    pub domain_name: String,
+    #[serde(rename = "DomainName")]
+    pub domain_name: ::Value<String>,
     /// Property `RestApiId`.
-    #[serde(rename="RestApiId")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub rest_api_id: Option<String>,
+    #[serde(rename = "RestApiId")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub rest_api_id: Option<::Value<String>>,
     /// Property `Stage`.
-    #[serde(rename="Stage")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub stage: Option<String>,
+    #[serde(rename = "Stage")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub stage: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for BasePathMapping {
@@ -212,9 +212,9 @@ pub struct ClientCertificate {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ClientCertificateProperties {
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for ClientCertificate {
@@ -246,20 +246,20 @@ pub struct Deployment {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DeploymentProperties {
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `RestApiId`.
-    #[serde(rename="RestApiId")]
-    pub rest_api_id: String,
+    #[serde(rename = "RestApiId")]
+    pub rest_api_id: ::Value<String>,
     /// Property `StageDescription`.
-    #[serde(rename="StageDescription")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub stage_description: Option<self::deployment::StageDescription>,
+    #[serde(rename = "StageDescription")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub stage_description: Option<::Value<self::deployment::StageDescription>>,
     /// Property `StageName`.
-    #[serde(rename="StageName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub stage_name: Option<String>,
+    #[serde(rename = "StageName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub stage_name: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for Deployment {
@@ -291,14 +291,14 @@ pub struct DocumentationPart {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DocumentationPartProperties {
     /// Property `Location`.
-    #[serde(rename="Location")]
-    pub location: self::documentation_part::Location,
+    #[serde(rename = "Location")]
+    pub location: ::Value<self::documentation_part::Location>,
     /// Property `Properties`.
-    #[serde(rename="Properties")]
-    pub properties: String,
+    #[serde(rename = "Properties")]
+    pub properties: ::Value<String>,
     /// Property `RestApiId`.
-    #[serde(rename="RestApiId")]
-    pub rest_api_id: String,
+    #[serde(rename = "RestApiId")]
+    pub rest_api_id: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for DocumentationPart {
@@ -330,15 +330,15 @@ pub struct DocumentationVersion {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DocumentationVersionProperties {
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `DocumentationVersion`.
-    #[serde(rename="DocumentationVersion")]
-    pub documentation_version: String,
+    #[serde(rename = "DocumentationVersion")]
+    pub documentation_version: ::Value<String>,
     /// Property `RestApiId`.
-    #[serde(rename="RestApiId")]
-    pub rest_api_id: String,
+    #[serde(rename = "RestApiId")]
+    pub rest_api_id: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for DocumentationVersion {
@@ -370,20 +370,20 @@ pub struct DomainName {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DomainNameProperties {
     /// Property `CertificateArn`.
-    #[serde(rename="CertificateArn")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub certificate_arn: Option<String>,
+    #[serde(rename = "CertificateArn")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub certificate_arn: Option<::Value<String>>,
     /// Property `DomainName`.
-    #[serde(rename="DomainName")]
-    pub domain_name: String,
+    #[serde(rename = "DomainName")]
+    pub domain_name: ::Value<String>,
     /// Property `EndpointConfiguration`.
-    #[serde(rename="EndpointConfiguration")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub endpoint_configuration: Option<self::domain_name::EndpointConfiguration>,
+    #[serde(rename = "EndpointConfiguration")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub endpoint_configuration: Option<::Value<self::domain_name::EndpointConfiguration>>,
     /// Property `RegionalCertificateArn`.
-    #[serde(rename="RegionalCertificateArn")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub regional_certificate_arn: Option<String>,
+    #[serde(rename = "RegionalCertificateArn")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub regional_certificate_arn: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for DomainName {
@@ -415,23 +415,23 @@ pub struct GatewayResponse {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct GatewayResponseProperties {
     /// Property `ResponseParameters`.
-    #[serde(rename="ResponseParameters")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub response_parameters: Option<::std::collections::HashMap<String, String>>,
+    #[serde(rename = "ResponseParameters")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub response_parameters: Option<::std::collections::HashMap<String, ::Value<String>>>,
     /// Property `ResponseTemplates`.
-    #[serde(rename="ResponseTemplates")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub response_templates: Option<::std::collections::HashMap<String, String>>,
+    #[serde(rename = "ResponseTemplates")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub response_templates: Option<::std::collections::HashMap<String, ::Value<String>>>,
     /// Property `ResponseType`.
-    #[serde(rename="ResponseType")]
-    pub response_type: String,
+    #[serde(rename = "ResponseType")]
+    pub response_type: ::Value<String>,
     /// Property `RestApiId`.
-    #[serde(rename="RestApiId")]
-    pub rest_api_id: String,
+    #[serde(rename = "RestApiId")]
+    pub rest_api_id: ::Value<String>,
     /// Property `StatusCode`.
-    #[serde(rename="StatusCode")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub status_code: Option<String>,
+    #[serde(rename = "StatusCode")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub status_code: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for GatewayResponse {
@@ -463,50 +463,50 @@ pub struct Method {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct MethodProperties {
     /// Property `ApiKeyRequired`.
-    #[serde(rename="ApiKeyRequired")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub api_key_required: Option<bool>,
+    #[serde(rename = "ApiKeyRequired")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub api_key_required: Option<::Value<bool>>,
     /// Property `AuthorizationType`.
-    #[serde(rename="AuthorizationType")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub authorization_type: Option<String>,
+    #[serde(rename = "AuthorizationType")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub authorization_type: Option<::Value<String>>,
     /// Property `AuthorizerId`.
-    #[serde(rename="AuthorizerId")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub authorizer_id: Option<String>,
+    #[serde(rename = "AuthorizerId")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub authorizer_id: Option<::Value<String>>,
     /// Property `HttpMethod`.
-    #[serde(rename="HttpMethod")]
-    pub http_method: String,
+    #[serde(rename = "HttpMethod")]
+    pub http_method: ::Value<String>,
     /// Property `Integration`.
-    #[serde(rename="Integration")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub integration: Option<self::method::Integration>,
+    #[serde(rename = "Integration")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub integration: Option<::Value<self::method::Integration>>,
     /// Property `MethodResponses`.
-    #[serde(rename="MethodResponses")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub method_responses: Option<Vec<self::method::MethodResponse>>,
+    #[serde(rename = "MethodResponses")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub method_responses: Option<::ValueList<self::method::MethodResponse>>,
     /// Property `OperationName`.
-    #[serde(rename="OperationName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub operation_name: Option<String>,
+    #[serde(rename = "OperationName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub operation_name: Option<::Value<String>>,
     /// Property `RequestModels`.
-    #[serde(rename="RequestModels")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub request_models: Option<::std::collections::HashMap<String, String>>,
+    #[serde(rename = "RequestModels")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub request_models: Option<::std::collections::HashMap<String, ::Value<String>>>,
     /// Property `RequestParameters`.
-    #[serde(rename="RequestParameters")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub request_parameters: Option<::std::collections::HashMap<String, bool>>,
+    #[serde(rename = "RequestParameters")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub request_parameters: Option<::std::collections::HashMap<String, ::Value<bool>>>,
     /// Property `RequestValidatorId`.
-    #[serde(rename="RequestValidatorId")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub request_validator_id: Option<String>,
+    #[serde(rename = "RequestValidatorId")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub request_validator_id: Option<::Value<String>>,
     /// Property `ResourceId`.
-    #[serde(rename="ResourceId")]
-    pub resource_id: String,
+    #[serde(rename = "ResourceId")]
+    pub resource_id: ::Value<String>,
     /// Property `RestApiId`.
-    #[serde(rename="RestApiId")]
-    pub rest_api_id: String,
+    #[serde(rename = "RestApiId")]
+    pub rest_api_id: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for Method {
@@ -538,24 +538,24 @@ pub struct Model {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ModelProperties {
     /// Property `ContentType`.
-    #[serde(rename="ContentType")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub content_type: Option<String>,
+    #[serde(rename = "ContentType")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub content_type: Option<::Value<String>>,
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    #[serde(rename = "Name")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<::Value<String>>,
     /// Property `RestApiId`.
-    #[serde(rename="RestApiId")]
-    pub rest_api_id: String,
+    #[serde(rename = "RestApiId")]
+    pub rest_api_id: ::Value<String>,
     /// Property `Schema`.
-    #[serde(rename="Schema")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub schema: Option<::json::Value>,
+    #[serde(rename = "Schema")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub schema: Option<::Value<::json::Value>>,
 }
 
 impl<'a> ::Resource<'a> for Model {
@@ -587,20 +587,20 @@ pub struct RequestValidator {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct RequestValidatorProperties {
     /// Property `Name`.
-    #[serde(rename="Name")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    #[serde(rename = "Name")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<::Value<String>>,
     /// Property `RestApiId`.
-    #[serde(rename="RestApiId")]
-    pub rest_api_id: String,
+    #[serde(rename = "RestApiId")]
+    pub rest_api_id: ::Value<String>,
     /// Property `ValidateRequestBody`.
-    #[serde(rename="ValidateRequestBody")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub validate_request_body: Option<bool>,
+    #[serde(rename = "ValidateRequestBody")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub validate_request_body: Option<::Value<bool>>,
     /// Property `ValidateRequestParameters`.
-    #[serde(rename="ValidateRequestParameters")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub validate_request_parameters: Option<bool>,
+    #[serde(rename = "ValidateRequestParameters")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub validate_request_parameters: Option<::Value<bool>>,
 }
 
 impl<'a> ::Resource<'a> for RequestValidator {
@@ -632,14 +632,14 @@ pub struct Resource {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ResourceProperties {
     /// Property `ParentId`.
-    #[serde(rename="ParentId")]
-    pub parent_id: String,
+    #[serde(rename = "ParentId")]
+    pub parent_id: ::Value<String>,
     /// Property `PathPart`.
-    #[serde(rename="PathPart")]
-    pub path_part: String,
+    #[serde(rename = "PathPart")]
+    pub path_part: ::Value<String>,
     /// Property `RestApiId`.
-    #[serde(rename="RestApiId")]
-    pub rest_api_id: String,
+    #[serde(rename = "RestApiId")]
+    pub rest_api_id: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for Resource {
@@ -671,49 +671,49 @@ pub struct RestApi {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct RestApiProperties {
     /// Property `ApiKeySourceType`.
-    #[serde(rename="ApiKeySourceType")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub api_key_source_type: Option<String>,
+    #[serde(rename = "ApiKeySourceType")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub api_key_source_type: Option<::Value<String>>,
     /// Property `BinaryMediaTypes`.
-    #[serde(rename="BinaryMediaTypes")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub binary_media_types: Option<Vec<String>>,
+    #[serde(rename = "BinaryMediaTypes")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub binary_media_types: Option<::ValueList<String>>,
     /// Property `Body`.
-    #[serde(rename="Body")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub body: Option<::json::Value>,
+    #[serde(rename = "Body")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub body: Option<::Value<::json::Value>>,
     /// Property `BodyS3Location`.
-    #[serde(rename="BodyS3Location")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub body_s3_location: Option<self::rest_api::S3Location>,
+    #[serde(rename = "BodyS3Location")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub body_s3_location: Option<::Value<self::rest_api::S3Location>>,
     /// Property `CloneFrom`.
-    #[serde(rename="CloneFrom")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub clone_from: Option<String>,
+    #[serde(rename = "CloneFrom")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub clone_from: Option<::Value<String>>,
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `EndpointConfiguration`.
-    #[serde(rename="EndpointConfiguration")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub endpoint_configuration: Option<self::rest_api::EndpointConfiguration>,
+    #[serde(rename = "EndpointConfiguration")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub endpoint_configuration: Option<::Value<self::rest_api::EndpointConfiguration>>,
     /// Property `FailOnWarnings`.
-    #[serde(rename="FailOnWarnings")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub fail_on_warnings: Option<bool>,
+    #[serde(rename = "FailOnWarnings")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub fail_on_warnings: Option<::Value<bool>>,
     /// Property `MinimumCompressionSize`.
-    #[serde(rename="MinimumCompressionSize")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub minimum_compression_size: Option<u32>,
+    #[serde(rename = "MinimumCompressionSize")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub minimum_compression_size: Option<::Value<u32>>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    #[serde(rename = "Name")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<::Value<String>>,
     /// Property `Parameters`.
-    #[serde(rename="Parameters")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub parameters: Option<::std::collections::HashMap<String, String>>,
+    #[serde(rename = "Parameters")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub parameters: Option<::std::collections::HashMap<String, ::Value<String>>>,
 }
 
 impl<'a> ::Resource<'a> for RestApi {
@@ -745,44 +745,44 @@ pub struct Stage {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct StageProperties {
     /// Property `CacheClusterEnabled`.
-    #[serde(rename="CacheClusterEnabled")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub cache_cluster_enabled: Option<bool>,
+    #[serde(rename = "CacheClusterEnabled")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub cache_cluster_enabled: Option<::Value<bool>>,
     /// Property `CacheClusterSize`.
-    #[serde(rename="CacheClusterSize")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub cache_cluster_size: Option<String>,
+    #[serde(rename = "CacheClusterSize")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub cache_cluster_size: Option<::Value<String>>,
     /// Property `ClientCertificateId`.
-    #[serde(rename="ClientCertificateId")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub client_certificate_id: Option<String>,
+    #[serde(rename = "ClientCertificateId")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub client_certificate_id: Option<::Value<String>>,
     /// Property `DeploymentId`.
-    #[serde(rename="DeploymentId")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub deployment_id: Option<String>,
+    #[serde(rename = "DeploymentId")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub deployment_id: Option<::Value<String>>,
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `DocumentationVersion`.
-    #[serde(rename="DocumentationVersion")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub documentation_version: Option<String>,
+    #[serde(rename = "DocumentationVersion")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub documentation_version: Option<::Value<String>>,
     /// Property `MethodSettings`.
-    #[serde(rename="MethodSettings")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub method_settings: Option<Vec<self::stage::MethodSetting>>,
+    #[serde(rename = "MethodSettings")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub method_settings: Option<::ValueList<self::stage::MethodSetting>>,
     /// Property `RestApiId`.
-    #[serde(rename="RestApiId")]
-    pub rest_api_id: String,
+    #[serde(rename = "RestApiId")]
+    pub rest_api_id: ::Value<String>,
     /// Property `StageName`.
-    #[serde(rename="StageName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub stage_name: Option<String>,
+    #[serde(rename = "StageName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub stage_name: Option<::Value<String>>,
     /// Property `Variables`.
-    #[serde(rename="Variables")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub variables: Option<::std::collections::HashMap<String, String>>,
+    #[serde(rename = "Variables")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub variables: Option<::std::collections::HashMap<String, ::Value<String>>>,
 }
 
 impl<'a> ::Resource<'a> for Stage {
@@ -814,25 +814,25 @@ pub struct UsagePlan {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct UsagePlanProperties {
     /// Property `ApiStages`.
-    #[serde(rename="ApiStages")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub api_stages: Option<Vec<self::usage_plan::ApiStage>>,
+    #[serde(rename = "ApiStages")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub api_stages: Option<::ValueList<self::usage_plan::ApiStage>>,
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `Quota`.
-    #[serde(rename="Quota")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub quota: Option<self::usage_plan::QuotaSettings>,
+    #[serde(rename = "Quota")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub quota: Option<::Value<self::usage_plan::QuotaSettings>>,
     /// Property `Throttle`.
-    #[serde(rename="Throttle")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub throttle: Option<self::usage_plan::ThrottleSettings>,
+    #[serde(rename = "Throttle")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub throttle: Option<::Value<self::usage_plan::ThrottleSettings>>,
     /// Property `UsagePlanName`.
-    #[serde(rename="UsagePlanName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub usage_plan_name: Option<String>,
+    #[serde(rename = "UsagePlanName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub usage_plan_name: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for UsagePlan {
@@ -864,14 +864,14 @@ pub struct UsagePlanKey {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct UsagePlanKeyProperties {
     /// Property `KeyId`.
-    #[serde(rename="KeyId")]
-    pub key_id: String,
+    #[serde(rename = "KeyId")]
+    pub key_id: ::Value<String>,
     /// Property `KeyType`.
-    #[serde(rename="KeyType")]
-    pub key_type: String,
+    #[serde(rename = "KeyType")]
+    pub key_type: ::Value<String>,
     /// Property `UsagePlanId`.
-    #[serde(rename="UsagePlanId")]
-    pub usage_plan_id: String,
+    #[serde(rename = "UsagePlanId")]
+    pub usage_plan_id: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for UsagePlanKey {
@@ -903,15 +903,15 @@ pub struct VpcLink {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct VpcLinkProperties {
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    pub name: String,
+    #[serde(rename = "Name")]
+    pub name: ::Value<String>,
     /// Property `TargetArns`.
-    #[serde(rename="TargetArns")]
-    pub target_arns: Vec<String>,
+    #[serde(rename = "TargetArns")]
+    pub target_arns: ::ValueList<String>,
 }
 
 impl<'a> ::Resource<'a> for VpcLink {
@@ -940,14 +940,16 @@ pub mod api_key {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct StageKey {
         /// Property `RestApiId`.
-        #[serde(rename="RestApiId")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub rest_api_id: Option<String>,
+        #[serde(rename = "RestApiId")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub rest_api_id: Option<::Value<String>>,
         /// Property `StageName`.
-        #[serde(rename="StageName")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub stage_name: Option<String>,
+        #[serde(rename = "StageName")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub stage_name: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(StageKey);
 }
 
 pub mod deployment {
@@ -957,111 +959,115 @@ pub mod deployment {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct MethodSetting {
         /// Property `CacheDataEncrypted`.
-        #[serde(rename="CacheDataEncrypted")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub cache_data_encrypted: Option<bool>,
+        #[serde(rename = "CacheDataEncrypted")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub cache_data_encrypted: Option<::Value<bool>>,
         /// Property `CacheTtlInSeconds`.
-        #[serde(rename="CacheTtlInSeconds")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub cache_ttl_in_seconds: Option<u32>,
+        #[serde(rename = "CacheTtlInSeconds")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub cache_ttl_in_seconds: Option<::Value<u32>>,
         /// Property `CachingEnabled`.
-        #[serde(rename="CachingEnabled")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub caching_enabled: Option<bool>,
+        #[serde(rename = "CachingEnabled")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub caching_enabled: Option<::Value<bool>>,
         /// Property `DataTraceEnabled`.
-        #[serde(rename="DataTraceEnabled")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub data_trace_enabled: Option<bool>,
+        #[serde(rename = "DataTraceEnabled")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub data_trace_enabled: Option<::Value<bool>>,
         /// Property `HttpMethod`.
-        #[serde(rename="HttpMethod")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub http_method: Option<String>,
+        #[serde(rename = "HttpMethod")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub http_method: Option<::Value<String>>,
         /// Property `LoggingLevel`.
-        #[serde(rename="LoggingLevel")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub logging_level: Option<String>,
+        #[serde(rename = "LoggingLevel")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub logging_level: Option<::Value<String>>,
         /// Property `MetricsEnabled`.
-        #[serde(rename="MetricsEnabled")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub metrics_enabled: Option<bool>,
+        #[serde(rename = "MetricsEnabled")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub metrics_enabled: Option<::Value<bool>>,
         /// Property `ResourcePath`.
-        #[serde(rename="ResourcePath")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub resource_path: Option<String>,
+        #[serde(rename = "ResourcePath")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub resource_path: Option<::Value<String>>,
         /// Property `ThrottlingBurstLimit`.
-        #[serde(rename="ThrottlingBurstLimit")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub throttling_burst_limit: Option<u32>,
+        #[serde(rename = "ThrottlingBurstLimit")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub throttling_burst_limit: Option<::Value<u32>>,
         /// Property `ThrottlingRateLimit`.
-        #[serde(rename="ThrottlingRateLimit")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub throttling_rate_limit: Option<f64>,
+        #[serde(rename = "ThrottlingRateLimit")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub throttling_rate_limit: Option<::Value<f64>>,
     }
+
+    cfn_internal__inherit_codec_impls!(MethodSetting);
 
     /// The [`AWS::ApiGateway::Deployment.StageDescription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct StageDescription {
         /// Property `CacheClusterEnabled`.
-        #[serde(rename="CacheClusterEnabled")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub cache_cluster_enabled: Option<bool>,
+        #[serde(rename = "CacheClusterEnabled")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub cache_cluster_enabled: Option<::Value<bool>>,
         /// Property `CacheClusterSize`.
-        #[serde(rename="CacheClusterSize")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub cache_cluster_size: Option<String>,
+        #[serde(rename = "CacheClusterSize")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub cache_cluster_size: Option<::Value<String>>,
         /// Property `CacheDataEncrypted`.
-        #[serde(rename="CacheDataEncrypted")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub cache_data_encrypted: Option<bool>,
+        #[serde(rename = "CacheDataEncrypted")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub cache_data_encrypted: Option<::Value<bool>>,
         /// Property `CacheTtlInSeconds`.
-        #[serde(rename="CacheTtlInSeconds")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub cache_ttl_in_seconds: Option<u32>,
+        #[serde(rename = "CacheTtlInSeconds")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub cache_ttl_in_seconds: Option<::Value<u32>>,
         /// Property `CachingEnabled`.
-        #[serde(rename="CachingEnabled")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub caching_enabled: Option<bool>,
+        #[serde(rename = "CachingEnabled")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub caching_enabled: Option<::Value<bool>>,
         /// Property `ClientCertificateId`.
-        #[serde(rename="ClientCertificateId")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub client_certificate_id: Option<String>,
+        #[serde(rename = "ClientCertificateId")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub client_certificate_id: Option<::Value<String>>,
         /// Property `DataTraceEnabled`.
-        #[serde(rename="DataTraceEnabled")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub data_trace_enabled: Option<bool>,
+        #[serde(rename = "DataTraceEnabled")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub data_trace_enabled: Option<::Value<bool>>,
         /// Property `Description`.
-        #[serde(rename="Description")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub description: Option<String>,
+        #[serde(rename = "Description")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub description: Option<::Value<String>>,
         /// Property `DocumentationVersion`.
-        #[serde(rename="DocumentationVersion")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub documentation_version: Option<String>,
+        #[serde(rename = "DocumentationVersion")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub documentation_version: Option<::Value<String>>,
         /// Property `LoggingLevel`.
-        #[serde(rename="LoggingLevel")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub logging_level: Option<String>,
+        #[serde(rename = "LoggingLevel")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub logging_level: Option<::Value<String>>,
         /// Property `MethodSettings`.
-        #[serde(rename="MethodSettings")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub method_settings: Option<Vec<MethodSetting>>,
+        #[serde(rename = "MethodSettings")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub method_settings: Option<::ValueList<MethodSetting>>,
         /// Property `MetricsEnabled`.
-        #[serde(rename="MetricsEnabled")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub metrics_enabled: Option<bool>,
+        #[serde(rename = "MetricsEnabled")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub metrics_enabled: Option<::Value<bool>>,
         /// Property `ThrottlingBurstLimit`.
-        #[serde(rename="ThrottlingBurstLimit")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub throttling_burst_limit: Option<u32>,
+        #[serde(rename = "ThrottlingBurstLimit")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub throttling_burst_limit: Option<::Value<u32>>,
         /// Property `ThrottlingRateLimit`.
-        #[serde(rename="ThrottlingRateLimit")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub throttling_rate_limit: Option<f64>,
+        #[serde(rename = "ThrottlingRateLimit")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub throttling_rate_limit: Option<::Value<f64>>,
         /// Property `Variables`.
-        #[serde(rename="Variables")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub variables: Option<::std::collections::HashMap<String, String>>,
+        #[serde(rename = "Variables")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub variables: Option<::std::collections::HashMap<String, ::Value<String>>>,
     }
+
+    cfn_internal__inherit_codec_impls!(StageDescription);
 }
 
 pub mod documentation_part {
@@ -1071,26 +1077,28 @@ pub mod documentation_part {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Location {
         /// Property `Method`.
-        #[serde(rename="Method")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub method: Option<String>,
+        #[serde(rename = "Method")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub method: Option<::Value<String>>,
         /// Property `Name`.
-        #[serde(rename="Name")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub name: Option<String>,
+        #[serde(rename = "Name")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub name: Option<::Value<String>>,
         /// Property `Path`.
-        #[serde(rename="Path")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub path: Option<String>,
+        #[serde(rename = "Path")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub path: Option<::Value<String>>,
         /// Property `StatusCode`.
-        #[serde(rename="StatusCode")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub status_code: Option<String>,
+        #[serde(rename = "StatusCode")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub status_code: Option<::Value<String>>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub type_: Option<String>,
+        #[serde(rename = "Type")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub type_: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(Location);
 }
 
 pub mod domain_name {
@@ -1100,10 +1108,12 @@ pub mod domain_name {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct EndpointConfiguration {
         /// Property `Types`.
-        #[serde(rename="Types")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub types: Option<Vec<String>>,
+        #[serde(rename = "Types")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub types: Option<::ValueList<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(EndpointConfiguration);
 }
 
 pub mod method {
@@ -1113,90 +1123,96 @@ pub mod method {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Integration {
         /// Property `CacheKeyParameters`.
-        #[serde(rename="CacheKeyParameters")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub cache_key_parameters: Option<Vec<String>>,
+        #[serde(rename = "CacheKeyParameters")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub cache_key_parameters: Option<::ValueList<String>>,
         /// Property `CacheNamespace`.
-        #[serde(rename="CacheNamespace")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub cache_namespace: Option<String>,
+        #[serde(rename = "CacheNamespace")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub cache_namespace: Option<::Value<String>>,
         /// Property `ContentHandling`.
-        #[serde(rename="ContentHandling")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub content_handling: Option<String>,
+        #[serde(rename = "ContentHandling")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub content_handling: Option<::Value<String>>,
         /// Property `Credentials`.
-        #[serde(rename="Credentials")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub credentials: Option<String>,
+        #[serde(rename = "Credentials")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub credentials: Option<::Value<String>>,
         /// Property `IntegrationHttpMethod`.
-        #[serde(rename="IntegrationHttpMethod")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub integration_http_method: Option<String>,
+        #[serde(rename = "IntegrationHttpMethod")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub integration_http_method: Option<::Value<String>>,
         /// Property `IntegrationResponses`.
-        #[serde(rename="IntegrationResponses")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub integration_responses: Option<Vec<IntegrationResponse>>,
+        #[serde(rename = "IntegrationResponses")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub integration_responses: Option<::ValueList<IntegrationResponse>>,
         /// Property `PassthroughBehavior`.
-        #[serde(rename="PassthroughBehavior")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub passthrough_behavior: Option<String>,
+        #[serde(rename = "PassthroughBehavior")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub passthrough_behavior: Option<::Value<String>>,
         /// Property `RequestParameters`.
-        #[serde(rename="RequestParameters")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub request_parameters: Option<::std::collections::HashMap<String, String>>,
+        #[serde(rename = "RequestParameters")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub request_parameters: Option<::std::collections::HashMap<String, ::Value<String>>>,
         /// Property `RequestTemplates`.
-        #[serde(rename="RequestTemplates")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub request_templates: Option<::std::collections::HashMap<String, String>>,
+        #[serde(rename = "RequestTemplates")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub request_templates: Option<::std::collections::HashMap<String, ::Value<String>>>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub type_: Option<String>,
+        #[serde(rename = "Type")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub type_: Option<::Value<String>>,
         /// Property `Uri`.
-        #[serde(rename="Uri")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub uri: Option<String>,
+        #[serde(rename = "Uri")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub uri: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(Integration);
 
     /// The [`AWS::ApiGateway::Method.IntegrationResponse`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-method-integration-integrationresponse.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct IntegrationResponse {
         /// Property `ContentHandling`.
-        #[serde(rename="ContentHandling")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub content_handling: Option<String>,
+        #[serde(rename = "ContentHandling")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub content_handling: Option<::Value<String>>,
         /// Property `ResponseParameters`.
-        #[serde(rename="ResponseParameters")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub response_parameters: Option<::std::collections::HashMap<String, String>>,
+        #[serde(rename = "ResponseParameters")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub response_parameters: Option<::std::collections::HashMap<String, ::Value<String>>>,
         /// Property `ResponseTemplates`.
-        #[serde(rename="ResponseTemplates")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub response_templates: Option<::std::collections::HashMap<String, String>>,
+        #[serde(rename = "ResponseTemplates")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub response_templates: Option<::std::collections::HashMap<String, ::Value<String>>>,
         /// Property `SelectionPattern`.
-        #[serde(rename="SelectionPattern")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub selection_pattern: Option<String>,
+        #[serde(rename = "SelectionPattern")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub selection_pattern: Option<::Value<String>>,
         /// Property `StatusCode`.
-        #[serde(rename="StatusCode")]
-        pub status_code: String,
+        #[serde(rename = "StatusCode")]
+        pub status_code: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(IntegrationResponse);
 
     /// The [`AWS::ApiGateway::Method.MethodResponse`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-method-methodresponse.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct MethodResponse {
         /// Property `ResponseModels`.
-        #[serde(rename="ResponseModels")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub response_models: Option<::std::collections::HashMap<String, String>>,
+        #[serde(rename = "ResponseModels")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub response_models: Option<::std::collections::HashMap<String, ::Value<String>>>,
         /// Property `ResponseParameters`.
-        #[serde(rename="ResponseParameters")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub response_parameters: Option<::std::collections::HashMap<String, bool>>,
+        #[serde(rename = "ResponseParameters")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub response_parameters: Option<::std::collections::HashMap<String, ::Value<bool>>>,
         /// Property `StatusCode`.
-        #[serde(rename="StatusCode")]
-        pub status_code: String,
+        #[serde(rename = "StatusCode")]
+        pub status_code: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(MethodResponse);
 }
 
 pub mod rest_api {
@@ -1206,31 +1222,35 @@ pub mod rest_api {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct EndpointConfiguration {
         /// Property `Types`.
-        #[serde(rename="Types")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub types: Option<Vec<String>>,
+        #[serde(rename = "Types")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub types: Option<::ValueList<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(EndpointConfiguration);
 
     /// The [`AWS::ApiGateway::RestApi.S3Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-restapi-s3location.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct S3Location {
         /// Property `Bucket`.
-        #[serde(rename="Bucket")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub bucket: Option<String>,
+        #[serde(rename = "Bucket")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub bucket: Option<::Value<String>>,
         /// Property `ETag`.
-        #[serde(rename="ETag")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub e_tag: Option<String>,
+        #[serde(rename = "ETag")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub e_tag: Option<::Value<String>>,
         /// Property `Key`.
-        #[serde(rename="Key")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub key: Option<String>,
+        #[serde(rename = "Key")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub key: Option<::Value<String>>,
         /// Property `Version`.
-        #[serde(rename="Version")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub version: Option<String>,
+        #[serde(rename = "Version")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub version: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(S3Location);
 }
 
 pub mod stage {
@@ -1240,46 +1260,48 @@ pub mod stage {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct MethodSetting {
         /// Property `CacheDataEncrypted`.
-        #[serde(rename="CacheDataEncrypted")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub cache_data_encrypted: Option<bool>,
+        #[serde(rename = "CacheDataEncrypted")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub cache_data_encrypted: Option<::Value<bool>>,
         /// Property `CacheTtlInSeconds`.
-        #[serde(rename="CacheTtlInSeconds")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub cache_ttl_in_seconds: Option<u32>,
+        #[serde(rename = "CacheTtlInSeconds")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub cache_ttl_in_seconds: Option<::Value<u32>>,
         /// Property `CachingEnabled`.
-        #[serde(rename="CachingEnabled")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub caching_enabled: Option<bool>,
+        #[serde(rename = "CachingEnabled")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub caching_enabled: Option<::Value<bool>>,
         /// Property `DataTraceEnabled`.
-        #[serde(rename="DataTraceEnabled")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub data_trace_enabled: Option<bool>,
+        #[serde(rename = "DataTraceEnabled")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub data_trace_enabled: Option<::Value<bool>>,
         /// Property `HttpMethod`.
-        #[serde(rename="HttpMethod")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub http_method: Option<String>,
+        #[serde(rename = "HttpMethod")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub http_method: Option<::Value<String>>,
         /// Property `LoggingLevel`.
-        #[serde(rename="LoggingLevel")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub logging_level: Option<String>,
+        #[serde(rename = "LoggingLevel")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub logging_level: Option<::Value<String>>,
         /// Property `MetricsEnabled`.
-        #[serde(rename="MetricsEnabled")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub metrics_enabled: Option<bool>,
+        #[serde(rename = "MetricsEnabled")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub metrics_enabled: Option<::Value<bool>>,
         /// Property `ResourcePath`.
-        #[serde(rename="ResourcePath")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub resource_path: Option<String>,
+        #[serde(rename = "ResourcePath")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub resource_path: Option<::Value<String>>,
         /// Property `ThrottlingBurstLimit`.
-        #[serde(rename="ThrottlingBurstLimit")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub throttling_burst_limit: Option<u32>,
+        #[serde(rename = "ThrottlingBurstLimit")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub throttling_burst_limit: Option<::Value<u32>>,
         /// Property `ThrottlingRateLimit`.
-        #[serde(rename="ThrottlingRateLimit")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub throttling_rate_limit: Option<f64>,
+        #[serde(rename = "ThrottlingRateLimit")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub throttling_rate_limit: Option<::Value<f64>>,
     }
+
+    cfn_internal__inherit_codec_impls!(MethodSetting);
 }
 
 pub mod usage_plan {
@@ -1289,42 +1311,48 @@ pub mod usage_plan {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct ApiStage {
         /// Property `ApiId`.
-        #[serde(rename="ApiId")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub api_id: Option<String>,
+        #[serde(rename = "ApiId")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub api_id: Option<::Value<String>>,
         /// Property `Stage`.
-        #[serde(rename="Stage")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub stage: Option<String>,
+        #[serde(rename = "Stage")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub stage: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(ApiStage);
 
     /// The [`AWS::ApiGateway::UsagePlan.QuotaSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-quotasettings.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct QuotaSettings {
         /// Property `Limit`.
-        #[serde(rename="Limit")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub limit: Option<u32>,
+        #[serde(rename = "Limit")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub limit: Option<::Value<u32>>,
         /// Property `Offset`.
-        #[serde(rename="Offset")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub offset: Option<u32>,
+        #[serde(rename = "Offset")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub offset: Option<::Value<u32>>,
         /// Property `Period`.
-        #[serde(rename="Period")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub period: Option<String>,
+        #[serde(rename = "Period")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub period: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(QuotaSettings);
 
     /// The [`AWS::ApiGateway::UsagePlan.ThrottleSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-throttlesettings.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct ThrottleSettings {
         /// Property `BurstLimit`.
-        #[serde(rename="BurstLimit")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub burst_limit: Option<u32>,
+        #[serde(rename = "BurstLimit")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub burst_limit: Option<::Value<u32>>,
         /// Property `RateLimit`.
-        #[serde(rename="RateLimit")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub rate_limit: Option<f64>,
+        #[serde(rename = "RateLimit")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub rate_limit: Option<::Value<f64>>,
     }
+
+    cfn_internal__inherit_codec_impls!(ThrottleSettings);
 }

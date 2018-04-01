@@ -10,8 +10,8 @@ pub struct CustomResource {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CustomResourceProperties {
     /// Property `ServiceToken`.
-    #[serde(rename="ServiceToken")]
-    pub service_token: String,
+    #[serde(rename = "ServiceToken")]
+    pub service_token: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for CustomResource {
@@ -43,24 +43,24 @@ pub struct Stack {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct StackProperties {
     /// Property `NotificationARNs`.
-    #[serde(rename="NotificationARNs")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub notification_ar_ns: Option<Vec<String>>,
+    #[serde(rename = "NotificationARNs")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub notification_ar_ns: Option<::ValueList<String>>,
     /// Property `Parameters`.
-    #[serde(rename="Parameters")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub parameters: Option<::std::collections::HashMap<String, String>>,
+    #[serde(rename = "Parameters")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub parameters: Option<::std::collections::HashMap<String, ::Value<String>>>,
     /// Property `Tags`.
-    #[serde(rename="Tags")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub tags: Option<::Tags>,
+    #[serde(rename = "Tags")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::ValueList<::Tag>>,
     /// Property `TemplateURL`.
-    #[serde(rename="TemplateURL")]
-    pub template_url: String,
+    #[serde(rename = "TemplateURL")]
+    pub template_url: ::Value<String>,
     /// Property `TimeoutInMinutes`.
-    #[serde(rename="TimeoutInMinutes")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub timeout_in_minutes: Option<u32>,
+    #[serde(rename = "TimeoutInMinutes")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub timeout_in_minutes: Option<::Value<u32>>,
 }
 
 impl<'a> ::Resource<'a> for Stack {
@@ -92,15 +92,15 @@ pub struct WaitCondition {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct WaitConditionProperties {
     /// Property `Count`.
-    #[serde(rename="Count")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub count: Option<u32>,
+    #[serde(rename = "Count")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub count: Option<::Value<u32>>,
     /// Property `Handle`.
-    #[serde(rename="Handle")]
-    pub handle: String,
+    #[serde(rename = "Handle")]
+    pub handle: ::Value<String>,
     /// Property `Timeout`.
-    #[serde(rename="Timeout")]
-    pub timeout: String,
+    #[serde(rename = "Timeout")]
+    pub timeout: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for WaitCondition {

@@ -10,49 +10,49 @@ pub struct Queue {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct QueueProperties {
     /// Property `ContentBasedDeduplication`.
-    #[serde(rename="ContentBasedDeduplication")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub content_based_deduplication: Option<bool>,
+    #[serde(rename = "ContentBasedDeduplication")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub content_based_deduplication: Option<::Value<bool>>,
     /// Property `DelaySeconds`.
-    #[serde(rename="DelaySeconds")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub delay_seconds: Option<u32>,
+    #[serde(rename = "DelaySeconds")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub delay_seconds: Option<::Value<u32>>,
     /// Property `FifoQueue`.
-    #[serde(rename="FifoQueue")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub fifo_queue: Option<bool>,
+    #[serde(rename = "FifoQueue")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub fifo_queue: Option<::Value<bool>>,
     /// Property `KmsDataKeyReusePeriodSeconds`.
-    #[serde(rename="KmsDataKeyReusePeriodSeconds")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub kms_data_key_reuse_period_seconds: Option<u32>,
+    #[serde(rename = "KmsDataKeyReusePeriodSeconds")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub kms_data_key_reuse_period_seconds: Option<::Value<u32>>,
     /// Property `KmsMasterKeyId`.
-    #[serde(rename="KmsMasterKeyId")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub kms_master_key_id: Option<String>,
+    #[serde(rename = "KmsMasterKeyId")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub kms_master_key_id: Option<::Value<String>>,
     /// Property `MaximumMessageSize`.
-    #[serde(rename="MaximumMessageSize")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub maximum_message_size: Option<u32>,
+    #[serde(rename = "MaximumMessageSize")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub maximum_message_size: Option<::Value<u32>>,
     /// Property `MessageRetentionPeriod`.
-    #[serde(rename="MessageRetentionPeriod")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub message_retention_period: Option<u32>,
+    #[serde(rename = "MessageRetentionPeriod")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub message_retention_period: Option<::Value<u32>>,
     /// Property `QueueName`.
-    #[serde(rename="QueueName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub queue_name: Option<String>,
+    #[serde(rename = "QueueName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub queue_name: Option<::Value<String>>,
     /// Property `ReceiveMessageWaitTimeSeconds`.
-    #[serde(rename="ReceiveMessageWaitTimeSeconds")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub receive_message_wait_time_seconds: Option<u32>,
+    #[serde(rename = "ReceiveMessageWaitTimeSeconds")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub receive_message_wait_time_seconds: Option<::Value<u32>>,
     /// Property `RedrivePolicy`.
-    #[serde(rename="RedrivePolicy")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub redrive_policy: Option<::json::Value>,
+    #[serde(rename = "RedrivePolicy")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub redrive_policy: Option<::Value<::json::Value>>,
     /// Property `VisibilityTimeout`.
-    #[serde(rename="VisibilityTimeout")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub visibility_timeout: Option<u32>,
+    #[serde(rename = "VisibilityTimeout")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub visibility_timeout: Option<::Value<u32>>,
 }
 
 impl<'a> ::Resource<'a> for Queue {
@@ -84,11 +84,11 @@ pub struct QueuePolicy {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct QueuePolicyProperties {
     /// Property `PolicyDocument`.
-    #[serde(rename="PolicyDocument")]
-    pub policy_document: ::json::Value,
+    #[serde(rename = "PolicyDocument")]
+    pub policy_document: ::Value<::json::Value>,
     /// Property `Queues`.
-    #[serde(rename="Queues")]
-    pub queues: Vec<String>,
+    #[serde(rename = "Queues")]
+    pub queues: ::ValueList<String>,
 }
 
 impl<'a> ::Resource<'a> for QueuePolicy {

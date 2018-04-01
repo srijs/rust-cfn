@@ -10,17 +10,17 @@ pub struct Destination {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DestinationProperties {
     /// Property `DestinationName`.
-    #[serde(rename="DestinationName")]
-    pub destination_name: String,
+    #[serde(rename = "DestinationName")]
+    pub destination_name: ::Value<String>,
     /// Property `DestinationPolicy`.
-    #[serde(rename="DestinationPolicy")]
-    pub destination_policy: String,
+    #[serde(rename = "DestinationPolicy")]
+    pub destination_policy: ::Value<String>,
     /// Property `RoleArn`.
-    #[serde(rename="RoleArn")]
-    pub role_arn: String,
+    #[serde(rename = "RoleArn")]
+    pub role_arn: ::Value<String>,
     /// Property `TargetArn`.
-    #[serde(rename="TargetArn")]
-    pub target_arn: String,
+    #[serde(rename = "TargetArn")]
+    pub target_arn: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for Destination {
@@ -52,13 +52,13 @@ pub struct LogGroup {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct LogGroupProperties {
     /// Property `LogGroupName`.
-    #[serde(rename="LogGroupName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub log_group_name: Option<String>,
+    #[serde(rename = "LogGroupName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub log_group_name: Option<::Value<String>>,
     /// Property `RetentionInDays`.
-    #[serde(rename="RetentionInDays")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub retention_in_days: Option<u32>,
+    #[serde(rename = "RetentionInDays")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub retention_in_days: Option<::Value<u32>>,
 }
 
 impl<'a> ::Resource<'a> for LogGroup {
@@ -90,12 +90,12 @@ pub struct LogStream {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct LogStreamProperties {
     /// Property `LogGroupName`.
-    #[serde(rename="LogGroupName")]
-    pub log_group_name: String,
+    #[serde(rename = "LogGroupName")]
+    pub log_group_name: ::Value<String>,
     /// Property `LogStreamName`.
-    #[serde(rename="LogStreamName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub log_stream_name: Option<String>,
+    #[serde(rename = "LogStreamName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub log_stream_name: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for LogStream {
@@ -127,14 +127,14 @@ pub struct MetricFilter {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct MetricFilterProperties {
     /// Property `FilterPattern`.
-    #[serde(rename="FilterPattern")]
-    pub filter_pattern: String,
+    #[serde(rename = "FilterPattern")]
+    pub filter_pattern: ::Value<String>,
     /// Property `LogGroupName`.
-    #[serde(rename="LogGroupName")]
-    pub log_group_name: String,
+    #[serde(rename = "LogGroupName")]
+    pub log_group_name: ::Value<String>,
     /// Property `MetricTransformations`.
-    #[serde(rename="MetricTransformations")]
-    pub metric_transformations: Vec<self::metric_filter::MetricTransformation>,
+    #[serde(rename = "MetricTransformations")]
+    pub metric_transformations: ::ValueList<self::metric_filter::MetricTransformation>,
 }
 
 impl<'a> ::Resource<'a> for MetricFilter {
@@ -166,18 +166,18 @@ pub struct SubscriptionFilter {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SubscriptionFilterProperties {
     /// Property `DestinationArn`.
-    #[serde(rename="DestinationArn")]
-    pub destination_arn: String,
+    #[serde(rename = "DestinationArn")]
+    pub destination_arn: ::Value<String>,
     /// Property `FilterPattern`.
-    #[serde(rename="FilterPattern")]
-    pub filter_pattern: String,
+    #[serde(rename = "FilterPattern")]
+    pub filter_pattern: ::Value<String>,
     /// Property `LogGroupName`.
-    #[serde(rename="LogGroupName")]
-    pub log_group_name: String,
+    #[serde(rename = "LogGroupName")]
+    pub log_group_name: ::Value<String>,
     /// Property `RoleArn`.
-    #[serde(rename="RoleArn")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub role_arn: Option<String>,
+    #[serde(rename = "RoleArn")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub role_arn: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for SubscriptionFilter {
@@ -206,13 +206,15 @@ pub mod metric_filter {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct MetricTransformation {
         /// Property `MetricName`.
-        #[serde(rename="MetricName")]
-        pub metric_name: String,
+        #[serde(rename = "MetricName")]
+        pub metric_name: ::Value<String>,
         /// Property `MetricNamespace`.
-        #[serde(rename="MetricNamespace")]
-        pub metric_namespace: String,
+        #[serde(rename = "MetricNamespace")]
+        pub metric_namespace: ::Value<String>,
         /// Property `MetricValue`.
-        #[serde(rename="MetricValue")]
-        pub metric_value: String,
+        #[serde(rename = "MetricValue")]
+        pub metric_value: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(MetricTransformation);
 }

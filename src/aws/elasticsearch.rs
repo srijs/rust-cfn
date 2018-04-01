@@ -10,41 +10,41 @@ pub struct Domain {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DomainProperties {
     /// Property `AccessPolicies`.
-    #[serde(rename="AccessPolicies")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub access_policies: Option<::json::Value>,
+    #[serde(rename = "AccessPolicies")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub access_policies: Option<::Value<::json::Value>>,
     /// Property `AdvancedOptions`.
-    #[serde(rename="AdvancedOptions")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub advanced_options: Option<::std::collections::HashMap<String, String>>,
+    #[serde(rename = "AdvancedOptions")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub advanced_options: Option<::std::collections::HashMap<String, ::Value<String>>>,
     /// Property `DomainName`.
-    #[serde(rename="DomainName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub domain_name: Option<String>,
+    #[serde(rename = "DomainName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub domain_name: Option<::Value<String>>,
     /// Property `EBSOptions`.
-    #[serde(rename="EBSOptions")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ebs_options: Option<self::domain::EBSOptions>,
+    #[serde(rename = "EBSOptions")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub ebs_options: Option<::Value<self::domain::EBSOptions>>,
     /// Property `ElasticsearchClusterConfig`.
-    #[serde(rename="ElasticsearchClusterConfig")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub elasticsearch_cluster_config: Option<self::domain::ElasticsearchClusterConfig>,
+    #[serde(rename = "ElasticsearchClusterConfig")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub elasticsearch_cluster_config: Option<::Value<self::domain::ElasticsearchClusterConfig>>,
     /// Property `ElasticsearchVersion`.
-    #[serde(rename="ElasticsearchVersion")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub elasticsearch_version: Option<String>,
+    #[serde(rename = "ElasticsearchVersion")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub elasticsearch_version: Option<::Value<String>>,
     /// Property `SnapshotOptions`.
-    #[serde(rename="SnapshotOptions")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub snapshot_options: Option<self::domain::SnapshotOptions>,
+    #[serde(rename = "SnapshotOptions")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub snapshot_options: Option<::Value<self::domain::SnapshotOptions>>,
     /// Property `Tags`.
-    #[serde(rename="Tags")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub tags: Option<::Tags>,
+    #[serde(rename = "Tags")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::ValueList<::Tag>>,
     /// Property `VPCOptions`.
-    #[serde(rename="VPCOptions")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub vpc_options: Option<self::domain::VPCOptions>,
+    #[serde(rename = "VPCOptions")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub vpc_options: Option<::Value<self::domain::VPCOptions>>,
 }
 
 impl<'a> ::Resource<'a> for Domain {
@@ -73,71 +73,79 @@ pub mod domain {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct EBSOptions {
         /// Property `EBSEnabled`.
-        #[serde(rename="EBSEnabled")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub ebs_enabled: Option<bool>,
+        #[serde(rename = "EBSEnabled")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub ebs_enabled: Option<::Value<bool>>,
         /// Property `Iops`.
-        #[serde(rename="Iops")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub iops: Option<u32>,
+        #[serde(rename = "Iops")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub iops: Option<::Value<u32>>,
         /// Property `VolumeSize`.
-        #[serde(rename="VolumeSize")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub volume_size: Option<u32>,
+        #[serde(rename = "VolumeSize")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub volume_size: Option<::Value<u32>>,
         /// Property `VolumeType`.
-        #[serde(rename="VolumeType")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub volume_type: Option<String>,
+        #[serde(rename = "VolumeType")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub volume_type: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(EBSOptions);
 
     /// The [`AWS::Elasticsearch::Domain.ElasticsearchClusterConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-elasticsearchclusterconfig.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct ElasticsearchClusterConfig {
         /// Property `DedicatedMasterCount`.
-        #[serde(rename="DedicatedMasterCount")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub dedicated_master_count: Option<u32>,
+        #[serde(rename = "DedicatedMasterCount")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub dedicated_master_count: Option<::Value<u32>>,
         /// Property `DedicatedMasterEnabled`.
-        #[serde(rename="DedicatedMasterEnabled")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub dedicated_master_enabled: Option<bool>,
+        #[serde(rename = "DedicatedMasterEnabled")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub dedicated_master_enabled: Option<::Value<bool>>,
         /// Property `DedicatedMasterType`.
-        #[serde(rename="DedicatedMasterType")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub dedicated_master_type: Option<String>,
+        #[serde(rename = "DedicatedMasterType")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub dedicated_master_type: Option<::Value<String>>,
         /// Property `InstanceCount`.
-        #[serde(rename="InstanceCount")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub instance_count: Option<u32>,
+        #[serde(rename = "InstanceCount")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub instance_count: Option<::Value<u32>>,
         /// Property `InstanceType`.
-        #[serde(rename="InstanceType")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub instance_type: Option<String>,
+        #[serde(rename = "InstanceType")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub instance_type: Option<::Value<String>>,
         /// Property `ZoneAwarenessEnabled`.
-        #[serde(rename="ZoneAwarenessEnabled")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub zone_awareness_enabled: Option<bool>,
+        #[serde(rename = "ZoneAwarenessEnabled")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub zone_awareness_enabled: Option<::Value<bool>>,
     }
+
+    cfn_internal__inherit_codec_impls!(ElasticsearchClusterConfig);
 
     /// The [`AWS::Elasticsearch::Domain.SnapshotOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-snapshotoptions.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct SnapshotOptions {
         /// Property `AutomatedSnapshotStartHour`.
-        #[serde(rename="AutomatedSnapshotStartHour")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub automated_snapshot_start_hour: Option<u32>,
+        #[serde(rename = "AutomatedSnapshotStartHour")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub automated_snapshot_start_hour: Option<::Value<u32>>,
     }
+
+    cfn_internal__inherit_codec_impls!(SnapshotOptions);
 
     /// The [`AWS::Elasticsearch::Domain.VPCOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-vpcoptions.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct VPCOptions {
         /// Property `SecurityGroupIds`.
-        #[serde(rename="SecurityGroupIds")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub security_group_ids: Option<Vec<String>>,
+        #[serde(rename = "SecurityGroupIds")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub security_group_ids: Option<::ValueList<String>>,
         /// Property `SubnetIds`.
-        #[serde(rename="SubnetIds")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub subnet_ids: Option<Vec<String>>,
+        #[serde(rename = "SubnetIds")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub subnet_ids: Option<::ValueList<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(VPCOptions);
 }

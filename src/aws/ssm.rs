@@ -10,32 +10,32 @@ pub struct Association {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AssociationProperties {
     /// Property `AssociationName`.
-    #[serde(rename="AssociationName")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub association_name: Option<String>,
+    #[serde(rename = "AssociationName")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub association_name: Option<::Value<String>>,
     /// Property `DocumentVersion`.
-    #[serde(rename="DocumentVersion")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub document_version: Option<String>,
+    #[serde(rename = "DocumentVersion")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub document_version: Option<::Value<String>>,
     /// Property `InstanceId`.
-    #[serde(rename="InstanceId")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub instance_id: Option<String>,
+    #[serde(rename = "InstanceId")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub instance_id: Option<::Value<String>>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    pub name: String,
+    #[serde(rename = "Name")]
+    pub name: ::Value<String>,
     /// Property `Parameters`.
-    #[serde(rename="Parameters")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub parameters: Option<::std::collections::HashMap<String, self::association::ParameterValues>>,
+    #[serde(rename = "Parameters")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub parameters: Option<::std::collections::HashMap<String, ::Value<self::association::ParameterValues>>>,
     /// Property `ScheduleExpression`.
-    #[serde(rename="ScheduleExpression")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub schedule_expression: Option<String>,
+    #[serde(rename = "ScheduleExpression")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub schedule_expression: Option<::Value<String>>,
     /// Property `Targets`.
-    #[serde(rename="Targets")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub targets: Option<Vec<self::association::Target>>,
+    #[serde(rename = "Targets")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub targets: Option<::ValueList<self::association::Target>>,
 }
 
 impl<'a> ::Resource<'a> for Association {
@@ -67,16 +67,16 @@ pub struct Document {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DocumentProperties {
     /// Property `Content`.
-    #[serde(rename="Content")]
-    pub content: ::json::Value,
+    #[serde(rename = "Content")]
+    pub content: ::Value<::json::Value>,
     /// Property `DocumentType`.
-    #[serde(rename="DocumentType")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub document_type: Option<String>,
+    #[serde(rename = "DocumentType")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub document_type: Option<::Value<String>>,
     /// Property `Tags`.
-    #[serde(rename="Tags")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub tags: Option<::Tags>,
+    #[serde(rename = "Tags")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::ValueList<::Tag>>,
 }
 
 impl<'a> ::Resource<'a> for Document {
@@ -108,50 +108,50 @@ pub struct MaintenanceWindowTask {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct MaintenanceWindowTaskProperties {
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `LoggingInfo`.
-    #[serde(rename="LoggingInfo")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub logging_info: Option<self::maintenance_window_task::LoggingInfo>,
+    #[serde(rename = "LoggingInfo")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub logging_info: Option<::Value<self::maintenance_window_task::LoggingInfo>>,
     /// Property `MaxConcurrency`.
-    #[serde(rename="MaxConcurrency")]
-    pub max_concurrency: String,
+    #[serde(rename = "MaxConcurrency")]
+    pub max_concurrency: ::Value<String>,
     /// Property `MaxErrors`.
-    #[serde(rename="MaxErrors")]
-    pub max_errors: String,
+    #[serde(rename = "MaxErrors")]
+    pub max_errors: ::Value<String>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    #[serde(rename = "Name")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<::Value<String>>,
     /// Property `Priority`.
-    #[serde(rename="Priority")]
-    pub priority: u32,
+    #[serde(rename = "Priority")]
+    pub priority: ::Value<u32>,
     /// Property `ServiceRoleArn`.
-    #[serde(rename="ServiceRoleArn")]
-    pub service_role_arn: String,
+    #[serde(rename = "ServiceRoleArn")]
+    pub service_role_arn: ::Value<String>,
     /// Property `Targets`.
-    #[serde(rename="Targets")]
-    pub targets: Vec<self::maintenance_window_task::Target>,
+    #[serde(rename = "Targets")]
+    pub targets: ::ValueList<self::maintenance_window_task::Target>,
     /// Property `TaskArn`.
-    #[serde(rename="TaskArn")]
-    pub task_arn: String,
+    #[serde(rename = "TaskArn")]
+    pub task_arn: ::Value<String>,
     /// Property `TaskInvocationParameters`.
-    #[serde(rename="TaskInvocationParameters")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub task_invocation_parameters: Option<self::maintenance_window_task::TaskInvocationParameters>,
+    #[serde(rename = "TaskInvocationParameters")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub task_invocation_parameters: Option<::Value<self::maintenance_window_task::TaskInvocationParameters>>,
     /// Property `TaskParameters`.
-    #[serde(rename="TaskParameters")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub task_parameters: Option<::json::Value>,
+    #[serde(rename = "TaskParameters")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub task_parameters: Option<::Value<::json::Value>>,
     /// Property `TaskType`.
-    #[serde(rename="TaskType")]
-    pub task_type: String,
+    #[serde(rename = "TaskType")]
+    pub task_type: ::Value<String>,
     /// Property `WindowId`.
-    #[serde(rename="WindowId")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub window_id: Option<String>,
+    #[serde(rename = "WindowId")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub window_id: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for MaintenanceWindowTask {
@@ -183,23 +183,23 @@ pub struct Parameter {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ParameterProperties {
     /// Property `AllowedPattern`.
-    #[serde(rename="AllowedPattern")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub allowed_pattern: Option<String>,
+    #[serde(rename = "AllowedPattern")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub allowed_pattern: Option<::Value<String>>,
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    #[serde(rename = "Name")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<::Value<String>>,
     /// Property `Type`.
-    #[serde(rename="Type")]
-    pub type_: String,
+    #[serde(rename = "Type")]
+    pub type_: ::Value<String>,
     /// Property `Value`.
-    #[serde(rename="Value")]
-    pub value: String,
+    #[serde(rename = "Value")]
+    pub value: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for Parameter {
@@ -231,48 +231,48 @@ pub struct PatchBaseline {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct PatchBaselineProperties {
     /// Property `ApprovalRules`.
-    #[serde(rename="ApprovalRules")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub approval_rules: Option<self::patch_baseline::RuleGroup>,
+    #[serde(rename = "ApprovalRules")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub approval_rules: Option<::Value<self::patch_baseline::RuleGroup>>,
     /// Property `ApprovedPatches`.
-    #[serde(rename="ApprovedPatches")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub approved_patches: Option<Vec<String>>,
+    #[serde(rename = "ApprovedPatches")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub approved_patches: Option<::ValueList<String>>,
     /// Property `ApprovedPatchesComplianceLevel`.
-    #[serde(rename="ApprovedPatchesComplianceLevel")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub approved_patches_compliance_level: Option<String>,
+    #[serde(rename = "ApprovedPatchesComplianceLevel")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub approved_patches_compliance_level: Option<::Value<String>>,
     /// Property `ApprovedPatchesEnableNonSecurity`.
-    #[serde(rename="ApprovedPatchesEnableNonSecurity")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub approved_patches_enable_non_security: Option<bool>,
+    #[serde(rename = "ApprovedPatchesEnableNonSecurity")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub approved_patches_enable_non_security: Option<::Value<bool>>,
     /// Property `Description`.
-    #[serde(rename="Description")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
+    #[serde(rename = "Description")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub description: Option<::Value<String>>,
     /// Property `GlobalFilters`.
-    #[serde(rename="GlobalFilters")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub global_filters: Option<self::patch_baseline::PatchFilterGroup>,
+    #[serde(rename = "GlobalFilters")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub global_filters: Option<::Value<self::patch_baseline::PatchFilterGroup>>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    pub name: String,
+    #[serde(rename = "Name")]
+    pub name: ::Value<String>,
     /// Property `OperatingSystem`.
-    #[serde(rename="OperatingSystem")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub operating_system: Option<String>,
+    #[serde(rename = "OperatingSystem")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub operating_system: Option<::Value<String>>,
     /// Property `PatchGroups`.
-    #[serde(rename="PatchGroups")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub patch_groups: Option<Vec<String>>,
+    #[serde(rename = "PatchGroups")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub patch_groups: Option<::ValueList<String>>,
     /// Property `RejectedPatches`.
-    #[serde(rename="RejectedPatches")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub rejected_patches: Option<Vec<String>>,
+    #[serde(rename = "RejectedPatches")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub rejected_patches: Option<::ValueList<String>>,
     /// Property `Sources`.
-    #[serde(rename="Sources")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub sources: Option<Vec<self::patch_baseline::PatchSource>>,
+    #[serde(rename = "Sources")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub sources: Option<::ValueList<self::patch_baseline::PatchSource>>,
 }
 
 impl<'a> ::Resource<'a> for PatchBaseline {
@@ -301,20 +301,24 @@ pub mod association {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct ParameterValues {
         /// Property `ParameterValues`.
-        #[serde(rename="ParameterValues")]
-        pub parameter_values: Vec<String>,
+        #[serde(rename = "ParameterValues")]
+        pub parameter_values: ::ValueList<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(ParameterValues);
 
     /// The [`AWS::SSM::Association.Target`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-association-target.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Target {
         /// Property `Key`.
-        #[serde(rename="Key")]
-        pub key: String,
+        #[serde(rename = "Key")]
+        pub key: ::Value<String>,
         /// Property `Values`.
-        #[serde(rename="Values")]
-        pub values: Vec<String>,
+        #[serde(rename = "Values")]
+        pub values: ::ValueList<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(Target);
 }
 
 pub mod maintenance_window_task {
@@ -324,149 +328,165 @@ pub mod maintenance_window_task {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct LoggingInfo {
         /// Property `Region`.
-        #[serde(rename="Region")]
-        pub region: String,
+        #[serde(rename = "Region")]
+        pub region: ::Value<String>,
         /// Property `S3Bucket`.
-        #[serde(rename="S3Bucket")]
-        pub s3_bucket: String,
+        #[serde(rename = "S3Bucket")]
+        pub s3_bucket: ::Value<String>,
         /// Property `S3Prefix`.
-        #[serde(rename="S3Prefix")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub s3_prefix: Option<String>,
+        #[serde(rename = "S3Prefix")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub s3_prefix: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(LoggingInfo);
 
     /// The [`AWS::SSM::MaintenanceWindowTask.MaintenanceWindowAutomationParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowautomationparameters.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct MaintenanceWindowAutomationParameters {
         /// Property `DocumentVersion`.
-        #[serde(rename="DocumentVersion")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub document_version: Option<String>,
+        #[serde(rename = "DocumentVersion")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub document_version: Option<::Value<String>>,
         /// Property `Parameters`.
-        #[serde(rename="Parameters")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub parameters: Option<::json::Value>,
+        #[serde(rename = "Parameters")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub parameters: Option<::Value<::json::Value>>,
     }
+
+    cfn_internal__inherit_codec_impls!(MaintenanceWindowAutomationParameters);
 
     /// The [`AWS::SSM::MaintenanceWindowTask.MaintenanceWindowLambdaParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowlambdaparameters.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct MaintenanceWindowLambdaParameters {
         /// Property `ClientContext`.
-        #[serde(rename="ClientContext")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub client_context: Option<String>,
+        #[serde(rename = "ClientContext")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub client_context: Option<::Value<String>>,
         /// Property `Payload`.
-        #[serde(rename="Payload")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub payload: Option<String>,
+        #[serde(rename = "Payload")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub payload: Option<::Value<String>>,
         /// Property `Qualifier`.
-        #[serde(rename="Qualifier")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub qualifier: Option<String>,
+        #[serde(rename = "Qualifier")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub qualifier: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(MaintenanceWindowLambdaParameters);
 
     /// The [`AWS::SSM::MaintenanceWindowTask.MaintenanceWindowRunCommandParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowruncommandparameters.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct MaintenanceWindowRunCommandParameters {
         /// Property `Comment`.
-        #[serde(rename="Comment")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub comment: Option<String>,
+        #[serde(rename = "Comment")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub comment: Option<::Value<String>>,
         /// Property `DocumentHash`.
-        #[serde(rename="DocumentHash")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub document_hash: Option<String>,
+        #[serde(rename = "DocumentHash")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub document_hash: Option<::Value<String>>,
         /// Property `DocumentHashType`.
-        #[serde(rename="DocumentHashType")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub document_hash_type: Option<String>,
+        #[serde(rename = "DocumentHashType")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub document_hash_type: Option<::Value<String>>,
         /// Property `NotificationConfig`.
-        #[serde(rename="NotificationConfig")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub notification_config: Option<NotificationConfig>,
+        #[serde(rename = "NotificationConfig")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub notification_config: Option<::Value<NotificationConfig>>,
         /// Property `OutputS3BucketName`.
-        #[serde(rename="OutputS3BucketName")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub output_s3_bucket_name: Option<String>,
+        #[serde(rename = "OutputS3BucketName")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub output_s3_bucket_name: Option<::Value<String>>,
         /// Property `OutputS3KeyPrefix`.
-        #[serde(rename="OutputS3KeyPrefix")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub output_s3_key_prefix: Option<String>,
+        #[serde(rename = "OutputS3KeyPrefix")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub output_s3_key_prefix: Option<::Value<String>>,
         /// Property `Parameters`.
-        #[serde(rename="Parameters")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub parameters: Option<::json::Value>,
+        #[serde(rename = "Parameters")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub parameters: Option<::Value<::json::Value>>,
         /// Property `ServiceRoleArn`.
-        #[serde(rename="ServiceRoleArn")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub service_role_arn: Option<String>,
+        #[serde(rename = "ServiceRoleArn")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub service_role_arn: Option<::Value<String>>,
         /// Property `TimeoutSeconds`.
-        #[serde(rename="TimeoutSeconds")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub timeout_seconds: Option<u32>,
+        #[serde(rename = "TimeoutSeconds")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub timeout_seconds: Option<::Value<u32>>,
     }
+
+    cfn_internal__inherit_codec_impls!(MaintenanceWindowRunCommandParameters);
 
     /// The [`AWS::SSM::MaintenanceWindowTask.MaintenanceWindowStepFunctionsParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowstepfunctionsparameters.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct MaintenanceWindowStepFunctionsParameters {
         /// Property `Input`.
-        #[serde(rename="Input")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub input: Option<String>,
+        #[serde(rename = "Input")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub input: Option<::Value<String>>,
         /// Property `Name`.
-        #[serde(rename="Name")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub name: Option<String>,
+        #[serde(rename = "Name")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub name: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(MaintenanceWindowStepFunctionsParameters);
 
     /// The [`AWS::SSM::MaintenanceWindowTask.NotificationConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-notificationconfig.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct NotificationConfig {
         /// Property `NotificationArn`.
-        #[serde(rename="NotificationArn")]
-        pub notification_arn: String,
+        #[serde(rename = "NotificationArn")]
+        pub notification_arn: ::Value<String>,
         /// Property `NotificationEvents`.
-        #[serde(rename="NotificationEvents")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub notification_events: Option<Vec<String>>,
+        #[serde(rename = "NotificationEvents")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub notification_events: Option<::ValueList<String>>,
         /// Property `NotificationType`.
-        #[serde(rename="NotificationType")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub notification_type: Option<String>,
+        #[serde(rename = "NotificationType")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub notification_type: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(NotificationConfig);
 
     /// The [`AWS::SSM::MaintenanceWindowTask.Target`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-target.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Target {
         /// Property `Key`.
-        #[serde(rename="Key")]
-        pub key: String,
+        #[serde(rename = "Key")]
+        pub key: ::Value<String>,
         /// Property `Values`.
-        #[serde(rename="Values")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub values: Option<Vec<String>>,
+        #[serde(rename = "Values")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub values: Option<::ValueList<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(Target);
 
     /// The [`AWS::SSM::MaintenanceWindowTask.TaskInvocationParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-taskinvocationparameters.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct TaskInvocationParameters {
         /// Property `MaintenanceWindowAutomationParameters`.
-        #[serde(rename="MaintenanceWindowAutomationParameters")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub maintenance_window_automation_parameters: Option<MaintenanceWindowAutomationParameters>,
+        #[serde(rename = "MaintenanceWindowAutomationParameters")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub maintenance_window_automation_parameters: Option<::Value<MaintenanceWindowAutomationParameters>>,
         /// Property `MaintenanceWindowLambdaParameters`.
-        #[serde(rename="MaintenanceWindowLambdaParameters")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub maintenance_window_lambda_parameters: Option<MaintenanceWindowLambdaParameters>,
+        #[serde(rename = "MaintenanceWindowLambdaParameters")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub maintenance_window_lambda_parameters: Option<::Value<MaintenanceWindowLambdaParameters>>,
         /// Property `MaintenanceWindowRunCommandParameters`.
-        #[serde(rename="MaintenanceWindowRunCommandParameters")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub maintenance_window_run_command_parameters: Option<MaintenanceWindowRunCommandParameters>,
+        #[serde(rename = "MaintenanceWindowRunCommandParameters")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub maintenance_window_run_command_parameters: Option<::Value<MaintenanceWindowRunCommandParameters>>,
         /// Property `MaintenanceWindowStepFunctionsParameters`.
-        #[serde(rename="MaintenanceWindowStepFunctionsParameters")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub maintenance_window_step_functions_parameters: Option<MaintenanceWindowStepFunctionsParameters>,
+        #[serde(rename = "MaintenanceWindowStepFunctionsParameters")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub maintenance_window_step_functions_parameters: Option<::Value<MaintenanceWindowStepFunctionsParameters>>,
     }
+
+    cfn_internal__inherit_codec_impls!(TaskInvocationParameters);
 }
 
 pub mod patch_baseline {
@@ -476,68 +496,78 @@ pub mod patch_baseline {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct PatchFilter {
         /// Property `Key`.
-        #[serde(rename="Key")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub key: Option<String>,
+        #[serde(rename = "Key")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub key: Option<::Value<String>>,
         /// Property `Values`.
-        #[serde(rename="Values")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub values: Option<Vec<String>>,
+        #[serde(rename = "Values")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub values: Option<::ValueList<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(PatchFilter);
 
     /// The [`AWS::SSM::PatchBaseline.PatchFilterGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-patchfiltergroup.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct PatchFilterGroup {
         /// Property `PatchFilters`.
-        #[serde(rename="PatchFilters")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub patch_filters: Option<Vec<PatchFilter>>,
+        #[serde(rename = "PatchFilters")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub patch_filters: Option<::ValueList<PatchFilter>>,
     }
+
+    cfn_internal__inherit_codec_impls!(PatchFilterGroup);
 
     /// The [`AWS::SSM::PatchBaseline.PatchSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-patchsource.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct PatchSource {
         /// Property `Configuration`.
-        #[serde(rename="Configuration")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub configuration: Option<String>,
+        #[serde(rename = "Configuration")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub configuration: Option<::Value<String>>,
         /// Property `Name`.
-        #[serde(rename="Name")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub name: Option<String>,
+        #[serde(rename = "Name")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub name: Option<::Value<String>>,
         /// Property `Products`.
-        #[serde(rename="Products")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub products: Option<Vec<String>>,
+        #[serde(rename = "Products")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub products: Option<::ValueList<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(PatchSource);
 
     /// The [`AWS::SSM::PatchBaseline.Rule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-rule.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Rule {
         /// Property `ApproveAfterDays`.
-        #[serde(rename="ApproveAfterDays")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub approve_after_days: Option<u32>,
+        #[serde(rename = "ApproveAfterDays")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub approve_after_days: Option<::Value<u32>>,
         /// Property `ComplianceLevel`.
-        #[serde(rename="ComplianceLevel")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub compliance_level: Option<String>,
+        #[serde(rename = "ComplianceLevel")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub compliance_level: Option<::Value<String>>,
         /// Property `EnableNonSecurity`.
-        #[serde(rename="EnableNonSecurity")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub enable_non_security: Option<bool>,
+        #[serde(rename = "EnableNonSecurity")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub enable_non_security: Option<::Value<bool>>,
         /// Property `PatchFilterGroup`.
-        #[serde(rename="PatchFilterGroup")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub patch_filter_group: Option<PatchFilterGroup>,
+        #[serde(rename = "PatchFilterGroup")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub patch_filter_group: Option<::Value<PatchFilterGroup>>,
     }
+
+    cfn_internal__inherit_codec_impls!(Rule);
 
     /// The [`AWS::SSM::PatchBaseline.RuleGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-rulegroup.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct RuleGroup {
         /// Property `PatchRules`.
-        #[serde(rename="PatchRules")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub patch_rules: Option<Vec<Rule>>,
+        #[serde(rename = "PatchRules")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub patch_rules: Option<::ValueList<Rule>>,
     }
+
+    cfn_internal__inherit_codec_impls!(RuleGroup);
 }

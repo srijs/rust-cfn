@@ -10,25 +10,25 @@ pub struct Listener {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ListenerProperties {
     /// Property `Certificates`.
-    #[serde(rename="Certificates")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub certificates: Option<Vec<self::listener::Certificate>>,
+    #[serde(rename = "Certificates")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub certificates: Option<::ValueList<self::listener::Certificate>>,
     /// Property `DefaultActions`.
-    #[serde(rename="DefaultActions")]
-    pub default_actions: Vec<self::listener::Action>,
+    #[serde(rename = "DefaultActions")]
+    pub default_actions: ::ValueList<self::listener::Action>,
     /// Property `LoadBalancerArn`.
-    #[serde(rename="LoadBalancerArn")]
-    pub load_balancer_arn: String,
+    #[serde(rename = "LoadBalancerArn")]
+    pub load_balancer_arn: ::Value<String>,
     /// Property `Port`.
-    #[serde(rename="Port")]
-    pub port: u32,
+    #[serde(rename = "Port")]
+    pub port: ::Value<u32>,
     /// Property `Protocol`.
-    #[serde(rename="Protocol")]
-    pub protocol: String,
+    #[serde(rename = "Protocol")]
+    pub protocol: ::Value<String>,
     /// Property `SslPolicy`.
-    #[serde(rename="SslPolicy")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ssl_policy: Option<String>,
+    #[serde(rename = "SslPolicy")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub ssl_policy: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for Listener {
@@ -60,11 +60,11 @@ pub struct ListenerCertificate {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ListenerCertificateProperties {
     /// Property `Certificates`.
-    #[serde(rename="Certificates")]
-    pub certificates: Vec<self::listener_certificate::Certificate>,
+    #[serde(rename = "Certificates")]
+    pub certificates: ::ValueList<self::listener_certificate::Certificate>,
     /// Property `ListenerArn`.
-    #[serde(rename="ListenerArn")]
-    pub listener_arn: String,
+    #[serde(rename = "ListenerArn")]
+    pub listener_arn: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for ListenerCertificate {
@@ -96,17 +96,17 @@ pub struct ListenerRule {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ListenerRuleProperties {
     /// Property `Actions`.
-    #[serde(rename="Actions")]
-    pub actions: Vec<self::listener_rule::Action>,
+    #[serde(rename = "Actions")]
+    pub actions: ::ValueList<self::listener_rule::Action>,
     /// Property `Conditions`.
-    #[serde(rename="Conditions")]
-    pub conditions: Vec<self::listener_rule::RuleCondition>,
+    #[serde(rename = "Conditions")]
+    pub conditions: ::ValueList<self::listener_rule::RuleCondition>,
     /// Property `ListenerArn`.
-    #[serde(rename="ListenerArn")]
-    pub listener_arn: String,
+    #[serde(rename = "ListenerArn")]
+    pub listener_arn: ::Value<String>,
     /// Property `Priority`.
-    #[serde(rename="Priority")]
-    pub priority: u32,
+    #[serde(rename = "Priority")]
+    pub priority: ::Value<u32>,
 }
 
 impl<'a> ::Resource<'a> for ListenerRule {
@@ -138,41 +138,41 @@ pub struct LoadBalancer {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct LoadBalancerProperties {
     /// Property `IpAddressType`.
-    #[serde(rename="IpAddressType")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ip_address_type: Option<String>,
+    #[serde(rename = "IpAddressType")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub ip_address_type: Option<::Value<String>>,
     /// Property `LoadBalancerAttributes`.
-    #[serde(rename="LoadBalancerAttributes")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub load_balancer_attributes: Option<Vec<self::load_balancer::LoadBalancerAttribute>>,
+    #[serde(rename = "LoadBalancerAttributes")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub load_balancer_attributes: Option<::ValueList<self::load_balancer::LoadBalancerAttribute>>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    #[serde(rename = "Name")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<::Value<String>>,
     /// Property `Scheme`.
-    #[serde(rename="Scheme")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub scheme: Option<String>,
+    #[serde(rename = "Scheme")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub scheme: Option<::Value<String>>,
     /// Property `SecurityGroups`.
-    #[serde(rename="SecurityGroups")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub security_groups: Option<Vec<String>>,
+    #[serde(rename = "SecurityGroups")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub security_groups: Option<::ValueList<String>>,
     /// Property `SubnetMappings`.
-    #[serde(rename="SubnetMappings")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub subnet_mappings: Option<Vec<self::load_balancer::SubnetMapping>>,
+    #[serde(rename = "SubnetMappings")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub subnet_mappings: Option<::ValueList<self::load_balancer::SubnetMapping>>,
     /// Property `Subnets`.
-    #[serde(rename="Subnets")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub subnets: Option<Vec<String>>,
+    #[serde(rename = "Subnets")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub subnets: Option<::ValueList<String>>,
     /// Property `Tags`.
-    #[serde(rename="Tags")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub tags: Option<::Tags>,
+    #[serde(rename = "Tags")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::ValueList<::Tag>>,
     /// Property `Type`.
-    #[serde(rename="Type")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub type_: Option<String>,
+    #[serde(rename = "Type")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub type_: Option<::Value<String>>,
 }
 
 impl<'a> ::Resource<'a> for LoadBalancer {
@@ -204,66 +204,66 @@ pub struct TargetGroup {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TargetGroupProperties {
     /// Property `HealthCheckIntervalSeconds`.
-    #[serde(rename="HealthCheckIntervalSeconds")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub health_check_interval_seconds: Option<u32>,
+    #[serde(rename = "HealthCheckIntervalSeconds")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub health_check_interval_seconds: Option<::Value<u32>>,
     /// Property `HealthCheckPath`.
-    #[serde(rename="HealthCheckPath")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub health_check_path: Option<String>,
+    #[serde(rename = "HealthCheckPath")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub health_check_path: Option<::Value<String>>,
     /// Property `HealthCheckPort`.
-    #[serde(rename="HealthCheckPort")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub health_check_port: Option<String>,
+    #[serde(rename = "HealthCheckPort")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub health_check_port: Option<::Value<String>>,
     /// Property `HealthCheckProtocol`.
-    #[serde(rename="HealthCheckProtocol")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub health_check_protocol: Option<String>,
+    #[serde(rename = "HealthCheckProtocol")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub health_check_protocol: Option<::Value<String>>,
     /// Property `HealthCheckTimeoutSeconds`.
-    #[serde(rename="HealthCheckTimeoutSeconds")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub health_check_timeout_seconds: Option<u32>,
+    #[serde(rename = "HealthCheckTimeoutSeconds")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub health_check_timeout_seconds: Option<::Value<u32>>,
     /// Property `HealthyThresholdCount`.
-    #[serde(rename="HealthyThresholdCount")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub healthy_threshold_count: Option<u32>,
+    #[serde(rename = "HealthyThresholdCount")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub healthy_threshold_count: Option<::Value<u32>>,
     /// Property `Matcher`.
-    #[serde(rename="Matcher")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub matcher: Option<self::target_group::Matcher>,
+    #[serde(rename = "Matcher")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub matcher: Option<::Value<self::target_group::Matcher>>,
     /// Property `Name`.
-    #[serde(rename="Name")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    #[serde(rename = "Name")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<::Value<String>>,
     /// Property `Port`.
-    #[serde(rename="Port")]
-    pub port: u32,
+    #[serde(rename = "Port")]
+    pub port: ::Value<u32>,
     /// Property `Protocol`.
-    #[serde(rename="Protocol")]
-    pub protocol: String,
+    #[serde(rename = "Protocol")]
+    pub protocol: ::Value<String>,
     /// Property `Tags`.
-    #[serde(rename="Tags")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub tags: Option<::Tags>,
+    #[serde(rename = "Tags")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub tags: Option<::ValueList<::Tag>>,
     /// Property `TargetGroupAttributes`.
-    #[serde(rename="TargetGroupAttributes")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub target_group_attributes: Option<Vec<self::target_group::TargetGroupAttribute>>,
+    #[serde(rename = "TargetGroupAttributes")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub target_group_attributes: Option<::ValueList<self::target_group::TargetGroupAttribute>>,
     /// Property `TargetType`.
-    #[serde(rename="TargetType")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub target_type: Option<String>,
+    #[serde(rename = "TargetType")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub target_type: Option<::Value<String>>,
     /// Property `Targets`.
-    #[serde(rename="Targets")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub targets: Option<Vec<self::target_group::TargetDescription>>,
+    #[serde(rename = "Targets")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub targets: Option<::ValueList<self::target_group::TargetDescription>>,
     /// Property `UnhealthyThresholdCount`.
-    #[serde(rename="UnhealthyThresholdCount")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub unhealthy_threshold_count: Option<u32>,
+    #[serde(rename = "UnhealthyThresholdCount")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub unhealthy_threshold_count: Option<::Value<u32>>,
     /// Property `VpcId`.
-    #[serde(rename="VpcId")]
-    pub vpc_id: String,
+    #[serde(rename = "VpcId")]
+    pub vpc_id: ::Value<String>,
 }
 
 impl<'a> ::Resource<'a> for TargetGroup {
@@ -292,21 +292,25 @@ pub mod listener {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Action {
         /// Property `TargetGroupArn`.
-        #[serde(rename="TargetGroupArn")]
-        pub target_group_arn: String,
+        #[serde(rename = "TargetGroupArn")]
+        pub target_group_arn: ::Value<String>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(rename = "Type")]
+        pub type_: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(Action);
 
     /// The [`AWS::ElasticLoadBalancingV2::Listener.Certificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-certificates.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Certificate {
         /// Property `CertificateArn`.
-        #[serde(rename="CertificateArn")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub certificate_arn: Option<String>,
+        #[serde(rename = "CertificateArn")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub certificate_arn: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(Certificate);
 }
 
 pub mod listener_certificate {
@@ -316,10 +320,12 @@ pub mod listener_certificate {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Certificate {
         /// Property `CertificateArn`.
-        #[serde(rename="CertificateArn")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub certificate_arn: Option<String>,
+        #[serde(rename = "CertificateArn")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub certificate_arn: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(Certificate);
 }
 
 pub mod listener_rule {
@@ -329,25 +335,29 @@ pub mod listener_rule {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Action {
         /// Property `TargetGroupArn`.
-        #[serde(rename="TargetGroupArn")]
-        pub target_group_arn: String,
+        #[serde(rename = "TargetGroupArn")]
+        pub target_group_arn: ::Value<String>,
         /// Property `Type`.
-        #[serde(rename="Type")]
-        pub type_: String,
+        #[serde(rename = "Type")]
+        pub type_: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(Action);
 
     /// The [`AWS::ElasticLoadBalancingV2::ListenerRule.RuleCondition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-conditions.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct RuleCondition {
         /// Property `Field`.
-        #[serde(rename="Field")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub field: Option<String>,
+        #[serde(rename = "Field")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub field: Option<::Value<String>>,
         /// Property `Values`.
-        #[serde(rename="Values")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub values: Option<Vec<String>>,
+        #[serde(rename = "Values")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub values: Option<::ValueList<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(RuleCondition);
 }
 
 pub mod load_balancer {
@@ -357,25 +367,29 @@ pub mod load_balancer {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct LoadBalancerAttribute {
         /// Property `Key`.
-        #[serde(rename="Key")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub key: Option<String>,
+        #[serde(rename = "Key")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub key: Option<::Value<String>>,
         /// Property `Value`.
-        #[serde(rename="Value")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub value: Option<String>,
+        #[serde(rename = "Value")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub value: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(LoadBalancerAttribute);
 
     /// The [`AWS::ElasticLoadBalancingV2::LoadBalancer.SubnetMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-subnetmapping.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct SubnetMapping {
         /// Property `AllocationId`.
-        #[serde(rename="AllocationId")]
-        pub allocation_id: String,
+        #[serde(rename = "AllocationId")]
+        pub allocation_id: ::Value<String>,
         /// Property `SubnetId`.
-        #[serde(rename="SubnetId")]
-        pub subnet_id: String,
+        #[serde(rename = "SubnetId")]
+        pub subnet_id: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(SubnetMapping);
 }
 
 pub mod target_group {
@@ -385,36 +399,42 @@ pub mod target_group {
     #[derive(Debug, Serialize, Deserialize)]
     pub struct Matcher {
         /// Property `HttpCode`.
-        #[serde(rename="HttpCode")]
-        pub http_code: String,
+        #[serde(rename = "HttpCode")]
+        pub http_code: ::Value<String>,
     }
+
+    cfn_internal__inherit_codec_impls!(Matcher);
 
     /// The [`AWS::ElasticLoadBalancingV2::TargetGroup.TargetDescription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetdescription.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct TargetDescription {
         /// Property `AvailabilityZone`.
-        #[serde(rename="AvailabilityZone")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub availability_zone: Option<String>,
+        #[serde(rename = "AvailabilityZone")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub availability_zone: Option<::Value<String>>,
         /// Property `Id`.
-        #[serde(rename="Id")]
-        pub id: String,
+        #[serde(rename = "Id")]
+        pub id: ::Value<String>,
         /// Property `Port`.
-        #[serde(rename="Port")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub port: Option<u32>,
+        #[serde(rename = "Port")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub port: Option<::Value<u32>>,
     }
+
+    cfn_internal__inherit_codec_impls!(TargetDescription);
 
     /// The [`AWS::ElasticLoadBalancingV2::TargetGroup.TargetGroupAttribute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetgroupattribute.html) property type.
     #[derive(Debug, Serialize, Deserialize)]
     pub struct TargetGroupAttribute {
         /// Property `Key`.
-        #[serde(rename="Key")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub key: Option<String>,
+        #[serde(rename = "Key")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub key: Option<::Value<String>>,
         /// Property `Value`.
-        #[serde(rename="Value")]
-        #[serde(skip_serializing_if = "Option::is_none")]
-        pub value: Option<String>,
+        #[serde(rename = "Value")]
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        pub value: Option<::Value<String>>,
     }
+
+    cfn_internal__inherit_codec_impls!(TargetGroupAttribute);
 }
