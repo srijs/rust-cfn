@@ -34,4 +34,9 @@ fn managed_ec2_batch_environment() {
     assert_eq!(arns.len(), 1);
     assert_eq!(arns[0].as_value().unwrap(),
         "arn:aws:iam::aws:policy/service-role/AWSBatchServiceRole");
+
+    let profile = tpl.resources().get::<cfn::aws::iam::InstanceProfile>("IamInstanceProfile").unwrap();
+    let roles = profile.properties().roles.as_values().unwrap();
+    assert_eq!(roles.len(), 1);
+    assert_eq!(roles[0].as_reference().unwrap(), "EcsInstanceRole");
 }
