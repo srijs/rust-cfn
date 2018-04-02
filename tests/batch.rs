@@ -1,7 +1,7 @@
 extern crate serde_json;
 extern crate cfn;
 
-use cfn::Resource;
+use cfn::{Resource, Expr};
 
 #[test]
 fn managed_ec2_batch_environment() {
@@ -39,4 +39,20 @@ fn managed_ec2_batch_environment() {
     let roles = profile.properties().roles.as_values().unwrap();
     assert_eq!(roles.len(), 1);
     assert_eq!(roles[0].as_reference().unwrap(), "EcsInstanceRole");
+
+    let job_definition = tpl.resources().get::<cfn::aws::batch::JobDefinition>("JobDefinition").unwrap();
+    assert_eq!(job_definition.properties().type_.as_value().unwrap(), "container");
+    let container_props = job_definition.properties().container_properties.as_value().unwrap();
+    assert_eq!(&2, container_props.vcpus.as_value().unwrap());
+    assert_eq!(&2000, container_props.memory.as_value().unwrap());
+    let image_expr = container_props.image.as_expression().unwrap();
+    {
+        let &Expr::Join { ref delimiter, ref values } = image_expr;
+        assert_eq!("", delimiter);
+        assert_eq!(3, values.len());
+        assert_eq!("137112412989.dkr.ecr.", values[0].as_value().unwrap());
+        assert_eq!("AWS::Region", values[1].as_reference().unwrap());
+        assert_eq!(".amazonaws.com/amazonlinux:latest", values[2].as_value().unwrap());
+    }
+
 }
