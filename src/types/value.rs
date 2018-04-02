@@ -108,6 +108,24 @@ mod tests {
     use super::{Value, Expr};
 
     #[test]
+    fn serialize_u32() {
+        let value = Value::Value(42u32);
+        assert_eq!("\"42\"", ::serde_json::to_string(&value).unwrap());
+    }
+
+    #[test]
+    fn serialize_u32_string() {
+        let value = ::serde_json::from_str::<Value<u32>>("\"42\"").unwrap();
+        assert_eq!(&42, value.as_value().unwrap());
+    }
+
+    #[test]
+    fn serialize_u32_number() {
+        let value = ::serde_json::from_str::<Value<u32>>("42").unwrap();
+        assert_eq!(&42, value.as_value().unwrap());
+    }
+
+    #[test]
     fn serialize_ref() {
         let value = Value::Ref::<String>("foo".to_owned());
         assert_eq!("{\"Ref\":\"foo\"}", ::serde_json::to_string(&value).unwrap());

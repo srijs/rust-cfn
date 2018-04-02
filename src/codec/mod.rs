@@ -17,9 +17,9 @@ pub trait DeserializeValue {
               D: Deserializer<'de>;
 }
 
-cfn_internal__str_codec_impls!(u32);
-cfn_internal__str_codec_impls!(u64);
-cfn_internal__str_codec_impls!(f64);
+cfn_internal__num_codec_impls!(u32);
+cfn_internal__num_codec_impls!(u64);
+cfn_internal__num_codec_impls!(f64);
 
 cfn_internal__inherit_codec_impls!(String);
 cfn_internal__inherit_codec_impls!(::types::Tag);

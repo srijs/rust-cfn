@@ -33,7 +33,7 @@ macro_rules! cfn_internal__inherit_codec_impls {
 
 #[macro_export]
 #[doc(hidden)]
-macro_rules! cfn_internal__str_serialize_impl {
+macro_rules! cfn_internal__num_serialize_impl {
     ( $t:ty ) => {
         impl ::codec::SerializeValue for $t {
             fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
@@ -45,15 +45,25 @@ macro_rules! cfn_internal__str_serialize_impl {
 
 #[macro_export]
 #[doc(hidden)]
-macro_rules! cfn_internal__str_deserialize_impl {
+macro_rules! cfn_internal__num_deserialize_impl {
     ( $t:ty ) => {
         impl ::codec::DeserializeValue for $t {
             fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<$t, D::Error> {
-                let string: &str = ::serde::Deserialize::deserialize(d)?;
-                string.parse().map_err(|_err| {
-                    ::serde::de::Error::invalid_value(::serde::de::Unexpected::Str(string),
-                        &stringify!($t))
-                })
+                #[derive(Deserialize)]
+                #[serde(untagged)]
+                enum Value<'a> {
+                    Number($t),
+                    String(&'a str)
+                }
+                match ::serde::Deserialize::deserialize(d)? {
+                    Value::Number(number) => Ok(number),
+                    Value::String(string) => {
+                        string.parse().map_err(|_err| {
+                            ::serde::de::Error::invalid_value(::serde::de::Unexpected::Str(string),
+                                &stringify!($t))
+                        })
+                    }
+                }
             }
         }
     }
@@ -61,9 +71,9 @@ macro_rules! cfn_internal__str_deserialize_impl {
 
 #[macro_export]
 #[doc(hidden)]
-macro_rules! cfn_internal__str_codec_impls {
+macro_rules! cfn_internal__num_codec_impls {
     ( $t:ty ) => {
-        cfn_internal__str_serialize_impl!($t);
-        cfn_internal__str_deserialize_impl!($t);
+        cfn_internal__num_serialize_impl!($t);
+        cfn_internal__num_deserialize_impl!($t);
     }
 }
