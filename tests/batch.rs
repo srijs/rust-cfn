@@ -55,4 +55,10 @@ fn managed_ec2_batch_environment() {
         assert_eq!(".amazonaws.com/amazonlinux:latest", values[2].as_value().unwrap());
     }
 
+    let output_env_arn = tpl.outputs().get::<String>("ComputeEnvironmentArn").unwrap();
+    assert_eq!("ComputeEnvironment", output_env_arn.value.as_reference().unwrap());
+    let output_queue_arn = tpl.outputs().get::<String>("JobQueueArn").unwrap();
+    assert_eq!("JobQueue", output_queue_arn.value.as_reference().unwrap());
+    let output_definition_arn = tpl.outputs().get::<String>("JobDefinitionArn").unwrap();
+    assert_eq!("JobDefinition", output_definition_arn.value.as_reference().unwrap());
 }
