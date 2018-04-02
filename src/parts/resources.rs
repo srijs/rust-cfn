@@ -1,12 +1,11 @@
-use std::collections::HashMap;
-
+use indexmap::IndexMap;
 use serde::Deserialize;
 
 use ::Resource;
 
 /// Specifies the stack resources and their properties, such as an Amazon Elastic Compute Cloud instance or an Amazon Simple Storage Service bucket.
 #[derive(Debug, Default, Serialize, Deserialize)]
-pub struct Resources(HashMap<String, ResourceInner>);
+pub struct Resources(IndexMap<String, ResourceInner>);
 
 impl Resources {
     /// Get the resource identified by the logical id, if it exists.

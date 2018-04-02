@@ -5,6 +5,7 @@
 //! This crate provides type-safe representations for AWS CloudFormation templates,
 //! resources and properties.
 
+extern crate indexmap;
 extern crate serde;
 #[macro_use] extern crate serde_derive;
 extern crate serde_json;

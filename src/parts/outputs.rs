@@ -1,5 +1,4 @@
-use std::collections::HashMap;
-
+use indexmap::IndexMap;
 use serde::Deserialize;
 
 use ::Value;
@@ -10,7 +9,7 @@ use ::codec::{SerializeValue, DeserializeValue};
 ///
 /// For example, you can output the S3 bucket name for a stack to make the bucket easier to find.
 #[derive(Debug, Default, Serialize, Deserialize)]
-pub struct Outputs(HashMap<String, ::serde_json::Value>);
+pub struct Outputs(IndexMap<String, ::serde_json::Value>);
 
 impl Outputs {
     /// Get the output identified by the logical id, if it exists.
