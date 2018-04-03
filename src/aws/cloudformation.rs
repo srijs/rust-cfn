@@ -49,7 +49,7 @@ pub struct StackProperties {
     /// Property `Parameters`.
     #[serde(rename = "Parameters")]
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub parameters: Option<::std::collections::HashMap<String, ::Value<String>>>,
+    pub parameters: Option<::ValueMap<String>>,
     /// Property `Tags`.
     #[serde(rename = "Tags")]
     #[serde(default, skip_serializing_if = "Option::is_none")]

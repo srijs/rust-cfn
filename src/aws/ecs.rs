@@ -312,7 +312,7 @@ pub mod task_definition {
         /// Property `DockerLabels`.
         #[serde(rename = "DockerLabels")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
-        pub docker_labels: Option<::std::collections::HashMap<String, ::Value<String>>>,
+        pub docker_labels: Option<::ValueMap<String>>,
         /// Property `DockerSecurityOptions`.
         #[serde(rename = "DockerSecurityOptions")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -501,7 +501,7 @@ pub mod task_definition {
         /// Property `Options`.
         #[serde(rename = "Options")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
-        pub options: Option<::std::collections::HashMap<String, ::Value<String>>>,
+        pub options: Option<::ValueMap<String>>,
     }
 
     cfn_internal__inherit_codec_impls!(LogConfiguration);

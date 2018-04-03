@@ -304,7 +304,7 @@ pub mod cluster {
         /// Property `AdditionalInfo`.
         #[serde(rename = "AdditionalInfo")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
-        pub additional_info: Option<::std::collections::HashMap<String, ::Value<String>>>,
+        pub additional_info: Option<::ValueMap<String>>,
         /// Property `Args`.
         #[serde(rename = "Args")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -396,7 +396,7 @@ pub mod cluster {
         /// Property `ConfigurationProperties`.
         #[serde(rename = "ConfigurationProperties")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
-        pub configuration_properties: Option<::std::collections::HashMap<String, ::Value<String>>>,
+        pub configuration_properties: Option<::ValueMap<String>>,
         /// Property `Configurations`.
         #[serde(rename = "Configurations")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -761,7 +761,7 @@ pub mod instance_fleet_config {
         /// Property `ConfigurationProperties`.
         #[serde(rename = "ConfigurationProperties")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
-        pub configuration_properties: Option<::std::collections::HashMap<String, ::Value<String>>>,
+        pub configuration_properties: Option<::ValueMap<String>>,
         /// Property `Configurations`.
         #[serde(rename = "Configurations")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -939,7 +939,7 @@ pub mod instance_group_config {
         /// Property `ConfigurationProperties`.
         #[serde(rename = "ConfigurationProperties")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
-        pub configuration_properties: Option<::std::collections::HashMap<String, ::Value<String>>>,
+        pub configuration_properties: Option<::ValueMap<String>>,
         /// Property `Configurations`.
         #[serde(rename = "Configurations")]
         #[serde(default, skip_serializing_if = "Option::is_none")]

@@ -164,9 +164,9 @@ fn generate_field_type(namespace_opt: Option<&str>, spec: &PropertySpecification
             }
         } else if type_name == "Map" {
             if let Some(ref item_type) = spec.item_type {
-                format!("::std::collections::HashMap<String, ::Value<{}>>", generate_type(namespace_opt, item_type))
+                format!("::ValueMap<{}>", generate_type(namespace_opt, item_type))
             } else {
-                format!("::std::collections::HashMap<String, ::Value<{}>>",
+                format!("::ValueMap<{}>",
                     generate_primitive_type(spec.primitive_item_type.as_ref().unwrap()))
             }
         } else {

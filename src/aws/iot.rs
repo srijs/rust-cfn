@@ -229,7 +229,7 @@ pub mod thing {
         /// Property `Attributes`.
         #[serde(rename = "Attributes")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
-        pub attributes: Option<::std::collections::HashMap<String, ::Value<String>>>,
+        pub attributes: Option<::ValueMap<String>>,
     }
 
     cfn_internal__inherit_codec_impls!(AttributePayload);

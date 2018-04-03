@@ -16,7 +16,7 @@ pub struct AppProperties {
     /// Property `Attributes`.
     #[serde(rename = "Attributes")]
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub attributes: Option<::std::collections::HashMap<String, ::Value<String>>>,
+    pub attributes: Option<::ValueMap<String>>,
     /// Property `DataSources`.
     #[serde(rename = "DataSources")]
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -234,7 +234,7 @@ pub struct LayerProperties {
     /// Property `Attributes`.
     #[serde(rename = "Attributes")]
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub attributes: Option<::std::collections::HashMap<String, ::Value<String>>>,
+    pub attributes: Option<::ValueMap<String>>,
     /// Property `AutoAssignElasticIps`.
     #[serde(rename = "AutoAssignElasticIps")]
     pub auto_assign_elastic_ips: ::Value<bool>,
@@ -337,7 +337,7 @@ pub struct StackProperties {
     /// Property `Attributes`.
     #[serde(rename = "Attributes")]
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub attributes: Option<::std::collections::HashMap<String, ::Value<String>>>,
+    pub attributes: Option<::ValueMap<String>>,
     /// Property `ChefConfiguration`.
     #[serde(rename = "ChefConfiguration")]
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -686,31 +686,31 @@ pub mod instance {
         /// Property `Friday`.
         #[serde(rename = "Friday")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
-        pub friday: Option<::std::collections::HashMap<String, ::Value<String>>>,
+        pub friday: Option<::ValueMap<String>>,
         /// Property `Monday`.
         #[serde(rename = "Monday")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
-        pub monday: Option<::std::collections::HashMap<String, ::Value<String>>>,
+        pub monday: Option<::ValueMap<String>>,
         /// Property `Saturday`.
         #[serde(rename = "Saturday")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
-        pub saturday: Option<::std::collections::HashMap<String, ::Value<String>>>,
+        pub saturday: Option<::ValueMap<String>>,
         /// Property `Sunday`.
         #[serde(rename = "Sunday")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
-        pub sunday: Option<::std::collections::HashMap<String, ::Value<String>>>,
+        pub sunday: Option<::ValueMap<String>>,
         /// Property `Thursday`.
         #[serde(rename = "Thursday")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
-        pub thursday: Option<::std::collections::HashMap<String, ::Value<String>>>,
+        pub thursday: Option<::ValueMap<String>>,
         /// Property `Tuesday`.
         #[serde(rename = "Tuesday")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
-        pub tuesday: Option<::std::collections::HashMap<String, ::Value<String>>>,
+        pub tuesday: Option<::ValueMap<String>>,
         /// Property `Wednesday`.
         #[serde(rename = "Wednesday")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
-        pub wednesday: Option<::std::collections::HashMap<String, ::Value<String>>>,
+        pub wednesday: Option<::ValueMap<String>>,
     }
 
     cfn_internal__inherit_codec_impls!(TimeBasedAutoScaling);

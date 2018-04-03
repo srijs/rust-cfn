@@ -81,7 +81,7 @@ pub mod rule {
         /// Property `InputPathsMap`.
         #[serde(rename = "InputPathsMap")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
-        pub input_paths_map: Option<::std::collections::HashMap<String, ::Value<String>>>,
+        pub input_paths_map: Option<::ValueMap<String>>,
         /// Property `InputTemplate`.
         #[serde(rename = "InputTemplate")]
         pub input_template: ::Value<String>,

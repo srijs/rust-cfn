@@ -417,11 +417,11 @@ pub struct GatewayResponseProperties {
     /// Property `ResponseParameters`.
     #[serde(rename = "ResponseParameters")]
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub response_parameters: Option<::std::collections::HashMap<String, ::Value<String>>>,
+    pub response_parameters: Option<::ValueMap<String>>,
     /// Property `ResponseTemplates`.
     #[serde(rename = "ResponseTemplates")]
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub response_templates: Option<::std::collections::HashMap<String, ::Value<String>>>,
+    pub response_templates: Option<::ValueMap<String>>,
     /// Property `ResponseType`.
     #[serde(rename = "ResponseType")]
     pub response_type: ::Value<String>,
@@ -492,11 +492,11 @@ pub struct MethodProperties {
     /// Property `RequestModels`.
     #[serde(rename = "RequestModels")]
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub request_models: Option<::std::collections::HashMap<String, ::Value<String>>>,
+    pub request_models: Option<::ValueMap<String>>,
     /// Property `RequestParameters`.
     #[serde(rename = "RequestParameters")]
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub request_parameters: Option<::std::collections::HashMap<String, ::Value<bool>>>,
+    pub request_parameters: Option<::ValueMap<bool>>,
     /// Property `RequestValidatorId`.
     #[serde(rename = "RequestValidatorId")]
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -713,7 +713,7 @@ pub struct RestApiProperties {
     /// Property `Parameters`.
     #[serde(rename = "Parameters")]
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub parameters: Option<::std::collections::HashMap<String, ::Value<String>>>,
+    pub parameters: Option<::ValueMap<String>>,
 }
 
 impl<'a> ::Resource<'a> for RestApi {
@@ -782,7 +782,7 @@ pub struct StageProperties {
     /// Property `Variables`.
     #[serde(rename = "Variables")]
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub variables: Option<::std::collections::HashMap<String, ::Value<String>>>,
+    pub variables: Option<::ValueMap<String>>,
 }
 
 impl<'a> ::Resource<'a> for Stage {
@@ -1064,7 +1064,7 @@ pub mod deployment {
         /// Property `Variables`.
         #[serde(rename = "Variables")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
-        pub variables: Option<::std::collections::HashMap<String, ::Value<String>>>,
+        pub variables: Option<::ValueMap<String>>,
     }
 
     cfn_internal__inherit_codec_impls!(StageDescription);
@@ -1153,11 +1153,11 @@ pub mod method {
         /// Property `RequestParameters`.
         #[serde(rename = "RequestParameters")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
-        pub request_parameters: Option<::std::collections::HashMap<String, ::Value<String>>>,
+        pub request_parameters: Option<::ValueMap<String>>,
         /// Property `RequestTemplates`.
         #[serde(rename = "RequestTemplates")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
-        pub request_templates: Option<::std::collections::HashMap<String, ::Value<String>>>,
+        pub request_templates: Option<::ValueMap<String>>,
         /// Property `Type`.
         #[serde(rename = "Type")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -1180,11 +1180,11 @@ pub mod method {
         /// Property `ResponseParameters`.
         #[serde(rename = "ResponseParameters")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
-        pub response_parameters: Option<::std::collections::HashMap<String, ::Value<String>>>,
+        pub response_parameters: Option<::ValueMap<String>>,
         /// Property `ResponseTemplates`.
         #[serde(rename = "ResponseTemplates")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
-        pub response_templates: Option<::std::collections::HashMap<String, ::Value<String>>>,
+        pub response_templates: Option<::ValueMap<String>>,
         /// Property `SelectionPattern`.
         #[serde(rename = "SelectionPattern")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -1202,11 +1202,11 @@ pub mod method {
         /// Property `ResponseModels`.
         #[serde(rename = "ResponseModels")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
-        pub response_models: Option<::std::collections::HashMap<String, ::Value<String>>>,
+        pub response_models: Option<::ValueMap<String>>,
         /// Property `ResponseParameters`.
         #[serde(rename = "ResponseParameters")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
-        pub response_parameters: Option<::std::collections::HashMap<String, ::Value<bool>>>,
+        pub response_parameters: Option<::ValueMap<bool>>,
         /// Property `StatusCode`.
         #[serde(rename = "StatusCode")]
         pub status_code: ::Value<String>,

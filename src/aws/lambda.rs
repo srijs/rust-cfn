@@ -342,7 +342,7 @@ pub mod function {
         /// Property `Variables`.
         #[serde(rename = "Variables")]
         #[serde(default, skip_serializing_if = "Option::is_none")]
-        pub variables: Option<::std::collections::HashMap<String, ::Value<String>>>,
+        pub variables: Option<::ValueMap<String>>,
     }
 
     cfn_internal__inherit_codec_impls!(Environment);

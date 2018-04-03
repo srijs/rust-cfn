@@ -27,7 +27,7 @@ pub struct AssociationProperties {
     /// Property `Parameters`.
     #[serde(rename = "Parameters")]
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub parameters: Option<::std::collections::HashMap<String, ::Value<self::association::ParameterValues>>>,
+    pub parameters: Option<::ValueMap<self::association::ParameterValues>>,
     /// Property `ScheduleExpression`.
     #[serde(rename = "ScheduleExpression")]
     #[serde(default, skip_serializing_if = "Option::is_none")]

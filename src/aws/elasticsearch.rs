@@ -16,7 +16,7 @@ pub struct DomainProperties {
     /// Property `AdvancedOptions`.
     #[serde(rename = "AdvancedOptions")]
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub advanced_options: Option<::std::collections::HashMap<String, ::Value<String>>>,
+    pub advanced_options: Option<::ValueMap<String>>,
     /// Property `DomainName`.
     #[serde(rename = "DomainName")]
     #[serde(default, skip_serializing_if = "Option::is_none")]

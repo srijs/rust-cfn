@@ -129,7 +129,7 @@ pub struct ParameterGroupProperties {
     /// Property `Properties`.
     #[serde(rename = "Properties")]
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub properties: Option<::std::collections::HashMap<String, ::Value<String>>>,
+    pub properties: Option<::ValueMap<String>>,
 }
 
 impl<'a> ::Resource<'a> for ParameterGroup {
