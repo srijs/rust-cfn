@@ -1,7 +1,12 @@
 [package]
 name = "cfn"
-version = "0.1.0"
+version = "0.0.1"
 authors = ["Sam Rijs <srijs@airpost.net>"]
+description = "Type-safe representations for AWS CloudFormation templates, resources and properties"
+license = "MIT"
+repository = "https://github.com/srijs/rust-cfn"
+documentation = "https://docs.rs/cfn"
+keywords = ["aws", "cloudformation", "template"]
 
 [dependencies]
 indexmap = { version = "1.0", features = ["serde-1"] }
