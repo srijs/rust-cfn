@@ -21,9 +21,9 @@ impl Resources {
         })
     }
 
-    /// Checks if the resource identified by the logical id exists.
-    pub fn has<'a, R: Resource<'a>>(&'a self, name: &str) -> bool {
-        self.0.get(name).map(|inner| inner.tag == R::TYPE).unwrap_or(false)
+    /// Checks if a resource with the provided logical id exists.
+    pub fn has(&self, name: &str) -> bool {
+        self.0.contains_key(name)
     }
 
     /// Insert a resource with the provided logical id.
