@@ -8,7 +8,7 @@ use ::codec::{SerializeValue, DeserializeValue};
 /// templates.
 ///
 /// For example, if you have a parameter called `SubnetIds` of type
-/// `List<AWS::EC2::Subnet::Id>` then, you can use `ValueList::Ref("SubnetIds".to_owned())`
+/// `List<AWS::EC2::Subnet::Id>` then, you can use `ValueList::reference("SubnetIds")`
 /// to reference it.
 #[derive(Debug)]
 pub struct ValueList<T>(ValueListInner<T>);
