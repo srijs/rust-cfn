@@ -1,3 +1,5 @@
+use std::iter::FromIterator;
+
 use serde::{Serialize, Serializer, Deserialize, Deserializer};
 
 use ::codec::{SerializeValue, DeserializeValue};
@@ -9,19 +11,26 @@ use ::codec::{SerializeValue, DeserializeValue};
 /// `List<AWS::EC2::Subnet::Id>` then, you can use `ValueList::Ref("SubnetIds".to_owned())`
 /// to reference it.
 #[derive(Debug)]
-pub enum ValueList<T> {
-    /// List of values.
-    Values(Vec<::Value<T>>),
-    /// Returns the value of the specified _parameter_ or _resource_. 
-    Ref(String)
-}
+pub struct ValueList<T>(ValueListInner<T>);
 
 impl<T> ValueList<T> {
+    /// Create a new value list.
+    pub fn new<I>(values: I) -> ValueList<T>
+        where I: IntoIterator<Item = ::Value<T>>
+    {
+        ValueList(ValueListInner::Values(Vec::from_iter(values)))
+    }
+
+    /// Create a new value list backed by a reference.
+    pub fn reference<S: Into<String>>(id: S) -> ValueList<T> {
+        ValueList(ValueListInner::Ref(id.into()))
+    }
+
     /// If the list contains values, return `Some`.
     ///
     /// Return `None` otherwise.
     pub fn as_values(&self) -> Option<&[::Value<T>]> {
-        if let &ValueList::Values(ref values) = self {
+        if let ValueListInner::Values(ref values) = self.0 {
             Some(values)
         } else {
             None
@@ -32,7 +41,7 @@ impl<T> ValueList<T> {
     ///
     /// Return `None` otherwise.
     pub fn as_reference(&self) -> Option<&str> {
-        if let &ValueList::Ref(ref ref_id) = self {
+        if let ValueListInner::Ref(ref ref_id) = self.0 {
             Some(ref_id)
         } else {
             None
@@ -40,10 +49,24 @@ impl<T> ValueList<T> {
     }
 }
 
+impl<T> FromIterator<::Value<T>> for ValueList<T> {
+    fn from_iter<I>(iter: I) -> ValueList<T>
+        where I: IntoIterator<Item = ::Value<T>>
+    {
+        ValueList::new(iter)
+    }
+}
+
+#[derive(Debug)]
+enum ValueListInner<T> {
+    Values(Vec<::Value<T>>),
+    Ref(String)
+}
+
 #[derive(Serialize, Deserialize)]
 struct SerdeRef<'a> {
     #[serde(rename = "Ref", borrow)]
-    ref_id: &'a str
+    id: &'a str
 }
 
 #[derive(Serialize)]
@@ -64,9 +87,9 @@ enum DeserializeValueList<'a, T> {
 
 impl<T: SerializeValue> Serialize for ValueList<T> {
     fn serialize<S: Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        let proxy = match self {
-            &ValueList::Values(ref values) => SerializeValueList::Values(values),
-            &ValueList::Ref(ref ref_id) => SerializeValueList::Ref(SerdeRef { ref_id })
+        let proxy = match self.0 {
+            ValueListInner::Values(ref values) => SerializeValueList::Values(values),
+            ValueListInner::Ref(ref id) => SerializeValueList::Ref(SerdeRef { id })
         };
         Serialize::serialize(&proxy, s)
     }
@@ -75,10 +98,13 @@ impl<T: SerializeValue> Serialize for ValueList<T> {
 impl<'de, T: DeserializeValue> Deserialize<'de> for ValueList<T> {
     fn deserialize<D: Deserializer<'de>>(d: D) -> Result<Self, D::Error> {
         Deserialize::deserialize(d).map(|proxy| {
-            match proxy {
-                DeserializeValueList::Values(t) => ValueList::Values(t),
-                DeserializeValueList::Ref(SerdeRef { ref_id }) => ValueList::Ref(ref_id.to_owned())
-            }
+            let inner = match proxy {
+                DeserializeValueList::Values(t) =>
+                    ValueListInner::Values(t),
+                DeserializeValueList::Ref(SerdeRef { id }) =>
+                    ValueListInner::Ref(id.to_owned())
+            };
+            ValueList(inner)
         })
     }
 }

@@ -8,21 +8,24 @@ use super::Expr;
 ///
 /// This can either be a literal value, or an invocation of an instrinsic function.
 #[derive(Debug)]
-pub enum Value<T> {
-    /// Literal value.
-    Value(T),
-    /// Returns the value of the specified _parameter_ or _resource_. 
-    Ref(String),
-    /// Expression.
-    Expr(Expr)
-}
+pub struct Value<T>(ValueInner<T>);
 
 impl<T> Value<T> {
+    /// Create a new value.
+    pub fn new(value: T) -> Value<T> {
+        Value(ValueInner::Value(value))
+    }
+
+    /// Create a new value backed by a reference.
+    pub fn reference<S: Into<String>>(id: S) -> Value<T> {
+        Value(ValueInner::Ref(id.into()))
+    }
+
     /// If the value contains a literal value, return `Some`.
     ///
     /// Return `None` otherwise.
     pub fn as_value(&self) -> Option<&T> {
-        if let &Value::Value(ref value) = self {
+        if let ValueInner::Value(ref value) = self.0 {
             Some(value)
         } else {
             None
@@ -33,7 +36,7 @@ impl<T> Value<T> {
     ///
     /// Return `None` otherwise.
     pub fn as_reference(&self) -> Option<&str> {
-        if let &Value::Ref(ref ref_id) = self {
+        if let ValueInner::Ref(ref ref_id) = self.0 {
             Some(ref_id)
         } else {
             None
@@ -44,7 +47,7 @@ impl<T> Value<T> {
     ///
     /// Return `None` otherwise.
     pub fn as_expression(&self) -> Option<&Expr> {
-        if let &Value::Expr(ref expr) = self {
+        if let ValueInner::Expr(ref expr) = self.0 {
             Some(expr)
         } else {
             None
@@ -52,10 +55,23 @@ impl<T> Value<T> {
     }
 }
 
+impl<T> From<T> for Value<T> {
+    fn from(value: T) -> Value<T> {
+        Value::new(value)
+    }
+}
+
+#[derive(Debug)]
+enum ValueInner<T> {
+    Value(T),
+    Ref(String),
+    Expr(Expr)
+}
+
 #[derive(Serialize, Deserialize)]
 struct SerdeRef<'a> {
     #[serde(rename = "Ref", borrow)]
-    ref_id: &'a str
+    id: &'a str
 }
 
 #[derive(Serialize)]
@@ -82,10 +98,10 @@ enum DeserializeValueProxy<'a, T: DeserializeValue> {
 
 impl<T: SerializeValue> Serialize for Value<T> {
     fn serialize<S: Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        let proxy = match self {
-            &Value::Value(ref literal) => SerializeValueProxy::Value(literal),
-            &Value::Ref(ref ref_id) => SerializeValueProxy::Ref(SerdeRef { ref_id }),
-            &Value::Expr(ref expr) => SerializeValueProxy::Expr(expr)
+        let proxy = match self.0 {
+            ValueInner::Value(ref literal) => SerializeValueProxy::Value(literal),
+            ValueInner::Ref(ref id) => SerializeValueProxy::Ref(SerdeRef { id }),
+            ValueInner::Expr(ref expr) => SerializeValueProxy::Expr(expr)
         };
         Serialize::serialize(&proxy, s)
     }
@@ -94,11 +110,12 @@ impl<T: SerializeValue> Serialize for Value<T> {
 impl<'de, T: DeserializeValue> Deserialize<'de> for Value<T> {
     fn deserialize<D: Deserializer<'de>>(d: D) -> Result<Self, D::Error> {
         Deserialize::deserialize(d).map(|proxy| {
-            match proxy {
-                DeserializeValueProxy::Value(t) => Value::Value(t),
-                DeserializeValueProxy::Ref(SerdeRef { ref_id }) => Value::Ref(ref_id.to_owned()),
-                DeserializeValueProxy::Expr(expr) => Value::Expr(expr)
-            }
+            let inner = match proxy {
+                DeserializeValueProxy::Value(t) => ValueInner::Value(t),
+                DeserializeValueProxy::Ref(SerdeRef { id }) => ValueInner::Ref(id.to_owned()),
+                DeserializeValueProxy::Expr(expr) => ValueInner::Expr(expr)
+            };
+            Value(inner)
         })
     }
 }
