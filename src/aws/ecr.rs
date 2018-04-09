@@ -7,20 +7,68 @@ pub struct Repository {
 }
 
 /// Properties for the `Repository` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct RepositoryProperties {
     /// Property `LifecyclePolicy`.
-    #[serde(rename = "LifecyclePolicy")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub lifecycle_policy: Option<::Value<self::repository::LifecyclePolicy>>,
     /// Property `RepositoryName`.
-    #[serde(rename = "RepositoryName")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub repository_name: Option<::Value<String>>,
     /// Property `RepositoryPolicyText`.
-    #[serde(rename = "RepositoryPolicyText")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub repository_policy_text: Option<::Value<::json::Value>>,
+}
+
+impl ::serde::Serialize for RepositoryProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LifecyclePolicy", &self.lifecycle_policy)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RepositoryName", &self.repository_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RepositoryPolicyText", &self.repository_policy_text)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for RepositoryProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<RepositoryProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = RepositoryProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type RepositoryProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut lifecycle_policy = None;
+                let mut repository_name = None;
+                let mut repository_policy_text = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "LifecyclePolicy" => {
+                            lifecycle_policy = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "RepositoryName" => {
+                            repository_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "RepositoryPolicyText" => {
+                            repository_policy_text = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(RepositoryProperties {
+                    lifecycle_policy: lifecycle_policy,
+                    repository_name: repository_name,
+                    repository_policy_text: repository_policy_text,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for Repository {
@@ -46,17 +94,59 @@ pub mod repository {
     //! Property types for the `Repository` resource.
 
     /// The [`AWS::ECR::Repository.LifecyclePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-repository-lifecyclepolicy.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct LifecyclePolicy {
         /// Property `LifecyclePolicyText`.
-        #[serde(rename = "LifecyclePolicyText")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub lifecycle_policy_text: Option<::Value<String>>,
         /// Property `RegistryId`.
-        #[serde(rename = "RegistryId")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub registry_id: Option<::Value<String>>,
     }
 
-    cfn_internal__inherit_codec_impls!(LifecyclePolicy);
+    impl ::codec::SerializeValue for LifecyclePolicy {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LifecyclePolicyText", &self.lifecycle_policy_text)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RegistryId", &self.registry_id)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LifecyclePolicy {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LifecyclePolicy, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LifecyclePolicy;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LifecyclePolicy")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut lifecycle_policy_text = None;
+                    let mut registry_id = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "LifecyclePolicyText" => {
+                                lifecycle_policy_text = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "RegistryId" => {
+                                registry_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LifecyclePolicy {
+                        lifecycle_policy_text: lifecycle_policy_text,
+                        registry_id: registry_id,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 }

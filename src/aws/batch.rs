@@ -7,25 +7,84 @@ pub struct ComputeEnvironment {
 }
 
 /// Properties for the `ComputeEnvironment` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct ComputeEnvironmentProperties {
     /// Property `ComputeEnvironmentName`.
-    #[serde(rename = "ComputeEnvironmentName")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub compute_environment_name: Option<::Value<String>>,
     /// Property `ComputeResources`.
-    #[serde(rename = "ComputeResources")]
     pub compute_resources: ::Value<self::compute_environment::ComputeResources>,
     /// Property `ServiceRole`.
-    #[serde(rename = "ServiceRole")]
     pub service_role: ::Value<String>,
     /// Property `State`.
-    #[serde(rename = "State")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub state: Option<::Value<String>>,
     /// Property `Type`.
-    #[serde(rename = "Type")]
     pub type_: ::Value<String>,
+}
+
+impl ::serde::Serialize for ComputeEnvironmentProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComputeEnvironmentName", &self.compute_environment_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComputeResources", &self.compute_resources)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceRole", &self.service_role)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "State", &self.state)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ComputeEnvironmentProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ComputeEnvironmentProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ComputeEnvironmentProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ComputeEnvironmentProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut compute_environment_name = None;
+                let mut compute_resources = None;
+                let mut service_role = None;
+                let mut state = None;
+                let mut type_ = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "ComputeEnvironmentName" => {
+                            compute_environment_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ComputeResources" => {
+                            compute_resources = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ServiceRole" => {
+                            service_role = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "State" => {
+                            state = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Type" => {
+                            type_ = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ComputeEnvironmentProperties {
+                    compute_environment_name: compute_environment_name,
+                    compute_resources: compute_resources.ok_or(::serde::de::Error::missing_field("ComputeResources"))?,
+                    service_role: service_role.ok_or(::serde::de::Error::missing_field("ServiceRole"))?,
+                    state: state,
+                    type_: type_.ok_or(::serde::de::Error::missing_field("Type"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for ComputeEnvironment {
@@ -54,26 +113,84 @@ pub struct JobDefinition {
 }
 
 /// Properties for the `JobDefinition` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct JobDefinitionProperties {
     /// Property `ContainerProperties`.
-    #[serde(rename = "ContainerProperties")]
     pub container_properties: ::Value<self::job_definition::ContainerProperties>,
     /// Property `JobDefinitionName`.
-    #[serde(rename = "JobDefinitionName")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub job_definition_name: Option<::Value<String>>,
     /// Property `Parameters`.
-    #[serde(rename = "Parameters")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub parameters: Option<::Value<::json::Value>>,
     /// Property `RetryStrategy`.
-    #[serde(rename = "RetryStrategy")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub retry_strategy: Option<::Value<self::job_definition::RetryStrategy>>,
     /// Property `Type`.
-    #[serde(rename = "Type")]
     pub type_: ::Value<String>,
+}
+
+impl ::serde::Serialize for JobDefinitionProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainerProperties", &self.container_properties)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "JobDefinitionName", &self.job_definition_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", &self.parameters)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RetryStrategy", &self.retry_strategy)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for JobDefinitionProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<JobDefinitionProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = JobDefinitionProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type JobDefinitionProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut container_properties = None;
+                let mut job_definition_name = None;
+                let mut parameters = None;
+                let mut retry_strategy = None;
+                let mut type_ = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "ContainerProperties" => {
+                            container_properties = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "JobDefinitionName" => {
+                            job_definition_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Parameters" => {
+                            parameters = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "RetryStrategy" => {
+                            retry_strategy = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Type" => {
+                            type_ = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(JobDefinitionProperties {
+                    container_properties: container_properties.ok_or(::serde::de::Error::missing_field("ContainerProperties"))?,
+                    job_definition_name: job_definition_name,
+                    parameters: parameters,
+                    retry_strategy: retry_strategy,
+                    type_: type_.ok_or(::serde::de::Error::missing_field("Type"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for JobDefinition {
@@ -102,22 +219,76 @@ pub struct JobQueue {
 }
 
 /// Properties for the `JobQueue` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct JobQueueProperties {
     /// Property `ComputeEnvironmentOrder`.
-    #[serde(rename = "ComputeEnvironmentOrder")]
     pub compute_environment_order: ::ValueList<self::job_queue::ComputeEnvironmentOrder>,
     /// Property `JobQueueName`.
-    #[serde(rename = "JobQueueName")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub job_queue_name: Option<::Value<String>>,
     /// Property `Priority`.
-    #[serde(rename = "Priority")]
     pub priority: ::Value<u32>,
     /// Property `State`.
-    #[serde(rename = "State")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub state: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for JobQueueProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComputeEnvironmentOrder", &self.compute_environment_order)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "JobQueueName", &self.job_queue_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Priority", &self.priority)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "State", &self.state)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for JobQueueProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<JobQueueProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = JobQueueProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type JobQueueProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut compute_environment_order = None;
+                let mut job_queue_name = None;
+                let mut priority = None;
+                let mut state = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "ComputeEnvironmentOrder" => {
+                            compute_environment_order = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "JobQueueName" => {
+                            job_queue_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Priority" => {
+                            priority = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "State" => {
+                            state = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(JobQueueProperties {
+                    compute_environment_order: compute_environment_order.ok_or(::serde::de::Error::missing_field("ComputeEnvironmentOrder"))?,
+                    job_queue_name: job_queue_name,
+                    priority: priority.ok_or(::serde::de::Error::missing_field("Priority"))?,
+                    state: state,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for JobQueue {
@@ -143,214 +314,691 @@ pub mod compute_environment {
     //! Property types for the `ComputeEnvironment` resource.
 
     /// The [`AWS::Batch::ComputeEnvironment.ComputeResources`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct ComputeResources {
         /// Property `BidPercentage`.
-        #[serde(rename = "BidPercentage")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub bid_percentage: Option<::Value<u32>>,
         /// Property `DesiredvCpus`.
-        #[serde(rename = "DesiredvCpus")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub desiredv_cpus: Option<::Value<u32>>,
         /// Property `Ec2KeyPair`.
-        #[serde(rename = "Ec2KeyPair")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub ec2_key_pair: Option<::Value<String>>,
         /// Property `ImageId`.
-        #[serde(rename = "ImageId")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub image_id: Option<::Value<String>>,
         /// Property `InstanceRole`.
-        #[serde(rename = "InstanceRole")]
         pub instance_role: ::Value<String>,
         /// Property `InstanceTypes`.
-        #[serde(rename = "InstanceTypes")]
         pub instance_types: ::ValueList<String>,
         /// Property `MaxvCpus`.
-        #[serde(rename = "MaxvCpus")]
         pub maxv_cpus: ::Value<u32>,
         /// Property `MinvCpus`.
-        #[serde(rename = "MinvCpus")]
         pub minv_cpus: ::Value<u32>,
         /// Property `SecurityGroupIds`.
-        #[serde(rename = "SecurityGroupIds")]
         pub security_group_ids: ::ValueList<String>,
         /// Property `SpotIamFleetRole`.
-        #[serde(rename = "SpotIamFleetRole")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub spot_iam_fleet_role: Option<::Value<String>>,
         /// Property `Subnets`.
-        #[serde(rename = "Subnets")]
         pub subnets: ::ValueList<String>,
         /// Property `Tags`.
-        #[serde(rename = "Tags")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub tags: Option<::Value<::json::Value>>,
         /// Property `Type`.
-        #[serde(rename = "Type")]
         pub type_: ::Value<String>,
     }
 
-    cfn_internal__inherit_codec_impls!(ComputeResources);
+    impl ::codec::SerializeValue for ComputeResources {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BidPercentage", &self.bid_percentage)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DesiredvCpus", &self.desiredv_cpus)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ec2KeyPair", &self.ec2_key_pair)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ImageId", &self.image_id)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceRole", &self.instance_role)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceTypes", &self.instance_types)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxvCpus", &self.maxv_cpus)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinvCpus", &self.minv_cpus)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIds", &self.security_group_ids)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotIamFleetRole", &self.spot_iam_fleet_role)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Subnets", &self.subnets)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ComputeResources {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ComputeResources, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ComputeResources;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ComputeResources")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut bid_percentage = None;
+                    let mut desiredv_cpus = None;
+                    let mut ec2_key_pair = None;
+                    let mut image_id = None;
+                    let mut instance_role = None;
+                    let mut instance_types = None;
+                    let mut maxv_cpus = None;
+                    let mut minv_cpus = None;
+                    let mut security_group_ids = None;
+                    let mut spot_iam_fleet_role = None;
+                    let mut subnets = None;
+                    let mut tags = None;
+                    let mut type_ = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "BidPercentage" => {
+                                bid_percentage = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "DesiredvCpus" => {
+                                desiredv_cpus = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Ec2KeyPair" => {
+                                ec2_key_pair = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "ImageId" => {
+                                image_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "InstanceRole" => {
+                                instance_role = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "InstanceTypes" => {
+                                instance_types = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "MaxvCpus" => {
+                                maxv_cpus = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "MinvCpus" => {
+                                minv_cpus = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "SecurityGroupIds" => {
+                                security_group_ids = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "SpotIamFleetRole" => {
+                                spot_iam_fleet_role = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Subnets" => {
+                                subnets = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Tags" => {
+                                tags = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Type" => {
+                                type_ = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ComputeResources {
+                        bid_percentage: bid_percentage,
+                        desiredv_cpus: desiredv_cpus,
+                        ec2_key_pair: ec2_key_pair,
+                        image_id: image_id,
+                        instance_role: instance_role.ok_or(::serde::de::Error::missing_field("InstanceRole"))?,
+                        instance_types: instance_types.ok_or(::serde::de::Error::missing_field("InstanceTypes"))?,
+                        maxv_cpus: maxv_cpus.ok_or(::serde::de::Error::missing_field("MaxvCpus"))?,
+                        minv_cpus: minv_cpus.ok_or(::serde::de::Error::missing_field("MinvCpus"))?,
+                        security_group_ids: security_group_ids.ok_or(::serde::de::Error::missing_field("SecurityGroupIds"))?,
+                        spot_iam_fleet_role: spot_iam_fleet_role,
+                        subnets: subnets.ok_or(::serde::de::Error::missing_field("Subnets"))?,
+                        tags: tags,
+                        type_: type_.ok_or(::serde::de::Error::missing_field("Type"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 }
 
 pub mod job_definition {
     //! Property types for the `JobDefinition` resource.
 
     /// The [`AWS::Batch::JobDefinition.ContainerProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-containerproperties.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct ContainerProperties {
         /// Property `Command`.
-        #[serde(rename = "Command")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub command: Option<::ValueList<String>>,
         /// Property `Environment`.
-        #[serde(rename = "Environment")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub environment: Option<::ValueList<Environment>>,
         /// Property `Image`.
-        #[serde(rename = "Image")]
         pub image: ::Value<String>,
         /// Property `JobRoleArn`.
-        #[serde(rename = "JobRoleArn")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub job_role_arn: Option<::Value<String>>,
         /// Property `Memory`.
-        #[serde(rename = "Memory")]
         pub memory: ::Value<u32>,
         /// Property `MountPoints`.
-        #[serde(rename = "MountPoints")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub mount_points: Option<::ValueList<MountPoints>>,
         /// Property `Privileged`.
-        #[serde(rename = "Privileged")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub privileged: Option<::Value<bool>>,
         /// Property `ReadonlyRootFilesystem`.
-        #[serde(rename = "ReadonlyRootFilesystem")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub readonly_root_filesystem: Option<::Value<bool>>,
         /// Property `Ulimits`.
-        #[serde(rename = "Ulimits")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub ulimits: Option<::ValueList<Ulimit>>,
         /// Property `User`.
-        #[serde(rename = "User")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub user: Option<::Value<String>>,
         /// Property `Vcpus`.
-        #[serde(rename = "Vcpus")]
         pub vcpus: ::Value<u32>,
         /// Property `Volumes`.
-        #[serde(rename = "Volumes")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub volumes: Option<::ValueList<Volumes>>,
     }
 
-    cfn_internal__inherit_codec_impls!(ContainerProperties);
+    impl ::codec::SerializeValue for ContainerProperties {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Command", &self.command)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Environment", &self.environment)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Image", &self.image)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "JobRoleArn", &self.job_role_arn)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Memory", &self.memory)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MountPoints", &self.mount_points)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Privileged", &self.privileged)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReadonlyRootFilesystem", &self.readonly_root_filesystem)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ulimits", &self.ulimits)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "User", &self.user)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Vcpus", &self.vcpus)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Volumes", &self.volumes)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ContainerProperties {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ContainerProperties, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ContainerProperties;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ContainerProperties")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut command = None;
+                    let mut environment = None;
+                    let mut image = None;
+                    let mut job_role_arn = None;
+                    let mut memory = None;
+                    let mut mount_points = None;
+                    let mut privileged = None;
+                    let mut readonly_root_filesystem = None;
+                    let mut ulimits = None;
+                    let mut user = None;
+                    let mut vcpus = None;
+                    let mut volumes = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Command" => {
+                                command = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Environment" => {
+                                environment = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Image" => {
+                                image = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "JobRoleArn" => {
+                                job_role_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Memory" => {
+                                memory = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "MountPoints" => {
+                                mount_points = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Privileged" => {
+                                privileged = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "ReadonlyRootFilesystem" => {
+                                readonly_root_filesystem = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Ulimits" => {
+                                ulimits = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "User" => {
+                                user = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Vcpus" => {
+                                vcpus = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Volumes" => {
+                                volumes = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ContainerProperties {
+                        command: command,
+                        environment: environment,
+                        image: image.ok_or(::serde::de::Error::missing_field("Image"))?,
+                        job_role_arn: job_role_arn,
+                        memory: memory.ok_or(::serde::de::Error::missing_field("Memory"))?,
+                        mount_points: mount_points,
+                        privileged: privileged,
+                        readonly_root_filesystem: readonly_root_filesystem,
+                        ulimits: ulimits,
+                        user: user,
+                        vcpus: vcpus.ok_or(::serde::de::Error::missing_field("Vcpus"))?,
+                        volumes: volumes,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::Batch::JobDefinition.Environment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-environment.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct Environment {
         /// Property `Name`.
-        #[serde(rename = "Name")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub name: Option<::Value<String>>,
         /// Property `Value`.
-        #[serde(rename = "Value")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub value: Option<::Value<String>>,
     }
 
-    cfn_internal__inherit_codec_impls!(Environment);
+    impl ::codec::SerializeValue for Environment {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Environment {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Environment, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Environment;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Environment")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut name = None;
+                    let mut value = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Name" => {
+                                name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Value" => {
+                                value = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Environment {
+                        name: name,
+                        value: value,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::Batch::JobDefinition.MountPoints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-mountpoints.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct MountPoints {
         /// Property `ContainerPath`.
-        #[serde(rename = "ContainerPath")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub container_path: Option<::Value<String>>,
         /// Property `ReadOnly`.
-        #[serde(rename = "ReadOnly")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub read_only: Option<::Value<bool>>,
         /// Property `SourceVolume`.
-        #[serde(rename = "SourceVolume")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub source_volume: Option<::Value<String>>,
     }
 
-    cfn_internal__inherit_codec_impls!(MountPoints);
+    impl ::codec::SerializeValue for MountPoints {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainerPath", &self.container_path)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReadOnly", &self.read_only)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceVolume", &self.source_volume)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MountPoints {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MountPoints, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MountPoints;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MountPoints")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut container_path = None;
+                    let mut read_only = None;
+                    let mut source_volume = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ContainerPath" => {
+                                container_path = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "ReadOnly" => {
+                                read_only = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "SourceVolume" => {
+                                source_volume = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MountPoints {
+                        container_path: container_path,
+                        read_only: read_only,
+                        source_volume: source_volume,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::Batch::JobDefinition.RetryStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-retrystrategy.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct RetryStrategy {
         /// Property `Attempts`.
-        #[serde(rename = "Attempts")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub attempts: Option<::Value<u32>>,
     }
 
-    cfn_internal__inherit_codec_impls!(RetryStrategy);
+    impl ::codec::SerializeValue for RetryStrategy {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attempts", &self.attempts)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for RetryStrategy {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<RetryStrategy, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = RetryStrategy;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type RetryStrategy")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut attempts = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Attempts" => {
+                                attempts = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(RetryStrategy {
+                        attempts: attempts,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::Batch::JobDefinition.Ulimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ulimit.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct Ulimit {
         /// Property `HardLimit`.
-        #[serde(rename = "HardLimit")]
         pub hard_limit: ::Value<u32>,
         /// Property `Name`.
-        #[serde(rename = "Name")]
         pub name: ::Value<String>,
         /// Property `SoftLimit`.
-        #[serde(rename = "SoftLimit")]
         pub soft_limit: ::Value<u32>,
     }
 
-    cfn_internal__inherit_codec_impls!(Ulimit);
+    impl ::codec::SerializeValue for Ulimit {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HardLimit", &self.hard_limit)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SoftLimit", &self.soft_limit)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Ulimit {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Ulimit, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Ulimit;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Ulimit")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut hard_limit = None;
+                    let mut name = None;
+                    let mut soft_limit = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "HardLimit" => {
+                                hard_limit = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Name" => {
+                                name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "SoftLimit" => {
+                                soft_limit = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Ulimit {
+                        hard_limit: hard_limit.ok_or(::serde::de::Error::missing_field("HardLimit"))?,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                        soft_limit: soft_limit.ok_or(::serde::de::Error::missing_field("SoftLimit"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::Batch::JobDefinition.Volumes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-volumes.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct Volumes {
         /// Property `Host`.
-        #[serde(rename = "Host")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub host: Option<::Value<VolumesHost>>,
         /// Property `Name`.
-        #[serde(rename = "Name")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub name: Option<::Value<String>>,
     }
 
-    cfn_internal__inherit_codec_impls!(Volumes);
+    impl ::codec::SerializeValue for Volumes {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Host", &self.host)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Volumes {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Volumes, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Volumes;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Volumes")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut host = None;
+                    let mut name = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Host" => {
+                                host = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Name" => {
+                                name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Volumes {
+                        host: host,
+                        name: name,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::Batch::JobDefinition.VolumesHost`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-volumeshost.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct VolumesHost {
         /// Property `SourcePath`.
-        #[serde(rename = "SourcePath")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub source_path: Option<::Value<String>>,
     }
 
-    cfn_internal__inherit_codec_impls!(VolumesHost);
+    impl ::codec::SerializeValue for VolumesHost {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourcePath", &self.source_path)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for VolumesHost {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<VolumesHost, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = VolumesHost;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type VolumesHost")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut source_path = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SourcePath" => {
+                                source_path = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(VolumesHost {
+                        source_path: source_path,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 }
 
 pub mod job_queue {
     //! Property types for the `JobQueue` resource.
 
     /// The [`AWS::Batch::JobQueue.ComputeEnvironmentOrder`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobqueue-computeenvironmentorder.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct ComputeEnvironmentOrder {
         /// Property `ComputeEnvironment`.
-        #[serde(rename = "ComputeEnvironment")]
         pub compute_environment: ::Value<String>,
         /// Property `Order`.
-        #[serde(rename = "Order")]
         pub order: ::Value<u32>,
     }
 
-    cfn_internal__inherit_codec_impls!(ComputeEnvironmentOrder);
+    impl ::codec::SerializeValue for ComputeEnvironmentOrder {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComputeEnvironment", &self.compute_environment)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Order", &self.order)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ComputeEnvironmentOrder {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ComputeEnvironmentOrder, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ComputeEnvironmentOrder;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ComputeEnvironmentOrder")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut compute_environment = None;
+                    let mut order = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ComputeEnvironment" => {
+                                compute_environment = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Order" => {
+                                order = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ComputeEnvironmentOrder {
+                        compute_environment: compute_environment.ok_or(::serde::de::Error::missing_field("ComputeEnvironment"))?,
+                        order: order.ok_or(::serde::de::Error::missing_field("Order"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 }

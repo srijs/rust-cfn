@@ -7,58 +7,148 @@ pub struct Trail {
 }
 
 /// Properties for the `Trail` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct TrailProperties {
     /// Property `CloudWatchLogsLogGroupArn`.
-    #[serde(rename = "CloudWatchLogsLogGroupArn")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub cloud_watch_logs_log_group_arn: Option<::Value<String>>,
     /// Property `CloudWatchLogsRoleArn`.
-    #[serde(rename = "CloudWatchLogsRoleArn")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub cloud_watch_logs_role_arn: Option<::Value<String>>,
     /// Property `EnableLogFileValidation`.
-    #[serde(rename = "EnableLogFileValidation")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub enable_log_file_validation: Option<::Value<bool>>,
     /// Property `EventSelectors`.
-    #[serde(rename = "EventSelectors")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub event_selectors: Option<::ValueList<self::trail::EventSelector>>,
     /// Property `IncludeGlobalServiceEvents`.
-    #[serde(rename = "IncludeGlobalServiceEvents")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub include_global_service_events: Option<::Value<bool>>,
     /// Property `IsLogging`.
-    #[serde(rename = "IsLogging")]
     pub is_logging: ::Value<bool>,
     /// Property `IsMultiRegionTrail`.
-    #[serde(rename = "IsMultiRegionTrail")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub is_multi_region_trail: Option<::Value<bool>>,
     /// Property `KMSKeyId`.
-    #[serde(rename = "KMSKeyId")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub kms_key_id: Option<::Value<String>>,
     /// Property `S3BucketName`.
-    #[serde(rename = "S3BucketName")]
     pub s3_bucket_name: ::Value<String>,
     /// Property `S3KeyPrefix`.
-    #[serde(rename = "S3KeyPrefix")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub s3_key_prefix: Option<::Value<String>>,
     /// Property `SnsTopicName`.
-    #[serde(rename = "SnsTopicName")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub sns_topic_name: Option<::Value<String>>,
     /// Property `Tags`.
-    #[serde(rename = "Tags")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub tags: Option<::ValueList<::Tag>>,
     /// Property `TrailName`.
-    #[serde(rename = "TrailName")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub trail_name: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for TrailProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchLogsLogGroupArn", &self.cloud_watch_logs_log_group_arn)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchLogsRoleArn", &self.cloud_watch_logs_role_arn)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableLogFileValidation", &self.enable_log_file_validation)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventSelectors", &self.event_selectors)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncludeGlobalServiceEvents", &self.include_global_service_events)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "IsLogging", &self.is_logging)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "IsMultiRegionTrail", &self.is_multi_region_trail)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "KMSKeyId", &self.kms_key_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3BucketName", &self.s3_bucket_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3KeyPrefix", &self.s3_key_prefix)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnsTopicName", &self.sns_topic_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrailName", &self.trail_name)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for TrailProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<TrailProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = TrailProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type TrailProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut cloud_watch_logs_log_group_arn = None;
+                let mut cloud_watch_logs_role_arn = None;
+                let mut enable_log_file_validation = None;
+                let mut event_selectors = None;
+                let mut include_global_service_events = None;
+                let mut is_logging = None;
+                let mut is_multi_region_trail = None;
+                let mut kms_key_id = None;
+                let mut s3_bucket_name = None;
+                let mut s3_key_prefix = None;
+                let mut sns_topic_name = None;
+                let mut tags = None;
+                let mut trail_name = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "CloudWatchLogsLogGroupArn" => {
+                            cloud_watch_logs_log_group_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "CloudWatchLogsRoleArn" => {
+                            cloud_watch_logs_role_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "EnableLogFileValidation" => {
+                            enable_log_file_validation = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "EventSelectors" => {
+                            event_selectors = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "IncludeGlobalServiceEvents" => {
+                            include_global_service_events = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "IsLogging" => {
+                            is_logging = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "IsMultiRegionTrail" => {
+                            is_multi_region_trail = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "KMSKeyId" => {
+                            kms_key_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "S3BucketName" => {
+                            s3_bucket_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "S3KeyPrefix" => {
+                            s3_key_prefix = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "SnsTopicName" => {
+                            sns_topic_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Tags" => {
+                            tags = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "TrailName" => {
+                            trail_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(TrailProperties {
+                    cloud_watch_logs_log_group_arn: cloud_watch_logs_log_group_arn,
+                    cloud_watch_logs_role_arn: cloud_watch_logs_role_arn,
+                    enable_log_file_validation: enable_log_file_validation,
+                    event_selectors: event_selectors,
+                    include_global_service_events: include_global_service_events,
+                    is_logging: is_logging.ok_or(::serde::de::Error::missing_field("IsLogging"))?,
+                    is_multi_region_trail: is_multi_region_trail,
+                    kms_key_id: kms_key_id,
+                    s3_bucket_name: s3_bucket_name.ok_or(::serde::de::Error::missing_field("S3BucketName"))?,
+                    s3_key_prefix: s3_key_prefix,
+                    sns_topic_name: sns_topic_name,
+                    tags: tags,
+                    trail_name: trail_name,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for Trail {
@@ -84,35 +174,124 @@ pub mod trail {
     //! Property types for the `Trail` resource.
 
     /// The [`AWS::CloudTrail::Trail.DataResource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-dataresource.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct DataResource {
         /// Property `Type`.
-        #[serde(rename = "Type")]
         pub type_: ::Value<String>,
         /// Property `Values`.
-        #[serde(rename = "Values")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub values: Option<::ValueList<String>>,
     }
 
-    cfn_internal__inherit_codec_impls!(DataResource);
+    impl ::codec::SerializeValue for DataResource {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Values", &self.values)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DataResource {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DataResource, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DataResource;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DataResource")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut type_ = None;
+                    let mut values = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Type" => {
+                                type_ = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Values" => {
+                                values = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DataResource {
+                        type_: type_.ok_or(::serde::de::Error::missing_field("Type"))?,
+                        values: values,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::CloudTrail::Trail.EventSelector`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-eventselector.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct EventSelector {
         /// Property `DataResources`.
-        #[serde(rename = "DataResources")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub data_resources: Option<::ValueList<DataResource>>,
         /// Property `IncludeManagementEvents`.
-        #[serde(rename = "IncludeManagementEvents")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub include_management_events: Option<::Value<bool>>,
         /// Property `ReadWriteType`.
-        #[serde(rename = "ReadWriteType")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub read_write_type: Option<::Value<String>>,
     }
 
-    cfn_internal__inherit_codec_impls!(EventSelector);
+    impl ::codec::SerializeValue for EventSelector {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataResources", &self.data_resources)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncludeManagementEvents", &self.include_management_events)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReadWriteType", &self.read_write_type)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for EventSelector {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<EventSelector, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = EventSelector;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type EventSelector")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut data_resources = None;
+                    let mut include_management_events = None;
+                    let mut read_write_type = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DataResources" => {
+                                data_resources = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "IncludeManagementEvents" => {
+                                include_management_events = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "ReadWriteType" => {
+                                read_write_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(EventSelector {
+                        data_resources: data_resources,
+                        include_management_events: include_management_events,
+                        read_write_type: read_write_type,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 }

@@ -7,11 +7,52 @@ pub struct Detector {
 }
 
 /// Properties for the `Detector` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct DetectorProperties {
     /// Property `Enable`.
-    #[serde(rename = "Enable")]
     pub enable: ::Value<bool>,
+}
+
+impl ::serde::Serialize for DetectorProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enable", &self.enable)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for DetectorProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<DetectorProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = DetectorProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type DetectorProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut enable = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Enable" => {
+                            enable = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(DetectorProperties {
+                    enable: enable.ok_or(::serde::de::Error::missing_field("Enable"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for Detector {
@@ -40,24 +81,84 @@ pub struct IPSet {
 }
 
 /// Properties for the `IPSet` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct IPSetProperties {
     /// Property `Activate`.
-    #[serde(rename = "Activate")]
     pub activate: ::Value<bool>,
     /// Property `DetectorId`.
-    #[serde(rename = "DetectorId")]
     pub detector_id: ::Value<String>,
     /// Property `Format`.
-    #[serde(rename = "Format")]
     pub format: ::Value<String>,
     /// Property `Location`.
-    #[serde(rename = "Location")]
     pub location: ::Value<String>,
     /// Property `Name`.
-    #[serde(rename = "Name")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub name: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for IPSetProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Activate", &self.activate)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DetectorId", &self.detector_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Format", &self.format)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Location", &self.location)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for IPSetProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<IPSetProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = IPSetProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type IPSetProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut activate = None;
+                let mut detector_id = None;
+                let mut format = None;
+                let mut location = None;
+                let mut name = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Activate" => {
+                            activate = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "DetectorId" => {
+                            detector_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Format" => {
+                            format = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Location" => {
+                            location = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Name" => {
+                            name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(IPSetProperties {
+                    activate: activate.ok_or(::serde::de::Error::missing_field("Activate"))?,
+                    detector_id: detector_id.ok_or(::serde::de::Error::missing_field("DetectorId"))?,
+                    format: format.ok_or(::serde::de::Error::missing_field("Format"))?,
+                    location: location.ok_or(::serde::de::Error::missing_field("Location"))?,
+                    name: name,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for IPSet {
@@ -86,17 +187,68 @@ pub struct Master {
 }
 
 /// Properties for the `Master` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct MasterProperties {
     /// Property `DetectorId`.
-    #[serde(rename = "DetectorId")]
     pub detector_id: ::Value<String>,
     /// Property `InvitationId`.
-    #[serde(rename = "InvitationId")]
     pub invitation_id: ::Value<String>,
     /// Property `MasterId`.
-    #[serde(rename = "MasterId")]
     pub master_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for MasterProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DetectorId", &self.detector_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "InvitationId", &self.invitation_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MasterId", &self.master_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for MasterProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<MasterProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = MasterProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type MasterProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut detector_id = None;
+                let mut invitation_id = None;
+                let mut master_id = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "DetectorId" => {
+                            detector_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "InvitationId" => {
+                            invitation_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "MasterId" => {
+                            master_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(MasterProperties {
+                    detector_id: detector_id.ok_or(::serde::de::Error::missing_field("DetectorId"))?,
+                    invitation_id: invitation_id.ok_or(::serde::de::Error::missing_field("InvitationId"))?,
+                    master_id: master_id.ok_or(::serde::de::Error::missing_field("MasterId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for Master {
@@ -125,25 +277,84 @@ pub struct Member {
 }
 
 /// Properties for the `Member` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct MemberProperties {
     /// Property `DetectorId`.
-    #[serde(rename = "DetectorId")]
     pub detector_id: ::Value<String>,
     /// Property `Email`.
-    #[serde(rename = "Email")]
     pub email: ::Value<String>,
     /// Property `MemberId`.
-    #[serde(rename = "MemberId")]
     pub member_id: ::Value<String>,
     /// Property `Message`.
-    #[serde(rename = "Message")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub message: Option<::Value<String>>,
     /// Property `Status`.
-    #[serde(rename = "Status")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub status: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for MemberProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DetectorId", &self.detector_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Email", &self.email)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MemberId", &self.member_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Message", &self.message)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Status", &self.status)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for MemberProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<MemberProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = MemberProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type MemberProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut detector_id = None;
+                let mut email = None;
+                let mut member_id = None;
+                let mut message = None;
+                let mut status = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "DetectorId" => {
+                            detector_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Email" => {
+                            email = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "MemberId" => {
+                            member_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Message" => {
+                            message = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Status" => {
+                            status = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(MemberProperties {
+                    detector_id: detector_id.ok_or(::serde::de::Error::missing_field("DetectorId"))?,
+                    email: email.ok_or(::serde::de::Error::missing_field("Email"))?,
+                    member_id: member_id.ok_or(::serde::de::Error::missing_field("MemberId"))?,
+                    message: message,
+                    status: status,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for Member {
@@ -172,24 +383,84 @@ pub struct ThreatIntelSet {
 }
 
 /// Properties for the `ThreatIntelSet` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct ThreatIntelSetProperties {
     /// Property `Activate`.
-    #[serde(rename = "Activate")]
     pub activate: ::Value<bool>,
     /// Property `DetectorId`.
-    #[serde(rename = "DetectorId")]
     pub detector_id: ::Value<String>,
     /// Property `Format`.
-    #[serde(rename = "Format")]
     pub format: ::Value<String>,
     /// Property `Location`.
-    #[serde(rename = "Location")]
     pub location: ::Value<String>,
     /// Property `Name`.
-    #[serde(rename = "Name")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub name: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for ThreatIntelSetProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Activate", &self.activate)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DetectorId", &self.detector_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Format", &self.format)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Location", &self.location)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ThreatIntelSetProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ThreatIntelSetProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ThreatIntelSetProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ThreatIntelSetProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut activate = None;
+                let mut detector_id = None;
+                let mut format = None;
+                let mut location = None;
+                let mut name = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Activate" => {
+                            activate = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "DetectorId" => {
+                            detector_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Format" => {
+                            format = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Location" => {
+                            location = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Name" => {
+                            name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ThreatIntelSetProperties {
+                    activate: activate.ok_or(::serde::de::Error::missing_field("Activate"))?,
+                    detector_id: detector_id.ok_or(::serde::de::Error::missing_field("DetectorId"))?,
+                    format: format.ok_or(::serde::de::Error::missing_field("Format"))?,
+                    location: location.ok_or(::serde::de::Error::missing_field("Location"))?,
+                    name: name,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for ThreatIntelSet {

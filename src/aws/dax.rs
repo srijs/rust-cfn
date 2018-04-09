@@ -7,53 +7,140 @@ pub struct Cluster {
 }
 
 /// Properties for the `Cluster` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct ClusterProperties {
     /// Property `AvailabilityZones`.
-    #[serde(rename = "AvailabilityZones")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub availability_zones: Option<::ValueList<String>>,
     /// Property `ClusterName`.
-    #[serde(rename = "ClusterName")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub cluster_name: Option<::Value<String>>,
     /// Property `Description`.
-    #[serde(rename = "Description")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub description: Option<::Value<String>>,
     /// Property `IAMRoleARN`.
-    #[serde(rename = "IAMRoleARN")]
     pub iam_role_arn: ::Value<String>,
     /// Property `NodeType`.
-    #[serde(rename = "NodeType")]
     pub node_type: ::Value<String>,
     /// Property `NotificationTopicARN`.
-    #[serde(rename = "NotificationTopicARN")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub notification_topic_arn: Option<::Value<String>>,
     /// Property `ParameterGroupName`.
-    #[serde(rename = "ParameterGroupName")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub parameter_group_name: Option<::Value<String>>,
     /// Property `PreferredMaintenanceWindow`.
-    #[serde(rename = "PreferredMaintenanceWindow")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub preferred_maintenance_window: Option<::Value<String>>,
     /// Property `ReplicationFactor`.
-    #[serde(rename = "ReplicationFactor")]
     pub replication_factor: ::Value<u32>,
     /// Property `SecurityGroupIds`.
-    #[serde(rename = "SecurityGroupIds")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub security_group_ids: Option<::ValueList<String>>,
     /// Property `SubnetGroupName`.
-    #[serde(rename = "SubnetGroupName")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub subnet_group_name: Option<::Value<String>>,
     /// Property `Tags`.
-    #[serde(rename = "Tags")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub tags: Option<::Value<::json::Value>>,
+}
+
+impl ::serde::Serialize for ClusterProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZones", &self.availability_zones)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClusterName", &self.cluster_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "IAMRoleARN", &self.iam_role_arn)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "NodeType", &self.node_type)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationTopicARN", &self.notification_topic_arn)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ParameterGroupName", &self.parameter_group_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreferredMaintenanceWindow", &self.preferred_maintenance_window)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicationFactor", &self.replication_factor)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIds", &self.security_group_ids)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetGroupName", &self.subnet_group_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ClusterProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ClusterProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ClusterProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut availability_zones = None;
+                let mut cluster_name = None;
+                let mut description = None;
+                let mut iam_role_arn = None;
+                let mut node_type = None;
+                let mut notification_topic_arn = None;
+                let mut parameter_group_name = None;
+                let mut preferred_maintenance_window = None;
+                let mut replication_factor = None;
+                let mut security_group_ids = None;
+                let mut subnet_group_name = None;
+                let mut tags = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AvailabilityZones" => {
+                            availability_zones = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ClusterName" => {
+                            cluster_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Description" => {
+                            description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "IAMRoleARN" => {
+                            iam_role_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "NodeType" => {
+                            node_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "NotificationTopicARN" => {
+                            notification_topic_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ParameterGroupName" => {
+                            parameter_group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "PreferredMaintenanceWindow" => {
+                            preferred_maintenance_window = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ReplicationFactor" => {
+                            replication_factor = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "SecurityGroupIds" => {
+                            security_group_ids = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "SubnetGroupName" => {
+                            subnet_group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Tags" => {
+                            tags = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ClusterProperties {
+                    availability_zones: availability_zones,
+                    cluster_name: cluster_name,
+                    description: description,
+                    iam_role_arn: iam_role_arn.ok_or(::serde::de::Error::missing_field("IAMRoleARN"))?,
+                    node_type: node_type.ok_or(::serde::de::Error::missing_field("NodeType"))?,
+                    notification_topic_arn: notification_topic_arn,
+                    parameter_group_name: parameter_group_name,
+                    preferred_maintenance_window: preferred_maintenance_window,
+                    replication_factor: replication_factor.ok_or(::serde::de::Error::missing_field("ReplicationFactor"))?,
+                    security_group_ids: security_group_ids,
+                    subnet_group_name: subnet_group_name,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for Cluster {
@@ -82,20 +169,68 @@ pub struct ParameterGroup {
 }
 
 /// Properties for the `ParameterGroup` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct ParameterGroupProperties {
     /// Property `Description`.
-    #[serde(rename = "Description")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub description: Option<::Value<String>>,
     /// Property `ParameterGroupName`.
-    #[serde(rename = "ParameterGroupName")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub parameter_group_name: Option<::Value<String>>,
     /// Property `ParameterNameValues`.
-    #[serde(rename = "ParameterNameValues")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub parameter_name_values: Option<::Value<::json::Value>>,
+}
+
+impl ::serde::Serialize for ParameterGroupProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ParameterGroupName", &self.parameter_group_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ParameterNameValues", &self.parameter_name_values)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ParameterGroupProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ParameterGroupProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ParameterGroupProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ParameterGroupProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut description = None;
+                let mut parameter_group_name = None;
+                let mut parameter_name_values = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Description" => {
+                            description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ParameterGroupName" => {
+                            parameter_group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ParameterNameValues" => {
+                            parameter_name_values = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ParameterGroupProperties {
+                    description: description,
+                    parameter_group_name: parameter_group_name,
+                    parameter_name_values: parameter_name_values,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for ParameterGroup {
@@ -124,19 +259,68 @@ pub struct SubnetGroup {
 }
 
 /// Properties for the `SubnetGroup` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct SubnetGroupProperties {
     /// Property `Description`.
-    #[serde(rename = "Description")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub description: Option<::Value<String>>,
     /// Property `SubnetGroupName`.
-    #[serde(rename = "SubnetGroupName")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub subnet_group_name: Option<::Value<String>>,
     /// Property `SubnetIds`.
-    #[serde(rename = "SubnetIds")]
     pub subnet_ids: ::ValueList<String>,
+}
+
+impl ::serde::Serialize for SubnetGroupProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetGroupName", &self.subnet_group_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetIds", &self.subnet_ids)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for SubnetGroupProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<SubnetGroupProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = SubnetGroupProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type SubnetGroupProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut description = None;
+                let mut subnet_group_name = None;
+                let mut subnet_ids = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Description" => {
+                            description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "SubnetGroupName" => {
+                            subnet_group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "SubnetIds" => {
+                            subnet_ids = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(SubnetGroupProperties {
+                    description: description,
+                    subnet_group_name: subnet_group_name,
+                    subnet_ids: subnet_ids.ok_or(::serde::de::Error::missing_field("SubnetIds"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for SubnetGroup {

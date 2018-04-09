@@ -7,28 +7,92 @@ pub struct Listener {
 }
 
 /// Properties for the `Listener` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct ListenerProperties {
     /// Property `Certificates`.
-    #[serde(rename = "Certificates")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub certificates: Option<::ValueList<self::listener::Certificate>>,
     /// Property `DefaultActions`.
-    #[serde(rename = "DefaultActions")]
     pub default_actions: ::ValueList<self::listener::Action>,
     /// Property `LoadBalancerArn`.
-    #[serde(rename = "LoadBalancerArn")]
     pub load_balancer_arn: ::Value<String>,
     /// Property `Port`.
-    #[serde(rename = "Port")]
     pub port: ::Value<u32>,
     /// Property `Protocol`.
-    #[serde(rename = "Protocol")]
     pub protocol: ::Value<String>,
     /// Property `SslPolicy`.
-    #[serde(rename = "SslPolicy")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub ssl_policy: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for ListenerProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Certificates", &self.certificates)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultActions", &self.default_actions)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancerArn", &self.load_balancer_arn)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", &self.port)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", &self.protocol)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SslPolicy", &self.ssl_policy)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ListenerProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ListenerProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ListenerProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ListenerProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut certificates = None;
+                let mut default_actions = None;
+                let mut load_balancer_arn = None;
+                let mut port = None;
+                let mut protocol = None;
+                let mut ssl_policy = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Certificates" => {
+                            certificates = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "DefaultActions" => {
+                            default_actions = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "LoadBalancerArn" => {
+                            load_balancer_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Port" => {
+                            port = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Protocol" => {
+                            protocol = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "SslPolicy" => {
+                            ssl_policy = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ListenerProperties {
+                    certificates: certificates,
+                    default_actions: default_actions.ok_or(::serde::de::Error::missing_field("DefaultActions"))?,
+                    load_balancer_arn: load_balancer_arn.ok_or(::serde::de::Error::missing_field("LoadBalancerArn"))?,
+                    port: port.ok_or(::serde::de::Error::missing_field("Port"))?,
+                    protocol: protocol.ok_or(::serde::de::Error::missing_field("Protocol"))?,
+                    ssl_policy: ssl_policy,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for Listener {
@@ -57,14 +121,60 @@ pub struct ListenerCertificate {
 }
 
 /// Properties for the `ListenerCertificate` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct ListenerCertificateProperties {
     /// Property `Certificates`.
-    #[serde(rename = "Certificates")]
     pub certificates: ::ValueList<self::listener_certificate::Certificate>,
     /// Property `ListenerArn`.
-    #[serde(rename = "ListenerArn")]
     pub listener_arn: ::Value<String>,
+}
+
+impl ::serde::Serialize for ListenerCertificateProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Certificates", &self.certificates)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ListenerArn", &self.listener_arn)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ListenerCertificateProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ListenerCertificateProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ListenerCertificateProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ListenerCertificateProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut certificates = None;
+                let mut listener_arn = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Certificates" => {
+                            certificates = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ListenerArn" => {
+                            listener_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ListenerCertificateProperties {
+                    certificates: certificates.ok_or(::serde::de::Error::missing_field("Certificates"))?,
+                    listener_arn: listener_arn.ok_or(::serde::de::Error::missing_field("ListenerArn"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for ListenerCertificate {
@@ -93,20 +203,76 @@ pub struct ListenerRule {
 }
 
 /// Properties for the `ListenerRule` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct ListenerRuleProperties {
     /// Property `Actions`.
-    #[serde(rename = "Actions")]
     pub actions: ::ValueList<self::listener_rule::Action>,
     /// Property `Conditions`.
-    #[serde(rename = "Conditions")]
     pub conditions: ::ValueList<self::listener_rule::RuleCondition>,
     /// Property `ListenerArn`.
-    #[serde(rename = "ListenerArn")]
     pub listener_arn: ::Value<String>,
     /// Property `Priority`.
-    #[serde(rename = "Priority")]
     pub priority: ::Value<u32>,
+}
+
+impl ::serde::Serialize for ListenerRuleProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Actions", &self.actions)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Conditions", &self.conditions)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ListenerArn", &self.listener_arn)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Priority", &self.priority)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ListenerRuleProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ListenerRuleProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ListenerRuleProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ListenerRuleProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut actions = None;
+                let mut conditions = None;
+                let mut listener_arn = None;
+                let mut priority = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Actions" => {
+                            actions = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Conditions" => {
+                            conditions = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ListenerArn" => {
+                            listener_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Priority" => {
+                            priority = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ListenerRuleProperties {
+                    actions: actions.ok_or(::serde::de::Error::missing_field("Actions"))?,
+                    conditions: conditions.ok_or(::serde::de::Error::missing_field("Conditions"))?,
+                    listener_arn: listener_arn.ok_or(::serde::de::Error::missing_field("ListenerArn"))?,
+                    priority: priority.ok_or(::serde::de::Error::missing_field("Priority"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for ListenerRule {
@@ -135,44 +301,116 @@ pub struct LoadBalancer {
 }
 
 /// Properties for the `LoadBalancer` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct LoadBalancerProperties {
     /// Property `IpAddressType`.
-    #[serde(rename = "IpAddressType")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub ip_address_type: Option<::Value<String>>,
     /// Property `LoadBalancerAttributes`.
-    #[serde(rename = "LoadBalancerAttributes")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub load_balancer_attributes: Option<::ValueList<self::load_balancer::LoadBalancerAttribute>>,
     /// Property `Name`.
-    #[serde(rename = "Name")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub name: Option<::Value<String>>,
     /// Property `Scheme`.
-    #[serde(rename = "Scheme")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub scheme: Option<::Value<String>>,
     /// Property `SecurityGroups`.
-    #[serde(rename = "SecurityGroups")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub security_groups: Option<::ValueList<String>>,
     /// Property `SubnetMappings`.
-    #[serde(rename = "SubnetMappings")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub subnet_mappings: Option<::ValueList<self::load_balancer::SubnetMapping>>,
     /// Property `Subnets`.
-    #[serde(rename = "Subnets")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub subnets: Option<::ValueList<String>>,
     /// Property `Tags`.
-    #[serde(rename = "Tags")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub tags: Option<::ValueList<::Tag>>,
     /// Property `Type`.
-    #[serde(rename = "Type")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub type_: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for LoadBalancerProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "IpAddressType", &self.ip_address_type)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancerAttributes", &self.load_balancer_attributes)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Scheme", &self.scheme)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroups", &self.security_groups)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetMappings", &self.subnet_mappings)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Subnets", &self.subnets)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for LoadBalancerProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<LoadBalancerProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = LoadBalancerProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type LoadBalancerProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut ip_address_type = None;
+                let mut load_balancer_attributes = None;
+                let mut name = None;
+                let mut scheme = None;
+                let mut security_groups = None;
+                let mut subnet_mappings = None;
+                let mut subnets = None;
+                let mut tags = None;
+                let mut type_ = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "IpAddressType" => {
+                            ip_address_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "LoadBalancerAttributes" => {
+                            load_balancer_attributes = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Name" => {
+                            name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Scheme" => {
+                            scheme = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "SecurityGroups" => {
+                            security_groups = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "SubnetMappings" => {
+                            subnet_mappings = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Subnets" => {
+                            subnets = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Tags" => {
+                            tags = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Type" => {
+                            type_ = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(LoadBalancerProperties {
+                    ip_address_type: ip_address_type,
+                    load_balancer_attributes: load_balancer_attributes,
+                    name: name,
+                    scheme: scheme,
+                    security_groups: security_groups,
+                    subnet_mappings: subnet_mappings,
+                    subnets: subnets,
+                    tags: tags,
+                    type_: type_,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for LoadBalancer {
@@ -201,69 +439,172 @@ pub struct TargetGroup {
 }
 
 /// Properties for the `TargetGroup` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct TargetGroupProperties {
     /// Property `HealthCheckIntervalSeconds`.
-    #[serde(rename = "HealthCheckIntervalSeconds")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub health_check_interval_seconds: Option<::Value<u32>>,
     /// Property `HealthCheckPath`.
-    #[serde(rename = "HealthCheckPath")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub health_check_path: Option<::Value<String>>,
     /// Property `HealthCheckPort`.
-    #[serde(rename = "HealthCheckPort")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub health_check_port: Option<::Value<String>>,
     /// Property `HealthCheckProtocol`.
-    #[serde(rename = "HealthCheckProtocol")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub health_check_protocol: Option<::Value<String>>,
     /// Property `HealthCheckTimeoutSeconds`.
-    #[serde(rename = "HealthCheckTimeoutSeconds")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub health_check_timeout_seconds: Option<::Value<u32>>,
     /// Property `HealthyThresholdCount`.
-    #[serde(rename = "HealthyThresholdCount")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub healthy_threshold_count: Option<::Value<u32>>,
     /// Property `Matcher`.
-    #[serde(rename = "Matcher")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub matcher: Option<::Value<self::target_group::Matcher>>,
     /// Property `Name`.
-    #[serde(rename = "Name")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub name: Option<::Value<String>>,
     /// Property `Port`.
-    #[serde(rename = "Port")]
     pub port: ::Value<u32>,
     /// Property `Protocol`.
-    #[serde(rename = "Protocol")]
     pub protocol: ::Value<String>,
     /// Property `Tags`.
-    #[serde(rename = "Tags")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub tags: Option<::ValueList<::Tag>>,
     /// Property `TargetGroupAttributes`.
-    #[serde(rename = "TargetGroupAttributes")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub target_group_attributes: Option<::ValueList<self::target_group::TargetGroupAttribute>>,
     /// Property `TargetType`.
-    #[serde(rename = "TargetType")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub target_type: Option<::Value<String>>,
     /// Property `Targets`.
-    #[serde(rename = "Targets")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub targets: Option<::ValueList<self::target_group::TargetDescription>>,
     /// Property `UnhealthyThresholdCount`.
-    #[serde(rename = "UnhealthyThresholdCount")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub unhealthy_threshold_count: Option<::Value<u32>>,
     /// Property `VpcId`.
-    #[serde(rename = "VpcId")]
     pub vpc_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for TargetGroupProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheckIntervalSeconds", &self.health_check_interval_seconds)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheckPath", &self.health_check_path)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheckPort", &self.health_check_port)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheckProtocol", &self.health_check_protocol)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheckTimeoutSeconds", &self.health_check_timeout_seconds)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthyThresholdCount", &self.healthy_threshold_count)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Matcher", &self.matcher)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", &self.port)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", &self.protocol)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetGroupAttributes", &self.target_group_attributes)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetType", &self.target_type)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Targets", &self.targets)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "UnhealthyThresholdCount", &self.unhealthy_threshold_count)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", &self.vpc_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for TargetGroupProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<TargetGroupProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = TargetGroupProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type TargetGroupProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut health_check_interval_seconds = None;
+                let mut health_check_path = None;
+                let mut health_check_port = None;
+                let mut health_check_protocol = None;
+                let mut health_check_timeout_seconds = None;
+                let mut healthy_threshold_count = None;
+                let mut matcher = None;
+                let mut name = None;
+                let mut port = None;
+                let mut protocol = None;
+                let mut tags = None;
+                let mut target_group_attributes = None;
+                let mut target_type = None;
+                let mut targets = None;
+                let mut unhealthy_threshold_count = None;
+                let mut vpc_id = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "HealthCheckIntervalSeconds" => {
+                            health_check_interval_seconds = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "HealthCheckPath" => {
+                            health_check_path = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "HealthCheckPort" => {
+                            health_check_port = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "HealthCheckProtocol" => {
+                            health_check_protocol = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "HealthCheckTimeoutSeconds" => {
+                            health_check_timeout_seconds = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "HealthyThresholdCount" => {
+                            healthy_threshold_count = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Matcher" => {
+                            matcher = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Name" => {
+                            name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Port" => {
+                            port = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Protocol" => {
+                            protocol = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Tags" => {
+                            tags = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "TargetGroupAttributes" => {
+                            target_group_attributes = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "TargetType" => {
+                            target_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Targets" => {
+                            targets = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "UnhealthyThresholdCount" => {
+                            unhealthy_threshold_count = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "VpcId" => {
+                            vpc_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(TargetGroupProperties {
+                    health_check_interval_seconds: health_check_interval_seconds,
+                    health_check_path: health_check_path,
+                    health_check_port: health_check_port,
+                    health_check_protocol: health_check_protocol,
+                    health_check_timeout_seconds: health_check_timeout_seconds,
+                    healthy_threshold_count: healthy_threshold_count,
+                    matcher: matcher,
+                    name: name,
+                    port: port.ok_or(::serde::de::Error::missing_field("Port"))?,
+                    protocol: protocol.ok_or(::serde::de::Error::missing_field("Protocol"))?,
+                    tags: tags,
+                    target_group_attributes: target_group_attributes,
+                    target_type: target_type,
+                    targets: targets,
+                    unhealthy_threshold_count: unhealthy_threshold_count,
+                    vpc_id: vpc_id.ok_or(::serde::de::Error::missing_field("VpcId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for TargetGroup {
@@ -289,152 +630,572 @@ pub mod listener {
     //! Property types for the `Listener` resource.
 
     /// The [`AWS::ElasticLoadBalancingV2::Listener.Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-defaultactions.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct Action {
         /// Property `TargetGroupArn`.
-        #[serde(rename = "TargetGroupArn")]
         pub target_group_arn: ::Value<String>,
         /// Property `Type`.
-        #[serde(rename = "Type")]
         pub type_: ::Value<String>,
     }
 
-    cfn_internal__inherit_codec_impls!(Action);
+    impl ::codec::SerializeValue for Action {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetGroupArn", &self.target_group_arn)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Action {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Action, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Action;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Action")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut target_group_arn = None;
+                    let mut type_ = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "TargetGroupArn" => {
+                                target_group_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Type" => {
+                                type_ = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Action {
+                        target_group_arn: target_group_arn.ok_or(::serde::de::Error::missing_field("TargetGroupArn"))?,
+                        type_: type_.ok_or(::serde::de::Error::missing_field("Type"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::ElasticLoadBalancingV2::Listener.Certificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-certificates.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct Certificate {
         /// Property `CertificateArn`.
-        #[serde(rename = "CertificateArn")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub certificate_arn: Option<::Value<String>>,
     }
 
-    cfn_internal__inherit_codec_impls!(Certificate);
+    impl ::codec::SerializeValue for Certificate {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificateArn", &self.certificate_arn)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Certificate {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Certificate, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Certificate;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Certificate")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut certificate_arn = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CertificateArn" => {
+                                certificate_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Certificate {
+                        certificate_arn: certificate_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 }
 
 pub mod listener_certificate {
     //! Property types for the `ListenerCertificate` resource.
 
     /// The [`AWS::ElasticLoadBalancingV2::ListenerCertificate.Certificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-certificates.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct Certificate {
         /// Property `CertificateArn`.
-        #[serde(rename = "CertificateArn")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub certificate_arn: Option<::Value<String>>,
     }
 
-    cfn_internal__inherit_codec_impls!(Certificate);
+    impl ::codec::SerializeValue for Certificate {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificateArn", &self.certificate_arn)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Certificate {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Certificate, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Certificate;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Certificate")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut certificate_arn = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CertificateArn" => {
+                                certificate_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Certificate {
+                        certificate_arn: certificate_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 }
 
 pub mod listener_rule {
     //! Property types for the `ListenerRule` resource.
 
     /// The [`AWS::ElasticLoadBalancingV2::ListenerRule.Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-actions.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct Action {
         /// Property `TargetGroupArn`.
-        #[serde(rename = "TargetGroupArn")]
         pub target_group_arn: ::Value<String>,
         /// Property `Type`.
-        #[serde(rename = "Type")]
         pub type_: ::Value<String>,
     }
 
-    cfn_internal__inherit_codec_impls!(Action);
+    impl ::codec::SerializeValue for Action {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetGroupArn", &self.target_group_arn)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Action {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Action, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Action;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Action")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut target_group_arn = None;
+                    let mut type_ = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "TargetGroupArn" => {
+                                target_group_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Type" => {
+                                type_ = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Action {
+                        target_group_arn: target_group_arn.ok_or(::serde::de::Error::missing_field("TargetGroupArn"))?,
+                        type_: type_.ok_or(::serde::de::Error::missing_field("Type"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::ElasticLoadBalancingV2::ListenerRule.RuleCondition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-conditions.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct RuleCondition {
         /// Property `Field`.
-        #[serde(rename = "Field")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub field: Option<::Value<String>>,
         /// Property `Values`.
-        #[serde(rename = "Values")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub values: Option<::ValueList<String>>,
     }
 
-    cfn_internal__inherit_codec_impls!(RuleCondition);
+    impl ::codec::SerializeValue for RuleCondition {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Field", &self.field)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Values", &self.values)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for RuleCondition {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<RuleCondition, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = RuleCondition;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type RuleCondition")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut field = None;
+                    let mut values = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Field" => {
+                                field = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Values" => {
+                                values = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(RuleCondition {
+                        field: field,
+                        values: values,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 }
 
 pub mod load_balancer {
     //! Property types for the `LoadBalancer` resource.
 
     /// The [`AWS::ElasticLoadBalancingV2::LoadBalancer.LoadBalancerAttribute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattributes.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct LoadBalancerAttribute {
         /// Property `Key`.
-        #[serde(rename = "Key")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub key: Option<::Value<String>>,
         /// Property `Value`.
-        #[serde(rename = "Value")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub value: Option<::Value<String>>,
     }
 
-    cfn_internal__inherit_codec_impls!(LoadBalancerAttribute);
+    impl ::codec::SerializeValue for LoadBalancerAttribute {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LoadBalancerAttribute {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LoadBalancerAttribute, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LoadBalancerAttribute;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LoadBalancerAttribute")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut key = None;
+                    let mut value = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Key" => {
+                                key = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Value" => {
+                                value = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LoadBalancerAttribute {
+                        key: key,
+                        value: value,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::ElasticLoadBalancingV2::LoadBalancer.SubnetMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-subnetmapping.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct SubnetMapping {
         /// Property `AllocationId`.
-        #[serde(rename = "AllocationId")]
         pub allocation_id: ::Value<String>,
         /// Property `SubnetId`.
-        #[serde(rename = "SubnetId")]
         pub subnet_id: ::Value<String>,
     }
 
-    cfn_internal__inherit_codec_impls!(SubnetMapping);
+    impl ::codec::SerializeValue for SubnetMapping {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocationId", &self.allocation_id)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", &self.subnet_id)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SubnetMapping {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SubnetMapping, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SubnetMapping;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SubnetMapping")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut allocation_id = None;
+                    let mut subnet_id = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AllocationId" => {
+                                allocation_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "SubnetId" => {
+                                subnet_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SubnetMapping {
+                        allocation_id: allocation_id.ok_or(::serde::de::Error::missing_field("AllocationId"))?,
+                        subnet_id: subnet_id.ok_or(::serde::de::Error::missing_field("SubnetId"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 }
 
 pub mod target_group {
     //! Property types for the `TargetGroup` resource.
 
     /// The [`AWS::ElasticLoadBalancingV2::TargetGroup.Matcher`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-matcher.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct Matcher {
         /// Property `HttpCode`.
-        #[serde(rename = "HttpCode")]
         pub http_code: ::Value<String>,
     }
 
-    cfn_internal__inherit_codec_impls!(Matcher);
+    impl ::codec::SerializeValue for Matcher {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HttpCode", &self.http_code)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Matcher {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Matcher, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Matcher;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Matcher")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut http_code = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "HttpCode" => {
+                                http_code = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Matcher {
+                        http_code: http_code.ok_or(::serde::de::Error::missing_field("HttpCode"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::ElasticLoadBalancingV2::TargetGroup.TargetDescription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetdescription.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct TargetDescription {
         /// Property `AvailabilityZone`.
-        #[serde(rename = "AvailabilityZone")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub availability_zone: Option<::Value<String>>,
         /// Property `Id`.
-        #[serde(rename = "Id")]
         pub id: ::Value<String>,
         /// Property `Port`.
-        #[serde(rename = "Port")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub port: Option<::Value<u32>>,
     }
 
-    cfn_internal__inherit_codec_impls!(TargetDescription);
+    impl ::codec::SerializeValue for TargetDescription {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", &self.availability_zone)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Id", &self.id)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", &self.port)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TargetDescription {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TargetDescription, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TargetDescription;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TargetDescription")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut availability_zone = None;
+                    let mut id = None;
+                    let mut port = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AvailabilityZone" => {
+                                availability_zone = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Id" => {
+                                id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Port" => {
+                                port = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TargetDescription {
+                        availability_zone: availability_zone,
+                        id: id.ok_or(::serde::de::Error::missing_field("Id"))?,
+                        port: port,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::ElasticLoadBalancingV2::TargetGroup.TargetGroupAttribute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetgroupattribute.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct TargetGroupAttribute {
         /// Property `Key`.
-        #[serde(rename = "Key")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub key: Option<::Value<String>>,
         /// Property `Value`.
-        #[serde(rename = "Value")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub value: Option<::Value<String>>,
     }
 
-    cfn_internal__inherit_codec_impls!(TargetGroupAttribute);
+    impl ::codec::SerializeValue for TargetGroupAttribute {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TargetGroupAttribute {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TargetGroupAttribute, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TargetGroupAttribute;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TargetGroupAttribute")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut key = None;
+                    let mut value = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Key" => {
+                                key = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Value" => {
+                                value = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TargetGroupAttribute {
+                        key: key,
+                        value: value,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 }

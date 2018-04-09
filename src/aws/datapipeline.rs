@@ -7,34 +7,100 @@ pub struct Pipeline {
 }
 
 /// Properties for the `Pipeline` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct PipelineProperties {
     /// Property `Activate`.
-    #[serde(rename = "Activate")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub activate: Option<::Value<bool>>,
     /// Property `Description`.
-    #[serde(rename = "Description")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub description: Option<::Value<String>>,
     /// Property `Name`.
-    #[serde(rename = "Name")]
     pub name: ::Value<String>,
     /// Property `ParameterObjects`.
-    #[serde(rename = "ParameterObjects")]
     pub parameter_objects: ::ValueList<self::pipeline::ParameterObject>,
     /// Property `ParameterValues`.
-    #[serde(rename = "ParameterValues")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub parameter_values: Option<::ValueList<self::pipeline::ParameterValue>>,
     /// Property `PipelineObjects`.
-    #[serde(rename = "PipelineObjects")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub pipeline_objects: Option<::ValueList<self::pipeline::PipelineObject>>,
     /// Property `PipelineTags`.
-    #[serde(rename = "PipelineTags")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub pipeline_tags: Option<::ValueList<self::pipeline::PipelineTag>>,
+}
+
+impl ::serde::Serialize for PipelineProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Activate", &self.activate)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ParameterObjects", &self.parameter_objects)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ParameterValues", &self.parameter_values)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PipelineObjects", &self.pipeline_objects)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PipelineTags", &self.pipeline_tags)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for PipelineProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<PipelineProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = PipelineProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type PipelineProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut activate = None;
+                let mut description = None;
+                let mut name = None;
+                let mut parameter_objects = None;
+                let mut parameter_values = None;
+                let mut pipeline_objects = None;
+                let mut pipeline_tags = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Activate" => {
+                            activate = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Description" => {
+                            description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Name" => {
+                            name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ParameterObjects" => {
+                            parameter_objects = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ParameterValues" => {
+                            parameter_values = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "PipelineObjects" => {
+                            pipeline_objects = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "PipelineTags" => {
+                            pipeline_tags = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(PipelineProperties {
+                    activate: activate,
+                    description: description,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    parameter_objects: parameter_objects.ok_or(::serde::de::Error::missing_field("ParameterObjects"))?,
+                    parameter_values: parameter_values,
+                    pipeline_objects: pipeline_objects,
+                    pipeline_tags: pipeline_tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for Pipeline {
@@ -60,88 +126,360 @@ pub mod pipeline {
     //! Property types for the `Pipeline` resource.
 
     /// The [`AWS::DataPipeline::Pipeline.Field`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-pipelineobjects-fields.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct Field {
         /// Property `Key`.
-        #[serde(rename = "Key")]
         pub key: ::Value<String>,
         /// Property `RefValue`.
-        #[serde(rename = "RefValue")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub ref_value: Option<::Value<String>>,
         /// Property `StringValue`.
-        #[serde(rename = "StringValue")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub string_value: Option<::Value<String>>,
     }
 
-    cfn_internal__inherit_codec_impls!(Field);
+    impl ::codec::SerializeValue for Field {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RefValue", &self.ref_value)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StringValue", &self.string_value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Field {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Field, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Field;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Field")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut key = None;
+                    let mut ref_value = None;
+                    let mut string_value = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Key" => {
+                                key = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "RefValue" => {
+                                ref_value = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "StringValue" => {
+                                string_value = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Field {
+                        key: key.ok_or(::serde::de::Error::missing_field("Key"))?,
+                        ref_value: ref_value,
+                        string_value: string_value,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::DataPipeline::Pipeline.ParameterAttribute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parameterobjects-attributes.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct ParameterAttribute {
         /// Property `Key`.
-        #[serde(rename = "Key")]
         pub key: ::Value<String>,
         /// Property `StringValue`.
-        #[serde(rename = "StringValue")]
         pub string_value: ::Value<String>,
     }
 
-    cfn_internal__inherit_codec_impls!(ParameterAttribute);
+    impl ::codec::SerializeValue for ParameterAttribute {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StringValue", &self.string_value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ParameterAttribute {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ParameterAttribute, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ParameterAttribute;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ParameterAttribute")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut key = None;
+                    let mut string_value = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Key" => {
+                                key = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "StringValue" => {
+                                string_value = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ParameterAttribute {
+                        key: key.ok_or(::serde::de::Error::missing_field("Key"))?,
+                        string_value: string_value.ok_or(::serde::de::Error::missing_field("StringValue"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::DataPipeline::Pipeline.ParameterObject`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parameterobjects.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct ParameterObject {
         /// Property `Attributes`.
-        #[serde(rename = "Attributes")]
         pub attributes: ::ValueList<ParameterAttribute>,
         /// Property `Id`.
-        #[serde(rename = "Id")]
         pub id: ::Value<String>,
     }
 
-    cfn_internal__inherit_codec_impls!(ParameterObject);
+    impl ::codec::SerializeValue for ParameterObject {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attributes", &self.attributes)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Id", &self.id)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ParameterObject {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ParameterObject, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ParameterObject;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ParameterObject")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut attributes = None;
+                    let mut id = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Attributes" => {
+                                attributes = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Id" => {
+                                id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ParameterObject {
+                        attributes: attributes.ok_or(::serde::de::Error::missing_field("Attributes"))?,
+                        id: id.ok_or(::serde::de::Error::missing_field("Id"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::DataPipeline::Pipeline.ParameterValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parametervalues.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct ParameterValue {
         /// Property `Id`.
-        #[serde(rename = "Id")]
         pub id: ::Value<String>,
         /// Property `StringValue`.
-        #[serde(rename = "StringValue")]
         pub string_value: ::Value<String>,
     }
 
-    cfn_internal__inherit_codec_impls!(ParameterValue);
+    impl ::codec::SerializeValue for ParameterValue {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Id", &self.id)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StringValue", &self.string_value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ParameterValue {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ParameterValue, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ParameterValue;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ParameterValue")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut id = None;
+                    let mut string_value = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Id" => {
+                                id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "StringValue" => {
+                                string_value = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ParameterValue {
+                        id: id.ok_or(::serde::de::Error::missing_field("Id"))?,
+                        string_value: string_value.ok_or(::serde::de::Error::missing_field("StringValue"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::DataPipeline::Pipeline.PipelineObject`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-pipelineobjects.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct PipelineObject {
         /// Property `Fields`.
-        #[serde(rename = "Fields")]
         pub fields: ::ValueList<Field>,
         /// Property `Id`.
-        #[serde(rename = "Id")]
         pub id: ::Value<String>,
         /// Property `Name`.
-        #[serde(rename = "Name")]
         pub name: ::Value<String>,
     }
 
-    cfn_internal__inherit_codec_impls!(PipelineObject);
+    impl ::codec::SerializeValue for PipelineObject {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Fields", &self.fields)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Id", &self.id)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for PipelineObject {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<PipelineObject, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = PipelineObject;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type PipelineObject")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut fields = None;
+                    let mut id = None;
+                    let mut name = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Fields" => {
+                                fields = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Id" => {
+                                id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Name" => {
+                                name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(PipelineObject {
+                        fields: fields.ok_or(::serde::de::Error::missing_field("Fields"))?,
+                        id: id.ok_or(::serde::de::Error::missing_field("Id"))?,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::DataPipeline::Pipeline.PipelineTag`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-pipelinetags.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct PipelineTag {
         /// Property `Key`.
-        #[serde(rename = "Key")]
         pub key: ::Value<String>,
         /// Property `Value`.
-        #[serde(rename = "Value")]
         pub value: ::Value<String>,
     }
 
-    cfn_internal__inherit_codec_impls!(PipelineTag);
+    impl ::codec::SerializeValue for PipelineTag {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for PipelineTag {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<PipelineTag, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = PipelineTag;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type PipelineTag")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut key = None;
+                    let mut value = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Key" => {
+                                key = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Value" => {
+                                value = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(PipelineTag {
+                        key: key.ok_or(::serde::de::Error::missing_field("Key"))?,
+                        value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 }

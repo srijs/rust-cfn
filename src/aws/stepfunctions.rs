@@ -7,11 +7,52 @@ pub struct Activity {
 }
 
 /// Properties for the `Activity` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct ActivityProperties {
     /// Property `Name`.
-    #[serde(rename = "Name")]
     pub name: ::Value<String>,
+}
+
+impl ::serde::Serialize for ActivityProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ActivityProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ActivityProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ActivityProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ActivityProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut name = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Name" => {
+                            name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ActivityProperties {
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for Activity {
@@ -40,18 +81,68 @@ pub struct StateMachine {
 }
 
 /// Properties for the `StateMachine` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct StateMachineProperties {
     /// Property `DefinitionString`.
-    #[serde(rename = "DefinitionString")]
     pub definition_string: ::Value<String>,
     /// Property `RoleArn`.
-    #[serde(rename = "RoleArn")]
     pub role_arn: ::Value<String>,
     /// Property `StateMachineName`.
-    #[serde(rename = "StateMachineName")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub state_machine_name: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for StateMachineProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefinitionString", &self.definition_string)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "StateMachineName", &self.state_machine_name)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for StateMachineProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<StateMachineProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = StateMachineProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type StateMachineProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut definition_string = None;
+                let mut role_arn = None;
+                let mut state_machine_name = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "DefinitionString" => {
+                            definition_string = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "RoleArn" => {
+                            role_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "StateMachineName" => {
+                            state_machine_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(StateMachineProperties {
+                    definition_string: definition_string.ok_or(::serde::de::Error::missing_field("DefinitionString"))?,
+                    role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
+                    state_machine_name: state_machine_name,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for StateMachine {

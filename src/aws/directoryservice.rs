@@ -7,29 +7,92 @@ pub struct MicrosoftAD {
 }
 
 /// Properties for the `MicrosoftAD` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct MicrosoftADProperties {
     /// Property `CreateAlias`.
-    #[serde(rename = "CreateAlias")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub create_alias: Option<::Value<bool>>,
     /// Property `EnableSso`.
-    #[serde(rename = "EnableSso")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub enable_sso: Option<::Value<bool>>,
     /// Property `Name`.
-    #[serde(rename = "Name")]
     pub name: ::Value<String>,
     /// Property `Password`.
-    #[serde(rename = "Password")]
     pub password: ::Value<String>,
     /// Property `ShortName`.
-    #[serde(rename = "ShortName")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub short_name: Option<::Value<String>>,
     /// Property `VpcSettings`.
-    #[serde(rename = "VpcSettings")]
     pub vpc_settings: ::Value<self::microsoft_ad::VpcSettings>,
+}
+
+impl ::serde::Serialize for MicrosoftADProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CreateAlias", &self.create_alias)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableSso", &self.enable_sso)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Password", &self.password)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ShortName", &self.short_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcSettings", &self.vpc_settings)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for MicrosoftADProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<MicrosoftADProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = MicrosoftADProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type MicrosoftADProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut create_alias = None;
+                let mut enable_sso = None;
+                let mut name = None;
+                let mut password = None;
+                let mut short_name = None;
+                let mut vpc_settings = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "CreateAlias" => {
+                            create_alias = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "EnableSso" => {
+                            enable_sso = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Name" => {
+                            name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Password" => {
+                            password = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ShortName" => {
+                            short_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "VpcSettings" => {
+                            vpc_settings = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(MicrosoftADProperties {
+                    create_alias: create_alias,
+                    enable_sso: enable_sso,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    password: password.ok_or(::serde::de::Error::missing_field("Password"))?,
+                    short_name: short_name,
+                    vpc_settings: vpc_settings.ok_or(::serde::de::Error::missing_field("VpcSettings"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for MicrosoftAD {
@@ -58,36 +121,108 @@ pub struct SimpleAD {
 }
 
 /// Properties for the `SimpleAD` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct SimpleADProperties {
     /// Property `CreateAlias`.
-    #[serde(rename = "CreateAlias")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub create_alias: Option<::Value<bool>>,
     /// Property `Description`.
-    #[serde(rename = "Description")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub description: Option<::Value<String>>,
     /// Property `EnableSso`.
-    #[serde(rename = "EnableSso")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub enable_sso: Option<::Value<bool>>,
     /// Property `Name`.
-    #[serde(rename = "Name")]
     pub name: ::Value<String>,
     /// Property `Password`.
-    #[serde(rename = "Password")]
     pub password: ::Value<String>,
     /// Property `ShortName`.
-    #[serde(rename = "ShortName")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub short_name: Option<::Value<String>>,
     /// Property `Size`.
-    #[serde(rename = "Size")]
     pub size: ::Value<String>,
     /// Property `VpcSettings`.
-    #[serde(rename = "VpcSettings")]
     pub vpc_settings: ::Value<self::simple_ad::VpcSettings>,
+}
+
+impl ::serde::Serialize for SimpleADProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CreateAlias", &self.create_alias)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableSso", &self.enable_sso)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Password", &self.password)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ShortName", &self.short_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Size", &self.size)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcSettings", &self.vpc_settings)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for SimpleADProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<SimpleADProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = SimpleADProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type SimpleADProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut create_alias = None;
+                let mut description = None;
+                let mut enable_sso = None;
+                let mut name = None;
+                let mut password = None;
+                let mut short_name = None;
+                let mut size = None;
+                let mut vpc_settings = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "CreateAlias" => {
+                            create_alias = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Description" => {
+                            description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "EnableSso" => {
+                            enable_sso = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Name" => {
+                            name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Password" => {
+                            password = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ShortName" => {
+                            short_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Size" => {
+                            size = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "VpcSettings" => {
+                            vpc_settings = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(SimpleADProperties {
+                    create_alias: create_alias,
+                    description: description,
+                    enable_sso: enable_sso,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    password: password.ok_or(::serde::de::Error::missing_field("Password"))?,
+                    short_name: short_name,
+                    size: size.ok_or(::serde::de::Error::missing_field("Size"))?,
+                    vpc_settings: vpc_settings.ok_or(::serde::de::Error::missing_field("VpcSettings"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for SimpleAD {
@@ -113,32 +248,120 @@ pub mod microsoft_ad {
     //! Property types for the `MicrosoftAD` resource.
 
     /// The [`AWS::DirectoryService::MicrosoftAD.VpcSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-directoryservice-microsoftad-vpcsettings.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct VpcSettings {
         /// Property `SubnetIds`.
-        #[serde(rename = "SubnetIds")]
         pub subnet_ids: ::ValueList<String>,
         /// Property `VpcId`.
-        #[serde(rename = "VpcId")]
         pub vpc_id: ::Value<String>,
     }
 
-    cfn_internal__inherit_codec_impls!(VpcSettings);
+    impl ::codec::SerializeValue for VpcSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetIds", &self.subnet_ids)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", &self.vpc_id)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for VpcSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<VpcSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = VpcSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type VpcSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut subnet_ids = None;
+                    let mut vpc_id = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SubnetIds" => {
+                                subnet_ids = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "VpcId" => {
+                                vpc_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(VpcSettings {
+                        subnet_ids: subnet_ids.ok_or(::serde::de::Error::missing_field("SubnetIds"))?,
+                        vpc_id: vpc_id.ok_or(::serde::de::Error::missing_field("VpcId"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 }
 
 pub mod simple_ad {
     //! Property types for the `SimpleAD` resource.
 
     /// The [`AWS::DirectoryService::SimpleAD.VpcSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-directoryservice-simplead-vpcsettings.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct VpcSettings {
         /// Property `SubnetIds`.
-        #[serde(rename = "SubnetIds")]
         pub subnet_ids: ::ValueList<String>,
         /// Property `VpcId`.
-        #[serde(rename = "VpcId")]
         pub vpc_id: ::Value<String>,
     }
 
-    cfn_internal__inherit_codec_impls!(VpcSettings);
+    impl ::codec::SerializeValue for VpcSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetIds", &self.subnet_ids)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", &self.vpc_id)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for VpcSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<VpcSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = VpcSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type VpcSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut subnet_ids = None;
+                    let mut vpc_id = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SubnetIds" => {
+                                subnet_ids = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "VpcId" => {
+                                vpc_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(VpcSettings {
+                        subnet_ids: subnet_ids.ok_or(::serde::de::Error::missing_field("SubnetIds"))?,
+                        vpc_id: vpc_id.ok_or(::serde::de::Error::missing_field("VpcId"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 }

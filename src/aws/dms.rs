@@ -7,20 +7,68 @@ pub struct Certificate {
 }
 
 /// Properties for the `Certificate` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct CertificateProperties {
     /// Property `CertificateIdentifier`.
-    #[serde(rename = "CertificateIdentifier")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub certificate_identifier: Option<::Value<String>>,
     /// Property `CertificatePem`.
-    #[serde(rename = "CertificatePem")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub certificate_pem: Option<::Value<String>>,
     /// Property `CertificateWallet`.
-    #[serde(rename = "CertificateWallet")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub certificate_wallet: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for CertificateProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificateIdentifier", &self.certificate_identifier)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificatePem", &self.certificate_pem)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificateWallet", &self.certificate_wallet)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for CertificateProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<CertificateProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = CertificateProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type CertificateProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut certificate_identifier = None;
+                let mut certificate_pem = None;
+                let mut certificate_wallet = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "CertificateIdentifier" => {
+                            certificate_identifier = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "CertificatePem" => {
+                            certificate_pem = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "CertificateWallet" => {
+                            certificate_wallet = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(CertificateProperties {
+                    certificate_identifier: certificate_identifier,
+                    certificate_pem: certificate_pem,
+                    certificate_wallet: certificate_wallet,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for Certificate {
@@ -49,70 +97,172 @@ pub struct Endpoint {
 }
 
 /// Properties for the `Endpoint` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct EndpointProperties {
     /// Property `CertificateArn`.
-    #[serde(rename = "CertificateArn")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub certificate_arn: Option<::Value<String>>,
     /// Property `DatabaseName`.
-    #[serde(rename = "DatabaseName")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub database_name: Option<::Value<String>>,
     /// Property `DynamoDbSettings`.
-    #[serde(rename = "DynamoDbSettings")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub dynamo_db_settings: Option<::Value<self::endpoint::DynamoDbSettings>>,
     /// Property `EndpointIdentifier`.
-    #[serde(rename = "EndpointIdentifier")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub endpoint_identifier: Option<::Value<String>>,
     /// Property `EndpointType`.
-    #[serde(rename = "EndpointType")]
     pub endpoint_type: ::Value<String>,
     /// Property `EngineName`.
-    #[serde(rename = "EngineName")]
     pub engine_name: ::Value<String>,
     /// Property `ExtraConnectionAttributes`.
-    #[serde(rename = "ExtraConnectionAttributes")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub extra_connection_attributes: Option<::Value<String>>,
     /// Property `KmsKeyId`.
-    #[serde(rename = "KmsKeyId")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub kms_key_id: Option<::Value<String>>,
     /// Property `MongoDbSettings`.
-    #[serde(rename = "MongoDbSettings")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub mongo_db_settings: Option<::Value<self::endpoint::MongoDbSettings>>,
     /// Property `Password`.
-    #[serde(rename = "Password")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub password: Option<::Value<String>>,
     /// Property `Port`.
-    #[serde(rename = "Port")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub port: Option<::Value<u32>>,
     /// Property `S3Settings`.
-    #[serde(rename = "S3Settings")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub s3_settings: Option<::Value<self::endpoint::S3Settings>>,
     /// Property `ServerName`.
-    #[serde(rename = "ServerName")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub server_name: Option<::Value<String>>,
     /// Property `SslMode`.
-    #[serde(rename = "SslMode")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub ssl_mode: Option<::Value<String>>,
     /// Property `Tags`.
-    #[serde(rename = "Tags")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub tags: Option<::ValueList<::Tag>>,
     /// Property `Username`.
-    #[serde(rename = "Username")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub username: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for EndpointProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificateArn", &self.certificate_arn)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseName", &self.database_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DynamoDbSettings", &self.dynamo_db_settings)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndpointIdentifier", &self.endpoint_identifier)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndpointType", &self.endpoint_type)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EngineName", &self.engine_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExtraConnectionAttributes", &self.extra_connection_attributes)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", &self.kms_key_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MongoDbSettings", &self.mongo_db_settings)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Password", &self.password)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", &self.port)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Settings", &self.s3_settings)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServerName", &self.server_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SslMode", &self.ssl_mode)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Username", &self.username)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for EndpointProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<EndpointProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = EndpointProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type EndpointProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut certificate_arn = None;
+                let mut database_name = None;
+                let mut dynamo_db_settings = None;
+                let mut endpoint_identifier = None;
+                let mut endpoint_type = None;
+                let mut engine_name = None;
+                let mut extra_connection_attributes = None;
+                let mut kms_key_id = None;
+                let mut mongo_db_settings = None;
+                let mut password = None;
+                let mut port = None;
+                let mut s3_settings = None;
+                let mut server_name = None;
+                let mut ssl_mode = None;
+                let mut tags = None;
+                let mut username = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "CertificateArn" => {
+                            certificate_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "DatabaseName" => {
+                            database_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "DynamoDbSettings" => {
+                            dynamo_db_settings = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "EndpointIdentifier" => {
+                            endpoint_identifier = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "EndpointType" => {
+                            endpoint_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "EngineName" => {
+                            engine_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ExtraConnectionAttributes" => {
+                            extra_connection_attributes = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "KmsKeyId" => {
+                            kms_key_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "MongoDbSettings" => {
+                            mongo_db_settings = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Password" => {
+                            password = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Port" => {
+                            port = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "S3Settings" => {
+                            s3_settings = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ServerName" => {
+                            server_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "SslMode" => {
+                            ssl_mode = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Tags" => {
+                            tags = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Username" => {
+                            username = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(EndpointProperties {
+                    certificate_arn: certificate_arn,
+                    database_name: database_name,
+                    dynamo_db_settings: dynamo_db_settings,
+                    endpoint_identifier: endpoint_identifier,
+                    endpoint_type: endpoint_type.ok_or(::serde::de::Error::missing_field("EndpointType"))?,
+                    engine_name: engine_name.ok_or(::serde::de::Error::missing_field("EngineName"))?,
+                    extra_connection_attributes: extra_connection_attributes,
+                    kms_key_id: kms_key_id,
+                    mongo_db_settings: mongo_db_settings,
+                    password: password,
+                    port: port,
+                    s3_settings: s3_settings,
+                    server_name: server_name,
+                    ssl_mode: ssl_mode,
+                    tags: tags,
+                    username: username,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for Endpoint {
@@ -141,35 +291,100 @@ pub struct EventSubscription {
 }
 
 /// Properties for the `EventSubscription` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct EventSubscriptionProperties {
     /// Property `Enabled`.
-    #[serde(rename = "Enabled")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub enabled: Option<::Value<bool>>,
     /// Property `EventCategories`.
-    #[serde(rename = "EventCategories")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub event_categories: Option<::ValueList<String>>,
     /// Property `SnsTopicArn`.
-    #[serde(rename = "SnsTopicArn")]
     pub sns_topic_arn: ::Value<String>,
     /// Property `SourceIds`.
-    #[serde(rename = "SourceIds")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub source_ids: Option<::ValueList<String>>,
     /// Property `SourceType`.
-    #[serde(rename = "SourceType")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub source_type: Option<::Value<String>>,
     /// Property `SubscriptionName`.
-    #[serde(rename = "SubscriptionName")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub subscription_name: Option<::Value<String>>,
     /// Property `Tags`.
-    #[serde(rename = "Tags")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for EventSubscriptionProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventCategories", &self.event_categories)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnsTopicArn", &self.sns_topic_arn)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceIds", &self.source_ids)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceType", &self.source_type)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubscriptionName", &self.subscription_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for EventSubscriptionProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<EventSubscriptionProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = EventSubscriptionProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type EventSubscriptionProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut enabled = None;
+                let mut event_categories = None;
+                let mut sns_topic_arn = None;
+                let mut source_ids = None;
+                let mut source_type = None;
+                let mut subscription_name = None;
+                let mut tags = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Enabled" => {
+                            enabled = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "EventCategories" => {
+                            event_categories = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "SnsTopicArn" => {
+                            sns_topic_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "SourceIds" => {
+                            source_ids = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "SourceType" => {
+                            source_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "SubscriptionName" => {
+                            subscription_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Tags" => {
+                            tags = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(EventSubscriptionProperties {
+                    enabled: enabled,
+                    event_categories: event_categories,
+                    sns_topic_arn: sns_topic_arn.ok_or(::serde::de::Error::missing_field("SnsTopicArn"))?,
+                    source_ids: source_ids,
+                    source_type: source_type,
+                    subscription_name: subscription_name,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for EventSubscription {
@@ -198,63 +413,156 @@ pub struct ReplicationInstance {
 }
 
 /// Properties for the `ReplicationInstance` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct ReplicationInstanceProperties {
     /// Property `AllocatedStorage`.
-    #[serde(rename = "AllocatedStorage")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub allocated_storage: Option<::Value<u32>>,
     /// Property `AllowMajorVersionUpgrade`.
-    #[serde(rename = "AllowMajorVersionUpgrade")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub allow_major_version_upgrade: Option<::Value<bool>>,
     /// Property `AutoMinorVersionUpgrade`.
-    #[serde(rename = "AutoMinorVersionUpgrade")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub auto_minor_version_upgrade: Option<::Value<bool>>,
     /// Property `AvailabilityZone`.
-    #[serde(rename = "AvailabilityZone")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub availability_zone: Option<::Value<String>>,
     /// Property `EngineVersion`.
-    #[serde(rename = "EngineVersion")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub engine_version: Option<::Value<String>>,
     /// Property `KmsKeyId`.
-    #[serde(rename = "KmsKeyId")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub kms_key_id: Option<::Value<String>>,
     /// Property `MultiAZ`.
-    #[serde(rename = "MultiAZ")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub multi_az: Option<::Value<bool>>,
     /// Property `PreferredMaintenanceWindow`.
-    #[serde(rename = "PreferredMaintenanceWindow")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub preferred_maintenance_window: Option<::Value<String>>,
     /// Property `PubliclyAccessible`.
-    #[serde(rename = "PubliclyAccessible")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub publicly_accessible: Option<::Value<bool>>,
     /// Property `ReplicationInstanceClass`.
-    #[serde(rename = "ReplicationInstanceClass")]
     pub replication_instance_class: ::Value<String>,
     /// Property `ReplicationInstanceIdentifier`.
-    #[serde(rename = "ReplicationInstanceIdentifier")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub replication_instance_identifier: Option<::Value<String>>,
     /// Property `ReplicationSubnetGroupIdentifier`.
-    #[serde(rename = "ReplicationSubnetGroupIdentifier")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub replication_subnet_group_identifier: Option<::Value<String>>,
     /// Property `Tags`.
-    #[serde(rename = "Tags")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub tags: Option<::ValueList<::Tag>>,
     /// Property `VpcSecurityGroupIds`.
-    #[serde(rename = "VpcSecurityGroupIds")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub vpc_security_group_ids: Option<::ValueList<String>>,
+}
+
+impl ::serde::Serialize for ReplicationInstanceProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocatedStorage", &self.allocated_storage)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowMajorVersionUpgrade", &self.allow_major_version_upgrade)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoMinorVersionUpgrade", &self.auto_minor_version_upgrade)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", &self.availability_zone)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EngineVersion", &self.engine_version)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", &self.kms_key_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MultiAZ", &self.multi_az)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreferredMaintenanceWindow", &self.preferred_maintenance_window)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PubliclyAccessible", &self.publicly_accessible)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicationInstanceClass", &self.replication_instance_class)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicationInstanceIdentifier", &self.replication_instance_identifier)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicationSubnetGroupIdentifier", &self.replication_subnet_group_identifier)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcSecurityGroupIds", &self.vpc_security_group_ids)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ReplicationInstanceProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ReplicationInstanceProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ReplicationInstanceProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ReplicationInstanceProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut allocated_storage = None;
+                let mut allow_major_version_upgrade = None;
+                let mut auto_minor_version_upgrade = None;
+                let mut availability_zone = None;
+                let mut engine_version = None;
+                let mut kms_key_id = None;
+                let mut multi_az = None;
+                let mut preferred_maintenance_window = None;
+                let mut publicly_accessible = None;
+                let mut replication_instance_class = None;
+                let mut replication_instance_identifier = None;
+                let mut replication_subnet_group_identifier = None;
+                let mut tags = None;
+                let mut vpc_security_group_ids = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AllocatedStorage" => {
+                            allocated_storage = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "AllowMajorVersionUpgrade" => {
+                            allow_major_version_upgrade = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "AutoMinorVersionUpgrade" => {
+                            auto_minor_version_upgrade = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "AvailabilityZone" => {
+                            availability_zone = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "EngineVersion" => {
+                            engine_version = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "KmsKeyId" => {
+                            kms_key_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "MultiAZ" => {
+                            multi_az = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "PreferredMaintenanceWindow" => {
+                            preferred_maintenance_window = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "PubliclyAccessible" => {
+                            publicly_accessible = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ReplicationInstanceClass" => {
+                            replication_instance_class = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ReplicationInstanceIdentifier" => {
+                            replication_instance_identifier = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ReplicationSubnetGroupIdentifier" => {
+                            replication_subnet_group_identifier = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Tags" => {
+                            tags = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "VpcSecurityGroupIds" => {
+                            vpc_security_group_ids = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ReplicationInstanceProperties {
+                    allocated_storage: allocated_storage,
+                    allow_major_version_upgrade: allow_major_version_upgrade,
+                    auto_minor_version_upgrade: auto_minor_version_upgrade,
+                    availability_zone: availability_zone,
+                    engine_version: engine_version,
+                    kms_key_id: kms_key_id,
+                    multi_az: multi_az,
+                    preferred_maintenance_window: preferred_maintenance_window,
+                    publicly_accessible: publicly_accessible,
+                    replication_instance_class: replication_instance_class.ok_or(::serde::de::Error::missing_field("ReplicationInstanceClass"))?,
+                    replication_instance_identifier: replication_instance_identifier,
+                    replication_subnet_group_identifier: replication_subnet_group_identifier,
+                    tags: tags,
+                    vpc_security_group_ids: vpc_security_group_ids,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for ReplicationInstance {
@@ -283,22 +591,76 @@ pub struct ReplicationSubnetGroup {
 }
 
 /// Properties for the `ReplicationSubnetGroup` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct ReplicationSubnetGroupProperties {
     /// Property `ReplicationSubnetGroupDescription`.
-    #[serde(rename = "ReplicationSubnetGroupDescription")]
     pub replication_subnet_group_description: ::Value<String>,
     /// Property `ReplicationSubnetGroupIdentifier`.
-    #[serde(rename = "ReplicationSubnetGroupIdentifier")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub replication_subnet_group_identifier: Option<::Value<String>>,
     /// Property `SubnetIds`.
-    #[serde(rename = "SubnetIds")]
     pub subnet_ids: ::ValueList<String>,
     /// Property `Tags`.
-    #[serde(rename = "Tags")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for ReplicationSubnetGroupProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicationSubnetGroupDescription", &self.replication_subnet_group_description)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicationSubnetGroupIdentifier", &self.replication_subnet_group_identifier)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetIds", &self.subnet_ids)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ReplicationSubnetGroupProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ReplicationSubnetGroupProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ReplicationSubnetGroupProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ReplicationSubnetGroupProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut replication_subnet_group_description = None;
+                let mut replication_subnet_group_identifier = None;
+                let mut subnet_ids = None;
+                let mut tags = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "ReplicationSubnetGroupDescription" => {
+                            replication_subnet_group_description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ReplicationSubnetGroupIdentifier" => {
+                            replication_subnet_group_identifier = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "SubnetIds" => {
+                            subnet_ids = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Tags" => {
+                            tags = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ReplicationSubnetGroupProperties {
+                    replication_subnet_group_description: replication_subnet_group_description.ok_or(::serde::de::Error::missing_field("ReplicationSubnetGroupDescription"))?,
+                    replication_subnet_group_identifier: replication_subnet_group_identifier,
+                    subnet_ids: subnet_ids.ok_or(::serde::de::Error::missing_field("SubnetIds"))?,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for ReplicationSubnetGroup {
@@ -327,39 +689,116 @@ pub struct ReplicationTask {
 }
 
 /// Properties for the `ReplicationTask` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct ReplicationTaskProperties {
     /// Property `CdcStartTime`.
-    #[serde(rename = "CdcStartTime")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub cdc_start_time: Option<::Value<f64>>,
     /// Property `MigrationType`.
-    #[serde(rename = "MigrationType")]
     pub migration_type: ::Value<String>,
     /// Property `ReplicationInstanceArn`.
-    #[serde(rename = "ReplicationInstanceArn")]
     pub replication_instance_arn: ::Value<String>,
     /// Property `ReplicationTaskIdentifier`.
-    #[serde(rename = "ReplicationTaskIdentifier")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub replication_task_identifier: Option<::Value<String>>,
     /// Property `ReplicationTaskSettings`.
-    #[serde(rename = "ReplicationTaskSettings")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub replication_task_settings: Option<::Value<String>>,
     /// Property `SourceEndpointArn`.
-    #[serde(rename = "SourceEndpointArn")]
     pub source_endpoint_arn: ::Value<String>,
     /// Property `TableMappings`.
-    #[serde(rename = "TableMappings")]
     pub table_mappings: ::Value<String>,
     /// Property `Tags`.
-    #[serde(rename = "Tags")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub tags: Option<::ValueList<::Tag>>,
     /// Property `TargetEndpointArn`.
-    #[serde(rename = "TargetEndpointArn")]
     pub target_endpoint_arn: ::Value<String>,
+}
+
+impl ::serde::Serialize for ReplicationTaskProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CdcStartTime", &self.cdc_start_time)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MigrationType", &self.migration_type)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicationInstanceArn", &self.replication_instance_arn)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicationTaskIdentifier", &self.replication_task_identifier)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicationTaskSettings", &self.replication_task_settings)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceEndpointArn", &self.source_endpoint_arn)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TableMappings", &self.table_mappings)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetEndpointArn", &self.target_endpoint_arn)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ReplicationTaskProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ReplicationTaskProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ReplicationTaskProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ReplicationTaskProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut cdc_start_time = None;
+                let mut migration_type = None;
+                let mut replication_instance_arn = None;
+                let mut replication_task_identifier = None;
+                let mut replication_task_settings = None;
+                let mut source_endpoint_arn = None;
+                let mut table_mappings = None;
+                let mut tags = None;
+                let mut target_endpoint_arn = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "CdcStartTime" => {
+                            cdc_start_time = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "MigrationType" => {
+                            migration_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ReplicationInstanceArn" => {
+                            replication_instance_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ReplicationTaskIdentifier" => {
+                            replication_task_identifier = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ReplicationTaskSettings" => {
+                            replication_task_settings = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "SourceEndpointArn" => {
+                            source_endpoint_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "TableMappings" => {
+                            table_mappings = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "Tags" => {
+                            tags = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "TargetEndpointArn" => {
+                            target_endpoint_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ReplicationTaskProperties {
+                    cdc_start_time: cdc_start_time,
+                    migration_type: migration_type.ok_or(::serde::de::Error::missing_field("MigrationType"))?,
+                    replication_instance_arn: replication_instance_arn.ok_or(::serde::de::Error::missing_field("ReplicationInstanceArn"))?,
+                    replication_task_identifier: replication_task_identifier,
+                    replication_task_settings: replication_task_settings,
+                    source_endpoint_arn: source_endpoint_arn.ok_or(::serde::de::Error::missing_field("SourceEndpointArn"))?,
+                    table_mappings: table_mappings.ok_or(::serde::de::Error::missing_field("TableMappings"))?,
+                    tags: tags,
+                    target_endpoint_arn: target_endpoint_arn.ok_or(::serde::de::Error::missing_field("TargetEndpointArn"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for ReplicationTask {
@@ -385,99 +824,277 @@ pub mod endpoint {
     //! Property types for the `Endpoint` resource.
 
     /// The [`AWS::DMS::Endpoint.DynamoDbSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-dynamodbsettings.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct DynamoDbSettings {
         /// Property `ServiceAccessRoleArn`.
-        #[serde(rename = "ServiceAccessRoleArn")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub service_access_role_arn: Option<::Value<String>>,
     }
 
-    cfn_internal__inherit_codec_impls!(DynamoDbSettings);
+    impl ::codec::SerializeValue for DynamoDbSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceAccessRoleArn", &self.service_access_role_arn)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DynamoDbSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DynamoDbSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DynamoDbSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DynamoDbSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut service_access_role_arn = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ServiceAccessRoleArn" => {
+                                service_access_role_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DynamoDbSettings {
+                        service_access_role_arn: service_access_role_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::DMS::Endpoint.MongoDbSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct MongoDbSettings {
         /// Property `AuthMechanism`.
-        #[serde(rename = "AuthMechanism")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub auth_mechanism: Option<::Value<String>>,
         /// Property `AuthSource`.
-        #[serde(rename = "AuthSource")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub auth_source: Option<::Value<String>>,
         /// Property `AuthType`.
-        #[serde(rename = "AuthType")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub auth_type: Option<::Value<String>>,
         /// Property `DatabaseName`.
-        #[serde(rename = "DatabaseName")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub database_name: Option<::Value<String>>,
         /// Property `DocsToInvestigate`.
-        #[serde(rename = "DocsToInvestigate")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub docs_to_investigate: Option<::Value<String>>,
         /// Property `ExtractDocId`.
-        #[serde(rename = "ExtractDocId")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub extract_doc_id: Option<::Value<String>>,
         /// Property `NestingLevel`.
-        #[serde(rename = "NestingLevel")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub nesting_level: Option<::Value<String>>,
         /// Property `Password`.
-        #[serde(rename = "Password")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub password: Option<::Value<String>>,
         /// Property `Port`.
-        #[serde(rename = "Port")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub port: Option<::Value<u32>>,
         /// Property `ServerName`.
-        #[serde(rename = "ServerName")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub server_name: Option<::Value<String>>,
         /// Property `Username`.
-        #[serde(rename = "Username")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub username: Option<::Value<String>>,
     }
 
-    cfn_internal__inherit_codec_impls!(MongoDbSettings);
+    impl ::codec::SerializeValue for MongoDbSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthMechanism", &self.auth_mechanism)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthSource", &self.auth_source)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthType", &self.auth_type)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseName", &self.database_name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocsToInvestigate", &self.docs_to_investigate)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExtractDocId", &self.extract_doc_id)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NestingLevel", &self.nesting_level)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Password", &self.password)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", &self.port)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServerName", &self.server_name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Username", &self.username)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MongoDbSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MongoDbSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MongoDbSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MongoDbSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut auth_mechanism = None;
+                    let mut auth_source = None;
+                    let mut auth_type = None;
+                    let mut database_name = None;
+                    let mut docs_to_investigate = None;
+                    let mut extract_doc_id = None;
+                    let mut nesting_level = None;
+                    let mut password = None;
+                    let mut port = None;
+                    let mut server_name = None;
+                    let mut username = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AuthMechanism" => {
+                                auth_mechanism = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "AuthSource" => {
+                                auth_source = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "AuthType" => {
+                                auth_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "DatabaseName" => {
+                                database_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "DocsToInvestigate" => {
+                                docs_to_investigate = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "ExtractDocId" => {
+                                extract_doc_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "NestingLevel" => {
+                                nesting_level = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Password" => {
+                                password = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Port" => {
+                                port = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "ServerName" => {
+                                server_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Username" => {
+                                username = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MongoDbSettings {
+                        auth_mechanism: auth_mechanism,
+                        auth_source: auth_source,
+                        auth_type: auth_type,
+                        database_name: database_name,
+                        docs_to_investigate: docs_to_investigate,
+                        extract_doc_id: extract_doc_id,
+                        nesting_level: nesting_level,
+                        password: password,
+                        port: port,
+                        server_name: server_name,
+                        username: username,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::DMS::Endpoint.S3Settings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-s3settings.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct S3Settings {
         /// Property `BucketFolder`.
-        #[serde(rename = "BucketFolder")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub bucket_folder: Option<::Value<String>>,
         /// Property `BucketName`.
-        #[serde(rename = "BucketName")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub bucket_name: Option<::Value<String>>,
         /// Property `CompressionType`.
-        #[serde(rename = "CompressionType")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub compression_type: Option<::Value<String>>,
         /// Property `CsvDelimiter`.
-        #[serde(rename = "CsvDelimiter")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub csv_delimiter: Option<::Value<String>>,
         /// Property `CsvRowDelimiter`.
-        #[serde(rename = "CsvRowDelimiter")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub csv_row_delimiter: Option<::Value<String>>,
         /// Property `ExternalTableDefinition`.
-        #[serde(rename = "ExternalTableDefinition")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub external_table_definition: Option<::Value<String>>,
         /// Property `ServiceAccessRoleArn`.
-        #[serde(rename = "ServiceAccessRoleArn")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub service_access_role_arn: Option<::Value<String>>,
     }
 
-    cfn_internal__inherit_codec_impls!(S3Settings);
+    impl ::codec::SerializeValue for S3Settings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketFolder", &self.bucket_folder)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketName", &self.bucket_name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CompressionType", &self.compression_type)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CsvDelimiter", &self.csv_delimiter)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CsvRowDelimiter", &self.csv_row_delimiter)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExternalTableDefinition", &self.external_table_definition)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceAccessRoleArn", &self.service_access_role_arn)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for S3Settings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<S3Settings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = S3Settings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type S3Settings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut bucket_folder = None;
+                    let mut bucket_name = None;
+                    let mut compression_type = None;
+                    let mut csv_delimiter = None;
+                    let mut csv_row_delimiter = None;
+                    let mut external_table_definition = None;
+                    let mut service_access_role_arn = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "BucketFolder" => {
+                                bucket_folder = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "BucketName" => {
+                                bucket_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "CompressionType" => {
+                                compression_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "CsvDelimiter" => {
+                                csv_delimiter = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "CsvRowDelimiter" => {
+                                csv_row_delimiter = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "ExternalTableDefinition" => {
+                                external_table_definition = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "ServiceAccessRoleArn" => {
+                                service_access_role_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(S3Settings {
+                        bucket_folder: bucket_folder,
+                        bucket_name: bucket_name,
+                        compression_type: compression_type,
+                        csv_delimiter: csv_delimiter,
+                        csv_row_delimiter: csv_row_delimiter,
+                        external_table_definition: external_table_definition,
+                        service_access_role_arn: service_access_role_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 }

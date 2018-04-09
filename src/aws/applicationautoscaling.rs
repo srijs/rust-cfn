@@ -7,30 +7,100 @@ pub struct ScalableTarget {
 }
 
 /// Properties for the `ScalableTarget` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct ScalableTargetProperties {
     /// Property `MaxCapacity`.
-    #[serde(rename = "MaxCapacity")]
     pub max_capacity: ::Value<u32>,
     /// Property `MinCapacity`.
-    #[serde(rename = "MinCapacity")]
     pub min_capacity: ::Value<u32>,
     /// Property `ResourceId`.
-    #[serde(rename = "ResourceId")]
     pub resource_id: ::Value<String>,
     /// Property `RoleARN`.
-    #[serde(rename = "RoleARN")]
     pub role_arn: ::Value<String>,
     /// Property `ScalableDimension`.
-    #[serde(rename = "ScalableDimension")]
     pub scalable_dimension: ::Value<String>,
     /// Property `ScheduledActions`.
-    #[serde(rename = "ScheduledActions")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub scheduled_actions: Option<::ValueList<self::scalable_target::ScheduledAction>>,
     /// Property `ServiceNamespace`.
-    #[serde(rename = "ServiceNamespace")]
     pub service_namespace: ::Value<String>,
+}
+
+impl ::serde::Serialize for ScalableTargetProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxCapacity", &self.max_capacity)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinCapacity", &self.min_capacity)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceId", &self.resource_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleARN", &self.role_arn)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScalableDimension", &self.scalable_dimension)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScheduledActions", &self.scheduled_actions)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceNamespace", &self.service_namespace)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ScalableTargetProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ScalableTargetProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ScalableTargetProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ScalableTargetProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut max_capacity = None;
+                let mut min_capacity = None;
+                let mut resource_id = None;
+                let mut role_arn = None;
+                let mut scalable_dimension = None;
+                let mut scheduled_actions = None;
+                let mut service_namespace = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "MaxCapacity" => {
+                            max_capacity = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "MinCapacity" => {
+                            min_capacity = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ResourceId" => {
+                            resource_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "RoleARN" => {
+                            role_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ScalableDimension" => {
+                            scalable_dimension = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ScheduledActions" => {
+                            scheduled_actions = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ServiceNamespace" => {
+                            service_namespace = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ScalableTargetProperties {
+                    max_capacity: max_capacity.ok_or(::serde::de::Error::missing_field("MaxCapacity"))?,
+                    min_capacity: min_capacity.ok_or(::serde::de::Error::missing_field("MinCapacity"))?,
+                    resource_id: resource_id.ok_or(::serde::de::Error::missing_field("ResourceId"))?,
+                    role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleARN"))?,
+                    scalable_dimension: scalable_dimension.ok_or(::serde::de::Error::missing_field("ScalableDimension"))?,
+                    scheduled_actions: scheduled_actions,
+                    service_namespace: service_namespace.ok_or(::serde::de::Error::missing_field("ServiceNamespace"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for ScalableTarget {
@@ -59,38 +129,108 @@ pub struct ScalingPolicy {
 }
 
 /// Properties for the `ScalingPolicy` resource.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug)]
 pub struct ScalingPolicyProperties {
     /// Property `PolicyName`.
-    #[serde(rename = "PolicyName")]
     pub policy_name: ::Value<String>,
     /// Property `PolicyType`.
-    #[serde(rename = "PolicyType")]
     pub policy_type: ::Value<String>,
     /// Property `ResourceId`.
-    #[serde(rename = "ResourceId")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub resource_id: Option<::Value<String>>,
     /// Property `ScalableDimension`.
-    #[serde(rename = "ScalableDimension")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub scalable_dimension: Option<::Value<String>>,
     /// Property `ScalingTargetId`.
-    #[serde(rename = "ScalingTargetId")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub scaling_target_id: Option<::Value<String>>,
     /// Property `ServiceNamespace`.
-    #[serde(rename = "ServiceNamespace")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub service_namespace: Option<::Value<String>>,
     /// Property `StepScalingPolicyConfiguration`.
-    #[serde(rename = "StepScalingPolicyConfiguration")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub step_scaling_policy_configuration: Option<::Value<self::scaling_policy::StepScalingPolicyConfiguration>>,
     /// Property `TargetTrackingScalingPolicyConfiguration`.
-    #[serde(rename = "TargetTrackingScalingPolicyConfiguration")]
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub target_tracking_scaling_policy_configuration: Option<::Value<self::scaling_policy::TargetTrackingScalingPolicyConfiguration>>,
+}
+
+impl ::serde::Serialize for ScalingPolicyProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        #[allow(unused_mut)]
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyName", &self.policy_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyType", &self.policy_type)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceId", &self.resource_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScalableDimension", &self.scalable_dimension)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScalingTargetId", &self.scaling_target_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceNamespace", &self.service_namespace)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "StepScalingPolicyConfiguration", &self.step_scaling_policy_configuration)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetTrackingScalingPolicyConfiguration", &self.target_tracking_scaling_policy_configuration)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ScalingPolicyProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ScalingPolicyProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ScalingPolicyProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ScalingPolicyProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut policy_name = None;
+                let mut policy_type = None;
+                let mut resource_id = None;
+                let mut scalable_dimension = None;
+                let mut scaling_target_id = None;
+                let mut service_namespace = None;
+                let mut step_scaling_policy_configuration = None;
+                let mut target_tracking_scaling_policy_configuration = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "PolicyName" => {
+                            policy_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "PolicyType" => {
+                            policy_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ResourceId" => {
+                            resource_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ScalableDimension" => {
+                            scalable_dimension = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ScalingTargetId" => {
+                            scaling_target_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "ServiceNamespace" => {
+                            service_namespace = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "StepScalingPolicyConfiguration" => {
+                            step_scaling_policy_configuration = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        "TargetTrackingScalingPolicyConfiguration" => {
+                            target_tracking_scaling_policy_configuration = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ScalingPolicyProperties {
+                    policy_name: policy_name.ok_or(::serde::de::Error::missing_field("PolicyName"))?,
+                    policy_type: policy_type.ok_or(::serde::de::Error::missing_field("PolicyType"))?,
+                    resource_id: resource_id,
+                    scalable_dimension: scalable_dimension,
+                    scaling_target_id: scaling_target_id,
+                    service_namespace: service_namespace,
+                    step_scaling_policy_configuration: step_scaling_policy_configuration,
+                    target_tracking_scaling_policy_configuration: target_tracking_scaling_policy_configuration,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
 }
 
 impl<'a> ::Resource<'a> for ScalingPolicy {
@@ -116,172 +256,574 @@ pub mod scalable_target {
     //! Property types for the `ScalableTarget` resource.
 
     /// The [`AWS::ApplicationAutoScaling::ScalableTarget.ScalableTargetAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalabletarget-scalabletargetaction.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct ScalableTargetAction {
         /// Property `MaxCapacity`.
-        #[serde(rename = "MaxCapacity")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub max_capacity: Option<::Value<u32>>,
         /// Property `MinCapacity`.
-        #[serde(rename = "MinCapacity")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub min_capacity: Option<::Value<u32>>,
     }
 
-    cfn_internal__inherit_codec_impls!(ScalableTargetAction);
+    impl ::codec::SerializeValue for ScalableTargetAction {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxCapacity", &self.max_capacity)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinCapacity", &self.min_capacity)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ScalableTargetAction {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ScalableTargetAction, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ScalableTargetAction;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ScalableTargetAction")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut max_capacity = None;
+                    let mut min_capacity = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "MaxCapacity" => {
+                                max_capacity = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "MinCapacity" => {
+                                min_capacity = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ScalableTargetAction {
+                        max_capacity: max_capacity,
+                        min_capacity: min_capacity,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::ApplicationAutoScaling::ScalableTarget.ScheduledAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalabletarget-scheduledaction.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct ScheduledAction {
         /// Property `EndTime`.
-        #[serde(rename = "EndTime")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub end_time: Option<::Value<String>>,
         /// Property `ScalableTargetAction`.
-        #[serde(rename = "ScalableTargetAction")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub scalable_target_action: Option<::Value<ScalableTargetAction>>,
         /// Property `Schedule`.
-        #[serde(rename = "Schedule")]
         pub schedule: ::Value<String>,
         /// Property `ScheduledActionName`.
-        #[serde(rename = "ScheduledActionName")]
         pub scheduled_action_name: ::Value<String>,
         /// Property `StartTime`.
-        #[serde(rename = "StartTime")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub start_time: Option<::Value<String>>,
     }
 
-    cfn_internal__inherit_codec_impls!(ScheduledAction);
+    impl ::codec::SerializeValue for ScheduledAction {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndTime", &self.end_time)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScalableTargetAction", &self.scalable_target_action)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Schedule", &self.schedule)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScheduledActionName", &self.scheduled_action_name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StartTime", &self.start_time)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ScheduledAction {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ScheduledAction, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ScheduledAction;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ScheduledAction")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut end_time = None;
+                    let mut scalable_target_action = None;
+                    let mut schedule = None;
+                    let mut scheduled_action_name = None;
+                    let mut start_time = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "EndTime" => {
+                                end_time = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "ScalableTargetAction" => {
+                                scalable_target_action = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Schedule" => {
+                                schedule = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "ScheduledActionName" => {
+                                scheduled_action_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "StartTime" => {
+                                start_time = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ScheduledAction {
+                        end_time: end_time,
+                        scalable_target_action: scalable_target_action,
+                        schedule: schedule.ok_or(::serde::de::Error::missing_field("Schedule"))?,
+                        scheduled_action_name: scheduled_action_name.ok_or(::serde::de::Error::missing_field("ScheduledActionName"))?,
+                        start_time: start_time,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 }
 
 pub mod scaling_policy {
     //! Property types for the `ScalingPolicy` resource.
 
     /// The [`AWS::ApplicationAutoScaling::ScalingPolicy.CustomizedMetricSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-customizedmetricspecification.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct CustomizedMetricSpecification {
         /// Property `Dimensions`.
-        #[serde(rename = "Dimensions")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub dimensions: Option<::ValueList<MetricDimension>>,
         /// Property `MetricName`.
-        #[serde(rename = "MetricName")]
         pub metric_name: ::Value<String>,
         /// Property `Namespace`.
-        #[serde(rename = "Namespace")]
         pub namespace: ::Value<String>,
         /// Property `Statistic`.
-        #[serde(rename = "Statistic")]
         pub statistic: ::Value<String>,
         /// Property `Unit`.
-        #[serde(rename = "Unit")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub unit: Option<::Value<String>>,
     }
 
-    cfn_internal__inherit_codec_impls!(CustomizedMetricSpecification);
+    impl ::codec::SerializeValue for CustomizedMetricSpecification {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Dimensions", &self.dimensions)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricName", &self.metric_name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Namespace", &self.namespace)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Statistic", &self.statistic)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Unit", &self.unit)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CustomizedMetricSpecification {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CustomizedMetricSpecification, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CustomizedMetricSpecification;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CustomizedMetricSpecification")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut dimensions = None;
+                    let mut metric_name = None;
+                    let mut namespace = None;
+                    let mut statistic = None;
+                    let mut unit = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Dimensions" => {
+                                dimensions = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "MetricName" => {
+                                metric_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Namespace" => {
+                                namespace = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Statistic" => {
+                                statistic = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Unit" => {
+                                unit = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CustomizedMetricSpecification {
+                        dimensions: dimensions,
+                        metric_name: metric_name.ok_or(::serde::de::Error::missing_field("MetricName"))?,
+                        namespace: namespace.ok_or(::serde::de::Error::missing_field("Namespace"))?,
+                        statistic: statistic.ok_or(::serde::de::Error::missing_field("Statistic"))?,
+                        unit: unit,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::ApplicationAutoScaling::ScalingPolicy.MetricDimension`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-metricdimension.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct MetricDimension {
         /// Property `Name`.
-        #[serde(rename = "Name")]
         pub name: ::Value<String>,
         /// Property `Value`.
-        #[serde(rename = "Value")]
         pub value: ::Value<String>,
     }
 
-    cfn_internal__inherit_codec_impls!(MetricDimension);
+    impl ::codec::SerializeValue for MetricDimension {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MetricDimension {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MetricDimension, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MetricDimension;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MetricDimension")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut name = None;
+                    let mut value = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Name" => {
+                                name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Value" => {
+                                value = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MetricDimension {
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                        value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::ApplicationAutoScaling::ScalingPolicy.PredefinedMetricSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-predefinedmetricspecification.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct PredefinedMetricSpecification {
         /// Property `PredefinedMetricType`.
-        #[serde(rename = "PredefinedMetricType")]
         pub predefined_metric_type: ::Value<String>,
         /// Property `ResourceLabel`.
-        #[serde(rename = "ResourceLabel")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub resource_label: Option<::Value<String>>,
     }
 
-    cfn_internal__inherit_codec_impls!(PredefinedMetricSpecification);
+    impl ::codec::SerializeValue for PredefinedMetricSpecification {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PredefinedMetricType", &self.predefined_metric_type)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceLabel", &self.resource_label)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for PredefinedMetricSpecification {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<PredefinedMetricSpecification, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = PredefinedMetricSpecification;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type PredefinedMetricSpecification")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut predefined_metric_type = None;
+                    let mut resource_label = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "PredefinedMetricType" => {
+                                predefined_metric_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "ResourceLabel" => {
+                                resource_label = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(PredefinedMetricSpecification {
+                        predefined_metric_type: predefined_metric_type.ok_or(::serde::de::Error::missing_field("PredefinedMetricType"))?,
+                        resource_label: resource_label,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::ApplicationAutoScaling::ScalingPolicy.StepAdjustment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration-stepadjustment.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct StepAdjustment {
         /// Property `MetricIntervalLowerBound`.
-        #[serde(rename = "MetricIntervalLowerBound")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub metric_interval_lower_bound: Option<::Value<f64>>,
         /// Property `MetricIntervalUpperBound`.
-        #[serde(rename = "MetricIntervalUpperBound")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub metric_interval_upper_bound: Option<::Value<f64>>,
         /// Property `ScalingAdjustment`.
-        #[serde(rename = "ScalingAdjustment")]
         pub scaling_adjustment: ::Value<u32>,
     }
 
-    cfn_internal__inherit_codec_impls!(StepAdjustment);
+    impl ::codec::SerializeValue for StepAdjustment {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricIntervalLowerBound", &self.metric_interval_lower_bound)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricIntervalUpperBound", &self.metric_interval_upper_bound)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScalingAdjustment", &self.scaling_adjustment)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for StepAdjustment {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<StepAdjustment, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = StepAdjustment;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type StepAdjustment")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut metric_interval_lower_bound = None;
+                    let mut metric_interval_upper_bound = None;
+                    let mut scaling_adjustment = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "MetricIntervalLowerBound" => {
+                                metric_interval_lower_bound = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "MetricIntervalUpperBound" => {
+                                metric_interval_upper_bound = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "ScalingAdjustment" => {
+                                scaling_adjustment = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(StepAdjustment {
+                        metric_interval_lower_bound: metric_interval_lower_bound,
+                        metric_interval_upper_bound: metric_interval_upper_bound,
+                        scaling_adjustment: scaling_adjustment.ok_or(::serde::de::Error::missing_field("ScalingAdjustment"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::ApplicationAutoScaling::ScalingPolicy.StepScalingPolicyConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct StepScalingPolicyConfiguration {
         /// Property `AdjustmentType`.
-        #[serde(rename = "AdjustmentType")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub adjustment_type: Option<::Value<String>>,
         /// Property `Cooldown`.
-        #[serde(rename = "Cooldown")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub cooldown: Option<::Value<u32>>,
         /// Property `MetricAggregationType`.
-        #[serde(rename = "MetricAggregationType")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub metric_aggregation_type: Option<::Value<String>>,
         /// Property `MinAdjustmentMagnitude`.
-        #[serde(rename = "MinAdjustmentMagnitude")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub min_adjustment_magnitude: Option<::Value<u32>>,
         /// Property `StepAdjustments`.
-        #[serde(rename = "StepAdjustments")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub step_adjustments: Option<::ValueList<StepAdjustment>>,
     }
 
-    cfn_internal__inherit_codec_impls!(StepScalingPolicyConfiguration);
+    impl ::codec::SerializeValue for StepScalingPolicyConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AdjustmentType", &self.adjustment_type)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cooldown", &self.cooldown)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricAggregationType", &self.metric_aggregation_type)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinAdjustmentMagnitude", &self.min_adjustment_magnitude)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StepAdjustments", &self.step_adjustments)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for StepScalingPolicyConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<StepScalingPolicyConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = StepScalingPolicyConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type StepScalingPolicyConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut adjustment_type = None;
+                    let mut cooldown = None;
+                    let mut metric_aggregation_type = None;
+                    let mut min_adjustment_magnitude = None;
+                    let mut step_adjustments = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AdjustmentType" => {
+                                adjustment_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "Cooldown" => {
+                                cooldown = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "MetricAggregationType" => {
+                                metric_aggregation_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "MinAdjustmentMagnitude" => {
+                                min_adjustment_magnitude = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "StepAdjustments" => {
+                                step_adjustments = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(StepScalingPolicyConfiguration {
+                        adjustment_type: adjustment_type,
+                        cooldown: cooldown,
+                        metric_aggregation_type: metric_aggregation_type,
+                        min_adjustment_magnitude: min_adjustment_magnitude,
+                        step_adjustments: step_adjustments,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::ApplicationAutoScaling::ScalingPolicy.TargetTrackingScalingPolicyConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingscalingpolicyconfiguration.html) property type.
-    #[derive(Debug, Serialize, Deserialize)]
+    #[derive(Debug)]
     pub struct TargetTrackingScalingPolicyConfiguration {
         /// Property `CustomizedMetricSpecification`.
-        #[serde(rename = "CustomizedMetricSpecification")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub customized_metric_specification: Option<::Value<CustomizedMetricSpecification>>,
         /// Property `DisableScaleIn`.
-        #[serde(rename = "DisableScaleIn")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub disable_scale_in: Option<::Value<bool>>,
         /// Property `PredefinedMetricSpecification`.
-        #[serde(rename = "PredefinedMetricSpecification")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub predefined_metric_specification: Option<::Value<PredefinedMetricSpecification>>,
         /// Property `ScaleInCooldown`.
-        #[serde(rename = "ScaleInCooldown")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub scale_in_cooldown: Option<::Value<u32>>,
         /// Property `ScaleOutCooldown`.
-        #[serde(rename = "ScaleOutCooldown")]
-        #[serde(default, skip_serializing_if = "Option::is_none")]
         pub scale_out_cooldown: Option<::Value<u32>>,
         /// Property `TargetValue`.
-        #[serde(rename = "TargetValue")]
         pub target_value: ::Value<f64>,
     }
 
-    cfn_internal__inherit_codec_impls!(TargetTrackingScalingPolicyConfiguration);
+    impl ::codec::SerializeValue for TargetTrackingScalingPolicyConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            #[allow(unused_mut)]
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomizedMetricSpecification", &self.customized_metric_specification)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisableScaleIn", &self.disable_scale_in)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PredefinedMetricSpecification", &self.predefined_metric_specification)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScaleInCooldown", &self.scale_in_cooldown)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScaleOutCooldown", &self.scale_out_cooldown)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetValue", &self.target_value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TargetTrackingScalingPolicyConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TargetTrackingScalingPolicyConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TargetTrackingScalingPolicyConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TargetTrackingScalingPolicyConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut customized_metric_specification = None;
+                    let mut disable_scale_in = None;
+                    let mut predefined_metric_specification = None;
+                    let mut scale_in_cooldown = None;
+                    let mut scale_out_cooldown = None;
+                    let mut target_value = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CustomizedMetricSpecification" => {
+                                customized_metric_specification = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "DisableScaleIn" => {
+                                disable_scale_in = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "PredefinedMetricSpecification" => {
+                                predefined_metric_specification = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "ScaleInCooldown" => {
+                                scale_in_cooldown = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "ScaleOutCooldown" => {
+                                scale_out_cooldown = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            "TargetValue" => {
+                                target_value = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TargetTrackingScalingPolicyConfiguration {
+                        customized_metric_specification: customized_metric_specification,
+                        disable_scale_in: disable_scale_in,
+                        predefined_metric_specification: predefined_metric_specification,
+                        scale_in_cooldown: scale_in_cooldown,
+                        scale_out_cooldown: scale_out_cooldown,
+                        target_value: target_value.ok_or(::serde::de::Error::missing_field("TargetValue"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 }
