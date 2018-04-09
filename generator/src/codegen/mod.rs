@@ -49,7 +49,7 @@ pub fn generate<P: AsRef<Path>>(spec: Specification, base_path: P) -> io::Result
         let file = File::create(file_path)?;
         let mut printer = Printer::new(file);
 
-        printer.format_line(format_args!("//! Types for the `{}` service.", service_name))?;
+        printer.line(format_args!("//! Types for the `{}` service.", service_name))?;
 
         if let Some(resource_specs) = resource_specs_opt {
             for (_, resource_name, resource_spec) in resource_specs {
@@ -61,9 +61,9 @@ pub fn generate<P: AsRef<Path>>(spec: Specification, base_path: P) -> io::Result
         if let Some(property_specs) = property_specs_opt {
             let properties_by_resource = property_specs.group_by(|&(_, ref resource_name, _, _)| resource_name.to_owned());
             for (resource_name, resource_property_specs) in properties_by_resource.into_iter() {
-                printer.hard_break()?;
+                printer.newline()?;
                 printer.block(format_args!("pub mod {}", resource_name.to_snake_case()), |p| {
-                    p.format_line(format_args!("//! Property types for the `{}` resource.", resource_name))?;
+                    p.line(format_args!("//! Property types for the `{}` resource.", resource_name))?;
                     for (_, resource_name, property_name, property_spec) in resource_property_specs {
                         generate_property_declaration(&service_name, &resource_name, &property_name, &property_spec, p)?;
                     }
@@ -94,9 +94,9 @@ fn factor_joined_specs<X, A, B>(either: EitherOrBoth<(X, A), (X, B)>) -> (X, Opt
 }
 
 fn generate_property_declaration(service: &str, resource_name: &str, name: &str, spec: &PropertyType, p: &mut Printer) -> io::Result<()> {
-    p.hard_break()?;
-    p.format_line(format_args!("/// The [`AWS::{}::{}.{}`]({}) property type.", service, resource_name, name, spec.documentation))?;
-    p.format_line(format_args!("#[derive(Debug)]"))?;
+    p.newline()?;
+    p.line(format_args!("/// The [`AWS::{}::{}.{}`]({}) property type.", service, resource_name, name, spec.documentation))?;
+    p.line(format_args!("#[derive(Debug)]"))?;
     p.block(format_args!("pub struct {}", name), |p| {
         for (ref property_name, ref property_spec) in spec.properties.iter() {
             generate_field(None, property_name, property_spec, p)?;
@@ -104,26 +104,26 @@ fn generate_property_declaration(service: &str, resource_name: &str, name: &str,
         Ok(())
     })?;
 
-    p.hard_break()?;
+    p.newline()?;
     generate_serialize("::codec::SerializeValue", name, &spec.properties, p)?;
 
-    p.hard_break()?;
+    p.newline()?;
     generate_deserialize_value(name, &spec.properties, p)?;
 
     Ok(())
 }
 
 fn generate_resource_declaration(service: &str, name: &str, spec: &ResourceType, p: &mut Printer) -> io::Result<()> {
-    p.hard_break()?;
-    p.format_line(format_args!("/// The [`AWS::{}::{}`]({}) resource type.", service, name, spec.documentation))?;
-    p.format_line(format_args!("#[derive(Debug)]"))?;
+    p.newline()?;
+    p.line(format_args!("/// The [`AWS::{}::{}`]({}) resource type.", service, name, spec.documentation))?;
+    p.line(format_args!("#[derive(Debug)]"))?;
     p.block(format_args!("pub struct {}", name), |p| {
-        p.format_line(format_args!("properties: {}Properties", name))
+        p.line(format_args!("properties: {}Properties", name))
     })?;
 
-    p.hard_break()?;
-    p.format_line(format_args!("/// Properties for the `{}` resource.", name))?;
-    p.format_line(format_args!("#[derive(Debug)]"))?;
+    p.newline()?;
+    p.line(format_args!("/// Properties for the `{}` resource.", name))?;
+    p.line(format_args!("#[derive(Debug)]"))?;
     p.block(format_args!("pub struct {}Properties", name), |p| {
         let namespace = name.to_snake_case();
         for (ref property_name, ref property_spec) in spec.properties.iter() {
@@ -132,32 +132,32 @@ fn generate_resource_declaration(service: &str, name: &str, spec: &ResourceType,
         Ok(())
     })?;
 
-    p.hard_break()?;
+    p.newline()?;
     generate_serialize("::serde::Serialize", &format!("{}Properties", name), &spec.properties, p)?;
 
-    p.hard_break()?;
+    p.newline()?;
     generate_deserialize(&format!("{}Properties", name), &spec.properties, p)?;
 
-    p.hard_break()?;
+    p.newline()?;
     p.block(format_args!("impl<'a> ::Resource<'a> for {}", name), |p| {
-        p.format_line(format_args!("type Properties = {}Properties;", name))?;
-        p.format_line(format_args!("const TYPE: &'static str = \"AWS::{}::{}\";", service, name))?;
-        p.format_line(format_args!("fn properties(&self) -> &{}Properties {{", name))?;
-        p.format_line(format_args!("    &self.properties"))?;
-        p.format_line(format_args!("}}"))?;
-        p.format_line(format_args!("fn properties_mut(&mut self) -> &mut {}Properties {{", name))?;
-        p.format_line(format_args!("    &mut self.properties"))?;
-        p.format_line(format_args!("}}"))
+        p.line(format_args!("type Properties = {}Properties;", name))?;
+        p.line(format_args!("const TYPE: &'static str = \"AWS::{}::{}\";", service, name))?;
+        p.line(format_args!("fn properties(&self) -> &{}Properties {{", name))?;
+        p.line(format_args!("    &self.properties"))?;
+        p.line(format_args!("}}"))?;
+        p.line(format_args!("fn properties_mut(&mut self) -> &mut {}Properties {{", name))?;
+        p.line(format_args!("    &mut self.properties"))?;
+        p.line(format_args!("}}"))
     })?;
 
-    p.hard_break()?;
-    p.format_line(format_args!("impl ::private::Sealed for {} {{}}", name))?;
+    p.newline()?;
+    p.line(format_args!("impl ::private::Sealed for {} {{}}", name))?;
 
-    p.hard_break()?;
+    p.newline()?;
     p.block(format_args!("impl From<{}Properties> for {}", name, name), |p| {
-        p.format_line(format_args!("fn from(properties: {}Properties) -> {} {{", name, name))?;
-        p.format_line(format_args!("    {} {{ properties }}", name))?;
-        p.format_line(format_args!("}}"))
+        p.line(format_args!("fn from(properties: {}Properties) -> {} {{", name, name))?;
+        p.line(format_args!("    {} {{ properties }}", name))?;
+        p.line(format_args!("}}"))
     })?;
 
     Ok(())
@@ -166,11 +166,11 @@ fn generate_resource_declaration(service: &str, name: &str, spec: &ResourceType,
 fn generate_field(namespace_opt: Option<&str>, name: &str, spec: &PropertySpecification, p: &mut Printer) -> io::Result<()> {
     let field_name = mutate_field_name(name);
 
-    p.format_line(format_args!("/// Property `{}`.", name))?;
+    p.line(format_args!("/// Property `{}`.", name))?;
     if spec.required.unwrap_or(true) {
-        p.format_line(format_args!("pub {}: {},", field_name, generate_field_type(namespace_opt, spec)))?;
+        p.line(format_args!("pub {}: {},", field_name, generate_field_type(namespace_opt, spec)))?;
     } else {
-        p.format_line(format_args!("pub {}: Option<{}>,", field_name, generate_field_type(namespace_opt, spec)))?;
+        p.line(format_args!("pub {}: Option<{}>,", field_name, generate_field_type(namespace_opt, spec)))?;
     }
 
     Ok(())

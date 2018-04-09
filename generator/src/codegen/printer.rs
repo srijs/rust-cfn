@@ -13,11 +13,11 @@ impl Printer {
         Printer { inner: Box::new(w), indent: 0 }
     }
 
-    pub fn format_line(&mut self, args: Arguments) -> Result<()> {
+    pub fn line(&mut self, args: Arguments) -> Result<()> {
         writeln!(self.inner, "{}{}", &PADDING[0..self.indent], args)
     }
 
-    pub fn hard_break(&mut self) -> Result<()> {
+    pub fn newline(&mut self) -> Result<()> {
         self.inner.write_all(b"\n")
     }
 
