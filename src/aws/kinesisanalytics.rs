@@ -78,7 +78,7 @@ impl<'de> ::serde::Deserialize<'de> for ApplicationProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Application {
+impl ::Resource for Application {
     type Properties = ApplicationProperties;
     const TYPE: &'static str = "AWS::KinesisAnalytics::Application";
     fn properties(&self) -> &ApplicationProperties {
@@ -159,7 +159,7 @@ impl<'de> ::serde::Deserialize<'de> for ApplicationOutputProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ApplicationOutput {
+impl ::Resource for ApplicationOutput {
     type Properties = ApplicationOutputProperties;
     const TYPE: &'static str = "AWS::KinesisAnalytics::ApplicationOutput";
     fn properties(&self) -> &ApplicationOutputProperties {
@@ -240,7 +240,7 @@ impl<'de> ::serde::Deserialize<'de> for ApplicationReferenceDataSourceProperties
     }
 }
 
-impl<'a> ::Resource<'a> for ApplicationReferenceDataSource {
+impl ::Resource for ApplicationReferenceDataSource {
     type Properties = ApplicationReferenceDataSourceProperties;
     const TYPE: &'static str = "AWS::KinesisAnalytics::ApplicationReferenceDataSource";
     fn properties(&self) -> &ApplicationReferenceDataSourceProperties {

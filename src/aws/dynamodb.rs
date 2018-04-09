@@ -126,7 +126,7 @@ impl<'de> ::serde::Deserialize<'de> for TableProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Table {
+impl ::Resource for Table {
     type Properties = TableProperties;
     const TYPE: &'static str = "AWS::DynamoDB::Table";
     fn properties(&self) -> &TableProperties {

@@ -174,7 +174,7 @@ impl<'de> ::serde::Deserialize<'de> for LoadBalancerProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for LoadBalancer {
+impl ::Resource for LoadBalancer {
     type Properties = LoadBalancerProperties;
     const TYPE: &'static str = "AWS::ElasticLoadBalancing::LoadBalancer";
     fn properties(&self) -> &LoadBalancerProperties {

@@ -62,7 +62,7 @@ impl<'de> ::serde::Deserialize<'de> for CertificateProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Certificate {
+impl ::Resource for Certificate {
     type Properties = CertificateProperties;
     const TYPE: &'static str = "AWS::IoT::Certificate";
     fn properties(&self) -> &CertificateProperties {
@@ -143,7 +143,7 @@ impl<'de> ::serde::Deserialize<'de> for PolicyProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Policy {
+impl ::Resource for Policy {
     type Properties = PolicyProperties;
     const TYPE: &'static str = "AWS::IoT::Policy";
     fn properties(&self) -> &PolicyProperties {
@@ -224,7 +224,7 @@ impl<'de> ::serde::Deserialize<'de> for PolicyPrincipalAttachmentProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for PolicyPrincipalAttachment {
+impl ::Resource for PolicyPrincipalAttachment {
     type Properties = PolicyPrincipalAttachmentProperties;
     const TYPE: &'static str = "AWS::IoT::PolicyPrincipalAttachment";
     fn properties(&self) -> &PolicyPrincipalAttachmentProperties {
@@ -305,7 +305,7 @@ impl<'de> ::serde::Deserialize<'de> for ThingProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Thing {
+impl ::Resource for Thing {
     type Properties = ThingProperties;
     const TYPE: &'static str = "AWS::IoT::Thing";
     fn properties(&self) -> &ThingProperties {
@@ -386,7 +386,7 @@ impl<'de> ::serde::Deserialize<'de> for ThingPrincipalAttachmentProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ThingPrincipalAttachment {
+impl ::Resource for ThingPrincipalAttachment {
     type Properties = ThingPrincipalAttachmentProperties;
     const TYPE: &'static str = "AWS::IoT::ThingPrincipalAttachment";
     fn properties(&self) -> &ThingPrincipalAttachmentProperties {
@@ -467,7 +467,7 @@ impl<'de> ::serde::Deserialize<'de> for TopicRuleProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for TopicRule {
+impl ::Resource for TopicRule {
     type Properties = TopicRuleProperties;
     const TYPE: &'static str = "AWS::IoT::TopicRule";
     fn properties(&self) -> &TopicRuleProperties {

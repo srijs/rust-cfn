@@ -70,7 +70,7 @@ impl<'de> ::serde::Deserialize<'de> for AliasProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Alias {
+impl ::Resource for Alias {
     type Properties = AliasProperties;
     const TYPE: &'static str = "AWS::GameLift::Alias";
     fn properties(&self) -> &AliasProperties {
@@ -159,7 +159,7 @@ impl<'de> ::serde::Deserialize<'de> for BuildProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Build {
+impl ::Resource for Build {
     type Properties = BuildProperties;
     const TYPE: &'static str = "AWS::GameLift::Build";
     fn properties(&self) -> &BuildProperties {
@@ -312,7 +312,7 @@ impl<'de> ::serde::Deserialize<'de> for FleetProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Fleet {
+impl ::Resource for Fleet {
     type Properties = FleetProperties;
     const TYPE: &'static str = "AWS::GameLift::Fleet";
     fn properties(&self) -> &FleetProperties {

@@ -102,7 +102,7 @@ impl<'de> ::serde::Deserialize<'de> for RuleProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Rule {
+impl ::Resource for Rule {
     type Properties = RuleProperties;
     const TYPE: &'static str = "AWS::Events::Rule";
     fn properties(&self) -> &RuleProperties {

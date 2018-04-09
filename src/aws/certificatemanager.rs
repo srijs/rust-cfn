@@ -78,7 +78,7 @@ impl<'de> ::serde::Deserialize<'de> for CertificateProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Certificate {
+impl ::Resource for Certificate {
     type Properties = CertificateProperties;
     const TYPE: &'static str = "AWS::CertificateManager::Certificate";
     fn properties(&self) -> &CertificateProperties {

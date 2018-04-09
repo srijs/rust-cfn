@@ -9,7 +9,7 @@ pub struct Resources(IndexMap<String, ResourceInner>);
 
 impl Resources {
     /// Get the resource identified by the logical id, if it exists.
-    pub fn get<'a, R: Resource<'a>>(&'a self, name: &str) -> Option<R> {
+    pub fn get<R: Resource>(&self, name: &str) -> Option<R> {
         self.0.get(name).and_then(|inner| {
             if inner.tag == R::TYPE {
                 R::Properties::deserialize(&inner.properties).ok().map(|properties| {
@@ -27,7 +27,7 @@ impl Resources {
     }
 
     /// Insert a resource with the provided logical id.
-    pub fn set<'a, R: Resource<'a>>(&mut self, name: &str, resource: R) {
+    pub fn set<R: Resource>(&mut self, name: &str, resource: R) {
         let inner = ResourceInner {
             tag: R::TYPE.to_owned(),
             properties: ::serde_json::to_value(resource.properties()).unwrap()

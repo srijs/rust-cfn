@@ -94,7 +94,7 @@ impl<'de> ::serde::Deserialize<'de> for MicrosoftADProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for MicrosoftAD {
+impl ::Resource for MicrosoftAD {
     type Properties = MicrosoftADProperties;
     const TYPE: &'static str = "AWS::DirectoryService::MicrosoftAD";
     fn properties(&self) -> &MicrosoftADProperties {
@@ -223,7 +223,7 @@ impl<'de> ::serde::Deserialize<'de> for SimpleADProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for SimpleAD {
+impl ::Resource for SimpleAD {
     type Properties = SimpleADProperties;
     const TYPE: &'static str = "AWS::DirectoryService::SimpleAD";
     fn properties(&self) -> &SimpleADProperties {

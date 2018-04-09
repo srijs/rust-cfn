@@ -62,7 +62,7 @@ impl<'de> ::serde::Deserialize<'de> for ByteMatchSetProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ByteMatchSet {
+impl ::Resource for ByteMatchSet {
     type Properties = ByteMatchSetProperties;
     const TYPE: &'static str = "AWS::WAFRegional::ByteMatchSet";
     fn properties(&self) -> &ByteMatchSetProperties {
@@ -143,7 +143,7 @@ impl<'de> ::serde::Deserialize<'de> for IPSetProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for IPSet {
+impl ::Resource for IPSet {
     type Properties = IPSetProperties;
     const TYPE: &'static str = "AWS::WAFRegional::IPSet";
     fn properties(&self) -> &IPSetProperties {
@@ -232,7 +232,7 @@ impl<'de> ::serde::Deserialize<'de> for RuleProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Rule {
+impl ::Resource for Rule {
     type Properties = RuleProperties;
     const TYPE: &'static str = "AWS::WAFRegional::Rule";
     fn properties(&self) -> &RuleProperties {
@@ -313,7 +313,7 @@ impl<'de> ::serde::Deserialize<'de> for SizeConstraintSetProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for SizeConstraintSet {
+impl ::Resource for SizeConstraintSet {
     type Properties = SizeConstraintSetProperties;
     const TYPE: &'static str = "AWS::WAFRegional::SizeConstraintSet";
     fn properties(&self) -> &SizeConstraintSetProperties {
@@ -394,7 +394,7 @@ impl<'de> ::serde::Deserialize<'de> for SqlInjectionMatchSetProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for SqlInjectionMatchSet {
+impl ::Resource for SqlInjectionMatchSet {
     type Properties = SqlInjectionMatchSetProperties;
     const TYPE: &'static str = "AWS::WAFRegional::SqlInjectionMatchSet";
     fn properties(&self) -> &SqlInjectionMatchSetProperties {
@@ -491,7 +491,7 @@ impl<'de> ::serde::Deserialize<'de> for WebACLProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for WebACL {
+impl ::Resource for WebACL {
     type Properties = WebACLProperties;
     const TYPE: &'static str = "AWS::WAFRegional::WebACL";
     fn properties(&self) -> &WebACLProperties {
@@ -572,7 +572,7 @@ impl<'de> ::serde::Deserialize<'de> for WebACLAssociationProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for WebACLAssociation {
+impl ::Resource for WebACLAssociation {
     type Properties = WebACLAssociationProperties;
     const TYPE: &'static str = "AWS::WAFRegional::WebACLAssociation";
     fn properties(&self) -> &WebACLAssociationProperties {
@@ -653,7 +653,7 @@ impl<'de> ::serde::Deserialize<'de> for XssMatchSetProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for XssMatchSet {
+impl ::Resource for XssMatchSet {
     type Properties = XssMatchSetProperties;
     const TYPE: &'static str = "AWS::WAFRegional::XssMatchSet";
     fn properties(&self) -> &XssMatchSetProperties {

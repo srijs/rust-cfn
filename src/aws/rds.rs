@@ -198,7 +198,7 @@ impl<'de> ::serde::Deserialize<'de> for DBClusterProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for DBCluster {
+impl ::Resource for DBCluster {
     type Properties = DBClusterProperties;
     const TYPE: &'static str = "AWS::RDS::DBCluster";
     fn properties(&self) -> &DBClusterProperties {
@@ -295,7 +295,7 @@ impl<'de> ::serde::Deserialize<'de> for DBClusterParameterGroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for DBClusterParameterGroup {
+impl ::Resource for DBClusterParameterGroup {
     type Properties = DBClusterParameterGroupProperties;
     const TYPE: &'static str = "AWS::RDS::DBClusterParameterGroup";
     fn properties(&self) -> &DBClusterParameterGroupProperties {
@@ -672,7 +672,7 @@ impl<'de> ::serde::Deserialize<'de> for DBInstanceProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for DBInstance {
+impl ::Resource for DBInstance {
     type Properties = DBInstanceProperties;
     const TYPE: &'static str = "AWS::RDS::DBInstance";
     fn properties(&self) -> &DBInstanceProperties {
@@ -769,7 +769,7 @@ impl<'de> ::serde::Deserialize<'de> for DBParameterGroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for DBParameterGroup {
+impl ::Resource for DBParameterGroup {
     type Properties = DBParameterGroupProperties;
     const TYPE: &'static str = "AWS::RDS::DBParameterGroup";
     fn properties(&self) -> &DBParameterGroupProperties {
@@ -866,7 +866,7 @@ impl<'de> ::serde::Deserialize<'de> for DBSecurityGroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for DBSecurityGroup {
+impl ::Resource for DBSecurityGroup {
     type Properties = DBSecurityGroupProperties;
     const TYPE: &'static str = "AWS::RDS::DBSecurityGroup";
     fn properties(&self) -> &DBSecurityGroupProperties {
@@ -971,7 +971,7 @@ impl<'de> ::serde::Deserialize<'de> for DBSecurityGroupIngressProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for DBSecurityGroupIngress {
+impl ::Resource for DBSecurityGroupIngress {
     type Properties = DBSecurityGroupIngressProperties;
     const TYPE: &'static str = "AWS::RDS::DBSecurityGroupIngress";
     fn properties(&self) -> &DBSecurityGroupIngressProperties {
@@ -1068,7 +1068,7 @@ impl<'de> ::serde::Deserialize<'de> for DBSubnetGroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for DBSubnetGroup {
+impl ::Resource for DBSubnetGroup {
     type Properties = DBSubnetGroupProperties;
     const TYPE: &'static str = "AWS::RDS::DBSubnetGroup";
     fn properties(&self) -> &DBSubnetGroupProperties {
@@ -1173,7 +1173,7 @@ impl<'de> ::serde::Deserialize<'de> for EventSubscriptionProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for EventSubscription {
+impl ::Resource for EventSubscription {
     type Properties = EventSubscriptionProperties;
     const TYPE: &'static str = "AWS::RDS::EventSubscription";
     fn properties(&self) -> &EventSubscriptionProperties {
@@ -1278,7 +1278,7 @@ impl<'de> ::serde::Deserialize<'de> for OptionGroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for OptionGroup {
+impl ::Resource for OptionGroup {
     type Properties = OptionGroupProperties;
     const TYPE: &'static str = "AWS::RDS::OptionGroup";
     fn properties(&self) -> &OptionGroupProperties {

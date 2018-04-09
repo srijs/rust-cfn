@@ -142,7 +142,7 @@ impl<'de> ::serde::Deserialize<'de> for AppProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for App {
+impl ::Resource for App {
     type Properties = AppProperties;
     const TYPE: &'static str = "AWS::OpsWorks::App";
     fn properties(&self) -> &AppProperties {
@@ -223,7 +223,7 @@ impl<'de> ::serde::Deserialize<'de> for ElasticLoadBalancerAttachmentProperties 
     }
 }
 
-impl<'a> ::Resource<'a> for ElasticLoadBalancerAttachment {
+impl ::Resource for ElasticLoadBalancerAttachment {
     type Properties = ElasticLoadBalancerAttachmentProperties;
     const TYPE: &'static str = "AWS::OpsWorks::ElasticLoadBalancerAttachment";
     fn properties(&self) -> &ElasticLoadBalancerAttachmentProperties {
@@ -456,7 +456,7 @@ impl<'de> ::serde::Deserialize<'de> for InstanceProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Instance {
+impl ::Resource for Instance {
     type Properties = InstanceProperties;
     const TYPE: &'static str = "AWS::OpsWorks::Instance";
     fn properties(&self) -> &InstanceProperties {
@@ -673,7 +673,7 @@ impl<'de> ::serde::Deserialize<'de> for LayerProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Layer {
+impl ::Resource for Layer {
     type Properties = LayerProperties;
     const TYPE: &'static str = "AWS::OpsWorks::Layer";
     fn properties(&self) -> &LayerProperties {
@@ -938,7 +938,7 @@ impl<'de> ::serde::Deserialize<'de> for StackProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Stack {
+impl ::Resource for Stack {
     type Properties = StackProperties;
     const TYPE: &'static str = "AWS::OpsWorks::Stack";
     fn properties(&self) -> &StackProperties {
@@ -1035,7 +1035,7 @@ impl<'de> ::serde::Deserialize<'de> for UserProfileProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for UserProfile {
+impl ::Resource for UserProfile {
     type Properties = UserProfileProperties;
     const TYPE: &'static str = "AWS::OpsWorks::UserProfile";
     fn properties(&self) -> &UserProfileProperties {
@@ -1132,7 +1132,7 @@ impl<'de> ::serde::Deserialize<'de> for VolumeProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Volume {
+impl ::Resource for Volume {
     type Properties = VolumeProperties;
     const TYPE: &'static str = "AWS::OpsWorks::Volume";
     fn properties(&self) -> &VolumeProperties {

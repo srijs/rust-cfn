@@ -67,11 +67,11 @@ impl Template {
 }
 
 /// Trait for stack resources, such as an Amazon Elastic Compute Cloud instance or an Amazon Simple Storage Service bucket.
-pub trait Resource<'a>: Sized + private::Sealed {
+pub trait Resource: Sized + private::Sealed {
     /// Uniquely identifies the resource type. 
     const TYPE: &'static str;
     /// Type that represents the set of properties the resource can be configured with.
-    type Properties: Into<Self> + private::Properties<'a>;
+    type Properties: private::Properties<Self>;
 
     /// Get a reference to the properties on the resource.
     fn properties(&self) -> &Self::Properties;
@@ -82,6 +82,6 @@ pub trait Resource<'a>: Sized + private::Sealed {
 mod private {
     pub trait Sealed {}
 
-    pub trait Properties<'a>: ::serde::Serialize + ::serde::de::Deserialize<'a> {}
-    impl<'a, P> Properties<'a> for P where P: ::serde::Serialize + ::serde::de::Deserialize<'a> {}
+    pub trait Properties<R>: Into<R> + ::serde::Serialize + ::serde::de::DeserializeOwned {}
+    impl<P, R> Properties<R> for P where P: Into<R> + ::serde::Serialize + ::serde::de::DeserializeOwned {}
 }

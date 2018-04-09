@@ -126,7 +126,7 @@ impl<'de> ::serde::Deserialize<'de> for IdentityPoolProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for IdentityPool {
+impl ::Resource for IdentityPool {
     type Properties = IdentityPoolProperties;
     const TYPE: &'static str = "AWS::Cognito::IdentityPool";
     fn properties(&self) -> &IdentityPoolProperties {
@@ -215,7 +215,7 @@ impl<'de> ::serde::Deserialize<'de> for IdentityPoolRoleAttachmentProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for IdentityPoolRoleAttachment {
+impl ::Resource for IdentityPoolRoleAttachment {
     type Properties = IdentityPoolRoleAttachmentProperties;
     const TYPE: &'static str = "AWS::Cognito::IdentityPoolRoleAttachment";
     fn properties(&self) -> &IdentityPoolRoleAttachmentProperties {
@@ -408,7 +408,7 @@ impl<'de> ::serde::Deserialize<'de> for UserPoolProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for UserPool {
+impl ::Resource for UserPool {
     type Properties = UserPoolProperties;
     const TYPE: &'static str = "AWS::Cognito::UserPool";
     fn properties(&self) -> &UserPoolProperties {
@@ -529,7 +529,7 @@ impl<'de> ::serde::Deserialize<'de> for UserPoolClientProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for UserPoolClient {
+impl ::Resource for UserPoolClient {
     type Properties = UserPoolClientProperties;
     const TYPE: &'static str = "AWS::Cognito::UserPoolClient";
     fn properties(&self) -> &UserPoolClientProperties {
@@ -634,7 +634,7 @@ impl<'de> ::serde::Deserialize<'de> for UserPoolGroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for UserPoolGroup {
+impl ::Resource for UserPoolGroup {
     type Properties = UserPoolGroupProperties;
     const TYPE: &'static str = "AWS::Cognito::UserPoolGroup";
     fn properties(&self) -> &UserPoolGroupProperties {
@@ -755,7 +755,7 @@ impl<'de> ::serde::Deserialize<'de> for UserPoolUserProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for UserPoolUser {
+impl ::Resource for UserPoolUser {
     type Properties = UserPoolUserProperties;
     const TYPE: &'static str = "AWS::Cognito::UserPoolUser";
     fn properties(&self) -> &UserPoolUserProperties {
@@ -844,7 +844,7 @@ impl<'de> ::serde::Deserialize<'de> for UserPoolUserToGroupAttachmentProperties 
     }
 }
 
-impl<'a> ::Resource<'a> for UserPoolUserToGroupAttachment {
+impl ::Resource for UserPoolUserToGroupAttachment {
     type Properties = UserPoolUserToGroupAttachmentProperties;
     const TYPE: &'static str = "AWS::Cognito::UserPoolUserToGroupAttachment";
     fn properties(&self) -> &UserPoolUserToGroupAttachmentProperties {

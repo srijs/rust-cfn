@@ -102,7 +102,7 @@ impl<'de> ::serde::Deserialize<'de> for CustomActionTypeProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for CustomActionType {
+impl ::Resource for CustomActionType {
     type Properties = CustomActionTypeProperties;
     const TYPE: &'static str = "AWS::CodePipeline::CustomActionType";
     fn properties(&self) -> &CustomActionTypeProperties {
@@ -215,7 +215,7 @@ impl<'de> ::serde::Deserialize<'de> for PipelineProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Pipeline {
+impl ::Resource for Pipeline {
     type Properties = PipelineProperties;
     const TYPE: &'static str = "AWS::CodePipeline::Pipeline";
     fn properties(&self) -> &PipelineProperties {

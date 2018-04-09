@@ -62,7 +62,7 @@ impl<'de> ::serde::Deserialize<'de> for HealthCheckProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for HealthCheck {
+impl ::Resource for HealthCheck {
     type Properties = HealthCheckProperties;
     const TYPE: &'static str = "AWS::Route53::HealthCheck";
     fn properties(&self) -> &HealthCheckProperties {
@@ -167,7 +167,7 @@ impl<'de> ::serde::Deserialize<'de> for HostedZoneProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for HostedZone {
+impl ::Resource for HostedZone {
     type Properties = HostedZoneProperties;
     const TYPE: &'static str = "AWS::Route53::HostedZone";
     fn properties(&self) -> &HostedZoneProperties {
@@ -344,7 +344,7 @@ impl<'de> ::serde::Deserialize<'de> for RecordSetProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for RecordSet {
+impl ::Resource for RecordSet {
     type Properties = RecordSetProperties;
     const TYPE: &'static str = "AWS::Route53::RecordSet";
     fn properties(&self) -> &RecordSetProperties {
@@ -441,7 +441,7 @@ impl<'de> ::serde::Deserialize<'de> for RecordSetGroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for RecordSetGroup {
+impl ::Resource for RecordSetGroup {
     type Properties = RecordSetGroupProperties;
     const TYPE: &'static str = "AWS::Route53::RecordSetGroup";
     fn properties(&self) -> &RecordSetGroupProperties {

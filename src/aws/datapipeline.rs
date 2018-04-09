@@ -102,7 +102,7 @@ impl<'de> ::serde::Deserialize<'de> for PipelineProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Pipeline {
+impl ::Resource for Pipeline {
     type Properties = PipelineProperties;
     const TYPE: &'static str = "AWS::DataPipeline::Pipeline";
     fn properties(&self) -> &PipelineProperties {

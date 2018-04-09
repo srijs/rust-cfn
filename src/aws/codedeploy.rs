@@ -62,7 +62,7 @@ impl<'de> ::serde::Deserialize<'de> for ApplicationProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Application {
+impl ::Resource for Application {
     type Properties = ApplicationProperties;
     const TYPE: &'static str = "AWS::CodeDeploy::Application";
     fn properties(&self) -> &ApplicationProperties {
@@ -143,7 +143,7 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentConfigProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for DeploymentConfig {
+impl ::Resource for DeploymentConfig {
     type Properties = DeploymentConfigProperties;
     const TYPE: &'static str = "AWS::CodeDeploy::DeploymentConfig";
     fn properties(&self) -> &DeploymentConfigProperties {
@@ -312,7 +312,7 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentGroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for DeploymentGroup {
+impl ::Resource for DeploymentGroup {
     type Properties = DeploymentGroupProperties;
     const TYPE: &'static str = "AWS::CodeDeploy::DeploymentGroup";
     fn properties(&self) -> &DeploymentGroupProperties {

@@ -94,7 +94,7 @@ impl<'de> ::serde::Deserialize<'de> for ConfigRuleProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ConfigRule {
+impl ::Resource for ConfigRule {
     type Properties = ConfigRuleProperties;
     const TYPE: &'static str = "AWS::Config::ConfigRule";
     fn properties(&self) -> &ConfigRuleProperties {
@@ -183,7 +183,7 @@ impl<'de> ::serde::Deserialize<'de> for ConfigurationRecorderProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ConfigurationRecorder {
+impl ::Resource for ConfigurationRecorder {
     type Properties = ConfigurationRecorderProperties;
     const TYPE: &'static str = "AWS::Config::ConfigurationRecorder";
     fn properties(&self) -> &ConfigurationRecorderProperties {
@@ -288,7 +288,7 @@ impl<'de> ::serde::Deserialize<'de> for DeliveryChannelProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for DeliveryChannel {
+impl ::Resource for DeliveryChannel {
     type Properties = DeliveryChannelProperties;
     const TYPE: &'static str = "AWS::Config::DeliveryChannel";
     fn properties(&self) -> &DeliveryChannelProperties {

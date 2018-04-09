@@ -78,7 +78,7 @@ impl<'de> ::serde::Deserialize<'de> for NamedQueryProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for NamedQuery {
+impl ::Resource for NamedQuery {
     type Properties = NamedQueryProperties;
     const TYPE: &'static str = "AWS::Athena::NamedQuery";
     fn properties(&self) -> &NamedQueryProperties {

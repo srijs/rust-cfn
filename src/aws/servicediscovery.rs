@@ -70,7 +70,7 @@ impl<'de> ::serde::Deserialize<'de> for InstanceProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Instance {
+impl ::Resource for Instance {
     type Properties = InstanceProperties;
     const TYPE: &'static str = "AWS::ServiceDiscovery::Instance";
     fn properties(&self) -> &InstanceProperties {
@@ -159,7 +159,7 @@ impl<'de> ::serde::Deserialize<'de> for PrivateDnsNamespaceProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for PrivateDnsNamespace {
+impl ::Resource for PrivateDnsNamespace {
     type Properties = PrivateDnsNamespaceProperties;
     const TYPE: &'static str = "AWS::ServiceDiscovery::PrivateDnsNamespace";
     fn properties(&self) -> &PrivateDnsNamespaceProperties {
@@ -240,7 +240,7 @@ impl<'de> ::serde::Deserialize<'de> for PublicDnsNamespaceProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for PublicDnsNamespace {
+impl ::Resource for PublicDnsNamespace {
     type Properties = PublicDnsNamespaceProperties;
     const TYPE: &'static str = "AWS::ServiceDiscovery::PublicDnsNamespace";
     fn properties(&self) -> &PublicDnsNamespaceProperties {
@@ -337,7 +337,7 @@ impl<'de> ::serde::Deserialize<'de> for ServiceProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Service {
+impl ::Resource for Service {
     type Properties = ServiceProperties;
     const TYPE: &'static str = "AWS::ServiceDiscovery::Service";
     fn properties(&self) -> &ServiceProperties {

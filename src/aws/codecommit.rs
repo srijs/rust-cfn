@@ -70,7 +70,7 @@ impl<'de> ::serde::Deserialize<'de> for RepositoryProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Repository {
+impl ::Resource for Repository {
     type Properties = RepositoryProperties;
     const TYPE: &'static str = "AWS::CodeCommit::Repository";
     fn properties(&self) -> &RepositoryProperties {

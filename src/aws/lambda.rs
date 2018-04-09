@@ -86,7 +86,7 @@ impl<'de> ::serde::Deserialize<'de> for AliasProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Alias {
+impl ::Resource for Alias {
     type Properties = AliasProperties;
     const TYPE: &'static str = "AWS::Lambda::Alias";
     fn properties(&self) -> &AliasProperties {
@@ -191,7 +191,7 @@ impl<'de> ::serde::Deserialize<'de> for EventSourceMappingProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for EventSourceMapping {
+impl ::Resource for EventSourceMapping {
     type Properties = EventSourceMappingProperties;
     const TYPE: &'static str = "AWS::Lambda::EventSourceMapping";
     fn properties(&self) -> &EventSourceMappingProperties {
@@ -376,7 +376,7 @@ impl<'de> ::serde::Deserialize<'de> for FunctionProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Function {
+impl ::Resource for Function {
     type Properties = FunctionProperties;
     const TYPE: &'static str = "AWS::Lambda::Function";
     fn properties(&self) -> &FunctionProperties {
@@ -489,7 +489,7 @@ impl<'de> ::serde::Deserialize<'de> for PermissionProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Permission {
+impl ::Resource for Permission {
     type Properties = PermissionProperties;
     const TYPE: &'static str = "AWS::Lambda::Permission";
     fn properties(&self) -> &PermissionProperties {
@@ -578,7 +578,7 @@ impl<'de> ::serde::Deserialize<'de> for VersionProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Version {
+impl ::Resource for Version {
     type Properties = VersionProperties;
     const TYPE: &'static str = "AWS::Lambda::Version";
     fn properties(&self) -> &VersionProperties {

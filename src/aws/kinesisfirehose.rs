@@ -102,7 +102,7 @@ impl<'de> ::serde::Deserialize<'de> for DeliveryStreamProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for DeliveryStream {
+impl ::Resource for DeliveryStream {
     type Properties = DeliveryStreamProperties;
     const TYPE: &'static str = "AWS::KinesisFirehose::DeliveryStream";
     fn properties(&self) -> &DeliveryStreamProperties {

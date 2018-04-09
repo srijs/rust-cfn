@@ -78,7 +78,7 @@ impl<'de> ::serde::Deserialize<'de> for CustomerGatewayProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for CustomerGateway {
+impl ::Resource for CustomerGateway {
     type Properties = CustomerGatewayProperties;
     const TYPE: &'static str = "AWS::EC2::CustomerGateway";
     fn properties(&self) -> &CustomerGatewayProperties {
@@ -191,7 +191,7 @@ impl<'de> ::serde::Deserialize<'de> for DHCPOptionsProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for DHCPOptions {
+impl ::Resource for DHCPOptions {
     type Properties = DHCPOptionsProperties;
     const TYPE: &'static str = "AWS::EC2::DHCPOptions";
     fn properties(&self) -> &DHCPOptionsProperties {
@@ -272,7 +272,7 @@ impl<'de> ::serde::Deserialize<'de> for EIPProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for EIP {
+impl ::Resource for EIP {
     type Properties = EIPProperties;
     const TYPE: &'static str = "AWS::EC2::EIP";
     fn properties(&self) -> &EIPProperties {
@@ -377,7 +377,7 @@ impl<'de> ::serde::Deserialize<'de> for EIPAssociationProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for EIPAssociation {
+impl ::Resource for EIPAssociation {
     type Properties = EIPAssociationProperties;
     const TYPE: &'static str = "AWS::EC2::EIPAssociation";
     fn properties(&self) -> &EIPAssociationProperties {
@@ -450,7 +450,7 @@ impl<'de> ::serde::Deserialize<'de> for EgressOnlyInternetGatewayProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for EgressOnlyInternetGateway {
+impl ::Resource for EgressOnlyInternetGateway {
     type Properties = EgressOnlyInternetGatewayProperties;
     const TYPE: &'static str = "AWS::EC2::EgressOnlyInternetGateway";
     fn properties(&self) -> &EgressOnlyInternetGatewayProperties {
@@ -555,7 +555,7 @@ impl<'de> ::serde::Deserialize<'de> for FlowLogProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for FlowLog {
+impl ::Resource for FlowLog {
     type Properties = FlowLogProperties;
     const TYPE: &'static str = "AWS::EC2::FlowLog";
     fn properties(&self) -> &FlowLogProperties {
@@ -644,7 +644,7 @@ impl<'de> ::serde::Deserialize<'de> for HostProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Host {
+impl ::Resource for Host {
     type Properties = HostProperties;
     const TYPE: &'static str = "AWS::EC2::Host";
     fn properties(&self) -> &HostProperties {
@@ -957,7 +957,7 @@ impl<'de> ::serde::Deserialize<'de> for InstanceProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Instance {
+impl ::Resource for Instance {
     type Properties = InstanceProperties;
     const TYPE: &'static str = "AWS::EC2::Instance";
     fn properties(&self) -> &InstanceProperties {
@@ -1030,7 +1030,7 @@ impl<'de> ::serde::Deserialize<'de> for InternetGatewayProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for InternetGateway {
+impl ::Resource for InternetGateway {
     type Properties = InternetGatewayProperties;
     const TYPE: &'static str = "AWS::EC2::InternetGateway";
     fn properties(&self) -> &InternetGatewayProperties {
@@ -1119,7 +1119,7 @@ impl<'de> ::serde::Deserialize<'de> for NatGatewayProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for NatGateway {
+impl ::Resource for NatGateway {
     type Properties = NatGatewayProperties;
     const TYPE: &'static str = "AWS::EC2::NatGateway";
     fn properties(&self) -> &NatGatewayProperties {
@@ -1200,7 +1200,7 @@ impl<'de> ::serde::Deserialize<'de> for NetworkAclProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for NetworkAcl {
+impl ::Resource for NetworkAcl {
     type Properties = NetworkAclProperties;
     const TYPE: &'static str = "AWS::EC2::NetworkAcl";
     fn properties(&self) -> &NetworkAclProperties {
@@ -1337,7 +1337,7 @@ impl<'de> ::serde::Deserialize<'de> for NetworkAclEntryProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for NetworkAclEntry {
+impl ::Resource for NetworkAclEntry {
     type Properties = NetworkAclEntryProperties;
     const TYPE: &'static str = "AWS::EC2::NetworkAclEntry";
     fn properties(&self) -> &NetworkAclEntryProperties {
@@ -1490,7 +1490,7 @@ impl<'de> ::serde::Deserialize<'de> for NetworkInterfaceProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for NetworkInterface {
+impl ::Resource for NetworkInterface {
     type Properties = NetworkInterfaceProperties;
     const TYPE: &'static str = "AWS::EC2::NetworkInterface";
     fn properties(&self) -> &NetworkInterfaceProperties {
@@ -1587,7 +1587,7 @@ impl<'de> ::serde::Deserialize<'de> for NetworkInterfaceAttachmentProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for NetworkInterfaceAttachment {
+impl ::Resource for NetworkInterfaceAttachment {
     type Properties = NetworkInterfaceAttachmentProperties;
     const TYPE: &'static str = "AWS::EC2::NetworkInterfaceAttachment";
     fn properties(&self) -> &NetworkInterfaceAttachmentProperties {
@@ -1676,7 +1676,7 @@ impl<'de> ::serde::Deserialize<'de> for NetworkInterfacePermissionProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for NetworkInterfacePermission {
+impl ::Resource for NetworkInterfacePermission {
     type Properties = NetworkInterfacePermissionProperties;
     const TYPE: &'static str = "AWS::EC2::NetworkInterfacePermission";
     fn properties(&self) -> &NetworkInterfacePermissionProperties {
@@ -1749,7 +1749,7 @@ impl<'de> ::serde::Deserialize<'de> for PlacementGroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for PlacementGroup {
+impl ::Resource for PlacementGroup {
     type Properties = PlacementGroupProperties;
     const TYPE: &'static str = "AWS::EC2::PlacementGroup";
     fn properties(&self) -> &PlacementGroupProperties {
@@ -1886,7 +1886,7 @@ impl<'de> ::serde::Deserialize<'de> for RouteProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Route {
+impl ::Resource for Route {
     type Properties = RouteProperties;
     const TYPE: &'static str = "AWS::EC2::Route";
     fn properties(&self) -> &RouteProperties {
@@ -1967,7 +1967,7 @@ impl<'de> ::serde::Deserialize<'de> for RouteTableProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for RouteTable {
+impl ::Resource for RouteTable {
     type Properties = RouteTableProperties;
     const TYPE: &'static str = "AWS::EC2::RouteTable";
     fn properties(&self) -> &RouteTableProperties {
@@ -2080,7 +2080,7 @@ impl<'de> ::serde::Deserialize<'de> for SecurityGroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for SecurityGroup {
+impl ::Resource for SecurityGroup {
     type Properties = SecurityGroupProperties;
     const TYPE: &'static str = "AWS::EC2::SecurityGroup";
     fn properties(&self) -> &SecurityGroupProperties {
@@ -2217,7 +2217,7 @@ impl<'de> ::serde::Deserialize<'de> for SecurityGroupEgressProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for SecurityGroupEgress {
+impl ::Resource for SecurityGroupEgress {
     type Properties = SecurityGroupEgressProperties;
     const TYPE: &'static str = "AWS::EC2::SecurityGroupEgress";
     fn properties(&self) -> &SecurityGroupEgressProperties {
@@ -2370,7 +2370,7 @@ impl<'de> ::serde::Deserialize<'de> for SecurityGroupIngressProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for SecurityGroupIngress {
+impl ::Resource for SecurityGroupIngress {
     type Properties = SecurityGroupIngressProperties;
     const TYPE: &'static str = "AWS::EC2::SecurityGroupIngress";
     fn properties(&self) -> &SecurityGroupIngressProperties {
@@ -2443,7 +2443,7 @@ impl<'de> ::serde::Deserialize<'de> for SpotFleetProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for SpotFleet {
+impl ::Resource for SpotFleet {
     type Properties = SpotFleetProperties;
     const TYPE: &'static str = "AWS::EC2::SpotFleet";
     fn properties(&self) -> &SpotFleetProperties {
@@ -2564,7 +2564,7 @@ impl<'de> ::serde::Deserialize<'de> for SubnetProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Subnet {
+impl ::Resource for Subnet {
     type Properties = SubnetProperties;
     const TYPE: &'static str = "AWS::EC2::Subnet";
     fn properties(&self) -> &SubnetProperties {
@@ -2645,7 +2645,7 @@ impl<'de> ::serde::Deserialize<'de> for SubnetCidrBlockProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for SubnetCidrBlock {
+impl ::Resource for SubnetCidrBlock {
     type Properties = SubnetCidrBlockProperties;
     const TYPE: &'static str = "AWS::EC2::SubnetCidrBlock";
     fn properties(&self) -> &SubnetCidrBlockProperties {
@@ -2726,7 +2726,7 @@ impl<'de> ::serde::Deserialize<'de> for SubnetNetworkAclAssociationProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for SubnetNetworkAclAssociation {
+impl ::Resource for SubnetNetworkAclAssociation {
     type Properties = SubnetNetworkAclAssociationProperties;
     const TYPE: &'static str = "AWS::EC2::SubnetNetworkAclAssociation";
     fn properties(&self) -> &SubnetNetworkAclAssociationProperties {
@@ -2807,7 +2807,7 @@ impl<'de> ::serde::Deserialize<'de> for SubnetRouteTableAssociationProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for SubnetRouteTableAssociation {
+impl ::Resource for SubnetRouteTableAssociation {
     type Properties = SubnetRouteTableAssociationProperties;
     const TYPE: &'static str = "AWS::EC2::SubnetRouteTableAssociation";
     fn properties(&self) -> &SubnetRouteTableAssociationProperties {
@@ -2904,7 +2904,7 @@ impl<'de> ::serde::Deserialize<'de> for TrunkInterfaceAssociationProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for TrunkInterfaceAssociation {
+impl ::Resource for TrunkInterfaceAssociation {
     type Properties = TrunkInterfaceAssociationProperties;
     const TYPE: &'static str = "AWS::EC2::TrunkInterfaceAssociation";
     fn properties(&self) -> &TrunkInterfaceAssociationProperties {
@@ -3009,7 +3009,7 @@ impl<'de> ::serde::Deserialize<'de> for VPCProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for VPC {
+impl ::Resource for VPC {
     type Properties = VPCProperties;
     const TYPE: &'static str = "AWS::EC2::VPC";
     fn properties(&self) -> &VPCProperties {
@@ -3098,7 +3098,7 @@ impl<'de> ::serde::Deserialize<'de> for VPCCidrBlockProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for VPCCidrBlock {
+impl ::Resource for VPCCidrBlock {
     type Properties = VPCCidrBlockProperties;
     const TYPE: &'static str = "AWS::EC2::VPCCidrBlock";
     fn properties(&self) -> &VPCCidrBlockProperties {
@@ -3179,7 +3179,7 @@ impl<'de> ::serde::Deserialize<'de> for VPCDHCPOptionsAssociationProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for VPCDHCPOptionsAssociation {
+impl ::Resource for VPCDHCPOptionsAssociation {
     type Properties = VPCDHCPOptionsAssociationProperties;
     const TYPE: &'static str = "AWS::EC2::VPCDHCPOptionsAssociation";
     fn properties(&self) -> &VPCDHCPOptionsAssociationProperties {
@@ -3276,7 +3276,7 @@ impl<'de> ::serde::Deserialize<'de> for VPCEndpointProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for VPCEndpoint {
+impl ::Resource for VPCEndpoint {
     type Properties = VPCEndpointProperties;
     const TYPE: &'static str = "AWS::EC2::VPCEndpoint";
     fn properties(&self) -> &VPCEndpointProperties {
@@ -3365,7 +3365,7 @@ impl<'de> ::serde::Deserialize<'de> for VPCGatewayAttachmentProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for VPCGatewayAttachment {
+impl ::Resource for VPCGatewayAttachment {
     type Properties = VPCGatewayAttachmentProperties;
     const TYPE: &'static str = "AWS::EC2::VPCGatewayAttachment";
     fn properties(&self) -> &VPCGatewayAttachmentProperties {
@@ -3470,7 +3470,7 @@ impl<'de> ::serde::Deserialize<'de> for VPCPeeringConnectionProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for VPCPeeringConnection {
+impl ::Resource for VPCPeeringConnection {
     type Properties = VPCPeeringConnectionProperties;
     const TYPE: &'static str = "AWS::EC2::VPCPeeringConnection";
     fn properties(&self) -> &VPCPeeringConnectionProperties {
@@ -3583,7 +3583,7 @@ impl<'de> ::serde::Deserialize<'de> for VPNConnectionProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for VPNConnection {
+impl ::Resource for VPNConnection {
     type Properties = VPNConnectionProperties;
     const TYPE: &'static str = "AWS::EC2::VPNConnection";
     fn properties(&self) -> &VPNConnectionProperties {
@@ -3664,7 +3664,7 @@ impl<'de> ::serde::Deserialize<'de> for VPNConnectionRouteProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for VPNConnectionRoute {
+impl ::Resource for VPNConnectionRoute {
     type Properties = VPNConnectionRouteProperties;
     const TYPE: &'static str = "AWS::EC2::VPNConnectionRoute";
     fn properties(&self) -> &VPNConnectionRouteProperties {
@@ -3753,7 +3753,7 @@ impl<'de> ::serde::Deserialize<'de> for VPNGatewayProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for VPNGateway {
+impl ::Resource for VPNGateway {
     type Properties = VPNGatewayProperties;
     const TYPE: &'static str = "AWS::EC2::VPNGateway";
     fn properties(&self) -> &VPNGatewayProperties {
@@ -3834,7 +3834,7 @@ impl<'de> ::serde::Deserialize<'de> for VPNGatewayRoutePropagationProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for VPNGatewayRoutePropagation {
+impl ::Resource for VPNGatewayRoutePropagation {
     type Properties = VPNGatewayRoutePropagationProperties;
     const TYPE: &'static str = "AWS::EC2::VPNGatewayRoutePropagation";
     fn properties(&self) -> &VPNGatewayRoutePropagationProperties {
@@ -3971,7 +3971,7 @@ impl<'de> ::serde::Deserialize<'de> for VolumeProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Volume {
+impl ::Resource for Volume {
     type Properties = VolumeProperties;
     const TYPE: &'static str = "AWS::EC2::Volume";
     fn properties(&self) -> &VolumeProperties {
@@ -4060,7 +4060,7 @@ impl<'de> ::serde::Deserialize<'de> for VolumeAttachmentProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for VolumeAttachment {
+impl ::Resource for VolumeAttachment {
     type Properties = VolumeAttachmentProperties;
     const TYPE: &'static str = "AWS::EC2::VolumeAttachment";
     fn properties(&self) -> &VolumeAttachmentProperties {

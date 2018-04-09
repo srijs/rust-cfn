@@ -134,7 +134,7 @@ impl<'de> ::serde::Deserialize<'de> for QueueProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Queue {
+impl ::Resource for Queue {
     type Properties = QueueProperties;
     const TYPE: &'static str = "AWS::SQS::Queue";
     fn properties(&self) -> &QueueProperties {
@@ -215,7 +215,7 @@ impl<'de> ::serde::Deserialize<'de> for QueuePolicyProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for QueuePolicy {
+impl ::Resource for QueuePolicy {
     type Properties = QueuePolicyProperties;
     const TYPE: &'static str = "AWS::SQS::QueuePolicy";
     fn properties(&self) -> &QueuePolicyProperties {

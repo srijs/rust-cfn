@@ -62,7 +62,7 @@ impl<'de> ::serde::Deserialize<'de> for AliasProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Alias {
+impl ::Resource for Alias {
     type Properties = AliasProperties;
     const TYPE: &'static str = "AWS::KMS::Alias";
     fn properties(&self) -> &AliasProperties {
@@ -175,7 +175,7 @@ impl<'de> ::serde::Deserialize<'de> for KeyProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Key {
+impl ::Resource for Key {
     type Properties = KeyProperties;
     const TYPE: &'static str = "AWS::KMS::Key";
     fn properties(&self) -> &KeyProperties {

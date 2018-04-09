@@ -70,7 +70,7 @@ impl<'de> ::serde::Deserialize<'de> for SubscriptionProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Subscription {
+impl ::Resource for Subscription {
     type Properties = SubscriptionProperties;
     const TYPE: &'static str = "AWS::SNS::Subscription";
     fn properties(&self) -> &SubscriptionProperties {
@@ -159,7 +159,7 @@ impl<'de> ::serde::Deserialize<'de> for TopicProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Topic {
+impl ::Resource for Topic {
     type Properties = TopicProperties;
     const TYPE: &'static str = "AWS::SNS::Topic";
     fn properties(&self) -> &TopicProperties {
@@ -240,7 +240,7 @@ impl<'de> ::serde::Deserialize<'de> for TopicPolicyProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for TopicPolicy {
+impl ::Resource for TopicPolicy {
     type Properties = TopicPolicyProperties;
     const TYPE: &'static str = "AWS::SNS::TopicPolicy";
     fn properties(&self) -> &TopicPolicyProperties {

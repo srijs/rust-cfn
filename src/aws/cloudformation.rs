@@ -54,7 +54,7 @@ impl<'de> ::serde::Deserialize<'de> for CustomResourceProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for CustomResource {
+impl ::Resource for CustomResource {
     type Properties = CustomResourceProperties;
     const TYPE: &'static str = "AWS::CloudFormation::CustomResource";
     fn properties(&self) -> &CustomResourceProperties {
@@ -159,7 +159,7 @@ impl<'de> ::serde::Deserialize<'de> for StackProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Stack {
+impl ::Resource for Stack {
     type Properties = StackProperties;
     const TYPE: &'static str = "AWS::CloudFormation::Stack";
     fn properties(&self) -> &StackProperties {
@@ -248,7 +248,7 @@ impl<'de> ::serde::Deserialize<'de> for WaitConditionProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for WaitCondition {
+impl ::Resource for WaitCondition {
     type Properties = WaitConditionProperties;
     const TYPE: &'static str = "AWS::CloudFormation::WaitCondition";
     fn properties(&self) -> &WaitConditionProperties {
@@ -305,7 +305,7 @@ impl<'de> ::serde::Deserialize<'de> for WaitConditionHandleProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for WaitConditionHandle {
+impl ::Resource for WaitConditionHandle {
     type Properties = WaitConditionHandleProperties;
     const TYPE: &'static str = "AWS::CloudFormation::WaitConditionHandle";
     fn properties(&self) -> &WaitConditionHandleProperties {

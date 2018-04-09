@@ -54,7 +54,7 @@ impl<'de> ::serde::Deserialize<'de> for AccountProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Account {
+impl ::Resource for Account {
     type Properties = AccountProperties;
     const TYPE: &'static str = "AWS::ApiGateway::Account";
     fn properties(&self) -> &AccountProperties {
@@ -167,7 +167,7 @@ impl<'de> ::serde::Deserialize<'de> for ApiKeyProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ApiKey {
+impl ::Resource for ApiKey {
     type Properties = ApiKeyProperties;
     const TYPE: &'static str = "AWS::ApiGateway::ApiKey";
     fn properties(&self) -> &ApiKeyProperties {
@@ -312,7 +312,7 @@ impl<'de> ::serde::Deserialize<'de> for AuthorizerProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Authorizer {
+impl ::Resource for Authorizer {
     type Properties = AuthorizerProperties;
     const TYPE: &'static str = "AWS::ApiGateway::Authorizer";
     fn properties(&self) -> &AuthorizerProperties {
@@ -409,7 +409,7 @@ impl<'de> ::serde::Deserialize<'de> for BasePathMappingProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for BasePathMapping {
+impl ::Resource for BasePathMapping {
     type Properties = BasePathMappingProperties;
     const TYPE: &'static str = "AWS::ApiGateway::BasePathMapping";
     fn properties(&self) -> &BasePathMappingProperties {
@@ -482,7 +482,7 @@ impl<'de> ::serde::Deserialize<'de> for ClientCertificateProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ClientCertificate {
+impl ::Resource for ClientCertificate {
     type Properties = ClientCertificateProperties;
     const TYPE: &'static str = "AWS::ApiGateway::ClientCertificate";
     fn properties(&self) -> &ClientCertificateProperties {
@@ -579,7 +579,7 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Deployment {
+impl ::Resource for Deployment {
     type Properties = DeploymentProperties;
     const TYPE: &'static str = "AWS::ApiGateway::Deployment";
     fn properties(&self) -> &DeploymentProperties {
@@ -668,7 +668,7 @@ impl<'de> ::serde::Deserialize<'de> for DocumentationPartProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for DocumentationPart {
+impl ::Resource for DocumentationPart {
     type Properties = DocumentationPartProperties;
     const TYPE: &'static str = "AWS::ApiGateway::DocumentationPart";
     fn properties(&self) -> &DocumentationPartProperties {
@@ -757,7 +757,7 @@ impl<'de> ::serde::Deserialize<'de> for DocumentationVersionProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for DocumentationVersion {
+impl ::Resource for DocumentationVersion {
     type Properties = DocumentationVersionProperties;
     const TYPE: &'static str = "AWS::ApiGateway::DocumentationVersion";
     fn properties(&self) -> &DocumentationVersionProperties {
@@ -854,7 +854,7 @@ impl<'de> ::serde::Deserialize<'de> for DomainNameProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for DomainName {
+impl ::Resource for DomainName {
     type Properties = DomainNameProperties;
     const TYPE: &'static str = "AWS::ApiGateway::DomainName";
     fn properties(&self) -> &DomainNameProperties {
@@ -959,7 +959,7 @@ impl<'de> ::serde::Deserialize<'de> for GatewayResponseProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for GatewayResponse {
+impl ::Resource for GatewayResponse {
     type Properties = GatewayResponseProperties;
     const TYPE: &'static str = "AWS::ApiGateway::GatewayResponse";
     fn properties(&self) -> &GatewayResponseProperties {
@@ -1120,7 +1120,7 @@ impl<'de> ::serde::Deserialize<'de> for MethodProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Method {
+impl ::Resource for Method {
     type Properties = MethodProperties;
     const TYPE: &'static str = "AWS::ApiGateway::Method";
     fn properties(&self) -> &MethodProperties {
@@ -1225,7 +1225,7 @@ impl<'de> ::serde::Deserialize<'de> for ModelProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Model {
+impl ::Resource for Model {
     type Properties = ModelProperties;
     const TYPE: &'static str = "AWS::ApiGateway::Model";
     fn properties(&self) -> &ModelProperties {
@@ -1322,7 +1322,7 @@ impl<'de> ::serde::Deserialize<'de> for RequestValidatorProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for RequestValidator {
+impl ::Resource for RequestValidator {
     type Properties = RequestValidatorProperties;
     const TYPE: &'static str = "AWS::ApiGateway::RequestValidator";
     fn properties(&self) -> &RequestValidatorProperties {
@@ -1411,7 +1411,7 @@ impl<'de> ::serde::Deserialize<'de> for ResourceProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Resource {
+impl ::Resource for Resource {
     type Properties = ResourceProperties;
     const TYPE: &'static str = "AWS::ApiGateway::Resource";
     fn properties(&self) -> &ResourceProperties {
@@ -1564,7 +1564,7 @@ impl<'de> ::serde::Deserialize<'de> for RestApiProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for RestApi {
+impl ::Resource for RestApi {
     type Properties = RestApiProperties;
     const TYPE: &'static str = "AWS::ApiGateway::RestApi";
     fn properties(&self) -> &RestApiProperties {
@@ -1709,7 +1709,7 @@ impl<'de> ::serde::Deserialize<'de> for StageProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Stage {
+impl ::Resource for Stage {
     type Properties = StageProperties;
     const TYPE: &'static str = "AWS::ApiGateway::Stage";
     fn properties(&self) -> &StageProperties {
@@ -1814,7 +1814,7 @@ impl<'de> ::serde::Deserialize<'de> for UsagePlanProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for UsagePlan {
+impl ::Resource for UsagePlan {
     type Properties = UsagePlanProperties;
     const TYPE: &'static str = "AWS::ApiGateway::UsagePlan";
     fn properties(&self) -> &UsagePlanProperties {
@@ -1903,7 +1903,7 @@ impl<'de> ::serde::Deserialize<'de> for UsagePlanKeyProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for UsagePlanKey {
+impl ::Resource for UsagePlanKey {
     type Properties = UsagePlanKeyProperties;
     const TYPE: &'static str = "AWS::ApiGateway::UsagePlanKey";
     fn properties(&self) -> &UsagePlanKeyProperties {
@@ -1992,7 +1992,7 @@ impl<'de> ::serde::Deserialize<'de> for VpcLinkProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for VpcLink {
+impl ::Resource for VpcLink {
     type Properties = VpcLinkProperties;
     const TYPE: &'static str = "AWS::ApiGateway::VpcLink";
     fn properties(&self) -> &VpcLinkProperties {

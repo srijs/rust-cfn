@@ -139,7 +139,7 @@ fn generate_resource_declaration(service: &str, name: &str, spec: &ResourceType,
     generate_deserialize(&format!("{}Properties", name), &spec.properties, p)?;
 
     p.newline()?;
-    p.block(format_args!("impl<'a> ::Resource<'a> for {}", name), |p| {
+    p.block(format_args!("impl ::Resource for {}", name), |p| {
         p.line(format_args!("type Properties = {}Properties;", name))?;
         p.line(format_args!("const TYPE: &'static str = \"AWS::{}::{}\";", service, name))?;
         p.line(format_args!("fn properties(&self) -> &{}Properties {{", name))?;

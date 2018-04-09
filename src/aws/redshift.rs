@@ -278,7 +278,7 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Cluster {
+impl ::Resource for Cluster {
     type Properties = ClusterProperties;
     const TYPE: &'static str = "AWS::Redshift::Cluster";
     fn properties(&self) -> &ClusterProperties {
@@ -375,7 +375,7 @@ impl<'de> ::serde::Deserialize<'de> for ClusterParameterGroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ClusterParameterGroup {
+impl ::Resource for ClusterParameterGroup {
     type Properties = ClusterParameterGroupProperties;
     const TYPE: &'static str = "AWS::Redshift::ClusterParameterGroup";
     fn properties(&self) -> &ClusterParameterGroupProperties {
@@ -456,7 +456,7 @@ impl<'de> ::serde::Deserialize<'de> for ClusterSecurityGroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ClusterSecurityGroup {
+impl ::Resource for ClusterSecurityGroup {
     type Properties = ClusterSecurityGroupProperties;
     const TYPE: &'static str = "AWS::Redshift::ClusterSecurityGroup";
     fn properties(&self) -> &ClusterSecurityGroupProperties {
@@ -553,7 +553,7 @@ impl<'de> ::serde::Deserialize<'de> for ClusterSecurityGroupIngressProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ClusterSecurityGroupIngress {
+impl ::Resource for ClusterSecurityGroupIngress {
     type Properties = ClusterSecurityGroupIngressProperties;
     const TYPE: &'static str = "AWS::Redshift::ClusterSecurityGroupIngress";
     fn properties(&self) -> &ClusterSecurityGroupIngressProperties {
@@ -642,7 +642,7 @@ impl<'de> ::serde::Deserialize<'de> for ClusterSubnetGroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ClusterSubnetGroup {
+impl ::Resource for ClusterSubnetGroup {
     type Properties = ClusterSubnetGroupProperties;
     const TYPE: &'static str = "AWS::Redshift::ClusterSubnetGroup";
     fn properties(&self) -> &ClusterSubnetGroupProperties {

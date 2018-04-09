@@ -70,7 +70,7 @@ impl<'de> ::serde::Deserialize<'de> for ApplicationProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Application {
+impl ::Resource for Application {
     type Properties = ApplicationProperties;
     const TYPE: &'static str = "AWS::ElasticBeanstalk::Application";
     fn properties(&self) -> &ApplicationProperties {
@@ -159,7 +159,7 @@ impl<'de> ::serde::Deserialize<'de> for ApplicationVersionProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ApplicationVersion {
+impl ::Resource for ApplicationVersion {
     type Properties = ApplicationVersionProperties;
     const TYPE: &'static str = "AWS::ElasticBeanstalk::ApplicationVersion";
     fn properties(&self) -> &ApplicationVersionProperties {
@@ -280,7 +280,7 @@ impl<'de> ::serde::Deserialize<'de> for ConfigurationTemplateProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ConfigurationTemplate {
+impl ::Resource for ConfigurationTemplate {
     type Properties = ConfigurationTemplateProperties;
     const TYPE: &'static str = "AWS::ElasticBeanstalk::ConfigurationTemplate";
     fn properties(&self) -> &ConfigurationTemplateProperties {
@@ -433,7 +433,7 @@ impl<'de> ::serde::Deserialize<'de> for EnvironmentProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Environment {
+impl ::Resource for Environment {
     type Properties = EnvironmentProperties;
     const TYPE: &'static str = "AWS::ElasticBeanstalk::Environment";
     fn properties(&self) -> &EnvironmentProperties {

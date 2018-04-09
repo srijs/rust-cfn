@@ -54,7 +54,7 @@ impl<'de> ::serde::Deserialize<'de> for ActivityProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Activity {
+impl ::Resource for Activity {
     type Properties = ActivityProperties;
     const TYPE: &'static str = "AWS::StepFunctions::Activity";
     fn properties(&self) -> &ActivityProperties {
@@ -143,7 +143,7 @@ impl<'de> ::serde::Deserialize<'de> for StateMachineProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for StateMachine {
+impl ::Resource for StateMachine {
     type Properties = StateMachineProperties;
     const TYPE: &'static str = "AWS::StepFunctions::StateMachine";
     fn properties(&self) -> &StateMachineProperties {

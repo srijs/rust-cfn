@@ -102,7 +102,7 @@ impl<'de> ::serde::Deserialize<'de> for AssociationProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Association {
+impl ::Resource for Association {
     type Properties = AssociationProperties;
     const TYPE: &'static str = "AWS::SSM::Association";
     fn properties(&self) -> &AssociationProperties {
@@ -191,7 +191,7 @@ impl<'de> ::serde::Deserialize<'de> for DocumentProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Document {
+impl ::Resource for Document {
     type Properties = DocumentProperties;
     const TYPE: &'static str = "AWS::SSM::Document";
     fn properties(&self) -> &DocumentProperties {
@@ -360,7 +360,7 @@ impl<'de> ::serde::Deserialize<'de> for MaintenanceWindowTaskProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for MaintenanceWindowTask {
+impl ::Resource for MaintenanceWindowTask {
     type Properties = MaintenanceWindowTaskProperties;
     const TYPE: &'static str = "AWS::SSM::MaintenanceWindowTask";
     fn properties(&self) -> &MaintenanceWindowTaskProperties {
@@ -465,7 +465,7 @@ impl<'de> ::serde::Deserialize<'de> for ParameterProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Parameter {
+impl ::Resource for Parameter {
     type Properties = ParameterProperties;
     const TYPE: &'static str = "AWS::SSM::Parameter";
     fn properties(&self) -> &ParameterProperties {
@@ -618,7 +618,7 @@ impl<'de> ::serde::Deserialize<'de> for PatchBaselineProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for PatchBaseline {
+impl ::Resource for PatchBaseline {
     type Properties = PatchBaselineProperties;
     const TYPE: &'static str = "AWS::SSM::PatchBaseline";
     fn properties(&self) -> &PatchBaselineProperties {

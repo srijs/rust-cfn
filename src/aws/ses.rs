@@ -54,7 +54,7 @@ impl<'de> ::serde::Deserialize<'de> for ConfigurationSetProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ConfigurationSet {
+impl ::Resource for ConfigurationSet {
     type Properties = ConfigurationSetProperties;
     const TYPE: &'static str = "AWS::SES::ConfigurationSet";
     fn properties(&self) -> &ConfigurationSetProperties {
@@ -135,7 +135,7 @@ impl<'de> ::serde::Deserialize<'de> for ConfigurationSetEventDestinationProperti
     }
 }
 
-impl<'a> ::Resource<'a> for ConfigurationSetEventDestination {
+impl ::Resource for ConfigurationSetEventDestination {
     type Properties = ConfigurationSetEventDestinationProperties;
     const TYPE: &'static str = "AWS::SES::ConfigurationSetEventDestination";
     fn properties(&self) -> &ConfigurationSetEventDestinationProperties {
@@ -208,7 +208,7 @@ impl<'de> ::serde::Deserialize<'de> for ReceiptFilterProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ReceiptFilter {
+impl ::Resource for ReceiptFilter {
     type Properties = ReceiptFilterProperties;
     const TYPE: &'static str = "AWS::SES::ReceiptFilter";
     fn properties(&self) -> &ReceiptFilterProperties {
@@ -297,7 +297,7 @@ impl<'de> ::serde::Deserialize<'de> for ReceiptRuleProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ReceiptRule {
+impl ::Resource for ReceiptRule {
     type Properties = ReceiptRuleProperties;
     const TYPE: &'static str = "AWS::SES::ReceiptRule";
     fn properties(&self) -> &ReceiptRuleProperties {
@@ -370,7 +370,7 @@ impl<'de> ::serde::Deserialize<'de> for ReceiptRuleSetProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ReceiptRuleSet {
+impl ::Resource for ReceiptRuleSet {
     type Properties = ReceiptRuleSetProperties;
     const TYPE: &'static str = "AWS::SES::ReceiptRuleSet";
     fn properties(&self) -> &ReceiptRuleSetProperties {
@@ -443,7 +443,7 @@ impl<'de> ::serde::Deserialize<'de> for TemplateProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Template {
+impl ::Resource for Template {
     type Properties = TemplateProperties;
     const TYPE: &'static str = "AWS::SES::Template";
     fn properties(&self) -> &TemplateProperties {

@@ -198,7 +198,7 @@ impl<'de> ::serde::Deserialize<'de> for AutoScalingGroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for AutoScalingGroup {
+impl ::Resource for AutoScalingGroup {
     type Properties = AutoScalingGroupProperties;
     const TYPE: &'static str = "AWS::AutoScaling::AutoScalingGroup";
     fn properties(&self) -> &AutoScalingGroupProperties {
@@ -399,7 +399,7 @@ impl<'de> ::serde::Deserialize<'de> for LaunchConfigurationProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for LaunchConfiguration {
+impl ::Resource for LaunchConfiguration {
     type Properties = LaunchConfigurationProperties;
     const TYPE: &'static str = "AWS::AutoScaling::LaunchConfiguration";
     fn properties(&self) -> &LaunchConfigurationProperties {
@@ -528,7 +528,7 @@ impl<'de> ::serde::Deserialize<'de> for LifecycleHookProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for LifecycleHook {
+impl ::Resource for LifecycleHook {
     type Properties = LifecycleHookProperties;
     const TYPE: &'static str = "AWS::AutoScaling::LifecycleHook";
     fn properties(&self) -> &LifecycleHookProperties {
@@ -673,7 +673,7 @@ impl<'de> ::serde::Deserialize<'de> for ScalingPolicyProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ScalingPolicy {
+impl ::Resource for ScalingPolicy {
     type Properties = ScalingPolicyProperties;
     const TYPE: &'static str = "AWS::AutoScaling::ScalingPolicy";
     fn properties(&self) -> &ScalingPolicyProperties {
@@ -794,7 +794,7 @@ impl<'de> ::serde::Deserialize<'de> for ScheduledActionProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ScheduledAction {
+impl ::Resource for ScheduledAction {
     type Properties = ScheduledActionProperties;
     const TYPE: &'static str = "AWS::AutoScaling::ScheduledAction";
     fn properties(&self) -> &ScheduledActionProperties {

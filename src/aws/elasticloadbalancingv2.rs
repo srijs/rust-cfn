@@ -94,7 +94,7 @@ impl<'de> ::serde::Deserialize<'de> for ListenerProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Listener {
+impl ::Resource for Listener {
     type Properties = ListenerProperties;
     const TYPE: &'static str = "AWS::ElasticLoadBalancingV2::Listener";
     fn properties(&self) -> &ListenerProperties {
@@ -175,7 +175,7 @@ impl<'de> ::serde::Deserialize<'de> for ListenerCertificateProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ListenerCertificate {
+impl ::Resource for ListenerCertificate {
     type Properties = ListenerCertificateProperties;
     const TYPE: &'static str = "AWS::ElasticLoadBalancingV2::ListenerCertificate";
     fn properties(&self) -> &ListenerCertificateProperties {
@@ -272,7 +272,7 @@ impl<'de> ::serde::Deserialize<'de> for ListenerRuleProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ListenerRule {
+impl ::Resource for ListenerRule {
     type Properties = ListenerRuleProperties;
     const TYPE: &'static str = "AWS::ElasticLoadBalancingV2::ListenerRule";
     fn properties(&self) -> &ListenerRuleProperties {
@@ -409,7 +409,7 @@ impl<'de> ::serde::Deserialize<'de> for LoadBalancerProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for LoadBalancer {
+impl ::Resource for LoadBalancer {
     type Properties = LoadBalancerProperties;
     const TYPE: &'static str = "AWS::ElasticLoadBalancingV2::LoadBalancer";
     fn properties(&self) -> &LoadBalancerProperties {
@@ -602,7 +602,7 @@ impl<'de> ::serde::Deserialize<'de> for TargetGroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for TargetGroup {
+impl ::Resource for TargetGroup {
     type Properties = TargetGroupProperties;
     const TYPE: &'static str = "AWS::ElasticLoadBalancingV2::TargetGroup";
     fn properties(&self) -> &TargetGroupProperties {

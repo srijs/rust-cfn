@@ -102,7 +102,7 @@ impl<'de> ::serde::Deserialize<'de> for EnvironmentEC2Properties {
     }
 }
 
-impl<'a> ::Resource<'a> for EnvironmentEC2 {
+impl ::Resource for EnvironmentEC2 {
     type Properties = EnvironmentEC2Properties;
     const TYPE: &'static str = "AWS::Cloud9::EnvironmentEC2";
     fn properties(&self) -> &EnvironmentEC2Properties {

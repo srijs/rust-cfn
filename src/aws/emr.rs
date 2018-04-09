@@ -182,7 +182,7 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Cluster {
+impl ::Resource for Cluster {
     type Properties = ClusterProperties;
     const TYPE: &'static str = "AWS::EMR::Cluster";
     fn properties(&self) -> &ClusterProperties {
@@ -303,7 +303,7 @@ impl<'de> ::serde::Deserialize<'de> for InstanceFleetConfigProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for InstanceFleetConfig {
+impl ::Resource for InstanceFleetConfig {
     type Properties = InstanceFleetConfigProperties;
     const TYPE: &'static str = "AWS::EMR::InstanceFleetConfig";
     fn properties(&self) -> &InstanceFleetConfigProperties {
@@ -448,7 +448,7 @@ impl<'de> ::serde::Deserialize<'de> for InstanceGroupConfigProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for InstanceGroupConfig {
+impl ::Resource for InstanceGroupConfig {
     type Properties = InstanceGroupConfigProperties;
     const TYPE: &'static str = "AWS::EMR::InstanceGroupConfig";
     fn properties(&self) -> &InstanceGroupConfigProperties {
@@ -529,7 +529,7 @@ impl<'de> ::serde::Deserialize<'de> for SecurityConfigurationProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for SecurityConfiguration {
+impl ::Resource for SecurityConfiguration {
     type Properties = SecurityConfigurationProperties;
     const TYPE: &'static str = "AWS::EMR::SecurityConfiguration";
     fn properties(&self) -> &SecurityConfigurationProperties {
@@ -626,7 +626,7 @@ impl<'de> ::serde::Deserialize<'de> for StepProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Step {
+impl ::Resource for Step {
     type Properties = StepProperties;
     const TYPE: &'static str = "AWS::EMR::Step";
     fn properties(&self) -> &StepProperties {

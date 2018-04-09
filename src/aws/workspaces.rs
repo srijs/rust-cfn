@@ -94,7 +94,7 @@ impl<'de> ::serde::Deserialize<'de> for WorkspaceProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Workspace {
+impl ::Resource for Workspace {
     type Properties = WorkspaceProperties;
     const TYPE: &'static str = "AWS::WorkSpaces::Workspace";
     fn properties(&self) -> &WorkspaceProperties {

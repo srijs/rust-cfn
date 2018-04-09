@@ -78,7 +78,7 @@ impl<'de> ::serde::Deserialize<'de> for FileSystemProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for FileSystem {
+impl ::Resource for FileSystem {
     type Properties = FileSystemProperties;
     const TYPE: &'static str = "AWS::EFS::FileSystem";
     fn properties(&self) -> &FileSystemProperties {
@@ -175,7 +175,7 @@ impl<'de> ::serde::Deserialize<'de> for MountTargetProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for MountTarget {
+impl ::Resource for MountTarget {
     type Properties = MountTargetProperties;
     const TYPE: &'static str = "AWS::EFS::MountTarget";
     fn properties(&self) -> &MountTargetProperties {

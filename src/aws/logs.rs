@@ -78,7 +78,7 @@ impl<'de> ::serde::Deserialize<'de> for DestinationProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Destination {
+impl ::Resource for Destination {
     type Properties = DestinationProperties;
     const TYPE: &'static str = "AWS::Logs::Destination";
     fn properties(&self) -> &DestinationProperties {
@@ -159,7 +159,7 @@ impl<'de> ::serde::Deserialize<'de> for LogGroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for LogGroup {
+impl ::Resource for LogGroup {
     type Properties = LogGroupProperties;
     const TYPE: &'static str = "AWS::Logs::LogGroup";
     fn properties(&self) -> &LogGroupProperties {
@@ -240,7 +240,7 @@ impl<'de> ::serde::Deserialize<'de> for LogStreamProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for LogStream {
+impl ::Resource for LogStream {
     type Properties = LogStreamProperties;
     const TYPE: &'static str = "AWS::Logs::LogStream";
     fn properties(&self) -> &LogStreamProperties {
@@ -329,7 +329,7 @@ impl<'de> ::serde::Deserialize<'de> for MetricFilterProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for MetricFilter {
+impl ::Resource for MetricFilter {
     type Properties = MetricFilterProperties;
     const TYPE: &'static str = "AWS::Logs::MetricFilter";
     fn properties(&self) -> &MetricFilterProperties {
@@ -426,7 +426,7 @@ impl<'de> ::serde::Deserialize<'de> for SubscriptionFilterProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for SubscriptionFilter {
+impl ::Resource for SubscriptionFilter {
     type Properties = SubscriptionFilterProperties;
     const TYPE: &'static str = "AWS::Logs::SubscriptionFilter";
     fn properties(&self) -> &SubscriptionFilterProperties {

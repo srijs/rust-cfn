@@ -62,7 +62,7 @@ impl<'de> ::serde::Deserialize<'de> for ByteMatchSetProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ByteMatchSet {
+impl ::Resource for ByteMatchSet {
     type Properties = ByteMatchSetProperties;
     const TYPE: &'static str = "AWS::WAF::ByteMatchSet";
     fn properties(&self) -> &ByteMatchSetProperties {
@@ -143,7 +143,7 @@ impl<'de> ::serde::Deserialize<'de> for IPSetProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for IPSet {
+impl ::Resource for IPSet {
     type Properties = IPSetProperties;
     const TYPE: &'static str = "AWS::WAF::IPSet";
     fn properties(&self) -> &IPSetProperties {
@@ -232,7 +232,7 @@ impl<'de> ::serde::Deserialize<'de> for RuleProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Rule {
+impl ::Resource for Rule {
     type Properties = RuleProperties;
     const TYPE: &'static str = "AWS::WAF::Rule";
     fn properties(&self) -> &RuleProperties {
@@ -313,7 +313,7 @@ impl<'de> ::serde::Deserialize<'de> for SizeConstraintSetProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for SizeConstraintSet {
+impl ::Resource for SizeConstraintSet {
     type Properties = SizeConstraintSetProperties;
     const TYPE: &'static str = "AWS::WAF::SizeConstraintSet";
     fn properties(&self) -> &SizeConstraintSetProperties {
@@ -394,7 +394,7 @@ impl<'de> ::serde::Deserialize<'de> for SqlInjectionMatchSetProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for SqlInjectionMatchSet {
+impl ::Resource for SqlInjectionMatchSet {
     type Properties = SqlInjectionMatchSetProperties;
     const TYPE: &'static str = "AWS::WAF::SqlInjectionMatchSet";
     fn properties(&self) -> &SqlInjectionMatchSetProperties {
@@ -491,7 +491,7 @@ impl<'de> ::serde::Deserialize<'de> for WebACLProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for WebACL {
+impl ::Resource for WebACL {
     type Properties = WebACLProperties;
     const TYPE: &'static str = "AWS::WAF::WebACL";
     fn properties(&self) -> &WebACLProperties {
@@ -572,7 +572,7 @@ impl<'de> ::serde::Deserialize<'de> for XssMatchSetProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for XssMatchSet {
+impl ::Resource for XssMatchSet {
     type Properties = XssMatchSetProperties;
     const TYPE: &'static str = "AWS::WAF::XssMatchSet";
     fn properties(&self) -> &XssMatchSetProperties {

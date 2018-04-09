@@ -54,7 +54,7 @@ impl<'de> ::serde::Deserialize<'de> for DetectorProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Detector {
+impl ::Resource for Detector {
     type Properties = DetectorProperties;
     const TYPE: &'static str = "AWS::GuardDuty::Detector";
     fn properties(&self) -> &DetectorProperties {
@@ -159,7 +159,7 @@ impl<'de> ::serde::Deserialize<'de> for IPSetProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for IPSet {
+impl ::Resource for IPSet {
     type Properties = IPSetProperties;
     const TYPE: &'static str = "AWS::GuardDuty::IPSet";
     fn properties(&self) -> &IPSetProperties {
@@ -248,7 +248,7 @@ impl<'de> ::serde::Deserialize<'de> for MasterProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Master {
+impl ::Resource for Master {
     type Properties = MasterProperties;
     const TYPE: &'static str = "AWS::GuardDuty::Master";
     fn properties(&self) -> &MasterProperties {
@@ -353,7 +353,7 @@ impl<'de> ::serde::Deserialize<'de> for MemberProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Member {
+impl ::Resource for Member {
     type Properties = MemberProperties;
     const TYPE: &'static str = "AWS::GuardDuty::Member";
     fn properties(&self) -> &MemberProperties {
@@ -458,7 +458,7 @@ impl<'de> ::serde::Deserialize<'de> for ThreatIntelSetProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ThreatIntelSet {
+impl ::Resource for ThreatIntelSet {
     type Properties = ThreatIntelSetProperties;
     const TYPE: &'static str = "AWS::GuardDuty::ThreatIntelSet";
     fn properties(&self) -> &ThreatIntelSetProperties {

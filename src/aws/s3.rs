@@ -166,7 +166,7 @@ impl<'de> ::serde::Deserialize<'de> for BucketProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Bucket {
+impl ::Resource for Bucket {
     type Properties = BucketProperties;
     const TYPE: &'static str = "AWS::S3::Bucket";
     fn properties(&self) -> &BucketProperties {
@@ -247,7 +247,7 @@ impl<'de> ::serde::Deserialize<'de> for BucketPolicyProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for BucketPolicy {
+impl ::Resource for BucketPolicy {
     type Properties = BucketPolicyProperties;
     const TYPE: &'static str = "AWS::S3::BucketPolicy";
     fn properties(&self) -> &BucketPolicyProperties {

@@ -54,7 +54,7 @@ impl<'de> ::serde::Deserialize<'de> for CloudFrontOriginAccessIdentityProperties
     }
 }
 
-impl<'a> ::Resource<'a> for CloudFrontOriginAccessIdentity {
+impl ::Resource for CloudFrontOriginAccessIdentity {
     type Properties = CloudFrontOriginAccessIdentityProperties;
     const TYPE: &'static str = "AWS::CloudFront::CloudFrontOriginAccessIdentity";
     fn properties(&self) -> &CloudFrontOriginAccessIdentityProperties {
@@ -135,7 +135,7 @@ impl<'de> ::serde::Deserialize<'de> for DistributionProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Distribution {
+impl ::Resource for Distribution {
     type Properties = DistributionProperties;
     const TYPE: &'static str = "AWS::CloudFront::Distribution";
     fn properties(&self) -> &DistributionProperties {
@@ -216,7 +216,7 @@ impl<'de> ::serde::Deserialize<'de> for StreamingDistributionProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for StreamingDistribution {
+impl ::Resource for StreamingDistribution {
     type Properties = StreamingDistributionProperties;
     const TYPE: &'static str = "AWS::CloudFront::StreamingDistribution";
     fn properties(&self) -> &StreamingDistributionProperties {

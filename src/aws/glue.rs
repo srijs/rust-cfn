@@ -54,7 +54,7 @@ impl<'de> ::serde::Deserialize<'de> for ClassifierProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Classifier {
+impl ::Resource for Classifier {
     type Properties = ClassifierProperties;
     const TYPE: &'static str = "AWS::Glue::Classifier";
     fn properties(&self) -> &ClassifierProperties {
@@ -135,7 +135,7 @@ impl<'de> ::serde::Deserialize<'de> for ConnectionProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Connection {
+impl ::Resource for Connection {
     type Properties = ConnectionProperties;
     const TYPE: &'static str = "AWS::Glue::Connection";
     fn properties(&self) -> &ConnectionProperties {
@@ -272,7 +272,7 @@ impl<'de> ::serde::Deserialize<'de> for CrawlerProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Crawler {
+impl ::Resource for Crawler {
     type Properties = CrawlerProperties;
     const TYPE: &'static str = "AWS::Glue::Crawler";
     fn properties(&self) -> &CrawlerProperties {
@@ -353,7 +353,7 @@ impl<'de> ::serde::Deserialize<'de> for DatabaseProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Database {
+impl ::Resource for Database {
     type Properties = DatabaseProperties;
     const TYPE: &'static str = "AWS::Glue::Database";
     fn properties(&self) -> &DatabaseProperties {
@@ -482,7 +482,7 @@ impl<'de> ::serde::Deserialize<'de> for DevEndpointProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for DevEndpoint {
+impl ::Resource for DevEndpoint {
     type Properties = DevEndpointProperties;
     const TYPE: &'static str = "AWS::Glue::DevEndpoint";
     fn properties(&self) -> &DevEndpointProperties {
@@ -627,7 +627,7 @@ impl<'de> ::serde::Deserialize<'de> for JobProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Job {
+impl ::Resource for Job {
     type Properties = JobProperties;
     const TYPE: &'static str = "AWS::Glue::Job";
     fn properties(&self) -> &JobProperties {
@@ -724,7 +724,7 @@ impl<'de> ::serde::Deserialize<'de> for PartitionProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Partition {
+impl ::Resource for Partition {
     type Properties = PartitionProperties;
     const TYPE: &'static str = "AWS::Glue::Partition";
     fn properties(&self) -> &PartitionProperties {
@@ -813,7 +813,7 @@ impl<'de> ::serde::Deserialize<'de> for TableProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Table {
+impl ::Resource for Table {
     type Properties = TableProperties;
     const TYPE: &'static str = "AWS::Glue::Table";
     fn properties(&self) -> &TableProperties {
@@ -926,7 +926,7 @@ impl<'de> ::serde::Deserialize<'de> for TriggerProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Trigger {
+impl ::Resource for Trigger {
     type Properties = TriggerProperties;
     const TYPE: &'static str = "AWS::Glue::Trigger";
     fn properties(&self) -> &TriggerProperties {

@@ -150,7 +150,7 @@ impl<'de> ::serde::Deserialize<'de> for TrailProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Trail {
+impl ::Resource for Trail {
     type Properties = TrailProperties;
     const TYPE: &'static str = "AWS::CloudTrail::Trail";
     fn properties(&self) -> &TrailProperties {

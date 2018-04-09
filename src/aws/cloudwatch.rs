@@ -190,7 +190,7 @@ impl<'de> ::serde::Deserialize<'de> for AlarmProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Alarm {
+impl ::Resource for Alarm {
     type Properties = AlarmProperties;
     const TYPE: &'static str = "AWS::CloudWatch::Alarm";
     fn properties(&self) -> &AlarmProperties {
@@ -271,7 +271,7 @@ impl<'de> ::serde::Deserialize<'de> for DashboardProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Dashboard {
+impl ::Resource for Dashboard {
     type Properties = DashboardProperties;
     const TYPE: &'static str = "AWS::CloudWatch::Dashboard";
     fn properties(&self) -> &DashboardProperties {

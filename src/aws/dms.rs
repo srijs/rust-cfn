@@ -70,7 +70,7 @@ impl<'de> ::serde::Deserialize<'de> for CertificateProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Certificate {
+impl ::Resource for Certificate {
     type Properties = CertificateProperties;
     const TYPE: &'static str = "AWS::DMS::Certificate";
     fn properties(&self) -> &CertificateProperties {
@@ -263,7 +263,7 @@ impl<'de> ::serde::Deserialize<'de> for EndpointProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Endpoint {
+impl ::Resource for Endpoint {
     type Properties = EndpointProperties;
     const TYPE: &'static str = "AWS::DMS::Endpoint";
     fn properties(&self) -> &EndpointProperties {
@@ -384,7 +384,7 @@ impl<'de> ::serde::Deserialize<'de> for EventSubscriptionProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for EventSubscription {
+impl ::Resource for EventSubscription {
     type Properties = EventSubscriptionProperties;
     const TYPE: &'static str = "AWS::DMS::EventSubscription";
     fn properties(&self) -> &EventSubscriptionProperties {
@@ -561,7 +561,7 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationInstanceProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ReplicationInstance {
+impl ::Resource for ReplicationInstance {
     type Properties = ReplicationInstanceProperties;
     const TYPE: &'static str = "AWS::DMS::ReplicationInstance";
     fn properties(&self) -> &ReplicationInstanceProperties {
@@ -658,7 +658,7 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationSubnetGroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ReplicationSubnetGroup {
+impl ::Resource for ReplicationSubnetGroup {
     type Properties = ReplicationSubnetGroupProperties;
     const TYPE: &'static str = "AWS::DMS::ReplicationSubnetGroup";
     fn properties(&self) -> &ReplicationSubnetGroupProperties {
@@ -795,7 +795,7 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationTaskProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ReplicationTask {
+impl ::Resource for ReplicationTask {
     type Properties = ReplicationTaskProperties;
     const TYPE: &'static str = "AWS::DMS::ReplicationTask";
     fn properties(&self) -> &ReplicationTaskProperties {

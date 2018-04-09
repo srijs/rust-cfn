@@ -102,7 +102,7 @@ impl<'de> ::serde::Deserialize<'de> for ScalableTargetProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ScalableTarget {
+impl ::Resource for ScalableTarget {
     type Properties = ScalableTargetProperties;
     const TYPE: &'static str = "AWS::ApplicationAutoScaling::ScalableTarget";
     fn properties(&self) -> &ScalableTargetProperties {
@@ -231,7 +231,7 @@ impl<'de> ::serde::Deserialize<'de> for ScalingPolicyProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ScalingPolicy {
+impl ::Resource for ScalingPolicy {
     type Properties = ScalingPolicyProperties;
     const TYPE: &'static str = "AWS::ApplicationAutoScaling::ScalingPolicy";
     fn properties(&self) -> &ScalingPolicyProperties {

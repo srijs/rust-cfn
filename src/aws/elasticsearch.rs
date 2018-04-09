@@ -118,7 +118,7 @@ impl<'de> ::serde::Deserialize<'de> for DomainProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Domain {
+impl ::Resource for Domain {
     type Properties = DomainProperties;
     const TYPE: &'static str = "AWS::Elasticsearch::Domain";
     fn properties(&self) -> &DomainProperties {

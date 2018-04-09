@@ -150,7 +150,7 @@ impl<'de> ::serde::Deserialize<'de> for ProjectProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Project {
+impl ::Resource for Project {
     type Properties = ProjectProperties;
     const TYPE: &'static str = "AWS::CodeBuild::Project";
     fn properties(&self) -> &ProjectProperties {

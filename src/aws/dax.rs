@@ -142,7 +142,7 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Cluster {
+impl ::Resource for Cluster {
     type Properties = ClusterProperties;
     const TYPE: &'static str = "AWS::DAX::Cluster";
     fn properties(&self) -> &ClusterProperties {
@@ -231,7 +231,7 @@ impl<'de> ::serde::Deserialize<'de> for ParameterGroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ParameterGroup {
+impl ::Resource for ParameterGroup {
     type Properties = ParameterGroupProperties;
     const TYPE: &'static str = "AWS::DAX::ParameterGroup";
     fn properties(&self) -> &ParameterGroupProperties {
@@ -320,7 +320,7 @@ impl<'de> ::serde::Deserialize<'de> for SubnetGroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for SubnetGroup {
+impl ::Resource for SubnetGroup {
     type Properties = SubnetGroupProperties;
     const TYPE: &'static str = "AWS::DAX::SubnetGroup";
     fn properties(&self) -> &SubnetGroupProperties {

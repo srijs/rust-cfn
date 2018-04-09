@@ -54,7 +54,7 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Cluster {
+impl ::Resource for Cluster {
     type Properties = ClusterProperties;
     const TYPE: &'static str = "AWS::ECS::Cluster";
     fn properties(&self) -> &ClusterProperties {
@@ -223,7 +223,7 @@ impl<'de> ::serde::Deserialize<'de> for ServiceProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Service {
+impl ::Resource for Service {
     type Properties = ServiceProperties;
     const TYPE: &'static str = "AWS::ECS::Service";
     fn properties(&self) -> &ServiceProperties {
@@ -368,7 +368,7 @@ impl<'de> ::serde::Deserialize<'de> for TaskDefinitionProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for TaskDefinition {
+impl ::Resource for TaskDefinition {
     type Properties = TaskDefinitionProperties;
     const TYPE: &'static str = "AWS::ECS::TaskDefinition";
     fn properties(&self) -> &TaskDefinitionProperties {

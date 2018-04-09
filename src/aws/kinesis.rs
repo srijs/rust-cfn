@@ -86,7 +86,7 @@ impl<'de> ::serde::Deserialize<'de> for StreamProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Stream {
+impl ::Resource for Stream {
     type Properties = StreamProperties;
     const TYPE: &'static str = "AWS::Kinesis::Stream";
     fn properties(&self) -> &StreamProperties {

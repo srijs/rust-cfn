@@ -62,7 +62,7 @@ impl<'de> ::serde::Deserialize<'de> for AssessmentTargetProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for AssessmentTarget {
+impl ::Resource for AssessmentTarget {
     type Properties = AssessmentTargetProperties;
     const TYPE: &'static str = "AWS::Inspector::AssessmentTarget";
     fn properties(&self) -> &AssessmentTargetProperties {
@@ -167,7 +167,7 @@ impl<'de> ::serde::Deserialize<'de> for AssessmentTemplateProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for AssessmentTemplate {
+impl ::Resource for AssessmentTemplate {
     type Properties = AssessmentTemplateProperties;
     const TYPE: &'static str = "AWS::Inspector::AssessmentTemplate";
     fn properties(&self) -> &AssessmentTemplateProperties {
@@ -240,7 +240,7 @@ impl<'de> ::serde::Deserialize<'de> for ResourceGroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ResourceGroup {
+impl ::Resource for ResourceGroup {
     type Properties = ResourceGroupProperties;
     const TYPE: &'static str = "AWS::Inspector::ResourceGroup";
     fn properties(&self) -> &ResourceGroupProperties {

@@ -214,7 +214,7 @@ impl<'de> ::serde::Deserialize<'de> for CacheClusterProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for CacheCluster {
+impl ::Resource for CacheCluster {
     type Properties = CacheClusterProperties;
     const TYPE: &'static str = "AWS::ElastiCache::CacheCluster";
     fn properties(&self) -> &CacheClusterProperties {
@@ -303,7 +303,7 @@ impl<'de> ::serde::Deserialize<'de> for ParameterGroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ParameterGroup {
+impl ::Resource for ParameterGroup {
     type Properties = ParameterGroupProperties;
     const TYPE: &'static str = "AWS::ElastiCache::ParameterGroup";
     fn properties(&self) -> &ParameterGroupProperties {
@@ -600,7 +600,7 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationGroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ReplicationGroup {
+impl ::Resource for ReplicationGroup {
     type Properties = ReplicationGroupProperties;
     const TYPE: &'static str = "AWS::ElastiCache::ReplicationGroup";
     fn properties(&self) -> &ReplicationGroupProperties {
@@ -673,7 +673,7 @@ impl<'de> ::serde::Deserialize<'de> for SecurityGroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for SecurityGroup {
+impl ::Resource for SecurityGroup {
     type Properties = SecurityGroupProperties;
     const TYPE: &'static str = "AWS::ElastiCache::SecurityGroup";
     fn properties(&self) -> &SecurityGroupProperties {
@@ -762,7 +762,7 @@ impl<'de> ::serde::Deserialize<'de> for SecurityGroupIngressProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for SecurityGroupIngress {
+impl ::Resource for SecurityGroupIngress {
     type Properties = SecurityGroupIngressProperties;
     const TYPE: &'static str = "AWS::ElastiCache::SecurityGroupIngress";
     fn properties(&self) -> &SecurityGroupIngressProperties {
@@ -851,7 +851,7 @@ impl<'de> ::serde::Deserialize<'de> for SubnetGroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for SubnetGroup {
+impl ::Resource for SubnetGroup {
     type Properties = SubnetGroupProperties;
     const TYPE: &'static str = "AWS::ElastiCache::SubnetGroup";
     fn properties(&self) -> &SubnetGroupProperties {

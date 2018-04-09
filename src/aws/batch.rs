@@ -86,7 +86,7 @@ impl<'de> ::serde::Deserialize<'de> for ComputeEnvironmentProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ComputeEnvironment {
+impl ::Resource for ComputeEnvironment {
     type Properties = ComputeEnvironmentProperties;
     const TYPE: &'static str = "AWS::Batch::ComputeEnvironment";
     fn properties(&self) -> &ComputeEnvironmentProperties {
@@ -191,7 +191,7 @@ impl<'de> ::serde::Deserialize<'de> for JobDefinitionProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for JobDefinition {
+impl ::Resource for JobDefinition {
     type Properties = JobDefinitionProperties;
     const TYPE: &'static str = "AWS::Batch::JobDefinition";
     fn properties(&self) -> &JobDefinitionProperties {
@@ -288,7 +288,7 @@ impl<'de> ::serde::Deserialize<'de> for JobQueueProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for JobQueue {
+impl ::Resource for JobQueue {
     type Properties = JobQueueProperties;
     const TYPE: &'static str = "AWS::Batch::JobQueue";
     fn properties(&self) -> &JobQueueProperties {

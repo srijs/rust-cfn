@@ -70,7 +70,7 @@ impl<'de> ::serde::Deserialize<'de> for AccessKeyProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for AccessKey {
+impl ::Resource for AccessKey {
     type Properties = AccessKeyProperties;
     const TYPE: &'static str = "AWS::IAM::AccessKey";
     fn properties(&self) -> &AccessKeyProperties {
@@ -167,7 +167,7 @@ impl<'de> ::serde::Deserialize<'de> for GroupProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Group {
+impl ::Resource for Group {
     type Properties = GroupProperties;
     const TYPE: &'static str = "AWS::IAM::Group";
     fn properties(&self) -> &GroupProperties {
@@ -256,7 +256,7 @@ impl<'de> ::serde::Deserialize<'de> for InstanceProfileProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for InstanceProfile {
+impl ::Resource for InstanceProfile {
     type Properties = InstanceProfileProperties;
     const TYPE: &'static str = "AWS::IAM::InstanceProfile";
     fn properties(&self) -> &InstanceProfileProperties {
@@ -377,7 +377,7 @@ impl<'de> ::serde::Deserialize<'de> for ManagedPolicyProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for ManagedPolicy {
+impl ::Resource for ManagedPolicy {
     type Properties = ManagedPolicyProperties;
     const TYPE: &'static str = "AWS::IAM::ManagedPolicy";
     fn properties(&self) -> &ManagedPolicyProperties {
@@ -482,7 +482,7 @@ impl<'de> ::serde::Deserialize<'de> for PolicyProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Policy {
+impl ::Resource for Policy {
     type Properties = PolicyProperties;
     const TYPE: &'static str = "AWS::IAM::Policy";
     fn properties(&self) -> &PolicyProperties {
@@ -587,7 +587,7 @@ impl<'de> ::serde::Deserialize<'de> for RoleProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for Role {
+impl ::Resource for Role {
     type Properties = RoleProperties;
     const TYPE: &'static str = "AWS::IAM::Role";
     fn properties(&self) -> &RoleProperties {
@@ -700,7 +700,7 @@ impl<'de> ::serde::Deserialize<'de> for UserProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for User {
+impl ::Resource for User {
     type Properties = UserProperties;
     const TYPE: &'static str = "AWS::IAM::User";
     fn properties(&self) -> &UserProperties {
@@ -781,7 +781,7 @@ impl<'de> ::serde::Deserialize<'de> for UserToGroupAdditionProperties {
     }
 }
 
-impl<'a> ::Resource<'a> for UserToGroupAddition {
+impl ::Resource for UserToGroupAddition {
     type Properties = UserToGroupAdditionProperties;
     const TYPE: &'static str = "AWS::IAM::UserToGroupAddition";
     fn properties(&self) -> &UserToGroupAdditionProperties {
