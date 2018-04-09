@@ -10,11 +10,13 @@ extern crate serde;
 #[macro_use] extern crate serde_derive;
 extern crate serde_json;
 
+mod error;
 #[macro_use] mod codec;
 mod types;
 mod parts;
 pub mod aws;
 
+pub use error::{Error, ErrorKind};
 pub use types::*;
 pub use parts::*;
 

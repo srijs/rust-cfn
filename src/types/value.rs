@@ -21,6 +21,11 @@ impl<T> Value<T> {
         Value(ValueInner::Ref(id.into()))
     }
 
+    /// Create a new value backed by an expression.
+    pub fn expression(expr: Expr) -> Value<T> {
+        Value(ValueInner::Expr(expr))
+    }
+
     /// If the value contains a literal value, return `Some`.
     ///
     /// Return `None` otherwise.
@@ -126,7 +131,7 @@ mod tests {
 
     #[test]
     fn serialize_u32() {
-        let value = Value::Value(42u32);
+        let value = Value::new(42u32);
         assert_eq!("\"42\"", ::serde_json::to_string(&value).unwrap());
     }
 
@@ -144,7 +149,7 @@ mod tests {
 
     #[test]
     fn serialize_ref() {
-        let value = Value::Ref::<String>("foo".to_owned());
+        let value = Value::<String>::reference("foo");
         assert_eq!("{\"Ref\":\"foo\"}", ::serde_json::to_string(&value).unwrap());
     }
 
@@ -156,12 +161,12 @@ mod tests {
 
     #[test]
     fn serialize_fn_join() {
-        let value = Value::Expr::<String>(Expr::Join {
+        let value = Value::<String>::expression(Expr::Join {
             delimiter: ":".to_owned(),
             values: vec![
-                Value::Value("a".to_owned()),
-                Value::Value("b".to_owned()),
-                Value::Value("c".to_owned())
+                Value::new("a".to_owned()),
+                Value::new("b".to_owned()),
+                Value::new("c".to_owned())
             ]
         });
         assert_eq!("{\"Fn::Join\":[\":\",[\"a\",\"b\",\"c\"]]}",
