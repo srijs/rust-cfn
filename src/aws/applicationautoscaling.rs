@@ -27,7 +27,6 @@ pub struct ScalableTargetProperties {
 
 impl ::serde::Serialize for ScalableTargetProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxCapacity", &self.max_capacity)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinCapacity", &self.min_capacity)?;
@@ -151,7 +150,6 @@ pub struct ScalingPolicyProperties {
 
 impl ::serde::Serialize for ScalingPolicyProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyName", &self.policy_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyType", &self.policy_type)?;
@@ -266,7 +264,6 @@ pub mod scalable_target {
 
     impl ::codec::SerializeValue for ScalableTargetAction {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxCapacity", &self.max_capacity)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinCapacity", &self.min_capacity)?;
@@ -329,7 +326,6 @@ pub mod scalable_target {
 
     impl ::codec::SerializeValue for ScheduledAction {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndTime", &self.end_time)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScalableTargetAction", &self.scalable_target_action)?;
@@ -414,7 +410,6 @@ pub mod scaling_policy {
 
     impl ::codec::SerializeValue for CustomizedMetricSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Dimensions", &self.dimensions)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricName", &self.metric_name)?;
@@ -489,7 +484,6 @@ pub mod scaling_policy {
 
     impl ::codec::SerializeValue for MetricDimension {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
@@ -546,7 +540,6 @@ pub mod scaling_policy {
 
     impl ::codec::SerializeValue for PredefinedMetricSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PredefinedMetricType", &self.predefined_metric_type)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceLabel", &self.resource_label)?;
@@ -605,7 +598,6 @@ pub mod scaling_policy {
 
     impl ::codec::SerializeValue for StepAdjustment {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricIntervalLowerBound", &self.metric_interval_lower_bound)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricIntervalUpperBound", &self.metric_interval_upper_bound)?;
@@ -674,7 +666,6 @@ pub mod scaling_policy {
 
     impl ::codec::SerializeValue for StepScalingPolicyConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AdjustmentType", &self.adjustment_type)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cooldown", &self.cooldown)?;
@@ -757,7 +748,6 @@ pub mod scaling_policy {
 
     impl ::codec::SerializeValue for TargetTrackingScalingPolicyConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomizedMetricSpecification", &self.customized_metric_specification)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisableScaleIn", &self.disable_scale_in)?;

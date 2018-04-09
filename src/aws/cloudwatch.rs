@@ -49,7 +49,6 @@ pub struct AlarmProperties {
 
 impl ::serde::Serialize for AlarmProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ActionsEnabled", &self.actions_enabled)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AlarmActions", &self.alarm_actions)?;
@@ -227,7 +226,6 @@ pub struct DashboardProperties {
 
 impl ::serde::Serialize for DashboardProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DashboardBody", &self.dashboard_body)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DashboardName", &self.dashboard_name)?;
@@ -306,7 +304,6 @@ pub mod alarm {
 
     impl ::codec::SerializeValue for Dimension {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;

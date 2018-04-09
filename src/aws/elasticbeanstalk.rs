@@ -19,7 +19,6 @@ pub struct ApplicationProperties {
 
 impl ::serde::Serialize for ApplicationProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationName", &self.application_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
@@ -109,7 +108,6 @@ pub struct ApplicationVersionProperties {
 
 impl ::serde::Serialize for ApplicationVersionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationName", &self.application_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
@@ -207,7 +205,6 @@ pub struct ConfigurationTemplateProperties {
 
 impl ::serde::Serialize for ConfigurationTemplateProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationName", &self.application_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
@@ -337,7 +334,6 @@ pub struct EnvironmentProperties {
 
 impl ::serde::Serialize for EnvironmentProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationName", &self.application_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CNAMEPrefix", &self.cname_prefix)?;
@@ -470,7 +466,6 @@ pub mod application {
 
     impl ::codec::SerializeValue for ApplicationResourceLifecycleConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceRole", &self.service_role)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "VersionLifecycleConfig", &self.version_lifecycle_config)?;
@@ -527,7 +522,6 @@ pub mod application {
 
     impl ::codec::SerializeValue for ApplicationVersionLifecycleConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxAgeRule", &self.max_age_rule)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxCountRule", &self.max_count_rule)?;
@@ -586,7 +580,6 @@ pub mod application {
 
     impl ::codec::SerializeValue for MaxAgeRule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteSourceFromS3", &self.delete_source_from_s3)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
@@ -651,7 +644,6 @@ pub mod application {
 
     impl ::codec::SerializeValue for MaxCountRule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteSourceFromS3", &self.delete_source_from_s3)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
@@ -718,7 +710,6 @@ pub mod application_version {
 
     impl ::codec::SerializeValue for SourceBundle {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Bucket", &self.s3_bucket)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Key", &self.s3_key)?;
@@ -783,7 +774,6 @@ pub mod configuration_template {
 
     impl ::codec::SerializeValue for ConfigurationOptionSetting {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Namespace", &self.namespace)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "OptionName", &self.option_name)?;
@@ -852,7 +842,6 @@ pub mod configuration_template {
 
     impl ::codec::SerializeValue for SourceConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationName", &self.application_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TemplateName", &self.template_name)?;
@@ -917,7 +906,6 @@ pub mod environment {
 
     impl ::codec::SerializeValue for OptionSetting {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Namespace", &self.namespace)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "OptionName", &self.option_name)?;
@@ -988,7 +976,6 @@ pub mod environment {
 
     impl ::codec::SerializeValue for Tier {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;

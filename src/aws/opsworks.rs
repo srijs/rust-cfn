@@ -37,7 +37,6 @@ pub struct AppProperties {
 
 impl ::serde::Serialize for AppProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AppSource", &self.app_source)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attributes", &self.attributes)?;
@@ -179,7 +178,6 @@ pub struct ElasticLoadBalancerAttachmentProperties {
 
 impl ::serde::Serialize for ElasticLoadBalancerAttachmentProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ElasticLoadBalancerName", &self.elastic_load_balancer_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "LayerId", &self.layer_id)?;
@@ -299,7 +297,6 @@ pub struct InstanceProperties {
 
 impl ::serde::Serialize for InstanceProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AgentVersion", &self.agent_version)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AmiId", &self.ami_id)?;
@@ -529,7 +526,6 @@ pub struct LayerProperties {
 
 impl ::serde::Serialize for LayerProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attributes", &self.attributes)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoAssignElasticIps", &self.auto_assign_elastic_ips)?;
@@ -759,7 +755,6 @@ pub struct StackProperties {
 
 impl ::serde::Serialize for StackProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AgentVersion", &self.agent_version)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attributes", &self.attributes)?;
@@ -983,7 +978,6 @@ pub struct UserProfileProperties {
 
 impl ::serde::Serialize for UserProfileProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowSelfManagement", &self.allow_self_management)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "IamUserArn", &self.iam_user_arn)?;
@@ -1081,7 +1075,6 @@ pub struct VolumeProperties {
 
 impl ::serde::Serialize for VolumeProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ec2VolumeId", &self.ec2_volume_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "MountPoint", &self.mount_point)?;
@@ -1174,7 +1167,6 @@ pub mod app {
 
     impl ::codec::SerializeValue for DataSource {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Arn", &self.arn)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseName", &self.database_name)?;
@@ -1239,7 +1231,6 @@ pub mod app {
 
     impl ::codec::SerializeValue for EnvironmentVariable {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Secure", &self.secure)?;
@@ -1310,7 +1301,6 @@ pub mod app {
 
     impl ::codec::SerializeValue for Source {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Password", &self.password)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Revision", &self.revision)?;
@@ -1393,7 +1383,6 @@ pub mod app {
 
     impl ::codec::SerializeValue for SslConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Certificate", &self.certificate)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Chain", &self.chain)?;
@@ -1464,7 +1453,6 @@ pub mod instance {
 
     impl ::codec::SerializeValue for BlockDeviceMapping {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceName", &self.device_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ebs", &self.ebs)?;
@@ -1539,7 +1527,6 @@ pub mod instance {
 
     impl ::codec::SerializeValue for EbsBlockDevice {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteOnTermination", &self.delete_on_termination)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", &self.iops)?;
@@ -1624,7 +1611,6 @@ pub mod instance {
 
     impl ::codec::SerializeValue for TimeBasedAutoScaling {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Friday", &self.friday)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Monday", &self.monday)?;
@@ -1723,7 +1709,6 @@ pub mod layer {
 
     impl ::codec::SerializeValue for AutoScalingThresholds {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CpuThreshold", &self.cpu_threshold)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IgnoreMetricsTime", &self.ignore_metrics_time)?;
@@ -1802,7 +1787,6 @@ pub mod layer {
 
     impl ::codec::SerializeValue for LifecycleEventConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ShutdownEventConfiguration", &self.shutdown_event_configuration)?;
             ::serde::ser::SerializeMap::end(map)
@@ -1855,7 +1839,6 @@ pub mod layer {
 
     impl ::codec::SerializeValue for LoadBasedAutoScaling {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DownScaling", &self.down_scaling)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enable", &self.enable)?;
@@ -1924,7 +1907,6 @@ pub mod layer {
 
     impl ::codec::SerializeValue for Recipes {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Configure", &self.configure)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Deploy", &self.deploy)?;
@@ -1999,7 +1981,6 @@ pub mod layer {
 
     impl ::codec::SerializeValue for ShutdownEventConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DelayUntilElbConnectionsDrained", &self.delay_until_elb_connections_drained)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExecutionTimeout", &self.execution_timeout)?;
@@ -2064,7 +2045,6 @@ pub mod layer {
 
     impl ::codec::SerializeValue for VolumeConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", &self.iops)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MountPoint", &self.mount_point)?;
@@ -2149,7 +2129,6 @@ pub mod stack {
 
     impl ::codec::SerializeValue for ChefConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BerkshelfVersion", &self.berkshelf_version)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ManageBerkshelf", &self.manage_berkshelf)?;
@@ -2206,7 +2185,6 @@ pub mod stack {
 
     impl ::codec::SerializeValue for ElasticIp {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ip", &self.ip)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
@@ -2265,7 +2243,6 @@ pub mod stack {
 
     impl ::codec::SerializeValue for RdsDbInstance {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DbPassword", &self.db_password)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DbUser", &self.db_user)?;
@@ -2336,7 +2313,6 @@ pub mod stack {
 
     impl ::codec::SerializeValue for Source {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Password", &self.password)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Revision", &self.revision)?;
@@ -2417,7 +2393,6 @@ pub mod stack {
 
     impl ::codec::SerializeValue for StackConfigurationManager {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Version", &self.version)?;

@@ -31,7 +31,6 @@ pub struct DomainProperties {
 
 impl ::serde::Serialize for DomainProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessPolicies", &self.access_policies)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AdvancedOptions", &self.advanced_options)?;
@@ -156,7 +155,6 @@ pub mod domain {
 
     impl ::codec::SerializeValue for EBSOptions {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EBSEnabled", &self.ebs_enabled)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", &self.iops)?;
@@ -233,7 +231,6 @@ pub mod domain {
 
     impl ::codec::SerializeValue for ElasticsearchClusterConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DedicatedMasterCount", &self.dedicated_master_count)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DedicatedMasterEnabled", &self.dedicated_master_enabled)?;
@@ -312,7 +309,6 @@ pub mod domain {
 
     impl ::codec::SerializeValue for SnapshotOptions {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutomatedSnapshotStartHour", &self.automated_snapshot_start_hour)?;
             ::serde::ser::SerializeMap::end(map)
@@ -363,7 +359,6 @@ pub mod domain {
 
     impl ::codec::SerializeValue for VPCOptions {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIds", &self.security_group_ids)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetIds", &self.subnet_ids)?;

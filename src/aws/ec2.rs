@@ -21,7 +21,6 @@ pub struct CustomerGatewayProperties {
 
 impl ::serde::Serialize for CustomerGatewayProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "BgpAsn", &self.bgp_asn)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "IpAddress", &self.ip_address)?;
@@ -123,7 +122,6 @@ pub struct DHCPOptionsProperties {
 
 impl ::serde::Serialize for DHCPOptionsProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainName", &self.domain_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainNameServers", &self.domain_name_servers)?;
@@ -229,7 +227,6 @@ pub struct EIPProperties {
 
 impl ::serde::Serialize for EIPProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Domain", &self.domain)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceId", &self.instance_id)?;
@@ -317,7 +314,6 @@ pub struct EIPAssociationProperties {
 
 impl ::serde::Serialize for EIPAssociationProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocationId", &self.allocation_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "EIP", &self.eip)?;
@@ -415,7 +411,6 @@ pub struct EgressOnlyInternetGatewayProperties {
 
 impl ::serde::Serialize for EgressOnlyInternetGatewayProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", &self.vpc_id)?;
         ::serde::ser::SerializeMap::end(map)
@@ -497,7 +492,6 @@ pub struct FlowLogProperties {
 
 impl ::serde::Serialize for FlowLogProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeliverLogsPermissionArn", &self.deliver_logs_permission_arn)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroupName", &self.log_group_name)?;
@@ -599,7 +593,6 @@ pub struct HostProperties {
 
 impl ::serde::Serialize for HostProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoPlacement", &self.auto_placement)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", &self.availability_zone)?;
@@ -745,7 +738,6 @@ pub struct InstanceProperties {
 
 impl ::serde::Serialize for InstanceProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AdditionalInfo", &self.additional_info)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Affinity", &self.affinity)?;
@@ -999,7 +991,6 @@ pub struct InternetGatewayProperties {
 
 impl ::serde::Serialize for InternetGatewayProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
         ::serde::ser::SerializeMap::end(map)
@@ -1077,7 +1068,6 @@ pub struct NatGatewayProperties {
 
 impl ::serde::Serialize for NatGatewayProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocationId", &self.allocation_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", &self.subnet_id)?;
@@ -1165,7 +1155,6 @@ pub struct NetworkAclProperties {
 
 impl ::serde::Serialize for NetworkAclProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", &self.vpc_id)?;
@@ -1261,7 +1250,6 @@ pub struct NetworkAclEntryProperties {
 
 impl ::serde::Serialize for NetworkAclEntryProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrBlock", &self.cidr_block)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Egress", &self.egress)?;
@@ -1403,7 +1391,6 @@ pub struct NetworkInterfaceProperties {
 
 impl ::serde::Serialize for NetworkInterfaceProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupSet", &self.group_set)?;
@@ -1543,7 +1530,6 @@ pub struct NetworkInterfaceAttachmentProperties {
 
 impl ::serde::Serialize for NetworkInterfaceAttachmentProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteOnTermination", &self.delete_on_termination)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceIndex", &self.device_index)?;
@@ -1639,7 +1625,6 @@ pub struct NetworkInterfacePermissionProperties {
 
 impl ::serde::Serialize for NetworkInterfacePermissionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AwsAccountId", &self.aws_account_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInterfaceId", &self.network_interface_id)?;
@@ -1725,7 +1710,6 @@ pub struct PlacementGroupProperties {
 
 impl ::serde::Serialize for PlacementGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Strategy", &self.strategy)?;
         ::serde::ser::SerializeMap::end(map)
@@ -1815,7 +1799,6 @@ pub struct RouteProperties {
 
 impl ::serde::Serialize for RouteProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationCidrBlock", &self.destination_cidr_block)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationIpv6CidrBlock", &self.destination_ipv6_cidr_block)?;
@@ -1939,7 +1922,6 @@ pub struct RouteTableProperties {
 
 impl ::serde::Serialize for RouteTableProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", &self.vpc_id)?;
@@ -2029,7 +2011,6 @@ pub struct SecurityGroupProperties {
 
 impl ::serde::Serialize for SecurityGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupDescription", &self.group_description)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupName", &self.group_name)?;
@@ -2149,7 +2130,6 @@ pub struct SecurityGroupEgressProperties {
 
 impl ::serde::Serialize for SecurityGroupEgressProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrIp", &self.cidr_ip)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrIpv6", &self.cidr_ipv6)?;
@@ -2291,7 +2271,6 @@ pub struct SecurityGroupIngressProperties {
 
 impl ::serde::Serialize for SecurityGroupIngressProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrIp", &self.cidr_ip)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrIpv6", &self.cidr_ipv6)?;
@@ -2425,7 +2404,6 @@ pub struct SpotFleetProperties {
 
 impl ::serde::Serialize for SpotFleetProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotFleetRequestConfigData", &self.spot_fleet_request_config_data)?;
         ::serde::ser::SerializeMap::end(map)
@@ -2511,7 +2489,6 @@ pub struct SubnetProperties {
 
 impl ::serde::Serialize for SubnetProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssignIpv6AddressOnCreation", &self.assign_ipv6_address_on_creation)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", &self.availability_zone)?;
@@ -2623,7 +2600,6 @@ pub struct SubnetCidrBlockProperties {
 
 impl ::serde::Serialize for SubnetCidrBlockProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6CidrBlock", &self.ipv6_cidr_block)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", &self.subnet_id)?;
@@ -2705,7 +2681,6 @@ pub struct SubnetNetworkAclAssociationProperties {
 
 impl ::serde::Serialize for SubnetNetworkAclAssociationProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkAclId", &self.network_acl_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", &self.subnet_id)?;
@@ -2787,7 +2762,6 @@ pub struct SubnetRouteTableAssociationProperties {
 
 impl ::serde::Serialize for SubnetRouteTableAssociationProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RouteTableId", &self.route_table_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", &self.subnet_id)?;
@@ -2873,7 +2847,6 @@ pub struct TrunkInterfaceAssociationProperties {
 
 impl ::serde::Serialize for TrunkInterfaceAssociationProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "BranchInterfaceId", &self.branch_interface_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "GREKey", &self.gre_key)?;
@@ -2973,7 +2946,6 @@ pub struct VPCProperties {
 
 impl ::serde::Serialize for VPCProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrBlock", &self.cidr_block)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableDnsHostnames", &self.enable_dns_hostnames)?;
@@ -3075,7 +3047,6 @@ pub struct VPCCidrBlockProperties {
 
 impl ::serde::Serialize for VPCCidrBlockProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AmazonProvidedIpv6CidrBlock", &self.amazon_provided_ipv6_cidr_block)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrBlock", &self.cidr_block)?;
@@ -3163,7 +3134,6 @@ pub struct VPCDHCPOptionsAssociationProperties {
 
 impl ::serde::Serialize for VPCDHCPOptionsAssociationProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DhcpOptionsId", &self.dhcp_options_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", &self.vpc_id)?;
@@ -3249,7 +3219,6 @@ pub struct VPCEndpointProperties {
 
 impl ::serde::Serialize for VPCEndpointProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyDocument", &self.policy_document)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RouteTableIds", &self.route_table_ids)?;
@@ -3345,7 +3314,6 @@ pub struct VPCGatewayAttachmentProperties {
 
 impl ::serde::Serialize for VPCGatewayAttachmentProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "InternetGatewayId", &self.internet_gateway_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", &self.vpc_id)?;
@@ -3439,7 +3407,6 @@ pub struct VPCPeeringConnectionProperties {
 
 impl ::serde::Serialize for VPCPeeringConnectionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "PeerOwnerId", &self.peer_owner_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "PeerRoleArn", &self.peer_role_arn)?;
@@ -3547,7 +3514,6 @@ pub struct VPNConnectionProperties {
 
 impl ::serde::Serialize for VPNConnectionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomerGatewayId", &self.customer_gateway_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "StaticRoutesOnly", &self.static_routes_only)?;
@@ -3653,7 +3619,6 @@ pub struct VPNConnectionRouteProperties {
 
 impl ::serde::Serialize for VPNConnectionRouteProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationCidrBlock", &self.destination_cidr_block)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpnConnectionId", &self.vpn_connection_id)?;
@@ -3737,7 +3702,6 @@ pub struct VPNGatewayProperties {
 
 impl ::serde::Serialize for VPNGatewayProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AmazonSideAsn", &self.amazon_side_asn)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
@@ -3825,7 +3789,6 @@ pub struct VPNGatewayRoutePropagationProperties {
 
 impl ::serde::Serialize for VPNGatewayRoutePropagationProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RouteTableIds", &self.route_table_ids)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpnGatewayId", &self.vpn_gateway_id)?;
@@ -3921,7 +3884,6 @@ pub struct VolumeProperties {
 
 impl ::serde::Serialize for VolumeProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoEnableIO", &self.auto_enable_io)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", &self.availability_zone)?;
@@ -4047,7 +4009,6 @@ pub struct VolumeAttachmentProperties {
 
 impl ::serde::Serialize for VolumeAttachmentProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Device", &self.device)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceId", &self.instance_id)?;
@@ -4132,7 +4093,6 @@ pub mod instance {
 
     impl ::codec::SerializeValue for AssociationParameter {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
@@ -4193,7 +4153,6 @@ pub mod instance {
 
     impl ::codec::SerializeValue for BlockDeviceMapping {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceName", &self.device_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ebs", &self.ebs)?;
@@ -4260,7 +4219,6 @@ pub mod instance {
 
     impl ::codec::SerializeValue for CreditSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CPUCredits", &self.cpu_credits)?;
             ::serde::ser::SerializeMap::end(map)
@@ -4319,7 +4277,6 @@ pub mod instance {
 
     impl ::codec::SerializeValue for Ebs {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteOnTermination", &self.delete_on_termination)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Encrypted", &self.encrypted)?;
@@ -4398,7 +4355,6 @@ pub mod instance {
 
     impl ::codec::SerializeValue for ElasticGpuSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
             ::serde::ser::SerializeMap::end(map)
@@ -4447,7 +4403,6 @@ pub mod instance {
 
     impl ::codec::SerializeValue for InstanceIpv6Address {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6Address", &self.ipv6_address)?;
             ::serde::ser::SerializeMap::end(map)
@@ -4518,7 +4473,6 @@ pub mod instance {
 
     impl ::codec::SerializeValue for NetworkInterface {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssociatePublicIpAddress", &self.associate_public_ip_address)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteOnTermination", &self.delete_on_termination)?;
@@ -4631,8 +4585,7 @@ pub mod instance {
 
     impl ::codec::SerializeValue for NoDevice {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
-            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            let map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -4668,7 +4621,6 @@ pub mod instance {
 
     impl ::codec::SerializeValue for PrivateIpAddressSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Primary", &self.primary)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateIpAddress", &self.private_ip_address)?;
@@ -4725,7 +4677,6 @@ pub mod instance {
 
     impl ::codec::SerializeValue for SsmAssociation {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssociationParameters", &self.association_parameters)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentName", &self.document_name)?;
@@ -4782,7 +4733,6 @@ pub mod instance {
 
     impl ::codec::SerializeValue for Volume {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Device", &self.device)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeId", &self.volume_id)?;
@@ -4843,7 +4793,6 @@ pub mod network_acl_entry {
 
     impl ::codec::SerializeValue for Icmp {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Code", &self.code)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
@@ -4900,7 +4849,6 @@ pub mod network_acl_entry {
 
     impl ::codec::SerializeValue for PortRange {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "From", &self.from)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "To", &self.to)?;
@@ -4959,7 +4907,6 @@ pub mod network_interface {
 
     impl ::codec::SerializeValue for InstanceIpv6Address {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6Address", &self.ipv6_address)?;
             ::serde::ser::SerializeMap::end(map)
@@ -5010,7 +4957,6 @@ pub mod network_interface {
 
     impl ::codec::SerializeValue for PrivateIpAddressSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Primary", &self.primary)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateIpAddress", &self.private_ip_address)?;
@@ -5083,7 +5029,6 @@ pub mod security_group {
 
     impl ::codec::SerializeValue for Egress {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrIp", &self.cidr_ip)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrIpv6", &self.cidr_ipv6)?;
@@ -5190,7 +5135,6 @@ pub mod security_group {
 
     impl ::codec::SerializeValue for Ingress {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrIp", &self.cidr_ip)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrIpv6", &self.cidr_ipv6)?;
@@ -5297,7 +5241,6 @@ pub mod spot_fleet {
 
     impl ::codec::SerializeValue for BlockDeviceMapping {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceName", &self.device_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ebs", &self.ebs)?;
@@ -5374,7 +5317,6 @@ pub mod spot_fleet {
 
     impl ::codec::SerializeValue for EbsBlockDevice {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteOnTermination", &self.delete_on_termination)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Encrypted", &self.encrypted)?;
@@ -5453,7 +5395,6 @@ pub mod spot_fleet {
 
     impl ::codec::SerializeValue for GroupIdentifier {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupId", &self.group_id)?;
             ::serde::ser::SerializeMap::end(map)
@@ -5502,7 +5443,6 @@ pub mod spot_fleet {
 
     impl ::codec::SerializeValue for IamInstanceProfileSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Arn", &self.arn)?;
             ::serde::ser::SerializeMap::end(map)
@@ -5551,7 +5491,6 @@ pub mod spot_fleet {
 
     impl ::codec::SerializeValue for InstanceIpv6Address {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6Address", &self.ipv6_address)?;
             ::serde::ser::SerializeMap::end(map)
@@ -5620,7 +5559,6 @@ pub mod spot_fleet {
 
     impl ::codec::SerializeValue for InstanceNetworkInterfaceSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssociatePublicIpAddress", &self.associate_public_ip_address)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteOnTermination", &self.delete_on_termination)?;
@@ -5731,7 +5669,6 @@ pub mod spot_fleet {
 
     impl ::codec::SerializeValue for PrivateIpAddressSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Primary", &self.primary)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateIpAddress", &self.private_ip_address)?;
@@ -5818,7 +5755,6 @@ pub mod spot_fleet {
 
     impl ::codec::SerializeValue for SpotFleetLaunchSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BlockDeviceMappings", &self.block_device_mappings)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsOptimized", &self.ebs_optimized)?;
@@ -5963,7 +5899,6 @@ pub mod spot_fleet {
 
     impl ::codec::SerializeValue for SpotFleetMonitoring {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
             ::serde::ser::SerializeMap::end(map)
@@ -6032,7 +5967,6 @@ pub mod spot_fleet {
 
     impl ::codec::SerializeValue for SpotFleetRequestConfigData {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocationStrategy", &self.allocation_strategy)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExcessCapacityTerminationPolicy", &self.excess_capacity_termination_policy)?;
@@ -6141,7 +6075,6 @@ pub mod spot_fleet {
 
     impl ::codec::SerializeValue for SpotFleetTagSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceType", &self.resource_type)?;
             ::serde::ser::SerializeMap::end(map)
@@ -6192,7 +6125,6 @@ pub mod spot_fleet {
 
     impl ::codec::SerializeValue for SpotPlacement {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", &self.availability_zone)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupName", &self.group_name)?;
@@ -6253,7 +6185,6 @@ pub mod vpn_connection {
 
     impl ::codec::SerializeValue for VpnTunnelOptionsSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreSharedKey", &self.pre_shared_key)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TunnelInsideCidr", &self.tunnel_inside_cidr)?;

@@ -17,7 +17,6 @@ pub struct ByteMatchSetProperties {
 
 impl ::serde::Serialize for ByteMatchSetProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ByteMatchTuples", &self.byte_match_tuples)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
@@ -99,7 +98,6 @@ pub struct IPSetProperties {
 
 impl ::serde::Serialize for IPSetProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "IPSetDescriptors", &self.ip_set_descriptors)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
@@ -183,7 +181,6 @@ pub struct RuleProperties {
 
 impl ::serde::Serialize for RuleProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricName", &self.metric_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
@@ -271,7 +268,6 @@ pub struct SizeConstraintSetProperties {
 
 impl ::serde::Serialize for SizeConstraintSetProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SizeConstraints", &self.size_constraints)?;
@@ -353,7 +349,6 @@ pub struct SqlInjectionMatchSetProperties {
 
 impl ::serde::Serialize for SqlInjectionMatchSetProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SqlInjectionMatchTuples", &self.sql_injection_match_tuples)?;
@@ -439,7 +434,6 @@ pub struct WebACLProperties {
 
 impl ::serde::Serialize for WebACLProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultAction", &self.default_action)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricName", &self.metric_name)?;
@@ -533,7 +527,6 @@ pub struct XssMatchSetProperties {
 
 impl ::serde::Serialize for XssMatchSetProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "XssMatchTuples", &self.xss_match_tuples)?;
@@ -618,7 +611,6 @@ pub mod byte_match_set {
 
     impl ::codec::SerializeValue for ByteMatchTuple {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "FieldToMatch", &self.field_to_match)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PositionalConstraint", &self.positional_constraint)?;
@@ -693,7 +685,6 @@ pub mod byte_match_set {
 
     impl ::codec::SerializeValue for FieldToMatch {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Data", &self.data)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
@@ -754,7 +745,6 @@ pub mod ip_set {
 
     impl ::codec::SerializeValue for IPSetDescriptor {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
@@ -817,7 +807,6 @@ pub mod rule {
 
     impl ::codec::SerializeValue for Predicate {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataId", &self.data_id)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Negated", &self.negated)?;
@@ -884,7 +873,6 @@ pub mod size_constraint_set {
 
     impl ::codec::SerializeValue for FieldToMatch {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Data", &self.data)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
@@ -945,7 +933,6 @@ pub mod size_constraint_set {
 
     impl ::codec::SerializeValue for SizeConstraint {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComparisonOperator", &self.comparison_operator)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "FieldToMatch", &self.field_to_match)?;
@@ -1018,7 +1005,6 @@ pub mod sql_injection_match_set {
 
     impl ::codec::SerializeValue for FieldToMatch {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Data", &self.data)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
@@ -1075,7 +1061,6 @@ pub mod sql_injection_match_set {
 
     impl ::codec::SerializeValue for SqlInjectionMatchTuple {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "FieldToMatch", &self.field_to_match)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TextTransformation", &self.text_transformation)?;
@@ -1138,7 +1123,6 @@ pub mod web_acl {
 
     impl ::codec::SerializeValue for ActivatedRule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Action", &self.action)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Priority", &self.priority)?;
@@ -1199,7 +1183,6 @@ pub mod web_acl {
 
     impl ::codec::SerializeValue for WafAction {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
             ::serde::ser::SerializeMap::end(map)
@@ -1254,7 +1237,6 @@ pub mod xss_match_set {
 
     impl ::codec::SerializeValue for FieldToMatch {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Data", &self.data)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
@@ -1311,7 +1293,6 @@ pub mod xss_match_set {
 
     impl ::codec::SerializeValue for XssMatchTuple {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "FieldToMatch", &self.field_to_match)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TextTransformation", &self.text_transformation)?;

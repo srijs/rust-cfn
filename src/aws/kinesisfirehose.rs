@@ -27,7 +27,6 @@ pub struct DeliveryStreamProperties {
 
 impl ::serde::Serialize for DeliveryStreamProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeliveryStreamName", &self.delivery_stream_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeliveryStreamType", &self.delivery_stream_type)?;
@@ -136,7 +135,6 @@ pub mod delivery_stream {
 
     impl ::codec::SerializeValue for BufferingHints {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IntervalInSeconds", &self.interval_in_seconds)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SizeInMBs", &self.size_in_m_bs)?;
@@ -195,7 +193,6 @@ pub mod delivery_stream {
 
     impl ::codec::SerializeValue for CloudWatchLoggingOptions {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroupName", &self.log_group_name)?;
@@ -260,7 +257,6 @@ pub mod delivery_stream {
 
     impl ::codec::SerializeValue for CopyCommand {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CopyOptions", &self.copy_options)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataTableColumns", &self.data_table_columns)?;
@@ -323,7 +319,6 @@ pub mod delivery_stream {
 
     impl ::codec::SerializeValue for ElasticsearchBufferingHints {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IntervalInSeconds", &self.interval_in_seconds)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SizeInMBs", &self.size_in_m_bs)?;
@@ -398,7 +393,6 @@ pub mod delivery_stream {
 
     impl ::codec::SerializeValue for ElasticsearchDestinationConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BufferingHints", &self.buffering_hints)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchLoggingOptions", &self.cloud_watch_logging_options)?;
@@ -507,7 +501,6 @@ pub mod delivery_stream {
 
     impl ::codec::SerializeValue for ElasticsearchRetryOptions {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DurationInSeconds", &self.duration_in_seconds)?;
             ::serde::ser::SerializeMap::end(map)
@@ -558,7 +551,6 @@ pub mod delivery_stream {
 
     impl ::codec::SerializeValue for EncryptionConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KMSEncryptionConfig", &self.kms_encryption_config)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "NoEncryptionConfig", &self.no_encryption_config)?;
@@ -631,7 +623,6 @@ pub mod delivery_stream {
 
     impl ::codec::SerializeValue for ExtendedS3DestinationConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketARN", &self.bucket_arn)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BufferingHints", &self.buffering_hints)?;
@@ -734,7 +725,6 @@ pub mod delivery_stream {
 
     impl ::codec::SerializeValue for KMSEncryptionConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AWSKMSKeyARN", &self.awskms_key_arn)?;
             ::serde::ser::SerializeMap::end(map)
@@ -785,7 +775,6 @@ pub mod delivery_stream {
 
     impl ::codec::SerializeValue for KinesisStreamSourceConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KinesisStreamARN", &self.kinesis_stream_arn)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleARN", &self.role_arn)?;
@@ -842,7 +831,6 @@ pub mod delivery_stream {
 
     impl ::codec::SerializeValue for ProcessingConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Processors", &self.processors)?;
@@ -899,7 +887,6 @@ pub mod delivery_stream {
 
     impl ::codec::SerializeValue for Processor {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", &self.parameters)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
@@ -956,7 +943,6 @@ pub mod delivery_stream {
 
     impl ::codec::SerializeValue for ProcessorParameter {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ParameterName", &self.parameter_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ParameterValue", &self.parameter_value)?;
@@ -1025,7 +1011,6 @@ pub mod delivery_stream {
 
     impl ::codec::SerializeValue for RedshiftDestinationConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchLoggingOptions", &self.cloud_watch_logging_options)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClusterJDBCURL", &self.cluster_jdbcurl)?;
@@ -1128,7 +1113,6 @@ pub mod delivery_stream {
 
     impl ::codec::SerializeValue for S3DestinationConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketARN", &self.bucket_arn)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BufferingHints", &self.buffering_hints)?;

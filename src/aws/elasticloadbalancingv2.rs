@@ -25,7 +25,6 @@ pub struct ListenerProperties {
 
 impl ::serde::Serialize for ListenerProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Certificates", &self.certificates)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultActions", &self.default_actions)?;
@@ -131,7 +130,6 @@ pub struct ListenerCertificateProperties {
 
 impl ::serde::Serialize for ListenerCertificateProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Certificates", &self.certificates)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ListenerArn", &self.listener_arn)?;
@@ -217,7 +215,6 @@ pub struct ListenerRuleProperties {
 
 impl ::serde::Serialize for ListenerRuleProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Actions", &self.actions)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Conditions", &self.conditions)?;
@@ -325,7 +322,6 @@ pub struct LoadBalancerProperties {
 
 impl ::serde::Serialize for LoadBalancerProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "IpAddressType", &self.ip_address_type)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancerAttributes", &self.load_balancer_attributes)?;
@@ -477,7 +473,6 @@ pub struct TargetGroupProperties {
 
 impl ::serde::Serialize for TargetGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheckIntervalSeconds", &self.health_check_interval_seconds)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheckPath", &self.health_check_path)?;
@@ -640,7 +635,6 @@ pub mod listener {
 
     impl ::codec::SerializeValue for Action {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetGroupArn", &self.target_group_arn)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
@@ -695,7 +689,6 @@ pub mod listener {
 
     impl ::codec::SerializeValue for Certificate {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificateArn", &self.certificate_arn)?;
             ::serde::ser::SerializeMap::end(map)
@@ -748,7 +741,6 @@ pub mod listener_certificate {
 
     impl ::codec::SerializeValue for Certificate {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificateArn", &self.certificate_arn)?;
             ::serde::ser::SerializeMap::end(map)
@@ -803,7 +795,6 @@ pub mod listener_rule {
 
     impl ::codec::SerializeValue for Action {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetGroupArn", &self.target_group_arn)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
@@ -860,7 +851,6 @@ pub mod listener_rule {
 
     impl ::codec::SerializeValue for RuleCondition {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Field", &self.field)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Values", &self.values)?;
@@ -921,7 +911,6 @@ pub mod load_balancer {
 
     impl ::codec::SerializeValue for LoadBalancerAttribute {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
@@ -978,7 +967,6 @@ pub mod load_balancer {
 
     impl ::codec::SerializeValue for SubnetMapping {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocationId", &self.allocation_id)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", &self.subnet_id)?;
@@ -1037,7 +1025,6 @@ pub mod target_group {
 
     impl ::codec::SerializeValue for Matcher {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "HttpCode", &self.http_code)?;
             ::serde::ser::SerializeMap::end(map)
@@ -1090,7 +1077,6 @@ pub mod target_group {
 
     impl ::codec::SerializeValue for TargetDescription {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", &self.availability_zone)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Id", &self.id)?;
@@ -1153,7 +1139,6 @@ pub mod target_group {
 
     impl ::codec::SerializeValue for TargetGroupAttribute {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;

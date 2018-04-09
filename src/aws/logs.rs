@@ -21,7 +21,6 @@ pub struct DestinationProperties {
 
 impl ::serde::Serialize for DestinationProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationName", &self.destination_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationPolicy", &self.destination_policy)?;
@@ -115,7 +114,6 @@ pub struct LogGroupProperties {
 
 impl ::serde::Serialize for LogGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroupName", &self.log_group_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RetentionInDays", &self.retention_in_days)?;
@@ -197,7 +195,6 @@ pub struct LogStreamProperties {
 
 impl ::serde::Serialize for LogStreamProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroupName", &self.log_group_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogStreamName", &self.log_stream_name)?;
@@ -281,7 +278,6 @@ pub struct MetricFilterProperties {
 
 impl ::serde::Serialize for MetricFilterProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "FilterPattern", &self.filter_pattern)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroupName", &self.log_group_name)?;
@@ -373,7 +369,6 @@ pub struct SubscriptionFilterProperties {
 
 impl ::serde::Serialize for SubscriptionFilterProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationArn", &self.destination_arn)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "FilterPattern", &self.filter_pattern)?;
@@ -466,7 +461,6 @@ pub mod metric_filter {
 
     impl ::codec::SerializeValue for MetricTransformation {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricName", &self.metric_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricNamespace", &self.metric_namespace)?;

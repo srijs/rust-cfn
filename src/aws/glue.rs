@@ -15,7 +15,6 @@ pub struct ClassifierProperties {
 
 impl ::serde::Serialize for ClassifierProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "GrokClassifier", &self.grok_classifier)?;
         ::serde::ser::SerializeMap::end(map)
@@ -91,7 +90,6 @@ pub struct ConnectionProperties {
 
 impl ::serde::Serialize for ConnectionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CatalogId", &self.catalog_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionInput", &self.connection_input)?;
@@ -187,7 +185,6 @@ pub struct CrawlerProperties {
 
 impl ::serde::Serialize for CrawlerProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Classifiers", &self.classifiers)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseName", &self.database_name)?;
@@ -311,7 +308,6 @@ pub struct DatabaseProperties {
 
 impl ::serde::Serialize for DatabaseProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CatalogId", &self.catalog_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseInput", &self.database_input)?;
@@ -405,7 +401,6 @@ pub struct DevEndpointProperties {
 
 impl ::serde::Serialize for DevEndpointProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndpointName", &self.endpoint_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExtraJarsS3Path", &self.extra_jars_s3_path)?;
@@ -539,7 +534,6 @@ pub struct JobProperties {
 
 impl ::serde::Serialize for JobProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocatedCapacity", &self.allocated_capacity)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Command", &self.command)?;
@@ -673,7 +667,6 @@ pub struct PartitionProperties {
 
 impl ::serde::Serialize for PartitionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CatalogId", &self.catalog_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseName", &self.database_name)?;
@@ -769,7 +762,6 @@ pub struct TableProperties {
 
 impl ::serde::Serialize for TableProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CatalogId", &self.catalog_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseName", &self.database_name)?;
@@ -865,7 +857,6 @@ pub struct TriggerProperties {
 
 impl ::serde::Serialize for TriggerProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Actions", &self.actions)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
@@ -972,7 +963,6 @@ pub mod classifier {
 
     impl ::codec::SerializeValue for GrokClassifier {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Classification", &self.classification)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomPatterns", &self.custom_patterns)?;
@@ -1053,7 +1043,6 @@ pub mod connection {
 
     impl ::codec::SerializeValue for ConnectionInput {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionProperties", &self.connection_properties)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionType", &self.connection_type)?;
@@ -1136,7 +1125,6 @@ pub mod connection {
 
     impl ::codec::SerializeValue for PhysicalConnectionRequirements {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", &self.availability_zone)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIdList", &self.security_group_id_list)?;
@@ -1205,7 +1193,6 @@ pub mod crawler {
 
     impl ::codec::SerializeValue for JdbcTarget {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionName", &self.connection_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Exclusions", &self.exclusions)?;
@@ -1268,7 +1255,6 @@ pub mod crawler {
 
     impl ::codec::SerializeValue for S3Target {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Exclusions", &self.exclusions)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Path", &self.path)?;
@@ -1323,7 +1309,6 @@ pub mod crawler {
 
     impl ::codec::SerializeValue for Schedule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScheduleExpression", &self.schedule_expression)?;
             ::serde::ser::SerializeMap::end(map)
@@ -1374,7 +1359,6 @@ pub mod crawler {
 
     impl ::codec::SerializeValue for SchemaChangePolicy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteBehavior", &self.delete_behavior)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "UpdateBehavior", &self.update_behavior)?;
@@ -1431,7 +1415,6 @@ pub mod crawler {
 
     impl ::codec::SerializeValue for Targets {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "JdbcTargets", &self.jdbc_targets)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Targets", &self.s3_targets)?;
@@ -1496,7 +1479,6 @@ pub mod database {
 
     impl ::codec::SerializeValue for DatabaseInput {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LocationUri", &self.location_uri)?;
@@ -1567,7 +1549,6 @@ pub mod job {
 
     impl ::codec::SerializeValue for ConnectionsList {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Connections", &self.connections)?;
             ::serde::ser::SerializeMap::end(map)
@@ -1616,7 +1597,6 @@ pub mod job {
 
     impl ::codec::SerializeValue for ExecutionProperty {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxConcurrentRuns", &self.max_concurrent_runs)?;
             ::serde::ser::SerializeMap::end(map)
@@ -1667,7 +1647,6 @@ pub mod job {
 
     impl ::codec::SerializeValue for JobCommand {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScriptLocation", &self.script_location)?;
@@ -1730,7 +1709,6 @@ pub mod partition {
 
     impl ::codec::SerializeValue for Column {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", &self.comment)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
@@ -1793,7 +1771,6 @@ pub mod partition {
 
     impl ::codec::SerializeValue for Order {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Column", &self.column)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SortOrder", &self.sort_order)?;
@@ -1852,7 +1829,6 @@ pub mod partition {
 
     impl ::codec::SerializeValue for PartitionInput {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", &self.parameters)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "StorageDescriptor", &self.storage_descriptor)?;
@@ -1917,7 +1893,6 @@ pub mod partition {
 
     impl ::codec::SerializeValue for SerdeInfo {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", &self.parameters)?;
@@ -1982,7 +1957,6 @@ pub mod partition {
 
     impl ::codec::SerializeValue for SkewedInfo {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SkewedColumnNames", &self.skewed_column_names)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SkewedColumnValueLocationMaps", &self.skewed_column_value_location_maps)?;
@@ -2065,7 +2039,6 @@ pub mod partition {
 
     impl ::codec::SerializeValue for StorageDescriptor {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketColumns", &self.bucket_columns)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Columns", &self.columns)?;
@@ -2188,7 +2161,6 @@ pub mod table {
 
     impl ::codec::SerializeValue for Column {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", &self.comment)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
@@ -2251,7 +2223,6 @@ pub mod table {
 
     impl ::codec::SerializeValue for Order {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Column", &self.column)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SortOrder", &self.sort_order)?;
@@ -2310,7 +2281,6 @@ pub mod table {
 
     impl ::codec::SerializeValue for SerdeInfo {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", &self.parameters)?;
@@ -2375,7 +2345,6 @@ pub mod table {
 
     impl ::codec::SerializeValue for SkewedInfo {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SkewedColumnNames", &self.skewed_column_names)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SkewedColumnValueLocationMaps", &self.skewed_column_value_location_maps)?;
@@ -2458,7 +2427,6 @@ pub mod table {
 
     impl ::codec::SerializeValue for StorageDescriptor {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketColumns", &self.bucket_columns)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Columns", &self.columns)?;
@@ -2591,7 +2559,6 @@ pub mod table {
 
     impl ::codec::SerializeValue for TableInput {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
@@ -2700,7 +2667,6 @@ pub mod trigger {
 
     impl ::codec::SerializeValue for Action {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Arguments", &self.arguments)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "JobName", &self.job_name)?;
@@ -2759,7 +2725,6 @@ pub mod trigger {
 
     impl ::codec::SerializeValue for Condition {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "JobName", &self.job_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogicalOperator", &self.logical_operator)?;
@@ -2822,7 +2787,6 @@ pub mod trigger {
 
     impl ::codec::SerializeValue for Predicate {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Conditions", &self.conditions)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Logical", &self.logical)?;

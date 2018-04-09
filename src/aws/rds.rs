@@ -51,7 +51,6 @@ pub struct DBClusterProperties {
 
 impl ::serde::Serialize for DBClusterProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZones", &self.availability_zones)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "BackupRetentionPeriod", &self.backup_retention_period)?;
@@ -239,7 +238,6 @@ pub struct DBClusterParameterGroupProperties {
 
 impl ::serde::Serialize for DBClusterParameterGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Family", &self.family)?;
@@ -407,7 +405,6 @@ pub struct DBInstanceProperties {
 
 impl ::serde::Serialize for DBInstanceProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocatedStorage", &self.allocated_storage)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowMajorVersionUpgrade", &self.allow_major_version_upgrade)?;
@@ -715,7 +712,6 @@ pub struct DBParameterGroupProperties {
 
 impl ::serde::Serialize for DBParameterGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Family", &self.family)?;
@@ -813,7 +809,6 @@ pub struct DBSecurityGroupProperties {
 
 impl ::serde::Serialize for DBSecurityGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBSecurityGroupIngress", &self.db_security_group_ingress)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "EC2VpcId", &self.ec2_vpc_id)?;
@@ -913,7 +908,6 @@ pub struct DBSecurityGroupIngressProperties {
 
 impl ::serde::Serialize for DBSecurityGroupIngressProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CIDRIP", &self.cidrip)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBSecurityGroupName", &self.db_security_group_name)?;
@@ -1017,7 +1011,6 @@ pub struct DBSubnetGroupProperties {
 
 impl ::serde::Serialize for DBSubnetGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBSubnetGroupDescription", &self.db_subnet_group_description)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBSubnetGroupName", &self.db_subnet_group_name)?;
@@ -1117,7 +1110,6 @@ pub struct EventSubscriptionProperties {
 
 impl ::serde::Serialize for EventSubscriptionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventCategories", &self.event_categories)?;
@@ -1223,7 +1215,6 @@ pub struct OptionGroupProperties {
 
 impl ::serde::Serialize for OptionGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "EngineName", &self.engine_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "MajorEngineVersion", &self.major_engine_version)?;
@@ -1324,7 +1315,6 @@ pub mod db_security_group {
 
     impl ::codec::SerializeValue for Ingress {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CIDRIP", &self.cidrip)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EC2SecurityGroupId", &self.ec2_security_group_id)?;
@@ -1405,7 +1395,6 @@ pub mod option_group {
 
     impl ::codec::SerializeValue for OptionConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBSecurityGroupMemberships", &self.db_security_group_memberships)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "OptionName", &self.option_name)?;
@@ -1486,7 +1475,6 @@ pub mod option_group {
 
     impl ::codec::SerializeValue for OptionSetting {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;

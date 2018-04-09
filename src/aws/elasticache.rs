@@ -55,7 +55,6 @@ pub struct CacheClusterProperties {
 
 impl ::serde::Serialize for CacheClusterProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AZMode", &self.az_mode)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoMinorVersionUpgrade", &self.auto_minor_version_upgrade)?;
@@ -253,7 +252,6 @@ pub struct ParameterGroupProperties {
 
 impl ::serde::Serialize for ParameterGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CacheParameterGroupFamily", &self.cache_parameter_group_family)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
@@ -395,7 +393,6 @@ pub struct ReplicationGroupProperties {
 
 impl ::serde::Serialize for ReplicationGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AtRestEncryptionEnabled", &self.at_rest_encryption_enabled)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthToken", &self.auth_token)?;
@@ -637,7 +634,6 @@ pub struct SecurityGroupProperties {
 
 impl ::serde::Serialize for SecurityGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
         ::serde::ser::SerializeMap::end(map)
@@ -715,7 +711,6 @@ pub struct SecurityGroupIngressProperties {
 
 impl ::serde::Serialize for SecurityGroupIngressProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CacheSecurityGroupName", &self.cache_security_group_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "EC2SecurityGroupName", &self.ec2_security_group_name)?;
@@ -805,7 +800,6 @@ pub struct SubnetGroupProperties {
 
 impl ::serde::Serialize for SubnetGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CacheSubnetGroupName", &self.cache_subnet_group_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
@@ -894,7 +888,6 @@ pub mod replication_group {
 
     impl ::codec::SerializeValue for NodeGroupConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrimaryAvailabilityZone", &self.primary_availability_zone)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicaAvailabilityZones", &self.replica_availability_zones)?;

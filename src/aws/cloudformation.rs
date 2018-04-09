@@ -15,7 +15,6 @@ pub struct CustomResourceProperties {
 
 impl ::serde::Serialize for CustomResourceProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceToken", &self.service_token)?;
         ::serde::ser::SerializeMap::end(map)
@@ -97,7 +96,6 @@ pub struct StackProperties {
 
 impl ::serde::Serialize for StackProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationARNs", &self.notification_ar_ns)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", &self.parameters)?;
@@ -199,7 +197,6 @@ pub struct WaitConditionProperties {
 
 impl ::serde::Serialize for WaitConditionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Count", &self.count)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Handle", &self.handle)?;
@@ -283,8 +280,7 @@ pub struct WaitConditionHandleProperties {
 
 impl ::serde::Serialize for WaitConditionHandleProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
-        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        let map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::end(map)
     }
 }

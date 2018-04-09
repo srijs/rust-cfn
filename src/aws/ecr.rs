@@ -19,7 +19,6 @@ pub struct RepositoryProperties {
 
 impl ::serde::Serialize for RepositoryProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "LifecyclePolicy", &self.lifecycle_policy)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RepositoryName", &self.repository_name)?;
@@ -104,7 +103,6 @@ pub mod repository {
 
     impl ::codec::SerializeValue for LifecyclePolicy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LifecyclePolicyText", &self.lifecycle_policy_text)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RegistryId", &self.registry_id)?;

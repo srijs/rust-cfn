@@ -17,7 +17,6 @@ pub struct AliasProperties {
 
 impl ::serde::Serialize for AliasProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AliasName", &self.alias_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetKeyId", &self.target_key_id)?;
@@ -107,7 +106,6 @@ pub struct KeyProperties {
 
 impl ::serde::Serialize for KeyProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableKeyRotation", &self.enable_key_rotation)?;

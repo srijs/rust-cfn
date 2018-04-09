@@ -27,7 +27,6 @@ pub struct EnvironmentEC2Properties {
 
 impl ::serde::Serialize for EnvironmentEC2Properties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutomaticStopTimeMinutes", &self.automatic_stop_time_minutes)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
@@ -136,7 +135,6 @@ pub mod environment_ec2 {
 
     impl ::codec::SerializeValue for Repository {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PathComponent", &self.path_component)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RepositoryUrl", &self.repository_url)?;

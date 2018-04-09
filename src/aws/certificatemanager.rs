@@ -21,7 +21,6 @@ pub struct CertificateProperties {
 
 impl ::serde::Serialize for CertificateProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainName", &self.domain_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainValidationOptions", &self.domain_validation_options)?;
@@ -112,7 +111,6 @@ pub mod certificate {
 
     impl ::codec::SerializeValue for DomainValidationOption {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainName", &self.domain_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ValidationDomain", &self.validation_domain)?;

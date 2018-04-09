@@ -23,7 +23,6 @@ pub struct StreamProperties {
 
 impl ::serde::Serialize for StreamProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RetentionPeriodHours", &self.retention_period_hours)?;
@@ -120,7 +119,6 @@ pub mod stream {
 
     impl ::codec::SerializeValue for StreamEncryption {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EncryptionType", &self.encryption_type)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyId", &self.key_id)?;

@@ -27,7 +27,6 @@ pub struct AssociationProperties {
 
 impl ::serde::Serialize for AssociationProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssociationName", &self.association_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentVersion", &self.document_version)?;
@@ -141,7 +140,6 @@ pub struct DocumentProperties {
 
 impl ::serde::Serialize for DocumentProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Content", &self.content)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentType", &self.document_type)?;
@@ -251,7 +249,6 @@ pub struct MaintenanceWindowTaskProperties {
 
 impl ::serde::Serialize for MaintenanceWindowTaskProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoggingInfo", &self.logging_info)?;
@@ -405,7 +402,6 @@ pub struct ParameterProperties {
 
 impl ::serde::Serialize for ParameterProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowedPattern", &self.allowed_pattern)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
@@ -523,7 +519,6 @@ pub struct PatchBaselineProperties {
 
 impl ::serde::Serialize for PatchBaselineProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApprovalRules", &self.approval_rules)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApprovedPatches", &self.approved_patches)?;
@@ -654,7 +649,6 @@ pub mod association {
 
     impl ::codec::SerializeValue for ParameterValues {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ParameterValues", &self.parameter_values)?;
             ::serde::ser::SerializeMap::end(map)
@@ -705,7 +699,6 @@ pub mod association {
 
     impl ::codec::SerializeValue for Target {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Values", &self.values)?;
@@ -768,7 +761,6 @@ pub mod maintenance_window_task {
 
     impl ::codec::SerializeValue for LoggingInfo {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Region", &self.region)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Bucket", &self.s3_bucket)?;
@@ -831,7 +823,6 @@ pub mod maintenance_window_task {
 
     impl ::codec::SerializeValue for MaintenanceWindowAutomationParameters {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentVersion", &self.document_version)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", &self.parameters)?;
@@ -890,7 +881,6 @@ pub mod maintenance_window_task {
 
     impl ::codec::SerializeValue for MaintenanceWindowLambdaParameters {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientContext", &self.client_context)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Payload", &self.payload)?;
@@ -967,7 +957,6 @@ pub mod maintenance_window_task {
 
     impl ::codec::SerializeValue for MaintenanceWindowRunCommandParameters {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", &self.comment)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentHash", &self.document_hash)?;
@@ -1066,7 +1055,6 @@ pub mod maintenance_window_task {
 
     impl ::codec::SerializeValue for MaintenanceWindowStepFunctionsParameters {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Input", &self.input)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
@@ -1125,7 +1113,6 @@ pub mod maintenance_window_task {
 
     impl ::codec::SerializeValue for NotificationConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationArn", &self.notification_arn)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationEvents", &self.notification_events)?;
@@ -1188,7 +1175,6 @@ pub mod maintenance_window_task {
 
     impl ::codec::SerializeValue for Target {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Values", &self.values)?;
@@ -1249,7 +1235,6 @@ pub mod maintenance_window_task {
 
     impl ::codec::SerializeValue for TaskInvocationParameters {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaintenanceWindowAutomationParameters", &self.maintenance_window_automation_parameters)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaintenanceWindowLambdaParameters", &self.maintenance_window_lambda_parameters)?;
@@ -1322,7 +1307,6 @@ pub mod patch_baseline {
 
     impl ::codec::SerializeValue for PatchFilter {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Values", &self.values)?;
@@ -1377,7 +1361,6 @@ pub mod patch_baseline {
 
     impl ::codec::SerializeValue for PatchFilterGroup {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PatchFilters", &self.patch_filters)?;
             ::serde::ser::SerializeMap::end(map)
@@ -1430,7 +1413,6 @@ pub mod patch_baseline {
 
     impl ::codec::SerializeValue for PatchSource {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Configuration", &self.configuration)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
@@ -1497,7 +1479,6 @@ pub mod patch_baseline {
 
     impl ::codec::SerializeValue for Rule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApproveAfterDays", &self.approve_after_days)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComplianceLevel", &self.compliance_level)?;
@@ -1564,7 +1545,6 @@ pub mod patch_baseline {
 
     impl ::codec::SerializeValue for RuleGroup {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PatchRules", &self.patch_rules)?;
             ::serde::ser::SerializeMap::end(map)

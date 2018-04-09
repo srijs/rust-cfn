@@ -19,7 +19,6 @@ pub struct RepositoryProperties {
 
 impl ::serde::Serialize for RepositoryProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RepositoryDescription", &self.repository_description)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RepositoryName", &self.repository_name)?;
@@ -110,7 +109,6 @@ pub mod repository {
 
     impl ::codec::SerializeValue for RepositoryTrigger {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Branches", &self.branches)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomData", &self.custom_data)?;

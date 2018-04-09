@@ -23,7 +23,6 @@ pub struct ComputeEnvironmentProperties {
 
 impl ::serde::Serialize for ComputeEnvironmentProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComputeEnvironmentName", &self.compute_environment_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComputeResources", &self.compute_resources)?;
@@ -129,7 +128,6 @@ pub struct JobDefinitionProperties {
 
 impl ::serde::Serialize for JobDefinitionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainerProperties", &self.container_properties)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "JobDefinitionName", &self.job_definition_name)?;
@@ -233,7 +231,6 @@ pub struct JobQueueProperties {
 
 impl ::serde::Serialize for JobQueueProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComputeEnvironmentOrder", &self.compute_environment_order)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "JobQueueName", &self.job_queue_name)?;
@@ -346,7 +343,6 @@ pub mod compute_environment {
 
     impl ::codec::SerializeValue for ComputeResources {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BidPercentage", &self.bid_percentage)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DesiredvCpus", &self.desiredv_cpus)?;
@@ -493,7 +489,6 @@ pub mod job_definition {
 
     impl ::codec::SerializeValue for ContainerProperties {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Command", &self.command)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Environment", &self.environment)?;
@@ -610,7 +605,6 @@ pub mod job_definition {
 
     impl ::codec::SerializeValue for Environment {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
@@ -669,7 +663,6 @@ pub mod job_definition {
 
     impl ::codec::SerializeValue for MountPoints {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainerPath", &self.container_path)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReadOnly", &self.read_only)?;
@@ -730,7 +723,6 @@ pub mod job_definition {
 
     impl ::codec::SerializeValue for RetryStrategy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attempts", &self.attempts)?;
             ::serde::ser::SerializeMap::end(map)
@@ -783,7 +775,6 @@ pub mod job_definition {
 
     impl ::codec::SerializeValue for Ulimit {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "HardLimit", &self.hard_limit)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
@@ -846,7 +837,6 @@ pub mod job_definition {
 
     impl ::codec::SerializeValue for Volumes {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Host", &self.host)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
@@ -901,7 +891,6 @@ pub mod job_definition {
 
     impl ::codec::SerializeValue for VolumesHost {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourcePath", &self.source_path)?;
             ::serde::ser::SerializeMap::end(map)
@@ -956,7 +945,6 @@ pub mod job_queue {
 
     impl ::codec::SerializeValue for ComputeEnvironmentOrder {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComputeEnvironment", &self.compute_environment)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Order", &self.order)?;

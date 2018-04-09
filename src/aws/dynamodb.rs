@@ -33,7 +33,6 @@ pub struct TableProperties {
 
 impl ::serde::Serialize for TableProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AttributeDefinitions", &self.attribute_definitions)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "GlobalSecondaryIndexes", &self.global_secondary_indexes)?;
@@ -160,7 +159,6 @@ pub mod table {
 
     impl ::codec::SerializeValue for AttributeDefinition {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AttributeName", &self.attribute_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AttributeType", &self.attribute_type)?;
@@ -221,7 +219,6 @@ pub mod table {
 
     impl ::codec::SerializeValue for GlobalSecondaryIndex {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IndexName", &self.index_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeySchema", &self.key_schema)?;
@@ -290,7 +287,6 @@ pub mod table {
 
     impl ::codec::SerializeValue for KeySchema {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AttributeName", &self.attribute_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyType", &self.key_type)?;
@@ -349,7 +345,6 @@ pub mod table {
 
     impl ::codec::SerializeValue for LocalSecondaryIndex {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IndexName", &self.index_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeySchema", &self.key_schema)?;
@@ -412,7 +407,6 @@ pub mod table {
 
     impl ::codec::SerializeValue for Projection {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "NonKeyAttributes", &self.non_key_attributes)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProjectionType", &self.projection_type)?;
@@ -469,7 +463,6 @@ pub mod table {
 
     impl ::codec::SerializeValue for ProvisionedThroughput {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReadCapacityUnits", &self.read_capacity_units)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "WriteCapacityUnits", &self.write_capacity_units)?;
@@ -524,7 +517,6 @@ pub mod table {
 
     impl ::codec::SerializeValue for SSESpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SSEEnabled", &self.sse_enabled)?;
             ::serde::ser::SerializeMap::end(map)
@@ -573,7 +565,6 @@ pub mod table {
 
     impl ::codec::SerializeValue for StreamSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamViewType", &self.stream_view_type)?;
             ::serde::ser::SerializeMap::end(map)
@@ -624,7 +615,6 @@ pub mod table {
 
     impl ::codec::SerializeValue for TimeToLiveSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AttributeName", &self.attribute_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;

@@ -47,7 +47,6 @@ pub struct ClusterProperties {
 
 impl ::serde::Serialize for ClusterProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AdditionalInfo", &self.additional_info)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Applications", &self.applications)?;
@@ -229,7 +228,6 @@ pub struct InstanceFleetConfigProperties {
 
 impl ::serde::Serialize for InstanceFleetConfigProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClusterId", &self.cluster_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceFleetType", &self.instance_fleet_type)?;
@@ -357,7 +355,6 @@ pub struct InstanceGroupConfigProperties {
 
 impl ::serde::Serialize for InstanceGroupConfigProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoScalingPolicy", &self.auto_scaling_policy)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "BidPrice", &self.bid_price)?;
@@ -487,7 +484,6 @@ pub struct SecurityConfigurationProperties {
 
 impl ::serde::Serialize for SecurityConfigurationProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityConfiguration", &self.security_configuration)?;
@@ -573,7 +569,6 @@ pub struct StepProperties {
 
 impl ::serde::Serialize for StepProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ActionOnFailure", &self.action_on_failure)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "HadoopJarStep", &self.hadoop_jar_step)?;
@@ -668,7 +663,6 @@ pub mod cluster {
 
     impl ::codec::SerializeValue for Application {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AdditionalInfo", &self.additional_info)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Args", &self.args)?;
@@ -737,7 +731,6 @@ pub mod cluster {
 
     impl ::codec::SerializeValue for AutoScalingPolicy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Constraints", &self.constraints)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Rules", &self.rules)?;
@@ -794,7 +787,6 @@ pub mod cluster {
 
     impl ::codec::SerializeValue for BootstrapActionConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScriptBootstrapAction", &self.script_bootstrap_action)?;
@@ -865,7 +857,6 @@ pub mod cluster {
 
     impl ::codec::SerializeValue for CloudWatchAlarmDefinition {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComparisonOperator", &self.comparison_operator)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Dimensions", &self.dimensions)?;
@@ -966,7 +957,6 @@ pub mod cluster {
 
     impl ::codec::SerializeValue for Configuration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Classification", &self.classification)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConfigurationProperties", &self.configuration_properties)?;
@@ -1029,7 +1019,6 @@ pub mod cluster {
 
     impl ::codec::SerializeValue for EbsBlockDeviceConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeSpecification", &self.volume_specification)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumesPerInstance", &self.volumes_per_instance)?;
@@ -1086,7 +1075,6 @@ pub mod cluster {
 
     impl ::codec::SerializeValue for EbsConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsBlockDeviceConfigs", &self.ebs_block_device_configs)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsOptimized", &self.ebs_optimized)?;
@@ -1149,7 +1137,6 @@ pub mod cluster {
 
     impl ::codec::SerializeValue for InstanceFleetConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceTypeConfigs", &self.instance_type_configs)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchSpecifications", &self.launch_specifications)?;
@@ -1222,7 +1209,6 @@ pub mod cluster {
 
     impl ::codec::SerializeValue for InstanceFleetProvisioningSpecifications {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotSpecification", &self.spot_specification)?;
             ::serde::ser::SerializeMap::end(map)
@@ -1285,7 +1271,6 @@ pub mod cluster {
 
     impl ::codec::SerializeValue for InstanceGroupConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoScalingPolicy", &self.auto_scaling_policy)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BidPrice", &self.bid_price)?;
@@ -1386,7 +1371,6 @@ pub mod cluster {
 
     impl ::codec::SerializeValue for InstanceTypeConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BidPrice", &self.bid_price)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BidPriceAsPercentageOfOnDemandPrice", &self.bid_price_as_percentage_of_on_demand_price)?;
@@ -1491,7 +1475,6 @@ pub mod cluster {
 
     impl ::codec::SerializeValue for JobFlowInstancesConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AdditionalMasterSecurityGroups", &self.additional_master_security_groups)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AdditionalSlaveSecurityGroups", &self.additional_slave_security_groups)?;
@@ -1620,7 +1603,6 @@ pub mod cluster {
 
     impl ::codec::SerializeValue for MetricDimension {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
@@ -1675,7 +1657,6 @@ pub mod cluster {
 
     impl ::codec::SerializeValue for PlacementType {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", &self.availability_zone)?;
             ::serde::ser::SerializeMap::end(map)
@@ -1726,7 +1707,6 @@ pub mod cluster {
 
     impl ::codec::SerializeValue for ScalingAction {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Market", &self.market)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SimpleScalingPolicyConfiguration", &self.simple_scaling_policy_configuration)?;
@@ -1783,7 +1763,6 @@ pub mod cluster {
 
     impl ::codec::SerializeValue for ScalingConstraints {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxCapacity", &self.max_capacity)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinCapacity", &self.min_capacity)?;
@@ -1844,7 +1823,6 @@ pub mod cluster {
 
     impl ::codec::SerializeValue for ScalingRule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Action", &self.action)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
@@ -1911,7 +1889,6 @@ pub mod cluster {
 
     impl ::codec::SerializeValue for ScalingTrigger {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchAlarmDefinition", &self.cloud_watch_alarm_definition)?;
             ::serde::ser::SerializeMap::end(map)
@@ -1962,7 +1939,6 @@ pub mod cluster {
 
     impl ::codec::SerializeValue for ScriptBootstrapActionConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Args", &self.args)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Path", &self.path)?;
@@ -2021,7 +1997,6 @@ pub mod cluster {
 
     impl ::codec::SerializeValue for SimpleScalingPolicyConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AdjustmentType", &self.adjustment_type)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CoolDown", &self.cool_down)?;
@@ -2086,7 +2061,6 @@ pub mod cluster {
 
     impl ::codec::SerializeValue for SpotProvisioningSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BlockDurationMinutes", &self.block_duration_minutes)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimeoutAction", &self.timeout_action)?;
@@ -2151,7 +2125,6 @@ pub mod cluster {
 
     impl ::codec::SerializeValue for VolumeSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", &self.iops)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SizeInGB", &self.size_in_gb)?;
@@ -2220,7 +2193,6 @@ pub mod instance_fleet_config {
 
     impl ::codec::SerializeValue for Configuration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Classification", &self.classification)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConfigurationProperties", &self.configuration_properties)?;
@@ -2283,7 +2255,6 @@ pub mod instance_fleet_config {
 
     impl ::codec::SerializeValue for EbsBlockDeviceConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeSpecification", &self.volume_specification)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumesPerInstance", &self.volumes_per_instance)?;
@@ -2340,7 +2311,6 @@ pub mod instance_fleet_config {
 
     impl ::codec::SerializeValue for EbsConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsBlockDeviceConfigs", &self.ebs_block_device_configs)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsOptimized", &self.ebs_optimized)?;
@@ -2395,7 +2365,6 @@ pub mod instance_fleet_config {
 
     impl ::codec::SerializeValue for InstanceFleetProvisioningSpecifications {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotSpecification", &self.spot_specification)?;
             ::serde::ser::SerializeMap::end(map)
@@ -2454,7 +2423,6 @@ pub mod instance_fleet_config {
 
     impl ::codec::SerializeValue for InstanceTypeConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BidPrice", &self.bid_price)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BidPriceAsPercentageOfOnDemandPrice", &self.bid_price_as_percentage_of_on_demand_price)?;
@@ -2537,7 +2505,6 @@ pub mod instance_fleet_config {
 
     impl ::codec::SerializeValue for SpotProvisioningSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BlockDurationMinutes", &self.block_duration_minutes)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimeoutAction", &self.timeout_action)?;
@@ -2602,7 +2569,6 @@ pub mod instance_fleet_config {
 
     impl ::codec::SerializeValue for VolumeSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", &self.iops)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SizeInGB", &self.size_in_gb)?;
@@ -2669,7 +2635,6 @@ pub mod instance_group_config {
 
     impl ::codec::SerializeValue for AutoScalingPolicy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Constraints", &self.constraints)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Rules", &self.rules)?;
@@ -2740,7 +2705,6 @@ pub mod instance_group_config {
 
     impl ::codec::SerializeValue for CloudWatchAlarmDefinition {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComparisonOperator", &self.comparison_operator)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Dimensions", &self.dimensions)?;
@@ -2841,7 +2805,6 @@ pub mod instance_group_config {
 
     impl ::codec::SerializeValue for Configuration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Classification", &self.classification)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConfigurationProperties", &self.configuration_properties)?;
@@ -2904,7 +2867,6 @@ pub mod instance_group_config {
 
     impl ::codec::SerializeValue for EbsBlockDeviceConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeSpecification", &self.volume_specification)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumesPerInstance", &self.volumes_per_instance)?;
@@ -2961,7 +2923,6 @@ pub mod instance_group_config {
 
     impl ::codec::SerializeValue for EbsConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsBlockDeviceConfigs", &self.ebs_block_device_configs)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsOptimized", &self.ebs_optimized)?;
@@ -3018,7 +2979,6 @@ pub mod instance_group_config {
 
     impl ::codec::SerializeValue for MetricDimension {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
@@ -3075,7 +3035,6 @@ pub mod instance_group_config {
 
     impl ::codec::SerializeValue for ScalingAction {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Market", &self.market)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SimpleScalingPolicyConfiguration", &self.simple_scaling_policy_configuration)?;
@@ -3132,7 +3091,6 @@ pub mod instance_group_config {
 
     impl ::codec::SerializeValue for ScalingConstraints {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxCapacity", &self.max_capacity)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinCapacity", &self.min_capacity)?;
@@ -3193,7 +3151,6 @@ pub mod instance_group_config {
 
     impl ::codec::SerializeValue for ScalingRule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Action", &self.action)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
@@ -3260,7 +3217,6 @@ pub mod instance_group_config {
 
     impl ::codec::SerializeValue for ScalingTrigger {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchAlarmDefinition", &self.cloud_watch_alarm_definition)?;
             ::serde::ser::SerializeMap::end(map)
@@ -3313,7 +3269,6 @@ pub mod instance_group_config {
 
     impl ::codec::SerializeValue for SimpleScalingPolicyConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AdjustmentType", &self.adjustment_type)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CoolDown", &self.cool_down)?;
@@ -3378,7 +3333,6 @@ pub mod instance_group_config {
 
     impl ::codec::SerializeValue for VolumeSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", &self.iops)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SizeInGB", &self.size_in_gb)?;
@@ -3449,7 +3403,6 @@ pub mod step {
 
     impl ::codec::SerializeValue for HadoopJarStepConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Args", &self.args)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Jar", &self.jar)?;
@@ -3518,7 +3471,6 @@ pub mod step {
 
     impl ::codec::SerializeValue for KeyValue {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;

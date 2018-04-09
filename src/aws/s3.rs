@@ -43,7 +43,6 @@ pub struct BucketProperties {
 
 impl ::serde::Serialize for BucketProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccelerateConfiguration", &self.accelerate_configuration)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessControl", &self.access_control)?;
@@ -203,7 +202,6 @@ pub struct BucketPolicyProperties {
 
 impl ::serde::Serialize for BucketPolicyProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Bucket", &self.bucket)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyDocument", &self.policy_document)?;
@@ -280,7 +278,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for AbortIncompleteMultipartUpload {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DaysAfterInitiation", &self.days_after_initiation)?;
             ::serde::ser::SerializeMap::end(map)
@@ -329,7 +326,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for AccelerateConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccelerationStatus", &self.acceleration_status)?;
             ::serde::ser::SerializeMap::end(map)
@@ -378,7 +374,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for AccessControlTranslation {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Owner", &self.owner)?;
             ::serde::ser::SerializeMap::end(map)
@@ -433,7 +428,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for AnalyticsConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Id", &self.id)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Prefix", &self.prefix)?;
@@ -500,7 +494,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for BucketEncryption {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServerSideEncryptionConfiguration", &self.server_side_encryption_configuration)?;
             ::serde::ser::SerializeMap::end(map)
@@ -549,7 +542,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for CorsConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CorsRules", &self.cors_rules)?;
             ::serde::ser::SerializeMap::end(map)
@@ -608,7 +600,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for CorsRule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowedHeaders", &self.allowed_headers)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowedMethods", &self.allowed_methods)?;
@@ -689,7 +680,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for DataExport {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Destination", &self.destination)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutputSchemaVersion", &self.output_schema_version)?;
@@ -750,7 +740,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for Destination {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketAccountId", &self.bucket_account_id)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketArn", &self.bucket_arn)?;
@@ -817,7 +806,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for EncryptionConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicaKmsKeyID", &self.replica_kms_key_id)?;
             ::serde::ser::SerializeMap::end(map)
@@ -868,7 +856,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for FilterRule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
@@ -935,7 +922,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for InventoryConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Destination", &self.destination)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
@@ -1024,7 +1010,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for LambdaConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Event", &self.event)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Filter", &self.filter)?;
@@ -1085,7 +1070,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for LifecycleConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Rules", &self.rules)?;
             ::serde::ser::SerializeMap::end(map)
@@ -1136,7 +1120,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for LoggingConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationBucketName", &self.destination_bucket_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogFilePrefix", &self.log_file_prefix)?;
@@ -1195,7 +1178,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for MetricsConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Id", &self.id)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Prefix", &self.prefix)?;
@@ -1258,7 +1240,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for NoncurrentVersionTransition {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "StorageClass", &self.storage_class)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitionInDays", &self.transition_in_days)?;
@@ -1317,7 +1298,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for NotificationConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaConfigurations", &self.lambda_configurations)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "QueueConfigurations", &self.queue_configurations)?;
@@ -1378,7 +1358,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for NotificationFilter {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Key", &self.s3_key)?;
             ::serde::ser::SerializeMap::end(map)
@@ -1431,7 +1410,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for QueueConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Event", &self.event)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Filter", &self.filter)?;
@@ -1494,7 +1472,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for RedirectAllRequestsTo {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostName", &self.host_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", &self.protocol)?;
@@ -1557,7 +1534,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for RedirectRule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostName", &self.host_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "HttpRedirectCode", &self.http_redirect_code)?;
@@ -1632,7 +1608,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for ReplicationConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Role", &self.role)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Rules", &self.rules)?;
@@ -1695,7 +1670,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for ReplicationDestination {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessControlTranslation", &self.access_control_translation)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Account", &self.account)?;
@@ -1776,7 +1750,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for ReplicationRule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Destination", &self.destination)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Id", &self.id)?;
@@ -1851,7 +1824,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for RoutingRule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RedirectRule", &self.redirect_rule)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoutingRuleCondition", &self.routing_rule_condition)?;
@@ -1908,7 +1880,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for RoutingRuleCondition {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "HttpErrorCodeReturnedEquals", &self.http_error_code_returned_equals)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyPrefixEquals", &self.key_prefix_equals)?;
@@ -1985,7 +1956,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for Rule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AbortIncompleteMultipartUpload", &self.abort_incomplete_multipart_upload)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExpirationDate", &self.expiration_date)?;
@@ -2100,7 +2070,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for S3KeyFilter {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Rules", &self.rules)?;
             ::serde::ser::SerializeMap::end(map)
@@ -2151,7 +2120,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for ServerSideEncryptionByDefault {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KMSMasterKeyID", &self.kms_master_key_id)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SSEAlgorithm", &self.sse_algorithm)?;
@@ -2206,7 +2174,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for ServerSideEncryptionRule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServerSideEncryptionByDefault", &self.server_side_encryption_by_default)?;
             ::serde::ser::SerializeMap::end(map)
@@ -2255,7 +2222,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for SourceSelectionCriteria {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SseKmsEncryptedObjects", &self.sse_kms_encrypted_objects)?;
             ::serde::ser::SerializeMap::end(map)
@@ -2304,7 +2270,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for SseKmsEncryptedObjects {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Status", &self.status)?;
             ::serde::ser::SerializeMap::end(map)
@@ -2353,7 +2318,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for StorageClassAnalysis {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataExport", &self.data_export)?;
             ::serde::ser::SerializeMap::end(map)
@@ -2404,7 +2368,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for TagFilter {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
@@ -2463,7 +2426,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for TopicConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Event", &self.event)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Filter", &self.filter)?;
@@ -2528,7 +2490,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for Transition {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "StorageClass", &self.storage_class)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitionDate", &self.transition_date)?;
@@ -2589,7 +2550,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for VersioningConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Status", &self.status)?;
             ::serde::ser::SerializeMap::end(map)
@@ -2644,7 +2604,6 @@ pub mod bucket {
 
     impl ::codec::SerializeValue for WebsiteConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ErrorDocument", &self.error_document)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IndexDocument", &self.index_document)?;

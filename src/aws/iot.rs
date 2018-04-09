@@ -17,7 +17,6 @@ pub struct CertificateProperties {
 
 impl ::serde::Serialize for CertificateProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificateSigningRequest", &self.certificate_signing_request)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Status", &self.status)?;
@@ -99,7 +98,6 @@ pub struct PolicyProperties {
 
 impl ::serde::Serialize for PolicyProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyDocument", &self.policy_document)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyName", &self.policy_name)?;
@@ -181,7 +179,6 @@ pub struct PolicyPrincipalAttachmentProperties {
 
 impl ::serde::Serialize for PolicyPrincipalAttachmentProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyName", &self.policy_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Principal", &self.principal)?;
@@ -263,7 +260,6 @@ pub struct ThingProperties {
 
 impl ::serde::Serialize for ThingProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AttributePayload", &self.attribute_payload)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThingName", &self.thing_name)?;
@@ -345,7 +341,6 @@ pub struct ThingPrincipalAttachmentProperties {
 
 impl ::serde::Serialize for ThingPrincipalAttachmentProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Principal", &self.principal)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThingName", &self.thing_name)?;
@@ -427,7 +422,6 @@ pub struct TopicRuleProperties {
 
 impl ::serde::Serialize for TopicRuleProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleName", &self.rule_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "TopicRulePayload", &self.topic_rule_payload)?;
@@ -504,7 +498,6 @@ pub mod thing {
 
     impl ::codec::SerializeValue for AttributePayload {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attributes", &self.attributes)?;
             ::serde::ser::SerializeMap::end(map)
@@ -579,7 +572,6 @@ pub mod topic_rule {
 
     impl ::codec::SerializeValue for Action {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudwatchAlarm", &self.cloudwatch_alarm)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudwatchMetric", &self.cloudwatch_metric)?;
@@ -700,7 +692,6 @@ pub mod topic_rule {
 
     impl ::codec::SerializeValue for CloudwatchAlarmAction {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AlarmName", &self.alarm_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
@@ -777,7 +768,6 @@ pub mod topic_rule {
 
     impl ::codec::SerializeValue for CloudwatchMetricAction {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricName", &self.metric_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricNamespace", &self.metric_namespace)?;
@@ -872,7 +862,6 @@ pub mod topic_rule {
 
     impl ::codec::SerializeValue for DynamoDBAction {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "HashKeyField", &self.hash_key_field)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "HashKeyType", &self.hash_key_type)?;
@@ -971,7 +960,6 @@ pub mod topic_rule {
 
     impl ::codec::SerializeValue for DynamoDBv2Action {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PutItem", &self.put_item)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
@@ -1034,7 +1022,6 @@ pub mod topic_rule {
 
     impl ::codec::SerializeValue for ElasticsearchAction {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Endpoint", &self.endpoint)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Id", &self.id)?;
@@ -1111,7 +1098,6 @@ pub mod topic_rule {
 
     impl ::codec::SerializeValue for FirehoseAction {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeliveryStreamName", &self.delivery_stream_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
@@ -1176,7 +1162,6 @@ pub mod topic_rule {
 
     impl ::codec::SerializeValue for KinesisAction {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PartitionKey", &self.partition_key)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
@@ -1237,7 +1222,6 @@ pub mod topic_rule {
 
     impl ::codec::SerializeValue for LambdaAction {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "FunctionArn", &self.function_arn)?;
             ::serde::ser::SerializeMap::end(map)
@@ -1286,7 +1270,6 @@ pub mod topic_rule {
 
     impl ::codec::SerializeValue for PutItemInput {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TableName", &self.table_name)?;
             ::serde::ser::SerializeMap::end(map)
@@ -1337,7 +1320,6 @@ pub mod topic_rule {
 
     impl ::codec::SerializeValue for RepublishAction {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Topic", &self.topic)?;
@@ -1396,7 +1378,6 @@ pub mod topic_rule {
 
     impl ::codec::SerializeValue for S3Action {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketName", &self.bucket_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
@@ -1461,7 +1442,6 @@ pub mod topic_rule {
 
     impl ::codec::SerializeValue for SnsAction {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MessageFormat", &self.message_format)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
@@ -1526,7 +1506,6 @@ pub mod topic_rule {
 
     impl ::codec::SerializeValue for SqsAction {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "QueueUrl", &self.queue_url)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
@@ -1595,7 +1574,6 @@ pub mod topic_rule {
 
     impl ::codec::SerializeValue for TopicRulePayload {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Actions", &self.actions)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AwsIotSqlVersion", &self.aws_iot_sql_version)?;

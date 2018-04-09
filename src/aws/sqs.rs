@@ -35,7 +35,6 @@ pub struct QueueProperties {
 
 impl ::serde::Serialize for QueueProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContentBasedDeduplication", &self.content_based_deduplication)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DelaySeconds", &self.delay_seconds)?;
@@ -171,7 +170,6 @@ pub struct QueuePolicyProperties {
 
 impl ::serde::Serialize for QueuePolicyProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyDocument", &self.policy_document)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Queues", &self.queues)?;

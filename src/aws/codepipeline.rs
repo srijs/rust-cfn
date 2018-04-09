@@ -27,7 +27,6 @@ pub struct CustomActionTypeProperties {
 
 impl ::serde::Serialize for CustomActionTypeProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Category", &self.category)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConfigurationProperties", &self.configuration_properties)?;
@@ -147,7 +146,6 @@ pub struct PipelineProperties {
 
 impl ::serde::Serialize for PipelineProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ArtifactStore", &self.artifact_store)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisableInboundStageTransitions", &self.disable_inbound_stage_transitions)?;
@@ -250,7 +248,6 @@ pub mod custom_action_type {
 
     impl ::codec::SerializeValue for ArtifactDetails {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaximumCount", &self.maximum_count)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinimumCount", &self.minimum_count)?;
@@ -317,7 +314,6 @@ pub mod custom_action_type {
 
     impl ::codec::SerializeValue for ConfigurationProperties {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
@@ -408,7 +404,6 @@ pub mod custom_action_type {
 
     impl ::codec::SerializeValue for Settings {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EntityUrlTemplate", &self.entity_url_template)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExecutionUrlTemplate", &self.execution_url_template)?;
@@ -491,7 +486,6 @@ pub mod pipeline {
 
     impl ::codec::SerializeValue for ActionDeclaration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ActionTypeId", &self.action_type_id)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Configuration", &self.configuration)?;
@@ -582,7 +576,6 @@ pub mod pipeline {
 
     impl ::codec::SerializeValue for ActionTypeId {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Category", &self.category)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Owner", &self.owner)?;
@@ -653,7 +646,6 @@ pub mod pipeline {
 
     impl ::codec::SerializeValue for ArtifactStore {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EncryptionKey", &self.encryption_key)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Location", &self.location)?;
@@ -716,7 +708,6 @@ pub mod pipeline {
 
     impl ::codec::SerializeValue for BlockerDeclaration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
@@ -773,7 +764,6 @@ pub mod pipeline {
 
     impl ::codec::SerializeValue for EncryptionKey {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Id", &self.id)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
@@ -828,7 +818,6 @@ pub mod pipeline {
 
     impl ::codec::SerializeValue for InputArtifact {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             ::serde::ser::SerializeMap::end(map)
@@ -877,7 +866,6 @@ pub mod pipeline {
 
     impl ::codec::SerializeValue for OutputArtifact {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             ::serde::ser::SerializeMap::end(map)
@@ -930,7 +918,6 @@ pub mod pipeline {
 
     impl ::codec::SerializeValue for StageDeclaration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Actions", &self.actions)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Blockers", &self.blockers)?;
@@ -993,7 +980,6 @@ pub mod pipeline {
 
     impl ::codec::SerializeValue for StageTransition {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Reason", &self.reason)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "StageName", &self.stage_name)?;

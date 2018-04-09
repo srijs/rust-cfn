@@ -15,7 +15,6 @@ pub struct AccountProperties {
 
 impl ::serde::Serialize for AccountProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchRoleArn", &self.cloud_watch_role_arn)?;
         ::serde::ser::SerializeMap::end(map)
@@ -99,7 +98,6 @@ pub struct ApiKeyProperties {
 
 impl ::serde::Serialize for ApiKeyProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomerId", &self.customer_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
@@ -221,7 +219,6 @@ pub struct AuthorizerProperties {
 
 impl ::serde::Serialize for AuthorizerProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthType", &self.auth_type)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthorizerCredentials", &self.authorizer_credentials)?;
@@ -355,7 +352,6 @@ pub struct BasePathMappingProperties {
 
 impl ::serde::Serialize for BasePathMappingProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "BasePath", &self.base_path)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainName", &self.domain_name)?;
@@ -447,7 +443,6 @@ pub struct ClientCertificateProperties {
 
 impl ::serde::Serialize for ClientCertificateProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
         ::serde::ser::SerializeMap::end(map)
@@ -527,7 +522,6 @@ pub struct DeploymentProperties {
 
 impl ::serde::Serialize for DeploymentProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RestApiId", &self.rest_api_id)?;
@@ -623,7 +617,6 @@ pub struct DocumentationPartProperties {
 
 impl ::serde::Serialize for DocumentationPartProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Location", &self.location)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Properties", &self.properties)?;
@@ -713,7 +706,6 @@ pub struct DocumentationVersionProperties {
 
 impl ::serde::Serialize for DocumentationVersionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentationVersion", &self.documentation_version)?;
@@ -805,7 +797,6 @@ pub struct DomainNameProperties {
 
 impl ::serde::Serialize for DomainNameProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificateArn", &self.certificate_arn)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainName", &self.domain_name)?;
@@ -905,7 +896,6 @@ pub struct GatewayResponseProperties {
 
 impl ::serde::Serialize for GatewayResponseProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResponseParameters", &self.response_parameters)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResponseTemplates", &self.response_templates)?;
@@ -1025,7 +1015,6 @@ pub struct MethodProperties {
 
 impl ::serde::Serialize for MethodProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApiKeyRequired", &self.api_key_required)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthorizationType", &self.authorization_type)?;
@@ -1173,7 +1162,6 @@ pub struct ModelProperties {
 
 impl ::serde::Serialize for ModelProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContentType", &self.content_type)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
@@ -1277,7 +1265,6 @@ pub struct RequestValidatorProperties {
 
 impl ::serde::Serialize for RequestValidatorProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RestApiId", &self.rest_api_id)?;
@@ -1373,7 +1360,6 @@ pub struct ResourceProperties {
 
 impl ::serde::Serialize for ResourceProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ParentId", &self.parent_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "PathPart", &self.path_part)?;
@@ -1479,7 +1465,6 @@ pub struct RestApiProperties {
 
 impl ::serde::Serialize for RestApiProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApiKeySourceType", &self.api_key_source_type)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "BinaryMediaTypes", &self.binary_media_types)?;
@@ -1631,7 +1616,6 @@ pub struct StageProperties {
 
 impl ::serde::Serialize for StageProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CacheClusterEnabled", &self.cache_cluster_enabled)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CacheClusterSize", &self.cache_cluster_size)?;
@@ -1767,7 +1751,6 @@ pub struct UsagePlanProperties {
 
 impl ::serde::Serialize for UsagePlanProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApiStages", &self.api_stages)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
@@ -1869,7 +1852,6 @@ pub struct UsagePlanKeyProperties {
 
 impl ::serde::Serialize for UsagePlanKeyProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyId", &self.key_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyType", &self.key_type)?;
@@ -1959,7 +1941,6 @@ pub struct VpcLinkProperties {
 
 impl ::serde::Serialize for VpcLinkProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
@@ -2044,7 +2025,6 @@ pub mod api_key {
 
     impl ::codec::SerializeValue for StageKey {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RestApiId", &self.rest_api_id)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "StageName", &self.stage_name)?;
@@ -2121,7 +2101,6 @@ pub mod deployment {
 
     impl ::codec::SerializeValue for MethodSetting {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CacheDataEncrypted", &self.cache_data_encrypted)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CacheTtlInSeconds", &self.cache_ttl_in_seconds)?;
@@ -2252,7 +2231,6 @@ pub mod deployment {
 
     impl ::codec::SerializeValue for StageDescription {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CacheClusterEnabled", &self.cache_cluster_enabled)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CacheClusterSize", &self.cache_cluster_size)?;
@@ -2397,7 +2375,6 @@ pub mod documentation_part {
 
     impl ::codec::SerializeValue for Location {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Method", &self.method)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
@@ -2474,7 +2451,6 @@ pub mod domain_name {
 
     impl ::codec::SerializeValue for EndpointConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Types", &self.types)?;
             ::serde::ser::SerializeMap::end(map)
@@ -2547,7 +2523,6 @@ pub mod method {
 
     impl ::codec::SerializeValue for Integration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CacheKeyParameters", &self.cache_key_parameters)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CacheNamespace", &self.cache_namespace)?;
@@ -2664,7 +2639,6 @@ pub mod method {
 
     impl ::codec::SerializeValue for IntegrationResponse {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContentHandling", &self.content_handling)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResponseParameters", &self.response_parameters)?;
@@ -2741,7 +2715,6 @@ pub mod method {
 
     impl ::codec::SerializeValue for MethodResponse {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResponseModels", &self.response_models)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResponseParameters", &self.response_parameters)?;
@@ -2806,7 +2779,6 @@ pub mod rest_api {
 
     impl ::codec::SerializeValue for EndpointConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Types", &self.types)?;
             ::serde::ser::SerializeMap::end(map)
@@ -2861,7 +2833,6 @@ pub mod rest_api {
 
     impl ::codec::SerializeValue for S3Location {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Bucket", &self.bucket)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ETag", &self.e_tag)?;
@@ -2950,7 +2921,6 @@ pub mod stage {
 
     impl ::codec::SerializeValue for MethodSetting {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CacheDataEncrypted", &self.cache_data_encrypted)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CacheTtlInSeconds", &self.cache_ttl_in_seconds)?;
@@ -3059,7 +3029,6 @@ pub mod usage_plan {
 
     impl ::codec::SerializeValue for ApiStage {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApiId", &self.api_id)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Stage", &self.stage)?;
@@ -3118,7 +3087,6 @@ pub mod usage_plan {
 
     impl ::codec::SerializeValue for QuotaSettings {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Limit", &self.limit)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Offset", &self.offset)?;
@@ -3181,7 +3149,6 @@ pub mod usage_plan {
 
     impl ::codec::SerializeValue for ThrottleSettings {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BurstLimit", &self.burst_limit)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RateLimit", &self.rate_limit)?;

@@ -17,7 +17,6 @@ pub struct ApplicationProperties {
 
 impl ::serde::Serialize for ApplicationProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationName", &self.application_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComputePlatform", &self.compute_platform)?;
@@ -99,7 +98,6 @@ pub struct DeploymentConfigProperties {
 
 impl ::serde::Serialize for DeploymentConfigProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeploymentConfigName", &self.deployment_config_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinimumHealthyHosts", &self.minimum_healthy_hosts)?;
@@ -203,7 +201,6 @@ pub struct DeploymentGroupProperties {
 
 impl ::serde::Serialize for DeploymentGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AlarmConfiguration", &self.alarm_configuration)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationName", &self.application_name)?;
@@ -348,7 +345,6 @@ pub mod deployment_config {
 
     impl ::codec::SerializeValue for MinimumHealthyHosts {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
@@ -407,7 +403,6 @@ pub mod deployment_group {
 
     impl ::codec::SerializeValue for Alarm {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             ::serde::ser::SerializeMap::end(map)
@@ -460,7 +455,6 @@ pub mod deployment_group {
 
     impl ::codec::SerializeValue for AlarmConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Alarms", &self.alarms)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
@@ -523,7 +517,6 @@ pub mod deployment_group {
 
     impl ::codec::SerializeValue for AutoRollbackConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Events", &self.events)?;
@@ -582,7 +575,6 @@ pub mod deployment_group {
 
     impl ::codec::SerializeValue for Deployment {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IgnoreApplicationStopFailures", &self.ignore_application_stop_failures)?;
@@ -645,7 +637,6 @@ pub mod deployment_group {
 
     impl ::codec::SerializeValue for DeploymentStyle {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeploymentOption", &self.deployment_option)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeploymentType", &self.deployment_type)?;
@@ -704,7 +695,6 @@ pub mod deployment_group {
 
     impl ::codec::SerializeValue for EC2TagFilter {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
@@ -765,7 +755,6 @@ pub mod deployment_group {
 
     impl ::codec::SerializeValue for ELBInfo {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             ::serde::ser::SerializeMap::end(map)
@@ -816,7 +805,6 @@ pub mod deployment_group {
 
     impl ::codec::SerializeValue for GitHubLocation {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CommitId", &self.commit_id)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Repository", &self.repository)?;
@@ -873,7 +861,6 @@ pub mod deployment_group {
 
     impl ::codec::SerializeValue for LoadBalancerInfo {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ElbInfoList", &self.elb_info_list)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetGroupInfoList", &self.target_group_info_list)?;
@@ -932,7 +919,6 @@ pub mod deployment_group {
 
     impl ::codec::SerializeValue for RevisionLocation {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "GitHubLocation", &self.git_hub_location)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RevisionType", &self.revision_type)?;
@@ -1001,7 +987,6 @@ pub mod deployment_group {
 
     impl ::codec::SerializeValue for S3Location {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Bucket", &self.bucket)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BundleType", &self.bundle_type)?;
@@ -1078,7 +1063,6 @@ pub mod deployment_group {
 
     impl ::codec::SerializeValue for TagFilter {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
@@ -1139,7 +1123,6 @@ pub mod deployment_group {
 
     impl ::codec::SerializeValue for TargetGroupInfo {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             ::serde::ser::SerializeMap::end(map)
@@ -1192,7 +1175,6 @@ pub mod deployment_group {
 
     impl ::codec::SerializeValue for TriggerConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TriggerEvents", &self.trigger_events)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TriggerName", &self.trigger_name)?;

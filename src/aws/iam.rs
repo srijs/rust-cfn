@@ -19,7 +19,6 @@ pub struct AccessKeyProperties {
 
 impl ::serde::Serialize for AccessKeyProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Serial", &self.serial)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Status", &self.status)?;
@@ -111,7 +110,6 @@ pub struct GroupProperties {
 
 impl ::serde::Serialize for GroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupName", &self.group_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ManagedPolicyArns", &self.managed_policy_arns)?;
@@ -207,7 +205,6 @@ pub struct InstanceProfileProperties {
 
 impl ::serde::Serialize for InstanceProfileProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceProfileName", &self.instance_profile_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Path", &self.path)?;
@@ -305,7 +302,6 @@ pub struct ManagedPolicyProperties {
 
 impl ::serde::Serialize for ManagedPolicyProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Groups", &self.groups)?;
@@ -423,7 +419,6 @@ pub struct PolicyProperties {
 
 impl ::serde::Serialize for PolicyProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Groups", &self.groups)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyDocument", &self.policy_document)?;
@@ -529,7 +524,6 @@ pub struct RoleProperties {
 
 impl ::serde::Serialize for RoleProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssumeRolePolicyDocument", &self.assume_role_policy_document)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ManagedPolicyArns", &self.managed_policy_arns)?;
@@ -637,7 +631,6 @@ pub struct UserProperties {
 
 impl ::serde::Serialize for UserProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Groups", &self.groups)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoginProfile", &self.login_profile)?;
@@ -743,7 +736,6 @@ pub struct UserToGroupAdditionProperties {
 
 impl ::serde::Serialize for UserToGroupAdditionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupName", &self.group_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Users", &self.users)?;
@@ -822,7 +814,6 @@ pub mod group {
 
     impl ::codec::SerializeValue for Policy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyDocument", &self.policy_document)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyName", &self.policy_name)?;
@@ -883,7 +874,6 @@ pub mod role {
 
     impl ::codec::SerializeValue for Policy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyDocument", &self.policy_document)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyName", &self.policy_name)?;
@@ -944,7 +934,6 @@ pub mod user {
 
     impl ::codec::SerializeValue for LoginProfile {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Password", &self.password)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PasswordResetRequired", &self.password_reset_required)?;
@@ -1001,7 +990,6 @@ pub mod user {
 
     impl ::codec::SerializeValue for Policy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyDocument", &self.policy_document)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyName", &self.policy_name)?;

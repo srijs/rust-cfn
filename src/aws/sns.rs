@@ -19,7 +19,6 @@ pub struct SubscriptionProperties {
 
 impl ::serde::Serialize for SubscriptionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Endpoint", &self.endpoint)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", &self.protocol)?;
@@ -109,7 +108,6 @@ pub struct TopicProperties {
 
 impl ::serde::Serialize for TopicProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisplayName", &self.display_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Subscription", &self.subscription)?;
@@ -197,7 +195,6 @@ pub struct TopicPolicyProperties {
 
 impl ::serde::Serialize for TopicPolicyProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyDocument", &self.policy_document)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Topics", &self.topics)?;
@@ -276,7 +273,6 @@ pub mod topic {
 
     impl ::codec::SerializeValue for Subscription {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Endpoint", &self.endpoint)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", &self.protocol)?;

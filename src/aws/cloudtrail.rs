@@ -39,7 +39,6 @@ pub struct TrailProperties {
 
 impl ::serde::Serialize for TrailProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchLogsLogGroupArn", &self.cloud_watch_logs_log_group_arn)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchLogsRoleArn", &self.cloud_watch_logs_role_arn)?;
@@ -184,7 +183,6 @@ pub mod trail {
 
     impl ::codec::SerializeValue for DataResource {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Values", &self.values)?;
@@ -243,7 +241,6 @@ pub mod trail {
 
     impl ::codec::SerializeValue for EventSelector {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataResources", &self.data_resources)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncludeManagementEvents", &self.include_management_events)?;

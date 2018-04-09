@@ -21,7 +21,6 @@ pub struct ApplicationProperties {
 
 impl ::serde::Serialize for ApplicationProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationCode", &self.application_code)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationDescription", &self.application_description)?;
@@ -115,7 +114,6 @@ pub struct ApplicationOutputProperties {
 
 impl ::serde::Serialize for ApplicationOutputProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationName", &self.application_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Output", &self.output)?;
@@ -197,7 +195,6 @@ pub struct ApplicationReferenceDataSourceProperties {
 
 impl ::serde::Serialize for ApplicationReferenceDataSourceProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationName", &self.application_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReferenceDataSource", &self.reference_data_source)?;
@@ -276,7 +273,6 @@ pub mod application {
 
     impl ::codec::SerializeValue for CSVMappingParameters {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordColumnDelimiter", &self.record_column_delimiter)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordRowDelimiter", &self.record_row_delimiter)?;
@@ -341,7 +337,6 @@ pub mod application {
 
     impl ::codec::SerializeValue for Input {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputParallelism", &self.input_parallelism)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputProcessingConfiguration", &self.input_processing_configuration)?;
@@ -422,7 +417,6 @@ pub mod application {
 
     impl ::codec::SerializeValue for InputLambdaProcessor {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceARN", &self.resource_arn)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleARN", &self.role_arn)?;
@@ -477,7 +471,6 @@ pub mod application {
 
     impl ::codec::SerializeValue for InputParallelism {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Count", &self.count)?;
             ::serde::ser::SerializeMap::end(map)
@@ -526,7 +519,6 @@ pub mod application {
 
     impl ::codec::SerializeValue for InputProcessingConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputLambdaProcessor", &self.input_lambda_processor)?;
             ::serde::ser::SerializeMap::end(map)
@@ -579,7 +571,6 @@ pub mod application {
 
     impl ::codec::SerializeValue for InputSchema {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordColumns", &self.record_columns)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordEncoding", &self.record_encoding)?;
@@ -640,7 +631,6 @@ pub mod application {
 
     impl ::codec::SerializeValue for JSONMappingParameters {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordRowPath", &self.record_row_path)?;
             ::serde::ser::SerializeMap::end(map)
@@ -691,7 +681,6 @@ pub mod application {
 
     impl ::codec::SerializeValue for KinesisFirehoseInput {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceARN", &self.resource_arn)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleARN", &self.role_arn)?;
@@ -748,7 +737,6 @@ pub mod application {
 
     impl ::codec::SerializeValue for KinesisStreamsInput {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceARN", &self.resource_arn)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleARN", &self.role_arn)?;
@@ -805,7 +793,6 @@ pub mod application {
 
     impl ::codec::SerializeValue for MappingParameters {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CSVMappingParameters", &self.csv_mapping_parameters)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "JSONMappingParameters", &self.json_mapping_parameters)?;
@@ -864,7 +851,6 @@ pub mod application {
 
     impl ::codec::SerializeValue for RecordColumn {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Mapping", &self.mapping)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
@@ -927,7 +913,6 @@ pub mod application {
 
     impl ::codec::SerializeValue for RecordFormat {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MappingParameters", &self.mapping_parameters)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordFormatType", &self.record_format_type)?;
@@ -986,7 +971,6 @@ pub mod application_output {
 
     impl ::codec::SerializeValue for DestinationSchema {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordFormatType", &self.record_format_type)?;
             ::serde::ser::SerializeMap::end(map)
@@ -1037,7 +1021,6 @@ pub mod application_output {
 
     impl ::codec::SerializeValue for KinesisFirehoseOutput {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceARN", &self.resource_arn)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleARN", &self.role_arn)?;
@@ -1094,7 +1077,6 @@ pub mod application_output {
 
     impl ::codec::SerializeValue for KinesisStreamsOutput {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceARN", &self.resource_arn)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleARN", &self.role_arn)?;
@@ -1151,7 +1133,6 @@ pub mod application_output {
 
     impl ::codec::SerializeValue for LambdaOutput {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceARN", &self.resource_arn)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleARN", &self.role_arn)?;
@@ -1214,7 +1195,6 @@ pub mod application_output {
 
     impl ::codec::SerializeValue for Output {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationSchema", &self.destination_schema)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KinesisFirehoseOutput", &self.kinesis_firehose_output)?;
@@ -1293,7 +1273,6 @@ pub mod application_reference_data_source {
 
     impl ::codec::SerializeValue for CSVMappingParameters {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordColumnDelimiter", &self.record_column_delimiter)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordRowDelimiter", &self.record_row_delimiter)?;
@@ -1348,7 +1327,6 @@ pub mod application_reference_data_source {
 
     impl ::codec::SerializeValue for JSONMappingParameters {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordRowPath", &self.record_row_path)?;
             ::serde::ser::SerializeMap::end(map)
@@ -1399,7 +1377,6 @@ pub mod application_reference_data_source {
 
     impl ::codec::SerializeValue for MappingParameters {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CSVMappingParameters", &self.csv_mapping_parameters)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "JSONMappingParameters", &self.json_mapping_parameters)?;
@@ -1458,7 +1435,6 @@ pub mod application_reference_data_source {
 
     impl ::codec::SerializeValue for RecordColumn {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Mapping", &self.mapping)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
@@ -1521,7 +1497,6 @@ pub mod application_reference_data_source {
 
     impl ::codec::SerializeValue for RecordFormat {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MappingParameters", &self.mapping_parameters)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordFormatType", &self.record_format_type)?;
@@ -1580,7 +1555,6 @@ pub mod application_reference_data_source {
 
     impl ::codec::SerializeValue for ReferenceDataSource {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReferenceSchema", &self.reference_schema)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3ReferenceDataSource", &self.s3_reference_data_source)?;
@@ -1645,7 +1619,6 @@ pub mod application_reference_data_source {
 
     impl ::codec::SerializeValue for ReferenceSchema {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordColumns", &self.record_columns)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordEncoding", &self.record_encoding)?;
@@ -1710,7 +1683,6 @@ pub mod application_reference_data_source {
 
     impl ::codec::SerializeValue for S3ReferenceDataSource {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketARN", &self.bucket_arn)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "FileKey", &self.file_key)?;

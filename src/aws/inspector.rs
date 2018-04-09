@@ -17,7 +17,6 @@ pub struct AssessmentTargetProperties {
 
 impl ::serde::Serialize for AssessmentTargetProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssessmentTargetName", &self.assessment_target_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceGroupArn", &self.resource_group_arn)?;
@@ -105,7 +104,6 @@ pub struct AssessmentTemplateProperties {
 
 impl ::serde::Serialize for AssessmentTemplateProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssessmentTargetArn", &self.assessment_target_arn)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssessmentTemplateName", &self.assessment_template_name)?;
@@ -203,7 +201,6 @@ pub struct ResourceGroupProperties {
 
 impl ::serde::Serialize for ResourceGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceGroupTags", &self.resource_group_tags)?;
         ::serde::ser::SerializeMap::end(map)

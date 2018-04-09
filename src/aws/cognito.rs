@@ -33,7 +33,6 @@ pub struct IdentityPoolProperties {
 
 impl ::serde::Serialize for IdentityPoolProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowUnauthenticatedIdentities", &self.allow_unauthenticated_identities)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CognitoEvents", &self.cognito_events)?;
@@ -165,7 +164,6 @@ pub struct IdentityPoolRoleAttachmentProperties {
 
 impl ::serde::Serialize for IdentityPoolRoleAttachmentProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "IdentityPoolId", &self.identity_pool_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleMappings", &self.role_mappings)?;
@@ -281,7 +279,6 @@ pub struct UserPoolProperties {
 
 impl ::serde::Serialize for UserPoolProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AdminCreateUserConfig", &self.admin_create_user_config)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AliasAttributes", &self.alias_attributes)?;
@@ -457,7 +454,6 @@ pub struct UserPoolClientProperties {
 
 impl ::serde::Serialize for UserPoolClientProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientName", &self.client_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExplicitAuthFlows", &self.explicit_auth_flows)?;
@@ -575,7 +571,6 @@ pub struct UserPoolGroupProperties {
 
 impl ::serde::Serialize for UserPoolGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupName", &self.group_name)?;
@@ -685,7 +680,6 @@ pub struct UserPoolUserProperties {
 
 impl ::serde::Serialize for UserPoolUserProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DesiredDeliveryMediums", &self.desired_delivery_mediums)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ForceAliasCreation", &self.force_alias_creation)?;
@@ -799,7 +793,6 @@ pub struct UserPoolUserToGroupAttachmentProperties {
 
 impl ::serde::Serialize for UserPoolUserToGroupAttachmentProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupName", &self.group_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserPoolId", &self.user_pool_id)?;
@@ -886,7 +879,6 @@ pub mod identity_pool {
 
     impl ::codec::SerializeValue for CognitoIdentityProvider {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientId", &self.client_id)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProviderName", &self.provider_name)?;
@@ -951,7 +943,6 @@ pub mod identity_pool {
 
     impl ::codec::SerializeValue for CognitoStreams {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamName", &self.stream_name)?;
@@ -1014,7 +1005,6 @@ pub mod identity_pool {
 
     impl ::codec::SerializeValue for PushSync {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationArns", &self.application_arns)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
@@ -1079,7 +1069,6 @@ pub mod identity_pool_role_attachment {
 
     impl ::codec::SerializeValue for MappingRule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Claim", &self.claim)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MatchType", &self.match_type)?;
@@ -1150,7 +1139,6 @@ pub mod identity_pool_role_attachment {
 
     impl ::codec::SerializeValue for RoleMapping {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AmbiguousRoleResolution", &self.ambiguous_role_resolution)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RulesConfiguration", &self.rules_configuration)?;
@@ -1211,7 +1199,6 @@ pub mod identity_pool_role_attachment {
 
     impl ::codec::SerializeValue for RulesConfigurationType {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Rules", &self.rules)?;
             ::serde::ser::SerializeMap::end(map)
@@ -1268,7 +1255,6 @@ pub mod user_pool {
 
     impl ::codec::SerializeValue for AdminCreateUserConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowAdminCreateUserOnly", &self.allow_admin_create_user_only)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "InviteMessageTemplate", &self.invite_message_template)?;
@@ -1331,7 +1317,6 @@ pub mod user_pool {
 
     impl ::codec::SerializeValue for DeviceConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ChallengeRequiredOnNewDevice", &self.challenge_required_on_new_device)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceOnlyRememberedOnUserPrompt", &self.device_only_remembered_on_user_prompt)?;
@@ -1388,7 +1373,6 @@ pub mod user_pool {
 
     impl ::codec::SerializeValue for EmailConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplyToEmailAddress", &self.reply_to_email_address)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceArn", &self.source_arn)?;
@@ -1447,7 +1431,6 @@ pub mod user_pool {
 
     impl ::codec::SerializeValue for InviteMessageTemplate {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EmailMessage", &self.email_message)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EmailSubject", &self.email_subject)?;
@@ -1522,7 +1505,6 @@ pub mod user_pool {
 
     impl ::codec::SerializeValue for LambdaConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CreateAuthChallenge", &self.create_auth_challenge)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomMessage", &self.custom_message)?;
@@ -1615,7 +1597,6 @@ pub mod user_pool {
 
     impl ::codec::SerializeValue for NumberAttributeConstraints {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxValue", &self.max_value)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinValue", &self.min_value)?;
@@ -1678,7 +1659,6 @@ pub mod user_pool {
 
     impl ::codec::SerializeValue for PasswordPolicy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinimumLength", &self.minimum_length)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RequireLowercase", &self.require_lowercase)?;
@@ -1751,7 +1731,6 @@ pub mod user_pool {
 
     impl ::codec::SerializeValue for Policies {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PasswordPolicy", &self.password_policy)?;
             ::serde::ser::SerializeMap::end(map)
@@ -1812,7 +1791,6 @@ pub mod user_pool {
 
     impl ::codec::SerializeValue for SchemaAttribute {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AttributeDataType", &self.attribute_data_type)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeveloperOnlyAttribute", &self.developer_only_attribute)?;
@@ -1899,7 +1877,6 @@ pub mod user_pool {
 
     impl ::codec::SerializeValue for SmsConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExternalId", &self.external_id)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnsCallerArn", &self.sns_caller_arn)?;
@@ -1956,7 +1933,6 @@ pub mod user_pool {
 
     impl ::codec::SerializeValue for StringAttributeConstraints {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxLength", &self.max_length)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinLength", &self.min_length)?;
@@ -2017,7 +1993,6 @@ pub mod user_pool_user {
 
     impl ::codec::SerializeValue for AttributeType {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;

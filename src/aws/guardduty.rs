@@ -15,7 +15,6 @@ pub struct DetectorProperties {
 
 impl ::serde::Serialize for DetectorProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enable", &self.enable)?;
         ::serde::ser::SerializeMap::end(map)
@@ -97,7 +96,6 @@ pub struct IPSetProperties {
 
 impl ::serde::Serialize for IPSetProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Activate", &self.activate)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DetectorId", &self.detector_id)?;
@@ -199,7 +197,6 @@ pub struct MasterProperties {
 
 impl ::serde::Serialize for MasterProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DetectorId", &self.detector_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "InvitationId", &self.invitation_id)?;
@@ -293,7 +290,6 @@ pub struct MemberProperties {
 
 impl ::serde::Serialize for MemberProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DetectorId", &self.detector_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Email", &self.email)?;
@@ -399,7 +395,6 @@ pub struct ThreatIntelSetProperties {
 
 impl ::serde::Serialize for ThreatIntelSetProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Activate", &self.activate)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DetectorId", &self.detector_id)?;

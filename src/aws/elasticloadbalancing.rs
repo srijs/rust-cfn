@@ -45,7 +45,6 @@ pub struct LoadBalancerProperties {
 
 impl ::serde::Serialize for LoadBalancerProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessLoggingPolicy", &self.access_logging_policy)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AppCookieStickinessPolicy", &self.app_cookie_stickiness_policy)?;
@@ -212,7 +211,6 @@ pub mod load_balancer {
 
     impl ::codec::SerializeValue for AccessLoggingPolicy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EmitInterval", &self.emit_interval)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
@@ -281,7 +279,6 @@ pub mod load_balancer {
 
     impl ::codec::SerializeValue for AppCookieStickinessPolicy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CookieName", &self.cookie_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyName", &self.policy_name)?;
@@ -338,7 +335,6 @@ pub mod load_balancer {
 
     impl ::codec::SerializeValue for ConnectionDrainingPolicy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Timeout", &self.timeout)?;
@@ -393,7 +389,6 @@ pub mod load_balancer {
 
     impl ::codec::SerializeValue for ConnectionSettings {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IdleTimeout", &self.idle_timeout)?;
             ::serde::ser::SerializeMap::end(map)
@@ -450,7 +445,6 @@ pub mod load_balancer {
 
     impl ::codec::SerializeValue for HealthCheck {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthyThreshold", &self.healthy_threshold)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Interval", &self.interval)?;
@@ -525,7 +519,6 @@ pub mod load_balancer {
 
     impl ::codec::SerializeValue for LBCookieStickinessPolicy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CookieExpirationPeriod", &self.cookie_expiration_period)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyName", &self.policy_name)?;
@@ -590,7 +583,6 @@ pub mod load_balancer {
 
     impl ::codec::SerializeValue for Listeners {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstancePort", &self.instance_port)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceProtocol", &self.instance_protocol)?;
@@ -677,7 +669,6 @@ pub mod load_balancer {
 
     impl ::codec::SerializeValue for Policies {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attributes", &self.attributes)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstancePorts", &self.instance_ports)?;

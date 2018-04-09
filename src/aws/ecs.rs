@@ -15,7 +15,6 @@ pub struct ClusterProperties {
 
 impl ::serde::Serialize for ClusterProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClusterName", &self.cluster_name)?;
         ::serde::ser::SerializeMap::end(map)
@@ -113,7 +112,6 @@ pub struct ServiceProperties {
 
 impl ::serde::Serialize for ServiceProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cluster", &self.cluster)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeploymentConfiguration", &self.deployment_configuration)?;
@@ -277,7 +275,6 @@ pub struct TaskDefinitionProperties {
 
 impl ::serde::Serialize for TaskDefinitionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainerDefinitions", &self.container_definitions)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cpu", &self.cpu)?;
@@ -406,7 +403,6 @@ pub mod service {
 
     impl ::codec::SerializeValue for AwsVpcConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssignPublicIp", &self.assign_public_ip)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroups", &self.security_groups)?;
@@ -469,7 +465,6 @@ pub mod service {
 
     impl ::codec::SerializeValue for DeploymentConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaximumPercent", &self.maximum_percent)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinimumHealthyPercent", &self.minimum_healthy_percent)?;
@@ -530,7 +525,6 @@ pub mod service {
 
     impl ::codec::SerializeValue for LoadBalancer {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainerName", &self.container_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainerPort", &self.container_port)?;
@@ -597,7 +591,6 @@ pub mod service {
 
     impl ::codec::SerializeValue for NetworkConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AwsvpcConfiguration", &self.awsvpc_configuration)?;
             ::serde::ser::SerializeMap::end(map)
@@ -648,7 +641,6 @@ pub mod service {
 
     impl ::codec::SerializeValue for PlacementConstraint {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Expression", &self.expression)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
@@ -705,7 +697,6 @@ pub mod service {
 
     impl ::codec::SerializeValue for PlacementStrategy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Field", &self.field)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
@@ -816,7 +807,6 @@ pub mod task_definition {
 
     impl ::codec::SerializeValue for ContainerDefinition {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Command", &self.command)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cpu", &self.cpu)?;
@@ -1025,7 +1015,6 @@ pub mod task_definition {
 
     impl ::codec::SerializeValue for Device {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainerPath", &self.container_path)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostPath", &self.host_path)?;
@@ -1088,7 +1077,6 @@ pub mod task_definition {
 
     impl ::codec::SerializeValue for HostEntry {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Hostname", &self.hostname)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IpAddress", &self.ip_address)?;
@@ -1143,7 +1131,6 @@ pub mod task_definition {
 
     impl ::codec::SerializeValue for HostVolumeProperties {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourcePath", &self.source_path)?;
             ::serde::ser::SerializeMap::end(map)
@@ -1194,7 +1181,6 @@ pub mod task_definition {
 
     impl ::codec::SerializeValue for KernelCapabilities {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Add", &self.add)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Drop", &self.drop)?;
@@ -1251,7 +1237,6 @@ pub mod task_definition {
 
     impl ::codec::SerializeValue for KeyValuePair {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
@@ -1310,7 +1295,6 @@ pub mod task_definition {
 
     impl ::codec::SerializeValue for LinuxParameters {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Capabilities", &self.capabilities)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Devices", &self.devices)?;
@@ -1373,7 +1357,6 @@ pub mod task_definition {
 
     impl ::codec::SerializeValue for LogConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogDriver", &self.log_driver)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Options", &self.options)?;
@@ -1432,7 +1415,6 @@ pub mod task_definition {
 
     impl ::codec::SerializeValue for MountPoint {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainerPath", &self.container_path)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReadOnly", &self.read_only)?;
@@ -1497,7 +1479,6 @@ pub mod task_definition {
 
     impl ::codec::SerializeValue for PortMapping {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainerPort", &self.container_port)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostPort", &self.host_port)?;
@@ -1560,7 +1541,6 @@ pub mod task_definition {
 
     impl ::codec::SerializeValue for TaskDefinitionPlacementConstraint {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Expression", &self.expression)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
@@ -1619,7 +1599,6 @@ pub mod task_definition {
 
     impl ::codec::SerializeValue for Ulimit {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "HardLimit", &self.hard_limit)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
@@ -1682,7 +1661,6 @@ pub mod task_definition {
 
     impl ::codec::SerializeValue for Volume {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Host", &self.host)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
@@ -1739,7 +1717,6 @@ pub mod task_definition {
 
     impl ::codec::SerializeValue for VolumeFrom {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReadOnly", &self.read_only)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceContainer", &self.source_container)?;

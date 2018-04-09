@@ -25,7 +25,6 @@ pub struct ConfigRuleProperties {
 
 impl ::serde::Serialize for ConfigRuleProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConfigRuleName", &self.config_rule_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
@@ -133,7 +132,6 @@ pub struct ConfigurationRecorderProperties {
 
 impl ::serde::Serialize for ConfigurationRecorderProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordingGroup", &self.recording_group)?;
@@ -227,7 +225,6 @@ pub struct DeliveryChannelProperties {
 
 impl ::serde::Serialize for DeliveryChannelProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConfigSnapshotDeliveryProperties", &self.config_snapshot_delivery_properties)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
@@ -328,7 +325,6 @@ pub mod config_rule {
 
     impl ::codec::SerializeValue for Scope {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComplianceResourceId", &self.compliance_resource_id)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComplianceResourceTypes", &self.compliance_resource_types)?;
@@ -399,7 +395,6 @@ pub mod config_rule {
 
     impl ::codec::SerializeValue for Source {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Owner", &self.owner)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceDetails", &self.source_details)?;
@@ -464,7 +459,6 @@ pub mod config_rule {
 
     impl ::codec::SerializeValue for SourceDetail {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventSource", &self.event_source)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaximumExecutionFrequency", &self.maximum_execution_frequency)?;
@@ -533,7 +527,6 @@ pub mod configuration_recorder {
 
     impl ::codec::SerializeValue for RecordingGroup {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllSupported", &self.all_supported)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncludeGlobalResourceTypes", &self.include_global_resource_types)?;
@@ -598,7 +591,6 @@ pub mod delivery_channel {
 
     impl ::codec::SerializeValue for ConfigSnapshotDeliveryProperties {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeliveryFrequency", &self.delivery_frequency)?;
             ::serde::ser::SerializeMap::end(map)

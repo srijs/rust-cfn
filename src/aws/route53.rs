@@ -17,7 +17,6 @@ pub struct HealthCheckProperties {
 
 impl ::serde::Serialize for HealthCheckProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheckConfig", &self.health_check_config)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheckTags", &self.health_check_tags)?;
@@ -105,7 +104,6 @@ pub struct HostedZoneProperties {
 
 impl ::serde::Serialize for HostedZoneProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneConfig", &self.hosted_zone_config)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneTags", &self.hosted_zone_tags)?;
@@ -229,7 +227,6 @@ pub struct RecordSetProperties {
 
 impl ::serde::Serialize for RecordSetProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AliasTarget", &self.alias_target)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", &self.comment)?;
@@ -387,7 +384,6 @@ pub struct RecordSetGroupProperties {
 
 impl ::serde::Serialize for RecordSetGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", &self.comment)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneId", &self.hosted_zone_id)?;
@@ -478,7 +474,6 @@ pub mod health_check {
 
     impl ::codec::SerializeValue for AlarmIdentifier {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Region", &self.region)?;
@@ -563,7 +558,6 @@ pub mod health_check {
 
     impl ::codec::SerializeValue for HealthCheckConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AlarmIdentifier", &self.alarm_identifier)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ChildHealthChecks", &self.child_health_checks)?;
@@ -704,7 +698,6 @@ pub mod health_check {
 
     impl ::codec::SerializeValue for HealthCheckTag {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
@@ -763,7 +756,6 @@ pub mod hosted_zone {
 
     impl ::codec::SerializeValue for HostedZoneConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", &self.comment)?;
             ::serde::ser::SerializeMap::end(map)
@@ -814,7 +806,6 @@ pub mod hosted_zone {
 
     impl ::codec::SerializeValue for HostedZoneTag {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
@@ -869,7 +860,6 @@ pub mod hosted_zone {
 
     impl ::codec::SerializeValue for QueryLoggingConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchLogsLogGroupArn", &self.cloud_watch_logs_log_group_arn)?;
             ::serde::ser::SerializeMap::end(map)
@@ -920,7 +910,6 @@ pub mod hosted_zone {
 
     impl ::codec::SerializeValue for VPC {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "VPCId", &self.vpc_id)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "VPCRegion", &self.vpc_region)?;
@@ -983,7 +972,6 @@ pub mod record_set {
 
     impl ::codec::SerializeValue for AliasTarget {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DNSName", &self.dns_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EvaluateTargetHealth", &self.evaluate_target_health)?;
@@ -1048,7 +1036,6 @@ pub mod record_set {
 
     impl ::codec::SerializeValue for GeoLocation {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContinentCode", &self.continent_code)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CountryCode", &self.country_code)?;
@@ -1117,7 +1104,6 @@ pub mod record_set_group {
 
     impl ::codec::SerializeValue for AliasTarget {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DNSName", &self.dns_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EvaluateTargetHealth", &self.evaluate_target_health)?;
@@ -1182,7 +1168,6 @@ pub mod record_set_group {
 
     impl ::codec::SerializeValue for GeoLocation {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContinentCode", &self.continent_code)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CountryCode", &self.country_code)?;
@@ -1269,7 +1254,6 @@ pub mod record_set_group {
 
     impl ::codec::SerializeValue for RecordSet {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AliasTarget", &self.alias_target)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", &self.comment)?;

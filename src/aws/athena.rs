@@ -21,7 +21,6 @@ pub struct NamedQueryProperties {
 
 impl ::serde::Serialize for NamedQueryProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Database", &self.database)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;

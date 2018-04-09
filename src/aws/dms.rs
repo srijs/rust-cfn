@@ -19,7 +19,6 @@ pub struct CertificateProperties {
 
 impl ::serde::Serialize for CertificateProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificateIdentifier", &self.certificate_identifier)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificatePem", &self.certificate_pem)?;
@@ -135,7 +134,6 @@ pub struct EndpointProperties {
 
 impl ::serde::Serialize for EndpointProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificateArn", &self.certificate_arn)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseName", &self.database_name)?;
@@ -311,7 +309,6 @@ pub struct EventSubscriptionProperties {
 
 impl ::serde::Serialize for EventSubscriptionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventCategories", &self.event_categories)?;
@@ -447,7 +444,6 @@ pub struct ReplicationInstanceProperties {
 
 impl ::serde::Serialize for ReplicationInstanceProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocatedStorage", &self.allocated_storage)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowMajorVersionUpgrade", &self.allow_major_version_upgrade)?;
@@ -605,7 +601,6 @@ pub struct ReplicationSubnetGroupProperties {
 
 impl ::serde::Serialize for ReplicationSubnetGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicationSubnetGroupDescription", &self.replication_subnet_group_description)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicationSubnetGroupIdentifier", &self.replication_subnet_group_identifier)?;
@@ -713,7 +708,6 @@ pub struct ReplicationTaskProperties {
 
 impl ::serde::Serialize for ReplicationTaskProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-        #[allow(unused_mut)]
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CdcStartTime", &self.cdc_start_time)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "MigrationType", &self.migration_type)?;
@@ -832,7 +826,6 @@ pub mod endpoint {
 
     impl ::codec::SerializeValue for DynamoDbSettings {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceAccessRoleArn", &self.service_access_role_arn)?;
             ::serde::ser::SerializeMap::end(map)
@@ -901,7 +894,6 @@ pub mod endpoint {
 
     impl ::codec::SerializeValue for MongoDbSettings {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthMechanism", &self.auth_mechanism)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthSource", &self.auth_source)?;
@@ -1022,7 +1014,6 @@ pub mod endpoint {
 
     impl ::codec::SerializeValue for S3Settings {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            #[allow(unused_mut)]
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketFolder", &self.bucket_folder)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketName", &self.bucket_name)?;
