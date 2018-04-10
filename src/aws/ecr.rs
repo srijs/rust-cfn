@@ -20,9 +20,15 @@ pub struct RepositoryProperties {
 impl ::serde::Serialize for RepositoryProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LifecyclePolicy", &self.lifecycle_policy)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RepositoryName", &self.repository_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RepositoryPolicyText", &self.repository_policy_text)?;
+        if let Some(ref lifecycle_policy) = self.lifecycle_policy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LifecyclePolicy", lifecycle_policy)?;
+        }
+        if let Some(ref repository_name) = self.repository_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RepositoryName", repository_name)?;
+        }
+        if let Some(ref repository_policy_text) = self.repository_policy_text {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RepositoryPolicyText", repository_policy_text)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -104,8 +110,12 @@ pub mod repository {
     impl ::codec::SerializeValue for LifecyclePolicy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LifecyclePolicyText", &self.lifecycle_policy_text)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RegistryId", &self.registry_id)?;
+            if let Some(ref lifecycle_policy_text) = self.lifecycle_policy_text {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LifecyclePolicyText", lifecycle_policy_text)?;
+            }
+            if let Some(ref registry_id) = self.registry_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RegistryId", registry_id)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }

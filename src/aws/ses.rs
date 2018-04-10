@@ -16,7 +16,9 @@ pub struct ConfigurationSetProperties {
 impl ::serde::Serialize for ConfigurationSetProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -247,7 +249,9 @@ pub struct ReceiptRuleProperties {
 impl ::serde::Serialize for ReceiptRuleProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "After", &self.after)?;
+        if let Some(ref after) = self.after {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "After", after)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Rule", &self.rule)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleSetName", &self.rule_set_name)?;
         ::serde::ser::SerializeMap::end(map)
@@ -332,7 +336,9 @@ pub struct ReceiptRuleSetProperties {
 impl ::serde::Serialize for ReceiptRuleSetProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleSetName", &self.rule_set_name)?;
+        if let Some(ref rule_set_name) = self.rule_set_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleSetName", rule_set_name)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -405,7 +411,9 @@ pub struct TemplateProperties {
 impl ::serde::Serialize for TemplateProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Template", &self.template)?;
+        if let Some(ref template) = self.template {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Template", template)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -475,7 +483,9 @@ pub mod configuration_set_event_destination {
     impl ::codec::SerializeValue for CloudWatchDestination {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DimensionConfigurations", &self.dimension_configurations)?;
+            if let Some(ref dimension_configurations) = self.dimension_configurations {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DimensionConfigurations", dimension_configurations)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -595,11 +605,19 @@ pub mod configuration_set_event_destination {
     impl ::codec::SerializeValue for EventDestination {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchDestination", &self.cloud_watch_destination)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KinesisFirehoseDestination", &self.kinesis_firehose_destination)?;
+            if let Some(ref cloud_watch_destination) = self.cloud_watch_destination {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchDestination", cloud_watch_destination)?;
+            }
+            if let Some(ref enabled) = self.enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", enabled)?;
+            }
+            if let Some(ref kinesis_firehose_destination) = self.kinesis_firehose_destination {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KinesisFirehoseDestination", kinesis_firehose_destination)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MatchingEventTypes", &self.matching_event_types)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -730,7 +748,9 @@ pub mod receipt_filter {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IpFilter", &self.ip_filter)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -855,13 +875,27 @@ pub mod receipt_rule {
     impl ::codec::SerializeValue for Action {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AddHeaderAction", &self.add_header_action)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BounceAction", &self.bounce_action)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaAction", &self.lambda_action)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Action", &self.s3_action)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SNSAction", &self.sns_action)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StopAction", &self.stop_action)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "WorkmailAction", &self.workmail_action)?;
+            if let Some(ref add_header_action) = self.add_header_action {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AddHeaderAction", add_header_action)?;
+            }
+            if let Some(ref bounce_action) = self.bounce_action {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BounceAction", bounce_action)?;
+            }
+            if let Some(ref lambda_action) = self.lambda_action {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaAction", lambda_action)?;
+            }
+            if let Some(ref s3_action) = self.s3_action {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Action", s3_action)?;
+            }
+            if let Some(ref sns_action) = self.sns_action {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SNSAction", sns_action)?;
+            }
+            if let Some(ref stop_action) = self.stop_action {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StopAction", stop_action)?;
+            }
+            if let Some(ref workmail_action) = self.workmail_action {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "WorkmailAction", workmail_action)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1006,8 +1040,12 @@ pub mod receipt_rule {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Message", &self.message)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Sender", &self.sender)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SmtpReplyCode", &self.smtp_reply_code)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StatusCode", &self.status_code)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TopicArn", &self.topic_arn)?;
+            if let Some(ref status_code) = self.status_code {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StatusCode", status_code)?;
+            }
+            if let Some(ref topic_arn) = self.topic_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TopicArn", topic_arn)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1080,8 +1118,12 @@ pub mod receipt_rule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "FunctionArn", &self.function_arn)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InvocationType", &self.invocation_type)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TopicArn", &self.topic_arn)?;
+            if let Some(ref invocation_type) = self.invocation_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InvocationType", invocation_type)?;
+            }
+            if let Some(ref topic_arn) = self.topic_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TopicArn", topic_arn)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1149,12 +1191,24 @@ pub mod receipt_rule {
     impl ::codec::SerializeValue for Rule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Actions", &self.actions)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Recipients", &self.recipients)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScanEnabled", &self.scan_enabled)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TlsPolicy", &self.tls_policy)?;
+            if let Some(ref actions) = self.actions {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Actions", actions)?;
+            }
+            if let Some(ref enabled) = self.enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", enabled)?;
+            }
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            if let Some(ref recipients) = self.recipients {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Recipients", recipients)?;
+            }
+            if let Some(ref scan_enabled) = self.scan_enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScanEnabled", scan_enabled)?;
+            }
+            if let Some(ref tls_policy) = self.tls_policy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TlsPolicy", tls_policy)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1234,9 +1288,15 @@ pub mod receipt_rule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketName", &self.bucket_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyArn", &self.kms_key_arn)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ObjectKeyPrefix", &self.object_key_prefix)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TopicArn", &self.topic_arn)?;
+            if let Some(ref kms_key_arn) = self.kms_key_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyArn", kms_key_arn)?;
+            }
+            if let Some(ref object_key_prefix) = self.object_key_prefix {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ObjectKeyPrefix", object_key_prefix)?;
+            }
+            if let Some(ref topic_arn) = self.topic_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TopicArn", topic_arn)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1301,8 +1361,12 @@ pub mod receipt_rule {
     impl ::codec::SerializeValue for SNSAction {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Encoding", &self.encoding)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TopicArn", &self.topic_arn)?;
+            if let Some(ref encoding) = self.encoding {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Encoding", encoding)?;
+            }
+            if let Some(ref topic_arn) = self.topic_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TopicArn", topic_arn)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1358,7 +1422,9 @@ pub mod receipt_rule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Scope", &self.scope)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TopicArn", &self.topic_arn)?;
+            if let Some(ref topic_arn) = self.topic_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TopicArn", topic_arn)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1414,7 +1480,9 @@ pub mod receipt_rule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "OrganizationArn", &self.organization_arn)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TopicArn", &self.topic_arn)?;
+            if let Some(ref topic_arn) = self.topic_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TopicArn", topic_arn)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1477,10 +1545,18 @@ pub mod template {
     impl ::codec::SerializeValue for Template {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HtmlPart", &self.html_part)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubjectPart", &self.subject_part)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TemplateName", &self.template_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TextPart", &self.text_part)?;
+            if let Some(ref html_part) = self.html_part {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HtmlPart", html_part)?;
+            }
+            if let Some(ref subject_part) = self.subject_part {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubjectPart", subject_part)?;
+            }
+            if let Some(ref template_name) = self.template_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TemplateName", template_name)?;
+            }
+            if let Some(ref text_part) = self.text_part {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TextPart", text_part)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }

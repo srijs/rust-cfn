@@ -16,7 +16,9 @@ pub struct DomainProperties {
 impl ::serde::Serialize for DomainProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }

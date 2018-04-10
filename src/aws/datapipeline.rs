@@ -28,13 +28,23 @@ pub struct PipelineProperties {
 impl ::serde::Serialize for PipelineProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Activate", &self.activate)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
+        if let Some(ref activate) = self.activate {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Activate", activate)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ParameterObjects", &self.parameter_objects)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ParameterValues", &self.parameter_values)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PipelineObjects", &self.pipeline_objects)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PipelineTags", &self.pipeline_tags)?;
+        if let Some(ref parameter_values) = self.parameter_values {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ParameterValues", parameter_values)?;
+        }
+        if let Some(ref pipeline_objects) = self.pipeline_objects {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PipelineObjects", pipeline_objects)?;
+        }
+        if let Some(ref pipeline_tags) = self.pipeline_tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PipelineTags", pipeline_tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -139,8 +149,12 @@ pub mod pipeline {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RefValue", &self.ref_value)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StringValue", &self.string_value)?;
+            if let Some(ref ref_value) = self.ref_value {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RefValue", ref_value)?;
+            }
+            if let Some(ref string_value) = self.string_value {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StringValue", string_value)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }

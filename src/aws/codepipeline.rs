@@ -29,12 +29,18 @@ impl ::serde::Serialize for CustomActionTypeProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Category", &self.category)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConfigurationProperties", &self.configuration_properties)?;
+        if let Some(ref configuration_properties) = self.configuration_properties {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConfigurationProperties", configuration_properties)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputArtifactDetails", &self.input_artifact_details)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutputArtifactDetails", &self.output_artifact_details)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Provider", &self.provider)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Settings", &self.settings)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Version", &self.version)?;
+        if let Some(ref settings) = self.settings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Settings", settings)?;
+        }
+        if let Some(ref version) = self.version {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Version", version)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -148,9 +154,15 @@ impl ::serde::Serialize for PipelineProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ArtifactStore", &self.artifact_store)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisableInboundStageTransitions", &self.disable_inbound_stage_transitions)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RestartExecutionOnUpdate", &self.restart_execution_on_update)?;
+        if let Some(ref disable_inbound_stage_transitions) = self.disable_inbound_stage_transitions {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisableInboundStageTransitions", disable_inbound_stage_transitions)?;
+        }
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
+        if let Some(ref restart_execution_on_update) = self.restart_execution_on_update {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RestartExecutionOnUpdate", restart_execution_on_update)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Stages", &self.stages)?;
         ::serde::ser::SerializeMap::end(map)
@@ -315,13 +327,19 @@ pub mod custom_action_type {
     impl ::codec::SerializeValue for ConfigurationProperties {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
+            if let Some(ref description) = self.description {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Queryable", &self.queryable)?;
+            if let Some(ref queryable) = self.queryable {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Queryable", queryable)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Required", &self.required)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Secret", &self.secret)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+            if let Some(ref type_) = self.type_ {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", type_)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -405,10 +423,18 @@ pub mod custom_action_type {
     impl ::codec::SerializeValue for Settings {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EntityUrlTemplate", &self.entity_url_template)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExecutionUrlTemplate", &self.execution_url_template)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RevisionUrlTemplate", &self.revision_url_template)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThirdPartyConfigurationUrl", &self.third_party_configuration_url)?;
+            if let Some(ref entity_url_template) = self.entity_url_template {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EntityUrlTemplate", entity_url_template)?;
+            }
+            if let Some(ref execution_url_template) = self.execution_url_template {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExecutionUrlTemplate", execution_url_template)?;
+            }
+            if let Some(ref revision_url_template) = self.revision_url_template {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RevisionUrlTemplate", revision_url_template)?;
+            }
+            if let Some(ref third_party_configuration_url) = self.third_party_configuration_url {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThirdPartyConfigurationUrl", third_party_configuration_url)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -488,12 +514,22 @@ pub mod pipeline {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ActionTypeId", &self.action_type_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Configuration", &self.configuration)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputArtifacts", &self.input_artifacts)?;
+            if let Some(ref configuration) = self.configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Configuration", configuration)?;
+            }
+            if let Some(ref input_artifacts) = self.input_artifacts {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputArtifacts", input_artifacts)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutputArtifacts", &self.output_artifacts)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RunOrder", &self.run_order)?;
+            if let Some(ref output_artifacts) = self.output_artifacts {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutputArtifacts", output_artifacts)?;
+            }
+            if let Some(ref role_arn) = self.role_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", role_arn)?;
+            }
+            if let Some(ref run_order) = self.run_order {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RunOrder", run_order)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -647,7 +683,9 @@ pub mod pipeline {
     impl ::codec::SerializeValue for ArtifactStore {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EncryptionKey", &self.encryption_key)?;
+            if let Some(ref encryption_key) = self.encryption_key {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EncryptionKey", encryption_key)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Location", &self.location)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
             ::serde::ser::SerializeMap::end(map)
@@ -920,7 +958,9 @@ pub mod pipeline {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Actions", &self.actions)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Blockers", &self.blockers)?;
+            if let Some(ref blockers) = self.blockers {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Blockers", blockers)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             ::serde::ser::SerializeMap::end(map)
         }

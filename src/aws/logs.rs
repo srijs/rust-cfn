@@ -115,8 +115,12 @@ pub struct LogGroupProperties {
 impl ::serde::Serialize for LogGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroupName", &self.log_group_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RetentionInDays", &self.retention_in_days)?;
+        if let Some(ref log_group_name) = self.log_group_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroupName", log_group_name)?;
+        }
+        if let Some(ref retention_in_days) = self.retention_in_days {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RetentionInDays", retention_in_days)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -197,7 +201,9 @@ impl ::serde::Serialize for LogStreamProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroupName", &self.log_group_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogStreamName", &self.log_stream_name)?;
+        if let Some(ref log_stream_name) = self.log_stream_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogStreamName", log_stream_name)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -373,7 +379,9 @@ impl ::serde::Serialize for SubscriptionFilterProperties {
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationArn", &self.destination_arn)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "FilterPattern", &self.filter_pattern)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroupName", &self.log_group_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
+        if let Some(ref role_arn) = self.role_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", role_arn)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }

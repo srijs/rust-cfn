@@ -20,7 +20,9 @@ pub struct AliasProperties {
 impl ::serde::Serialize for AliasProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoutingStrategy", &self.routing_strategy)?;
         ::serde::ser::SerializeMap::end(map)
@@ -109,9 +111,15 @@ pub struct BuildProperties {
 impl ::serde::Serialize for BuildProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "StorageLocation", &self.storage_location)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Version", &self.version)?;
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
+        if let Some(ref storage_location) = self.storage_location {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StorageLocation", storage_location)?;
+        }
+        if let Some(ref version) = self.version {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Version", version)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -215,15 +223,27 @@ impl ::serde::Serialize for FleetProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "BuildId", &self.build_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DesiredEC2Instances", &self.desired_ec2_instances)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EC2InboundPermissions", &self.ec2_inbound_permissions)?;
+        if let Some(ref ec2_inbound_permissions) = self.ec2_inbound_permissions {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EC2InboundPermissions", ec2_inbound_permissions)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "EC2InstanceType", &self.ec2_instance_type)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogPaths", &self.log_paths)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxSize", &self.max_size)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinSize", &self.min_size)?;
+        if let Some(ref log_paths) = self.log_paths {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogPaths", log_paths)?;
+        }
+        if let Some(ref max_size) = self.max_size {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxSize", max_size)?;
+        }
+        if let Some(ref min_size) = self.min_size {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinSize", min_size)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServerLaunchParameters", &self.server_launch_parameters)?;
+        if let Some(ref server_launch_parameters) = self.server_launch_parameters {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServerLaunchParameters", server_launch_parameters)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServerLaunchPath", &self.server_launch_path)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -348,8 +368,12 @@ pub mod alias {
     impl ::codec::SerializeValue for RoutingStrategy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FleetId", &self.fleet_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Message", &self.message)?;
+            if let Some(ref fleet_id) = self.fleet_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FleetId", fleet_id)?;
+            }
+            if let Some(ref message) = self.message {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Message", message)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
             ::serde::ser::SerializeMap::end(map)
         }

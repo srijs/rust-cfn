@@ -101,7 +101,9 @@ impl ::serde::Serialize for IPSetProperties {
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DetectorId", &self.detector_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Format", &self.format)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Location", &self.location)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -294,8 +296,12 @@ impl ::serde::Serialize for MemberProperties {
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DetectorId", &self.detector_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Email", &self.email)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "MemberId", &self.member_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Message", &self.message)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Status", &self.status)?;
+        if let Some(ref message) = self.message {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Message", message)?;
+        }
+        if let Some(ref status) = self.status {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Status", status)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -400,7 +406,9 @@ impl ::serde::Serialize for ThreatIntelSetProperties {
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DetectorId", &self.detector_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Format", &self.format)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Location", &self.location)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }

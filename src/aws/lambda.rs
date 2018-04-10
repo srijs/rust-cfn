@@ -24,11 +24,15 @@ pub struct AliasProperties {
 impl ::serde::Serialize for AliasProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "FunctionName", &self.function_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "FunctionVersion", &self.function_version)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoutingConfig", &self.routing_config)?;
+        if let Some(ref routing_config) = self.routing_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoutingConfig", routing_config)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -129,8 +133,12 @@ pub struct EventSourceMappingProperties {
 impl ::serde::Serialize for EventSourceMappingProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "BatchSize", &self.batch_size)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
+        if let Some(ref batch_size) = self.batch_size {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BatchSize", batch_size)?;
+        }
+        if let Some(ref enabled) = self.enabled {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", enabled)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventSourceArn", &self.event_source_arn)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "FunctionName", &self.function_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "StartingPosition", &self.starting_position)?;
@@ -255,20 +263,42 @@ impl ::serde::Serialize for FunctionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Code", &self.code)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeadLetterConfig", &self.dead_letter_config)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Environment", &self.environment)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "FunctionName", &self.function_name)?;
+        if let Some(ref dead_letter_config) = self.dead_letter_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeadLetterConfig", dead_letter_config)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref environment) = self.environment {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Environment", environment)?;
+        }
+        if let Some(ref function_name) = self.function_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FunctionName", function_name)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Handler", &self.handler)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyArn", &self.kms_key_arn)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MemorySize", &self.memory_size)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReservedConcurrentExecutions", &self.reserved_concurrent_executions)?;
+        if let Some(ref kms_key_arn) = self.kms_key_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyArn", kms_key_arn)?;
+        }
+        if let Some(ref memory_size) = self.memory_size {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MemorySize", memory_size)?;
+        }
+        if let Some(ref reserved_concurrent_executions) = self.reserved_concurrent_executions {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReservedConcurrentExecutions", reserved_concurrent_executions)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Role", &self.role)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Runtime", &self.runtime)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Timeout", &self.timeout)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TracingConfig", &self.tracing_config)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcConfig", &self.vpc_config)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref timeout) = self.timeout {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Timeout", timeout)?;
+        }
+        if let Some(ref tracing_config) = self.tracing_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TracingConfig", tracing_config)?;
+        }
+        if let Some(ref vpc_config) = self.vpc_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcConfig", vpc_config)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -422,11 +452,17 @@ impl ::serde::Serialize for PermissionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Action", &self.action)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventSourceToken", &self.event_source_token)?;
+        if let Some(ref event_source_token) = self.event_source_token {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventSourceToken", event_source_token)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "FunctionName", &self.function_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Principal", &self.principal)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceAccount", &self.source_account)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceArn", &self.source_arn)?;
+        if let Some(ref source_account) = self.source_account {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceAccount", source_account)?;
+        }
+        if let Some(ref source_arn) = self.source_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceArn", source_arn)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -528,8 +564,12 @@ pub struct VersionProperties {
 impl ::serde::Serialize for VersionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CodeSha256", &self.code_sha256)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
+        if let Some(ref code_sha256) = self.code_sha256 {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CodeSha256", code_sha256)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "FunctionName", &self.function_name)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -724,10 +764,18 @@ pub mod function {
     impl ::codec::SerializeValue for Code {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Bucket", &self.s3_bucket)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Key", &self.s3_key)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3ObjectVersion", &self.s3_object_version)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ZipFile", &self.zip_file)?;
+            if let Some(ref s3_bucket) = self.s3_bucket {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Bucket", s3_bucket)?;
+            }
+            if let Some(ref s3_key) = self.s3_key {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Key", s3_key)?;
+            }
+            if let Some(ref s3_object_version) = self.s3_object_version {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3ObjectVersion", s3_object_version)?;
+            }
+            if let Some(ref zip_file) = self.zip_file {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ZipFile", zip_file)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -790,7 +838,9 @@ pub mod function {
     impl ::codec::SerializeValue for DeadLetterConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetArn", &self.target_arn)?;
+            if let Some(ref target_arn) = self.target_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetArn", target_arn)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -838,7 +888,9 @@ pub mod function {
     impl ::codec::SerializeValue for Environment {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Variables", &self.variables)?;
+            if let Some(ref variables) = self.variables {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Variables", variables)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -886,7 +938,9 @@ pub mod function {
     impl ::codec::SerializeValue for TracingConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Mode", &self.mode)?;
+            if let Some(ref mode) = self.mode {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Mode", mode)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }

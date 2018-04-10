@@ -20,9 +20,15 @@ pub struct ApplicationProperties {
 impl ::serde::Serialize for ApplicationProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationName", &self.application_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceLifecycleConfig", &self.resource_lifecycle_config)?;
+        if let Some(ref application_name) = self.application_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationName", application_name)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref resource_lifecycle_config) = self.resource_lifecycle_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceLifecycleConfig", resource_lifecycle_config)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -110,7 +116,9 @@ impl ::serde::Serialize for ApplicationVersionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationName", &self.application_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceBundle", &self.source_bundle)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -207,12 +215,24 @@ impl ::serde::Serialize for ConfigurationTemplateProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationName", &self.application_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnvironmentId", &self.environment_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "OptionSettings", &self.option_settings)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PlatformArn", &self.platform_arn)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SolutionStackName", &self.solution_stack_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceConfiguration", &self.source_configuration)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref environment_id) = self.environment_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnvironmentId", environment_id)?;
+        }
+        if let Some(ref option_settings) = self.option_settings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OptionSettings", option_settings)?;
+        }
+        if let Some(ref platform_arn) = self.platform_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PlatformArn", platform_arn)?;
+        }
+        if let Some(ref solution_stack_name) = self.solution_stack_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SolutionStackName", solution_stack_name)?;
+        }
+        if let Some(ref source_configuration) = self.source_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceConfiguration", source_configuration)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -336,16 +356,36 @@ impl ::serde::Serialize for EnvironmentProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationName", &self.application_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CNAMEPrefix", &self.cname_prefix)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnvironmentName", &self.environment_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "OptionSettings", &self.option_settings)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PlatformArn", &self.platform_arn)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SolutionStackName", &self.solution_stack_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TemplateName", &self.template_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tier", &self.tier)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VersionLabel", &self.version_label)?;
+        if let Some(ref cname_prefix) = self.cname_prefix {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CNAMEPrefix", cname_prefix)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref environment_name) = self.environment_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnvironmentName", environment_name)?;
+        }
+        if let Some(ref option_settings) = self.option_settings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OptionSettings", option_settings)?;
+        }
+        if let Some(ref platform_arn) = self.platform_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PlatformArn", platform_arn)?;
+        }
+        if let Some(ref solution_stack_name) = self.solution_stack_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SolutionStackName", solution_stack_name)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref template_name) = self.template_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TemplateName", template_name)?;
+        }
+        if let Some(ref tier) = self.tier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tier", tier)?;
+        }
+        if let Some(ref version_label) = self.version_label {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VersionLabel", version_label)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -467,8 +507,12 @@ pub mod application {
     impl ::codec::SerializeValue for ApplicationResourceLifecycleConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceRole", &self.service_role)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VersionLifecycleConfig", &self.version_lifecycle_config)?;
+            if let Some(ref service_role) = self.service_role {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceRole", service_role)?;
+            }
+            if let Some(ref version_lifecycle_config) = self.version_lifecycle_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VersionLifecycleConfig", version_lifecycle_config)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -523,8 +567,12 @@ pub mod application {
     impl ::codec::SerializeValue for ApplicationVersionLifecycleConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxAgeRule", &self.max_age_rule)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxCountRule", &self.max_count_rule)?;
+            if let Some(ref max_age_rule) = self.max_age_rule {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxAgeRule", max_age_rule)?;
+            }
+            if let Some(ref max_count_rule) = self.max_count_rule {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxCountRule", max_count_rule)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -581,9 +629,15 @@ pub mod application {
     impl ::codec::SerializeValue for MaxAgeRule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteSourceFromS3", &self.delete_source_from_s3)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxAgeInDays", &self.max_age_in_days)?;
+            if let Some(ref delete_source_from_s3) = self.delete_source_from_s3 {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteSourceFromS3", delete_source_from_s3)?;
+            }
+            if let Some(ref enabled) = self.enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", enabled)?;
+            }
+            if let Some(ref max_age_in_days) = self.max_age_in_days {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxAgeInDays", max_age_in_days)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -645,9 +699,15 @@ pub mod application {
     impl ::codec::SerializeValue for MaxCountRule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteSourceFromS3", &self.delete_source_from_s3)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxCount", &self.max_count)?;
+            if let Some(ref delete_source_from_s3) = self.delete_source_from_s3 {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteSourceFromS3", delete_source_from_s3)?;
+            }
+            if let Some(ref enabled) = self.enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", enabled)?;
+            }
+            if let Some(ref max_count) = self.max_count {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxCount", max_count)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -777,8 +837,12 @@ pub mod configuration_template {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Namespace", &self.namespace)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "OptionName", &self.option_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceName", &self.resource_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            if let Some(ref resource_name) = self.resource_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceName", resource_name)?;
+            }
+            if let Some(ref value) = self.value {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", value)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -909,8 +973,12 @@ pub mod environment {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Namespace", &self.namespace)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "OptionName", &self.option_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceName", &self.resource_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            if let Some(ref resource_name) = self.resource_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceName", resource_name)?;
+            }
+            if let Some(ref value) = self.value {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", value)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -977,9 +1045,15 @@ pub mod environment {
     impl ::codec::SerializeValue for Tier {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Version", &self.version)?;
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            if let Some(ref type_) = self.type_ {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", type_)?;
+            }
+            if let Some(ref version) = self.version {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Version", version)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }

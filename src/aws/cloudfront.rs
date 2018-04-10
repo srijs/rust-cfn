@@ -92,7 +92,9 @@ impl ::serde::Serialize for DistributionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DistributionConfig", &self.distribution_config)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -324,18 +326,36 @@ pub mod distribution {
     impl ::codec::SerializeValue for CacheBehavior {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowedMethods", &self.allowed_methods)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CachedMethods", &self.cached_methods)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Compress", &self.compress)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultTTL", &self.default_ttl)?;
+            if let Some(ref allowed_methods) = self.allowed_methods {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowedMethods", allowed_methods)?;
+            }
+            if let Some(ref cached_methods) = self.cached_methods {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CachedMethods", cached_methods)?;
+            }
+            if let Some(ref compress) = self.compress {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Compress", compress)?;
+            }
+            if let Some(ref default_ttl) = self.default_ttl {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultTTL", default_ttl)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ForwardedValues", &self.forwarded_values)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaFunctionAssociations", &self.lambda_function_associations)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxTTL", &self.max_ttl)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinTTL", &self.min_ttl)?;
+            if let Some(ref lambda_function_associations) = self.lambda_function_associations {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaFunctionAssociations", lambda_function_associations)?;
+            }
+            if let Some(ref max_ttl) = self.max_ttl {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxTTL", max_ttl)?;
+            }
+            if let Some(ref min_ttl) = self.min_ttl {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinTTL", min_ttl)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PathPattern", &self.path_pattern)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SmoothStreaming", &self.smooth_streaming)?;
+            if let Some(ref smooth_streaming) = self.smooth_streaming {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SmoothStreaming", smooth_streaming)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetOriginId", &self.target_origin_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrustedSigners", &self.trusted_signers)?;
+            if let Some(ref trusted_signers) = self.trusted_signers {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrustedSigners", trusted_signers)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ViewerProtocolPolicy", &self.viewer_protocol_policy)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -447,7 +467,9 @@ pub mod distribution {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Forward", &self.forward)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "WhitelistedNames", &self.whitelisted_names)?;
+            if let Some(ref whitelisted_names) = self.whitelisted_names {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "WhitelistedNames", whitelisted_names)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -506,10 +528,16 @@ pub mod distribution {
     impl ::codec::SerializeValue for CustomErrorResponse {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ErrorCachingMinTTL", &self.error_caching_min_ttl)?;
+            if let Some(ref error_caching_min_ttl) = self.error_caching_min_ttl {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ErrorCachingMinTTL", error_caching_min_ttl)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ErrorCode", &self.error_code)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResponseCode", &self.response_code)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResponsePagePath", &self.response_page_path)?;
+            if let Some(ref response_code) = self.response_code {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResponseCode", response_code)?;
+            }
+            if let Some(ref response_page_path) = self.response_page_path {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResponsePagePath", response_page_path)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -582,12 +610,22 @@ pub mod distribution {
     impl ::codec::SerializeValue for CustomOriginConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HTTPPort", &self.http_port)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HTTPSPort", &self.https_port)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginKeepaliveTimeout", &self.origin_keepalive_timeout)?;
+            if let Some(ref http_port) = self.http_port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HTTPPort", http_port)?;
+            }
+            if let Some(ref https_port) = self.https_port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HTTPSPort", https_port)?;
+            }
+            if let Some(ref origin_keepalive_timeout) = self.origin_keepalive_timeout {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginKeepaliveTimeout", origin_keepalive_timeout)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginProtocolPolicy", &self.origin_protocol_policy)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginReadTimeout", &self.origin_read_timeout)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginSSLProtocols", &self.origin_ssl_protocols)?;
+            if let Some(ref origin_read_timeout) = self.origin_read_timeout {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginReadTimeout", origin_read_timeout)?;
+            }
+            if let Some(ref origin_ssl_protocols) = self.origin_ssl_protocols {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginSSLProtocols", origin_ssl_protocols)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -682,17 +720,35 @@ pub mod distribution {
     impl ::codec::SerializeValue for DefaultCacheBehavior {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowedMethods", &self.allowed_methods)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CachedMethods", &self.cached_methods)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Compress", &self.compress)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultTTL", &self.default_ttl)?;
+            if let Some(ref allowed_methods) = self.allowed_methods {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowedMethods", allowed_methods)?;
+            }
+            if let Some(ref cached_methods) = self.cached_methods {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CachedMethods", cached_methods)?;
+            }
+            if let Some(ref compress) = self.compress {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Compress", compress)?;
+            }
+            if let Some(ref default_ttl) = self.default_ttl {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultTTL", default_ttl)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ForwardedValues", &self.forwarded_values)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaFunctionAssociations", &self.lambda_function_associations)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxTTL", &self.max_ttl)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinTTL", &self.min_ttl)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SmoothStreaming", &self.smooth_streaming)?;
+            if let Some(ref lambda_function_associations) = self.lambda_function_associations {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaFunctionAssociations", lambda_function_associations)?;
+            }
+            if let Some(ref max_ttl) = self.max_ttl {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxTTL", max_ttl)?;
+            }
+            if let Some(ref min_ttl) = self.min_ttl {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinTTL", min_ttl)?;
+            }
+            if let Some(ref smooth_streaming) = self.smooth_streaming {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SmoothStreaming", smooth_streaming)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetOriginId", &self.target_origin_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrustedSigners", &self.trusted_signers)?;
+            if let Some(ref trusted_signers) = self.trusted_signers {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrustedSigners", trusted_signers)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ViewerProtocolPolicy", &self.viewer_protocol_policy)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -824,21 +880,49 @@ pub mod distribution {
     impl ::codec::SerializeValue for DistributionConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Aliases", &self.aliases)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CacheBehaviors", &self.cache_behaviors)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", &self.comment)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomErrorResponses", &self.custom_error_responses)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultCacheBehavior", &self.default_cache_behavior)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultRootObject", &self.default_root_object)?;
+            if let Some(ref aliases) = self.aliases {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Aliases", aliases)?;
+            }
+            if let Some(ref cache_behaviors) = self.cache_behaviors {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CacheBehaviors", cache_behaviors)?;
+            }
+            if let Some(ref comment) = self.comment {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", comment)?;
+            }
+            if let Some(ref custom_error_responses) = self.custom_error_responses {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomErrorResponses", custom_error_responses)?;
+            }
+            if let Some(ref default_cache_behavior) = self.default_cache_behavior {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultCacheBehavior", default_cache_behavior)?;
+            }
+            if let Some(ref default_root_object) = self.default_root_object {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultRootObject", default_root_object)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HttpVersion", &self.http_version)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IPV6Enabled", &self.ipv6_enabled)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Logging", &self.logging)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Origins", &self.origins)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PriceClass", &self.price_class)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Restrictions", &self.restrictions)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ViewerCertificate", &self.viewer_certificate)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "WebACLId", &self.web_acl_id)?;
+            if let Some(ref http_version) = self.http_version {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HttpVersion", http_version)?;
+            }
+            if let Some(ref ipv6_enabled) = self.ipv6_enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IPV6Enabled", ipv6_enabled)?;
+            }
+            if let Some(ref logging) = self.logging {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Logging", logging)?;
+            }
+            if let Some(ref origins) = self.origins {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Origins", origins)?;
+            }
+            if let Some(ref price_class) = self.price_class {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PriceClass", price_class)?;
+            }
+            if let Some(ref restrictions) = self.restrictions {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Restrictions", restrictions)?;
+            }
+            if let Some(ref viewer_certificate) = self.viewer_certificate {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ViewerCertificate", viewer_certificate)?;
+            }
+            if let Some(ref web_acl_id) = self.web_acl_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "WebACLId", web_acl_id)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -962,10 +1046,16 @@ pub mod distribution {
     impl ::codec::SerializeValue for ForwardedValues {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cookies", &self.cookies)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Headers", &self.headers)?;
+            if let Some(ref cookies) = self.cookies {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cookies", cookies)?;
+            }
+            if let Some(ref headers) = self.headers {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Headers", headers)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "QueryString", &self.query_string)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "QueryStringCacheKeys", &self.query_string_cache_keys)?;
+            if let Some(ref query_string_cache_keys) = self.query_string_cache_keys {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "QueryStringCacheKeys", query_string_cache_keys)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1030,7 +1120,9 @@ pub mod distribution {
     impl ::codec::SerializeValue for GeoRestriction {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Locations", &self.locations)?;
+            if let Some(ref locations) = self.locations {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Locations", locations)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RestrictionType", &self.restriction_type)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -1086,8 +1178,12 @@ pub mod distribution {
     impl ::codec::SerializeValue for LambdaFunctionAssociation {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventType", &self.event_type)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaFunctionARN", &self.lambda_function_arn)?;
+            if let Some(ref event_type) = self.event_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventType", event_type)?;
+            }
+            if let Some(ref lambda_function_arn) = self.lambda_function_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaFunctionARN", lambda_function_arn)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1145,8 +1241,12 @@ pub mod distribution {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Bucket", &self.bucket)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncludeCookies", &self.include_cookies)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Prefix", &self.prefix)?;
+            if let Some(ref include_cookies) = self.include_cookies {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncludeCookies", include_cookies)?;
+            }
+            if let Some(ref prefix) = self.prefix {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Prefix", prefix)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1214,12 +1314,20 @@ pub mod distribution {
     impl ::codec::SerializeValue for Origin {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomOriginConfig", &self.custom_origin_config)?;
+            if let Some(ref custom_origin_config) = self.custom_origin_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomOriginConfig", custom_origin_config)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainName", &self.domain_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Id", &self.id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginCustomHeaders", &self.origin_custom_headers)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginPath", &self.origin_path)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3OriginConfig", &self.s3_origin_config)?;
+            if let Some(ref origin_custom_headers) = self.origin_custom_headers {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginCustomHeaders", origin_custom_headers)?;
+            }
+            if let Some(ref origin_path) = self.origin_path {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginPath", origin_path)?;
+            }
+            if let Some(ref s3_origin_config) = self.s3_origin_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3OriginConfig", s3_origin_config)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1396,7 +1504,9 @@ pub mod distribution {
     impl ::codec::SerializeValue for S3OriginConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginAccessIdentity", &self.origin_access_identity)?;
+            if let Some(ref origin_access_identity) = self.origin_access_identity {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginAccessIdentity", origin_access_identity)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1452,11 +1562,21 @@ pub mod distribution {
     impl ::codec::SerializeValue for ViewerCertificate {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AcmCertificateArn", &self.acm_certificate_arn)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudFrontDefaultCertificate", &self.cloud_front_default_certificate)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IamCertificateId", &self.iam_certificate_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinimumProtocolVersion", &self.minimum_protocol_version)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SslSupportMethod", &self.ssl_support_method)?;
+            if let Some(ref acm_certificate_arn) = self.acm_certificate_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AcmCertificateArn", acm_certificate_arn)?;
+            }
+            if let Some(ref cloud_front_default_certificate) = self.cloud_front_default_certificate {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudFrontDefaultCertificate", cloud_front_default_certificate)?;
+            }
+            if let Some(ref iam_certificate_id) = self.iam_certificate_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IamCertificateId", iam_certificate_id)?;
+            }
+            if let Some(ref minimum_protocol_version) = self.minimum_protocol_version {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinimumProtocolVersion", minimum_protocol_version)?;
+            }
+            if let Some(ref ssl_support_method) = self.ssl_support_method {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SslSupportMethod", ssl_support_method)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1660,11 +1780,17 @@ pub mod streaming_distribution {
     impl ::codec::SerializeValue for StreamingDistributionConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Aliases", &self.aliases)?;
+            if let Some(ref aliases) = self.aliases {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Aliases", aliases)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", &self.comment)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Logging", &self.logging)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PriceClass", &self.price_class)?;
+            if let Some(ref logging) = self.logging {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Logging", logging)?;
+            }
+            if let Some(ref price_class) = self.price_class {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PriceClass", price_class)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Origin", &self.s3_origin)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrustedSigners", &self.trusted_signers)?;
             ::serde::ser::SerializeMap::end(map)
@@ -1746,7 +1872,9 @@ pub mod streaming_distribution {
     impl ::codec::SerializeValue for TrustedSigners {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AwsAccountNumbers", &self.aws_account_numbers)?;
+            if let Some(ref aws_account_numbers) = self.aws_account_numbers {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AwsAccountNumbers", aws_account_numbers)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
             ::serde::ser::SerializeMap::end(map)
         }

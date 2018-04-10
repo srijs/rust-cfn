@@ -52,25 +52,61 @@ pub struct DBClusterProperties {
 impl ::serde::Serialize for DBClusterProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZones", &self.availability_zones)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "BackupRetentionPeriod", &self.backup_retention_period)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBClusterIdentifier", &self.db_cluster_identifier)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBClusterParameterGroupName", &self.db_cluster_parameter_group_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBSubnetGroupName", &self.db_subnet_group_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseName", &self.database_name)?;
+        if let Some(ref availability_zones) = self.availability_zones {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZones", availability_zones)?;
+        }
+        if let Some(ref backup_retention_period) = self.backup_retention_period {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BackupRetentionPeriod", backup_retention_period)?;
+        }
+        if let Some(ref db_cluster_identifier) = self.db_cluster_identifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBClusterIdentifier", db_cluster_identifier)?;
+        }
+        if let Some(ref db_cluster_parameter_group_name) = self.db_cluster_parameter_group_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBClusterParameterGroupName", db_cluster_parameter_group_name)?;
+        }
+        if let Some(ref db_subnet_group_name) = self.db_subnet_group_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBSubnetGroupName", db_subnet_group_name)?;
+        }
+        if let Some(ref database_name) = self.database_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseName", database_name)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Engine", &self.engine)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EngineVersion", &self.engine_version)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", &self.kms_key_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MasterUserPassword", &self.master_user_password)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MasterUsername", &self.master_username)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", &self.port)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreferredBackupWindow", &self.preferred_backup_window)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreferredMaintenanceWindow", &self.preferred_maintenance_window)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicationSourceIdentifier", &self.replication_source_identifier)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotIdentifier", &self.snapshot_identifier)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "StorageEncrypted", &self.storage_encrypted)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcSecurityGroupIds", &self.vpc_security_group_ids)?;
+        if let Some(ref engine_version) = self.engine_version {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EngineVersion", engine_version)?;
+        }
+        if let Some(ref kms_key_id) = self.kms_key_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", kms_key_id)?;
+        }
+        if let Some(ref master_user_password) = self.master_user_password {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MasterUserPassword", master_user_password)?;
+        }
+        if let Some(ref master_username) = self.master_username {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MasterUsername", master_username)?;
+        }
+        if let Some(ref port) = self.port {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", port)?;
+        }
+        if let Some(ref preferred_backup_window) = self.preferred_backup_window {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreferredBackupWindow", preferred_backup_window)?;
+        }
+        if let Some(ref preferred_maintenance_window) = self.preferred_maintenance_window {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreferredMaintenanceWindow", preferred_maintenance_window)?;
+        }
+        if let Some(ref replication_source_identifier) = self.replication_source_identifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicationSourceIdentifier", replication_source_identifier)?;
+        }
+        if let Some(ref snapshot_identifier) = self.snapshot_identifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotIdentifier", snapshot_identifier)?;
+        }
+        if let Some(ref storage_encrypted) = self.storage_encrypted {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StorageEncrypted", storage_encrypted)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref vpc_security_group_ids) = self.vpc_security_group_ids {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcSecurityGroupIds", vpc_security_group_ids)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -242,7 +278,9 @@ impl ::serde::Serialize for DBClusterParameterGroupProperties {
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Family", &self.family)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", &self.parameters)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -406,45 +444,121 @@ pub struct DBInstanceProperties {
 impl ::serde::Serialize for DBInstanceProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocatedStorage", &self.allocated_storage)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowMajorVersionUpgrade", &self.allow_major_version_upgrade)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoMinorVersionUpgrade", &self.auto_minor_version_upgrade)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", &self.availability_zone)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "BackupRetentionPeriod", &self.backup_retention_period)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CharacterSetName", &self.character_set_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CopyTagsToSnapshot", &self.copy_tags_to_snapshot)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBClusterIdentifier", &self.db_cluster_identifier)?;
+        if let Some(ref allocated_storage) = self.allocated_storage {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocatedStorage", allocated_storage)?;
+        }
+        if let Some(ref allow_major_version_upgrade) = self.allow_major_version_upgrade {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowMajorVersionUpgrade", allow_major_version_upgrade)?;
+        }
+        if let Some(ref auto_minor_version_upgrade) = self.auto_minor_version_upgrade {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoMinorVersionUpgrade", auto_minor_version_upgrade)?;
+        }
+        if let Some(ref availability_zone) = self.availability_zone {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", availability_zone)?;
+        }
+        if let Some(ref backup_retention_period) = self.backup_retention_period {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BackupRetentionPeriod", backup_retention_period)?;
+        }
+        if let Some(ref character_set_name) = self.character_set_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CharacterSetName", character_set_name)?;
+        }
+        if let Some(ref copy_tags_to_snapshot) = self.copy_tags_to_snapshot {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CopyTagsToSnapshot", copy_tags_to_snapshot)?;
+        }
+        if let Some(ref db_cluster_identifier) = self.db_cluster_identifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBClusterIdentifier", db_cluster_identifier)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBInstanceClass", &self.db_instance_class)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBInstanceIdentifier", &self.db_instance_identifier)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBName", &self.db_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBParameterGroupName", &self.db_parameter_group_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBSecurityGroups", &self.db_security_groups)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBSnapshotIdentifier", &self.db_snapshot_identifier)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBSubnetGroupName", &self.db_subnet_group_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Domain", &self.domain)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainIAMRoleName", &self.domain_iam_role_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Engine", &self.engine)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EngineVersion", &self.engine_version)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", &self.iops)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", &self.kms_key_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LicenseModel", &self.license_model)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MasterUserPassword", &self.master_user_password)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MasterUsername", &self.master_username)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MonitoringInterval", &self.monitoring_interval)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MonitoringRoleArn", &self.monitoring_role_arn)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MultiAZ", &self.multi_az)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "OptionGroupName", &self.option_group_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", &self.port)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreferredBackupWindow", &self.preferred_backup_window)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreferredMaintenanceWindow", &self.preferred_maintenance_window)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PubliclyAccessible", &self.publicly_accessible)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceDBInstanceIdentifier", &self.source_db_instance_identifier)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceRegion", &self.source_region)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "StorageEncrypted", &self.storage_encrypted)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "StorageType", &self.storage_type)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Timezone", &self.timezone)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VPCSecurityGroups", &self.vpc_security_groups)?;
+        if let Some(ref db_instance_identifier) = self.db_instance_identifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBInstanceIdentifier", db_instance_identifier)?;
+        }
+        if let Some(ref db_name) = self.db_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBName", db_name)?;
+        }
+        if let Some(ref db_parameter_group_name) = self.db_parameter_group_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBParameterGroupName", db_parameter_group_name)?;
+        }
+        if let Some(ref db_security_groups) = self.db_security_groups {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBSecurityGroups", db_security_groups)?;
+        }
+        if let Some(ref db_snapshot_identifier) = self.db_snapshot_identifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBSnapshotIdentifier", db_snapshot_identifier)?;
+        }
+        if let Some(ref db_subnet_group_name) = self.db_subnet_group_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBSubnetGroupName", db_subnet_group_name)?;
+        }
+        if let Some(ref domain) = self.domain {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Domain", domain)?;
+        }
+        if let Some(ref domain_iam_role_name) = self.domain_iam_role_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainIAMRoleName", domain_iam_role_name)?;
+        }
+        if let Some(ref engine) = self.engine {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Engine", engine)?;
+        }
+        if let Some(ref engine_version) = self.engine_version {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EngineVersion", engine_version)?;
+        }
+        if let Some(ref iops) = self.iops {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", iops)?;
+        }
+        if let Some(ref kms_key_id) = self.kms_key_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", kms_key_id)?;
+        }
+        if let Some(ref license_model) = self.license_model {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LicenseModel", license_model)?;
+        }
+        if let Some(ref master_user_password) = self.master_user_password {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MasterUserPassword", master_user_password)?;
+        }
+        if let Some(ref master_username) = self.master_username {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MasterUsername", master_username)?;
+        }
+        if let Some(ref monitoring_interval) = self.monitoring_interval {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MonitoringInterval", monitoring_interval)?;
+        }
+        if let Some(ref monitoring_role_arn) = self.monitoring_role_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MonitoringRoleArn", monitoring_role_arn)?;
+        }
+        if let Some(ref multi_az) = self.multi_az {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MultiAZ", multi_az)?;
+        }
+        if let Some(ref option_group_name) = self.option_group_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OptionGroupName", option_group_name)?;
+        }
+        if let Some(ref port) = self.port {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", port)?;
+        }
+        if let Some(ref preferred_backup_window) = self.preferred_backup_window {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreferredBackupWindow", preferred_backup_window)?;
+        }
+        if let Some(ref preferred_maintenance_window) = self.preferred_maintenance_window {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreferredMaintenanceWindow", preferred_maintenance_window)?;
+        }
+        if let Some(ref publicly_accessible) = self.publicly_accessible {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PubliclyAccessible", publicly_accessible)?;
+        }
+        if let Some(ref source_db_instance_identifier) = self.source_db_instance_identifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceDBInstanceIdentifier", source_db_instance_identifier)?;
+        }
+        if let Some(ref source_region) = self.source_region {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceRegion", source_region)?;
+        }
+        if let Some(ref storage_encrypted) = self.storage_encrypted {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StorageEncrypted", storage_encrypted)?;
+        }
+        if let Some(ref storage_type) = self.storage_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StorageType", storage_type)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref timezone) = self.timezone {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Timezone", timezone)?;
+        }
+        if let Some(ref vpc_security_groups) = self.vpc_security_groups {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VPCSecurityGroups", vpc_security_groups)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -715,8 +829,12 @@ impl ::serde::Serialize for DBParameterGroupProperties {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Family", &self.family)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", &self.parameters)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref parameters) = self.parameters {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", parameters)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -811,9 +929,13 @@ impl ::serde::Serialize for DBSecurityGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBSecurityGroupIngress", &self.db_security_group_ingress)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EC2VpcId", &self.ec2_vpc_id)?;
+        if let Some(ref ec2_vpc_id) = self.ec2_vpc_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EC2VpcId", ec2_vpc_id)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupDescription", &self.group_description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -909,11 +1031,19 @@ pub struct DBSecurityGroupIngressProperties {
 impl ::serde::Serialize for DBSecurityGroupIngressProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CIDRIP", &self.cidrip)?;
+        if let Some(ref cidrip) = self.cidrip {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CIDRIP", cidrip)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBSecurityGroupName", &self.db_security_group_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EC2SecurityGroupId", &self.ec2_security_group_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EC2SecurityGroupName", &self.ec2_security_group_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EC2SecurityGroupOwnerId", &self.ec2_security_group_owner_id)?;
+        if let Some(ref ec2_security_group_id) = self.ec2_security_group_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EC2SecurityGroupId", ec2_security_group_id)?;
+        }
+        if let Some(ref ec2_security_group_name) = self.ec2_security_group_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EC2SecurityGroupName", ec2_security_group_name)?;
+        }
+        if let Some(ref ec2_security_group_owner_id) = self.ec2_security_group_owner_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EC2SecurityGroupOwnerId", ec2_security_group_owner_id)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -1013,9 +1143,13 @@ impl ::serde::Serialize for DBSubnetGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBSubnetGroupDescription", &self.db_subnet_group_description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBSubnetGroupName", &self.db_subnet_group_name)?;
+        if let Some(ref db_subnet_group_name) = self.db_subnet_group_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBSubnetGroupName", db_subnet_group_name)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetIds", &self.subnet_ids)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -1111,11 +1245,19 @@ pub struct EventSubscriptionProperties {
 impl ::serde::Serialize for EventSubscriptionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventCategories", &self.event_categories)?;
+        if let Some(ref enabled) = self.enabled {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", enabled)?;
+        }
+        if let Some(ref event_categories) = self.event_categories {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventCategories", event_categories)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnsTopicArn", &self.sns_topic_arn)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceIds", &self.source_ids)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceType", &self.source_type)?;
+        if let Some(ref source_ids) = self.source_ids {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceIds", source_ids)?;
+        }
+        if let Some(ref source_type) = self.source_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceType", source_type)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -1220,7 +1362,9 @@ impl ::serde::Serialize for OptionGroupProperties {
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "MajorEngineVersion", &self.major_engine_version)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "OptionConfigurations", &self.option_configurations)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "OptionGroupDescription", &self.option_group_description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -1316,10 +1460,18 @@ pub mod db_security_group {
     impl ::codec::SerializeValue for Ingress {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CIDRIP", &self.cidrip)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EC2SecurityGroupId", &self.ec2_security_group_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EC2SecurityGroupName", &self.ec2_security_group_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EC2SecurityGroupOwnerId", &self.ec2_security_group_owner_id)?;
+            if let Some(ref cidrip) = self.cidrip {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CIDRIP", cidrip)?;
+            }
+            if let Some(ref ec2_security_group_id) = self.ec2_security_group_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EC2SecurityGroupId", ec2_security_group_id)?;
+            }
+            if let Some(ref ec2_security_group_name) = self.ec2_security_group_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EC2SecurityGroupName", ec2_security_group_name)?;
+            }
+            if let Some(ref ec2_security_group_owner_id) = self.ec2_security_group_owner_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EC2SecurityGroupOwnerId", ec2_security_group_owner_id)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1396,12 +1548,22 @@ pub mod option_group {
     impl ::codec::SerializeValue for OptionConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBSecurityGroupMemberships", &self.db_security_group_memberships)?;
+            if let Some(ref db_security_group_memberships) = self.db_security_group_memberships {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBSecurityGroupMemberships", db_security_group_memberships)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "OptionName", &self.option_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OptionSettings", &self.option_settings)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OptionVersion", &self.option_version)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", &self.port)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcSecurityGroupMemberships", &self.vpc_security_group_memberships)?;
+            if let Some(ref option_settings) = self.option_settings {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OptionSettings", option_settings)?;
+            }
+            if let Some(ref option_version) = self.option_version {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OptionVersion", option_version)?;
+            }
+            if let Some(ref port) = self.port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", port)?;
+            }
+            if let Some(ref vpc_security_group_memberships) = self.vpc_security_group_memberships {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcSecurityGroupMemberships", vpc_security_group_memberships)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1476,8 +1638,12 @@ pub mod option_group {
     impl ::codec::SerializeValue for OptionSetting {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            if let Some(ref value) = self.value {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", value)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }

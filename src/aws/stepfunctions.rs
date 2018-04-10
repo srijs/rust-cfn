@@ -95,7 +95,9 @@ impl ::serde::Serialize for StateMachineProperties {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefinitionString", &self.definition_string)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "StateMachineName", &self.state_machine_name)?;
+        if let Some(ref state_machine_name) = self.state_machine_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StateMachineName", state_machine_name)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }

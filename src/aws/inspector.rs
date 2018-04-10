@@ -18,7 +18,9 @@ pub struct AssessmentTargetProperties {
 impl ::serde::Serialize for AssessmentTargetProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssessmentTargetName", &self.assessment_target_name)?;
+        if let Some(ref assessment_target_name) = self.assessment_target_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssessmentTargetName", assessment_target_name)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceGroupArn", &self.resource_group_arn)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -106,10 +108,14 @@ impl ::serde::Serialize for AssessmentTemplateProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssessmentTargetArn", &self.assessment_target_arn)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssessmentTemplateName", &self.assessment_template_name)?;
+        if let Some(ref assessment_template_name) = self.assessment_template_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssessmentTemplateName", assessment_template_name)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DurationInSeconds", &self.duration_in_seconds)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RulesPackageArns", &self.rules_package_arns)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserAttributesForFindings", &self.user_attributes_for_findings)?;
+        if let Some(ref user_attributes_for_findings) = self.user_attributes_for_findings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserAttributesForFindings", user_attributes_for_findings)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }

@@ -33,7 +33,9 @@ impl ::serde::Serialize for ScalableTargetProperties {
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceId", &self.resource_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleARN", &self.role_arn)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScalableDimension", &self.scalable_dimension)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScheduledActions", &self.scheduled_actions)?;
+        if let Some(ref scheduled_actions) = self.scheduled_actions {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScheduledActions", scheduled_actions)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceNamespace", &self.service_namespace)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -153,12 +155,24 @@ impl ::serde::Serialize for ScalingPolicyProperties {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyName", &self.policy_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyType", &self.policy_type)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceId", &self.resource_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScalableDimension", &self.scalable_dimension)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScalingTargetId", &self.scaling_target_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceNamespace", &self.service_namespace)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "StepScalingPolicyConfiguration", &self.step_scaling_policy_configuration)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetTrackingScalingPolicyConfiguration", &self.target_tracking_scaling_policy_configuration)?;
+        if let Some(ref resource_id) = self.resource_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceId", resource_id)?;
+        }
+        if let Some(ref scalable_dimension) = self.scalable_dimension {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScalableDimension", scalable_dimension)?;
+        }
+        if let Some(ref scaling_target_id) = self.scaling_target_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScalingTargetId", scaling_target_id)?;
+        }
+        if let Some(ref service_namespace) = self.service_namespace {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceNamespace", service_namespace)?;
+        }
+        if let Some(ref step_scaling_policy_configuration) = self.step_scaling_policy_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StepScalingPolicyConfiguration", step_scaling_policy_configuration)?;
+        }
+        if let Some(ref target_tracking_scaling_policy_configuration) = self.target_tracking_scaling_policy_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetTrackingScalingPolicyConfiguration", target_tracking_scaling_policy_configuration)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -265,8 +279,12 @@ pub mod scalable_target {
     impl ::codec::SerializeValue for ScalableTargetAction {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxCapacity", &self.max_capacity)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinCapacity", &self.min_capacity)?;
+            if let Some(ref max_capacity) = self.max_capacity {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxCapacity", max_capacity)?;
+            }
+            if let Some(ref min_capacity) = self.min_capacity {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinCapacity", min_capacity)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -327,11 +345,17 @@ pub mod scalable_target {
     impl ::codec::SerializeValue for ScheduledAction {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndTime", &self.end_time)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScalableTargetAction", &self.scalable_target_action)?;
+            if let Some(ref end_time) = self.end_time {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndTime", end_time)?;
+            }
+            if let Some(ref scalable_target_action) = self.scalable_target_action {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScalableTargetAction", scalable_target_action)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Schedule", &self.schedule)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScheduledActionName", &self.scheduled_action_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StartTime", &self.start_time)?;
+            if let Some(ref start_time) = self.start_time {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StartTime", start_time)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -411,11 +435,15 @@ pub mod scaling_policy {
     impl ::codec::SerializeValue for CustomizedMetricSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Dimensions", &self.dimensions)?;
+            if let Some(ref dimensions) = self.dimensions {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Dimensions", dimensions)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricName", &self.metric_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Namespace", &self.namespace)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Statistic", &self.statistic)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Unit", &self.unit)?;
+            if let Some(ref unit) = self.unit {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Unit", unit)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -542,7 +570,9 @@ pub mod scaling_policy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PredefinedMetricType", &self.predefined_metric_type)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceLabel", &self.resource_label)?;
+            if let Some(ref resource_label) = self.resource_label {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceLabel", resource_label)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -599,8 +629,12 @@ pub mod scaling_policy {
     impl ::codec::SerializeValue for StepAdjustment {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricIntervalLowerBound", &self.metric_interval_lower_bound)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricIntervalUpperBound", &self.metric_interval_upper_bound)?;
+            if let Some(ref metric_interval_lower_bound) = self.metric_interval_lower_bound {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricIntervalLowerBound", metric_interval_lower_bound)?;
+            }
+            if let Some(ref metric_interval_upper_bound) = self.metric_interval_upper_bound {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricIntervalUpperBound", metric_interval_upper_bound)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScalingAdjustment", &self.scaling_adjustment)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -667,11 +701,21 @@ pub mod scaling_policy {
     impl ::codec::SerializeValue for StepScalingPolicyConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AdjustmentType", &self.adjustment_type)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cooldown", &self.cooldown)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricAggregationType", &self.metric_aggregation_type)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinAdjustmentMagnitude", &self.min_adjustment_magnitude)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StepAdjustments", &self.step_adjustments)?;
+            if let Some(ref adjustment_type) = self.adjustment_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AdjustmentType", adjustment_type)?;
+            }
+            if let Some(ref cooldown) = self.cooldown {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cooldown", cooldown)?;
+            }
+            if let Some(ref metric_aggregation_type) = self.metric_aggregation_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricAggregationType", metric_aggregation_type)?;
+            }
+            if let Some(ref min_adjustment_magnitude) = self.min_adjustment_magnitude {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinAdjustmentMagnitude", min_adjustment_magnitude)?;
+            }
+            if let Some(ref step_adjustments) = self.step_adjustments {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StepAdjustments", step_adjustments)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -749,11 +793,21 @@ pub mod scaling_policy {
     impl ::codec::SerializeValue for TargetTrackingScalingPolicyConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomizedMetricSpecification", &self.customized_metric_specification)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisableScaleIn", &self.disable_scale_in)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PredefinedMetricSpecification", &self.predefined_metric_specification)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScaleInCooldown", &self.scale_in_cooldown)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScaleOutCooldown", &self.scale_out_cooldown)?;
+            if let Some(ref customized_metric_specification) = self.customized_metric_specification {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomizedMetricSpecification", customized_metric_specification)?;
+            }
+            if let Some(ref disable_scale_in) = self.disable_scale_in {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisableScaleIn", disable_scale_in)?;
+            }
+            if let Some(ref predefined_metric_specification) = self.predefined_metric_specification {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PredefinedMetricSpecification", predefined_metric_specification)?;
+            }
+            if let Some(ref scale_in_cooldown) = self.scale_in_cooldown {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScaleInCooldown", scale_in_cooldown)?;
+            }
+            if let Some(ref scale_out_cooldown) = self.scale_out_cooldown {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScaleOutCooldown", scale_out_cooldown)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetValue", &self.target_value)?;
             ::serde::ser::SerializeMap::end(map)
         }

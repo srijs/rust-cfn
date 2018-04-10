@@ -16,7 +16,9 @@ pub struct ClusterProperties {
 impl ::serde::Serialize for ClusterProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClusterName", &self.cluster_name)?;
+        if let Some(ref cluster_name) = self.cluster_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClusterName", cluster_name)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -113,18 +115,42 @@ pub struct ServiceProperties {
 impl ::serde::Serialize for ServiceProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cluster", &self.cluster)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeploymentConfiguration", &self.deployment_configuration)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DesiredCount", &self.desired_count)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheckGracePeriodSeconds", &self.health_check_grace_period_seconds)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchType", &self.launch_type)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancers", &self.load_balancers)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkConfiguration", &self.network_configuration)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PlacementConstraints", &self.placement_constraints)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PlacementStrategies", &self.placement_strategies)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PlatformVersion", &self.platform_version)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Role", &self.role)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceName", &self.service_name)?;
+        if let Some(ref cluster) = self.cluster {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cluster", cluster)?;
+        }
+        if let Some(ref deployment_configuration) = self.deployment_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeploymentConfiguration", deployment_configuration)?;
+        }
+        if let Some(ref desired_count) = self.desired_count {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DesiredCount", desired_count)?;
+        }
+        if let Some(ref health_check_grace_period_seconds) = self.health_check_grace_period_seconds {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheckGracePeriodSeconds", health_check_grace_period_seconds)?;
+        }
+        if let Some(ref launch_type) = self.launch_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchType", launch_type)?;
+        }
+        if let Some(ref load_balancers) = self.load_balancers {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancers", load_balancers)?;
+        }
+        if let Some(ref network_configuration) = self.network_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkConfiguration", network_configuration)?;
+        }
+        if let Some(ref placement_constraints) = self.placement_constraints {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PlacementConstraints", placement_constraints)?;
+        }
+        if let Some(ref placement_strategies) = self.placement_strategies {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PlacementStrategies", placement_strategies)?;
+        }
+        if let Some(ref platform_version) = self.platform_version {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PlatformVersion", platform_version)?;
+        }
+        if let Some(ref role) = self.role {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Role", role)?;
+        }
+        if let Some(ref service_name) = self.service_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceName", service_name)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "TaskDefinition", &self.task_definition)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -276,16 +302,36 @@ pub struct TaskDefinitionProperties {
 impl ::serde::Serialize for TaskDefinitionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainerDefinitions", &self.container_definitions)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cpu", &self.cpu)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExecutionRoleArn", &self.execution_role_arn)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Family", &self.family)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Memory", &self.memory)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkMode", &self.network_mode)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PlacementConstraints", &self.placement_constraints)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RequiresCompatibilities", &self.requires_compatibilities)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TaskRoleArn", &self.task_role_arn)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Volumes", &self.volumes)?;
+        if let Some(ref container_definitions) = self.container_definitions {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainerDefinitions", container_definitions)?;
+        }
+        if let Some(ref cpu) = self.cpu {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cpu", cpu)?;
+        }
+        if let Some(ref execution_role_arn) = self.execution_role_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExecutionRoleArn", execution_role_arn)?;
+        }
+        if let Some(ref family) = self.family {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Family", family)?;
+        }
+        if let Some(ref memory) = self.memory {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Memory", memory)?;
+        }
+        if let Some(ref network_mode) = self.network_mode {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkMode", network_mode)?;
+        }
+        if let Some(ref placement_constraints) = self.placement_constraints {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PlacementConstraints", placement_constraints)?;
+        }
+        if let Some(ref requires_compatibilities) = self.requires_compatibilities {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RequiresCompatibilities", requires_compatibilities)?;
+        }
+        if let Some(ref task_role_arn) = self.task_role_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TaskRoleArn", task_role_arn)?;
+        }
+        if let Some(ref volumes) = self.volumes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Volumes", volumes)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -404,8 +450,12 @@ pub mod service {
     impl ::codec::SerializeValue for AwsVpcConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssignPublicIp", &self.assign_public_ip)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroups", &self.security_groups)?;
+            if let Some(ref assign_public_ip) = self.assign_public_ip {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssignPublicIp", assign_public_ip)?;
+            }
+            if let Some(ref security_groups) = self.security_groups {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroups", security_groups)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Subnets", &self.subnets)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -466,8 +516,12 @@ pub mod service {
     impl ::codec::SerializeValue for DeploymentConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaximumPercent", &self.maximum_percent)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinimumHealthyPercent", &self.minimum_healthy_percent)?;
+            if let Some(ref maximum_percent) = self.maximum_percent {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaximumPercent", maximum_percent)?;
+            }
+            if let Some(ref minimum_healthy_percent) = self.minimum_healthy_percent {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinimumHealthyPercent", minimum_healthy_percent)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -526,10 +580,16 @@ pub mod service {
     impl ::codec::SerializeValue for LoadBalancer {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainerName", &self.container_name)?;
+            if let Some(ref container_name) = self.container_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainerName", container_name)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainerPort", &self.container_port)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancerName", &self.load_balancer_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetGroupArn", &self.target_group_arn)?;
+            if let Some(ref load_balancer_name) = self.load_balancer_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancerName", load_balancer_name)?;
+            }
+            if let Some(ref target_group_arn) = self.target_group_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetGroupArn", target_group_arn)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -592,7 +652,9 @@ pub mod service {
     impl ::codec::SerializeValue for NetworkConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AwsvpcConfiguration", &self.awsvpc_configuration)?;
+            if let Some(ref awsvpc_configuration) = self.awsvpc_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AwsvpcConfiguration", awsvpc_configuration)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -642,7 +704,9 @@ pub mod service {
     impl ::codec::SerializeValue for PlacementConstraint {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Expression", &self.expression)?;
+            if let Some(ref expression) = self.expression {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Expression", expression)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -698,7 +762,9 @@ pub mod service {
     impl ::codec::SerializeValue for PlacementStrategy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Field", &self.field)?;
+            if let Some(ref field) = self.field {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Field", field)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -808,33 +874,87 @@ pub mod task_definition {
     impl ::codec::SerializeValue for ContainerDefinition {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Command", &self.command)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cpu", &self.cpu)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisableNetworking", &self.disable_networking)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DnsSearchDomains", &self.dns_search_domains)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DnsServers", &self.dns_servers)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DockerLabels", &self.docker_labels)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DockerSecurityOptions", &self.docker_security_options)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EntryPoint", &self.entry_point)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Environment", &self.environment)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Essential", &self.essential)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExtraHosts", &self.extra_hosts)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Hostname", &self.hostname)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Image", &self.image)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Links", &self.links)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LinuxParameters", &self.linux_parameters)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogConfiguration", &self.log_configuration)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Memory", &self.memory)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MemoryReservation", &self.memory_reservation)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MountPoints", &self.mount_points)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PortMappings", &self.port_mappings)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Privileged", &self.privileged)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReadonlyRootFilesystem", &self.readonly_root_filesystem)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ulimits", &self.ulimits)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "User", &self.user)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumesFrom", &self.volumes_from)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "WorkingDirectory", &self.working_directory)?;
+            if let Some(ref command) = self.command {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Command", command)?;
+            }
+            if let Some(ref cpu) = self.cpu {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cpu", cpu)?;
+            }
+            if let Some(ref disable_networking) = self.disable_networking {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisableNetworking", disable_networking)?;
+            }
+            if let Some(ref dns_search_domains) = self.dns_search_domains {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DnsSearchDomains", dns_search_domains)?;
+            }
+            if let Some(ref dns_servers) = self.dns_servers {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DnsServers", dns_servers)?;
+            }
+            if let Some(ref docker_labels) = self.docker_labels {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DockerLabels", docker_labels)?;
+            }
+            if let Some(ref docker_security_options) = self.docker_security_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DockerSecurityOptions", docker_security_options)?;
+            }
+            if let Some(ref entry_point) = self.entry_point {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EntryPoint", entry_point)?;
+            }
+            if let Some(ref environment) = self.environment {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Environment", environment)?;
+            }
+            if let Some(ref essential) = self.essential {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Essential", essential)?;
+            }
+            if let Some(ref extra_hosts) = self.extra_hosts {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExtraHosts", extra_hosts)?;
+            }
+            if let Some(ref hostname) = self.hostname {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Hostname", hostname)?;
+            }
+            if let Some(ref image) = self.image {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Image", image)?;
+            }
+            if let Some(ref links) = self.links {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Links", links)?;
+            }
+            if let Some(ref linux_parameters) = self.linux_parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LinuxParameters", linux_parameters)?;
+            }
+            if let Some(ref log_configuration) = self.log_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogConfiguration", log_configuration)?;
+            }
+            if let Some(ref memory) = self.memory {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Memory", memory)?;
+            }
+            if let Some(ref memory_reservation) = self.memory_reservation {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MemoryReservation", memory_reservation)?;
+            }
+            if let Some(ref mount_points) = self.mount_points {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MountPoints", mount_points)?;
+            }
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            if let Some(ref port_mappings) = self.port_mappings {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PortMappings", port_mappings)?;
+            }
+            if let Some(ref privileged) = self.privileged {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Privileged", privileged)?;
+            }
+            if let Some(ref readonly_root_filesystem) = self.readonly_root_filesystem {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReadonlyRootFilesystem", readonly_root_filesystem)?;
+            }
+            if let Some(ref ulimits) = self.ulimits {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ulimits", ulimits)?;
+            }
+            if let Some(ref user) = self.user {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "User", user)?;
+            }
+            if let Some(ref volumes_from) = self.volumes_from {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumesFrom", volumes_from)?;
+            }
+            if let Some(ref working_directory) = self.working_directory {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "WorkingDirectory", working_directory)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1016,9 +1136,13 @@ pub mod task_definition {
     impl ::codec::SerializeValue for Device {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainerPath", &self.container_path)?;
+            if let Some(ref container_path) = self.container_path {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainerPath", container_path)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostPath", &self.host_path)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Permissions", &self.permissions)?;
+            if let Some(ref permissions) = self.permissions {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Permissions", permissions)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1132,7 +1256,9 @@ pub mod task_definition {
     impl ::codec::SerializeValue for HostVolumeProperties {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourcePath", &self.source_path)?;
+            if let Some(ref source_path) = self.source_path {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourcePath", source_path)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1182,8 +1308,12 @@ pub mod task_definition {
     impl ::codec::SerializeValue for KernelCapabilities {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Add", &self.add)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Drop", &self.drop)?;
+            if let Some(ref add) = self.add {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Add", add)?;
+            }
+            if let Some(ref drop) = self.drop {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Drop", drop)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1238,8 +1368,12 @@ pub mod task_definition {
     impl ::codec::SerializeValue for KeyValuePair {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            if let Some(ref value) = self.value {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", value)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1296,9 +1430,15 @@ pub mod task_definition {
     impl ::codec::SerializeValue for LinuxParameters {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Capabilities", &self.capabilities)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Devices", &self.devices)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InitProcessEnabled", &self.init_process_enabled)?;
+            if let Some(ref capabilities) = self.capabilities {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Capabilities", capabilities)?;
+            }
+            if let Some(ref devices) = self.devices {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Devices", devices)?;
+            }
+            if let Some(ref init_process_enabled) = self.init_process_enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InitProcessEnabled", init_process_enabled)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1359,7 +1499,9 @@ pub mod task_definition {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogDriver", &self.log_driver)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Options", &self.options)?;
+            if let Some(ref options) = self.options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Options", options)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1416,9 +1558,15 @@ pub mod task_definition {
     impl ::codec::SerializeValue for MountPoint {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainerPath", &self.container_path)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReadOnly", &self.read_only)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceVolume", &self.source_volume)?;
+            if let Some(ref container_path) = self.container_path {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainerPath", container_path)?;
+            }
+            if let Some(ref read_only) = self.read_only {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReadOnly", read_only)?;
+            }
+            if let Some(ref source_volume) = self.source_volume {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceVolume", source_volume)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1480,9 +1628,15 @@ pub mod task_definition {
     impl ::codec::SerializeValue for PortMapping {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainerPort", &self.container_port)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostPort", &self.host_port)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", &self.protocol)?;
+            if let Some(ref container_port) = self.container_port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainerPort", container_port)?;
+            }
+            if let Some(ref host_port) = self.host_port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostPort", host_port)?;
+            }
+            if let Some(ref protocol) = self.protocol {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", protocol)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1542,7 +1696,9 @@ pub mod task_definition {
     impl ::codec::SerializeValue for TaskDefinitionPlacementConstraint {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Expression", &self.expression)?;
+            if let Some(ref expression) = self.expression {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Expression", expression)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -1662,8 +1818,12 @@ pub mod task_definition {
     impl ::codec::SerializeValue for Volume {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Host", &self.host)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            if let Some(ref host) = self.host {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Host", host)?;
+            }
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1718,8 +1878,12 @@ pub mod task_definition {
     impl ::codec::SerializeValue for VolumeFrom {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReadOnly", &self.read_only)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceContainer", &self.source_container)?;
+            if let Some(ref read_only) = self.read_only {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReadOnly", read_only)?;
+            }
+            if let Some(ref source_container) = self.source_container {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceContainer", source_container)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }

@@ -28,13 +28,27 @@ pub struct DeliveryStreamProperties {
 impl ::serde::Serialize for DeliveryStreamProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeliveryStreamName", &self.delivery_stream_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeliveryStreamType", &self.delivery_stream_type)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ElasticsearchDestinationConfiguration", &self.elasticsearch_destination_configuration)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExtendedS3DestinationConfiguration", &self.extended_s3_destination_configuration)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "KinesisStreamSourceConfiguration", &self.kinesis_stream_source_configuration)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RedshiftDestinationConfiguration", &self.redshift_destination_configuration)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3DestinationConfiguration", &self.s3_destination_configuration)?;
+        if let Some(ref delivery_stream_name) = self.delivery_stream_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeliveryStreamName", delivery_stream_name)?;
+        }
+        if let Some(ref delivery_stream_type) = self.delivery_stream_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeliveryStreamType", delivery_stream_type)?;
+        }
+        if let Some(ref elasticsearch_destination_configuration) = self.elasticsearch_destination_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ElasticsearchDestinationConfiguration", elasticsearch_destination_configuration)?;
+        }
+        if let Some(ref extended_s3_destination_configuration) = self.extended_s3_destination_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExtendedS3DestinationConfiguration", extended_s3_destination_configuration)?;
+        }
+        if let Some(ref kinesis_stream_source_configuration) = self.kinesis_stream_source_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KinesisStreamSourceConfiguration", kinesis_stream_source_configuration)?;
+        }
+        if let Some(ref redshift_destination_configuration) = self.redshift_destination_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RedshiftDestinationConfiguration", redshift_destination_configuration)?;
+        }
+        if let Some(ref s3_destination_configuration) = self.s3_destination_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3DestinationConfiguration", s3_destination_configuration)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -194,9 +208,15 @@ pub mod delivery_stream {
     impl ::codec::SerializeValue for CloudWatchLoggingOptions {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroupName", &self.log_group_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogStreamName", &self.log_stream_name)?;
+            if let Some(ref enabled) = self.enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", enabled)?;
+            }
+            if let Some(ref log_group_name) = self.log_group_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroupName", log_group_name)?;
+            }
+            if let Some(ref log_stream_name) = self.log_stream_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogStreamName", log_stream_name)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -258,8 +278,12 @@ pub mod delivery_stream {
     impl ::codec::SerializeValue for CopyCommand {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CopyOptions", &self.copy_options)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataTableColumns", &self.data_table_columns)?;
+            if let Some(ref copy_options) = self.copy_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CopyOptions", copy_options)?;
+            }
+            if let Some(ref data_table_columns) = self.data_table_columns {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataTableColumns", data_table_columns)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataTableName", &self.data_table_name)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -395,11 +419,15 @@ pub mod delivery_stream {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BufferingHints", &self.buffering_hints)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchLoggingOptions", &self.cloud_watch_logging_options)?;
+            if let Some(ref cloud_watch_logging_options) = self.cloud_watch_logging_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchLoggingOptions", cloud_watch_logging_options)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainARN", &self.domain_arn)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IndexName", &self.index_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IndexRotationPeriod", &self.index_rotation_period)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProcessingConfiguration", &self.processing_configuration)?;
+            if let Some(ref processing_configuration) = self.processing_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProcessingConfiguration", processing_configuration)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RetryOptions", &self.retry_options)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleARN", &self.role_arn)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3BackupMode", &self.s3_backup_mode)?;
@@ -552,8 +580,12 @@ pub mod delivery_stream {
     impl ::codec::SerializeValue for EncryptionConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KMSEncryptionConfig", &self.kms_encryption_config)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NoEncryptionConfig", &self.no_encryption_config)?;
+            if let Some(ref kms_encryption_config) = self.kms_encryption_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KMSEncryptionConfig", kms_encryption_config)?;
+            }
+            if let Some(ref no_encryption_config) = self.no_encryption_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NoEncryptionConfig", no_encryption_config)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -626,14 +658,24 @@ pub mod delivery_stream {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketARN", &self.bucket_arn)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BufferingHints", &self.buffering_hints)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchLoggingOptions", &self.cloud_watch_logging_options)?;
+            if let Some(ref cloud_watch_logging_options) = self.cloud_watch_logging_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchLoggingOptions", cloud_watch_logging_options)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CompressionFormat", &self.compression_format)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EncryptionConfiguration", &self.encryption_configuration)?;
+            if let Some(ref encryption_configuration) = self.encryption_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EncryptionConfiguration", encryption_configuration)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Prefix", &self.prefix)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProcessingConfiguration", &self.processing_configuration)?;
+            if let Some(ref processing_configuration) = self.processing_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProcessingConfiguration", processing_configuration)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleARN", &self.role_arn)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3BackupConfiguration", &self.s3_backup_configuration)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3BackupMode", &self.s3_backup_mode)?;
+            if let Some(ref s3_backup_configuration) = self.s3_backup_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3BackupConfiguration", s3_backup_configuration)?;
+            }
+            if let Some(ref s3_backup_mode) = self.s3_backup_mode {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3BackupMode", s3_backup_mode)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1012,11 +1054,15 @@ pub mod delivery_stream {
     impl ::codec::SerializeValue for RedshiftDestinationConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchLoggingOptions", &self.cloud_watch_logging_options)?;
+            if let Some(ref cloud_watch_logging_options) = self.cloud_watch_logging_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchLoggingOptions", cloud_watch_logging_options)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClusterJDBCURL", &self.cluster_jdbcurl)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CopyCommand", &self.copy_command)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Password", &self.password)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProcessingConfiguration", &self.processing_configuration)?;
+            if let Some(ref processing_configuration) = self.processing_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProcessingConfiguration", processing_configuration)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleARN", &self.role_arn)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Configuration", &self.s3_configuration)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Username", &self.username)?;
@@ -1116,10 +1162,16 @@ pub mod delivery_stream {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketARN", &self.bucket_arn)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BufferingHints", &self.buffering_hints)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchLoggingOptions", &self.cloud_watch_logging_options)?;
+            if let Some(ref cloud_watch_logging_options) = self.cloud_watch_logging_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchLoggingOptions", cloud_watch_logging_options)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CompressionFormat", &self.compression_format)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EncryptionConfiguration", &self.encryption_configuration)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Prefix", &self.prefix)?;
+            if let Some(ref encryption_configuration) = self.encryption_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EncryptionConfiguration", encryption_configuration)?;
+            }
+            if let Some(ref prefix) = self.prefix {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Prefix", prefix)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleARN", &self.role_arn)?;
             ::serde::ser::SerializeMap::end(map)
         }

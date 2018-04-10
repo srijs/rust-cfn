@@ -21,7 +21,9 @@ impl ::serde::Serialize for InstanceProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceAttributes", &self.instance_attributes)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceId", &self.instance_id)?;
+        if let Some(ref instance_id) = self.instance_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceId", instance_id)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceId", &self.service_id)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -109,7 +111,9 @@ pub struct PrivateDnsNamespaceProperties {
 impl ::serde::Serialize for PrivateDnsNamespaceProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Vpc", &self.vpc)?;
         ::serde::ser::SerializeMap::end(map)
@@ -196,7 +200,9 @@ pub struct PublicDnsNamespaceProperties {
 impl ::serde::Serialize for PublicDnsNamespaceProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -281,10 +287,16 @@ pub struct ServiceProperties {
 impl ::serde::Serialize for ServiceProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DnsConfig", &self.dns_config)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheckConfig", &self.health_check_config)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref health_check_config) = self.health_check_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheckConfig", health_check_config)?;
+        }
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -485,8 +497,12 @@ pub mod service {
     impl ::codec::SerializeValue for HealthCheckConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FailureThreshold", &self.failure_threshold)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourcePath", &self.resource_path)?;
+            if let Some(ref failure_threshold) = self.failure_threshold {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FailureThreshold", failure_threshold)?;
+            }
+            if let Some(ref resource_path) = self.resource_path {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourcePath", resource_path)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
             ::serde::ser::SerializeMap::end(map)
         }

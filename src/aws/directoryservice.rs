@@ -26,11 +26,17 @@ pub struct MicrosoftADProperties {
 impl ::serde::Serialize for MicrosoftADProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CreateAlias", &self.create_alias)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableSso", &self.enable_sso)?;
+        if let Some(ref create_alias) = self.create_alias {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CreateAlias", create_alias)?;
+        }
+        if let Some(ref enable_sso) = self.enable_sso {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableSso", enable_sso)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Password", &self.password)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ShortName", &self.short_name)?;
+        if let Some(ref short_name) = self.short_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ShortName", short_name)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcSettings", &self.vpc_settings)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -143,12 +149,20 @@ pub struct SimpleADProperties {
 impl ::serde::Serialize for SimpleADProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CreateAlias", &self.create_alias)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableSso", &self.enable_sso)?;
+        if let Some(ref create_alias) = self.create_alias {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CreateAlias", create_alias)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref enable_sso) = self.enable_sso {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableSso", enable_sso)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Password", &self.password)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ShortName", &self.short_name)?;
+        if let Some(ref short_name) = self.short_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ShortName", short_name)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Size", &self.size)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcSettings", &self.vpc_settings)?;
         ::serde::ser::SerializeMap::end(map)

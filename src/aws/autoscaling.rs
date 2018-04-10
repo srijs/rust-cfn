@@ -52,25 +52,59 @@ pub struct AutoScalingGroupProperties {
 impl ::serde::Serialize for AutoScalingGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoScalingGroupName", &self.auto_scaling_group_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZones", &self.availability_zones)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cooldown", &self.cooldown)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DesiredCapacity", &self.desired_capacity)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheckGracePeriod", &self.health_check_grace_period)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheckType", &self.health_check_type)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceId", &self.instance_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchConfigurationName", &self.launch_configuration_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LifecycleHookSpecificationList", &self.lifecycle_hook_specification_list)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancerNames", &self.load_balancer_names)?;
+        if let Some(ref auto_scaling_group_name) = self.auto_scaling_group_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoScalingGroupName", auto_scaling_group_name)?;
+        }
+        if let Some(ref availability_zones) = self.availability_zones {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZones", availability_zones)?;
+        }
+        if let Some(ref cooldown) = self.cooldown {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cooldown", cooldown)?;
+        }
+        if let Some(ref desired_capacity) = self.desired_capacity {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DesiredCapacity", desired_capacity)?;
+        }
+        if let Some(ref health_check_grace_period) = self.health_check_grace_period {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheckGracePeriod", health_check_grace_period)?;
+        }
+        if let Some(ref health_check_type) = self.health_check_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheckType", health_check_type)?;
+        }
+        if let Some(ref instance_id) = self.instance_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceId", instance_id)?;
+        }
+        if let Some(ref launch_configuration_name) = self.launch_configuration_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchConfigurationName", launch_configuration_name)?;
+        }
+        if let Some(ref lifecycle_hook_specification_list) = self.lifecycle_hook_specification_list {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LifecycleHookSpecificationList", lifecycle_hook_specification_list)?;
+        }
+        if let Some(ref load_balancer_names) = self.load_balancer_names {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancerNames", load_balancer_names)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxSize", &self.max_size)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricsCollection", &self.metrics_collection)?;
+        if let Some(ref metrics_collection) = self.metrics_collection {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricsCollection", metrics_collection)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinSize", &self.min_size)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationConfigurations", &self.notification_configurations)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PlacementGroup", &self.placement_group)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetGroupARNs", &self.target_group_ar_ns)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TerminationPolicies", &self.termination_policies)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VPCZoneIdentifier", &self.vpc_zone_identifier)?;
+        if let Some(ref notification_configurations) = self.notification_configurations {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationConfigurations", notification_configurations)?;
+        }
+        if let Some(ref placement_group) = self.placement_group {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PlacementGroup", placement_group)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref target_group_ar_ns) = self.target_group_ar_ns {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetGroupARNs", target_group_ar_ns)?;
+        }
+        if let Some(ref termination_policies) = self.termination_policies {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TerminationPolicies", termination_policies)?;
+        }
+        if let Some(ref vpc_zone_identifier) = self.vpc_zone_identifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VPCZoneIdentifier", vpc_zone_identifier)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -265,23 +299,53 @@ pub struct LaunchConfigurationProperties {
 impl ::serde::Serialize for LaunchConfigurationProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssociatePublicIpAddress", &self.associate_public_ip_address)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "BlockDeviceMappings", &self.block_device_mappings)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClassicLinkVPCId", &self.classic_link_vpc_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClassicLinkVPCSecurityGroups", &self.classic_link_vpc_security_groups)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsOptimized", &self.ebs_optimized)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "IamInstanceProfile", &self.iam_instance_profile)?;
+        if let Some(ref associate_public_ip_address) = self.associate_public_ip_address {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssociatePublicIpAddress", associate_public_ip_address)?;
+        }
+        if let Some(ref block_device_mappings) = self.block_device_mappings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BlockDeviceMappings", block_device_mappings)?;
+        }
+        if let Some(ref classic_link_vpc_id) = self.classic_link_vpc_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClassicLinkVPCId", classic_link_vpc_id)?;
+        }
+        if let Some(ref classic_link_vpc_security_groups) = self.classic_link_vpc_security_groups {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClassicLinkVPCSecurityGroups", classic_link_vpc_security_groups)?;
+        }
+        if let Some(ref ebs_optimized) = self.ebs_optimized {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsOptimized", ebs_optimized)?;
+        }
+        if let Some(ref iam_instance_profile) = self.iam_instance_profile {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IamInstanceProfile", iam_instance_profile)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ImageId", &self.image_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceId", &self.instance_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceMonitoring", &self.instance_monitoring)?;
+        if let Some(ref instance_id) = self.instance_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceId", instance_id)?;
+        }
+        if let Some(ref instance_monitoring) = self.instance_monitoring {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceMonitoring", instance_monitoring)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceType", &self.instance_type)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "KernelId", &self.kernel_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyName", &self.key_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PlacementTenancy", &self.placement_tenancy)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RamDiskId", &self.ram_disk_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroups", &self.security_groups)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotPrice", &self.spot_price)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserData", &self.user_data)?;
+        if let Some(ref kernel_id) = self.kernel_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KernelId", kernel_id)?;
+        }
+        if let Some(ref key_name) = self.key_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyName", key_name)?;
+        }
+        if let Some(ref placement_tenancy) = self.placement_tenancy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PlacementTenancy", placement_tenancy)?;
+        }
+        if let Some(ref ram_disk_id) = self.ram_disk_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RamDiskId", ram_disk_id)?;
+        }
+        if let Some(ref security_groups) = self.security_groups {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroups", security_groups)?;
+        }
+        if let Some(ref spot_price) = self.spot_price {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotPrice", spot_price)?;
+        }
+        if let Some(ref user_data) = self.user_data {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserData", user_data)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -449,13 +513,25 @@ impl ::serde::Serialize for LifecycleHookProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoScalingGroupName", &self.auto_scaling_group_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultResult", &self.default_result)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "HeartbeatTimeout", &self.heartbeat_timeout)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LifecycleHookName", &self.lifecycle_hook_name)?;
+        if let Some(ref default_result) = self.default_result {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultResult", default_result)?;
+        }
+        if let Some(ref heartbeat_timeout) = self.heartbeat_timeout {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HeartbeatTimeout", heartbeat_timeout)?;
+        }
+        if let Some(ref lifecycle_hook_name) = self.lifecycle_hook_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LifecycleHookName", lifecycle_hook_name)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "LifecycleTransition", &self.lifecycle_transition)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationMetadata", &self.notification_metadata)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationTargetARN", &self.notification_target_arn)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleARN", &self.role_arn)?;
+        if let Some(ref notification_metadata) = self.notification_metadata {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationMetadata", notification_metadata)?;
+        }
+        if let Some(ref notification_target_arn) = self.notification_target_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationTargetARN", notification_target_arn)?;
+        }
+        if let Some(ref role_arn) = self.role_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleARN", role_arn)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -581,16 +657,34 @@ pub struct ScalingPolicyProperties {
 impl ::serde::Serialize for ScalingPolicyProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AdjustmentType", &self.adjustment_type)?;
+        if let Some(ref adjustment_type) = self.adjustment_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AdjustmentType", adjustment_type)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoScalingGroupName", &self.auto_scaling_group_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cooldown", &self.cooldown)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EstimatedInstanceWarmup", &self.estimated_instance_warmup)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricAggregationType", &self.metric_aggregation_type)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinAdjustmentMagnitude", &self.min_adjustment_magnitude)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyType", &self.policy_type)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScalingAdjustment", &self.scaling_adjustment)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "StepAdjustments", &self.step_adjustments)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetTrackingConfiguration", &self.target_tracking_configuration)?;
+        if let Some(ref cooldown) = self.cooldown {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cooldown", cooldown)?;
+        }
+        if let Some(ref estimated_instance_warmup) = self.estimated_instance_warmup {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EstimatedInstanceWarmup", estimated_instance_warmup)?;
+        }
+        if let Some(ref metric_aggregation_type) = self.metric_aggregation_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricAggregationType", metric_aggregation_type)?;
+        }
+        if let Some(ref min_adjustment_magnitude) = self.min_adjustment_magnitude {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinAdjustmentMagnitude", min_adjustment_magnitude)?;
+        }
+        if let Some(ref policy_type) = self.policy_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyType", policy_type)?;
+        }
+        if let Some(ref scaling_adjustment) = self.scaling_adjustment {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScalingAdjustment", scaling_adjustment)?;
+        }
+        if let Some(ref step_adjustments) = self.step_adjustments {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StepAdjustments", step_adjustments)?;
+        }
+        if let Some(ref target_tracking_configuration) = self.target_tracking_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetTrackingConfiguration", target_tracking_configuration)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -721,12 +815,24 @@ impl ::serde::Serialize for ScheduledActionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoScalingGroupName", &self.auto_scaling_group_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DesiredCapacity", &self.desired_capacity)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndTime", &self.end_time)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxSize", &self.max_size)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinSize", &self.min_size)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Recurrence", &self.recurrence)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "StartTime", &self.start_time)?;
+        if let Some(ref desired_capacity) = self.desired_capacity {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DesiredCapacity", desired_capacity)?;
+        }
+        if let Some(ref end_time) = self.end_time {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndTime", end_time)?;
+        }
+        if let Some(ref max_size) = self.max_size {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxSize", max_size)?;
+        }
+        if let Some(ref min_size) = self.min_size {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinSize", min_size)?;
+        }
+        if let Some(ref recurrence) = self.recurrence {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Recurrence", recurrence)?;
+        }
+        if let Some(ref start_time) = self.start_time {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StartTime", start_time)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -838,13 +944,23 @@ pub mod auto_scaling_group {
     impl ::codec::SerializeValue for LifecycleHookSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultResult", &self.default_result)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HeartbeatTimeout", &self.heartbeat_timeout)?;
+            if let Some(ref default_result) = self.default_result {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultResult", default_result)?;
+            }
+            if let Some(ref heartbeat_timeout) = self.heartbeat_timeout {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HeartbeatTimeout", heartbeat_timeout)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LifecycleHookName", &self.lifecycle_hook_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LifecycleTransition", &self.lifecycle_transition)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationMetadata", &self.notification_metadata)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationTargetARN", &self.notification_target_arn)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleARN", &self.role_arn)?;
+            if let Some(ref notification_metadata) = self.notification_metadata {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationMetadata", notification_metadata)?;
+            }
+            if let Some(ref notification_target_arn) = self.notification_target_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationTargetARN", notification_target_arn)?;
+            }
+            if let Some(ref role_arn) = self.role_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleARN", role_arn)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -925,7 +1041,9 @@ pub mod auto_scaling_group {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Granularity", &self.granularity)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Metrics", &self.metrics)?;
+            if let Some(ref metrics) = self.metrics {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Metrics", metrics)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -980,7 +1098,9 @@ pub mod auto_scaling_group {
     impl ::codec::SerializeValue for NotificationConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationTypes", &self.notification_types)?;
+            if let Some(ref notification_types) = self.notification_types {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationTypes", notification_types)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TopicARN", &self.topic_arn)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -1112,12 +1232,24 @@ pub mod launch_configuration {
     impl ::codec::SerializeValue for BlockDevice {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteOnTermination", &self.delete_on_termination)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Encrypted", &self.encrypted)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", &self.iops)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotId", &self.snapshot_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeSize", &self.volume_size)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeType", &self.volume_type)?;
+            if let Some(ref delete_on_termination) = self.delete_on_termination {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteOnTermination", delete_on_termination)?;
+            }
+            if let Some(ref encrypted) = self.encrypted {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Encrypted", encrypted)?;
+            }
+            if let Some(ref iops) = self.iops {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", iops)?;
+            }
+            if let Some(ref snapshot_id) = self.snapshot_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotId", snapshot_id)?;
+            }
+            if let Some(ref volume_size) = self.volume_size {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeSize", volume_size)?;
+            }
+            if let Some(ref volume_type) = self.volume_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeType", volume_type)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1197,9 +1329,15 @@ pub mod launch_configuration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceName", &self.device_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ebs", &self.ebs)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NoDevice", &self.no_device)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VirtualName", &self.virtual_name)?;
+            if let Some(ref ebs) = self.ebs {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ebs", ebs)?;
+            }
+            if let Some(ref no_device) = self.no_device {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NoDevice", no_device)?;
+            }
+            if let Some(ref virtual_name) = self.virtual_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VirtualName", virtual_name)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1274,11 +1412,15 @@ pub mod scaling_policy {
     impl ::codec::SerializeValue for CustomizedMetricSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Dimensions", &self.dimensions)?;
+            if let Some(ref dimensions) = self.dimensions {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Dimensions", dimensions)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricName", &self.metric_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Namespace", &self.namespace)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Statistic", &self.statistic)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Unit", &self.unit)?;
+            if let Some(ref unit) = self.unit {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Unit", unit)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1405,7 +1547,9 @@ pub mod scaling_policy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PredefinedMetricType", &self.predefined_metric_type)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceLabel", &self.resource_label)?;
+            if let Some(ref resource_label) = self.resource_label {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceLabel", resource_label)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1462,8 +1606,12 @@ pub mod scaling_policy {
     impl ::codec::SerializeValue for StepAdjustment {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricIntervalLowerBound", &self.metric_interval_lower_bound)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricIntervalUpperBound", &self.metric_interval_upper_bound)?;
+            if let Some(ref metric_interval_lower_bound) = self.metric_interval_lower_bound {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricIntervalLowerBound", metric_interval_lower_bound)?;
+            }
+            if let Some(ref metric_interval_upper_bound) = self.metric_interval_upper_bound {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricIntervalUpperBound", metric_interval_upper_bound)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScalingAdjustment", &self.scaling_adjustment)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -1528,9 +1676,15 @@ pub mod scaling_policy {
     impl ::codec::SerializeValue for TargetTrackingConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomizedMetricSpecification", &self.customized_metric_specification)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisableScaleIn", &self.disable_scale_in)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PredefinedMetricSpecification", &self.predefined_metric_specification)?;
+            if let Some(ref customized_metric_specification) = self.customized_metric_specification {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomizedMetricSpecification", customized_metric_specification)?;
+            }
+            if let Some(ref disable_scale_in) = self.disable_scale_in {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisableScaleIn", disable_scale_in)?;
+            }
+            if let Some(ref predefined_metric_specification) = self.predefined_metric_specification {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PredefinedMetricSpecification", predefined_metric_specification)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetValue", &self.target_value)?;
             ::serde::ser::SerializeMap::end(map)
         }

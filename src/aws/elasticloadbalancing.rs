@@ -46,22 +46,52 @@ pub struct LoadBalancerProperties {
 impl ::serde::Serialize for LoadBalancerProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessLoggingPolicy", &self.access_logging_policy)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AppCookieStickinessPolicy", &self.app_cookie_stickiness_policy)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZones", &self.availability_zones)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionDrainingPolicy", &self.connection_draining_policy)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionSettings", &self.connection_settings)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CrossZone", &self.cross_zone)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheck", &self.health_check)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Instances", &self.instances)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LBCookieStickinessPolicy", &self.lb_cookie_stickiness_policy)?;
+        if let Some(ref access_logging_policy) = self.access_logging_policy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessLoggingPolicy", access_logging_policy)?;
+        }
+        if let Some(ref app_cookie_stickiness_policy) = self.app_cookie_stickiness_policy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AppCookieStickinessPolicy", app_cookie_stickiness_policy)?;
+        }
+        if let Some(ref availability_zones) = self.availability_zones {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZones", availability_zones)?;
+        }
+        if let Some(ref connection_draining_policy) = self.connection_draining_policy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionDrainingPolicy", connection_draining_policy)?;
+        }
+        if let Some(ref connection_settings) = self.connection_settings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionSettings", connection_settings)?;
+        }
+        if let Some(ref cross_zone) = self.cross_zone {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CrossZone", cross_zone)?;
+        }
+        if let Some(ref health_check) = self.health_check {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheck", health_check)?;
+        }
+        if let Some(ref instances) = self.instances {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Instances", instances)?;
+        }
+        if let Some(ref lb_cookie_stickiness_policy) = self.lb_cookie_stickiness_policy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LBCookieStickinessPolicy", lb_cookie_stickiness_policy)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Listeners", &self.listeners)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancerName", &self.load_balancer_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Policies", &self.policies)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Scheme", &self.scheme)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroups", &self.security_groups)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Subnets", &self.subnets)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref load_balancer_name) = self.load_balancer_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancerName", load_balancer_name)?;
+        }
+        if let Some(ref policies) = self.policies {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Policies", policies)?;
+        }
+        if let Some(ref scheme) = self.scheme {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Scheme", scheme)?;
+        }
+        if let Some(ref security_groups) = self.security_groups {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroups", security_groups)?;
+        }
+        if let Some(ref subnets) = self.subnets {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Subnets", subnets)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -212,10 +242,14 @@ pub mod load_balancer {
     impl ::codec::SerializeValue for AccessLoggingPolicy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EmitInterval", &self.emit_interval)?;
+            if let Some(ref emit_interval) = self.emit_interval {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EmitInterval", emit_interval)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3BucketName", &self.s3_bucket_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3BucketPrefix", &self.s3_bucket_prefix)?;
+            if let Some(ref s3_bucket_prefix) = self.s3_bucket_prefix {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3BucketPrefix", s3_bucket_prefix)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -337,7 +371,9 @@ pub mod load_balancer {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Timeout", &self.timeout)?;
+            if let Some(ref timeout) = self.timeout {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Timeout", timeout)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -520,8 +556,12 @@ pub mod load_balancer {
     impl ::codec::SerializeValue for LBCookieStickinessPolicy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CookieExpirationPeriod", &self.cookie_expiration_period)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyName", &self.policy_name)?;
+            if let Some(ref cookie_expiration_period) = self.cookie_expiration_period {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CookieExpirationPeriod", cookie_expiration_period)?;
+            }
+            if let Some(ref policy_name) = self.policy_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyName", policy_name)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -585,11 +625,17 @@ pub mod load_balancer {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstancePort", &self.instance_port)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceProtocol", &self.instance_protocol)?;
+            if let Some(ref instance_protocol) = self.instance_protocol {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceProtocol", instance_protocol)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancerPort", &self.load_balancer_port)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyNames", &self.policy_names)?;
+            if let Some(ref policy_names) = self.policy_names {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyNames", policy_names)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", &self.protocol)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SSLCertificateId", &self.ssl_certificate_id)?;
+            if let Some(ref ssl_certificate_id) = self.ssl_certificate_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SSLCertificateId", ssl_certificate_id)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -671,8 +717,12 @@ pub mod load_balancer {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attributes", &self.attributes)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstancePorts", &self.instance_ports)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancerPorts", &self.load_balancer_ports)?;
+            if let Some(ref instance_ports) = self.instance_ports {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstancePorts", instance_ports)?;
+            }
+            if let Some(ref load_balancer_ports) = self.load_balancer_ports {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancerPorts", load_balancer_ports)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyName", &self.policy_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyType", &self.policy_type)?;
             ::serde::ser::SerializeMap::end(map)

@@ -28,13 +28,25 @@ pub struct EnvironmentEC2Properties {
 impl ::serde::Serialize for EnvironmentEC2Properties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutomaticStopTimeMinutes", &self.automatic_stop_time_minutes)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
+        if let Some(ref automatic_stop_time_minutes) = self.automatic_stop_time_minutes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutomaticStopTimeMinutes", automatic_stop_time_minutes)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceType", &self.instance_type)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "OwnerArn", &self.owner_arn)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Repositories", &self.repositories)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", &self.subnet_id)?;
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
+        if let Some(ref owner_arn) = self.owner_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OwnerArn", owner_arn)?;
+        }
+        if let Some(ref repositories) = self.repositories {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Repositories", repositories)?;
+        }
+        if let Some(ref subnet_id) = self.subnet_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", subnet_id)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }

@@ -22,10 +22,18 @@ pub struct FileSystemProperties {
 impl ::serde::Serialize for FileSystemProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Encrypted", &self.encrypted)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "FileSystemTags", &self.file_system_tags)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", &self.kms_key_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PerformanceMode", &self.performance_mode)?;
+        if let Some(ref encrypted) = self.encrypted {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Encrypted", encrypted)?;
+        }
+        if let Some(ref file_system_tags) = self.file_system_tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FileSystemTags", file_system_tags)?;
+        }
+        if let Some(ref kms_key_id) = self.kms_key_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", kms_key_id)?;
+        }
+        if let Some(ref performance_mode) = self.performance_mode {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PerformanceMode", performance_mode)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -120,7 +128,9 @@ impl ::serde::Serialize for MountTargetProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "FileSystemId", &self.file_system_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "IpAddress", &self.ip_address)?;
+        if let Some(ref ip_address) = self.ip_address {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IpAddress", ip_address)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroups", &self.security_groups)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", &self.subnet_id)?;
         ::serde::ser::SerializeMap::end(map)

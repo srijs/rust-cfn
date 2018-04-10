@@ -38,18 +38,36 @@ pub struct ClusterProperties {
 impl ::serde::Serialize for ClusterProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZones", &self.availability_zones)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClusterName", &self.cluster_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
+        if let Some(ref availability_zones) = self.availability_zones {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZones", availability_zones)?;
+        }
+        if let Some(ref cluster_name) = self.cluster_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClusterName", cluster_name)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "IAMRoleARN", &self.iam_role_arn)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "NodeType", &self.node_type)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationTopicARN", &self.notification_topic_arn)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ParameterGroupName", &self.parameter_group_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreferredMaintenanceWindow", &self.preferred_maintenance_window)?;
+        if let Some(ref notification_topic_arn) = self.notification_topic_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationTopicARN", notification_topic_arn)?;
+        }
+        if let Some(ref parameter_group_name) = self.parameter_group_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ParameterGroupName", parameter_group_name)?;
+        }
+        if let Some(ref preferred_maintenance_window) = self.preferred_maintenance_window {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreferredMaintenanceWindow", preferred_maintenance_window)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicationFactor", &self.replication_factor)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIds", &self.security_group_ids)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetGroupName", &self.subnet_group_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref security_group_ids) = self.security_group_ids {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIds", security_group_ids)?;
+        }
+        if let Some(ref subnet_group_name) = self.subnet_group_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetGroupName", subnet_group_name)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -181,9 +199,15 @@ pub struct ParameterGroupProperties {
 impl ::serde::Serialize for ParameterGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ParameterGroupName", &self.parameter_group_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ParameterNameValues", &self.parameter_name_values)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref parameter_group_name) = self.parameter_group_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ParameterGroupName", parameter_group_name)?;
+        }
+        if let Some(ref parameter_name_values) = self.parameter_name_values {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ParameterNameValues", parameter_name_values)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -270,8 +294,12 @@ pub struct SubnetGroupProperties {
 impl ::serde::Serialize for SubnetGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetGroupName", &self.subnet_group_name)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref subnet_group_name) = self.subnet_group_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetGroupName", subnet_group_name)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetIds", &self.subnet_ids)?;
         ::serde::ser::SerializeMap::end(map)
     }

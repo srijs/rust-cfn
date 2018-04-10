@@ -24,11 +24,19 @@ pub struct StreamProperties {
 impl ::serde::Serialize for StreamProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RetentionPeriodHours", &self.retention_period_hours)?;
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
+        if let Some(ref retention_period_hours) = self.retention_period_hours {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RetentionPeriodHours", retention_period_hours)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ShardCount", &self.shard_count)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamEncryption", &self.stream_encryption)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref stream_encryption) = self.stream_encryption {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamEncryption", stream_encryption)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }

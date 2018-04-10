@@ -28,13 +28,27 @@ pub struct RuleProperties {
 impl ::serde::Serialize for RuleProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventPattern", &self.event_pattern)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScheduleExpression", &self.schedule_expression)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "State", &self.state)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Targets", &self.targets)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref event_pattern) = self.event_pattern {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventPattern", event_pattern)?;
+        }
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
+        if let Some(ref role_arn) = self.role_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", role_arn)?;
+        }
+        if let Some(ref schedule_expression) = self.schedule_expression {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScheduleExpression", schedule_expression)?;
+        }
+        if let Some(ref state) = self.state {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "State", state)?;
+        }
+        if let Some(ref targets) = self.targets {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Targets", targets)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -136,7 +150,9 @@ pub mod rule {
     impl ::codec::SerializeValue for EcsParameters {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TaskCount", &self.task_count)?;
+            if let Some(ref task_count) = self.task_count {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TaskCount", task_count)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TaskDefinitionArn", &self.task_definition_arn)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -192,7 +208,9 @@ pub mod rule {
     impl ::codec::SerializeValue for InputTransformer {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputPathsMap", &self.input_paths_map)?;
+            if let Some(ref input_paths_map) = self.input_paths_map {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputPathsMap", input_paths_map)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputTemplate", &self.input_template)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -415,14 +433,28 @@ pub mod rule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Arn", &self.arn)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EcsParameters", &self.ecs_parameters)?;
+            if let Some(ref ecs_parameters) = self.ecs_parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EcsParameters", ecs_parameters)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Id", &self.id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Input", &self.input)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputPath", &self.input_path)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputTransformer", &self.input_transformer)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KinesisParameters", &self.kinesis_parameters)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RunCommandParameters", &self.run_command_parameters)?;
+            if let Some(ref input) = self.input {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Input", input)?;
+            }
+            if let Some(ref input_path) = self.input_path {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputPath", input_path)?;
+            }
+            if let Some(ref input_transformer) = self.input_transformer {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputTransformer", input_transformer)?;
+            }
+            if let Some(ref kinesis_parameters) = self.kinesis_parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KinesisParameters", kinesis_parameters)?;
+            }
+            if let Some(ref role_arn) = self.role_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", role_arn)?;
+            }
+            if let Some(ref run_command_parameters) = self.run_command_parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RunCommandParameters", run_command_parameters)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }

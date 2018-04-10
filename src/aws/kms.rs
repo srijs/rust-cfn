@@ -107,12 +107,22 @@ pub struct KeyProperties {
 impl ::serde::Serialize for KeyProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableKeyRotation", &self.enable_key_rotation)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref enable_key_rotation) = self.enable_key_rotation {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableKeyRotation", enable_key_rotation)?;
+        }
+        if let Some(ref enabled) = self.enabled {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", enabled)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyPolicy", &self.key_policy)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyUsage", &self.key_usage)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref key_usage) = self.key_usage {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyUsage", key_usage)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }

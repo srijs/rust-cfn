@@ -35,15 +35,33 @@ impl ::serde::Serialize for IdentityPoolProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowUnauthenticatedIdentities", &self.allow_unauthenticated_identities)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CognitoEvents", &self.cognito_events)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CognitoIdentityProviders", &self.cognito_identity_providers)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CognitoStreams", &self.cognito_streams)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeveloperProviderName", &self.developer_provider_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "IdentityPoolName", &self.identity_pool_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "OpenIdConnectProviderARNs", &self.open_id_connect_provider_ar_ns)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PushSync", &self.push_sync)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SamlProviderARNs", &self.saml_provider_ar_ns)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SupportedLoginProviders", &self.supported_login_providers)?;
+        if let Some(ref cognito_events) = self.cognito_events {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CognitoEvents", cognito_events)?;
+        }
+        if let Some(ref cognito_identity_providers) = self.cognito_identity_providers {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CognitoIdentityProviders", cognito_identity_providers)?;
+        }
+        if let Some(ref cognito_streams) = self.cognito_streams {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CognitoStreams", cognito_streams)?;
+        }
+        if let Some(ref developer_provider_name) = self.developer_provider_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeveloperProviderName", developer_provider_name)?;
+        }
+        if let Some(ref identity_pool_name) = self.identity_pool_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IdentityPoolName", identity_pool_name)?;
+        }
+        if let Some(ref open_id_connect_provider_ar_ns) = self.open_id_connect_provider_ar_ns {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OpenIdConnectProviderARNs", open_id_connect_provider_ar_ns)?;
+        }
+        if let Some(ref push_sync) = self.push_sync {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PushSync", push_sync)?;
+        }
+        if let Some(ref saml_provider_ar_ns) = self.saml_provider_ar_ns {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SamlProviderARNs", saml_provider_ar_ns)?;
+        }
+        if let Some(ref supported_login_providers) = self.supported_login_providers {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SupportedLoginProviders", supported_login_providers)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -166,8 +184,12 @@ impl ::serde::Serialize for IdentityPoolRoleAttachmentProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "IdentityPoolId", &self.identity_pool_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleMappings", &self.role_mappings)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Roles", &self.roles)?;
+        if let Some(ref role_mappings) = self.role_mappings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleMappings", role_mappings)?;
+        }
+        if let Some(ref roles) = self.roles {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Roles", roles)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -280,22 +302,54 @@ pub struct UserPoolProperties {
 impl ::serde::Serialize for UserPoolProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AdminCreateUserConfig", &self.admin_create_user_config)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AliasAttributes", &self.alias_attributes)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoVerifiedAttributes", &self.auto_verified_attributes)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceConfiguration", &self.device_configuration)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EmailConfiguration", &self.email_configuration)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EmailVerificationMessage", &self.email_verification_message)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EmailVerificationSubject", &self.email_verification_subject)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaConfig", &self.lambda_config)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MfaConfiguration", &self.mfa_configuration)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Policies", &self.policies)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Schema", &self.schema)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SmsAuthenticationMessage", &self.sms_authentication_message)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SmsConfiguration", &self.sms_configuration)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SmsVerificationMessage", &self.sms_verification_message)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserPoolName", &self.user_pool_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserPoolTags", &self.user_pool_tags)?;
+        if let Some(ref admin_create_user_config) = self.admin_create_user_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AdminCreateUserConfig", admin_create_user_config)?;
+        }
+        if let Some(ref alias_attributes) = self.alias_attributes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AliasAttributes", alias_attributes)?;
+        }
+        if let Some(ref auto_verified_attributes) = self.auto_verified_attributes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoVerifiedAttributes", auto_verified_attributes)?;
+        }
+        if let Some(ref device_configuration) = self.device_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceConfiguration", device_configuration)?;
+        }
+        if let Some(ref email_configuration) = self.email_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EmailConfiguration", email_configuration)?;
+        }
+        if let Some(ref email_verification_message) = self.email_verification_message {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EmailVerificationMessage", email_verification_message)?;
+        }
+        if let Some(ref email_verification_subject) = self.email_verification_subject {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EmailVerificationSubject", email_verification_subject)?;
+        }
+        if let Some(ref lambda_config) = self.lambda_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaConfig", lambda_config)?;
+        }
+        if let Some(ref mfa_configuration) = self.mfa_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MfaConfiguration", mfa_configuration)?;
+        }
+        if let Some(ref policies) = self.policies {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Policies", policies)?;
+        }
+        if let Some(ref schema) = self.schema {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Schema", schema)?;
+        }
+        if let Some(ref sms_authentication_message) = self.sms_authentication_message {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SmsAuthenticationMessage", sms_authentication_message)?;
+        }
+        if let Some(ref sms_configuration) = self.sms_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SmsConfiguration", sms_configuration)?;
+        }
+        if let Some(ref sms_verification_message) = self.sms_verification_message {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SmsVerificationMessage", sms_verification_message)?;
+        }
+        if let Some(ref user_pool_name) = self.user_pool_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserPoolName", user_pool_name)?;
+        }
+        if let Some(ref user_pool_tags) = self.user_pool_tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserPoolTags", user_pool_tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -455,13 +509,25 @@ pub struct UserPoolClientProperties {
 impl ::serde::Serialize for UserPoolClientProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientName", &self.client_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExplicitAuthFlows", &self.explicit_auth_flows)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "GenerateSecret", &self.generate_secret)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReadAttributes", &self.read_attributes)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RefreshTokenValidity", &self.refresh_token_validity)?;
+        if let Some(ref client_name) = self.client_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientName", client_name)?;
+        }
+        if let Some(ref explicit_auth_flows) = self.explicit_auth_flows {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExplicitAuthFlows", explicit_auth_flows)?;
+        }
+        if let Some(ref generate_secret) = self.generate_secret {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GenerateSecret", generate_secret)?;
+        }
+        if let Some(ref read_attributes) = self.read_attributes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReadAttributes", read_attributes)?;
+        }
+        if let Some(ref refresh_token_validity) = self.refresh_token_validity {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RefreshTokenValidity", refresh_token_validity)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserPoolId", &self.user_pool_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "WriteAttributes", &self.write_attributes)?;
+        if let Some(ref write_attributes) = self.write_attributes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "WriteAttributes", write_attributes)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -572,10 +638,18 @@ pub struct UserPoolGroupProperties {
 impl ::serde::Serialize for UserPoolGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupName", &self.group_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Precedence", &self.precedence)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref group_name) = self.group_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupName", group_name)?;
+        }
+        if let Some(ref precedence) = self.precedence {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Precedence", precedence)?;
+        }
+        if let Some(ref role_arn) = self.role_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", role_arn)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserPoolId", &self.user_pool_id)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -681,13 +755,25 @@ pub struct UserPoolUserProperties {
 impl ::serde::Serialize for UserPoolUserProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DesiredDeliveryMediums", &self.desired_delivery_mediums)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ForceAliasCreation", &self.force_alias_creation)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MessageAction", &self.message_action)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserAttributes", &self.user_attributes)?;
+        if let Some(ref desired_delivery_mediums) = self.desired_delivery_mediums {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DesiredDeliveryMediums", desired_delivery_mediums)?;
+        }
+        if let Some(ref force_alias_creation) = self.force_alias_creation {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ForceAliasCreation", force_alias_creation)?;
+        }
+        if let Some(ref message_action) = self.message_action {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MessageAction", message_action)?;
+        }
+        if let Some(ref user_attributes) = self.user_attributes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserAttributes", user_attributes)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserPoolId", &self.user_pool_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Username", &self.username)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ValidationData", &self.validation_data)?;
+        if let Some(ref username) = self.username {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Username", username)?;
+        }
+        if let Some(ref validation_data) = self.validation_data {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ValidationData", validation_data)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -880,9 +966,15 @@ pub mod identity_pool {
     impl ::codec::SerializeValue for CognitoIdentityProvider {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientId", &self.client_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProviderName", &self.provider_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServerSideTokenCheck", &self.server_side_token_check)?;
+            if let Some(ref client_id) = self.client_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientId", client_id)?;
+            }
+            if let Some(ref provider_name) = self.provider_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProviderName", provider_name)?;
+            }
+            if let Some(ref server_side_token_check) = self.server_side_token_check {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServerSideTokenCheck", server_side_token_check)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -944,9 +1036,15 @@ pub mod identity_pool {
     impl ::codec::SerializeValue for CognitoStreams {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamName", &self.stream_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamingStatus", &self.streaming_status)?;
+            if let Some(ref role_arn) = self.role_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", role_arn)?;
+            }
+            if let Some(ref stream_name) = self.stream_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamName", stream_name)?;
+            }
+            if let Some(ref streaming_status) = self.streaming_status {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamingStatus", streaming_status)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1006,8 +1104,12 @@ pub mod identity_pool {
     impl ::codec::SerializeValue for PushSync {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationArns", &self.application_arns)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
+            if let Some(ref application_arns) = self.application_arns {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationArns", application_arns)?;
+            }
+            if let Some(ref role_arn) = self.role_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", role_arn)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1140,8 +1242,12 @@ pub mod identity_pool_role_attachment {
     impl ::codec::SerializeValue for RoleMapping {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AmbiguousRoleResolution", &self.ambiguous_role_resolution)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RulesConfiguration", &self.rules_configuration)?;
+            if let Some(ref ambiguous_role_resolution) = self.ambiguous_role_resolution {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AmbiguousRoleResolution", ambiguous_role_resolution)?;
+            }
+            if let Some(ref rules_configuration) = self.rules_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RulesConfiguration", rules_configuration)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -1256,9 +1362,15 @@ pub mod user_pool {
     impl ::codec::SerializeValue for AdminCreateUserConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowAdminCreateUserOnly", &self.allow_admin_create_user_only)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InviteMessageTemplate", &self.invite_message_template)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UnusedAccountValidityDays", &self.unused_account_validity_days)?;
+            if let Some(ref allow_admin_create_user_only) = self.allow_admin_create_user_only {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowAdminCreateUserOnly", allow_admin_create_user_only)?;
+            }
+            if let Some(ref invite_message_template) = self.invite_message_template {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InviteMessageTemplate", invite_message_template)?;
+            }
+            if let Some(ref unused_account_validity_days) = self.unused_account_validity_days {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UnusedAccountValidityDays", unused_account_validity_days)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1318,8 +1430,12 @@ pub mod user_pool {
     impl ::codec::SerializeValue for DeviceConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ChallengeRequiredOnNewDevice", &self.challenge_required_on_new_device)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceOnlyRememberedOnUserPrompt", &self.device_only_remembered_on_user_prompt)?;
+            if let Some(ref challenge_required_on_new_device) = self.challenge_required_on_new_device {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ChallengeRequiredOnNewDevice", challenge_required_on_new_device)?;
+            }
+            if let Some(ref device_only_remembered_on_user_prompt) = self.device_only_remembered_on_user_prompt {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceOnlyRememberedOnUserPrompt", device_only_remembered_on_user_prompt)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1374,8 +1490,12 @@ pub mod user_pool {
     impl ::codec::SerializeValue for EmailConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplyToEmailAddress", &self.reply_to_email_address)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceArn", &self.source_arn)?;
+            if let Some(ref reply_to_email_address) = self.reply_to_email_address {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplyToEmailAddress", reply_to_email_address)?;
+            }
+            if let Some(ref source_arn) = self.source_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceArn", source_arn)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1432,9 +1552,15 @@ pub mod user_pool {
     impl ::codec::SerializeValue for InviteMessageTemplate {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EmailMessage", &self.email_message)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EmailSubject", &self.email_subject)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SMSMessage", &self.sms_message)?;
+            if let Some(ref email_message) = self.email_message {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EmailMessage", email_message)?;
+            }
+            if let Some(ref email_subject) = self.email_subject {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EmailSubject", email_subject)?;
+            }
+            if let Some(ref sms_message) = self.sms_message {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SMSMessage", sms_message)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1506,14 +1632,30 @@ pub mod user_pool {
     impl ::codec::SerializeValue for LambdaConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CreateAuthChallenge", &self.create_auth_challenge)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomMessage", &self.custom_message)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefineAuthChallenge", &self.define_auth_challenge)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PostAuthentication", &self.post_authentication)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PostConfirmation", &self.post_confirmation)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreAuthentication", &self.pre_authentication)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreSignUp", &self.pre_sign_up)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VerifyAuthChallengeResponse", &self.verify_auth_challenge_response)?;
+            if let Some(ref create_auth_challenge) = self.create_auth_challenge {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CreateAuthChallenge", create_auth_challenge)?;
+            }
+            if let Some(ref custom_message) = self.custom_message {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomMessage", custom_message)?;
+            }
+            if let Some(ref define_auth_challenge) = self.define_auth_challenge {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefineAuthChallenge", define_auth_challenge)?;
+            }
+            if let Some(ref post_authentication) = self.post_authentication {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PostAuthentication", post_authentication)?;
+            }
+            if let Some(ref post_confirmation) = self.post_confirmation {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PostConfirmation", post_confirmation)?;
+            }
+            if let Some(ref pre_authentication) = self.pre_authentication {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreAuthentication", pre_authentication)?;
+            }
+            if let Some(ref pre_sign_up) = self.pre_sign_up {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreSignUp", pre_sign_up)?;
+            }
+            if let Some(ref verify_auth_challenge_response) = self.verify_auth_challenge_response {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VerifyAuthChallengeResponse", verify_auth_challenge_response)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1598,8 +1740,12 @@ pub mod user_pool {
     impl ::codec::SerializeValue for NumberAttributeConstraints {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxValue", &self.max_value)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinValue", &self.min_value)?;
+            if let Some(ref max_value) = self.max_value {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxValue", max_value)?;
+            }
+            if let Some(ref min_value) = self.min_value {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinValue", min_value)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1660,11 +1806,21 @@ pub mod user_pool {
     impl ::codec::SerializeValue for PasswordPolicy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinimumLength", &self.minimum_length)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RequireLowercase", &self.require_lowercase)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RequireNumbers", &self.require_numbers)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RequireSymbols", &self.require_symbols)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RequireUppercase", &self.require_uppercase)?;
+            if let Some(ref minimum_length) = self.minimum_length {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinimumLength", minimum_length)?;
+            }
+            if let Some(ref require_lowercase) = self.require_lowercase {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RequireLowercase", require_lowercase)?;
+            }
+            if let Some(ref require_numbers) = self.require_numbers {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RequireNumbers", require_numbers)?;
+            }
+            if let Some(ref require_symbols) = self.require_symbols {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RequireSymbols", require_symbols)?;
+            }
+            if let Some(ref require_uppercase) = self.require_uppercase {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RequireUppercase", require_uppercase)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1732,7 +1888,9 @@ pub mod user_pool {
     impl ::codec::SerializeValue for Policies {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PasswordPolicy", &self.password_policy)?;
+            if let Some(ref password_policy) = self.password_policy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PasswordPolicy", password_policy)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1792,13 +1950,27 @@ pub mod user_pool {
     impl ::codec::SerializeValue for SchemaAttribute {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AttributeDataType", &self.attribute_data_type)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeveloperOnlyAttribute", &self.developer_only_attribute)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Mutable", &self.mutable)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NumberAttributeConstraints", &self.number_attribute_constraints)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Required", &self.required)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StringAttributeConstraints", &self.string_attribute_constraints)?;
+            if let Some(ref attribute_data_type) = self.attribute_data_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AttributeDataType", attribute_data_type)?;
+            }
+            if let Some(ref developer_only_attribute) = self.developer_only_attribute {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeveloperOnlyAttribute", developer_only_attribute)?;
+            }
+            if let Some(ref mutable) = self.mutable {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Mutable", mutable)?;
+            }
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            if let Some(ref number_attribute_constraints) = self.number_attribute_constraints {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NumberAttributeConstraints", number_attribute_constraints)?;
+            }
+            if let Some(ref required) = self.required {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Required", required)?;
+            }
+            if let Some(ref string_attribute_constraints) = self.string_attribute_constraints {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StringAttributeConstraints", string_attribute_constraints)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1878,8 +2050,12 @@ pub mod user_pool {
     impl ::codec::SerializeValue for SmsConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExternalId", &self.external_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnsCallerArn", &self.sns_caller_arn)?;
+            if let Some(ref external_id) = self.external_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExternalId", external_id)?;
+            }
+            if let Some(ref sns_caller_arn) = self.sns_caller_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnsCallerArn", sns_caller_arn)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1934,8 +2110,12 @@ pub mod user_pool {
     impl ::codec::SerializeValue for StringAttributeConstraints {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxLength", &self.max_length)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinLength", &self.min_length)?;
+            if let Some(ref max_length) = self.max_length {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxLength", max_length)?;
+            }
+            if let Some(ref min_length) = self.min_length {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinLength", min_length)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1994,8 +2174,12 @@ pub mod user_pool_user {
     impl ::codec::SerializeValue for AttributeType {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            if let Some(ref value) = self.value {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", value)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }

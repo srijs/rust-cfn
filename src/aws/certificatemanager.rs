@@ -23,9 +23,15 @@ impl ::serde::Serialize for CertificateProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainName", &self.domain_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainValidationOptions", &self.domain_validation_options)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubjectAlternativeNames", &self.subject_alternative_names)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref domain_validation_options) = self.domain_validation_options {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainValidationOptions", domain_validation_options)?;
+        }
+        if let Some(ref subject_alternative_names) = self.subject_alternative_names {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubjectAlternativeNames", subject_alternative_names)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }

@@ -19,7 +19,9 @@ impl ::serde::Serialize for HealthCheckProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheckConfig", &self.health_check_config)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheckTags", &self.health_check_tags)?;
+        if let Some(ref health_check_tags) = self.health_check_tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheckTags", health_check_tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -105,11 +107,19 @@ pub struct HostedZoneProperties {
 impl ::serde::Serialize for HostedZoneProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneConfig", &self.hosted_zone_config)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneTags", &self.hosted_zone_tags)?;
+        if let Some(ref hosted_zone_config) = self.hosted_zone_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneConfig", hosted_zone_config)?;
+        }
+        if let Some(ref hosted_zone_tags) = self.hosted_zone_tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneTags", hosted_zone_tags)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "QueryLoggingConfig", &self.query_logging_config)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VPCs", &self.vp_cs)?;
+        if let Some(ref query_logging_config) = self.query_logging_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "QueryLoggingConfig", query_logging_config)?;
+        }
+        if let Some(ref vp_cs) = self.vp_cs {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VPCs", vp_cs)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -228,20 +238,44 @@ pub struct RecordSetProperties {
 impl ::serde::Serialize for RecordSetProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AliasTarget", &self.alias_target)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", &self.comment)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Failover", &self.failover)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "GeoLocation", &self.geo_location)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheckId", &self.health_check_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneId", &self.hosted_zone_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneName", &self.hosted_zone_name)?;
+        if let Some(ref alias_target) = self.alias_target {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AliasTarget", alias_target)?;
+        }
+        if let Some(ref comment) = self.comment {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", comment)?;
+        }
+        if let Some(ref failover) = self.failover {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Failover", failover)?;
+        }
+        if let Some(ref geo_location) = self.geo_location {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GeoLocation", geo_location)?;
+        }
+        if let Some(ref health_check_id) = self.health_check_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheckId", health_check_id)?;
+        }
+        if let Some(ref hosted_zone_id) = self.hosted_zone_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneId", hosted_zone_id)?;
+        }
+        if let Some(ref hosted_zone_name) = self.hosted_zone_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneName", hosted_zone_name)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Region", &self.region)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceRecords", &self.resource_records)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SetIdentifier", &self.set_identifier)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TTL", &self.ttl)?;
+        if let Some(ref region) = self.region {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Region", region)?;
+        }
+        if let Some(ref resource_records) = self.resource_records {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceRecords", resource_records)?;
+        }
+        if let Some(ref set_identifier) = self.set_identifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SetIdentifier", set_identifier)?;
+        }
+        if let Some(ref ttl) = self.ttl {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TTL", ttl)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Weight", &self.weight)?;
+        if let Some(ref weight) = self.weight {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Weight", weight)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -385,10 +419,18 @@ pub struct RecordSetGroupProperties {
 impl ::serde::Serialize for RecordSetGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", &self.comment)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneId", &self.hosted_zone_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneName", &self.hosted_zone_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordSets", &self.record_sets)?;
+        if let Some(ref comment) = self.comment {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", comment)?;
+        }
+        if let Some(ref hosted_zone_id) = self.hosted_zone_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneId", hosted_zone_id)?;
+        }
+        if let Some(ref hosted_zone_name) = self.hosted_zone_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneName", hosted_zone_name)?;
+        }
+        if let Some(ref record_sets) = self.record_sets {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordSets", record_sets)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -559,21 +601,51 @@ pub mod health_check {
     impl ::codec::SerializeValue for HealthCheckConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AlarmIdentifier", &self.alarm_identifier)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ChildHealthChecks", &self.child_health_checks)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableSNI", &self.enable_sni)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FailureThreshold", &self.failure_threshold)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FullyQualifiedDomainName", &self.fully_qualified_domain_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthThreshold", &self.health_threshold)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IPAddress", &self.ip_address)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InsufficientDataHealthStatus", &self.insufficient_data_health_status)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Inverted", &self.inverted)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MeasureLatency", &self.measure_latency)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", &self.port)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Regions", &self.regions)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RequestInterval", &self.request_interval)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourcePath", &self.resource_path)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SearchString", &self.search_string)?;
+            if let Some(ref alarm_identifier) = self.alarm_identifier {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AlarmIdentifier", alarm_identifier)?;
+            }
+            if let Some(ref child_health_checks) = self.child_health_checks {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ChildHealthChecks", child_health_checks)?;
+            }
+            if let Some(ref enable_sni) = self.enable_sni {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableSNI", enable_sni)?;
+            }
+            if let Some(ref failure_threshold) = self.failure_threshold {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FailureThreshold", failure_threshold)?;
+            }
+            if let Some(ref fully_qualified_domain_name) = self.fully_qualified_domain_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FullyQualifiedDomainName", fully_qualified_domain_name)?;
+            }
+            if let Some(ref health_threshold) = self.health_threshold {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthThreshold", health_threshold)?;
+            }
+            if let Some(ref ip_address) = self.ip_address {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IPAddress", ip_address)?;
+            }
+            if let Some(ref insufficient_data_health_status) = self.insufficient_data_health_status {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InsufficientDataHealthStatus", insufficient_data_health_status)?;
+            }
+            if let Some(ref inverted) = self.inverted {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Inverted", inverted)?;
+            }
+            if let Some(ref measure_latency) = self.measure_latency {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MeasureLatency", measure_latency)?;
+            }
+            if let Some(ref port) = self.port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", port)?;
+            }
+            if let Some(ref regions) = self.regions {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Regions", regions)?;
+            }
+            if let Some(ref request_interval) = self.request_interval {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RequestInterval", request_interval)?;
+            }
+            if let Some(ref resource_path) = self.resource_path {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourcePath", resource_path)?;
+            }
+            if let Some(ref search_string) = self.search_string {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SearchString", search_string)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -757,7 +829,9 @@ pub mod hosted_zone {
     impl ::codec::SerializeValue for HostedZoneConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", &self.comment)?;
+            if let Some(ref comment) = self.comment {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", comment)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -974,7 +1048,9 @@ pub mod record_set {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DNSName", &self.dns_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EvaluateTargetHealth", &self.evaluate_target_health)?;
+            if let Some(ref evaluate_target_health) = self.evaluate_target_health {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EvaluateTargetHealth", evaluate_target_health)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneId", &self.hosted_zone_id)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -1037,9 +1113,15 @@ pub mod record_set {
     impl ::codec::SerializeValue for GeoLocation {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContinentCode", &self.continent_code)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CountryCode", &self.country_code)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubdivisionCode", &self.subdivision_code)?;
+            if let Some(ref continent_code) = self.continent_code {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContinentCode", continent_code)?;
+            }
+            if let Some(ref country_code) = self.country_code {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CountryCode", country_code)?;
+            }
+            if let Some(ref subdivision_code) = self.subdivision_code {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubdivisionCode", subdivision_code)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1106,7 +1188,9 @@ pub mod record_set_group {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DNSName", &self.dns_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EvaluateTargetHealth", &self.evaluate_target_health)?;
+            if let Some(ref evaluate_target_health) = self.evaluate_target_health {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EvaluateTargetHealth", evaluate_target_health)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneId", &self.hosted_zone_id)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -1169,9 +1253,15 @@ pub mod record_set_group {
     impl ::codec::SerializeValue for GeoLocation {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContinentCode", &self.continent_code)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CountryCode", &self.country_code)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubdivisionCode", &self.subdivision_code)?;
+            if let Some(ref continent_code) = self.continent_code {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContinentCode", continent_code)?;
+            }
+            if let Some(ref country_code) = self.country_code {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CountryCode", country_code)?;
+            }
+            if let Some(ref subdivision_code) = self.subdivision_code {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubdivisionCode", subdivision_code)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1255,20 +1345,44 @@ pub mod record_set_group {
     impl ::codec::SerializeValue for RecordSet {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AliasTarget", &self.alias_target)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", &self.comment)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Failover", &self.failover)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GeoLocation", &self.geo_location)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheckId", &self.health_check_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneId", &self.hosted_zone_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneName", &self.hosted_zone_name)?;
+            if let Some(ref alias_target) = self.alias_target {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AliasTarget", alias_target)?;
+            }
+            if let Some(ref comment) = self.comment {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", comment)?;
+            }
+            if let Some(ref failover) = self.failover {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Failover", failover)?;
+            }
+            if let Some(ref geo_location) = self.geo_location {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "GeoLocation", geo_location)?;
+            }
+            if let Some(ref health_check_id) = self.health_check_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthCheckId", health_check_id)?;
+            }
+            if let Some(ref hosted_zone_id) = self.hosted_zone_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneId", hosted_zone_id)?;
+            }
+            if let Some(ref hosted_zone_name) = self.hosted_zone_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneName", hosted_zone_name)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Region", &self.region)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceRecords", &self.resource_records)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SetIdentifier", &self.set_identifier)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TTL", &self.ttl)?;
+            if let Some(ref region) = self.region {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Region", region)?;
+            }
+            if let Some(ref resource_records) = self.resource_records {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceRecords", resource_records)?;
+            }
+            if let Some(ref set_identifier) = self.set_identifier {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SetIdentifier", set_identifier)?;
+            }
+            if let Some(ref ttl) = self.ttl {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TTL", ttl)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Weight", &self.weight)?;
+            if let Some(ref weight) = self.weight {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Weight", weight)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }

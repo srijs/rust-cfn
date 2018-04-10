@@ -24,7 +24,9 @@ impl ::serde::Serialize for CustomerGatewayProperties {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "BgpAsn", &self.bgp_asn)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "IpAddress", &self.ip_address)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -123,12 +125,24 @@ pub struct DHCPOptionsProperties {
 impl ::serde::Serialize for DHCPOptionsProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainName", &self.domain_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainNameServers", &self.domain_name_servers)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetbiosNameServers", &self.netbios_name_servers)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetbiosNodeType", &self.netbios_node_type)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "NtpServers", &self.ntp_servers)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref domain_name) = self.domain_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainName", domain_name)?;
+        }
+        if let Some(ref domain_name_servers) = self.domain_name_servers {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainNameServers", domain_name_servers)?;
+        }
+        if let Some(ref netbios_name_servers) = self.netbios_name_servers {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetbiosNameServers", netbios_name_servers)?;
+        }
+        if let Some(ref netbios_node_type) = self.netbios_node_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetbiosNodeType", netbios_node_type)?;
+        }
+        if let Some(ref ntp_servers) = self.ntp_servers {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NtpServers", ntp_servers)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -228,8 +242,12 @@ pub struct EIPProperties {
 impl ::serde::Serialize for EIPProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Domain", &self.domain)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceId", &self.instance_id)?;
+        if let Some(ref domain) = self.domain {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Domain", domain)?;
+        }
+        if let Some(ref instance_id) = self.instance_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceId", instance_id)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -315,11 +333,21 @@ pub struct EIPAssociationProperties {
 impl ::serde::Serialize for EIPAssociationProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocationId", &self.allocation_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EIP", &self.eip)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceId", &self.instance_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInterfaceId", &self.network_interface_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateIpAddress", &self.private_ip_address)?;
+        if let Some(ref allocation_id) = self.allocation_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocationId", allocation_id)?;
+        }
+        if let Some(ref eip) = self.eip {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EIP", eip)?;
+        }
+        if let Some(ref instance_id) = self.instance_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceId", instance_id)?;
+        }
+        if let Some(ref network_interface_id) = self.network_interface_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInterfaceId", network_interface_id)?;
+        }
+        if let Some(ref private_ip_address) = self.private_ip_address {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateIpAddress", private_ip_address)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -594,7 +622,9 @@ pub struct HostProperties {
 impl ::serde::Serialize for HostProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoPlacement", &self.auto_placement)?;
+        if let Some(ref auto_placement) = self.auto_placement {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoPlacement", auto_placement)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", &self.availability_zone)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceType", &self.instance_type)?;
         ::serde::ser::SerializeMap::end(map)
@@ -739,37 +769,97 @@ pub struct InstanceProperties {
 impl ::serde::Serialize for InstanceProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AdditionalInfo", &self.additional_info)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Affinity", &self.affinity)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", &self.availability_zone)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "BlockDeviceMappings", &self.block_device_mappings)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CreditSpecification", &self.credit_specification)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisableApiTermination", &self.disable_api_termination)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsOptimized", &self.ebs_optimized)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ElasticGpuSpecifications", &self.elastic_gpu_specifications)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostId", &self.host_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "IamInstanceProfile", &self.iam_instance_profile)?;
+        if let Some(ref additional_info) = self.additional_info {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AdditionalInfo", additional_info)?;
+        }
+        if let Some(ref affinity) = self.affinity {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Affinity", affinity)?;
+        }
+        if let Some(ref availability_zone) = self.availability_zone {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", availability_zone)?;
+        }
+        if let Some(ref block_device_mappings) = self.block_device_mappings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BlockDeviceMappings", block_device_mappings)?;
+        }
+        if let Some(ref credit_specification) = self.credit_specification {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CreditSpecification", credit_specification)?;
+        }
+        if let Some(ref disable_api_termination) = self.disable_api_termination {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisableApiTermination", disable_api_termination)?;
+        }
+        if let Some(ref ebs_optimized) = self.ebs_optimized {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsOptimized", ebs_optimized)?;
+        }
+        if let Some(ref elastic_gpu_specifications) = self.elastic_gpu_specifications {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ElasticGpuSpecifications", elastic_gpu_specifications)?;
+        }
+        if let Some(ref host_id) = self.host_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostId", host_id)?;
+        }
+        if let Some(ref iam_instance_profile) = self.iam_instance_profile {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IamInstanceProfile", iam_instance_profile)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ImageId", &self.image_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceInitiatedShutdownBehavior", &self.instance_initiated_shutdown_behavior)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceType", &self.instance_type)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6AddressCount", &self.ipv6_address_count)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6Addresses", &self.ipv6_addresses)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "KernelId", &self.kernel_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyName", &self.key_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Monitoring", &self.monitoring)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInterfaces", &self.network_interfaces)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PlacementGroupName", &self.placement_group_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateIpAddress", &self.private_ip_address)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RamdiskId", &self.ramdisk_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIds", &self.security_group_ids)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroups", &self.security_groups)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceDestCheck", &self.source_dest_check)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SsmAssociations", &self.ssm_associations)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", &self.subnet_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tenancy", &self.tenancy)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserData", &self.user_data)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Volumes", &self.volumes)?;
+        if let Some(ref instance_initiated_shutdown_behavior) = self.instance_initiated_shutdown_behavior {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceInitiatedShutdownBehavior", instance_initiated_shutdown_behavior)?;
+        }
+        if let Some(ref instance_type) = self.instance_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceType", instance_type)?;
+        }
+        if let Some(ref ipv6_address_count) = self.ipv6_address_count {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6AddressCount", ipv6_address_count)?;
+        }
+        if let Some(ref ipv6_addresses) = self.ipv6_addresses {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6Addresses", ipv6_addresses)?;
+        }
+        if let Some(ref kernel_id) = self.kernel_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KernelId", kernel_id)?;
+        }
+        if let Some(ref key_name) = self.key_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyName", key_name)?;
+        }
+        if let Some(ref monitoring) = self.monitoring {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Monitoring", monitoring)?;
+        }
+        if let Some(ref network_interfaces) = self.network_interfaces {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInterfaces", network_interfaces)?;
+        }
+        if let Some(ref placement_group_name) = self.placement_group_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PlacementGroupName", placement_group_name)?;
+        }
+        if let Some(ref private_ip_address) = self.private_ip_address {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateIpAddress", private_ip_address)?;
+        }
+        if let Some(ref ramdisk_id) = self.ramdisk_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RamdiskId", ramdisk_id)?;
+        }
+        if let Some(ref security_group_ids) = self.security_group_ids {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIds", security_group_ids)?;
+        }
+        if let Some(ref security_groups) = self.security_groups {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroups", security_groups)?;
+        }
+        if let Some(ref source_dest_check) = self.source_dest_check {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceDestCheck", source_dest_check)?;
+        }
+        if let Some(ref ssm_associations) = self.ssm_associations {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SsmAssociations", ssm_associations)?;
+        }
+        if let Some(ref subnet_id) = self.subnet_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", subnet_id)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref tenancy) = self.tenancy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tenancy", tenancy)?;
+        }
+        if let Some(ref user_data) = self.user_data {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserData", user_data)?;
+        }
+        if let Some(ref volumes) = self.volumes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Volumes", volumes)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -992,7 +1082,9 @@ pub struct InternetGatewayProperties {
 impl ::serde::Serialize for InternetGatewayProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -1071,7 +1163,9 @@ impl ::serde::Serialize for NatGatewayProperties {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocationId", &self.allocation_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", &self.subnet_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -1156,7 +1250,9 @@ pub struct NetworkAclProperties {
 impl ::serde::Serialize for NetworkAclProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", &self.vpc_id)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -1252,11 +1348,19 @@ impl ::serde::Serialize for NetworkAclEntryProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrBlock", &self.cidr_block)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Egress", &self.egress)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Icmp", &self.icmp)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6CidrBlock", &self.ipv6_cidr_block)?;
+        if let Some(ref egress) = self.egress {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Egress", egress)?;
+        }
+        if let Some(ref icmp) = self.icmp {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Icmp", icmp)?;
+        }
+        if let Some(ref ipv6_cidr_block) = self.ipv6_cidr_block {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6CidrBlock", ipv6_cidr_block)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkAclId", &self.network_acl_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PortRange", &self.port_range)?;
+        if let Some(ref port_range) = self.port_range {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PortRange", port_range)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", &self.protocol)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleAction", &self.rule_action)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleNumber", &self.rule_number)?;
@@ -1392,17 +1496,37 @@ pub struct NetworkInterfaceProperties {
 impl ::serde::Serialize for NetworkInterfaceProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupSet", &self.group_set)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "InterfaceType", &self.interface_type)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6AddressCount", &self.ipv6_address_count)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6Addresses", &self.ipv6_addresses)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateIpAddress", &self.private_ip_address)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateIpAddresses", &self.private_ip_addresses)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecondaryPrivateIpAddressCount", &self.secondary_private_ip_address_count)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceDestCheck", &self.source_dest_check)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref group_set) = self.group_set {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupSet", group_set)?;
+        }
+        if let Some(ref interface_type) = self.interface_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InterfaceType", interface_type)?;
+        }
+        if let Some(ref ipv6_address_count) = self.ipv6_address_count {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6AddressCount", ipv6_address_count)?;
+        }
+        if let Some(ref ipv6_addresses) = self.ipv6_addresses {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6Addresses", ipv6_addresses)?;
+        }
+        if let Some(ref private_ip_address) = self.private_ip_address {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateIpAddress", private_ip_address)?;
+        }
+        if let Some(ref private_ip_addresses) = self.private_ip_addresses {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateIpAddresses", private_ip_addresses)?;
+        }
+        if let Some(ref secondary_private_ip_address_count) = self.secondary_private_ip_address_count {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecondaryPrivateIpAddressCount", secondary_private_ip_address_count)?;
+        }
+        if let Some(ref source_dest_check) = self.source_dest_check {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceDestCheck", source_dest_check)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", &self.subnet_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -1531,7 +1655,9 @@ pub struct NetworkInterfaceAttachmentProperties {
 impl ::serde::Serialize for NetworkInterfaceAttachmentProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteOnTermination", &self.delete_on_termination)?;
+        if let Some(ref delete_on_termination) = self.delete_on_termination {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteOnTermination", delete_on_termination)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceIndex", &self.device_index)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceId", &self.instance_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInterfaceId", &self.network_interface_id)?;
@@ -1711,7 +1837,9 @@ pub struct PlacementGroupProperties {
 impl ::serde::Serialize for PlacementGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Strategy", &self.strategy)?;
+        if let Some(ref strategy) = self.strategy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Strategy", strategy)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -1800,15 +1928,31 @@ pub struct RouteProperties {
 impl ::serde::Serialize for RouteProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationCidrBlock", &self.destination_cidr_block)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationIpv6CidrBlock", &self.destination_ipv6_cidr_block)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EgressOnlyInternetGatewayId", &self.egress_only_internet_gateway_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "GatewayId", &self.gateway_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceId", &self.instance_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "NatGatewayId", &self.nat_gateway_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInterfaceId", &self.network_interface_id)?;
+        if let Some(ref destination_cidr_block) = self.destination_cidr_block {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationCidrBlock", destination_cidr_block)?;
+        }
+        if let Some(ref destination_ipv6_cidr_block) = self.destination_ipv6_cidr_block {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationIpv6CidrBlock", destination_ipv6_cidr_block)?;
+        }
+        if let Some(ref egress_only_internet_gateway_id) = self.egress_only_internet_gateway_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EgressOnlyInternetGatewayId", egress_only_internet_gateway_id)?;
+        }
+        if let Some(ref gateway_id) = self.gateway_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GatewayId", gateway_id)?;
+        }
+        if let Some(ref instance_id) = self.instance_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceId", instance_id)?;
+        }
+        if let Some(ref nat_gateway_id) = self.nat_gateway_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NatGatewayId", nat_gateway_id)?;
+        }
+        if let Some(ref network_interface_id) = self.network_interface_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInterfaceId", network_interface_id)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RouteTableId", &self.route_table_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcPeeringConnectionId", &self.vpc_peering_connection_id)?;
+        if let Some(ref vpc_peering_connection_id) = self.vpc_peering_connection_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcPeeringConnectionId", vpc_peering_connection_id)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -1923,7 +2067,9 @@ pub struct RouteTableProperties {
 impl ::serde::Serialize for RouteTableProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", &self.vpc_id)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -2013,11 +2159,21 @@ impl ::serde::Serialize for SecurityGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupDescription", &self.group_description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupName", &self.group_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupEgress", &self.security_group_egress)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIngress", &self.security_group_ingress)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", &self.vpc_id)?;
+        if let Some(ref group_name) = self.group_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupName", group_name)?;
+        }
+        if let Some(ref security_group_egress) = self.security_group_egress {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupEgress", security_group_egress)?;
+        }
+        if let Some(ref security_group_ingress) = self.security_group_ingress {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIngress", security_group_ingress)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref vpc_id) = self.vpc_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", vpc_id)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -2131,15 +2287,29 @@ pub struct SecurityGroupEgressProperties {
 impl ::serde::Serialize for SecurityGroupEgressProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrIp", &self.cidr_ip)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrIpv6", &self.cidr_ipv6)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationPrefixListId", &self.destination_prefix_list_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationSecurityGroupId", &self.destination_security_group_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "FromPort", &self.from_port)?;
+        if let Some(ref cidr_ip) = self.cidr_ip {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrIp", cidr_ip)?;
+        }
+        if let Some(ref cidr_ipv6) = self.cidr_ipv6 {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrIpv6", cidr_ipv6)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref destination_prefix_list_id) = self.destination_prefix_list_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationPrefixListId", destination_prefix_list_id)?;
+        }
+        if let Some(ref destination_security_group_id) = self.destination_security_group_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationSecurityGroupId", destination_security_group_id)?;
+        }
+        if let Some(ref from_port) = self.from_port {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FromPort", from_port)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupId", &self.group_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "IpProtocol", &self.ip_protocol)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ToPort", &self.to_port)?;
+        if let Some(ref to_port) = self.to_port {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ToPort", to_port)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -2272,17 +2442,37 @@ pub struct SecurityGroupIngressProperties {
 impl ::serde::Serialize for SecurityGroupIngressProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrIp", &self.cidr_ip)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrIpv6", &self.cidr_ipv6)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "FromPort", &self.from_port)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupId", &self.group_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupName", &self.group_name)?;
+        if let Some(ref cidr_ip) = self.cidr_ip {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrIp", cidr_ip)?;
+        }
+        if let Some(ref cidr_ipv6) = self.cidr_ipv6 {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrIpv6", cidr_ipv6)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref from_port) = self.from_port {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FromPort", from_port)?;
+        }
+        if let Some(ref group_id) = self.group_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupId", group_id)?;
+        }
+        if let Some(ref group_name) = self.group_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupName", group_name)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "IpProtocol", &self.ip_protocol)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceSecurityGroupId", &self.source_security_group_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceSecurityGroupName", &self.source_security_group_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceSecurityGroupOwnerId", &self.source_security_group_owner_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ToPort", &self.to_port)?;
+        if let Some(ref source_security_group_id) = self.source_security_group_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceSecurityGroupId", source_security_group_id)?;
+        }
+        if let Some(ref source_security_group_name) = self.source_security_group_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceSecurityGroupName", source_security_group_name)?;
+        }
+        if let Some(ref source_security_group_owner_id) = self.source_security_group_owner_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceSecurityGroupOwnerId", source_security_group_owner_id)?;
+        }
+        if let Some(ref to_port) = self.to_port {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ToPort", to_port)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -2490,12 +2680,22 @@ pub struct SubnetProperties {
 impl ::serde::Serialize for SubnetProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssignIpv6AddressOnCreation", &self.assign_ipv6_address_on_creation)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", &self.availability_zone)?;
+        if let Some(ref assign_ipv6_address_on_creation) = self.assign_ipv6_address_on_creation {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssignIpv6AddressOnCreation", assign_ipv6_address_on_creation)?;
+        }
+        if let Some(ref availability_zone) = self.availability_zone {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", availability_zone)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrBlock", &self.cidr_block)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6CidrBlock", &self.ipv6_cidr_block)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MapPublicIpOnLaunch", &self.map_public_ip_on_launch)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref ipv6_cidr_block) = self.ipv6_cidr_block {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6CidrBlock", ipv6_cidr_block)?;
+        }
+        if let Some(ref map_public_ip_on_launch) = self.map_public_ip_on_launch {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MapPublicIpOnLaunch", map_public_ip_on_launch)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", &self.vpc_id)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -2849,9 +3049,13 @@ impl ::serde::Serialize for TrunkInterfaceAssociationProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "BranchInterfaceId", &self.branch_interface_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "GREKey", &self.gre_key)?;
+        if let Some(ref gre_key) = self.gre_key {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GREKey", gre_key)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrunkInterfaceId", &self.trunk_interface_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VLANId", &self.vlan_id)?;
+        if let Some(ref vlan_id) = self.vlan_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VLANId", vlan_id)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -2948,10 +3152,18 @@ impl ::serde::Serialize for VPCProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrBlock", &self.cidr_block)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableDnsHostnames", &self.enable_dns_hostnames)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableDnsSupport", &self.enable_dns_support)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceTenancy", &self.instance_tenancy)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref enable_dns_hostnames) = self.enable_dns_hostnames {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableDnsHostnames", enable_dns_hostnames)?;
+        }
+        if let Some(ref enable_dns_support) = self.enable_dns_support {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableDnsSupport", enable_dns_support)?;
+        }
+        if let Some(ref instance_tenancy) = self.instance_tenancy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceTenancy", instance_tenancy)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -3048,8 +3260,12 @@ pub struct VPCCidrBlockProperties {
 impl ::serde::Serialize for VPCCidrBlockProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AmazonProvidedIpv6CidrBlock", &self.amazon_provided_ipv6_cidr_block)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrBlock", &self.cidr_block)?;
+        if let Some(ref amazon_provided_ipv6_cidr_block) = self.amazon_provided_ipv6_cidr_block {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AmazonProvidedIpv6CidrBlock", amazon_provided_ipv6_cidr_block)?;
+        }
+        if let Some(ref cidr_block) = self.cidr_block {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrBlock", cidr_block)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", &self.vpc_id)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -3220,8 +3436,12 @@ pub struct VPCEndpointProperties {
 impl ::serde::Serialize for VPCEndpointProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyDocument", &self.policy_document)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RouteTableIds", &self.route_table_ids)?;
+        if let Some(ref policy_document) = self.policy_document {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyDocument", policy_document)?;
+        }
+        if let Some(ref route_table_ids) = self.route_table_ids {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RouteTableIds", route_table_ids)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceName", &self.service_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", &self.vpc_id)?;
         ::serde::ser::SerializeMap::end(map)
@@ -3315,9 +3535,13 @@ pub struct VPCGatewayAttachmentProperties {
 impl ::serde::Serialize for VPCGatewayAttachmentProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "InternetGatewayId", &self.internet_gateway_id)?;
+        if let Some(ref internet_gateway_id) = self.internet_gateway_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InternetGatewayId", internet_gateway_id)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", &self.vpc_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpnGatewayId", &self.vpn_gateway_id)?;
+        if let Some(ref vpn_gateway_id) = self.vpn_gateway_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpnGatewayId", vpn_gateway_id)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -3408,10 +3632,16 @@ pub struct VPCPeeringConnectionProperties {
 impl ::serde::Serialize for VPCPeeringConnectionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PeerOwnerId", &self.peer_owner_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PeerRoleArn", &self.peer_role_arn)?;
+        if let Some(ref peer_owner_id) = self.peer_owner_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PeerOwnerId", peer_owner_id)?;
+        }
+        if let Some(ref peer_role_arn) = self.peer_role_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PeerRoleArn", peer_role_arn)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "PeerVpcId", &self.peer_vpc_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", &self.vpc_id)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -3516,11 +3746,17 @@ impl ::serde::Serialize for VPNConnectionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomerGatewayId", &self.customer_gateway_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "StaticRoutesOnly", &self.static_routes_only)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref static_routes_only) = self.static_routes_only {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StaticRoutesOnly", static_routes_only)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpnGatewayId", &self.vpn_gateway_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpnTunnelOptionsSpecifications", &self.vpn_tunnel_options_specifications)?;
+        if let Some(ref vpn_tunnel_options_specifications) = self.vpn_tunnel_options_specifications {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpnTunnelOptionsSpecifications", vpn_tunnel_options_specifications)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -3703,8 +3939,12 @@ pub struct VPNGatewayProperties {
 impl ::serde::Serialize for VPNGatewayProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AmazonSideAsn", &self.amazon_side_asn)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref amazon_side_asn) = self.amazon_side_asn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AmazonSideAsn", amazon_side_asn)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -3885,15 +4125,31 @@ pub struct VolumeProperties {
 impl ::serde::Serialize for VolumeProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoEnableIO", &self.auto_enable_io)?;
+        if let Some(ref auto_enable_io) = self.auto_enable_io {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoEnableIO", auto_enable_io)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", &self.availability_zone)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Encrypted", &self.encrypted)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", &self.iops)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", &self.kms_key_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Size", &self.size)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotId", &self.snapshot_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeType", &self.volume_type)?;
+        if let Some(ref encrypted) = self.encrypted {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Encrypted", encrypted)?;
+        }
+        if let Some(ref iops) = self.iops {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", iops)?;
+        }
+        if let Some(ref kms_key_id) = self.kms_key_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", kms_key_id)?;
+        }
+        if let Some(ref size) = self.size {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Size", size)?;
+        }
+        if let Some(ref snapshot_id) = self.snapshot_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotId", snapshot_id)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref volume_type) = self.volume_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeType", volume_type)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -4155,9 +4411,15 @@ pub mod instance {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceName", &self.device_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ebs", &self.ebs)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NoDevice", &self.no_device)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VirtualName", &self.virtual_name)?;
+            if let Some(ref ebs) = self.ebs {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ebs", ebs)?;
+            }
+            if let Some(ref no_device) = self.no_device {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NoDevice", no_device)?;
+            }
+            if let Some(ref virtual_name) = self.virtual_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VirtualName", virtual_name)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -4220,7 +4482,9 @@ pub mod instance {
     impl ::codec::SerializeValue for CreditSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CPUCredits", &self.cpu_credits)?;
+            if let Some(ref cpu_credits) = self.cpu_credits {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CPUCredits", cpu_credits)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -4278,12 +4542,24 @@ pub mod instance {
     impl ::codec::SerializeValue for Ebs {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteOnTermination", &self.delete_on_termination)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Encrypted", &self.encrypted)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", &self.iops)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotId", &self.snapshot_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeSize", &self.volume_size)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeType", &self.volume_type)?;
+            if let Some(ref delete_on_termination) = self.delete_on_termination {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteOnTermination", delete_on_termination)?;
+            }
+            if let Some(ref encrypted) = self.encrypted {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Encrypted", encrypted)?;
+            }
+            if let Some(ref iops) = self.iops {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", iops)?;
+            }
+            if let Some(ref snapshot_id) = self.snapshot_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotId", snapshot_id)?;
+            }
+            if let Some(ref volume_size) = self.volume_size {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeSize", volume_size)?;
+            }
+            if let Some(ref volume_type) = self.volume_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeType", volume_type)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -4474,18 +4750,40 @@ pub mod instance {
     impl ::codec::SerializeValue for NetworkInterface {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssociatePublicIpAddress", &self.associate_public_ip_address)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteOnTermination", &self.delete_on_termination)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
+            if let Some(ref associate_public_ip_address) = self.associate_public_ip_address {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssociatePublicIpAddress", associate_public_ip_address)?;
+            }
+            if let Some(ref delete_on_termination) = self.delete_on_termination {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteOnTermination", delete_on_termination)?;
+            }
+            if let Some(ref description) = self.description {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceIndex", &self.device_index)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupSet", &self.group_set)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6AddressCount", &self.ipv6_address_count)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6Addresses", &self.ipv6_addresses)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInterfaceId", &self.network_interface_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateIpAddress", &self.private_ip_address)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateIpAddresses", &self.private_ip_addresses)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecondaryPrivateIpAddressCount", &self.secondary_private_ip_address_count)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", &self.subnet_id)?;
+            if let Some(ref group_set) = self.group_set {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupSet", group_set)?;
+            }
+            if let Some(ref ipv6_address_count) = self.ipv6_address_count {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6AddressCount", ipv6_address_count)?;
+            }
+            if let Some(ref ipv6_addresses) = self.ipv6_addresses {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6Addresses", ipv6_addresses)?;
+            }
+            if let Some(ref network_interface_id) = self.network_interface_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInterfaceId", network_interface_id)?;
+            }
+            if let Some(ref private_ip_address) = self.private_ip_address {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateIpAddress", private_ip_address)?;
+            }
+            if let Some(ref private_ip_addresses) = self.private_ip_addresses {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateIpAddresses", private_ip_addresses)?;
+            }
+            if let Some(ref secondary_private_ip_address_count) = self.secondary_private_ip_address_count {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecondaryPrivateIpAddressCount", secondary_private_ip_address_count)?;
+            }
+            if let Some(ref subnet_id) = self.subnet_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", subnet_id)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -4678,7 +4976,9 @@ pub mod instance {
     impl ::codec::SerializeValue for SsmAssociation {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssociationParameters", &self.association_parameters)?;
+            if let Some(ref association_parameters) = self.association_parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssociationParameters", association_parameters)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentName", &self.document_name)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -4794,8 +5094,12 @@ pub mod network_acl_entry {
     impl ::codec::SerializeValue for Icmp {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Code", &self.code)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+            if let Some(ref code) = self.code {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Code", code)?;
+            }
+            if let Some(ref type_) = self.type_ {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", type_)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -4850,8 +5154,12 @@ pub mod network_acl_entry {
     impl ::codec::SerializeValue for PortRange {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "From", &self.from)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "To", &self.to)?;
+            if let Some(ref from) = self.from {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "From", from)?;
+            }
+            if let Some(ref to) = self.to {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "To", to)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -5030,14 +5338,28 @@ pub mod security_group {
     impl ::codec::SerializeValue for Egress {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrIp", &self.cidr_ip)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrIpv6", &self.cidr_ipv6)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationPrefixListId", &self.destination_prefix_list_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationSecurityGroupId", &self.destination_security_group_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FromPort", &self.from_port)?;
+            if let Some(ref cidr_ip) = self.cidr_ip {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrIp", cidr_ip)?;
+            }
+            if let Some(ref cidr_ipv6) = self.cidr_ipv6 {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrIpv6", cidr_ipv6)?;
+            }
+            if let Some(ref description) = self.description {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+            }
+            if let Some(ref destination_prefix_list_id) = self.destination_prefix_list_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationPrefixListId", destination_prefix_list_id)?;
+            }
+            if let Some(ref destination_security_group_id) = self.destination_security_group_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationSecurityGroupId", destination_security_group_id)?;
+            }
+            if let Some(ref from_port) = self.from_port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FromPort", from_port)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IpProtocol", &self.ip_protocol)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ToPort", &self.to_port)?;
+            if let Some(ref to_port) = self.to_port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ToPort", to_port)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -5136,15 +5458,31 @@ pub mod security_group {
     impl ::codec::SerializeValue for Ingress {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrIp", &self.cidr_ip)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrIpv6", &self.cidr_ipv6)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FromPort", &self.from_port)?;
+            if let Some(ref cidr_ip) = self.cidr_ip {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrIp", cidr_ip)?;
+            }
+            if let Some(ref cidr_ipv6) = self.cidr_ipv6 {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrIpv6", cidr_ipv6)?;
+            }
+            if let Some(ref description) = self.description {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+            }
+            if let Some(ref from_port) = self.from_port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FromPort", from_port)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IpProtocol", &self.ip_protocol)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceSecurityGroupId", &self.source_security_group_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceSecurityGroupName", &self.source_security_group_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceSecurityGroupOwnerId", &self.source_security_group_owner_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ToPort", &self.to_port)?;
+            if let Some(ref source_security_group_id) = self.source_security_group_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceSecurityGroupId", source_security_group_id)?;
+            }
+            if let Some(ref source_security_group_name) = self.source_security_group_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceSecurityGroupName", source_security_group_name)?;
+            }
+            if let Some(ref source_security_group_owner_id) = self.source_security_group_owner_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceSecurityGroupOwnerId", source_security_group_owner_id)?;
+            }
+            if let Some(ref to_port) = self.to_port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ToPort", to_port)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -5243,9 +5581,15 @@ pub mod spot_fleet {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceName", &self.device_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ebs", &self.ebs)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NoDevice", &self.no_device)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VirtualName", &self.virtual_name)?;
+            if let Some(ref ebs) = self.ebs {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ebs", ebs)?;
+            }
+            if let Some(ref no_device) = self.no_device {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NoDevice", no_device)?;
+            }
+            if let Some(ref virtual_name) = self.virtual_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VirtualName", virtual_name)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -5318,12 +5662,24 @@ pub mod spot_fleet {
     impl ::codec::SerializeValue for EbsBlockDevice {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteOnTermination", &self.delete_on_termination)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Encrypted", &self.encrypted)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", &self.iops)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotId", &self.snapshot_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeSize", &self.volume_size)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeType", &self.volume_type)?;
+            if let Some(ref delete_on_termination) = self.delete_on_termination {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteOnTermination", delete_on_termination)?;
+            }
+            if let Some(ref encrypted) = self.encrypted {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Encrypted", encrypted)?;
+            }
+            if let Some(ref iops) = self.iops {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", iops)?;
+            }
+            if let Some(ref snapshot_id) = self.snapshot_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotId", snapshot_id)?;
+            }
+            if let Some(ref volume_size) = self.volume_size {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeSize", volume_size)?;
+            }
+            if let Some(ref volume_type) = self.volume_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeType", volume_type)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -5444,7 +5800,9 @@ pub mod spot_fleet {
     impl ::codec::SerializeValue for IamInstanceProfileSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Arn", &self.arn)?;
+            if let Some(ref arn) = self.arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Arn", arn)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -5560,17 +5918,39 @@ pub mod spot_fleet {
     impl ::codec::SerializeValue for InstanceNetworkInterfaceSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssociatePublicIpAddress", &self.associate_public_ip_address)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteOnTermination", &self.delete_on_termination)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceIndex", &self.device_index)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Groups", &self.groups)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6AddressCount", &self.ipv6_address_count)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6Addresses", &self.ipv6_addresses)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInterfaceId", &self.network_interface_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateIpAddresses", &self.private_ip_addresses)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecondaryPrivateIpAddressCount", &self.secondary_private_ip_address_count)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", &self.subnet_id)?;
+            if let Some(ref associate_public_ip_address) = self.associate_public_ip_address {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssociatePublicIpAddress", associate_public_ip_address)?;
+            }
+            if let Some(ref delete_on_termination) = self.delete_on_termination {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteOnTermination", delete_on_termination)?;
+            }
+            if let Some(ref description) = self.description {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+            }
+            if let Some(ref device_index) = self.device_index {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceIndex", device_index)?;
+            }
+            if let Some(ref groups) = self.groups {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Groups", groups)?;
+            }
+            if let Some(ref ipv6_address_count) = self.ipv6_address_count {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6AddressCount", ipv6_address_count)?;
+            }
+            if let Some(ref ipv6_addresses) = self.ipv6_addresses {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6Addresses", ipv6_addresses)?;
+            }
+            if let Some(ref network_interface_id) = self.network_interface_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInterfaceId", network_interface_id)?;
+            }
+            if let Some(ref private_ip_addresses) = self.private_ip_addresses {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateIpAddresses", private_ip_addresses)?;
+            }
+            if let Some(ref secondary_private_ip_address_count) = self.secondary_private_ip_address_count {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecondaryPrivateIpAddressCount", secondary_private_ip_address_count)?;
+            }
+            if let Some(ref subnet_id) = self.subnet_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", subnet_id)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -5670,7 +6050,9 @@ pub mod spot_fleet {
     impl ::codec::SerializeValue for PrivateIpAddressSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Primary", &self.primary)?;
+            if let Some(ref primary) = self.primary {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Primary", primary)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateIpAddress", &self.private_ip_address)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -5756,23 +6138,53 @@ pub mod spot_fleet {
     impl ::codec::SerializeValue for SpotFleetLaunchSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BlockDeviceMappings", &self.block_device_mappings)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsOptimized", &self.ebs_optimized)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IamInstanceProfile", &self.iam_instance_profile)?;
+            if let Some(ref block_device_mappings) = self.block_device_mappings {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BlockDeviceMappings", block_device_mappings)?;
+            }
+            if let Some(ref ebs_optimized) = self.ebs_optimized {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsOptimized", ebs_optimized)?;
+            }
+            if let Some(ref iam_instance_profile) = self.iam_instance_profile {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IamInstanceProfile", iam_instance_profile)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ImageId", &self.image_id)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceType", &self.instance_type)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KernelId", &self.kernel_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyName", &self.key_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Monitoring", &self.monitoring)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInterfaces", &self.network_interfaces)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Placement", &self.placement)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RamdiskId", &self.ramdisk_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroups", &self.security_groups)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotPrice", &self.spot_price)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", &self.subnet_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TagSpecifications", &self.tag_specifications)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserData", &self.user_data)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "WeightedCapacity", &self.weighted_capacity)?;
+            if let Some(ref kernel_id) = self.kernel_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KernelId", kernel_id)?;
+            }
+            if let Some(ref key_name) = self.key_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyName", key_name)?;
+            }
+            if let Some(ref monitoring) = self.monitoring {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Monitoring", monitoring)?;
+            }
+            if let Some(ref network_interfaces) = self.network_interfaces {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInterfaces", network_interfaces)?;
+            }
+            if let Some(ref placement) = self.placement {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Placement", placement)?;
+            }
+            if let Some(ref ramdisk_id) = self.ramdisk_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RamdiskId", ramdisk_id)?;
+            }
+            if let Some(ref security_groups) = self.security_groups {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroups", security_groups)?;
+            }
+            if let Some(ref spot_price) = self.spot_price {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotPrice", spot_price)?;
+            }
+            if let Some(ref subnet_id) = self.subnet_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", subnet_id)?;
+            }
+            if let Some(ref tag_specifications) = self.tag_specifications {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TagSpecifications", tag_specifications)?;
+            }
+            if let Some(ref user_data) = self.user_data {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserData", user_data)?;
+            }
+            if let Some(ref weighted_capacity) = self.weighted_capacity {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "WeightedCapacity", weighted_capacity)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -5900,7 +6312,9 @@ pub mod spot_fleet {
     impl ::codec::SerializeValue for SpotFleetMonitoring {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
+            if let Some(ref enabled) = self.enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", enabled)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -5968,17 +6382,33 @@ pub mod spot_fleet {
     impl ::codec::SerializeValue for SpotFleetRequestConfigData {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocationStrategy", &self.allocation_strategy)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExcessCapacityTerminationPolicy", &self.excess_capacity_termination_policy)?;
+            if let Some(ref allocation_strategy) = self.allocation_strategy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocationStrategy", allocation_strategy)?;
+            }
+            if let Some(ref excess_capacity_termination_policy) = self.excess_capacity_termination_policy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExcessCapacityTerminationPolicy", excess_capacity_termination_policy)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IamFleetRole", &self.iam_fleet_role)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchSpecifications", &self.launch_specifications)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplaceUnhealthyInstances", &self.replace_unhealthy_instances)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotPrice", &self.spot_price)?;
+            if let Some(ref replace_unhealthy_instances) = self.replace_unhealthy_instances {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplaceUnhealthyInstances", replace_unhealthy_instances)?;
+            }
+            if let Some(ref spot_price) = self.spot_price {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotPrice", spot_price)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetCapacity", &self.target_capacity)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TerminateInstancesWithExpiration", &self.terminate_instances_with_expiration)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ValidFrom", &self.valid_from)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ValidUntil", &self.valid_until)?;
+            if let Some(ref terminate_instances_with_expiration) = self.terminate_instances_with_expiration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TerminateInstancesWithExpiration", terminate_instances_with_expiration)?;
+            }
+            if let Some(ref type_) = self.type_ {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", type_)?;
+            }
+            if let Some(ref valid_from) = self.valid_from {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ValidFrom", valid_from)?;
+            }
+            if let Some(ref valid_until) = self.valid_until {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ValidUntil", valid_until)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -6076,7 +6506,9 @@ pub mod spot_fleet {
     impl ::codec::SerializeValue for SpotFleetTagSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceType", &self.resource_type)?;
+            if let Some(ref resource_type) = self.resource_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceType", resource_type)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -6126,8 +6558,12 @@ pub mod spot_fleet {
     impl ::codec::SerializeValue for SpotPlacement {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", &self.availability_zone)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupName", &self.group_name)?;
+            if let Some(ref availability_zone) = self.availability_zone {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", availability_zone)?;
+            }
+            if let Some(ref group_name) = self.group_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupName", group_name)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -6186,8 +6622,12 @@ pub mod vpn_connection {
     impl ::codec::SerializeValue for VpnTunnelOptionsSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreSharedKey", &self.pre_shared_key)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TunnelInsideCidr", &self.tunnel_inside_cidr)?;
+            if let Some(ref pre_shared_key) = self.pre_shared_key {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreSharedKey", pre_shared_key)?;
+            }
+            if let Some(ref tunnel_inside_cidr) = self.tunnel_inside_cidr {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TunnelInsideCidr", tunnel_inside_cidr)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }

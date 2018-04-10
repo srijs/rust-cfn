@@ -16,7 +16,9 @@ pub struct ClassifierProperties {
 impl ::serde::Serialize for ClassifierProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "GrokClassifier", &self.grok_classifier)?;
+        if let Some(ref grok_classifier) = self.grok_classifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GrokClassifier", grok_classifier)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -186,14 +188,26 @@ pub struct CrawlerProperties {
 impl ::serde::Serialize for CrawlerProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Classifiers", &self.classifiers)?;
+        if let Some(ref classifiers) = self.classifiers {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Classifiers", classifiers)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseName", &self.database_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Role", &self.role)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Schedule", &self.schedule)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SchemaChangePolicy", &self.schema_change_policy)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TablePrefix", &self.table_prefix)?;
+        if let Some(ref schedule) = self.schedule {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Schedule", schedule)?;
+        }
+        if let Some(ref schema_change_policy) = self.schema_change_policy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SchemaChangePolicy", schema_change_policy)?;
+        }
+        if let Some(ref table_prefix) = self.table_prefix {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TablePrefix", table_prefix)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Targets", &self.targets)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -402,14 +416,26 @@ pub struct DevEndpointProperties {
 impl ::serde::Serialize for DevEndpointProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndpointName", &self.endpoint_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExtraJarsS3Path", &self.extra_jars_s3_path)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExtraPythonLibsS3Path", &self.extra_python_libs_s3_path)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "NumberOfNodes", &self.number_of_nodes)?;
+        if let Some(ref endpoint_name) = self.endpoint_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndpointName", endpoint_name)?;
+        }
+        if let Some(ref extra_jars_s3_path) = self.extra_jars_s3_path {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExtraJarsS3Path", extra_jars_s3_path)?;
+        }
+        if let Some(ref extra_python_libs_s3_path) = self.extra_python_libs_s3_path {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExtraPythonLibsS3Path", extra_python_libs_s3_path)?;
+        }
+        if let Some(ref number_of_nodes) = self.number_of_nodes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NumberOfNodes", number_of_nodes)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "PublicKey", &self.public_key)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIds", &self.security_group_ids)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", &self.subnet_id)?;
+        if let Some(ref security_group_ids) = self.security_group_ids {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIds", security_group_ids)?;
+        }
+        if let Some(ref subnet_id) = self.subnet_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", subnet_id)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -535,15 +561,31 @@ pub struct JobProperties {
 impl ::serde::Serialize for JobProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocatedCapacity", &self.allocated_capacity)?;
+        if let Some(ref allocated_capacity) = self.allocated_capacity {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocatedCapacity", allocated_capacity)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Command", &self.command)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Connections", &self.connections)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultArguments", &self.default_arguments)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExecutionProperty", &self.execution_property)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogUri", &self.log_uri)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxRetries", &self.max_retries)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref connections) = self.connections {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Connections", connections)?;
+        }
+        if let Some(ref default_arguments) = self.default_arguments {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultArguments", default_arguments)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref execution_property) = self.execution_property {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExecutionProperty", execution_property)?;
+        }
+        if let Some(ref log_uri) = self.log_uri {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogUri", log_uri)?;
+        }
+        if let Some(ref max_retries) = self.max_retries {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxRetries", max_retries)?;
+        }
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Role", &self.role)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -859,10 +901,18 @@ impl ::serde::Serialize for TriggerProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Actions", &self.actions)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Predicate", &self.predicate)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Schedule", &self.schedule)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
+        if let Some(ref predicate) = self.predicate {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Predicate", predicate)?;
+        }
+        if let Some(ref schedule) = self.schedule {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Schedule", schedule)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -965,9 +1015,13 @@ pub mod classifier {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Classification", &self.classification)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomPatterns", &self.custom_patterns)?;
+            if let Some(ref custom_patterns) = self.custom_patterns {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomPatterns", custom_patterns)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "GrokPattern", &self.grok_pattern)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1046,10 +1100,18 @@ pub mod connection {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionProperties", &self.connection_properties)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionType", &self.connection_type)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MatchCriteria", &self.match_criteria)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PhysicalConnectionRequirements", &self.physical_connection_requirements)?;
+            if let Some(ref description) = self.description {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+            }
+            if let Some(ref match_criteria) = self.match_criteria {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MatchCriteria", match_criteria)?;
+            }
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            if let Some(ref physical_connection_requirements) = self.physical_connection_requirements {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PhysicalConnectionRequirements", physical_connection_requirements)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1126,9 +1188,15 @@ pub mod connection {
     impl ::codec::SerializeValue for PhysicalConnectionRequirements {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", &self.availability_zone)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIdList", &self.security_group_id_list)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", &self.subnet_id)?;
+            if let Some(ref availability_zone) = self.availability_zone {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", availability_zone)?;
+            }
+            if let Some(ref security_group_id_list) = self.security_group_id_list {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIdList", security_group_id_list)?;
+            }
+            if let Some(ref subnet_id) = self.subnet_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", subnet_id)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1194,9 +1262,15 @@ pub mod crawler {
     impl ::codec::SerializeValue for JdbcTarget {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionName", &self.connection_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Exclusions", &self.exclusions)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Path", &self.path)?;
+            if let Some(ref connection_name) = self.connection_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionName", connection_name)?;
+            }
+            if let Some(ref exclusions) = self.exclusions {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Exclusions", exclusions)?;
+            }
+            if let Some(ref path) = self.path {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Path", path)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1256,8 +1330,12 @@ pub mod crawler {
     impl ::codec::SerializeValue for S3Target {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Exclusions", &self.exclusions)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Path", &self.path)?;
+            if let Some(ref exclusions) = self.exclusions {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Exclusions", exclusions)?;
+            }
+            if let Some(ref path) = self.path {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Path", path)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1310,7 +1388,9 @@ pub mod crawler {
     impl ::codec::SerializeValue for Schedule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScheduleExpression", &self.schedule_expression)?;
+            if let Some(ref schedule_expression) = self.schedule_expression {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScheduleExpression", schedule_expression)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1360,8 +1440,12 @@ pub mod crawler {
     impl ::codec::SerializeValue for SchemaChangePolicy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteBehavior", &self.delete_behavior)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UpdateBehavior", &self.update_behavior)?;
+            if let Some(ref delete_behavior) = self.delete_behavior {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteBehavior", delete_behavior)?;
+            }
+            if let Some(ref update_behavior) = self.update_behavior {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UpdateBehavior", update_behavior)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1416,8 +1500,12 @@ pub mod crawler {
     impl ::codec::SerializeValue for Targets {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "JdbcTargets", &self.jdbc_targets)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Targets", &self.s3_targets)?;
+            if let Some(ref jdbc_targets) = self.jdbc_targets {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "JdbcTargets", jdbc_targets)?;
+            }
+            if let Some(ref s3_targets) = self.s3_targets {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Targets", s3_targets)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1480,10 +1568,18 @@ pub mod database {
     impl ::codec::SerializeValue for DatabaseInput {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LocationUri", &self.location_uri)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", &self.parameters)?;
+            if let Some(ref description) = self.description {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+            }
+            if let Some(ref location_uri) = self.location_uri {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LocationUri", location_uri)?;
+            }
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            if let Some(ref parameters) = self.parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", parameters)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1550,7 +1646,9 @@ pub mod job {
     impl ::codec::SerializeValue for ConnectionsList {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Connections", &self.connections)?;
+            if let Some(ref connections) = self.connections {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Connections", connections)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1598,7 +1696,9 @@ pub mod job {
     impl ::codec::SerializeValue for ExecutionProperty {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxConcurrentRuns", &self.max_concurrent_runs)?;
+            if let Some(ref max_concurrent_runs) = self.max_concurrent_runs {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxConcurrentRuns", max_concurrent_runs)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1648,8 +1748,12 @@ pub mod job {
     impl ::codec::SerializeValue for JobCommand {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScriptLocation", &self.script_location)?;
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            if let Some(ref script_location) = self.script_location {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScriptLocation", script_location)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1710,9 +1814,13 @@ pub mod partition {
     impl ::codec::SerializeValue for Column {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", &self.comment)?;
+            if let Some(ref comment) = self.comment {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", comment)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+            if let Some(ref type_) = self.type_ {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", type_)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1773,7 +1881,9 @@ pub mod partition {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Column", &self.column)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SortOrder", &self.sort_order)?;
+            if let Some(ref sort_order) = self.sort_order {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SortOrder", sort_order)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1830,8 +1940,12 @@ pub mod partition {
     impl ::codec::SerializeValue for PartitionInput {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", &self.parameters)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StorageDescriptor", &self.storage_descriptor)?;
+            if let Some(ref parameters) = self.parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", parameters)?;
+            }
+            if let Some(ref storage_descriptor) = self.storage_descriptor {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StorageDescriptor", storage_descriptor)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Values", &self.values)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -1894,9 +2008,15 @@ pub mod partition {
     impl ::codec::SerializeValue for SerdeInfo {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", &self.parameters)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SerializationLibrary", &self.serialization_library)?;
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            if let Some(ref parameters) = self.parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", parameters)?;
+            }
+            if let Some(ref serialization_library) = self.serialization_library {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SerializationLibrary", serialization_library)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1958,9 +2078,15 @@ pub mod partition {
     impl ::codec::SerializeValue for SkewedInfo {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SkewedColumnNames", &self.skewed_column_names)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SkewedColumnValueLocationMaps", &self.skewed_column_value_location_maps)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SkewedColumnValues", &self.skewed_column_values)?;
+            if let Some(ref skewed_column_names) = self.skewed_column_names {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SkewedColumnNames", skewed_column_names)?;
+            }
+            if let Some(ref skewed_column_value_location_maps) = self.skewed_column_value_location_maps {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SkewedColumnValueLocationMaps", skewed_column_value_location_maps)?;
+            }
+            if let Some(ref skewed_column_values) = self.skewed_column_values {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SkewedColumnValues", skewed_column_values)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -2040,18 +2166,42 @@ pub mod partition {
     impl ::codec::SerializeValue for StorageDescriptor {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketColumns", &self.bucket_columns)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Columns", &self.columns)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Compressed", &self.compressed)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputFormat", &self.input_format)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Location", &self.location)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NumberOfBuckets", &self.number_of_buckets)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutputFormat", &self.output_format)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", &self.parameters)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SerdeInfo", &self.serde_info)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SkewedInfo", &self.skewed_info)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SortColumns", &self.sort_columns)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StoredAsSubDirectories", &self.stored_as_sub_directories)?;
+            if let Some(ref bucket_columns) = self.bucket_columns {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketColumns", bucket_columns)?;
+            }
+            if let Some(ref columns) = self.columns {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Columns", columns)?;
+            }
+            if let Some(ref compressed) = self.compressed {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Compressed", compressed)?;
+            }
+            if let Some(ref input_format) = self.input_format {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputFormat", input_format)?;
+            }
+            if let Some(ref location) = self.location {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Location", location)?;
+            }
+            if let Some(ref number_of_buckets) = self.number_of_buckets {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NumberOfBuckets", number_of_buckets)?;
+            }
+            if let Some(ref output_format) = self.output_format {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutputFormat", output_format)?;
+            }
+            if let Some(ref parameters) = self.parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", parameters)?;
+            }
+            if let Some(ref serde_info) = self.serde_info {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SerdeInfo", serde_info)?;
+            }
+            if let Some(ref skewed_info) = self.skewed_info {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SkewedInfo", skewed_info)?;
+            }
+            if let Some(ref sort_columns) = self.sort_columns {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SortColumns", sort_columns)?;
+            }
+            if let Some(ref stored_as_sub_directories) = self.stored_as_sub_directories {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StoredAsSubDirectories", stored_as_sub_directories)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -2162,9 +2312,13 @@ pub mod table {
     impl ::codec::SerializeValue for Column {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", &self.comment)?;
+            if let Some(ref comment) = self.comment {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", comment)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+            if let Some(ref type_) = self.type_ {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", type_)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -2282,9 +2436,15 @@ pub mod table {
     impl ::codec::SerializeValue for SerdeInfo {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", &self.parameters)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SerializationLibrary", &self.serialization_library)?;
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            if let Some(ref parameters) = self.parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", parameters)?;
+            }
+            if let Some(ref serialization_library) = self.serialization_library {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SerializationLibrary", serialization_library)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -2346,9 +2506,15 @@ pub mod table {
     impl ::codec::SerializeValue for SkewedInfo {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SkewedColumnNames", &self.skewed_column_names)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SkewedColumnValueLocationMaps", &self.skewed_column_value_location_maps)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SkewedColumnValues", &self.skewed_column_values)?;
+            if let Some(ref skewed_column_names) = self.skewed_column_names {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SkewedColumnNames", skewed_column_names)?;
+            }
+            if let Some(ref skewed_column_value_location_maps) = self.skewed_column_value_location_maps {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SkewedColumnValueLocationMaps", skewed_column_value_location_maps)?;
+            }
+            if let Some(ref skewed_column_values) = self.skewed_column_values {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SkewedColumnValues", skewed_column_values)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -2428,18 +2594,42 @@ pub mod table {
     impl ::codec::SerializeValue for StorageDescriptor {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketColumns", &self.bucket_columns)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Columns", &self.columns)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Compressed", &self.compressed)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputFormat", &self.input_format)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Location", &self.location)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NumberOfBuckets", &self.number_of_buckets)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutputFormat", &self.output_format)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", &self.parameters)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SerdeInfo", &self.serde_info)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SkewedInfo", &self.skewed_info)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SortColumns", &self.sort_columns)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StoredAsSubDirectories", &self.stored_as_sub_directories)?;
+            if let Some(ref bucket_columns) = self.bucket_columns {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketColumns", bucket_columns)?;
+            }
+            if let Some(ref columns) = self.columns {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Columns", columns)?;
+            }
+            if let Some(ref compressed) = self.compressed {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Compressed", compressed)?;
+            }
+            if let Some(ref input_format) = self.input_format {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputFormat", input_format)?;
+            }
+            if let Some(ref location) = self.location {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Location", location)?;
+            }
+            if let Some(ref number_of_buckets) = self.number_of_buckets {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NumberOfBuckets", number_of_buckets)?;
+            }
+            if let Some(ref output_format) = self.output_format {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutputFormat", output_format)?;
+            }
+            if let Some(ref parameters) = self.parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", parameters)?;
+            }
+            if let Some(ref serde_info) = self.serde_info {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SerdeInfo", serde_info)?;
+            }
+            if let Some(ref skewed_info) = self.skewed_info {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SkewedInfo", skewed_info)?;
+            }
+            if let Some(ref sort_columns) = self.sort_columns {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SortColumns", sort_columns)?;
+            }
+            if let Some(ref stored_as_sub_directories) = self.stored_as_sub_directories {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StoredAsSubDirectories", stored_as_sub_directories)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -2560,16 +2750,36 @@ pub mod table {
     impl ::codec::SerializeValue for TableInput {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Owner", &self.owner)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", &self.parameters)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PartitionKeys", &self.partition_keys)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Retention", &self.retention)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StorageDescriptor", &self.storage_descriptor)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TableType", &self.table_type)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ViewExpandedText", &self.view_expanded_text)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ViewOriginalText", &self.view_original_text)?;
+            if let Some(ref description) = self.description {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+            }
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            if let Some(ref owner) = self.owner {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Owner", owner)?;
+            }
+            if let Some(ref parameters) = self.parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", parameters)?;
+            }
+            if let Some(ref partition_keys) = self.partition_keys {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PartitionKeys", partition_keys)?;
+            }
+            if let Some(ref retention) = self.retention {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Retention", retention)?;
+            }
+            if let Some(ref storage_descriptor) = self.storage_descriptor {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StorageDescriptor", storage_descriptor)?;
+            }
+            if let Some(ref table_type) = self.table_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TableType", table_type)?;
+            }
+            if let Some(ref view_expanded_text) = self.view_expanded_text {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ViewExpandedText", view_expanded_text)?;
+            }
+            if let Some(ref view_original_text) = self.view_original_text {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ViewOriginalText", view_original_text)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -2668,8 +2878,12 @@ pub mod trigger {
     impl ::codec::SerializeValue for Action {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Arguments", &self.arguments)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "JobName", &self.job_name)?;
+            if let Some(ref arguments) = self.arguments {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Arguments", arguments)?;
+            }
+            if let Some(ref job_name) = self.job_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "JobName", job_name)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -2726,9 +2940,15 @@ pub mod trigger {
     impl ::codec::SerializeValue for Condition {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "JobName", &self.job_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogicalOperator", &self.logical_operator)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "State", &self.state)?;
+            if let Some(ref job_name) = self.job_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "JobName", job_name)?;
+            }
+            if let Some(ref logical_operator) = self.logical_operator {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogicalOperator", logical_operator)?;
+            }
+            if let Some(ref state) = self.state {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "State", state)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -2788,8 +3008,12 @@ pub mod trigger {
     impl ::codec::SerializeValue for Predicate {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Conditions", &self.conditions)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Logical", &self.logical)?;
+            if let Some(ref conditions) = self.conditions {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Conditions", conditions)?;
+            }
+            if let Some(ref logical) = self.logical {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Logical", logical)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }

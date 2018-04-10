@@ -38,16 +38,34 @@ pub struct AppProperties {
 impl ::serde::Serialize for AppProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AppSource", &self.app_source)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attributes", &self.attributes)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataSources", &self.data_sources)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Domains", &self.domains)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableSsl", &self.enable_ssl)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Environment", &self.environment)?;
+        if let Some(ref app_source) = self.app_source {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AppSource", app_source)?;
+        }
+        if let Some(ref attributes) = self.attributes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attributes", attributes)?;
+        }
+        if let Some(ref data_sources) = self.data_sources {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataSources", data_sources)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref domains) = self.domains {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Domains", domains)?;
+        }
+        if let Some(ref enable_ssl) = self.enable_ssl {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableSsl", enable_ssl)?;
+        }
+        if let Some(ref environment) = self.environment {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Environment", environment)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Shortname", &self.shortname)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SslConfiguration", &self.ssl_configuration)?;
+        if let Some(ref shortname) = self.shortname {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Shortname", shortname)?;
+        }
+        if let Some(ref ssl_configuration) = self.ssl_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SslConfiguration", ssl_configuration)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "StackId", &self.stack_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
         ::serde::ser::SerializeMap::end(map)
@@ -298,27 +316,63 @@ pub struct InstanceProperties {
 impl ::serde::Serialize for InstanceProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AgentVersion", &self.agent_version)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AmiId", &self.ami_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Architecture", &self.architecture)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoScalingType", &self.auto_scaling_type)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", &self.availability_zone)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "BlockDeviceMappings", &self.block_device_mappings)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsOptimized", &self.ebs_optimized)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ElasticIps", &self.elastic_ips)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Hostname", &self.hostname)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstallUpdatesOnBoot", &self.install_updates_on_boot)?;
+        if let Some(ref agent_version) = self.agent_version {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AgentVersion", agent_version)?;
+        }
+        if let Some(ref ami_id) = self.ami_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AmiId", ami_id)?;
+        }
+        if let Some(ref architecture) = self.architecture {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Architecture", architecture)?;
+        }
+        if let Some(ref auto_scaling_type) = self.auto_scaling_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoScalingType", auto_scaling_type)?;
+        }
+        if let Some(ref availability_zone) = self.availability_zone {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", availability_zone)?;
+        }
+        if let Some(ref block_device_mappings) = self.block_device_mappings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BlockDeviceMappings", block_device_mappings)?;
+        }
+        if let Some(ref ebs_optimized) = self.ebs_optimized {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsOptimized", ebs_optimized)?;
+        }
+        if let Some(ref elastic_ips) = self.elastic_ips {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ElasticIps", elastic_ips)?;
+        }
+        if let Some(ref hostname) = self.hostname {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Hostname", hostname)?;
+        }
+        if let Some(ref install_updates_on_boot) = self.install_updates_on_boot {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstallUpdatesOnBoot", install_updates_on_boot)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceType", &self.instance_type)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "LayerIds", &self.layer_ids)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Os", &self.os)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RootDeviceType", &self.root_device_type)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SshKeyName", &self.ssh_key_name)?;
+        if let Some(ref os) = self.os {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Os", os)?;
+        }
+        if let Some(ref root_device_type) = self.root_device_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RootDeviceType", root_device_type)?;
+        }
+        if let Some(ref ssh_key_name) = self.ssh_key_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SshKeyName", ssh_key_name)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "StackId", &self.stack_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", &self.subnet_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tenancy", &self.tenancy)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimeBasedAutoScaling", &self.time_based_auto_scaling)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VirtualizationType", &self.virtualization_type)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Volumes", &self.volumes)?;
+        if let Some(ref subnet_id) = self.subnet_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", subnet_id)?;
+        }
+        if let Some(ref tenancy) = self.tenancy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tenancy", tenancy)?;
+        }
+        if let Some(ref time_based_auto_scaling) = self.time_based_auto_scaling {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimeBasedAutoScaling", time_based_auto_scaling)?;
+        }
+        if let Some(ref virtualization_type) = self.virtualization_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VirtualizationType", virtualization_type)?;
+        }
+        if let Some(ref volumes) = self.volumes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Volumes", volumes)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -527,25 +581,49 @@ pub struct LayerProperties {
 impl ::serde::Serialize for LayerProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attributes", &self.attributes)?;
+        if let Some(ref attributes) = self.attributes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attributes", attributes)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoAssignElasticIps", &self.auto_assign_elastic_ips)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoAssignPublicIps", &self.auto_assign_public_ips)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomInstanceProfileArn", &self.custom_instance_profile_arn)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomJson", &self.custom_json)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomRecipes", &self.custom_recipes)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomSecurityGroupIds", &self.custom_security_group_ids)?;
+        if let Some(ref custom_instance_profile_arn) = self.custom_instance_profile_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomInstanceProfileArn", custom_instance_profile_arn)?;
+        }
+        if let Some(ref custom_json) = self.custom_json {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomJson", custom_json)?;
+        }
+        if let Some(ref custom_recipes) = self.custom_recipes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomRecipes", custom_recipes)?;
+        }
+        if let Some(ref custom_security_group_ids) = self.custom_security_group_ids {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomSecurityGroupIds", custom_security_group_ids)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableAutoHealing", &self.enable_auto_healing)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstallUpdatesOnBoot", &self.install_updates_on_boot)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LifecycleEventConfiguration", &self.lifecycle_event_configuration)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBasedAutoScaling", &self.load_based_auto_scaling)?;
+        if let Some(ref install_updates_on_boot) = self.install_updates_on_boot {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstallUpdatesOnBoot", install_updates_on_boot)?;
+        }
+        if let Some(ref lifecycle_event_configuration) = self.lifecycle_event_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LifecycleEventConfiguration", lifecycle_event_configuration)?;
+        }
+        if let Some(ref load_based_auto_scaling) = self.load_based_auto_scaling {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBasedAutoScaling", load_based_auto_scaling)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Packages", &self.packages)?;
+        if let Some(ref packages) = self.packages {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Packages", packages)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Shortname", &self.shortname)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "StackId", &self.stack_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "UseEbsOptimizedInstances", &self.use_ebs_optimized_instances)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeConfigurations", &self.volume_configurations)?;
+        if let Some(ref use_ebs_optimized_instances) = self.use_ebs_optimized_instances {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UseEbsOptimizedInstances", use_ebs_optimized_instances)?;
+        }
+        if let Some(ref volume_configurations) = self.volume_configurations {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeConfigurations", volume_configurations)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -756,31 +834,75 @@ pub struct StackProperties {
 impl ::serde::Serialize for StackProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AgentVersion", &self.agent_version)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attributes", &self.attributes)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ChefConfiguration", &self.chef_configuration)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloneAppIds", &self.clone_app_ids)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClonePermissions", &self.clone_permissions)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConfigurationManager", &self.configuration_manager)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomCookbooksSource", &self.custom_cookbooks_source)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomJson", &self.custom_json)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultAvailabilityZone", &self.default_availability_zone)?;
+        if let Some(ref agent_version) = self.agent_version {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AgentVersion", agent_version)?;
+        }
+        if let Some(ref attributes) = self.attributes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attributes", attributes)?;
+        }
+        if let Some(ref chef_configuration) = self.chef_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ChefConfiguration", chef_configuration)?;
+        }
+        if let Some(ref clone_app_ids) = self.clone_app_ids {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloneAppIds", clone_app_ids)?;
+        }
+        if let Some(ref clone_permissions) = self.clone_permissions {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClonePermissions", clone_permissions)?;
+        }
+        if let Some(ref configuration_manager) = self.configuration_manager {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConfigurationManager", configuration_manager)?;
+        }
+        if let Some(ref custom_cookbooks_source) = self.custom_cookbooks_source {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomCookbooksSource", custom_cookbooks_source)?;
+        }
+        if let Some(ref custom_json) = self.custom_json {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomJson", custom_json)?;
+        }
+        if let Some(ref default_availability_zone) = self.default_availability_zone {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultAvailabilityZone", default_availability_zone)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultInstanceProfileArn", &self.default_instance_profile_arn)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultOs", &self.default_os)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultRootDeviceType", &self.default_root_device_type)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultSshKeyName", &self.default_ssh_key_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultSubnetId", &self.default_subnet_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EcsClusterArn", &self.ecs_cluster_arn)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ElasticIps", &self.elastic_ips)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostnameTheme", &self.hostname_theme)?;
+        if let Some(ref default_os) = self.default_os {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultOs", default_os)?;
+        }
+        if let Some(ref default_root_device_type) = self.default_root_device_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultRootDeviceType", default_root_device_type)?;
+        }
+        if let Some(ref default_ssh_key_name) = self.default_ssh_key_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultSshKeyName", default_ssh_key_name)?;
+        }
+        if let Some(ref default_subnet_id) = self.default_subnet_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultSubnetId", default_subnet_id)?;
+        }
+        if let Some(ref ecs_cluster_arn) = self.ecs_cluster_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EcsClusterArn", ecs_cluster_arn)?;
+        }
+        if let Some(ref elastic_ips) = self.elastic_ips {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ElasticIps", elastic_ips)?;
+        }
+        if let Some(ref hostname_theme) = self.hostname_theme {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostnameTheme", hostname_theme)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RdsDbInstances", &self.rds_db_instances)?;
+        if let Some(ref rds_db_instances) = self.rds_db_instances {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RdsDbInstances", rds_db_instances)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceRoleArn", &self.service_role_arn)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceStackId", &self.source_stack_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "UseCustomCookbooks", &self.use_custom_cookbooks)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "UseOpsworksSecurityGroups", &self.use_opsworks_security_groups)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", &self.vpc_id)?;
+        if let Some(ref source_stack_id) = self.source_stack_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceStackId", source_stack_id)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref use_custom_cookbooks) = self.use_custom_cookbooks {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UseCustomCookbooks", use_custom_cookbooks)?;
+        }
+        if let Some(ref use_opsworks_security_groups) = self.use_opsworks_security_groups {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UseOpsworksSecurityGroups", use_opsworks_security_groups)?;
+        }
+        if let Some(ref vpc_id) = self.vpc_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", vpc_id)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -979,10 +1101,16 @@ pub struct UserProfileProperties {
 impl ::serde::Serialize for UserProfileProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowSelfManagement", &self.allow_self_management)?;
+        if let Some(ref allow_self_management) = self.allow_self_management {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowSelfManagement", allow_self_management)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "IamUserArn", &self.iam_user_arn)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SshPublicKey", &self.ssh_public_key)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SshUsername", &self.ssh_username)?;
+        if let Some(ref ssh_public_key) = self.ssh_public_key {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SshPublicKey", ssh_public_key)?;
+        }
+        if let Some(ref ssh_username) = self.ssh_username {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SshUsername", ssh_username)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -1077,8 +1205,12 @@ impl ::serde::Serialize for VolumeProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ec2VolumeId", &self.ec2_volume_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MountPoint", &self.mount_point)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref mount_point) = self.mount_point {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MountPoint", mount_point)?;
+        }
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "StackId", &self.stack_id)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -1168,9 +1300,15 @@ pub mod app {
     impl ::codec::SerializeValue for DataSource {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Arn", &self.arn)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseName", &self.database_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+            if let Some(ref arn) = self.arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Arn", arn)?;
+            }
+            if let Some(ref database_name) = self.database_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseName", database_name)?;
+            }
+            if let Some(ref type_) = self.type_ {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", type_)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1233,7 +1371,9 @@ pub mod app {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Secure", &self.secure)?;
+            if let Some(ref secure) = self.secure {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Secure", secure)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -1302,12 +1442,24 @@ pub mod app {
     impl ::codec::SerializeValue for Source {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Password", &self.password)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Revision", &self.revision)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SshKey", &self.ssh_key)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Url", &self.url)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Username", &self.username)?;
+            if let Some(ref password) = self.password {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Password", password)?;
+            }
+            if let Some(ref revision) = self.revision {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Revision", revision)?;
+            }
+            if let Some(ref ssh_key) = self.ssh_key {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SshKey", ssh_key)?;
+            }
+            if let Some(ref type_) = self.type_ {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", type_)?;
+            }
+            if let Some(ref url) = self.url {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Url", url)?;
+            }
+            if let Some(ref username) = self.username {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Username", username)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1384,9 +1536,15 @@ pub mod app {
     impl ::codec::SerializeValue for SslConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Certificate", &self.certificate)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Chain", &self.chain)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateKey", &self.private_key)?;
+            if let Some(ref certificate) = self.certificate {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Certificate", certificate)?;
+            }
+            if let Some(ref chain) = self.chain {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Chain", chain)?;
+            }
+            if let Some(ref private_key) = self.private_key {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateKey", private_key)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1454,10 +1612,18 @@ pub mod instance {
     impl ::codec::SerializeValue for BlockDeviceMapping {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceName", &self.device_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ebs", &self.ebs)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NoDevice", &self.no_device)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VirtualName", &self.virtual_name)?;
+            if let Some(ref device_name) = self.device_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceName", device_name)?;
+            }
+            if let Some(ref ebs) = self.ebs {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ebs", ebs)?;
+            }
+            if let Some(ref no_device) = self.no_device {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NoDevice", no_device)?;
+            }
+            if let Some(ref virtual_name) = self.virtual_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VirtualName", virtual_name)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1528,11 +1694,21 @@ pub mod instance {
     impl ::codec::SerializeValue for EbsBlockDevice {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteOnTermination", &self.delete_on_termination)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", &self.iops)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotId", &self.snapshot_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeSize", &self.volume_size)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeType", &self.volume_type)?;
+            if let Some(ref delete_on_termination) = self.delete_on_termination {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteOnTermination", delete_on_termination)?;
+            }
+            if let Some(ref iops) = self.iops {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", iops)?;
+            }
+            if let Some(ref snapshot_id) = self.snapshot_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotId", snapshot_id)?;
+            }
+            if let Some(ref volume_size) = self.volume_size {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeSize", volume_size)?;
+            }
+            if let Some(ref volume_type) = self.volume_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeType", volume_type)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1612,13 +1788,27 @@ pub mod instance {
     impl ::codec::SerializeValue for TimeBasedAutoScaling {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Friday", &self.friday)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Monday", &self.monday)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Saturday", &self.saturday)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Sunday", &self.sunday)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Thursday", &self.thursday)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tuesday", &self.tuesday)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Wednesday", &self.wednesday)?;
+            if let Some(ref friday) = self.friday {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Friday", friday)?;
+            }
+            if let Some(ref monday) = self.monday {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Monday", monday)?;
+            }
+            if let Some(ref saturday) = self.saturday {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Saturday", saturday)?;
+            }
+            if let Some(ref sunday) = self.sunday {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Sunday", sunday)?;
+            }
+            if let Some(ref thursday) = self.thursday {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Thursday", thursday)?;
+            }
+            if let Some(ref tuesday) = self.tuesday {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tuesday", tuesday)?;
+            }
+            if let Some(ref wednesday) = self.wednesday {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Wednesday", wednesday)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1710,12 +1900,24 @@ pub mod layer {
     impl ::codec::SerializeValue for AutoScalingThresholds {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CpuThreshold", &self.cpu_threshold)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IgnoreMetricsTime", &self.ignore_metrics_time)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceCount", &self.instance_count)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadThreshold", &self.load_threshold)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MemoryThreshold", &self.memory_threshold)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThresholdsWaitTime", &self.thresholds_wait_time)?;
+            if let Some(ref cpu_threshold) = self.cpu_threshold {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CpuThreshold", cpu_threshold)?;
+            }
+            if let Some(ref ignore_metrics_time) = self.ignore_metrics_time {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IgnoreMetricsTime", ignore_metrics_time)?;
+            }
+            if let Some(ref instance_count) = self.instance_count {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceCount", instance_count)?;
+            }
+            if let Some(ref load_threshold) = self.load_threshold {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadThreshold", load_threshold)?;
+            }
+            if let Some(ref memory_threshold) = self.memory_threshold {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MemoryThreshold", memory_threshold)?;
+            }
+            if let Some(ref thresholds_wait_time) = self.thresholds_wait_time {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThresholdsWaitTime", thresholds_wait_time)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1788,7 +1990,9 @@ pub mod layer {
     impl ::codec::SerializeValue for LifecycleEventConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ShutdownEventConfiguration", &self.shutdown_event_configuration)?;
+            if let Some(ref shutdown_event_configuration) = self.shutdown_event_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ShutdownEventConfiguration", shutdown_event_configuration)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1840,9 +2044,15 @@ pub mod layer {
     impl ::codec::SerializeValue for LoadBasedAutoScaling {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DownScaling", &self.down_scaling)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enable", &self.enable)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UpScaling", &self.up_scaling)?;
+            if let Some(ref down_scaling) = self.down_scaling {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DownScaling", down_scaling)?;
+            }
+            if let Some(ref enable) = self.enable {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enable", enable)?;
+            }
+            if let Some(ref up_scaling) = self.up_scaling {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UpScaling", up_scaling)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1908,11 +2118,21 @@ pub mod layer {
     impl ::codec::SerializeValue for Recipes {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Configure", &self.configure)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Deploy", &self.deploy)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Setup", &self.setup)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Shutdown", &self.shutdown)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Undeploy", &self.undeploy)?;
+            if let Some(ref configure) = self.configure {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Configure", configure)?;
+            }
+            if let Some(ref deploy) = self.deploy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Deploy", deploy)?;
+            }
+            if let Some(ref setup) = self.setup {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Setup", setup)?;
+            }
+            if let Some(ref shutdown) = self.shutdown {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Shutdown", shutdown)?;
+            }
+            if let Some(ref undeploy) = self.undeploy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Undeploy", undeploy)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1982,8 +2202,12 @@ pub mod layer {
     impl ::codec::SerializeValue for ShutdownEventConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DelayUntilElbConnectionsDrained", &self.delay_until_elb_connections_drained)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExecutionTimeout", &self.execution_timeout)?;
+            if let Some(ref delay_until_elb_connections_drained) = self.delay_until_elb_connections_drained {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DelayUntilElbConnectionsDrained", delay_until_elb_connections_drained)?;
+            }
+            if let Some(ref execution_timeout) = self.execution_timeout {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExecutionTimeout", execution_timeout)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -2046,12 +2270,24 @@ pub mod layer {
     impl ::codec::SerializeValue for VolumeConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", &self.iops)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MountPoint", &self.mount_point)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NumberOfDisks", &self.number_of_disks)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RaidLevel", &self.raid_level)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Size", &self.size)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeType", &self.volume_type)?;
+            if let Some(ref iops) = self.iops {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", iops)?;
+            }
+            if let Some(ref mount_point) = self.mount_point {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MountPoint", mount_point)?;
+            }
+            if let Some(ref number_of_disks) = self.number_of_disks {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NumberOfDisks", number_of_disks)?;
+            }
+            if let Some(ref raid_level) = self.raid_level {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RaidLevel", raid_level)?;
+            }
+            if let Some(ref size) = self.size {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Size", size)?;
+            }
+            if let Some(ref volume_type) = self.volume_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeType", volume_type)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -2130,8 +2366,12 @@ pub mod stack {
     impl ::codec::SerializeValue for ChefConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BerkshelfVersion", &self.berkshelf_version)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ManageBerkshelf", &self.manage_berkshelf)?;
+            if let Some(ref berkshelf_version) = self.berkshelf_version {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BerkshelfVersion", berkshelf_version)?;
+            }
+            if let Some(ref manage_berkshelf) = self.manage_berkshelf {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ManageBerkshelf", manage_berkshelf)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -2187,7 +2427,9 @@ pub mod stack {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ip", &self.ip)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -2314,12 +2556,24 @@ pub mod stack {
     impl ::codec::SerializeValue for Source {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Password", &self.password)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Revision", &self.revision)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SshKey", &self.ssh_key)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Url", &self.url)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Username", &self.username)?;
+            if let Some(ref password) = self.password {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Password", password)?;
+            }
+            if let Some(ref revision) = self.revision {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Revision", revision)?;
+            }
+            if let Some(ref ssh_key) = self.ssh_key {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SshKey", ssh_key)?;
+            }
+            if let Some(ref type_) = self.type_ {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", type_)?;
+            }
+            if let Some(ref url) = self.url {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Url", url)?;
+            }
+            if let Some(ref username) = self.username {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Username", username)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -2394,8 +2648,12 @@ pub mod stack {
     impl ::codec::SerializeValue for StackConfigurationManager {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Version", &self.version)?;
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            if let Some(ref version) = self.version {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Version", version)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }

@@ -20,8 +20,12 @@ pub struct AccessKeyProperties {
 impl ::serde::Serialize for AccessKeyProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Serial", &self.serial)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Status", &self.status)?;
+        if let Some(ref serial) = self.serial {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Serial", serial)?;
+        }
+        if let Some(ref status) = self.status {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Status", status)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserName", &self.user_name)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -111,10 +115,18 @@ pub struct GroupProperties {
 impl ::serde::Serialize for GroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupName", &self.group_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ManagedPolicyArns", &self.managed_policy_arns)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Path", &self.path)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Policies", &self.policies)?;
+        if let Some(ref group_name) = self.group_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupName", group_name)?;
+        }
+        if let Some(ref managed_policy_arns) = self.managed_policy_arns {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ManagedPolicyArns", managed_policy_arns)?;
+        }
+        if let Some(ref path) = self.path {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Path", path)?;
+        }
+        if let Some(ref policies) = self.policies {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Policies", policies)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -206,8 +218,12 @@ pub struct InstanceProfileProperties {
 impl ::serde::Serialize for InstanceProfileProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceProfileName", &self.instance_profile_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Path", &self.path)?;
+        if let Some(ref instance_profile_name) = self.instance_profile_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceProfileName", instance_profile_name)?;
+        }
+        if let Some(ref path) = self.path {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Path", path)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Roles", &self.roles)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -303,13 +319,25 @@ pub struct ManagedPolicyProperties {
 impl ::serde::Serialize for ManagedPolicyProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Groups", &self.groups)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ManagedPolicyName", &self.managed_policy_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Path", &self.path)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref groups) = self.groups {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Groups", groups)?;
+        }
+        if let Some(ref managed_policy_name) = self.managed_policy_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ManagedPolicyName", managed_policy_name)?;
+        }
+        if let Some(ref path) = self.path {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Path", path)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyDocument", &self.policy_document)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Roles", &self.roles)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Users", &self.users)?;
+        if let Some(ref roles) = self.roles {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Roles", roles)?;
+        }
+        if let Some(ref users) = self.users {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Users", users)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -420,11 +448,17 @@ pub struct PolicyProperties {
 impl ::serde::Serialize for PolicyProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Groups", &self.groups)?;
+        if let Some(ref groups) = self.groups {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Groups", groups)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyDocument", &self.policy_document)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyName", &self.policy_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Roles", &self.roles)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Users", &self.users)?;
+        if let Some(ref roles) = self.roles {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Roles", roles)?;
+        }
+        if let Some(ref users) = self.users {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Users", users)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -526,10 +560,18 @@ impl ::serde::Serialize for RoleProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssumeRolePolicyDocument", &self.assume_role_policy_document)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ManagedPolicyArns", &self.managed_policy_arns)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Path", &self.path)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Policies", &self.policies)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleName", &self.role_name)?;
+        if let Some(ref managed_policy_arns) = self.managed_policy_arns {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ManagedPolicyArns", managed_policy_arns)?;
+        }
+        if let Some(ref path) = self.path {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Path", path)?;
+        }
+        if let Some(ref policies) = self.policies {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Policies", policies)?;
+        }
+        if let Some(ref role_name) = self.role_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleName", role_name)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -632,12 +674,24 @@ pub struct UserProperties {
 impl ::serde::Serialize for UserProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Groups", &self.groups)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoginProfile", &self.login_profile)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ManagedPolicyArns", &self.managed_policy_arns)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Path", &self.path)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Policies", &self.policies)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserName", &self.user_name)?;
+        if let Some(ref groups) = self.groups {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Groups", groups)?;
+        }
+        if let Some(ref login_profile) = self.login_profile {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoginProfile", login_profile)?;
+        }
+        if let Some(ref managed_policy_arns) = self.managed_policy_arns {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ManagedPolicyArns", managed_policy_arns)?;
+        }
+        if let Some(ref path) = self.path {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Path", path)?;
+        }
+        if let Some(ref policies) = self.policies {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Policies", policies)?;
+        }
+        if let Some(ref user_name) = self.user_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserName", user_name)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -936,7 +990,9 @@ pub mod user {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Password", &self.password)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PasswordResetRequired", &self.password_reset_required)?;
+            if let Some(ref password_reset_required) = self.password_reset_required {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PasswordResetRequired", password_reset_required)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }

@@ -34,16 +34,32 @@ pub struct TableProperties {
 impl ::serde::Serialize for TableProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AttributeDefinitions", &self.attribute_definitions)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "GlobalSecondaryIndexes", &self.global_secondary_indexes)?;
+        if let Some(ref attribute_definitions) = self.attribute_definitions {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AttributeDefinitions", attribute_definitions)?;
+        }
+        if let Some(ref global_secondary_indexes) = self.global_secondary_indexes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GlobalSecondaryIndexes", global_secondary_indexes)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeySchema", &self.key_schema)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LocalSecondaryIndexes", &self.local_secondary_indexes)?;
+        if let Some(ref local_secondary_indexes) = self.local_secondary_indexes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LocalSecondaryIndexes", local_secondary_indexes)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProvisionedThroughput", &self.provisioned_throughput)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SSESpecification", &self.sse_specification)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamSpecification", &self.stream_specification)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TableName", &self.table_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimeToLiveSpecification", &self.time_to_live_specification)?;
+        if let Some(ref sse_specification) = self.sse_specification {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SSESpecification", sse_specification)?;
+        }
+        if let Some(ref stream_specification) = self.stream_specification {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamSpecification", stream_specification)?;
+        }
+        if let Some(ref table_name) = self.table_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TableName", table_name)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref time_to_live_specification) = self.time_to_live_specification {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimeToLiveSpecification", time_to_live_specification)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -408,8 +424,12 @@ pub mod table {
     impl ::codec::SerializeValue for Projection {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NonKeyAttributes", &self.non_key_attributes)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProjectionType", &self.projection_type)?;
+            if let Some(ref non_key_attributes) = self.non_key_attributes {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NonKeyAttributes", non_key_attributes)?;
+            }
+            if let Some(ref projection_type) = self.projection_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProjectionType", projection_type)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }

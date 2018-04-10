@@ -32,15 +32,33 @@ pub struct DomainProperties {
 impl ::serde::Serialize for DomainProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessPolicies", &self.access_policies)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AdvancedOptions", &self.advanced_options)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainName", &self.domain_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EBSOptions", &self.ebs_options)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ElasticsearchClusterConfig", &self.elasticsearch_cluster_config)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ElasticsearchVersion", &self.elasticsearch_version)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotOptions", &self.snapshot_options)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VPCOptions", &self.vpc_options)?;
+        if let Some(ref access_policies) = self.access_policies {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessPolicies", access_policies)?;
+        }
+        if let Some(ref advanced_options) = self.advanced_options {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AdvancedOptions", advanced_options)?;
+        }
+        if let Some(ref domain_name) = self.domain_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainName", domain_name)?;
+        }
+        if let Some(ref ebs_options) = self.ebs_options {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EBSOptions", ebs_options)?;
+        }
+        if let Some(ref elasticsearch_cluster_config) = self.elasticsearch_cluster_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ElasticsearchClusterConfig", elasticsearch_cluster_config)?;
+        }
+        if let Some(ref elasticsearch_version) = self.elasticsearch_version {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ElasticsearchVersion", elasticsearch_version)?;
+        }
+        if let Some(ref snapshot_options) = self.snapshot_options {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotOptions", snapshot_options)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref vpc_options) = self.vpc_options {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VPCOptions", vpc_options)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -156,10 +174,18 @@ pub mod domain {
     impl ::codec::SerializeValue for EBSOptions {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EBSEnabled", &self.ebs_enabled)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", &self.iops)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeSize", &self.volume_size)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeType", &self.volume_type)?;
+            if let Some(ref ebs_enabled) = self.ebs_enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EBSEnabled", ebs_enabled)?;
+            }
+            if let Some(ref iops) = self.iops {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", iops)?;
+            }
+            if let Some(ref volume_size) = self.volume_size {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeSize", volume_size)?;
+            }
+            if let Some(ref volume_type) = self.volume_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeType", volume_type)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -232,12 +258,24 @@ pub mod domain {
     impl ::codec::SerializeValue for ElasticsearchClusterConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DedicatedMasterCount", &self.dedicated_master_count)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DedicatedMasterEnabled", &self.dedicated_master_enabled)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DedicatedMasterType", &self.dedicated_master_type)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceCount", &self.instance_count)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceType", &self.instance_type)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ZoneAwarenessEnabled", &self.zone_awareness_enabled)?;
+            if let Some(ref dedicated_master_count) = self.dedicated_master_count {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DedicatedMasterCount", dedicated_master_count)?;
+            }
+            if let Some(ref dedicated_master_enabled) = self.dedicated_master_enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DedicatedMasterEnabled", dedicated_master_enabled)?;
+            }
+            if let Some(ref dedicated_master_type) = self.dedicated_master_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DedicatedMasterType", dedicated_master_type)?;
+            }
+            if let Some(ref instance_count) = self.instance_count {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceCount", instance_count)?;
+            }
+            if let Some(ref instance_type) = self.instance_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceType", instance_type)?;
+            }
+            if let Some(ref zone_awareness_enabled) = self.zone_awareness_enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ZoneAwarenessEnabled", zone_awareness_enabled)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -310,7 +348,9 @@ pub mod domain {
     impl ::codec::SerializeValue for SnapshotOptions {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutomatedSnapshotStartHour", &self.automated_snapshot_start_hour)?;
+            if let Some(ref automated_snapshot_start_hour) = self.automated_snapshot_start_hour {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutomatedSnapshotStartHour", automated_snapshot_start_hour)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -360,8 +400,12 @@ pub mod domain {
     impl ::codec::SerializeValue for VPCOptions {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIds", &self.security_group_ids)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetIds", &self.subnet_ids)?;
+            if let Some(ref security_group_ids) = self.security_group_ids {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIds", security_group_ids)?;
+            }
+            if let Some(ref subnet_ids) = self.subnet_ids {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetIds", subnet_ids)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }

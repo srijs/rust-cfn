@@ -40,19 +40,41 @@ pub struct TrailProperties {
 impl ::serde::Serialize for TrailProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchLogsLogGroupArn", &self.cloud_watch_logs_log_group_arn)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchLogsRoleArn", &self.cloud_watch_logs_role_arn)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableLogFileValidation", &self.enable_log_file_validation)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventSelectors", &self.event_selectors)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncludeGlobalServiceEvents", &self.include_global_service_events)?;
+        if let Some(ref cloud_watch_logs_log_group_arn) = self.cloud_watch_logs_log_group_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchLogsLogGroupArn", cloud_watch_logs_log_group_arn)?;
+        }
+        if let Some(ref cloud_watch_logs_role_arn) = self.cloud_watch_logs_role_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchLogsRoleArn", cloud_watch_logs_role_arn)?;
+        }
+        if let Some(ref enable_log_file_validation) = self.enable_log_file_validation {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableLogFileValidation", enable_log_file_validation)?;
+        }
+        if let Some(ref event_selectors) = self.event_selectors {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventSelectors", event_selectors)?;
+        }
+        if let Some(ref include_global_service_events) = self.include_global_service_events {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncludeGlobalServiceEvents", include_global_service_events)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "IsLogging", &self.is_logging)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "IsMultiRegionTrail", &self.is_multi_region_trail)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "KMSKeyId", &self.kms_key_id)?;
+        if let Some(ref is_multi_region_trail) = self.is_multi_region_trail {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IsMultiRegionTrail", is_multi_region_trail)?;
+        }
+        if let Some(ref kms_key_id) = self.kms_key_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KMSKeyId", kms_key_id)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3BucketName", &self.s3_bucket_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3KeyPrefix", &self.s3_key_prefix)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnsTopicName", &self.sns_topic_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrailName", &self.trail_name)?;
+        if let Some(ref s3_key_prefix) = self.s3_key_prefix {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3KeyPrefix", s3_key_prefix)?;
+        }
+        if let Some(ref sns_topic_name) = self.sns_topic_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnsTopicName", sns_topic_name)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref trail_name) = self.trail_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrailName", trail_name)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -185,7 +207,9 @@ pub mod trail {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Values", &self.values)?;
+            if let Some(ref values) = self.values {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Values", values)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -242,9 +266,15 @@ pub mod trail {
     impl ::codec::SerializeValue for EventSelector {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataResources", &self.data_resources)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncludeManagementEvents", &self.include_management_events)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReadWriteType", &self.read_write_type)?;
+            if let Some(ref data_resources) = self.data_resources {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataResources", data_resources)?;
+            }
+            if let Some(ref include_management_events) = self.include_management_events {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncludeManagementEvents", include_management_events)?;
+            }
+            if let Some(ref read_write_type) = self.read_write_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReadWriteType", read_write_type)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }

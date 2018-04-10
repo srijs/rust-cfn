@@ -20,9 +20,15 @@ pub struct SubscriptionProperties {
 impl ::serde::Serialize for SubscriptionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Endpoint", &self.endpoint)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", &self.protocol)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TopicArn", &self.topic_arn)?;
+        if let Some(ref endpoint) = self.endpoint {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Endpoint", endpoint)?;
+        }
+        if let Some(ref protocol) = self.protocol {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", protocol)?;
+        }
+        if let Some(ref topic_arn) = self.topic_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TopicArn", topic_arn)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -109,9 +115,15 @@ pub struct TopicProperties {
 impl ::serde::Serialize for TopicProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisplayName", &self.display_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Subscription", &self.subscription)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TopicName", &self.topic_name)?;
+        if let Some(ref display_name) = self.display_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisplayName", display_name)?;
+        }
+        if let Some(ref subscription) = self.subscription {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Subscription", subscription)?;
+        }
+        if let Some(ref topic_name) = self.topic_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TopicName", topic_name)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }

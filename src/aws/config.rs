@@ -26,11 +26,21 @@ pub struct ConfigRuleProperties {
 impl ::serde::Serialize for ConfigRuleProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConfigRuleName", &self.config_rule_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputParameters", &self.input_parameters)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaximumExecutionFrequency", &self.maximum_execution_frequency)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Scope", &self.scope)?;
+        if let Some(ref config_rule_name) = self.config_rule_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConfigRuleName", config_rule_name)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref input_parameters) = self.input_parameters {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputParameters", input_parameters)?;
+        }
+        if let Some(ref maximum_execution_frequency) = self.maximum_execution_frequency {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaximumExecutionFrequency", maximum_execution_frequency)?;
+        }
+        if let Some(ref scope) = self.scope {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Scope", scope)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Source", &self.source)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -133,8 +143,12 @@ pub struct ConfigurationRecorderProperties {
 impl ::serde::Serialize for ConfigurationRecorderProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordingGroup", &self.recording_group)?;
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
+        if let Some(ref recording_group) = self.recording_group {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordingGroup", recording_group)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleARN", &self.role_arn)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -226,11 +240,19 @@ pub struct DeliveryChannelProperties {
 impl ::serde::Serialize for DeliveryChannelProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConfigSnapshotDeliveryProperties", &self.config_snapshot_delivery_properties)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref config_snapshot_delivery_properties) = self.config_snapshot_delivery_properties {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConfigSnapshotDeliveryProperties", config_snapshot_delivery_properties)?;
+        }
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3BucketName", &self.s3_bucket_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3KeyPrefix", &self.s3_key_prefix)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnsTopicARN", &self.sns_topic_arn)?;
+        if let Some(ref s3_key_prefix) = self.s3_key_prefix {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3KeyPrefix", s3_key_prefix)?;
+        }
+        if let Some(ref sns_topic_arn) = self.sns_topic_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnsTopicARN", sns_topic_arn)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -326,10 +348,18 @@ pub mod config_rule {
     impl ::codec::SerializeValue for Scope {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComplianceResourceId", &self.compliance_resource_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComplianceResourceTypes", &self.compliance_resource_types)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TagKey", &self.tag_key)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TagValue", &self.tag_value)?;
+            if let Some(ref compliance_resource_id) = self.compliance_resource_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComplianceResourceId", compliance_resource_id)?;
+            }
+            if let Some(ref compliance_resource_types) = self.compliance_resource_types {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComplianceResourceTypes", compliance_resource_types)?;
+            }
+            if let Some(ref tag_key) = self.tag_key {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TagKey", tag_key)?;
+            }
+            if let Some(ref tag_value) = self.tag_value {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TagValue", tag_value)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -397,7 +427,9 @@ pub mod config_rule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Owner", &self.owner)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceDetails", &self.source_details)?;
+            if let Some(ref source_details) = self.source_details {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceDetails", source_details)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceIdentifier", &self.source_identifier)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -461,7 +493,9 @@ pub mod config_rule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventSource", &self.event_source)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaximumExecutionFrequency", &self.maximum_execution_frequency)?;
+            if let Some(ref maximum_execution_frequency) = self.maximum_execution_frequency {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaximumExecutionFrequency", maximum_execution_frequency)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MessageType", &self.message_type)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -528,9 +562,15 @@ pub mod configuration_recorder {
     impl ::codec::SerializeValue for RecordingGroup {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllSupported", &self.all_supported)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncludeGlobalResourceTypes", &self.include_global_resource_types)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceTypes", &self.resource_types)?;
+            if let Some(ref all_supported) = self.all_supported {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllSupported", all_supported)?;
+            }
+            if let Some(ref include_global_resource_types) = self.include_global_resource_types {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncludeGlobalResourceTypes", include_global_resource_types)?;
+            }
+            if let Some(ref resource_types) = self.resource_types {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceTypes", resource_types)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -592,7 +632,9 @@ pub mod delivery_channel {
     impl ::codec::SerializeValue for ConfigSnapshotDeliveryProperties {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeliveryFrequency", &self.delivery_frequency)?;
+            if let Some(ref delivery_frequency) = self.delivery_frequency {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeliveryFrequency", delivery_frequency)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }

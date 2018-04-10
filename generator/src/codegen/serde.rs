@@ -9,9 +9,15 @@ pub(super) fn generate_serialize(trait_name: &str, name: &str, props: &BTreeMap<
         p.block(format_args!("fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error>"), |p| {
             if props.len() > 0 {
                 p.line(format_args!("let mut map = ::serde::Serializer::serialize_map(s, None)?;"))?;
-                for (prop_name, _prop_spec) in props {
+                for (prop_name, prop_spec) in props {
                     let field_name = mutate_field_name(prop_name);
-                    p.line(format_args!("::serde::ser::SerializeMap::serialize_entry(&mut map, \"{}\", &self.{})?;", prop_name, field_name))?;
+                    if prop_spec.required.unwrap_or(true) {
+                        p.line(format_args!("::serde::ser::SerializeMap::serialize_entry(&mut map, \"{}\", &self.{})?;", prop_name, field_name))?;
+                    } else {
+                        p.block(format_args!("if let Some(ref {}) = self.{}", field_name, field_name), |p| {
+                            p.line(format_args!("::serde::ser::SerializeMap::serialize_entry(&mut map, \"{}\", {})?;", prop_name, field_name))
+                        })?;
+                    }
                 }
             } else {
                 p.line(format_args!("let map = ::serde::Serializer::serialize_map(s, None)?;"))?;

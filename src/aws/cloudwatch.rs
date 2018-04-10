@@ -50,24 +50,48 @@ pub struct AlarmProperties {
 impl ::serde::Serialize for AlarmProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ActionsEnabled", &self.actions_enabled)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AlarmActions", &self.alarm_actions)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AlarmDescription", &self.alarm_description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AlarmName", &self.alarm_name)?;
+        if let Some(ref actions_enabled) = self.actions_enabled {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ActionsEnabled", actions_enabled)?;
+        }
+        if let Some(ref alarm_actions) = self.alarm_actions {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AlarmActions", alarm_actions)?;
+        }
+        if let Some(ref alarm_description) = self.alarm_description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AlarmDescription", alarm_description)?;
+        }
+        if let Some(ref alarm_name) = self.alarm_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AlarmName", alarm_name)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComparisonOperator", &self.comparison_operator)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Dimensions", &self.dimensions)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EvaluateLowSampleCountPercentile", &self.evaluate_low_sample_count_percentile)?;
+        if let Some(ref dimensions) = self.dimensions {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Dimensions", dimensions)?;
+        }
+        if let Some(ref evaluate_low_sample_count_percentile) = self.evaluate_low_sample_count_percentile {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EvaluateLowSampleCountPercentile", evaluate_low_sample_count_percentile)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "EvaluationPeriods", &self.evaluation_periods)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExtendedStatistic", &self.extended_statistic)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "InsufficientDataActions", &self.insufficient_data_actions)?;
+        if let Some(ref extended_statistic) = self.extended_statistic {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExtendedStatistic", extended_statistic)?;
+        }
+        if let Some(ref insufficient_data_actions) = self.insufficient_data_actions {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InsufficientDataActions", insufficient_data_actions)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricName", &self.metric_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Namespace", &self.namespace)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "OKActions", &self.ok_actions)?;
+        if let Some(ref ok_actions) = self.ok_actions {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OKActions", ok_actions)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Period", &self.period)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Statistic", &self.statistic)?;
+        if let Some(ref statistic) = self.statistic {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Statistic", statistic)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Threshold", &self.threshold)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TreatMissingData", &self.treat_missing_data)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Unit", &self.unit)?;
+        if let Some(ref treat_missing_data) = self.treat_missing_data {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TreatMissingData", treat_missing_data)?;
+        }
+        if let Some(ref unit) = self.unit {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Unit", unit)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -228,7 +252,9 @@ impl ::serde::Serialize for DashboardProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DashboardBody", &self.dashboard_body)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DashboardName", &self.dashboard_name)?;
+        if let Some(ref dashboard_name) = self.dashboard_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DashboardName", dashboard_name)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }

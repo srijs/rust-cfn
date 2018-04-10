@@ -28,13 +28,25 @@ pub struct AssociationProperties {
 impl ::serde::Serialize for AssociationProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssociationName", &self.association_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentVersion", &self.document_version)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceId", &self.instance_id)?;
+        if let Some(ref association_name) = self.association_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssociationName", association_name)?;
+        }
+        if let Some(ref document_version) = self.document_version {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentVersion", document_version)?;
+        }
+        if let Some(ref instance_id) = self.instance_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceId", instance_id)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", &self.parameters)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScheduleExpression", &self.schedule_expression)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Targets", &self.targets)?;
+        if let Some(ref parameters) = self.parameters {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", parameters)?;
+        }
+        if let Some(ref schedule_expression) = self.schedule_expression {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScheduleExpression", schedule_expression)?;
+        }
+        if let Some(ref targets) = self.targets {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Targets", targets)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -142,8 +154,12 @@ impl ::serde::Serialize for DocumentProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Content", &self.content)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentType", &self.document_type)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref document_type) = self.document_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentType", document_type)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -250,19 +266,31 @@ pub struct MaintenanceWindowTaskProperties {
 impl ::serde::Serialize for MaintenanceWindowTaskProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoggingInfo", &self.logging_info)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref logging_info) = self.logging_info {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoggingInfo", logging_info)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxConcurrency", &self.max_concurrency)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxErrors", &self.max_errors)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Priority", &self.priority)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceRoleArn", &self.service_role_arn)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Targets", &self.targets)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "TaskArn", &self.task_arn)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TaskInvocationParameters", &self.task_invocation_parameters)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TaskParameters", &self.task_parameters)?;
+        if let Some(ref task_invocation_parameters) = self.task_invocation_parameters {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TaskInvocationParameters", task_invocation_parameters)?;
+        }
+        if let Some(ref task_parameters) = self.task_parameters {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TaskParameters", task_parameters)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "TaskType", &self.task_type)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "WindowId", &self.window_id)?;
+        if let Some(ref window_id) = self.window_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "WindowId", window_id)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -403,9 +431,15 @@ pub struct ParameterProperties {
 impl ::serde::Serialize for ParameterProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowedPattern", &self.allowed_pattern)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref allowed_pattern) = self.allowed_pattern {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowedPattern", allowed_pattern)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
         ::serde::ser::SerializeMap::end(map)
@@ -520,17 +554,37 @@ pub struct PatchBaselineProperties {
 impl ::serde::Serialize for PatchBaselineProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApprovalRules", &self.approval_rules)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApprovedPatches", &self.approved_patches)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApprovedPatchesComplianceLevel", &self.approved_patches_compliance_level)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApprovedPatchesEnableNonSecurity", &self.approved_patches_enable_non_security)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "GlobalFilters", &self.global_filters)?;
+        if let Some(ref approval_rules) = self.approval_rules {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApprovalRules", approval_rules)?;
+        }
+        if let Some(ref approved_patches) = self.approved_patches {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApprovedPatches", approved_patches)?;
+        }
+        if let Some(ref approved_patches_compliance_level) = self.approved_patches_compliance_level {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApprovedPatchesComplianceLevel", approved_patches_compliance_level)?;
+        }
+        if let Some(ref approved_patches_enable_non_security) = self.approved_patches_enable_non_security {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApprovedPatchesEnableNonSecurity", approved_patches_enable_non_security)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref global_filters) = self.global_filters {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GlobalFilters", global_filters)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "OperatingSystem", &self.operating_system)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PatchGroups", &self.patch_groups)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RejectedPatches", &self.rejected_patches)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Sources", &self.sources)?;
+        if let Some(ref operating_system) = self.operating_system {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OperatingSystem", operating_system)?;
+        }
+        if let Some(ref patch_groups) = self.patch_groups {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PatchGroups", patch_groups)?;
+        }
+        if let Some(ref rejected_patches) = self.rejected_patches {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RejectedPatches", rejected_patches)?;
+        }
+        if let Some(ref sources) = self.sources {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Sources", sources)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -764,7 +818,9 @@ pub mod maintenance_window_task {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Region", &self.region)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Bucket", &self.s3_bucket)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Prefix", &self.s3_prefix)?;
+            if let Some(ref s3_prefix) = self.s3_prefix {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Prefix", s3_prefix)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -824,8 +880,12 @@ pub mod maintenance_window_task {
     impl ::codec::SerializeValue for MaintenanceWindowAutomationParameters {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentVersion", &self.document_version)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", &self.parameters)?;
+            if let Some(ref document_version) = self.document_version {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentVersion", document_version)?;
+            }
+            if let Some(ref parameters) = self.parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", parameters)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -882,9 +942,15 @@ pub mod maintenance_window_task {
     impl ::codec::SerializeValue for MaintenanceWindowLambdaParameters {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientContext", &self.client_context)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Payload", &self.payload)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Qualifier", &self.qualifier)?;
+            if let Some(ref client_context) = self.client_context {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientContext", client_context)?;
+            }
+            if let Some(ref payload) = self.payload {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Payload", payload)?;
+            }
+            if let Some(ref qualifier) = self.qualifier {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Qualifier", qualifier)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -958,15 +1024,33 @@ pub mod maintenance_window_task {
     impl ::codec::SerializeValue for MaintenanceWindowRunCommandParameters {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", &self.comment)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentHash", &self.document_hash)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentHashType", &self.document_hash_type)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationConfig", &self.notification_config)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutputS3BucketName", &self.output_s3_bucket_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutputS3KeyPrefix", &self.output_s3_key_prefix)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", &self.parameters)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceRoleArn", &self.service_role_arn)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimeoutSeconds", &self.timeout_seconds)?;
+            if let Some(ref comment) = self.comment {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", comment)?;
+            }
+            if let Some(ref document_hash) = self.document_hash {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentHash", document_hash)?;
+            }
+            if let Some(ref document_hash_type) = self.document_hash_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentHashType", document_hash_type)?;
+            }
+            if let Some(ref notification_config) = self.notification_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationConfig", notification_config)?;
+            }
+            if let Some(ref output_s3_bucket_name) = self.output_s3_bucket_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutputS3BucketName", output_s3_bucket_name)?;
+            }
+            if let Some(ref output_s3_key_prefix) = self.output_s3_key_prefix {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutputS3KeyPrefix", output_s3_key_prefix)?;
+            }
+            if let Some(ref parameters) = self.parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", parameters)?;
+            }
+            if let Some(ref service_role_arn) = self.service_role_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceRoleArn", service_role_arn)?;
+            }
+            if let Some(ref timeout_seconds) = self.timeout_seconds {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimeoutSeconds", timeout_seconds)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1056,8 +1140,12 @@ pub mod maintenance_window_task {
     impl ::codec::SerializeValue for MaintenanceWindowStepFunctionsParameters {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Input", &self.input)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            if let Some(ref input) = self.input {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Input", input)?;
+            }
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1115,8 +1203,12 @@ pub mod maintenance_window_task {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationArn", &self.notification_arn)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationEvents", &self.notification_events)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationType", &self.notification_type)?;
+            if let Some(ref notification_events) = self.notification_events {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationEvents", notification_events)?;
+            }
+            if let Some(ref notification_type) = self.notification_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationType", notification_type)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1177,7 +1269,9 @@ pub mod maintenance_window_task {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Values", &self.values)?;
+            if let Some(ref values) = self.values {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Values", values)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1236,10 +1330,18 @@ pub mod maintenance_window_task {
     impl ::codec::SerializeValue for TaskInvocationParameters {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaintenanceWindowAutomationParameters", &self.maintenance_window_automation_parameters)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaintenanceWindowLambdaParameters", &self.maintenance_window_lambda_parameters)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaintenanceWindowRunCommandParameters", &self.maintenance_window_run_command_parameters)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaintenanceWindowStepFunctionsParameters", &self.maintenance_window_step_functions_parameters)?;
+            if let Some(ref maintenance_window_automation_parameters) = self.maintenance_window_automation_parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaintenanceWindowAutomationParameters", maintenance_window_automation_parameters)?;
+            }
+            if let Some(ref maintenance_window_lambda_parameters) = self.maintenance_window_lambda_parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaintenanceWindowLambdaParameters", maintenance_window_lambda_parameters)?;
+            }
+            if let Some(ref maintenance_window_run_command_parameters) = self.maintenance_window_run_command_parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaintenanceWindowRunCommandParameters", maintenance_window_run_command_parameters)?;
+            }
+            if let Some(ref maintenance_window_step_functions_parameters) = self.maintenance_window_step_functions_parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaintenanceWindowStepFunctionsParameters", maintenance_window_step_functions_parameters)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1308,8 +1410,12 @@ pub mod patch_baseline {
     impl ::codec::SerializeValue for PatchFilter {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Values", &self.values)?;
+            if let Some(ref key) = self.key {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", key)?;
+            }
+            if let Some(ref values) = self.values {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Values", values)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1362,7 +1468,9 @@ pub mod patch_baseline {
     impl ::codec::SerializeValue for PatchFilterGroup {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PatchFilters", &self.patch_filters)?;
+            if let Some(ref patch_filters) = self.patch_filters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PatchFilters", patch_filters)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1414,9 +1522,15 @@ pub mod patch_baseline {
     impl ::codec::SerializeValue for PatchSource {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Configuration", &self.configuration)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Products", &self.products)?;
+            if let Some(ref configuration) = self.configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Configuration", configuration)?;
+            }
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            if let Some(ref products) = self.products {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Products", products)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1480,10 +1594,18 @@ pub mod patch_baseline {
     impl ::codec::SerializeValue for Rule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApproveAfterDays", &self.approve_after_days)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComplianceLevel", &self.compliance_level)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableNonSecurity", &self.enable_non_security)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PatchFilterGroup", &self.patch_filter_group)?;
+            if let Some(ref approve_after_days) = self.approve_after_days {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApproveAfterDays", approve_after_days)?;
+            }
+            if let Some(ref compliance_level) = self.compliance_level {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComplianceLevel", compliance_level)?;
+            }
+            if let Some(ref enable_non_security) = self.enable_non_security {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableNonSecurity", enable_non_security)?;
+            }
+            if let Some(ref patch_filter_group) = self.patch_filter_group {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PatchFilterGroup", patch_filter_group)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1546,7 +1668,9 @@ pub mod patch_baseline {
     impl ::codec::SerializeValue for RuleGroup {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PatchRules", &self.patch_rules)?;
+            if let Some(ref patch_rules) = self.patch_rules {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PatchRules", patch_rules)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }

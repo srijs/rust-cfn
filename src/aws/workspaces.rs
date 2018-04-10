@@ -28,10 +28,16 @@ impl ::serde::Serialize for WorkspaceProperties {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "BundleId", &self.bundle_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DirectoryId", &self.directory_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RootVolumeEncryptionEnabled", &self.root_volume_encryption_enabled)?;
+        if let Some(ref root_volume_encryption_enabled) = self.root_volume_encryption_enabled {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RootVolumeEncryptionEnabled", root_volume_encryption_enabled)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserName", &self.user_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserVolumeEncryptionEnabled", &self.user_volume_encryption_enabled)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeEncryptionKey", &self.volume_encryption_key)?;
+        if let Some(ref user_volume_encryption_enabled) = self.user_volume_encryption_enabled {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserVolumeEncryptionEnabled", user_volume_encryption_enabled)?;
+        }
+        if let Some(ref volume_encryption_key) = self.volume_encryption_key {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeEncryptionKey", volume_encryption_key)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }

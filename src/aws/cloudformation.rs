@@ -97,11 +97,19 @@ pub struct StackProperties {
 impl ::serde::Serialize for StackProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationARNs", &self.notification_ar_ns)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", &self.parameters)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+        if let Some(ref notification_ar_ns) = self.notification_ar_ns {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationARNs", notification_ar_ns)?;
+        }
+        if let Some(ref parameters) = self.parameters {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", parameters)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "TemplateURL", &self.template_url)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimeoutInMinutes", &self.timeout_in_minutes)?;
+        if let Some(ref timeout_in_minutes) = self.timeout_in_minutes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimeoutInMinutes", timeout_in_minutes)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -198,7 +206,9 @@ pub struct WaitConditionProperties {
 impl ::serde::Serialize for WaitConditionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Count", &self.count)?;
+        if let Some(ref count) = self.count {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Count", count)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Handle", &self.handle)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Timeout", &self.timeout)?;
         ::serde::ser::SerializeMap::end(map)

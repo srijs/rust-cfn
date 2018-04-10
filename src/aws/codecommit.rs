@@ -20,9 +20,13 @@ pub struct RepositoryProperties {
 impl ::serde::Serialize for RepositoryProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RepositoryDescription", &self.repository_description)?;
+        if let Some(ref repository_description) = self.repository_description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RepositoryDescription", repository_description)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RepositoryName", &self.repository_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Triggers", &self.triggers)?;
+        if let Some(ref triggers) = self.triggers {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Triggers", triggers)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -110,11 +114,21 @@ pub mod repository {
     impl ::codec::SerializeValue for RepositoryTrigger {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Branches", &self.branches)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomData", &self.custom_data)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationArn", &self.destination_arn)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Events", &self.events)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            if let Some(ref branches) = self.branches {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Branches", branches)?;
+            }
+            if let Some(ref custom_data) = self.custom_data {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomData", custom_data)?;
+            }
+            if let Some(ref destination_arn) = self.destination_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationArn", destination_arn)?;
+            }
+            if let Some(ref events) = self.events {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Events", events)?;
+            }
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
