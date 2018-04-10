@@ -40,7 +40,7 @@ impl<'de> ::serde::Deserialize<'de> for DomainProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "Description" => {
-                            description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }

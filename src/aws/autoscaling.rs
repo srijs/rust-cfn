@@ -144,61 +144,61 @@ impl<'de> ::serde::Deserialize<'de> for AutoScalingGroupProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "AutoScalingGroupName" => {
-                            auto_scaling_group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            auto_scaling_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "AvailabilityZones" => {
-                            availability_zones = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            availability_zones = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Cooldown" => {
-                            cooldown = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            cooldown = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "DesiredCapacity" => {
-                            desired_capacity = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            desired_capacity = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "HealthCheckGracePeriod" => {
-                            health_check_grace_period = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            health_check_grace_period = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "HealthCheckType" => {
-                            health_check_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            health_check_type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "InstanceId" => {
-                            instance_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            instance_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "LaunchConfigurationName" => {
-                            launch_configuration_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            launch_configuration_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "LifecycleHookSpecificationList" => {
-                            lifecycle_hook_specification_list = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            lifecycle_hook_specification_list = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "LoadBalancerNames" => {
-                            load_balancer_names = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            load_balancer_names = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "MaxSize" => {
-                            max_size = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            max_size = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "MetricsCollection" => {
-                            metrics_collection = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            metrics_collection = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "MinSize" => {
-                            min_size = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            min_size = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "NotificationConfigurations" => {
-                            notification_configurations = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            notification_configurations = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "PlacementGroup" => {
-                            placement_group = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            placement_group = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Tags" => {
-                            tags = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "TargetGroupARNs" => {
-                            target_group_ar_ns = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            target_group_ar_ns = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "TerminationPolicies" => {
-                            termination_policies = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            termination_policies = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "VPCZoneIdentifier" => {
-                            vpc_zone_identifier = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            vpc_zone_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -383,55 +383,55 @@ impl<'de> ::serde::Deserialize<'de> for LaunchConfigurationProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "AssociatePublicIpAddress" => {
-                            associate_public_ip_address = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            associate_public_ip_address = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "BlockDeviceMappings" => {
-                            block_device_mappings = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            block_device_mappings = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ClassicLinkVPCId" => {
-                            classic_link_vpc_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            classic_link_vpc_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ClassicLinkVPCSecurityGroups" => {
-                            classic_link_vpc_security_groups = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            classic_link_vpc_security_groups = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "EbsOptimized" => {
-                            ebs_optimized = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            ebs_optimized = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "IamInstanceProfile" => {
-                            iam_instance_profile = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            iam_instance_profile = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ImageId" => {
-                            image_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            image_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "InstanceId" => {
-                            instance_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            instance_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "InstanceMonitoring" => {
-                            instance_monitoring = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            instance_monitoring = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "InstanceType" => {
-                            instance_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            instance_type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "KernelId" => {
-                            kernel_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            kernel_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "KeyName" => {
-                            key_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            key_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "PlacementTenancy" => {
-                            placement_tenancy = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            placement_tenancy = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "RamDiskId" => {
-                            ram_disk_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            ram_disk_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SecurityGroups" => {
-                            security_groups = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            security_groups = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SpotPrice" => {
-                            spot_price = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            spot_price = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "UserData" => {
-                            user_data = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            user_data = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -560,28 +560,28 @@ impl<'de> ::serde::Deserialize<'de> for LifecycleHookProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "AutoScalingGroupName" => {
-                            auto_scaling_group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            auto_scaling_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "DefaultResult" => {
-                            default_result = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            default_result = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "HeartbeatTimeout" => {
-                            heartbeat_timeout = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            heartbeat_timeout = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "LifecycleHookName" => {
-                            lifecycle_hook_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            lifecycle_hook_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "LifecycleTransition" => {
-                            lifecycle_transition = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            lifecycle_transition = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "NotificationMetadata" => {
-                            notification_metadata = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            notification_metadata = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "NotificationTargetARN" => {
-                            notification_target_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            notification_target_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "RoleARN" => {
-                            role_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -715,34 +715,34 @@ impl<'de> ::serde::Deserialize<'de> for ScalingPolicyProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "AdjustmentType" => {
-                            adjustment_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            adjustment_type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "AutoScalingGroupName" => {
-                            auto_scaling_group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            auto_scaling_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Cooldown" => {
-                            cooldown = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            cooldown = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "EstimatedInstanceWarmup" => {
-                            estimated_instance_warmup = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            estimated_instance_warmup = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "MetricAggregationType" => {
-                            metric_aggregation_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            metric_aggregation_type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "MinAdjustmentMagnitude" => {
-                            min_adjustment_magnitude = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            min_adjustment_magnitude = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "PolicyType" => {
-                            policy_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            policy_type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ScalingAdjustment" => {
-                            scaling_adjustment = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            scaling_adjustment = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "StepAdjustments" => {
-                            step_adjustments = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            step_adjustments = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "TargetTrackingConfiguration" => {
-                            target_tracking_configuration = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            target_tracking_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -860,25 +860,25 @@ impl<'de> ::serde::Deserialize<'de> for ScheduledActionProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "AutoScalingGroupName" => {
-                            auto_scaling_group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            auto_scaling_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "DesiredCapacity" => {
-                            desired_capacity = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            desired_capacity = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "EndTime" => {
-                            end_time = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            end_time = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "MaxSize" => {
-                            max_size = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            max_size = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "MinSize" => {
-                            min_size = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            min_size = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Recurrence" => {
-                            recurrence = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            recurrence = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "StartTime" => {
-                            start_time = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            start_time = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -988,25 +988,25 @@ pub mod auto_scaling_group {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "DefaultResult" => {
-                                default_result = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                default_result = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "HeartbeatTimeout" => {
-                                heartbeat_timeout = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                heartbeat_timeout = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "LifecycleHookName" => {
-                                lifecycle_hook_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                lifecycle_hook_name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "LifecycleTransition" => {
-                                lifecycle_transition = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                lifecycle_transition = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "NotificationMetadata" => {
-                                notification_metadata = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                notification_metadata = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "NotificationTargetARN" => {
-                                notification_target_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                notification_target_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "RoleARN" => {
-                                role_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -1066,10 +1066,10 @@ pub mod auto_scaling_group {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Granularity" => {
-                                granularity = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                granularity = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Metrics" => {
-                                metrics = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                metrics = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -1124,10 +1124,10 @@ pub mod auto_scaling_group {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "NotificationTypes" => {
-                                notification_types = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                notification_types = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "TopicARN" => {
-                                topic_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                topic_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -1184,13 +1184,13 @@ pub mod auto_scaling_group {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Key" => {
-                                key = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                key = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "PropagateAtLaunch" => {
-                                propagate_at_launch = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                propagate_at_launch = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Value" => {
-                                value = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -1276,22 +1276,22 @@ pub mod launch_configuration {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "DeleteOnTermination" => {
-                                delete_on_termination = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                delete_on_termination = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Encrypted" => {
-                                encrypted = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                encrypted = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Iops" => {
-                                iops = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                iops = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "SnapshotId" => {
-                                snapshot_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                snapshot_id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "VolumeSize" => {
-                                volume_size = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                volume_size = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "VolumeType" => {
-                                volume_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                volume_type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -1362,16 +1362,16 @@ pub mod launch_configuration {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "DeviceName" => {
-                                device_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                device_name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Ebs" => {
-                                ebs = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                ebs = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "NoDevice" => {
-                                no_device = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                no_device = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "VirtualName" => {
-                                virtual_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                virtual_name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -1446,19 +1446,19 @@ pub mod scaling_policy {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Dimensions" => {
-                                dimensions = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                dimensions = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "MetricName" => {
-                                metric_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                metric_name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Namespace" => {
-                                namespace = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                namespace = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Statistic" => {
-                                statistic = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                statistic = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Unit" => {
-                                unit = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                unit = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -1514,10 +1514,10 @@ pub mod scaling_policy {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Name" => {
-                                name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Value" => {
-                                value = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -1572,10 +1572,10 @@ pub mod scaling_policy {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "PredefinedMetricType" => {
-                                predefined_metric_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                predefined_metric_type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "ResourceLabel" => {
-                                resource_label = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                resource_label = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -1636,13 +1636,13 @@ pub mod scaling_policy {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "MetricIntervalLowerBound" => {
-                                metric_interval_lower_bound = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                metric_interval_lower_bound = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "MetricIntervalUpperBound" => {
-                                metric_interval_upper_bound = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                metric_interval_upper_bound = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "ScalingAdjustment" => {
-                                scaling_adjustment = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                scaling_adjustment = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -1710,16 +1710,16 @@ pub mod scaling_policy {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "CustomizedMetricSpecification" => {
-                                customized_metric_specification = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                customized_metric_specification = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "DisableScaleIn" => {
-                                disable_scale_in = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                disable_scale_in = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "PredefinedMetricSpecification" => {
-                                predefined_metric_specification = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                predefined_metric_specification = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "TargetValue" => {
-                                target_value = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                target_value = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }

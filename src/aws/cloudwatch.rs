@@ -130,58 +130,58 @@ impl<'de> ::serde::Deserialize<'de> for AlarmProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "ActionsEnabled" => {
-                            actions_enabled = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            actions_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "AlarmActions" => {
-                            alarm_actions = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            alarm_actions = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "AlarmDescription" => {
-                            alarm_description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            alarm_description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "AlarmName" => {
-                            alarm_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            alarm_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ComparisonOperator" => {
-                            comparison_operator = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            comparison_operator = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Dimensions" => {
-                            dimensions = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            dimensions = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "EvaluateLowSampleCountPercentile" => {
-                            evaluate_low_sample_count_percentile = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            evaluate_low_sample_count_percentile = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "EvaluationPeriods" => {
-                            evaluation_periods = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            evaluation_periods = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ExtendedStatistic" => {
-                            extended_statistic = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            extended_statistic = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "InsufficientDataActions" => {
-                            insufficient_data_actions = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            insufficient_data_actions = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "MetricName" => {
-                            metric_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            metric_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Namespace" => {
-                            namespace = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            namespace = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "OKActions" => {
-                            ok_actions = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            ok_actions = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Period" => {
-                            period = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            period = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Statistic" => {
-                            statistic = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            statistic = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Threshold" => {
-                            threshold = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            threshold = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "TreatMissingData" => {
-                            treat_missing_data = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            treat_missing_data = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Unit" => {
-                            unit = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            unit = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -277,10 +277,10 @@ impl<'de> ::serde::Deserialize<'de> for DashboardProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "DashboardBody" => {
-                            dashboard_body = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            dashboard_body = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "DashboardName" => {
-                            dashboard_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            dashboard_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -355,10 +355,10 @@ pub mod alarm {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Name" => {
-                                name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Value" => {
-                                value = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }

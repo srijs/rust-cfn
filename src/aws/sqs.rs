@@ -100,37 +100,37 @@ impl<'de> ::serde::Deserialize<'de> for QueueProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "ContentBasedDeduplication" => {
-                            content_based_deduplication = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            content_based_deduplication = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "DelaySeconds" => {
-                            delay_seconds = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            delay_seconds = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "FifoQueue" => {
-                            fifo_queue = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            fifo_queue = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "KmsDataKeyReusePeriodSeconds" => {
-                            kms_data_key_reuse_period_seconds = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            kms_data_key_reuse_period_seconds = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "KmsMasterKeyId" => {
-                            kms_master_key_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            kms_master_key_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "MaximumMessageSize" => {
-                            maximum_message_size = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            maximum_message_size = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "MessageRetentionPeriod" => {
-                            message_retention_period = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            message_retention_period = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "QueueName" => {
-                            queue_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            queue_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ReceiveMessageWaitTimeSeconds" => {
-                            receive_message_wait_time_seconds = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            receive_message_wait_time_seconds = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "RedrivePolicy" => {
-                            redrive_policy = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            redrive_policy = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "VisibilityTimeout" => {
-                            visibility_timeout = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            visibility_timeout = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -217,10 +217,10 @@ impl<'de> ::serde::Deserialize<'de> for QueuePolicyProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "PolicyDocument" => {
-                            policy_document = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            policy_document = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Queues" => {
-                            queues = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            queues = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }

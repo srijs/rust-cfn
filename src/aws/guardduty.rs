@@ -38,7 +38,7 @@ impl<'de> ::serde::Deserialize<'de> for DetectorProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "Enable" => {
-                            enable = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            enable = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -129,19 +129,19 @@ impl<'de> ::serde::Deserialize<'de> for IPSetProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "Activate" => {
-                            activate = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            activate = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "DetectorId" => {
-                            detector_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            detector_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Format" => {
-                            format = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            format = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Location" => {
-                            location = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            location = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Name" => {
-                            name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -226,13 +226,13 @@ impl<'de> ::serde::Deserialize<'de> for MasterProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "DetectorId" => {
-                            detector_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            detector_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "InvitationId" => {
-                            invitation_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            invitation_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "MasterId" => {
-                            master_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            master_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -327,19 +327,19 @@ impl<'de> ::serde::Deserialize<'de> for MemberProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "DetectorId" => {
-                            detector_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            detector_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Email" => {
-                            email = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            email = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "MemberId" => {
-                            member_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            member_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Message" => {
-                            message = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            message = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Status" => {
-                            status = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            status = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -434,19 +434,19 @@ impl<'de> ::serde::Deserialize<'de> for ThreatIntelSetProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "Activate" => {
-                            activate = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            activate = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "DetectorId" => {
-                            detector_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            detector_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Format" => {
-                            format = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            format = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Location" => {
-                            location = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            location = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Name" => {
-                            name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }

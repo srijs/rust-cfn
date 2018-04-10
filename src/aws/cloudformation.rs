@@ -38,7 +38,7 @@ impl<'de> ::serde::Deserialize<'de> for CustomResourceProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "ServiceToken" => {
-                            service_token = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            service_token = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -135,19 +135,19 @@ impl<'de> ::serde::Deserialize<'de> for StackProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "NotificationARNs" => {
-                            notification_ar_ns = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            notification_ar_ns = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Parameters" => {
-                            parameters = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            parameters = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Tags" => {
-                            tags = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "TemplateURL" => {
-                            template_url = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            template_url = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "TimeoutInMinutes" => {
-                            timeout_in_minutes = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            timeout_in_minutes = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -234,13 +234,13 @@ impl<'de> ::serde::Deserialize<'de> for WaitConditionProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "Count" => {
-                            count = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            count = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Handle" => {
-                            handle = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            handle = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Timeout" => {
-                            timeout = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            timeout = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }

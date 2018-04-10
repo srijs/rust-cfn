@@ -82,7 +82,7 @@ fn generate_deserialize_visit_map_non_empty(name: &str, props: &BTreeMap<String,
                 for (prop_name, _prop_spec) in props {
                     let field_name = mutate_field_name(prop_name);
                     p.line(format_args!("\"{}\" => {{", prop_name))?;
-                    p.line(format_args!("    {} = Some(::serde::de::MapAccess::next_value(&mut map)?);", field_name))?;
+                    p.line(format_args!("    {} = ::serde::de::MapAccess::next_value(&mut map)?;", field_name))?;
                     p.line(format_args!("}}"))?;
                 }
                 p.line(format_args!("_ => {{}}"))

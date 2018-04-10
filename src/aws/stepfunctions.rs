@@ -38,7 +38,7 @@ impl<'de> ::serde::Deserialize<'de> for ActivityProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "Name" => {
-                            name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -121,13 +121,13 @@ impl<'de> ::serde::Deserialize<'de> for StateMachineProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "DefinitionString" => {
-                            definition_string = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            definition_string = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "RoleArn" => {
-                            role_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "StateMachineName" => {
-                            state_machine_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            state_machine_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }

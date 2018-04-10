@@ -54,16 +54,16 @@ impl<'de> ::serde::Deserialize<'de> for NamedQueryProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "Database" => {
-                            database = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            database = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Description" => {
-                            description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Name" => {
-                            name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "QueryString" => {
-                            query_string = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            query_string = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }

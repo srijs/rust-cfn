@@ -52,13 +52,13 @@ impl<'de> ::serde::Deserialize<'de> for RepositoryProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "LifecyclePolicy" => {
-                            lifecycle_policy = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            lifecycle_policy = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "RepositoryName" => {
-                            repository_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            repository_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "RepositoryPolicyText" => {
-                            repository_policy_text = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            repository_policy_text = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -138,10 +138,10 @@ pub mod repository {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "LifecyclePolicyText" => {
-                                lifecycle_policy_text = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                lifecycle_policy_text = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "RegistryId" => {
-                                registry_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                registry_id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }

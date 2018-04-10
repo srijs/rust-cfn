@@ -64,22 +64,22 @@ impl<'de> ::serde::Deserialize<'de> for MicrosoftADProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "CreateAlias" => {
-                            create_alias = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            create_alias = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "EnableSso" => {
-                            enable_sso = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            enable_sso = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Name" => {
-                            name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Password" => {
-                            password = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            password = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ShortName" => {
-                            short_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            short_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "VpcSettings" => {
-                            vpc_settings = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            vpc_settings = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -193,28 +193,28 @@ impl<'de> ::serde::Deserialize<'de> for SimpleADProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "CreateAlias" => {
-                            create_alias = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            create_alias = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Description" => {
-                            description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "EnableSso" => {
-                            enable_sso = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            enable_sso = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Name" => {
-                            name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Password" => {
-                            password = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            password = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ShortName" => {
-                            short_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            short_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Size" => {
-                            size = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            size = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "VpcSettings" => {
-                            vpc_settings = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            vpc_settings = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -295,10 +295,10 @@ pub mod microsoft_ad {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "SubnetIds" => {
-                                subnet_ids = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                subnet_ids = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "VpcId" => {
-                                vpc_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                vpc_id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -355,10 +355,10 @@ pub mod simple_ad {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "SubnetIds" => {
-                                subnet_ids = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                subnet_ids = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "VpcId" => {
-                                vpc_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                vpc_id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }

@@ -72,25 +72,25 @@ impl<'de> ::serde::Deserialize<'de> for PipelineProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "Activate" => {
-                            activate = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            activate = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Description" => {
-                            description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Name" => {
-                            name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ParameterObjects" => {
-                            parameter_objects = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            parameter_objects = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ParameterValues" => {
-                            parameter_values = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            parameter_values = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "PipelineObjects" => {
-                            pipeline_objects = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            pipeline_objects = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "PipelineTags" => {
-                            pipeline_tags = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            pipeline_tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -178,13 +178,13 @@ pub mod pipeline {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Key" => {
-                                key = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                key = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "RefValue" => {
-                                ref_value = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                ref_value = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "StringValue" => {
-                                string_value = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                string_value = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -238,10 +238,10 @@ pub mod pipeline {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Key" => {
-                                key = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                key = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "StringValue" => {
-                                string_value = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                string_value = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -294,10 +294,10 @@ pub mod pipeline {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Attributes" => {
-                                attributes = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                attributes = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Id" => {
-                                id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -350,10 +350,10 @@ pub mod pipeline {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Id" => {
-                                id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "StringValue" => {
-                                string_value = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                string_value = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -410,13 +410,13 @@ pub mod pipeline {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Fields" => {
-                                fields = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                fields = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Id" => {
-                                id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Name" => {
-                                name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -470,10 +470,10 @@ pub mod pipeline {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Key" => {
-                                key = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                key = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Value" => {
-                                value = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }

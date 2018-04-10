@@ -62,19 +62,19 @@ impl<'de> ::serde::Deserialize<'de> for StreamProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "Name" => {
-                            name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "RetentionPeriodHours" => {
-                            retention_period_hours = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            retention_period_hours = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ShardCount" => {
-                            shard_count = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            shard_count = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "StreamEncryption" => {
-                            stream_encryption = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            stream_encryption = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Tags" => {
-                            tags = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -152,10 +152,10 @@ pub mod stream {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "EncryptionType" => {
-                                encryption_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                encryption_type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "KeyId" => {
-                                key_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                key_id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }

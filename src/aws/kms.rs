@@ -42,10 +42,10 @@ impl<'de> ::serde::Deserialize<'de> for AliasProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "AliasName" => {
-                            alias_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            alias_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "TargetKeyId" => {
-                            target_key_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            target_key_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -149,22 +149,22 @@ impl<'de> ::serde::Deserialize<'de> for KeyProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "Description" => {
-                            description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "EnableKeyRotation" => {
-                            enable_key_rotation = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            enable_key_rotation = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Enabled" => {
-                            enabled = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            enabled = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "KeyPolicy" => {
-                            key_policy = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            key_policy = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "KeyUsage" => {
-                            key_usage = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            key_usage = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Tags" => {
-                            tags = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }

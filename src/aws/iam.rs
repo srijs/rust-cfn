@@ -50,13 +50,13 @@ impl<'de> ::serde::Deserialize<'de> for AccessKeyProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "Serial" => {
-                            serial = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            serial = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Status" => {
-                            status = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            status = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "UserName" => {
-                            user_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            user_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -151,16 +151,16 @@ impl<'de> ::serde::Deserialize<'de> for GroupProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "GroupName" => {
-                            group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            group_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ManagedPolicyArns" => {
-                            managed_policy_arns = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            managed_policy_arns = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Path" => {
-                            path = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            path = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Policies" => {
-                            policies = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            policies = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -248,13 +248,13 @@ impl<'de> ::serde::Deserialize<'de> for InstanceProfileProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "InstanceProfileName" => {
-                            instance_profile_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            instance_profile_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Path" => {
-                            path = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            path = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Roles" => {
-                            roles = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            roles = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -365,25 +365,25 @@ impl<'de> ::serde::Deserialize<'de> for ManagedPolicyProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "Description" => {
-                            description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Groups" => {
-                            groups = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            groups = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ManagedPolicyName" => {
-                            managed_policy_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            managed_policy_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Path" => {
-                            path = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            path = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "PolicyDocument" => {
-                            policy_document = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            policy_document = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Roles" => {
-                            roles = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            roles = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Users" => {
-                            users = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            users = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -484,19 +484,19 @@ impl<'de> ::serde::Deserialize<'de> for PolicyProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "Groups" => {
-                            groups = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            groups = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "PolicyDocument" => {
-                            policy_document = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            policy_document = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "PolicyName" => {
-                            policy_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            policy_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Roles" => {
-                            roles = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            roles = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Users" => {
-                            users = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            users = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -597,19 +597,19 @@ impl<'de> ::serde::Deserialize<'de> for RoleProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "AssumeRolePolicyDocument" => {
-                            assume_role_policy_document = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            assume_role_policy_document = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ManagedPolicyArns" => {
-                            managed_policy_arns = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            managed_policy_arns = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Path" => {
-                            path = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            path = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Policies" => {
-                            policies = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            policies = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "RoleName" => {
-                            role_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            role_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -718,22 +718,22 @@ impl<'de> ::serde::Deserialize<'de> for UserProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "Groups" => {
-                            groups = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            groups = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "LoginProfile" => {
-                            login_profile = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            login_profile = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ManagedPolicyArns" => {
-                            managed_policy_arns = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            managed_policy_arns = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Path" => {
-                            path = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            path = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Policies" => {
-                            policies = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            policies = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "UserName" => {
-                            user_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            user_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -815,10 +815,10 @@ impl<'de> ::serde::Deserialize<'de> for UserToGroupAdditionProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "GroupName" => {
-                            group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            group_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Users" => {
-                            users = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            users = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -893,10 +893,10 @@ pub mod group {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "PolicyDocument" => {
-                                policy_document = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                policy_document = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "PolicyName" => {
-                                policy_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                policy_name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -953,10 +953,10 @@ pub mod role {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "PolicyDocument" => {
-                                policy_document = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                policy_document = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "PolicyName" => {
-                                policy_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                policy_name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -1015,10 +1015,10 @@ pub mod user {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Password" => {
-                                password = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                password = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "PasswordResetRequired" => {
-                                password_reset_required = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                password_reset_required = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -1071,10 +1071,10 @@ pub mod user {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "PolicyDocument" => {
-                                policy_document = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                policy_document = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "PolicyName" => {
-                                policy_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                policy_name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }

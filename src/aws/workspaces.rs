@@ -64,22 +64,22 @@ impl<'de> ::serde::Deserialize<'de> for WorkspaceProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "BundleId" => {
-                            bundle_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            bundle_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "DirectoryId" => {
-                            directory_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            directory_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "RootVolumeEncryptionEnabled" => {
-                            root_volume_encryption_enabled = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            root_volume_encryption_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "UserName" => {
-                            user_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            user_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "UserVolumeEncryptionEnabled" => {
-                            user_volume_encryption_enabled = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            user_volume_encryption_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "VolumeEncryptionKey" => {
-                            volume_encryption_key = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            volume_encryption_key = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }

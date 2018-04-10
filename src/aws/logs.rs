@@ -50,16 +50,16 @@ impl<'de> ::serde::Deserialize<'de> for DestinationProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "DestinationName" => {
-                            destination_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            destination_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "DestinationPolicy" => {
-                            destination_policy = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            destination_policy = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "RoleArn" => {
-                            role_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "TargetArn" => {
-                            target_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            target_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -143,10 +143,10 @@ impl<'de> ::serde::Deserialize<'de> for LogGroupProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "LogGroupName" => {
-                            log_group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            log_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "RetentionInDays" => {
-                            retention_in_days = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            retention_in_days = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -226,10 +226,10 @@ impl<'de> ::serde::Deserialize<'de> for LogStreamProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "LogGroupName" => {
-                            log_group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            log_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "LogStreamName" => {
-                            log_stream_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            log_stream_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -311,13 +311,13 @@ impl<'de> ::serde::Deserialize<'de> for MetricFilterProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "FilterPattern" => {
-                            filter_pattern = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            filter_pattern = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "LogGroupName" => {
-                            log_group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            log_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "MetricTransformations" => {
-                            metric_transformations = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            metric_transformations = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -406,16 +406,16 @@ impl<'de> ::serde::Deserialize<'de> for SubscriptionFilterProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "DestinationArn" => {
-                            destination_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            destination_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "FilterPattern" => {
-                            filter_pattern = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            filter_pattern = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "LogGroupName" => {
-                            log_group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            log_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "RoleArn" => {
-                            role_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -496,13 +496,13 @@ pub mod metric_filter {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "MetricName" => {
-                                metric_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                metric_name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "MetricNamespace" => {
-                                metric_namespace = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                metric_namespace = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "MetricValue" => {
-                                metric_value = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                metric_value = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }

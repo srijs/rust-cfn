@@ -48,13 +48,13 @@ impl<'de> ::serde::Deserialize<'de> for InstanceProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "InstanceAttributes" => {
-                            instance_attributes = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            instance_attributes = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "InstanceId" => {
-                            instance_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            instance_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ServiceId" => {
-                            service_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            service_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -139,13 +139,13 @@ impl<'de> ::serde::Deserialize<'de> for PrivateDnsNamespaceProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "Description" => {
-                            description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Name" => {
-                            name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Vpc" => {
-                            vpc = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            vpc = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -226,10 +226,10 @@ impl<'de> ::serde::Deserialize<'de> for PublicDnsNamespaceProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "Description" => {
-                            description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Name" => {
-                            name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -321,16 +321,16 @@ impl<'de> ::serde::Deserialize<'de> for ServiceProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "Description" => {
-                            description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "DnsConfig" => {
-                            dns_config = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            dns_config = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "HealthCheckConfig" => {
-                            health_check_config = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            health_check_config = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Name" => {
-                            name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -407,10 +407,10 @@ pub mod service {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "DnsRecords" => {
-                                dns_records = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                dns_records = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "NamespaceId" => {
-                                namespace_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                namespace_id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -463,10 +463,10 @@ pub mod service {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "TTL" => {
-                                ttl = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                ttl = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Type" => {
-                                type_ = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -527,13 +527,13 @@ pub mod service {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "FailureThreshold" => {
-                                failure_threshold = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                failure_threshold = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "ResourcePath" => {
-                                resource_path = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                resource_path = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Type" => {
-                                type_ = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }

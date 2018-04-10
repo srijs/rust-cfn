@@ -52,13 +52,13 @@ impl<'de> ::serde::Deserialize<'de> for SubscriptionProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "Endpoint" => {
-                            endpoint = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            endpoint = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Protocol" => {
-                            protocol = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            protocol = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "TopicArn" => {
-                            topic_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            topic_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -147,13 +147,13 @@ impl<'de> ::serde::Deserialize<'de> for TopicProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "DisplayName" => {
-                            display_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            display_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Subscription" => {
-                            subscription = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            subscription = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "TopicName" => {
-                            topic_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            topic_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -232,10 +232,10 @@ impl<'de> ::serde::Deserialize<'de> for TopicPolicyProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "PolicyDocument" => {
-                            policy_document = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            policy_document = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Topics" => {
-                            topics = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            topics = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -310,10 +310,10 @@ pub mod topic {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Endpoint" => {
-                                endpoint = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                endpoint = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Protocol" => {
-                                protocol = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                protocol = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }

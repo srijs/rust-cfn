@@ -50,13 +50,13 @@ impl<'de> ::serde::Deserialize<'de> for RepositoryProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "RepositoryDescription" => {
-                            repository_description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            repository_description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "RepositoryName" => {
-                            repository_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            repository_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Triggers" => {
-                            triggers = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            triggers = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -154,19 +154,19 @@ pub mod repository {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Branches" => {
-                                branches = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                branches = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "CustomData" => {
-                                custom_data = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                custom_data = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "DestinationArn" => {
-                                destination_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                destination_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Events" => {
-                                events = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                events = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Name" => {
-                                name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }

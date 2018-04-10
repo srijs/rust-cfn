@@ -100,40 +100,40 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "AvailabilityZones" => {
-                            availability_zones = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            availability_zones = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ClusterName" => {
-                            cluster_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            cluster_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Description" => {
-                            description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "IAMRoleARN" => {
-                            iam_role_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            iam_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "NodeType" => {
-                            node_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            node_type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "NotificationTopicARN" => {
-                            notification_topic_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            notification_topic_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ParameterGroupName" => {
-                            parameter_group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            parameter_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "PreferredMaintenanceWindow" => {
-                            preferred_maintenance_window = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            preferred_maintenance_window = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ReplicationFactor" => {
-                            replication_factor = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            replication_factor = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SecurityGroupIds" => {
-                            security_group_ids = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            security_group_ids = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SubnetGroupName" => {
-                            subnet_group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            subnet_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Tags" => {
-                            tags = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -231,13 +231,13 @@ impl<'de> ::serde::Deserialize<'de> for ParameterGroupProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "Description" => {
-                            description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ParameterGroupName" => {
-                            parameter_group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            parameter_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ParameterNameValues" => {
-                            parameter_name_values = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            parameter_name_values = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -324,13 +324,13 @@ impl<'de> ::serde::Deserialize<'de> for SubnetGroupProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "Description" => {
-                            description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SubnetGroupName" => {
-                            subnet_group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            subnet_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SubnetIds" => {
-                            subnet_ids = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            subnet_ids = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }

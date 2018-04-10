@@ -74,25 +74,25 @@ impl<'de> ::serde::Deserialize<'de> for EnvironmentEC2Properties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "AutomaticStopTimeMinutes" => {
-                            automatic_stop_time_minutes = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            automatic_stop_time_minutes = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Description" => {
-                            description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "InstanceType" => {
-                            instance_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            instance_type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Name" => {
-                            name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "OwnerArn" => {
-                            owner_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            owner_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Repositories" => {
-                            repositories = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            repositories = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SubnetId" => {
-                            subnet_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            subnet_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -172,10 +172,10 @@ pub mod environment_ec2 {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "PathComponent" => {
-                                path_component = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                path_component = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "RepositoryUrl" => {
-                                repository_url = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                repository_url = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }

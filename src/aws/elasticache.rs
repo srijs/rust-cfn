@@ -154,67 +154,67 @@ impl<'de> ::serde::Deserialize<'de> for CacheClusterProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "AZMode" => {
-                            az_mode = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            az_mode = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "AutoMinorVersionUpgrade" => {
-                            auto_minor_version_upgrade = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            auto_minor_version_upgrade = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "CacheNodeType" => {
-                            cache_node_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            cache_node_type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "CacheParameterGroupName" => {
-                            cache_parameter_group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            cache_parameter_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "CacheSecurityGroupNames" => {
-                            cache_security_group_names = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            cache_security_group_names = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "CacheSubnetGroupName" => {
-                            cache_subnet_group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            cache_subnet_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ClusterName" => {
-                            cluster_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            cluster_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Engine" => {
-                            engine = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            engine = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "EngineVersion" => {
-                            engine_version = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            engine_version = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "NotificationTopicArn" => {
-                            notification_topic_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            notification_topic_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "NumCacheNodes" => {
-                            num_cache_nodes = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            num_cache_nodes = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Port" => {
-                            port = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            port = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "PreferredAvailabilityZone" => {
-                            preferred_availability_zone = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            preferred_availability_zone = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "PreferredAvailabilityZones" => {
-                            preferred_availability_zones = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            preferred_availability_zones = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "PreferredMaintenanceWindow" => {
-                            preferred_maintenance_window = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            preferred_maintenance_window = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SnapshotArns" => {
-                            snapshot_arns = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            snapshot_arns = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SnapshotName" => {
-                            snapshot_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            snapshot_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SnapshotRetentionLimit" => {
-                            snapshot_retention_limit = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            snapshot_retention_limit = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SnapshotWindow" => {
-                            snapshot_window = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            snapshot_window = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Tags" => {
-                            tags = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "VpcSecurityGroupIds" => {
-                            vpc_security_group_ids = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            vpc_security_group_ids = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -317,13 +317,13 @@ impl<'de> ::serde::Deserialize<'de> for ParameterGroupProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "CacheParameterGroupFamily" => {
-                            cache_parameter_group_family = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            cache_parameter_group_family = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Description" => {
-                            description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Properties" => {
-                            properties = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            properties = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -566,91 +566,91 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationGroupProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "AtRestEncryptionEnabled" => {
-                            at_rest_encryption_enabled = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            at_rest_encryption_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "AuthToken" => {
-                            auth_token = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            auth_token = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "AutoMinorVersionUpgrade" => {
-                            auto_minor_version_upgrade = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            auto_minor_version_upgrade = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "AutomaticFailoverEnabled" => {
-                            automatic_failover_enabled = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            automatic_failover_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "CacheNodeType" => {
-                            cache_node_type = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            cache_node_type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "CacheParameterGroupName" => {
-                            cache_parameter_group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            cache_parameter_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "CacheSecurityGroupNames" => {
-                            cache_security_group_names = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            cache_security_group_names = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "CacheSubnetGroupName" => {
-                            cache_subnet_group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            cache_subnet_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Engine" => {
-                            engine = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            engine = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "EngineVersion" => {
-                            engine_version = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            engine_version = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "NodeGroupConfiguration" => {
-                            node_group_configuration = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            node_group_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "NotificationTopicArn" => {
-                            notification_topic_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            notification_topic_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "NumCacheClusters" => {
-                            num_cache_clusters = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            num_cache_clusters = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "NumNodeGroups" => {
-                            num_node_groups = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            num_node_groups = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Port" => {
-                            port = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            port = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "PreferredCacheClusterAZs" => {
-                            preferred_cache_cluster_a_zs = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            preferred_cache_cluster_a_zs = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "PreferredMaintenanceWindow" => {
-                            preferred_maintenance_window = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            preferred_maintenance_window = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "PrimaryClusterId" => {
-                            primary_cluster_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            primary_cluster_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ReplicasPerNodeGroup" => {
-                            replicas_per_node_group = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            replicas_per_node_group = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ReplicationGroupDescription" => {
-                            replication_group_description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            replication_group_description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ReplicationGroupId" => {
-                            replication_group_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            replication_group_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SecurityGroupIds" => {
-                            security_group_ids = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            security_group_ids = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SnapshotArns" => {
-                            snapshot_arns = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            snapshot_arns = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SnapshotName" => {
-                            snapshot_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            snapshot_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SnapshotRetentionLimit" => {
-                            snapshot_retention_limit = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            snapshot_retention_limit = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SnapshotWindow" => {
-                            snapshot_window = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            snapshot_window = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SnapshottingClusterId" => {
-                            snapshotting_cluster_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            snapshotting_cluster_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Tags" => {
-                            tags = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "TransitEncryptionEnabled" => {
-                            transit_encryption_enabled = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            transit_encryption_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -751,7 +751,7 @@ impl<'de> ::serde::Deserialize<'de> for SecurityGroupProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "Description" => {
-                            description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -834,13 +834,13 @@ impl<'de> ::serde::Deserialize<'de> for SecurityGroupIngressProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "CacheSecurityGroupName" => {
-                            cache_security_group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            cache_security_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "EC2SecurityGroupName" => {
-                            ec2_security_group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            ec2_security_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "EC2SecurityGroupOwnerId" => {
-                            ec2_security_group_owner_id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            ec2_security_group_owner_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -925,13 +925,13 @@ impl<'de> ::serde::Deserialize<'de> for SubnetGroupProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "CacheSubnetGroupName" => {
-                            cache_subnet_group_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            cache_subnet_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Description" => {
-                            description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SubnetIds" => {
-                            subnet_ids = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            subnet_ids = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -1023,16 +1023,16 @@ pub mod replication_group {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "PrimaryAvailabilityZone" => {
-                                primary_availability_zone = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                primary_availability_zone = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "ReplicaAvailabilityZones" => {
-                                replica_availability_zones = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                replica_availability_zones = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "ReplicaCount" => {
-                                replica_count = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                replica_count = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Slots" => {
-                                slots = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                slots = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }

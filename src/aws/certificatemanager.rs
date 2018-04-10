@@ -56,16 +56,16 @@ impl<'de> ::serde::Deserialize<'de> for CertificateProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "DomainName" => {
-                            domain_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            domain_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "DomainValidationOptions" => {
-                            domain_validation_options = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            domain_validation_options = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SubjectAlternativeNames" => {
-                            subject_alternative_names = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            subject_alternative_names = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Tags" => {
-                            tags = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -142,10 +142,10 @@ pub mod certificate {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "DomainName" => {
-                                domain_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                domain_name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "ValidationDomain" => {
-                                validation_domain = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                validation_domain = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }

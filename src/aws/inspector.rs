@@ -44,10 +44,10 @@ impl<'de> ::serde::Deserialize<'de> for AssessmentTargetProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "AssessmentTargetName" => {
-                            assessment_target_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            assessment_target_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ResourceGroupArn" => {
-                            resource_group_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            resource_group_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -141,19 +141,19 @@ impl<'de> ::serde::Deserialize<'de> for AssessmentTemplateProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "AssessmentTargetArn" => {
-                            assessment_target_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            assessment_target_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "AssessmentTemplateName" => {
-                            assessment_template_name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            assessment_template_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "DurationInSeconds" => {
-                            duration_in_seconds = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            duration_in_seconds = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "RulesPackageArns" => {
-                            rules_package_arns = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            rules_package_arns = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "UserAttributesForFindings" => {
-                            user_attributes_for_findings = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            user_attributes_for_findings = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -230,7 +230,7 @@ impl<'de> ::serde::Deserialize<'de> for ResourceGroupProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "ResourceGroupTags" => {
-                            resource_group_tags = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            resource_group_tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }

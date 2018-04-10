@@ -76,25 +76,25 @@ impl<'de> ::serde::Deserialize<'de> for RuleProperties {
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "Description" => {
-                            description = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "EventPattern" => {
-                            event_pattern = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            event_pattern = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Name" => {
-                            name = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "RoleArn" => {
-                            role_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ScheduleExpression" => {
-                            schedule_expression = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            schedule_expression = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "State" => {
-                            state = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            state = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Targets" => {
-                            targets = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                            targets = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -176,10 +176,10 @@ pub mod rule {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "TaskCount" => {
-                                task_count = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                task_count = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "TaskDefinitionArn" => {
-                                task_definition_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                task_definition_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -234,10 +234,10 @@ pub mod rule {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "InputPathsMap" => {
-                                input_paths_map = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                input_paths_map = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "InputTemplate" => {
-                                input_template = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                input_template = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -286,7 +286,7 @@ pub mod rule {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "PartitionKeyPath" => {
-                                partition_key_path = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                partition_key_path = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -334,7 +334,7 @@ pub mod rule {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "RunCommandTargets" => {
-                                run_command_targets = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                run_command_targets = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -386,10 +386,10 @@ pub mod rule {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Key" => {
-                                key = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                key = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Values" => {
-                                values = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                values = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -484,31 +484,31 @@ pub mod rule {
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Arn" => {
-                                arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                arn = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "EcsParameters" => {
-                                ecs_parameters = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                ecs_parameters = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Id" => {
-                                id = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Input" => {
-                                input = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                input = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "InputPath" => {
-                                input_path = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                input_path = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "InputTransformer" => {
-                                input_transformer = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                input_transformer = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "KinesisParameters" => {
-                                kinesis_parameters = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                kinesis_parameters = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "RoleArn" => {
-                                role_arn = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "RunCommandParameters" => {
-                                run_command_parameters = Some(::serde::de::MapAccess::next_value(&mut map)?);
+                                run_command_parameters = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
