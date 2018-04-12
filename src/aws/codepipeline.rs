@@ -57,13 +57,13 @@ impl<'de> ::serde::Deserialize<'de> for CustomActionTypeProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut category = None;
-                let mut configuration_properties = None;
-                let mut input_artifact_details = None;
-                let mut output_artifact_details = None;
-                let mut provider = None;
-                let mut settings = None;
-                let mut version = None;
+                let mut category: Option<::Value<String>> = None;
+                let mut configuration_properties: Option<::ValueList<self::custom_action_type::ConfigurationProperties>> = None;
+                let mut input_artifact_details: Option<::Value<self::custom_action_type::ArtifactDetails>> = None;
+                let mut output_artifact_details: Option<::Value<self::custom_action_type::ArtifactDetails>> = None;
+                let mut provider: Option<::Value<String>> = None;
+                let mut settings: Option<::Value<self::custom_action_type::Settings>> = None;
+                let mut version: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -181,12 +181,12 @@ impl<'de> ::serde::Deserialize<'de> for PipelineProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut artifact_store = None;
-                let mut disable_inbound_stage_transitions = None;
-                let mut name = None;
-                let mut restart_execution_on_update = None;
-                let mut role_arn = None;
-                let mut stages = None;
+                let mut artifact_store: Option<::Value<self::pipeline::ArtifactStore>> = None;
+                let mut disable_inbound_stage_transitions: Option<::ValueList<self::pipeline::StageTransition>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut restart_execution_on_update: Option<::Value<bool>> = None;
+                let mut role_arn: Option<::Value<String>> = None;
+                let mut stages: Option<::ValueList<self::pipeline::StageDeclaration>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -279,8 +279,8 @@ pub mod custom_action_type {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut maximum_count = None;
-                    let mut minimum_count = None;
+                    let mut maximum_count: Option<::Value<u32>> = None;
+                    let mut minimum_count: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -356,13 +356,13 @@ pub mod custom_action_type {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut description = None;
-                    let mut key = None;
-                    let mut name = None;
-                    let mut queryable = None;
-                    let mut required = None;
-                    let mut secret = None;
-                    let mut type_ = None;
+                    let mut description: Option<::Value<String>> = None;
+                    let mut key: Option<::Value<bool>> = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut queryable: Option<::Value<bool>> = None;
+                    let mut required: Option<::Value<bool>> = None;
+                    let mut secret: Option<::Value<bool>> = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -451,10 +451,10 @@ pub mod custom_action_type {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut entity_url_template = None;
-                    let mut execution_url_template = None;
-                    let mut revision_url_template = None;
-                    let mut third_party_configuration_url = None;
+                    let mut entity_url_template: Option<::Value<String>> = None;
+                    let mut execution_url_template: Option<::Value<String>> = None;
+                    let mut revision_url_template: Option<::Value<String>> = None;
+                    let mut third_party_configuration_url: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -546,13 +546,13 @@ pub mod pipeline {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut action_type_id = None;
-                    let mut configuration = None;
-                    let mut input_artifacts = None;
-                    let mut name = None;
-                    let mut output_artifacts = None;
-                    let mut role_arn = None;
-                    let mut run_order = None;
+                    let mut action_type_id: Option<::Value<ActionTypeId>> = None;
+                    let mut configuration: Option<::Value<::json::Value>> = None;
+                    let mut input_artifacts: Option<::ValueList<InputArtifact>> = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut output_artifacts: Option<::ValueList<OutputArtifact>> = None;
+                    let mut role_arn: Option<::Value<String>> = None;
+                    let mut run_order: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -633,10 +633,10 @@ pub mod pipeline {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut category = None;
-                    let mut owner = None;
-                    let mut provider = None;
-                    let mut version = None;
+                    let mut category: Option<::Value<String>> = None;
+                    let mut owner: Option<::Value<String>> = None;
+                    let mut provider: Option<::Value<String>> = None;
+                    let mut version: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -704,9 +704,9 @@ pub mod pipeline {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut encryption_key = None;
-                    let mut location = None;
-                    let mut type_ = None;
+                    let mut encryption_key: Option<::Value<EncryptionKey>> = None;
+                    let mut location: Option<::Value<String>> = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -765,8 +765,8 @@ pub mod pipeline {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut name = None;
-                    let mut type_ = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -821,8 +821,8 @@ pub mod pipeline {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut id = None;
-                    let mut type_ = None;
+                    let mut id: Option<::Value<String>> = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -874,7 +874,7 @@ pub mod pipeline {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut name = None;
+                    let mut name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -922,7 +922,7 @@ pub mod pipeline {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut name = None;
+                    let mut name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -978,9 +978,9 @@ pub mod pipeline {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut actions = None;
-                    let mut blockers = None;
-                    let mut name = None;
+                    let mut actions: Option<::ValueList<ActionDeclaration>> = None;
+                    let mut blockers: Option<::ValueList<BlockerDeclaration>> = None;
+                    let mut name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1039,8 +1039,8 @@ pub mod pipeline {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut reason = None;
-                    let mut stage_name = None;
+                    let mut reason: Option<::Value<String>> = None;
+                    let mut stage_name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

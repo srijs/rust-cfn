@@ -41,9 +41,9 @@ impl<'de> ::serde::Deserialize<'de> for AliasProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut description = None;
-                let mut name = None;
-                let mut routing_strategy = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut routing_strategy: Option<::Value<self::alias::RoutingStrategy>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -136,9 +136,9 @@ impl<'de> ::serde::Deserialize<'de> for BuildProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut name = None;
-                let mut storage_location = None;
-                let mut version = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut storage_location: Option<::Value<self::build::S3Location>> = None;
+                let mut version: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -261,17 +261,17 @@ impl<'de> ::serde::Deserialize<'de> for FleetProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut build_id = None;
-                let mut description = None;
-                let mut desired_ec2_instances = None;
-                let mut ec2_inbound_permissions = None;
-                let mut ec2_instance_type = None;
-                let mut log_paths = None;
-                let mut max_size = None;
-                let mut min_size = None;
-                let mut name = None;
-                let mut server_launch_parameters = None;
-                let mut server_launch_path = None;
+                let mut build_id: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut desired_ec2_instances: Option<::Value<u32>> = None;
+                let mut ec2_inbound_permissions: Option<::ValueList<self::fleet::IpPermission>> = None;
+                let mut ec2_instance_type: Option<::Value<String>> = None;
+                let mut log_paths: Option<::ValueList<String>> = None;
+                let mut max_size: Option<::Value<u32>> = None;
+                let mut min_size: Option<::Value<u32>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut server_launch_parameters: Option<::Value<String>> = None;
+                let mut server_launch_path: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -391,9 +391,9 @@ pub mod alias {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut fleet_id = None;
-                    let mut message = None;
-                    let mut type_ = None;
+                    let mut fleet_id: Option<::Value<String>> = None;
+                    let mut message: Option<::Value<String>> = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -459,9 +459,9 @@ pub mod build {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut bucket = None;
-                    let mut key = None;
-                    let mut role_arn = None;
+                    let mut bucket: Option<::Value<String>> = None;
+                    let mut key: Option<::Value<String>> = None;
+                    let mut role_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -530,10 +530,10 @@ pub mod fleet {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut from_port = None;
-                    let mut ip_range = None;
-                    let mut protocol = None;
-                    let mut to_port = None;
+                    let mut from_port: Option<::Value<u32>> = None;
+                    let mut ip_range: Option<::Value<String>> = None;
+                    let mut protocol: Option<::Value<String>> = None;
+                    let mut to_port: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

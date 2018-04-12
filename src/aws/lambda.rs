@@ -49,11 +49,11 @@ impl<'de> ::serde::Deserialize<'de> for AliasProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut description = None;
-                let mut function_name = None;
-                let mut function_version = None;
-                let mut name = None;
-                let mut routing_config = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut function_name: Option<::Value<String>> = None;
+                let mut function_version: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut routing_config: Option<::Value<self::alias::AliasRoutingConfiguration>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -158,11 +158,11 @@ impl<'de> ::serde::Deserialize<'de> for EventSourceMappingProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut batch_size = None;
-                let mut enabled = None;
-                let mut event_source_arn = None;
-                let mut function_name = None;
-                let mut starting_position = None;
+                let mut batch_size: Option<::Value<u32>> = None;
+                let mut enabled: Option<::Value<bool>> = None;
+                let mut event_source_arn: Option<::Value<String>> = None;
+                let mut function_name: Option<::Value<String>> = None;
+                let mut starting_position: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -315,21 +315,21 @@ impl<'de> ::serde::Deserialize<'de> for FunctionProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut code = None;
-                let mut dead_letter_config = None;
-                let mut description = None;
-                let mut environment = None;
-                let mut function_name = None;
-                let mut handler = None;
-                let mut kms_key_arn = None;
-                let mut memory_size = None;
-                let mut reserved_concurrent_executions = None;
-                let mut role = None;
-                let mut runtime = None;
-                let mut tags = None;
-                let mut timeout = None;
-                let mut tracing_config = None;
-                let mut vpc_config = None;
+                let mut code: Option<::Value<self::function::Code>> = None;
+                let mut dead_letter_config: Option<::Value<self::function::DeadLetterConfig>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut environment: Option<::Value<self::function::Environment>> = None;
+                let mut function_name: Option<::Value<String>> = None;
+                let mut handler: Option<::Value<String>> = None;
+                let mut kms_key_arn: Option<::Value<String>> = None;
+                let mut memory_size: Option<::Value<u32>> = None;
+                let mut reserved_concurrent_executions: Option<::Value<u32>> = None;
+                let mut role: Option<::Value<String>> = None;
+                let mut runtime: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut timeout: Option<::Value<u32>> = None;
+                let mut tracing_config: Option<::Value<self::function::TracingConfig>> = None;
+                let mut vpc_config: Option<::Value<self::function::VpcConfig>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -479,12 +479,12 @@ impl<'de> ::serde::Deserialize<'de> for PermissionProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut action = None;
-                let mut event_source_token = None;
-                let mut function_name = None;
-                let mut principal = None;
-                let mut source_account = None;
-                let mut source_arn = None;
+                let mut action: Option<::Value<String>> = None;
+                let mut event_source_token: Option<::Value<String>> = None;
+                let mut function_name: Option<::Value<String>> = None;
+                let mut principal: Option<::Value<String>> = None;
+                let mut source_account: Option<::Value<String>> = None;
+                let mut source_arn: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -587,9 +587,9 @@ impl<'de> ::serde::Deserialize<'de> for VersionProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut code_sha256 = None;
-                let mut description = None;
-                let mut function_name = None;
+                let mut code_sha256: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut function_name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -667,7 +667,7 @@ pub mod alias {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut additional_version_weights = None;
+                    let mut additional_version_weights: Option<::ValueList<VersionWeight>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -718,8 +718,8 @@ pub mod alias {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut function_version = None;
-                    let mut function_weight = None;
+                    let mut function_version: Option<::Value<String>> = None;
+                    let mut function_weight: Option<::Value<f64>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -792,10 +792,10 @@ pub mod function {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut s3_bucket = None;
-                    let mut s3_key = None;
-                    let mut s3_object_version = None;
-                    let mut zip_file = None;
+                    let mut s3_bucket: Option<::Value<String>> = None;
+                    let mut s3_key: Option<::Value<String>> = None;
+                    let mut s3_object_version: Option<::Value<String>> = None;
+                    let mut zip_file: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -857,7 +857,7 @@ pub mod function {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut target_arn = None;
+                    let mut target_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -907,7 +907,7 @@ pub mod function {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut variables = None;
+                    let mut variables: Option<::ValueMap<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -957,7 +957,7 @@ pub mod function {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut mode = None;
+                    let mut mode: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1008,8 +1008,8 @@ pub mod function {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut security_group_ids = None;
-                    let mut subnet_ids = None;
+                    let mut security_group_ids: Option<::ValueList<String>> = None;
+                    let mut subnet_ids: Option<::ValueList<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

@@ -48,10 +48,10 @@ impl<'de> ::serde::Deserialize<'de> for CertificateProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut domain_name = None;
-                let mut domain_validation_options = None;
-                let mut subject_alternative_names = None;
-                let mut tags = None;
+                let mut domain_name: Option<::Value<String>> = None;
+                let mut domain_validation_options: Option<::ValueList<self::certificate::DomainValidationOption>> = None;
+                let mut subject_alternative_names: Option<::ValueList<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -136,8 +136,8 @@ pub mod certificate {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut domain_name = None;
-                    let mut validation_domain = None;
+                    let mut domain_name: Option<::Value<String>> = None;
+                    let mut validation_domain: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

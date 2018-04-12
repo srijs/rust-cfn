@@ -33,7 +33,7 @@ impl<'de> ::serde::Deserialize<'de> for ActivityProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut name = None;
+                let mut name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -114,9 +114,9 @@ impl<'de> ::serde::Deserialize<'de> for StateMachineProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut definition_string = None;
-                let mut role_arn = None;
-                let mut state_machine_name = None;
+                let mut definition_string: Option<::Value<String>> = None;
+                let mut role_arn: Option<::Value<String>> = None;
+                let mut state_machine_name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {

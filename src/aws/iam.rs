@@ -43,9 +43,9 @@ impl<'de> ::serde::Deserialize<'de> for AccessKeyProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut serial = None;
-                let mut status = None;
-                let mut user_name = None;
+                let mut serial: Option<::Value<u32>> = None;
+                let mut status: Option<::Value<String>> = None;
+                let mut user_name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -143,10 +143,10 @@ impl<'de> ::serde::Deserialize<'de> for GroupProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut group_name = None;
-                let mut managed_policy_arns = None;
-                let mut path = None;
-                let mut policies = None;
+                let mut group_name: Option<::Value<String>> = None;
+                let mut managed_policy_arns: Option<::ValueList<String>> = None;
+                let mut path: Option<::Value<String>> = None;
+                let mut policies: Option<::ValueList<self::group::Policy>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -241,9 +241,9 @@ impl<'de> ::serde::Deserialize<'de> for InstanceProfileProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut instance_profile_name = None;
-                let mut path = None;
-                let mut roles = None;
+                let mut instance_profile_name: Option<::Value<String>> = None;
+                let mut path: Option<::Value<String>> = None;
+                let mut roles: Option<::ValueList<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -354,13 +354,13 @@ impl<'de> ::serde::Deserialize<'de> for ManagedPolicyProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut description = None;
-                let mut groups = None;
-                let mut managed_policy_name = None;
-                let mut path = None;
-                let mut policy_document = None;
-                let mut roles = None;
-                let mut users = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut groups: Option<::ValueList<String>> = None;
+                let mut managed_policy_name: Option<::Value<String>> = None;
+                let mut path: Option<::Value<String>> = None;
+                let mut policy_document: Option<::Value<::json::Value>> = None;
+                let mut roles: Option<::ValueList<String>> = None;
+                let mut users: Option<::ValueList<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -475,11 +475,11 @@ impl<'de> ::serde::Deserialize<'de> for PolicyProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut groups = None;
-                let mut policy_document = None;
-                let mut policy_name = None;
-                let mut roles = None;
-                let mut users = None;
+                let mut groups: Option<::ValueList<String>> = None;
+                let mut policy_document: Option<::Value<::json::Value>> = None;
+                let mut policy_name: Option<::Value<String>> = None;
+                let mut roles: Option<::ValueList<String>> = None;
+                let mut users: Option<::ValueList<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -588,11 +588,11 @@ impl<'de> ::serde::Deserialize<'de> for RoleProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut assume_role_policy_document = None;
-                let mut managed_policy_arns = None;
-                let mut path = None;
-                let mut policies = None;
-                let mut role_name = None;
+                let mut assume_role_policy_document: Option<::Value<::json::Value>> = None;
+                let mut managed_policy_arns: Option<::ValueList<String>> = None;
+                let mut path: Option<::Value<String>> = None;
+                let mut policies: Option<::ValueList<self::role::Policy>> = None;
+                let mut role_name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -708,12 +708,12 @@ impl<'de> ::serde::Deserialize<'de> for UserProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut groups = None;
-                let mut login_profile = None;
-                let mut managed_policy_arns = None;
-                let mut path = None;
-                let mut policies = None;
-                let mut user_name = None;
+                let mut groups: Option<::ValueList<String>> = None;
+                let mut login_profile: Option<::Value<self::user::LoginProfile>> = None;
+                let mut managed_policy_arns: Option<::ValueList<String>> = None;
+                let mut path: Option<::Value<String>> = None;
+                let mut policies: Option<::ValueList<self::user::Policy>> = None;
+                let mut user_name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -809,8 +809,8 @@ impl<'de> ::serde::Deserialize<'de> for UserToGroupAdditionProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut group_name = None;
-                let mut users = None;
+                let mut group_name: Option<::Value<String>> = None;
+                let mut users: Option<::ValueList<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -887,8 +887,8 @@ pub mod group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut policy_document = None;
-                    let mut policy_name = None;
+                    let mut policy_document: Option<::Value<::json::Value>> = None;
+                    let mut policy_name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -947,8 +947,8 @@ pub mod role {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut policy_document = None;
-                    let mut policy_name = None;
+                    let mut policy_document: Option<::Value<::json::Value>> = None;
+                    let mut policy_name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1009,8 +1009,8 @@ pub mod user {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut password = None;
-                    let mut password_reset_required = None;
+                    let mut password: Option<::Value<String>> = None;
+                    let mut password_reset_required: Option<::Value<bool>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1065,8 +1065,8 @@ pub mod user {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut policy_document = None;
-                    let mut policy_name = None;
+                    let mut policy_document: Option<::Value<::json::Value>> = None;
+                    let mut policy_name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

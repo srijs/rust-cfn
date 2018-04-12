@@ -49,11 +49,11 @@ impl<'de> ::serde::Deserialize<'de> for ComputeEnvironmentProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut compute_environment_name = None;
-                let mut compute_resources = None;
-                let mut service_role = None;
-                let mut state = None;
-                let mut type_ = None;
+                let mut compute_environment_name: Option<::Value<String>> = None;
+                let mut compute_resources: Option<::Value<self::compute_environment::ComputeResources>> = None;
+                let mut service_role: Option<::Value<String>> = None;
+                let mut state: Option<::Value<String>> = None;
+                let mut type_: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -160,11 +160,11 @@ impl<'de> ::serde::Deserialize<'de> for JobDefinitionProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut container_properties = None;
-                let mut job_definition_name = None;
-                let mut parameters = None;
-                let mut retry_strategy = None;
-                let mut type_ = None;
+                let mut container_properties: Option<::Value<self::job_definition::ContainerProperties>> = None;
+                let mut job_definition_name: Option<::Value<String>> = None;
+                let mut parameters: Option<::Value<::json::Value>> = None;
+                let mut retry_strategy: Option<::Value<self::job_definition::RetryStrategy>> = None;
+                let mut type_: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -266,10 +266,10 @@ impl<'de> ::serde::Deserialize<'de> for JobQueueProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut compute_environment_order = None;
-                let mut job_queue_name = None;
-                let mut priority = None;
-                let mut state = None;
+                let mut compute_environment_order: Option<::ValueList<self::job_queue::ComputeEnvironmentOrder>> = None;
+                let mut job_queue_name: Option<::Value<String>> = None;
+                let mut priority: Option<::Value<u32>> = None;
+                let mut state: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -399,19 +399,19 @@ pub mod compute_environment {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut bid_percentage = None;
-                    let mut desiredv_cpus = None;
-                    let mut ec2_key_pair = None;
-                    let mut image_id = None;
-                    let mut instance_role = None;
-                    let mut instance_types = None;
-                    let mut maxv_cpus = None;
-                    let mut minv_cpus = None;
-                    let mut security_group_ids = None;
-                    let mut spot_iam_fleet_role = None;
-                    let mut subnets = None;
-                    let mut tags = None;
-                    let mut type_ = None;
+                    let mut bid_percentage: Option<::Value<u32>> = None;
+                    let mut desiredv_cpus: Option<::Value<u32>> = None;
+                    let mut ec2_key_pair: Option<::Value<String>> = None;
+                    let mut image_id: Option<::Value<String>> = None;
+                    let mut instance_role: Option<::Value<String>> = None;
+                    let mut instance_types: Option<::ValueList<String>> = None;
+                    let mut maxv_cpus: Option<::Value<u32>> = None;
+                    let mut minv_cpus: Option<::Value<u32>> = None;
+                    let mut security_group_ids: Option<::ValueList<String>> = None;
+                    let mut spot_iam_fleet_role: Option<::Value<String>> = None;
+                    let mut subnets: Option<::ValueList<String>> = None;
+                    let mut tags: Option<::Value<::json::Value>> = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -562,18 +562,18 @@ pub mod job_definition {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut command = None;
-                    let mut environment = None;
-                    let mut image = None;
-                    let mut job_role_arn = None;
-                    let mut memory = None;
-                    let mut mount_points = None;
-                    let mut privileged = None;
-                    let mut readonly_root_filesystem = None;
-                    let mut ulimits = None;
-                    let mut user = None;
-                    let mut vcpus = None;
-                    let mut volumes = None;
+                    let mut command: Option<::ValueList<String>> = None;
+                    let mut environment: Option<::ValueList<Environment>> = None;
+                    let mut image: Option<::Value<String>> = None;
+                    let mut job_role_arn: Option<::Value<String>> = None;
+                    let mut memory: Option<::Value<u32>> = None;
+                    let mut mount_points: Option<::ValueList<MountPoints>> = None;
+                    let mut privileged: Option<::Value<bool>> = None;
+                    let mut readonly_root_filesystem: Option<::Value<bool>> = None;
+                    let mut ulimits: Option<::ValueList<Ulimit>> = None;
+                    let mut user: Option<::Value<String>> = None;
+                    let mut vcpus: Option<::Value<u32>> = None;
+                    let mut volumes: Option<::ValueList<Volumes>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -672,8 +672,8 @@ pub mod job_definition {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut name = None;
-                    let mut value = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -737,9 +737,9 @@ pub mod job_definition {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut container_path = None;
-                    let mut read_only = None;
-                    let mut source_volume = None;
+                    let mut container_path: Option<::Value<String>> = None;
+                    let mut read_only: Option<::Value<bool>> = None;
+                    let mut source_volume: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -797,7 +797,7 @@ pub mod job_definition {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut attempts = None;
+                    let mut attempts: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -851,9 +851,9 @@ pub mod job_definition {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut hard_limit = None;
-                    let mut name = None;
-                    let mut soft_limit = None;
+                    let mut hard_limit: Option<::Value<u32>> = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut soft_limit: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -916,8 +916,8 @@ pub mod job_definition {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut host = None;
-                    let mut name = None;
+                    let mut host: Option<::Value<VolumesHost>> = None;
+                    let mut name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -971,7 +971,7 @@ pub mod job_definition {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut source_path = None;
+                    let mut source_path: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1026,8 +1026,8 @@ pub mod job_queue {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut compute_environment = None;
-                    let mut order = None;
+                    let mut compute_environment: Option<::Value<String>> = None;
+                    let mut order: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

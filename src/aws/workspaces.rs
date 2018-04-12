@@ -54,12 +54,12 @@ impl<'de> ::serde::Deserialize<'de> for WorkspaceProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut bundle_id = None;
-                let mut directory_id = None;
-                let mut root_volume_encryption_enabled = None;
-                let mut user_name = None;
-                let mut user_volume_encryption_enabled = None;
-                let mut volume_encryption_key = None;
+                let mut bundle_id: Option<::Value<String>> = None;
+                let mut directory_id: Option<::Value<String>> = None;
+                let mut root_volume_encryption_enabled: Option<::Value<bool>> = None;
+                let mut user_name: Option<::Value<String>> = None;
+                let mut user_volume_encryption_enabled: Option<::Value<bool>> = None;
+                let mut volume_encryption_key: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {

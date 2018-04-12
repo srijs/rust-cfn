@@ -35,7 +35,7 @@ impl<'de> ::serde::Deserialize<'de> for ConfigurationSetProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut name = None;
+                let mut name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -111,8 +111,8 @@ impl<'de> ::serde::Deserialize<'de> for ConfigurationSetEventDestinationProperti
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut configuration_set_name = None;
-                let mut event_destination = None;
+                let mut configuration_set_name: Option<::Value<String>> = None;
+                let mut event_destination: Option<::Value<self::configuration_set_event_destination::EventDestination>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -189,7 +189,7 @@ impl<'de> ::serde::Deserialize<'de> for ReceiptFilterProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut filter = None;
+                let mut filter: Option<::Value<self::receipt_filter::Filter>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -270,9 +270,9 @@ impl<'de> ::serde::Deserialize<'de> for ReceiptRuleProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut after = None;
-                let mut rule = None;
-                let mut rule_set_name = None;
+                let mut after: Option<::Value<String>> = None;
+                let mut rule: Option<::Value<self::receipt_rule::Rule>> = None;
+                let mut rule_set_name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -355,7 +355,7 @@ impl<'de> ::serde::Deserialize<'de> for ReceiptRuleSetProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut rule_set_name = None;
+                let mut rule_set_name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -430,7 +430,7 @@ impl<'de> ::serde::Deserialize<'de> for TemplateProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut template = None;
+                let mut template: Option<::Value<self::template::Template>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -502,7 +502,7 @@ pub mod configuration_set_event_destination {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut dimension_configurations = None;
+                    let mut dimension_configurations: Option<::ValueList<DimensionConfiguration>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -556,9 +556,9 @@ pub mod configuration_set_event_destination {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut default_dimension_value = None;
-                    let mut dimension_name = None;
-                    let mut dimension_value_source = None;
+                    let mut default_dimension_value: Option<::Value<String>> = None;
+                    let mut dimension_name: Option<::Value<String>> = None;
+                    let mut dimension_value_source: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -634,11 +634,11 @@ pub mod configuration_set_event_destination {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut cloud_watch_destination = None;
-                    let mut enabled = None;
-                    let mut kinesis_firehose_destination = None;
-                    let mut matching_event_types = None;
-                    let mut name = None;
+                    let mut cloud_watch_destination: Option<::Value<CloudWatchDestination>> = None;
+                    let mut enabled: Option<::Value<bool>> = None;
+                    let mut kinesis_firehose_destination: Option<::Value<KinesisFirehoseDestination>> = None;
+                    let mut matching_event_types: Option<::ValueList<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -705,8 +705,8 @@ pub mod configuration_set_event_destination {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut delivery_stream_arn = None;
-                    let mut iam_role_arn = None;
+                    let mut delivery_stream_arn: Option<::Value<String>> = None;
+                    let mut iam_role_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -767,8 +767,8 @@ pub mod receipt_filter {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut ip_filter = None;
-                    let mut name = None;
+                    let mut ip_filter: Option<::Value<IpFilter>> = None;
+                    let mut name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -823,8 +823,8 @@ pub mod receipt_filter {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut cidr = None;
-                    let mut policy = None;
+                    let mut cidr: Option<::Value<String>> = None;
+                    let mut policy: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -912,13 +912,13 @@ pub mod receipt_rule {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut add_header_action = None;
-                    let mut bounce_action = None;
-                    let mut lambda_action = None;
-                    let mut s3_action = None;
-                    let mut sns_action = None;
-                    let mut stop_action = None;
-                    let mut workmail_action = None;
+                    let mut add_header_action: Option<::Value<AddHeaderAction>> = None;
+                    let mut bounce_action: Option<::Value<BounceAction>> = None;
+                    let mut lambda_action: Option<::Value<LambdaAction>> = None;
+                    let mut s3_action: Option<::Value<S3Action>> = None;
+                    let mut sns_action: Option<::Value<SNSAction>> = None;
+                    let mut stop_action: Option<::Value<StopAction>> = None;
+                    let mut workmail_action: Option<::Value<WorkmailAction>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -993,8 +993,8 @@ pub mod receipt_rule {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut header_name = None;
-                    let mut header_value = None;
+                    let mut header_name: Option<::Value<String>> = None;
+                    let mut header_value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1062,11 +1062,11 @@ pub mod receipt_rule {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut message = None;
-                    let mut sender = None;
-                    let mut smtp_reply_code = None;
-                    let mut status_code = None;
-                    let mut topic_arn = None;
+                    let mut message: Option<::Value<String>> = None;
+                    let mut sender: Option<::Value<String>> = None;
+                    let mut smtp_reply_code: Option<::Value<String>> = None;
+                    let mut status_code: Option<::Value<String>> = None;
+                    let mut topic_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1140,9 +1140,9 @@ pub mod receipt_rule {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut function_arn = None;
-                    let mut invocation_type = None;
-                    let mut topic_arn = None;
+                    let mut function_arn: Option<::Value<String>> = None;
+                    let mut invocation_type: Option<::Value<String>> = None;
+                    let mut topic_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1225,12 +1225,12 @@ pub mod receipt_rule {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut actions = None;
-                    let mut enabled = None;
-                    let mut name = None;
-                    let mut recipients = None;
-                    let mut scan_enabled = None;
-                    let mut tls_policy = None;
+                    let mut actions: Option<::ValueList<Action>> = None;
+                    let mut enabled: Option<::Value<bool>> = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut recipients: Option<::ValueList<String>> = None;
+                    let mut scan_enabled: Option<::Value<bool>> = None;
+                    let mut tls_policy: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1313,10 +1313,10 @@ pub mod receipt_rule {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut bucket_name = None;
-                    let mut kms_key_arn = None;
-                    let mut object_key_prefix = None;
-                    let mut topic_arn = None;
+                    let mut bucket_name: Option<::Value<String>> = None;
+                    let mut kms_key_arn: Option<::Value<String>> = None;
+                    let mut object_key_prefix: Option<::Value<String>> = None;
+                    let mut topic_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1383,8 +1383,8 @@ pub mod receipt_rule {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut encoding = None;
-                    let mut topic_arn = None;
+                    let mut encoding: Option<::Value<String>> = None;
+                    let mut topic_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1441,8 +1441,8 @@ pub mod receipt_rule {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut scope = None;
-                    let mut topic_arn = None;
+                    let mut scope: Option<::Value<String>> = None;
+                    let mut topic_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1499,8 +1499,8 @@ pub mod receipt_rule {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut organization_arn = None;
-                    let mut topic_arn = None;
+                    let mut organization_arn: Option<::Value<String>> = None;
+                    let mut topic_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1573,10 +1573,10 @@ pub mod template {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut html_part = None;
-                    let mut subject_part = None;
-                    let mut template_name = None;
-                    let mut text_part = None;
+                    let mut html_part: Option<::Value<String>> = None;
+                    let mut subject_part: Option<::Value<String>> = None;
+                    let mut template_name: Option<::Value<String>> = None;
+                    let mut text_part: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

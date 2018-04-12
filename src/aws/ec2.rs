@@ -44,10 +44,10 @@ impl<'de> ::serde::Deserialize<'de> for CustomerGatewayProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut bgp_asn = None;
-                let mut ip_address = None;
-                let mut tags = None;
-                let mut type_ = None;
+                let mut bgp_asn: Option<::Value<u32>> = None;
+                let mut ip_address: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut type_: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -159,12 +159,12 @@ impl<'de> ::serde::Deserialize<'de> for DHCPOptionsProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut domain_name = None;
-                let mut domain_name_servers = None;
-                let mut netbios_name_servers = None;
-                let mut netbios_node_type = None;
-                let mut ntp_servers = None;
-                let mut tags = None;
+                let mut domain_name: Option<::Value<String>> = None;
+                let mut domain_name_servers: Option<::ValueList<String>> = None;
+                let mut netbios_name_servers: Option<::ValueList<String>> = None;
+                let mut netbios_node_type: Option<::Value<u32>> = None;
+                let mut ntp_servers: Option<::ValueList<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -264,8 +264,8 @@ impl<'de> ::serde::Deserialize<'de> for EIPProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut domain = None;
-                let mut instance_id = None;
+                let mut domain: Option<::Value<String>> = None;
+                let mut instance_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -364,11 +364,11 @@ impl<'de> ::serde::Deserialize<'de> for EIPAssociationProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut allocation_id = None;
-                let mut eip = None;
-                let mut instance_id = None;
-                let mut network_interface_id = None;
-                let mut private_ip_address = None;
+                let mut allocation_id: Option<::Value<String>> = None;
+                let mut eip: Option<::Value<String>> = None;
+                let mut instance_id: Option<::Value<String>> = None;
+                let mut network_interface_id: Option<::Value<String>> = None;
+                let mut private_ip_address: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -457,7 +457,7 @@ impl<'de> ::serde::Deserialize<'de> for EgressOnlyInternetGatewayProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut vpc_id = None;
+                let mut vpc_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -542,11 +542,11 @@ impl<'de> ::serde::Deserialize<'de> for FlowLogProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut deliver_logs_permission_arn = None;
-                let mut log_group_name = None;
-                let mut resource_id = None;
-                let mut resource_type = None;
-                let mut traffic_type = None;
+                let mut deliver_logs_permission_arn: Option<::Value<String>> = None;
+                let mut log_group_name: Option<::Value<String>> = None;
+                let mut resource_id: Option<::Value<String>> = None;
+                let mut resource_type: Option<::Value<String>> = None;
+                let mut traffic_type: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -643,9 +643,9 @@ impl<'de> ::serde::Deserialize<'de> for HostProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut auto_placement = None;
-                let mut availability_zone = None;
-                let mut instance_type = None;
+                let mut auto_placement: Option<::Value<String>> = None;
+                let mut availability_zone: Option<::Value<String>> = None;
+                let mut instance_type: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -876,37 +876,37 @@ impl<'de> ::serde::Deserialize<'de> for InstanceProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut additional_info = None;
-                let mut affinity = None;
-                let mut availability_zone = None;
-                let mut block_device_mappings = None;
-                let mut credit_specification = None;
-                let mut disable_api_termination = None;
-                let mut ebs_optimized = None;
-                let mut elastic_gpu_specifications = None;
-                let mut host_id = None;
-                let mut iam_instance_profile = None;
-                let mut image_id = None;
-                let mut instance_initiated_shutdown_behavior = None;
-                let mut instance_type = None;
-                let mut ipv6_address_count = None;
-                let mut ipv6_addresses = None;
-                let mut kernel_id = None;
-                let mut key_name = None;
-                let mut monitoring = None;
-                let mut network_interfaces = None;
-                let mut placement_group_name = None;
-                let mut private_ip_address = None;
-                let mut ramdisk_id = None;
-                let mut security_group_ids = None;
-                let mut security_groups = None;
-                let mut source_dest_check = None;
-                let mut ssm_associations = None;
-                let mut subnet_id = None;
-                let mut tags = None;
-                let mut tenancy = None;
-                let mut user_data = None;
-                let mut volumes = None;
+                let mut additional_info: Option<::Value<String>> = None;
+                let mut affinity: Option<::Value<String>> = None;
+                let mut availability_zone: Option<::Value<String>> = None;
+                let mut block_device_mappings: Option<::ValueList<self::instance::BlockDeviceMapping>> = None;
+                let mut credit_specification: Option<::Value<self::instance::CreditSpecification>> = None;
+                let mut disable_api_termination: Option<::Value<bool>> = None;
+                let mut ebs_optimized: Option<::Value<bool>> = None;
+                let mut elastic_gpu_specifications: Option<::ValueList<self::instance::ElasticGpuSpecification>> = None;
+                let mut host_id: Option<::Value<String>> = None;
+                let mut iam_instance_profile: Option<::Value<String>> = None;
+                let mut image_id: Option<::Value<String>> = None;
+                let mut instance_initiated_shutdown_behavior: Option<::Value<String>> = None;
+                let mut instance_type: Option<::Value<String>> = None;
+                let mut ipv6_address_count: Option<::Value<u32>> = None;
+                let mut ipv6_addresses: Option<::ValueList<self::instance::InstanceIpv6Address>> = None;
+                let mut kernel_id: Option<::Value<String>> = None;
+                let mut key_name: Option<::Value<String>> = None;
+                let mut monitoring: Option<::Value<bool>> = None;
+                let mut network_interfaces: Option<::ValueList<self::instance::NetworkInterface>> = None;
+                let mut placement_group_name: Option<::Value<String>> = None;
+                let mut private_ip_address: Option<::Value<String>> = None;
+                let mut ramdisk_id: Option<::Value<String>> = None;
+                let mut security_group_ids: Option<::ValueList<String>> = None;
+                let mut security_groups: Option<::ValueList<String>> = None;
+                let mut source_dest_check: Option<::Value<bool>> = None;
+                let mut ssm_associations: Option<::ValueList<self::instance::SsmAssociation>> = None;
+                let mut subnet_id: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut tenancy: Option<::Value<String>> = None;
+                let mut user_data: Option<::Value<String>> = None;
+                let mut volumes: Option<::ValueList<self::instance::Volume>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1101,7 +1101,7 @@ impl<'de> ::serde::Deserialize<'de> for InternetGatewayProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut tags = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1182,9 +1182,9 @@ impl<'de> ::serde::Deserialize<'de> for NatGatewayProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut allocation_id = None;
-                let mut subnet_id = None;
-                let mut tags = None;
+                let mut allocation_id: Option<::Value<String>> = None;
+                let mut subnet_id: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1270,8 +1270,8 @@ impl<'de> ::serde::Deserialize<'de> for NetworkAclProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut tags = None;
-                let mut vpc_id = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut vpc_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1380,15 +1380,15 @@ impl<'de> ::serde::Deserialize<'de> for NetworkAclEntryProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut cidr_block = None;
-                let mut egress = None;
-                let mut icmp = None;
-                let mut ipv6_cidr_block = None;
-                let mut network_acl_id = None;
-                let mut port_range = None;
-                let mut protocol = None;
-                let mut rule_action = None;
-                let mut rule_number = None;
+                let mut cidr_block: Option<::Value<String>> = None;
+                let mut egress: Option<::Value<bool>> = None;
+                let mut icmp: Option<::Value<self::network_acl_entry::Icmp>> = None;
+                let mut ipv6_cidr_block: Option<::Value<String>> = None;
+                let mut network_acl_id: Option<::Value<String>> = None;
+                let mut port_range: Option<::Value<self::network_acl_entry::PortRange>> = None;
+                let mut protocol: Option<::Value<u32>> = None;
+                let mut rule_action: Option<::Value<String>> = None;
+                let mut rule_number: Option<::Value<u32>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1543,17 +1543,17 @@ impl<'de> ::serde::Deserialize<'de> for NetworkInterfaceProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut description = None;
-                let mut group_set = None;
-                let mut interface_type = None;
-                let mut ipv6_address_count = None;
-                let mut ipv6_addresses = None;
-                let mut private_ip_address = None;
-                let mut private_ip_addresses = None;
-                let mut secondary_private_ip_address_count = None;
-                let mut source_dest_check = None;
-                let mut subnet_id = None;
-                let mut tags = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut group_set: Option<::ValueList<String>> = None;
+                let mut interface_type: Option<::Value<String>> = None;
+                let mut ipv6_address_count: Option<::Value<u32>> = None;
+                let mut ipv6_addresses: Option<::Value<self::network_interface::InstanceIpv6Address>> = None;
+                let mut private_ip_address: Option<::Value<String>> = None;
+                let mut private_ip_addresses: Option<::ValueList<self::network_interface::PrivateIpAddressSpecification>> = None;
+                let mut secondary_private_ip_address_count: Option<::Value<u32>> = None;
+                let mut source_dest_check: Option<::Value<bool>> = None;
+                let mut subnet_id: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1677,10 +1677,10 @@ impl<'de> ::serde::Deserialize<'de> for NetworkInterfaceAttachmentProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut delete_on_termination = None;
-                let mut device_index = None;
-                let mut instance_id = None;
-                let mut network_interface_id = None;
+                let mut delete_on_termination: Option<::Value<bool>> = None;
+                let mut device_index: Option<::Value<String>> = None;
+                let mut instance_id: Option<::Value<String>> = None;
+                let mut network_interface_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1771,9 +1771,9 @@ impl<'de> ::serde::Deserialize<'de> for NetworkInterfacePermissionProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut aws_account_id = None;
-                let mut network_interface_id = None;
-                let mut permission = None;
+                let mut aws_account_id: Option<::Value<String>> = None;
+                let mut network_interface_id: Option<::Value<String>> = None;
+                let mut permission: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1856,7 +1856,7 @@ impl<'de> ::serde::Deserialize<'de> for PlacementGroupProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut strategy = None;
+                let mut strategy: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1969,15 +1969,15 @@ impl<'de> ::serde::Deserialize<'de> for RouteProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut destination_cidr_block = None;
-                let mut destination_ipv6_cidr_block = None;
-                let mut egress_only_internet_gateway_id = None;
-                let mut gateway_id = None;
-                let mut instance_id = None;
-                let mut nat_gateway_id = None;
-                let mut network_interface_id = None;
-                let mut route_table_id = None;
-                let mut vpc_peering_connection_id = None;
+                let mut destination_cidr_block: Option<::Value<String>> = None;
+                let mut destination_ipv6_cidr_block: Option<::Value<String>> = None;
+                let mut egress_only_internet_gateway_id: Option<::Value<String>> = None;
+                let mut gateway_id: Option<::Value<String>> = None;
+                let mut instance_id: Option<::Value<String>> = None;
+                let mut nat_gateway_id: Option<::Value<String>> = None;
+                let mut network_interface_id: Option<::Value<String>> = None;
+                let mut route_table_id: Option<::Value<String>> = None;
+                let mut vpc_peering_connection_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -2087,8 +2087,8 @@ impl<'de> ::serde::Deserialize<'de> for RouteTableProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut tags = None;
-                let mut vpc_id = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut vpc_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -2190,12 +2190,12 @@ impl<'de> ::serde::Deserialize<'de> for SecurityGroupProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut group_description = None;
-                let mut group_name = None;
-                let mut security_group_egress = None;
-                let mut security_group_ingress = None;
-                let mut tags = None;
-                let mut vpc_id = None;
+                let mut group_description: Option<::Value<String>> = None;
+                let mut group_name: Option<::Value<String>> = None;
+                let mut security_group_egress: Option<::ValueList<self::security_group::Egress>> = None;
+                let mut security_group_ingress: Option<::ValueList<self::security_group::Ingress>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut vpc_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -2326,15 +2326,15 @@ impl<'de> ::serde::Deserialize<'de> for SecurityGroupEgressProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut cidr_ip = None;
-                let mut cidr_ipv6 = None;
-                let mut description = None;
-                let mut destination_prefix_list_id = None;
-                let mut destination_security_group_id = None;
-                let mut from_port = None;
-                let mut group_id = None;
-                let mut ip_protocol = None;
-                let mut to_port = None;
+                let mut cidr_ip: Option<::Value<String>> = None;
+                let mut cidr_ipv6: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut destination_prefix_list_id: Option<::Value<String>> = None;
+                let mut destination_security_group_id: Option<::Value<String>> = None;
+                let mut from_port: Option<::Value<u32>> = None;
+                let mut group_id: Option<::Value<String>> = None;
+                let mut ip_protocol: Option<::Value<String>> = None;
+                let mut to_port: Option<::Value<u32>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -2489,17 +2489,17 @@ impl<'de> ::serde::Deserialize<'de> for SecurityGroupIngressProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut cidr_ip = None;
-                let mut cidr_ipv6 = None;
-                let mut description = None;
-                let mut from_port = None;
-                let mut group_id = None;
-                let mut group_name = None;
-                let mut ip_protocol = None;
-                let mut source_security_group_id = None;
-                let mut source_security_group_name = None;
-                let mut source_security_group_owner_id = None;
-                let mut to_port = None;
+                let mut cidr_ip: Option<::Value<String>> = None;
+                let mut cidr_ipv6: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut from_port: Option<::Value<u32>> = None;
+                let mut group_id: Option<::Value<String>> = None;
+                let mut group_name: Option<::Value<String>> = None;
+                let mut ip_protocol: Option<::Value<String>> = None;
+                let mut source_security_group_id: Option<::Value<String>> = None;
+                let mut source_security_group_name: Option<::Value<String>> = None;
+                let mut source_security_group_owner_id: Option<::Value<String>> = None;
+                let mut to_port: Option<::Value<u32>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -2612,7 +2612,7 @@ impl<'de> ::serde::Deserialize<'de> for SpotFleetProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut spot_fleet_request_config_data = None;
+                let mut spot_fleet_request_config_data: Option<::Value<self::spot_fleet::SpotFleetRequestConfigData>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -2713,13 +2713,13 @@ impl<'de> ::serde::Deserialize<'de> for SubnetProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut assign_ipv6_address_on_creation = None;
-                let mut availability_zone = None;
-                let mut cidr_block = None;
-                let mut ipv6_cidr_block = None;
-                let mut map_public_ip_on_launch = None;
-                let mut tags = None;
-                let mut vpc_id = None;
+                let mut assign_ipv6_address_on_creation: Option<::Value<bool>> = None;
+                let mut availability_zone: Option<::Value<String>> = None;
+                let mut cidr_block: Option<::Value<String>> = None;
+                let mut ipv6_cidr_block: Option<::Value<String>> = None;
+                let mut map_public_ip_on_launch: Option<::Value<bool>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut vpc_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -2819,8 +2819,8 @@ impl<'de> ::serde::Deserialize<'de> for SubnetCidrBlockProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut ipv6_cidr_block = None;
-                let mut subnet_id = None;
+                let mut ipv6_cidr_block: Option<::Value<String>> = None;
+                let mut subnet_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -2900,8 +2900,8 @@ impl<'de> ::serde::Deserialize<'de> for SubnetNetworkAclAssociationProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut network_acl_id = None;
-                let mut subnet_id = None;
+                let mut network_acl_id: Option<::Value<String>> = None;
+                let mut subnet_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -2981,8 +2981,8 @@ impl<'de> ::serde::Deserialize<'de> for SubnetRouteTableAssociationProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut route_table_id = None;
-                let mut subnet_id = None;
+                let mut route_table_id: Option<::Value<String>> = None;
+                let mut subnet_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -3072,10 +3072,10 @@ impl<'de> ::serde::Deserialize<'de> for TrunkInterfaceAssociationProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut branch_interface_id = None;
-                let mut gre_key = None;
-                let mut trunk_interface_id = None;
-                let mut vlan_id = None;
+                let mut branch_interface_id: Option<::Value<String>> = None;
+                let mut gre_key: Option<::Value<u32>> = None;
+                let mut trunk_interface_id: Option<::Value<String>> = None;
+                let mut vlan_id: Option<::Value<u32>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -3180,11 +3180,11 @@ impl<'de> ::serde::Deserialize<'de> for VPCProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut cidr_block = None;
-                let mut enable_dns_hostnames = None;
-                let mut enable_dns_support = None;
-                let mut instance_tenancy = None;
-                let mut tags = None;
+                let mut cidr_block: Option<::Value<String>> = None;
+                let mut enable_dns_hostnames: Option<::Value<bool>> = None;
+                let mut enable_dns_support: Option<::Value<bool>> = None;
+                let mut instance_tenancy: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -3283,9 +3283,9 @@ impl<'de> ::serde::Deserialize<'de> for VPCCidrBlockProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut amazon_provided_ipv6_cidr_block = None;
-                let mut cidr_block = None;
-                let mut vpc_id = None;
+                let mut amazon_provided_ipv6_cidr_block: Option<::Value<bool>> = None;
+                let mut cidr_block: Option<::Value<String>> = None;
+                let mut vpc_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -3369,8 +3369,8 @@ impl<'de> ::serde::Deserialize<'de> for VPCDHCPOptionsAssociationProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut dhcp_options_id = None;
-                let mut vpc_id = None;
+                let mut dhcp_options_id: Option<::Value<String>> = None;
+                let mut vpc_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -3460,10 +3460,10 @@ impl<'de> ::serde::Deserialize<'de> for VPCEndpointProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut policy_document = None;
-                let mut route_table_ids = None;
-                let mut service_name = None;
-                let mut vpc_id = None;
+                let mut policy_document: Option<::Value<::json::Value>> = None;
+                let mut route_table_ids: Option<::ValueList<String>> = None;
+                let mut service_name: Option<::Value<String>> = None;
+                let mut vpc_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -3558,9 +3558,9 @@ impl<'de> ::serde::Deserialize<'de> for VPCGatewayAttachmentProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut internet_gateway_id = None;
-                let mut vpc_id = None;
-                let mut vpn_gateway_id = None;
+                let mut internet_gateway_id: Option<::Value<String>> = None;
+                let mut vpc_id: Option<::Value<String>> = None;
+                let mut vpn_gateway_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -3659,11 +3659,11 @@ impl<'de> ::serde::Deserialize<'de> for VPCPeeringConnectionProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut peer_owner_id = None;
-                let mut peer_role_arn = None;
-                let mut peer_vpc_id = None;
-                let mut tags = None;
-                let mut vpc_id = None;
+                let mut peer_owner_id: Option<::Value<String>> = None;
+                let mut peer_role_arn: Option<::Value<String>> = None;
+                let mut peer_vpc_id: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut vpc_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -3773,12 +3773,12 @@ impl<'de> ::serde::Deserialize<'de> for VPNConnectionProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut customer_gateway_id = None;
-                let mut static_routes_only = None;
-                let mut tags = None;
-                let mut type_ = None;
-                let mut vpn_gateway_id = None;
-                let mut vpn_tunnel_options_specifications = None;
+                let mut customer_gateway_id: Option<::Value<String>> = None;
+                let mut static_routes_only: Option<::Value<bool>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut type_: Option<::Value<String>> = None;
+                let mut vpn_gateway_id: Option<::Value<String>> = None;
+                let mut vpn_tunnel_options_specifications: Option<::ValueList<self::vpn_connection::VpnTunnelOptionsSpecification>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -3874,8 +3874,8 @@ impl<'de> ::serde::Deserialize<'de> for VPNConnectionRouteProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut destination_cidr_block = None;
-                let mut vpn_connection_id = None;
+                let mut destination_cidr_block: Option<::Value<String>> = None;
+                let mut vpn_connection_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -3962,9 +3962,9 @@ impl<'de> ::serde::Deserialize<'de> for VPNGatewayProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut amazon_side_asn = None;
-                let mut tags = None;
-                let mut type_ = None;
+                let mut amazon_side_asn: Option<::Value<u64>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut type_: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -4048,8 +4048,8 @@ impl<'de> ::serde::Deserialize<'de> for VPNGatewayRoutePropagationProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut route_table_ids = None;
-                let mut vpn_gateway_id = None;
+                let mut route_table_ids: Option<::ValueList<String>> = None;
+                let mut vpn_gateway_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -4166,15 +4166,15 @@ impl<'de> ::serde::Deserialize<'de> for VolumeProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut auto_enable_io = None;
-                let mut availability_zone = None;
-                let mut encrypted = None;
-                let mut iops = None;
-                let mut kms_key_id = None;
-                let mut size = None;
-                let mut snapshot_id = None;
-                let mut tags = None;
-                let mut volume_type = None;
+                let mut auto_enable_io: Option<::Value<bool>> = None;
+                let mut availability_zone: Option<::Value<String>> = None;
+                let mut encrypted: Option<::Value<bool>> = None;
+                let mut iops: Option<::Value<u32>> = None;
+                let mut kms_key_id: Option<::Value<String>> = None;
+                let mut size: Option<::Value<u32>> = None;
+                let mut snapshot_id: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut volume_type: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -4285,9 +4285,9 @@ impl<'de> ::serde::Deserialize<'de> for VolumeAttachmentProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut device = None;
-                let mut instance_id = None;
-                let mut volume_id = None;
+                let mut device: Option<::Value<String>> = None;
+                let mut instance_id: Option<::Value<String>> = None;
+                let mut volume_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -4368,8 +4368,8 @@ pub mod instance {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut key = None;
-                    let mut value = None;
+                    let mut key: Option<::Value<String>> = None;
+                    let mut value: Option<::ValueList<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -4436,10 +4436,10 @@ pub mod instance {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut device_name = None;
-                    let mut ebs = None;
-                    let mut no_device = None;
-                    let mut virtual_name = None;
+                    let mut device_name: Option<::Value<String>> = None;
+                    let mut ebs: Option<::Value<Ebs>> = None;
+                    let mut no_device: Option<::Value<NoDevice>> = None;
+                    let mut virtual_name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -4501,7 +4501,7 @@ pub mod instance {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut cpu_credits = None;
+                    let mut cpu_credits: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -4576,12 +4576,12 @@ pub mod instance {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut delete_on_termination = None;
-                    let mut encrypted = None;
-                    let mut iops = None;
-                    let mut snapshot_id = None;
-                    let mut volume_size = None;
-                    let mut volume_type = None;
+                    let mut delete_on_termination: Option<::Value<bool>> = None;
+                    let mut encrypted: Option<::Value<bool>> = None;
+                    let mut iops: Option<::Value<u32>> = None;
+                    let mut snapshot_id: Option<::Value<String>> = None;
+                    let mut volume_size: Option<::Value<u32>> = None;
+                    let mut volume_type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -4649,7 +4649,7 @@ pub mod instance {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut type_ = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -4697,7 +4697,7 @@ pub mod instance {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut ipv6_address = None;
+                    let mut ipv6_address: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -4800,18 +4800,18 @@ pub mod instance {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut associate_public_ip_address = None;
-                    let mut delete_on_termination = None;
-                    let mut description = None;
-                    let mut device_index = None;
-                    let mut group_set = None;
-                    let mut ipv6_address_count = None;
-                    let mut ipv6_addresses = None;
-                    let mut network_interface_id = None;
-                    let mut private_ip_address = None;
-                    let mut private_ip_addresses = None;
-                    let mut secondary_private_ip_address_count = None;
-                    let mut subnet_id = None;
+                    let mut associate_public_ip_address: Option<::Value<bool>> = None;
+                    let mut delete_on_termination: Option<::Value<bool>> = None;
+                    let mut description: Option<::Value<String>> = None;
+                    let mut device_index: Option<::Value<String>> = None;
+                    let mut group_set: Option<::ValueList<String>> = None;
+                    let mut ipv6_address_count: Option<::Value<u32>> = None;
+                    let mut ipv6_addresses: Option<::ValueList<InstanceIpv6Address>> = None;
+                    let mut network_interface_id: Option<::Value<String>> = None;
+                    let mut private_ip_address: Option<::Value<String>> = None;
+                    let mut private_ip_addresses: Option<::ValueList<PrivateIpAddressSpecification>> = None;
+                    let mut secondary_private_ip_address_count: Option<::Value<u32>> = None;
+                    let mut subnet_id: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -4938,8 +4938,8 @@ pub mod instance {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut primary = None;
-                    let mut private_ip_address = None;
+                    let mut primary: Option<::Value<bool>> = None;
+                    let mut private_ip_address: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -4996,8 +4996,8 @@ pub mod instance {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut association_parameters = None;
-                    let mut document_name = None;
+                    let mut association_parameters: Option<::ValueList<AssociationParameter>> = None;
+                    let mut document_name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -5052,8 +5052,8 @@ pub mod instance {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut device = None;
-                    let mut volume_id = None;
+                    let mut device: Option<::Value<String>> = None;
+                    let mut volume_id: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -5116,8 +5116,8 @@ pub mod network_acl_entry {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut code = None;
-                    let mut type_ = None;
+                    let mut code: Option<::Value<u32>> = None;
+                    let mut type_: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -5176,8 +5176,8 @@ pub mod network_acl_entry {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut from = None;
-                    let mut to = None;
+                    let mut from: Option<::Value<u32>> = None;
+                    let mut to: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -5233,7 +5233,7 @@ pub mod network_interface {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut ipv6_address = None;
+                    let mut ipv6_address: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -5284,8 +5284,8 @@ pub mod network_interface {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut primary = None;
-                    let mut private_ip_address = None;
+                    let mut primary: Option<::Value<bool>> = None;
+                    let mut private_ip_address: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -5376,14 +5376,14 @@ pub mod security_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut cidr_ip = None;
-                    let mut cidr_ipv6 = None;
-                    let mut description = None;
-                    let mut destination_prefix_list_id = None;
-                    let mut destination_security_group_id = None;
-                    let mut from_port = None;
-                    let mut ip_protocol = None;
-                    let mut to_port = None;
+                    let mut cidr_ip: Option<::Value<String>> = None;
+                    let mut cidr_ipv6: Option<::Value<String>> = None;
+                    let mut description: Option<::Value<String>> = None;
+                    let mut destination_prefix_list_id: Option<::Value<String>> = None;
+                    let mut destination_security_group_id: Option<::Value<String>> = None;
+                    let mut from_port: Option<::Value<u32>> = None;
+                    let mut ip_protocol: Option<::Value<String>> = None;
+                    let mut to_port: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -5499,15 +5499,15 @@ pub mod security_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut cidr_ip = None;
-                    let mut cidr_ipv6 = None;
-                    let mut description = None;
-                    let mut from_port = None;
-                    let mut ip_protocol = None;
-                    let mut source_security_group_id = None;
-                    let mut source_security_group_name = None;
-                    let mut source_security_group_owner_id = None;
-                    let mut to_port = None;
+                    let mut cidr_ip: Option<::Value<String>> = None;
+                    let mut cidr_ipv6: Option<::Value<String>> = None;
+                    let mut description: Option<::Value<String>> = None;
+                    let mut from_port: Option<::Value<u32>> = None;
+                    let mut ip_protocol: Option<::Value<String>> = None;
+                    let mut source_security_group_id: Option<::Value<String>> = None;
+                    let mut source_security_group_name: Option<::Value<String>> = None;
+                    let mut source_security_group_owner_id: Option<::Value<String>> = None;
+                    let mut to_port: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -5606,10 +5606,10 @@ pub mod spot_fleet {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut device_name = None;
-                    let mut ebs = None;
-                    let mut no_device = None;
-                    let mut virtual_name = None;
+                    let mut device_name: Option<::Value<String>> = None;
+                    let mut ebs: Option<::Value<EbsBlockDevice>> = None;
+                    let mut no_device: Option<::Value<String>> = None;
+                    let mut virtual_name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -5696,12 +5696,12 @@ pub mod spot_fleet {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut delete_on_termination = None;
-                    let mut encrypted = None;
-                    let mut iops = None;
-                    let mut snapshot_id = None;
-                    let mut volume_size = None;
-                    let mut volume_type = None;
+                    let mut delete_on_termination: Option<::Value<bool>> = None;
+                    let mut encrypted: Option<::Value<bool>> = None;
+                    let mut iops: Option<::Value<u32>> = None;
+                    let mut snapshot_id: Option<::Value<String>> = None;
+                    let mut volume_size: Option<::Value<u32>> = None;
+                    let mut volume_type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -5769,7 +5769,7 @@ pub mod spot_fleet {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut group_id = None;
+                    let mut group_id: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -5819,7 +5819,7 @@ pub mod spot_fleet {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut arn = None;
+                    let mut arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -5867,7 +5867,7 @@ pub mod spot_fleet {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut ipv6_address = None;
+                    let mut ipv6_address: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -5967,17 +5967,17 @@ pub mod spot_fleet {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut associate_public_ip_address = None;
-                    let mut delete_on_termination = None;
-                    let mut description = None;
-                    let mut device_index = None;
-                    let mut groups = None;
-                    let mut ipv6_address_count = None;
-                    let mut ipv6_addresses = None;
-                    let mut network_interface_id = None;
-                    let mut private_ip_addresses = None;
-                    let mut secondary_private_ip_address_count = None;
-                    let mut subnet_id = None;
+                    let mut associate_public_ip_address: Option<::Value<bool>> = None;
+                    let mut delete_on_termination: Option<::Value<bool>> = None;
+                    let mut description: Option<::Value<String>> = None;
+                    let mut device_index: Option<::Value<u32>> = None;
+                    let mut groups: Option<::ValueList<String>> = None;
+                    let mut ipv6_address_count: Option<::Value<u32>> = None;
+                    let mut ipv6_addresses: Option<::ValueList<InstanceIpv6Address>> = None;
+                    let mut network_interface_id: Option<::Value<String>> = None;
+                    let mut private_ip_addresses: Option<::ValueList<PrivateIpAddressSpecification>> = None;
+                    let mut secondary_private_ip_address_count: Option<::Value<u32>> = None;
+                    let mut subnet_id: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -6070,8 +6070,8 @@ pub mod spot_fleet {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut primary = None;
-                    let mut private_ip_address = None;
+                    let mut primary: Option<::Value<bool>> = None;
+                    let mut private_ip_address: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -6201,23 +6201,23 @@ pub mod spot_fleet {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut block_device_mappings = None;
-                    let mut ebs_optimized = None;
-                    let mut iam_instance_profile = None;
-                    let mut image_id = None;
-                    let mut instance_type = None;
-                    let mut kernel_id = None;
-                    let mut key_name = None;
-                    let mut monitoring = None;
-                    let mut network_interfaces = None;
-                    let mut placement = None;
-                    let mut ramdisk_id = None;
-                    let mut security_groups = None;
-                    let mut spot_price = None;
-                    let mut subnet_id = None;
-                    let mut tag_specifications = None;
-                    let mut user_data = None;
-                    let mut weighted_capacity = None;
+                    let mut block_device_mappings: Option<::ValueList<BlockDeviceMapping>> = None;
+                    let mut ebs_optimized: Option<::Value<bool>> = None;
+                    let mut iam_instance_profile: Option<::Value<IamInstanceProfileSpecification>> = None;
+                    let mut image_id: Option<::Value<String>> = None;
+                    let mut instance_type: Option<::Value<String>> = None;
+                    let mut kernel_id: Option<::Value<String>> = None;
+                    let mut key_name: Option<::Value<String>> = None;
+                    let mut monitoring: Option<::Value<SpotFleetMonitoring>> = None;
+                    let mut network_interfaces: Option<::ValueList<InstanceNetworkInterfaceSpecification>> = None;
+                    let mut placement: Option<::Value<SpotPlacement>> = None;
+                    let mut ramdisk_id: Option<::Value<String>> = None;
+                    let mut security_groups: Option<::ValueList<GroupIdentifier>> = None;
+                    let mut spot_price: Option<::Value<String>> = None;
+                    let mut subnet_id: Option<::Value<String>> = None;
+                    let mut tag_specifications: Option<::ValueList<SpotFleetTagSpecification>> = None;
+                    let mut user_data: Option<::Value<String>> = None;
+                    let mut weighted_capacity: Option<::Value<f64>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -6331,7 +6331,7 @@ pub mod spot_fleet {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut enabled = None;
+                    let mut enabled: Option<::Value<bool>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -6425,17 +6425,17 @@ pub mod spot_fleet {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut allocation_strategy = None;
-                    let mut excess_capacity_termination_policy = None;
-                    let mut iam_fleet_role = None;
-                    let mut launch_specifications = None;
-                    let mut replace_unhealthy_instances = None;
-                    let mut spot_price = None;
-                    let mut target_capacity = None;
-                    let mut terminate_instances_with_expiration = None;
-                    let mut type_ = None;
-                    let mut valid_from = None;
-                    let mut valid_until = None;
+                    let mut allocation_strategy: Option<::Value<String>> = None;
+                    let mut excess_capacity_termination_policy: Option<::Value<String>> = None;
+                    let mut iam_fleet_role: Option<::Value<String>> = None;
+                    let mut launch_specifications: Option<::ValueList<SpotFleetLaunchSpecification>> = None;
+                    let mut replace_unhealthy_instances: Option<::Value<bool>> = None;
+                    let mut spot_price: Option<::Value<String>> = None;
+                    let mut target_capacity: Option<::Value<u32>> = None;
+                    let mut terminate_instances_with_expiration: Option<::Value<bool>> = None;
+                    let mut type_: Option<::Value<String>> = None;
+                    let mut valid_from: Option<::Value<String>> = None;
+                    let mut valid_until: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -6525,7 +6525,7 @@ pub mod spot_fleet {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut resource_type = None;
+                    let mut resource_type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -6580,8 +6580,8 @@ pub mod spot_fleet {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut availability_zone = None;
-                    let mut group_name = None;
+                    let mut availability_zone: Option<::Value<String>> = None;
+                    let mut group_name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -6644,8 +6644,8 @@ pub mod vpn_connection {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut pre_shared_key = None;
-                    let mut tunnel_inside_cidr = None;
+                    let mut pre_shared_key: Option<::Value<String>> = None;
+                    let mut tunnel_inside_cidr: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

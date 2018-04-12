@@ -33,7 +33,7 @@ impl<'de> ::serde::Deserialize<'de> for CustomResourceProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut service_token = None;
+                let mut service_token: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -126,11 +126,11 @@ impl<'de> ::serde::Deserialize<'de> for StackProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut notification_ar_ns = None;
-                let mut parameters = None;
-                let mut tags = None;
-                let mut template_url = None;
-                let mut timeout_in_minutes = None;
+                let mut notification_ar_ns: Option<::ValueList<String>> = None;
+                let mut parameters: Option<::ValueMap<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut template_url: Option<::Value<String>> = None;
+                let mut timeout_in_minutes: Option<::Value<u32>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -227,9 +227,9 @@ impl<'de> ::serde::Deserialize<'de> for WaitConditionProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut count = None;
-                let mut handle = None;
-                let mut timeout = None;
+                let mut count: Option<::Value<u32>> = None;
+                let mut handle: Option<::Value<String>> = None;
+                let mut timeout: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {

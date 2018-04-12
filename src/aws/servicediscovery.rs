@@ -41,9 +41,9 @@ impl<'de> ::serde::Deserialize<'de> for InstanceProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut instance_attributes = None;
-                let mut instance_id = None;
-                let mut service_id = None;
+                let mut instance_attributes: Option<::Value<::json::Value>> = None;
+                let mut instance_id: Option<::Value<String>> = None;
+                let mut service_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -132,9 +132,9 @@ impl<'de> ::serde::Deserialize<'de> for PrivateDnsNamespaceProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut description = None;
-                let mut name = None;
-                let mut vpc = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut vpc: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -220,8 +220,8 @@ impl<'de> ::serde::Deserialize<'de> for PublicDnsNamespaceProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut description = None;
-                let mut name = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -313,10 +313,10 @@ impl<'de> ::serde::Deserialize<'de> for ServiceProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut description = None;
-                let mut dns_config = None;
-                let mut health_check_config = None;
-                let mut name = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut dns_config: Option<::Value<self::service::DnsConfig>> = None;
+                let mut health_check_config: Option<::Value<self::service::HealthCheckConfig>> = None;
+                let mut name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -401,8 +401,8 @@ pub mod service {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut dns_records = None;
-                    let mut namespace_id = None;
+                    let mut dns_records: Option<::ValueList<DnsRecord>> = None;
+                    let mut namespace_id: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -457,8 +457,8 @@ pub mod service {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut ttl = None;
-                    let mut type_ = None;
+                    let mut ttl: Option<::Value<String>> = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -520,9 +520,9 @@ pub mod service {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut failure_threshold = None;
-                    let mut resource_path = None;
-                    let mut type_ = None;
+                    let mut failure_threshold: Option<::Value<f64>> = None;
+                    let mut resource_path: Option<::Value<String>> = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

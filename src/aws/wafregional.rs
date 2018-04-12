@@ -38,8 +38,8 @@ impl<'de> ::serde::Deserialize<'de> for ByteMatchSetProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut byte_match_tuples = None;
-                let mut name = None;
+                let mut byte_match_tuples: Option<::ValueList<self::byte_match_set::ByteMatchTuple>> = None;
+                let mut name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -121,8 +121,8 @@ impl<'de> ::serde::Deserialize<'de> for IPSetProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut ip_set_descriptors = None;
-                let mut name = None;
+                let mut ip_set_descriptors: Option<::ValueList<self::ip_set::IPSetDescriptor>> = None;
+                let mut name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -207,9 +207,9 @@ impl<'de> ::serde::Deserialize<'de> for RuleProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut metric_name = None;
-                let mut name = None;
-                let mut predicates = None;
+                let mut metric_name: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut predicates: Option<::ValueList<self::rule::Predicate>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -295,8 +295,8 @@ impl<'de> ::serde::Deserialize<'de> for SizeConstraintSetProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut name = None;
-                let mut size_constraints = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut size_constraints: Option<::ValueList<self::size_constraint_set::SizeConstraint>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -378,8 +378,8 @@ impl<'de> ::serde::Deserialize<'de> for SqlInjectionMatchSetProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut name = None;
-                let mut sql_injection_match_tuples = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut sql_injection_match_tuples: Option<::ValueList<self::sql_injection_match_set::SqlInjectionMatchTuple>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -467,10 +467,10 @@ impl<'de> ::serde::Deserialize<'de> for WebACLProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut default_action = None;
-                let mut metric_name = None;
-                let mut name = None;
-                let mut rules = None;
+                let mut default_action: Option<::Value<self::web_acl::Action>> = None;
+                let mut metric_name: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut rules: Option<::ValueList<self::web_acl::Rule>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -558,8 +558,8 @@ impl<'de> ::serde::Deserialize<'de> for WebACLAssociationProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut resource_arn = None;
-                let mut web_acl_id = None;
+                let mut resource_arn: Option<::Value<String>> = None;
+                let mut web_acl_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -641,8 +641,8 @@ impl<'de> ::serde::Deserialize<'de> for XssMatchSetProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut name = None;
-                let mut xss_match_tuples = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut xss_match_tuples: Option<::ValueList<self::xss_match_set::XssMatchTuple>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -732,11 +732,11 @@ pub mod byte_match_set {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut field_to_match = None;
-                    let mut positional_constraint = None;
-                    let mut target_string = None;
-                    let mut target_string_base64 = None;
-                    let mut text_transformation = None;
+                    let mut field_to_match: Option<::Value<FieldToMatch>> = None;
+                    let mut positional_constraint: Option<::Value<String>> = None;
+                    let mut target_string: Option<::Value<String>> = None;
+                    let mut target_string_base64: Option<::Value<String>> = None;
+                    let mut text_transformation: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -805,8 +805,8 @@ pub mod byte_match_set {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut data = None;
-                    let mut type_ = None;
+                    let mut data: Option<::Value<String>> = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -865,8 +865,8 @@ pub mod ip_set {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut type_ = None;
-                    let mut value = None;
+                    let mut type_: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -928,9 +928,9 @@ pub mod rule {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut data_id = None;
-                    let mut negated = None;
-                    let mut type_ = None;
+                    let mut data_id: Option<::Value<String>> = None;
+                    let mut negated: Option<::Value<bool>> = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -995,8 +995,8 @@ pub mod size_constraint_set {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut data = None;
-                    let mut type_ = None;
+                    let mut data: Option<::Value<String>> = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1057,10 +1057,10 @@ pub mod size_constraint_set {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut comparison_operator = None;
-                    let mut field_to_match = None;
-                    let mut size = None;
-                    let mut text_transformation = None;
+                    let mut comparison_operator: Option<::Value<String>> = None;
+                    let mut field_to_match: Option<::Value<FieldToMatch>> = None;
+                    let mut size: Option<::Value<u32>> = None;
+                    let mut text_transformation: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1129,8 +1129,8 @@ pub mod sql_injection_match_set {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut data = None;
-                    let mut type_ = None;
+                    let mut data: Option<::Value<String>> = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1185,8 +1185,8 @@ pub mod sql_injection_match_set {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut field_to_match = None;
-                    let mut text_transformation = None;
+                    let mut field_to_match: Option<::Value<FieldToMatch>> = None;
+                    let mut text_transformation: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1242,7 +1242,7 @@ pub mod web_acl {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut type_ = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1296,9 +1296,9 @@ pub mod web_acl {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut action = None;
-                    let mut priority = None;
-                    let mut rule_id = None;
+                    let mut action: Option<::Value<Action>> = None;
+                    let mut priority: Option<::Value<u32>> = None;
+                    let mut rule_id: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1363,8 +1363,8 @@ pub mod xss_match_set {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut data = None;
-                    let mut type_ = None;
+                    let mut data: Option<::Value<String>> = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1419,8 +1419,8 @@ pub mod xss_match_set {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut field_to_match = None;
-                    let mut text_transformation = None;
+                    let mut field_to_match: Option<::Value<FieldToMatch>> = None;
+                    let mut text_transformation: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

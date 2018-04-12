@@ -50,10 +50,10 @@ impl<'de> ::serde::Deserialize<'de> for FileSystemProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut encrypted = None;
-                let mut file_system_tags = None;
-                let mut kms_key_id = None;
-                let mut performance_mode = None;
+                let mut encrypted: Option<::Value<bool>> = None;
+                let mut file_system_tags: Option<::ValueList<self::file_system::ElasticFileSystemTag>> = None;
+                let mut kms_key_id: Option<::Value<String>> = None;
+                let mut performance_mode: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -149,10 +149,10 @@ impl<'de> ::serde::Deserialize<'de> for MountTargetProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut file_system_id = None;
-                let mut ip_address = None;
-                let mut security_groups = None;
-                let mut subnet_id = None;
+                let mut file_system_id: Option<::Value<String>> = None;
+                let mut ip_address: Option<::Value<String>> = None;
+                let mut security_groups: Option<::ValueList<String>> = None;
+                let mut subnet_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -237,8 +237,8 @@ pub mod file_system {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut key = None;
-                    let mut value = None;
+                    let mut key: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

@@ -75,15 +75,15 @@ impl<'de> ::serde::Deserialize<'de> for DomainProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut access_policies = None;
-                let mut advanced_options = None;
-                let mut domain_name = None;
-                let mut ebs_options = None;
-                let mut elasticsearch_cluster_config = None;
-                let mut elasticsearch_version = None;
-                let mut snapshot_options = None;
-                let mut tags = None;
-                let mut vpc_options = None;
+                let mut access_policies: Option<::Value<::json::Value>> = None;
+                let mut advanced_options: Option<::ValueMap<String>> = None;
+                let mut domain_name: Option<::Value<String>> = None;
+                let mut ebs_options: Option<::Value<self::domain::EBSOptions>> = None;
+                let mut elasticsearch_cluster_config: Option<::Value<self::domain::ElasticsearchClusterConfig>> = None;
+                let mut elasticsearch_version: Option<::Value<String>> = None;
+                let mut snapshot_options: Option<::Value<self::domain::SnapshotOptions>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut vpc_options: Option<::Value<self::domain::VPCOptions>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -202,10 +202,10 @@ pub mod domain {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut ebs_enabled = None;
-                    let mut iops = None;
-                    let mut volume_size = None;
-                    let mut volume_type = None;
+                    let mut ebs_enabled: Option<::Value<bool>> = None;
+                    let mut iops: Option<::Value<u32>> = None;
+                    let mut volume_size: Option<::Value<u32>> = None;
+                    let mut volume_type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -292,12 +292,12 @@ pub mod domain {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut dedicated_master_count = None;
-                    let mut dedicated_master_enabled = None;
-                    let mut dedicated_master_type = None;
-                    let mut instance_count = None;
-                    let mut instance_type = None;
-                    let mut zone_awareness_enabled = None;
+                    let mut dedicated_master_count: Option<::Value<u32>> = None;
+                    let mut dedicated_master_enabled: Option<::Value<bool>> = None;
+                    let mut dedicated_master_type: Option<::Value<String>> = None;
+                    let mut instance_count: Option<::Value<u32>> = None;
+                    let mut instance_type: Option<::Value<String>> = None;
+                    let mut zone_awareness_enabled: Option<::Value<bool>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -367,7 +367,7 @@ pub mod domain {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut automated_snapshot_start_hour = None;
+                    let mut automated_snapshot_start_hour: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -422,8 +422,8 @@ pub mod domain {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut security_group_ids = None;
-                    let mut subnet_ids = None;
+                    let mut security_group_ids: Option<::ValueList<String>> = None;
+                    let mut subnet_ids: Option<::ValueList<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

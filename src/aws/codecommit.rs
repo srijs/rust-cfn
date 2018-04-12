@@ -43,9 +43,9 @@ impl<'de> ::serde::Deserialize<'de> for RepositoryProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut repository_description = None;
-                let mut repository_name = None;
-                let mut triggers = None;
+                let mut repository_description: Option<::Value<String>> = None;
+                let mut repository_name: Option<::Value<String>> = None;
+                let mut triggers: Option<::ValueList<self::repository::RepositoryTrigger>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -145,11 +145,11 @@ pub mod repository {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut branches = None;
-                    let mut custom_data = None;
-                    let mut destination_arn = None;
-                    let mut events = None;
-                    let mut name = None;
+                    let mut branches: Option<::ValueList<String>> = None;
+                    let mut custom_data: Option<::Value<String>> = None;
+                    let mut destination_arn: Option<::Value<String>> = None;
+                    let mut events: Option<::ValueList<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

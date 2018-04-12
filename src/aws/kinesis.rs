@@ -53,11 +53,11 @@ impl<'de> ::serde::Deserialize<'de> for StreamProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut name = None;
-                let mut retention_period_hours = None;
-                let mut shard_count = None;
-                let mut stream_encryption = None;
-                let mut tags = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut retention_period_hours: Option<::Value<u32>> = None;
+                let mut shard_count: Option<::Value<u32>> = None;
+                let mut stream_encryption: Option<::Value<self::stream::StreamEncryption>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -146,8 +146,8 @@ pub mod stream {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut encryption_type = None;
-                    let mut key_id = None;
+                    let mut encryption_type: Option<::Value<String>> = None;
+                    let mut key_id: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

@@ -84,18 +84,18 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut availability_zones = None;
-                let mut cluster_name = None;
-                let mut description = None;
-                let mut iam_role_arn = None;
-                let mut node_type = None;
-                let mut notification_topic_arn = None;
-                let mut parameter_group_name = None;
-                let mut preferred_maintenance_window = None;
-                let mut replication_factor = None;
-                let mut security_group_ids = None;
-                let mut subnet_group_name = None;
-                let mut tags = None;
+                let mut availability_zones: Option<::ValueList<String>> = None;
+                let mut cluster_name: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut iam_role_arn: Option<::Value<String>> = None;
+                let mut node_type: Option<::Value<String>> = None;
+                let mut notification_topic_arn: Option<::Value<String>> = None;
+                let mut parameter_group_name: Option<::Value<String>> = None;
+                let mut preferred_maintenance_window: Option<::Value<String>> = None;
+                let mut replication_factor: Option<::Value<u32>> = None;
+                let mut security_group_ids: Option<::ValueList<String>> = None;
+                let mut subnet_group_name: Option<::Value<String>> = None;
+                let mut tags: Option<::Value<::json::Value>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -224,9 +224,9 @@ impl<'de> ::serde::Deserialize<'de> for ParameterGroupProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut description = None;
-                let mut parameter_group_name = None;
-                let mut parameter_name_values = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut parameter_group_name: Option<::Value<String>> = None;
+                let mut parameter_name_values: Option<::Value<::json::Value>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -317,9 +317,9 @@ impl<'de> ::serde::Deserialize<'de> for SubnetGroupProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut description = None;
-                let mut subnet_group_name = None;
-                let mut subnet_ids = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut subnet_group_name: Option<::Value<String>> = None;
+                let mut subnet_ids: Option<::ValueList<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {

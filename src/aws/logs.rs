@@ -42,10 +42,10 @@ impl<'de> ::serde::Deserialize<'de> for DestinationProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut destination_name = None;
-                let mut destination_policy = None;
-                let mut role_arn = None;
-                let mut target_arn = None;
+                let mut destination_name: Option<::Value<String>> = None;
+                let mut destination_policy: Option<::Value<String>> = None;
+                let mut role_arn: Option<::Value<String>> = None;
+                let mut target_arn: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -137,8 +137,8 @@ impl<'de> ::serde::Deserialize<'de> for LogGroupProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut log_group_name = None;
-                let mut retention_in_days = None;
+                let mut log_group_name: Option<::Value<String>> = None;
+                let mut retention_in_days: Option<::Value<u32>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -220,8 +220,8 @@ impl<'de> ::serde::Deserialize<'de> for LogStreamProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut log_group_name = None;
-                let mut log_stream_name = None;
+                let mut log_group_name: Option<::Value<String>> = None;
+                let mut log_stream_name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -304,9 +304,9 @@ impl<'de> ::serde::Deserialize<'de> for MetricFilterProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut filter_pattern = None;
-                let mut log_group_name = None;
-                let mut metric_transformations = None;
+                let mut filter_pattern: Option<::Value<String>> = None;
+                let mut log_group_name: Option<::Value<String>> = None;
+                let mut metric_transformations: Option<::ValueList<self::metric_filter::MetricTransformation>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -398,10 +398,10 @@ impl<'de> ::serde::Deserialize<'de> for SubscriptionFilterProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut destination_arn = None;
-                let mut filter_pattern = None;
-                let mut log_group_name = None;
-                let mut role_arn = None;
+                let mut destination_arn: Option<::Value<String>> = None;
+                let mut filter_pattern: Option<::Value<String>> = None;
+                let mut log_group_name: Option<::Value<String>> = None;
+                let mut role_arn: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -489,9 +489,9 @@ pub mod metric_filter {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut metric_name = None;
-                    let mut metric_namespace = None;
-                    let mut metric_value = None;
+                    let mut metric_name: Option<::Value<String>> = None;
+                    let mut metric_namespace: Option<::Value<String>> = None;
+                    let mut metric_value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

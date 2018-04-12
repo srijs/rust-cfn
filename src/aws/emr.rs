@@ -107,23 +107,23 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut additional_info = None;
-                let mut applications = None;
-                let mut auto_scaling_role = None;
-                let mut bootstrap_actions = None;
-                let mut configurations = None;
-                let mut custom_ami_id = None;
-                let mut ebs_root_volume_size = None;
-                let mut instances = None;
-                let mut job_flow_role = None;
-                let mut log_uri = None;
-                let mut name = None;
-                let mut release_label = None;
-                let mut scale_down_behavior = None;
-                let mut security_configuration = None;
-                let mut service_role = None;
-                let mut tags = None;
-                let mut visible_to_all_users = None;
+                let mut additional_info: Option<::Value<::json::Value>> = None;
+                let mut applications: Option<::ValueList<self::cluster::Application>> = None;
+                let mut auto_scaling_role: Option<::Value<String>> = None;
+                let mut bootstrap_actions: Option<::ValueList<self::cluster::BootstrapActionConfig>> = None;
+                let mut configurations: Option<::ValueList<self::cluster::Configuration>> = None;
+                let mut custom_ami_id: Option<::Value<String>> = None;
+                let mut ebs_root_volume_size: Option<::Value<u32>> = None;
+                let mut instances: Option<::Value<self::cluster::JobFlowInstancesConfig>> = None;
+                let mut job_flow_role: Option<::Value<String>> = None;
+                let mut log_uri: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut release_label: Option<::Value<String>> = None;
+                let mut scale_down_behavior: Option<::Value<String>> = None;
+                let mut security_configuration: Option<::Value<String>> = None;
+                let mut service_role: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut visible_to_all_users: Option<::Value<bool>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -288,13 +288,13 @@ impl<'de> ::serde::Deserialize<'de> for InstanceFleetConfigProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut cluster_id = None;
-                let mut instance_fleet_type = None;
-                let mut instance_type_configs = None;
-                let mut launch_specifications = None;
-                let mut name = None;
-                let mut target_on_demand_capacity = None;
-                let mut target_spot_capacity = None;
+                let mut cluster_id: Option<::Value<String>> = None;
+                let mut instance_fleet_type: Option<::Value<String>> = None;
+                let mut instance_type_configs: Option<::ValueList<self::instance_fleet_config::InstanceTypeConfig>> = None;
+                let mut launch_specifications: Option<::Value<self::instance_fleet_config::InstanceFleetProvisioningSpecifications>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut target_on_demand_capacity: Option<::Value<u32>> = None;
+                let mut target_spot_capacity: Option<::Value<u32>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -430,16 +430,16 @@ impl<'de> ::serde::Deserialize<'de> for InstanceGroupConfigProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut auto_scaling_policy = None;
-                let mut bid_price = None;
-                let mut configurations = None;
-                let mut ebs_configuration = None;
-                let mut instance_count = None;
-                let mut instance_role = None;
-                let mut instance_type = None;
-                let mut job_flow_id = None;
-                let mut market = None;
-                let mut name = None;
+                let mut auto_scaling_policy: Option<::Value<self::instance_group_config::AutoScalingPolicy>> = None;
+                let mut bid_price: Option<::Value<String>> = None;
+                let mut configurations: Option<::ValueList<self::instance_group_config::Configuration>> = None;
+                let mut ebs_configuration: Option<::Value<self::instance_group_config::EbsConfiguration>> = None;
+                let mut instance_count: Option<::Value<u32>> = None;
+                let mut instance_role: Option<::Value<String>> = None;
+                let mut instance_type: Option<::Value<String>> = None;
+                let mut job_flow_id: Option<::Value<String>> = None;
+                let mut market: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -553,8 +553,8 @@ impl<'de> ::serde::Deserialize<'de> for SecurityConfigurationProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut name = None;
-                let mut security_configuration = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut security_configuration: Option<::Value<::json::Value>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -640,10 +640,10 @@ impl<'de> ::serde::Deserialize<'de> for StepProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut action_on_failure = None;
-                let mut hadoop_jar_step = None;
-                let mut job_flow_id = None;
-                let mut name = None;
+                let mut action_on_failure: Option<::Value<String>> = None;
+                let mut hadoop_jar_step: Option<::Value<self::step::HadoopJarStepConfig>> = None;
+                let mut job_flow_id: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -742,10 +742,10 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut additional_info = None;
-                    let mut args = None;
-                    let mut name = None;
-                    let mut version = None;
+                    let mut additional_info: Option<::ValueMap<String>> = None;
+                    let mut args: Option<::ValueList<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut version: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -808,8 +808,8 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut constraints = None;
-                    let mut rules = None;
+                    let mut constraints: Option<::Value<ScalingConstraints>> = None;
+                    let mut rules: Option<::ValueList<ScalingRule>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -864,8 +864,8 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut name = None;
-                    let mut script_bootstrap_action = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut script_bootstrap_action: Option<::Value<ScriptBootstrapActionConfig>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -951,15 +951,15 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut comparison_operator = None;
-                    let mut dimensions = None;
-                    let mut evaluation_periods = None;
-                    let mut metric_name = None;
-                    let mut namespace = None;
-                    let mut period = None;
-                    let mut statistic = None;
-                    let mut threshold = None;
-                    let mut unit = None;
+                    let mut comparison_operator: Option<::Value<String>> = None;
+                    let mut dimensions: Option<::ValueList<MetricDimension>> = None;
+                    let mut evaluation_periods: Option<::Value<u32>> = None;
+                    let mut metric_name: Option<::Value<String>> = None;
+                    let mut namespace: Option<::Value<String>> = None;
+                    let mut period: Option<::Value<u32>> = None;
+                    let mut statistic: Option<::Value<String>> = None;
+                    let mut threshold: Option<::Value<f64>> = None;
+                    let mut unit: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1051,9 +1051,9 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut classification = None;
-                    let mut configuration_properties = None;
-                    let mut configurations = None;
+                    let mut classification: Option<::Value<String>> = None;
+                    let mut configuration_properties: Option<::ValueMap<String>> = None;
+                    let mut configurations: Option<::ValueList<Configuration>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1114,8 +1114,8 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut volume_specification = None;
-                    let mut volumes_per_instance = None;
+                    let mut volume_specification: Option<::Value<VolumeSpecification>> = None;
+                    let mut volumes_per_instance: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1174,8 +1174,8 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut ebs_block_device_configs = None;
-                    let mut ebs_optimized = None;
+                    let mut ebs_block_device_configs: Option<::ValueList<EbsBlockDeviceConfig>> = None;
+                    let mut ebs_optimized: Option<::Value<bool>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1249,11 +1249,11 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut instance_type_configs = None;
-                    let mut launch_specifications = None;
-                    let mut name = None;
-                    let mut target_on_demand_capacity = None;
-                    let mut target_spot_capacity = None;
+                    let mut instance_type_configs: Option<::ValueList<InstanceTypeConfig>> = None;
+                    let mut launch_specifications: Option<::Value<InstanceFleetProvisioningSpecifications>> = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut target_on_demand_capacity: Option<::Value<u32>> = None;
+                    let mut target_spot_capacity: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1317,7 +1317,7 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut spot_specification = None;
+                    let mut spot_specification: Option<::Value<SpotProvisioningSpecification>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1398,14 +1398,14 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut auto_scaling_policy = None;
-                    let mut bid_price = None;
-                    let mut configurations = None;
-                    let mut ebs_configuration = None;
-                    let mut instance_count = None;
-                    let mut instance_type = None;
-                    let mut market = None;
-                    let mut name = None;
+                    let mut auto_scaling_policy: Option<::Value<AutoScalingPolicy>> = None;
+                    let mut bid_price: Option<::Value<String>> = None;
+                    let mut configurations: Option<::ValueList<Configuration>> = None;
+                    let mut ebs_configuration: Option<::Value<EbsConfiguration>> = None;
+                    let mut instance_count: Option<::Value<u32>> = None;
+                    let mut instance_type: Option<::Value<String>> = None;
+                    let mut market: Option<::Value<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1506,12 +1506,12 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut bid_price = None;
-                    let mut bid_price_as_percentage_of_on_demand_price = None;
-                    let mut configurations = None;
-                    let mut ebs_configuration = None;
-                    let mut instance_type = None;
-                    let mut weighted_capacity = None;
+                    let mut bid_price: Option<::Value<String>> = None;
+                    let mut bid_price_as_percentage_of_on_demand_price: Option<::Value<f64>> = None;
+                    let mut configurations: Option<::ValueList<Configuration>> = None;
+                    let mut ebs_configuration: Option<::Value<EbsConfiguration>> = None;
+                    let mut instance_type: Option<::Value<String>> = None;
+                    let mut weighted_capacity: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1646,20 +1646,20 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut additional_master_security_groups = None;
-                    let mut additional_slave_security_groups = None;
-                    let mut core_instance_fleet = None;
-                    let mut core_instance_group = None;
-                    let mut ec2_key_name = None;
-                    let mut ec2_subnet_id = None;
-                    let mut emr_managed_master_security_group = None;
-                    let mut emr_managed_slave_security_group = None;
-                    let mut hadoop_version = None;
-                    let mut master_instance_fleet = None;
-                    let mut master_instance_group = None;
-                    let mut placement = None;
-                    let mut service_access_security_group = None;
-                    let mut termination_protected = None;
+                    let mut additional_master_security_groups: Option<::ValueList<String>> = None;
+                    let mut additional_slave_security_groups: Option<::ValueList<String>> = None;
+                    let mut core_instance_fleet: Option<::Value<InstanceFleetConfig>> = None;
+                    let mut core_instance_group: Option<::Value<InstanceGroupConfig>> = None;
+                    let mut ec2_key_name: Option<::Value<String>> = None;
+                    let mut ec2_subnet_id: Option<::Value<String>> = None;
+                    let mut emr_managed_master_security_group: Option<::Value<String>> = None;
+                    let mut emr_managed_slave_security_group: Option<::Value<String>> = None;
+                    let mut hadoop_version: Option<::Value<String>> = None;
+                    let mut master_instance_fleet: Option<::Value<InstanceFleetConfig>> = None;
+                    let mut master_instance_group: Option<::Value<InstanceGroupConfig>> = None;
+                    let mut placement: Option<::Value<PlacementType>> = None;
+                    let mut service_access_security_group: Option<::Value<String>> = None;
+                    let mut termination_protected: Option<::Value<bool>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1762,8 +1762,8 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut key = None;
-                    let mut value = None;
+                    let mut key: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1815,7 +1815,7 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut availability_zone = None;
+                    let mut availability_zone: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1868,8 +1868,8 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut market = None;
-                    let mut simple_scaling_policy_configuration = None;
+                    let mut market: Option<::Value<String>> = None;
+                    let mut simple_scaling_policy_configuration: Option<::Value<SimpleScalingPolicyConfiguration>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1924,8 +1924,8 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut max_capacity = None;
-                    let mut min_capacity = None;
+                    let mut max_capacity: Option<::Value<u32>> = None;
+                    let mut min_capacity: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1988,10 +1988,10 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut action = None;
-                    let mut description = None;
-                    let mut name = None;
-                    let mut trigger = None;
+                    let mut action: Option<::Value<ScalingAction>> = None;
+                    let mut description: Option<::Value<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut trigger: Option<::Value<ScalingTrigger>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2051,7 +2051,7 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut cloud_watch_alarm_definition = None;
+                    let mut cloud_watch_alarm_definition: Option<::Value<CloudWatchAlarmDefinition>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2104,8 +2104,8 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut args = None;
-                    let mut path = None;
+                    let mut args: Option<::ValueList<String>> = None;
+                    let mut path: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2167,9 +2167,9 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut adjustment_type = None;
-                    let mut cool_down = None;
-                    let mut scaling_adjustment = None;
+                    let mut adjustment_type: Option<::Value<String>> = None;
+                    let mut cool_down: Option<::Value<u32>> = None;
+                    let mut scaling_adjustment: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2233,9 +2233,9 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut block_duration_minutes = None;
-                    let mut timeout_action = None;
-                    let mut timeout_duration_minutes = None;
+                    let mut block_duration_minutes: Option<::Value<u32>> = None;
+                    let mut timeout_action: Option<::Value<String>> = None;
+                    let mut timeout_duration_minutes: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2299,9 +2299,9 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut iops = None;
-                    let mut size_in_gb = None;
-                    let mut volume_type = None;
+                    let mut iops: Option<::Value<u32>> = None;
+                    let mut size_in_gb: Option<::Value<u32>> = None;
+                    let mut volume_type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2373,9 +2373,9 @@ pub mod instance_fleet_config {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut classification = None;
-                    let mut configuration_properties = None;
-                    let mut configurations = None;
+                    let mut classification: Option<::Value<String>> = None;
+                    let mut configuration_properties: Option<::ValueMap<String>> = None;
+                    let mut configurations: Option<::ValueList<Configuration>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2436,8 +2436,8 @@ pub mod instance_fleet_config {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut volume_specification = None;
-                    let mut volumes_per_instance = None;
+                    let mut volume_specification: Option<::Value<VolumeSpecification>> = None;
+                    let mut volumes_per_instance: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2496,8 +2496,8 @@ pub mod instance_fleet_config {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut ebs_block_device_configs = None;
-                    let mut ebs_optimized = None;
+                    let mut ebs_block_device_configs: Option<::ValueList<EbsBlockDeviceConfig>> = None;
+                    let mut ebs_optimized: Option<::Value<bool>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2549,7 +2549,7 @@ pub mod instance_fleet_config {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut spot_specification = None;
+                    let mut spot_specification: Option<::Value<SpotProvisioningSpecification>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2622,12 +2622,12 @@ pub mod instance_fleet_config {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut bid_price = None;
-                    let mut bid_price_as_percentage_of_on_demand_price = None;
-                    let mut configurations = None;
-                    let mut ebs_configuration = None;
-                    let mut instance_type = None;
-                    let mut weighted_capacity = None;
+                    let mut bid_price: Option<::Value<String>> = None;
+                    let mut bid_price_as_percentage_of_on_demand_price: Option<::Value<f64>> = None;
+                    let mut configurations: Option<::ValueList<Configuration>> = None;
+                    let mut ebs_configuration: Option<::Value<EbsConfiguration>> = None;
+                    let mut instance_type: Option<::Value<String>> = None;
+                    let mut weighted_capacity: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2703,9 +2703,9 @@ pub mod instance_fleet_config {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut block_duration_minutes = None;
-                    let mut timeout_action = None;
-                    let mut timeout_duration_minutes = None;
+                    let mut block_duration_minutes: Option<::Value<u32>> = None;
+                    let mut timeout_action: Option<::Value<String>> = None;
+                    let mut timeout_duration_minutes: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2769,9 +2769,9 @@ pub mod instance_fleet_config {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut iops = None;
-                    let mut size_in_gb = None;
-                    let mut volume_type = None;
+                    let mut iops: Option<::Value<u32>> = None;
+                    let mut size_in_gb: Option<::Value<u32>> = None;
+                    let mut volume_type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2834,8 +2834,8 @@ pub mod instance_group_config {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut constraints = None;
-                    let mut rules = None;
+                    let mut constraints: Option<::Value<ScalingConstraints>> = None;
+                    let mut rules: Option<::ValueList<ScalingRule>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2921,15 +2921,15 @@ pub mod instance_group_config {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut comparison_operator = None;
-                    let mut dimensions = None;
-                    let mut evaluation_periods = None;
-                    let mut metric_name = None;
-                    let mut namespace = None;
-                    let mut period = None;
-                    let mut statistic = None;
-                    let mut threshold = None;
-                    let mut unit = None;
+                    let mut comparison_operator: Option<::Value<String>> = None;
+                    let mut dimensions: Option<::ValueList<MetricDimension>> = None;
+                    let mut evaluation_periods: Option<::Value<u32>> = None;
+                    let mut metric_name: Option<::Value<String>> = None;
+                    let mut namespace: Option<::Value<String>> = None;
+                    let mut period: Option<::Value<u32>> = None;
+                    let mut statistic: Option<::Value<String>> = None;
+                    let mut threshold: Option<::Value<f64>> = None;
+                    let mut unit: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -3021,9 +3021,9 @@ pub mod instance_group_config {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut classification = None;
-                    let mut configuration_properties = None;
-                    let mut configurations = None;
+                    let mut classification: Option<::Value<String>> = None;
+                    let mut configuration_properties: Option<::ValueMap<String>> = None;
+                    let mut configurations: Option<::ValueList<Configuration>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -3084,8 +3084,8 @@ pub mod instance_group_config {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut volume_specification = None;
-                    let mut volumes_per_instance = None;
+                    let mut volume_specification: Option<::Value<VolumeSpecification>> = None;
+                    let mut volumes_per_instance: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -3144,8 +3144,8 @@ pub mod instance_group_config {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut ebs_block_device_configs = None;
-                    let mut ebs_optimized = None;
+                    let mut ebs_block_device_configs: Option<::ValueList<EbsBlockDeviceConfig>> = None;
+                    let mut ebs_optimized: Option<::Value<bool>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -3200,8 +3200,8 @@ pub mod instance_group_config {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut key = None;
-                    let mut value = None;
+                    let mut key: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -3258,8 +3258,8 @@ pub mod instance_group_config {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut market = None;
-                    let mut simple_scaling_policy_configuration = None;
+                    let mut market: Option<::Value<String>> = None;
+                    let mut simple_scaling_policy_configuration: Option<::Value<SimpleScalingPolicyConfiguration>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -3314,8 +3314,8 @@ pub mod instance_group_config {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut max_capacity = None;
-                    let mut min_capacity = None;
+                    let mut max_capacity: Option<::Value<u32>> = None;
+                    let mut min_capacity: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -3378,10 +3378,10 @@ pub mod instance_group_config {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut action = None;
-                    let mut description = None;
-                    let mut name = None;
-                    let mut trigger = None;
+                    let mut action: Option<::Value<ScalingAction>> = None;
+                    let mut description: Option<::Value<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut trigger: Option<::Value<ScalingTrigger>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -3441,7 +3441,7 @@ pub mod instance_group_config {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut cloud_watch_alarm_definition = None;
+                    let mut cloud_watch_alarm_definition: Option<::Value<CloudWatchAlarmDefinition>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -3499,9 +3499,9 @@ pub mod instance_group_config {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut adjustment_type = None;
-                    let mut cool_down = None;
-                    let mut scaling_adjustment = None;
+                    let mut adjustment_type: Option<::Value<String>> = None;
+                    let mut cool_down: Option<::Value<u32>> = None;
+                    let mut scaling_adjustment: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -3565,9 +3565,9 @@ pub mod instance_group_config {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut iops = None;
-                    let mut size_in_gb = None;
-                    let mut volume_type = None;
+                    let mut iops: Option<::Value<u32>> = None;
+                    let mut size_in_gb: Option<::Value<u32>> = None;
+                    let mut volume_type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -3642,10 +3642,10 @@ pub mod step {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut args = None;
-                    let mut jar = None;
-                    let mut main_class = None;
-                    let mut step_properties = None;
+                    let mut args: Option<::ValueList<String>> = None;
+                    let mut jar: Option<::Value<String>> = None;
+                    let mut main_class: Option<::Value<String>> = None;
+                    let mut step_properties: Option<::ValueList<KeyValue>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -3712,8 +3712,8 @@ pub mod step {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut key = None;
-                    let mut value = None;
+                    let mut key: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

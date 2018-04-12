@@ -87,19 +87,19 @@ impl<'de> ::serde::Deserialize<'de> for ProjectProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut artifacts = None;
-                let mut badge_enabled = None;
-                let mut cache = None;
-                let mut description = None;
-                let mut encryption_key = None;
-                let mut environment = None;
-                let mut name = None;
-                let mut service_role = None;
-                let mut source = None;
-                let mut tags = None;
-                let mut timeout_in_minutes = None;
-                let mut triggers = None;
-                let mut vpc_config = None;
+                let mut artifacts: Option<::Value<self::project::Artifacts>> = None;
+                let mut badge_enabled: Option<::Value<bool>> = None;
+                let mut cache: Option<::Value<self::project::ProjectCache>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut encryption_key: Option<::Value<String>> = None;
+                let mut environment: Option<::Value<self::project::Environment>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut service_role: Option<::Value<String>> = None;
+                let mut source: Option<::Value<self::project::Source>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut timeout_in_minutes: Option<::Value<u32>> = None;
+                let mut triggers: Option<::Value<self::project::ProjectTriggers>> = None;
+                let mut vpc_config: Option<::Value<self::project::VpcConfig>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -242,12 +242,12 @@ pub mod project {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut location = None;
-                    let mut name = None;
-                    let mut namespace_type = None;
-                    let mut packaging = None;
-                    let mut path = None;
-                    let mut type_ = None;
+                    let mut location: Option<::Value<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut namespace_type: Option<::Value<String>> = None;
+                    let mut packaging: Option<::Value<String>> = None;
+                    let mut path: Option<::Value<String>> = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -331,11 +331,11 @@ pub mod project {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut compute_type = None;
-                    let mut environment_variables = None;
-                    let mut image = None;
-                    let mut privileged_mode = None;
-                    let mut type_ = None;
+                    let mut compute_type: Option<::Value<String>> = None;
+                    let mut environment_variables: Option<::ValueList<EnvironmentVariable>> = None;
+                    let mut image: Option<::Value<String>> = None;
+                    let mut privileged_mode: Option<::Value<bool>> = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -407,9 +407,9 @@ pub mod project {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut name = None;
-                    let mut type_ = None;
-                    let mut value = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut type_: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -470,8 +470,8 @@ pub mod project {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut location = None;
-                    let mut type_ = None;
+                    let mut location: Option<::Value<String>> = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -525,7 +525,7 @@ pub mod project {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut webhook = None;
+                    let mut webhook: Option<::Value<bool>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -598,12 +598,12 @@ pub mod project {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut auth = None;
-                    let mut build_spec = None;
-                    let mut git_clone_depth = None;
-                    let mut insecure_ssl = None;
-                    let mut location = None;
-                    let mut type_ = None;
+                    let mut auth: Option<::Value<SourceAuth>> = None;
+                    let mut build_spec: Option<::Value<String>> = None;
+                    let mut git_clone_depth: Option<::Value<u32>> = None;
+                    let mut insecure_ssl: Option<::Value<bool>> = None;
+                    let mut location: Option<::Value<String>> = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -676,8 +676,8 @@ pub mod project {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut resource = None;
-                    let mut type_ = None;
+                    let mut resource: Option<::Value<String>> = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -735,9 +735,9 @@ pub mod project {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut security_group_ids = None;
-                    let mut subnets = None;
-                    let mut vpc_id = None;
+                    let mut security_group_ids: Option<::ValueList<String>> = None;
+                    let mut subnets: Option<::ValueList<String>> = None;
+                    let mut vpc_id: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

@@ -105,21 +105,21 @@ impl<'de> ::serde::Deserialize<'de> for BucketProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut accelerate_configuration = None;
-                let mut access_control = None;
-                let mut analytics_configurations = None;
-                let mut bucket_encryption = None;
-                let mut bucket_name = None;
-                let mut cors_configuration = None;
-                let mut inventory_configurations = None;
-                let mut lifecycle_configuration = None;
-                let mut logging_configuration = None;
-                let mut metrics_configurations = None;
-                let mut notification_configuration = None;
-                let mut replication_configuration = None;
-                let mut tags = None;
-                let mut versioning_configuration = None;
-                let mut website_configuration = None;
+                let mut accelerate_configuration: Option<::Value<self::bucket::AccelerateConfiguration>> = None;
+                let mut access_control: Option<::Value<String>> = None;
+                let mut analytics_configurations: Option<::ValueList<self::bucket::AnalyticsConfiguration>> = None;
+                let mut bucket_encryption: Option<::Value<self::bucket::BucketEncryption>> = None;
+                let mut bucket_name: Option<::Value<String>> = None;
+                let mut cors_configuration: Option<::Value<self::bucket::CorsConfiguration>> = None;
+                let mut inventory_configurations: Option<::ValueList<self::bucket::InventoryConfiguration>> = None;
+                let mut lifecycle_configuration: Option<::Value<self::bucket::LifecycleConfiguration>> = None;
+                let mut logging_configuration: Option<::Value<self::bucket::LoggingConfiguration>> = None;
+                let mut metrics_configurations: Option<::ValueList<self::bucket::MetricsConfiguration>> = None;
+                let mut notification_configuration: Option<::Value<self::bucket::NotificationConfiguration>> = None;
+                let mut replication_configuration: Option<::Value<self::bucket::ReplicationConfiguration>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut versioning_configuration: Option<::Value<self::bucket::VersioningConfiguration>> = None;
+                let mut website_configuration: Option<::Value<self::bucket::WebsiteConfiguration>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -251,8 +251,8 @@ impl<'de> ::serde::Deserialize<'de> for BucketPolicyProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut bucket = None;
-                let mut policy_document = None;
+                let mut bucket: Option<::Value<String>> = None;
+                let mut policy_document: Option<::Value<::json::Value>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -326,7 +326,7 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut days_after_initiation = None;
+                    let mut days_after_initiation: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -374,7 +374,7 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut acceleration_status = None;
+                    let mut acceleration_status: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -422,7 +422,7 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut owner = None;
+                    let mut owner: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -483,10 +483,10 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut id = None;
-                    let mut prefix = None;
-                    let mut storage_class_analysis = None;
-                    let mut tag_filters = None;
+                    let mut id: Option<::Value<String>> = None;
+                    let mut prefix: Option<::Value<String>> = None;
+                    let mut storage_class_analysis: Option<::Value<StorageClassAnalysis>> = None;
+                    let mut tag_filters: Option<::ValueList<TagFilter>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -546,7 +546,7 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut server_side_encryption_configuration = None;
+                    let mut server_side_encryption_configuration: Option<::ValueList<ServerSideEncryptionRule>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -594,7 +594,7 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut cors_rules = None;
+                    let mut cors_rules: Option<::ValueList<CorsRule>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -665,12 +665,12 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut allowed_headers = None;
-                    let mut allowed_methods = None;
-                    let mut allowed_origins = None;
-                    let mut exposed_headers = None;
-                    let mut id = None;
-                    let mut max_age = None;
+                    let mut allowed_headers: Option<::ValueList<String>> = None;
+                    let mut allowed_methods: Option<::ValueList<String>> = None;
+                    let mut allowed_origins: Option<::ValueList<String>> = None;
+                    let mut exposed_headers: Option<::ValueList<String>> = None;
+                    let mut id: Option<::Value<String>> = None;
+                    let mut max_age: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -741,8 +741,8 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut destination = None;
-                    let mut output_schema_version = None;
+                    let mut destination: Option<::Value<Destination>> = None;
+                    let mut output_schema_version: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -807,10 +807,10 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut bucket_account_id = None;
-                    let mut bucket_arn = None;
-                    let mut format = None;
-                    let mut prefix = None;
+                    let mut bucket_account_id: Option<::Value<String>> = None;
+                    let mut bucket_arn: Option<::Value<String>> = None;
+                    let mut format: Option<::Value<String>> = None;
+                    let mut prefix: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -870,7 +870,7 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut replica_kms_key_id = None;
+                    let mut replica_kms_key_id: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -921,8 +921,8 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut name = None;
-                    let mut value = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -996,13 +996,13 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut destination = None;
-                    let mut enabled = None;
-                    let mut id = None;
-                    let mut included_object_versions = None;
-                    let mut optional_fields = None;
-                    let mut prefix = None;
-                    let mut schedule_frequency = None;
+                    let mut destination: Option<::Value<Destination>> = None;
+                    let mut enabled: Option<::Value<bool>> = None;
+                    let mut id: Option<::Value<String>> = None;
+                    let mut included_object_versions: Option<::Value<String>> = None;
+                    let mut optional_fields: Option<::ValueList<String>> = None;
+                    let mut prefix: Option<::Value<String>> = None;
+                    let mut schedule_frequency: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1082,9 +1082,9 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut event = None;
-                    let mut filter = None;
-                    let mut function = None;
+                    let mut event: Option<::Value<String>> = None;
+                    let mut filter: Option<::Value<NotificationFilter>> = None;
+                    let mut function: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1140,7 +1140,7 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut rules = None;
+                    let mut rules: Option<::ValueList<Rule>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1195,8 +1195,8 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut destination_bucket_name = None;
-                    let mut log_file_prefix = None;
+                    let mut destination_bucket_name: Option<::Value<String>> = None;
+                    let mut log_file_prefix: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1258,9 +1258,9 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut id = None;
-                    let mut prefix = None;
-                    let mut tag_filters = None;
+                    let mut id: Option<::Value<String>> = None;
+                    let mut prefix: Option<::Value<String>> = None;
+                    let mut tag_filters: Option<::ValueList<TagFilter>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1319,8 +1319,8 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut storage_class = None;
-                    let mut transition_in_days = None;
+                    let mut storage_class: Option<::Value<String>> = None;
+                    let mut transition_in_days: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1384,9 +1384,9 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut lambda_configurations = None;
-                    let mut queue_configurations = None;
-                    let mut topic_configurations = None;
+                    let mut lambda_configurations: Option<::ValueList<LambdaConfiguration>> = None;
+                    let mut queue_configurations: Option<::ValueList<QueueConfiguration>> = None;
+                    let mut topic_configurations: Option<::ValueList<TopicConfiguration>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1442,7 +1442,7 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut s3_key = None;
+                    let mut s3_key: Option<::Value<S3KeyFilter>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1498,9 +1498,9 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut event = None;
-                    let mut filter = None;
-                    let mut queue = None;
+                    let mut event: Option<::Value<String>> = None;
+                    let mut filter: Option<::Value<NotificationFilter>> = None;
+                    let mut queue: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1561,8 +1561,8 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut host_name = None;
-                    let mut protocol = None;
+                    let mut host_name: Option<::Value<String>> = None;
+                    let mut protocol: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1636,11 +1636,11 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut host_name = None;
-                    let mut http_redirect_code = None;
-                    let mut protocol = None;
-                    let mut replace_key_prefix_with = None;
-                    let mut replace_key_with = None;
+                    let mut host_name: Option<::Value<String>> = None;
+                    let mut http_redirect_code: Option<::Value<String>> = None;
+                    let mut protocol: Option<::Value<String>> = None;
+                    let mut replace_key_prefix_with: Option<::Value<String>> = None;
+                    let mut replace_key_with: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1707,8 +1707,8 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut role = None;
-                    let mut rules = None;
+                    let mut role: Option<::Value<String>> = None;
+                    let mut rules: Option<::ValueList<ReplicationRule>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1780,11 +1780,11 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut access_control_translation = None;
-                    let mut account = None;
-                    let mut bucket = None;
-                    let mut encryption_configuration = None;
-                    let mut storage_class = None;
+                    let mut access_control_translation: Option<::Value<AccessControlTranslation>> = None;
+                    let mut account: Option<::Value<String>> = None;
+                    let mut bucket: Option<::Value<String>> = None;
+                    let mut encryption_configuration: Option<::Value<EncryptionConfiguration>> = None;
+                    let mut storage_class: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1864,11 +1864,11 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut destination = None;
-                    let mut id = None;
-                    let mut prefix = None;
-                    let mut source_selection_criteria = None;
-                    let mut status = None;
+                    let mut destination: Option<::Value<ReplicationDestination>> = None;
+                    let mut id: Option<::Value<String>> = None;
+                    let mut prefix: Option<::Value<String>> = None;
+                    let mut source_selection_criteria: Option<::Value<SourceSelectionCriteria>> = None;
+                    let mut status: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1937,8 +1937,8 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut redirect_rule = None;
-                    let mut routing_rule_condition = None;
+                    let mut redirect_rule: Option<::Value<RedirectRule>> = None;
+                    let mut routing_rule_condition: Option<::Value<RoutingRuleCondition>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1997,8 +1997,8 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut http_error_code_returned_equals = None;
-                    let mut key_prefix_equals = None;
+                    let mut http_error_code_returned_equals: Option<::Value<String>> = None;
+                    let mut key_prefix_equals: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2105,18 +2105,18 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut abort_incomplete_multipart_upload = None;
-                    let mut expiration_date = None;
-                    let mut expiration_in_days = None;
-                    let mut id = None;
-                    let mut noncurrent_version_expiration_in_days = None;
-                    let mut noncurrent_version_transition = None;
-                    let mut noncurrent_version_transitions = None;
-                    let mut prefix = None;
-                    let mut status = None;
-                    let mut tag_filters = None;
-                    let mut transition = None;
-                    let mut transitions = None;
+                    let mut abort_incomplete_multipart_upload: Option<::Value<AbortIncompleteMultipartUpload>> = None;
+                    let mut expiration_date: Option<::Value<String>> = None;
+                    let mut expiration_in_days: Option<::Value<u32>> = None;
+                    let mut id: Option<::Value<String>> = None;
+                    let mut noncurrent_version_expiration_in_days: Option<::Value<u32>> = None;
+                    let mut noncurrent_version_transition: Option<::Value<NoncurrentVersionTransition>> = None;
+                    let mut noncurrent_version_transitions: Option<::ValueList<NoncurrentVersionTransition>> = None;
+                    let mut prefix: Option<::Value<String>> = None;
+                    let mut status: Option<::Value<String>> = None;
+                    let mut tag_filters: Option<::ValueList<TagFilter>> = None;
+                    let mut transition: Option<::Value<Transition>> = None;
+                    let mut transitions: Option<::ValueList<Transition>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2208,7 +2208,7 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut rules = None;
+                    let mut rules: Option<::ValueList<FilterRule>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2261,8 +2261,8 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut kms_master_key_id = None;
-                    let mut sse_algorithm = None;
+                    let mut kms_master_key_id: Option<::Value<String>> = None;
+                    let mut sse_algorithm: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2316,7 +2316,7 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut server_side_encryption_by_default = None;
+                    let mut server_side_encryption_by_default: Option<::Value<ServerSideEncryptionByDefault>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2364,7 +2364,7 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut sse_kms_encrypted_objects = None;
+                    let mut sse_kms_encrypted_objects: Option<::Value<SseKmsEncryptedObjects>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2412,7 +2412,7 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut status = None;
+                    let mut status: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2462,7 +2462,7 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut data_export = None;
+                    let mut data_export: Option<::Value<DataExport>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2513,8 +2513,8 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut key = None;
-                    let mut value = None;
+                    let mut key: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2574,9 +2574,9 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut event = None;
-                    let mut filter = None;
-                    let mut topic = None;
+                    let mut event: Option<::Value<String>> = None;
+                    let mut filter: Option<::Value<NotificationFilter>> = None;
+                    let mut topic: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2642,9 +2642,9 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut storage_class = None;
-                    let mut transition_date = None;
-                    let mut transition_in_days = None;
+                    let mut storage_class: Option<::Value<String>> = None;
+                    let mut transition_date: Option<::Value<String>> = None;
+                    let mut transition_in_days: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2700,7 +2700,7 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut status = None;
+                    let mut status: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2765,10 +2765,10 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut error_document = None;
-                    let mut index_document = None;
-                    let mut redirect_all_requests_to = None;
-                    let mut routing_rules = None;
+                    let mut error_document: Option<::Value<String>> = None;
+                    let mut index_document: Option<::Value<String>> = None;
+                    let mut redirect_all_requests_to: Option<::Value<RedirectAllRequestsTo>> = None;
+                    let mut routing_rules: Option<::ValueList<RoutingRule>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

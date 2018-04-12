@@ -63,13 +63,13 @@ impl<'de> ::serde::Deserialize<'de> for EnvironmentEC2Properties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut automatic_stop_time_minutes = None;
-                let mut description = None;
-                let mut instance_type = None;
-                let mut name = None;
-                let mut owner_arn = None;
-                let mut repositories = None;
-                let mut subnet_id = None;
+                let mut automatic_stop_time_minutes: Option<::Value<u32>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut instance_type: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut owner_arn: Option<::Value<String>> = None;
+                let mut repositories: Option<::ValueList<self::environment_ec2::Repository>> = None;
+                let mut subnet_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -166,8 +166,8 @@ pub mod environment_ec2 {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut path_component = None;
-                    let mut repository_url = None;
+                    let mut path_component: Option<::Value<String>> = None;
+                    let mut repository_url: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

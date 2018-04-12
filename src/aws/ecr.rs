@@ -45,9 +45,9 @@ impl<'de> ::serde::Deserialize<'de> for RepositoryProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut lifecycle_policy = None;
-                let mut repository_name = None;
-                let mut repository_policy_text = None;
+                let mut lifecycle_policy: Option<::Value<self::repository::LifecyclePolicy>> = None;
+                let mut repository_name: Option<::Value<String>> = None;
+                let mut repository_policy_text: Option<::Value<::json::Value>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -132,8 +132,8 @@ pub mod repository {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut lifecycle_policy_text = None;
-                    let mut registry_id = None;
+                    let mut lifecycle_policy_text: Option<::Value<String>> = None;
+                    let mut registry_id: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

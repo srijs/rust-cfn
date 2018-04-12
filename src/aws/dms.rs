@@ -45,9 +45,9 @@ impl<'de> ::serde::Deserialize<'de> for CertificateProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut certificate_identifier = None;
-                let mut certificate_pem = None;
-                let mut certificate_wallet = None;
+                let mut certificate_identifier: Option<::Value<String>> = None;
+                let mut certificate_pem: Option<::Value<String>> = None;
+                let mut certificate_wallet: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -201,22 +201,22 @@ impl<'de> ::serde::Deserialize<'de> for EndpointProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut certificate_arn = None;
-                let mut database_name = None;
-                let mut dynamo_db_settings = None;
-                let mut endpoint_identifier = None;
-                let mut endpoint_type = None;
-                let mut engine_name = None;
-                let mut extra_connection_attributes = None;
-                let mut kms_key_id = None;
-                let mut mongo_db_settings = None;
-                let mut password = None;
-                let mut port = None;
-                let mut s3_settings = None;
-                let mut server_name = None;
-                let mut ssl_mode = None;
-                let mut tags = None;
-                let mut username = None;
+                let mut certificate_arn: Option<::Value<String>> = None;
+                let mut database_name: Option<::Value<String>> = None;
+                let mut dynamo_db_settings: Option<::Value<self::endpoint::DynamoDbSettings>> = None;
+                let mut endpoint_identifier: Option<::Value<String>> = None;
+                let mut endpoint_type: Option<::Value<String>> = None;
+                let mut engine_name: Option<::Value<String>> = None;
+                let mut extra_connection_attributes: Option<::Value<String>> = None;
+                let mut kms_key_id: Option<::Value<String>> = None;
+                let mut mongo_db_settings: Option<::Value<self::endpoint::MongoDbSettings>> = None;
+                let mut password: Option<::Value<String>> = None;
+                let mut port: Option<::Value<u32>> = None;
+                let mut s3_settings: Option<::Value<self::endpoint::S3Settings>> = None;
+                let mut server_name: Option<::Value<String>> = None;
+                let mut ssl_mode: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut username: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -379,13 +379,13 @@ impl<'de> ::serde::Deserialize<'de> for EventSubscriptionProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut enabled = None;
-                let mut event_categories = None;
-                let mut sns_topic_arn = None;
-                let mut source_ids = None;
-                let mut source_type = None;
-                let mut subscription_name = None;
-                let mut tags = None;
+                let mut enabled: Option<::Value<bool>> = None;
+                let mut event_categories: Option<::ValueList<String>> = None;
+                let mut sns_topic_arn: Option<::Value<String>> = None;
+                let mut source_ids: Option<::ValueList<String>> = None;
+                let mut source_type: Option<::Value<String>> = None;
+                let mut subscription_name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -547,20 +547,20 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationInstanceProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut allocated_storage = None;
-                let mut allow_major_version_upgrade = None;
-                let mut auto_minor_version_upgrade = None;
-                let mut availability_zone = None;
-                let mut engine_version = None;
-                let mut kms_key_id = None;
-                let mut multi_az = None;
-                let mut preferred_maintenance_window = None;
-                let mut publicly_accessible = None;
-                let mut replication_instance_class = None;
-                let mut replication_instance_identifier = None;
-                let mut replication_subnet_group_identifier = None;
-                let mut tags = None;
-                let mut vpc_security_group_ids = None;
+                let mut allocated_storage: Option<::Value<u32>> = None;
+                let mut allow_major_version_upgrade: Option<::Value<bool>> = None;
+                let mut auto_minor_version_upgrade: Option<::Value<bool>> = None;
+                let mut availability_zone: Option<::Value<String>> = None;
+                let mut engine_version: Option<::Value<String>> = None;
+                let mut kms_key_id: Option<::Value<String>> = None;
+                let mut multi_az: Option<::Value<bool>> = None;
+                let mut preferred_maintenance_window: Option<::Value<String>> = None;
+                let mut publicly_accessible: Option<::Value<bool>> = None;
+                let mut replication_instance_class: Option<::Value<String>> = None;
+                let mut replication_instance_identifier: Option<::Value<String>> = None;
+                let mut replication_subnet_group_identifier: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut vpc_security_group_ids: Option<::ValueList<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -698,10 +698,10 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationSubnetGroupProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut replication_subnet_group_description = None;
-                let mut replication_subnet_group_identifier = None;
-                let mut subnet_ids = None;
-                let mut tags = None;
+                let mut replication_subnet_group_description: Option<::Value<String>> = None;
+                let mut replication_subnet_group_identifier: Option<::Value<String>> = None;
+                let mut subnet_ids: Option<::ValueList<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -818,15 +818,15 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationTaskProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut cdc_start_time = None;
-                let mut migration_type = None;
-                let mut replication_instance_arn = None;
-                let mut replication_task_identifier = None;
-                let mut replication_task_settings = None;
-                let mut source_endpoint_arn = None;
-                let mut table_mappings = None;
-                let mut tags = None;
-                let mut target_endpoint_arn = None;
+                let mut cdc_start_time: Option<::Value<f64>> = None;
+                let mut migration_type: Option<::Value<String>> = None;
+                let mut replication_instance_arn: Option<::Value<String>> = None;
+                let mut replication_task_identifier: Option<::Value<String>> = None;
+                let mut replication_task_settings: Option<::Value<String>> = None;
+                let mut source_endpoint_arn: Option<::Value<String>> = None;
+                let mut table_mappings: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut target_endpoint_arn: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -930,7 +930,7 @@ pub mod endpoint {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut service_access_role_arn = None;
+                    let mut service_access_role_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1030,17 +1030,17 @@ pub mod endpoint {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut auth_mechanism = None;
-                    let mut auth_source = None;
-                    let mut auth_type = None;
-                    let mut database_name = None;
-                    let mut docs_to_investigate = None;
-                    let mut extract_doc_id = None;
-                    let mut nesting_level = None;
-                    let mut password = None;
-                    let mut port = None;
-                    let mut server_name = None;
-                    let mut username = None;
+                    let mut auth_mechanism: Option<::Value<String>> = None;
+                    let mut auth_source: Option<::Value<String>> = None;
+                    let mut auth_type: Option<::Value<String>> = None;
+                    let mut database_name: Option<::Value<String>> = None;
+                    let mut docs_to_investigate: Option<::Value<String>> = None;
+                    let mut extract_doc_id: Option<::Value<String>> = None;
+                    let mut nesting_level: Option<::Value<String>> = None;
+                    let mut password: Option<::Value<String>> = None;
+                    let mut port: Option<::Value<u32>> = None;
+                    let mut server_name: Option<::Value<String>> = None;
+                    let mut username: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1160,13 +1160,13 @@ pub mod endpoint {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut bucket_folder = None;
-                    let mut bucket_name = None;
-                    let mut compression_type = None;
-                    let mut csv_delimiter = None;
-                    let mut csv_row_delimiter = None;
-                    let mut external_table_definition = None;
-                    let mut service_access_role_arn = None;
+                    let mut bucket_folder: Option<::Value<String>> = None;
+                    let mut bucket_name: Option<::Value<String>> = None;
+                    let mut compression_type: Option<::Value<String>> = None;
+                    let mut csv_delimiter: Option<::Value<String>> = None;
+                    let mut csv_row_delimiter: Option<::Value<String>> = None;
+                    let mut external_table_definition: Option<::Value<String>> = None;
+                    let mut service_access_role_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

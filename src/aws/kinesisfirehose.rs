@@ -65,13 +65,13 @@ impl<'de> ::serde::Deserialize<'de> for DeliveryStreamProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut delivery_stream_name = None;
-                let mut delivery_stream_type = None;
-                let mut elasticsearch_destination_configuration = None;
-                let mut extended_s3_destination_configuration = None;
-                let mut kinesis_stream_source_configuration = None;
-                let mut redshift_destination_configuration = None;
-                let mut s3_destination_configuration = None;
+                let mut delivery_stream_name: Option<::Value<String>> = None;
+                let mut delivery_stream_type: Option<::Value<String>> = None;
+                let mut elasticsearch_destination_configuration: Option<::Value<self::delivery_stream::ElasticsearchDestinationConfiguration>> = None;
+                let mut extended_s3_destination_configuration: Option<::Value<self::delivery_stream::ExtendedS3DestinationConfiguration>> = None;
+                let mut kinesis_stream_source_configuration: Option<::Value<self::delivery_stream::KinesisStreamSourceConfiguration>> = None;
+                let mut redshift_destination_configuration: Option<::Value<self::delivery_stream::RedshiftDestinationConfiguration>> = None;
+                let mut s3_destination_configuration: Option<::Value<self::delivery_stream::S3DestinationConfiguration>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -168,8 +168,8 @@ pub mod delivery_stream {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut interval_in_seconds = None;
-                    let mut size_in_m_bs = None;
+                    let mut interval_in_seconds: Option<::Value<u32>> = None;
+                    let mut size_in_m_bs: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -233,9 +233,9 @@ pub mod delivery_stream {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut enabled = None;
-                    let mut log_group_name = None;
-                    let mut log_stream_name = None;
+                    let mut enabled: Option<::Value<bool>> = None;
+                    let mut log_group_name: Option<::Value<String>> = None;
+                    let mut log_stream_name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -301,9 +301,9 @@ pub mod delivery_stream {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut copy_options = None;
-                    let mut data_table_columns = None;
-                    let mut data_table_name = None;
+                    let mut copy_options: Option<::Value<String>> = None;
+                    let mut data_table_columns: Option<::Value<String>> = None;
+                    let mut data_table_name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -362,8 +362,8 @@ pub mod delivery_stream {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut interval_in_seconds = None;
-                    let mut size_in_m_bs = None;
+                    let mut interval_in_seconds: Option<::Value<u32>> = None;
+                    let mut size_in_m_bs: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -449,17 +449,17 @@ pub mod delivery_stream {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut buffering_hints = None;
-                    let mut cloud_watch_logging_options = None;
-                    let mut domain_arn = None;
-                    let mut index_name = None;
-                    let mut index_rotation_period = None;
-                    let mut processing_configuration = None;
-                    let mut retry_options = None;
-                    let mut role_arn = None;
-                    let mut s3_backup_mode = None;
-                    let mut s3_configuration = None;
-                    let mut type_name = None;
+                    let mut buffering_hints: Option<::Value<ElasticsearchBufferingHints>> = None;
+                    let mut cloud_watch_logging_options: Option<::Value<CloudWatchLoggingOptions>> = None;
+                    let mut domain_arn: Option<::Value<String>> = None;
+                    let mut index_name: Option<::Value<String>> = None;
+                    let mut index_rotation_period: Option<::Value<String>> = None;
+                    let mut processing_configuration: Option<::Value<ProcessingConfiguration>> = None;
+                    let mut retry_options: Option<::Value<ElasticsearchRetryOptions>> = None;
+                    let mut role_arn: Option<::Value<String>> = None;
+                    let mut s3_backup_mode: Option<::Value<String>> = None;
+                    let mut s3_configuration: Option<::Value<S3DestinationConfiguration>> = None;
+                    let mut type_name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -547,7 +547,7 @@ pub mod delivery_stream {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut duration_in_seconds = None;
+                    let mut duration_in_seconds: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -602,8 +602,8 @@ pub mod delivery_stream {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut kms_encryption_config = None;
-                    let mut no_encryption_config = None;
+                    let mut kms_encryption_config: Option<::Value<KMSEncryptionConfig>> = None;
+                    let mut no_encryption_config: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -692,16 +692,16 @@ pub mod delivery_stream {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut bucket_arn = None;
-                    let mut buffering_hints = None;
-                    let mut cloud_watch_logging_options = None;
-                    let mut compression_format = None;
-                    let mut encryption_configuration = None;
-                    let mut prefix = None;
-                    let mut processing_configuration = None;
-                    let mut role_arn = None;
-                    let mut s3_backup_configuration = None;
-                    let mut s3_backup_mode = None;
+                    let mut bucket_arn: Option<::Value<String>> = None;
+                    let mut buffering_hints: Option<::Value<BufferingHints>> = None;
+                    let mut cloud_watch_logging_options: Option<::Value<CloudWatchLoggingOptions>> = None;
+                    let mut compression_format: Option<::Value<String>> = None;
+                    let mut encryption_configuration: Option<::Value<EncryptionConfiguration>> = None;
+                    let mut prefix: Option<::Value<String>> = None;
+                    let mut processing_configuration: Option<::Value<ProcessingConfiguration>> = None;
+                    let mut role_arn: Option<::Value<String>> = None;
+                    let mut s3_backup_configuration: Option<::Value<S3DestinationConfiguration>> = None;
+                    let mut s3_backup_mode: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -785,7 +785,7 @@ pub mod delivery_stream {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut awskms_key_arn = None;
+                    let mut awskms_key_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -836,8 +836,8 @@ pub mod delivery_stream {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut kinesis_stream_arn = None;
-                    let mut role_arn = None;
+                    let mut kinesis_stream_arn: Option<::Value<String>> = None;
+                    let mut role_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -892,8 +892,8 @@ pub mod delivery_stream {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut enabled = None;
-                    let mut processors = None;
+                    let mut enabled: Option<::Value<bool>> = None;
+                    let mut processors: Option<::ValueList<Processor>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -948,8 +948,8 @@ pub mod delivery_stream {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut parameters = None;
-                    let mut type_ = None;
+                    let mut parameters: Option<::ValueList<ProcessorParameter>> = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1004,8 +1004,8 @@ pub mod delivery_stream {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut parameter_name = None;
-                    let mut parameter_value = None;
+                    let mut parameter_name: Option<::Value<String>> = None;
+                    let mut parameter_value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1082,14 +1082,14 @@ pub mod delivery_stream {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut cloud_watch_logging_options = None;
-                    let mut cluster_jdbcurl = None;
-                    let mut copy_command = None;
-                    let mut password = None;
-                    let mut processing_configuration = None;
-                    let mut role_arn = None;
-                    let mut s3_configuration = None;
-                    let mut username = None;
+                    let mut cloud_watch_logging_options: Option<::Value<CloudWatchLoggingOptions>> = None;
+                    let mut cluster_jdbcurl: Option<::Value<String>> = None;
+                    let mut copy_command: Option<::Value<CopyCommand>> = None;
+                    let mut password: Option<::Value<String>> = None;
+                    let mut processing_configuration: Option<::Value<ProcessingConfiguration>> = None;
+                    let mut role_arn: Option<::Value<String>> = None;
+                    let mut s3_configuration: Option<::Value<S3DestinationConfiguration>> = None;
+                    let mut username: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1189,13 +1189,13 @@ pub mod delivery_stream {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut bucket_arn = None;
-                    let mut buffering_hints = None;
-                    let mut cloud_watch_logging_options = None;
-                    let mut compression_format = None;
-                    let mut encryption_configuration = None;
-                    let mut prefix = None;
-                    let mut role_arn = None;
+                    let mut bucket_arn: Option<::Value<String>> = None;
+                    let mut buffering_hints: Option<::Value<BufferingHints>> = None;
+                    let mut cloud_watch_logging_options: Option<::Value<CloudWatchLoggingOptions>> = None;
+                    let mut compression_format: Option<::Value<String>> = None;
+                    let mut encryption_configuration: Option<::Value<EncryptionConfiguration>> = None;
+                    let mut prefix: Option<::Value<String>> = None;
+                    let mut role_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

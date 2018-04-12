@@ -129,27 +129,27 @@ impl<'de> ::serde::Deserialize<'de> for CacheClusterProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut az_mode = None;
-                let mut auto_minor_version_upgrade = None;
-                let mut cache_node_type = None;
-                let mut cache_parameter_group_name = None;
-                let mut cache_security_group_names = None;
-                let mut cache_subnet_group_name = None;
-                let mut cluster_name = None;
-                let mut engine = None;
-                let mut engine_version = None;
-                let mut notification_topic_arn = None;
-                let mut num_cache_nodes = None;
-                let mut port = None;
-                let mut preferred_availability_zone = None;
-                let mut preferred_availability_zones = None;
-                let mut preferred_maintenance_window = None;
-                let mut snapshot_arns = None;
-                let mut snapshot_name = None;
-                let mut snapshot_retention_limit = None;
-                let mut snapshot_window = None;
-                let mut tags = None;
-                let mut vpc_security_group_ids = None;
+                let mut az_mode: Option<::Value<String>> = None;
+                let mut auto_minor_version_upgrade: Option<::Value<bool>> = None;
+                let mut cache_node_type: Option<::Value<String>> = None;
+                let mut cache_parameter_group_name: Option<::Value<String>> = None;
+                let mut cache_security_group_names: Option<::ValueList<String>> = None;
+                let mut cache_subnet_group_name: Option<::Value<String>> = None;
+                let mut cluster_name: Option<::Value<String>> = None;
+                let mut engine: Option<::Value<String>> = None;
+                let mut engine_version: Option<::Value<String>> = None;
+                let mut notification_topic_arn: Option<::Value<String>> = None;
+                let mut num_cache_nodes: Option<::Value<u32>> = None;
+                let mut port: Option<::Value<u32>> = None;
+                let mut preferred_availability_zone: Option<::Value<String>> = None;
+                let mut preferred_availability_zones: Option<::ValueList<String>> = None;
+                let mut preferred_maintenance_window: Option<::Value<String>> = None;
+                let mut snapshot_arns: Option<::ValueList<String>> = None;
+                let mut snapshot_name: Option<::Value<String>> = None;
+                let mut snapshot_retention_limit: Option<::Value<u32>> = None;
+                let mut snapshot_window: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut vpc_security_group_ids: Option<::ValueList<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -310,9 +310,9 @@ impl<'de> ::serde::Deserialize<'de> for ParameterGroupProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut cache_parameter_group_family = None;
-                let mut description = None;
-                let mut properties = None;
+                let mut cache_parameter_group_family: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut properties: Option<::ValueMap<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -533,35 +533,35 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationGroupProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut at_rest_encryption_enabled = None;
-                let mut auth_token = None;
-                let mut auto_minor_version_upgrade = None;
-                let mut automatic_failover_enabled = None;
-                let mut cache_node_type = None;
-                let mut cache_parameter_group_name = None;
-                let mut cache_security_group_names = None;
-                let mut cache_subnet_group_name = None;
-                let mut engine = None;
-                let mut engine_version = None;
-                let mut node_group_configuration = None;
-                let mut notification_topic_arn = None;
-                let mut num_cache_clusters = None;
-                let mut num_node_groups = None;
-                let mut port = None;
-                let mut preferred_cache_cluster_a_zs = None;
-                let mut preferred_maintenance_window = None;
-                let mut primary_cluster_id = None;
-                let mut replicas_per_node_group = None;
-                let mut replication_group_description = None;
-                let mut replication_group_id = None;
-                let mut security_group_ids = None;
-                let mut snapshot_arns = None;
-                let mut snapshot_name = None;
-                let mut snapshot_retention_limit = None;
-                let mut snapshot_window = None;
-                let mut snapshotting_cluster_id = None;
-                let mut tags = None;
-                let mut transit_encryption_enabled = None;
+                let mut at_rest_encryption_enabled: Option<::Value<bool>> = None;
+                let mut auth_token: Option<::Value<String>> = None;
+                let mut auto_minor_version_upgrade: Option<::Value<bool>> = None;
+                let mut automatic_failover_enabled: Option<::Value<bool>> = None;
+                let mut cache_node_type: Option<::Value<String>> = None;
+                let mut cache_parameter_group_name: Option<::Value<String>> = None;
+                let mut cache_security_group_names: Option<::ValueList<String>> = None;
+                let mut cache_subnet_group_name: Option<::Value<String>> = None;
+                let mut engine: Option<::Value<String>> = None;
+                let mut engine_version: Option<::Value<String>> = None;
+                let mut node_group_configuration: Option<::ValueList<self::replication_group::NodeGroupConfiguration>> = None;
+                let mut notification_topic_arn: Option<::Value<String>> = None;
+                let mut num_cache_clusters: Option<::Value<u32>> = None;
+                let mut num_node_groups: Option<::Value<u32>> = None;
+                let mut port: Option<::Value<u32>> = None;
+                let mut preferred_cache_cluster_a_zs: Option<::ValueList<String>> = None;
+                let mut preferred_maintenance_window: Option<::Value<String>> = None;
+                let mut primary_cluster_id: Option<::Value<String>> = None;
+                let mut replicas_per_node_group: Option<::Value<u32>> = None;
+                let mut replication_group_description: Option<::Value<String>> = None;
+                let mut replication_group_id: Option<::Value<String>> = None;
+                let mut security_group_ids: Option<::ValueList<String>> = None;
+                let mut snapshot_arns: Option<::ValueList<String>> = None;
+                let mut snapshot_name: Option<::Value<String>> = None;
+                let mut snapshot_retention_limit: Option<::Value<u32>> = None;
+                let mut snapshot_window: Option<::Value<String>> = None;
+                let mut snapshotting_cluster_id: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut transit_encryption_enabled: Option<::Value<bool>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -746,7 +746,7 @@ impl<'de> ::serde::Deserialize<'de> for SecurityGroupProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut description = None;
+                let mut description: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -827,9 +827,9 @@ impl<'de> ::serde::Deserialize<'de> for SecurityGroupIngressProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut cache_security_group_name = None;
-                let mut ec2_security_group_name = None;
-                let mut ec2_security_group_owner_id = None;
+                let mut cache_security_group_name: Option<::Value<String>> = None;
+                let mut ec2_security_group_name: Option<::Value<String>> = None;
+                let mut ec2_security_group_owner_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -918,9 +918,9 @@ impl<'de> ::serde::Deserialize<'de> for SubnetGroupProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut cache_subnet_group_name = None;
-                let mut description = None;
-                let mut subnet_ids = None;
+                let mut cache_subnet_group_name: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut subnet_ids: Option<::ValueList<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1015,10 +1015,10 @@ pub mod replication_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut primary_availability_zone = None;
-                    let mut replica_availability_zones = None;
-                    let mut replica_count = None;
-                    let mut slots = None;
+                    let mut primary_availability_zone: Option<::Value<String>> = None;
+                    let mut replica_availability_zones: Option<::ValueList<String>> = None;
+                    let mut replica_count: Option<::Value<u32>> = None;
+                    let mut slots: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

@@ -38,8 +38,8 @@ impl<'de> ::serde::Deserialize<'de> for AssessmentTargetProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut assessment_target_name = None;
-                let mut resource_group_arn = None;
+                let mut assessment_target_name: Option<::Value<String>> = None;
+                let mut resource_group_arn: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -132,11 +132,11 @@ impl<'de> ::serde::Deserialize<'de> for AssessmentTemplateProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut assessment_target_arn = None;
-                let mut assessment_template_name = None;
-                let mut duration_in_seconds = None;
-                let mut rules_package_arns = None;
-                let mut user_attributes_for_findings = None;
+                let mut assessment_target_arn: Option<::Value<String>> = None;
+                let mut assessment_template_name: Option<::Value<String>> = None;
+                let mut duration_in_seconds: Option<::Value<u32>> = None;
+                let mut rules_package_arns: Option<::ValueList<String>> = None;
+                let mut user_attributes_for_findings: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -225,7 +225,7 @@ impl<'de> ::serde::Deserialize<'de> for ResourceGroupProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut resource_group_tags = None;
+                let mut resource_group_tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {

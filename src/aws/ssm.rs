@@ -63,13 +63,13 @@ impl<'de> ::serde::Deserialize<'de> for AssociationProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut association_name = None;
-                let mut document_version = None;
-                let mut instance_id = None;
-                let mut name = None;
-                let mut parameters = None;
-                let mut schedule_expression = None;
-                let mut targets = None;
+                let mut association_name: Option<::Value<String>> = None;
+                let mut document_version: Option<::Value<String>> = None;
+                let mut instance_id: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut parameters: Option<::ValueMap<self::association::ParameterValues>> = None;
+                let mut schedule_expression: Option<::Value<String>> = None;
+                let mut targets: Option<::ValueList<self::association::Target>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -176,9 +176,9 @@ impl<'de> ::serde::Deserialize<'de> for DocumentProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut content = None;
-                let mut document_type = None;
-                let mut tags = None;
+                let mut content: Option<::Value<::json::Value>> = None;
+                let mut document_type: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -307,19 +307,19 @@ impl<'de> ::serde::Deserialize<'de> for MaintenanceWindowTaskProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut description = None;
-                let mut logging_info = None;
-                let mut max_concurrency = None;
-                let mut max_errors = None;
-                let mut name = None;
-                let mut priority = None;
-                let mut service_role_arn = None;
-                let mut targets = None;
-                let mut task_arn = None;
-                let mut task_invocation_parameters = None;
-                let mut task_parameters = None;
-                let mut task_type = None;
-                let mut window_id = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut logging_info: Option<::Value<self::maintenance_window_task::LoggingInfo>> = None;
+                let mut max_concurrency: Option<::Value<String>> = None;
+                let mut max_errors: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut priority: Option<::Value<u32>> = None;
+                let mut service_role_arn: Option<::Value<String>> = None;
+                let mut targets: Option<::ValueList<self::maintenance_window_task::Target>> = None;
+                let mut task_arn: Option<::Value<String>> = None;
+                let mut task_invocation_parameters: Option<::Value<self::maintenance_window_task::TaskInvocationParameters>> = None;
+                let mut task_parameters: Option<::Value<::json::Value>> = None;
+                let mut task_type: Option<::Value<String>> = None;
+                let mut window_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -458,11 +458,11 @@ impl<'de> ::serde::Deserialize<'de> for ParameterProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut allowed_pattern = None;
-                let mut description = None;
-                let mut name = None;
-                let mut type_ = None;
-                let mut value = None;
+                let mut allowed_pattern: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut type_: Option<::Value<String>> = None;
+                let mut value: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -601,17 +601,17 @@ impl<'de> ::serde::Deserialize<'de> for PatchBaselineProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut approval_rules = None;
-                let mut approved_patches = None;
-                let mut approved_patches_compliance_level = None;
-                let mut approved_patches_enable_non_security = None;
-                let mut description = None;
-                let mut global_filters = None;
-                let mut name = None;
-                let mut operating_system = None;
-                let mut patch_groups = None;
-                let mut rejected_patches = None;
-                let mut sources = None;
+                let mut approval_rules: Option<::Value<self::patch_baseline::RuleGroup>> = None;
+                let mut approved_patches: Option<::ValueList<String>> = None;
+                let mut approved_patches_compliance_level: Option<::Value<String>> = None;
+                let mut approved_patches_enable_non_security: Option<::Value<bool>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut global_filters: Option<::Value<self::patch_baseline::PatchFilterGroup>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut operating_system: Option<::Value<String>> = None;
+                let mut patch_groups: Option<::ValueList<String>> = None;
+                let mut rejected_patches: Option<::ValueList<String>> = None;
+                let mut sources: Option<::ValueList<self::patch_baseline::PatchSource>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -721,7 +721,7 @@ pub mod association {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut parameter_values = None;
+                    let mut parameter_values: Option<::ValueList<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -772,8 +772,8 @@ pub mod association {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut key = None;
-                    let mut values = None;
+                    let mut key: Option<::Value<String>> = None;
+                    let mut values: Option<::ValueList<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -837,9 +837,9 @@ pub mod maintenance_window_task {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut region = None;
-                    let mut s3_bucket = None;
-                    let mut s3_prefix = None;
+                    let mut region: Option<::Value<String>> = None;
+                    let mut s3_bucket: Option<::Value<String>> = None;
+                    let mut s3_prefix: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -902,8 +902,8 @@ pub mod maintenance_window_task {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut document_version = None;
-                    let mut parameters = None;
+                    let mut document_version: Option<::Value<String>> = None;
+                    let mut parameters: Option<::Value<::json::Value>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -967,9 +967,9 @@ pub mod maintenance_window_task {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut client_context = None;
-                    let mut payload = None;
-                    let mut qualifier = None;
+                    let mut client_context: Option<::Value<String>> = None;
+                    let mut payload: Option<::Value<String>> = None;
+                    let mut qualifier: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1067,15 +1067,15 @@ pub mod maintenance_window_task {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut comment = None;
-                    let mut document_hash = None;
-                    let mut document_hash_type = None;
-                    let mut notification_config = None;
-                    let mut output_s3_bucket_name = None;
-                    let mut output_s3_key_prefix = None;
-                    let mut parameters = None;
-                    let mut service_role_arn = None;
-                    let mut timeout_seconds = None;
+                    let mut comment: Option<::Value<String>> = None;
+                    let mut document_hash: Option<::Value<String>> = None;
+                    let mut document_hash_type: Option<::Value<String>> = None;
+                    let mut notification_config: Option<::Value<NotificationConfig>> = None;
+                    let mut output_s3_bucket_name: Option<::Value<String>> = None;
+                    let mut output_s3_key_prefix: Option<::Value<String>> = None;
+                    let mut parameters: Option<::Value<::json::Value>> = None;
+                    let mut service_role_arn: Option<::Value<String>> = None;
+                    let mut timeout_seconds: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1162,8 +1162,8 @@ pub mod maintenance_window_task {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut input = None;
-                    let mut name = None;
+                    let mut input: Option<::Value<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1225,9 +1225,9 @@ pub mod maintenance_window_task {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut notification_arn = None;
-                    let mut notification_events = None;
-                    let mut notification_type = None;
+                    let mut notification_arn: Option<::Value<String>> = None;
+                    let mut notification_events: Option<::ValueList<String>> = None;
+                    let mut notification_type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1288,8 +1288,8 @@ pub mod maintenance_window_task {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut key = None;
-                    let mut values = None;
+                    let mut key: Option<::Value<String>> = None;
+                    let mut values: Option<::ValueList<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1358,10 +1358,10 @@ pub mod maintenance_window_task {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut maintenance_window_automation_parameters = None;
-                    let mut maintenance_window_lambda_parameters = None;
-                    let mut maintenance_window_run_command_parameters = None;
-                    let mut maintenance_window_step_functions_parameters = None;
+                    let mut maintenance_window_automation_parameters: Option<::Value<MaintenanceWindowAutomationParameters>> = None;
+                    let mut maintenance_window_lambda_parameters: Option<::Value<MaintenanceWindowLambdaParameters>> = None;
+                    let mut maintenance_window_run_command_parameters: Option<::Value<MaintenanceWindowRunCommandParameters>> = None;
+                    let mut maintenance_window_step_functions_parameters: Option<::Value<MaintenanceWindowStepFunctionsParameters>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1432,8 +1432,8 @@ pub mod patch_baseline {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut key = None;
-                    let mut values = None;
+                    let mut key: Option<::Value<String>> = None;
+                    let mut values: Option<::ValueList<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1487,7 +1487,7 @@ pub mod patch_baseline {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut patch_filters = None;
+                    let mut patch_filters: Option<::ValueList<PatchFilter>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1547,9 +1547,9 @@ pub mod patch_baseline {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut configuration = None;
-                    let mut name = None;
-                    let mut products = None;
+                    let mut configuration: Option<::Value<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut products: Option<::ValueList<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1622,10 +1622,10 @@ pub mod patch_baseline {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut approve_after_days = None;
-                    let mut compliance_level = None;
-                    let mut enable_non_security = None;
-                    let mut patch_filter_group = None;
+                    let mut approve_after_days: Option<::Value<u32>> = None;
+                    let mut compliance_level: Option<::Value<String>> = None;
+                    let mut enable_non_security: Option<::Value<bool>> = None;
+                    let mut patch_filter_group: Option<::Value<PatchFilterGroup>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1687,7 +1687,7 @@ pub mod patch_baseline {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut patch_rules = None;
+                    let mut patch_rules: Option<::ValueList<Rule>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

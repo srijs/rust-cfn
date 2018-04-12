@@ -2,7 +2,7 @@ use std::io;
 use std::collections::BTreeMap;
 
 use ::model::*;
-use super::{Printer, mutate_field_name};
+use super::{Printer, mutate_field_name, generate_field_type};
 
 pub(super) fn generate_serialize(trait_name: &str, name: &str, props: &BTreeMap<String, PropertySpecification>, p: &mut Printer) -> io::Result<()> {
     p.block(format_args!("impl {} for {}", trait_name, name), |p| {
@@ -27,23 +27,23 @@ pub(super) fn generate_serialize(trait_name: &str, name: &str, props: &BTreeMap<
     })
 }
 
-pub(super) fn generate_deserialize(name: &str, props: &BTreeMap<String, PropertySpecification>, p: &mut Printer) -> io::Result<()> {
+pub(super) fn generate_deserialize(name: &str, namespace_opt: Option<&str>, props: &BTreeMap<String, PropertySpecification>, p: &mut Printer) -> io::Result<()> {
     p.block(format_args!("impl<'de> ::serde::Deserialize<'de> for {}", name), |p| {
         p.block(format_args!("fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<{}, D::Error>", name), |p| {
-            generate_deserialize_body(name, props, p)
+            generate_deserialize_body(name, namespace_opt, props, p)
         })
     })
 }
 
-pub(super) fn generate_deserialize_value(name: &str, props: &BTreeMap<String, PropertySpecification>, p: &mut Printer) -> io::Result<()> {
+pub(super) fn generate_deserialize_value(name: &str, namespace_opt: Option<&str>, props: &BTreeMap<String, PropertySpecification>, p: &mut Printer) -> io::Result<()> {
     p.block(format_args!("impl ::codec::DeserializeValue for {}", name), |p| {
         p.block(format_args!("fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<{}, D::Error>", name), |p| {
-            generate_deserialize_body(name, props, p)
+            generate_deserialize_body(name, namespace_opt, props, p)
         })
     })
 }
 
-fn generate_deserialize_body(name: &str, props: &BTreeMap<String, PropertySpecification>, p: &mut Printer) -> io::Result<()> {
+fn generate_deserialize_body(name: &str, namespace_opt: Option<&str>, props: &BTreeMap<String, PropertySpecification>, p: &mut Printer) -> io::Result<()> {
     p.line(format_args!("struct Visitor;"))?;
     p.newline()?;
     p.block(format_args!("impl<'de> ::serde::de::Visitor<'de> for Visitor"), |p| {
@@ -54,7 +54,7 @@ fn generate_deserialize_body(name: &str, props: &BTreeMap<String, PropertySpecif
         p.line(format_args!("}}"))?;
         p.newline()?;
         if props.len() > 0 {
-            generate_deserialize_visit_map_non_empty(name, props, p)?;
+            generate_deserialize_visit_map_non_empty(name, namespace_opt, props, p)?;
         } else {
             generate_deserialize_visit_map_empty(name, p)?;
         }
@@ -70,11 +70,12 @@ fn generate_deserialize_visit_map_empty(name: &str, p: &mut Printer) -> io::Resu
     })
 }
 
-fn generate_deserialize_visit_map_non_empty(name: &str, props: &BTreeMap<String, PropertySpecification>, p: &mut Printer) -> io::Result<()> {
+fn generate_deserialize_visit_map_non_empty(name: &str, namespace_opt: Option<&str>, props: &BTreeMap<String, PropertySpecification>, p: &mut Printer) -> io::Result<()> {
     p.block(format_args!("fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error>"), |p| {
-        for (prop_name, _prop_spec) in props {
+        for (prop_name, prop_spec) in props {
             let field_name = mutate_field_name(prop_name);
-            p.line(format_args!("let mut {} = None;", field_name))?;
+            let field_type = generate_field_type(namespace_opt, &prop_spec);
+            p.line(format_args!("let mut {}: Option<{}> = None;", field_name, field_type))?;
         }
         p.newline()?;
         p.block(format_args!("while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)?"), |p| {

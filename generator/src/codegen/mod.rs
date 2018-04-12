@@ -108,12 +108,14 @@ fn generate_property_declaration(service: &str, resource_name: &str, name: &str,
     generate_serialize("::codec::SerializeValue", name, &spec.properties, p)?;
 
     p.newline()?;
-    generate_deserialize_value(name, &spec.properties, p)?;
+    generate_deserialize_value(name, None, &spec.properties, p)?;
 
     Ok(())
 }
 
 fn generate_resource_declaration(service: &str, name: &str, spec: &ResourceType, p: &mut Printer) -> io::Result<()> {
+    let namespace = name.to_snake_case();
+
     p.newline()?;
     p.line(format_args!("/// The [`AWS::{}::{}`]({}) resource type.", service, name, spec.documentation))?;
     p.line(format_args!("#[derive(Debug)]"))?;
@@ -125,7 +127,6 @@ fn generate_resource_declaration(service: &str, name: &str, spec: &ResourceType,
     p.line(format_args!("/// Properties for the `{}` resource.", name))?;
     p.line(format_args!("#[derive(Debug)]"))?;
     p.block(format_args!("pub struct {}Properties", name), |p| {
-        let namespace = name.to_snake_case();
         for (ref property_name, ref property_spec) in spec.properties.iter() {
             generate_field(Some(&namespace), property_name, property_spec, p)?;
         }
@@ -136,7 +137,7 @@ fn generate_resource_declaration(service: &str, name: &str, spec: &ResourceType,
     generate_serialize("::serde::Serialize", &format!("{}Properties", name), &spec.properties, p)?;
 
     p.newline()?;
-    generate_deserialize(&format!("{}Properties", name), &spec.properties, p)?;
+    generate_deserialize(&format!("{}Properties", name), Some(&namespace), &spec.properties, p)?;
 
     p.newline()?;
     p.block(format_args!("impl ::Resource for {}", name), |p| {

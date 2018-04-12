@@ -45,9 +45,9 @@ impl<'de> ::serde::Deserialize<'de> for SubscriptionProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut endpoint = None;
-                let mut protocol = None;
-                let mut topic_arn = None;
+                let mut endpoint: Option<::Value<String>> = None;
+                let mut protocol: Option<::Value<String>> = None;
+                let mut topic_arn: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -140,9 +140,9 @@ impl<'de> ::serde::Deserialize<'de> for TopicProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut display_name = None;
-                let mut subscription = None;
-                let mut topic_name = None;
+                let mut display_name: Option<::Value<String>> = None;
+                let mut subscription: Option<::ValueList<self::topic::Subscription>> = None;
+                let mut topic_name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -226,8 +226,8 @@ impl<'de> ::serde::Deserialize<'de> for TopicPolicyProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut policy_document = None;
-                let mut topics = None;
+                let mut policy_document: Option<::Value<::json::Value>> = None;
+                let mut topics: Option<::ValueList<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -304,8 +304,8 @@ pub mod topic {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut endpoint = None;
-                    let mut protocol = None;
+                    let mut endpoint: Option<::Value<String>> = None;
+                    let mut protocol: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

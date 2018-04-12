@@ -48,10 +48,10 @@ impl<'de> ::serde::Deserialize<'de> for ApplicationProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut application_code = None;
-                let mut application_description = None;
-                let mut application_name = None;
-                let mut inputs = None;
+                let mut application_code: Option<::Value<String>> = None;
+                let mut application_description: Option<::Value<String>> = None;
+                let mut application_name: Option<::Value<String>> = None;
+                let mut inputs: Option<::ValueList<self::application::Input>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -139,8 +139,8 @@ impl<'de> ::serde::Deserialize<'de> for ApplicationOutputProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut application_name = None;
-                let mut output = None;
+                let mut application_name: Option<::Value<String>> = None;
+                let mut output: Option<::Value<self::application_output::Output>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -220,8 +220,8 @@ impl<'de> ::serde::Deserialize<'de> for ApplicationReferenceDataSourceProperties
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut application_name = None;
-                let mut reference_data_source = None;
+                let mut application_name: Option<::Value<String>> = None;
+                let mut reference_data_source: Option<::Value<self::application_reference_data_source::ReferenceDataSource>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -298,8 +298,8 @@ pub mod application {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut record_column_delimiter = None;
-                    let mut record_row_delimiter = None;
+                    let mut record_column_delimiter: Option<::Value<String>> = None;
+                    let mut record_row_delimiter: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -374,12 +374,12 @@ pub mod application {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut input_parallelism = None;
-                    let mut input_processing_configuration = None;
-                    let mut input_schema = None;
-                    let mut kinesis_firehose_input = None;
-                    let mut kinesis_streams_input = None;
-                    let mut name_prefix = None;
+                    let mut input_parallelism: Option<::Value<InputParallelism>> = None;
+                    let mut input_processing_configuration: Option<::Value<InputProcessingConfiguration>> = None;
+                    let mut input_schema: Option<::Value<InputSchema>> = None;
+                    let mut kinesis_firehose_input: Option<::Value<KinesisFirehoseInput>> = None;
+                    let mut kinesis_streams_input: Option<::Value<KinesisStreamsInput>> = None;
+                    let mut name_prefix: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -450,8 +450,8 @@ pub mod application {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut resource_arn = None;
-                    let mut role_arn = None;
+                    let mut resource_arn: Option<::Value<String>> = None;
+                    let mut role_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -505,7 +505,7 @@ pub mod application {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut count = None;
+                    let mut count: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -555,7 +555,7 @@ pub mod application {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut input_lambda_processor = None;
+                    let mut input_lambda_processor: Option<::Value<InputLambdaProcessor>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -611,9 +611,9 @@ pub mod application {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut record_columns = None;
-                    let mut record_encoding = None;
-                    let mut record_format = None;
+                    let mut record_columns: Option<::ValueList<RecordColumn>> = None;
+                    let mut record_encoding: Option<::Value<String>> = None;
+                    let mut record_format: Option<::Value<RecordFormat>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -669,7 +669,7 @@ pub mod application {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut record_row_path = None;
+                    let mut record_row_path: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -720,8 +720,8 @@ pub mod application {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut resource_arn = None;
-                    let mut role_arn = None;
+                    let mut resource_arn: Option<::Value<String>> = None;
+                    let mut role_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -776,8 +776,8 @@ pub mod application {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut resource_arn = None;
-                    let mut role_arn = None;
+                    let mut resource_arn: Option<::Value<String>> = None;
+                    let mut role_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -836,8 +836,8 @@ pub mod application {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut csv_mapping_parameters = None;
-                    let mut json_mapping_parameters = None;
+                    let mut csv_mapping_parameters: Option<::Value<CSVMappingParameters>> = None;
+                    let mut json_mapping_parameters: Option<::Value<JSONMappingParameters>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -897,9 +897,9 @@ pub mod application {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut mapping = None;
-                    let mut name = None;
-                    let mut sql_type = None;
+                    let mut mapping: Option<::Value<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut sql_type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -960,8 +960,8 @@ pub mod application {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut mapping_parameters = None;
-                    let mut record_format_type = None;
+                    let mut mapping_parameters: Option<::Value<MappingParameters>> = None;
+                    let mut record_format_type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1019,7 +1019,7 @@ pub mod application_output {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut record_format_type = None;
+                    let mut record_format_type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1070,8 +1070,8 @@ pub mod application_output {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut resource_arn = None;
-                    let mut role_arn = None;
+                    let mut resource_arn: Option<::Value<String>> = None;
+                    let mut role_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1126,8 +1126,8 @@ pub mod application_output {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut resource_arn = None;
-                    let mut role_arn = None;
+                    let mut resource_arn: Option<::Value<String>> = None;
+                    let mut role_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1182,8 +1182,8 @@ pub mod application_output {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut resource_arn = None;
-                    let mut role_arn = None;
+                    let mut resource_arn: Option<::Value<String>> = None;
+                    let mut role_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1255,11 +1255,11 @@ pub mod application_output {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut destination_schema = None;
-                    let mut kinesis_firehose_output = None;
-                    let mut kinesis_streams_output = None;
-                    let mut lambda_output = None;
-                    let mut name = None;
+                    let mut destination_schema: Option<::Value<DestinationSchema>> = None;
+                    let mut kinesis_firehose_output: Option<::Value<KinesisFirehoseOutput>> = None;
+                    let mut kinesis_streams_output: Option<::Value<KinesisStreamsOutput>> = None;
+                    let mut lambda_output: Option<::Value<LambdaOutput>> = None;
+                    let mut name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1330,8 +1330,8 @@ pub mod application_reference_data_source {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut record_column_delimiter = None;
-                    let mut record_row_delimiter = None;
+                    let mut record_column_delimiter: Option<::Value<String>> = None;
+                    let mut record_row_delimiter: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1383,7 +1383,7 @@ pub mod application_reference_data_source {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut record_row_path = None;
+                    let mut record_row_path: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1438,8 +1438,8 @@ pub mod application_reference_data_source {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut csv_mapping_parameters = None;
-                    let mut json_mapping_parameters = None;
+                    let mut csv_mapping_parameters: Option<::Value<CSVMappingParameters>> = None;
+                    let mut json_mapping_parameters: Option<::Value<JSONMappingParameters>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1499,9 +1499,9 @@ pub mod application_reference_data_source {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut mapping = None;
-                    let mut name = None;
-                    let mut sql_type = None;
+                    let mut mapping: Option<::Value<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut sql_type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1562,8 +1562,8 @@ pub mod application_reference_data_source {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut mapping_parameters = None;
-                    let mut record_format_type = None;
+                    let mut mapping_parameters: Option<::Value<MappingParameters>> = None;
+                    let mut record_format_type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1625,9 +1625,9 @@ pub mod application_reference_data_source {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut reference_schema = None;
-                    let mut s3_reference_data_source = None;
-                    let mut table_name = None;
+                    let mut reference_schema: Option<::Value<ReferenceSchema>> = None;
+                    let mut s3_reference_data_source: Option<::Value<S3ReferenceDataSource>> = None;
+                    let mut table_name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1691,9 +1691,9 @@ pub mod application_reference_data_source {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut record_columns = None;
-                    let mut record_encoding = None;
-                    let mut record_format = None;
+                    let mut record_columns: Option<::ValueList<RecordColumn>> = None;
+                    let mut record_encoding: Option<::Value<String>> = None;
+                    let mut record_format: Option<::Value<RecordFormat>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1755,9 +1755,9 @@ pub mod application_reference_data_source {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut bucket_arn = None;
-                    let mut file_key = None;
-                    let mut reference_role_arn = None;
+                    let mut bucket_arn: Option<::Value<String>> = None;
+                    let mut file_key: Option<::Value<String>> = None;
+                    let mut reference_role_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

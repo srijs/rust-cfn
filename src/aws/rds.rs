@@ -123,25 +123,25 @@ impl<'de> ::serde::Deserialize<'de> for DBClusterProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut availability_zones = None;
-                let mut backup_retention_period = None;
-                let mut db_cluster_identifier = None;
-                let mut db_cluster_parameter_group_name = None;
-                let mut db_subnet_group_name = None;
-                let mut database_name = None;
-                let mut engine = None;
-                let mut engine_version = None;
-                let mut kms_key_id = None;
-                let mut master_user_password = None;
-                let mut master_username = None;
-                let mut port = None;
-                let mut preferred_backup_window = None;
-                let mut preferred_maintenance_window = None;
-                let mut replication_source_identifier = None;
-                let mut snapshot_identifier = None;
-                let mut storage_encrypted = None;
-                let mut tags = None;
-                let mut vpc_security_group_ids = None;
+                let mut availability_zones: Option<::ValueList<String>> = None;
+                let mut backup_retention_period: Option<::Value<u32>> = None;
+                let mut db_cluster_identifier: Option<::Value<String>> = None;
+                let mut db_cluster_parameter_group_name: Option<::Value<String>> = None;
+                let mut db_subnet_group_name: Option<::Value<String>> = None;
+                let mut database_name: Option<::Value<String>> = None;
+                let mut engine: Option<::Value<String>> = None;
+                let mut engine_version: Option<::Value<String>> = None;
+                let mut kms_key_id: Option<::Value<String>> = None;
+                let mut master_user_password: Option<::Value<String>> = None;
+                let mut master_username: Option<::Value<String>> = None;
+                let mut port: Option<::Value<u32>> = None;
+                let mut preferred_backup_window: Option<::Value<String>> = None;
+                let mut preferred_maintenance_window: Option<::Value<String>> = None;
+                let mut replication_source_identifier: Option<::Value<String>> = None;
+                let mut snapshot_identifier: Option<::Value<String>> = None;
+                let mut storage_encrypted: Option<::Value<bool>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut vpc_security_group_ids: Option<::ValueList<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -297,10 +297,10 @@ impl<'de> ::serde::Deserialize<'de> for DBClusterParameterGroupProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut description = None;
-                let mut family = None;
-                let mut parameters = None;
-                let mut tags = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut family: Option<::Value<String>> = None;
+                let mut parameters: Option<::Value<::json::Value>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -575,45 +575,45 @@ impl<'de> ::serde::Deserialize<'de> for DBInstanceProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut allocated_storage = None;
-                let mut allow_major_version_upgrade = None;
-                let mut auto_minor_version_upgrade = None;
-                let mut availability_zone = None;
-                let mut backup_retention_period = None;
-                let mut character_set_name = None;
-                let mut copy_tags_to_snapshot = None;
-                let mut db_cluster_identifier = None;
-                let mut db_instance_class = None;
-                let mut db_instance_identifier = None;
-                let mut db_name = None;
-                let mut db_parameter_group_name = None;
-                let mut db_security_groups = None;
-                let mut db_snapshot_identifier = None;
-                let mut db_subnet_group_name = None;
-                let mut domain = None;
-                let mut domain_iam_role_name = None;
-                let mut engine = None;
-                let mut engine_version = None;
-                let mut iops = None;
-                let mut kms_key_id = None;
-                let mut license_model = None;
-                let mut master_user_password = None;
-                let mut master_username = None;
-                let mut monitoring_interval = None;
-                let mut monitoring_role_arn = None;
-                let mut multi_az = None;
-                let mut option_group_name = None;
-                let mut port = None;
-                let mut preferred_backup_window = None;
-                let mut preferred_maintenance_window = None;
-                let mut publicly_accessible = None;
-                let mut source_db_instance_identifier = None;
-                let mut source_region = None;
-                let mut storage_encrypted = None;
-                let mut storage_type = None;
-                let mut tags = None;
-                let mut timezone = None;
-                let mut vpc_security_groups = None;
+                let mut allocated_storage: Option<::Value<String>> = None;
+                let mut allow_major_version_upgrade: Option<::Value<bool>> = None;
+                let mut auto_minor_version_upgrade: Option<::Value<bool>> = None;
+                let mut availability_zone: Option<::Value<String>> = None;
+                let mut backup_retention_period: Option<::Value<String>> = None;
+                let mut character_set_name: Option<::Value<String>> = None;
+                let mut copy_tags_to_snapshot: Option<::Value<bool>> = None;
+                let mut db_cluster_identifier: Option<::Value<String>> = None;
+                let mut db_instance_class: Option<::Value<String>> = None;
+                let mut db_instance_identifier: Option<::Value<String>> = None;
+                let mut db_name: Option<::Value<String>> = None;
+                let mut db_parameter_group_name: Option<::Value<String>> = None;
+                let mut db_security_groups: Option<::ValueList<String>> = None;
+                let mut db_snapshot_identifier: Option<::Value<String>> = None;
+                let mut db_subnet_group_name: Option<::Value<String>> = None;
+                let mut domain: Option<::Value<String>> = None;
+                let mut domain_iam_role_name: Option<::Value<String>> = None;
+                let mut engine: Option<::Value<String>> = None;
+                let mut engine_version: Option<::Value<String>> = None;
+                let mut iops: Option<::Value<u32>> = None;
+                let mut kms_key_id: Option<::Value<String>> = None;
+                let mut license_model: Option<::Value<String>> = None;
+                let mut master_user_password: Option<::Value<String>> = None;
+                let mut master_username: Option<::Value<String>> = None;
+                let mut monitoring_interval: Option<::Value<u32>> = None;
+                let mut monitoring_role_arn: Option<::Value<String>> = None;
+                let mut multi_az: Option<::Value<bool>> = None;
+                let mut option_group_name: Option<::Value<String>> = None;
+                let mut port: Option<::Value<String>> = None;
+                let mut preferred_backup_window: Option<::Value<String>> = None;
+                let mut preferred_maintenance_window: Option<::Value<String>> = None;
+                let mut publicly_accessible: Option<::Value<bool>> = None;
+                let mut source_db_instance_identifier: Option<::Value<String>> = None;
+                let mut source_region: Option<::Value<String>> = None;
+                let mut storage_encrypted: Option<::Value<bool>> = None;
+                let mut storage_type: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut timezone: Option<::Value<String>> = None;
+                let mut vpc_security_groups: Option<::ValueList<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -851,10 +851,10 @@ impl<'de> ::serde::Deserialize<'de> for DBParameterGroupProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut description = None;
-                let mut family = None;
-                let mut parameters = None;
-                let mut tags = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut family: Option<::Value<String>> = None;
+                let mut parameters: Option<::ValueMap<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -952,10 +952,10 @@ impl<'de> ::serde::Deserialize<'de> for DBSecurityGroupProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut db_security_group_ingress = None;
-                let mut ec2_vpc_id = None;
-                let mut group_description = None;
-                let mut tags = None;
+                let mut db_security_group_ingress: Option<::ValueList<self::db_security_group::Ingress>> = None;
+                let mut ec2_vpc_id: Option<::Value<String>> = None;
+                let mut group_description: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1060,11 +1060,11 @@ impl<'de> ::serde::Deserialize<'de> for DBSecurityGroupIngressProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut cidrip = None;
-                let mut db_security_group_name = None;
-                let mut ec2_security_group_id = None;
-                let mut ec2_security_group_name = None;
-                let mut ec2_security_group_owner_id = None;
+                let mut cidrip: Option<::Value<String>> = None;
+                let mut db_security_group_name: Option<::Value<String>> = None;
+                let mut ec2_security_group_id: Option<::Value<String>> = None;
+                let mut ec2_security_group_name: Option<::Value<String>> = None;
+                let mut ec2_security_group_owner_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1166,10 +1166,10 @@ impl<'de> ::serde::Deserialize<'de> for DBSubnetGroupProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut db_subnet_group_description = None;
-                let mut db_subnet_group_name = None;
-                let mut subnet_ids = None;
-                let mut tags = None;
+                let mut db_subnet_group_description: Option<::Value<String>> = None;
+                let mut db_subnet_group_name: Option<::Value<String>> = None;
+                let mut subnet_ids: Option<::ValueList<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1274,11 +1274,11 @@ impl<'de> ::serde::Deserialize<'de> for EventSubscriptionProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut enabled = None;
-                let mut event_categories = None;
-                let mut sns_topic_arn = None;
-                let mut source_ids = None;
-                let mut source_type = None;
+                let mut enabled: Option<::Value<bool>> = None;
+                let mut event_categories: Option<::ValueList<String>> = None;
+                let mut sns_topic_arn: Option<::Value<String>> = None;
+                let mut source_ids: Option<::ValueList<String>> = None;
+                let mut source_type: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1381,11 +1381,11 @@ impl<'de> ::serde::Deserialize<'de> for OptionGroupProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut engine_name = None;
-                let mut major_engine_version = None;
-                let mut option_configurations = None;
-                let mut option_group_description = None;
-                let mut tags = None;
+                let mut engine_name: Option<::Value<String>> = None;
+                let mut major_engine_version: Option<::Value<String>> = None;
+                let mut option_configurations: Option<::ValueList<self::option_group::OptionConfiguration>> = None;
+                let mut option_group_description: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1488,10 +1488,10 @@ pub mod db_security_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut cidrip = None;
-                    let mut ec2_security_group_id = None;
-                    let mut ec2_security_group_name = None;
-                    let mut ec2_security_group_owner_id = None;
+                    let mut cidrip: Option<::Value<String>> = None;
+                    let mut ec2_security_group_id: Option<::Value<String>> = None;
+                    let mut ec2_security_group_name: Option<::Value<String>> = None;
+                    let mut ec2_security_group_owner_id: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1580,12 +1580,12 @@ pub mod option_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut db_security_group_memberships = None;
-                    let mut option_name = None;
-                    let mut option_settings = None;
-                    let mut option_version = None;
-                    let mut port = None;
-                    let mut vpc_security_group_memberships = None;
+                    let mut db_security_group_memberships: Option<::ValueList<String>> = None;
+                    let mut option_name: Option<::Value<String>> = None;
+                    let mut option_settings: Option<::Value<OptionSetting>> = None;
+                    let mut option_version: Option<::Value<String>> = None;
+                    let mut port: Option<::Value<u32>> = None;
+                    let mut vpc_security_group_memberships: Option<::ValueList<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1660,8 +1660,8 @@ pub mod option_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut name = None;
-                    let mut value = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

@@ -33,7 +33,7 @@ impl<'de> ::serde::Deserialize<'de> for DetectorProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut enable = None;
+                let mut enable: Option<::Value<bool>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -120,11 +120,11 @@ impl<'de> ::serde::Deserialize<'de> for IPSetProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut activate = None;
-                let mut detector_id = None;
-                let mut format = None;
-                let mut location = None;
-                let mut name = None;
+                let mut activate: Option<::Value<bool>> = None;
+                let mut detector_id: Option<::Value<String>> = None;
+                let mut format: Option<::Value<String>> = None;
+                let mut location: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -219,9 +219,9 @@ impl<'de> ::serde::Deserialize<'de> for MasterProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut detector_id = None;
-                let mut invitation_id = None;
-                let mut master_id = None;
+                let mut detector_id: Option<::Value<String>> = None;
+                let mut invitation_id: Option<::Value<String>> = None;
+                let mut master_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -318,11 +318,11 @@ impl<'de> ::serde::Deserialize<'de> for MemberProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut detector_id = None;
-                let mut email = None;
-                let mut member_id = None;
-                let mut message = None;
-                let mut status = None;
+                let mut detector_id: Option<::Value<String>> = None;
+                let mut email: Option<::Value<String>> = None;
+                let mut member_id: Option<::Value<String>> = None;
+                let mut message: Option<::Value<String>> = None;
+                let mut status: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -425,11 +425,11 @@ impl<'de> ::serde::Deserialize<'de> for ThreatIntelSetProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut activate = None;
-                let mut detector_id = None;
-                let mut format = None;
-                let mut location = None;
-                let mut name = None;
+                let mut activate: Option<::Value<bool>> = None;
+                let mut detector_id: Option<::Value<String>> = None;
+                let mut format: Option<::Value<String>> = None;
+                let mut location: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {

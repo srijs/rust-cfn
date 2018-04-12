@@ -40,8 +40,8 @@ impl<'de> ::serde::Deserialize<'de> for ApplicationProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut application_name = None;
-                let mut compute_platform = None;
+                let mut application_name: Option<::Value<String>> = None;
+                let mut compute_platform: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -125,8 +125,8 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentConfigProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut deployment_config_name = None;
-                let mut minimum_healthy_hosts = None;
+                let mut deployment_config_name: Option<::Value<String>> = None;
+                let mut minimum_healthy_hosts: Option<::Value<self::deployment_config::MinimumHealthyHosts>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -261,19 +261,19 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentGroupProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut alarm_configuration = None;
-                let mut application_name = None;
-                let mut auto_rollback_configuration = None;
-                let mut auto_scaling_groups = None;
-                let mut deployment = None;
-                let mut deployment_config_name = None;
-                let mut deployment_group_name = None;
-                let mut deployment_style = None;
-                let mut ec2_tag_filters = None;
-                let mut load_balancer_info = None;
-                let mut on_premises_instance_tag_filters = None;
-                let mut service_role_arn = None;
-                let mut trigger_configurations = None;
+                let mut alarm_configuration: Option<::Value<self::deployment_group::AlarmConfiguration>> = None;
+                let mut application_name: Option<::Value<String>> = None;
+                let mut auto_rollback_configuration: Option<::Value<self::deployment_group::AutoRollbackConfiguration>> = None;
+                let mut auto_scaling_groups: Option<::ValueList<String>> = None;
+                let mut deployment: Option<::Value<self::deployment_group::Deployment>> = None;
+                let mut deployment_config_name: Option<::Value<String>> = None;
+                let mut deployment_group_name: Option<::Value<String>> = None;
+                let mut deployment_style: Option<::Value<self::deployment_group::DeploymentStyle>> = None;
+                let mut ec2_tag_filters: Option<::ValueList<self::deployment_group::EC2TagFilter>> = None;
+                let mut load_balancer_info: Option<::Value<self::deployment_group::LoadBalancerInfo>> = None;
+                let mut on_premises_instance_tag_filters: Option<::ValueList<self::deployment_group::TagFilter>> = None;
+                let mut service_role_arn: Option<::Value<String>> = None;
+                let mut trigger_configurations: Option<::ValueList<self::deployment_group::TriggerConfig>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -394,8 +394,8 @@ pub mod deployment_config {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut type_ = None;
-                    let mut value = None;
+                    let mut type_: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -453,7 +453,7 @@ pub mod deployment_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut name = None;
+                    let mut name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -513,9 +513,9 @@ pub mod deployment_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut alarms = None;
-                    let mut enabled = None;
-                    let mut ignore_poll_alarm_failure = None;
+                    let mut alarms: Option<::ValueList<Alarm>> = None;
+                    let mut enabled: Option<::Value<bool>> = None;
+                    let mut ignore_poll_alarm_failure: Option<::Value<bool>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -578,8 +578,8 @@ pub mod deployment_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut enabled = None;
-                    let mut events = None;
+                    let mut enabled: Option<::Value<bool>> = None;
+                    let mut events: Option<::ValueList<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -641,9 +641,9 @@ pub mod deployment_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut description = None;
-                    let mut ignore_application_stop_failures = None;
-                    let mut revision = None;
+                    let mut description: Option<::Value<String>> = None;
+                    let mut ignore_application_stop_failures: Option<::Value<bool>> = None;
+                    let mut revision: Option<::Value<RevisionLocation>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -706,8 +706,8 @@ pub mod deployment_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut deployment_option = None;
-                    let mut deployment_type = None;
+                    let mut deployment_option: Option<::Value<String>> = None;
+                    let mut deployment_type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -771,9 +771,9 @@ pub mod deployment_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut key = None;
-                    let mut type_ = None;
-                    let mut value = None;
+                    let mut key: Option<::Value<String>> = None;
+                    let mut type_: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -831,7 +831,7 @@ pub mod deployment_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut name = None;
+                    let mut name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -882,8 +882,8 @@ pub mod deployment_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut commit_id = None;
-                    let mut repository = None;
+                    let mut commit_id: Option<::Value<String>> = None;
+                    let mut repository: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -942,8 +942,8 @@ pub mod deployment_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut elb_info_list = None;
-                    let mut target_group_info_list = None;
+                    let mut elb_info_list: Option<::ValueList<ELBInfo>> = None;
+                    let mut target_group_info_list: Option<::ValueList<TargetGroupInfo>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1007,9 +1007,9 @@ pub mod deployment_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut git_hub_location = None;
-                    let mut revision_type = None;
-                    let mut s3_location = None;
+                    let mut git_hub_location: Option<::Value<GitHubLocation>> = None;
+                    let mut revision_type: Option<::Value<String>> = None;
+                    let mut s3_location: Option<::Value<S3Location>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1083,11 +1083,11 @@ pub mod deployment_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut bucket = None;
-                    let mut bundle_type = None;
-                    let mut e_tag = None;
-                    let mut key = None;
-                    let mut version = None;
+                    let mut bucket: Option<::Value<String>> = None;
+                    let mut bundle_type: Option<::Value<String>> = None;
+                    let mut e_tag: Option<::Value<String>> = None;
+                    let mut key: Option<::Value<String>> = None;
+                    let mut version: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1163,9 +1163,9 @@ pub mod deployment_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut key = None;
-                    let mut type_ = None;
-                    let mut value = None;
+                    let mut key: Option<::Value<String>> = None;
+                    let mut type_: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1223,7 +1223,7 @@ pub mod deployment_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut name = None;
+                    let mut name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1283,9 +1283,9 @@ pub mod deployment_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut trigger_events = None;
-                    let mut trigger_name = None;
-                    let mut trigger_target_arn = None;
+                    let mut trigger_events: Option<::ValueList<String>> = None;
+                    let mut trigger_name: Option<::Value<String>> = None;
+                    let mut trigger_target_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

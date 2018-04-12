@@ -85,17 +85,17 @@ impl<'de> ::serde::Deserialize<'de> for QueueProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut content_based_deduplication = None;
-                let mut delay_seconds = None;
-                let mut fifo_queue = None;
-                let mut kms_data_key_reuse_period_seconds = None;
-                let mut kms_master_key_id = None;
-                let mut maximum_message_size = None;
-                let mut message_retention_period = None;
-                let mut queue_name = None;
-                let mut receive_message_wait_time_seconds = None;
-                let mut redrive_policy = None;
-                let mut visibility_timeout = None;
+                let mut content_based_deduplication: Option<::Value<bool>> = None;
+                let mut delay_seconds: Option<::Value<u32>> = None;
+                let mut fifo_queue: Option<::Value<bool>> = None;
+                let mut kms_data_key_reuse_period_seconds: Option<::Value<u32>> = None;
+                let mut kms_master_key_id: Option<::Value<String>> = None;
+                let mut maximum_message_size: Option<::Value<u32>> = None;
+                let mut message_retention_period: Option<::Value<u32>> = None;
+                let mut queue_name: Option<::Value<String>> = None;
+                let mut receive_message_wait_time_seconds: Option<::Value<u32>> = None;
+                let mut redrive_policy: Option<::Value<::json::Value>> = None;
+                let mut visibility_timeout: Option<::Value<u32>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -211,8 +211,8 @@ impl<'de> ::serde::Deserialize<'de> for QueuePolicyProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut policy_document = None;
-                let mut queues = None;
+                let mut policy_document: Option<::Value<::json::Value>> = None;
+                let mut queues: Option<::ValueList<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {

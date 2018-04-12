@@ -38,8 +38,8 @@ impl<'de> ::serde::Deserialize<'de> for HealthCheckProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut health_check_config = None;
-                let mut health_check_tags = None;
+                let mut health_check_config: Option<::Value<self::health_check::HealthCheckConfig>> = None;
+                let mut health_check_tags: Option<::ValueList<self::health_check::HealthCheckTag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -136,11 +136,11 @@ impl<'de> ::serde::Deserialize<'de> for HostedZoneProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut hosted_zone_config = None;
-                let mut hosted_zone_tags = None;
-                let mut name = None;
-                let mut query_logging_config = None;
-                let mut vp_cs = None;
+                let mut hosted_zone_config: Option<::Value<self::hosted_zone::HostedZoneConfig>> = None;
+                let mut hosted_zone_tags: Option<::ValueList<self::hosted_zone::HostedZoneTag>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut query_logging_config: Option<::Value<self::hosted_zone::QueryLoggingConfig>> = None;
+                let mut vp_cs: Option<::ValueList<self::hosted_zone::VPC>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -292,20 +292,20 @@ impl<'de> ::serde::Deserialize<'de> for RecordSetProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut alias_target = None;
-                let mut comment = None;
-                let mut failover = None;
-                let mut geo_location = None;
-                let mut health_check_id = None;
-                let mut hosted_zone_id = None;
-                let mut hosted_zone_name = None;
-                let mut name = None;
-                let mut region = None;
-                let mut resource_records = None;
-                let mut set_identifier = None;
-                let mut ttl = None;
-                let mut type_ = None;
-                let mut weight = None;
+                let mut alias_target: Option<::Value<self::record_set::AliasTarget>> = None;
+                let mut comment: Option<::Value<String>> = None;
+                let mut failover: Option<::Value<String>> = None;
+                let mut geo_location: Option<::Value<self::record_set::GeoLocation>> = None;
+                let mut health_check_id: Option<::Value<String>> = None;
+                let mut hosted_zone_id: Option<::Value<String>> = None;
+                let mut hosted_zone_name: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut region: Option<::Value<String>> = None;
+                let mut resource_records: Option<::ValueList<String>> = None;
+                let mut set_identifier: Option<::Value<String>> = None;
+                let mut ttl: Option<::Value<String>> = None;
+                let mut type_: Option<::Value<String>> = None;
+                let mut weight: Option<::Value<u32>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -447,10 +447,10 @@ impl<'de> ::serde::Deserialize<'de> for RecordSetGroupProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut comment = None;
-                let mut hosted_zone_id = None;
-                let mut hosted_zone_name = None;
-                let mut record_sets = None;
+                let mut comment: Option<::Value<String>> = None;
+                let mut hosted_zone_id: Option<::Value<String>> = None;
+                let mut hosted_zone_name: Option<::Value<String>> = None;
+                let mut record_sets: Option<::ValueList<self::record_set_group::RecordSet>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -535,8 +535,8 @@ pub mod health_check {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut name = None;
-                    let mut region = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut region: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -663,22 +663,22 @@ pub mod health_check {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut alarm_identifier = None;
-                    let mut child_health_checks = None;
-                    let mut enable_sni = None;
-                    let mut failure_threshold = None;
-                    let mut fully_qualified_domain_name = None;
-                    let mut health_threshold = None;
-                    let mut ip_address = None;
-                    let mut insufficient_data_health_status = None;
-                    let mut inverted = None;
-                    let mut measure_latency = None;
-                    let mut port = None;
-                    let mut regions = None;
-                    let mut request_interval = None;
-                    let mut resource_path = None;
-                    let mut search_string = None;
-                    let mut type_ = None;
+                    let mut alarm_identifier: Option<::Value<AlarmIdentifier>> = None;
+                    let mut child_health_checks: Option<::ValueList<String>> = None;
+                    let mut enable_sni: Option<::Value<bool>> = None;
+                    let mut failure_threshold: Option<::Value<u32>> = None;
+                    let mut fully_qualified_domain_name: Option<::Value<String>> = None;
+                    let mut health_threshold: Option<::Value<u32>> = None;
+                    let mut ip_address: Option<::Value<String>> = None;
+                    let mut insufficient_data_health_status: Option<::Value<String>> = None;
+                    let mut inverted: Option<::Value<bool>> = None;
+                    let mut measure_latency: Option<::Value<bool>> = None;
+                    let mut port: Option<::Value<u32>> = None;
+                    let mut regions: Option<::ValueList<String>> = None;
+                    let mut request_interval: Option<::Value<u32>> = None;
+                    let mut resource_path: Option<::Value<String>> = None;
+                    let mut search_string: Option<::Value<String>> = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -789,8 +789,8 @@ pub mod health_check {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut key = None;
-                    let mut value = None;
+                    let mut key: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -848,7 +848,7 @@ pub mod hosted_zone {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut comment = None;
+                    let mut comment: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -899,8 +899,8 @@ pub mod hosted_zone {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut key = None;
-                    let mut value = None;
+                    let mut key: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -952,7 +952,7 @@ pub mod hosted_zone {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut cloud_watch_logs_log_group_arn = None;
+                    let mut cloud_watch_logs_log_group_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1003,8 +1003,8 @@ pub mod hosted_zone {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut vpc_id = None;
-                    let mut vpc_region = None;
+                    let mut vpc_id: Option<::Value<String>> = None;
+                    let mut vpc_region: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1068,9 +1068,9 @@ pub mod record_set {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut dns_name = None;
-                    let mut evaluate_target_health = None;
-                    let mut hosted_zone_id = None;
+                    let mut dns_name: Option<::Value<String>> = None;
+                    let mut evaluate_target_health: Option<::Value<bool>> = None;
+                    let mut hosted_zone_id: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1138,9 +1138,9 @@ pub mod record_set {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut continent_code = None;
-                    let mut country_code = None;
-                    let mut subdivision_code = None;
+                    let mut continent_code: Option<::Value<String>> = None;
+                    let mut country_code: Option<::Value<String>> = None;
+                    let mut subdivision_code: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1208,9 +1208,9 @@ pub mod record_set_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut dns_name = None;
-                    let mut evaluate_target_health = None;
-                    let mut hosted_zone_id = None;
+                    let mut dns_name: Option<::Value<String>> = None;
+                    let mut evaluate_target_health: Option<::Value<bool>> = None;
+                    let mut hosted_zone_id: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1278,9 +1278,9 @@ pub mod record_set_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut continent_code = None;
-                    let mut country_code = None;
-                    let mut subdivision_code = None;
+                    let mut continent_code: Option<::Value<String>> = None;
+                    let mut country_code: Option<::Value<String>> = None;
+                    let mut subdivision_code: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1399,20 +1399,20 @@ pub mod record_set_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut alias_target = None;
-                    let mut comment = None;
-                    let mut failover = None;
-                    let mut geo_location = None;
-                    let mut health_check_id = None;
-                    let mut hosted_zone_id = None;
-                    let mut hosted_zone_name = None;
-                    let mut name = None;
-                    let mut region = None;
-                    let mut resource_records = None;
-                    let mut set_identifier = None;
-                    let mut ttl = None;
-                    let mut type_ = None;
-                    let mut weight = None;
+                    let mut alias_target: Option<::Value<AliasTarget>> = None;
+                    let mut comment: Option<::Value<String>> = None;
+                    let mut failover: Option<::Value<String>> = None;
+                    let mut geo_location: Option<::Value<GeoLocation>> = None;
+                    let mut health_check_id: Option<::Value<String>> = None;
+                    let mut hosted_zone_id: Option<::Value<String>> = None;
+                    let mut hosted_zone_name: Option<::Value<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut region: Option<::Value<String>> = None;
+                    let mut resource_records: Option<::ValueList<String>> = None;
+                    let mut set_identifier: Option<::Value<String>> = None;
+                    let mut ttl: Option<::Value<String>> = None;
+                    let mut type_: Option<::Value<String>> = None;
+                    let mut weight: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

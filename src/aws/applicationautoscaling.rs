@@ -53,13 +53,13 @@ impl<'de> ::serde::Deserialize<'de> for ScalableTargetProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut max_capacity = None;
-                let mut min_capacity = None;
-                let mut resource_id = None;
-                let mut role_arn = None;
-                let mut scalable_dimension = None;
-                let mut scheduled_actions = None;
-                let mut service_namespace = None;
+                let mut max_capacity: Option<::Value<u32>> = None;
+                let mut min_capacity: Option<::Value<u32>> = None;
+                let mut resource_id: Option<::Value<String>> = None;
+                let mut role_arn: Option<::Value<String>> = None;
+                let mut scalable_dimension: Option<::Value<String>> = None;
+                let mut scheduled_actions: Option<::ValueList<self::scalable_target::ScheduledAction>> = None;
+                let mut service_namespace: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -189,14 +189,14 @@ impl<'de> ::serde::Deserialize<'de> for ScalingPolicyProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut policy_name = None;
-                let mut policy_type = None;
-                let mut resource_id = None;
-                let mut scalable_dimension = None;
-                let mut scaling_target_id = None;
-                let mut service_namespace = None;
-                let mut step_scaling_policy_configuration = None;
-                let mut target_tracking_scaling_policy_configuration = None;
+                let mut policy_name: Option<::Value<String>> = None;
+                let mut policy_type: Option<::Value<String>> = None;
+                let mut resource_id: Option<::Value<String>> = None;
+                let mut scalable_dimension: Option<::Value<String>> = None;
+                let mut scaling_target_id: Option<::Value<String>> = None;
+                let mut service_namespace: Option<::Value<String>> = None;
+                let mut step_scaling_policy_configuration: Option<::Value<self::scaling_policy::StepScalingPolicyConfiguration>> = None;
+                let mut target_tracking_scaling_policy_configuration: Option<::Value<self::scaling_policy::TargetTrackingScalingPolicyConfiguration>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -301,8 +301,8 @@ pub mod scalable_target {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut max_capacity = None;
-                    let mut min_capacity = None;
+                    let mut max_capacity: Option<::Value<u32>> = None;
+                    let mut min_capacity: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -372,11 +372,11 @@ pub mod scalable_target {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut end_time = None;
-                    let mut scalable_target_action = None;
-                    let mut schedule = None;
-                    let mut scheduled_action_name = None;
-                    let mut start_time = None;
+                    let mut end_time: Option<::Value<String>> = None;
+                    let mut scalable_target_action: Option<::Value<ScalableTargetAction>> = None;
+                    let mut schedule: Option<::Value<String>> = None;
+                    let mut scheduled_action_name: Option<::Value<String>> = None;
+                    let mut start_time: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -460,11 +460,11 @@ pub mod scaling_policy {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut dimensions = None;
-                    let mut metric_name = None;
-                    let mut namespace = None;
-                    let mut statistic = None;
-                    let mut unit = None;
+                    let mut dimensions: Option<::ValueList<MetricDimension>> = None;
+                    let mut metric_name: Option<::Value<String>> = None;
+                    let mut namespace: Option<::Value<String>> = None;
+                    let mut statistic: Option<::Value<String>> = None;
+                    let mut unit: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -531,8 +531,8 @@ pub mod scaling_policy {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut name = None;
-                    let mut value = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -589,8 +589,8 @@ pub mod scaling_policy {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut predefined_metric_type = None;
-                    let mut resource_label = None;
+                    let mut predefined_metric_type: Option<::Value<String>> = None;
+                    let mut resource_label: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -652,9 +652,9 @@ pub mod scaling_policy {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut metric_interval_lower_bound = None;
-                    let mut metric_interval_upper_bound = None;
-                    let mut scaling_adjustment = None;
+                    let mut metric_interval_lower_bound: Option<::Value<f64>> = None;
+                    let mut metric_interval_upper_bound: Option<::Value<f64>> = None;
+                    let mut scaling_adjustment: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -732,11 +732,11 @@ pub mod scaling_policy {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut adjustment_type = None;
-                    let mut cooldown = None;
-                    let mut metric_aggregation_type = None;
-                    let mut min_adjustment_magnitude = None;
-                    let mut step_adjustments = None;
+                    let mut adjustment_type: Option<::Value<String>> = None;
+                    let mut cooldown: Option<::Value<u32>> = None;
+                    let mut metric_aggregation_type: Option<::Value<String>> = None;
+                    let mut min_adjustment_magnitude: Option<::Value<u32>> = None;
+                    let mut step_adjustments: Option<::ValueList<StepAdjustment>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -825,12 +825,12 @@ pub mod scaling_policy {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut customized_metric_specification = None;
-                    let mut disable_scale_in = None;
-                    let mut predefined_metric_specification = None;
-                    let mut scale_in_cooldown = None;
-                    let mut scale_out_cooldown = None;
-                    let mut target_value = None;
+                    let mut customized_metric_specification: Option<::Value<CustomizedMetricSpecification>> = None;
+                    let mut disable_scale_in: Option<::Value<bool>> = None;
+                    let mut predefined_metric_specification: Option<::Value<PredefinedMetricSpecification>> = None;
+                    let mut scale_in_cooldown: Option<::Value<u32>> = None;
+                    let mut scale_out_cooldown: Option<::Value<u32>> = None;
+                    let mut target_value: Option<::Value<f64>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

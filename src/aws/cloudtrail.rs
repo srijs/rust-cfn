@@ -91,19 +91,19 @@ impl<'de> ::serde::Deserialize<'de> for TrailProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut cloud_watch_logs_log_group_arn = None;
-                let mut cloud_watch_logs_role_arn = None;
-                let mut enable_log_file_validation = None;
-                let mut event_selectors = None;
-                let mut include_global_service_events = None;
-                let mut is_logging = None;
-                let mut is_multi_region_trail = None;
-                let mut kms_key_id = None;
-                let mut s3_bucket_name = None;
-                let mut s3_key_prefix = None;
-                let mut sns_topic_name = None;
-                let mut tags = None;
-                let mut trail_name = None;
+                let mut cloud_watch_logs_log_group_arn: Option<::Value<String>> = None;
+                let mut cloud_watch_logs_role_arn: Option<::Value<String>> = None;
+                let mut enable_log_file_validation: Option<::Value<bool>> = None;
+                let mut event_selectors: Option<::ValueList<self::trail::EventSelector>> = None;
+                let mut include_global_service_events: Option<::Value<bool>> = None;
+                let mut is_logging: Option<::Value<bool>> = None;
+                let mut is_multi_region_trail: Option<::Value<bool>> = None;
+                let mut kms_key_id: Option<::Value<String>> = None;
+                let mut s3_bucket_name: Option<::Value<String>> = None;
+                let mut s3_key_prefix: Option<::Value<String>> = None;
+                let mut sns_topic_name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut trail_name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -226,8 +226,8 @@ pub mod trail {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut type_ = None;
-                    let mut values = None;
+                    let mut type_: Option<::Value<String>> = None;
+                    let mut values: Option<::ValueList<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -291,9 +291,9 @@ pub mod trail {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut data_resources = None;
-                    let mut include_management_events = None;
-                    let mut read_write_type = None;
+                    let mut data_resources: Option<::ValueList<DataResource>> = None;
+                    let mut include_management_events: Option<::Value<bool>> = None;
+                    let mut read_write_type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

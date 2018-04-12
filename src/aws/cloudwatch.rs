@@ -108,24 +108,24 @@ impl<'de> ::serde::Deserialize<'de> for AlarmProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut actions_enabled = None;
-                let mut alarm_actions = None;
-                let mut alarm_description = None;
-                let mut alarm_name = None;
-                let mut comparison_operator = None;
-                let mut dimensions = None;
-                let mut evaluate_low_sample_count_percentile = None;
-                let mut evaluation_periods = None;
-                let mut extended_statistic = None;
-                let mut insufficient_data_actions = None;
-                let mut metric_name = None;
-                let mut namespace = None;
-                let mut ok_actions = None;
-                let mut period = None;
-                let mut statistic = None;
-                let mut threshold = None;
-                let mut treat_missing_data = None;
-                let mut unit = None;
+                let mut actions_enabled: Option<::Value<bool>> = None;
+                let mut alarm_actions: Option<::ValueList<String>> = None;
+                let mut alarm_description: Option<::Value<String>> = None;
+                let mut alarm_name: Option<::Value<String>> = None;
+                let mut comparison_operator: Option<::Value<String>> = None;
+                let mut dimensions: Option<::ValueList<self::alarm::Dimension>> = None;
+                let mut evaluate_low_sample_count_percentile: Option<::Value<String>> = None;
+                let mut evaluation_periods: Option<::Value<u32>> = None;
+                let mut extended_statistic: Option<::Value<String>> = None;
+                let mut insufficient_data_actions: Option<::ValueList<String>> = None;
+                let mut metric_name: Option<::Value<String>> = None;
+                let mut namespace: Option<::Value<String>> = None;
+                let mut ok_actions: Option<::ValueList<String>> = None;
+                let mut period: Option<::Value<u32>> = None;
+                let mut statistic: Option<::Value<String>> = None;
+                let mut threshold: Option<::Value<f64>> = None;
+                let mut treat_missing_data: Option<::Value<String>> = None;
+                let mut unit: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -271,8 +271,8 @@ impl<'de> ::serde::Deserialize<'de> for DashboardProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut dashboard_body = None;
-                let mut dashboard_name = None;
+                let mut dashboard_body: Option<::Value<String>> = None;
+                let mut dashboard_name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -349,8 +349,8 @@ pub mod alarm {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut name = None;
-                    let mut value = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

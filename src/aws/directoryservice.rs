@@ -54,12 +54,12 @@ impl<'de> ::serde::Deserialize<'de> for MicrosoftADProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut create_alias = None;
-                let mut enable_sso = None;
-                let mut name = None;
-                let mut password = None;
-                let mut short_name = None;
-                let mut vpc_settings = None;
+                let mut create_alias: Option<::Value<bool>> = None;
+                let mut enable_sso: Option<::Value<bool>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut password: Option<::Value<String>> = None;
+                let mut short_name: Option<::Value<String>> = None;
+                let mut vpc_settings: Option<::Value<self::microsoft_ad::VpcSettings>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -181,14 +181,14 @@ impl<'de> ::serde::Deserialize<'de> for SimpleADProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut create_alias = None;
-                let mut description = None;
-                let mut enable_sso = None;
-                let mut name = None;
-                let mut password = None;
-                let mut short_name = None;
-                let mut size = None;
-                let mut vpc_settings = None;
+                let mut create_alias: Option<::Value<bool>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut enable_sso: Option<::Value<bool>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut password: Option<::Value<String>> = None;
+                let mut short_name: Option<::Value<String>> = None;
+                let mut size: Option<::Value<String>> = None;
+                let mut vpc_settings: Option<::Value<self::simple_ad::VpcSettings>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -289,8 +289,8 @@ pub mod microsoft_ad {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut subnet_ids = None;
-                    let mut vpc_id = None;
+                    let mut subnet_ids: Option<::ValueList<String>> = None;
+                    let mut vpc_id: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -349,8 +349,8 @@ pub mod simple_ad {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut subnet_ids = None;
-                    let mut vpc_id = None;
+                    let mut subnet_ids: Option<::ValueList<String>> = None;
+                    let mut vpc_id: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

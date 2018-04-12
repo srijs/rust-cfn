@@ -108,22 +108,22 @@ impl<'de> ::serde::Deserialize<'de> for LoadBalancerProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut access_logging_policy = None;
-                let mut app_cookie_stickiness_policy = None;
-                let mut availability_zones = None;
-                let mut connection_draining_policy = None;
-                let mut connection_settings = None;
-                let mut cross_zone = None;
-                let mut health_check = None;
-                let mut instances = None;
-                let mut lb_cookie_stickiness_policy = None;
-                let mut listeners = None;
-                let mut load_balancer_name = None;
-                let mut policies = None;
-                let mut scheme = None;
-                let mut security_groups = None;
-                let mut subnets = None;
-                let mut tags = None;
+                let mut access_logging_policy: Option<::Value<self::load_balancer::AccessLoggingPolicy>> = None;
+                let mut app_cookie_stickiness_policy: Option<::ValueList<self::load_balancer::AppCookieStickinessPolicy>> = None;
+                let mut availability_zones: Option<::ValueList<String>> = None;
+                let mut connection_draining_policy: Option<::Value<self::load_balancer::ConnectionDrainingPolicy>> = None;
+                let mut connection_settings: Option<::Value<self::load_balancer::ConnectionSettings>> = None;
+                let mut cross_zone: Option<::Value<bool>> = None;
+                let mut health_check: Option<::Value<self::load_balancer::HealthCheck>> = None;
+                let mut instances: Option<::ValueList<String>> = None;
+                let mut lb_cookie_stickiness_policy: Option<::ValueList<self::load_balancer::LBCookieStickinessPolicy>> = None;
+                let mut listeners: Option<::ValueList<self::load_balancer::Listeners>> = None;
+                let mut load_balancer_name: Option<::Value<String>> = None;
+                let mut policies: Option<::ValueList<self::load_balancer::Policies>> = None;
+                let mut scheme: Option<::Value<String>> = None;
+                let mut security_groups: Option<::ValueList<String>> = None;
+                let mut subnets: Option<::ValueList<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -266,10 +266,10 @@ pub mod load_balancer {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut emit_interval = None;
-                    let mut enabled = None;
-                    let mut s3_bucket_name = None;
-                    let mut s3_bucket_prefix = None;
+                    let mut emit_interval: Option<::Value<u32>> = None;
+                    let mut enabled: Option<::Value<bool>> = None;
+                    let mut s3_bucket_name: Option<::Value<String>> = None;
+                    let mut s3_bucket_prefix: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -332,8 +332,8 @@ pub mod load_balancer {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut cookie_name = None;
-                    let mut policy_name = None;
+                    let mut cookie_name: Option<::Value<String>> = None;
+                    let mut policy_name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -390,8 +390,8 @@ pub mod load_balancer {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut enabled = None;
-                    let mut timeout = None;
+                    let mut enabled: Option<::Value<bool>> = None;
+                    let mut timeout: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -443,7 +443,7 @@ pub mod load_balancer {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut idle_timeout = None;
+                    let mut idle_timeout: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -503,11 +503,11 @@ pub mod load_balancer {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut healthy_threshold = None;
-                    let mut interval = None;
-                    let mut target = None;
-                    let mut timeout = None;
-                    let mut unhealthy_threshold = None;
+                    let mut healthy_threshold: Option<::Value<String>> = None;
+                    let mut interval: Option<::Value<String>> = None;
+                    let mut target: Option<::Value<String>> = None;
+                    let mut timeout: Option<::Value<String>> = None;
+                    let mut unhealthy_threshold: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -578,8 +578,8 @@ pub mod load_balancer {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut cookie_expiration_period = None;
-                    let mut policy_name = None;
+                    let mut cookie_expiration_period: Option<::Value<String>> = None;
+                    let mut policy_name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -652,12 +652,12 @@ pub mod load_balancer {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut instance_port = None;
-                    let mut instance_protocol = None;
-                    let mut load_balancer_port = None;
-                    let mut policy_names = None;
-                    let mut protocol = None;
-                    let mut ssl_certificate_id = None;
+                    let mut instance_port: Option<::Value<String>> = None;
+                    let mut instance_protocol: Option<::Value<String>> = None;
+                    let mut load_balancer_port: Option<::Value<String>> = None;
+                    let mut policy_names: Option<::ValueList<String>> = None;
+                    let mut protocol: Option<::Value<String>> = None;
+                    let mut ssl_certificate_id: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -741,11 +741,11 @@ pub mod load_balancer {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut attributes = None;
-                    let mut instance_ports = None;
-                    let mut load_balancer_ports = None;
-                    let mut policy_name = None;
-                    let mut policy_type = None;
+                    let mut attributes: Option<::ValueList<::json::Value>> = None;
+                    let mut instance_ports: Option<::ValueList<String>> = None;
+                    let mut load_balancer_ports: Option<::ValueList<String>> = None;
+                    let mut policy_name: Option<::Value<String>> = None;
+                    let mut policy_type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

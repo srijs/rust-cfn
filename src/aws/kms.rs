@@ -36,8 +36,8 @@ impl<'de> ::serde::Deserialize<'de> for AliasProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut alias_name = None;
-                let mut target_key_id = None;
+                let mut alias_name: Option<::Value<String>> = None;
+                let mut target_key_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -139,12 +139,12 @@ impl<'de> ::serde::Deserialize<'de> for KeyProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut description = None;
-                let mut enable_key_rotation = None;
-                let mut enabled = None;
-                let mut key_policy = None;
-                let mut key_usage = None;
-                let mut tags = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut enable_key_rotation: Option<::Value<bool>> = None;
+                let mut enabled: Option<::Value<bool>> = None;
+                let mut key_policy: Option<::Value<::json::Value>> = None;
+                let mut key_usage: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {

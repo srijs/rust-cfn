@@ -45,9 +45,9 @@ impl<'de> ::serde::Deserialize<'de> for ApplicationProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut application_name = None;
-                let mut description = None;
-                let mut resource_lifecycle_config = None;
+                let mut application_name: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut resource_lifecycle_config: Option<::Value<self::application::ApplicationResourceLifecycleConfig>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -136,9 +136,9 @@ impl<'de> ::serde::Deserialize<'de> for ApplicationVersionProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut application_name = None;
-                let mut description = None;
-                let mut source_bundle = None;
+                let mut application_name: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut source_bundle: Option<::Value<self::application_version::SourceBundle>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -249,13 +249,13 @@ impl<'de> ::serde::Deserialize<'de> for ConfigurationTemplateProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut application_name = None;
-                let mut description = None;
-                let mut environment_id = None;
-                let mut option_settings = None;
-                let mut platform_arn = None;
-                let mut solution_stack_name = None;
-                let mut source_configuration = None;
+                let mut application_name: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut environment_id: Option<::Value<String>> = None;
+                let mut option_settings: Option<::ValueList<self::configuration_template::ConfigurationOptionSetting>> = None;
+                let mut platform_arn: Option<::Value<String>> = None;
+                let mut solution_stack_name: Option<::Value<String>> = None;
+                let mut source_configuration: Option<::Value<self::configuration_template::SourceConfiguration>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -402,17 +402,17 @@ impl<'de> ::serde::Deserialize<'de> for EnvironmentProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut application_name = None;
-                let mut cname_prefix = None;
-                let mut description = None;
-                let mut environment_name = None;
-                let mut option_settings = None;
-                let mut platform_arn = None;
-                let mut solution_stack_name = None;
-                let mut tags = None;
-                let mut template_name = None;
-                let mut tier = None;
-                let mut version_label = None;
+                let mut application_name: Option<::Value<String>> = None;
+                let mut cname_prefix: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut environment_name: Option<::Value<String>> = None;
+                let mut option_settings: Option<::ValueList<self::environment::OptionSetting>> = None;
+                let mut platform_arn: Option<::Value<String>> = None;
+                let mut solution_stack_name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut template_name: Option<::Value<String>> = None;
+                let mut tier: Option<::Value<self::environment::Tier>> = None;
+                let mut version_label: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -529,8 +529,8 @@ pub mod application {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut service_role = None;
-                    let mut version_lifecycle_config = None;
+                    let mut service_role: Option<::Value<String>> = None;
+                    let mut version_lifecycle_config: Option<::Value<ApplicationVersionLifecycleConfig>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -589,8 +589,8 @@ pub mod application {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut max_age_rule = None;
-                    let mut max_count_rule = None;
+                    let mut max_age_rule: Option<::Value<MaxAgeRule>> = None;
+                    let mut max_count_rule: Option<::Value<MaxCountRule>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -654,9 +654,9 @@ pub mod application {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut delete_source_from_s3 = None;
-                    let mut enabled = None;
-                    let mut max_age_in_days = None;
+                    let mut delete_source_from_s3: Option<::Value<bool>> = None;
+                    let mut enabled: Option<::Value<bool>> = None;
+                    let mut max_age_in_days: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -724,9 +724,9 @@ pub mod application {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut delete_source_from_s3 = None;
-                    let mut enabled = None;
-                    let mut max_count = None;
+                    let mut delete_source_from_s3: Option<::Value<bool>> = None;
+                    let mut enabled: Option<::Value<bool>> = None;
+                    let mut max_count: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -789,8 +789,8 @@ pub mod application_version {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut s3_bucket = None;
-                    let mut s3_key = None;
+                    let mut s3_bucket: Option<::Value<String>> = None;
+                    let mut s3_key: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -859,10 +859,10 @@ pub mod configuration_template {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut namespace = None;
-                    let mut option_name = None;
-                    let mut resource_name = None;
-                    let mut value = None;
+                    let mut namespace: Option<::Value<String>> = None;
+                    let mut option_name: Option<::Value<String>> = None;
+                    let mut resource_name: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -925,8 +925,8 @@ pub mod configuration_template {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut application_name = None;
-                    let mut template_name = None;
+                    let mut application_name: Option<::Value<String>> = None;
+                    let mut template_name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -995,10 +995,10 @@ pub mod environment {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut namespace = None;
-                    let mut option_name = None;
-                    let mut resource_name = None;
-                    let mut value = None;
+                    let mut namespace: Option<::Value<String>> = None;
+                    let mut option_name: Option<::Value<String>> = None;
+                    let mut resource_name: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1070,9 +1070,9 @@ pub mod environment {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut name = None;
-                    let mut type_ = None;
-                    let mut version = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut type_: Option<::Value<String>> = None;
+                    let mut version: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

@@ -52,12 +52,12 @@ impl<'de> ::serde::Deserialize<'de> for ListenerProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut certificates = None;
-                let mut default_actions = None;
-                let mut load_balancer_arn = None;
-                let mut port = None;
-                let mut protocol = None;
-                let mut ssl_policy = None;
+                let mut certificates: Option<::ValueList<self::listener::Certificate>> = None;
+                let mut default_actions: Option<::ValueList<self::listener::Action>> = None;
+                let mut load_balancer_arn: Option<::Value<String>> = None;
+                let mut port: Option<::Value<u32>> = None;
+                let mut protocol: Option<::Value<String>> = None;
+                let mut ssl_policy: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -153,8 +153,8 @@ impl<'de> ::serde::Deserialize<'de> for ListenerCertificateProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut certificates = None;
-                let mut listener_arn = None;
+                let mut certificates: Option<::ValueList<self::listener_certificate::Certificate>> = None;
+                let mut listener_arn: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -240,10 +240,10 @@ impl<'de> ::serde::Deserialize<'de> for ListenerRuleProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut actions = None;
-                let mut conditions = None;
-                let mut listener_arn = None;
-                let mut priority = None;
+                let mut actions: Option<::ValueList<self::listener_rule::Action>> = None;
+                let mut conditions: Option<::ValueList<self::listener_rule::RuleCondition>> = None;
+                let mut listener_arn: Option<::Value<String>> = None;
+                let mut priority: Option<::Value<u32>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -370,15 +370,15 @@ impl<'de> ::serde::Deserialize<'de> for LoadBalancerProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut ip_address_type = None;
-                let mut load_balancer_attributes = None;
-                let mut name = None;
-                let mut scheme = None;
-                let mut security_groups = None;
-                let mut subnet_mappings = None;
-                let mut subnets = None;
-                let mut tags = None;
-                let mut type_ = None;
+                let mut ip_address_type: Option<::Value<String>> = None;
+                let mut load_balancer_attributes: Option<::ValueList<self::load_balancer::LoadBalancerAttribute>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut scheme: Option<::Value<String>> = None;
+                let mut security_groups: Option<::ValueList<String>> = None;
+                let mut subnet_mappings: Option<::ValueList<self::load_balancer::SubnetMapping>> = None;
+                let mut subnets: Option<::ValueList<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut type_: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -554,22 +554,22 @@ impl<'de> ::serde::Deserialize<'de> for TargetGroupProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut health_check_interval_seconds = None;
-                let mut health_check_path = None;
-                let mut health_check_port = None;
-                let mut health_check_protocol = None;
-                let mut health_check_timeout_seconds = None;
-                let mut healthy_threshold_count = None;
-                let mut matcher = None;
-                let mut name = None;
-                let mut port = None;
-                let mut protocol = None;
-                let mut tags = None;
-                let mut target_group_attributes = None;
-                let mut target_type = None;
-                let mut targets = None;
-                let mut unhealthy_threshold_count = None;
-                let mut vpc_id = None;
+                let mut health_check_interval_seconds: Option<::Value<u32>> = None;
+                let mut health_check_path: Option<::Value<String>> = None;
+                let mut health_check_port: Option<::Value<String>> = None;
+                let mut health_check_protocol: Option<::Value<String>> = None;
+                let mut health_check_timeout_seconds: Option<::Value<u32>> = None;
+                let mut healthy_threshold_count: Option<::Value<u32>> = None;
+                let mut matcher: Option<::Value<self::target_group::Matcher>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut port: Option<::Value<u32>> = None;
+                let mut protocol: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut target_group_attributes: Option<::ValueList<self::target_group::TargetGroupAttribute>> = None;
+                let mut target_type: Option<::Value<String>> = None;
+                let mut targets: Option<::ValueList<self::target_group::TargetDescription>> = None;
+                let mut unhealthy_threshold_count: Option<::Value<u32>> = None;
+                let mut vpc_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -702,8 +702,8 @@ pub mod listener {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut target_group_arn = None;
-                    let mut type_ = None;
+                    let mut target_group_arn: Option<::Value<String>> = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -757,7 +757,7 @@ pub mod listener {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut certificate_arn = None;
+                    let mut certificate_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -811,7 +811,7 @@ pub mod listener_certificate {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut certificate_arn = None;
+                    let mut certificate_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -866,8 +866,8 @@ pub mod listener_rule {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut target_group_arn = None;
-                    let mut type_ = None;
+                    let mut target_group_arn: Option<::Value<String>> = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -926,8 +926,8 @@ pub mod listener_rule {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut field = None;
-                    let mut values = None;
+                    let mut field: Option<::Value<String>> = None;
+                    let mut values: Option<::ValueList<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -990,8 +990,8 @@ pub mod load_balancer {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut key = None;
-                    let mut value = None;
+                    let mut key: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1046,8 +1046,8 @@ pub mod load_balancer {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut allocation_id = None;
-                    let mut subnet_id = None;
+                    let mut allocation_id: Option<::Value<String>> = None;
+                    let mut subnet_id: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1103,7 +1103,7 @@ pub mod target_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut http_code = None;
+                    let mut http_code: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1161,9 +1161,9 @@ pub mod target_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut availability_zone = None;
-                    let mut id = None;
-                    let mut port = None;
+                    let mut availability_zone: Option<::Value<String>> = None;
+                    let mut id: Option<::Value<String>> = None;
+                    let mut port: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1226,8 +1226,8 @@ pub mod target_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut key = None;
-                    let mut value = None;
+                    let mut key: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

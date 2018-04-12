@@ -78,16 +78,16 @@ impl<'de> ::serde::Deserialize<'de> for IdentityPoolProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut allow_unauthenticated_identities = None;
-                let mut cognito_events = None;
-                let mut cognito_identity_providers = None;
-                let mut cognito_streams = None;
-                let mut developer_provider_name = None;
-                let mut identity_pool_name = None;
-                let mut open_id_connect_provider_ar_ns = None;
-                let mut push_sync = None;
-                let mut saml_provider_ar_ns = None;
-                let mut supported_login_providers = None;
+                let mut allow_unauthenticated_identities: Option<::Value<bool>> = None;
+                let mut cognito_events: Option<::Value<::json::Value>> = None;
+                let mut cognito_identity_providers: Option<::ValueList<self::identity_pool::CognitoIdentityProvider>> = None;
+                let mut cognito_streams: Option<::Value<self::identity_pool::CognitoStreams>> = None;
+                let mut developer_provider_name: Option<::Value<String>> = None;
+                let mut identity_pool_name: Option<::Value<String>> = None;
+                let mut open_id_connect_provider_ar_ns: Option<::ValueList<String>> = None;
+                let mut push_sync: Option<::Value<self::identity_pool::PushSync>> = None;
+                let mut saml_provider_ar_ns: Option<::ValueList<String>> = None;
+                let mut supported_login_providers: Option<::Value<::json::Value>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -206,9 +206,9 @@ impl<'de> ::serde::Deserialize<'de> for IdentityPoolRoleAttachmentProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut identity_pool_id = None;
-                let mut role_mappings = None;
-                let mut roles = None;
+                let mut identity_pool_id: Option<::Value<String>> = None;
+                let mut role_mappings: Option<::Value<::json::Value>> = None;
+                let mut roles: Option<::Value<::json::Value>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -366,22 +366,22 @@ impl<'de> ::serde::Deserialize<'de> for UserPoolProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut admin_create_user_config = None;
-                let mut alias_attributes = None;
-                let mut auto_verified_attributes = None;
-                let mut device_configuration = None;
-                let mut email_configuration = None;
-                let mut email_verification_message = None;
-                let mut email_verification_subject = None;
-                let mut lambda_config = None;
-                let mut mfa_configuration = None;
-                let mut policies = None;
-                let mut schema = None;
-                let mut sms_authentication_message = None;
-                let mut sms_configuration = None;
-                let mut sms_verification_message = None;
-                let mut user_pool_name = None;
-                let mut user_pool_tags = None;
+                let mut admin_create_user_config: Option<::Value<self::user_pool::AdminCreateUserConfig>> = None;
+                let mut alias_attributes: Option<::ValueList<String>> = None;
+                let mut auto_verified_attributes: Option<::ValueList<String>> = None;
+                let mut device_configuration: Option<::Value<self::user_pool::DeviceConfiguration>> = None;
+                let mut email_configuration: Option<::Value<self::user_pool::EmailConfiguration>> = None;
+                let mut email_verification_message: Option<::Value<String>> = None;
+                let mut email_verification_subject: Option<::Value<String>> = None;
+                let mut lambda_config: Option<::Value<self::user_pool::LambdaConfig>> = None;
+                let mut mfa_configuration: Option<::Value<String>> = None;
+                let mut policies: Option<::Value<self::user_pool::Policies>> = None;
+                let mut schema: Option<::ValueList<self::user_pool::SchemaAttribute>> = None;
+                let mut sms_authentication_message: Option<::Value<String>> = None;
+                let mut sms_configuration: Option<::Value<self::user_pool::SmsConfiguration>> = None;
+                let mut sms_verification_message: Option<::Value<String>> = None;
+                let mut user_pool_name: Option<::Value<String>> = None;
+                let mut user_pool_tags: Option<::Value<::json::Value>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -544,13 +544,13 @@ impl<'de> ::serde::Deserialize<'de> for UserPoolClientProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut client_name = None;
-                let mut explicit_auth_flows = None;
-                let mut generate_secret = None;
-                let mut read_attributes = None;
-                let mut refresh_token_validity = None;
-                let mut user_pool_id = None;
-                let mut write_attributes = None;
+                let mut client_name: Option<::Value<String>> = None;
+                let mut explicit_auth_flows: Option<::ValueList<String>> = None;
+                let mut generate_secret: Option<::Value<bool>> = None;
+                let mut read_attributes: Option<::ValueList<String>> = None;
+                let mut refresh_token_validity: Option<::Value<f64>> = None;
+                let mut user_pool_id: Option<::Value<String>> = None;
+                let mut write_attributes: Option<::ValueList<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -667,11 +667,11 @@ impl<'de> ::serde::Deserialize<'de> for UserPoolGroupProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut description = None;
-                let mut group_name = None;
-                let mut precedence = None;
-                let mut role_arn = None;
-                let mut user_pool_id = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut group_name: Option<::Value<String>> = None;
+                let mut precedence: Option<::Value<f64>> = None;
+                let mut role_arn: Option<::Value<String>> = None;
+                let mut user_pool_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -790,13 +790,13 @@ impl<'de> ::serde::Deserialize<'de> for UserPoolUserProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut desired_delivery_mediums = None;
-                let mut force_alias_creation = None;
-                let mut message_action = None;
-                let mut user_attributes = None;
-                let mut user_pool_id = None;
-                let mut username = None;
-                let mut validation_data = None;
+                let mut desired_delivery_mediums: Option<::ValueList<String>> = None;
+                let mut force_alias_creation: Option<::Value<bool>> = None;
+                let mut message_action: Option<::Value<String>> = None;
+                let mut user_attributes: Option<::ValueList<self::user_pool_user::AttributeType>> = None;
+                let mut user_pool_id: Option<::Value<String>> = None;
+                let mut username: Option<::Value<String>> = None;
+                let mut validation_data: Option<::ValueList<self::user_pool_user::AttributeType>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -899,9 +899,9 @@ impl<'de> ::serde::Deserialize<'de> for UserPoolUserToGroupAttachmentProperties 
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut group_name = None;
-                let mut user_pool_id = None;
-                let mut username = None;
+                let mut group_name: Option<::Value<String>> = None;
+                let mut user_pool_id: Option<::Value<String>> = None;
+                let mut username: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -991,9 +991,9 @@ pub mod identity_pool {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut client_id = None;
-                    let mut provider_name = None;
-                    let mut server_side_token_check = None;
+                    let mut client_id: Option<::Value<String>> = None;
+                    let mut provider_name: Option<::Value<String>> = None;
+                    let mut server_side_token_check: Option<::Value<bool>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1061,9 +1061,9 @@ pub mod identity_pool {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut role_arn = None;
-                    let mut stream_name = None;
-                    let mut streaming_status = None;
+                    let mut role_arn: Option<::Value<String>> = None;
+                    let mut stream_name: Option<::Value<String>> = None;
+                    let mut streaming_status: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1126,8 +1126,8 @@ pub mod identity_pool {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut application_arns = None;
-                    let mut role_arn = None;
+                    let mut application_arns: Option<::ValueList<String>> = None;
+                    let mut role_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1192,10 +1192,10 @@ pub mod identity_pool_role_attachment {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut claim = None;
-                    let mut match_type = None;
-                    let mut role_arn = None;
-                    let mut value = None;
+                    let mut claim: Option<::Value<String>> = None;
+                    let mut match_type: Option<::Value<String>> = None;
+                    let mut role_arn: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1265,9 +1265,9 @@ pub mod identity_pool_role_attachment {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut ambiguous_role_resolution = None;
-                    let mut rules_configuration = None;
-                    let mut type_ = None;
+                    let mut ambiguous_role_resolution: Option<::Value<String>> = None;
+                    let mut rules_configuration: Option<::Value<RulesConfigurationType>> = None;
+                    let mut type_: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1323,7 +1323,7 @@ pub mod identity_pool_role_attachment {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut rules = None;
+                    let mut rules: Option<::ValueList<MappingRule>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1387,9 +1387,9 @@ pub mod user_pool {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut allow_admin_create_user_only = None;
-                    let mut invite_message_template = None;
-                    let mut unused_account_validity_days = None;
+                    let mut allow_admin_create_user_only: Option<::Value<bool>> = None;
+                    let mut invite_message_template: Option<::Value<InviteMessageTemplate>> = None;
+                    let mut unused_account_validity_days: Option<::Value<f64>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1452,8 +1452,8 @@ pub mod user_pool {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut challenge_required_on_new_device = None;
-                    let mut device_only_remembered_on_user_prompt = None;
+                    let mut challenge_required_on_new_device: Option<::Value<bool>> = None;
+                    let mut device_only_remembered_on_user_prompt: Option<::Value<bool>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1512,8 +1512,8 @@ pub mod user_pool {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut reply_to_email_address = None;
-                    let mut source_arn = None;
+                    let mut reply_to_email_address: Option<::Value<String>> = None;
+                    let mut source_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1577,9 +1577,9 @@ pub mod user_pool {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut email_message = None;
-                    let mut email_subject = None;
-                    let mut sms_message = None;
+                    let mut email_message: Option<::Value<String>> = None;
+                    let mut email_subject: Option<::Value<String>> = None;
+                    let mut sms_message: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1672,14 +1672,14 @@ pub mod user_pool {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut create_auth_challenge = None;
-                    let mut custom_message = None;
-                    let mut define_auth_challenge = None;
-                    let mut post_authentication = None;
-                    let mut post_confirmation = None;
-                    let mut pre_authentication = None;
-                    let mut pre_sign_up = None;
-                    let mut verify_auth_challenge_response = None;
+                    let mut create_auth_challenge: Option<::Value<String>> = None;
+                    let mut custom_message: Option<::Value<String>> = None;
+                    let mut define_auth_challenge: Option<::Value<String>> = None;
+                    let mut post_authentication: Option<::Value<String>> = None;
+                    let mut post_confirmation: Option<::Value<String>> = None;
+                    let mut pre_authentication: Option<::Value<String>> = None;
+                    let mut pre_sign_up: Option<::Value<String>> = None;
+                    let mut verify_auth_challenge_response: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1762,8 +1762,8 @@ pub mod user_pool {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut max_value = None;
-                    let mut min_value = None;
+                    let mut max_value: Option<::Value<String>> = None;
+                    let mut min_value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1837,11 +1837,11 @@ pub mod user_pool {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut minimum_length = None;
-                    let mut require_lowercase = None;
-                    let mut require_numbers = None;
-                    let mut require_symbols = None;
-                    let mut require_uppercase = None;
+                    let mut minimum_length: Option<::Value<u32>> = None;
+                    let mut require_lowercase: Option<::Value<bool>> = None;
+                    let mut require_numbers: Option<::Value<bool>> = None;
+                    let mut require_symbols: Option<::Value<bool>> = None;
+                    let mut require_uppercase: Option<::Value<bool>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1907,7 +1907,7 @@ pub mod user_pool {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut password_policy = None;
+                    let mut password_policy: Option<::Value<PasswordPolicy>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1987,13 +1987,13 @@ pub mod user_pool {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut attribute_data_type = None;
-                    let mut developer_only_attribute = None;
-                    let mut mutable = None;
-                    let mut name = None;
-                    let mut number_attribute_constraints = None;
-                    let mut required = None;
-                    let mut string_attribute_constraints = None;
+                    let mut attribute_data_type: Option<::Value<String>> = None;
+                    let mut developer_only_attribute: Option<::Value<bool>> = None;
+                    let mut mutable: Option<::Value<bool>> = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut number_attribute_constraints: Option<::Value<NumberAttributeConstraints>> = None;
+                    let mut required: Option<::Value<bool>> = None;
+                    let mut string_attribute_constraints: Option<::Value<StringAttributeConstraints>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2072,8 +2072,8 @@ pub mod user_pool {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut external_id = None;
-                    let mut sns_caller_arn = None;
+                    let mut external_id: Option<::Value<String>> = None;
+                    let mut sns_caller_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2132,8 +2132,8 @@ pub mod user_pool {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut max_length = None;
-                    let mut min_length = None;
+                    let mut max_length: Option<::Value<String>> = None;
+                    let mut min_length: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2196,8 +2196,8 @@ pub mod user_pool_user {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut name = None;
-                    let mut value = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {

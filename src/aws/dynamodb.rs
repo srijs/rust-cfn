@@ -76,16 +76,16 @@ impl<'de> ::serde::Deserialize<'de> for TableProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut attribute_definitions = None;
-                let mut global_secondary_indexes = None;
-                let mut key_schema = None;
-                let mut local_secondary_indexes = None;
-                let mut provisioned_throughput = None;
-                let mut sse_specification = None;
-                let mut stream_specification = None;
-                let mut table_name = None;
-                let mut tags = None;
-                let mut time_to_live_specification = None;
+                let mut attribute_definitions: Option<::ValueList<self::table::AttributeDefinition>> = None;
+                let mut global_secondary_indexes: Option<::ValueList<self::table::GlobalSecondaryIndex>> = None;
+                let mut key_schema: Option<::ValueList<self::table::KeySchema>> = None;
+                let mut local_secondary_indexes: Option<::ValueList<self::table::LocalSecondaryIndex>> = None;
+                let mut provisioned_throughput: Option<::Value<self::table::ProvisionedThroughput>> = None;
+                let mut sse_specification: Option<::Value<self::table::SSESpecification>> = None;
+                let mut stream_specification: Option<::Value<self::table::StreamSpecification>> = None;
+                let mut table_name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut time_to_live_specification: Option<::Value<self::table::TimeToLiveSpecification>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -194,8 +194,8 @@ pub mod table {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut attribute_name = None;
-                    let mut attribute_type = None;
+                    let mut attribute_name: Option<::Value<String>> = None;
+                    let mut attribute_type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -256,10 +256,10 @@ pub mod table {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut index_name = None;
-                    let mut key_schema = None;
-                    let mut projection = None;
-                    let mut provisioned_throughput = None;
+                    let mut index_name: Option<::Value<String>> = None;
+                    let mut key_schema: Option<::ValueList<KeySchema>> = None;
+                    let mut projection: Option<::Value<Projection>> = None;
+                    let mut provisioned_throughput: Option<::Value<ProvisionedThroughput>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -322,8 +322,8 @@ pub mod table {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut attribute_name = None;
-                    let mut key_type = None;
+                    let mut attribute_name: Option<::Value<String>> = None;
+                    let mut key_type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -381,9 +381,9 @@ pub mod table {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut index_name = None;
-                    let mut key_schema = None;
-                    let mut projection = None;
+                    let mut index_name: Option<::Value<String>> = None;
+                    let mut key_schema: Option<::ValueList<KeySchema>> = None;
+                    let mut projection: Option<::Value<Projection>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -446,8 +446,8 @@ pub mod table {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut non_key_attributes = None;
-                    let mut projection_type = None;
+                    let mut non_key_attributes: Option<::ValueList<String>> = None;
+                    let mut projection_type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -502,8 +502,8 @@ pub mod table {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut read_capacity_units = None;
-                    let mut write_capacity_units = None;
+                    let mut read_capacity_units: Option<::Value<u64>> = None;
+                    let mut write_capacity_units: Option<::Value<u64>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -555,7 +555,7 @@ pub mod table {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut sse_enabled = None;
+                    let mut sse_enabled: Option<::Value<bool>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -603,7 +603,7 @@ pub mod table {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut stream_view_type = None;
+                    let mut stream_view_type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -654,8 +654,8 @@ pub mod table {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut attribute_name = None;
-                    let mut enabled = None;
+                    let mut attribute_name: Option<::Value<String>> = None;
+                    let mut enabled: Option<::Value<bool>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
