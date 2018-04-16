@@ -7,7 +7,7 @@ pub struct Cluster {
 }
 
 /// Properties for the `Cluster` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ClusterProperties {
     /// Property [`ClusterName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-cluster.html#cfn-ecs-cluster-clustername).
     ///
@@ -85,7 +85,7 @@ pub struct Service {
 }
 
 /// Properties for the `Service` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ServiceProperties {
     /// Property [`Cluster`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-cluster).
     ///
@@ -317,7 +317,7 @@ pub struct TaskDefinition {
 }
 
 /// Properties for the `TaskDefinition` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct TaskDefinitionProperties {
     /// Property [`ContainerDefinitions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html#cfn-ecs-taskdefinition-containerdefinitions).
     ///
@@ -509,7 +509,7 @@ pub mod service {
     //! Property types for the `Service` resource.
 
     /// The [`AWS::ECS::Service.AwsVpcConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-awsvpcconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct AwsVpcConfiguration {
         /// Property [`AssignPublicIp`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-awsvpcconfiguration.html#cfn-ecs-service-awsvpcconfiguration-assignpublicip).
         ///
@@ -586,7 +586,7 @@ pub mod service {
     }
 
     /// The [`AWS::ECS::Service.DeploymentConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-deploymentconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct DeploymentConfiguration {
         /// Property [`MaximumPercent`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-deploymentconfiguration.html#cfn-ecs-service-deploymentconfiguration-maximumpercent).
         ///
@@ -652,7 +652,7 @@ pub mod service {
     }
 
     /// The [`AWS::ECS::Service.LoadBalancer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-loadbalancers.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct LoadBalancer {
         /// Property [`ContainerName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-loadbalancers.html#cfn-ecs-service-loadbalancers-containername).
         ///
@@ -742,7 +742,7 @@ pub mod service {
     }
 
     /// The [`AWS::ECS::Service.NetworkConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-networkconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct NetworkConfiguration {
         /// Property [`AwsvpcConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-networkconfiguration.html#cfn-ecs-service-networkconfiguration-awsvpcconfiguration).
         ///
@@ -795,7 +795,7 @@ pub mod service {
     }
 
     /// The [`AWS::ECS::Service.PlacementConstraint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-placementconstraint.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct PlacementConstraint {
         /// Property [`Expression`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-placementconstraint.html#cfn-ecs-service-placementconstraint-expression).
         ///
@@ -859,7 +859,7 @@ pub mod service {
     }
 
     /// The [`AWS::ECS::Service.PlacementStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-placementstrategy.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct PlacementStrategy {
         /// Property [`Field`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-placementstrategy.html#cfn-ecs-service-placementstrategy-field).
         ///
@@ -927,7 +927,7 @@ pub mod task_definition {
     //! Property types for the `TaskDefinition` resource.
 
     /// The [`AWS::ECS::TaskDefinition.ContainerDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ContainerDefinition {
         /// Property [`Command`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-command).
         ///
@@ -1318,7 +1318,7 @@ pub mod task_definition {
     }
 
     /// The [`AWS::ECS::TaskDefinition.Device`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-device.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Device {
         /// Property [`ContainerPath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-device.html#cfn-ecs-taskdefinition-device-containerpath).
         ///
@@ -1395,7 +1395,7 @@ pub mod task_definition {
     }
 
     /// The [`AWS::ECS::TaskDefinition.HostEntry`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-hostentry.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct HostEntry {
         /// Property [`Hostname`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-hostentry.html#cfn-ecs-taskdefinition-containerdefinition-hostentry-hostname).
         ///
@@ -1457,7 +1457,7 @@ pub mod task_definition {
     }
 
     /// The [`AWS::ECS::TaskDefinition.HostVolumeProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volumes-host.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct HostVolumeProperties {
         /// Property [`SourcePath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volumes-host.html#cfn-ecs-taskdefinition-volumes-host-sourcepath).
         ///
@@ -1510,7 +1510,7 @@ pub mod task_definition {
     }
 
     /// The [`AWS::ECS::TaskDefinition.KernelCapabilities`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-kernelcapabilities.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct KernelCapabilities {
         /// Property [`Add`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-kernelcapabilities.html#cfn-ecs-taskdefinition-kernelcapabilities-add).
         ///
@@ -1576,7 +1576,7 @@ pub mod task_definition {
     }
 
     /// The [`AWS::ECS::TaskDefinition.KeyValuePair`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-environment.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct KeyValuePair {
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-environment.html#cfn-ecs-taskdefinition-containerdefinition-environment-name).
         ///
@@ -1642,7 +1642,7 @@ pub mod task_definition {
     }
 
     /// The [`AWS::ECS::TaskDefinition.LinuxParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-linuxparameters.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct LinuxParameters {
         /// Property [`Capabilities`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-linuxparameters.html#cfn-ecs-taskdefinition-linuxparameters-capabilities).
         ///
@@ -1721,7 +1721,7 @@ pub mod task_definition {
     }
 
     /// The [`AWS::ECS::TaskDefinition.LogConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-logconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct LogConfiguration {
         /// Property [`LogDriver`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-logconfiguration.html#cfn-ecs-taskdefinition-containerdefinition-logconfiguration-logdriver).
         ///
@@ -1785,7 +1785,7 @@ pub mod task_definition {
     }
 
     /// The [`AWS::ECS::TaskDefinition.MountPoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-mountpoints.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct MountPoint {
         /// Property [`ContainerPath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-mountpoints.html#cfn-ecs-taskdefinition-containerdefinition-mountpoints-containerpath).
         ///
@@ -1864,7 +1864,7 @@ pub mod task_definition {
     }
 
     /// The [`AWS::ECS::TaskDefinition.PortMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-portmappings.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct PortMapping {
         /// Property [`ContainerPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-portmappings.html#cfn-ecs-taskdefinition-containerdefinition-portmappings-containerport).
         ///
@@ -1943,7 +1943,7 @@ pub mod task_definition {
     }
 
     /// The [`AWS::ECS::TaskDefinition.TaskDefinitionPlacementConstraint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-taskdefinitionplacementconstraint.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct TaskDefinitionPlacementConstraint {
         /// Property [`Expression`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-taskdefinitionplacementconstraint.html#cfn-ecs-taskdefinition-taskdefinitionplacementconstraint-expression).
         ///
@@ -2007,7 +2007,7 @@ pub mod task_definition {
     }
 
     /// The [`AWS::ECS::TaskDefinition.Ulimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-ulimit.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Ulimit {
         /// Property [`HardLimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-ulimit.html#cfn-ecs-taskdefinition-containerdefinition-ulimit-hardlimit).
         ///
@@ -2080,7 +2080,7 @@ pub mod task_definition {
     }
 
     /// The [`AWS::ECS::TaskDefinition.Volume`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volumes.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Volume {
         /// Property [`Host`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volumes.html#cfn-ecs-taskdefinition-volumes-host).
         ///
@@ -2146,7 +2146,7 @@ pub mod task_definition {
     }
 
     /// The [`AWS::ECS::TaskDefinition.VolumeFrom`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-volumesfrom.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct VolumeFrom {
         /// Property [`ReadOnly`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-volumesfrom.html#cfn-ecs-taskdefinition-containerdefinition-volumesfrom-readonly).
         ///

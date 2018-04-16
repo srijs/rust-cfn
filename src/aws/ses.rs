@@ -7,7 +7,7 @@ pub struct ConfigurationSet {
 }
 
 /// Properties for the `ConfigurationSet` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ConfigurationSetProperties {
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-configurationset.html#cfn-ses-configurationset-name).
     ///
@@ -85,7 +85,7 @@ pub struct ConfigurationSetEventDestination {
 }
 
 /// Properties for the `ConfigurationSetEventDestination` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ConfigurationSetEventDestinationProperties {
     /// Property [`ConfigurationSetName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-configurationseteventdestination.html#cfn-ses-configurationseteventdestination-configurationsetname).
     ///
@@ -172,7 +172,7 @@ pub struct ReceiptFilter {
 }
 
 /// Properties for the `ReceiptFilter` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ReceiptFilterProperties {
     /// Property [`Filter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-receiptfilter.html#cfn-ses-receiptfilter-filter).
     ///
@@ -248,7 +248,7 @@ pub struct ReceiptRule {
 }
 
 /// Properties for the `ReceiptRule` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ReceiptRuleProperties {
     /// Property [`After`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-receiptrule.html#cfn-ses-receiptrule-after).
     ///
@@ -348,7 +348,7 @@ pub struct ReceiptRuleSet {
 }
 
 /// Properties for the `ReceiptRuleSet` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ReceiptRuleSetProperties {
     /// Property [`RuleSetName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-receiptruleset.html#cfn-ses-receiptruleset-rulesetname).
     ///
@@ -426,7 +426,7 @@ pub struct Template {
 }
 
 /// Properties for the `Template` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct TemplateProperties {
     /// Property [`Template`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-template.html#cfn-ses-template-template).
     ///
@@ -501,7 +501,7 @@ pub mod configuration_set_event_destination {
     //! Property types for the `ConfigurationSetEventDestination` resource.
 
     /// The [`AWS::SES::ConfigurationSetEventDestination.CloudWatchDestination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-cloudwatchdestination.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct CloudWatchDestination {
         /// Property [`DimensionConfigurations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-cloudwatchdestination.html#cfn-ses-configurationseteventdestination-cloudwatchdestination-dimensionconfigurations).
         ///
@@ -554,7 +554,7 @@ pub mod configuration_set_event_destination {
     }
 
     /// The [`AWS::SES::ConfigurationSetEventDestination.DimensionConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-dimensionconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct DimensionConfiguration {
         /// Property [`DefaultDimensionValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-dimensionconfiguration.html#cfn-ses-configurationseteventdestination-dimensionconfiguration-defaultdimensionvalue).
         ///
@@ -627,7 +627,7 @@ pub mod configuration_set_event_destination {
     }
 
     /// The [`AWS::SES::ConfigurationSetEventDestination.EventDestination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-eventdestination.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct EventDestination {
         /// Property [`CloudWatchDestination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-eventdestination.html#cfn-ses-configurationseteventdestination-eventdestination-cloudwatchdestination).
         ///
@@ -730,7 +730,7 @@ pub mod configuration_set_event_destination {
     }
 
     /// The [`AWS::SES::ConfigurationSetEventDestination.KinesisFirehoseDestination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-kinesisfirehosedestination.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct KinesisFirehoseDestination {
         /// Property [`DeliveryStreamARN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-kinesisfirehosedestination.html#cfn-ses-configurationseteventdestination-kinesisfirehosedestination-deliverystreamarn).
         ///
@@ -796,7 +796,7 @@ pub mod receipt_filter {
     //! Property types for the `ReceiptFilter` resource.
 
     /// The [`AWS::SES::ReceiptFilter.Filter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptfilter-filter.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Filter {
         /// Property [`IpFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptfilter-filter.html#cfn-ses-receiptfilter-filter-ipfilter).
         ///
@@ -860,7 +860,7 @@ pub mod receipt_filter {
     }
 
     /// The [`AWS::SES::ReceiptFilter.IpFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptfilter-ipfilter.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct IpFilter {
         /// Property [`Cidr`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptfilter-ipfilter.html#cfn-ses-receiptfilter-ipfilter-cidr).
         ///
@@ -926,7 +926,7 @@ pub mod receipt_rule {
     //! Property types for the `ReceiptRule` resource.
 
     /// The [`AWS::SES::ReceiptRule.Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-action.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Action {
         /// Property [`AddHeaderAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-action.html#cfn-ses-receiptrule-action-addheaderaction).
         ///
@@ -1057,7 +1057,7 @@ pub mod receipt_rule {
     }
 
     /// The [`AWS::SES::ReceiptRule.AddHeaderAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-addheaderaction.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct AddHeaderAction {
         /// Property [`HeaderName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-addheaderaction.html#cfn-ses-receiptrule-addheaderaction-headername).
         ///
@@ -1119,7 +1119,7 @@ pub mod receipt_rule {
     }
 
     /// The [`AWS::SES::ReceiptRule.BounceAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-bounceaction.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct BounceAction {
         /// Property [`Message`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-bounceaction.html#cfn-ses-receiptrule-bounceaction-message).
         ///
@@ -1218,7 +1218,7 @@ pub mod receipt_rule {
     }
 
     /// The [`AWS::SES::ReceiptRule.LambdaAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-lambdaaction.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct LambdaAction {
         /// Property [`FunctionArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-lambdaaction.html#cfn-ses-receiptrule-lambdaaction-functionarn).
         ///
@@ -1295,7 +1295,7 @@ pub mod receipt_rule {
     }
 
     /// The [`AWS::SES::ReceiptRule.Rule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-rule.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Rule {
         /// Property [`Actions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-rule.html#cfn-ses-receiptrule-rule-actions).
         ///
@@ -1413,7 +1413,7 @@ pub mod receipt_rule {
     }
 
     /// The [`AWS::SES::ReceiptRule.S3Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-s3action.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct S3Action {
         /// Property [`BucketName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-s3action.html#cfn-ses-receiptrule-s3action-bucketname).
         ///
@@ -1503,7 +1503,7 @@ pub mod receipt_rule {
     }
 
     /// The [`AWS::SES::ReceiptRule.SNSAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-snsaction.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SNSAction {
         /// Property [`Encoding`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-snsaction.html#cfn-ses-receiptrule-snsaction-encoding).
         ///
@@ -1569,7 +1569,7 @@ pub mod receipt_rule {
     }
 
     /// The [`AWS::SES::ReceiptRule.StopAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-stopaction.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct StopAction {
         /// Property [`Scope`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-stopaction.html#cfn-ses-receiptrule-stopaction-scope).
         ///
@@ -1633,7 +1633,7 @@ pub mod receipt_rule {
     }
 
     /// The [`AWS::SES::ReceiptRule.WorkmailAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-workmailaction.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct WorkmailAction {
         /// Property [`OrganizationArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-receiptrule-workmailaction.html#cfn-ses-receiptrule-workmailaction-organizationarn).
         ///
@@ -1701,7 +1701,7 @@ pub mod template {
     //! Property types for the `Template` resource.
 
     /// The [`AWS::SES::Template.Template`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-template-template.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Template {
         /// Property [`HtmlPart`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-template-template.html#cfn-ses-template-template-htmlpart).
         ///

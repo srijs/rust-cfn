@@ -7,7 +7,7 @@ pub struct Bucket {
 }
 
 /// Properties for the `Bucket` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct BucketProperties {
     /// Property [`AccelerateConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-accelerateconfiguration).
     ///
@@ -267,7 +267,7 @@ pub struct BucketPolicy {
 }
 
 /// Properties for the `BucketPolicy` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct BucketPolicyProperties {
     /// Property [`Bucket`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-policy.html#aws-properties-s3-policy-bucket).
     ///
@@ -351,7 +351,7 @@ pub mod bucket {
     //! Property types for the `Bucket` resource.
 
     /// The [`AWS::S3::Bucket.AbortIncompleteMultipartUpload`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-abortincompletemultipartupload.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct AbortIncompleteMultipartUpload {
         /// Property [`DaysAfterInitiation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-abortincompletemultipartupload.html#cfn-s3-bucket-abortincompletemultipartupload-daysafterinitiation).
         ///
@@ -402,7 +402,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.AccelerateConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-accelerateconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct AccelerateConfiguration {
         /// Property [`AccelerationStatus`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-accelerateconfiguration.html#cfn-s3-bucket-accelerateconfiguration-accelerationstatus).
         ///
@@ -453,7 +453,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.AccessControlTranslation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-accesscontroltranslation.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct AccessControlTranslation {
         /// Property [`Owner`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-accesscontroltranslation.html#cfn-s3-bucket-accesscontroltranslation-owner).
         ///
@@ -504,7 +504,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.AnalyticsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-analyticsconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct AnalyticsConfiguration {
         /// Property [`Id`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-analyticsconfiguration.html#cfn-s3-bucket-analyticsconfiguration-id).
         ///
@@ -592,7 +592,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.BucketEncryption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-bucketencryption.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct BucketEncryption {
         /// Property [`ServerSideEncryptionConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-bucketencryption.html#cfn-s3-bucket-bucketencryption-serversideencryptionconfiguration).
         ///
@@ -643,7 +643,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.CorsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-cors.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct CorsConfiguration {
         /// Property [`CorsRules`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-cors.html#cfn-s3-bucket-cors-corsrule).
         ///
@@ -694,7 +694,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.CorsRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-cors-corsrule.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct CorsRule {
         /// Property [`AllowedHeaders`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-cors-corsrule.html#cfn-s3-bucket-cors-corsrule-allowedheaders).
         ///
@@ -808,7 +808,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.DataExport`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-dataexport.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct DataExport {
         /// Property [`Destination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-dataexport.html#cfn-s3-bucket-dataexport-destination).
         ///
@@ -870,7 +870,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.Destination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-destination.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Destination {
         /// Property [`BucketAccountId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-destination.html#cfn-s3-bucket-destination-bucketaccountid).
         ///
@@ -958,7 +958,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.EncryptionConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-encryptionconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct EncryptionConfiguration {
         /// Property [`ReplicaKmsKeyID`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-encryptionconfiguration.html#cfn-s3-bucket-encryptionconfiguration-replicakmskeyid).
         ///
@@ -1009,7 +1009,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.FilterRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfiguration-config-filter-s3key-rules.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct FilterRule {
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfiguration-config-filter-s3key-rules.html#cfn-s3-bucket-notificationconfiguraiton-config-filter-s3key-rules-name).
         ///
@@ -1071,7 +1071,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.InventoryConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-inventoryconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct InventoryConfiguration {
         /// Property [`Destination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-inventoryconfiguration.html#cfn-s3-bucket-inventoryconfiguration-destination).
         ///
@@ -1192,7 +1192,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.LambdaConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig-lambdaconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct LambdaConfiguration {
         /// Property [`Event`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig-lambdaconfig.html#cfn-s3-bucket-notificationconfig-lambdaconfig-event).
         ///
@@ -1267,7 +1267,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.LifecycleConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct LifecycleConfiguration {
         /// Property [`Rules`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig.html#cfn-s3-bucket-lifecycleconfig-rules).
         ///
@@ -1318,7 +1318,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.LoggingConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-loggingconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct LoggingConfiguration {
         /// Property [`DestinationBucketName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-loggingconfig.html#cfn-s3-bucket-loggingconfig-destinationbucketname).
         ///
@@ -1384,7 +1384,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.MetricsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-metricsconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct MetricsConfiguration {
         /// Property [`Id`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-metricsconfiguration.html#cfn-s3-bucket-metricsconfiguration-id).
         ///
@@ -1461,7 +1461,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.NoncurrentVersionTransition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule-noncurrentversiontransition.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct NoncurrentVersionTransition {
         /// Property [`StorageClass`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule-noncurrentversiontransition.html#cfn-s3-bucket-lifecycleconfig-rule-noncurrentversiontransition-storageclass).
         ///
@@ -1523,7 +1523,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.NotificationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct NotificationConfiguration {
         /// Property [`LambdaConfigurations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig.html#cfn-s3-bucket-notificationconfig-lambdaconfig).
         ///
@@ -1602,7 +1602,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.NotificationFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfiguration-config-filter.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct NotificationFilter {
         /// Property [`S3Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfiguration-config-filter.html#cfn-s3-bucket-notificationconfiguraiton-config-filter-s3key).
         ///
@@ -1653,7 +1653,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.QueueConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig-queueconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct QueueConfiguration {
         /// Property [`Event`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig-queueconfig.html#cfn-s3-bucket-notificationconfig-queueconfig-event).
         ///
@@ -1728,7 +1728,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.RedirectAllRequestsTo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration-redirectallrequeststo.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct RedirectAllRequestsTo {
         /// Property [`HostName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration-redirectallrequeststo.html#cfn-s3-websiteconfiguration-redirectallrequeststo-hostname).
         ///
@@ -1792,7 +1792,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.RedirectRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration-routingrules-redirectrule.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct RedirectRule {
         /// Property [`HostName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration-routingrules-redirectrule.html#cfn-s3-websiteconfiguration-redirectrule-hostname).
         ///
@@ -1897,7 +1897,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.ReplicationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ReplicationConfiguration {
         /// Property [`Role`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration.html#cfn-s3-bucket-replicationconfiguration-role).
         ///
@@ -1959,7 +1959,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.ReplicationDestination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration-rules-destination.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ReplicationDestination {
         /// Property [`AccessControlTranslation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration-rules-destination.html#cfn-s3-bucket-replicationdestination-accesscontroltranslation).
         ///
@@ -2062,7 +2062,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.ReplicationRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration-rules.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ReplicationRule {
         /// Property [`Destination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-replicationconfiguration-rules.html#cfn-s3-bucket-replicationconfiguration-rules-destination).
         ///
@@ -2161,7 +2161,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.RoutingRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration-routingrules.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct RoutingRule {
         /// Property [`RedirectRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration-routingrules.html#cfn-s3-websiteconfiguration-routingrules-redirectrule).
         ///
@@ -2225,7 +2225,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.RoutingRuleCondition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration-routingrules-routingrulecondition.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct RoutingRuleCondition {
         /// Property [`HttpErrorCodeReturnedEquals`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration-routingrules-routingrulecondition.html#cfn-s3-websiteconfiguration-routingrules-routingrulecondition-httperrorcodereturnedequals).
         ///
@@ -2291,7 +2291,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.Rule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Rule {
         /// Property [`AbortIncompleteMultipartUpload`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule.html#cfn-s3-bucket-rule-abortincompletemultipartupload).
         ///
@@ -2485,7 +2485,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.S3KeyFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfiguration-config-filter-s3key.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct S3KeyFilter {
         /// Property [`Rules`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfiguration-config-filter-s3key.html#cfn-s3-bucket-notificationconfiguraiton-config-filter-s3key-rules).
         ///
@@ -2536,7 +2536,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.ServerSideEncryptionByDefault`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionbydefault.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ServerSideEncryptionByDefault {
         /// Property [`KMSMasterKeyID`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionbydefault.html#cfn-s3-bucket-serversideencryptionbydefault-kmsmasterkeyid).
         ///
@@ -2600,7 +2600,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.ServerSideEncryptionRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionrule.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ServerSideEncryptionRule {
         /// Property [`ServerSideEncryptionByDefault`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionrule.html#cfn-s3-bucket-serversideencryptionrule-serversideencryptionbydefault).
         ///
@@ -2653,7 +2653,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.SourceSelectionCriteria`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-sourceselectioncriteria.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SourceSelectionCriteria {
         /// Property [`SseKmsEncryptedObjects`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-sourceselectioncriteria.html#cfn-s3-bucket-sourceselectioncriteria-ssekmsencryptedobjects).
         ///
@@ -2704,7 +2704,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.SseKmsEncryptedObjects`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-ssekmsencryptedobjects.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SseKmsEncryptedObjects {
         /// Property [`Status`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-ssekmsencryptedobjects.html#cfn-s3-bucket-ssekmsencryptedobjects-status).
         ///
@@ -2755,7 +2755,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.StorageClassAnalysis`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-storageclassanalysis.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct StorageClassAnalysis {
         /// Property [`DataExport`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-storageclassanalysis.html#cfn-s3-bucket-storageclassanalysis-dataexport).
         ///
@@ -2808,7 +2808,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.TagFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-tagfilter.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct TagFilter {
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-tagfilter.html#cfn-s3-bucket-tagfilter-key).
         ///
@@ -2870,7 +2870,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.TopicConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig-topicconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct TopicConfiguration {
         /// Property [`Event`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig-topicconfig.html#cfn-s3-bucket-notificationconfig-topicconfig-event).
         ///
@@ -2945,7 +2945,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.Transition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule-transition.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Transition {
         /// Property [`StorageClass`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule-transition.html#cfn-s3-bucket-lifecycleconfig-rule-transition-storageclass).
         ///
@@ -3022,7 +3022,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.VersioningConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-versioningconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct VersioningConfiguration {
         /// Property [`Status`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-versioningconfig.html#cfn-s3-bucket-versioningconfig-status).
         ///
@@ -3073,7 +3073,7 @@ pub mod bucket {
     }
 
     /// The [`AWS::S3::Bucket.WebsiteConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct WebsiteConfiguration {
         /// Property [`ErrorDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration.html#cfn-s3-websiteconfiguration-errordocument).
         ///

@@ -7,7 +7,7 @@ pub struct CacheCluster {
 }
 
 /// Properties for the `CacheCluster` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct CacheClusterProperties {
     /// Property [`AZMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html#cfn-elasticache-cachecluster-azmode).
     ///
@@ -343,7 +343,7 @@ pub struct ParameterGroup {
 }
 
 /// Properties for the `ParameterGroup` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ParameterGroupProperties {
     /// Property [`CacheParameterGroupFamily`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-parameter-group.html#cfn-elasticache-parametergroup-cacheparametergroupfamily).
     ///
@@ -443,7 +443,7 @@ pub struct ReplicationGroup {
 }
 
 /// Properties for the `ReplicationGroup` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ReplicationGroupProperties {
     /// Property [`AtRestEncryptionEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html#cfn-elasticache-replicationgroup-atrestencryptionenabled).
     ///
@@ -883,7 +883,7 @@ pub struct SecurityGroup {
 }
 
 /// Properties for the `SecurityGroup` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SecurityGroupProperties {
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-security-group.html#cfn-elasticache-securitygroup-description).
     ///
@@ -959,7 +959,7 @@ pub struct SecurityGroupIngress {
 }
 
 /// Properties for the `SecurityGroupIngress` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SecurityGroupIngressProperties {
     /// Property [`CacheSecurityGroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-security-group-ingress.html#cfn-elasticache-securitygroupingress-cachesecuritygroupname).
     ///
@@ -1059,7 +1059,7 @@ pub struct SubnetGroup {
 }
 
 /// Properties for the `SubnetGroup` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SubnetGroupProperties {
     /// Property [`CacheSubnetGroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-subnetgroup.html#cfn-elasticache-subnetgroup-cachesubnetgroupname).
     ///
@@ -1156,7 +1156,7 @@ pub mod replication_group {
     //! Property types for the `ReplicationGroup` resource.
 
     /// The [`AWS::ElastiCache::ReplicationGroup.NodeGroupConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-replicationgroup-nodegroupconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct NodeGroupConfiguration {
         /// Property [`PrimaryAvailabilityZone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-replicationgroup-nodegroupconfiguration.html#cfn-elasticache-replicationgroup-nodegroupconfiguration-primaryavailabilityzone).
         ///

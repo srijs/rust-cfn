@@ -7,7 +7,7 @@ pub struct Application {
 }
 
 /// Properties for the `Application` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ApplicationProperties {
     /// Property [`ApplicationCode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalytics-application.html#cfn-kinesisanalytics-application-applicationcode).
     ///
@@ -122,7 +122,7 @@ pub struct ApplicationOutput {
 }
 
 /// Properties for the `ApplicationOutput` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ApplicationOutputProperties {
     /// Property [`ApplicationName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalytics-applicationoutput.html#cfn-kinesisanalytics-applicationoutput-applicationname).
     ///
@@ -209,7 +209,7 @@ pub struct ApplicationReferenceDataSource {
 }
 
 /// Properties for the `ApplicationReferenceDataSource` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ApplicationReferenceDataSourceProperties {
     /// Property [`ApplicationName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalytics-applicationreferencedatasource.html#cfn-kinesisanalytics-applicationreferencedatasource-applicationname).
     ///
@@ -293,7 +293,7 @@ pub mod application {
     //! Property types for the `Application` resource.
 
     /// The [`AWS::KinesisAnalytics::Application.CSVMappingParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-csvmappingparameters.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct CSVMappingParameters {
         /// Property [`RecordColumnDelimiter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-csvmappingparameters.html#cfn-kinesisanalytics-application-csvmappingparameters-recordcolumndelimiter).
         ///
@@ -355,7 +355,7 @@ pub mod application {
     }
 
     /// The [`AWS::KinesisAnalytics::Application.Input`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-input.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Input {
         /// Property [`InputParallelism`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-input.html#cfn-kinesisanalytics-application-input-inputparallelism).
         ///
@@ -469,7 +469,7 @@ pub mod application {
     }
 
     /// The [`AWS::KinesisAnalytics::Application.InputLambdaProcessor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputlambdaprocessor.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct InputLambdaProcessor {
         /// Property [`ResourceARN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputlambdaprocessor.html#cfn-kinesisanalytics-application-inputlambdaprocessor-resourcearn).
         ///
@@ -531,7 +531,7 @@ pub mod application {
     }
 
     /// The [`AWS::KinesisAnalytics::Application.InputParallelism`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputparallelism.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct InputParallelism {
         /// Property [`Count`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputparallelism.html#cfn-kinesisanalytics-application-inputparallelism-count).
         ///
@@ -584,7 +584,7 @@ pub mod application {
     }
 
     /// The [`AWS::KinesisAnalytics::Application.InputProcessingConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputprocessingconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct InputProcessingConfiguration {
         /// Property [`InputLambdaProcessor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputprocessingconfiguration.html#cfn-kinesisanalytics-application-inputprocessingconfiguration-inputlambdaprocessor).
         ///
@@ -637,7 +637,7 @@ pub mod application {
     }
 
     /// The [`AWS::KinesisAnalytics::Application.InputSchema`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputschema.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct InputSchema {
         /// Property [`RecordColumns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-inputschema.html#cfn-kinesisanalytics-application-inputschema-recordcolumns).
         ///
@@ -712,7 +712,7 @@ pub mod application {
     }
 
     /// The [`AWS::KinesisAnalytics::Application.JSONMappingParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-jsonmappingparameters.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct JSONMappingParameters {
         /// Property [`RecordRowPath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-jsonmappingparameters.html#cfn-kinesisanalytics-application-jsonmappingparameters-recordrowpath).
         ///
@@ -763,7 +763,7 @@ pub mod application {
     }
 
     /// The [`AWS::KinesisAnalytics::Application.KinesisFirehoseInput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-kinesisfirehoseinput.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct KinesisFirehoseInput {
         /// Property [`ResourceARN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-kinesisfirehoseinput.html#cfn-kinesisanalytics-application-kinesisfirehoseinput-resourcearn).
         ///
@@ -825,7 +825,7 @@ pub mod application {
     }
 
     /// The [`AWS::KinesisAnalytics::Application.KinesisStreamsInput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-kinesisstreamsinput.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct KinesisStreamsInput {
         /// Property [`ResourceARN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-kinesisstreamsinput.html#cfn-kinesisanalytics-application-kinesisstreamsinput-resourcearn).
         ///
@@ -887,7 +887,7 @@ pub mod application {
     }
 
     /// The [`AWS::KinesisAnalytics::Application.MappingParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-mappingparameters.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct MappingParameters {
         /// Property [`CSVMappingParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-mappingparameters.html#cfn-kinesisanalytics-application-mappingparameters-csvmappingparameters).
         ///
@@ -953,7 +953,7 @@ pub mod application {
     }
 
     /// The [`AWS::KinesisAnalytics::Application.RecordColumn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-recordcolumn.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct RecordColumn {
         /// Property [`Mapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-recordcolumn.html#cfn-kinesisanalytics-application-recordcolumn-mapping).
         ///
@@ -1028,7 +1028,7 @@ pub mod application {
     }
 
     /// The [`AWS::KinesisAnalytics::Application.RecordFormat`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-recordformat.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct RecordFormat {
         /// Property [`MappingParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-application-recordformat.html#cfn-kinesisanalytics-application-recordformat-mappingparameters).
         ///
@@ -1096,7 +1096,7 @@ pub mod application_output {
     //! Property types for the `ApplicationOutput` resource.
 
     /// The [`AWS::KinesisAnalytics::ApplicationOutput.DestinationSchema`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-destinationschema.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct DestinationSchema {
         /// Property [`RecordFormatType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-destinationschema.html#cfn-kinesisanalytics-applicationoutput-destinationschema-recordformattype).
         ///
@@ -1149,7 +1149,7 @@ pub mod application_output {
     }
 
     /// The [`AWS::KinesisAnalytics::ApplicationOutput.KinesisFirehoseOutput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-kinesisfirehoseoutput.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct KinesisFirehoseOutput {
         /// Property [`ResourceARN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-kinesisfirehoseoutput.html#cfn-kinesisanalytics-applicationoutput-kinesisfirehoseoutput-resourcearn).
         ///
@@ -1211,7 +1211,7 @@ pub mod application_output {
     }
 
     /// The [`AWS::KinesisAnalytics::ApplicationOutput.KinesisStreamsOutput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-kinesisstreamsoutput.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct KinesisStreamsOutput {
         /// Property [`ResourceARN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-kinesisstreamsoutput.html#cfn-kinesisanalytics-applicationoutput-kinesisstreamsoutput-resourcearn).
         ///
@@ -1273,7 +1273,7 @@ pub mod application_output {
     }
 
     /// The [`AWS::KinesisAnalytics::ApplicationOutput.LambdaOutput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-lambdaoutput.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct LambdaOutput {
         /// Property [`ResourceARN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-lambdaoutput.html#cfn-kinesisanalytics-applicationoutput-lambdaoutput-resourcearn).
         ///
@@ -1335,7 +1335,7 @@ pub mod application_output {
     }
 
     /// The [`AWS::KinesisAnalytics::ApplicationOutput.Output`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-output.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Output {
         /// Property [`DestinationSchema`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationoutput-output.html#cfn-kinesisanalytics-applicationoutput-output-destinationschema).
         ///
@@ -1442,7 +1442,7 @@ pub mod application_reference_data_source {
     //! Property types for the `ApplicationReferenceDataSource` resource.
 
     /// The [`AWS::KinesisAnalytics::ApplicationReferenceDataSource.CSVMappingParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-csvmappingparameters.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct CSVMappingParameters {
         /// Property [`RecordColumnDelimiter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-csvmappingparameters.html#cfn-kinesisanalytics-applicationreferencedatasource-csvmappingparameters-recordcolumndelimiter).
         ///
@@ -1504,7 +1504,7 @@ pub mod application_reference_data_source {
     }
 
     /// The [`AWS::KinesisAnalytics::ApplicationReferenceDataSource.JSONMappingParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-jsonmappingparameters.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct JSONMappingParameters {
         /// Property [`RecordRowPath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-jsonmappingparameters.html#cfn-kinesisanalytics-applicationreferencedatasource-jsonmappingparameters-recordrowpath).
         ///
@@ -1555,7 +1555,7 @@ pub mod application_reference_data_source {
     }
 
     /// The [`AWS::KinesisAnalytics::ApplicationReferenceDataSource.MappingParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-mappingparameters.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct MappingParameters {
         /// Property [`CSVMappingParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-mappingparameters.html#cfn-kinesisanalytics-applicationreferencedatasource-mappingparameters-csvmappingparameters).
         ///
@@ -1621,7 +1621,7 @@ pub mod application_reference_data_source {
     }
 
     /// The [`AWS::KinesisAnalytics::ApplicationReferenceDataSource.RecordColumn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-recordcolumn.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct RecordColumn {
         /// Property [`Mapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-recordcolumn.html#cfn-kinesisanalytics-applicationreferencedatasource-recordcolumn-mapping).
         ///
@@ -1696,7 +1696,7 @@ pub mod application_reference_data_source {
     }
 
     /// The [`AWS::KinesisAnalytics::ApplicationReferenceDataSource.RecordFormat`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-recordformat.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct RecordFormat {
         /// Property [`MappingParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-recordformat.html#cfn-kinesisanalytics-applicationreferencedatasource-recordformat-mappingparameters).
         ///
@@ -1760,7 +1760,7 @@ pub mod application_reference_data_source {
     }
 
     /// The [`AWS::KinesisAnalytics::ApplicationReferenceDataSource.ReferenceDataSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-referencedatasource.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ReferenceDataSource {
         /// Property [`ReferenceSchema`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-referencedatasource.html#cfn-kinesisanalytics-applicationreferencedatasource-referencedatasource-referenceschema).
         ///
@@ -1837,7 +1837,7 @@ pub mod application_reference_data_source {
     }
 
     /// The [`AWS::KinesisAnalytics::ApplicationReferenceDataSource.ReferenceSchema`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-referenceschema.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ReferenceSchema {
         /// Property [`RecordColumns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-referenceschema.html#cfn-kinesisanalytics-applicationreferencedatasource-referenceschema-recordcolumns).
         ///
@@ -1912,7 +1912,7 @@ pub mod application_reference_data_source {
     }
 
     /// The [`AWS::KinesisAnalytics::ApplicationReferenceDataSource.S3ReferenceDataSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-s3referencedatasource.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct S3ReferenceDataSource {
         /// Property [`BucketARN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalytics-applicationreferencedatasource-s3referencedatasource.html#cfn-kinesisanalytics-applicationreferencedatasource-s3referencedatasource-bucketarn).
         ///

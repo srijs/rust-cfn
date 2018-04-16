@@ -7,7 +7,7 @@ pub struct Alias {
 }
 
 /// Properties for the `Alias` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct AliasProperties {
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-alias.html#cfn-gamelift-alias-description).
     ///
@@ -107,7 +107,7 @@ pub struct Build {
 }
 
 /// Properties for the `Build` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct BuildProperties {
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-build.html#cfn-gamelift-build-name).
     ///
@@ -211,7 +211,7 @@ pub struct Fleet {
 }
 
 /// Properties for the `Fleet` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct FleetProperties {
     /// Property [`BuildId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html#cfn-gamelift-fleet-buildid).
     ///
@@ -406,7 +406,7 @@ pub mod alias {
     //! Property types for the `Alias` resource.
 
     /// The [`AWS::GameLift::Alias.RoutingStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-alias-routingstrategy.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct RoutingStrategy {
         /// Property [`FleetId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-alias-routingstrategy.html#cfn-gamelift-alias-routingstrategy-fleetid).
         ///
@@ -487,7 +487,7 @@ pub mod build {
     //! Property types for the `Build` resource.
 
     /// The [`AWS::GameLift::Build.S3Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-build-storagelocation.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct S3Location {
         /// Property [`Bucket`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-build-storagelocation.html#cfn-gamelift-build-storage-bucket).
         ///
@@ -564,7 +564,7 @@ pub mod fleet {
     //! Property types for the `Fleet` resource.
 
     /// The [`AWS::GameLift::Fleet.IpPermission`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-ec2inboundpermission.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct IpPermission {
         /// Property [`FromPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-ec2inboundpermission.html#cfn-gamelift-fleet-ec2inboundpermissions-fromport).
         ///

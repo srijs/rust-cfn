@@ -7,7 +7,7 @@ pub struct Domain {
 }
 
 /// Properties for the `Domain` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DomainProperties {
     /// Property [`AccessPolicies`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html#cfn-elasticsearch-domain-accesspolicies).
     ///
@@ -186,7 +186,7 @@ pub mod domain {
     //! Property types for the `Domain` resource.
 
     /// The [`AWS::Elasticsearch::Domain.EBSOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-ebsoptions.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct EBSOptions {
         /// Property [`EBSEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-ebsoptions.html#cfn-elasticsearch-domain-ebsoptions-ebsenabled).
         ///
@@ -278,7 +278,7 @@ pub mod domain {
     }
 
     /// The [`AWS::Elasticsearch::Domain.ElasticsearchClusterConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-elasticsearchclusterconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ElasticsearchClusterConfig {
         /// Property [`DedicatedMasterCount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-elasticsearchclusterconfig.html#cfn-elasticsearch-domain-elasticseachclusterconfig-dedicatedmastercount).
         ///
@@ -396,7 +396,7 @@ pub mod domain {
     }
 
     /// The [`AWS::Elasticsearch::Domain.SnapshotOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-snapshotoptions.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SnapshotOptions {
         /// Property [`AutomatedSnapshotStartHour`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-snapshotoptions.html#cfn-elasticsearch-domain-snapshotoptions-automatedsnapshotstarthour).
         ///
@@ -449,7 +449,7 @@ pub mod domain {
     }
 
     /// The [`AWS::Elasticsearch::Domain.VPCOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-vpcoptions.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct VPCOptions {
         /// Property [`SecurityGroupIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-vpcoptions.html#cfn-elasticsearch-domain-vpcoptions-securitygroupids).
         ///

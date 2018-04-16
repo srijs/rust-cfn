@@ -7,7 +7,7 @@ pub struct Destination {
 }
 
 /// Properties for the `Destination` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DestinationProperties {
     /// Property [`DestinationName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-destination.html#cfn-logs-destination-destinationname).
     ///
@@ -116,7 +116,7 @@ pub struct LogGroup {
 }
 
 /// Properties for the `LogGroup` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct LogGroupProperties {
     /// Property [`LogGroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html#cfn-cwl-loggroup-loggroupname).
     ///
@@ -207,7 +207,7 @@ pub struct LogStream {
 }
 
 /// Properties for the `LogStream` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct LogStreamProperties {
     /// Property [`LogGroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-logstream.html#cfn-logs-logstream-loggroupname).
     ///
@@ -296,7 +296,7 @@ pub struct MetricFilter {
 }
 
 /// Properties for the `MetricFilter` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct MetricFilterProperties {
     /// Property [`FilterPattern`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-metricfilter.html#cfn-cwl-metricfilter-filterpattern).
     ///
@@ -394,7 +394,7 @@ pub struct SubscriptionFilter {
 }
 
 /// Properties for the `SubscriptionFilter` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SubscriptionFilterProperties {
     /// Property [`DestinationArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-subscriptionfilter.html#cfn-cwl-subscriptionfilter-destinationarn).
     ///
@@ -502,7 +502,7 @@ pub mod metric_filter {
     //! Property types for the `MetricFilter` resource.
 
     /// The [`AWS::Logs::MetricFilter.MetricTransformation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-metricfilter-metrictransformation.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct MetricTransformation {
         /// Property [`MetricName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-metricfilter-metrictransformation.html#cfn-cwl-metricfilter-metrictransformation-metricname).
         ///

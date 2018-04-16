@@ -7,7 +7,7 @@ pub struct Certificate {
 }
 
 /// Properties for the `Certificate` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct CertificateProperties {
     /// Property [`CertificateIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-certificate.html#cfn-dms-certificate-certificateidentifier).
     ///
@@ -111,7 +111,7 @@ pub struct Endpoint {
 }
 
 /// Properties for the `Endpoint` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct EndpointProperties {
     /// Property [`CertificateArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-certificatearn).
     ///
@@ -380,7 +380,7 @@ pub struct EventSubscription {
 }
 
 /// Properties for the `EventSubscription` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct EventSubscriptionProperties {
     /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-eventsubscription.html#cfn-dms-eventsubscription-enabled).
     ///
@@ -534,7 +534,7 @@ pub struct ReplicationInstance {
 }
 
 /// Properties for the `ReplicationInstance` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ReplicationInstanceProperties {
     /// Property [`AllocatedStorage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationinstance.html#cfn-dms-replicationinstance-allocatedstorage).
     ///
@@ -779,7 +779,7 @@ pub struct ReplicationSubnetGroup {
 }
 
 /// Properties for the `ReplicationSubnetGroup` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ReplicationSubnetGroupProperties {
     /// Property [`ReplicationSubnetGroupDescription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationsubnetgroup.html#cfn-dms-replicationsubnetgroup-replicationsubnetgroupdescription).
     ///
@@ -892,7 +892,7 @@ pub struct ReplicationTask {
 }
 
 /// Properties for the `ReplicationTask` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ReplicationTaskProperties {
     /// Property [`CdcStartTime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationtask.html#cfn-dms-replicationtask-cdcstarttime).
     ///
@@ -1061,7 +1061,7 @@ pub mod endpoint {
     //! Property types for the `Endpoint` resource.
 
     /// The [`AWS::DMS::Endpoint.DynamoDbSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-dynamodbsettings.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct DynamoDbSettings {
         /// Property [`ServiceAccessRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-dynamodbsettings.html#cfn-dms-endpoint-dynamodbsettings-serviceaccessrolearn).
         ///
@@ -1114,7 +1114,7 @@ pub mod endpoint {
     }
 
     /// The [`AWS::DMS::Endpoint.MongoDbSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct MongoDbSettings {
         /// Property [`AuthMechanism`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html#cfn-dms-endpoint-mongodbsettings-authmechanism).
         ///
@@ -1297,7 +1297,7 @@ pub mod endpoint {
     }
 
     /// The [`AWS::DMS::Endpoint.S3Settings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-s3settings.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct S3Settings {
         /// Property [`BucketFolder`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-s3settings.html#cfn-dms-endpoint-s3settings-bucketfolder).
         ///

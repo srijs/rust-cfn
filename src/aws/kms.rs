@@ -7,7 +7,7 @@ pub struct Alias {
 }
 
 /// Properties for the `Alias` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct AliasProperties {
     /// Property [`AliasName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-alias.html#cfn-kms-alias-aliasname).
     ///
@@ -94,7 +94,7 @@ pub struct Key {
 }
 
 /// Properties for the `Key` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct KeyProperties {
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html#cfn-kms-key-description).
     ///

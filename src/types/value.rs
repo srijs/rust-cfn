@@ -60,6 +60,12 @@ impl<T> Value<T> {
     }
 }
 
+impl<T: Default> Default for Value<T> {
+    fn default() -> Value<T> {
+        Value::new(T::default())
+    }
+}
+
 impl<T> From<T> for Value<T> {
     fn from(value: T) -> Value<T> {
         Value::new(value)

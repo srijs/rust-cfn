@@ -7,7 +7,7 @@ pub struct AccessKey {
 }
 
 /// Properties for the `AccessKey` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct AccessKeyProperties {
     /// Property [`Serial`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html#cfn-iam-accesskey-serial).
     ///
@@ -109,7 +109,7 @@ pub struct Group {
 }
 
 /// Properties for the `Group` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct GroupProperties {
     /// Property [`GroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html#cfn-iam-group-groupname).
     ///
@@ -226,7 +226,7 @@ pub struct InstanceProfile {
 }
 
 /// Properties for the `InstanceProfile` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct InstanceProfileProperties {
     /// Property [`InstanceProfileName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html#cfn-iam-instanceprofile-instanceprofilename).
     ///
@@ -328,7 +328,7 @@ pub struct ManagedPolicy {
 }
 
 /// Properties for the `ManagedPolicy` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ManagedPolicyProperties {
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-managedpolicy.html#cfn-iam-managedpolicy-description).
     ///
@@ -482,7 +482,7 @@ pub struct Policy {
 }
 
 /// Properties for the `Policy` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct PolicyProperties {
     /// Property [`Groups`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html#cfn-iam-policy-groups).
     ///
@@ -608,7 +608,7 @@ pub struct Role {
 }
 
 /// Properties for the `Role` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct RoleProperties {
     /// Property [`AssumeRolePolicyDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html#cfn-iam-role-assumerolepolicydocument).
     ///
@@ -736,7 +736,7 @@ pub struct User {
 }
 
 /// Properties for the `User` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct UserProperties {
     /// Property [`Groups`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html#cfn-iam-user-groups).
     ///
@@ -879,7 +879,7 @@ pub struct UserToGroupAddition {
 }
 
 /// Properties for the `UserToGroupAddition` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct UserToGroupAdditionProperties {
     /// Property [`GroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-addusertogroup.html#cfn-iam-addusertogroup-groupname).
     ///
@@ -963,7 +963,7 @@ pub mod group {
     //! Property types for the `Group` resource.
 
     /// The [`AWS::IAM::Group.Policy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Policy {
         /// Property [`PolicyDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html#cfn-iam-policies-policydocument).
         ///
@@ -1029,7 +1029,7 @@ pub mod role {
     //! Property types for the `Role` resource.
 
     /// The [`AWS::IAM::Role.Policy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Policy {
         /// Property [`PolicyDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html#cfn-iam-policies-policydocument).
         ///
@@ -1095,7 +1095,7 @@ pub mod user {
     //! Property types for the `User` resource.
 
     /// The [`AWS::IAM::User.LoginProfile`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user-loginprofile.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct LoginProfile {
         /// Property [`Password`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user-loginprofile.html#cfn-iam-user-loginprofile-password).
         ///
@@ -1159,7 +1159,7 @@ pub mod user {
     }
 
     /// The [`AWS::IAM::User.Policy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Policy {
         /// Property [`PolicyDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html#cfn-iam-policies-policydocument).
         ///

@@ -7,7 +7,7 @@ pub struct Repository {
 }
 
 /// Properties for the `Repository` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct RepositoryProperties {
     /// Property [`LifecyclePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html#cfn-ecr-repository-lifecyclepolicy).
     ///
@@ -108,7 +108,7 @@ pub mod repository {
     //! Property types for the `Repository` resource.
 
     /// The [`AWS::ECR::Repository.LifecyclePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-repository-lifecyclepolicy.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct LifecyclePolicy {
         /// Property [`LifecyclePolicyText`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-repository-lifecyclepolicy.html#cfn-ecr-repository-lifecyclepolicy-lifecyclepolicytext).
         ///

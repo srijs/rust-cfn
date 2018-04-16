@@ -7,7 +7,7 @@ pub struct Detector {
 }
 
 /// Properties for the `Detector` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DetectorProperties {
     /// Property [`Enable`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-detector.html#cfn-guardduty-detector-enable).
     ///
@@ -83,7 +83,7 @@ pub struct IPSet {
 }
 
 /// Properties for the `IPSet` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct IPSetProperties {
     /// Property [`Activate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-ipset.html#cfn-guardduty-ipset-activate).
     ///
@@ -205,7 +205,7 @@ pub struct Master {
 }
 
 /// Properties for the `Master` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct MasterProperties {
     /// Property [`DetectorId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-master.html#cfn-guardduty-master-detectorid).
     ///
@@ -303,7 +303,7 @@ pub struct Member {
 }
 
 /// Properties for the `Member` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct MemberProperties {
     /// Property [`DetectorId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-member.html#cfn-guardduty-member-detectorid).
     ///
@@ -427,7 +427,7 @@ pub struct ThreatIntelSet {
 }
 
 /// Properties for the `ThreatIntelSet` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ThreatIntelSetProperties {
     /// Property [`Activate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-threatintelset.html#cfn-guardduty-threatintelset-activate).
     ///

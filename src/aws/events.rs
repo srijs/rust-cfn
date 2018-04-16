@@ -7,7 +7,7 @@ pub struct Rule {
 }
 
 /// Properties for the `Rule` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct RuleProperties {
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html#cfn-events-rule-description).
     ///
@@ -160,7 +160,7 @@ pub mod rule {
     //! Property types for the `Rule` resource.
 
     /// The [`AWS::Events::Rule.EcsParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-ecsparameters.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct EcsParameters {
         /// Property [`TaskCount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-ecsparameters.html#cfn-events-rule-ecsparameters-taskcount).
         ///
@@ -224,7 +224,7 @@ pub mod rule {
     }
 
     /// The [`AWS::Events::Rule.InputTransformer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-inputtransformer.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct InputTransformer {
         /// Property [`InputPathsMap`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-inputtransformer.html#cfn-events-rule-inputtransformer-inputpathsmap).
         ///
@@ -288,7 +288,7 @@ pub mod rule {
     }
 
     /// The [`AWS::Events::Rule.KinesisParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-kinesisparameters.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct KinesisParameters {
         /// Property [`PartitionKeyPath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-kinesisparameters.html#cfn-events-rule-kinesisparameters-partitionkeypath).
         ///
@@ -339,7 +339,7 @@ pub mod rule {
     }
 
     /// The [`AWS::Events::Rule.RunCommandParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-runcommandparameters.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct RunCommandParameters {
         /// Property [`RunCommandTargets`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-runcommandparameters.html#cfn-events-rule-runcommandparameters-runcommandtargets).
         ///
@@ -390,7 +390,7 @@ pub mod rule {
     }
 
     /// The [`AWS::Events::Rule.RunCommandTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-runcommandtarget.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct RunCommandTarget {
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-runcommandtarget.html#cfn-events-rule-runcommandtarget-key).
         ///
@@ -452,7 +452,7 @@ pub mod rule {
     }
 
     /// The [`AWS::Events::Rule.Target`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-target.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Target {
         /// Property [`Arn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-target.html#cfn-events-rule-target-arn).
         ///

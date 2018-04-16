@@ -38,6 +38,12 @@ impl<T> ValueMap<T> {
     }
 }
 
+impl<T> Default for ValueMap<T> {
+    fn default() -> ValueMap<T> {
+        ValueMap::Values(HashMap::new())
+    }
+}
+
 #[derive(Serialize, Deserialize)]
 struct SerdeRef<'a> {
     #[serde(rename = "Ref", borrow)]

@@ -7,7 +7,7 @@ pub struct LoadBalancer {
 }
 
 /// Properties for the `LoadBalancer` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct LoadBalancerProperties {
     /// Property [`AccessLoggingPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb.html#cfn-ec2-elb-accessloggingpolicy).
     ///
@@ -278,7 +278,7 @@ pub mod load_balancer {
     //! Property types for the `LoadBalancer` resource.
 
     /// The [`AWS::ElasticLoadBalancing::LoadBalancer.AccessLoggingPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-accessloggingpolicy.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct AccessLoggingPolicy {
         /// Property [`EmitInterval`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-accessloggingpolicy.html#cfn-elb-accessloggingpolicy-emitinterval).
         ///
@@ -366,7 +366,7 @@ pub mod load_balancer {
     }
 
     /// The [`AWS::ElasticLoadBalancing::LoadBalancer.AppCookieStickinessPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-AppCookieStickinessPolicy.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct AppCookieStickinessPolicy {
         /// Property [`CookieName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-AppCookieStickinessPolicy.html#cfn-elb-appcookiestickinesspolicy-cookiename).
         ///
@@ -428,7 +428,7 @@ pub mod load_balancer {
     }
 
     /// The [`AWS::ElasticLoadBalancing::LoadBalancer.ConnectionDrainingPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-connectiondrainingpolicy.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ConnectionDrainingPolicy {
         /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-connectiondrainingpolicy.html#cfn-elb-connectiondrainingpolicy-enabled).
         ///
@@ -492,7 +492,7 @@ pub mod load_balancer {
     }
 
     /// The [`AWS::ElasticLoadBalancing::LoadBalancer.ConnectionSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-connectionsettings.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ConnectionSettings {
         /// Property [`IdleTimeout`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-connectionsettings.html#cfn-elb-connectionsettings-idletimeout).
         ///
@@ -543,7 +543,7 @@ pub mod load_balancer {
     }
 
     /// The [`AWS::ElasticLoadBalancing::LoadBalancer.HealthCheck`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-health-check.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct HealthCheck {
         /// Property [`HealthyThreshold`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-health-check.html#cfn-elb-healthcheck-healthythreshold).
         ///
@@ -638,7 +638,7 @@ pub mod load_balancer {
     }
 
     /// The [`AWS::ElasticLoadBalancing::LoadBalancer.LBCookieStickinessPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-LBCookieStickinessPolicy.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct LBCookieStickinessPolicy {
         /// Property [`CookieExpirationPeriod`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-LBCookieStickinessPolicy.html#cfn-elb-lbcookiestickinesspolicy-cookieexpirationperiod).
         ///
@@ -704,7 +704,7 @@ pub mod load_balancer {
     }
 
     /// The [`AWS::ElasticLoadBalancing::LoadBalancer.Listeners`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-listener.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Listeners {
         /// Property [`InstancePort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-listener.html#cfn-ec2-elb-listener-instanceport).
         ///
@@ -816,7 +816,7 @@ pub mod load_balancer {
     }
 
     /// The [`AWS::ElasticLoadBalancing::LoadBalancer.Policies`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-policy.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Policies {
         /// Property [`Attributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-policy.html#cfn-ec2-elb-policy-attributes).
         ///

@@ -7,7 +7,7 @@ pub struct EnvironmentEC2 {
 }
 
 /// Properties for the `EnvironmentEC2` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct EnvironmentEC2Properties {
     /// Property [`AutomaticStopTimeMinutes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloud9-environmentec2.html#cfn-cloud9-environmentec2-automaticstoptimeminutes).
     ///
@@ -158,7 +158,7 @@ pub mod environment_ec2 {
     //! Property types for the `EnvironmentEC2` resource.
 
     /// The [`AWS::Cloud9::EnvironmentEC2.Repository`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloud9-environmentec2-repository.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Repository {
         /// Property [`PathComponent`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloud9-environmentec2-repository.html#cfn-cloud9-environmentec2-repository-pathcomponent).
         ///

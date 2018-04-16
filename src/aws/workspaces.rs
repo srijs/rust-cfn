@@ -7,7 +7,7 @@ pub struct Workspace {
 }
 
 /// Properties for the `Workspace` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct WorkspaceProperties {
     /// Property [`BundleId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspaces-workspace.html#cfn-workspaces-workspace-bundleid).
     ///

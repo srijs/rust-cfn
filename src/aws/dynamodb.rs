@@ -7,7 +7,7 @@ pub struct Table {
 }
 
 /// Properties for the `Table` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct TableProperties {
     /// Property [`AttributeDefinitions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-attributedef).
     ///
@@ -197,7 +197,7 @@ pub mod table {
     //! Property types for the `Table` resource.
 
     /// The [`AWS::DynamoDB::Table.AttributeDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-attributedef.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct AttributeDefinition {
         /// Property [`AttributeName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-attributedef.html#cfn-dynamodb-attributedef-attributename).
         ///
@@ -259,7 +259,7 @@ pub mod table {
     }
 
     /// The [`AWS::DynamoDB::Table.GlobalSecondaryIndex`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-gsi.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct GlobalSecondaryIndex {
         /// Property [`IndexName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-gsi.html#cfn-dynamodb-gsi-indexname).
         ///
@@ -343,7 +343,7 @@ pub mod table {
     }
 
     /// The [`AWS::DynamoDB::Table.KeySchema`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-keyschema.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct KeySchema {
         /// Property [`AttributeName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-keyschema.html#aws-properties-dynamodb-keyschema-attributename).
         ///
@@ -405,7 +405,7 @@ pub mod table {
     }
 
     /// The [`AWS::DynamoDB::Table.LocalSecondaryIndex`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-lsi.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct LocalSecondaryIndex {
         /// Property [`IndexName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-lsi.html#cfn-dynamodb-lsi-indexname).
         ///
@@ -478,7 +478,7 @@ pub mod table {
     }
 
     /// The [`AWS::DynamoDB::Table.Projection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-projectionobject.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Projection {
         /// Property [`NonKeyAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-projectionobject.html#cfn-dynamodb-projectionobj-nonkeyatt).
         ///
@@ -544,7 +544,7 @@ pub mod table {
     }
 
     /// The [`AWS::DynamoDB::Table.ProvisionedThroughput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-provisionedthroughput.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ProvisionedThroughput {
         /// Property [`ReadCapacityUnits`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-provisionedthroughput.html#cfn-dynamodb-provisionedthroughput-readcapacityunits).
         ///
@@ -606,7 +606,7 @@ pub mod table {
     }
 
     /// The [`AWS::DynamoDB::Table.SSESpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-ssespecification.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SSESpecification {
         /// Property [`SSEEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-ssespecification.html#cfn-dynamodb-table-ssespecification-sseenabled).
         ///
@@ -657,7 +657,7 @@ pub mod table {
     }
 
     /// The [`AWS::DynamoDB::Table.StreamSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-streamspecification.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct StreamSpecification {
         /// Property [`StreamViewType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-streamspecification.html#cfn-dynamodb-streamspecification-streamviewtype).
         ///
@@ -708,7 +708,7 @@ pub mod table {
     }
 
     /// The [`AWS::DynamoDB::Table.TimeToLiveSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-timetolivespecification.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct TimeToLiveSpecification {
         /// Property [`AttributeName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-timetolivespecification.html#cfn-dynamodb-timetolivespecification-attributename).
         ///

@@ -7,7 +7,7 @@ pub struct MicrosoftAD {
 }
 
 /// Properties for the `MicrosoftAD` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct MicrosoftADProperties {
     /// Property [`CreateAlias`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-microsoftad.html#cfn-directoryservice-microsoftad-createalias).
     ///
@@ -144,7 +144,7 @@ pub struct SimpleAD {
 }
 
 /// Properties for the `SimpleAD` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SimpleADProperties {
     /// Property [`CreateAlias`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-simplead.html#cfn-directoryservice-simplead-createalias).
     ///
@@ -302,7 +302,7 @@ pub mod microsoft_ad {
     //! Property types for the `MicrosoftAD` resource.
 
     /// The [`AWS::DirectoryService::MicrosoftAD.VpcSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-directoryservice-microsoftad-vpcsettings.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct VpcSettings {
         /// Property [`SubnetIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-directoryservice-microsoftad-vpcsettings.html#cfn-directoryservice-microsoftad-vpcsettings-subnetids).
         ///
@@ -368,7 +368,7 @@ pub mod simple_ad {
     //! Property types for the `SimpleAD` resource.
 
     /// The [`AWS::DirectoryService::SimpleAD.VpcSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-directoryservice-simplead-vpcsettings.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct VpcSettings {
         /// Property [`SubnetIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-directoryservice-simplead-vpcsettings.html#cfn-directoryservice-simplead-vpcsettings-subnetids).
         ///

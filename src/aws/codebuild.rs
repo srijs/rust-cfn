@@ -7,7 +7,7 @@ pub struct Project {
 }
 
 /// Properties for the `Project` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ProjectProperties {
     /// Property [`Artifacts`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html#cfn-codebuild-project-artifacts).
     ///
@@ -230,7 +230,7 @@ pub mod project {
     //! Property types for the `Project` resource.
 
     /// The [`AWS::CodeBuild::Project.Artifacts`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-artifacts.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Artifacts {
         /// Property [`Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-artifacts.html#cfn-codebuild-project-artifacts-location).
         ///
@@ -346,7 +346,7 @@ pub mod project {
     }
 
     /// The [`AWS::CodeBuild::Project.Environment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environment.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Environment {
         /// Property [`ComputeType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environment.html#cfn-codebuild-project-environment-computetype).
         ///
@@ -445,7 +445,7 @@ pub mod project {
     }
 
     /// The [`AWS::CodeBuild::Project.EnvironmentVariable`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environmentvariable.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct EnvironmentVariable {
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environmentvariable.html#cfn-codebuild-project-environmentvariable-name).
         ///
@@ -520,7 +520,7 @@ pub mod project {
     }
 
     /// The [`AWS::CodeBuild::Project.ProjectCache`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projectcache.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ProjectCache {
         /// Property [`Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projectcache.html#cfn-codebuild-project-projectcache-location).
         ///
@@ -584,7 +584,7 @@ pub mod project {
     }
 
     /// The [`AWS::CodeBuild::Project.ProjectTriggers`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projecttriggers.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ProjectTriggers {
         /// Property [`Webhook`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projecttriggers.html#cfn-codebuild-project-projecttriggers-webhook).
         ///
@@ -637,7 +637,7 @@ pub mod project {
     }
 
     /// The [`AWS::CodeBuild::Project.Source`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-source.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Source {
         /// Property [`Auth`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-source.html#cfn-codebuild-project-source-auth).
         ///
@@ -753,7 +753,7 @@ pub mod project {
     }
 
     /// The [`AWS::CodeBuild::Project.SourceAuth`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-sourceauth.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SourceAuth {
         /// Property [`Resource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-sourceauth.html#cfn-codebuild-project-sourceauth-resource).
         ///
@@ -817,7 +817,7 @@ pub mod project {
     }
 
     /// The [`AWS::CodeBuild::Project.VpcConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-vpcconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct VpcConfig {
         /// Property [`SecurityGroupIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-vpcconfig.html#cfn-codebuild-project-vpcconfig-securitygroupids).
         ///

@@ -7,7 +7,7 @@ pub struct ConfigRule {
 }
 
 /// Properties for the `ConfigRule` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ConfigRuleProperties {
     /// Property [`ConfigRuleName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configrule.html#cfn-config-configrule-configrulename).
     ///
@@ -148,7 +148,7 @@ pub struct ConfigurationRecorder {
 }
 
 /// Properties for the `ConfigurationRecorder` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ConfigurationRecorderProperties {
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configurationrecorder.html#cfn-config-configurationrecorder-name).
     ///
@@ -250,7 +250,7 @@ pub struct DeliveryChannel {
 }
 
 /// Properties for the `DeliveryChannel` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DeliveryChannelProperties {
     /// Property [`ConfigSnapshotDeliveryProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-deliverychannel.html#cfn-config-deliverychannel-configsnapshotdeliveryproperties).
     ///
@@ -375,7 +375,7 @@ pub mod config_rule {
     //! Property types for the `ConfigRule` resource.
 
     /// The [`AWS::Config::ConfigRule.Scope`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-scope.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Scope {
         /// Property [`ComplianceResourceId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-scope.html#cfn-config-configrule-scope-complianceresourceid).
         ///
@@ -467,7 +467,7 @@ pub mod config_rule {
     }
 
     /// The [`AWS::Config::ConfigRule.Source`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-source.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Source {
         /// Property [`Owner`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-source.html#cfn-config-configrule-source-owner).
         ///
@@ -542,7 +542,7 @@ pub mod config_rule {
     }
 
     /// The [`AWS::Config::ConfigRule.SourceDetail`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-source-sourcedetails.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SourceDetail {
         /// Property [`EventSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-source-sourcedetails.html#cfn-config-configrule-source-sourcedetail-eventsource).
         ///
@@ -621,7 +621,7 @@ pub mod configuration_recorder {
     //! Property types for the `ConfigurationRecorder` resource.
 
     /// The [`AWS::Config::ConfigurationRecorder.RecordingGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordinggroup.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct RecordingGroup {
         /// Property [`AllSupported`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordinggroup.html#cfn-config-configurationrecorder-recordinggroup-allsupported).
         ///
@@ -704,7 +704,7 @@ pub mod delivery_channel {
     //! Property types for the `DeliveryChannel` resource.
 
     /// The [`AWS::Config::DeliveryChannel.ConfigSnapshotDeliveryProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-deliverychannel-configsnapshotdeliveryproperties.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ConfigSnapshotDeliveryProperties {
         /// Property [`DeliveryFrequency`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-deliverychannel-configsnapshotdeliveryproperties.html#cfn-config-deliverychannel-configsnapshotdeliveryproperties-deliveryfrequency).
         ///

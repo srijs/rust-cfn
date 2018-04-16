@@ -7,7 +7,7 @@ pub struct Trail {
 }
 
 /// Properties for the `Trail` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct TrailProperties {
     /// Property [`CloudWatchLogsLogGroupArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-cloudwatchlogsloggrouparn).
     ///
@@ -234,7 +234,7 @@ pub mod trail {
     //! Property types for the `Trail` resource.
 
     /// The [`AWS::CloudTrail::Trail.DataResource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-dataresource.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct DataResource {
         /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-dataresource.html#cfn-cloudtrail-trail-dataresource-type).
         ///
@@ -298,7 +298,7 @@ pub mod trail {
     }
 
     /// The [`AWS::CloudTrail::Trail.EventSelector`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-eventselector.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct EventSelector {
         /// Property [`DataResources`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-eventselector.html#cfn-cloudtrail-trail-eventselector-dataresources).
         ///

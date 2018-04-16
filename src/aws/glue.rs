@@ -7,7 +7,7 @@ pub struct Classifier {
 }
 
 /// Properties for the `Classifier` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ClassifierProperties {
     /// Property [`GrokClassifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-classifier.html#cfn-glue-classifier-grokclassifier).
     ///
@@ -85,7 +85,7 @@ pub struct Connection {
 }
 
 /// Properties for the `Connection` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ConnectionProperties {
     /// Property [`CatalogId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-connection.html#cfn-glue-connection-catalogid).
     ///
@@ -172,7 +172,7 @@ pub struct Crawler {
 }
 
 /// Properties for the `Crawler` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct CrawlerProperties {
     /// Property [`Classifiers`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-crawler.html#cfn-glue-crawler-classifiers).
     ///
@@ -348,7 +348,7 @@ pub struct Database {
 }
 
 /// Properties for the `Database` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DatabaseProperties {
     /// Property [`CatalogId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-database.html#cfn-glue-database-catalogid).
     ///
@@ -435,7 +435,7 @@ pub struct DevEndpoint {
 }
 
 /// Properties for the `DevEndpoint` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DevEndpointProperties {
     /// Property [`EndpointName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-devendpoint.html#cfn-glue-devendpoint-endpointname).
     ///
@@ -600,7 +600,7 @@ pub struct Job {
 }
 
 /// Properties for the `Job` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct JobProperties {
     /// Property [`AllocatedCapacity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-job.html#cfn-glue-job-allocatedcapacity).
     ///
@@ -791,7 +791,7 @@ pub struct Partition {
 }
 
 /// Properties for the `Partition` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct PartitionProperties {
     /// Property [`CatalogId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-partition.html#cfn-glue-partition-catalogid).
     ///
@@ -900,7 +900,7 @@ pub struct Table {
 }
 
 /// Properties for the `Table` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct TableProperties {
     /// Property [`CatalogId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-table.html#cfn-glue-table-catalogid).
     ///
@@ -998,7 +998,7 @@ pub struct Trigger {
 }
 
 /// Properties for the `Trigger` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct TriggerProperties {
     /// Property [`Actions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-trigger.html#cfn-glue-trigger-actions).
     ///
@@ -1134,7 +1134,7 @@ pub mod classifier {
     //! Property types for the `Classifier` resource.
 
     /// The [`AWS::Glue::Classifier.GrokClassifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-grokclassifier.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct GrokClassifier {
         /// Property [`Classification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-grokclassifier.html#cfn-glue-classifier-grokclassifier-classification).
         ///
@@ -1226,7 +1226,7 @@ pub mod connection {
     //! Property types for the `Connection` resource.
 
     /// The [`AWS::Glue::Connection.ConnectionInput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-connectioninput.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ConnectionInput {
         /// Property [`ConnectionProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-connectioninput.html#cfn-glue-connection-connectioninput-connectionproperties).
         ///
@@ -1340,7 +1340,7 @@ pub mod connection {
     }
 
     /// The [`AWS::Glue::Connection.PhysicalConnectionRequirements`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-physicalconnectionrequirements.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct PhysicalConnectionRequirements {
         /// Property [`AvailabilityZone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-physicalconnectionrequirements.html#cfn-glue-connection-physicalconnectionrequirements-availabilityzone).
         ///
@@ -1423,7 +1423,7 @@ pub mod crawler {
     //! Property types for the `Crawler` resource.
 
     /// The [`AWS::Glue::Crawler.JdbcTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-jdbctarget.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct JdbcTarget {
         /// Property [`ConnectionName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-jdbctarget.html#cfn-glue-crawler-jdbctarget-connectionname).
         ///
@@ -1502,7 +1502,7 @@ pub mod crawler {
     }
 
     /// The [`AWS::Glue::Crawler.S3Target`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-s3target.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct S3Target {
         /// Property [`Exclusions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-s3target.html#cfn-glue-crawler-s3target-exclusions).
         ///
@@ -1568,7 +1568,7 @@ pub mod crawler {
     }
 
     /// The [`AWS::Glue::Crawler.Schedule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-schedule.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Schedule {
         /// Property [`ScheduleExpression`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-schedule.html#cfn-glue-crawler-schedule-scheduleexpression).
         ///
@@ -1621,7 +1621,7 @@ pub mod crawler {
     }
 
     /// The [`AWS::Glue::Crawler.SchemaChangePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-schemachangepolicy.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SchemaChangePolicy {
         /// Property [`DeleteBehavior`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-schemachangepolicy.html#cfn-glue-crawler-schemachangepolicy-deletebehavior).
         ///
@@ -1687,7 +1687,7 @@ pub mod crawler {
     }
 
     /// The [`AWS::Glue::Crawler.Targets`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-targets.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Targets {
         /// Property [`JdbcTargets`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-targets.html#cfn-glue-crawler-targets-jdbctargets).
         ///
@@ -1757,7 +1757,7 @@ pub mod database {
     //! Property types for the `Database` resource.
 
     /// The [`AWS::Glue::Database.DatabaseInput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-database-databaseinput.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct DatabaseInput {
         /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-database-databaseinput.html#cfn-glue-database-databaseinput-description).
         ///
@@ -1853,7 +1853,7 @@ pub mod job {
     //! Property types for the `Job` resource.
 
     /// The [`AWS::Glue::Job.ConnectionsList`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-connectionslist.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ConnectionsList {
         /// Property [`Connections`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-connectionslist.html#cfn-glue-job-connectionslist-connections).
         ///
@@ -1906,7 +1906,7 @@ pub mod job {
     }
 
     /// The [`AWS::Glue::Job.ExecutionProperty`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-executionproperty.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ExecutionProperty {
         /// Property [`MaxConcurrentRuns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-executionproperty.html#cfn-glue-job-executionproperty-maxconcurrentruns).
         ///
@@ -1959,7 +1959,7 @@ pub mod job {
     }
 
     /// The [`AWS::Glue::Job.JobCommand`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-jobcommand.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct JobCommand {
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-jobcommand.html#cfn-glue-job-jobcommand-name).
         ///
@@ -2029,7 +2029,7 @@ pub mod partition {
     //! Property types for the `Partition` resource.
 
     /// The [`AWS::Glue::Partition.Column`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-column.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Column {
         /// Property [`Comment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-column.html#cfn-glue-partition-column-comment).
         ///
@@ -2106,7 +2106,7 @@ pub mod partition {
     }
 
     /// The [`AWS::Glue::Partition.Order`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-order.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Order {
         /// Property [`Column`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-order.html#cfn-glue-partition-order-column).
         ///
@@ -2170,7 +2170,7 @@ pub mod partition {
     }
 
     /// The [`AWS::Glue::Partition.PartitionInput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-partitioninput.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct PartitionInput {
         /// Property [`Parameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-partitioninput.html#cfn-glue-partition-partitioninput-parameters).
         ///
@@ -2247,7 +2247,7 @@ pub mod partition {
     }
 
     /// The [`AWS::Glue::Partition.SerdeInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-serdeinfo.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SerdeInfo {
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-serdeinfo.html#cfn-glue-partition-serdeinfo-name).
         ///
@@ -2326,7 +2326,7 @@ pub mod partition {
     }
 
     /// The [`AWS::Glue::Partition.SkewedInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-skewedinfo.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SkewedInfo {
         /// Property [`SkewedColumnNames`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-skewedinfo.html#cfn-glue-partition-skewedinfo-skewedcolumnnames).
         ///
@@ -2405,7 +2405,7 @@ pub mod partition {
     }
 
     /// The [`AWS::Glue::Partition.StorageDescriptor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-storagedescriptor.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct StorageDescriptor {
         /// Property [`BucketColumns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-storagedescriptor.html#cfn-glue-partition-storagedescriptor-bucketcolumns).
         ///
@@ -2605,7 +2605,7 @@ pub mod table {
     //! Property types for the `Table` resource.
 
     /// The [`AWS::Glue::Table.Column`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-column.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Column {
         /// Property [`Comment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-column.html#cfn-glue-table-column-comment).
         ///
@@ -2682,7 +2682,7 @@ pub mod table {
     }
 
     /// The [`AWS::Glue::Table.Order`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-order.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Order {
         /// Property [`Column`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-order.html#cfn-glue-table-order-column).
         ///
@@ -2744,7 +2744,7 @@ pub mod table {
     }
 
     /// The [`AWS::Glue::Table.SerdeInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-serdeinfo.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SerdeInfo {
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-serdeinfo.html#cfn-glue-table-serdeinfo-name).
         ///
@@ -2823,7 +2823,7 @@ pub mod table {
     }
 
     /// The [`AWS::Glue::Table.SkewedInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-skewedinfo.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SkewedInfo {
         /// Property [`SkewedColumnNames`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-skewedinfo.html#cfn-glue-table-skewedinfo-skewedcolumnnames).
         ///
@@ -2902,7 +2902,7 @@ pub mod table {
     }
 
     /// The [`AWS::Glue::Table.StorageDescriptor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-storagedescriptor.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct StorageDescriptor {
         /// Property [`BucketColumns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-storagedescriptor.html#cfn-glue-table-storagedescriptor-bucketcolumns).
         ///
@@ -3098,7 +3098,7 @@ pub mod table {
     }
 
     /// The [`AWS::Glue::Table.TableInput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-tableinput.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct TableInput {
         /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-tableinput.html#cfn-glue-table-tableinput-description).
         ///
@@ -3272,7 +3272,7 @@ pub mod trigger {
     //! Property types for the `Trigger` resource.
 
     /// The [`AWS::Glue::Trigger.Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-action.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Action {
         /// Property [`Arguments`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-action.html#cfn-glue-trigger-action-arguments).
         ///
@@ -3338,7 +3338,7 @@ pub mod trigger {
     }
 
     /// The [`AWS::Glue::Trigger.Condition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-condition.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Condition {
         /// Property [`JobName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-condition.html#cfn-glue-trigger-condition-jobname).
         ///
@@ -3417,7 +3417,7 @@ pub mod trigger {
     }
 
     /// The [`AWS::Glue::Trigger.Predicate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-predicate.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Predicate {
         /// Property [`Conditions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-predicate.html#cfn-glue-trigger-predicate-conditions).
         ///

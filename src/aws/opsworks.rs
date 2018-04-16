@@ -7,7 +7,7 @@ pub struct App {
 }
 
 /// Properties for the `App` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct AppProperties {
     /// Property [`AppSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-app.html#cfn-opsworks-app-appsource).
     ///
@@ -222,7 +222,7 @@ pub struct ElasticLoadBalancerAttachment {
 }
 
 /// Properties for the `ElasticLoadBalancerAttachment` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ElasticLoadBalancerAttachmentProperties {
     /// Property [`ElasticLoadBalancerName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-elbattachment.html#cfn-opsworks-elbattachment-elbname).
     ///
@@ -309,7 +309,7 @@ pub struct Instance {
 }
 
 /// Properties for the `Instance` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct InstanceProperties {
     /// Property [`AgentVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-instance.html#cfn-opsworks-instance-agentversion).
     ///
@@ -641,7 +641,7 @@ pub struct Layer {
 }
 
 /// Properties for the `Layer` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct LayerProperties {
     /// Property [`Attributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-layer.html#cfn-opsworks-layer-attributes).
     ///
@@ -939,7 +939,7 @@ pub struct Stack {
 }
 
 /// Properties for the `Stack` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct StackProperties {
     /// Property [`AgentVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-stack.html#cfn-opsworks-stack-agentversion).
     ///
@@ -1323,7 +1323,7 @@ pub struct UserProfile {
 }
 
 /// Properties for the `UserProfile` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct UserProfileProperties {
     /// Property [`AllowSelfManagement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-userprofile.html#cfn-opsworks-userprofile-allowselfmanagement).
     ///
@@ -1438,7 +1438,7 @@ pub struct Volume {
 }
 
 /// Properties for the `Volume` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VolumeProperties {
     /// Property [`Ec2VolumeId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-volume.html#cfn-opsworks-volume-ec2volumeid).
     ///
@@ -1548,7 +1548,7 @@ pub mod app {
     //! Property types for the `App` resource.
 
     /// The [`AWS::OpsWorks::App.DataSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-datasource.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct DataSource {
         /// Property [`Arn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-datasource.html#cfn-opsworks-app-datasource-arn).
         ///
@@ -1627,7 +1627,7 @@ pub mod app {
     }
 
     /// The [`AWS::OpsWorks::App.EnvironmentVariable`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-environment.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct EnvironmentVariable {
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-environment.html#cfn-opsworks-app-environment-key).
         ///
@@ -1702,7 +1702,7 @@ pub mod app {
     }
 
     /// The [`AWS::OpsWorks::App.Source`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-source.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Source {
         /// Property [`Password`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-source.html#cfn-opsworks-custcookbooksource-pw).
         ///
@@ -1820,7 +1820,7 @@ pub mod app {
     }
 
     /// The [`AWS::OpsWorks::App.SslConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-sslconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SslConfiguration {
         /// Property [`Certificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-app-sslconfiguration.html#cfn-opsworks-app-sslconfig-certificate).
         ///
@@ -1903,7 +1903,7 @@ pub mod instance {
     //! Property types for the `Instance` resource.
 
     /// The [`AWS::OpsWorks::Instance.BlockDeviceMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-instance-blockdevicemapping.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct BlockDeviceMapping {
         /// Property [`DeviceName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-instance-blockdevicemapping.html#cfn-opsworks-instance-blockdevicemapping-devicename).
         ///
@@ -1995,7 +1995,7 @@ pub mod instance {
     }
 
     /// The [`AWS::OpsWorks::Instance.EbsBlockDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-instance-ebsblockdevice.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct EbsBlockDevice {
         /// Property [`DeleteOnTermination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-instance-ebsblockdevice.html#cfn-opsworks-instance-ebsblockdevice-deleteontermination).
         ///
@@ -2100,7 +2100,7 @@ pub mod instance {
     }
 
     /// The [`AWS::OpsWorks::Instance.TimeBasedAutoScaling`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-instance-timebasedautoscaling.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct TimeBasedAutoScaling {
         /// Property [`Friday`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-instance-timebasedautoscaling.html#cfn-opsworks-instance-timebasedautoscaling-friday).
         ///
@@ -2235,7 +2235,7 @@ pub mod layer {
     //! Property types for the `Layer` resource.
 
     /// The [`AWS::OpsWorks::Layer.AutoScalingThresholds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-loadbasedautoscaling-autoscalingthresholds.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct AutoScalingThresholds {
         /// Property [`CpuThreshold`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-loadbasedautoscaling-autoscalingthresholds.html#cfn-opsworks-layer-loadbasedautoscaling-autoscalingthresholds-cputhreshold).
         ///
@@ -2353,7 +2353,7 @@ pub mod layer {
     }
 
     /// The [`AWS::OpsWorks::Layer.LifecycleEventConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-lifecycleeventconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct LifecycleEventConfiguration {
         /// Property [`ShutdownEventConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-lifecycleeventconfiguration.html#cfn-opsworks-layer-lifecycleconfiguration-shutdowneventconfiguration).
         ///
@@ -2406,7 +2406,7 @@ pub mod layer {
     }
 
     /// The [`AWS::OpsWorks::Layer.LoadBasedAutoScaling`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-loadbasedautoscaling.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct LoadBasedAutoScaling {
         /// Property [`DownScaling`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-loadbasedautoscaling.html#cfn-opsworks-layer-loadbasedautoscaling-downscaling).
         ///
@@ -2485,7 +2485,7 @@ pub mod layer {
     }
 
     /// The [`AWS::OpsWorks::Layer.Recipes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-recipes.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Recipes {
         /// Property [`Configure`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-recipes.html#cfn-opsworks-layer-customrecipes-configure).
         ///
@@ -2590,7 +2590,7 @@ pub mod layer {
     }
 
     /// The [`AWS::OpsWorks::Layer.ShutdownEventConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-lifecycleeventconfiguration-shutdowneventconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ShutdownEventConfiguration {
         /// Property [`DelayUntilElbConnectionsDrained`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-lifecycleeventconfiguration-shutdowneventconfiguration.html#cfn-opsworks-layer-lifecycleconfiguration-shutdowneventconfiguration-delayuntilelbconnectionsdrained).
         ///
@@ -2656,7 +2656,7 @@ pub mod layer {
     }
 
     /// The [`AWS::OpsWorks::Layer.VolumeConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-volumeconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct VolumeConfiguration {
         /// Property [`Iops`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-volumeconfiguration.html#cfn-opsworks-layer-volconfig-iops).
         ///
@@ -2778,7 +2778,7 @@ pub mod stack {
     //! Property types for the `Stack` resource.
 
     /// The [`AWS::OpsWorks::Stack.ChefConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-chefconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ChefConfiguration {
         /// Property [`BerkshelfVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-chefconfiguration.html#cfn-opsworks-chefconfiguration-berkshelfversion).
         ///
@@ -2844,7 +2844,7 @@ pub mod stack {
     }
 
     /// The [`AWS::OpsWorks::Stack.ElasticIp`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-elasticip.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ElasticIp {
         /// Property [`Ip`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-elasticip.html#cfn-opsworks-stack-elasticip-ip).
         ///
@@ -2908,7 +2908,7 @@ pub mod stack {
     }
 
     /// The [`AWS::OpsWorks::Stack.RdsDbInstance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-rdsdbinstance.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct RdsDbInstance {
         /// Property [`DbPassword`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-rdsdbinstance.html#cfn-opsworks-stack-rdsdbinstance-dbpassword).
         ///
@@ -2981,7 +2981,7 @@ pub mod stack {
     }
 
     /// The [`AWS::OpsWorks::Stack.Source`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-source.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Source {
         /// Property [`Password`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-source.html#cfn-opsworks-custcookbooksource-password).
         ///
@@ -3099,7 +3099,7 @@ pub mod stack {
     }
 
     /// The [`AWS::OpsWorks::Stack.StackConfigurationManager`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-stackconfigmanager.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct StackConfigurationManager {
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-stackconfigmanager.html#cfn-opsworks-configmanager-name).
         ///

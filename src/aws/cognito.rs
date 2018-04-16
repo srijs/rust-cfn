@@ -7,7 +7,7 @@ pub struct IdentityPool {
 }
 
 /// Properties for the `IdentityPool` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct IdentityPoolProperties {
     /// Property [`AllowUnauthenticatedIdentities`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypool.html#cfn-cognito-identitypool-allowunauthenticatedidentities).
     ///
@@ -200,7 +200,7 @@ pub struct IdentityPoolRoleAttachment {
 }
 
 /// Properties for the `IdentityPoolRoleAttachment` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct IdentityPoolRoleAttachmentProperties {
     /// Property [`IdentityPoolId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolroleattachment.html#cfn-cognito-identitypoolroleattachment-identitypoolid).
     ///
@@ -302,7 +302,7 @@ pub struct UserPool {
 }
 
 /// Properties for the `UserPool` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct UserPoolProperties {
     /// Property [`AdminCreateUserConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html#cfn-cognito-userpool-admincreateuserconfig).
     ///
@@ -575,7 +575,7 @@ pub struct UserPoolClient {
 }
 
 /// Properties for the `UserPoolClient` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct UserPoolClientProperties {
     /// Property [`ClientName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolclient.html#cfn-cognito-userpoolclient-clientname).
     ///
@@ -729,7 +729,7 @@ pub struct UserPoolGroup {
 }
 
 /// Properties for the `UserPoolGroup` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct UserPoolGroupProperties {
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolgroup.html#cfn-cognito-userpoolgroup-description).
     ///
@@ -857,7 +857,7 @@ pub struct UserPoolUser {
 }
 
 /// Properties for the `UserPoolUser` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct UserPoolUserProperties {
     /// Property [`DesiredDeliveryMediums`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpooluser.html#cfn-cognito-userpooluser-desireddeliverymediums).
     ///
@@ -1011,7 +1011,7 @@ pub struct UserPoolUserToGroupAttachment {
 }
 
 /// Properties for the `UserPoolUserToGroupAttachment` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct UserPoolUserToGroupAttachmentProperties {
     /// Property [`GroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolusertogroupattachment.html#cfn-cognito-userpoolusertogroupattachment-groupname).
     ///
@@ -1106,7 +1106,7 @@ pub mod identity_pool {
     //! Property types for the `IdentityPool` resource.
 
     /// The [`AWS::Cognito::IdentityPool.CognitoIdentityProvider`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypool-cognitoidentityprovider.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct CognitoIdentityProvider {
         /// Property [`ClientId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypool-cognitoidentityprovider.html#cfn-cognito-identitypool-cognitoidentityprovider-clientid).
         ///
@@ -1185,7 +1185,7 @@ pub mod identity_pool {
     }
 
     /// The [`AWS::Cognito::IdentityPool.CognitoStreams`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypool-cognitostreams.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct CognitoStreams {
         /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypool-cognitostreams.html#cfn-cognito-identitypool-cognitostreams-rolearn).
         ///
@@ -1264,7 +1264,7 @@ pub mod identity_pool {
     }
 
     /// The [`AWS::Cognito::IdentityPool.PushSync`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypool-pushsync.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct PushSync {
         /// Property [`ApplicationArns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypool-pushsync.html#cfn-cognito-identitypool-pushsync-applicationarns).
         ///
@@ -1334,7 +1334,7 @@ pub mod identity_pool_role_attachment {
     //! Property types for the `IdentityPoolRoleAttachment` resource.
 
     /// The [`AWS::Cognito::IdentityPoolRoleAttachment.MappingRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypoolroleattachment-mappingrule.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct MappingRule {
         /// Property [`Claim`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypoolroleattachment-mappingrule.html#cfn-cognito-identitypoolroleattachment-mappingrule-claim).
         ///
@@ -1418,7 +1418,7 @@ pub mod identity_pool_role_attachment {
     }
 
     /// The [`AWS::Cognito::IdentityPoolRoleAttachment.RoleMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypoolroleattachment-rolemapping.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct RoleMapping {
         /// Property [`AmbiguousRoleResolution`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypoolroleattachment-rolemapping.html#cfn-cognito-identitypoolroleattachment-rolemapping-ambiguousroleresolution).
         ///
@@ -1495,7 +1495,7 @@ pub mod identity_pool_role_attachment {
     }
 
     /// The [`AWS::Cognito::IdentityPoolRoleAttachment.RulesConfigurationType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypoolroleattachment-rulesconfigurationtype.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct RulesConfigurationType {
         /// Property [`Rules`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypoolroleattachment-rulesconfigurationtype.html#cfn-cognito-identitypoolroleattachment-rulesconfigurationtype-rules).
         ///
@@ -1550,7 +1550,7 @@ pub mod user_pool {
     //! Property types for the `UserPool` resource.
 
     /// The [`AWS::Cognito::UserPool.AdminCreateUserConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-admincreateuserconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct AdminCreateUserConfig {
         /// Property [`AllowAdminCreateUserOnly`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-admincreateuserconfig.html#cfn-cognito-userpool-admincreateuserconfig-allowadmincreateuseronly).
         ///
@@ -1629,7 +1629,7 @@ pub mod user_pool {
     }
 
     /// The [`AWS::Cognito::UserPool.DeviceConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-deviceconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct DeviceConfiguration {
         /// Property [`ChallengeRequiredOnNewDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-deviceconfiguration.html#cfn-cognito-userpool-deviceconfiguration-challengerequiredonnewdevice).
         ///
@@ -1695,7 +1695,7 @@ pub mod user_pool {
     }
 
     /// The [`AWS::Cognito::UserPool.EmailConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-emailconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct EmailConfiguration {
         /// Property [`ReplyToEmailAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-emailconfiguration.html#cfn-cognito-userpool-emailconfiguration-replytoemailaddress).
         ///
@@ -1761,7 +1761,7 @@ pub mod user_pool {
     }
 
     /// The [`AWS::Cognito::UserPool.InviteMessageTemplate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-invitemessagetemplate.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct InviteMessageTemplate {
         /// Property [`EmailMessage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-invitemessagetemplate.html#cfn-cognito-userpool-invitemessagetemplate-emailmessage).
         ///
@@ -1840,7 +1840,7 @@ pub mod user_pool {
     }
 
     /// The [`AWS::Cognito::UserPool.LambdaConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-lambdaconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct LambdaConfig {
         /// Property [`CreateAuthChallenge`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-lambdaconfig.html#cfn-cognito-userpool-lambdaconfig-createauthchallenge).
         ///
@@ -1984,7 +1984,7 @@ pub mod user_pool {
     }
 
     /// The [`AWS::Cognito::UserPool.NumberAttributeConstraints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-numberattributeconstraints.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct NumberAttributeConstraints {
         /// Property [`MaxValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-numberattributeconstraints.html#cfn-cognito-userpool-numberattributeconstraints-maxvalue).
         ///
@@ -2050,7 +2050,7 @@ pub mod user_pool {
     }
 
     /// The [`AWS::Cognito::UserPool.PasswordPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-passwordpolicy.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct PasswordPolicy {
         /// Property [`MinimumLength`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-passwordpolicy.html#cfn-cognito-userpool-passwordpolicy-minimumlength).
         ///
@@ -2155,7 +2155,7 @@ pub mod user_pool {
     }
 
     /// The [`AWS::Cognito::UserPool.Policies`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-policies.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Policies {
         /// Property [`PasswordPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-policies.html#cfn-cognito-userpool-policies-passwordpolicy).
         ///
@@ -2208,7 +2208,7 @@ pub mod user_pool {
     }
 
     /// The [`AWS::Cognito::UserPool.SchemaAttribute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-schemaattribute.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SchemaAttribute {
         /// Property [`AttributeDataType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-schemaattribute.html#cfn-cognito-userpool-schemaattribute-attributedatatype).
         ///
@@ -2339,7 +2339,7 @@ pub mod user_pool {
     }
 
     /// The [`AWS::Cognito::UserPool.SmsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-smsconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SmsConfiguration {
         /// Property [`ExternalId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-smsconfiguration.html#cfn-cognito-userpool-smsconfiguration-externalid).
         ///
@@ -2405,7 +2405,7 @@ pub mod user_pool {
     }
 
     /// The [`AWS::Cognito::UserPool.StringAttributeConstraints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-stringattributeconstraints.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct StringAttributeConstraints {
         /// Property [`MaxLength`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-stringattributeconstraints.html#cfn-cognito-userpool-stringattributeconstraints-maxlength).
         ///
@@ -2475,7 +2475,7 @@ pub mod user_pool_user {
     //! Property types for the `UserPoolUser` resource.
 
     /// The [`AWS::Cognito::UserPoolUser.AttributeType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpooluser-attributetype.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct AttributeType {
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpooluser-attributetype.html#cfn-cognito-userpooluser-attributetype-name).
         ///

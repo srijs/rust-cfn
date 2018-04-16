@@ -7,7 +7,7 @@ pub struct Certificate {
 }
 
 /// Properties for the `Certificate` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct CertificateProperties {
     /// Property [`CertificateSigningRequest`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-certificate.html#cfn-iot-certificate-certificatesigningrequest).
     ///
@@ -94,7 +94,7 @@ pub struct Policy {
 }
 
 /// Properties for the `Policy` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct PolicyProperties {
     /// Property [`PolicyDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policy.html#cfn-iot-policy-policydocument).
     ///
@@ -183,7 +183,7 @@ pub struct PolicyPrincipalAttachment {
 }
 
 /// Properties for the `PolicyPrincipalAttachment` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct PolicyPrincipalAttachmentProperties {
     /// Property [`PolicyName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policyprincipalattachment.html#cfn-iot-policyprincipalattachment-policyname).
     ///
@@ -270,7 +270,7 @@ pub struct Thing {
 }
 
 /// Properties for the `Thing` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ThingProperties {
     /// Property [`AttributePayload`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thing.html#cfn-iot-thing-attributepayload).
     ///
@@ -361,7 +361,7 @@ pub struct ThingPrincipalAttachment {
 }
 
 /// Properties for the `ThingPrincipalAttachment` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ThingPrincipalAttachmentProperties {
     /// Property [`Principal`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thingprincipalattachment.html#cfn-iot-thingprincipalattachment-principal).
     ///
@@ -448,7 +448,7 @@ pub struct TopicRule {
 }
 
 /// Properties for the `TopicRule` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct TopicRuleProperties {
     /// Property [`RuleName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-topicrule.html#cfn-iot-topicrule-rulename).
     ///
@@ -534,7 +534,7 @@ pub mod thing {
     //! Property types for the `Thing` resource.
 
     /// The [`AWS::IoT::Thing.AttributePayload`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-thing-attributepayload.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct AttributePayload {
         /// Property [`Attributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-thing-attributepayload.html#cfn-iot-thing-attributepayload-attributes).
         ///
@@ -591,7 +591,7 @@ pub mod topic_rule {
     //! Property types for the `TopicRule` resource.
 
     /// The [`AWS::IoT::TopicRule.Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-action.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Action {
         /// Property [`CloudwatchAlarm`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-action.html#cfn-iot-topicrule-action-cloudwatchalarm).
         ///
@@ -787,7 +787,7 @@ pub mod topic_rule {
     }
 
     /// The [`AWS::IoT::TopicRule.CloudwatchAlarmAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchalarmaction.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct CloudwatchAlarmAction {
         /// Property [`AlarmName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchalarmaction.html#cfn-iot-topicrule-cloudwatchalarmaction-alarmname).
         ///
@@ -871,7 +871,7 @@ pub mod topic_rule {
     }
 
     /// The [`AWS::IoT::TopicRule.CloudwatchMetricAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchmetricaction.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct CloudwatchMetricAction {
         /// Property [`MetricName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchmetricaction.html#cfn-iot-topicrule-cloudwatchmetricaction-metricname).
         ///
@@ -979,7 +979,7 @@ pub mod topic_rule {
     }
 
     /// The [`AWS::IoT::TopicRule.DynamoDBAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbaction.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct DynamoDBAction {
         /// Property [`HashKeyField`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbaction.html#cfn-iot-topicrule-dynamodbaction-hashkeyfield).
         ///
@@ -1128,7 +1128,7 @@ pub mod topic_rule {
     }
 
     /// The [`AWS::IoT::TopicRule.DynamoDBv2Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbv2action.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct DynamoDBv2Action {
         /// Property [`PutItem`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-dynamodbv2action.html#cfn-iot-topicrule-dynamodbv2action-putitem).
         ///
@@ -1194,7 +1194,7 @@ pub mod topic_rule {
     }
 
     /// The [`AWS::IoT::TopicRule.ElasticsearchAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-elasticsearchaction.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ElasticsearchAction {
         /// Property [`Endpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-elasticsearchaction.html#cfn-iot-topicrule-elasticsearchaction-endpoint).
         ///
@@ -1289,7 +1289,7 @@ pub mod topic_rule {
     }
 
     /// The [`AWS::IoT::TopicRule.FirehoseAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-firehoseaction.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct FirehoseAction {
         /// Property [`DeliveryStreamName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-firehoseaction.html#cfn-iot-topicrule-firehoseaction-deliverystreamname).
         ///
@@ -1364,7 +1364,7 @@ pub mod topic_rule {
     }
 
     /// The [`AWS::IoT::TopicRule.KinesisAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-kinesisaction.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct KinesisAction {
         /// Property [`PartitionKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-kinesisaction.html#cfn-iot-topicrule-kinesisaction-partitionkey).
         ///
@@ -1439,7 +1439,7 @@ pub mod topic_rule {
     }
 
     /// The [`AWS::IoT::TopicRule.LambdaAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-lambdaaction.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct LambdaAction {
         /// Property [`FunctionArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-lambdaaction.html#cfn-iot-topicrule-lambdaaction-functionarn).
         ///
@@ -1492,7 +1492,7 @@ pub mod topic_rule {
     }
 
     /// The [`AWS::IoT::TopicRule.PutItemInput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-putiteminput.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct PutItemInput {
         /// Property [`TableName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-putiteminput.html#cfn-iot-topicrule-putiteminput-tablename).
         ///
@@ -1543,7 +1543,7 @@ pub mod topic_rule {
     }
 
     /// The [`AWS::IoT::TopicRule.RepublishAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-republishaction.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct RepublishAction {
         /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-republishaction.html#cfn-iot-topicrule-republishaction-rolearn).
         ///
@@ -1605,7 +1605,7 @@ pub mod topic_rule {
     }
 
     /// The [`AWS::IoT::TopicRule.S3Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-s3action.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct S3Action {
         /// Property [`BucketName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-s3action.html#cfn-iot-topicrule-s3action-bucketname).
         ///
@@ -1678,7 +1678,7 @@ pub mod topic_rule {
     }
 
     /// The [`AWS::IoT::TopicRule.SnsAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-snsaction.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SnsAction {
         /// Property [`MessageFormat`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-snsaction.html#cfn-iot-topicrule-snsaction-messageformat).
         ///
@@ -1753,7 +1753,7 @@ pub mod topic_rule {
     }
 
     /// The [`AWS::IoT::TopicRule.SqsAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-sqsaction.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SqsAction {
         /// Property [`QueueUrl`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-sqsaction.html#cfn-iot-topicrule-sqsaction-queueurl).
         ///
@@ -1828,7 +1828,7 @@ pub mod topic_rule {
     }
 
     /// The [`AWS::IoT::TopicRule.TopicRulePayload`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-topicrulepayload.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct TopicRulePayload {
         /// Property [`Actions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-topicrulepayload.html#cfn-iot-topicrule-topicrulepayload-actions).
         ///

@@ -96,7 +96,7 @@ fn factor_joined_specs<X, A, B>(either: EitherOrBoth<(X, A), (X, B)>) -> (X, Opt
 fn generate_property_declaration(service: &str, resource_name: &str, name: &str, spec: &PropertyType, p: &mut Printer) -> io::Result<()> {
     p.newline()?;
     p.line(format_args!("/// The [`AWS::{}::{}.{}`]({}) property type.", service, resource_name, name, spec.documentation))?;
-    p.line(format_args!("#[derive(Debug)]"))?;
+    p.line(format_args!("#[derive(Debug, Default)]"))?;
     p.block(format_args!("pub struct {}", name), |p| {
         for (ref property_name, ref property_spec) in spec.properties.iter() {
             generate_field(None, property_name, property_spec, p)?;
@@ -125,7 +125,7 @@ fn generate_resource_declaration(service: &str, name: &str, spec: &ResourceType,
 
     p.newline()?;
     p.line(format_args!("/// Properties for the `{}` resource.", name))?;
-    p.line(format_args!("#[derive(Debug)]"))?;
+    p.line(format_args!("#[derive(Debug, Default)]"))?;
     p.block(format_args!("pub struct {}Properties", name), |p| {
         for (ref property_name, ref property_spec) in spec.properties.iter() {
             generate_field(Some(&namespace), property_name, property_spec, p)?;

@@ -7,7 +7,7 @@ pub struct Queue {
 }
 
 /// Properties for the `Queue` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct QueueProperties {
     /// Property [`ContentBasedDeduplication`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-sqs-queue-contentbaseddeduplication).
     ///
@@ -215,7 +215,7 @@ pub struct QueuePolicy {
 }
 
 /// Properties for the `QueuePolicy` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct QueuePolicyProperties {
     /// Property [`PolicyDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-policy.html#cfn-sqs-queuepolicy-policydoc).
     ///

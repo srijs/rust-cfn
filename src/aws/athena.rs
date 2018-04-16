@@ -7,7 +7,7 @@ pub struct NamedQuery {
 }
 
 /// Properties for the `NamedQuery` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct NamedQueryProperties {
     /// Property [`Database`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-namedquery.html#cfn-athena-namedquery-database).
     ///

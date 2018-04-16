@@ -7,7 +7,7 @@ pub struct Instance {
 }
 
 /// Properties for the `Instance` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct InstanceProperties {
     /// Property [`InstanceAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-instance.html#cfn-servicediscovery-instance-instanceattributes).
     ///
@@ -107,7 +107,7 @@ pub struct PrivateDnsNamespace {
 }
 
 /// Properties for the `PrivateDnsNamespace` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct PrivateDnsNamespaceProperties {
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-privatednsnamespace.html#cfn-servicediscovery-privatednsnamespace-description).
     ///
@@ -207,7 +207,7 @@ pub struct PublicDnsNamespace {
 }
 
 /// Properties for the `PublicDnsNamespace` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct PublicDnsNamespaceProperties {
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-publicdnsnamespace.html#cfn-servicediscovery-publicdnsnamespace-description).
     ///
@@ -296,7 +296,7 @@ pub struct Service {
 }
 
 /// Properties for the `Service` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ServiceProperties {
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-service.html#cfn-servicediscovery-service-description).
     ///
@@ -408,7 +408,7 @@ pub mod service {
     //! Property types for the `Service` resource.
 
     /// The [`AWS::ServiceDiscovery::Service.DnsConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-dnsconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct DnsConfig {
         /// Property [`DnsRecords`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-dnsconfig.html#cfn-servicediscovery-service-dnsconfig-dnsrecords).
         ///
@@ -470,7 +470,7 @@ pub mod service {
     }
 
     /// The [`AWS::ServiceDiscovery::Service.DnsRecord`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-dnsrecord.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct DnsRecord {
         /// Property [`TTL`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-dnsrecord.html#cfn-servicediscovery-service-dnsrecord-ttl).
         ///
@@ -532,7 +532,7 @@ pub mod service {
     }
 
     /// The [`AWS::ServiceDiscovery::Service.HealthCheckConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-healthcheckconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct HealthCheckConfig {
         /// Property [`FailureThreshold`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicediscovery-service-healthcheckconfig.html#cfn-servicediscovery-service-healthcheckconfig-failurethreshold).
         ///

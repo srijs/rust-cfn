@@ -7,7 +7,7 @@ pub struct DBCluster {
 }
 
 /// Properties for the `DBCluster` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DBClusterProperties {
     /// Property [`AvailabilityZones`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html#cfn-rds-dbcluster-availabilityzones).
     ///
@@ -317,7 +317,7 @@ pub struct DBClusterParameterGroup {
 }
 
 /// Properties for the `DBClusterParameterGroup` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DBClusterParameterGroupProperties {
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbclusterparametergroup.html#cfn-rds-dbclusterparametergroup-description).
     ///
@@ -428,7 +428,7 @@ pub struct DBInstance {
 }
 
 /// Properties for the `DBInstance` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DBInstanceProperties {
     /// Property [`AllocatedStorage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-allocatedstorage).
     ///
@@ -1005,7 +1005,7 @@ pub struct DBParameterGroup {
 }
 
 /// Properties for the `DBParameterGroup` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DBParameterGroupProperties {
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbparametergroup.html#cfn-rds-dbparametergroup-description).
     ///
@@ -1118,7 +1118,7 @@ pub struct DBSecurityGroup {
 }
 
 /// Properties for the `DBSecurityGroup` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DBSecurityGroupProperties {
     /// Property [`DBSecurityGroupIngress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-security-group.html#cfn-rds-dbsecuritygroup-dbsecuritygroupingress).
     ///
@@ -1231,7 +1231,7 @@ pub struct DBSecurityGroupIngress {
 }
 
 /// Properties for the `DBSecurityGroupIngress` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DBSecurityGroupIngressProperties {
     /// Property [`CIDRIP`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-security-group-ingress.html#cfn-rds-securitygroup-ingress-cidrip).
     ///
@@ -1359,7 +1359,7 @@ pub struct DBSubnetGroup {
 }
 
 /// Properties for the `DBSubnetGroup` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DBSubnetGroupProperties {
     /// Property [`DBSubnetGroupDescription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbsubnet-group.html#cfn-rds-dbsubnetgroup-dbsubnetgroupdescription).
     ///
@@ -1472,7 +1472,7 @@ pub struct EventSubscription {
 }
 
 /// Properties for the `EventSubscription` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct EventSubscriptionProperties {
     /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-eventsubscription.html#cfn-rds-eventsubscription-enabled).
     ///
@@ -1601,7 +1601,7 @@ pub struct OptionGroup {
 }
 
 /// Properties for the `OptionGroup` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct OptionGroupProperties {
     /// Property [`EngineName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-optiongroup.html#cfn-rds-optiongroup-enginename).
     ///
@@ -1720,7 +1720,7 @@ pub mod db_security_group {
     //! Property types for the `DBSecurityGroup` resource.
 
     /// The [`AWS::RDS::DBSecurityGroup.Ingress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-security-group-rule.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Ingress {
         /// Property [`CIDRIP`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-security-group-rule.html#cfn-rds-securitygroup-cidrip).
         ///
@@ -1816,7 +1816,7 @@ pub mod option_group {
     //! Property types for the `OptionGroup` resource.
 
     /// The [`AWS::RDS::OptionGroup.OptionConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-optiongroup-optionconfigurations.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct OptionConfiguration {
         /// Property [`DBSecurityGroupMemberships`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-optiongroup-optionconfigurations.html#cfn-rds-optiongroup-optionconfigurations-dbsecuritygroupmemberships).
         ///
@@ -1932,7 +1932,7 @@ pub mod option_group {
     }
 
     /// The [`AWS::RDS::OptionGroup.OptionSetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-optiongroup-optionconfigurations-optionsettings.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct OptionSetting {
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-optiongroup-optionconfigurations-optionsettings.html#cfn-rds-optiongroup-optionconfigurations-optionsettings-name).
         ///

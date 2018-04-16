@@ -7,7 +7,7 @@ pub struct Account {
 }
 
 /// Properties for the `Account` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct AccountProperties {
     /// Property [`CloudWatchRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-account.html#cfn-apigateway-account-cloudwatchrolearn).
     ///
@@ -85,7 +85,7 @@ pub struct ApiKey {
 }
 
 /// Properties for the `ApiKey` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ApiKeyProperties {
     /// Property [`CustomerId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-apikey.html#cfn-apigateway-apikey-customerid).
     ///
@@ -228,7 +228,7 @@ pub struct Authorizer {
 }
 
 /// Properties for the `Authorizer` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct AuthorizerProperties {
     /// Property [`AuthType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-authorizer.html#cfn-apigateway-authorizer-authtype).
     ///
@@ -421,7 +421,7 @@ pub struct BasePathMapping {
 }
 
 /// Properties for the `BasePathMapping` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct BasePathMappingProperties {
     /// Property [`BasePath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-basepathmapping.html#cfn-apigateway-basepathmapping-basepath).
     ///
@@ -536,7 +536,7 @@ pub struct ClientCertificate {
 }
 
 /// Properties for the `ClientCertificate` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ClientCertificateProperties {
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-clientcertificate.html#cfn-apigateway-clientcertificate-description).
     ///
@@ -614,7 +614,7 @@ pub struct Deployment {
 }
 
 /// Properties for the `Deployment` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DeploymentProperties {
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-deployment.html#cfn-apigateway-deployment-description).
     ///
@@ -729,7 +729,7 @@ pub struct DocumentationPart {
 }
 
 /// Properties for the `DocumentationPart` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DocumentationPartProperties {
     /// Property [`Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-documentationpart.html#cfn-apigateway-documentationpart-location).
     ///
@@ -827,7 +827,7 @@ pub struct DocumentationVersion {
 }
 
 /// Properties for the `DocumentationVersion` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DocumentationVersionProperties {
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-documentationversion.html#cfn-apigateway-documentationversion-description).
     ///
@@ -927,7 +927,7 @@ pub struct DomainName {
 }
 
 /// Properties for the `DomainName` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DomainNameProperties {
     /// Property [`CertificateArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainname.html#cfn-apigateway-domainname-certificatearn).
     ///
@@ -1042,7 +1042,7 @@ pub struct GatewayResponse {
 }
 
 /// Properties for the `GatewayResponse` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct GatewayResponseProperties {
     /// Property [`ResponseParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-gatewayresponse.html#cfn-apigateway-gatewayresponse-responseparameters).
     ///
@@ -1168,7 +1168,7 @@ pub struct Method {
 }
 
 /// Properties for the `Method` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct MethodProperties {
     /// Property [`ApiKeyRequired`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-method.html#cfn-apigateway-method-apikeyrequired).
     ///
@@ -1383,7 +1383,7 @@ pub struct Model {
 }
 
 /// Properties for the `Model` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ModelProperties {
     /// Property [`ContentType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-model.html#cfn-apigateway-model-contenttype).
     ///
@@ -1511,7 +1511,7 @@ pub struct RequestValidator {
 }
 
 /// Properties for the `RequestValidator` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct RequestValidatorProperties {
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-requestvalidator.html#cfn-apigateway-requestvalidator-name).
     ///
@@ -1626,7 +1626,7 @@ pub struct Resource {
 }
 
 /// Properties for the `Resource` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ResourceProperties {
     /// Property [`ParentId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-resource.html#cfn-apigateway-resource-parentid).
     ///
@@ -1724,7 +1724,7 @@ pub struct RestApi {
 }
 
 /// Properties for the `RestApi` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct RestApiProperties {
     /// Property [`ApiKeySourceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html#cfn-apigateway-restapi-apikeysourcetype).
     ///
@@ -1932,7 +1932,7 @@ pub struct Stage {
 }
 
 /// Properties for the `Stage` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct StageProperties {
     /// Property [`CacheClusterEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html#cfn-apigateway-stage-cacheclusterenabled).
     ///
@@ -2125,7 +2125,7 @@ pub struct UsagePlan {
 }
 
 /// Properties for the `UsagePlan` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct UsagePlanProperties {
     /// Property [`ApiStages`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-usageplan.html#cfn-apigateway-usageplan-apistages).
     ///
@@ -2255,7 +2255,7 @@ pub struct UsagePlanKey {
 }
 
 /// Properties for the `UsagePlanKey` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct UsagePlanKeyProperties {
     /// Property [`KeyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-usageplankey.html#cfn-apigateway-usageplankey-keyid).
     ///
@@ -2353,7 +2353,7 @@ pub struct VpcLink {
 }
 
 /// Properties for the `VpcLink` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VpcLinkProperties {
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-vpclink.html#cfn-apigateway-vpclink-description).
     ///
@@ -2450,7 +2450,7 @@ pub mod api_key {
     //! Property types for the `ApiKey` resource.
 
     /// The [`AWS::ApiGateway::ApiKey.StageKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-apikey-stagekey.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct StageKey {
         /// Property [`RestApiId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-apikey-stagekey.html#cfn-apigateway-apikey-stagekey-restapiid).
         ///
@@ -2520,7 +2520,7 @@ pub mod deployment {
     //! Property types for the `Deployment` resource.
 
     /// The [`AWS::ApiGateway::Deployment.MethodSetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription-methodsetting.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct MethodSetting {
         /// Property [`CacheDataEncrypted`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription-methodsetting.html#cfn-apigateway-deployment-stagedescription-methodsetting-cachedataencrypted).
         ///
@@ -2690,7 +2690,7 @@ pub mod deployment {
     }
 
     /// The [`AWS::ApiGateway::Deployment.StageDescription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct StageDescription {
         /// Property [`CacheClusterEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription.html#cfn-apigateway-deployment-stagedescription-cacheclusterenabled).
         ///
@@ -2929,7 +2929,7 @@ pub mod documentation_part {
     //! Property types for the `DocumentationPart` resource.
 
     /// The [`AWS::ApiGateway::DocumentationPart.Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-documentationpart-location.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Location {
         /// Property [`Method`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-documentationpart-location.html#cfn-apigateway-documentationpart-location-method).
         ///
@@ -3038,7 +3038,7 @@ pub mod domain_name {
     //! Property types for the `DomainName` resource.
 
     /// The [`AWS::ApiGateway::DomainName.EndpointConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-domainname-endpointconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct EndpointConfiguration {
         /// Property [`Types`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-domainname-endpointconfiguration.html#cfn-apigateway-domainname-endpointconfiguration-types).
         ///
@@ -3095,7 +3095,7 @@ pub mod method {
     //! Property types for the `Method` resource.
 
     /// The [`AWS::ApiGateway::Method.Integration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-method-integration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Integration {
         /// Property [`CacheKeyParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-method-integration.html#cfn-apigateway-method-integration-cachekeyparameters).
         ///
@@ -3278,7 +3278,7 @@ pub mod method {
     }
 
     /// The [`AWS::ApiGateway::Method.IntegrationResponse`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-method-integration-integrationresponse.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct IntegrationResponse {
         /// Property [`ContentHandling`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-method-integration-integrationresponse.html#cfn-apigateway-method-integrationresponse-contenthandling).
         ///
@@ -3381,7 +3381,7 @@ pub mod method {
     }
 
     /// The [`AWS::ApiGateway::Method.MethodResponse`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-method-methodresponse.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct MethodResponse {
         /// Property [`ResponseModels`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-method-methodresponse.html#cfn-apigateway-method-methodresponse-responsemodels).
         ///
@@ -3462,7 +3462,7 @@ pub mod rest_api {
     //! Property types for the `RestApi` resource.
 
     /// The [`AWS::ApiGateway::RestApi.EndpointConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-restapi-endpointconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct EndpointConfiguration {
         /// Property [`Types`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-restapi-endpointconfiguration.html#cfn-apigateway-restapi-endpointconfiguration-types).
         ///
@@ -3515,7 +3515,7 @@ pub mod rest_api {
     }
 
     /// The [`AWS::ApiGateway::RestApi.S3Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-restapi-s3location.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct S3Location {
         /// Property [`Bucket`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-restapi-s3location.html#cfn-apigateway-restapi-s3location-bucket).
         ///
@@ -3611,7 +3611,7 @@ pub mod stage {
     //! Property types for the `Stage` resource.
 
     /// The [`AWS::ApiGateway::Stage.MethodSetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-stage-methodsetting.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct MethodSetting {
         /// Property [`CacheDataEncrypted`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-stage-methodsetting.html#cfn-apigateway-stage-methodsetting-cachedataencrypted).
         ///
@@ -3785,7 +3785,7 @@ pub mod usage_plan {
     //! Property types for the `UsagePlan` resource.
 
     /// The [`AWS::ApiGateway::UsagePlan.ApiStage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-apistage.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ApiStage {
         /// Property [`ApiId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-apistage.html#cfn-apigateway-usageplan-apistage-apiid).
         ///
@@ -3851,7 +3851,7 @@ pub mod usage_plan {
     }
 
     /// The [`AWS::ApiGateway::UsagePlan.QuotaSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-quotasettings.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct QuotaSettings {
         /// Property [`Limit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-quotasettings.html#cfn-apigateway-usageplan-quotasettings-limit).
         ///
@@ -3930,7 +3930,7 @@ pub mod usage_plan {
     }
 
     /// The [`AWS::ApiGateway::UsagePlan.ThrottleSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-throttlesettings.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ThrottleSettings {
         /// Property [`BurstLimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-throttlesettings.html#cfn-apigateway-usageplan-throttlesettings-burstlimit).
         ///

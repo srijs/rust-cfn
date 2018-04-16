@@ -7,7 +7,7 @@ pub struct Cluster {
 }
 
 /// Properties for the `Cluster` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ClusterProperties {
     /// Property [`AdditionalInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html#cfn-elasticmapreduce-cluster-additionalinfo).
     ///
@@ -286,7 +286,7 @@ pub struct InstanceFleetConfig {
 }
 
 /// Properties for the `InstanceFleetConfig` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct InstanceFleetConfigProperties {
     /// Property [`ClusterId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-instancefleetconfig.html#cfn-elasticmapreduce-instancefleetconfig-clusterid).
     ///
@@ -438,7 +438,7 @@ pub struct InstanceGroupConfig {
 }
 
 /// Properties for the `InstanceGroupConfig` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct InstanceGroupConfigProperties {
     /// Property [`AutoScalingPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-instancegroupconfig.html#cfn-elasticmapreduce-instancegroupconfig-autoscalingpolicy).
     ///
@@ -625,7 +625,7 @@ pub struct SecurityConfiguration {
 }
 
 /// Properties for the `SecurityConfiguration` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SecurityConfigurationProperties {
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-securityconfiguration.html#cfn-emr-securityconfiguration-name).
     ///
@@ -714,7 +714,7 @@ pub struct Step {
 }
 
 /// Properties for the `Step` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct StepProperties {
     /// Property [`ActionOnFailure`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-step.html#cfn-elasticmapreduce-step-actiononfailure).
     ///
@@ -820,7 +820,7 @@ pub mod cluster {
     //! Property types for the `Cluster` resource.
 
     /// The [`AWS::EMR::Cluster.Application`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-application.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Application {
         /// Property [`AdditionalInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-application.html#cfn-elasticmapreduce-cluster-application-additionalinfo).
         ///
@@ -912,7 +912,7 @@ pub mod cluster {
     }
 
     /// The [`AWS::EMR::Cluster.AutoScalingPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-autoscalingpolicy.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct AutoScalingPolicy {
         /// Property [`Constraints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-autoscalingpolicy.html#cfn-elasticmapreduce-cluster-autoscalingpolicy-constraints).
         ///
@@ -974,7 +974,7 @@ pub mod cluster {
     }
 
     /// The [`AWS::EMR::Cluster.BootstrapActionConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-bootstrapactionconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct BootstrapActionConfig {
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-bootstrapactionconfig.html#cfn-elasticmapreduce-cluster-bootstrapactionconfig-name).
         ///
@@ -1036,7 +1036,7 @@ pub mod cluster {
     }
 
     /// The [`AWS::EMR::Cluster.CloudWatchAlarmDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-cloudwatchalarmdefinition.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct CloudWatchAlarmDefinition {
         /// Property [`ComparisonOperator`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-cloudwatchalarmdefinition.html#cfn-elasticmapreduce-cluster-cloudwatchalarmdefinition-comparisonoperator).
         ///
@@ -1185,7 +1185,7 @@ pub mod cluster {
     }
 
     /// The [`AWS::EMR::Cluster.Configuration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-configuration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Configuration {
         /// Property [`Classification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-configuration.html#cfn-elasticmapreduce-cluster-configuration-classification).
         ///
@@ -1264,7 +1264,7 @@ pub mod cluster {
     }
 
     /// The [`AWS::EMR::Cluster.EbsBlockDeviceConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-ebsblockdeviceconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct EbsBlockDeviceConfig {
         /// Property [`VolumeSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-ebsblockdeviceconfig.html#cfn-elasticmapreduce-cluster-ebsblockdeviceconfig-volumespecification).
         ///
@@ -1328,7 +1328,7 @@ pub mod cluster {
     }
 
     /// The [`AWS::EMR::Cluster.EbsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-ebsconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct EbsConfiguration {
         /// Property [`EbsBlockDeviceConfigs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-ebsconfiguration.html#cfn-elasticmapreduce-cluster-ebsconfiguration-ebsblockdeviceconfigs).
         ///
@@ -1394,7 +1394,7 @@ pub mod cluster {
     }
 
     /// The [`AWS::EMR::Cluster.InstanceFleetConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancefleetconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct InstanceFleetConfig {
         /// Property [`InstanceTypeConfigs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancefleetconfig.html#cfn-elasticmapreduce-cluster-instancefleetconfig-instancetypeconfigs).
         ///
@@ -1499,7 +1499,7 @@ pub mod cluster {
     }
 
     /// The [`AWS::EMR::Cluster.InstanceFleetProvisioningSpecifications`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancefleetprovisioningspecifications.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct InstanceFleetProvisioningSpecifications {
         /// Property [`SpotSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancefleetprovisioningspecifications.html#cfn-elasticmapreduce-cluster-instancefleetprovisioningspecifications-spotspecification).
         ///
@@ -1550,7 +1550,7 @@ pub mod cluster {
     }
 
     /// The [`AWS::EMR::Cluster.InstanceGroupConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancegroupconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct InstanceGroupConfig {
         /// Property [`AutoScalingPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancegroupconfig.html#cfn-elasticmapreduce-cluster-instancegroupconfig-autoscalingpolicy).
         ///
@@ -1690,7 +1690,7 @@ pub mod cluster {
     }
 
     /// The [`AWS::EMR::Cluster.InstanceTypeConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancetypeconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct InstanceTypeConfig {
         /// Property [`BidPrice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancetypeconfig.html#cfn-elasticmapreduce-cluster-instancetypeconfig-bidprice).
         ///
@@ -1806,7 +1806,7 @@ pub mod cluster {
     }
 
     /// The [`AWS::EMR::Cluster.JobFlowInstancesConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-jobflowinstancesconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct JobFlowInstancesConfig {
         /// Property [`AdditionalMasterSecurityGroups`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-jobflowinstancesconfig.html#cfn-elasticmapreduce-cluster-jobflowinstancesconfig-additionalmastersecuritygroups).
         ///
@@ -2028,7 +2028,7 @@ pub mod cluster {
     }
 
     /// The [`AWS::EMR::Cluster.MetricDimension`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-metricdimension.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct MetricDimension {
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-metricdimension.html#cfn-elasticmapreduce-cluster-metricdimension-key).
         ///
@@ -2090,7 +2090,7 @@ pub mod cluster {
     }
 
     /// The [`AWS::EMR::Cluster.PlacementType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-placementtype.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct PlacementType {
         /// Property [`AvailabilityZone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-placementtype.html#cfn-elasticmapreduce-cluster-placementtype-availabilityzone).
         ///
@@ -2141,7 +2141,7 @@ pub mod cluster {
     }
 
     /// The [`AWS::EMR::Cluster.ScalingAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scalingaction.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ScalingAction {
         /// Property [`Market`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scalingaction.html#cfn-elasticmapreduce-cluster-scalingaction-market).
         ///
@@ -2205,7 +2205,7 @@ pub mod cluster {
     }
 
     /// The [`AWS::EMR::Cluster.ScalingConstraints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scalingconstraints.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ScalingConstraints {
         /// Property [`MaxCapacity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scalingconstraints.html#cfn-elasticmapreduce-cluster-scalingconstraints-maxcapacity).
         ///
@@ -2267,7 +2267,7 @@ pub mod cluster {
     }
 
     /// The [`AWS::EMR::Cluster.ScalingRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scalingrule.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ScalingRule {
         /// Property [`Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scalingrule.html#cfn-elasticmapreduce-cluster-scalingrule-action).
         ///
@@ -2353,7 +2353,7 @@ pub mod cluster {
     }
 
     /// The [`AWS::EMR::Cluster.ScalingTrigger`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scalingtrigger.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ScalingTrigger {
         /// Property [`CloudWatchAlarmDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scalingtrigger.html#cfn-elasticmapreduce-cluster-scalingtrigger-cloudwatchalarmdefinition).
         ///
@@ -2404,7 +2404,7 @@ pub mod cluster {
     }
 
     /// The [`AWS::EMR::Cluster.ScriptBootstrapActionConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scriptbootstrapactionconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ScriptBootstrapActionConfig {
         /// Property [`Args`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-scriptbootstrapactionconfig.html#cfn-elasticmapreduce-cluster-scriptbootstrapactionconfig-args).
         ///
@@ -2468,7 +2468,7 @@ pub mod cluster {
     }
 
     /// The [`AWS::EMR::Cluster.SimpleScalingPolicyConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-simplescalingpolicyconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SimpleScalingPolicyConfiguration {
         /// Property [`AdjustmentType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-simplescalingpolicyconfiguration.html#cfn-elasticmapreduce-cluster-simplescalingpolicyconfiguration-adjustmenttype).
         ///
@@ -2545,7 +2545,7 @@ pub mod cluster {
     }
 
     /// The [`AWS::EMR::Cluster.SpotProvisioningSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-spotprovisioningspecification.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SpotProvisioningSpecification {
         /// Property [`BlockDurationMinutes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-spotprovisioningspecification.html#cfn-elasticmapreduce-cluster-spotprovisioningspecification-blockdurationminutes).
         ///
@@ -2620,7 +2620,7 @@ pub mod cluster {
     }
 
     /// The [`AWS::EMR::Cluster.VolumeSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-volumespecification.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct VolumeSpecification {
         /// Property [`Iops`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-volumespecification.html#cfn-elasticmapreduce-cluster-volumespecification-iops).
         ///
@@ -2699,7 +2699,7 @@ pub mod instance_fleet_config {
     //! Property types for the `InstanceFleetConfig` resource.
 
     /// The [`AWS::EMR::InstanceFleetConfig.Configuration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-configuration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Configuration {
         /// Property [`Classification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-configuration.html#cfn-elasticmapreduce-instancefleetconfig-configuration-classification).
         ///
@@ -2778,7 +2778,7 @@ pub mod instance_fleet_config {
     }
 
     /// The [`AWS::EMR::InstanceFleetConfig.EbsBlockDeviceConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-ebsblockdeviceconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct EbsBlockDeviceConfig {
         /// Property [`VolumeSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-ebsblockdeviceconfig.html#cfn-elasticmapreduce-instancefleetconfig-ebsblockdeviceconfig-volumespecification).
         ///
@@ -2842,7 +2842,7 @@ pub mod instance_fleet_config {
     }
 
     /// The [`AWS::EMR::InstanceFleetConfig.EbsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-ebsconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct EbsConfiguration {
         /// Property [`EbsBlockDeviceConfigs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-ebsconfiguration.html#cfn-elasticmapreduce-instancefleetconfig-ebsconfiguration-ebsblockdeviceconfigs).
         ///
@@ -2908,7 +2908,7 @@ pub mod instance_fleet_config {
     }
 
     /// The [`AWS::EMR::InstanceFleetConfig.InstanceFleetProvisioningSpecifications`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-instancefleetprovisioningspecifications.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct InstanceFleetProvisioningSpecifications {
         /// Property [`SpotSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-instancefleetprovisioningspecifications.html#cfn-elasticmapreduce-instancefleetconfig-instancefleetprovisioningspecifications-spotspecification).
         ///
@@ -2959,7 +2959,7 @@ pub mod instance_fleet_config {
     }
 
     /// The [`AWS::EMR::InstanceFleetConfig.InstanceTypeConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-instancetypeconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct InstanceTypeConfig {
         /// Property [`BidPrice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-instancetypeconfig.html#cfn-elasticmapreduce-instancefleetconfig-instancetypeconfig-bidprice).
         ///
@@ -3075,7 +3075,7 @@ pub mod instance_fleet_config {
     }
 
     /// The [`AWS::EMR::InstanceFleetConfig.SpotProvisioningSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-spotprovisioningspecification.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SpotProvisioningSpecification {
         /// Property [`BlockDurationMinutes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-spotprovisioningspecification.html#cfn-elasticmapreduce-instancefleetconfig-spotprovisioningspecification-blockdurationminutes).
         ///
@@ -3150,7 +3150,7 @@ pub mod instance_fleet_config {
     }
 
     /// The [`AWS::EMR::InstanceFleetConfig.VolumeSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-volumespecification.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct VolumeSpecification {
         /// Property [`Iops`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-volumespecification.html#cfn-elasticmapreduce-instancefleetconfig-volumespecification-iops).
         ///
@@ -3229,7 +3229,7 @@ pub mod instance_group_config {
     //! Property types for the `InstanceGroupConfig` resource.
 
     /// The [`AWS::EMR::InstanceGroupConfig.AutoScalingPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-autoscalingpolicy.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct AutoScalingPolicy {
         /// Property [`Constraints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-autoscalingpolicy.html#cfn-elasticmapreduce-instancegroupconfig-autoscalingpolicy-constraints).
         ///
@@ -3291,7 +3291,7 @@ pub mod instance_group_config {
     }
 
     /// The [`AWS::EMR::InstanceGroupConfig.CloudWatchAlarmDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-cloudwatchalarmdefinition.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct CloudWatchAlarmDefinition {
         /// Property [`ComparisonOperator`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-cloudwatchalarmdefinition.html#cfn-elasticmapreduce-instancegroupconfig-cloudwatchalarmdefinition-comparisonoperator).
         ///
@@ -3440,7 +3440,7 @@ pub mod instance_group_config {
     }
 
     /// The [`AWS::EMR::InstanceGroupConfig.Configuration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-configuration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Configuration {
         /// Property [`Classification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-configuration.html#cfn-emr-cluster-configuration-classification).
         ///
@@ -3519,7 +3519,7 @@ pub mod instance_group_config {
     }
 
     /// The [`AWS::EMR::InstanceGroupConfig.EbsBlockDeviceConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct EbsBlockDeviceConfig {
         /// Property [`VolumeSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig.html#cfn-emr-ebsconfiguration-ebsblockdeviceconfig-volumespecification).
         ///
@@ -3583,7 +3583,7 @@ pub mod instance_group_config {
     }
 
     /// The [`AWS::EMR::InstanceGroupConfig.EbsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct EbsConfiguration {
         /// Property [`EbsBlockDeviceConfigs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration.html#cfn-emr-ebsconfiguration-ebsblockdeviceconfigs).
         ///
@@ -3649,7 +3649,7 @@ pub mod instance_group_config {
     }
 
     /// The [`AWS::EMR::InstanceGroupConfig.MetricDimension`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-metricdimension.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct MetricDimension {
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-metricdimension.html#cfn-elasticmapreduce-instancegroupconfig-metricdimension-key).
         ///
@@ -3711,7 +3711,7 @@ pub mod instance_group_config {
     }
 
     /// The [`AWS::EMR::InstanceGroupConfig.ScalingAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-scalingaction.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ScalingAction {
         /// Property [`Market`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-scalingaction.html#cfn-elasticmapreduce-instancegroupconfig-scalingaction-market).
         ///
@@ -3775,7 +3775,7 @@ pub mod instance_group_config {
     }
 
     /// The [`AWS::EMR::InstanceGroupConfig.ScalingConstraints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-scalingconstraints.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ScalingConstraints {
         /// Property [`MaxCapacity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-scalingconstraints.html#cfn-elasticmapreduce-instancegroupconfig-scalingconstraints-maxcapacity).
         ///
@@ -3837,7 +3837,7 @@ pub mod instance_group_config {
     }
 
     /// The [`AWS::EMR::InstanceGroupConfig.ScalingRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-scalingrule.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ScalingRule {
         /// Property [`Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-scalingrule.html#cfn-elasticmapreduce-instancegroupconfig-scalingrule-action).
         ///
@@ -3923,7 +3923,7 @@ pub mod instance_group_config {
     }
 
     /// The [`AWS::EMR::InstanceGroupConfig.ScalingTrigger`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-scalingtrigger.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ScalingTrigger {
         /// Property [`CloudWatchAlarmDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-scalingtrigger.html#cfn-elasticmapreduce-instancegroupconfig-scalingtrigger-cloudwatchalarmdefinition).
         ///
@@ -3974,7 +3974,7 @@ pub mod instance_group_config {
     }
 
     /// The [`AWS::EMR::InstanceGroupConfig.SimpleScalingPolicyConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-simplescalingpolicyconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SimpleScalingPolicyConfiguration {
         /// Property [`AdjustmentType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancegroupconfig-simplescalingpolicyconfiguration.html#cfn-elasticmapreduce-instancegroupconfig-simplescalingpolicyconfiguration-adjustmenttype).
         ///
@@ -4051,7 +4051,7 @@ pub mod instance_group_config {
     }
 
     /// The [`AWS::EMR::InstanceGroupConfig.VolumeSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig-volumespecification.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct VolumeSpecification {
         /// Property [`Iops`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig-volumespecification.html#cfn-emr-ebsconfiguration-ebsblockdeviceconfig-volumespecification-iops).
         ///
@@ -4130,7 +4130,7 @@ pub mod step {
     //! Property types for the `Step` resource.
 
     /// The [`AWS::EMR::Step.HadoopJarStepConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-step-hadoopjarstepconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct HadoopJarStepConfig {
         /// Property [`Args`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-step-hadoopjarstepconfig.html#cfn-elasticmapreduce-step-hadoopjarstepconfig-args).
         ///
@@ -4220,7 +4220,7 @@ pub mod step {
     }
 
     /// The [`AWS::EMR::Step.KeyValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-step-keyvalue.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct KeyValue {
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-step-keyvalue.html#cfn-elasticmapreduce-step-keyvalue-key).
         ///

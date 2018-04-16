@@ -7,7 +7,7 @@ pub struct Alarm {
 }
 
 /// Properties for the `Alarm` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct AlarmProperties {
     /// Property [`ActionsEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cw-alarm.html#cfn-cloudwatch-alarms-actionsenabled).
     ///
@@ -294,7 +294,7 @@ pub struct Dashboard {
 }
 
 /// Properties for the `Dashboard` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DashboardProperties {
     /// Property [`DashboardBody`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-dashboard.html#cfn-cloudwatch-dashboard-dashboardbody).
     ///
@@ -380,7 +380,7 @@ pub mod alarm {
     //! Property types for the `Alarm` resource.
 
     /// The [`AWS::CloudWatch::Alarm.Dimension`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cw-dimension.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Dimension {
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cw-dimension.html#cfn-cloudwatch-alarm-dimension-name).
         ///

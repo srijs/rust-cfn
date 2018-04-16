@@ -7,7 +7,7 @@ pub struct AutoScalingGroup {
 }
 
 /// Properties for the `AutoScalingGroup` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct AutoScalingGroupProperties {
     /// Property [`AutoScalingGroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html#cfn-autoscaling-autoscalinggroup-autoscalinggroupname).
     ///
@@ -315,7 +315,7 @@ pub struct LaunchConfiguration {
 }
 
 /// Properties for the `LaunchConfiguration` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct LaunchConfigurationProperties {
     /// Property [`AssociatePublicIpAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig.html#cf-as-launchconfig-associatepubip).
     ///
@@ -597,7 +597,7 @@ pub struct LifecycleHook {
 }
 
 /// Properties for the `LifecycleHook` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct LifecycleHookProperties {
     /// Property [`AutoScalingGroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-as-lifecyclehook.html#cfn-as-lifecyclehook-autoscalinggroupname).
     ///
@@ -762,7 +762,7 @@ pub struct ScalingPolicy {
 }
 
 /// Properties for the `ScalingPolicy` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ScalingPolicyProperties {
     /// Property [`AdjustmentType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-policy.html#cfn-as-scalingpolicy-adjustmenttype).
     ///
@@ -955,7 +955,7 @@ pub struct ScheduledAction {
 }
 
 /// Properties for the `ScheduledAction` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ScheduledActionProperties {
     /// Property [`AutoScalingGroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-as-scheduledaction.html#cfn-as-scheduledaction-asgname).
     ///
@@ -1106,7 +1106,7 @@ pub mod auto_scaling_group {
     //! Property types for the `AutoScalingGroup` resource.
 
     /// The [`AWS::AutoScaling::AutoScalingGroup.LifecycleHookSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-lifecyclehookspecification.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct LifecycleHookSpecification {
         /// Property [`DefaultResult`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-lifecyclehookspecification.html#cfn-autoscaling-autoscalinggroup-lifecyclehookspecification-defaultresult).
         ///
@@ -1233,7 +1233,7 @@ pub mod auto_scaling_group {
     }
 
     /// The [`AWS::AutoScaling::AutoScalingGroup.MetricsCollection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-metricscollection.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct MetricsCollection {
         /// Property [`Granularity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-metricscollection.html#cfn-as-metricscollection-granularity).
         ///
@@ -1297,7 +1297,7 @@ pub mod auto_scaling_group {
     }
 
     /// The [`AWS::AutoScaling::AutoScalingGroup.NotificationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-notificationconfigurations.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct NotificationConfiguration {
         /// Property [`NotificationTypes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-notificationconfigurations.html#cfn-as-group-notificationconfigurations-notificationtypes).
         ///
@@ -1361,7 +1361,7 @@ pub mod auto_scaling_group {
     }
 
     /// The [`AWS::AutoScaling::AutoScalingGroup.TagProperty`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-tags.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct TagProperty {
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-tags.html#cfn-as-tags-Key).
         ///
@@ -1438,7 +1438,7 @@ pub mod launch_configuration {
     //! Property types for the `LaunchConfiguration` resource.
 
     /// The [`AWS::AutoScaling::LaunchConfiguration.BlockDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig-blockdev-template.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct BlockDevice {
         /// Property [`DeleteOnTermination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig-blockdev-template.html#cfn-as-launchconfig-blockdev-template-deleteonterm).
         ///
@@ -1556,7 +1556,7 @@ pub mod launch_configuration {
     }
 
     /// The [`AWS::AutoScaling::LaunchConfiguration.BlockDeviceMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig-blockdev-mapping.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct BlockDeviceMapping {
         /// Property [`DeviceName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig-blockdev-mapping.html#cfn-as-launchconfig-blockdev-mapping-devicename).
         ///
@@ -1650,7 +1650,7 @@ pub mod scaling_policy {
     //! Property types for the `ScalingPolicy` resource.
 
     /// The [`AWS::AutoScaling::ScalingPolicy.CustomizedMetricSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-customizedmetricspecification.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct CustomizedMetricSpecification {
         /// Property [`Dimensions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-customizedmetricspecification.html#cfn-autoscaling-scalingpolicy-customizedmetricspecification-dimensions).
         ///
@@ -1749,7 +1749,7 @@ pub mod scaling_policy {
     }
 
     /// The [`AWS::AutoScaling::ScalingPolicy.MetricDimension`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-metricdimension.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct MetricDimension {
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-metricdimension.html#cfn-autoscaling-scalingpolicy-metricdimension-name).
         ///
@@ -1811,7 +1811,7 @@ pub mod scaling_policy {
     }
 
     /// The [`AWS::AutoScaling::ScalingPolicy.PredefinedMetricSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-predefinedmetricspecification.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct PredefinedMetricSpecification {
         /// Property [`PredefinedMetricType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-predefinedmetricspecification.html#cfn-autoscaling-scalingpolicy-predefinedmetricspecification-predefinedmetrictype).
         ///
@@ -1875,7 +1875,7 @@ pub mod scaling_policy {
     }
 
     /// The [`AWS::AutoScaling::ScalingPolicy.StepAdjustment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-stepadjustments.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct StepAdjustment {
         /// Property [`MetricIntervalLowerBound`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-stepadjustments.html#cfn-autoscaling-scalingpolicy-stepadjustment-metricintervallowerbound).
         ///
@@ -1952,7 +1952,7 @@ pub mod scaling_policy {
     }
 
     /// The [`AWS::AutoScaling::ScalingPolicy.TargetTrackingConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-targettrackingconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct TargetTrackingConfiguration {
         /// Property [`CustomizedMetricSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-scalingpolicy-targettrackingconfiguration.html#cfn-autoscaling-scalingpolicy-targettrackingconfiguration-customizedmetricspecification).
         ///

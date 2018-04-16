@@ -7,7 +7,7 @@ pub struct CustomActionType {
 }
 
 /// Properties for the `CustomActionType` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct CustomActionTypeProperties {
     /// Property [`Category`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-customactiontype.html#cfn-codepipeline-customactiontype-category).
     ///
@@ -155,7 +155,7 @@ pub struct Pipeline {
 }
 
 /// Properties for the `Pipeline` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct PipelineProperties {
     /// Property [`ArtifactStore`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-pipeline.html#cfn-codepipeline-pipeline-artifactstore).
     ///
@@ -289,7 +289,7 @@ pub mod custom_action_type {
     //! Property types for the `CustomActionType` resource.
 
     /// The [`AWS::CodePipeline::CustomActionType.ArtifactDetails`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-artifactdetails.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ArtifactDetails {
         /// Property [`MaximumCount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-artifactdetails.html#cfn-codepipeline-customactiontype-artifactdetails-maximumcount).
         ///
@@ -351,7 +351,7 @@ pub mod custom_action_type {
     }
 
     /// The [`AWS::CodePipeline::CustomActionType.ConfigurationProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-configurationproperties.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ConfigurationProperties {
         /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-configurationproperties.html#cfn-codepipeline-customactiontype-configurationproperties-description).
         ///
@@ -474,7 +474,7 @@ pub mod custom_action_type {
     }
 
     /// The [`AWS::CodePipeline::CustomActionType.Settings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-settings.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Settings {
         /// Property [`EntityUrlTemplate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-settings.html#cfn-codepipeline-customactiontype-settings-entityurltemplate).
         ///
@@ -570,7 +570,7 @@ pub mod pipeline {
     //! Property types for the `Pipeline` resource.
 
     /// The [`AWS::CodePipeline::Pipeline.ActionDeclaration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ActionDeclaration {
         /// Property [`ActionTypeId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions.html#cfn-codepipeline-pipeline-stages-actions-actiontypeid).
         ///
@@ -697,7 +697,7 @@ pub mod pipeline {
     }
 
     /// The [`AWS::CodePipeline::Pipeline.ActionTypeId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-actiontypeid.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ActionTypeId {
         /// Property [`Category`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-actiontypeid.html#cfn-codepipeline-pipeline-stages-actions-actiontypeid-category).
         ///
@@ -781,7 +781,7 @@ pub mod pipeline {
     }
 
     /// The [`AWS::CodePipeline::Pipeline.ArtifactStore`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-artifactstore.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ArtifactStore {
         /// Property [`EncryptionKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-artifactstore.html#cfn-codepipeline-pipeline-artifactstore-encryptionkey).
         ///
@@ -856,7 +856,7 @@ pub mod pipeline {
     }
 
     /// The [`AWS::CodePipeline::Pipeline.BlockerDeclaration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-blockers.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct BlockerDeclaration {
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-blockers.html#cfn-codepipeline-pipeline-stages-blockers-name).
         ///
@@ -918,7 +918,7 @@ pub mod pipeline {
     }
 
     /// The [`AWS::CodePipeline::Pipeline.EncryptionKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-artifactstore-encryptionkey.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct EncryptionKey {
         /// Property [`Id`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-artifactstore-encryptionkey.html#cfn-codepipeline-pipeline-artifactstore-encryptionkey-id).
         ///
@@ -980,7 +980,7 @@ pub mod pipeline {
     }
 
     /// The [`AWS::CodePipeline::Pipeline.InputArtifact`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-inputartifacts.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct InputArtifact {
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-inputartifacts.html#cfn-codepipeline-pipeline-stages-actions-inputartifacts-name).
         ///
@@ -1031,7 +1031,7 @@ pub mod pipeline {
     }
 
     /// The [`AWS::CodePipeline::Pipeline.OutputArtifact`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-outputartifacts.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct OutputArtifact {
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-outputartifacts.html#cfn-codepipeline-pipeline-stages-actions-outputartifacts-name).
         ///
@@ -1082,7 +1082,7 @@ pub mod pipeline {
     }
 
     /// The [`AWS::CodePipeline::Pipeline.StageDeclaration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct StageDeclaration {
         /// Property [`Actions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages.html#cfn-codepipeline-pipeline-stages-actions).
         ///
@@ -1157,7 +1157,7 @@ pub mod pipeline {
     }
 
     /// The [`AWS::CodePipeline::Pipeline.StageTransition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-disableinboundstagetransitions.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct StageTransition {
         /// Property [`Reason`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-disableinboundstagetransitions.html#cfn-codepipeline-pipeline-disableinboundstagetransitions-reason).
         ///

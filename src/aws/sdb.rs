@@ -7,7 +7,7 @@ pub struct Domain {
 }
 
 /// Properties for the `Domain` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DomainProperties {
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-simpledb.html#cfn-sdb-domain-description).
     ///

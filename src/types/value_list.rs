@@ -49,6 +49,12 @@ impl<T> ValueList<T> {
     }
 }
 
+impl<T> Default for ValueList<T> {
+    fn default() -> ValueList<T> {
+        ValueList(ValueListInner::Values(Vec::new()))
+    }
+}
+
 impl<T> FromIterator<::Value<T>> for ValueList<T> {
     fn from_iter<I>(iter: I) -> ValueList<T>
         where I: IntoIterator<Item = ::Value<T>>

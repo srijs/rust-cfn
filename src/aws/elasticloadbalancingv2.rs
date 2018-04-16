@@ -7,7 +7,7 @@ pub struct Listener {
 }
 
 /// Properties for the `Listener` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ListenerProperties {
     /// Property [`Certificates`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listener.html#cfn-elasticloadbalancingv2-listener-certificates).
     ///
@@ -142,7 +142,7 @@ pub struct ListenerCertificate {
 }
 
 /// Properties for the `ListenerCertificate` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ListenerCertificateProperties {
     /// Property [`Certificates`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenercertificate.html#cfn-elasticloadbalancingv2-listenercertificate-certificates).
     ///
@@ -229,7 +229,7 @@ pub struct ListenerRule {
 }
 
 /// Properties for the `ListenerRule` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ListenerRuleProperties {
     /// Property [`Actions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html#cfn-elasticloadbalancingv2-listenerrule-actions).
     ///
@@ -338,7 +338,7 @@ pub struct LoadBalancer {
 }
 
 /// Properties for the `LoadBalancer` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct LoadBalancerProperties {
     /// Property [`IpAddressType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html#cfn-elasticloadbalancingv2-loadbalancer-ipaddresstype).
     ///
@@ -520,7 +520,7 @@ pub struct TargetGroup {
 }
 
 /// Properties for the `TargetGroup` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct TargetGroupProperties {
     /// Property [`HealthCheckIntervalSeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html#cfn-elasticloadbalancingv2-targetgroup-healthcheckintervalseconds).
     ///
@@ -784,7 +784,7 @@ pub mod listener {
     //! Property types for the `Listener` resource.
 
     /// The [`AWS::ElasticLoadBalancingV2::Listener.Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-defaultactions.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Action {
         /// Property [`TargetGroupArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-defaultactions.html#cfn-elasticloadbalancingv2-listener-defaultactions-targetgrouparn).
         ///
@@ -846,7 +846,7 @@ pub mod listener {
     }
 
     /// The [`AWS::ElasticLoadBalancingV2::Listener.Certificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-certificates.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Certificate {
         /// Property [`CertificateArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-certificates.html#cfn-elasticloadbalancingv2-listener-certificates-certificatearn).
         ///
@@ -903,7 +903,7 @@ pub mod listener_certificate {
     //! Property types for the `ListenerCertificate` resource.
 
     /// The [`AWS::ElasticLoadBalancingV2::ListenerCertificate.Certificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-certificates.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Certificate {
         /// Property [`CertificateArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-certificates.html#cfn-elasticloadbalancingv2-listener-certificates-certificatearn).
         ///
@@ -960,7 +960,7 @@ pub mod listener_rule {
     //! Property types for the `ListenerRule` resource.
 
     /// The [`AWS::ElasticLoadBalancingV2::ListenerRule.Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-actions.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Action {
         /// Property [`TargetGroupArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-actions.html#cfn-elasticloadbalancingv2-listener-actions-targetgrouparn).
         ///
@@ -1022,7 +1022,7 @@ pub mod listener_rule {
     }
 
     /// The [`AWS::ElasticLoadBalancingV2::ListenerRule.RuleCondition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-conditions.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct RuleCondition {
         /// Property [`Field`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-conditions.html#cfn-elasticloadbalancingv2-listenerrule-conditions-field).
         ///
@@ -1092,7 +1092,7 @@ pub mod load_balancer {
     //! Property types for the `LoadBalancer` resource.
 
     /// The [`AWS::ElasticLoadBalancingV2::LoadBalancer.LoadBalancerAttribute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattributes.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct LoadBalancerAttribute {
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattributes.html#cfn-elasticloadbalancingv2-loadbalancer-loadbalancerattributes-key).
         ///
@@ -1158,7 +1158,7 @@ pub mod load_balancer {
     }
 
     /// The [`AWS::ElasticLoadBalancingV2::LoadBalancer.SubnetMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-subnetmapping.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SubnetMapping {
         /// Property [`AllocationId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-subnetmapping.html#cfn-elasticloadbalancingv2-loadbalancer-subnetmapping-allocationid).
         ///
@@ -1224,7 +1224,7 @@ pub mod target_group {
     //! Property types for the `TargetGroup` resource.
 
     /// The [`AWS::ElasticLoadBalancingV2::TargetGroup.Matcher`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-matcher.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Matcher {
         /// Property [`HttpCode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-matcher.html#cfn-elasticloadbalancingv2-targetgroup-matcher-httpcode).
         ///
@@ -1275,7 +1275,7 @@ pub mod target_group {
     }
 
     /// The [`AWS::ElasticLoadBalancingV2::TargetGroup.TargetDescription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetdescription.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct TargetDescription {
         /// Property [`AvailabilityZone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetdescription.html#cfn-elasticloadbalancingv2-targetgroup-targetdescription-availabilityzone).
         ///
@@ -1352,7 +1352,7 @@ pub mod target_group {
     }
 
     /// The [`AWS::ElasticLoadBalancingV2::TargetGroup.TargetGroupAttribute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetgroupattribute.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct TargetGroupAttribute {
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetgroupattribute.html#cfn-elasticloadbalancingv2-targetgroup-targetgroupattribute-key).
         ///

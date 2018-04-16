@@ -7,7 +7,7 @@ pub struct Application {
 }
 
 /// Properties for the `Application` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ApplicationProperties {
     /// Property [`ApplicationName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk.html#cfn-elasticbeanstalk-application-name).
     ///
@@ -111,7 +111,7 @@ pub struct ApplicationVersion {
 }
 
 /// Properties for the `ApplicationVersion` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ApplicationVersionProperties {
     /// Property [`ApplicationName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-version.html#cfn-elasticbeanstalk-applicationversion-applicationname).
     ///
@@ -211,7 +211,7 @@ pub struct ConfigurationTemplate {
 }
 
 /// Properties for the `ConfigurationTemplate` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ConfigurationTemplateProperties {
     /// Property [`ApplicationName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticbeanstalk-configurationtemplate.html#cfn-elasticbeanstalk-configurationtemplate-applicationname).
     ///
@@ -365,7 +365,7 @@ pub struct Environment {
 }
 
 /// Properties for the `Environment` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct EnvironmentProperties {
     /// Property [`ApplicationName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment.html#cfn-beanstalk-environment-applicationname).
     ///
@@ -569,7 +569,7 @@ pub mod application {
     //! Property types for the `Application` resource.
 
     /// The [`AWS::ElasticBeanstalk::Application.ApplicationResourceLifecycleConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-applicationresourcelifecycleconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ApplicationResourceLifecycleConfig {
         /// Property [`ServiceRole`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-applicationresourcelifecycleconfig.html#cfn-elasticbeanstalk-application-applicationresourcelifecycleconfig-servicerole).
         ///
@@ -635,7 +635,7 @@ pub mod application {
     }
 
     /// The [`AWS::ElasticBeanstalk::Application.ApplicationVersionLifecycleConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-applicationversionlifecycleconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ApplicationVersionLifecycleConfig {
         /// Property [`MaxAgeRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-applicationversionlifecycleconfig.html#cfn-elasticbeanstalk-application-applicationversionlifecycleconfig-maxagerule).
         ///
@@ -701,7 +701,7 @@ pub mod application {
     }
 
     /// The [`AWS::ElasticBeanstalk::Application.MaxAgeRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-maxagerule.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct MaxAgeRule {
         /// Property [`DeleteSourceFromS3`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-maxagerule.html#cfn-elasticbeanstalk-application-maxagerule-deletesourcefroms3).
         ///
@@ -780,7 +780,7 @@ pub mod application {
     }
 
     /// The [`AWS::ElasticBeanstalk::Application.MaxCountRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-maxcountrule.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct MaxCountRule {
         /// Property [`DeleteSourceFromS3`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-application-maxcountrule.html#cfn-elasticbeanstalk-application-maxcountrule-deletesourcefroms3).
         ///
@@ -863,7 +863,7 @@ pub mod application_version {
     //! Property types for the `ApplicationVersion` resource.
 
     /// The [`AWS::ElasticBeanstalk::ApplicationVersion.SourceBundle`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-sourcebundle.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SourceBundle {
         /// Property [`S3Bucket`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-sourcebundle.html#cfn-beanstalk-sourcebundle-s3bucket).
         ///
@@ -929,7 +929,7 @@ pub mod configuration_template {
     //! Property types for the `ConfigurationTemplate` resource.
 
     /// The [`AWS::ElasticBeanstalk::ConfigurationTemplate.ConfigurationOptionSetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-configurationtemplate-configurationoptionsetting.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ConfigurationOptionSetting {
         /// Property [`Namespace`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-configurationtemplate-configurationoptionsetting.html#cfn-elasticbeanstalk-configurationtemplate-configurationoptionsetting-namespace).
         ///
@@ -1017,7 +1017,7 @@ pub mod configuration_template {
     }
 
     /// The [`AWS::ElasticBeanstalk::ConfigurationTemplate.SourceConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-configurationtemplate-sourceconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SourceConfiguration {
         /// Property [`ApplicationName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticbeanstalk-configurationtemplate-sourceconfiguration.html#cfn-elasticbeanstalk-configurationtemplate-sourceconfiguration-applicationname).
         ///
@@ -1083,7 +1083,7 @@ pub mod environment {
     //! Property types for the `Environment` resource.
 
     /// The [`AWS::ElasticBeanstalk::Environment.OptionSetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-option-settings.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct OptionSetting {
         /// Property [`Namespace`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-option-settings.html#cfn-beanstalk-optionsettings-namespace).
         ///
@@ -1171,7 +1171,7 @@ pub mod environment {
     }
 
     /// The [`AWS::ElasticBeanstalk::Environment.Tier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment-tier.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Tier {
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment-tier.html#cfn-beanstalk-env-tier-name).
         ///

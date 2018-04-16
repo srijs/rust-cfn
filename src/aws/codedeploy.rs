@@ -7,7 +7,7 @@ pub struct Application {
 }
 
 /// Properties for the `Application` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ApplicationProperties {
     /// Property [`ApplicationName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-application.html#cfn-codedeploy-application-applicationname).
     ///
@@ -98,7 +98,7 @@ pub struct DeploymentConfig {
 }
 
 /// Properties for the `DeploymentConfig` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DeploymentConfigProperties {
     /// Property [`DeploymentConfigName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentconfig.html#cfn-codedeploy-deploymentconfig-deploymentconfigname).
     ///
@@ -189,7 +189,7 @@ pub struct DeploymentGroup {
 }
 
 /// Properties for the `DeploymentGroup` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DeploymentGroupProperties {
     /// Property [`AlarmConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-alarmconfiguration).
     ///
@@ -416,7 +416,7 @@ pub mod deployment_config {
     //! Property types for the `DeploymentConfig` resource.
 
     /// The [`AWS::CodeDeploy::DeploymentConfig.MinimumHealthyHosts`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-minimumhealthyhosts.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct MinimumHealthyHosts {
         /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-minimumhealthyhosts.html#cfn-codedeploy-deploymentconfig-minimumhealthyhosts-type).
         ///
@@ -482,7 +482,7 @@ pub mod deployment_group {
     //! Property types for the `DeploymentGroup` resource.
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.Alarm`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-alarm.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Alarm {
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-alarm.html#cfn-codedeploy-deploymentgroup-alarm-name).
         ///
@@ -535,7 +535,7 @@ pub mod deployment_group {
     }
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.AlarmConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-alarmconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct AlarmConfiguration {
         /// Property [`Alarms`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-alarmconfiguration.html#cfn-codedeploy-deploymentgroup-alarmconfiguration-alarms).
         ///
@@ -614,7 +614,7 @@ pub mod deployment_group {
     }
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.AutoRollbackConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-autorollbackconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct AutoRollbackConfiguration {
         /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-autorollbackconfiguration.html#cfn-codedeploy-deploymentgroup-autorollbackconfiguration-enabled).
         ///
@@ -680,7 +680,7 @@ pub mod deployment_group {
     }
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.Deployment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Deployment {
         /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment.html#cfn-properties-codedeploy-deploymentgroup-deployment-description).
         ///
@@ -757,7 +757,7 @@ pub mod deployment_group {
     }
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.DeploymentStyle`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deploymentstyle.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct DeploymentStyle {
         /// Property [`DeploymentOption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deploymentstyle.html#cfn-codedeploy-deploymentgroup-deploymentstyle-deploymentoption).
         ///
@@ -823,7 +823,7 @@ pub mod deployment_group {
     }
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.EC2TagFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ec2tagfilters.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct EC2TagFilter {
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ec2tagfilters.html#cfn-properties-codedeploy-deploymentgroup-ec2tagfilters-key).
         ///
@@ -902,7 +902,7 @@ pub mod deployment_group {
     }
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.ELBInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-elbinfo.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ELBInfo {
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-elbinfo.html#cfn-codedeploy-deploymentgroup-elbinfo-name).
         ///
@@ -955,7 +955,7 @@ pub mod deployment_group {
     }
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.GitHubLocation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment-revision-githublocation.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct GitHubLocation {
         /// Property [`CommitId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment-revision-githublocation.html#cfn-properties-codedeploy-deploymentgroup-deployment-revision-githublocation-commitid).
         ///
@@ -1017,7 +1017,7 @@ pub mod deployment_group {
     }
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.LoadBalancerInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-loadbalancerinfo.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct LoadBalancerInfo {
         /// Property [`ElbInfoList`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-loadbalancerinfo.html#cfn-codedeploy-deploymentgroup-loadbalancerinfo-elbinfolist).
         ///
@@ -1083,7 +1083,7 @@ pub mod deployment_group {
     }
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.RevisionLocation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment-revision.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct RevisionLocation {
         /// Property [`GitHubLocation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment-revision.html#cfn-properties-codedeploy-deploymentgroup-deployment-revision-githublocation).
         ///
@@ -1162,7 +1162,7 @@ pub mod deployment_group {
     }
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.S3Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment-revision-s3location.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct S3Location {
         /// Property [`Bucket`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment-revision-s3location.html#cfn-properties-codedeploy-deploymentgroup-deployment-revision-s3location-bucket).
         ///
@@ -1263,7 +1263,7 @@ pub mod deployment_group {
     }
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.TagFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-onpremisesinstancetagfilters.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct TagFilter {
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-onpremisesinstancetagfilters.html#cfn-properties-codedeploy-deploymentgroup-onpremisesinstancetagfilters-key).
         ///
@@ -1342,7 +1342,7 @@ pub mod deployment_group {
     }
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.TargetGroupInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-targetgroupinfo.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct TargetGroupInfo {
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-targetgroupinfo.html#cfn-codedeploy-deploymentgroup-targetgroupinfo-name).
         ///
@@ -1395,7 +1395,7 @@ pub mod deployment_group {
     }
 
     /// The [`AWS::CodeDeploy::DeploymentGroup.TriggerConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-triggerconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct TriggerConfig {
         /// Property [`TriggerEvents`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-triggerconfig.html#cfn-codedeploy-deploymentgroup-triggerconfig-triggerevents).
         ///

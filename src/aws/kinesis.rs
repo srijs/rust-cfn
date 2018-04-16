@@ -7,7 +7,7 @@ pub struct Stream {
 }
 
 /// Properties for the `Stream` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct StreamProperties {
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-stream.html#cfn-kinesis-stream-name).
     ///
@@ -132,7 +132,7 @@ pub mod stream {
     //! Property types for the `Stream` resource.
 
     /// The [`AWS::Kinesis::Stream.StreamEncryption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesis-stream-streamencryption.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct StreamEncryption {
         /// Property [`EncryptionType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesis-stream-streamencryption.html#cfn-kinesis-stream-streamencryption-encryptiontype).
         ///

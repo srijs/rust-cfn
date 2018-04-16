@@ -7,7 +7,7 @@ pub struct Association {
 }
 
 /// Properties for the `Association` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct AssociationProperties {
     /// Property [`AssociationName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-association.html#cfn-ssm-association-associationname).
     ///
@@ -161,7 +161,7 @@ pub struct Document {
 }
 
 /// Properties for the `Document` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DocumentProperties {
     /// Property [`Content`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-document.html#cfn-ssm-document-content).
     ///
@@ -263,7 +263,7 @@ pub struct MaintenanceWindowTask {
 }
 
 /// Properties for the `MaintenanceWindowTask` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct MaintenanceWindowTaskProperties {
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-maintenancewindowtask.html#cfn-ssm-maintenancewindowtask-description).
     ///
@@ -483,7 +483,7 @@ pub struct Parameter {
 }
 
 /// Properties for the `Parameter` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ParameterProperties {
     /// Property [`AllowedPattern`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-parameter.html#cfn-ssm-parameter-allowedpattern).
     ///
@@ -609,7 +609,7 @@ pub struct PatchBaseline {
 }
 
 /// Properties for the `PatchBaseline` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct PatchBaselineProperties {
     /// Property [`ApprovalRules`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-patchbaseline.html#cfn-ssm-patchbaseline-approvalrules).
     ///
@@ -812,7 +812,7 @@ pub mod association {
     //! Property types for the `Association` resource.
 
     /// The [`AWS::SSM::Association.ParameterValues`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-association-parametervalues.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ParameterValues {
         /// Property [`ParameterValues`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-association-parametervalues.html#cfn-ssm-association-parametervalues-parametervalues).
         ///
@@ -863,7 +863,7 @@ pub mod association {
     }
 
     /// The [`AWS::SSM::Association.Target`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-association-target.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Target {
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-association-target.html#cfn-ssm-association-target-key).
         ///
@@ -929,7 +929,7 @@ pub mod maintenance_window_task {
     //! Property types for the `MaintenanceWindowTask` resource.
 
     /// The [`AWS::SSM::MaintenanceWindowTask.LoggingInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-logginginfo.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct LoggingInfo {
         /// Property [`Region`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-logginginfo.html#cfn-ssm-maintenancewindowtask-logginginfo-region).
         ///
@@ -1004,7 +1004,7 @@ pub mod maintenance_window_task {
     }
 
     /// The [`AWS::SSM::MaintenanceWindowTask.MaintenanceWindowAutomationParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowautomationparameters.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct MaintenanceWindowAutomationParameters {
         /// Property [`DocumentVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowautomationparameters.html#cfn-ssm-maintenancewindowtask-maintenancewindowautomationparameters-documentversion).
         ///
@@ -1070,7 +1070,7 @@ pub mod maintenance_window_task {
     }
 
     /// The [`AWS::SSM::MaintenanceWindowTask.MaintenanceWindowLambdaParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowlambdaparameters.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct MaintenanceWindowLambdaParameters {
         /// Property [`ClientContext`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowlambdaparameters.html#cfn-ssm-maintenancewindowtask-maintenancewindowlambdaparameters-clientcontext).
         ///
@@ -1149,7 +1149,7 @@ pub mod maintenance_window_task {
     }
 
     /// The [`AWS::SSM::MaintenanceWindowTask.MaintenanceWindowRunCommandParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowruncommandparameters.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct MaintenanceWindowRunCommandParameters {
         /// Property [`Comment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowruncommandparameters.html#cfn-ssm-maintenancewindowtask-maintenancewindowruncommandparameters-comment).
         ///
@@ -1306,7 +1306,7 @@ pub mod maintenance_window_task {
     }
 
     /// The [`AWS::SSM::MaintenanceWindowTask.MaintenanceWindowStepFunctionsParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowstepfunctionsparameters.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct MaintenanceWindowStepFunctionsParameters {
         /// Property [`Input`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-maintenancewindowstepfunctionsparameters.html#cfn-ssm-maintenancewindowtask-maintenancewindowstepfunctionsparameters-input).
         ///
@@ -1372,7 +1372,7 @@ pub mod maintenance_window_task {
     }
 
     /// The [`AWS::SSM::MaintenanceWindowTask.NotificationConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-notificationconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct NotificationConfig {
         /// Property [`NotificationArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-notificationconfig.html#cfn-ssm-maintenancewindowtask-notificationconfig-notificationarn).
         ///
@@ -1449,7 +1449,7 @@ pub mod maintenance_window_task {
     }
 
     /// The [`AWS::SSM::MaintenanceWindowTask.Target`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-target.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Target {
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-target.html#cfn-ssm-maintenancewindowtask-target-key).
         ///
@@ -1513,7 +1513,7 @@ pub mod maintenance_window_task {
     }
 
     /// The [`AWS::SSM::MaintenanceWindowTask.TaskInvocationParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-taskinvocationparameters.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct TaskInvocationParameters {
         /// Property [`MaintenanceWindowAutomationParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-maintenancewindowtask-taskinvocationparameters.html#cfn-ssm-maintenancewindowtask-taskinvocationparameters-maintenancewindowautomationparameters).
         ///
@@ -1609,7 +1609,7 @@ pub mod patch_baseline {
     //! Property types for the `PatchBaseline` resource.
 
     /// The [`AWS::SSM::PatchBaseline.PatchFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-patchfilter.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct PatchFilter {
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-patchfilter.html#cfn-ssm-patchbaseline-patchfilter-key).
         ///
@@ -1675,7 +1675,7 @@ pub mod patch_baseline {
     }
 
     /// The [`AWS::SSM::PatchBaseline.PatchFilterGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-patchfiltergroup.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct PatchFilterGroup {
         /// Property [`PatchFilters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-patchfiltergroup.html#cfn-ssm-patchbaseline-patchfiltergroup-patchfilters).
         ///
@@ -1728,7 +1728,7 @@ pub mod patch_baseline {
     }
 
     /// The [`AWS::SSM::PatchBaseline.PatchSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-patchsource.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct PatchSource {
         /// Property [`Configuration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-patchsource.html#cfn-ssm-patchbaseline-patchsource-configuration).
         ///
@@ -1807,7 +1807,7 @@ pub mod patch_baseline {
     }
 
     /// The [`AWS::SSM::PatchBaseline.Rule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-rule.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Rule {
         /// Property [`ApproveAfterDays`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-rule.html#cfn-ssm-patchbaseline-rule-approveafterdays).
         ///
@@ -1899,7 +1899,7 @@ pub mod patch_baseline {
     }
 
     /// The [`AWS::SSM::PatchBaseline.RuleGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-rulegroup.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct RuleGroup {
         /// Property [`PatchRules`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssm-patchbaseline-rulegroup.html#cfn-ssm-patchbaseline-rulegroup-patchrules).
         ///

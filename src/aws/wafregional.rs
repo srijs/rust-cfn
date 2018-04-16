@@ -7,7 +7,7 @@ pub struct ByteMatchSet {
 }
 
 /// Properties for the `ByteMatchSet` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ByteMatchSetProperties {
     /// Property [`ByteMatchTuples`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-bytematchset.html#cfn-wafregional-bytematchset-bytematchtuples).
     ///
@@ -96,7 +96,7 @@ pub struct IPSet {
 }
 
 /// Properties for the `IPSet` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct IPSetProperties {
     /// Property [`IPSetDescriptors`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-ipset.html#cfn-wafregional-ipset-ipsetdescriptors).
     ///
@@ -185,7 +185,7 @@ pub struct Rule {
 }
 
 /// Properties for the `Rule` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct RuleProperties {
     /// Property [`MetricName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-rule.html#cfn-wafregional-rule-metricname).
     ///
@@ -285,7 +285,7 @@ pub struct SizeConstraintSet {
 }
 
 /// Properties for the `SizeConstraintSet` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SizeConstraintSetProperties {
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-sizeconstraintset.html#cfn-wafregional-sizeconstraintset-name).
     ///
@@ -374,7 +374,7 @@ pub struct SqlInjectionMatchSet {
 }
 
 /// Properties for the `SqlInjectionMatchSet` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SqlInjectionMatchSetProperties {
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-sqlinjectionmatchset.html#cfn-wafregional-sqlinjectionmatchset-name).
     ///
@@ -463,7 +463,7 @@ pub struct WebACL {
 }
 
 /// Properties for the `WebACL` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct WebACLProperties {
     /// Property [`DefaultAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-webacl.html#cfn-wafregional-webacl-defaultaction).
     ///
@@ -574,7 +574,7 @@ pub struct WebACLAssociation {
 }
 
 /// Properties for the `WebACLAssociation` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct WebACLAssociationProperties {
     /// Property [`ResourceArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-webaclassociation.html#cfn-wafregional-webaclassociation-resourcearn).
     ///
@@ -661,7 +661,7 @@ pub struct XssMatchSet {
 }
 
 /// Properties for the `XssMatchSet` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct XssMatchSetProperties {
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-xssmatchset.html#cfn-wafregional-xssmatchset-name).
     ///
@@ -747,7 +747,7 @@ pub mod byte_match_set {
     //! Property types for the `ByteMatchSet` resource.
 
     /// The [`AWS::WAFRegional::ByteMatchSet.ByteMatchTuple`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-bytematchset-bytematchtuple.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ByteMatchTuple {
         /// Property [`FieldToMatch`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-bytematchset-bytematchtuple.html#cfn-wafregional-bytematchset-bytematchtuple-fieldtomatch).
         ///
@@ -846,7 +846,7 @@ pub mod byte_match_set {
     }
 
     /// The [`AWS::WAFRegional::ByteMatchSet.FieldToMatch`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-bytematchset-fieldtomatch.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct FieldToMatch {
         /// Property [`Data`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-bytematchset-fieldtomatch.html#cfn-wafregional-bytematchset-fieldtomatch-data).
         ///
@@ -914,7 +914,7 @@ pub mod ip_set {
     //! Property types for the `IPSet` resource.
 
     /// The [`AWS::WAFRegional::IPSet.IPSetDescriptor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-ipset-ipsetdescriptor.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct IPSetDescriptor {
         /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-ipset-ipsetdescriptor.html#cfn-wafregional-ipset-ipsetdescriptor-type).
         ///
@@ -980,7 +980,7 @@ pub mod rule {
     //! Property types for the `Rule` resource.
 
     /// The [`AWS::WAFRegional::Rule.Predicate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-rule-predicate.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Predicate {
         /// Property [`DataId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-rule-predicate.html#cfn-wafregional-rule-predicate-dataid).
         ///
@@ -1057,7 +1057,7 @@ pub mod size_constraint_set {
     //! Property types for the `SizeConstraintSet` resource.
 
     /// The [`AWS::WAFRegional::SizeConstraintSet.FieldToMatch`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-sizeconstraintset-fieldtomatch.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct FieldToMatch {
         /// Property [`Data`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-sizeconstraintset-fieldtomatch.html#cfn-wafregional-sizeconstraintset-fieldtomatch-data).
         ///
@@ -1121,7 +1121,7 @@ pub mod size_constraint_set {
     }
 
     /// The [`AWS::WAFRegional::SizeConstraintSet.SizeConstraint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-sizeconstraintset-sizeconstraint.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SizeConstraint {
         /// Property [`ComparisonOperator`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-sizeconstraintset-sizeconstraint.html#cfn-wafregional-sizeconstraintset-sizeconstraint-comparisonoperator).
         ///
@@ -1209,7 +1209,7 @@ pub mod sql_injection_match_set {
     //! Property types for the `SqlInjectionMatchSet` resource.
 
     /// The [`AWS::WAFRegional::SqlInjectionMatchSet.FieldToMatch`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-sqlinjectionmatchset-fieldtomatch.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct FieldToMatch {
         /// Property [`Data`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-sqlinjectionmatchset-fieldtomatch.html#cfn-wafregional-sqlinjectionmatchset-fieldtomatch-data).
         ///
@@ -1273,7 +1273,7 @@ pub mod sql_injection_match_set {
     }
 
     /// The [`AWS::WAFRegional::SqlInjectionMatchSet.SqlInjectionMatchTuple`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-sqlinjectionmatchset-sqlinjectionmatchtuple.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SqlInjectionMatchTuple {
         /// Property [`FieldToMatch`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-sqlinjectionmatchset-sqlinjectionmatchtuple.html#cfn-wafregional-sqlinjectionmatchset-sqlinjectionmatchtuple-fieldtomatch).
         ///
@@ -1339,7 +1339,7 @@ pub mod web_acl {
     //! Property types for the `WebACL` resource.
 
     /// The [`AWS::WAFRegional::WebACL.Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-webacl-action.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Action {
         /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-webacl-action.html#cfn-wafregional-webacl-action-type).
         ///
@@ -1390,7 +1390,7 @@ pub mod web_acl {
     }
 
     /// The [`AWS::WAFRegional::WebACL.Rule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-webacl-rule.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Rule {
         /// Property [`Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-webacl-rule.html#cfn-wafregional-webacl-rule-action).
         ///
@@ -1467,7 +1467,7 @@ pub mod xss_match_set {
     //! Property types for the `XssMatchSet` resource.
 
     /// The [`AWS::WAFRegional::XssMatchSet.FieldToMatch`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-xssmatchset-fieldtomatch.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct FieldToMatch {
         /// Property [`Data`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-xssmatchset-fieldtomatch.html#cfn-wafregional-xssmatchset-fieldtomatch-data).
         ///
@@ -1531,7 +1531,7 @@ pub mod xss_match_set {
     }
 
     /// The [`AWS::WAFRegional::XssMatchSet.XssMatchTuple`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-xssmatchset-xssmatchtuple.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct XssMatchTuple {
         /// Property [`FieldToMatch`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafregional-xssmatchset-xssmatchtuple.html#cfn-wafregional-xssmatchset-xssmatchtuple-fieldtomatch).
         ///

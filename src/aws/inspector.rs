@@ -7,7 +7,7 @@ pub struct AssessmentTarget {
 }
 
 /// Properties for the `AssessmentTarget` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct AssessmentTargetProperties {
     /// Property [`AssessmentTargetName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttarget.html#cfn-inspector-assessmenttarget-assessmenttargetname).
     ///
@@ -96,7 +96,7 @@ pub struct AssessmentTemplate {
 }
 
 /// Properties for the `AssessmentTemplate` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct AssessmentTemplateProperties {
     /// Property [`AssessmentTargetArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttemplate.html#cfn-inspector-assessmenttemplate-assessmenttargetarn).
     ///
@@ -220,7 +220,7 @@ pub struct ResourceGroup {
 }
 
 /// Properties for the `ResourceGroup` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ResourceGroupProperties {
     /// Property [`ResourceGroupTags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-resourcegroup.html#cfn-inspector-resourcegroup-resourcegrouptags).
     ///

@@ -7,7 +7,7 @@ pub struct CloudFrontOriginAccessIdentity {
 }
 
 /// Properties for the `CloudFrontOriginAccessIdentity` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct CloudFrontOriginAccessIdentityProperties {
     /// Property [`CloudFrontOriginAccessIdentityConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-cloudfrontoriginaccessidentity.html#cfn-cloudfront-cloudfrontoriginaccessidentity-cloudfrontoriginaccessidentityconfig).
     ///
@@ -83,7 +83,7 @@ pub struct Distribution {
 }
 
 /// Properties for the `Distribution` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DistributionProperties {
     /// Property [`DistributionConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html#cfn-cloudfront-distribution-distributionconfig).
     ///
@@ -172,7 +172,7 @@ pub struct StreamingDistribution {
 }
 
 /// Properties for the `StreamingDistribution` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct StreamingDistributionProperties {
     /// Property [`StreamingDistributionConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-streamingdistribution.html#cfn-cloudfront-streamingdistribution-streamingdistributionconfig).
     ///
@@ -256,7 +256,7 @@ pub mod cloud_front_origin_access_identity {
     //! Property types for the `CloudFrontOriginAccessIdentity` resource.
 
     /// The [`AWS::CloudFront::CloudFrontOriginAccessIdentity.CloudFrontOriginAccessIdentityConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cloudfrontoriginaccessidentity-cloudfrontoriginaccessidentityconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct CloudFrontOriginAccessIdentityConfig {
         /// Property [`Comment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cloudfrontoriginaccessidentity-cloudfrontoriginaccessidentityconfig.html#cfn-cloudfront-cloudfrontoriginaccessidentity-cloudfrontoriginaccessidentityconfig-comment).
         ///
@@ -311,7 +311,7 @@ pub mod distribution {
     //! Property types for the `Distribution` resource.
 
     /// The [`AWS::CloudFront::Distribution.CacheBehavior`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct CacheBehavior {
         /// Property [`AllowedMethods`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-allowedmethods).
         ///
@@ -512,7 +512,7 @@ pub mod distribution {
     }
 
     /// The [`AWS::CloudFront::Distribution.Cookies`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cookies.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Cookies {
         /// Property [`Forward`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cookies.html#cfn-cloudfront-distribution-cookies-forward).
         ///
@@ -576,7 +576,7 @@ pub mod distribution {
     }
 
     /// The [`AWS::CloudFront::Distribution.CustomErrorResponse`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customerrorresponse.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct CustomErrorResponse {
         /// Property [`ErrorCachingMinTTL`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customerrorresponse.html#cfn-cloudfront-distribution-customerrorresponse-errorcachingminttl).
         ///
@@ -666,7 +666,7 @@ pub mod distribution {
     }
 
     /// The [`AWS::CloudFront::Distribution.CustomOriginConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customoriginconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct CustomOriginConfig {
         /// Property [`HTTPPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-customoriginconfig.html#cfn-cloudfront-distribution-customoriginconfig-httpport).
         ///
@@ -782,7 +782,7 @@ pub mod distribution {
     }
 
     /// The [`AWS::CloudFront::Distribution.DefaultCacheBehavior`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct DefaultCacheBehavior {
         /// Property [`AllowedMethods`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-allowedmethods).
         ///
@@ -972,7 +972,7 @@ pub mod distribution {
     }
 
     /// The [`AWS::CloudFront::Distribution.DistributionConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct DistributionConfig {
         /// Property [`Aliases`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-aliases).
         ///
@@ -1205,7 +1205,7 @@ pub mod distribution {
     }
 
     /// The [`AWS::CloudFront::Distribution.ForwardedValues`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-forwardedvalues.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ForwardedValues {
         /// Property [`Cookies`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-forwardedvalues.html#cfn-cloudfront-distribution-forwardedvalues-cookies).
         ///
@@ -1295,7 +1295,7 @@ pub mod distribution {
     }
 
     /// The [`AWS::CloudFront::Distribution.GeoRestriction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-georestriction.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct GeoRestriction {
         /// Property [`Locations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-georestriction.html#cfn-cloudfront-distribution-georestriction-locations).
         ///
@@ -1359,7 +1359,7 @@ pub mod distribution {
     }
 
     /// The [`AWS::CloudFront::Distribution.LambdaFunctionAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-lambdafunctionassociation.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct LambdaFunctionAssociation {
         /// Property [`EventType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-lambdafunctionassociation.html#cfn-cloudfront-distribution-lambdafunctionassociation-eventtype).
         ///
@@ -1425,7 +1425,7 @@ pub mod distribution {
     }
 
     /// The [`AWS::CloudFront::Distribution.Logging`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-logging.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Logging {
         /// Property [`Bucket`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-logging.html#cfn-cloudfront-distribution-logging-bucket).
         ///
@@ -1502,7 +1502,7 @@ pub mod distribution {
     }
 
     /// The [`AWS::CloudFront::Distribution.Origin`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Origin {
         /// Property [`CustomOriginConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html#cfn-cloudfront-distribution-origin-customoriginconfig).
         ///
@@ -1616,7 +1616,7 @@ pub mod distribution {
     }
 
     /// The [`AWS::CloudFront::Distribution.OriginCustomHeader`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origincustomheader.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct OriginCustomHeader {
         /// Property [`HeaderName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origincustomheader.html#cfn-cloudfront-distribution-origincustomheader-headername).
         ///
@@ -1678,7 +1678,7 @@ pub mod distribution {
     }
 
     /// The [`AWS::CloudFront::Distribution.Restrictions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-restrictions.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Restrictions {
         /// Property [`GeoRestriction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-restrictions.html#cfn-cloudfront-distribution-restrictions-georestriction).
         ///
@@ -1729,7 +1729,7 @@ pub mod distribution {
     }
 
     /// The [`AWS::CloudFront::Distribution.S3OriginConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-s3originconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct S3OriginConfig {
         /// Property [`OriginAccessIdentity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-s3originconfig.html#cfn-cloudfront-distribution-s3originconfig-originaccessidentity).
         ///
@@ -1782,7 +1782,7 @@ pub mod distribution {
     }
 
     /// The [`AWS::CloudFront::Distribution.ViewerCertificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-viewercertificate.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ViewerCertificate {
         /// Property [`AcmCertificateArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-viewercertificate.html#cfn-cloudfront-distribution-viewercertificate-acmcertificatearn).
         ///
@@ -1891,7 +1891,7 @@ pub mod streaming_distribution {
     //! Property types for the `StreamingDistribution` resource.
 
     /// The [`AWS::CloudFront::StreamingDistribution.Logging`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-logging.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Logging {
         /// Property [`Bucket`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-logging.html#cfn-cloudfront-streamingdistribution-logging-bucket).
         ///
@@ -1964,7 +1964,7 @@ pub mod streaming_distribution {
     }
 
     /// The [`AWS::CloudFront::StreamingDistribution.S3Origin`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-s3origin.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct S3Origin {
         /// Property [`DomainName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-s3origin.html#cfn-cloudfront-streamingdistribution-s3origin-domainname).
         ///
@@ -2026,7 +2026,7 @@ pub mod streaming_distribution {
     }
 
     /// The [`AWS::CloudFront::StreamingDistribution.StreamingDistributionConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-streamingdistributionconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct StreamingDistributionConfig {
         /// Property [`Aliases`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-streamingdistributionconfig.html#cfn-cloudfront-streamingdistribution-streamingdistributionconfig-aliases).
         ///
@@ -2149,7 +2149,7 @@ pub mod streaming_distribution {
     }
 
     /// The [`AWS::CloudFront::StreamingDistribution.TrustedSigners`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-trustedsigners.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct TrustedSigners {
         /// Property [`AwsAccountNumbers`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-streamingdistribution-trustedsigners.html#cfn-cloudfront-streamingdistribution-trustedsigners-awsaccountnumbers).
         ///

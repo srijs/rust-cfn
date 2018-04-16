@@ -7,7 +7,7 @@ pub struct Pipeline {
 }
 
 /// Properties for the `Pipeline` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct PipelineProperties {
     /// Property [`Activate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datapipeline-pipeline.html#cfn-datapipeline-pipeline-activate).
     ///
@@ -156,7 +156,7 @@ pub mod pipeline {
     //! Property types for the `Pipeline` resource.
 
     /// The [`AWS::DataPipeline::Pipeline.Field`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-pipelineobjects-fields.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Field {
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-pipelineobjects-fields.html#cfn-datapipeline-pipeline-pipelineobjects-fields-key).
         ///
@@ -233,7 +233,7 @@ pub mod pipeline {
     }
 
     /// The [`AWS::DataPipeline::Pipeline.ParameterAttribute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parameterobjects-attributes.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ParameterAttribute {
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parameterobjects-attributes.html#cfn-datapipeline-pipeline-parameterobjects-attribtues-key).
         ///
@@ -295,7 +295,7 @@ pub mod pipeline {
     }
 
     /// The [`AWS::DataPipeline::Pipeline.ParameterObject`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parameterobjects.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ParameterObject {
         /// Property [`Attributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parameterobjects.html#cfn-datapipeline-pipeline-parameterobjects-attributes).
         ///
@@ -357,7 +357,7 @@ pub mod pipeline {
     }
 
     /// The [`AWS::DataPipeline::Pipeline.ParameterValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parametervalues.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ParameterValue {
         /// Property [`Id`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-parametervalues.html#cfn-datapipeline-pipeline-parametervalues-id).
         ///
@@ -419,7 +419,7 @@ pub mod pipeline {
     }
 
     /// The [`AWS::DataPipeline::Pipeline.PipelineObject`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-pipelineobjects.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct PipelineObject {
         /// Property [`Fields`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-pipelineobjects.html#cfn-datapipeline-pipeline-pipelineobjects-fields).
         ///
@@ -492,7 +492,7 @@ pub mod pipeline {
     }
 
     /// The [`AWS::DataPipeline::Pipeline.PipelineTag`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-pipelinetags.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct PipelineTag {
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-datapipeline-pipeline-pipelinetags.html#cfn-datapipeline-pipeline-pipelinetags-key).
         ///

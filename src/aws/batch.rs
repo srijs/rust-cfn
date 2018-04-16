@@ -7,7 +7,7 @@ pub struct ComputeEnvironment {
 }
 
 /// Properties for the `ComputeEnvironment` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ComputeEnvironmentProperties {
     /// Property [`ComputeEnvironmentName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-computeenvironment.html#cfn-batch-computeenvironment-computeenvironmentname).
     ///
@@ -131,7 +131,7 @@ pub struct JobDefinition {
 }
 
 /// Properties for the `JobDefinition` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct JobDefinitionProperties {
     /// Property [`ContainerProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html#cfn-batch-jobdefinition-containerproperties).
     ///
@@ -257,7 +257,7 @@ pub struct JobQueue {
 }
 
 /// Properties for the `JobQueue` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct JobQueueProperties {
     /// Property [`ComputeEnvironmentOrder`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobqueue.html#cfn-batch-jobqueue-computeenvironmentorder).
     ///
@@ -367,7 +367,7 @@ pub mod compute_environment {
     //! Property types for the `ComputeEnvironment` resource.
 
     /// The [`AWS::Batch::ComputeEnvironment.ComputeResources`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ComputeResources {
         /// Property [`BidPercentage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-bidpercentage).
         ///
@@ -566,7 +566,7 @@ pub mod job_definition {
     //! Property types for the `JobDefinition` resource.
 
     /// The [`AWS::Batch::JobDefinition.ContainerProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-containerproperties.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ContainerProperties {
         /// Property [`Command`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-containerproperties.html#cfn-batch-jobdefinition-containerproperties-command).
         ///
@@ -756,7 +756,7 @@ pub mod job_definition {
     }
 
     /// The [`AWS::Batch::JobDefinition.Environment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-environment.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Environment {
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-environment.html#cfn-batch-jobdefinition-environment-name).
         ///
@@ -822,7 +822,7 @@ pub mod job_definition {
     }
 
     /// The [`AWS::Batch::JobDefinition.MountPoints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-mountpoints.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct MountPoints {
         /// Property [`ContainerPath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-mountpoints.html#cfn-batch-jobdefinition-mountpoints-containerpath).
         ///
@@ -901,7 +901,7 @@ pub mod job_definition {
     }
 
     /// The [`AWS::Batch::JobDefinition.RetryStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-retrystrategy.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct RetryStrategy {
         /// Property [`Attempts`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-retrystrategy.html#cfn-batch-jobdefinition-retrystrategy-attempts).
         ///
@@ -954,7 +954,7 @@ pub mod job_definition {
     }
 
     /// The [`AWS::Batch::JobDefinition.Ulimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ulimit.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Ulimit {
         /// Property [`HardLimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-ulimit.html#cfn-batch-jobdefinition-ulimit-hardlimit).
         ///
@@ -1027,7 +1027,7 @@ pub mod job_definition {
     }
 
     /// The [`AWS::Batch::JobDefinition.Volumes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-volumes.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Volumes {
         /// Property [`Host`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-volumes.html#cfn-batch-jobdefinition-volumes-host).
         ///
@@ -1093,7 +1093,7 @@ pub mod job_definition {
     }
 
     /// The [`AWS::Batch::JobDefinition.VolumesHost`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-volumeshost.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct VolumesHost {
         /// Property [`SourcePath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobdefinition-volumeshost.html#cfn-batch-jobdefinition-volumeshost-sourcepath).
         ///
@@ -1150,7 +1150,7 @@ pub mod job_queue {
     //! Property types for the `JobQueue` resource.
 
     /// The [`AWS::Batch::JobQueue.ComputeEnvironmentOrder`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobqueue-computeenvironmentorder.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ComputeEnvironmentOrder {
         /// Property [`ComputeEnvironment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-jobqueue-computeenvironmentorder.html#cfn-batch-jobqueue-computeenvironmentorder-computeenvironment).
         ///

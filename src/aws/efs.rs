@@ -7,7 +7,7 @@ pub struct FileSystem {
 }
 
 /// Properties for the `FileSystem` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct FileSystemProperties {
     /// Property [`Encrypted`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html#cfn-efs-filesystem-encrypted).
     ///
@@ -124,7 +124,7 @@ pub struct MountTarget {
 }
 
 /// Properties for the `MountTarget` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct MountTargetProperties {
     /// Property [`FileSystemId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-mounttarget.html#cfn-efs-mounttarget-filesystemid).
     ///
@@ -232,7 +232,7 @@ pub mod file_system {
     //! Property types for the `FileSystem` resource.
 
     /// The [`AWS::EFS::FileSystem.ElasticFileSystemTag`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-filesystemtags.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ElasticFileSystemTag {
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-filesystemtags.html#cfn-efs-filesystem-filesystemtags-key).
         ///

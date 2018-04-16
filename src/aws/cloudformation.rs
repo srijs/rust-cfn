@@ -7,7 +7,7 @@ pub struct CustomResource {
 }
 
 /// Properties for the `CustomResource` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct CustomResourceProperties {
     /// Property [`ServiceToken`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cfn-customresource.html#cfn-customresource-servicetoken).
     ///
@@ -83,7 +83,7 @@ pub struct Stack {
 }
 
 /// Properties for the `Stack` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct StackProperties {
     /// Property [`NotificationARNs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html#cfn-cloudformation-stack-notificationarns).
     ///
@@ -211,7 +211,7 @@ pub struct WaitCondition {
 }
 
 /// Properties for the `WaitCondition` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct WaitConditionProperties {
     /// Property [`Count`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waitcondition.html#cfn-waitcondition-count).
     ///
@@ -311,7 +311,7 @@ pub struct WaitConditionHandle {
 }
 
 /// Properties for the `WaitConditionHandle` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct WaitConditionHandleProperties {
 }
 

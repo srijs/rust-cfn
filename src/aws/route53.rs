@@ -7,7 +7,7 @@ pub struct HealthCheck {
 }
 
 /// Properties for the `HealthCheck` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct HealthCheckProperties {
     /// Property [`HealthCheckConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-healthcheck.html#cfn-route53-healthcheck-healthcheckconfig).
     ///
@@ -96,7 +96,7 @@ pub struct HostedZone {
 }
 
 /// Properties for the `HostedZone` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct HostedZoneProperties {
     /// Property [`HostedZoneConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone.html#cfn-route53-hostedzone-hostedzoneconfig).
     ///
@@ -225,7 +225,7 @@ pub struct RecordSet {
 }
 
 /// Properties for the `RecordSet` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct RecordSetProperties {
     /// Property [`AliasTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html#cfn-route53-recordset-aliastarget).
     ///
@@ -468,7 +468,7 @@ pub struct RecordSetGroup {
 }
 
 /// Properties for the `RecordSetGroup` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct RecordSetGroupProperties {
     /// Property [`Comment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-recordsetgroup.html#cfn-route53-recordsetgroup-comment).
     ///
@@ -582,7 +582,7 @@ pub mod health_check {
     //! Property types for the `HealthCheck` resource.
 
     /// The [`AWS::Route53::HealthCheck.AlarmIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-alarmidentifier.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct AlarmIdentifier {
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-alarmidentifier.html#cfn-route53-healthcheck-alarmidentifier-name).
         ///
@@ -644,7 +644,7 @@ pub mod health_check {
     }
 
     /// The [`AWS::Route53::HealthCheck.HealthCheckConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct HealthCheckConfig {
         /// Property [`AlarmIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html#cfn-route53-healthcheck-healthcheckconfig-alarmidentifier).
         ///
@@ -890,7 +890,7 @@ pub mod health_check {
     }
 
     /// The [`AWS::Route53::HealthCheck.HealthCheckTag`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthchecktag.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct HealthCheckTag {
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthchecktag.html#cfn-route53-healthchecktags-key).
         ///
@@ -956,7 +956,7 @@ pub mod hosted_zone {
     //! Property types for the `HostedZone` resource.
 
     /// The [`AWS::Route53::HostedZone.HostedZoneConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzoneconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct HostedZoneConfig {
         /// Property [`Comment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzoneconfig.html#cfn-route53-hostedzone-hostedzoneconfig-comment).
         ///
@@ -1009,7 +1009,7 @@ pub mod hosted_zone {
     }
 
     /// The [`AWS::Route53::HostedZone.HostedZoneTag`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzonetags.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct HostedZoneTag {
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzonetags.html#cfn-route53-hostedzonetags-key).
         ///
@@ -1071,7 +1071,7 @@ pub mod hosted_zone {
     }
 
     /// The [`AWS::Route53::HostedZone.QueryLoggingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-queryloggingconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct QueryLoggingConfig {
         /// Property [`CloudWatchLogsLogGroupArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-queryloggingconfig.html#cfn-route53-hostedzone-queryloggingconfig-cloudwatchlogsloggrouparn).
         ///
@@ -1122,7 +1122,7 @@ pub mod hosted_zone {
     }
 
     /// The [`AWS::Route53::HostedZone.VPC`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone-hostedzonevpcs.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct VPC {
         /// Property [`VPCId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone-hostedzonevpcs.html#cfn-route53-hostedzone-hostedzonevpcs-vpcid).
         ///
@@ -1188,7 +1188,7 @@ pub mod record_set {
     //! Property types for the `RecordSet` resource.
 
     /// The [`AWS::Route53::RecordSet.AliasTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct AliasTarget {
         /// Property [`DNSName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget.html#cfn-route53-aliastarget-dnshostname).
         ///
@@ -1263,7 +1263,7 @@ pub mod record_set {
     }
 
     /// The [`AWS::Route53::RecordSet.GeoLocation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset-geolocation.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct GeoLocation {
         /// Property [`ContinentCode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset-geolocation.html#cfn-route53-recordset-geolocation-continentcode).
         ///
@@ -1346,7 +1346,7 @@ pub mod record_set_group {
     //! Property types for the `RecordSetGroup` resource.
 
     /// The [`AWS::Route53::RecordSetGroup.AliasTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct AliasTarget {
         /// Property [`DNSName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget.html#cfn-route53-aliastarget-dnshostname).
         ///
@@ -1421,7 +1421,7 @@ pub mod record_set_group {
     }
 
     /// The [`AWS::Route53::RecordSetGroup.GeoLocation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset-geolocation.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct GeoLocation {
         /// Property [`ContinentCode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset-geolocation.html#cfn-route53-recordsetgroup-geolocation-continentcode).
         ///
@@ -1500,7 +1500,7 @@ pub mod record_set_group {
     }
 
     /// The [`AWS::Route53::RecordSetGroup.RecordSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct RecordSet {
         /// Property [`AliasTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html#cfn-route53-recordset-aliastarget).
         ///

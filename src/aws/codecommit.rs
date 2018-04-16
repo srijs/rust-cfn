@@ -7,7 +7,7 @@ pub struct Repository {
 }
 
 /// Properties for the `Repository` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct RepositoryProperties {
     /// Property [`RepositoryDescription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codecommit-repository.html#cfn-codecommit-repository-repositorydescription).
     ///
@@ -107,7 +107,7 @@ pub mod repository {
     //! Property types for the `Repository` resource.
 
     /// The [`AWS::CodeCommit::Repository.RepositoryTrigger`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codecommit-repository-repositorytrigger.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct RepositoryTrigger {
         /// Property [`Branches`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codecommit-repository-repositorytrigger.html#cfn-codecommit-repository-repositorytrigger-branches).
         ///

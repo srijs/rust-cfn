@@ -7,7 +7,7 @@ pub struct Cluster {
 }
 
 /// Properties for the `Cluster` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ClusterProperties {
     /// Property [`AvailabilityZones`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-cluster.html#cfn-dax-cluster-availabilityzones).
     ///
@@ -222,7 +222,7 @@ pub struct ParameterGroup {
 }
 
 /// Properties for the `ParameterGroup` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ParameterGroupProperties {
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-parametergroup.html#cfn-dax-parametergroup-description).
     ///
@@ -326,7 +326,7 @@ pub struct SubnetGroup {
 }
 
 /// Properties for the `SubnetGroup` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SubnetGroupProperties {
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-subnetgroup.html#cfn-dax-subnetgroup-description).
     ///

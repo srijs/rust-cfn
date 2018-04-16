@@ -7,7 +7,7 @@ pub struct Activity {
 }
 
 /// Properties for the `Activity` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ActivityProperties {
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-activity.html#cfn-stepfunctions-activity-name).
     ///
@@ -83,7 +83,7 @@ pub struct StateMachine {
 }
 
 /// Properties for the `StateMachine` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct StateMachineProperties {
     /// Property [`DefinitionString`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html#cfn-stepfunctions-statemachine-definitionstring).
     ///

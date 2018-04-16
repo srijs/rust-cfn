@@ -7,7 +7,7 @@ pub struct Alias {
 }
 
 /// Properties for the `Alias` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct AliasProperties {
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-alias.html#cfn-lambda-alias-description).
     ///
@@ -131,7 +131,7 @@ pub struct EventSourceMapping {
 }
 
 /// Properties for the `EventSourceMapping` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct EventSourceMappingProperties {
     /// Property [`BatchSize`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html#cfn-lambda-eventsourcemapping-batchsize).
     ///
@@ -255,7 +255,7 @@ pub struct Function {
 }
 
 /// Properties for the `Function` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct FunctionProperties {
     /// Property [`Code`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-code).
     ///
@@ -507,7 +507,7 @@ pub struct Permission {
 }
 
 /// Properties for the `Permission` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct PermissionProperties {
     /// Property [`Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html#cfn-lambda-permission-action).
     ///
@@ -644,7 +644,7 @@ pub struct Version {
 }
 
 /// Properties for the `Version` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VersionProperties {
     /// Property [`CodeSha256`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-version.html#cfn-lambda-version-codesha256).
     ///
@@ -743,7 +743,7 @@ pub mod alias {
     //! Property types for the `Alias` resource.
 
     /// The [`AWS::Lambda::Alias.AliasRoutingConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-alias-aliasroutingconfiguration.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct AliasRoutingConfiguration {
         /// Property [`AdditionalVersionWeights`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-alias-aliasroutingconfiguration.html#cfn-lambda-alias-aliasroutingconfiguration-additionalversionweights).
         ///
@@ -794,7 +794,7 @@ pub mod alias {
     }
 
     /// The [`AWS::Lambda::Alias.VersionWeight`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-alias-versionweight.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct VersionWeight {
         /// Property [`FunctionVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-alias-versionweight.html#cfn-lambda-alias-versionweight-functionversion).
         ///
@@ -860,7 +860,7 @@ pub mod function {
     //! Property types for the `Function` resource.
 
     /// The [`AWS::Lambda::Function.Code`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-code.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Code {
         /// Property [`S3Bucket`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-code.html#cfn-lambda-function-code-s3bucket).
         ///
@@ -952,7 +952,7 @@ pub mod function {
     }
 
     /// The [`AWS::Lambda::Function.DeadLetterConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-deadletterconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct DeadLetterConfig {
         /// Property [`TargetArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-deadletterconfig.html#cfn-lambda-function-deadletterconfig-targetarn).
         ///
@@ -1005,7 +1005,7 @@ pub mod function {
     }
 
     /// The [`AWS::Lambda::Function.Environment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-environment.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Environment {
         /// Property [`Variables`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-environment.html#cfn-lambda-function-environment-variables).
         ///
@@ -1058,7 +1058,7 @@ pub mod function {
     }
 
     /// The [`AWS::Lambda::Function.TracingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-tracingconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct TracingConfig {
         /// Property [`Mode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-tracingconfig.html#cfn-lambda-function-tracingconfig-mode).
         ///
@@ -1111,7 +1111,7 @@ pub mod function {
     }
 
     /// The [`AWS::Lambda::Function.VpcConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-vpcconfig.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct VpcConfig {
         /// Property [`SecurityGroupIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-vpcconfig.html#cfn-lambda-function-vpcconfig-securitygroupids).
         ///

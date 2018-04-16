@@ -7,7 +7,7 @@ pub struct Subscription {
 }
 
 /// Properties for the `Subscription` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SubscriptionProperties {
     /// Property [`Endpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html#cfn-sns-endpoint).
     ///
@@ -111,7 +111,7 @@ pub struct Topic {
 }
 
 /// Properties for the `Topic` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct TopicProperties {
     /// Property [`DisplayName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html#cfn-sns-topic-displayname).
     ///
@@ -215,7 +215,7 @@ pub struct TopicPolicy {
 }
 
 /// Properties for the `TopicPolicy` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct TopicPolicyProperties {
     /// Property [`PolicyDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html#cfn-sns-topicpolicy-policydocument).
     ///
@@ -299,7 +299,7 @@ pub mod topic {
     //! Property types for the `Topic` resource.
 
     /// The [`AWS::SNS::Topic.Subscription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-subscription.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Subscription {
         /// Property [`Endpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-subscription.html#cfn-sns-topic-subscription-endpoint).
         ///

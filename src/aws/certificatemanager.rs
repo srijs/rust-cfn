@@ -7,7 +7,7 @@ pub struct Certificate {
 }
 
 /// Properties for the `Certificate` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct CertificateProperties {
     /// Property [`DomainName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-certificatemanager-certificate.html#cfn-certificatemanager-certificate-domainname).
     ///
@@ -119,7 +119,7 @@ pub mod certificate {
     //! Property types for the `Certificate` resource.
 
     /// The [`AWS::CertificateManager::Certificate.DomainValidationOption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-certificatemanager-certificate-domainvalidationoption.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct DomainValidationOption {
         /// Property [`DomainName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-certificatemanager-certificate-domainvalidationoption.html#cfn-certificatemanager-certificate-domainvalidationoptions-domainname).
         ///

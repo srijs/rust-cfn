@@ -7,7 +7,7 @@ pub struct Cluster {
 }
 
 /// Properties for the `Cluster` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ClusterProperties {
     /// Property [`AllowVersionUpgrade`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html#cfn-redshift-cluster-allowversionupgrade).
     ///
@@ -439,7 +439,7 @@ pub struct ClusterParameterGroup {
 }
 
 /// Properties for the `ClusterParameterGroup` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ClusterParameterGroupProperties {
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clusterparametergroup.html#cfn-redshift-clusterparametergroup-description).
     ///
@@ -552,7 +552,7 @@ pub struct ClusterSecurityGroup {
 }
 
 /// Properties for the `ClusterSecurityGroup` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ClusterSecurityGroupProperties {
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clustersecuritygroup.html#cfn-redshift-clustersecuritygroup-description).
     ///
@@ -641,7 +641,7 @@ pub struct ClusterSecurityGroupIngress {
 }
 
 /// Properties for the `ClusterSecurityGroupIngress` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ClusterSecurityGroupIngressProperties {
     /// Property [`CIDRIP`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clustersecuritygroupingress.html#cfn-redshift-clustersecuritygroupingress-cidrip).
     ///
@@ -756,7 +756,7 @@ pub struct ClusterSubnetGroup {
 }
 
 /// Properties for the `ClusterSubnetGroup` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ClusterSubnetGroupProperties {
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clustersubnetgroup.html#cfn-redshift-clustersubnetgroup-description).
     ///
@@ -853,7 +853,7 @@ pub mod cluster {
     //! Property types for the `Cluster` resource.
 
     /// The [`AWS::Redshift::Cluster.LoggingProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-cluster-loggingproperties.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct LoggingProperties {
         /// Property [`BucketName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-cluster-loggingproperties.html#cfn-redshift-cluster-loggingproperties-bucketname).
         ///
@@ -921,7 +921,7 @@ pub mod cluster_parameter_group {
     //! Property types for the `ClusterParameterGroup` resource.
 
     /// The [`AWS::Redshift::ClusterParameterGroup.Parameter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-property-redshift-clusterparametergroup-parameter.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Parameter {
         /// Property [`ParameterName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-property-redshift-clusterparametergroup-parameter.html#cfn-redshift-clusterparametergroup-parameter-parametername).
         ///

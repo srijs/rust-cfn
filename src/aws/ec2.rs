@@ -7,7 +7,7 @@ pub struct CustomerGateway {
 }
 
 /// Properties for the `CustomerGateway` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct CustomerGatewayProperties {
     /// Property [`BgpAsn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-customer-gateway.html#cfn-ec2-customergateway-bgpasn).
     ///
@@ -118,7 +118,7 @@ pub struct DHCPOptions {
 }
 
 /// Properties for the `DHCPOptions` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DHCPOptionsProperties {
     /// Property [`DomainName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-dhcp-options.html#cfn-ec2-dhcpoptions-domainname).
     ///
@@ -261,7 +261,7 @@ pub struct EIP {
 }
 
 /// Properties for the `EIP` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct EIPProperties {
     /// Property [`Domain`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-eip.html#cfn-ec2-eip-domain).
     ///
@@ -352,7 +352,7 @@ pub struct EIPAssociation {
 }
 
 /// Properties for the `EIPAssociation` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct EIPAssociationProperties {
     /// Property [`AllocationId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-eip-association.html#cfn-ec2-eipassociation-allocationid).
     ///
@@ -486,7 +486,7 @@ pub struct EgressOnlyInternetGateway {
 }
 
 /// Properties for the `EgressOnlyInternetGateway` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct EgressOnlyInternetGatewayProperties {
     /// Property [`VpcId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-egressonlyinternetgateway.html#cfn-ec2-egressonlyinternetgateway-vpcid).
     ///
@@ -562,7 +562,7 @@ pub struct FlowLog {
 }
 
 /// Properties for the `FlowLog` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct FlowLogProperties {
     /// Property [`DeliverLogsPermissionArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html#cfn-ec2-flowlog-deliverlogspermissionarn).
     ///
@@ -682,7 +682,7 @@ pub struct Host {
 }
 
 /// Properties for the `Host` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct HostProperties {
     /// Property [`AutoPlacement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-host.html#cfn-ec2-host-autoplacement).
     ///
@@ -782,7 +782,7 @@ pub struct Instance {
 }
 
 /// Properties for the `Instance` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct InstanceProperties {
     /// Property [`AdditionalInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-additionalinfo).
     ///
@@ -1259,7 +1259,7 @@ pub struct InternetGateway {
 }
 
 /// Properties for the `InternetGateway` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct InternetGatewayProperties {
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-internetgateway.html#cfn-ec2-internetgateway-tags).
     ///
@@ -1337,7 +1337,7 @@ pub struct NatGateway {
 }
 
 /// Properties for the `NatGateway` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct NatGatewayProperties {
     /// Property [`AllocationId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-natgateway.html#cfn-ec2-natgateway-allocationid).
     ///
@@ -1437,7 +1437,7 @@ pub struct NetworkAcl {
 }
 
 /// Properties for the `NetworkAcl` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct NetworkAclProperties {
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl.html#cfn-ec2-networkacl-tags).
     ///
@@ -1526,7 +1526,7 @@ pub struct NetworkAclEntry {
 }
 
 /// Properties for the `NetworkAclEntry` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct NetworkAclEntryProperties {
     /// Property [`CidrBlock`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl-entry.html#cfn-ec2-networkaclentry-cidrblock).
     ///
@@ -1698,7 +1698,7 @@ pub struct NetworkInterface {
 }
 
 /// Properties for the `NetworkInterface` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct NetworkInterfaceProperties {
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-interface.html#cfn-awsec2networkinterface-description).
     ///
@@ -1905,7 +1905,7 @@ pub struct NetworkInterfaceAttachment {
 }
 
 /// Properties for the `NetworkInterfaceAttachment` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct NetworkInterfaceAttachmentProperties {
     /// Property [`DeleteOnTermination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-interface-attachment.html#cfn-ec2-network-interface-attachment-deleteonterm).
     ///
@@ -2016,7 +2016,7 @@ pub struct NetworkInterfacePermission {
 }
 
 /// Properties for the `NetworkInterfacePermission` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct NetworkInterfacePermissionProperties {
     /// Property [`AwsAccountId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinterfacepermission.html#cfn-ec2-networkinterfacepermission-awsaccountid).
     ///
@@ -2114,7 +2114,7 @@ pub struct PlacementGroup {
 }
 
 /// Properties for the `PlacementGroup` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct PlacementGroupProperties {
     /// Property [`Strategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-placementgroup.html#cfn-ec2-placementgroup-strategy).
     ///
@@ -2192,7 +2192,7 @@ pub struct Route {
 }
 
 /// Properties for the `Route` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct RouteProperties {
     /// Property [`DestinationCidrBlock`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html#cfn-ec2-route-destinationcidrblock).
     ///
@@ -2372,7 +2372,7 @@ pub struct RouteTable {
 }
 
 /// Properties for the `RouteTable` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct RouteTableProperties {
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route-table.html#cfn-ec2-routetable-tags).
     ///
@@ -2461,7 +2461,7 @@ pub struct SecurityGroup {
 }
 
 /// Properties for the `SecurityGroup` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SecurityGroupProperties {
     /// Property [`GroupDescription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html#cfn-ec2-securitygroup-groupdescription).
     ///
@@ -2602,7 +2602,7 @@ pub struct SecurityGroupEgress {
 }
 
 /// Properties for the `SecurityGroupEgress` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SecurityGroupEgressProperties {
     /// Property [`CidrIp`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-security-group-egress.html#cfn-ec2-securitygroupegress-cidrip).
     ///
@@ -2780,7 +2780,7 @@ pub struct SecurityGroupIngress {
 }
 
 /// Properties for the `SecurityGroupIngress` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SecurityGroupIngressProperties {
     /// Property [`CidrIp`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html#cfn-ec2-security-group-ingress-cidrip).
     ///
@@ -2986,7 +2986,7 @@ pub struct SpotFleet {
 }
 
 /// Properties for the `SpotFleet` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SpotFleetProperties {
     /// Property [`SpotFleetRequestConfigData`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-spotfleet.html#cfn-ec2-spotfleet-spotfleetrequestconfigdata).
     ///
@@ -3063,7 +3063,7 @@ pub struct Subnet {
 }
 
 /// Properties for the `Subnet` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SubnetProperties {
     /// Property [`AssignIpv6AddressOnCreation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html#cfn-ec2-subnet-assignipv6addressoncreation).
     ///
@@ -3215,7 +3215,7 @@ pub struct SubnetCidrBlock {
 }
 
 /// Properties for the `SubnetCidrBlock` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SubnetCidrBlockProperties {
     /// Property [`Ipv6CidrBlock`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnetcidrblock.html#cfn-ec2-subnetcidrblock-ipv6cidrblock).
     ///
@@ -3302,7 +3302,7 @@ pub struct SubnetNetworkAclAssociation {
 }
 
 /// Properties for the `SubnetNetworkAclAssociation` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SubnetNetworkAclAssociationProperties {
     /// Property [`NetworkAclId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet-network-acl-assoc.html#cfn-ec2-subnetnetworkaclassociation-networkaclid).
     ///
@@ -3389,7 +3389,7 @@ pub struct SubnetRouteTableAssociation {
 }
 
 /// Properties for the `SubnetRouteTableAssociation` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SubnetRouteTableAssociationProperties {
     /// Property [`RouteTableId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet-route-table-assoc.html#cfn-ec2-subnetroutetableassociation-routetableid).
     ///
@@ -3476,7 +3476,7 @@ pub struct TrunkInterfaceAssociation {
 }
 
 /// Properties for the `TrunkInterfaceAssociation` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct TrunkInterfaceAssociationProperties {
     /// Property [`BranchInterfaceId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trunkinterfaceassociation.html#cfn-ec2-trunkinterfaceassociation-branchinterfaceid).
     ///
@@ -3589,7 +3589,7 @@ pub struct VPC {
 }
 
 /// Properties for the `VPC` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VPCProperties {
     /// Property [`CidrBlock`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc.html#cfn-aws-ec2-vpc-cidrblock).
     ///
@@ -3717,7 +3717,7 @@ pub struct VPCCidrBlock {
 }
 
 /// Properties for the `VPCCidrBlock` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VPCCidrBlockProperties {
     /// Property [`AmazonProvidedIpv6CidrBlock`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpccidrblock.html#cfn-ec2-vpccidrblock-amazonprovidedipv6cidrblock).
     ///
@@ -3819,7 +3819,7 @@ pub struct VPCDHCPOptionsAssociation {
 }
 
 /// Properties for the `VPCDHCPOptionsAssociation` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VPCDHCPOptionsAssociationProperties {
     /// Property [`DhcpOptionsId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc-dhcp-options-assoc.html#cfn-ec2-vpcdhcpoptionsassociation-dhcpoptionsid).
     ///
@@ -3906,7 +3906,7 @@ pub struct VPCEndpoint {
 }
 
 /// Properties for the `VPCEndpoint` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VPCEndpointProperties {
     /// Property [`PolicyDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpoint.html#cfn-ec2-vpcendpoint-policydocument).
     ///
@@ -4019,7 +4019,7 @@ pub struct VPCGatewayAttachment {
 }
 
 /// Properties for the `VPCGatewayAttachment` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VPCGatewayAttachmentProperties {
     /// Property [`InternetGatewayId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc-gateway-attachment.html#cfn-ec2-vpcgatewayattachment-internetgatewayid).
     ///
@@ -4121,7 +4121,7 @@ pub struct VPCPeeringConnection {
 }
 
 /// Properties for the `VPCPeeringConnection` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VPCPeeringConnectionProperties {
     /// Property [`PeerOwnerId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcpeeringconnection.html#cfn-ec2-vpcpeeringconnection-peerownerid).
     ///
@@ -4247,7 +4247,7 @@ pub struct VPNConnection {
 }
 
 /// Properties for the `VPNConnection` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VPNConnectionProperties {
     /// Property [`CustomerGatewayId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-connection.html#cfn-ec2-vpnconnection-customergatewayid).
     ///
@@ -4384,7 +4384,7 @@ pub struct VPNConnectionRoute {
 }
 
 /// Properties for the `VPNConnectionRoute` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VPNConnectionRouteProperties {
     /// Property [`DestinationCidrBlock`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-connection-route.html#cfn-ec2-vpnconnectionroute-cidrblock).
     ///
@@ -4471,7 +4471,7 @@ pub struct VPNGateway {
 }
 
 /// Properties for the `VPNGateway` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VPNGatewayProperties {
     /// Property [`AmazonSideAsn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-gateway.html#cfn-ec2-vpngateway-amazonsideasn).
     ///
@@ -4573,7 +4573,7 @@ pub struct VPNGatewayRoutePropagation {
 }
 
 /// Properties for the `VPNGatewayRoutePropagation` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VPNGatewayRoutePropagationProperties {
     /// Property [`RouteTableIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-gatewayrouteprop.html#cfn-ec2-vpngatewayrouteprop-routetableids).
     ///
@@ -4660,7 +4660,7 @@ pub struct Volume {
 }
 
 /// Properties for the `Volume` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VolumeProperties {
     /// Property [`AutoEnableIO`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volume.html#cfn-ec2-ebs-volume-autoenableio).
     ///
@@ -4840,7 +4840,7 @@ pub struct VolumeAttachment {
 }
 
 /// Properties for the `VolumeAttachment` resource.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VolumeAttachmentProperties {
     /// Property [`Device`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volumeattachment.html#cfn-ec2-ebs-volumeattachment-device).
     ///
@@ -4935,7 +4935,7 @@ pub mod instance {
     //! Property types for the `Instance` resource.
 
     /// The [`AWS::EC2::Instance.AssociationParameter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-ssmassociations-associationparameters.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct AssociationParameter {
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-ssmassociations-associationparameters.html#cfn-ec2-instance-ssmassociations-associationparameters-key).
         ///
@@ -4997,7 +4997,7 @@ pub mod instance {
     }
 
     /// The [`AWS::EC2::Instance.BlockDeviceMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-blockdev-mapping.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct BlockDeviceMapping {
         /// Property [`DeviceName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-blockdev-mapping.html#cfn-ec2-blockdev-mapping-devicename).
         ///
@@ -5087,7 +5087,7 @@ pub mod instance {
     }
 
     /// The [`AWS::EC2::Instance.CreditSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-creditspecification.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct CreditSpecification {
         /// Property [`CPUCredits`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-creditspecification.html#cfn-ec2-instance-creditspecification-cpucredits).
         ///
@@ -5140,7 +5140,7 @@ pub mod instance {
     }
 
     /// The [`AWS::EC2::Instance.Ebs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-blockdev-template.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Ebs {
         /// Property [`DeleteOnTermination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-blockdev-template.html#cfn-ec2-blockdev-template-deleteontermination).
         ///
@@ -5258,7 +5258,7 @@ pub mod instance {
     }
 
     /// The [`AWS::EC2::Instance.ElasticGpuSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-elasticgpuspecification.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct ElasticGpuSpecification {
         /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-elasticgpuspecification.html#cfn-ec2-instance-elasticgpuspecification-type).
         ///
@@ -5309,7 +5309,7 @@ pub mod instance {
     }
 
     /// The [`AWS::EC2::Instance.InstanceIpv6Address`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-instanceipv6address.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct InstanceIpv6Address {
         /// Property [`Ipv6Address`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-instanceipv6address.html#cfn-ec2-instance-instanceipv6address-ipv6address).
         ///
@@ -5360,7 +5360,7 @@ pub mod instance {
     }
 
     /// The [`AWS::EC2::Instance.NetworkInterface`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-network-iface-embedded.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct NetworkInterface {
         /// Property [`AssociatePublicIpAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-network-iface-embedded.html#aws-properties-ec2-network-iface-embedded-associatepubip).
         ///
@@ -5554,7 +5554,7 @@ pub mod instance {
     }
 
     /// The [`AWS::EC2::Instance.NoDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-nodevice.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct NoDevice {
     }
 
@@ -5586,7 +5586,7 @@ pub mod instance {
     }
 
     /// The [`AWS::EC2::Instance.PrivateIpAddressSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-network-interface-privateipspec.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct PrivateIpAddressSpecification {
         /// Property [`Primary`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-network-interface-privateipspec.html#cfn-ec2-networkinterface-privateipspecification-primary).
         ///
@@ -5648,7 +5648,7 @@ pub mod instance {
     }
 
     /// The [`AWS::EC2::Instance.SsmAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-ssmassociations.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SsmAssociation {
         /// Property [`AssociationParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-ssmassociations.html#cfn-ec2-instance-ssmassociations-associationparameters).
         ///
@@ -5712,7 +5712,7 @@ pub mod instance {
     }
 
     /// The [`AWS::EC2::Instance.Volume`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-mount-point.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Volume {
         /// Property [`Device`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-mount-point.html#cfn-ec2-mountpoint-device).
         ///
@@ -5778,7 +5778,7 @@ pub mod network_acl_entry {
     //! Property types for the `NetworkAclEntry` resource.
 
     /// The [`AWS::EC2::NetworkAclEntry.Icmp`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-icmp.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Icmp {
         /// Property [`Code`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-icmp.html#cfn-ec2-networkaclentry-icmp-code).
         ///
@@ -5844,7 +5844,7 @@ pub mod network_acl_entry {
     }
 
     /// The [`AWS::EC2::NetworkAclEntry.PortRange`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-portrange.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct PortRange {
         /// Property [`From`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-portrange.html#cfn-ec2-networkaclentry-portrange-from).
         ///
@@ -5914,7 +5914,7 @@ pub mod network_interface {
     //! Property types for the `NetworkInterface` resource.
 
     /// The [`AWS::EC2::NetworkInterface.InstanceIpv6Address`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinterface-instanceipv6address.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct InstanceIpv6Address {
         /// Property [`Ipv6Address`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinterface-instanceipv6address.html#cfn-ec2-networkinterface-instanceipv6address-ipv6address).
         ///
@@ -5965,7 +5965,7 @@ pub mod network_interface {
     }
 
     /// The [`AWS::EC2::NetworkInterface.PrivateIpAddressSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-network-interface-privateipspec.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct PrivateIpAddressSpecification {
         /// Property [`Primary`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-network-interface-privateipspec.html#cfn-ec2-networkinterface-privateipspecification-primary).
         ///
@@ -6031,7 +6031,7 @@ pub mod security_group {
     //! Property types for the `SecurityGroup` resource.
 
     /// The [`AWS::EC2::SecurityGroup.Egress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-rule.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Egress {
         /// Property [`CidrIp`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-rule.html#cfn-ec2-security-group-rule-cidrip).
         ///
@@ -6173,7 +6173,7 @@ pub mod security_group {
     }
 
     /// The [`AWS::EC2::SecurityGroup.Ingress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-rule.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct Ingress {
         /// Property [`CidrIp`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-rule.html#cfn-ec2-security-group-rule-cidrip).
         ///
@@ -6332,7 +6332,7 @@ pub mod spot_fleet {
     //! Property types for the `SpotFleet` resource.
 
     /// The [`AWS::EC2::SpotFleet.BlockDeviceMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct BlockDeviceMapping {
         /// Property [`DeviceName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings.html#cfn-ec2-spotfleet-blockdevicemapping-devicename).
         ///
@@ -6422,7 +6422,7 @@ pub mod spot_fleet {
     }
 
     /// The [`AWS::EC2::SpotFleet.EbsBlockDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings-ebs.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct EbsBlockDevice {
         /// Property [`DeleteOnTermination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings-ebs.html#cfn-ec2-spotfleet-ebsblockdevice-deleteontermination).
         ///
@@ -6540,7 +6540,7 @@ pub mod spot_fleet {
     }
 
     /// The [`AWS::EC2::SpotFleet.GroupIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-securitygroups.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct GroupIdentifier {
         /// Property [`GroupId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-securitygroups.html#cfn-ec2-spotfleet-groupidentifier-groupid).
         ///
@@ -6591,7 +6591,7 @@ pub mod spot_fleet {
     }
 
     /// The [`AWS::EC2::SpotFleet.IamInstanceProfileSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-iaminstanceprofile.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct IamInstanceProfileSpecification {
         /// Property [`Arn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-iaminstanceprofile.html#cfn-ec2-spotfleet-iaminstanceprofilespecification-arn).
         ///
@@ -6644,7 +6644,7 @@ pub mod spot_fleet {
     }
 
     /// The [`AWS::EC2::SpotFleet.InstanceIpv6Address`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-instanceipv6address.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct InstanceIpv6Address {
         /// Property [`Ipv6Address`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-instanceipv6address.html#cfn-ec2-spotfleet-instanceipv6address-ipv6address).
         ///
@@ -6695,7 +6695,7 @@ pub mod spot_fleet {
     }
 
     /// The [`AWS::EC2::SpotFleet.InstanceNetworkInterfaceSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct InstanceNetworkInterfaceSpecification {
         /// Property [`AssociatePublicIpAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces.html#cfn-ec2-spotfleet-instancenetworkinterfacespecification-associatepublicipaddress).
         ///
@@ -6878,7 +6878,7 @@ pub mod spot_fleet {
     }
 
     /// The [`AWS::EC2::SpotFleet.PrivateIpAddressSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces-privateipaddresses.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct PrivateIpAddressSpecification {
         /// Property [`Primary`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces-privateipaddresses.html#cfn-ec2-spotfleet-privateipaddressspecification-primary).
         ///
@@ -6942,7 +6942,7 @@ pub mod spot_fleet {
     }
 
     /// The [`AWS::EC2::SpotFleet.SpotFleetLaunchSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SpotFleetLaunchSpecification {
         /// Property [`BlockDeviceMappings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-blockdevicemappings).
         ///
@@ -7199,7 +7199,7 @@ pub mod spot_fleet {
     }
 
     /// The [`AWS::EC2::SpotFleet.SpotFleetMonitoring`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-monitoring.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SpotFleetMonitoring {
         /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-monitoring.html#cfn-ec2-spotfleet-spotfleetmonitoring-enabled).
         ///
@@ -7252,7 +7252,7 @@ pub mod spot_fleet {
     }
 
     /// The [`AWS::EC2::SpotFleet.SpotFleetRequestConfigData`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SpotFleetRequestConfigData {
         /// Property [`AllocationStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html#cfn-ec2-spotfleet-spotfleetrequestconfigdata-allocationstrategy).
         ///
@@ -7429,7 +7429,7 @@ pub mod spot_fleet {
     }
 
     /// The [`AWS::EC2::SpotFleet.SpotFleetTagSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-tagspecifications.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SpotFleetTagSpecification {
         /// Property [`ResourceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-tagspecifications.html#cfn-ec2-spotfleet-spotfleettagspecification-resourcetype).
         ///
@@ -7482,7 +7482,7 @@ pub mod spot_fleet {
     }
 
     /// The [`AWS::EC2::SpotFleet.SpotPlacement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-placement.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct SpotPlacement {
         /// Property [`AvailabilityZone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-placement.html#cfn-ec2-spotfleet-spotplacement-availabilityzone).
         ///
@@ -7552,7 +7552,7 @@ pub mod vpn_connection {
     //! Property types for the `VPNConnection` resource.
 
     /// The [`AWS::EC2::VPNConnection.VpnTunnelOptionsSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-vpntunneloptionsspecification.html) property type.
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub struct VpnTunnelOptionsSpecification {
         /// Property [`PreSharedKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-vpnconnection-vpntunneloptionsspecification.html#cfn-ec2-vpnconnection-vpntunneloptionsspecification-presharedkey).
         ///
