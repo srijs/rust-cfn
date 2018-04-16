@@ -1,7 +1,7 @@
 //! Types for the `SSM` service.
 
 /// The [`AWS::SSM::Association`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-association.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Association {
     properties: AssociationProperties
 }
@@ -155,7 +155,7 @@ impl From<AssociationProperties> for Association {
 }
 
 /// The [`AWS::SSM::Document`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-document.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Document {
     properties: DocumentProperties
 }
@@ -257,7 +257,7 @@ impl From<DocumentProperties> for Document {
 }
 
 /// The [`AWS::SSM::MaintenanceWindowTask`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-maintenancewindowtask.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct MaintenanceWindowTask {
     properties: MaintenanceWindowTaskProperties
 }
@@ -477,7 +477,7 @@ impl From<MaintenanceWindowTaskProperties> for MaintenanceWindowTask {
 }
 
 /// The [`AWS::SSM::Parameter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-parameter.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Parameter {
     properties: ParameterProperties
 }
@@ -603,7 +603,7 @@ impl From<ParameterProperties> for Parameter {
 }
 
 /// The [`AWS::SSM::PatchBaseline`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-patchbaseline.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct PatchBaseline {
     properties: PatchBaselineProperties
 }

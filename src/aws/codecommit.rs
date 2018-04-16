@@ -1,7 +1,7 @@
 //! Types for the `CodeCommit` service.
 
 /// The [`AWS::CodeCommit::Repository`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codecommit-repository.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Repository {
     properties: RepositoryProperties
 }

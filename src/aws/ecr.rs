@@ -1,7 +1,7 @@
 //! Types for the `ECR` service.
 
 /// The [`AWS::ECR::Repository`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Repository {
     properties: RepositoryProperties
 }

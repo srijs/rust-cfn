@@ -1,7 +1,7 @@
 //! Types for the `Batch` service.
 
 /// The [`AWS::Batch::ComputeEnvironment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-computeenvironment.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ComputeEnvironment {
     properties: ComputeEnvironmentProperties
 }
@@ -125,7 +125,7 @@ impl From<ComputeEnvironmentProperties> for ComputeEnvironment {
 }
 
 /// The [`AWS::Batch::JobDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct JobDefinition {
     properties: JobDefinitionProperties
 }
@@ -251,7 +251,7 @@ impl From<JobDefinitionProperties> for JobDefinition {
 }
 
 /// The [`AWS::Batch::JobQueue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobqueue.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct JobQueue {
     properties: JobQueueProperties
 }

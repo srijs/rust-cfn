@@ -1,7 +1,7 @@
 //! Types for the `GameLift` service.
 
 /// The [`AWS::GameLift::Alias`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-alias.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Alias {
     properties: AliasProperties
 }
@@ -101,7 +101,7 @@ impl From<AliasProperties> for Alias {
 }
 
 /// The [`AWS::GameLift::Build`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-build.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Build {
     properties: BuildProperties
 }
@@ -205,7 +205,7 @@ impl From<BuildProperties> for Build {
 }
 
 /// The [`AWS::GameLift::Fleet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Fleet {
     properties: FleetProperties
 }

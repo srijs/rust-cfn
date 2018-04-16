@@ -1,7 +1,7 @@
 //! Types for the `Redshift` service.
 
 /// The [`AWS::Redshift::Cluster`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Cluster {
     properties: ClusterProperties
 }
@@ -433,7 +433,7 @@ impl From<ClusterProperties> for Cluster {
 }
 
 /// The [`AWS::Redshift::ClusterParameterGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clusterparametergroup.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ClusterParameterGroup {
     properties: ClusterParameterGroupProperties
 }
@@ -546,7 +546,7 @@ impl From<ClusterParameterGroupProperties> for ClusterParameterGroup {
 }
 
 /// The [`AWS::Redshift::ClusterSecurityGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clustersecuritygroup.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ClusterSecurityGroup {
     properties: ClusterSecurityGroupProperties
 }
@@ -635,7 +635,7 @@ impl From<ClusterSecurityGroupProperties> for ClusterSecurityGroup {
 }
 
 /// The [`AWS::Redshift::ClusterSecurityGroupIngress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clustersecuritygroupingress.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ClusterSecurityGroupIngress {
     properties: ClusterSecurityGroupIngressProperties
 }
@@ -750,7 +750,7 @@ impl From<ClusterSecurityGroupIngressProperties> for ClusterSecurityGroupIngress
 }
 
 /// The [`AWS::Redshift::ClusterSubnetGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-clustersubnetgroup.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ClusterSubnetGroup {
     properties: ClusterSubnetGroupProperties
 }

@@ -1,7 +1,7 @@
 //! Types for the `Kinesis` service.
 
 /// The [`AWS::Kinesis::Stream`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-stream.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Stream {
     properties: StreamProperties
 }

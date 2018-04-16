@@ -1,7 +1,7 @@
 //! Types for the `KinesisFirehose` service.
 
 /// The [`AWS::KinesisFirehose::DeliveryStream`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisfirehose-deliverystream.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DeliveryStream {
     properties: DeliveryStreamProperties
 }

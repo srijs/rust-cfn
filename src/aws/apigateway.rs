@@ -1,7 +1,7 @@
 //! Types for the `ApiGateway` service.
 
 /// The [`AWS::ApiGateway::Account`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-account.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Account {
     properties: AccountProperties
 }
@@ -79,7 +79,7 @@ impl From<AccountProperties> for Account {
 }
 
 /// The [`AWS::ApiGateway::ApiKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-apikey.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ApiKey {
     properties: ApiKeyProperties
 }
@@ -222,7 +222,7 @@ impl From<ApiKeyProperties> for ApiKey {
 }
 
 /// The [`AWS::ApiGateway::Authorizer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-authorizer.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Authorizer {
     properties: AuthorizerProperties
 }
@@ -415,7 +415,7 @@ impl From<AuthorizerProperties> for Authorizer {
 }
 
 /// The [`AWS::ApiGateway::BasePathMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-basepathmapping.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct BasePathMapping {
     properties: BasePathMappingProperties
 }
@@ -530,7 +530,7 @@ impl From<BasePathMappingProperties> for BasePathMapping {
 }
 
 /// The [`AWS::ApiGateway::ClientCertificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-clientcertificate.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ClientCertificate {
     properties: ClientCertificateProperties
 }
@@ -608,7 +608,7 @@ impl From<ClientCertificateProperties> for ClientCertificate {
 }
 
 /// The [`AWS::ApiGateway::Deployment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-deployment.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Deployment {
     properties: DeploymentProperties
 }
@@ -723,7 +723,7 @@ impl From<DeploymentProperties> for Deployment {
 }
 
 /// The [`AWS::ApiGateway::DocumentationPart`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-documentationpart.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DocumentationPart {
     properties: DocumentationPartProperties
 }
@@ -821,7 +821,7 @@ impl From<DocumentationPartProperties> for DocumentationPart {
 }
 
 /// The [`AWS::ApiGateway::DocumentationVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-documentationversion.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DocumentationVersion {
     properties: DocumentationVersionProperties
 }
@@ -921,7 +921,7 @@ impl From<DocumentationVersionProperties> for DocumentationVersion {
 }
 
 /// The [`AWS::ApiGateway::DomainName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainname.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DomainName {
     properties: DomainNameProperties
 }
@@ -1036,7 +1036,7 @@ impl From<DomainNameProperties> for DomainName {
 }
 
 /// The [`AWS::ApiGateway::GatewayResponse`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-gatewayresponse.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct GatewayResponse {
     properties: GatewayResponseProperties
 }
@@ -1162,7 +1162,7 @@ impl From<GatewayResponseProperties> for GatewayResponse {
 }
 
 /// The [`AWS::ApiGateway::Method`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-method.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Method {
     properties: MethodProperties
 }
@@ -1377,7 +1377,7 @@ impl From<MethodProperties> for Method {
 }
 
 /// The [`AWS::ApiGateway::Model`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-model.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Model {
     properties: ModelProperties
 }
@@ -1505,7 +1505,7 @@ impl From<ModelProperties> for Model {
 }
 
 /// The [`AWS::ApiGateway::RequestValidator`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-requestvalidator.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct RequestValidator {
     properties: RequestValidatorProperties
 }
@@ -1620,7 +1620,7 @@ impl From<RequestValidatorProperties> for RequestValidator {
 }
 
 /// The [`AWS::ApiGateway::Resource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-resource.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Resource {
     properties: ResourceProperties
 }
@@ -1718,7 +1718,7 @@ impl From<ResourceProperties> for Resource {
 }
 
 /// The [`AWS::ApiGateway::RestApi`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct RestApi {
     properties: RestApiProperties
 }
@@ -1926,7 +1926,7 @@ impl From<RestApiProperties> for RestApi {
 }
 
 /// The [`AWS::ApiGateway::Stage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Stage {
     properties: StageProperties
 }
@@ -2119,7 +2119,7 @@ impl From<StageProperties> for Stage {
 }
 
 /// The [`AWS::ApiGateway::UsagePlan`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-usageplan.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct UsagePlan {
     properties: UsagePlanProperties
 }
@@ -2249,7 +2249,7 @@ impl From<UsagePlanProperties> for UsagePlan {
 }
 
 /// The [`AWS::ApiGateway::UsagePlanKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-usageplankey.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct UsagePlanKey {
     properties: UsagePlanKeyProperties
 }
@@ -2347,7 +2347,7 @@ impl From<UsagePlanKeyProperties> for UsagePlanKey {
 }
 
 /// The [`AWS::ApiGateway::VpcLink`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-vpclink.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VpcLink {
     properties: VpcLinkProperties
 }

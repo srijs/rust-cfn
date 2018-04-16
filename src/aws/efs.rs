@@ -1,7 +1,7 @@
 //! Types for the `EFS` service.
 
 /// The [`AWS::EFS::FileSystem`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct FileSystem {
     properties: FileSystemProperties
 }
@@ -118,7 +118,7 @@ impl From<FileSystemProperties> for FileSystem {
 }
 
 /// The [`AWS::EFS::MountTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-mounttarget.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct MountTarget {
     properties: MountTargetProperties
 }

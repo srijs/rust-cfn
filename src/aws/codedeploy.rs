@@ -1,7 +1,7 @@
 //! Types for the `CodeDeploy` service.
 
 /// The [`AWS::CodeDeploy::Application`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-application.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Application {
     properties: ApplicationProperties
 }
@@ -92,7 +92,7 @@ impl From<ApplicationProperties> for Application {
 }
 
 /// The [`AWS::CodeDeploy::DeploymentConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentconfig.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DeploymentConfig {
     properties: DeploymentConfigProperties
 }
@@ -183,7 +183,7 @@ impl From<DeploymentConfigProperties> for DeploymentConfig {
 }
 
 /// The [`AWS::CodeDeploy::DeploymentGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DeploymentGroup {
     properties: DeploymentGroupProperties
 }

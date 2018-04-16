@@ -1,7 +1,7 @@
 //! Types for the `Athena` service.
 
 /// The [`AWS::Athena::NamedQuery`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-namedquery.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct NamedQuery {
     properties: NamedQueryProperties
 }

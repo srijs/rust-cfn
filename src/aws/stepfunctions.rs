@@ -1,7 +1,7 @@
 //! Types for the `StepFunctions` service.
 
 /// The [`AWS::StepFunctions::Activity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-activity.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Activity {
     properties: ActivityProperties
 }
@@ -77,7 +77,7 @@ impl From<ActivityProperties> for Activity {
 }
 
 /// The [`AWS::StepFunctions::StateMachine`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct StateMachine {
     properties: StateMachineProperties
 }

@@ -1,7 +1,7 @@
 //! Types for the `Route53` service.
 
 /// The [`AWS::Route53::HealthCheck`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-healthcheck.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct HealthCheck {
     properties: HealthCheckProperties
 }
@@ -90,7 +90,7 @@ impl From<HealthCheckProperties> for HealthCheck {
 }
 
 /// The [`AWS::Route53::HostedZone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct HostedZone {
     properties: HostedZoneProperties
 }
@@ -219,7 +219,7 @@ impl From<HostedZoneProperties> for HostedZone {
 }
 
 /// The [`AWS::Route53::RecordSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct RecordSet {
     properties: RecordSetProperties
 }
@@ -462,7 +462,7 @@ impl From<RecordSetProperties> for RecordSet {
 }
 
 /// The [`AWS::Route53::RecordSetGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-recordsetgroup.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct RecordSetGroup {
     properties: RecordSetGroupProperties
 }

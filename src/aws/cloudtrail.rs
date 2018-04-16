@@ -1,7 +1,7 @@
 //! Types for the `CloudTrail` service.
 
 /// The [`AWS::CloudTrail::Trail`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Trail {
     properties: TrailProperties
 }

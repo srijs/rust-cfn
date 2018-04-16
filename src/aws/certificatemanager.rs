@@ -1,7 +1,7 @@
 //! Types for the `CertificateManager` service.
 
 /// The [`AWS::CertificateManager::Certificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-certificatemanager-certificate.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Certificate {
     properties: CertificateProperties
 }

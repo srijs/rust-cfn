@@ -1,7 +1,7 @@
 //! Types for the `CodeBuild` service.
 
 /// The [`AWS::CodeBuild::Project`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Project {
     properties: ProjectProperties
 }

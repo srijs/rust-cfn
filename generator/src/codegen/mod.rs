@@ -118,7 +118,7 @@ fn generate_resource_declaration(service: &str, name: &str, spec: &ResourceType,
 
     p.newline()?;
     p.line(format_args!("/// The [`AWS::{}::{}`]({}) resource type.", service, name, spec.documentation))?;
-    p.line(format_args!("#[derive(Debug)]"))?;
+    p.line(format_args!("#[derive(Debug, Default)]"))?;
     p.block(format_args!("pub struct {}", name), |p| {
         p.line(format_args!("properties: {}Properties", name))
     })?;

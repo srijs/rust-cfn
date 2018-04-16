@@ -1,7 +1,7 @@
 //! Types for the `DirectoryService` service.
 
 /// The [`AWS::DirectoryService::MicrosoftAD`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-microsoftad.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct MicrosoftAD {
     properties: MicrosoftADProperties
 }
@@ -138,7 +138,7 @@ impl From<MicrosoftADProperties> for MicrosoftAD {
 }
 
 /// The [`AWS::DirectoryService::SimpleAD`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-simplead.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SimpleAD {
     properties: SimpleADProperties
 }

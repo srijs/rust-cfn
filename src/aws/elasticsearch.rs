@@ -1,7 +1,7 @@
 //! Types for the `Elasticsearch` service.
 
 /// The [`AWS::Elasticsearch::Domain`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Domain {
     properties: DomainProperties
 }

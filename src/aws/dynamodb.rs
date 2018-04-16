@@ -1,7 +1,7 @@
 //! Types for the `DynamoDB` service.
 
 /// The [`AWS::DynamoDB::Table`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Table {
     properties: TableProperties
 }

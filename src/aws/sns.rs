@@ -1,7 +1,7 @@
 //! Types for the `SNS` service.
 
 /// The [`AWS::SNS::Subscription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Subscription {
     properties: SubscriptionProperties
 }
@@ -105,7 +105,7 @@ impl From<SubscriptionProperties> for Subscription {
 }
 
 /// The [`AWS::SNS::Topic`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Topic {
     properties: TopicProperties
 }
@@ -209,7 +209,7 @@ impl From<TopicProperties> for Topic {
 }
 
 /// The [`AWS::SNS::TopicPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct TopicPolicy {
     properties: TopicPolicyProperties
 }

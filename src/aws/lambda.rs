@@ -1,7 +1,7 @@
 //! Types for the `Lambda` service.
 
 /// The [`AWS::Lambda::Alias`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-alias.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Alias {
     properties: AliasProperties
 }
@@ -125,7 +125,7 @@ impl From<AliasProperties> for Alias {
 }
 
 /// The [`AWS::Lambda::EventSourceMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct EventSourceMapping {
     properties: EventSourceMappingProperties
 }
@@ -249,7 +249,7 @@ impl From<EventSourceMappingProperties> for EventSourceMapping {
 }
 
 /// The [`AWS::Lambda::Function`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Function {
     properties: FunctionProperties
 }
@@ -501,7 +501,7 @@ impl From<FunctionProperties> for Function {
 }
 
 /// The [`AWS::Lambda::Permission`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Permission {
     properties: PermissionProperties
 }
@@ -638,7 +638,7 @@ impl From<PermissionProperties> for Permission {
 }
 
 /// The [`AWS::Lambda::Version`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-version.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Version {
     properties: VersionProperties
 }

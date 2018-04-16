@@ -1,7 +1,7 @@
 //! Types for the `WorkSpaces` service.
 
 /// The [`AWS::WorkSpaces::Workspace`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-workspaces-workspace.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Workspace {
     properties: WorkspaceProperties
 }

@@ -1,7 +1,7 @@
 //! Types for the `DataPipeline` service.
 
 /// The [`AWS::DataPipeline::Pipeline`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-datapipeline-pipeline.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Pipeline {
     properties: PipelineProperties
 }

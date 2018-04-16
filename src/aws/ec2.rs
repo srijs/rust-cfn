@@ -1,7 +1,7 @@
 //! Types for the `EC2` service.
 
 /// The [`AWS::EC2::CustomerGateway`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-customer-gateway.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct CustomerGateway {
     properties: CustomerGatewayProperties
 }
@@ -112,7 +112,7 @@ impl From<CustomerGatewayProperties> for CustomerGateway {
 }
 
 /// The [`AWS::EC2::DHCPOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-dhcp-options.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DHCPOptions {
     properties: DHCPOptionsProperties
 }
@@ -255,7 +255,7 @@ impl From<DHCPOptionsProperties> for DHCPOptions {
 }
 
 /// The [`AWS::EC2::EIP`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-eip.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct EIP {
     properties: EIPProperties
 }
@@ -346,7 +346,7 @@ impl From<EIPProperties> for EIP {
 }
 
 /// The [`AWS::EC2::EIPAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-eip-association.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct EIPAssociation {
     properties: EIPAssociationProperties
 }
@@ -480,7 +480,7 @@ impl From<EIPAssociationProperties> for EIPAssociation {
 }
 
 /// The [`AWS::EC2::EgressOnlyInternetGateway`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-egressonlyinternetgateway.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct EgressOnlyInternetGateway {
     properties: EgressOnlyInternetGatewayProperties
 }
@@ -556,7 +556,7 @@ impl From<EgressOnlyInternetGatewayProperties> for EgressOnlyInternetGateway {
 }
 
 /// The [`AWS::EC2::FlowLog`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct FlowLog {
     properties: FlowLogProperties
 }
@@ -676,7 +676,7 @@ impl From<FlowLogProperties> for FlowLog {
 }
 
 /// The [`AWS::EC2::Host`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-host.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Host {
     properties: HostProperties
 }
@@ -776,7 +776,7 @@ impl From<HostProperties> for Host {
 }
 
 /// The [`AWS::EC2::Instance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Instance {
     properties: InstanceProperties
 }
@@ -1253,7 +1253,7 @@ impl From<InstanceProperties> for Instance {
 }
 
 /// The [`AWS::EC2::InternetGateway`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-internetgateway.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct InternetGateway {
     properties: InternetGatewayProperties
 }
@@ -1331,7 +1331,7 @@ impl From<InternetGatewayProperties> for InternetGateway {
 }
 
 /// The [`AWS::EC2::NatGateway`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-natgateway.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct NatGateway {
     properties: NatGatewayProperties
 }
@@ -1431,7 +1431,7 @@ impl From<NatGatewayProperties> for NatGateway {
 }
 
 /// The [`AWS::EC2::NetworkAcl`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct NetworkAcl {
     properties: NetworkAclProperties
 }
@@ -1520,7 +1520,7 @@ impl From<NetworkAclProperties> for NetworkAcl {
 }
 
 /// The [`AWS::EC2::NetworkAclEntry`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl-entry.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct NetworkAclEntry {
     properties: NetworkAclEntryProperties
 }
@@ -1692,7 +1692,7 @@ impl From<NetworkAclEntryProperties> for NetworkAclEntry {
 }
 
 /// The [`AWS::EC2::NetworkInterface`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-interface.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct NetworkInterface {
     properties: NetworkInterfaceProperties
 }
@@ -1899,7 +1899,7 @@ impl From<NetworkInterfaceProperties> for NetworkInterface {
 }
 
 /// The [`AWS::EC2::NetworkInterfaceAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-interface-attachment.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct NetworkInterfaceAttachment {
     properties: NetworkInterfaceAttachmentProperties
 }
@@ -2010,7 +2010,7 @@ impl From<NetworkInterfaceAttachmentProperties> for NetworkInterfaceAttachment {
 }
 
 /// The [`AWS::EC2::NetworkInterfacePermission`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinterfacepermission.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct NetworkInterfacePermission {
     properties: NetworkInterfacePermissionProperties
 }
@@ -2108,7 +2108,7 @@ impl From<NetworkInterfacePermissionProperties> for NetworkInterfacePermission {
 }
 
 /// The [`AWS::EC2::PlacementGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-placementgroup.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct PlacementGroup {
     properties: PlacementGroupProperties
 }
@@ -2186,7 +2186,7 @@ impl From<PlacementGroupProperties> for PlacementGroup {
 }
 
 /// The [`AWS::EC2::Route`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Route {
     properties: RouteProperties
 }
@@ -2366,7 +2366,7 @@ impl From<RouteProperties> for Route {
 }
 
 /// The [`AWS::EC2::RouteTable`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route-table.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct RouteTable {
     properties: RouteTableProperties
 }
@@ -2455,7 +2455,7 @@ impl From<RouteTableProperties> for RouteTable {
 }
 
 /// The [`AWS::EC2::SecurityGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SecurityGroup {
     properties: SecurityGroupProperties
 }
@@ -2596,7 +2596,7 @@ impl From<SecurityGroupProperties> for SecurityGroup {
 }
 
 /// The [`AWS::EC2::SecurityGroupEgress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-security-group-egress.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SecurityGroupEgress {
     properties: SecurityGroupEgressProperties
 }
@@ -2774,7 +2774,7 @@ impl From<SecurityGroupEgressProperties> for SecurityGroupEgress {
 }
 
 /// The [`AWS::EC2::SecurityGroupIngress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SecurityGroupIngress {
     properties: SecurityGroupIngressProperties
 }
@@ -2980,7 +2980,7 @@ impl From<SecurityGroupIngressProperties> for SecurityGroupIngress {
 }
 
 /// The [`AWS::EC2::SpotFleet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-spotfleet.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SpotFleet {
     properties: SpotFleetProperties
 }
@@ -3057,7 +3057,7 @@ impl From<SpotFleetProperties> for SpotFleet {
 }
 
 /// The [`AWS::EC2::Subnet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Subnet {
     properties: SubnetProperties
 }
@@ -3209,7 +3209,7 @@ impl From<SubnetProperties> for Subnet {
 }
 
 /// The [`AWS::EC2::SubnetCidrBlock`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnetcidrblock.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SubnetCidrBlock {
     properties: SubnetCidrBlockProperties
 }
@@ -3296,7 +3296,7 @@ impl From<SubnetCidrBlockProperties> for SubnetCidrBlock {
 }
 
 /// The [`AWS::EC2::SubnetNetworkAclAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet-network-acl-assoc.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SubnetNetworkAclAssociation {
     properties: SubnetNetworkAclAssociationProperties
 }
@@ -3383,7 +3383,7 @@ impl From<SubnetNetworkAclAssociationProperties> for SubnetNetworkAclAssociation
 }
 
 /// The [`AWS::EC2::SubnetRouteTableAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet-route-table-assoc.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SubnetRouteTableAssociation {
     properties: SubnetRouteTableAssociationProperties
 }
@@ -3470,7 +3470,7 @@ impl From<SubnetRouteTableAssociationProperties> for SubnetRouteTableAssociation
 }
 
 /// The [`AWS::EC2::TrunkInterfaceAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trunkinterfaceassociation.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct TrunkInterfaceAssociation {
     properties: TrunkInterfaceAssociationProperties
 }
@@ -3583,7 +3583,7 @@ impl From<TrunkInterfaceAssociationProperties> for TrunkInterfaceAssociation {
 }
 
 /// The [`AWS::EC2::VPC`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VPC {
     properties: VPCProperties
 }
@@ -3711,7 +3711,7 @@ impl From<VPCProperties> for VPC {
 }
 
 /// The [`AWS::EC2::VPCCidrBlock`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpccidrblock.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VPCCidrBlock {
     properties: VPCCidrBlockProperties
 }
@@ -3813,7 +3813,7 @@ impl From<VPCCidrBlockProperties> for VPCCidrBlock {
 }
 
 /// The [`AWS::EC2::VPCDHCPOptionsAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc-dhcp-options-assoc.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VPCDHCPOptionsAssociation {
     properties: VPCDHCPOptionsAssociationProperties
 }
@@ -3900,7 +3900,7 @@ impl From<VPCDHCPOptionsAssociationProperties> for VPCDHCPOptionsAssociation {
 }
 
 /// The [`AWS::EC2::VPCEndpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpoint.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VPCEndpoint {
     properties: VPCEndpointProperties
 }
@@ -4013,7 +4013,7 @@ impl From<VPCEndpointProperties> for VPCEndpoint {
 }
 
 /// The [`AWS::EC2::VPCGatewayAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc-gateway-attachment.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VPCGatewayAttachment {
     properties: VPCGatewayAttachmentProperties
 }
@@ -4115,7 +4115,7 @@ impl From<VPCGatewayAttachmentProperties> for VPCGatewayAttachment {
 }
 
 /// The [`AWS::EC2::VPCPeeringConnection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcpeeringconnection.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VPCPeeringConnection {
     properties: VPCPeeringConnectionProperties
 }
@@ -4241,7 +4241,7 @@ impl From<VPCPeeringConnectionProperties> for VPCPeeringConnection {
 }
 
 /// The [`AWS::EC2::VPNConnection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-connection.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VPNConnection {
     properties: VPNConnectionProperties
 }
@@ -4378,7 +4378,7 @@ impl From<VPNConnectionProperties> for VPNConnection {
 }
 
 /// The [`AWS::EC2::VPNConnectionRoute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-connection-route.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VPNConnectionRoute {
     properties: VPNConnectionRouteProperties
 }
@@ -4465,7 +4465,7 @@ impl From<VPNConnectionRouteProperties> for VPNConnectionRoute {
 }
 
 /// The [`AWS::EC2::VPNGateway`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-gateway.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VPNGateway {
     properties: VPNGatewayProperties
 }
@@ -4567,7 +4567,7 @@ impl From<VPNGatewayProperties> for VPNGateway {
 }
 
 /// The [`AWS::EC2::VPNGatewayRoutePropagation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-gatewayrouteprop.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VPNGatewayRoutePropagation {
     properties: VPNGatewayRoutePropagationProperties
 }
@@ -4654,7 +4654,7 @@ impl From<VPNGatewayRoutePropagationProperties> for VPNGatewayRoutePropagation {
 }
 
 /// The [`AWS::EC2::Volume`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volume.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Volume {
     properties: VolumeProperties
 }
@@ -4834,7 +4834,7 @@ impl From<VolumeProperties> for Volume {
 }
 
 /// The [`AWS::EC2::VolumeAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volumeattachment.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct VolumeAttachment {
     properties: VolumeAttachmentProperties
 }

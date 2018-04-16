@@ -1,7 +1,7 @@
 //! Types for the `CloudFront` service.
 
 /// The [`AWS::CloudFront::CloudFrontOriginAccessIdentity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-cloudfrontoriginaccessidentity.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct CloudFrontOriginAccessIdentity {
     properties: CloudFrontOriginAccessIdentityProperties
 }
@@ -77,7 +77,7 @@ impl From<CloudFrontOriginAccessIdentityProperties> for CloudFrontOriginAccessId
 }
 
 /// The [`AWS::CloudFront::Distribution`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Distribution {
     properties: DistributionProperties
 }
@@ -166,7 +166,7 @@ impl From<DistributionProperties> for Distribution {
 }
 
 /// The [`AWS::CloudFront::StreamingDistribution`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-streamingdistribution.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct StreamingDistribution {
     properties: StreamingDistributionProperties
 }

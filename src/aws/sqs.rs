@@ -1,7 +1,7 @@
 //! Types for the `SQS` service.
 
 /// The [`AWS::SQS::Queue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Queue {
     properties: QueueProperties
 }
@@ -209,7 +209,7 @@ impl From<QueueProperties> for Queue {
 }
 
 /// The [`AWS::SQS::QueuePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-policy.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct QueuePolicy {
     properties: QueuePolicyProperties
 }

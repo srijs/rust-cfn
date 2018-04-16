@@ -1,7 +1,7 @@
 //! Types for the `GuardDuty` service.
 
 /// The [`AWS::GuardDuty::Detector`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-detector.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Detector {
     properties: DetectorProperties
 }
@@ -77,7 +77,7 @@ impl From<DetectorProperties> for Detector {
 }
 
 /// The [`AWS::GuardDuty::IPSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-ipset.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct IPSet {
     properties: IPSetProperties
 }
@@ -199,7 +199,7 @@ impl From<IPSetProperties> for IPSet {
 }
 
 /// The [`AWS::GuardDuty::Master`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-master.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Master {
     properties: MasterProperties
 }
@@ -297,7 +297,7 @@ impl From<MasterProperties> for Master {
 }
 
 /// The [`AWS::GuardDuty::Member`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-member.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Member {
     properties: MemberProperties
 }
@@ -421,7 +421,7 @@ impl From<MemberProperties> for Member {
 }
 
 /// The [`AWS::GuardDuty::ThreatIntelSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-guardduty-threatintelset.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ThreatIntelSet {
     properties: ThreatIntelSetProperties
 }

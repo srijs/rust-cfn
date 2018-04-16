@@ -1,7 +1,7 @@
 //! Types for the `Events` service.
 
 /// The [`AWS::Events::Rule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Rule {
     properties: RuleProperties
 }

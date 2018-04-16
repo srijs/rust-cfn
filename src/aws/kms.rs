@@ -1,7 +1,7 @@
 //! Types for the `KMS` service.
 
 /// The [`AWS::KMS::Alias`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-alias.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Alias {
     properties: AliasProperties
 }
@@ -88,7 +88,7 @@ impl From<AliasProperties> for Alias {
 }
 
 /// The [`AWS::KMS::Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Key {
     properties: KeyProperties
 }

@@ -1,7 +1,7 @@
 //! Types for the `EMR` service.
 
 /// The [`AWS::EMR::Cluster`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Cluster {
     properties: ClusterProperties
 }
@@ -280,7 +280,7 @@ impl From<ClusterProperties> for Cluster {
 }
 
 /// The [`AWS::EMR::InstanceFleetConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-instancefleetconfig.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct InstanceFleetConfig {
     properties: InstanceFleetConfigProperties
 }
@@ -432,7 +432,7 @@ impl From<InstanceFleetConfigProperties> for InstanceFleetConfig {
 }
 
 /// The [`AWS::EMR::InstanceGroupConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-instancegroupconfig.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct InstanceGroupConfig {
     properties: InstanceGroupConfigProperties
 }
@@ -619,7 +619,7 @@ impl From<InstanceGroupConfigProperties> for InstanceGroupConfig {
 }
 
 /// The [`AWS::EMR::SecurityConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-securityconfiguration.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SecurityConfiguration {
     properties: SecurityConfigurationProperties
 }
@@ -708,7 +708,7 @@ impl From<SecurityConfigurationProperties> for SecurityConfiguration {
 }
 
 /// The [`AWS::EMR::Step`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-step.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Step {
     properties: StepProperties
 }

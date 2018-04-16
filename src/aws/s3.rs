@@ -1,7 +1,7 @@
 //! Types for the `S3` service.
 
 /// The [`AWS::S3::Bucket`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Bucket {
     properties: BucketProperties
 }
@@ -261,7 +261,7 @@ impl From<BucketProperties> for Bucket {
 }
 
 /// The [`AWS::S3::BucketPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-policy.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct BucketPolicy {
     properties: BucketPolicyProperties
 }

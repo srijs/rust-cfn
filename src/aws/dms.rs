@@ -1,7 +1,7 @@
 //! Types for the `DMS` service.
 
 /// The [`AWS::DMS::Certificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-certificate.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Certificate {
     properties: CertificateProperties
 }
@@ -105,7 +105,7 @@ impl From<CertificateProperties> for Certificate {
 }
 
 /// The [`AWS::DMS::Endpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Endpoint {
     properties: EndpointProperties
 }
@@ -374,7 +374,7 @@ impl From<EndpointProperties> for Endpoint {
 }
 
 /// The [`AWS::DMS::EventSubscription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-eventsubscription.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct EventSubscription {
     properties: EventSubscriptionProperties
 }
@@ -528,7 +528,7 @@ impl From<EventSubscriptionProperties> for EventSubscription {
 }
 
 /// The [`AWS::DMS::ReplicationInstance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationinstance.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ReplicationInstance {
     properties: ReplicationInstanceProperties
 }
@@ -773,7 +773,7 @@ impl From<ReplicationInstanceProperties> for ReplicationInstance {
 }
 
 /// The [`AWS::DMS::ReplicationSubnetGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationsubnetgroup.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ReplicationSubnetGroup {
     properties: ReplicationSubnetGroupProperties
 }
@@ -886,7 +886,7 @@ impl From<ReplicationSubnetGroupProperties> for ReplicationSubnetGroup {
 }
 
 /// The [`AWS::DMS::ReplicationTask`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationtask.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ReplicationTask {
     properties: ReplicationTaskProperties
 }

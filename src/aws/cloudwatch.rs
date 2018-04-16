@@ -1,7 +1,7 @@
 //! Types for the `CloudWatch` service.
 
 /// The [`AWS::CloudWatch::Alarm`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cw-alarm.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Alarm {
     properties: AlarmProperties
 }
@@ -288,7 +288,7 @@ impl From<AlarmProperties> for Alarm {
 }
 
 /// The [`AWS::CloudWatch::Dashboard`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-dashboard.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Dashboard {
     properties: DashboardProperties
 }

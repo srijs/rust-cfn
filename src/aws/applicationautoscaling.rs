@@ -1,7 +1,7 @@
 //! Types for the `ApplicationAutoScaling` service.
 
 /// The [`AWS::ApplicationAutoScaling::ScalableTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalabletarget.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ScalableTarget {
     properties: ScalableTargetProperties
 }
@@ -145,7 +145,7 @@ impl From<ScalableTargetProperties> for ScalableTarget {
 }
 
 /// The [`AWS::ApplicationAutoScaling::ScalingPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalingpolicy.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ScalingPolicy {
     properties: ScalingPolicyProperties
 }

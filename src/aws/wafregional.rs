@@ -1,7 +1,7 @@
 //! Types for the `WAFRegional` service.
 
 /// The [`AWS::WAFRegional::ByteMatchSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-bytematchset.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ByteMatchSet {
     properties: ByteMatchSetProperties
 }
@@ -90,7 +90,7 @@ impl From<ByteMatchSetProperties> for ByteMatchSet {
 }
 
 /// The [`AWS::WAFRegional::IPSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-ipset.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct IPSet {
     properties: IPSetProperties
 }
@@ -179,7 +179,7 @@ impl From<IPSetProperties> for IPSet {
 }
 
 /// The [`AWS::WAFRegional::Rule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-rule.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Rule {
     properties: RuleProperties
 }
@@ -279,7 +279,7 @@ impl From<RuleProperties> for Rule {
 }
 
 /// The [`AWS::WAFRegional::SizeConstraintSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-sizeconstraintset.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SizeConstraintSet {
     properties: SizeConstraintSetProperties
 }
@@ -368,7 +368,7 @@ impl From<SizeConstraintSetProperties> for SizeConstraintSet {
 }
 
 /// The [`AWS::WAFRegional::SqlInjectionMatchSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-sqlinjectionmatchset.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct SqlInjectionMatchSet {
     properties: SqlInjectionMatchSetProperties
 }
@@ -457,7 +457,7 @@ impl From<SqlInjectionMatchSetProperties> for SqlInjectionMatchSet {
 }
 
 /// The [`AWS::WAFRegional::WebACL`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-webacl.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct WebACL {
     properties: WebACLProperties
 }
@@ -568,7 +568,7 @@ impl From<WebACLProperties> for WebACL {
 }
 
 /// The [`AWS::WAFRegional::WebACLAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-webaclassociation.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct WebACLAssociation {
     properties: WebACLAssociationProperties
 }
@@ -655,7 +655,7 @@ impl From<WebACLAssociationProperties> for WebACLAssociation {
 }
 
 /// The [`AWS::WAFRegional::XssMatchSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafregional-xssmatchset.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct XssMatchSet {
     properties: XssMatchSetProperties
 }

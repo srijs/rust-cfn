@@ -1,7 +1,7 @@
 //! Types for the `ServiceDiscovery` service.
 
 /// The [`AWS::ServiceDiscovery::Instance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-instance.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Instance {
     properties: InstanceProperties
 }
@@ -101,7 +101,7 @@ impl From<InstanceProperties> for Instance {
 }
 
 /// The [`AWS::ServiceDiscovery::PrivateDnsNamespace`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-privatednsnamespace.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct PrivateDnsNamespace {
     properties: PrivateDnsNamespaceProperties
 }
@@ -201,7 +201,7 @@ impl From<PrivateDnsNamespaceProperties> for PrivateDnsNamespace {
 }
 
 /// The [`AWS::ServiceDiscovery::PublicDnsNamespace`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-publicdnsnamespace.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct PublicDnsNamespace {
     properties: PublicDnsNamespaceProperties
 }
@@ -290,7 +290,7 @@ impl From<PublicDnsNamespaceProperties> for PublicDnsNamespace {
 }
 
 /// The [`AWS::ServiceDiscovery::Service`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-service.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Service {
     properties: ServiceProperties
 }

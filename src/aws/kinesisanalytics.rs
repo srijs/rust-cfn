@@ -1,7 +1,7 @@
 //! Types for the `KinesisAnalytics` service.
 
 /// The [`AWS::KinesisAnalytics::Application`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalytics-application.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Application {
     properties: ApplicationProperties
 }
@@ -116,7 +116,7 @@ impl From<ApplicationProperties> for Application {
 }
 
 /// The [`AWS::KinesisAnalytics::ApplicationOutput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalytics-applicationoutput.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ApplicationOutput {
     properties: ApplicationOutputProperties
 }
@@ -203,7 +203,7 @@ impl From<ApplicationOutputProperties> for ApplicationOutput {
 }
 
 /// The [`AWS::KinesisAnalytics::ApplicationReferenceDataSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalytics-applicationreferencedatasource.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ApplicationReferenceDataSource {
     properties: ApplicationReferenceDataSourceProperties
 }

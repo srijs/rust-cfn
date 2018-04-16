@@ -1,7 +1,7 @@
 //! Types for the `SES` service.
 
 /// The [`AWS::SES::ConfigurationSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-configurationset.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ConfigurationSet {
     properties: ConfigurationSetProperties
 }
@@ -79,7 +79,7 @@ impl From<ConfigurationSetProperties> for ConfigurationSet {
 }
 
 /// The [`AWS::SES::ConfigurationSetEventDestination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-configurationseteventdestination.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ConfigurationSetEventDestination {
     properties: ConfigurationSetEventDestinationProperties
 }
@@ -166,7 +166,7 @@ impl From<ConfigurationSetEventDestinationProperties> for ConfigurationSetEventD
 }
 
 /// The [`AWS::SES::ReceiptFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-receiptfilter.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ReceiptFilter {
     properties: ReceiptFilterProperties
 }
@@ -242,7 +242,7 @@ impl From<ReceiptFilterProperties> for ReceiptFilter {
 }
 
 /// The [`AWS::SES::ReceiptRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-receiptrule.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ReceiptRule {
     properties: ReceiptRuleProperties
 }
@@ -342,7 +342,7 @@ impl From<ReceiptRuleProperties> for ReceiptRule {
 }
 
 /// The [`AWS::SES::ReceiptRuleSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-receiptruleset.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ReceiptRuleSet {
     properties: ReceiptRuleSetProperties
 }
@@ -420,7 +420,7 @@ impl From<ReceiptRuleSetProperties> for ReceiptRuleSet {
 }
 
 /// The [`AWS::SES::Template`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-template.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Template {
     properties: TemplateProperties
 }

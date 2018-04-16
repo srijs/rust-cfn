@@ -1,7 +1,7 @@
 //! Types for the `Cloud9` service.
 
 /// The [`AWS::Cloud9::EnvironmentEC2`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloud9-environmentec2.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct EnvironmentEC2 {
     properties: EnvironmentEC2Properties
 }

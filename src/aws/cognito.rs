@@ -1,7 +1,7 @@
 //! Types for the `Cognito` service.
 
 /// The [`AWS::Cognito::IdentityPool`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypool.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct IdentityPool {
     properties: IdentityPoolProperties
 }
@@ -194,7 +194,7 @@ impl From<IdentityPoolProperties> for IdentityPool {
 }
 
 /// The [`AWS::Cognito::IdentityPoolRoleAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolroleattachment.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct IdentityPoolRoleAttachment {
     properties: IdentityPoolRoleAttachmentProperties
 }
@@ -296,7 +296,7 @@ impl From<IdentityPoolRoleAttachmentProperties> for IdentityPoolRoleAttachment {
 }
 
 /// The [`AWS::Cognito::UserPool`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct UserPool {
     properties: UserPoolProperties
 }
@@ -569,7 +569,7 @@ impl From<UserPoolProperties> for UserPool {
 }
 
 /// The [`AWS::Cognito::UserPoolClient`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolclient.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct UserPoolClient {
     properties: UserPoolClientProperties
 }
@@ -723,7 +723,7 @@ impl From<UserPoolClientProperties> for UserPoolClient {
 }
 
 /// The [`AWS::Cognito::UserPoolGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolgroup.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct UserPoolGroup {
     properties: UserPoolGroupProperties
 }
@@ -851,7 +851,7 @@ impl From<UserPoolGroupProperties> for UserPoolGroup {
 }
 
 /// The [`AWS::Cognito::UserPoolUser`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpooluser.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct UserPoolUser {
     properties: UserPoolUserProperties
 }
@@ -1005,7 +1005,7 @@ impl From<UserPoolUserProperties> for UserPoolUser {
 }
 
 /// The [`AWS::Cognito::UserPoolUserToGroupAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolusertogroupattachment.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct UserPoolUserToGroupAttachment {
     properties: UserPoolUserToGroupAttachmentProperties
 }

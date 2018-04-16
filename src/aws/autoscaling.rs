@@ -1,7 +1,7 @@
 //! Types for the `AutoScaling` service.
 
 /// The [`AWS::AutoScaling::AutoScalingGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct AutoScalingGroup {
     properties: AutoScalingGroupProperties
 }
@@ -309,7 +309,7 @@ impl From<AutoScalingGroupProperties> for AutoScalingGroup {
 }
 
 /// The [`AWS::AutoScaling::LaunchConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct LaunchConfiguration {
     properties: LaunchConfigurationProperties
 }
@@ -591,7 +591,7 @@ impl From<LaunchConfigurationProperties> for LaunchConfiguration {
 }
 
 /// The [`AWS::AutoScaling::LifecycleHook`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-as-lifecyclehook.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct LifecycleHook {
     properties: LifecycleHookProperties
 }
@@ -756,7 +756,7 @@ impl From<LifecycleHookProperties> for LifecycleHook {
 }
 
 /// The [`AWS::AutoScaling::ScalingPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-policy.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ScalingPolicy {
     properties: ScalingPolicyProperties
 }
@@ -949,7 +949,7 @@ impl From<ScalingPolicyProperties> for ScalingPolicy {
 }
 
 /// The [`AWS::AutoScaling::ScheduledAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-as-scheduledaction.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ScheduledAction {
     properties: ScheduledActionProperties
 }

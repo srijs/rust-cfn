@@ -1,7 +1,7 @@
 //! Types for the `Config` service.
 
 /// The [`AWS::Config::ConfigRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configrule.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ConfigRule {
     properties: ConfigRuleProperties
 }
@@ -142,7 +142,7 @@ impl From<ConfigRuleProperties> for ConfigRule {
 }
 
 /// The [`AWS::Config::ConfigurationRecorder`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configurationrecorder.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct ConfigurationRecorder {
     properties: ConfigurationRecorderProperties
 }
@@ -244,7 +244,7 @@ impl From<ConfigurationRecorderProperties> for ConfigurationRecorder {
 }
 
 /// The [`AWS::Config::DeliveryChannel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-deliverychannel.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DeliveryChannel {
     properties: DeliveryChannelProperties
 }

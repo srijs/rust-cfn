@@ -1,7 +1,7 @@
 //! Types for the `Glue` service.
 
 /// The [`AWS::Glue::Classifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-classifier.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Classifier {
     properties: ClassifierProperties
 }
@@ -79,7 +79,7 @@ impl From<ClassifierProperties> for Classifier {
 }
 
 /// The [`AWS::Glue::Connection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-connection.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Connection {
     properties: ConnectionProperties
 }
@@ -166,7 +166,7 @@ impl From<ConnectionProperties> for Connection {
 }
 
 /// The [`AWS::Glue::Crawler`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-crawler.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Crawler {
     properties: CrawlerProperties
 }
@@ -342,7 +342,7 @@ impl From<CrawlerProperties> for Crawler {
 }
 
 /// The [`AWS::Glue::Database`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-database.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Database {
     properties: DatabaseProperties
 }
@@ -429,7 +429,7 @@ impl From<DatabaseProperties> for Database {
 }
 
 /// The [`AWS::Glue::DevEndpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-devendpoint.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DevEndpoint {
     properties: DevEndpointProperties
 }
@@ -594,7 +594,7 @@ impl From<DevEndpointProperties> for DevEndpoint {
 }
 
 /// The [`AWS::Glue::Job`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-job.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Job {
     properties: JobProperties
 }
@@ -785,7 +785,7 @@ impl From<JobProperties> for Job {
 }
 
 /// The [`AWS::Glue::Partition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-partition.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Partition {
     properties: PartitionProperties
 }
@@ -894,7 +894,7 @@ impl From<PartitionProperties> for Partition {
 }
 
 /// The [`AWS::Glue::Table`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-table.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Table {
     properties: TableProperties
 }
@@ -992,7 +992,7 @@ impl From<TableProperties> for Table {
 }
 
 /// The [`AWS::Glue::Trigger`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-trigger.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Trigger {
     properties: TriggerProperties
 }

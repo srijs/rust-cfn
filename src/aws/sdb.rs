@@ -1,7 +1,7 @@
 //! Types for the `SDB` service.
 
 /// The [`AWS::SDB::Domain`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-simpledb.html) resource type.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Domain {
     properties: DomainProperties
 }
