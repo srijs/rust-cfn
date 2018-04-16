@@ -26,10 +26,10 @@ pub mod json {
 }
 
 /// Represents an AWS CloudFormation template.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Default, Serialize, Deserialize)]
 pub struct Template {
     #[serde(rename = "Description")]
-    description: String,
+    description: Option<String>,
     #[serde(rename = "Resources")]
     resources: Resources,
     #[serde(rename = "Outputs", default)]
@@ -38,12 +38,12 @@ pub struct Template {
 
 impl Template {
     /// Get the template description as a reference.
-    pub fn description(&self) -> &String {
+    pub fn description(&self) -> &Option<String> {
         &self.description
     }
 
     /// Get the template description as a mutable reference.
-    pub fn description_mut(&mut self) -> &mut String {
+    pub fn description_mut(&mut self) -> &mut Option<String> {
         &mut self.description
     }
 

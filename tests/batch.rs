@@ -7,7 +7,7 @@ fn managed_ec2_batch_environment() {
     let json = include_str!("./fixtures/Managed_EC2_Batch_Environment.template");
     let tpl = cfn::Template::from_json(json).unwrap();
 
-    assert!(tpl.description().starts_with(
+    assert!(tpl.description().as_ref().unwrap().starts_with(
         "AWS CloudFormation Sample Template Managed Single Batch Job Queue"));
 
     let vpc = tpl.resources().get::<cfn::aws::ec2::VPC>("VPC").unwrap();
