@@ -1,0 +1,3 @@
+pre-release-commit-message = "release {{version}}"
+no-dev-version = true
+
