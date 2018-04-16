@@ -28,9 +28,9 @@ pub mod json {
 /// Represents an AWS CloudFormation template.
 #[derive(Debug, Default, Serialize, Deserialize)]
 pub struct Template {
-    #[serde(rename = "Description")]
+    #[serde(rename = "Description", default, skip_serializing_if = "Option::is_none")]
     description: Option<String>,
-    #[serde(rename = "Resources")]
+    #[serde(rename = "Resources", default)]
     resources: Resources,
     #[serde(rename = "Outputs", default)]
     outputs: Outputs
@@ -100,4 +100,27 @@ mod private {
 
     pub trait Properties<R>: Into<R> + ::serde::Serialize + ::serde::de::DeserializeOwned {}
     impl<P, R> Properties<R> for P where P: Into<R> + ::serde::Serialize + ::serde::de::DeserializeOwned {}
+}
+
+#[cfg(test)]
+mod tests {
+    use serde_json::to_value;
+    use super::Template;
+
+    #[test]
+    fn deserialize_empty_template() {
+        let tpl = Template::from_json("{}").unwrap();
+        assert!(tpl.description().is_none())
+    }
+
+    #[test]
+    fn serialize_empty_template() {
+        let tpl = Template::default();
+        let val = to_value(&tpl).unwrap();
+        let obj = val.as_object().unwrap();
+        assert_eq!(2, obj.len());
+        assert_eq!(false, obj.contains_key("Description"));
+        assert_eq!(true, obj.contains_key("Resources"));
+        assert_eq!(true, obj.contains_key("Outputs"));
+    }
 }
