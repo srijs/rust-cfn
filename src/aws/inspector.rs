@@ -9,9 +9,15 @@ pub struct AssessmentTarget {
 /// Properties for the `AssessmentTarget` resource.
 #[derive(Debug)]
 pub struct AssessmentTargetProperties {
-    /// Property `AssessmentTargetName`.
+    /// Property [`AssessmentTargetName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttarget.html#cfn-inspector-assessmenttarget-assessmenttargetname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub assessment_target_name: Option<::Value<String>>,
-    /// Property `ResourceGroupArn`.
+    /// Property [`ResourceGroupArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttarget.html#cfn-inspector-assessmenttarget-resourcegrouparn).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub resource_group_arn: ::Value<String>,
 }
 
@@ -92,15 +98,30 @@ pub struct AssessmentTemplate {
 /// Properties for the `AssessmentTemplate` resource.
 #[derive(Debug)]
 pub struct AssessmentTemplateProperties {
-    /// Property `AssessmentTargetArn`.
+    /// Property [`AssessmentTargetArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttemplate.html#cfn-inspector-assessmenttemplate-assessmenttargetarn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub assessment_target_arn: ::Value<String>,
-    /// Property `AssessmentTemplateName`.
+    /// Property [`AssessmentTemplateName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttemplate.html#cfn-inspector-assessmenttemplate-assessmenttemplatename).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub assessment_template_name: Option<::Value<String>>,
-    /// Property `DurationInSeconds`.
+    /// Property [`DurationInSeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttemplate.html#cfn-inspector-assessmenttemplate-durationinseconds).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub duration_in_seconds: ::Value<u32>,
-    /// Property `RulesPackageArns`.
+    /// Property [`RulesPackageArns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttemplate.html#cfn-inspector-assessmenttemplate-rulespackagearns).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub rules_package_arns: ::ValueList<String>,
-    /// Property `UserAttributesForFindings`.
+    /// Property [`UserAttributesForFindings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-assessmenttemplate.html#cfn-inspector-assessmenttemplate-userattributesforfindings).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub user_attributes_for_findings: Option<::ValueList<::Tag>>,
 }
 
@@ -201,7 +222,10 @@ pub struct ResourceGroup {
 /// Properties for the `ResourceGroup` resource.
 #[derive(Debug)]
 pub struct ResourceGroupProperties {
-    /// Property `ResourceGroupTags`.
+    /// Property [`ResourceGroupTags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-inspector-resourcegroup.html#cfn-inspector-resourcegroup-resourcegrouptags).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub resource_group_tags: ::ValueList<::Tag>,
 }
 

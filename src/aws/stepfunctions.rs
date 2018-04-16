@@ -9,7 +9,10 @@ pub struct Activity {
 /// Properties for the `Activity` resource.
 #[derive(Debug)]
 pub struct ActivityProperties {
-    /// Property `Name`.
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-activity.html#cfn-stepfunctions-activity-name).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub name: ::Value<String>,
 }
 
@@ -82,11 +85,20 @@ pub struct StateMachine {
 /// Properties for the `StateMachine` resource.
 #[derive(Debug)]
 pub struct StateMachineProperties {
-    /// Property `DefinitionString`.
+    /// Property [`DefinitionString`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html#cfn-stepfunctions-statemachine-definitionstring).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub definition_string: ::Value<String>,
-    /// Property `RoleArn`.
+    /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html#cfn-stepfunctions-statemachine-rolearn).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub role_arn: ::Value<String>,
-    /// Property `StateMachineName`.
+    /// Property [`StateMachineName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html#cfn-stepfunctions-statemachine-statemachinename).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub state_machine_name: Option<::Value<String>>,
 }
 

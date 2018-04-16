@@ -9,9 +9,15 @@ pub struct Alias {
 /// Properties for the `Alias` resource.
 #[derive(Debug)]
 pub struct AliasProperties {
-    /// Property `AliasName`.
+    /// Property [`AliasName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-alias.html#cfn-kms-alias-aliasname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub alias_name: ::Value<String>,
-    /// Property `TargetKeyId`.
+    /// Property [`TargetKeyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-alias.html#cfn-kms-alias-targetkeyid).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub target_key_id: ::Value<String>,
 }
 
@@ -90,17 +96,35 @@ pub struct Key {
 /// Properties for the `Key` resource.
 #[derive(Debug)]
 pub struct KeyProperties {
-    /// Property `Description`.
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html#cfn-kms-key-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub description: Option<::Value<String>>,
-    /// Property `EnableKeyRotation`.
+    /// Property [`EnableKeyRotation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html#cfn-kms-key-enablekeyrotation).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub enable_key_rotation: Option<::Value<bool>>,
-    /// Property `Enabled`.
+    /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html#cfn-kms-key-enabled).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub enabled: Option<::Value<bool>>,
-    /// Property `KeyPolicy`.
+    /// Property [`KeyPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html#cfn-kms-key-keypolicy).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub key_policy: ::Value<::json::Value>,
-    /// Property `KeyUsage`.
+    /// Property [`KeyUsage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html#cfn-kms-key-keyusage).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub key_usage: Option<::Value<String>>,
-    /// Property `Tags`.
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html#cfn-kms-key-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub tags: Option<::ValueList<::Tag>>,
 }
 

@@ -9,7 +9,10 @@ pub struct Domain {
 /// Properties for the `Domain` resource.
 #[derive(Debug)]
 pub struct DomainProperties {
-    /// Property `Description`.
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-simpledb.html#cfn-sdb-domain-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub description: Option<::Value<String>>,
 }
 

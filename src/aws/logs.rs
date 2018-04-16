@@ -9,13 +9,25 @@ pub struct Destination {
 /// Properties for the `Destination` resource.
 #[derive(Debug)]
 pub struct DestinationProperties {
-    /// Property `DestinationName`.
+    /// Property [`DestinationName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-destination.html#cfn-logs-destination-destinationname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub destination_name: ::Value<String>,
-    /// Property `DestinationPolicy`.
+    /// Property [`DestinationPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-destination.html#cfn-logs-destination-destinationpolicy).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub destination_policy: ::Value<String>,
-    /// Property `RoleArn`.
+    /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-destination.html#cfn-logs-destination-rolearn).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub role_arn: ::Value<String>,
-    /// Property `TargetArn`.
+    /// Property [`TargetArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-destination.html#cfn-logs-destination-targetarn).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub target_arn: ::Value<String>,
 }
 
@@ -106,9 +118,15 @@ pub struct LogGroup {
 /// Properties for the `LogGroup` resource.
 #[derive(Debug)]
 pub struct LogGroupProperties {
-    /// Property `LogGroupName`.
+    /// Property [`LogGroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html#cfn-cwl-loggroup-loggroupname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub log_group_name: Option<::Value<String>>,
-    /// Property `RetentionInDays`.
+    /// Property [`RetentionInDays`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html#cfn-cwl-loggroup-retentionindays).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub retention_in_days: Option<::Value<u32>>,
 }
 
@@ -191,9 +209,15 @@ pub struct LogStream {
 /// Properties for the `LogStream` resource.
 #[derive(Debug)]
 pub struct LogStreamProperties {
-    /// Property `LogGroupName`.
+    /// Property [`LogGroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-logstream.html#cfn-logs-logstream-loggroupname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub log_group_name: ::Value<String>,
-    /// Property `LogStreamName`.
+    /// Property [`LogStreamName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-logstream.html#cfn-logs-logstream-logstreamname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub log_stream_name: Option<::Value<String>>,
 }
 
@@ -274,11 +298,20 @@ pub struct MetricFilter {
 /// Properties for the `MetricFilter` resource.
 #[derive(Debug)]
 pub struct MetricFilterProperties {
-    /// Property `FilterPattern`.
+    /// Property [`FilterPattern`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-metricfilter.html#cfn-cwl-metricfilter-filterpattern).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub filter_pattern: ::Value<String>,
-    /// Property `LogGroupName`.
+    /// Property [`LogGroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-metricfilter.html#cfn-cwl-metricfilter-loggroupname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub log_group_name: ::Value<String>,
-    /// Property `MetricTransformations`.
+    /// Property [`MetricTransformations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-metricfilter.html#cfn-cwl-metricfilter-metrictransformations).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub metric_transformations: ::ValueList<self::metric_filter::MetricTransformation>,
 }
 
@@ -363,13 +396,25 @@ pub struct SubscriptionFilter {
 /// Properties for the `SubscriptionFilter` resource.
 #[derive(Debug)]
 pub struct SubscriptionFilterProperties {
-    /// Property `DestinationArn`.
+    /// Property [`DestinationArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-subscriptionfilter.html#cfn-cwl-subscriptionfilter-destinationarn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub destination_arn: ::Value<String>,
-    /// Property `FilterPattern`.
+    /// Property [`FilterPattern`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-subscriptionfilter.html#cfn-cwl-subscriptionfilter-filterpattern).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub filter_pattern: ::Value<String>,
-    /// Property `LogGroupName`.
+    /// Property [`LogGroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-subscriptionfilter.html#cfn-cwl-subscriptionfilter-loggroupname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub log_group_name: ::Value<String>,
-    /// Property `RoleArn`.
+    /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-subscriptionfilter.html#cfn-cwl-subscriptionfilter-rolearn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub role_arn: Option<::Value<String>>,
 }
 
@@ -459,11 +504,20 @@ pub mod metric_filter {
     /// The [`AWS::Logs::MetricFilter.MetricTransformation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-metricfilter-metrictransformation.html) property type.
     #[derive(Debug)]
     pub struct MetricTransformation {
-        /// Property `MetricName`.
+        /// Property [`MetricName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-metricfilter-metrictransformation.html#cfn-cwl-metricfilter-metrictransformation-metricname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub metric_name: ::Value<String>,
-        /// Property `MetricNamespace`.
+        /// Property [`MetricNamespace`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-metricfilter-metrictransformation.html#cfn-cwl-metricfilter-metrictransformation-metricnamespace).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub metric_namespace: ::Value<String>,
-        /// Property `MetricValue`.
+        /// Property [`MetricValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-metricfilter-metrictransformation.html#cfn-cwl-metricfilter-metrictransformation-metricvalue).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub metric_value: ::Value<String>,
     }
 

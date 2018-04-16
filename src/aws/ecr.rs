@@ -9,11 +9,20 @@ pub struct Repository {
 /// Properties for the `Repository` resource.
 #[derive(Debug)]
 pub struct RepositoryProperties {
-    /// Property `LifecyclePolicy`.
+    /// Property [`LifecyclePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html#cfn-ecr-repository-lifecyclepolicy).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub lifecycle_policy: Option<::Value<self::repository::LifecyclePolicy>>,
-    /// Property `RepositoryName`.
+    /// Property [`RepositoryName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html#cfn-ecr-repository-repositoryname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub repository_name: Option<::Value<String>>,
-    /// Property `RepositoryPolicyText`.
+    /// Property [`RepositoryPolicyText`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html#cfn-ecr-repository-repositorypolicytext).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub repository_policy_text: Option<::Value<::json::Value>>,
 }
 
@@ -101,9 +110,15 @@ pub mod repository {
     /// The [`AWS::ECR::Repository.LifecyclePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-repository-lifecyclepolicy.html) property type.
     #[derive(Debug)]
     pub struct LifecyclePolicy {
-        /// Property `LifecyclePolicyText`.
+        /// Property [`LifecyclePolicyText`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-repository-lifecyclepolicy.html#cfn-ecr-repository-lifecyclepolicy-lifecyclepolicytext).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub lifecycle_policy_text: Option<::Value<String>>,
-        /// Property `RegistryId`.
+        /// Property [`RegistryId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-repository-lifecyclepolicy.html#cfn-ecr-repository-lifecyclepolicy-registryid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub registry_id: Option<::Value<String>>,
     }
 

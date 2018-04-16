@@ -167,7 +167,27 @@ fn generate_resource_declaration(service: &str, name: &str, spec: &ResourceType,
 fn generate_field(namespace_opt: Option<&str>, name: &str, spec: &PropertySpecification, p: &mut Printer) -> io::Result<()> {
     let field_name = mutate_field_name(name);
 
-    p.line(format_args!("/// Property `{}`.", name))?;
+    p.line(format_args!("/// Property [`{}`]({}).", name, spec.documentation))?;
+
+    if let Some(update_type) = spec.update_type {
+        p.line(format_args!("///"))?;
+        match update_type {
+            UpdateType::Mutable => {
+                p.line(format_args!("/// Update type: _Mutable_."))?;
+                p.line(format_args!("/// AWS CloudFormation doesn't replace the resource when you change this property."))?;
+            },
+            UpdateType::Immutable => {
+                p.line(format_args!("/// Update type: _Immutable_."))?;
+                p.line(format_args!("/// AWS CloudFormation replaces the resource when you change this property."))?;
+            },
+            UpdateType::Conditional => {
+                p.line(format_args!("/// Update type: _Conditional_."))?;
+                p.line(format_args!("/// Conditional updates can be mutable or immutable, depending on, for example, which other properties you updated."))?;
+                p.line(format_args!("/// For more information, see the relevant resource type documentation."))?;
+            }
+        }
+    }
+
     if spec.required.unwrap_or(true) {
         p.line(format_args!("pub {}: {},", field_name, generate_field_type(namespace_opt, spec)))?;
     } else {

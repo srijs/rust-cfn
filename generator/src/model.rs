@@ -142,7 +142,7 @@ pub enum PrimitiveType {
     Json
 }
 
-#[derive(Deserialize)]
+#[derive(Clone, Copy, Deserialize)]
 pub enum UpdateType {
     Mutable,
     Immutable,

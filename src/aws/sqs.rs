@@ -9,27 +9,60 @@ pub struct Queue {
 /// Properties for the `Queue` resource.
 #[derive(Debug)]
 pub struct QueueProperties {
-    /// Property `ContentBasedDeduplication`.
+    /// Property [`ContentBasedDeduplication`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-sqs-queue-contentbaseddeduplication).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub content_based_deduplication: Option<::Value<bool>>,
-    /// Property `DelaySeconds`.
+    /// Property [`DelaySeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-sqs-queue-delayseconds).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub delay_seconds: Option<::Value<u32>>,
-    /// Property `FifoQueue`.
+    /// Property [`FifoQueue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-sqs-queue-fifoqueue).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub fifo_queue: Option<::Value<bool>>,
-    /// Property `KmsDataKeyReusePeriodSeconds`.
+    /// Property [`KmsDataKeyReusePeriodSeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-sqs-queue-kmsdatakeyreuseperiodseconds).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub kms_data_key_reuse_period_seconds: Option<::Value<u32>>,
-    /// Property `KmsMasterKeyId`.
+    /// Property [`KmsMasterKeyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-sqs-queue-kmsmasterkeyid).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub kms_master_key_id: Option<::Value<String>>,
-    /// Property `MaximumMessageSize`.
+    /// Property [`MaximumMessageSize`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-sqs-queue-maxmesgsize).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub maximum_message_size: Option<::Value<u32>>,
-    /// Property `MessageRetentionPeriod`.
+    /// Property [`MessageRetentionPeriod`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-sqs-queue-msgretentionperiod).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub message_retention_period: Option<::Value<u32>>,
-    /// Property `QueueName`.
+    /// Property [`QueueName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-sqs-queue-name).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub queue_name: Option<::Value<String>>,
-    /// Property `ReceiveMessageWaitTimeSeconds`.
+    /// Property [`ReceiveMessageWaitTimeSeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-sqs-queue-receivemsgwaittime).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub receive_message_wait_time_seconds: Option<::Value<u32>>,
-    /// Property `RedrivePolicy`.
+    /// Property [`RedrivePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-sqs-queue-redrive).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub redrive_policy: Option<::Value<::json::Value>>,
-    /// Property `VisibilityTimeout`.
+    /// Property [`VisibilityTimeout`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-sqs-queue-visiblitytimeout).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub visibility_timeout: Option<::Value<u32>>,
 }
 
@@ -184,9 +217,15 @@ pub struct QueuePolicy {
 /// Properties for the `QueuePolicy` resource.
 #[derive(Debug)]
 pub struct QueuePolicyProperties {
-    /// Property `PolicyDocument`.
+    /// Property [`PolicyDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-policy.html#cfn-sqs-queuepolicy-policydoc).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub policy_document: ::Value<::json::Value>,
-    /// Property `Queues`.
+    /// Property [`Queues`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-policy.html#cfn-sqs-queuepolicy-queues).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub queues: ::ValueList<String>,
 }
 

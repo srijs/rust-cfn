@@ -9,11 +9,20 @@ pub struct Subscription {
 /// Properties for the `Subscription` resource.
 #[derive(Debug)]
 pub struct SubscriptionProperties {
-    /// Property `Endpoint`.
+    /// Property [`Endpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html#cfn-sns-endpoint).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub endpoint: Option<::Value<String>>,
-    /// Property `Protocol`.
+    /// Property [`Protocol`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html#cfn-sns-protocol).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub protocol: Option<::Value<String>>,
-    /// Property `TopicArn`.
+    /// Property [`TopicArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html#topicarn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub topic_arn: Option<::Value<String>>,
 }
 
@@ -104,11 +113,20 @@ pub struct Topic {
 /// Properties for the `Topic` resource.
 #[derive(Debug)]
 pub struct TopicProperties {
-    /// Property `DisplayName`.
+    /// Property [`DisplayName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html#cfn-sns-topic-displayname).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub display_name: Option<::Value<String>>,
-    /// Property `Subscription`.
+    /// Property [`Subscription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html#cfn-sns-topic-subscription).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub subscription: Option<::ValueList<self::topic::Subscription>>,
-    /// Property `TopicName`.
+    /// Property [`TopicName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html#cfn-sns-topic-topicname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub topic_name: Option<::Value<String>>,
 }
 
@@ -199,9 +217,15 @@ pub struct TopicPolicy {
 /// Properties for the `TopicPolicy` resource.
 #[derive(Debug)]
 pub struct TopicPolicyProperties {
-    /// Property `PolicyDocument`.
+    /// Property [`PolicyDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html#cfn-sns-topicpolicy-policydocument).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub policy_document: ::Value<::json::Value>,
-    /// Property `Topics`.
+    /// Property [`Topics`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html#cfn-sns-topicpolicy-topics).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub topics: ::ValueList<String>,
 }
 
@@ -277,9 +301,15 @@ pub mod topic {
     /// The [`AWS::SNS::Topic.Subscription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-subscription.html) property type.
     #[derive(Debug)]
     pub struct Subscription {
-        /// Property `Endpoint`.
+        /// Property [`Endpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-subscription.html#cfn-sns-topic-subscription-endpoint).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub endpoint: ::Value<String>,
-        /// Property `Protocol`.
+        /// Property [`Protocol`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-subscription.html#cfn-sns-topic-subscription-protocol).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub protocol: ::Value<String>,
     }
 
