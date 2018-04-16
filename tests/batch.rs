@@ -1,4 +1,3 @@
-extern crate serde_json;
 extern crate cfn;
 
 use cfn::{Resource, Expr};
@@ -6,7 +5,7 @@ use cfn::{Resource, Expr};
 #[test]
 fn managed_ec2_batch_environment() {
     let json = include_str!("./fixtures/Managed_EC2_Batch_Environment.template");
-    let tpl = serde_json::from_str::<cfn::Template>(json).unwrap();
+    let tpl = cfn::Template::from_json(json).unwrap();
 
     assert!(tpl.description().starts_with(
         "AWS CloudFormation Sample Template Managed Single Batch Job Queue"));

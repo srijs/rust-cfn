@@ -68,6 +68,20 @@ impl Template {
     }
 }
 
+impl Template {
+    /// Deserialize a AWS CloudFormation template in JSON format.
+    pub fn from_json<T: AsRef<str>>(input: T) -> Result<Template, ::Error> {
+        serde_json::from_str(input.as_ref())
+            .map_err(|err| ::Error::new(::ErrorKind::Serialization, err))
+    }
+
+    /// Serialize the template into an AWS CloudFormation template in JSON format.
+    pub fn to_json(&self) -> Result<String, ::Error> {
+        serde_json::to_string(self)
+            .map_err(|err| ::Error::new(::ErrorKind::Serialization, err))
+    }
+}
+
 /// Trait for stack resources, such as an Amazon Elastic Compute Cloud instance or an Amazon Simple Storage Service bucket.
 pub trait Resource: Sized + private::Sealed {
     /// Uniquely identifies the resource type. 
