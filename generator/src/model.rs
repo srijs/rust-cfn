@@ -30,9 +30,9 @@ pub struct Specification {
 
 #[derive(Deserialize)]
 pub struct PropertyType {
-    #[serde(rename="Documentation")]
+    #[serde(rename="Documentation", default)]
     pub documentation: String,
-    #[serde(rename="Properties")]
+    #[serde(rename="Properties", default)]
     pub properties: BTreeMap<String, PropertySpecification>
 }
 
@@ -44,10 +44,10 @@ pub struct ResourceType {
     #[serde(rename="Attributes")]
     pub attributes: Option<BTreeMap<String, AttributeSpecification>>,
     /// A link to the AWS CloudFormation User Guide for information about the resource. 
-    #[serde(rename="Documentation")]
+    #[serde(rename="Documentation", default)]
     pub documentation: String,
     /// A list of property specifications for the resource. For details, see `PropertySpecification`.
-    #[serde(rename="Properties")]
+    #[serde(rename="Properties", default)]
     pub properties: BTreeMap<String, PropertySpecification>
 }
 

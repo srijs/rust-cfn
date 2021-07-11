@@ -4,7 +4,7 @@ use std::fmt::Arguments;
 static PADDING: &str = "                            ";
 
 pub struct Printer {
-    inner: Box<Write>,
+    inner: Box<dyn Write>,
     indent: usize
 }
 

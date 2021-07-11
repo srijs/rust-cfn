@@ -13,7 +13,7 @@ pub struct Value<T>(ValueInner<T>);
 impl<T> Value<T> {
     /// Create a new value.
     pub fn new(value: T) -> Value<T> {
-        Value(ValueInner::Value(value))
+        Value(ValueInner::Value(Box::new(value)))
     }
 
     /// Create a new value backed by a reference.
@@ -74,7 +74,7 @@ impl<T> From<T> for Value<T> {
 
 #[derive(Debug)]
 enum ValueInner<T> {
-    Value(T),
+    Value(Box<T>),
     Ref(String),
     Expr(Expr)
 }
@@ -110,7 +110,7 @@ enum DeserializeValueProxy<'a, T: DeserializeValue> {
 impl<T: SerializeValue> Serialize for Value<T> {
     fn serialize<S: Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let proxy = match self.0 {
-            ValueInner::Value(ref literal) => SerializeValueProxy::Value(literal),
+            ValueInner::Value(ref literal) => SerializeValueProxy::Value(literal.as_ref()),
             ValueInner::Ref(ref id) => SerializeValueProxy::Ref(SerdeRef { id }),
             ValueInner::Expr(ref expr) => SerializeValueProxy::Expr(expr)
         };
@@ -122,7 +122,7 @@ impl<'de, T: DeserializeValue> Deserialize<'de> for Value<T> {
     fn deserialize<D: Deserializer<'de>>(d: D) -> Result<Self, D::Error> {
         Deserialize::deserialize(d).map(|proxy| {
             let inner = match proxy {
-                DeserializeValueProxy::Value(t) => ValueInner::Value(t),
+                DeserializeValueProxy::Value(t) => ValueInner::Value(Box::new(t)),
                 DeserializeValueProxy::Ref(SerdeRef { id }) => ValueInner::Ref(id.to_owned()),
                 DeserializeValueProxy::Expr(expr) => ValueInner::Expr(expr)
             };

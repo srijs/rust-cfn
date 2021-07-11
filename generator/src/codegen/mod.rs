@@ -18,11 +18,14 @@ use self::serde::{
 };
 
 pub fn generate<P: AsRef<Path>>(spec: Specification, base_path: P) -> io::Result<()> {
-    let resource_groups = spec.resource_types.into_iter().map(|(res_name, res_spec)| {
-        assert!(res_name.starts_with("AWS::"));
-        let split = res_name[5..].split("::").collect::<Vec<_>>();
-        assert!(split.len() == 2);
-        (split[0].to_owned(), split[1].to_owned(), res_spec)
+    let resource_groups = spec.resource_types.into_iter().filter_map(|(res_name, res_spec)| {
+        if res_name.starts_with("AWS::") {
+            let split = res_name[5..].split("::").collect::<Vec<_>>();
+            assert!(split.len() == 2);
+            Some((split[0].to_owned(), split[1].to_owned(), res_spec))
+        } else {
+            None
+        }
     }).group_by(|&(ref service_name, _, _)| service_name.to_owned());
 
     let property_groups = spec.property_types.into_iter().flatten().filter_map(|(prop_name, prop_spec)| {
@@ -225,7 +228,11 @@ fn mutate_field_name(name: &str) -> String {
     let mut field_name = name.to_snake_case();
 
     if field_name == "type" {
-        field_name = "type_".into();
+        field_name = "r#type".into();
+    }
+
+    if field_name == "match" {
+        field_name = "r#match".into();
     }
 
     field_name
