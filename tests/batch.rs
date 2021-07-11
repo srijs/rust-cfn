@@ -40,10 +40,10 @@ fn managed_ec2_batch_environment() {
     assert_eq!(roles[0].as_reference().unwrap(), "EcsInstanceRole");
 
     let job_definition = tpl.resources().get::<cfn::aws::batch::JobDefinition>("JobDefinition").unwrap();
-    assert_eq!(job_definition.properties().type_.as_value().unwrap(), "container");
-    let container_props = job_definition.properties().container_properties.as_value().unwrap();
-    assert_eq!(&2, container_props.vcpus.as_value().unwrap());
-    assert_eq!(&2000, container_props.memory.as_value().unwrap());
+    assert_eq!(job_definition.properties().r#type.as_value().unwrap(), "container");
+    let container_props = job_definition.properties().container_properties.as_ref().unwrap().as_value().unwrap();
+    assert_eq!(&2, container_props.vcpus.as_ref().unwrap().as_value().unwrap());
+    assert_eq!(&2000, container_props.memory.as_ref().unwrap().as_value().unwrap());
     let image_expr = container_props.image.as_expression().unwrap();
     {
         let &Expr::Join { ref delimiter, ref values } = image_expr;
