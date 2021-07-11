@@ -766,7 +766,7 @@ pub mod byte_match_set {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub type_: ::Value<String>,
+        pub r#type: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for FieldToMatch {
@@ -775,7 +775,7 @@ pub mod byte_match_set {
             if let Some(ref data) = self.data {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Data", data)?;
             }
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -793,7 +793,7 @@ pub mod byte_match_set {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut data: Option<::Value<String>> = None;
-                    let mut type_: Option<::Value<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -801,7 +801,7 @@ pub mod byte_match_set {
                                 data = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Type" => {
-                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -809,7 +809,7 @@ pub mod byte_match_set {
 
                     Ok(FieldToMatch {
                         data: data,
-                        type_: type_.ok_or(::serde::de::Error::missing_field("Type"))?,
+                        r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
                     })
                 }
             }
@@ -829,7 +829,7 @@ pub mod ip_set {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub type_: ::Value<String>,
+        pub r#type: ::Value<String>,
         /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-ipset-ipsetdescriptors.html#cfn-waf-ipset-ipsetdescriptors-value).
         ///
         /// Update type: _Mutable_.
@@ -840,7 +840,7 @@ pub mod ip_set {
     impl ::codec::SerializeValue for IPSetDescriptor {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -858,13 +858,13 @@ pub mod ip_set {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut type_: Option<::Value<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
                     let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Type" => {
-                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Value" => {
                                 value = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -874,7 +874,7 @@ pub mod ip_set {
                     }
 
                     Ok(IPSetDescriptor {
-                        type_: type_.ok_or(::serde::de::Error::missing_field("Type"))?,
+                        r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
                         value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
                     })
                 }
@@ -905,7 +905,7 @@ pub mod rule {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub type_: ::Value<String>,
+        pub r#type: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for Predicate {
@@ -913,7 +913,7 @@ pub mod rule {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataId", &self.data_id)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Negated", &self.negated)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -932,7 +932,7 @@ pub mod rule {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut data_id: Option<::Value<String>> = None;
                     let mut negated: Option<::Value<bool>> = None;
-                    let mut type_: Option<::Value<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -943,7 +943,7 @@ pub mod rule {
                                 negated = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Type" => {
-                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -952,7 +952,7 @@ pub mod rule {
                     Ok(Predicate {
                         data_id: data_id.ok_or(::serde::de::Error::missing_field("DataId"))?,
                         negated: negated.ok_or(::serde::de::Error::missing_field("Negated"))?,
-                        type_: type_.ok_or(::serde::de::Error::missing_field("Type"))?,
+                        r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
                     })
                 }
             }
@@ -977,7 +977,7 @@ pub mod size_constraint_set {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub type_: ::Value<String>,
+        pub r#type: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for FieldToMatch {
@@ -986,7 +986,7 @@ pub mod size_constraint_set {
             if let Some(ref data) = self.data {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Data", data)?;
             }
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1004,7 +1004,7 @@ pub mod size_constraint_set {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut data: Option<::Value<String>> = None;
-                    let mut type_: Option<::Value<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1012,7 +1012,7 @@ pub mod size_constraint_set {
                                 data = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Type" => {
-                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -1020,7 +1020,7 @@ pub mod size_constraint_set {
 
                     Ok(FieldToMatch {
                         data: data,
-                        type_: type_.ok_or(::serde::de::Error::missing_field("Type"))?,
+                        r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
                     })
                 }
             }
@@ -1129,7 +1129,7 @@ pub mod sql_injection_match_set {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub type_: ::Value<String>,
+        pub r#type: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for FieldToMatch {
@@ -1138,7 +1138,7 @@ pub mod sql_injection_match_set {
             if let Some(ref data) = self.data {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Data", data)?;
             }
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1156,7 +1156,7 @@ pub mod sql_injection_match_set {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut data: Option<::Value<String>> = None;
-                    let mut type_: Option<::Value<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1164,7 +1164,7 @@ pub mod sql_injection_match_set {
                                 data = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Type" => {
-                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -1172,7 +1172,7 @@ pub mod sql_injection_match_set {
 
                     Ok(FieldToMatch {
                         data: data,
-                        type_: type_.ok_or(::serde::de::Error::missing_field("Type"))?,
+                        r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
                     })
                 }
             }
@@ -1254,7 +1254,7 @@ pub mod web_acl {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub action: ::Value<WafAction>,
+        pub action: Option<::Value<WafAction>>,
         /// Property [`Priority`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-waf-webacl-rules.html#cfn-waf-webacl-rules-priority).
         ///
         /// Update type: _Mutable_.
@@ -1270,7 +1270,9 @@ pub mod web_acl {
     impl ::codec::SerializeValue for ActivatedRule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Action", &self.action)?;
+            if let Some(ref action) = self.action {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Action", action)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Priority", &self.priority)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleId", &self.rule_id)?;
             ::serde::ser::SerializeMap::end(map)
@@ -1309,7 +1311,7 @@ pub mod web_acl {
                     }
 
                     Ok(ActivatedRule {
-                        action: action.ok_or(::serde::de::Error::missing_field("Action"))?,
+                        action: action,
                         priority: priority.ok_or(::serde::de::Error::missing_field("Priority"))?,
                         rule_id: rule_id.ok_or(::serde::de::Error::missing_field("RuleId"))?,
                     })
@@ -1327,13 +1329,13 @@ pub mod web_acl {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub type_: ::Value<String>,
+        pub r#type: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for WafAction {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1350,19 +1352,19 @@ pub mod web_acl {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut type_: Option<::Value<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Type" => {
-                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
                     }
 
                     Ok(WafAction {
-                        type_: type_.ok_or(::serde::de::Error::missing_field("Type"))?,
+                        r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
                     })
                 }
             }
@@ -1387,7 +1389,7 @@ pub mod xss_match_set {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub type_: ::Value<String>,
+        pub r#type: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for FieldToMatch {
@@ -1396,7 +1398,7 @@ pub mod xss_match_set {
             if let Some(ref data) = self.data {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Data", data)?;
             }
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1414,7 +1416,7 @@ pub mod xss_match_set {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut data: Option<::Value<String>> = None;
-                    let mut type_: Option<::Value<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1422,7 +1424,7 @@ pub mod xss_match_set {
                                 data = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Type" => {
-                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -1430,7 +1432,7 @@ pub mod xss_match_set {
 
                     Ok(FieldToMatch {
                         data: data,
-                        type_: type_.ok_or(::serde::de::Error::missing_field("Type"))?,
+                        r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
                     })
                 }
             }

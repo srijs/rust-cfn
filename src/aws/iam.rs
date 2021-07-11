@@ -475,6 +475,121 @@ impl From<ManagedPolicyProperties> for ManagedPolicy {
     }
 }
 
+/// The [`AWS::IAM::OIDCProvider`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-oidcprovider.html) resource type.
+#[derive(Debug, Default)]
+pub struct OIDCProvider {
+    properties: OIDCProviderProperties
+}
+
+/// Properties for the `OIDCProvider` resource.
+#[derive(Debug, Default)]
+pub struct OIDCProviderProperties {
+    /// Property [`ClientIdList`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-oidcprovider.html#cfn-iam-oidcprovider-clientidlist).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub client_id_list: Option<::ValueList<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-oidcprovider.html#cfn-iam-oidcprovider-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`ThumbprintList`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-oidcprovider.html#cfn-iam-oidcprovider-thumbprintlist).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub thumbprint_list: ::ValueList<String>,
+    /// Property [`Url`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-oidcprovider.html#cfn-iam-oidcprovider-url).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub url: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for OIDCProviderProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref client_id_list) = self.client_id_list {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientIdList", client_id_list)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThumbprintList", &self.thumbprint_list)?;
+        if let Some(ref url) = self.url {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Url", url)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for OIDCProviderProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<OIDCProviderProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = OIDCProviderProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type OIDCProviderProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut client_id_list: Option<::ValueList<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut thumbprint_list: Option<::ValueList<String>> = None;
+                let mut url: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "ClientIdList" => {
+                            client_id_list = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ThumbprintList" => {
+                            thumbprint_list = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Url" => {
+                            url = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(OIDCProviderProperties {
+                    client_id_list: client_id_list,
+                    tags: tags,
+                    thumbprint_list: thumbprint_list.ok_or(::serde::de::Error::missing_field("ThumbprintList"))?,
+                    url: url,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for OIDCProvider {
+    type Properties = OIDCProviderProperties;
+    const TYPE: &'static str = "AWS::IAM::OIDCProvider";
+    fn properties(&self) -> &OIDCProviderProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut OIDCProviderProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for OIDCProvider {}
+
+impl From<OIDCProviderProperties> for OIDCProvider {
+    fn from(properties: OIDCProviderProperties) -> OIDCProvider {
+        OIDCProvider { properties }
+    }
+}
+
 /// The [`AWS::IAM::Policy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html) resource type.
 #[derive(Debug, Default)]
 pub struct Policy {
@@ -615,16 +730,31 @@ pub struct RoleProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub assume_role_policy_document: ::Value<::json::Value>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html#cfn-iam-role-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
     /// Property [`ManagedPolicyArns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html#cfn-iam-role-managepolicyarns).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub managed_policy_arns: Option<::ValueList<String>>,
+    /// Property [`MaxSessionDuration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html#cfn-iam-role-maxsessionduration).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub max_session_duration: Option<::Value<u32>>,
     /// Property [`Path`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html#cfn-iam-role-path).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub path: Option<::Value<String>>,
+    /// Property [`PermissionsBoundary`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html#cfn-iam-role-permissionsboundary).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub permissions_boundary: Option<::Value<String>>,
     /// Property [`Policies`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html#cfn-iam-role-policies).
     ///
     /// Update type: _Mutable_.
@@ -635,23 +765,40 @@ pub struct RoleProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub role_name: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html#cfn-iam-role-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
 }
 
 impl ::serde::Serialize for RoleProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssumeRolePolicyDocument", &self.assume_role_policy_document)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
         if let Some(ref managed_policy_arns) = self.managed_policy_arns {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ManagedPolicyArns", managed_policy_arns)?;
         }
+        if let Some(ref max_session_duration) = self.max_session_duration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxSessionDuration", max_session_duration)?;
+        }
         if let Some(ref path) = self.path {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Path", path)?;
+        }
+        if let Some(ref permissions_boundary) = self.permissions_boundary {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PermissionsBoundary", permissions_boundary)?;
         }
         if let Some(ref policies) = self.policies {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Policies", policies)?;
         }
         if let Some(ref role_name) = self.role_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleName", role_name)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
         ::serde::ser::SerializeMap::end(map)
     }
@@ -670,21 +817,34 @@ impl<'de> ::serde::Deserialize<'de> for RoleProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut assume_role_policy_document: Option<::Value<::json::Value>> = None;
+                let mut description: Option<::Value<String>> = None;
                 let mut managed_policy_arns: Option<::ValueList<String>> = None;
+                let mut max_session_duration: Option<::Value<u32>> = None;
                 let mut path: Option<::Value<String>> = None;
+                let mut permissions_boundary: Option<::Value<String>> = None;
                 let mut policies: Option<::ValueList<self::role::Policy>> = None;
                 let mut role_name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "AssumeRolePolicyDocument" => {
                             assume_role_policy_document = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "ManagedPolicyArns" => {
                             managed_policy_arns = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "MaxSessionDuration" => {
+                            max_session_duration = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Path" => {
                             path = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PermissionsBoundary" => {
+                            permissions_boundary = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Policies" => {
                             policies = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -692,16 +852,23 @@ impl<'de> ::serde::Deserialize<'de> for RoleProperties {
                         "RoleName" => {
                             role_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
 
                 Ok(RoleProperties {
                     assume_role_policy_document: assume_role_policy_document.ok_or(::serde::de::Error::missing_field("AssumeRolePolicyDocument"))?,
+                    description: description,
                     managed_policy_arns: managed_policy_arns,
+                    max_session_duration: max_session_duration,
                     path: path,
+                    permissions_boundary: permissions_boundary,
                     policies: policies,
                     role_name: role_name,
+                    tags: tags,
                 })
             }
         }
@@ -726,6 +893,353 @@ impl ::private::Sealed for Role {}
 impl From<RoleProperties> for Role {
     fn from(properties: RoleProperties) -> Role {
         Role { properties }
+    }
+}
+
+/// The [`AWS::IAM::SAMLProvider`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-samlprovider.html) resource type.
+#[derive(Debug, Default)]
+pub struct SAMLProvider {
+    properties: SAMLProviderProperties
+}
+
+/// Properties for the `SAMLProvider` resource.
+#[derive(Debug, Default)]
+pub struct SAMLProviderProperties {
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-samlprovider.html#cfn-iam-samlprovider-name).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub name: Option<::Value<String>>,
+    /// Property [`SamlMetadataDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-samlprovider.html#cfn-iam-samlprovider-samlmetadatadocument).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub saml_metadata_document: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-samlprovider.html#cfn-iam-samlprovider-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for SAMLProviderProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SamlMetadataDocument", &self.saml_metadata_document)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for SAMLProviderProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<SAMLProviderProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = SAMLProviderProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type SAMLProviderProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut name: Option<::Value<String>> = None;
+                let mut saml_metadata_document: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SamlMetadataDocument" => {
+                            saml_metadata_document = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(SAMLProviderProperties {
+                    name: name,
+                    saml_metadata_document: saml_metadata_document.ok_or(::serde::de::Error::missing_field("SamlMetadataDocument"))?,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for SAMLProvider {
+    type Properties = SAMLProviderProperties;
+    const TYPE: &'static str = "AWS::IAM::SAMLProvider";
+    fn properties(&self) -> &SAMLProviderProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut SAMLProviderProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for SAMLProvider {}
+
+impl From<SAMLProviderProperties> for SAMLProvider {
+    fn from(properties: SAMLProviderProperties) -> SAMLProvider {
+        SAMLProvider { properties }
+    }
+}
+
+/// The [`AWS::IAM::ServerCertificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-servercertificate.html) resource type.
+#[derive(Debug, Default)]
+pub struct ServerCertificate {
+    properties: ServerCertificateProperties
+}
+
+/// Properties for the `ServerCertificate` resource.
+#[derive(Debug, Default)]
+pub struct ServerCertificateProperties {
+    /// Property [`CertificateBody`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-servercertificate.html#cfn-iam-servercertificate-certificatebody).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub certificate_body: Option<::Value<String>>,
+    /// Property [`CertificateChain`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-servercertificate.html#cfn-iam-servercertificate-certificatechain).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub certificate_chain: Option<::Value<String>>,
+    /// Property [`Path`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-servercertificate.html#cfn-iam-servercertificate-path).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub path: Option<::Value<String>>,
+    /// Property [`PrivateKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-servercertificate.html#cfn-iam-servercertificate-privatekey).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub private_key: Option<::Value<String>>,
+    /// Property [`ServerCertificateName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-servercertificate.html#cfn-iam-servercertificate-servercertificatename).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub server_certificate_name: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-servercertificate.html#cfn-iam-servercertificate-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for ServerCertificateProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref certificate_body) = self.certificate_body {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificateBody", certificate_body)?;
+        }
+        if let Some(ref certificate_chain) = self.certificate_chain {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificateChain", certificate_chain)?;
+        }
+        if let Some(ref path) = self.path {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Path", path)?;
+        }
+        if let Some(ref private_key) = self.private_key {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateKey", private_key)?;
+        }
+        if let Some(ref server_certificate_name) = self.server_certificate_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServerCertificateName", server_certificate_name)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ServerCertificateProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ServerCertificateProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ServerCertificateProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ServerCertificateProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut certificate_body: Option<::Value<String>> = None;
+                let mut certificate_chain: Option<::Value<String>> = None;
+                let mut path: Option<::Value<String>> = None;
+                let mut private_key: Option<::Value<String>> = None;
+                let mut server_certificate_name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "CertificateBody" => {
+                            certificate_body = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "CertificateChain" => {
+                            certificate_chain = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Path" => {
+                            path = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PrivateKey" => {
+                            private_key = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ServerCertificateName" => {
+                            server_certificate_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ServerCertificateProperties {
+                    certificate_body: certificate_body,
+                    certificate_chain: certificate_chain,
+                    path: path,
+                    private_key: private_key,
+                    server_certificate_name: server_certificate_name,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for ServerCertificate {
+    type Properties = ServerCertificateProperties;
+    const TYPE: &'static str = "AWS::IAM::ServerCertificate";
+    fn properties(&self) -> &ServerCertificateProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut ServerCertificateProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for ServerCertificate {}
+
+impl From<ServerCertificateProperties> for ServerCertificate {
+    fn from(properties: ServerCertificateProperties) -> ServerCertificate {
+        ServerCertificate { properties }
+    }
+}
+
+/// The [`AWS::IAM::ServiceLinkedRole`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-servicelinkedrole.html) resource type.
+#[derive(Debug, Default)]
+pub struct ServiceLinkedRole {
+    properties: ServiceLinkedRoleProperties
+}
+
+/// Properties for the `ServiceLinkedRole` resource.
+#[derive(Debug, Default)]
+pub struct ServiceLinkedRoleProperties {
+    /// Property [`AWSServiceName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-servicelinkedrole.html#cfn-iam-servicelinkedrole-awsservicename).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub aws_service_name: ::Value<String>,
+    /// Property [`CustomSuffix`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-servicelinkedrole.html#cfn-iam-servicelinkedrole-customsuffix).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub custom_suffix: Option<::Value<String>>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-servicelinkedrole.html#cfn-iam-servicelinkedrole-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for ServiceLinkedRoleProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AWSServiceName", &self.aws_service_name)?;
+        if let Some(ref custom_suffix) = self.custom_suffix {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomSuffix", custom_suffix)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ServiceLinkedRoleProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ServiceLinkedRoleProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ServiceLinkedRoleProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ServiceLinkedRoleProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut aws_service_name: Option<::Value<String>> = None;
+                let mut custom_suffix: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AWSServiceName" => {
+                            aws_service_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "CustomSuffix" => {
+                            custom_suffix = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ServiceLinkedRoleProperties {
+                    aws_service_name: aws_service_name.ok_or(::serde::de::Error::missing_field("AWSServiceName"))?,
+                    custom_suffix: custom_suffix,
+                    description: description,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for ServiceLinkedRole {
+    type Properties = ServiceLinkedRoleProperties;
+    const TYPE: &'static str = "AWS::IAM::ServiceLinkedRole";
+    fn properties(&self) -> &ServiceLinkedRoleProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut ServiceLinkedRoleProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for ServiceLinkedRole {}
+
+impl From<ServiceLinkedRoleProperties> for ServiceLinkedRole {
+    fn from(properties: ServiceLinkedRoleProperties) -> ServiceLinkedRole {
+        ServiceLinkedRole { properties }
     }
 }
 
@@ -758,11 +1272,21 @@ pub struct UserProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub path: Option<::Value<String>>,
+    /// Property [`PermissionsBoundary`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html#cfn-iam-user-permissionsboundary).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub permissions_boundary: Option<::Value<String>>,
     /// Property [`Policies`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html#cfn-iam-user-policies).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub policies: Option<::ValueList<self::user::Policy>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html#cfn-iam-user-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
     /// Property [`UserName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html#cfn-iam-user-username).
     ///
     /// Update type: _Immutable_.
@@ -785,8 +1309,14 @@ impl ::serde::Serialize for UserProperties {
         if let Some(ref path) = self.path {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Path", path)?;
         }
+        if let Some(ref permissions_boundary) = self.permissions_boundary {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PermissionsBoundary", permissions_boundary)?;
+        }
         if let Some(ref policies) = self.policies {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Policies", policies)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
         if let Some(ref user_name) = self.user_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserName", user_name)?;
@@ -811,7 +1341,9 @@ impl<'de> ::serde::Deserialize<'de> for UserProperties {
                 let mut login_profile: Option<::Value<self::user::LoginProfile>> = None;
                 let mut managed_policy_arns: Option<::ValueList<String>> = None;
                 let mut path: Option<::Value<String>> = None;
+                let mut permissions_boundary: Option<::Value<String>> = None;
                 let mut policies: Option<::ValueList<self::user::Policy>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut user_name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -828,8 +1360,14 @@ impl<'de> ::serde::Deserialize<'de> for UserProperties {
                         "Path" => {
                             path = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "PermissionsBoundary" => {
+                            permissions_boundary = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Policies" => {
                             policies = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "UserName" => {
                             user_name = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -843,7 +1381,9 @@ impl<'de> ::serde::Deserialize<'de> for UserProperties {
                     login_profile: login_profile,
                     managed_policy_arns: managed_policy_arns,
                     path: path,
+                    permissions_boundary: permissions_boundary,
                     policies: policies,
+                    tags: tags,
                     user_name: user_name,
                 })
             }
@@ -956,6 +1496,121 @@ impl ::private::Sealed for UserToGroupAddition {}
 impl From<UserToGroupAdditionProperties> for UserToGroupAddition {
     fn from(properties: UserToGroupAdditionProperties) -> UserToGroupAddition {
         UserToGroupAddition { properties }
+    }
+}
+
+/// The [`AWS::IAM::VirtualMFADevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-virtualmfadevice.html) resource type.
+#[derive(Debug, Default)]
+pub struct VirtualMFADevice {
+    properties: VirtualMFADeviceProperties
+}
+
+/// Properties for the `VirtualMFADevice` resource.
+#[derive(Debug, Default)]
+pub struct VirtualMFADeviceProperties {
+    /// Property [`Path`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-virtualmfadevice.html#cfn-iam-virtualmfadevice-path).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub path: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-virtualmfadevice.html#cfn-iam-virtualmfadevice-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`Users`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-virtualmfadevice.html#cfn-iam-virtualmfadevice-users).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub users: ::ValueList<String>,
+    /// Property [`VirtualMfaDeviceName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-virtualmfadevice.html#cfn-iam-virtualmfadevice-virtualmfadevicename).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub virtual_mfa_device_name: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for VirtualMFADeviceProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref path) = self.path {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Path", path)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Users", &self.users)?;
+        if let Some(ref virtual_mfa_device_name) = self.virtual_mfa_device_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VirtualMfaDeviceName", virtual_mfa_device_name)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for VirtualMFADeviceProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<VirtualMFADeviceProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = VirtualMFADeviceProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type VirtualMFADeviceProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut path: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut users: Option<::ValueList<String>> = None;
+                let mut virtual_mfa_device_name: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Path" => {
+                            path = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Users" => {
+                            users = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "VirtualMfaDeviceName" => {
+                            virtual_mfa_device_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(VirtualMFADeviceProperties {
+                    path: path,
+                    tags: tags,
+                    users: users.ok_or(::serde::de::Error::missing_field("Users"))?,
+                    virtual_mfa_device_name: virtual_mfa_device_name,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for VirtualMFADevice {
+    type Properties = VirtualMFADeviceProperties;
+    const TYPE: &'static str = "AWS::IAM::VirtualMFADevice";
+    fn properties(&self) -> &VirtualMFADeviceProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut VirtualMFADeviceProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for VirtualMFADevice {}
+
+impl From<VirtualMFADeviceProperties> for VirtualMFADevice {
+    fn from(properties: VirtualMFADeviceProperties) -> VirtualMFADevice {
+        VirtualMFADevice { properties }
     }
 }
 

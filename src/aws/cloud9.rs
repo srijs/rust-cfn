@@ -14,11 +14,21 @@ pub struct EnvironmentEC2Properties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub automatic_stop_time_minutes: Option<::Value<u32>>,
-    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloud9-environmentec2.html#cfn-cloud9-environmentec2-description).
+    /// Property [`ConnectionType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloud9-environmentec2.html#cfn-cloud9-environmentec2-connectiontype).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
+    pub connection_type: Option<::Value<String>>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloud9-environmentec2.html#cfn-cloud9-environmentec2-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub description: Option<::Value<String>>,
+    /// Property [`ImageId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloud9-environmentec2.html#cfn-cloud9-environmentec2-imageid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub image_id: Option<::Value<String>>,
     /// Property [`InstanceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloud9-environmentec2.html#cfn-cloud9-environmentec2-instancetype).
     ///
     /// Update type: _Immutable_.
@@ -26,8 +36,8 @@ pub struct EnvironmentEC2Properties {
     pub instance_type: ::Value<String>,
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloud9-environmentec2.html#cfn-cloud9-environmentec2-name).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub name: Option<::Value<String>>,
     /// Property [`OwnerArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloud9-environmentec2.html#cfn-cloud9-environmentec2-ownerarn).
     ///
@@ -44,6 +54,11 @@ pub struct EnvironmentEC2Properties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub subnet_id: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloud9-environmentec2.html#cfn-cloud9-environmentec2-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
 }
 
 impl ::serde::Serialize for EnvironmentEC2Properties {
@@ -52,8 +67,14 @@ impl ::serde::Serialize for EnvironmentEC2Properties {
         if let Some(ref automatic_stop_time_minutes) = self.automatic_stop_time_minutes {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutomaticStopTimeMinutes", automatic_stop_time_minutes)?;
         }
+        if let Some(ref connection_type) = self.connection_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionType", connection_type)?;
+        }
         if let Some(ref description) = self.description {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref image_id) = self.image_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ImageId", image_id)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceType", &self.instance_type)?;
         if let Some(ref name) = self.name {
@@ -67,6 +88,9 @@ impl ::serde::Serialize for EnvironmentEC2Properties {
         }
         if let Some(ref subnet_id) = self.subnet_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", subnet_id)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
         ::serde::ser::SerializeMap::end(map)
     }
@@ -85,20 +109,29 @@ impl<'de> ::serde::Deserialize<'de> for EnvironmentEC2Properties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut automatic_stop_time_minutes: Option<::Value<u32>> = None;
+                let mut connection_type: Option<::Value<String>> = None;
                 let mut description: Option<::Value<String>> = None;
+                let mut image_id: Option<::Value<String>> = None;
                 let mut instance_type: Option<::Value<String>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut owner_arn: Option<::Value<String>> = None;
                 let mut repositories: Option<::ValueList<self::environment_ec2::Repository>> = None;
                 let mut subnet_id: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "AutomaticStopTimeMinutes" => {
                             automatic_stop_time_minutes = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ConnectionType" => {
+                            connection_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Description" => {
                             description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ImageId" => {
+                            image_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "InstanceType" => {
                             instance_type = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -115,18 +148,24 @@ impl<'de> ::serde::Deserialize<'de> for EnvironmentEC2Properties {
                         "SubnetId" => {
                             subnet_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
 
                 Ok(EnvironmentEC2Properties {
                     automatic_stop_time_minutes: automatic_stop_time_minutes,
+                    connection_type: connection_type,
                     description: description,
+                    image_id: image_id,
                     instance_type: instance_type.ok_or(::serde::de::Error::missing_field("InstanceType"))?,
                     name: name,
                     owner_arn: owner_arn,
                     repositories: repositories,
                     subnet_id: subnet_id,
+                    tags: tags,
                 })
             }
         }

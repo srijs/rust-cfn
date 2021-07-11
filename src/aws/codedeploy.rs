@@ -19,6 +19,11 @@ pub struct ApplicationProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub compute_platform: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-application.html#cfn-codedeploy-application-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
 }
 
 impl ::serde::Serialize for ApplicationProperties {
@@ -29,6 +34,9 @@ impl ::serde::Serialize for ApplicationProperties {
         }
         if let Some(ref compute_platform) = self.compute_platform {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComputePlatform", compute_platform)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
         ::serde::ser::SerializeMap::end(map)
     }
@@ -48,6 +56,7 @@ impl<'de> ::serde::Deserialize<'de> for ApplicationProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut application_name: Option<::Value<String>> = None;
                 let mut compute_platform: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -57,6 +66,9 @@ impl<'de> ::serde::Deserialize<'de> for ApplicationProperties {
                         "ComputePlatform" => {
                             compute_platform = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
@@ -64,6 +76,7 @@ impl<'de> ::serde::Deserialize<'de> for ApplicationProperties {
                 Ok(ApplicationProperties {
                     application_name: application_name,
                     compute_platform: compute_platform,
+                    tags: tags,
                 })
             }
         }
@@ -100,6 +113,11 @@ pub struct DeploymentConfig {
 /// Properties for the `DeploymentConfig` resource.
 #[derive(Debug, Default)]
 pub struct DeploymentConfigProperties {
+    /// Property [`ComputePlatform`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentconfig.html#cfn-codedeploy-deploymentconfig-computeplatform).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub compute_platform: Option<::Value<String>>,
     /// Property [`DeploymentConfigName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentconfig.html#cfn-codedeploy-deploymentconfig-deploymentconfigname).
     ///
     /// Update type: _Immutable_.
@@ -110,16 +128,27 @@ pub struct DeploymentConfigProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub minimum_healthy_hosts: Option<::Value<self::deployment_config::MinimumHealthyHosts>>,
+    /// Property [`TrafficRoutingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentconfig.html#cfn-codedeploy-deploymentconfig-trafficroutingconfig).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub traffic_routing_config: Option<::Value<self::deployment_config::TrafficRoutingConfig>>,
 }
 
 impl ::serde::Serialize for DeploymentConfigProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref compute_platform) = self.compute_platform {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComputePlatform", compute_platform)?;
+        }
         if let Some(ref deployment_config_name) = self.deployment_config_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeploymentConfigName", deployment_config_name)?;
         }
         if let Some(ref minimum_healthy_hosts) = self.minimum_healthy_hosts {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinimumHealthyHosts", minimum_healthy_hosts)?;
+        }
+        if let Some(ref traffic_routing_config) = self.traffic_routing_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrafficRoutingConfig", traffic_routing_config)?;
         }
         ::serde::ser::SerializeMap::end(map)
     }
@@ -137,24 +166,34 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentConfigProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut compute_platform: Option<::Value<String>> = None;
                 let mut deployment_config_name: Option<::Value<String>> = None;
                 let mut minimum_healthy_hosts: Option<::Value<self::deployment_config::MinimumHealthyHosts>> = None;
+                let mut traffic_routing_config: Option<::Value<self::deployment_config::TrafficRoutingConfig>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "ComputePlatform" => {
+                            compute_platform = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "DeploymentConfigName" => {
                             deployment_config_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "MinimumHealthyHosts" => {
                             minimum_healthy_hosts = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "TrafficRoutingConfig" => {
+                            traffic_routing_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
 
                 Ok(DeploymentConfigProperties {
+                    compute_platform: compute_platform,
                     deployment_config_name: deployment_config_name,
                     minimum_healthy_hosts: minimum_healthy_hosts,
+                    traffic_routing_config: traffic_routing_config,
                 })
             }
         }
@@ -211,6 +250,11 @@ pub struct DeploymentGroupProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub auto_scaling_groups: Option<::ValueList<String>>,
+    /// Property [`BlueGreenDeploymentConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-bluegreendeploymentconfiguration).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub blue_green_deployment_configuration: Option<::Value<self::deployment_group::BlueGreenDeploymentConfiguration>>,
     /// Property [`Deployment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-deployment).
     ///
     /// Update type: _Mutable_.
@@ -231,11 +275,21 @@ pub struct DeploymentGroupProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub deployment_style: Option<::Value<self::deployment_group::DeploymentStyle>>,
+    /// Property [`ECSServices`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-ecsservices).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub ecs_services: Option<::ValueList<self::deployment_group::ECSService>>,
     /// Property [`Ec2TagFilters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-ec2tagfilters).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub ec2_tag_filters: Option<::ValueList<self::deployment_group::EC2TagFilter>>,
+    /// Property [`Ec2TagSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-ec2tagset).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub ec2_tag_set: Option<::Value<self::deployment_group::EC2TagSet>>,
     /// Property [`LoadBalancerInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-loadbalancerinfo).
     ///
     /// Update type: _Mutable_.
@@ -246,6 +300,11 @@ pub struct DeploymentGroupProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub on_premises_instance_tag_filters: Option<::ValueList<self::deployment_group::TagFilter>>,
+    /// Property [`OnPremisesTagSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-onpremisestagset).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub on_premises_tag_set: Option<::Value<self::deployment_group::OnPremisesTagSet>>,
     /// Property [`ServiceRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-servicerolearn).
     ///
     /// Update type: _Mutable_.
@@ -271,6 +330,9 @@ impl ::serde::Serialize for DeploymentGroupProperties {
         if let Some(ref auto_scaling_groups) = self.auto_scaling_groups {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoScalingGroups", auto_scaling_groups)?;
         }
+        if let Some(ref blue_green_deployment_configuration) = self.blue_green_deployment_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BlueGreenDeploymentConfiguration", blue_green_deployment_configuration)?;
+        }
         if let Some(ref deployment) = self.deployment {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Deployment", deployment)?;
         }
@@ -283,14 +345,23 @@ impl ::serde::Serialize for DeploymentGroupProperties {
         if let Some(ref deployment_style) = self.deployment_style {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeploymentStyle", deployment_style)?;
         }
+        if let Some(ref ecs_services) = self.ecs_services {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ECSServices", ecs_services)?;
+        }
         if let Some(ref ec2_tag_filters) = self.ec2_tag_filters {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ec2TagFilters", ec2_tag_filters)?;
+        }
+        if let Some(ref ec2_tag_set) = self.ec2_tag_set {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ec2TagSet", ec2_tag_set)?;
         }
         if let Some(ref load_balancer_info) = self.load_balancer_info {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancerInfo", load_balancer_info)?;
         }
         if let Some(ref on_premises_instance_tag_filters) = self.on_premises_instance_tag_filters {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "OnPremisesInstanceTagFilters", on_premises_instance_tag_filters)?;
+        }
+        if let Some(ref on_premises_tag_set) = self.on_premises_tag_set {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OnPremisesTagSet", on_premises_tag_set)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceRoleArn", &self.service_role_arn)?;
         if let Some(ref trigger_configurations) = self.trigger_configurations {
@@ -316,13 +387,17 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentGroupProperties {
                 let mut application_name: Option<::Value<String>> = None;
                 let mut auto_rollback_configuration: Option<::Value<self::deployment_group::AutoRollbackConfiguration>> = None;
                 let mut auto_scaling_groups: Option<::ValueList<String>> = None;
+                let mut blue_green_deployment_configuration: Option<::Value<self::deployment_group::BlueGreenDeploymentConfiguration>> = None;
                 let mut deployment: Option<::Value<self::deployment_group::Deployment>> = None;
                 let mut deployment_config_name: Option<::Value<String>> = None;
                 let mut deployment_group_name: Option<::Value<String>> = None;
                 let mut deployment_style: Option<::Value<self::deployment_group::DeploymentStyle>> = None;
+                let mut ecs_services: Option<::ValueList<self::deployment_group::ECSService>> = None;
                 let mut ec2_tag_filters: Option<::ValueList<self::deployment_group::EC2TagFilter>> = None;
+                let mut ec2_tag_set: Option<::Value<self::deployment_group::EC2TagSet>> = None;
                 let mut load_balancer_info: Option<::Value<self::deployment_group::LoadBalancerInfo>> = None;
                 let mut on_premises_instance_tag_filters: Option<::ValueList<self::deployment_group::TagFilter>> = None;
+                let mut on_premises_tag_set: Option<::Value<self::deployment_group::OnPremisesTagSet>> = None;
                 let mut service_role_arn: Option<::Value<String>> = None;
                 let mut trigger_configurations: Option<::ValueList<self::deployment_group::TriggerConfig>> = None;
 
@@ -340,6 +415,9 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentGroupProperties {
                         "AutoScalingGroups" => {
                             auto_scaling_groups = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "BlueGreenDeploymentConfiguration" => {
+                            blue_green_deployment_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Deployment" => {
                             deployment = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -352,14 +430,23 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentGroupProperties {
                         "DeploymentStyle" => {
                             deployment_style = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ECSServices" => {
+                            ecs_services = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Ec2TagFilters" => {
                             ec2_tag_filters = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Ec2TagSet" => {
+                            ec2_tag_set = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "LoadBalancerInfo" => {
                             load_balancer_info = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "OnPremisesInstanceTagFilters" => {
                             on_premises_instance_tag_filters = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "OnPremisesTagSet" => {
+                            on_premises_tag_set = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ServiceRoleArn" => {
                             service_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -376,13 +463,17 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentGroupProperties {
                     application_name: application_name.ok_or(::serde::de::Error::missing_field("ApplicationName"))?,
                     auto_rollback_configuration: auto_rollback_configuration,
                     auto_scaling_groups: auto_scaling_groups,
+                    blue_green_deployment_configuration: blue_green_deployment_configuration,
                     deployment: deployment,
                     deployment_config_name: deployment_config_name,
                     deployment_group_name: deployment_group_name,
                     deployment_style: deployment_style,
+                    ecs_services: ecs_services,
                     ec2_tag_filters: ec2_tag_filters,
+                    ec2_tag_set: ec2_tag_set,
                     load_balancer_info: load_balancer_info,
                     on_premises_instance_tag_filters: on_premises_instance_tag_filters,
+                    on_premises_tag_set: on_premises_tag_set,
                     service_role_arn: service_role_arn.ok_or(::serde::de::Error::missing_field("ServiceRoleArn"))?,
                     trigger_configurations: trigger_configurations,
                 })
@@ -422,7 +513,7 @@ pub mod deployment_config {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub type_: ::Value<String>,
+        pub r#type: ::Value<String>,
         /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-minimumhealthyhosts.html#cfn-codedeploy-deploymentconfig-minimumhealthyhosts-value).
         ///
         /// Update type: _Mutable_.
@@ -433,7 +524,7 @@ pub mod deployment_config {
     impl ::codec::SerializeValue for MinimumHealthyHosts {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -451,13 +542,13 @@ pub mod deployment_config {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut type_: Option<::Value<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
                     let mut value: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Type" => {
-                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Value" => {
                                 value = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -467,8 +558,209 @@ pub mod deployment_config {
                     }
 
                     Ok(MinimumHealthyHosts {
-                        type_: type_.ok_or(::serde::de::Error::missing_field("Type"))?,
+                        r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
                         value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CodeDeploy::DeploymentConfig.TimeBasedCanary`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-timebasedcanary.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TimeBasedCanary {
+        /// Property [`CanaryInterval`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-timebasedcanary.html#cfn-properties-codedeploy-deploymentconfig-trafficroutingconfig-timebasedcanary-canaryinterval).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub canary_interval: ::Value<u32>,
+        /// Property [`CanaryPercentage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-timebasedcanary.html#cfn-properties-codedeploy-deploymentconfig-trafficroutingconfig-timebasedcanary-canarypercentage).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub canary_percentage: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for TimeBasedCanary {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CanaryInterval", &self.canary_interval)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CanaryPercentage", &self.canary_percentage)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TimeBasedCanary {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TimeBasedCanary, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TimeBasedCanary;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TimeBasedCanary")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut canary_interval: Option<::Value<u32>> = None;
+                    let mut canary_percentage: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CanaryInterval" => {
+                                canary_interval = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CanaryPercentage" => {
+                                canary_percentage = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TimeBasedCanary {
+                        canary_interval: canary_interval.ok_or(::serde::de::Error::missing_field("CanaryInterval"))?,
+                        canary_percentage: canary_percentage.ok_or(::serde::de::Error::missing_field("CanaryPercentage"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CodeDeploy::DeploymentConfig.TimeBasedLinear`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-timebasedlinear.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TimeBasedLinear {
+        /// Property [`LinearInterval`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-timebasedlinear.html#cfn-properties-codedeploy-deploymentconfig-trafficroutingconfig-timebasedlinear-linearinterval).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub linear_interval: ::Value<u32>,
+        /// Property [`LinearPercentage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-timebasedlinear.html#cfn-properties-codedeploy-deploymentconfig-trafficroutingconfig-timebasedlinear-linearpercentage).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub linear_percentage: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for TimeBasedLinear {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LinearInterval", &self.linear_interval)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LinearPercentage", &self.linear_percentage)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TimeBasedLinear {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TimeBasedLinear, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TimeBasedLinear;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TimeBasedLinear")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut linear_interval: Option<::Value<u32>> = None;
+                    let mut linear_percentage: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "LinearInterval" => {
+                                linear_interval = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LinearPercentage" => {
+                                linear_percentage = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TimeBasedLinear {
+                        linear_interval: linear_interval.ok_or(::serde::de::Error::missing_field("LinearInterval"))?,
+                        linear_percentage: linear_percentage.ok_or(::serde::de::Error::missing_field("LinearPercentage"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CodeDeploy::DeploymentConfig.TrafficRoutingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-trafficroutingconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TrafficRoutingConfig {
+        /// Property [`TimeBasedCanary`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-trafficroutingconfig.html#cfn-properties-codedeploy-deploymentconfig-trafficroutingconfig-timebasedcanary).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub time_based_canary: Option<::Value<TimeBasedCanary>>,
+        /// Property [`TimeBasedLinear`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-trafficroutingconfig.html#cfn-properties-codedeploy-deploymentconfig-trafficroutingconfig-timebasedlinear).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub time_based_linear: Option<::Value<TimeBasedLinear>>,
+        /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-trafficroutingconfig.html#cfn-properties-codedeploy-deploymentconfig-trafficroutingconfig-type).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub r#type: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for TrafficRoutingConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref time_based_canary) = self.time_based_canary {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimeBasedCanary", time_based_canary)?;
+            }
+            if let Some(ref time_based_linear) = self.time_based_linear {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimeBasedLinear", time_based_linear)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TrafficRoutingConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TrafficRoutingConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TrafficRoutingConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TrafficRoutingConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut time_based_canary: Option<::Value<TimeBasedCanary>> = None;
+                    let mut time_based_linear: Option<::Value<TimeBasedLinear>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "TimeBasedCanary" => {
+                                time_based_canary = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TimeBasedLinear" => {
+                                time_based_linear = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Type" => {
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TrafficRoutingConfig {
+                        time_based_canary: time_based_canary,
+                        time_based_linear: time_based_linear,
+                        r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
                     })
                 }
             }
@@ -679,6 +971,151 @@ pub mod deployment_group {
         }
     }
 
+    /// The [`AWS::CodeDeploy::DeploymentGroup.BlueGreenDeploymentConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-bluegreendeploymentconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct BlueGreenDeploymentConfiguration {
+        /// Property [`DeploymentReadyOption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-bluegreendeploymentconfiguration.html#cfn-codedeploy-deploymentgroup-bluegreendeploymentconfiguration-deploymentreadyoption).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub deployment_ready_option: Option<::Value<DeploymentReadyOption>>,
+        /// Property [`GreenFleetProvisioningOption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-bluegreendeploymentconfiguration.html#cfn-codedeploy-deploymentgroup-bluegreendeploymentconfiguration-greenfleetprovisioningoption).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub green_fleet_provisioning_option: Option<::Value<GreenFleetProvisioningOption>>,
+        /// Property [`TerminateBlueInstancesOnDeploymentSuccess`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-bluegreendeploymentconfiguration.html#cfn-codedeploy-deploymentgroup-bluegreendeploymentconfiguration-terminateblueinstancesondeploymentsuccess).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub terminate_blue_instances_on_deployment_success: Option<::Value<BlueInstanceTerminationOption>>,
+    }
+
+    impl ::codec::SerializeValue for BlueGreenDeploymentConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref deployment_ready_option) = self.deployment_ready_option {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeploymentReadyOption", deployment_ready_option)?;
+            }
+            if let Some(ref green_fleet_provisioning_option) = self.green_fleet_provisioning_option {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "GreenFleetProvisioningOption", green_fleet_provisioning_option)?;
+            }
+            if let Some(ref terminate_blue_instances_on_deployment_success) = self.terminate_blue_instances_on_deployment_success {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TerminateBlueInstancesOnDeploymentSuccess", terminate_blue_instances_on_deployment_success)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for BlueGreenDeploymentConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<BlueGreenDeploymentConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = BlueGreenDeploymentConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type BlueGreenDeploymentConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut deployment_ready_option: Option<::Value<DeploymentReadyOption>> = None;
+                    let mut green_fleet_provisioning_option: Option<::Value<GreenFleetProvisioningOption>> = None;
+                    let mut terminate_blue_instances_on_deployment_success: Option<::Value<BlueInstanceTerminationOption>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DeploymentReadyOption" => {
+                                deployment_ready_option = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "GreenFleetProvisioningOption" => {
+                                green_fleet_provisioning_option = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TerminateBlueInstancesOnDeploymentSuccess" => {
+                                terminate_blue_instances_on_deployment_success = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(BlueGreenDeploymentConfiguration {
+                        deployment_ready_option: deployment_ready_option,
+                        green_fleet_provisioning_option: green_fleet_provisioning_option,
+                        terminate_blue_instances_on_deployment_success: terminate_blue_instances_on_deployment_success,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CodeDeploy::DeploymentGroup.BlueInstanceTerminationOption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-blueinstanceterminationoption.html) property type.
+    #[derive(Debug, Default)]
+    pub struct BlueInstanceTerminationOption {
+        /// Property [`Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-blueinstanceterminationoption.html#cfn-codedeploy-deploymentgroup-bluegreendeploymentconfiguration-blueinstanceterminationoption-action).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub action: Option<::Value<String>>,
+        /// Property [`TerminationWaitTimeInMinutes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-blueinstanceterminationoption.html#cfn-codedeploy-deploymentgroup-bluegreendeploymentconfiguration-blueinstanceterminationoption-terminationwaittimeinminutes).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub termination_wait_time_in_minutes: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for BlueInstanceTerminationOption {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref action) = self.action {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Action", action)?;
+            }
+            if let Some(ref termination_wait_time_in_minutes) = self.termination_wait_time_in_minutes {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TerminationWaitTimeInMinutes", termination_wait_time_in_minutes)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for BlueInstanceTerminationOption {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<BlueInstanceTerminationOption, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = BlueInstanceTerminationOption;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type BlueInstanceTerminationOption")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut action: Option<::Value<String>> = None;
+                    let mut termination_wait_time_in_minutes: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Action" => {
+                                action = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TerminationWaitTimeInMinutes" => {
+                                termination_wait_time_in_minutes = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(BlueInstanceTerminationOption {
+                        action: action,
+                        termination_wait_time_in_minutes: termination_wait_time_in_minutes,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::CodeDeploy::DeploymentGroup.Deployment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deployment.html) property type.
     #[derive(Debug, Default)]
     pub struct Deployment {
@@ -756,6 +1193,72 @@ pub mod deployment_group {
         }
     }
 
+    /// The [`AWS::CodeDeploy::DeploymentGroup.DeploymentReadyOption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deploymentreadyoption.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DeploymentReadyOption {
+        /// Property [`ActionOnTimeout`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deploymentreadyoption.html#cfn-codedeploy-deploymentgroup-bluegreendeploymentconfiguration-deploymentreadyoption-actionontimeout).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub action_on_timeout: Option<::Value<String>>,
+        /// Property [`WaitTimeInMinutes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deploymentreadyoption.html#cfn-codedeploy-deploymentgroup-bluegreendeploymentconfiguration-deploymentreadyoption-waittimeinminutes).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub wait_time_in_minutes: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for DeploymentReadyOption {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref action_on_timeout) = self.action_on_timeout {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ActionOnTimeout", action_on_timeout)?;
+            }
+            if let Some(ref wait_time_in_minutes) = self.wait_time_in_minutes {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "WaitTimeInMinutes", wait_time_in_minutes)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DeploymentReadyOption {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DeploymentReadyOption, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DeploymentReadyOption;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DeploymentReadyOption")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut action_on_timeout: Option<::Value<String>> = None;
+                    let mut wait_time_in_minutes: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ActionOnTimeout" => {
+                                action_on_timeout = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "WaitTimeInMinutes" => {
+                                wait_time_in_minutes = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DeploymentReadyOption {
+                        action_on_timeout: action_on_timeout,
+                        wait_time_in_minutes: wait_time_in_minutes,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::CodeDeploy::DeploymentGroup.DeploymentStyle`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-deploymentstyle.html) property type.
     #[derive(Debug, Default)]
     pub struct DeploymentStyle {
@@ -822,20 +1325,20 @@ pub mod deployment_group {
         }
     }
 
-    /// The [`AWS::CodeDeploy::DeploymentGroup.EC2TagFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ec2tagfilters.html) property type.
+    /// The [`AWS::CodeDeploy::DeploymentGroup.EC2TagFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ec2tagfilter.html) property type.
     #[derive(Debug, Default)]
     pub struct EC2TagFilter {
-        /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ec2tagfilters.html#cfn-properties-codedeploy-deploymentgroup-ec2tagfilters-key).
+        /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ec2tagfilter.html#cfn-codedeploy-deploymentgroup-ec2tagfilter-key).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub key: Option<::Value<String>>,
-        /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ec2tagfilters.html#cfn-properties-codedeploy-deploymentgroup-ec2tagfilters-type).
+        /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ec2tagfilter.html#cfn-codedeploy-deploymentgroup-ec2tagfilter-type).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub type_: Option<::Value<String>>,
-        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ec2tagfilters.html#cfn-properties-codedeploy-deploymentgroup-ec2tagfilters-value).
+        pub r#type: Option<::Value<String>>,
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ec2tagfilter.html#cfn-codedeploy-deploymentgroup-ec2tagfilter-value).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -848,8 +1351,8 @@ pub mod deployment_group {
             if let Some(ref key) = self.key {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", key)?;
             }
-            if let Some(ref type_) = self.type_ {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", type_)?;
+            if let Some(ref r#type) = self.r#type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", r#type)?;
             }
             if let Some(ref value) = self.value {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", value)?;
@@ -871,7 +1374,7 @@ pub mod deployment_group {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut key: Option<::Value<String>> = None;
-                    let mut type_: Option<::Value<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
                     let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -880,7 +1383,7 @@ pub mod deployment_group {
                                 key = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Type" => {
-                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Value" => {
                                 value = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -891,8 +1394,176 @@ pub mod deployment_group {
 
                     Ok(EC2TagFilter {
                         key: key,
-                        type_: type_,
+                        r#type: r#type,
                         value: value,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CodeDeploy::DeploymentGroup.EC2TagSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ec2tagset.html) property type.
+    #[derive(Debug, Default)]
+    pub struct EC2TagSet {
+        /// Property [`Ec2TagSetList`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ec2tagset.html#cfn-codedeploy-deploymentgroup-ec2tagset-ec2tagsetlist).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ec2_tag_set_list: Option<::ValueList<EC2TagSetListObject>>,
+    }
+
+    impl ::codec::SerializeValue for EC2TagSet {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref ec2_tag_set_list) = self.ec2_tag_set_list {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ec2TagSetList", ec2_tag_set_list)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for EC2TagSet {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<EC2TagSet, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = EC2TagSet;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type EC2TagSet")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut ec2_tag_set_list: Option<::ValueList<EC2TagSetListObject>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Ec2TagSetList" => {
+                                ec2_tag_set_list = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(EC2TagSet {
+                        ec2_tag_set_list: ec2_tag_set_list,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CodeDeploy::DeploymentGroup.EC2TagSetListObject`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ec2tagsetlistobject.html) property type.
+    #[derive(Debug, Default)]
+    pub struct EC2TagSetListObject {
+        /// Property [`Ec2TagGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ec2tagsetlistobject.html#cfn-codedeploy-deploymentgroup-ec2tagsetlistobject-ec2taggroup).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ec2_tag_group: Option<::ValueList<EC2TagFilter>>,
+    }
+
+    impl ::codec::SerializeValue for EC2TagSetListObject {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref ec2_tag_group) = self.ec2_tag_group {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ec2TagGroup", ec2_tag_group)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for EC2TagSetListObject {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<EC2TagSetListObject, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = EC2TagSetListObject;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type EC2TagSetListObject")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut ec2_tag_group: Option<::ValueList<EC2TagFilter>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Ec2TagGroup" => {
+                                ec2_tag_group = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(EC2TagSetListObject {
+                        ec2_tag_group: ec2_tag_group,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CodeDeploy::DeploymentGroup.ECSService`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ecsservice.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ECSService {
+        /// Property [`ClusterName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ecsservice.html#cfn-codedeploy-deploymentgroup-ecsservice-clustername).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cluster_name: ::Value<String>,
+        /// Property [`ServiceName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-ecsservice.html#cfn-codedeploy-deploymentgroup-ecsservice-servicename).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub service_name: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for ECSService {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClusterName", &self.cluster_name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceName", &self.service_name)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ECSService {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ECSService, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ECSService;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ECSService")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut cluster_name: Option<::Value<String>> = None;
+                    let mut service_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ClusterName" => {
+                                cluster_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ServiceName" => {
+                                service_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ECSService {
+                        cluster_name: cluster_name.ok_or(::serde::de::Error::missing_field("ClusterName"))?,
+                        service_name: service_name.ok_or(::serde::de::Error::missing_field("ServiceName"))?,
                     })
                 }
             }
@@ -1016,6 +1687,59 @@ pub mod deployment_group {
         }
     }
 
+    /// The [`AWS::CodeDeploy::DeploymentGroup.GreenFleetProvisioningOption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-greenfleetprovisioningoption.html) property type.
+    #[derive(Debug, Default)]
+    pub struct GreenFleetProvisioningOption {
+        /// Property [`Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-greenfleetprovisioningoption.html#cfn-codedeploy-deploymentgroup-bluegreendeploymentconfiguration-greenfleetprovisioningoption-action).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub action: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for GreenFleetProvisioningOption {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref action) = self.action {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Action", action)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for GreenFleetProvisioningOption {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<GreenFleetProvisioningOption, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = GreenFleetProvisioningOption;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type GreenFleetProvisioningOption")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut action: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Action" => {
+                                action = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(GreenFleetProvisioningOption {
+                        action: action,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::CodeDeploy::DeploymentGroup.LoadBalancerInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-loadbalancerinfo.html) property type.
     #[derive(Debug, Default)]
     pub struct LoadBalancerInfo {
@@ -1074,6 +1798,112 @@ pub mod deployment_group {
                     Ok(LoadBalancerInfo {
                         elb_info_list: elb_info_list,
                         target_group_info_list: target_group_info_list,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CodeDeploy::DeploymentGroup.OnPremisesTagSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-onpremisestagset.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OnPremisesTagSet {
+        /// Property [`OnPremisesTagSetList`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-onpremisestagset.html#cfn-codedeploy-deploymentgroup-onpremisestagset-onpremisestagsetlist).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub on_premises_tag_set_list: Option<::ValueList<OnPremisesTagSetListObject>>,
+    }
+
+    impl ::codec::SerializeValue for OnPremisesTagSet {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref on_premises_tag_set_list) = self.on_premises_tag_set_list {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OnPremisesTagSetList", on_premises_tag_set_list)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OnPremisesTagSet {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OnPremisesTagSet, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OnPremisesTagSet;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OnPremisesTagSet")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut on_premises_tag_set_list: Option<::ValueList<OnPremisesTagSetListObject>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "OnPremisesTagSetList" => {
+                                on_premises_tag_set_list = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OnPremisesTagSet {
+                        on_premises_tag_set_list: on_premises_tag_set_list,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CodeDeploy::DeploymentGroup.OnPremisesTagSetListObject`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-onpremisestagsetlistobject.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OnPremisesTagSetListObject {
+        /// Property [`OnPremisesTagGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-onpremisestagsetlistobject.html#cfn-codedeploy-deploymentgroup-onpremisestagsetlistobject-onpremisestaggroup).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub on_premises_tag_group: Option<::ValueList<TagFilter>>,
+    }
+
+    impl ::codec::SerializeValue for OnPremisesTagSetListObject {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref on_premises_tag_group) = self.on_premises_tag_group {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OnPremisesTagGroup", on_premises_tag_group)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OnPremisesTagSetListObject {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OnPremisesTagSetListObject, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OnPremisesTagSetListObject;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OnPremisesTagSetListObject")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut on_premises_tag_group: Option<::ValueList<TagFilter>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "OnPremisesTagGroup" => {
+                                on_premises_tag_group = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OnPremisesTagSetListObject {
+                        on_premises_tag_group: on_premises_tag_group,
                     })
                 }
             }
@@ -1262,20 +2092,20 @@ pub mod deployment_group {
         }
     }
 
-    /// The [`AWS::CodeDeploy::DeploymentGroup.TagFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-onpremisesinstancetagfilters.html) property type.
+    /// The [`AWS::CodeDeploy::DeploymentGroup.TagFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-tagfilter.html) property type.
     #[derive(Debug, Default)]
     pub struct TagFilter {
-        /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-onpremisesinstancetagfilters.html#cfn-properties-codedeploy-deploymentgroup-onpremisesinstancetagfilters-key).
+        /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-tagfilter.html#cfn-codedeploy-deploymentgroup-tagfilter-key).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub key: Option<::Value<String>>,
-        /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-onpremisesinstancetagfilters.html#cfn-properties-codedeploy-deploymentgroup-onpremisesinstancetagfilters-type).
+        /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-tagfilter.html#cfn-codedeploy-deploymentgroup-tagfilter-type).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub type_: Option<::Value<String>>,
-        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-onpremisesinstancetagfilters.html#cfn-properties-codedeploy-deploymentgroup-onpremisesinstancetagfilters-value).
+        pub r#type: Option<::Value<String>>,
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-tagfilter.html#cfn-codedeploy-deploymentgroup-tagfilter-value).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -1288,8 +2118,8 @@ pub mod deployment_group {
             if let Some(ref key) = self.key {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", key)?;
             }
-            if let Some(ref type_) = self.type_ {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", type_)?;
+            if let Some(ref r#type) = self.r#type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", r#type)?;
             }
             if let Some(ref value) = self.value {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", value)?;
@@ -1311,7 +2141,7 @@ pub mod deployment_group {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut key: Option<::Value<String>> = None;
-                    let mut type_: Option<::Value<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
                     let mut value: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -1320,7 +2150,7 @@ pub mod deployment_group {
                                 key = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Type" => {
-                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Value" => {
                                 value = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1331,7 +2161,7 @@ pub mod deployment_group {
 
                     Ok(TagFilter {
                         key: key,
-                        type_: type_,
+                        r#type: r#type,
                         value: value,
                     })
                 }

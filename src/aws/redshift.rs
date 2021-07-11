@@ -69,12 +69,17 @@ pub struct ClusterProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub encrypted: Option<::Value<bool>>,
-    /// Property [`HsmClientCertificateIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html#cfn-redshift-cluster-hsmclientcertidentifier).
+    /// Property [`Endpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html#cfn-redshift-cluster-endpoint).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub endpoint: Option<::Value<self::cluster::Endpoint>>,
+    /// Property [`HsmClientCertificateIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html#cfn-redshift-cluster-hsmclientcertificateidentifier).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub hsm_client_certificate_identifier: Option<::Value<String>>,
-    /// Property [`HsmConfigurationIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html#cfn-redshift-cluster-HsmConfigurationIdentifier).
+    /// Property [`HsmConfigurationIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html#cfn-redshift-cluster-hsmconfigurationidentifier).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -109,7 +114,7 @@ pub struct ClusterProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub node_type: ::Value<String>,
-    /// Property [`NumberOfNodes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html#cfn-redshift-cluster-nodetype).
+    /// Property [`NumberOfNodes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-redshift-cluster.html#cfn-redshift-cluster-numberofnodes).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -191,6 +196,9 @@ impl ::serde::Serialize for ClusterProperties {
         if let Some(ref encrypted) = self.encrypted {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Encrypted", encrypted)?;
         }
+        if let Some(ref endpoint) = self.endpoint {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Endpoint", endpoint)?;
+        }
         if let Some(ref hsm_client_certificate_identifier) = self.hsm_client_certificate_identifier {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "HsmClientCertificateIdentifier", hsm_client_certificate_identifier)?;
         }
@@ -264,6 +272,7 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                 let mut db_name: Option<::Value<String>> = None;
                 let mut elastic_ip: Option<::Value<String>> = None;
                 let mut encrypted: Option<::Value<bool>> = None;
+                let mut endpoint: Option<::Value<self::cluster::Endpoint>> = None;
                 let mut hsm_client_certificate_identifier: Option<::Value<String>> = None;
                 let mut hsm_configuration_identifier: Option<::Value<String>> = None;
                 let mut iam_roles: Option<::ValueList<String>> = None;
@@ -319,6 +328,9 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                         }
                         "Encrypted" => {
                             encrypted = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Endpoint" => {
+                            endpoint = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "HsmClientCertificateIdentifier" => {
                             hsm_client_certificate_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -388,6 +400,7 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                     db_name: db_name.ok_or(::serde::de::Error::missing_field("DBName"))?,
                     elastic_ip: elastic_ip,
                     encrypted: encrypted,
+                    endpoint: endpoint,
                     hsm_client_certificate_identifier: hsm_client_certificate_identifier,
                     hsm_configuration_identifier: hsm_configuration_identifier,
                     iam_roles: iam_roles,
@@ -851,6 +864,72 @@ impl From<ClusterSubnetGroupProperties> for ClusterSubnetGroup {
 
 pub mod cluster {
     //! Property types for the `Cluster` resource.
+
+    /// The [`AWS::Redshift::Cluster.Endpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-cluster-endpoint.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Endpoint {
+        /// Property [`Address`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-cluster-endpoint.html#cfn-redshift-cluster-endpoint-address).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub address: Option<::Value<String>>,
+        /// Property [`Port`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-cluster-endpoint.html#cfn-redshift-cluster-endpoint-port).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub port: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for Endpoint {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref address) = self.address {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Address", address)?;
+            }
+            if let Some(ref port) = self.port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", port)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Endpoint {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Endpoint, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Endpoint;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Endpoint")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut address: Option<::Value<String>> = None;
+                    let mut port: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Address" => {
+                                address = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Port" => {
+                                port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Endpoint {
+                        address: address,
+                        port: port,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::Redshift::Cluster.LoggingProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-redshift-cluster-loggingproperties.html) property type.
     #[derive(Debug, Default)]

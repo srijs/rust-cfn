@@ -14,6 +14,11 @@ pub struct QueueProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub content_based_deduplication: Option<::Value<bool>>,
+    /// Property [`DeduplicationScope`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-sqs-queue-deduplicationscope).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub deduplication_scope: Option<::Value<String>>,
     /// Property [`DelaySeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-sqs-queue-delayseconds).
     ///
     /// Update type: _Mutable_.
@@ -24,6 +29,11 @@ pub struct QueueProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub fifo_queue: Option<::Value<bool>>,
+    /// Property [`FifoThroughputLimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-sqs-queue-fifothroughputlimit).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub fifo_throughput_limit: Option<::Value<String>>,
     /// Property [`KmsDataKeyReusePeriodSeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-sqs-queue-kmsdatakeyreuseperiodseconds).
     ///
     /// Update type: _Mutable_.
@@ -59,6 +69,11 @@ pub struct QueueProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub redrive_policy: Option<::Value<::json::Value>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#cfn-sqs-queue-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
     /// Property [`VisibilityTimeout`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sqs-queues.html#aws-sqs-queue-visiblitytimeout).
     ///
     /// Update type: _Mutable_.
@@ -72,11 +87,17 @@ impl ::serde::Serialize for QueueProperties {
         if let Some(ref content_based_deduplication) = self.content_based_deduplication {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContentBasedDeduplication", content_based_deduplication)?;
         }
+        if let Some(ref deduplication_scope) = self.deduplication_scope {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeduplicationScope", deduplication_scope)?;
+        }
         if let Some(ref delay_seconds) = self.delay_seconds {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DelaySeconds", delay_seconds)?;
         }
         if let Some(ref fifo_queue) = self.fifo_queue {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "FifoQueue", fifo_queue)?;
+        }
+        if let Some(ref fifo_throughput_limit) = self.fifo_throughput_limit {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FifoThroughputLimit", fifo_throughput_limit)?;
         }
         if let Some(ref kms_data_key_reuse_period_seconds) = self.kms_data_key_reuse_period_seconds {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsDataKeyReusePeriodSeconds", kms_data_key_reuse_period_seconds)?;
@@ -99,6 +120,9 @@ impl ::serde::Serialize for QueueProperties {
         if let Some(ref redrive_policy) = self.redrive_policy {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RedrivePolicy", redrive_policy)?;
         }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         if let Some(ref visibility_timeout) = self.visibility_timeout {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "VisibilityTimeout", visibility_timeout)?;
         }
@@ -119,8 +143,10 @@ impl<'de> ::serde::Deserialize<'de> for QueueProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut content_based_deduplication: Option<::Value<bool>> = None;
+                let mut deduplication_scope: Option<::Value<String>> = None;
                 let mut delay_seconds: Option<::Value<u32>> = None;
                 let mut fifo_queue: Option<::Value<bool>> = None;
+                let mut fifo_throughput_limit: Option<::Value<String>> = None;
                 let mut kms_data_key_reuse_period_seconds: Option<::Value<u32>> = None;
                 let mut kms_master_key_id: Option<::Value<String>> = None;
                 let mut maximum_message_size: Option<::Value<u32>> = None;
@@ -128,6 +154,7 @@ impl<'de> ::serde::Deserialize<'de> for QueueProperties {
                 let mut queue_name: Option<::Value<String>> = None;
                 let mut receive_message_wait_time_seconds: Option<::Value<u32>> = None;
                 let mut redrive_policy: Option<::Value<::json::Value>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut visibility_timeout: Option<::Value<u32>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -135,11 +162,17 @@ impl<'de> ::serde::Deserialize<'de> for QueueProperties {
                         "ContentBasedDeduplication" => {
                             content_based_deduplication = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "DeduplicationScope" => {
+                            deduplication_scope = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "DelaySeconds" => {
                             delay_seconds = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "FifoQueue" => {
                             fifo_queue = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "FifoThroughputLimit" => {
+                            fifo_throughput_limit = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "KmsDataKeyReusePeriodSeconds" => {
                             kms_data_key_reuse_period_seconds = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -162,6 +195,9 @@ impl<'de> ::serde::Deserialize<'de> for QueueProperties {
                         "RedrivePolicy" => {
                             redrive_policy = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "VisibilityTimeout" => {
                             visibility_timeout = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -171,8 +207,10 @@ impl<'de> ::serde::Deserialize<'de> for QueueProperties {
 
                 Ok(QueueProperties {
                     content_based_deduplication: content_based_deduplication,
+                    deduplication_scope: deduplication_scope,
                     delay_seconds: delay_seconds,
                     fifo_queue: fifo_queue,
+                    fifo_throughput_limit: fifo_throughput_limit,
                     kms_data_key_reuse_period_seconds: kms_data_key_reuse_period_seconds,
                     kms_master_key_id: kms_master_key_id,
                     maximum_message_size: maximum_message_size,
@@ -180,6 +218,7 @@ impl<'de> ::serde::Deserialize<'de> for QueueProperties {
                     queue_name: queue_name,
                     receive_message_wait_time_seconds: receive_message_wait_time_seconds,
                     redrive_policy: redrive_policy,
+                    tags: tags,
                     visibility_timeout: visibility_timeout,
                 })
             }

@@ -14,6 +14,11 @@ pub struct ClusterProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub availability_zones: Option<::ValueList<String>>,
+    /// Property [`ClusterEndpointEncryptionType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-cluster.html#cfn-dax-cluster-clusterendpointencryptiontype).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub cluster_endpoint_encryption_type: Option<::Value<String>>,
     /// Property [`ClusterName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-cluster.html#cfn-dax-cluster-clustername).
     ///
     /// Update type: _Immutable_.
@@ -54,6 +59,11 @@ pub struct ClusterProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub replication_factor: ::Value<u32>,
+    /// Property [`SSESpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-cluster.html#cfn-dax-cluster-ssespecification).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub sse_specification: Option<::Value<self::cluster::SSESpecification>>,
     /// Property [`SecurityGroupIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dax-cluster.html#cfn-dax-cluster-securitygroupids).
     ///
     /// Update type: _Mutable_.
@@ -77,6 +87,9 @@ impl ::serde::Serialize for ClusterProperties {
         if let Some(ref availability_zones) = self.availability_zones {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZones", availability_zones)?;
         }
+        if let Some(ref cluster_endpoint_encryption_type) = self.cluster_endpoint_encryption_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClusterEndpointEncryptionType", cluster_endpoint_encryption_type)?;
+        }
         if let Some(ref cluster_name) = self.cluster_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClusterName", cluster_name)?;
         }
@@ -95,6 +108,9 @@ impl ::serde::Serialize for ClusterProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreferredMaintenanceWindow", preferred_maintenance_window)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicationFactor", &self.replication_factor)?;
+        if let Some(ref sse_specification) = self.sse_specification {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SSESpecification", sse_specification)?;
+        }
         if let Some(ref security_group_ids) = self.security_group_ids {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIds", security_group_ids)?;
         }
@@ -121,6 +137,7 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut availability_zones: Option<::ValueList<String>> = None;
+                let mut cluster_endpoint_encryption_type: Option<::Value<String>> = None;
                 let mut cluster_name: Option<::Value<String>> = None;
                 let mut description: Option<::Value<String>> = None;
                 let mut iam_role_arn: Option<::Value<String>> = None;
@@ -129,6 +146,7 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                 let mut parameter_group_name: Option<::Value<String>> = None;
                 let mut preferred_maintenance_window: Option<::Value<String>> = None;
                 let mut replication_factor: Option<::Value<u32>> = None;
+                let mut sse_specification: Option<::Value<self::cluster::SSESpecification>> = None;
                 let mut security_group_ids: Option<::ValueList<String>> = None;
                 let mut subnet_group_name: Option<::Value<String>> = None;
                 let mut tags: Option<::Value<::json::Value>> = None;
@@ -137,6 +155,9 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                     match __cfn_key.as_ref() {
                         "AvailabilityZones" => {
                             availability_zones = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ClusterEndpointEncryptionType" => {
+                            cluster_endpoint_encryption_type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ClusterName" => {
                             cluster_name = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -162,6 +183,9 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                         "ReplicationFactor" => {
                             replication_factor = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "SSESpecification" => {
+                            sse_specification = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "SecurityGroupIds" => {
                             security_group_ids = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -177,6 +201,7 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
 
                 Ok(ClusterProperties {
                     availability_zones: availability_zones,
+                    cluster_endpoint_encryption_type: cluster_endpoint_encryption_type,
                     cluster_name: cluster_name,
                     description: description,
                     iam_role_arn: iam_role_arn.ok_or(::serde::de::Error::missing_field("IAMRoleARN"))?,
@@ -185,6 +210,7 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                     parameter_group_name: parameter_group_name,
                     preferred_maintenance_window: preferred_maintenance_window,
                     replication_factor: replication_factor.ok_or(::serde::de::Error::missing_field("ReplicationFactor"))?,
+                    sse_specification: sse_specification,
                     security_group_ids: security_group_ids,
                     subnet_group_name: subnet_group_name,
                     tags: tags,
@@ -418,5 +444,62 @@ impl ::private::Sealed for SubnetGroup {}
 impl From<SubnetGroupProperties> for SubnetGroup {
     fn from(properties: SubnetGroupProperties) -> SubnetGroup {
         SubnetGroup { properties }
+    }
+}
+
+pub mod cluster {
+    //! Property types for the `Cluster` resource.
+
+    /// The [`AWS::DAX::Cluster.SSESpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dax-cluster-ssespecification.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SSESpecification {
+        /// Property [`SSEEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dax-cluster-ssespecification.html#cfn-dax-cluster-ssespecification-sseenabled).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub sse_enabled: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for SSESpecification {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref sse_enabled) = self.sse_enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SSEEnabled", sse_enabled)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SSESpecification {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SSESpecification, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SSESpecification;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SSESpecification")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut sse_enabled: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SSEEnabled" => {
+                                sse_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SSESpecification {
+                        sse_enabled: sse_enabled,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
     }
 }

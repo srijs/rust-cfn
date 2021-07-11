@@ -9,18 +9,42 @@ pub struct Classifier {
 /// Properties for the `Classifier` resource.
 #[derive(Debug, Default)]
 pub struct ClassifierProperties {
+    /// Property [`CsvClassifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-classifier.html#cfn-glue-classifier-csvclassifier).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub csv_classifier: Option<::Value<self::classifier::CsvClassifier>>,
     /// Property [`GrokClassifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-classifier.html#cfn-glue-classifier-grokclassifier).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub grok_classifier: Option<::Value<self::classifier::GrokClassifier>>,
+    /// Property [`JsonClassifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-classifier.html#cfn-glue-classifier-jsonclassifier).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub json_classifier: Option<::Value<self::classifier::JsonClassifier>>,
+    /// Property [`XMLClassifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-classifier.html#cfn-glue-classifier-xmlclassifier).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub xml_classifier: Option<::Value<self::classifier::XMLClassifier>>,
 }
 
 impl ::serde::Serialize for ClassifierProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref csv_classifier) = self.csv_classifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CsvClassifier", csv_classifier)?;
+        }
         if let Some(ref grok_classifier) = self.grok_classifier {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "GrokClassifier", grok_classifier)?;
+        }
+        if let Some(ref json_classifier) = self.json_classifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "JsonClassifier", json_classifier)?;
+        }
+        if let Some(ref xml_classifier) = self.xml_classifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "XMLClassifier", xml_classifier)?;
         }
         ::serde::ser::SerializeMap::end(map)
     }
@@ -38,19 +62,34 @@ impl<'de> ::serde::Deserialize<'de> for ClassifierProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut csv_classifier: Option<::Value<self::classifier::CsvClassifier>> = None;
                 let mut grok_classifier: Option<::Value<self::classifier::GrokClassifier>> = None;
+                let mut json_classifier: Option<::Value<self::classifier::JsonClassifier>> = None;
+                let mut xml_classifier: Option<::Value<self::classifier::XMLClassifier>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "CsvClassifier" => {
+                            csv_classifier = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "GrokClassifier" => {
                             grok_classifier = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "JsonClassifier" => {
+                            json_classifier = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "XMLClassifier" => {
+                            xml_classifier = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
                 }
 
                 Ok(ClassifierProperties {
+                    csv_classifier: csv_classifier,
                     grok_classifier: grok_classifier,
+                    json_classifier: json_classifier,
+                    xml_classifier: xml_classifier,
                 })
             }
         }
@@ -179,11 +218,21 @@ pub struct CrawlerProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub classifiers: Option<::ValueList<String>>,
+    /// Property [`Configuration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-crawler.html#cfn-glue-crawler-configuration).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub configuration: Option<::Value<String>>,
+    /// Property [`CrawlerSecurityConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-crawler.html#cfn-glue-crawler-crawlersecurityconfiguration).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub crawler_security_configuration: Option<::Value<String>>,
     /// Property [`DatabaseName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-crawler.html#cfn-glue-crawler-databasename).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub database_name: ::Value<String>,
+    pub database_name: Option<::Value<String>>,
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-crawler.html#cfn-glue-crawler-description).
     ///
     /// Update type: _Mutable_.
@@ -214,6 +263,11 @@ pub struct CrawlerProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub table_prefix: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-crawler.html#cfn-glue-crawler-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::Value<::json::Value>>,
     /// Property [`Targets`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-crawler.html#cfn-glue-crawler-targets).
     ///
     /// Update type: _Mutable_.
@@ -227,7 +281,15 @@ impl ::serde::Serialize for CrawlerProperties {
         if let Some(ref classifiers) = self.classifiers {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Classifiers", classifiers)?;
         }
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseName", &self.database_name)?;
+        if let Some(ref configuration) = self.configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Configuration", configuration)?;
+        }
+        if let Some(ref crawler_security_configuration) = self.crawler_security_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CrawlerSecurityConfiguration", crawler_security_configuration)?;
+        }
+        if let Some(ref database_name) = self.database_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseName", database_name)?;
+        }
         if let Some(ref description) = self.description {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
         }
@@ -243,6 +305,9 @@ impl ::serde::Serialize for CrawlerProperties {
         }
         if let Some(ref table_prefix) = self.table_prefix {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TablePrefix", table_prefix)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Targets", &self.targets)?;
         ::serde::ser::SerializeMap::end(map)
@@ -262,6 +327,8 @@ impl<'de> ::serde::Deserialize<'de> for CrawlerProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut classifiers: Option<::ValueList<String>> = None;
+                let mut configuration: Option<::Value<String>> = None;
+                let mut crawler_security_configuration: Option<::Value<String>> = None;
                 let mut database_name: Option<::Value<String>> = None;
                 let mut description: Option<::Value<String>> = None;
                 let mut name: Option<::Value<String>> = None;
@@ -269,12 +336,19 @@ impl<'de> ::serde::Deserialize<'de> for CrawlerProperties {
                 let mut schedule: Option<::Value<self::crawler::Schedule>> = None;
                 let mut schema_change_policy: Option<::Value<self::crawler::SchemaChangePolicy>> = None;
                 let mut table_prefix: Option<::Value<String>> = None;
+                let mut tags: Option<::Value<::json::Value>> = None;
                 let mut targets: Option<::Value<self::crawler::Targets>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "Classifiers" => {
                             classifiers = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Configuration" => {
+                            configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "CrawlerSecurityConfiguration" => {
+                            crawler_security_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "DatabaseName" => {
                             database_name = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -297,6 +371,9 @@ impl<'de> ::serde::Deserialize<'de> for CrawlerProperties {
                         "TablePrefix" => {
                             table_prefix = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Targets" => {
                             targets = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -306,13 +383,16 @@ impl<'de> ::serde::Deserialize<'de> for CrawlerProperties {
 
                 Ok(CrawlerProperties {
                     classifiers: classifiers,
-                    database_name: database_name.ok_or(::serde::de::Error::missing_field("DatabaseName"))?,
+                    configuration: configuration,
+                    crawler_security_configuration: crawler_security_configuration,
+                    database_name: database_name,
                     description: description,
                     name: name,
                     role: role.ok_or(::serde::de::Error::missing_field("Role"))?,
                     schedule: schedule,
                     schema_change_policy: schema_change_policy,
                     table_prefix: table_prefix,
+                    tags: tags,
                     targets: targets.ok_or(::serde::de::Error::missing_field("Targets"))?,
                 })
             }
@@ -338,6 +418,93 @@ impl ::private::Sealed for Crawler {}
 impl From<CrawlerProperties> for Crawler {
     fn from(properties: CrawlerProperties) -> Crawler {
         Crawler { properties }
+    }
+}
+
+/// The [`AWS::Glue::DataCatalogEncryptionSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-datacatalogencryptionsettings.html) resource type.
+#[derive(Debug, Default)]
+pub struct DataCatalogEncryptionSettings {
+    properties: DataCatalogEncryptionSettingsProperties
+}
+
+/// Properties for the `DataCatalogEncryptionSettings` resource.
+#[derive(Debug, Default)]
+pub struct DataCatalogEncryptionSettingsProperties {
+    /// Property [`CatalogId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-datacatalogencryptionsettings.html#cfn-glue-datacatalogencryptionsettings-catalogid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub catalog_id: ::Value<String>,
+    /// Property [`DataCatalogEncryptionSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-datacatalogencryptionsettings.html#cfn-glue-datacatalogencryptionsettings-datacatalogencryptionsettings).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub data_catalog_encryption_settings: ::Value<self::data_catalog_encryption_settings::DataCatalogEncryptionSettings>,
+}
+
+impl ::serde::Serialize for DataCatalogEncryptionSettingsProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CatalogId", &self.catalog_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataCatalogEncryptionSettings", &self.data_catalog_encryption_settings)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for DataCatalogEncryptionSettingsProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<DataCatalogEncryptionSettingsProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = DataCatalogEncryptionSettingsProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type DataCatalogEncryptionSettingsProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut catalog_id: Option<::Value<String>> = None;
+                let mut data_catalog_encryption_settings: Option<::Value<self::data_catalog_encryption_settings::DataCatalogEncryptionSettings>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "CatalogId" => {
+                            catalog_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DataCatalogEncryptionSettings" => {
+                            data_catalog_encryption_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(DataCatalogEncryptionSettingsProperties {
+                    catalog_id: catalog_id.ok_or(::serde::de::Error::missing_field("CatalogId"))?,
+                    data_catalog_encryption_settings: data_catalog_encryption_settings.ok_or(::serde::de::Error::missing_field("DataCatalogEncryptionSettings"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for DataCatalogEncryptionSettings {
+    type Properties = DataCatalogEncryptionSettingsProperties;
+    const TYPE: &'static str = "AWS::Glue::DataCatalogEncryptionSettings";
+    fn properties(&self) -> &DataCatalogEncryptionSettingsProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut DataCatalogEncryptionSettingsProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for DataCatalogEncryptionSettings {}
+
+impl From<DataCatalogEncryptionSettingsProperties> for DataCatalogEncryptionSettings {
+    fn from(properties: DataCatalogEncryptionSettingsProperties) -> DataCatalogEncryptionSettings {
+        DataCatalogEncryptionSettings { properties }
     }
 }
 
@@ -437,6 +604,11 @@ pub struct DevEndpoint {
 /// Properties for the `DevEndpoint` resource.
 #[derive(Debug, Default)]
 pub struct DevEndpointProperties {
+    /// Property [`Arguments`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-devendpoint.html#cfn-glue-devendpoint-arguments).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub arguments: Option<::Value<::json::Value>>,
     /// Property [`EndpointName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-devendpoint.html#cfn-glue-devendpoint-endpointname).
     ///
     /// Update type: _Immutable_.
@@ -452,21 +624,41 @@ pub struct DevEndpointProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub extra_python_libs_s3_path: Option<::Value<String>>,
+    /// Property [`GlueVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-devendpoint.html#cfn-glue-devendpoint-glueversion).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub glue_version: Option<::Value<String>>,
     /// Property [`NumberOfNodes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-devendpoint.html#cfn-glue-devendpoint-numberofnodes).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub number_of_nodes: Option<::Value<u32>>,
+    /// Property [`NumberOfWorkers`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-devendpoint.html#cfn-glue-devendpoint-numberofworkers).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub number_of_workers: Option<::Value<u32>>,
     /// Property [`PublicKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-devendpoint.html#cfn-glue-devendpoint-publickey).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub public_key: ::Value<String>,
+    pub public_key: Option<::Value<String>>,
+    /// Property [`PublicKeys`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-devendpoint.html#cfn-glue-devendpoint-publickeys).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub public_keys: Option<::ValueList<String>>,
     /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-devendpoint.html#cfn-glue-devendpoint-rolearn).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub role_arn: ::Value<String>,
+    /// Property [`SecurityConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-devendpoint.html#cfn-glue-devendpoint-securityconfiguration).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub security_configuration: Option<::Value<String>>,
     /// Property [`SecurityGroupIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-devendpoint.html#cfn-glue-devendpoint-securitygroupids).
     ///
     /// Update type: _Mutable_.
@@ -477,11 +669,24 @@ pub struct DevEndpointProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub subnet_id: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-devendpoint.html#cfn-glue-devendpoint-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::Value<::json::Value>>,
+    /// Property [`WorkerType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-devendpoint.html#cfn-glue-devendpoint-workertype).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub worker_type: Option<::Value<String>>,
 }
 
 impl ::serde::Serialize for DevEndpointProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref arguments) = self.arguments {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Arguments", arguments)?;
+        }
         if let Some(ref endpoint_name) = self.endpoint_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndpointName", endpoint_name)?;
         }
@@ -491,16 +696,36 @@ impl ::serde::Serialize for DevEndpointProperties {
         if let Some(ref extra_python_libs_s3_path) = self.extra_python_libs_s3_path {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExtraPythonLibsS3Path", extra_python_libs_s3_path)?;
         }
+        if let Some(ref glue_version) = self.glue_version {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GlueVersion", glue_version)?;
+        }
         if let Some(ref number_of_nodes) = self.number_of_nodes {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "NumberOfNodes", number_of_nodes)?;
         }
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PublicKey", &self.public_key)?;
+        if let Some(ref number_of_workers) = self.number_of_workers {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NumberOfWorkers", number_of_workers)?;
+        }
+        if let Some(ref public_key) = self.public_key {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PublicKey", public_key)?;
+        }
+        if let Some(ref public_keys) = self.public_keys {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PublicKeys", public_keys)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
+        if let Some(ref security_configuration) = self.security_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityConfiguration", security_configuration)?;
+        }
         if let Some(ref security_group_ids) = self.security_group_ids {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIds", security_group_ids)?;
         }
         if let Some(ref subnet_id) = self.subnet_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", subnet_id)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref worker_type) = self.worker_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "WorkerType", worker_type)?;
         }
         ::serde::ser::SerializeMap::end(map)
     }
@@ -518,17 +743,27 @@ impl<'de> ::serde::Deserialize<'de> for DevEndpointProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut arguments: Option<::Value<::json::Value>> = None;
                 let mut endpoint_name: Option<::Value<String>> = None;
                 let mut extra_jars_s3_path: Option<::Value<String>> = None;
                 let mut extra_python_libs_s3_path: Option<::Value<String>> = None;
+                let mut glue_version: Option<::Value<String>> = None;
                 let mut number_of_nodes: Option<::Value<u32>> = None;
+                let mut number_of_workers: Option<::Value<u32>> = None;
                 let mut public_key: Option<::Value<String>> = None;
+                let mut public_keys: Option<::ValueList<String>> = None;
                 let mut role_arn: Option<::Value<String>> = None;
+                let mut security_configuration: Option<::Value<String>> = None;
                 let mut security_group_ids: Option<::ValueList<String>> = None;
                 let mut subnet_id: Option<::Value<String>> = None;
+                let mut tags: Option<::Value<::json::Value>> = None;
+                let mut worker_type: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "Arguments" => {
+                            arguments = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "EndpointName" => {
                             endpoint_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -538,14 +773,26 @@ impl<'de> ::serde::Deserialize<'de> for DevEndpointProperties {
                         "ExtraPythonLibsS3Path" => {
                             extra_python_libs_s3_path = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "GlueVersion" => {
+                            glue_version = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "NumberOfNodes" => {
                             number_of_nodes = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "NumberOfWorkers" => {
+                            number_of_workers = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "PublicKey" => {
                             public_key = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "PublicKeys" => {
+                            public_keys = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "RoleArn" => {
                             role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SecurityConfiguration" => {
+                            security_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SecurityGroupIds" => {
                             security_group_ids = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -553,19 +800,32 @@ impl<'de> ::serde::Deserialize<'de> for DevEndpointProperties {
                         "SubnetId" => {
                             subnet_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "WorkerType" => {
+                            worker_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
 
                 Ok(DevEndpointProperties {
+                    arguments: arguments,
                     endpoint_name: endpoint_name,
                     extra_jars_s3_path: extra_jars_s3_path,
                     extra_python_libs_s3_path: extra_python_libs_s3_path,
+                    glue_version: glue_version,
                     number_of_nodes: number_of_nodes,
-                    public_key: public_key.ok_or(::serde::de::Error::missing_field("PublicKey"))?,
+                    number_of_workers: number_of_workers,
+                    public_key: public_key,
+                    public_keys: public_keys,
                     role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
+                    security_configuration: security_configuration,
                     security_group_ids: security_group_ids,
                     subnet_id: subnet_id,
+                    tags: tags,
+                    worker_type: worker_type,
                 })
             }
         }
@@ -632,11 +892,21 @@ pub struct JobProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub execution_property: Option<::Value<self::job::ExecutionProperty>>,
+    /// Property [`GlueVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-job.html#cfn-glue-job-glueversion).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub glue_version: Option<::Value<String>>,
     /// Property [`LogUri`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-job.html#cfn-glue-job-loguri).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub log_uri: Option<::Value<String>>,
+    /// Property [`MaxCapacity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-job.html#cfn-glue-job-maxcapacity).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub max_capacity: Option<::Value<f64>>,
     /// Property [`MaxRetries`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-job.html#cfn-glue-job-maxretries).
     ///
     /// Update type: _Mutable_.
@@ -647,11 +917,41 @@ pub struct JobProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub name: Option<::Value<String>>,
+    /// Property [`NotificationProperty`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-job.html#cfn-glue-job-notificationproperty).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub notification_property: Option<::Value<self::job::NotificationProperty>>,
+    /// Property [`NumberOfWorkers`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-job.html#cfn-glue-job-numberofworkers).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub number_of_workers: Option<::Value<u32>>,
     /// Property [`Role`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-job.html#cfn-glue-job-role).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub role: ::Value<String>,
+    /// Property [`SecurityConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-job.html#cfn-glue-job-securityconfiguration).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub security_configuration: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-job.html#cfn-glue-job-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::Value<::json::Value>>,
+    /// Property [`Timeout`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-job.html#cfn-glue-job-timeout).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub timeout: Option<::Value<u32>>,
+    /// Property [`WorkerType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-job.html#cfn-glue-job-workertype).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub worker_type: Option<::Value<String>>,
 }
 
 impl ::serde::Serialize for JobProperties {
@@ -673,8 +973,14 @@ impl ::serde::Serialize for JobProperties {
         if let Some(ref execution_property) = self.execution_property {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExecutionProperty", execution_property)?;
         }
+        if let Some(ref glue_version) = self.glue_version {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GlueVersion", glue_version)?;
+        }
         if let Some(ref log_uri) = self.log_uri {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogUri", log_uri)?;
+        }
+        if let Some(ref max_capacity) = self.max_capacity {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxCapacity", max_capacity)?;
         }
         if let Some(ref max_retries) = self.max_retries {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxRetries", max_retries)?;
@@ -682,7 +988,25 @@ impl ::serde::Serialize for JobProperties {
         if let Some(ref name) = self.name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
         }
+        if let Some(ref notification_property) = self.notification_property {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationProperty", notification_property)?;
+        }
+        if let Some(ref number_of_workers) = self.number_of_workers {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NumberOfWorkers", number_of_workers)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Role", &self.role)?;
+        if let Some(ref security_configuration) = self.security_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityConfiguration", security_configuration)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref timeout) = self.timeout {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Timeout", timeout)?;
+        }
+        if let Some(ref worker_type) = self.worker_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "WorkerType", worker_type)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -705,10 +1029,18 @@ impl<'de> ::serde::Deserialize<'de> for JobProperties {
                 let mut default_arguments: Option<::Value<::json::Value>> = None;
                 let mut description: Option<::Value<String>> = None;
                 let mut execution_property: Option<::Value<self::job::ExecutionProperty>> = None;
+                let mut glue_version: Option<::Value<String>> = None;
                 let mut log_uri: Option<::Value<String>> = None;
+                let mut max_capacity: Option<::Value<f64>> = None;
                 let mut max_retries: Option<::Value<f64>> = None;
                 let mut name: Option<::Value<String>> = None;
+                let mut notification_property: Option<::Value<self::job::NotificationProperty>> = None;
+                let mut number_of_workers: Option<::Value<u32>> = None;
                 let mut role: Option<::Value<String>> = None;
+                let mut security_configuration: Option<::Value<String>> = None;
+                let mut tags: Option<::Value<::json::Value>> = None;
+                let mut timeout: Option<::Value<u32>> = None;
+                let mut worker_type: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -730,8 +1062,14 @@ impl<'de> ::serde::Deserialize<'de> for JobProperties {
                         "ExecutionProperty" => {
                             execution_property = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "GlueVersion" => {
+                            glue_version = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "LogUri" => {
                             log_uri = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MaxCapacity" => {
+                            max_capacity = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "MaxRetries" => {
                             max_retries = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -739,8 +1077,26 @@ impl<'de> ::serde::Deserialize<'de> for JobProperties {
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "NotificationProperty" => {
+                            notification_property = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "NumberOfWorkers" => {
+                            number_of_workers = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Role" => {
                             role = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SecurityConfiguration" => {
+                            security_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Timeout" => {
+                            timeout = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "WorkerType" => {
+                            worker_type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -753,10 +1109,18 @@ impl<'de> ::serde::Deserialize<'de> for JobProperties {
                     default_arguments: default_arguments,
                     description: description,
                     execution_property: execution_property,
+                    glue_version: glue_version,
                     log_uri: log_uri,
+                    max_capacity: max_capacity,
                     max_retries: max_retries,
                     name: name,
+                    notification_property: notification_property,
+                    number_of_workers: number_of_workers,
                     role: role.ok_or(::serde::de::Error::missing_field("Role"))?,
+                    security_configuration: security_configuration,
+                    tags: tags,
+                    timeout: timeout,
+                    worker_type: worker_type,
                 })
             }
         }
@@ -781,6 +1145,234 @@ impl ::private::Sealed for Job {}
 impl From<JobProperties> for Job {
     fn from(properties: JobProperties) -> Job {
         Job { properties }
+    }
+}
+
+/// The [`AWS::Glue::MLTransform`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-mltransform.html) resource type.
+#[derive(Debug, Default)]
+pub struct MLTransform {
+    properties: MLTransformProperties
+}
+
+/// Properties for the `MLTransform` resource.
+#[derive(Debug, Default)]
+pub struct MLTransformProperties {
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-mltransform.html#cfn-glue-mltransform-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`GlueVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-mltransform.html#cfn-glue-mltransform-glueversion).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub glue_version: Option<::Value<String>>,
+    /// Property [`InputRecordTables`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-mltransform.html#cfn-glue-mltransform-inputrecordtables).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub input_record_tables: ::Value<self::ml_transform::InputRecordTables>,
+    /// Property [`MaxCapacity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-mltransform.html#cfn-glue-mltransform-maxcapacity).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub max_capacity: Option<::Value<f64>>,
+    /// Property [`MaxRetries`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-mltransform.html#cfn-glue-mltransform-maxretries).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub max_retries: Option<::Value<u32>>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-mltransform.html#cfn-glue-mltransform-name).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub name: Option<::Value<String>>,
+    /// Property [`NumberOfWorkers`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-mltransform.html#cfn-glue-mltransform-numberofworkers).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub number_of_workers: Option<::Value<u32>>,
+    /// Property [`Role`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-mltransform.html#cfn-glue-mltransform-role).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub role: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-mltransform.html#cfn-glue-mltransform-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::Value<::json::Value>>,
+    /// Property [`Timeout`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-mltransform.html#cfn-glue-mltransform-timeout).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub timeout: Option<::Value<u32>>,
+    /// Property [`TransformEncryption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-mltransform.html#cfn-glue-mltransform-transformencryption).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub transform_encryption: Option<::Value<self::ml_transform::TransformEncryption>>,
+    /// Property [`TransformParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-mltransform.html#cfn-glue-mltransform-transformparameters).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub transform_parameters: ::Value<self::ml_transform::TransformParameters>,
+    /// Property [`WorkerType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-mltransform.html#cfn-glue-mltransform-workertype).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub worker_type: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for MLTransformProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref glue_version) = self.glue_version {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GlueVersion", glue_version)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputRecordTables", &self.input_record_tables)?;
+        if let Some(ref max_capacity) = self.max_capacity {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxCapacity", max_capacity)?;
+        }
+        if let Some(ref max_retries) = self.max_retries {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxRetries", max_retries)?;
+        }
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
+        if let Some(ref number_of_workers) = self.number_of_workers {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NumberOfWorkers", number_of_workers)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Role", &self.role)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref timeout) = self.timeout {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Timeout", timeout)?;
+        }
+        if let Some(ref transform_encryption) = self.transform_encryption {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransformEncryption", transform_encryption)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransformParameters", &self.transform_parameters)?;
+        if let Some(ref worker_type) = self.worker_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "WorkerType", worker_type)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for MLTransformProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<MLTransformProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = MLTransformProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type MLTransformProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut description: Option<::Value<String>> = None;
+                let mut glue_version: Option<::Value<String>> = None;
+                let mut input_record_tables: Option<::Value<self::ml_transform::InputRecordTables>> = None;
+                let mut max_capacity: Option<::Value<f64>> = None;
+                let mut max_retries: Option<::Value<u32>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut number_of_workers: Option<::Value<u32>> = None;
+                let mut role: Option<::Value<String>> = None;
+                let mut tags: Option<::Value<::json::Value>> = None;
+                let mut timeout: Option<::Value<u32>> = None;
+                let mut transform_encryption: Option<::Value<self::ml_transform::TransformEncryption>> = None;
+                let mut transform_parameters: Option<::Value<self::ml_transform::TransformParameters>> = None;
+                let mut worker_type: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "GlueVersion" => {
+                            glue_version = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "InputRecordTables" => {
+                            input_record_tables = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MaxCapacity" => {
+                            max_capacity = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MaxRetries" => {
+                            max_retries = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "NumberOfWorkers" => {
+                            number_of_workers = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Role" => {
+                            role = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Timeout" => {
+                            timeout = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TransformEncryption" => {
+                            transform_encryption = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TransformParameters" => {
+                            transform_parameters = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "WorkerType" => {
+                            worker_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(MLTransformProperties {
+                    description: description,
+                    glue_version: glue_version,
+                    input_record_tables: input_record_tables.ok_or(::serde::de::Error::missing_field("InputRecordTables"))?,
+                    max_capacity: max_capacity,
+                    max_retries: max_retries,
+                    name: name,
+                    number_of_workers: number_of_workers,
+                    role: role.ok_or(::serde::de::Error::missing_field("Role"))?,
+                    tags: tags,
+                    timeout: timeout,
+                    transform_encryption: transform_encryption,
+                    transform_parameters: transform_parameters.ok_or(::serde::de::Error::missing_field("TransformParameters"))?,
+                    worker_type: worker_type,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for MLTransform {
+    type Properties = MLTransformProperties;
+    const TYPE: &'static str = "AWS::Glue::MLTransform";
+    fn properties(&self) -> &MLTransformProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut MLTransformProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for MLTransform {}
+
+impl From<MLTransformProperties> for MLTransform {
+    fn from(properties: MLTransformProperties) -> MLTransform {
+        MLTransform { properties }
     }
 }
 
@@ -890,6 +1482,541 @@ impl ::private::Sealed for Partition {}
 impl From<PartitionProperties> for Partition {
     fn from(properties: PartitionProperties) -> Partition {
         Partition { properties }
+    }
+}
+
+/// The [`AWS::Glue::Registry`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-registry.html) resource type.
+#[derive(Debug, Default)]
+pub struct Registry {
+    properties: RegistryProperties
+}
+
+/// Properties for the `Registry` resource.
+#[derive(Debug, Default)]
+pub struct RegistryProperties {
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-registry.html#cfn-glue-registry-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-registry.html#cfn-glue-registry-name).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub name: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-registry.html#cfn-glue-registry-tags).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for RegistryProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for RegistryProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<RegistryProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = RegistryProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type RegistryProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut description: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(RegistryProperties {
+                    description: description,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for Registry {
+    type Properties = RegistryProperties;
+    const TYPE: &'static str = "AWS::Glue::Registry";
+    fn properties(&self) -> &RegistryProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut RegistryProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for Registry {}
+
+impl From<RegistryProperties> for Registry {
+    fn from(properties: RegistryProperties) -> Registry {
+        Registry { properties }
+    }
+}
+
+/// The [`AWS::Glue::Schema`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-schema.html) resource type.
+#[derive(Debug, Default)]
+pub struct Schema {
+    properties: SchemaProperties
+}
+
+/// Properties for the `Schema` resource.
+#[derive(Debug, Default)]
+pub struct SchemaProperties {
+    /// Property [`CheckpointVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-schema.html#cfn-glue-schema-checkpointversion).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub checkpoint_version: Option<::Value<self::schema::SchemaVersion>>,
+    /// Property [`Compatibility`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-schema.html#cfn-glue-schema-compatibility).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub compatibility: ::Value<String>,
+    /// Property [`DataFormat`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-schema.html#cfn-glue-schema-dataformat).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub data_format: ::Value<String>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-schema.html#cfn-glue-schema-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-schema.html#cfn-glue-schema-name).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub name: ::Value<String>,
+    /// Property [`Registry`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-schema.html#cfn-glue-schema-registry).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub registry: Option<::Value<self::schema::Registry>>,
+    /// Property [`SchemaDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-schema.html#cfn-glue-schema-schemadefinition).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub schema_definition: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-schema.html#cfn-glue-schema-tags).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for SchemaProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref checkpoint_version) = self.checkpoint_version {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CheckpointVersion", checkpoint_version)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Compatibility", &self.compatibility)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataFormat", &self.data_format)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref registry) = self.registry {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Registry", registry)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SchemaDefinition", &self.schema_definition)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for SchemaProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<SchemaProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = SchemaProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type SchemaProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut checkpoint_version: Option<::Value<self::schema::SchemaVersion>> = None;
+                let mut compatibility: Option<::Value<String>> = None;
+                let mut data_format: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut registry: Option<::Value<self::schema::Registry>> = None;
+                let mut schema_definition: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "CheckpointVersion" => {
+                            checkpoint_version = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Compatibility" => {
+                            compatibility = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DataFormat" => {
+                            data_format = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Registry" => {
+                            registry = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SchemaDefinition" => {
+                            schema_definition = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(SchemaProperties {
+                    checkpoint_version: checkpoint_version,
+                    compatibility: compatibility.ok_or(::serde::de::Error::missing_field("Compatibility"))?,
+                    data_format: data_format.ok_or(::serde::de::Error::missing_field("DataFormat"))?,
+                    description: description,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    registry: registry,
+                    schema_definition: schema_definition.ok_or(::serde::de::Error::missing_field("SchemaDefinition"))?,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for Schema {
+    type Properties = SchemaProperties;
+    const TYPE: &'static str = "AWS::Glue::Schema";
+    fn properties(&self) -> &SchemaProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut SchemaProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for Schema {}
+
+impl From<SchemaProperties> for Schema {
+    fn from(properties: SchemaProperties) -> Schema {
+        Schema { properties }
+    }
+}
+
+/// The [`AWS::Glue::SchemaVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-schemaversion.html) resource type.
+#[derive(Debug, Default)]
+pub struct SchemaVersion {
+    properties: SchemaVersionProperties
+}
+
+/// Properties for the `SchemaVersion` resource.
+#[derive(Debug, Default)]
+pub struct SchemaVersionProperties {
+    /// Property [`Schema`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-schemaversion.html#cfn-glue-schemaversion-schema).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub schema: ::Value<self::schema_version::Schema>,
+    /// Property [`SchemaDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-schemaversion.html#cfn-glue-schemaversion-schemadefinition).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub schema_definition: ::Value<String>,
+}
+
+impl ::serde::Serialize for SchemaVersionProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Schema", &self.schema)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SchemaDefinition", &self.schema_definition)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for SchemaVersionProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<SchemaVersionProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = SchemaVersionProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type SchemaVersionProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut schema: Option<::Value<self::schema_version::Schema>> = None;
+                let mut schema_definition: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Schema" => {
+                            schema = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SchemaDefinition" => {
+                            schema_definition = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(SchemaVersionProperties {
+                    schema: schema.ok_or(::serde::de::Error::missing_field("Schema"))?,
+                    schema_definition: schema_definition.ok_or(::serde::de::Error::missing_field("SchemaDefinition"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for SchemaVersion {
+    type Properties = SchemaVersionProperties;
+    const TYPE: &'static str = "AWS::Glue::SchemaVersion";
+    fn properties(&self) -> &SchemaVersionProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut SchemaVersionProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for SchemaVersion {}
+
+impl From<SchemaVersionProperties> for SchemaVersion {
+    fn from(properties: SchemaVersionProperties) -> SchemaVersion {
+        SchemaVersion { properties }
+    }
+}
+
+/// The [`AWS::Glue::SchemaVersionMetadata`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-schemaversionmetadata.html) resource type.
+#[derive(Debug, Default)]
+pub struct SchemaVersionMetadata {
+    properties: SchemaVersionMetadataProperties
+}
+
+/// Properties for the `SchemaVersionMetadata` resource.
+#[derive(Debug, Default)]
+pub struct SchemaVersionMetadataProperties {
+    /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-schemaversionmetadata.html#cfn-glue-schemaversionmetadata-key).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub key: ::Value<String>,
+    /// Property [`SchemaVersionId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-schemaversionmetadata.html#cfn-glue-schemaversionmetadata-schemaversionid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub schema_version_id: ::Value<String>,
+    /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-schemaversionmetadata.html#cfn-glue-schemaversionmetadata-value).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub value: ::Value<String>,
+}
+
+impl ::serde::Serialize for SchemaVersionMetadataProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SchemaVersionId", &self.schema_version_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for SchemaVersionMetadataProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<SchemaVersionMetadataProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = SchemaVersionMetadataProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type SchemaVersionMetadataProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut key: Option<::Value<String>> = None;
+                let mut schema_version_id: Option<::Value<String>> = None;
+                let mut value: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Key" => {
+                            key = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SchemaVersionId" => {
+                            schema_version_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Value" => {
+                            value = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(SchemaVersionMetadataProperties {
+                    key: key.ok_or(::serde::de::Error::missing_field("Key"))?,
+                    schema_version_id: schema_version_id.ok_or(::serde::de::Error::missing_field("SchemaVersionId"))?,
+                    value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for SchemaVersionMetadata {
+    type Properties = SchemaVersionMetadataProperties;
+    const TYPE: &'static str = "AWS::Glue::SchemaVersionMetadata";
+    fn properties(&self) -> &SchemaVersionMetadataProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut SchemaVersionMetadataProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for SchemaVersionMetadata {}
+
+impl From<SchemaVersionMetadataProperties> for SchemaVersionMetadata {
+    fn from(properties: SchemaVersionMetadataProperties) -> SchemaVersionMetadata {
+        SchemaVersionMetadata { properties }
+    }
+}
+
+/// The [`AWS::Glue::SecurityConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-securityconfiguration.html) resource type.
+#[derive(Debug, Default)]
+pub struct SecurityConfiguration {
+    properties: SecurityConfigurationProperties
+}
+
+/// Properties for the `SecurityConfiguration` resource.
+#[derive(Debug, Default)]
+pub struct SecurityConfigurationProperties {
+    /// Property [`EncryptionConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-securityconfiguration.html#cfn-glue-securityconfiguration-encryptionconfiguration).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub encryption_configuration: ::Value<self::security_configuration::EncryptionConfiguration>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-securityconfiguration.html#cfn-glue-securityconfiguration-name).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub name: ::Value<String>,
+}
+
+impl ::serde::Serialize for SecurityConfigurationProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EncryptionConfiguration", &self.encryption_configuration)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for SecurityConfigurationProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<SecurityConfigurationProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = SecurityConfigurationProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type SecurityConfigurationProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut encryption_configuration: Option<::Value<self::security_configuration::EncryptionConfiguration>> = None;
+                let mut name: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "EncryptionConfiguration" => {
+                            encryption_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(SecurityConfigurationProperties {
+                    encryption_configuration: encryption_configuration.ok_or(::serde::de::Error::missing_field("EncryptionConfiguration"))?,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for SecurityConfiguration {
+    type Properties = SecurityConfigurationProperties;
+    const TYPE: &'static str = "AWS::Glue::SecurityConfiguration";
+    fn properties(&self) -> &SecurityConfigurationProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut SecurityConfigurationProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for SecurityConfiguration {}
+
+impl From<SecurityConfigurationProperties> for SecurityConfiguration {
+    fn from(properties: SecurityConfigurationProperties) -> SecurityConfiguration {
+        SecurityConfiguration { properties }
     }
 }
 
@@ -1025,11 +2152,26 @@ pub struct TriggerProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub schedule: Option<::Value<String>>,
+    /// Property [`StartOnCreation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-trigger.html#cfn-glue-trigger-startoncreation).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub start_on_creation: Option<::Value<bool>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-trigger.html#cfn-glue-trigger-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::Value<::json::Value>>,
     /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-trigger.html#cfn-glue-trigger-type).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub type_: ::Value<String>,
+    pub r#type: ::Value<String>,
+    /// Property [`WorkflowName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-trigger.html#cfn-glue-trigger-workflowname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub workflow_name: Option<::Value<String>>,
 }
 
 impl ::serde::Serialize for TriggerProperties {
@@ -1048,7 +2190,16 @@ impl ::serde::Serialize for TriggerProperties {
         if let Some(ref schedule) = self.schedule {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Schedule", schedule)?;
         }
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+        if let Some(ref start_on_creation) = self.start_on_creation {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StartOnCreation", start_on_creation)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
+        if let Some(ref workflow_name) = self.workflow_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "WorkflowName", workflow_name)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -1070,7 +2221,10 @@ impl<'de> ::serde::Deserialize<'de> for TriggerProperties {
                 let mut name: Option<::Value<String>> = None;
                 let mut predicate: Option<::Value<self::trigger::Predicate>> = None;
                 let mut schedule: Option<::Value<String>> = None;
-                let mut type_: Option<::Value<String>> = None;
+                let mut start_on_creation: Option<::Value<bool>> = None;
+                let mut tags: Option<::Value<::json::Value>> = None;
+                let mut r#type: Option<::Value<String>> = None;
+                let mut workflow_name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1089,8 +2243,17 @@ impl<'de> ::serde::Deserialize<'de> for TriggerProperties {
                         "Schedule" => {
                             schedule = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "StartOnCreation" => {
+                            start_on_creation = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Type" => {
-                            type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                            r#type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "WorkflowName" => {
+                            workflow_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -1102,7 +2265,10 @@ impl<'de> ::serde::Deserialize<'de> for TriggerProperties {
                     name: name,
                     predicate: predicate,
                     schedule: schedule,
-                    type_: type_.ok_or(::serde::de::Error::missing_field("Type"))?,
+                    start_on_creation: start_on_creation,
+                    tags: tags,
+                    r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
+                    workflow_name: workflow_name,
                 })
             }
         }
@@ -1130,8 +2296,256 @@ impl From<TriggerProperties> for Trigger {
     }
 }
 
+/// The [`AWS::Glue::Workflow`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-workflow.html) resource type.
+#[derive(Debug, Default)]
+pub struct Workflow {
+    properties: WorkflowProperties
+}
+
+/// Properties for the `Workflow` resource.
+#[derive(Debug, Default)]
+pub struct WorkflowProperties {
+    /// Property [`DefaultRunProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-workflow.html#cfn-glue-workflow-defaultrunproperties).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub default_run_properties: Option<::Value<::json::Value>>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-workflow.html#cfn-glue-workflow-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-workflow.html#cfn-glue-workflow-name).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub name: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-workflow.html#cfn-glue-workflow-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::Value<::json::Value>>,
+}
+
+impl ::serde::Serialize for WorkflowProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref default_run_properties) = self.default_run_properties {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultRunProperties", default_run_properties)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for WorkflowProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<WorkflowProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = WorkflowProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type WorkflowProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut default_run_properties: Option<::Value<::json::Value>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut tags: Option<::Value<::json::Value>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "DefaultRunProperties" => {
+                            default_run_properties = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(WorkflowProperties {
+                    default_run_properties: default_run_properties,
+                    description: description,
+                    name: name,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for Workflow {
+    type Properties = WorkflowProperties;
+    const TYPE: &'static str = "AWS::Glue::Workflow";
+    fn properties(&self) -> &WorkflowProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut WorkflowProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for Workflow {}
+
+impl From<WorkflowProperties> for Workflow {
+    fn from(properties: WorkflowProperties) -> Workflow {
+        Workflow { properties }
+    }
+}
+
 pub mod classifier {
     //! Property types for the `Classifier` resource.
+
+    /// The [`AWS::Glue::Classifier.CsvClassifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-csvclassifier.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CsvClassifier {
+        /// Property [`AllowSingleColumn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-csvclassifier.html#cfn-glue-classifier-csvclassifier-allowsinglecolumn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub allow_single_column: Option<::Value<bool>>,
+        /// Property [`ContainsHeader`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-csvclassifier.html#cfn-glue-classifier-csvclassifier-containsheader).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub contains_header: Option<::Value<String>>,
+        /// Property [`Delimiter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-csvclassifier.html#cfn-glue-classifier-csvclassifier-delimiter).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub delimiter: Option<::Value<String>>,
+        /// Property [`DisableValueTrimming`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-csvclassifier.html#cfn-glue-classifier-csvclassifier-disablevaluetrimming).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub disable_value_trimming: Option<::Value<bool>>,
+        /// Property [`Header`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-csvclassifier.html#cfn-glue-classifier-csvclassifier-header).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub header: Option<::ValueList<String>>,
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-csvclassifier.html#cfn-glue-classifier-csvclassifier-name).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub name: Option<::Value<String>>,
+        /// Property [`QuoteSymbol`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-csvclassifier.html#cfn-glue-classifier-csvclassifier-quotesymbol).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub quote_symbol: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for CsvClassifier {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref allow_single_column) = self.allow_single_column {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowSingleColumn", allow_single_column)?;
+            }
+            if let Some(ref contains_header) = self.contains_header {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainsHeader", contains_header)?;
+            }
+            if let Some(ref delimiter) = self.delimiter {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Delimiter", delimiter)?;
+            }
+            if let Some(ref disable_value_trimming) = self.disable_value_trimming {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisableValueTrimming", disable_value_trimming)?;
+            }
+            if let Some(ref header) = self.header {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Header", header)?;
+            }
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            if let Some(ref quote_symbol) = self.quote_symbol {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "QuoteSymbol", quote_symbol)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CsvClassifier {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CsvClassifier, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CsvClassifier;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CsvClassifier")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut allow_single_column: Option<::Value<bool>> = None;
+                    let mut contains_header: Option<::Value<String>> = None;
+                    let mut delimiter: Option<::Value<String>> = None;
+                    let mut disable_value_trimming: Option<::Value<bool>> = None;
+                    let mut header: Option<::ValueList<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut quote_symbol: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AllowSingleColumn" => {
+                                allow_single_column = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ContainsHeader" => {
+                                contains_header = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Delimiter" => {
+                                delimiter = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DisableValueTrimming" => {
+                                disable_value_trimming = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Header" => {
+                                header = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "QuoteSymbol" => {
+                                quote_symbol = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CsvClassifier {
+                        allow_single_column: allow_single_column,
+                        contains_header: contains_header,
+                        delimiter: delimiter,
+                        disable_value_trimming: disable_value_trimming,
+                        header: header,
+                        name: name,
+                        quote_symbol: quote_symbol,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::Glue::Classifier.GrokClassifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-grokclassifier.html) property type.
     #[derive(Debug, Default)]
@@ -1220,6 +2634,145 @@ pub mod classifier {
             d.deserialize_map(Visitor)
         }
     }
+
+    /// The [`AWS::Glue::Classifier.JsonClassifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-jsonclassifier.html) property type.
+    #[derive(Debug, Default)]
+    pub struct JsonClassifier {
+        /// Property [`JsonPath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-jsonclassifier.html#cfn-glue-classifier-jsonclassifier-jsonpath).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub json_path: ::Value<String>,
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-jsonclassifier.html#cfn-glue-classifier-jsonclassifier-name).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub name: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for JsonClassifier {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "JsonPath", &self.json_path)?;
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for JsonClassifier {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<JsonClassifier, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = JsonClassifier;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type JsonClassifier")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut json_path: Option<::Value<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "JsonPath" => {
+                                json_path = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(JsonClassifier {
+                        json_path: json_path.ok_or(::serde::de::Error::missing_field("JsonPath"))?,
+                        name: name,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Glue::Classifier.XMLClassifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-xmlclassifier.html) property type.
+    #[derive(Debug, Default)]
+    pub struct XMLClassifier {
+        /// Property [`Classification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-xmlclassifier.html#cfn-glue-classifier-xmlclassifier-classification).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub classification: ::Value<String>,
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-xmlclassifier.html#cfn-glue-classifier-xmlclassifier-name).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub name: Option<::Value<String>>,
+        /// Property [`RowTag`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-classifier-xmlclassifier.html#cfn-glue-classifier-xmlclassifier-rowtag).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub row_tag: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for XMLClassifier {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Classification", &self.classification)?;
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RowTag", &self.row_tag)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for XMLClassifier {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<XMLClassifier, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = XMLClassifier;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type XMLClassifier")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut classification: Option<::Value<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut row_tag: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Classification" => {
+                                classification = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RowTag" => {
+                                row_tag = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(XMLClassifier {
+                        classification: classification.ok_or(::serde::de::Error::missing_field("Classification"))?,
+                        name: name,
+                        row_tag: row_tag.ok_or(::serde::de::Error::missing_field("RowTag"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 }
 
 pub mod connection {
@@ -1232,7 +2785,7 @@ pub mod connection {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub connection_properties: ::Value<::json::Value>,
+        pub connection_properties: Option<::Value<::json::Value>>,
         /// Property [`ConnectionType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-connection-connectioninput.html#cfn-glue-connection-connectioninput-connectiontype).
         ///
         /// Update type: _Mutable_.
@@ -1263,7 +2816,9 @@ pub mod connection {
     impl ::codec::SerializeValue for ConnectionInput {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionProperties", &self.connection_properties)?;
+            if let Some(ref connection_properties) = self.connection_properties {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionProperties", connection_properties)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionType", &self.connection_type)?;
             if let Some(ref description) = self.description {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
@@ -1325,7 +2880,7 @@ pub mod connection {
                     }
 
                     Ok(ConnectionInput {
-                        connection_properties: connection_properties.ok_or(::serde::de::Error::missing_field("ConnectionProperties"))?,
+                        connection_properties: connection_properties,
                         connection_type: connection_type.ok_or(::serde::de::Error::missing_field("ConnectionType"))?,
                         description: description,
                         match_criteria: match_criteria,
@@ -1422,6 +2977,125 @@ pub mod connection {
 pub mod crawler {
     //! Property types for the `Crawler` resource.
 
+    /// The [`AWS::Glue::Crawler.CatalogTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-catalogtarget.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CatalogTarget {
+        /// Property [`DatabaseName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-catalogtarget.html#cfn-glue-crawler-catalogtarget-databasename).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub database_name: Option<::Value<String>>,
+        /// Property [`Tables`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-catalogtarget.html#cfn-glue-crawler-catalogtarget-tables).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tables: Option<::ValueList<String>>,
+    }
+
+    impl ::codec::SerializeValue for CatalogTarget {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref database_name) = self.database_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseName", database_name)?;
+            }
+            if let Some(ref tables) = self.tables {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tables", tables)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CatalogTarget {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CatalogTarget, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CatalogTarget;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CatalogTarget")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut database_name: Option<::Value<String>> = None;
+                    let mut tables: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DatabaseName" => {
+                                database_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Tables" => {
+                                tables = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CatalogTarget {
+                        database_name: database_name,
+                        tables: tables,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Glue::Crawler.DynamoDBTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-dynamodbtarget.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DynamoDBTarget {
+        /// Property [`Path`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-dynamodbtarget.html#cfn-glue-crawler-dynamodbtarget-path).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub path: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for DynamoDBTarget {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref path) = self.path {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Path", path)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DynamoDBTarget {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DynamoDBTarget, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DynamoDBTarget;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DynamoDBTarget")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut path: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Path" => {
+                                path = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DynamoDBTarget {
+                        path: path,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::Glue::Crawler.JdbcTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-jdbctarget.html) property type.
     #[derive(Debug, Default)]
     pub struct JdbcTarget {
@@ -1504,6 +3178,11 @@ pub mod crawler {
     /// The [`AWS::Glue::Crawler.S3Target`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-s3target.html) property type.
     #[derive(Debug, Default)]
     pub struct S3Target {
+        /// Property [`ConnectionName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-s3target.html#cfn-glue-crawler-s3target-connectionname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub connection_name: Option<::Value<String>>,
         /// Property [`Exclusions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-s3target.html#cfn-glue-crawler-s3target-exclusions).
         ///
         /// Update type: _Mutable_.
@@ -1519,6 +3198,9 @@ pub mod crawler {
     impl ::codec::SerializeValue for S3Target {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref connection_name) = self.connection_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionName", connection_name)?;
+            }
             if let Some(ref exclusions) = self.exclusions {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Exclusions", exclusions)?;
             }
@@ -1541,11 +3223,15 @@ pub mod crawler {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut connection_name: Option<::Value<String>> = None;
                     let mut exclusions: Option<::ValueList<String>> = None;
                     let mut path: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "ConnectionName" => {
+                                connection_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Exclusions" => {
                                 exclusions = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1557,6 +3243,7 @@ pub mod crawler {
                     }
 
                     Ok(S3Target {
+                        connection_name: connection_name,
                         exclusions: exclusions,
                         path: path,
                     })
@@ -1689,6 +3376,16 @@ pub mod crawler {
     /// The [`AWS::Glue::Crawler.Targets`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-targets.html) property type.
     #[derive(Debug, Default)]
     pub struct Targets {
+        /// Property [`CatalogTargets`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-targets.html#cfn-glue-crawler-targets-catalogtargets).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub catalog_targets: Option<::ValueList<CatalogTarget>>,
+        /// Property [`DynamoDBTargets`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-targets.html#cfn-glue-crawler-targets-dynamodbtargets).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub dynamo_db_targets: Option<::ValueList<DynamoDBTarget>>,
         /// Property [`JdbcTargets`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-crawler-targets.html#cfn-glue-crawler-targets-jdbctargets).
         ///
         /// Update type: _Mutable_.
@@ -1704,6 +3401,12 @@ pub mod crawler {
     impl ::codec::SerializeValue for Targets {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref catalog_targets) = self.catalog_targets {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CatalogTargets", catalog_targets)?;
+            }
+            if let Some(ref dynamo_db_targets) = self.dynamo_db_targets {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DynamoDBTargets", dynamo_db_targets)?;
+            }
             if let Some(ref jdbc_targets) = self.jdbc_targets {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "JdbcTargets", jdbc_targets)?;
             }
@@ -1726,11 +3429,19 @@ pub mod crawler {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut catalog_targets: Option<::ValueList<CatalogTarget>> = None;
+                    let mut dynamo_db_targets: Option<::ValueList<DynamoDBTarget>> = None;
                     let mut jdbc_targets: Option<::ValueList<JdbcTarget>> = None;
                     let mut s3_targets: Option<::ValueList<S3Target>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "CatalogTargets" => {
+                                catalog_targets = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DynamoDBTargets" => {
+                                dynamo_db_targets = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "JdbcTargets" => {
                                 jdbc_targets = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1742,6 +3453,8 @@ pub mod crawler {
                     }
 
                     Ok(Targets {
+                        catalog_targets: catalog_targets,
+                        dynamo_db_targets: dynamo_db_targets,
                         jdbc_targets: jdbc_targets,
                         s3_targets: s3_targets,
                     })
@@ -1753,8 +3466,276 @@ pub mod crawler {
     }
 }
 
+pub mod data_catalog_encryption_settings {
+    //! Property types for the `DataCatalogEncryptionSettings` resource.
+
+    /// The [`AWS::Glue::DataCatalogEncryptionSettings.ConnectionPasswordEncryption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-datacatalogencryptionsettings-connectionpasswordencryption.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ConnectionPasswordEncryption {
+        /// Property [`KmsKeyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-datacatalogencryptionsettings-connectionpasswordencryption.html#cfn-glue-datacatalogencryptionsettings-connectionpasswordencryption-kmskeyid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub kms_key_id: Option<::Value<String>>,
+        /// Property [`ReturnConnectionPasswordEncrypted`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-datacatalogencryptionsettings-connectionpasswordencryption.html#cfn-glue-datacatalogencryptionsettings-connectionpasswordencryption-returnconnectionpasswordencrypted).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub return_connection_password_encrypted: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for ConnectionPasswordEncryption {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref kms_key_id) = self.kms_key_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", kms_key_id)?;
+            }
+            if let Some(ref return_connection_password_encrypted) = self.return_connection_password_encrypted {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReturnConnectionPasswordEncrypted", return_connection_password_encrypted)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ConnectionPasswordEncryption {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ConnectionPasswordEncryption, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ConnectionPasswordEncryption;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ConnectionPasswordEncryption")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut kms_key_id: Option<::Value<String>> = None;
+                    let mut return_connection_password_encrypted: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "KmsKeyId" => {
+                                kms_key_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ReturnConnectionPasswordEncrypted" => {
+                                return_connection_password_encrypted = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ConnectionPasswordEncryption {
+                        kms_key_id: kms_key_id,
+                        return_connection_password_encrypted: return_connection_password_encrypted,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Glue::DataCatalogEncryptionSettings.DataCatalogEncryptionSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-datacatalogencryptionsettings-datacatalogencryptionsettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DataCatalogEncryptionSettings {
+        /// Property [`ConnectionPasswordEncryption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-datacatalogencryptionsettings-datacatalogencryptionsettings.html#cfn-glue-datacatalogencryptionsettings-datacatalogencryptionsettings-connectionpasswordencryption).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub connection_password_encryption: Option<::Value<ConnectionPasswordEncryption>>,
+        /// Property [`EncryptionAtRest`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-datacatalogencryptionsettings-datacatalogencryptionsettings.html#cfn-glue-datacatalogencryptionsettings-datacatalogencryptionsettings-encryptionatrest).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub encryption_at_rest: Option<::Value<EncryptionAtRest>>,
+    }
+
+    impl ::codec::SerializeValue for DataCatalogEncryptionSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref connection_password_encryption) = self.connection_password_encryption {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionPasswordEncryption", connection_password_encryption)?;
+            }
+            if let Some(ref encryption_at_rest) = self.encryption_at_rest {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EncryptionAtRest", encryption_at_rest)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DataCatalogEncryptionSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DataCatalogEncryptionSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DataCatalogEncryptionSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DataCatalogEncryptionSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut connection_password_encryption: Option<::Value<ConnectionPasswordEncryption>> = None;
+                    let mut encryption_at_rest: Option<::Value<EncryptionAtRest>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ConnectionPasswordEncryption" => {
+                                connection_password_encryption = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "EncryptionAtRest" => {
+                                encryption_at_rest = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DataCatalogEncryptionSettings {
+                        connection_password_encryption: connection_password_encryption,
+                        encryption_at_rest: encryption_at_rest,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Glue::DataCatalogEncryptionSettings.EncryptionAtRest`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-datacatalogencryptionsettings-encryptionatrest.html) property type.
+    #[derive(Debug, Default)]
+    pub struct EncryptionAtRest {
+        /// Property [`CatalogEncryptionMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-datacatalogencryptionsettings-encryptionatrest.html#cfn-glue-datacatalogencryptionsettings-encryptionatrest-catalogencryptionmode).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub catalog_encryption_mode: Option<::Value<String>>,
+        /// Property [`SseAwsKmsKeyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-datacatalogencryptionsettings-encryptionatrest.html#cfn-glue-datacatalogencryptionsettings-encryptionatrest-sseawskmskeyid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub sse_aws_kms_key_id: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for EncryptionAtRest {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref catalog_encryption_mode) = self.catalog_encryption_mode {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CatalogEncryptionMode", catalog_encryption_mode)?;
+            }
+            if let Some(ref sse_aws_kms_key_id) = self.sse_aws_kms_key_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SseAwsKmsKeyId", sse_aws_kms_key_id)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for EncryptionAtRest {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<EncryptionAtRest, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = EncryptionAtRest;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type EncryptionAtRest")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut catalog_encryption_mode: Option<::Value<String>> = None;
+                    let mut sse_aws_kms_key_id: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CatalogEncryptionMode" => {
+                                catalog_encryption_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SseAwsKmsKeyId" => {
+                                sse_aws_kms_key_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(EncryptionAtRest {
+                        catalog_encryption_mode: catalog_encryption_mode,
+                        sse_aws_kms_key_id: sse_aws_kms_key_id,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
 pub mod database {
     //! Property types for the `Database` resource.
+
+    /// The [`AWS::Glue::Database.DatabaseIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-database-databaseidentifier.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DatabaseIdentifier {
+        /// Property [`CatalogId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-database-databaseidentifier.html#cfn-glue-database-databaseidentifier-catalogid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub catalog_id: Option<::Value<String>>,
+        /// Property [`DatabaseName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-database-databaseidentifier.html#cfn-glue-database-databaseidentifier-databasename).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub database_name: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for DatabaseIdentifier {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref catalog_id) = self.catalog_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CatalogId", catalog_id)?;
+            }
+            if let Some(ref database_name) = self.database_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseName", database_name)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DatabaseIdentifier {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DatabaseIdentifier, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DatabaseIdentifier;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DatabaseIdentifier")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut catalog_id: Option<::Value<String>> = None;
+                    let mut database_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CatalogId" => {
+                                catalog_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DatabaseName" => {
+                                database_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DatabaseIdentifier {
+                        catalog_id: catalog_id,
+                        database_name: database_name,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::Glue::Database.DatabaseInput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-database-databaseinput.html) property type.
     #[derive(Debug, Default)]
@@ -1779,6 +3760,11 @@ pub mod database {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub parameters: Option<::Value<::json::Value>>,
+        /// Property [`TargetDatabase`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-database-databaseinput.html#cfn-glue-database-databaseinput-targetdatabase).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub target_database: Option<::Value<DatabaseIdentifier>>,
     }
 
     impl ::codec::SerializeValue for DatabaseInput {
@@ -1795,6 +3781,9 @@ pub mod database {
             }
             if let Some(ref parameters) = self.parameters {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", parameters)?;
+            }
+            if let Some(ref target_database) = self.target_database {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetDatabase", target_database)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -1816,6 +3805,7 @@ pub mod database {
                     let mut location_uri: Option<::Value<String>> = None;
                     let mut name: Option<::Value<String>> = None;
                     let mut parameters: Option<::Value<::json::Value>> = None;
+                    let mut target_database: Option<::Value<DatabaseIdentifier>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1831,6 +3821,9 @@ pub mod database {
                             "Parameters" => {
                                 parameters = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "TargetDatabase" => {
+                                target_database = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
@@ -1840,6 +3833,7 @@ pub mod database {
                         location_uri: location_uri,
                         name: name,
                         parameters: parameters,
+                        target_database: target_database,
                     })
                 }
             }
@@ -1966,6 +3960,11 @@ pub mod job {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub name: Option<::Value<String>>,
+        /// Property [`PythonVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-jobcommand.html#cfn-glue-job-jobcommand-pythonversion).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub python_version: Option<::Value<String>>,
         /// Property [`ScriptLocation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-jobcommand.html#cfn-glue-job-jobcommand-scriptlocation).
         ///
         /// Update type: _Mutable_.
@@ -1978,6 +3977,9 @@ pub mod job {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             if let Some(ref name) = self.name {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            if let Some(ref python_version) = self.python_version {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PythonVersion", python_version)?;
             }
             if let Some(ref script_location) = self.script_location {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScriptLocation", script_location)?;
@@ -1999,12 +4001,16 @@ pub mod job {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut name: Option<::Value<String>> = None;
+                    let mut python_version: Option<::Value<String>> = None;
                     let mut script_location: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Name" => {
                                 name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PythonVersion" => {
+                                python_version = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "ScriptLocation" => {
                                 script_location = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -2015,7 +4021,490 @@ pub mod job {
 
                     Ok(JobCommand {
                         name: name,
+                        python_version: python_version,
                         script_location: script_location,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Glue::Job.NotificationProperty`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-notificationproperty.html) property type.
+    #[derive(Debug, Default)]
+    pub struct NotificationProperty {
+        /// Property [`NotifyDelayAfter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-job-notificationproperty.html#cfn-glue-job-notificationproperty-notifydelayafter).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub notify_delay_after: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for NotificationProperty {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref notify_delay_after) = self.notify_delay_after {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotifyDelayAfter", notify_delay_after)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for NotificationProperty {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<NotificationProperty, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = NotificationProperty;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type NotificationProperty")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut notify_delay_after: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "NotifyDelayAfter" => {
+                                notify_delay_after = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(NotificationProperty {
+                        notify_delay_after: notify_delay_after,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod ml_transform {
+    //! Property types for the `MLTransform` resource.
+
+    /// The [`AWS::Glue::MLTransform.FindMatchesParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-transformparameters-findmatchesparameters.html) property type.
+    #[derive(Debug, Default)]
+    pub struct FindMatchesParameters {
+        /// Property [`AccuracyCostTradeoff`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-transformparameters-findmatchesparameters.html#cfn-glue-mltransform-transformparameters-findmatchesparameters-accuracycosttradeoff).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub accuracy_cost_tradeoff: Option<::Value<f64>>,
+        /// Property [`EnforceProvidedLabels`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-transformparameters-findmatchesparameters.html#cfn-glue-mltransform-transformparameters-findmatchesparameters-enforceprovidedlabels).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub enforce_provided_labels: Option<::Value<bool>>,
+        /// Property [`PrecisionRecallTradeoff`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-transformparameters-findmatchesparameters.html#cfn-glue-mltransform-transformparameters-findmatchesparameters-precisionrecalltradeoff).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub precision_recall_tradeoff: Option<::Value<f64>>,
+        /// Property [`PrimaryKeyColumnName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-transformparameters-findmatchesparameters.html#cfn-glue-mltransform-transformparameters-findmatchesparameters-primarykeycolumnname).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub primary_key_column_name: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for FindMatchesParameters {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref accuracy_cost_tradeoff) = self.accuracy_cost_tradeoff {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccuracyCostTradeoff", accuracy_cost_tradeoff)?;
+            }
+            if let Some(ref enforce_provided_labels) = self.enforce_provided_labels {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnforceProvidedLabels", enforce_provided_labels)?;
+            }
+            if let Some(ref precision_recall_tradeoff) = self.precision_recall_tradeoff {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrecisionRecallTradeoff", precision_recall_tradeoff)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrimaryKeyColumnName", &self.primary_key_column_name)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for FindMatchesParameters {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<FindMatchesParameters, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = FindMatchesParameters;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type FindMatchesParameters")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut accuracy_cost_tradeoff: Option<::Value<f64>> = None;
+                    let mut enforce_provided_labels: Option<::Value<bool>> = None;
+                    let mut precision_recall_tradeoff: Option<::Value<f64>> = None;
+                    let mut primary_key_column_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AccuracyCostTradeoff" => {
+                                accuracy_cost_tradeoff = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "EnforceProvidedLabels" => {
+                                enforce_provided_labels = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PrecisionRecallTradeoff" => {
+                                precision_recall_tradeoff = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PrimaryKeyColumnName" => {
+                                primary_key_column_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(FindMatchesParameters {
+                        accuracy_cost_tradeoff: accuracy_cost_tradeoff,
+                        enforce_provided_labels: enforce_provided_labels,
+                        precision_recall_tradeoff: precision_recall_tradeoff,
+                        primary_key_column_name: primary_key_column_name.ok_or(::serde::de::Error::missing_field("PrimaryKeyColumnName"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Glue::MLTransform.GlueTables`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-inputrecordtables-gluetables.html) property type.
+    #[derive(Debug, Default)]
+    pub struct GlueTables {
+        /// Property [`CatalogId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-inputrecordtables-gluetables.html#cfn-glue-mltransform-inputrecordtables-gluetables-catalogid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub catalog_id: Option<::Value<String>>,
+        /// Property [`ConnectionName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-inputrecordtables-gluetables.html#cfn-glue-mltransform-inputrecordtables-gluetables-connectionname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub connection_name: Option<::Value<String>>,
+        /// Property [`DatabaseName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-inputrecordtables-gluetables.html#cfn-glue-mltransform-inputrecordtables-gluetables-databasename).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub database_name: ::Value<String>,
+        /// Property [`TableName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-inputrecordtables-gluetables.html#cfn-glue-mltransform-inputrecordtables-gluetables-tablename).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub table_name: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for GlueTables {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref catalog_id) = self.catalog_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CatalogId", catalog_id)?;
+            }
+            if let Some(ref connection_name) = self.connection_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionName", connection_name)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseName", &self.database_name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TableName", &self.table_name)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for GlueTables {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<GlueTables, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = GlueTables;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type GlueTables")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut catalog_id: Option<::Value<String>> = None;
+                    let mut connection_name: Option<::Value<String>> = None;
+                    let mut database_name: Option<::Value<String>> = None;
+                    let mut table_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CatalogId" => {
+                                catalog_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ConnectionName" => {
+                                connection_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DatabaseName" => {
+                                database_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TableName" => {
+                                table_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(GlueTables {
+                        catalog_id: catalog_id,
+                        connection_name: connection_name,
+                        database_name: database_name.ok_or(::serde::de::Error::missing_field("DatabaseName"))?,
+                        table_name: table_name.ok_or(::serde::de::Error::missing_field("TableName"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Glue::MLTransform.InputRecordTables`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-inputrecordtables.html) property type.
+    #[derive(Debug, Default)]
+    pub struct InputRecordTables {
+        /// Property [`GlueTables`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-inputrecordtables.html#cfn-glue-mltransform-inputrecordtables-gluetables).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub glue_tables: Option<::ValueList<GlueTables>>,
+    }
+
+    impl ::codec::SerializeValue for InputRecordTables {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref glue_tables) = self.glue_tables {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "GlueTables", glue_tables)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for InputRecordTables {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<InputRecordTables, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = InputRecordTables;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type InputRecordTables")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut glue_tables: Option<::ValueList<GlueTables>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "GlueTables" => {
+                                glue_tables = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(InputRecordTables {
+                        glue_tables: glue_tables,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Glue::MLTransform.MLUserDataEncryption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-transformencryption-mluserdataencryption.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MLUserDataEncryption {
+        /// Property [`KmsKeyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-transformencryption-mluserdataencryption.html#cfn-glue-mltransform-transformencryption-mluserdataencryption-kmskeyid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub kms_key_id: Option<::Value<String>>,
+        /// Property [`MLUserDataEncryptionMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-transformencryption-mluserdataencryption.html#cfn-glue-mltransform-transformencryption-mluserdataencryption-mluserdataencryptionmode).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ml_user_data_encryption_mode: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for MLUserDataEncryption {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref kms_key_id) = self.kms_key_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", kms_key_id)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MLUserDataEncryptionMode", &self.ml_user_data_encryption_mode)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MLUserDataEncryption {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MLUserDataEncryption, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MLUserDataEncryption;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MLUserDataEncryption")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut kms_key_id: Option<::Value<String>> = None;
+                    let mut ml_user_data_encryption_mode: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "KmsKeyId" => {
+                                kms_key_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MLUserDataEncryptionMode" => {
+                                ml_user_data_encryption_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MLUserDataEncryption {
+                        kms_key_id: kms_key_id,
+                        ml_user_data_encryption_mode: ml_user_data_encryption_mode.ok_or(::serde::de::Error::missing_field("MLUserDataEncryptionMode"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Glue::MLTransform.TransformEncryption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-transformencryption.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TransformEncryption {
+        /// Property [`MLUserDataEncryption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-transformencryption.html#cfn-glue-mltransform-transformencryption-mluserdataencryption).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ml_user_data_encryption: Option<::Value<MLUserDataEncryption>>,
+        /// Property [`TaskRunSecurityConfigurationName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-transformencryption.html#cfn-glue-mltransform-transformencryption-taskrunsecurityconfigurationname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub task_run_security_configuration_name: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for TransformEncryption {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref ml_user_data_encryption) = self.ml_user_data_encryption {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MLUserDataEncryption", ml_user_data_encryption)?;
+            }
+            if let Some(ref task_run_security_configuration_name) = self.task_run_security_configuration_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TaskRunSecurityConfigurationName", task_run_security_configuration_name)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TransformEncryption {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TransformEncryption, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TransformEncryption;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TransformEncryption")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut ml_user_data_encryption: Option<::Value<MLUserDataEncryption>> = None;
+                    let mut task_run_security_configuration_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "MLUserDataEncryption" => {
+                                ml_user_data_encryption = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TaskRunSecurityConfigurationName" => {
+                                task_run_security_configuration_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TransformEncryption {
+                        ml_user_data_encryption: ml_user_data_encryption,
+                        task_run_security_configuration_name: task_run_security_configuration_name,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Glue::MLTransform.TransformParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-transformparameters.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TransformParameters {
+        /// Property [`FindMatchesParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-transformparameters.html#cfn-glue-mltransform-transformparameters-findmatchesparameters).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub find_matches_parameters: Option<::Value<FindMatchesParameters>>,
+        /// Property [`TransformType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-mltransform-transformparameters.html#cfn-glue-mltransform-transformparameters-transformtype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub transform_type: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for TransformParameters {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref find_matches_parameters) = self.find_matches_parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FindMatchesParameters", find_matches_parameters)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransformType", &self.transform_type)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TransformParameters {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TransformParameters, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TransformParameters;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TransformParameters")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut find_matches_parameters: Option<::Value<FindMatchesParameters>> = None;
+                    let mut transform_type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "FindMatchesParameters" => {
+                                find_matches_parameters = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TransformType" => {
+                                transform_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TransformParameters {
+                        find_matches_parameters: find_matches_parameters,
+                        transform_type: transform_type.ok_or(::serde::de::Error::missing_field("TransformType"))?,
                     })
                 }
             }
@@ -2045,7 +4534,7 @@ pub mod partition {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub type_: Option<::Value<String>>,
+        pub r#type: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for Column {
@@ -2055,8 +4544,8 @@ pub mod partition {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", comment)?;
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            if let Some(ref type_) = self.type_ {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", type_)?;
+            if let Some(ref r#type) = self.r#type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", r#type)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -2076,7 +4565,7 @@ pub mod partition {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut comment: Option<::Value<String>> = None;
                     let mut name: Option<::Value<String>> = None;
-                    let mut type_: Option<::Value<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2087,7 +4576,7 @@ pub mod partition {
                                 name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Type" => {
-                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -2096,7 +4585,7 @@ pub mod partition {
                     Ok(Column {
                         comment: comment,
                         name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
-                        type_: type_,
+                        r#type: r#type,
                     })
                 }
             }
@@ -2238,6 +4727,164 @@ pub mod partition {
                         parameters: parameters,
                         storage_descriptor: storage_descriptor,
                         values: values.ok_or(::serde::de::Error::missing_field("Values"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Glue::Partition.SchemaId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-schemaid.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SchemaId {
+        /// Property [`RegistryName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-schemaid.html#cfn-glue-partition-schemaid-registryname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub registry_name: Option<::Value<String>>,
+        /// Property [`SchemaArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-schemaid.html#cfn-glue-partition-schemaid-schemaarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub schema_arn: Option<::Value<String>>,
+        /// Property [`SchemaName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-schemaid.html#cfn-glue-partition-schemaid-schemaname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub schema_name: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for SchemaId {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref registry_name) = self.registry_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RegistryName", registry_name)?;
+            }
+            if let Some(ref schema_arn) = self.schema_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SchemaArn", schema_arn)?;
+            }
+            if let Some(ref schema_name) = self.schema_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SchemaName", schema_name)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SchemaId {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SchemaId, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SchemaId;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SchemaId")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut registry_name: Option<::Value<String>> = None;
+                    let mut schema_arn: Option<::Value<String>> = None;
+                    let mut schema_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "RegistryName" => {
+                                registry_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SchemaArn" => {
+                                schema_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SchemaName" => {
+                                schema_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SchemaId {
+                        registry_name: registry_name,
+                        schema_arn: schema_arn,
+                        schema_name: schema_name,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Glue::Partition.SchemaReference`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-schemareference.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SchemaReference {
+        /// Property [`SchameVersionId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-schemareference.html#cfn-glue-partition-schemareference-schameversionid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub schame_version_id: Option<::Value<String>>,
+        /// Property [`SchemaId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-schemareference.html#cfn-glue-partition-schemareference-schemaid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub schema_id: Option<::Value<SchemaId>>,
+        /// Property [`SchemaVersionNumber`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-schemareference.html#cfn-glue-partition-schemareference-schemaversionnumber).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub schema_version_number: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for SchemaReference {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref schame_version_id) = self.schame_version_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SchameVersionId", schame_version_id)?;
+            }
+            if let Some(ref schema_id) = self.schema_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SchemaId", schema_id)?;
+            }
+            if let Some(ref schema_version_number) = self.schema_version_number {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SchemaVersionNumber", schema_version_number)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SchemaReference {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SchemaReference, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SchemaReference;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SchemaReference")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut schame_version_id: Option<::Value<String>> = None;
+                    let mut schema_id: Option<::Value<SchemaId>> = None;
+                    let mut schema_version_number: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SchameVersionId" => {
+                                schame_version_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SchemaId" => {
+                                schema_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SchemaVersionNumber" => {
+                                schema_version_number = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SchemaReference {
+                        schame_version_id: schame_version_id,
+                        schema_id: schema_id,
+                        schema_version_number: schema_version_number,
                     })
                 }
             }
@@ -2447,6 +5094,11 @@ pub mod partition {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub parameters: Option<::Value<::json::Value>>,
+        /// Property [`SchemaReference`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-storagedescriptor.html#cfn-glue-partition-storagedescriptor-schemareference).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub schema_reference: Option<::Value<SchemaReference>>,
         /// Property [`SerdeInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-partition-storagedescriptor.html#cfn-glue-partition-storagedescriptor-serdeinfo).
         ///
         /// Update type: _Mutable_.
@@ -2496,6 +5148,9 @@ pub mod partition {
             if let Some(ref parameters) = self.parameters {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", parameters)?;
             }
+            if let Some(ref schema_reference) = self.schema_reference {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SchemaReference", schema_reference)?;
+            }
             if let Some(ref serde_info) = self.serde_info {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SerdeInfo", serde_info)?;
             }
@@ -2532,6 +5187,7 @@ pub mod partition {
                     let mut number_of_buckets: Option<::Value<u32>> = None;
                     let mut output_format: Option<::Value<String>> = None;
                     let mut parameters: Option<::Value<::json::Value>> = None;
+                    let mut schema_reference: Option<::Value<SchemaReference>> = None;
                     let mut serde_info: Option<::Value<SerdeInfo>> = None;
                     let mut skewed_info: Option<::Value<SkewedInfo>> = None;
                     let mut sort_columns: Option<::ValueList<Order>> = None;
@@ -2563,6 +5219,9 @@ pub mod partition {
                             "Parameters" => {
                                 parameters = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "SchemaReference" => {
+                                schema_reference = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "SerdeInfo" => {
                                 serde_info = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -2588,11 +5247,544 @@ pub mod partition {
                         number_of_buckets: number_of_buckets,
                         output_format: output_format,
                         parameters: parameters,
+                        schema_reference: schema_reference,
                         serde_info: serde_info,
                         skewed_info: skewed_info,
                         sort_columns: sort_columns,
                         stored_as_sub_directories: stored_as_sub_directories,
                     })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod schema {
+    //! Property types for the `Schema` resource.
+
+    /// The [`AWS::Glue::Schema.Registry`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-schema-registry.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Registry {
+        /// Property [`Arn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-schema-registry.html#cfn-glue-schema-registry-arn).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub arn: Option<::Value<String>>,
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-schema-registry.html#cfn-glue-schema-registry-name).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub name: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for Registry {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref arn) = self.arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Arn", arn)?;
+            }
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Registry {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Registry, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Registry;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Registry")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut arn: Option<::Value<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Arn" => {
+                                arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Registry {
+                        arn: arn,
+                        name: name,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Glue::Schema.SchemaVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-schema-schemaversion.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SchemaVersion {
+        /// Property [`IsLatest`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-schema-schemaversion.html#cfn-glue-schema-schemaversion-islatest).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub is_latest: Option<::Value<bool>>,
+        /// Property [`VersionNumber`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-schema-schemaversion.html#cfn-glue-schema-schemaversion-versionnumber).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub version_number: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for SchemaVersion {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref is_latest) = self.is_latest {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IsLatest", is_latest)?;
+            }
+            if let Some(ref version_number) = self.version_number {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VersionNumber", version_number)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SchemaVersion {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SchemaVersion, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SchemaVersion;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SchemaVersion")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut is_latest: Option<::Value<bool>> = None;
+                    let mut version_number: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "IsLatest" => {
+                                is_latest = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "VersionNumber" => {
+                                version_number = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SchemaVersion {
+                        is_latest: is_latest,
+                        version_number: version_number,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod schema_version {
+    //! Property types for the `SchemaVersion` resource.
+
+    /// The [`AWS::Glue::SchemaVersion.Schema`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-schemaversion-schema.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Schema {
+        /// Property [`RegistryName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-schemaversion-schema.html#cfn-glue-schemaversion-schema-registryname).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub registry_name: Option<::Value<String>>,
+        /// Property [`SchemaArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-schemaversion-schema.html#cfn-glue-schemaversion-schema-schemaarn).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub schema_arn: Option<::Value<String>>,
+        /// Property [`SchemaName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-schemaversion-schema.html#cfn-glue-schemaversion-schema-schemaname).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub schema_name: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for Schema {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref registry_name) = self.registry_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RegistryName", registry_name)?;
+            }
+            if let Some(ref schema_arn) = self.schema_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SchemaArn", schema_arn)?;
+            }
+            if let Some(ref schema_name) = self.schema_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SchemaName", schema_name)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Schema {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Schema, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Schema;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Schema")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut registry_name: Option<::Value<String>> = None;
+                    let mut schema_arn: Option<::Value<String>> = None;
+                    let mut schema_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "RegistryName" => {
+                                registry_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SchemaArn" => {
+                                schema_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SchemaName" => {
+                                schema_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Schema {
+                        registry_name: registry_name,
+                        schema_arn: schema_arn,
+                        schema_name: schema_name,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod security_configuration {
+    //! Property types for the `SecurityConfiguration` resource.
+
+    /// The [`AWS::Glue::SecurityConfiguration.CloudWatchEncryption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-securityconfiguration-cloudwatchencryption.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CloudWatchEncryption {
+        /// Property [`CloudWatchEncryptionMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-securityconfiguration-cloudwatchencryption.html#cfn-glue-securityconfiguration-cloudwatchencryption-cloudwatchencryptionmode).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cloud_watch_encryption_mode: Option<::Value<String>>,
+        /// Property [`KmsKeyArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-securityconfiguration-cloudwatchencryption.html#cfn-glue-securityconfiguration-cloudwatchencryption-kmskeyarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub kms_key_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for CloudWatchEncryption {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref cloud_watch_encryption_mode) = self.cloud_watch_encryption_mode {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchEncryptionMode", cloud_watch_encryption_mode)?;
+            }
+            if let Some(ref kms_key_arn) = self.kms_key_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyArn", kms_key_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CloudWatchEncryption {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CloudWatchEncryption, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CloudWatchEncryption;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CloudWatchEncryption")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut cloud_watch_encryption_mode: Option<::Value<String>> = None;
+                    let mut kms_key_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CloudWatchEncryptionMode" => {
+                                cloud_watch_encryption_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "KmsKeyArn" => {
+                                kms_key_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CloudWatchEncryption {
+                        cloud_watch_encryption_mode: cloud_watch_encryption_mode,
+                        kms_key_arn: kms_key_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Glue::SecurityConfiguration.EncryptionConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-securityconfiguration-encryptionconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct EncryptionConfiguration {
+        /// Property [`CloudWatchEncryption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-securityconfiguration-encryptionconfiguration.html#cfn-glue-securityconfiguration-encryptionconfiguration-cloudwatchencryption).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cloud_watch_encryption: Option<::Value<CloudWatchEncryption>>,
+        /// Property [`JobBookmarksEncryption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-securityconfiguration-encryptionconfiguration.html#cfn-glue-securityconfiguration-encryptionconfiguration-jobbookmarksencryption).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub job_bookmarks_encryption: Option<::Value<JobBookmarksEncryption>>,
+        /// Property [`S3Encryptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-securityconfiguration-encryptionconfiguration.html#cfn-glue-securityconfiguration-encryptionconfiguration-s3encryptions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub s3_encryptions: Option<::Value<S3Encryptions>>,
+    }
+
+    impl ::codec::SerializeValue for EncryptionConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref cloud_watch_encryption) = self.cloud_watch_encryption {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchEncryption", cloud_watch_encryption)?;
+            }
+            if let Some(ref job_bookmarks_encryption) = self.job_bookmarks_encryption {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "JobBookmarksEncryption", job_bookmarks_encryption)?;
+            }
+            if let Some(ref s3_encryptions) = self.s3_encryptions {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Encryptions", s3_encryptions)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for EncryptionConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<EncryptionConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = EncryptionConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type EncryptionConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut cloud_watch_encryption: Option<::Value<CloudWatchEncryption>> = None;
+                    let mut job_bookmarks_encryption: Option<::Value<JobBookmarksEncryption>> = None;
+                    let mut s3_encryptions: Option<::Value<S3Encryptions>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CloudWatchEncryption" => {
+                                cloud_watch_encryption = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "JobBookmarksEncryption" => {
+                                job_bookmarks_encryption = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "S3Encryptions" => {
+                                s3_encryptions = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(EncryptionConfiguration {
+                        cloud_watch_encryption: cloud_watch_encryption,
+                        job_bookmarks_encryption: job_bookmarks_encryption,
+                        s3_encryptions: s3_encryptions,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Glue::SecurityConfiguration.JobBookmarksEncryption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-securityconfiguration-jobbookmarksencryption.html) property type.
+    #[derive(Debug, Default)]
+    pub struct JobBookmarksEncryption {
+        /// Property [`JobBookmarksEncryptionMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-securityconfiguration-jobbookmarksencryption.html#cfn-glue-securityconfiguration-jobbookmarksencryption-jobbookmarksencryptionmode).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub job_bookmarks_encryption_mode: Option<::Value<String>>,
+        /// Property [`KmsKeyArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-securityconfiguration-jobbookmarksencryption.html#cfn-glue-securityconfiguration-jobbookmarksencryption-kmskeyarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub kms_key_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for JobBookmarksEncryption {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref job_bookmarks_encryption_mode) = self.job_bookmarks_encryption_mode {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "JobBookmarksEncryptionMode", job_bookmarks_encryption_mode)?;
+            }
+            if let Some(ref kms_key_arn) = self.kms_key_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyArn", kms_key_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for JobBookmarksEncryption {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<JobBookmarksEncryption, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = JobBookmarksEncryption;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type JobBookmarksEncryption")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut job_bookmarks_encryption_mode: Option<::Value<String>> = None;
+                    let mut kms_key_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "JobBookmarksEncryptionMode" => {
+                                job_bookmarks_encryption_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "KmsKeyArn" => {
+                                kms_key_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(JobBookmarksEncryption {
+                        job_bookmarks_encryption_mode: job_bookmarks_encryption_mode,
+                        kms_key_arn: kms_key_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Glue::SecurityConfiguration.S3Encryption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-securityconfiguration-s3encryption.html) property type.
+    #[derive(Debug, Default)]
+    pub struct S3Encryption {
+        /// Property [`KmsKeyArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-securityconfiguration-s3encryption.html#cfn-glue-securityconfiguration-s3encryption-kmskeyarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub kms_key_arn: Option<::Value<String>>,
+        /// Property [`S3EncryptionMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-securityconfiguration-s3encryption.html#cfn-glue-securityconfiguration-s3encryption-s3encryptionmode).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub s3_encryption_mode: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for S3Encryption {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref kms_key_arn) = self.kms_key_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyArn", kms_key_arn)?;
+            }
+            if let Some(ref s3_encryption_mode) = self.s3_encryption_mode {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3EncryptionMode", s3_encryption_mode)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for S3Encryption {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<S3Encryption, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = S3Encryption;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type S3Encryption")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut kms_key_arn: Option<::Value<String>> = None;
+                    let mut s3_encryption_mode: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "KmsKeyArn" => {
+                                kms_key_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "S3EncryptionMode" => {
+                                s3_encryption_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(S3Encryption {
+                        kms_key_arn: kms_key_arn,
+                        s3_encryption_mode: s3_encryption_mode,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Glue::SecurityConfiguration.S3Encryptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-securityconfiguration-s3encryptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct S3Encryptions {
+    }
+
+    impl ::codec::SerializeValue for S3Encryptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for S3Encryptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<S3Encryptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = S3Encryptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type S3Encryptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, _map: A) -> Result<Self::Value, A::Error> {
+                    Ok(S3Encryptions {})
                 }
             }
 
@@ -2621,7 +5813,7 @@ pub mod table {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub type_: Option<::Value<String>>,
+        pub r#type: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for Column {
@@ -2631,8 +5823,8 @@ pub mod table {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", comment)?;
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            if let Some(ref type_) = self.type_ {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", type_)?;
+            if let Some(ref r#type) = self.r#type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", r#type)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -2652,7 +5844,7 @@ pub mod table {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut comment: Option<::Value<String>> = None;
                     let mut name: Option<::Value<String>> = None;
-                    let mut type_: Option<::Value<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2663,7 +5855,7 @@ pub mod table {
                                 name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Type" => {
-                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -2672,7 +5864,7 @@ pub mod table {
                     Ok(Column {
                         comment: comment,
                         name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
-                        type_: type_,
+                        r#type: r#type,
                     })
                 }
             }
@@ -2735,6 +5927,164 @@ pub mod table {
                     Ok(Order {
                         column: column.ok_or(::serde::de::Error::missing_field("Column"))?,
                         sort_order: sort_order.ok_or(::serde::de::Error::missing_field("SortOrder"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Glue::Table.SchemaId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-schemaid.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SchemaId {
+        /// Property [`RegistryName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-schemaid.html#cfn-glue-table-schemaid-registryname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub registry_name: Option<::Value<String>>,
+        /// Property [`SchemaArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-schemaid.html#cfn-glue-table-schemaid-schemaarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub schema_arn: Option<::Value<String>>,
+        /// Property [`SchemaName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-schemaid.html#cfn-glue-table-schemaid-schemaname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub schema_name: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for SchemaId {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref registry_name) = self.registry_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RegistryName", registry_name)?;
+            }
+            if let Some(ref schema_arn) = self.schema_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SchemaArn", schema_arn)?;
+            }
+            if let Some(ref schema_name) = self.schema_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SchemaName", schema_name)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SchemaId {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SchemaId, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SchemaId;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SchemaId")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut registry_name: Option<::Value<String>> = None;
+                    let mut schema_arn: Option<::Value<String>> = None;
+                    let mut schema_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "RegistryName" => {
+                                registry_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SchemaArn" => {
+                                schema_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SchemaName" => {
+                                schema_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SchemaId {
+                        registry_name: registry_name,
+                        schema_arn: schema_arn,
+                        schema_name: schema_name,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Glue::Table.SchemaReference`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-schemareference.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SchemaReference {
+        /// Property [`SchameVersionId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-schemareference.html#cfn-glue-table-schemareference-schameversionid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub schame_version_id: Option<::Value<String>>,
+        /// Property [`SchemaId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-schemareference.html#cfn-glue-table-schemareference-schemaid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub schema_id: Option<::Value<SchemaId>>,
+        /// Property [`SchemaVersionNumber`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-schemareference.html#cfn-glue-table-schemareference-schemaversionnumber).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub schema_version_number: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for SchemaReference {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref schame_version_id) = self.schame_version_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SchameVersionId", schame_version_id)?;
+            }
+            if let Some(ref schema_id) = self.schema_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SchemaId", schema_id)?;
+            }
+            if let Some(ref schema_version_number) = self.schema_version_number {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SchemaVersionNumber", schema_version_number)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SchemaReference {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SchemaReference, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SchemaReference;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SchemaReference")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut schame_version_id: Option<::Value<String>> = None;
+                    let mut schema_id: Option<::Value<SchemaId>> = None;
+                    let mut schema_version_number: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SchameVersionId" => {
+                                schame_version_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SchemaId" => {
+                                schema_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SchemaVersionNumber" => {
+                                schema_version_number = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SchemaReference {
+                        schame_version_id: schame_version_id,
+                        schema_id: schema_id,
+                        schema_version_number: schema_version_number,
                     })
                 }
             }
@@ -2944,6 +6294,11 @@ pub mod table {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub parameters: Option<::Value<::json::Value>>,
+        /// Property [`SchemaReference`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-storagedescriptor.html#cfn-glue-table-storagedescriptor-schemareference).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub schema_reference: Option<::Value<SchemaReference>>,
         /// Property [`SerdeInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-storagedescriptor.html#cfn-glue-table-storagedescriptor-serdeinfo).
         ///
         /// Update type: _Mutable_.
@@ -2993,6 +6348,9 @@ pub mod table {
             if let Some(ref parameters) = self.parameters {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", parameters)?;
             }
+            if let Some(ref schema_reference) = self.schema_reference {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SchemaReference", schema_reference)?;
+            }
             if let Some(ref serde_info) = self.serde_info {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SerdeInfo", serde_info)?;
             }
@@ -3029,6 +6387,7 @@ pub mod table {
                     let mut number_of_buckets: Option<::Value<u32>> = None;
                     let mut output_format: Option<::Value<String>> = None;
                     let mut parameters: Option<::Value<::json::Value>> = None;
+                    let mut schema_reference: Option<::Value<SchemaReference>> = None;
                     let mut serde_info: Option<::Value<SerdeInfo>> = None;
                     let mut skewed_info: Option<::Value<SkewedInfo>> = None;
                     let mut sort_columns: Option<::ValueList<Order>> = None;
@@ -3060,6 +6419,9 @@ pub mod table {
                             "Parameters" => {
                                 parameters = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "SchemaReference" => {
+                                schema_reference = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "SerdeInfo" => {
                                 serde_info = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -3085,10 +6447,90 @@ pub mod table {
                         number_of_buckets: number_of_buckets,
                         output_format: output_format,
                         parameters: parameters,
+                        schema_reference: schema_reference,
                         serde_info: serde_info,
                         skewed_info: skewed_info,
                         sort_columns: sort_columns,
                         stored_as_sub_directories: stored_as_sub_directories,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Glue::Table.TableIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-tableidentifier.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TableIdentifier {
+        /// Property [`CatalogId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-tableidentifier.html#cfn-glue-table-tableidentifier-catalogid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub catalog_id: Option<::Value<String>>,
+        /// Property [`DatabaseName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-tableidentifier.html#cfn-glue-table-tableidentifier-databasename).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub database_name: Option<::Value<String>>,
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-tableidentifier.html#cfn-glue-table-tableidentifier-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for TableIdentifier {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref catalog_id) = self.catalog_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CatalogId", catalog_id)?;
+            }
+            if let Some(ref database_name) = self.database_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseName", database_name)?;
+            }
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TableIdentifier {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TableIdentifier, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TableIdentifier;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TableIdentifier")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut catalog_id: Option<::Value<String>> = None;
+                    let mut database_name: Option<::Value<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CatalogId" => {
+                                catalog_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DatabaseName" => {
+                                database_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TableIdentifier {
+                        catalog_id: catalog_id,
+                        database_name: database_name,
+                        name: name,
                     })
                 }
             }
@@ -3140,6 +6582,11 @@ pub mod table {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub table_type: Option<::Value<String>>,
+        /// Property [`TargetTable`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-tableinput.html#cfn-glue-table-tableinput-targettable).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub target_table: Option<::Value<TableIdentifier>>,
         /// Property [`ViewExpandedText`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-tableinput.html#cfn-glue-table-tableinput-viewexpandedtext).
         ///
         /// Update type: _Mutable_.
@@ -3179,6 +6626,9 @@ pub mod table {
             if let Some(ref table_type) = self.table_type {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "TableType", table_type)?;
             }
+            if let Some(ref target_table) = self.target_table {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetTable", target_table)?;
+            }
             if let Some(ref view_expanded_text) = self.view_expanded_text {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ViewExpandedText", view_expanded_text)?;
             }
@@ -3209,6 +6659,7 @@ pub mod table {
                     let mut retention: Option<::Value<u32>> = None;
                     let mut storage_descriptor: Option<::Value<StorageDescriptor>> = None;
                     let mut table_type: Option<::Value<String>> = None;
+                    let mut target_table: Option<::Value<TableIdentifier>> = None;
                     let mut view_expanded_text: Option<::Value<String>> = None;
                     let mut view_original_text: Option<::Value<String>> = None;
 
@@ -3238,6 +6689,9 @@ pub mod table {
                             "TableType" => {
                                 table_type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "TargetTable" => {
+                                target_table = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "ViewExpandedText" => {
                                 view_expanded_text = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -3257,6 +6711,7 @@ pub mod table {
                         retention: retention,
                         storage_descriptor: storage_descriptor,
                         table_type: table_type,
+                        target_table: target_table,
                         view_expanded_text: view_expanded_text,
                         view_original_text: view_original_text,
                     })
@@ -3279,11 +6734,31 @@ pub mod trigger {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub arguments: Option<::Value<::json::Value>>,
+        /// Property [`CrawlerName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-action.html#cfn-glue-trigger-action-crawlername).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub crawler_name: Option<::Value<String>>,
         /// Property [`JobName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-action.html#cfn-glue-trigger-action-jobname).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub job_name: Option<::Value<String>>,
+        /// Property [`NotificationProperty`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-action.html#cfn-glue-trigger-action-notificationproperty).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub notification_property: Option<::Value<NotificationProperty>>,
+        /// Property [`SecurityConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-action.html#cfn-glue-trigger-action-securityconfiguration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub security_configuration: Option<::Value<String>>,
+        /// Property [`Timeout`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-action.html#cfn-glue-trigger-action-timeout).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub timeout: Option<::Value<u32>>,
     }
 
     impl ::codec::SerializeValue for Action {
@@ -3292,8 +6767,20 @@ pub mod trigger {
             if let Some(ref arguments) = self.arguments {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Arguments", arguments)?;
             }
+            if let Some(ref crawler_name) = self.crawler_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CrawlerName", crawler_name)?;
+            }
             if let Some(ref job_name) = self.job_name {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "JobName", job_name)?;
+            }
+            if let Some(ref notification_property) = self.notification_property {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationProperty", notification_property)?;
+            }
+            if let Some(ref security_configuration) = self.security_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityConfiguration", security_configuration)?;
+            }
+            if let Some(ref timeout) = self.timeout {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Timeout", timeout)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -3312,15 +6799,31 @@ pub mod trigger {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut arguments: Option<::Value<::json::Value>> = None;
+                    let mut crawler_name: Option<::Value<String>> = None;
                     let mut job_name: Option<::Value<String>> = None;
+                    let mut notification_property: Option<::Value<NotificationProperty>> = None;
+                    let mut security_configuration: Option<::Value<String>> = None;
+                    let mut timeout: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Arguments" => {
                                 arguments = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "CrawlerName" => {
+                                crawler_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "JobName" => {
                                 job_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "NotificationProperty" => {
+                                notification_property = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecurityConfiguration" => {
+                                security_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Timeout" => {
+                                timeout = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -3328,7 +6831,11 @@ pub mod trigger {
 
                     Ok(Action {
                         arguments: arguments,
+                        crawler_name: crawler_name,
                         job_name: job_name,
+                        notification_property: notification_property,
+                        security_configuration: security_configuration,
+                        timeout: timeout,
                     })
                 }
             }
@@ -3340,6 +6847,16 @@ pub mod trigger {
     /// The [`AWS::Glue::Trigger.Condition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-condition.html) property type.
     #[derive(Debug, Default)]
     pub struct Condition {
+        /// Property [`CrawlState`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-condition.html#cfn-glue-trigger-condition-crawlstate).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub crawl_state: Option<::Value<String>>,
+        /// Property [`CrawlerName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-condition.html#cfn-glue-trigger-condition-crawlername).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub crawler_name: Option<::Value<String>>,
         /// Property [`JobName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-condition.html#cfn-glue-trigger-condition-jobname).
         ///
         /// Update type: _Mutable_.
@@ -3360,6 +6877,12 @@ pub mod trigger {
     impl ::codec::SerializeValue for Condition {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref crawl_state) = self.crawl_state {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CrawlState", crawl_state)?;
+            }
+            if let Some(ref crawler_name) = self.crawler_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CrawlerName", crawler_name)?;
+            }
             if let Some(ref job_name) = self.job_name {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "JobName", job_name)?;
             }
@@ -3385,12 +6908,20 @@ pub mod trigger {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut crawl_state: Option<::Value<String>> = None;
+                    let mut crawler_name: Option<::Value<String>> = None;
                     let mut job_name: Option<::Value<String>> = None;
                     let mut logical_operator: Option<::Value<String>> = None;
                     let mut state: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "CrawlState" => {
+                                crawl_state = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CrawlerName" => {
+                                crawler_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "JobName" => {
                                 job_name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -3405,9 +6936,64 @@ pub mod trigger {
                     }
 
                     Ok(Condition {
+                        crawl_state: crawl_state,
+                        crawler_name: crawler_name,
                         job_name: job_name,
                         logical_operator: logical_operator,
                         state: state,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Glue::Trigger.NotificationProperty`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-notificationproperty.html) property type.
+    #[derive(Debug, Default)]
+    pub struct NotificationProperty {
+        /// Property [`NotifyDelayAfter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-trigger-notificationproperty.html#cfn-glue-trigger-notificationproperty-notifydelayafter).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub notify_delay_after: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for NotificationProperty {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref notify_delay_after) = self.notify_delay_after {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotifyDelayAfter", notify_delay_after)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for NotificationProperty {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<NotificationProperty, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = NotificationProperty;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type NotificationProperty")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut notify_delay_after: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "NotifyDelayAfter" => {
+                                notify_delay_after = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(NotificationProperty {
+                        notify_delay_after: notify_delay_after,
                     })
                 }
             }

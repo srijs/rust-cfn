@@ -1,5 +1,81 @@
 //! Types for the `Route53` service.
 
+/// The [`AWS::Route53::DNSSEC`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-dnssec.html) resource type.
+#[derive(Debug, Default)]
+pub struct DNSSEC {
+    properties: DNSSECProperties
+}
+
+/// Properties for the `DNSSEC` resource.
+#[derive(Debug, Default)]
+pub struct DNSSECProperties {
+    /// Property [`HostedZoneId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-dnssec.html#cfn-route53-dnssec-hostedzoneid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub hosted_zone_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for DNSSECProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneId", &self.hosted_zone_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for DNSSECProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<DNSSECProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = DNSSECProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type DNSSECProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut hosted_zone_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "HostedZoneId" => {
+                            hosted_zone_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(DNSSECProperties {
+                    hosted_zone_id: hosted_zone_id.ok_or(::serde::de::Error::missing_field("HostedZoneId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for DNSSEC {
+    type Properties = DNSSECProperties;
+    const TYPE: &'static str = "AWS::Route53::DNSSEC";
+    fn properties(&self) -> &DNSSECProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut DNSSECProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for DNSSEC {}
+
+impl From<DNSSECProperties> for DNSSEC {
+    fn from(properties: DNSSECProperties) -> DNSSEC {
+        DNSSEC { properties }
+    }
+}
+
 /// The [`AWS::Route53::HealthCheck`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-healthcheck.html) resource type.
 #[derive(Debug, Default)]
 pub struct HealthCheck {
@@ -13,7 +89,7 @@ pub struct HealthCheckProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub health_check_config: ::Value<self::health_check::HealthCheckConfig>,
+    pub health_check_config: ::Value<::json::Value>,
     /// Property [`HealthCheckTags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-healthcheck.html#cfn-route53-healthcheck-healthchecktags).
     ///
     /// Update type: _Mutable_.
@@ -44,7 +120,7 @@ impl<'de> ::serde::Deserialize<'de> for HealthCheckProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut health_check_config: Option<::Value<self::health_check::HealthCheckConfig>> = None;
+                let mut health_check_config: Option<::Value<::json::Value>> = None;
                 let mut health_check_tags: Option<::ValueList<self::health_check::HealthCheckTag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -120,9 +196,8 @@ pub struct HostedZoneProperties {
     pub query_logging_config: Option<::Value<self::hosted_zone::QueryLoggingConfig>>,
     /// Property [`VPCs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone.html#cfn-route53-hostedzone-vpcs).
     ///
-    /// Update type: _Conditional_.
-    /// Conditional updates can be mutable or immutable, depending on, for example, which other properties you updated.
-    /// For more information, see the relevant resource type documentation.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub vp_cs: Option<::ValueList<self::hosted_zone::VPC>>,
 }
 
@@ -218,6 +293,115 @@ impl From<HostedZoneProperties> for HostedZone {
     }
 }
 
+/// The [`AWS::Route53::KeySigningKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-keysigningkey.html) resource type.
+#[derive(Debug, Default)]
+pub struct KeySigningKey {
+    properties: KeySigningKeyProperties
+}
+
+/// Properties for the `KeySigningKey` resource.
+#[derive(Debug, Default)]
+pub struct KeySigningKeyProperties {
+    /// Property [`HostedZoneId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-keysigningkey.html#cfn-route53-keysigningkey-hostedzoneid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub hosted_zone_id: ::Value<String>,
+    /// Property [`KeyManagementServiceArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-keysigningkey.html#cfn-route53-keysigningkey-keymanagementservicearn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub key_management_service_arn: ::Value<String>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-keysigningkey.html#cfn-route53-keysigningkey-name).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub name: ::Value<String>,
+    /// Property [`Status`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-keysigningkey.html#cfn-route53-keysigningkey-status).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub status: ::Value<String>,
+}
+
+impl ::serde::Serialize for KeySigningKeyProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneId", &self.hosted_zone_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyManagementServiceArn", &self.key_management_service_arn)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Status", &self.status)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for KeySigningKeyProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<KeySigningKeyProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = KeySigningKeyProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type KeySigningKeyProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut hosted_zone_id: Option<::Value<String>> = None;
+                let mut key_management_service_arn: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut status: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "HostedZoneId" => {
+                            hosted_zone_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "KeyManagementServiceArn" => {
+                            key_management_service_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Status" => {
+                            status = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(KeySigningKeyProperties {
+                    hosted_zone_id: hosted_zone_id.ok_or(::serde::de::Error::missing_field("HostedZoneId"))?,
+                    key_management_service_arn: key_management_service_arn.ok_or(::serde::de::Error::missing_field("KeyManagementServiceArn"))?,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    status: status.ok_or(::serde::de::Error::missing_field("Status"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for KeySigningKey {
+    type Properties = KeySigningKeyProperties;
+    const TYPE: &'static str = "AWS::Route53::KeySigningKey";
+    fn properties(&self) -> &KeySigningKeyProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut KeySigningKeyProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for KeySigningKey {}
+
+impl From<KeySigningKeyProperties> for KeySigningKey {
+    fn from(properties: KeySigningKeyProperties) -> KeySigningKey {
+        KeySigningKey { properties }
+    }
+}
+
 /// The [`AWS::Route53::RecordSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html) resource type.
 #[derive(Debug, Default)]
 pub struct RecordSet {
@@ -262,6 +446,11 @@ pub struct RecordSetProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub hosted_zone_name: Option<::Value<String>>,
+    /// Property [`MultiValueAnswer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html#cfn-route53-recordset-multivalueanswer).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub multi_value_answer: Option<::Value<bool>>,
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html#cfn-route53-recordset-name).
     ///
     /// Update type: _Immutable_.
@@ -291,7 +480,7 @@ pub struct RecordSetProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub type_: ::Value<String>,
+    pub r#type: ::Value<String>,
     /// Property [`Weight`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html#cfn-route53-recordset-weight).
     ///
     /// Update type: _Mutable_.
@@ -323,6 +512,9 @@ impl ::serde::Serialize for RecordSetProperties {
         if let Some(ref hosted_zone_name) = self.hosted_zone_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneName", hosted_zone_name)?;
         }
+        if let Some(ref multi_value_answer) = self.multi_value_answer {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MultiValueAnswer", multi_value_answer)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         if let Some(ref region) = self.region {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Region", region)?;
@@ -336,7 +528,7 @@ impl ::serde::Serialize for RecordSetProperties {
         if let Some(ref ttl) = self.ttl {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TTL", ttl)?;
         }
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
         if let Some(ref weight) = self.weight {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Weight", weight)?;
         }
@@ -363,12 +555,13 @@ impl<'de> ::serde::Deserialize<'de> for RecordSetProperties {
                 let mut health_check_id: Option<::Value<String>> = None;
                 let mut hosted_zone_id: Option<::Value<String>> = None;
                 let mut hosted_zone_name: Option<::Value<String>> = None;
+                let mut multi_value_answer: Option<::Value<bool>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut region: Option<::Value<String>> = None;
                 let mut resource_records: Option<::ValueList<String>> = None;
                 let mut set_identifier: Option<::Value<String>> = None;
                 let mut ttl: Option<::Value<String>> = None;
-                let mut type_: Option<::Value<String>> = None;
+                let mut r#type: Option<::Value<String>> = None;
                 let mut weight: Option<::Value<u32>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -394,6 +587,9 @@ impl<'de> ::serde::Deserialize<'de> for RecordSetProperties {
                         "HostedZoneName" => {
                             hosted_zone_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "MultiValueAnswer" => {
+                            multi_value_answer = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -410,7 +606,7 @@ impl<'de> ::serde::Deserialize<'de> for RecordSetProperties {
                             ttl = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Type" => {
-                            type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                            r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Weight" => {
                             weight = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -427,12 +623,13 @@ impl<'de> ::serde::Deserialize<'de> for RecordSetProperties {
                     health_check_id: health_check_id,
                     hosted_zone_id: hosted_zone_id,
                     hosted_zone_name: hosted_zone_name,
+                    multi_value_answer: multi_value_answer,
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     region: region,
                     resource_records: resource_records,
                     set_identifier: set_identifier,
                     ttl: ttl,
-                    type_: type_.ok_or(::serde::de::Error::missing_field("Type"))?,
+                    r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
                     weight: weight,
                 })
             }
@@ -581,323 +778,15 @@ impl From<RecordSetGroupProperties> for RecordSetGroup {
 pub mod health_check {
     //! Property types for the `HealthCheck` resource.
 
-    /// The [`AWS::Route53::HealthCheck.AlarmIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-alarmidentifier.html) property type.
-    #[derive(Debug, Default)]
-    pub struct AlarmIdentifier {
-        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-alarmidentifier.html#cfn-route53-healthcheck-alarmidentifier-name).
-        ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub name: ::Value<String>,
-        /// Property [`Region`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-alarmidentifier.html#cfn-route53-healthcheck-alarmidentifier-region).
-        ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub region: ::Value<String>,
-    }
-
-    impl ::codec::SerializeValue for AlarmIdentifier {
-        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Region", &self.region)?;
-            ::serde::ser::SerializeMap::end(map)
-        }
-    }
-
-    impl ::codec::DeserializeValue for AlarmIdentifier {
-        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AlarmIdentifier, D::Error> {
-            struct Visitor;
-
-            impl<'de> ::serde::de::Visitor<'de> for Visitor {
-                type Value = AlarmIdentifier;
-
-                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-                    write!(f, "a struct of type AlarmIdentifier")
-                }
-
-                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut name: Option<::Value<String>> = None;
-                    let mut region: Option<::Value<String>> = None;
-
-                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
-                        match __cfn_key.as_ref() {
-                            "Name" => {
-                                name = ::serde::de::MapAccess::next_value(&mut map)?;
-                            }
-                            "Region" => {
-                                region = ::serde::de::MapAccess::next_value(&mut map)?;
-                            }
-                            _ => {}
-                        }
-                    }
-
-                    Ok(AlarmIdentifier {
-                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
-                        region: region.ok_or(::serde::de::Error::missing_field("Region"))?,
-                    })
-                }
-            }
-
-            d.deserialize_map(Visitor)
-        }
-    }
-
-    /// The [`AWS::Route53::HealthCheck.HealthCheckConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html) property type.
-    #[derive(Debug, Default)]
-    pub struct HealthCheckConfig {
-        /// Property [`AlarmIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html#cfn-route53-healthcheck-healthcheckconfig-alarmidentifier).
-        ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub alarm_identifier: Option<::Value<AlarmIdentifier>>,
-        /// Property [`ChildHealthChecks`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html#cfn-route53-healthcheck-healthcheckconfig-childhealthchecks).
-        ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub child_health_checks: Option<::ValueList<String>>,
-        /// Property [`EnableSNI`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html#cfn-route53-healthcheck-healthcheckconfig-enablesni).
-        ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub enable_sni: Option<::Value<bool>>,
-        /// Property [`FailureThreshold`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html#cfn-route53-healthcheck-healthcheckconfig-failurethreshold).
-        ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub failure_threshold: Option<::Value<u32>>,
-        /// Property [`FullyQualifiedDomainName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html#cfn-route53-healthcheck-healthcheckconfig-fullyqualifieddomainname).
-        ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub fully_qualified_domain_name: Option<::Value<String>>,
-        /// Property [`HealthThreshold`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html#cfn-route53-healthcheck-healthcheckconfig-healththreshold).
-        ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub health_threshold: Option<::Value<u32>>,
-        /// Property [`IPAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html#cfn-route53-healthcheck-healthcheckconfig-ipaddress).
-        ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub ip_address: Option<::Value<String>>,
-        /// Property [`InsufficientDataHealthStatus`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html#cfn-route53-healthcheck-healthcheckconfig-insufficientdatahealthstatus).
-        ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub insufficient_data_health_status: Option<::Value<String>>,
-        /// Property [`Inverted`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html#cfn-route53-healthcheck-healthcheckconfig-inverted).
-        ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub inverted: Option<::Value<bool>>,
-        /// Property [`MeasureLatency`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html#cfn-route53-healthcheck-healthcheckconfig-measurelatency).
-        ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
-        pub measure_latency: Option<::Value<bool>>,
-        /// Property [`Port`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html#cfn-route53-healthcheck-healthcheckconfig-port).
-        ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub port: Option<::Value<u32>>,
-        /// Property [`Regions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html#cfn-route53-healthcheck-healthcheckconfig-regions).
-        ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub regions: Option<::ValueList<String>>,
-        /// Property [`RequestInterval`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html#cfn-route53-healthcheck-healthcheckconfig-requestinterval).
-        ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
-        pub request_interval: Option<::Value<u32>>,
-        /// Property [`ResourcePath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html#cfn-route53-healthcheck-healthcheckconfig-resourcepath).
-        ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub resource_path: Option<::Value<String>>,
-        /// Property [`SearchString`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html#cfn-route53-healthcheck-healthcheckconfig-searchstring).
-        ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub search_string: Option<::Value<String>>,
-        /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthcheckconfig.html#cfn-route53-healthcheck-healthcheckconfig-type).
-        ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
-        pub type_: ::Value<String>,
-    }
-
-    impl ::codec::SerializeValue for HealthCheckConfig {
-        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref alarm_identifier) = self.alarm_identifier {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AlarmIdentifier", alarm_identifier)?;
-            }
-            if let Some(ref child_health_checks) = self.child_health_checks {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ChildHealthChecks", child_health_checks)?;
-            }
-            if let Some(ref enable_sni) = self.enable_sni {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableSNI", enable_sni)?;
-            }
-            if let Some(ref failure_threshold) = self.failure_threshold {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FailureThreshold", failure_threshold)?;
-            }
-            if let Some(ref fully_qualified_domain_name) = self.fully_qualified_domain_name {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FullyQualifiedDomainName", fully_qualified_domain_name)?;
-            }
-            if let Some(ref health_threshold) = self.health_threshold {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthThreshold", health_threshold)?;
-            }
-            if let Some(ref ip_address) = self.ip_address {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IPAddress", ip_address)?;
-            }
-            if let Some(ref insufficient_data_health_status) = self.insufficient_data_health_status {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InsufficientDataHealthStatus", insufficient_data_health_status)?;
-            }
-            if let Some(ref inverted) = self.inverted {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Inverted", inverted)?;
-            }
-            if let Some(ref measure_latency) = self.measure_latency {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MeasureLatency", measure_latency)?;
-            }
-            if let Some(ref port) = self.port {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", port)?;
-            }
-            if let Some(ref regions) = self.regions {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Regions", regions)?;
-            }
-            if let Some(ref request_interval) = self.request_interval {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RequestInterval", request_interval)?;
-            }
-            if let Some(ref resource_path) = self.resource_path {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourcePath", resource_path)?;
-            }
-            if let Some(ref search_string) = self.search_string {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SearchString", search_string)?;
-            }
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
-            ::serde::ser::SerializeMap::end(map)
-        }
-    }
-
-    impl ::codec::DeserializeValue for HealthCheckConfig {
-        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<HealthCheckConfig, D::Error> {
-            struct Visitor;
-
-            impl<'de> ::serde::de::Visitor<'de> for Visitor {
-                type Value = HealthCheckConfig;
-
-                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-                    write!(f, "a struct of type HealthCheckConfig")
-                }
-
-                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut alarm_identifier: Option<::Value<AlarmIdentifier>> = None;
-                    let mut child_health_checks: Option<::ValueList<String>> = None;
-                    let mut enable_sni: Option<::Value<bool>> = None;
-                    let mut failure_threshold: Option<::Value<u32>> = None;
-                    let mut fully_qualified_domain_name: Option<::Value<String>> = None;
-                    let mut health_threshold: Option<::Value<u32>> = None;
-                    let mut ip_address: Option<::Value<String>> = None;
-                    let mut insufficient_data_health_status: Option<::Value<String>> = None;
-                    let mut inverted: Option<::Value<bool>> = None;
-                    let mut measure_latency: Option<::Value<bool>> = None;
-                    let mut port: Option<::Value<u32>> = None;
-                    let mut regions: Option<::ValueList<String>> = None;
-                    let mut request_interval: Option<::Value<u32>> = None;
-                    let mut resource_path: Option<::Value<String>> = None;
-                    let mut search_string: Option<::Value<String>> = None;
-                    let mut type_: Option<::Value<String>> = None;
-
-                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
-                        match __cfn_key.as_ref() {
-                            "AlarmIdentifier" => {
-                                alarm_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
-                            }
-                            "ChildHealthChecks" => {
-                                child_health_checks = ::serde::de::MapAccess::next_value(&mut map)?;
-                            }
-                            "EnableSNI" => {
-                                enable_sni = ::serde::de::MapAccess::next_value(&mut map)?;
-                            }
-                            "FailureThreshold" => {
-                                failure_threshold = ::serde::de::MapAccess::next_value(&mut map)?;
-                            }
-                            "FullyQualifiedDomainName" => {
-                                fully_qualified_domain_name = ::serde::de::MapAccess::next_value(&mut map)?;
-                            }
-                            "HealthThreshold" => {
-                                health_threshold = ::serde::de::MapAccess::next_value(&mut map)?;
-                            }
-                            "IPAddress" => {
-                                ip_address = ::serde::de::MapAccess::next_value(&mut map)?;
-                            }
-                            "InsufficientDataHealthStatus" => {
-                                insufficient_data_health_status = ::serde::de::MapAccess::next_value(&mut map)?;
-                            }
-                            "Inverted" => {
-                                inverted = ::serde::de::MapAccess::next_value(&mut map)?;
-                            }
-                            "MeasureLatency" => {
-                                measure_latency = ::serde::de::MapAccess::next_value(&mut map)?;
-                            }
-                            "Port" => {
-                                port = ::serde::de::MapAccess::next_value(&mut map)?;
-                            }
-                            "Regions" => {
-                                regions = ::serde::de::MapAccess::next_value(&mut map)?;
-                            }
-                            "RequestInterval" => {
-                                request_interval = ::serde::de::MapAccess::next_value(&mut map)?;
-                            }
-                            "ResourcePath" => {
-                                resource_path = ::serde::de::MapAccess::next_value(&mut map)?;
-                            }
-                            "SearchString" => {
-                                search_string = ::serde::de::MapAccess::next_value(&mut map)?;
-                            }
-                            "Type" => {
-                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
-                            }
-                            _ => {}
-                        }
-                    }
-
-                    Ok(HealthCheckConfig {
-                        alarm_identifier: alarm_identifier,
-                        child_health_checks: child_health_checks,
-                        enable_sni: enable_sni,
-                        failure_threshold: failure_threshold,
-                        fully_qualified_domain_name: fully_qualified_domain_name,
-                        health_threshold: health_threshold,
-                        ip_address: ip_address,
-                        insufficient_data_health_status: insufficient_data_health_status,
-                        inverted: inverted,
-                        measure_latency: measure_latency,
-                        port: port,
-                        regions: regions,
-                        request_interval: request_interval,
-                        resource_path: resource_path,
-                        search_string: search_string,
-                        type_: type_.ok_or(::serde::de::Error::missing_field("Type"))?,
-                    })
-                }
-            }
-
-            d.deserialize_map(Visitor)
-        }
-    }
-
     /// The [`AWS::Route53::HealthCheck.HealthCheckTag`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthchecktag.html) property type.
     #[derive(Debug, Default)]
     pub struct HealthCheckTag {
-        /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthchecktag.html#cfn-route53-healthchecktags-key).
+        /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthchecktag.html#cfn-route53-healthcheck-healthchecktag-key).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub key: ::Value<String>,
-        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthchecktag.html#cfn-route53-healthchecktags-value).
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-healthcheck-healthchecktag.html#cfn-route53-healthcheck-healthchecktag-value).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -1008,15 +897,15 @@ pub mod hosted_zone {
         }
     }
 
-    /// The [`AWS::Route53::HostedZone.HostedZoneTag`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzonetags.html) property type.
+    /// The [`AWS::Route53::HostedZone.HostedZoneTag`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzonetag.html) property type.
     #[derive(Debug, Default)]
     pub struct HostedZoneTag {
-        /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzonetags.html#cfn-route53-hostedzonetags-key).
+        /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzonetag.html#cfn-route53-hostedzone-hostedzonetag-key).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub key: ::Value<String>,
-        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzonetags.html#cfn-route53-hostedzonetags-value).
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-hostedzonetag.html#cfn-route53-hostedzone-hostedzonetag-value).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -1121,15 +1010,15 @@ pub mod hosted_zone {
         }
     }
 
-    /// The [`AWS::Route53::HostedZone.VPC`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone-hostedzonevpcs.html) property type.
+    /// The [`AWS::Route53::HostedZone.VPC`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-vpc.html) property type.
     #[derive(Debug, Default)]
     pub struct VPC {
-        /// Property [`VPCId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone-hostedzonevpcs.html#cfn-route53-hostedzone-hostedzonevpcs-vpcid).
+        /// Property [`VPCId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-vpc.html#cfn-route53-hostedzone-vpc-vpcid).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub vpc_id: ::Value<String>,
-        /// Property [`VPCRegion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone-hostedzonevpcs.html#cfn-route53-hostedzone-hostedzonevpcs-vpcregion).
+        /// Property [`VPCRegion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-hostedzone-vpc.html#cfn-route53-hostedzone-vpc-vpcregion).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -1537,6 +1426,11 @@ pub mod record_set_group {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub hosted_zone_name: Option<::Value<String>>,
+        /// Property [`MultiValueAnswer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html#cfn-route53-recordset-multivalueanswer).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub multi_value_answer: Option<::Value<bool>>,
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html#cfn-route53-recordset-name).
         ///
         /// Update type: _Mutable_.
@@ -1566,7 +1460,7 @@ pub mod record_set_group {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub type_: ::Value<String>,
+        pub r#type: ::Value<String>,
         /// Property [`Weight`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html#cfn-route53-recordset-weight).
         ///
         /// Update type: _Mutable_.
@@ -1598,6 +1492,9 @@ pub mod record_set_group {
             if let Some(ref hosted_zone_name) = self.hosted_zone_name {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneName", hosted_zone_name)?;
             }
+            if let Some(ref multi_value_answer) = self.multi_value_answer {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MultiValueAnswer", multi_value_answer)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             if let Some(ref region) = self.region {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Region", region)?;
@@ -1611,7 +1508,7 @@ pub mod record_set_group {
             if let Some(ref ttl) = self.ttl {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "TTL", ttl)?;
             }
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
             if let Some(ref weight) = self.weight {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Weight", weight)?;
             }
@@ -1638,12 +1535,13 @@ pub mod record_set_group {
                     let mut health_check_id: Option<::Value<String>> = None;
                     let mut hosted_zone_id: Option<::Value<String>> = None;
                     let mut hosted_zone_name: Option<::Value<String>> = None;
+                    let mut multi_value_answer: Option<::Value<bool>> = None;
                     let mut name: Option<::Value<String>> = None;
                     let mut region: Option<::Value<String>> = None;
                     let mut resource_records: Option<::ValueList<String>> = None;
                     let mut set_identifier: Option<::Value<String>> = None;
                     let mut ttl: Option<::Value<String>> = None;
-                    let mut type_: Option<::Value<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
                     let mut weight: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -1669,6 +1567,9 @@ pub mod record_set_group {
                             "HostedZoneName" => {
                                 hosted_zone_name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "MultiValueAnswer" => {
+                                multi_value_answer = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Name" => {
                                 name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1685,7 +1586,7 @@ pub mod record_set_group {
                                 ttl = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Type" => {
-                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Weight" => {
                                 weight = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1702,12 +1603,13 @@ pub mod record_set_group {
                         health_check_id: health_check_id,
                         hosted_zone_id: hosted_zone_id,
                         hosted_zone_name: hosted_zone_name,
+                        multi_value_answer: multi_value_answer,
                         name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                         region: region,
                         resource_records: resource_records,
                         set_identifier: set_identifier,
                         ttl: ttl,
-                        type_: type_.ok_or(::serde::de::Error::missing_field("Type"))?,
+                        r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
                         weight: weight,
                     })
                 }

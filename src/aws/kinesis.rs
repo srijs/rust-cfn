@@ -128,6 +128,93 @@ impl From<StreamProperties> for Stream {
     }
 }
 
+/// The [`AWS::Kinesis::StreamConsumer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-streamconsumer.html) resource type.
+#[derive(Debug, Default)]
+pub struct StreamConsumer {
+    properties: StreamConsumerProperties
+}
+
+/// Properties for the `StreamConsumer` resource.
+#[derive(Debug, Default)]
+pub struct StreamConsumerProperties {
+    /// Property [`ConsumerName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-streamconsumer.html#cfn-kinesis-streamconsumer-consumername).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub consumer_name: ::Value<String>,
+    /// Property [`StreamARN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesis-streamconsumer.html#cfn-kinesis-streamconsumer-streamarn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub stream_arn: ::Value<String>,
+}
+
+impl ::serde::Serialize for StreamConsumerProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConsumerName", &self.consumer_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamARN", &self.stream_arn)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for StreamConsumerProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<StreamConsumerProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = StreamConsumerProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type StreamConsumerProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut consumer_name: Option<::Value<String>> = None;
+                let mut stream_arn: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "ConsumerName" => {
+                            consumer_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "StreamARN" => {
+                            stream_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(StreamConsumerProperties {
+                    consumer_name: consumer_name.ok_or(::serde::de::Error::missing_field("ConsumerName"))?,
+                    stream_arn: stream_arn.ok_or(::serde::de::Error::missing_field("StreamARN"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for StreamConsumer {
+    type Properties = StreamConsumerProperties;
+    const TYPE: &'static str = "AWS::Kinesis::StreamConsumer";
+    fn properties(&self) -> &StreamConsumerProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut StreamConsumerProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for StreamConsumer {}
+
+impl From<StreamConsumerProperties> for StreamConsumer {
+    fn from(properties: StreamConsumerProperties) -> StreamConsumer {
+        StreamConsumer { properties }
+    }
+}
+
 pub mod stream {
     //! Property types for the `Stream` resource.
 

@@ -1,5 +1,81 @@
 //! Types for the `CloudFront` service.
 
+/// The [`AWS::CloudFront::CachePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-cachepolicy.html) resource type.
+#[derive(Debug, Default)]
+pub struct CachePolicy {
+    properties: CachePolicyProperties
+}
+
+/// Properties for the `CachePolicy` resource.
+#[derive(Debug, Default)]
+pub struct CachePolicyProperties {
+    /// Property [`CachePolicyConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-cachepolicy.html#cfn-cloudfront-cachepolicy-cachepolicyconfig).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub cache_policy_config: ::Value<self::cache_policy::CachePolicyConfig>,
+}
+
+impl ::serde::Serialize for CachePolicyProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CachePolicyConfig", &self.cache_policy_config)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for CachePolicyProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<CachePolicyProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = CachePolicyProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type CachePolicyProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut cache_policy_config: Option<::Value<self::cache_policy::CachePolicyConfig>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "CachePolicyConfig" => {
+                            cache_policy_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(CachePolicyProperties {
+                    cache_policy_config: cache_policy_config.ok_or(::serde::de::Error::missing_field("CachePolicyConfig"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for CachePolicy {
+    type Properties = CachePolicyProperties;
+    const TYPE: &'static str = "AWS::CloudFront::CachePolicy";
+    fn properties(&self) -> &CachePolicyProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut CachePolicyProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for CachePolicy {}
+
+impl From<CachePolicyProperties> for CachePolicy {
+    fn from(properties: CachePolicyProperties) -> CachePolicy {
+        CachePolicy { properties }
+    }
+}
+
 /// The [`AWS::CloudFront::CloudFrontOriginAccessIdentity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-cloudfrontoriginaccessidentity.html) resource type.
 #[derive(Debug, Default)]
 pub struct CloudFrontOriginAccessIdentity {
@@ -165,6 +241,471 @@ impl From<DistributionProperties> for Distribution {
     }
 }
 
+/// The [`AWS::CloudFront::Function`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-function.html) resource type.
+#[derive(Debug, Default)]
+pub struct Function {
+    properties: FunctionProperties
+}
+
+/// Properties for the `Function` resource.
+#[derive(Debug, Default)]
+pub struct FunctionProperties {
+    /// Property [`AutoPublish`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-function.html#cfn-cloudfront-function-autopublish).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub auto_publish: Option<::Value<bool>>,
+    /// Property [`FunctionCode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-function.html#cfn-cloudfront-function-functioncode).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub function_code: Option<::Value<String>>,
+    /// Property [`FunctionConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-function.html#cfn-cloudfront-function-functionconfig).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub function_config: Option<::Value<self::function::FunctionConfig>>,
+    /// Property [`FunctionMetadata`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-function.html#cfn-cloudfront-function-functionmetadata).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub function_metadata: Option<::Value<self::function::FunctionMetadata>>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-function.html#cfn-cloudfront-function-name).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub name: ::Value<String>,
+}
+
+impl ::serde::Serialize for FunctionProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref auto_publish) = self.auto_publish {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoPublish", auto_publish)?;
+        }
+        if let Some(ref function_code) = self.function_code {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FunctionCode", function_code)?;
+        }
+        if let Some(ref function_config) = self.function_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FunctionConfig", function_config)?;
+        }
+        if let Some(ref function_metadata) = self.function_metadata {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FunctionMetadata", function_metadata)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for FunctionProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<FunctionProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = FunctionProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type FunctionProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut auto_publish: Option<::Value<bool>> = None;
+                let mut function_code: Option<::Value<String>> = None;
+                let mut function_config: Option<::Value<self::function::FunctionConfig>> = None;
+                let mut function_metadata: Option<::Value<self::function::FunctionMetadata>> = None;
+                let mut name: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AutoPublish" => {
+                            auto_publish = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "FunctionCode" => {
+                            function_code = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "FunctionConfig" => {
+                            function_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "FunctionMetadata" => {
+                            function_metadata = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(FunctionProperties {
+                    auto_publish: auto_publish,
+                    function_code: function_code,
+                    function_config: function_config,
+                    function_metadata: function_metadata,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for Function {
+    type Properties = FunctionProperties;
+    const TYPE: &'static str = "AWS::CloudFront::Function";
+    fn properties(&self) -> &FunctionProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut FunctionProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for Function {}
+
+impl From<FunctionProperties> for Function {
+    fn from(properties: FunctionProperties) -> Function {
+        Function { properties }
+    }
+}
+
+/// The [`AWS::CloudFront::KeyGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-keygroup.html) resource type.
+#[derive(Debug, Default)]
+pub struct KeyGroup {
+    properties: KeyGroupProperties
+}
+
+/// Properties for the `KeyGroup` resource.
+#[derive(Debug, Default)]
+pub struct KeyGroupProperties {
+    /// Property [`KeyGroupConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-keygroup.html#cfn-cloudfront-keygroup-keygroupconfig).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub key_group_config: ::Value<self::key_group::KeyGroupConfig>,
+}
+
+impl ::serde::Serialize for KeyGroupProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyGroupConfig", &self.key_group_config)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for KeyGroupProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<KeyGroupProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = KeyGroupProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type KeyGroupProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut key_group_config: Option<::Value<self::key_group::KeyGroupConfig>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "KeyGroupConfig" => {
+                            key_group_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(KeyGroupProperties {
+                    key_group_config: key_group_config.ok_or(::serde::de::Error::missing_field("KeyGroupConfig"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for KeyGroup {
+    type Properties = KeyGroupProperties;
+    const TYPE: &'static str = "AWS::CloudFront::KeyGroup";
+    fn properties(&self) -> &KeyGroupProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut KeyGroupProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for KeyGroup {}
+
+impl From<KeyGroupProperties> for KeyGroup {
+    fn from(properties: KeyGroupProperties) -> KeyGroup {
+        KeyGroup { properties }
+    }
+}
+
+/// The [`AWS::CloudFront::OriginRequestPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-originrequestpolicy.html) resource type.
+#[derive(Debug, Default)]
+pub struct OriginRequestPolicy {
+    properties: OriginRequestPolicyProperties
+}
+
+/// Properties for the `OriginRequestPolicy` resource.
+#[derive(Debug, Default)]
+pub struct OriginRequestPolicyProperties {
+    /// Property [`OriginRequestPolicyConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-originrequestpolicy.html#cfn-cloudfront-originrequestpolicy-originrequestpolicyconfig).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub origin_request_policy_config: ::Value<self::origin_request_policy::OriginRequestPolicyConfig>,
+}
+
+impl ::serde::Serialize for OriginRequestPolicyProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginRequestPolicyConfig", &self.origin_request_policy_config)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for OriginRequestPolicyProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<OriginRequestPolicyProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = OriginRequestPolicyProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type OriginRequestPolicyProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut origin_request_policy_config: Option<::Value<self::origin_request_policy::OriginRequestPolicyConfig>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "OriginRequestPolicyConfig" => {
+                            origin_request_policy_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(OriginRequestPolicyProperties {
+                    origin_request_policy_config: origin_request_policy_config.ok_or(::serde::de::Error::missing_field("OriginRequestPolicyConfig"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for OriginRequestPolicy {
+    type Properties = OriginRequestPolicyProperties;
+    const TYPE: &'static str = "AWS::CloudFront::OriginRequestPolicy";
+    fn properties(&self) -> &OriginRequestPolicyProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut OriginRequestPolicyProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for OriginRequestPolicy {}
+
+impl From<OriginRequestPolicyProperties> for OriginRequestPolicy {
+    fn from(properties: OriginRequestPolicyProperties) -> OriginRequestPolicy {
+        OriginRequestPolicy { properties }
+    }
+}
+
+/// The [`AWS::CloudFront::PublicKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-publickey.html) resource type.
+#[derive(Debug, Default)]
+pub struct PublicKey {
+    properties: PublicKeyProperties
+}
+
+/// Properties for the `PublicKey` resource.
+#[derive(Debug, Default)]
+pub struct PublicKeyProperties {
+    /// Property [`PublicKeyConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-publickey.html#cfn-cloudfront-publickey-publickeyconfig).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub public_key_config: ::Value<self::public_key::PublicKeyConfig>,
+}
+
+impl ::serde::Serialize for PublicKeyProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PublicKeyConfig", &self.public_key_config)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for PublicKeyProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<PublicKeyProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = PublicKeyProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type PublicKeyProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut public_key_config: Option<::Value<self::public_key::PublicKeyConfig>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "PublicKeyConfig" => {
+                            public_key_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(PublicKeyProperties {
+                    public_key_config: public_key_config.ok_or(::serde::de::Error::missing_field("PublicKeyConfig"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for PublicKey {
+    type Properties = PublicKeyProperties;
+    const TYPE: &'static str = "AWS::CloudFront::PublicKey";
+    fn properties(&self) -> &PublicKeyProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut PublicKeyProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for PublicKey {}
+
+impl From<PublicKeyProperties> for PublicKey {
+    fn from(properties: PublicKeyProperties) -> PublicKey {
+        PublicKey { properties }
+    }
+}
+
+/// The [`AWS::CloudFront::RealtimeLogConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-realtimelogconfig.html) resource type.
+#[derive(Debug, Default)]
+pub struct RealtimeLogConfig {
+    properties: RealtimeLogConfigProperties
+}
+
+/// Properties for the `RealtimeLogConfig` resource.
+#[derive(Debug, Default)]
+pub struct RealtimeLogConfigProperties {
+    /// Property [`EndPoints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-realtimelogconfig.html#cfn-cloudfront-realtimelogconfig-endpoints).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub end_points: ::ValueList<self::realtime_log_config::EndPoint>,
+    /// Property [`Fields`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-realtimelogconfig.html#cfn-cloudfront-realtimelogconfig-fields).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub fields: ::ValueList<String>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-realtimelogconfig.html#cfn-cloudfront-realtimelogconfig-name).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub name: ::Value<String>,
+    /// Property [`SamplingRate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-realtimelogconfig.html#cfn-cloudfront-realtimelogconfig-samplingrate).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub sampling_rate: ::Value<f64>,
+}
+
+impl ::serde::Serialize for RealtimeLogConfigProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndPoints", &self.end_points)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Fields", &self.fields)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SamplingRate", &self.sampling_rate)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for RealtimeLogConfigProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<RealtimeLogConfigProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = RealtimeLogConfigProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type RealtimeLogConfigProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut end_points: Option<::ValueList<self::realtime_log_config::EndPoint>> = None;
+                let mut fields: Option<::ValueList<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut sampling_rate: Option<::Value<f64>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "EndPoints" => {
+                            end_points = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Fields" => {
+                            fields = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SamplingRate" => {
+                            sampling_rate = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(RealtimeLogConfigProperties {
+                    end_points: end_points.ok_or(::serde::de::Error::missing_field("EndPoints"))?,
+                    fields: fields.ok_or(::serde::de::Error::missing_field("Fields"))?,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    sampling_rate: sampling_rate.ok_or(::serde::de::Error::missing_field("SamplingRate"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for RealtimeLogConfig {
+    type Properties = RealtimeLogConfigProperties;
+    const TYPE: &'static str = "AWS::CloudFront::RealtimeLogConfig";
+    fn properties(&self) -> &RealtimeLogConfigProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut RealtimeLogConfigProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for RealtimeLogConfig {}
+
+impl From<RealtimeLogConfigProperties> for RealtimeLogConfig {
+    fn from(properties: RealtimeLogConfigProperties) -> RealtimeLogConfig {
+        RealtimeLogConfig { properties }
+    }
+}
+
 /// The [`AWS::CloudFront::StreamingDistribution`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-streamingdistribution.html) resource type.
 #[derive(Debug, Default)]
 pub struct StreamingDistribution {
@@ -252,6 +793,407 @@ impl From<StreamingDistributionProperties> for StreamingDistribution {
     }
 }
 
+pub mod cache_policy {
+    //! Property types for the `CachePolicy` resource.
+
+    /// The [`AWS::CloudFront::CachePolicy.CachePolicyConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-cachepolicyconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CachePolicyConfig {
+        /// Property [`Comment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-cachepolicyconfig.html#cfn-cloudfront-cachepolicy-cachepolicyconfig-comment).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub comment: Option<::Value<String>>,
+        /// Property [`DefaultTTL`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-cachepolicyconfig.html#cfn-cloudfront-cachepolicy-cachepolicyconfig-defaultttl).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub default_ttl: ::Value<f64>,
+        /// Property [`MaxTTL`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-cachepolicyconfig.html#cfn-cloudfront-cachepolicy-cachepolicyconfig-maxttl).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub max_ttl: ::Value<f64>,
+        /// Property [`MinTTL`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-cachepolicyconfig.html#cfn-cloudfront-cachepolicy-cachepolicyconfig-minttl).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub min_ttl: ::Value<f64>,
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-cachepolicyconfig.html#cfn-cloudfront-cachepolicy-cachepolicyconfig-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: ::Value<String>,
+        /// Property [`ParametersInCacheKeyAndForwardedToOrigin`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-cachepolicyconfig.html#cfn-cloudfront-cachepolicy-cachepolicyconfig-parametersincachekeyandforwardedtoorigin).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub parameters_in_cache_key_and_forwarded_to_origin: ::Value<ParametersInCacheKeyAndForwardedToOrigin>,
+    }
+
+    impl ::codec::SerializeValue for CachePolicyConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref comment) = self.comment {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", comment)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultTTL", &self.default_ttl)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxTTL", &self.max_ttl)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinTTL", &self.min_ttl)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ParametersInCacheKeyAndForwardedToOrigin", &self.parameters_in_cache_key_and_forwarded_to_origin)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CachePolicyConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CachePolicyConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CachePolicyConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CachePolicyConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut comment: Option<::Value<String>> = None;
+                    let mut default_ttl: Option<::Value<f64>> = None;
+                    let mut max_ttl: Option<::Value<f64>> = None;
+                    let mut min_ttl: Option<::Value<f64>> = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut parameters_in_cache_key_and_forwarded_to_origin: Option<::Value<ParametersInCacheKeyAndForwardedToOrigin>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Comment" => {
+                                comment = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DefaultTTL" => {
+                                default_ttl = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MaxTTL" => {
+                                max_ttl = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MinTTL" => {
+                                min_ttl = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ParametersInCacheKeyAndForwardedToOrigin" => {
+                                parameters_in_cache_key_and_forwarded_to_origin = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CachePolicyConfig {
+                        comment: comment,
+                        default_ttl: default_ttl.ok_or(::serde::de::Error::missing_field("DefaultTTL"))?,
+                        max_ttl: max_ttl.ok_or(::serde::de::Error::missing_field("MaxTTL"))?,
+                        min_ttl: min_ttl.ok_or(::serde::de::Error::missing_field("MinTTL"))?,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                        parameters_in_cache_key_and_forwarded_to_origin: parameters_in_cache_key_and_forwarded_to_origin.ok_or(::serde::de::Error::missing_field("ParametersInCacheKeyAndForwardedToOrigin"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::CachePolicy.CookiesConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-cookiesconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CookiesConfig {
+        /// Property [`CookieBehavior`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-cookiesconfig.html#cfn-cloudfront-cachepolicy-cookiesconfig-cookiebehavior).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cookie_behavior: ::Value<String>,
+        /// Property [`Cookies`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-cookiesconfig.html#cfn-cloudfront-cachepolicy-cookiesconfig-cookies).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cookies: Option<::ValueList<String>>,
+    }
+
+    impl ::codec::SerializeValue for CookiesConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CookieBehavior", &self.cookie_behavior)?;
+            if let Some(ref cookies) = self.cookies {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cookies", cookies)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CookiesConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CookiesConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CookiesConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CookiesConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut cookie_behavior: Option<::Value<String>> = None;
+                    let mut cookies: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CookieBehavior" => {
+                                cookie_behavior = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Cookies" => {
+                                cookies = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CookiesConfig {
+                        cookie_behavior: cookie_behavior.ok_or(::serde::de::Error::missing_field("CookieBehavior"))?,
+                        cookies: cookies,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::CachePolicy.HeadersConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-headersconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct HeadersConfig {
+        /// Property [`HeaderBehavior`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-headersconfig.html#cfn-cloudfront-cachepolicy-headersconfig-headerbehavior).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub header_behavior: ::Value<String>,
+        /// Property [`Headers`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-headersconfig.html#cfn-cloudfront-cachepolicy-headersconfig-headers).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub headers: Option<::ValueList<String>>,
+    }
+
+    impl ::codec::SerializeValue for HeadersConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HeaderBehavior", &self.header_behavior)?;
+            if let Some(ref headers) = self.headers {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Headers", headers)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for HeadersConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<HeadersConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = HeadersConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type HeadersConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut header_behavior: Option<::Value<String>> = None;
+                    let mut headers: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "HeaderBehavior" => {
+                                header_behavior = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Headers" => {
+                                headers = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(HeadersConfig {
+                        header_behavior: header_behavior.ok_or(::serde::de::Error::missing_field("HeaderBehavior"))?,
+                        headers: headers,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::CachePolicy.ParametersInCacheKeyAndForwardedToOrigin`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-parametersincachekeyandforwardedtoorigin.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ParametersInCacheKeyAndForwardedToOrigin {
+        /// Property [`CookiesConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-parametersincachekeyandforwardedtoorigin.html#cfn-cloudfront-cachepolicy-parametersincachekeyandforwardedtoorigin-cookiesconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cookies_config: ::Value<CookiesConfig>,
+        /// Property [`EnableAcceptEncodingBrotli`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-parametersincachekeyandforwardedtoorigin.html#cfn-cloudfront-cachepolicy-parametersincachekeyandforwardedtoorigin-enableacceptencodingbrotli).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub enable_accept_encoding_brotli: Option<::Value<bool>>,
+        /// Property [`EnableAcceptEncodingGzip`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-parametersincachekeyandforwardedtoorigin.html#cfn-cloudfront-cachepolicy-parametersincachekeyandforwardedtoorigin-enableacceptencodinggzip).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub enable_accept_encoding_gzip: ::Value<bool>,
+        /// Property [`HeadersConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-parametersincachekeyandforwardedtoorigin.html#cfn-cloudfront-cachepolicy-parametersincachekeyandforwardedtoorigin-headersconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub headers_config: ::Value<HeadersConfig>,
+        /// Property [`QueryStringsConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-parametersincachekeyandforwardedtoorigin.html#cfn-cloudfront-cachepolicy-parametersincachekeyandforwardedtoorigin-querystringsconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub query_strings_config: ::Value<QueryStringsConfig>,
+    }
+
+    impl ::codec::SerializeValue for ParametersInCacheKeyAndForwardedToOrigin {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CookiesConfig", &self.cookies_config)?;
+            if let Some(ref enable_accept_encoding_brotli) = self.enable_accept_encoding_brotli {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableAcceptEncodingBrotli", enable_accept_encoding_brotli)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableAcceptEncodingGzip", &self.enable_accept_encoding_gzip)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HeadersConfig", &self.headers_config)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "QueryStringsConfig", &self.query_strings_config)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ParametersInCacheKeyAndForwardedToOrigin {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ParametersInCacheKeyAndForwardedToOrigin, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ParametersInCacheKeyAndForwardedToOrigin;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ParametersInCacheKeyAndForwardedToOrigin")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut cookies_config: Option<::Value<CookiesConfig>> = None;
+                    let mut enable_accept_encoding_brotli: Option<::Value<bool>> = None;
+                    let mut enable_accept_encoding_gzip: Option<::Value<bool>> = None;
+                    let mut headers_config: Option<::Value<HeadersConfig>> = None;
+                    let mut query_strings_config: Option<::Value<QueryStringsConfig>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CookiesConfig" => {
+                                cookies_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "EnableAcceptEncodingBrotli" => {
+                                enable_accept_encoding_brotli = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "EnableAcceptEncodingGzip" => {
+                                enable_accept_encoding_gzip = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HeadersConfig" => {
+                                headers_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "QueryStringsConfig" => {
+                                query_strings_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ParametersInCacheKeyAndForwardedToOrigin {
+                        cookies_config: cookies_config.ok_or(::serde::de::Error::missing_field("CookiesConfig"))?,
+                        enable_accept_encoding_brotli: enable_accept_encoding_brotli,
+                        enable_accept_encoding_gzip: enable_accept_encoding_gzip.ok_or(::serde::de::Error::missing_field("EnableAcceptEncodingGzip"))?,
+                        headers_config: headers_config.ok_or(::serde::de::Error::missing_field("HeadersConfig"))?,
+                        query_strings_config: query_strings_config.ok_or(::serde::de::Error::missing_field("QueryStringsConfig"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::CachePolicy.QueryStringsConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-querystringsconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct QueryStringsConfig {
+        /// Property [`QueryStringBehavior`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-querystringsconfig.html#cfn-cloudfront-cachepolicy-querystringsconfig-querystringbehavior).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub query_string_behavior: ::Value<String>,
+        /// Property [`QueryStrings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-cachepolicy-querystringsconfig.html#cfn-cloudfront-cachepolicy-querystringsconfig-querystrings).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub query_strings: Option<::ValueList<String>>,
+    }
+
+    impl ::codec::SerializeValue for QueryStringsConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "QueryStringBehavior", &self.query_string_behavior)?;
+            if let Some(ref query_strings) = self.query_strings {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "QueryStrings", query_strings)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for QueryStringsConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<QueryStringsConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = QueryStringsConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type QueryStringsConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut query_string_behavior: Option<::Value<String>> = None;
+                    let mut query_strings: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "QueryStringBehavior" => {
+                                query_string_behavior = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "QueryStrings" => {
+                                query_strings = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(QueryStringsConfig {
+                        query_string_behavior: query_string_behavior.ok_or(::serde::de::Error::missing_field("QueryStringBehavior"))?,
+                        query_strings: query_strings,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
 pub mod cloud_front_origin_access_identity {
     //! Property types for the `CloudFrontOriginAccessIdentity` resource.
 
@@ -318,6 +1260,11 @@ pub mod distribution {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub allowed_methods: Option<::ValueList<String>>,
+        /// Property [`CachePolicyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-cachepolicyid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cache_policy_id: Option<::Value<String>>,
         /// Property [`CachedMethods`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-cachedmethods).
         ///
         /// Update type: _Mutable_.
@@ -333,11 +1280,21 @@ pub mod distribution {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub default_ttl: Option<::Value<f64>>,
+        /// Property [`FieldLevelEncryptionId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-fieldlevelencryptionid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub field_level_encryption_id: Option<::Value<String>>,
         /// Property [`ForwardedValues`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-forwardedvalues).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub forwarded_values: ::Value<ForwardedValues>,
+        pub forwarded_values: Option<::Value<ForwardedValues>>,
+        /// Property [`FunctionAssociations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-functionassociations).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub function_associations: Option<::ValueList<FunctionAssociation>>,
         /// Property [`LambdaFunctionAssociations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-lambdafunctionassociations).
         ///
         /// Update type: _Mutable_.
@@ -353,11 +1310,21 @@ pub mod distribution {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub min_ttl: Option<::Value<f64>>,
+        /// Property [`OriginRequestPolicyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-originrequestpolicyid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub origin_request_policy_id: Option<::Value<String>>,
         /// Property [`PathPattern`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-pathpattern).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub path_pattern: ::Value<String>,
+        /// Property [`RealtimeLogConfigArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-realtimelogconfigarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub realtime_log_config_arn: Option<::Value<String>>,
         /// Property [`SmoothStreaming`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-smoothstreaming).
         ///
         /// Update type: _Mutable_.
@@ -368,6 +1335,11 @@ pub mod distribution {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub target_origin_id: ::Value<String>,
+        /// Property [`TrustedKeyGroups`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-trustedkeygroups).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub trusted_key_groups: Option<::ValueList<String>>,
         /// Property [`TrustedSigners`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-trustedsigners).
         ///
         /// Update type: _Mutable_.
@@ -386,6 +1358,9 @@ pub mod distribution {
             if let Some(ref allowed_methods) = self.allowed_methods {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowedMethods", allowed_methods)?;
             }
+            if let Some(ref cache_policy_id) = self.cache_policy_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CachePolicyId", cache_policy_id)?;
+            }
             if let Some(ref cached_methods) = self.cached_methods {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "CachedMethods", cached_methods)?;
             }
@@ -395,7 +1370,15 @@ pub mod distribution {
             if let Some(ref default_ttl) = self.default_ttl {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultTTL", default_ttl)?;
             }
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ForwardedValues", &self.forwarded_values)?;
+            if let Some(ref field_level_encryption_id) = self.field_level_encryption_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FieldLevelEncryptionId", field_level_encryption_id)?;
+            }
+            if let Some(ref forwarded_values) = self.forwarded_values {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ForwardedValues", forwarded_values)?;
+            }
+            if let Some(ref function_associations) = self.function_associations {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FunctionAssociations", function_associations)?;
+            }
             if let Some(ref lambda_function_associations) = self.lambda_function_associations {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaFunctionAssociations", lambda_function_associations)?;
             }
@@ -405,11 +1388,20 @@ pub mod distribution {
             if let Some(ref min_ttl) = self.min_ttl {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinTTL", min_ttl)?;
             }
+            if let Some(ref origin_request_policy_id) = self.origin_request_policy_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginRequestPolicyId", origin_request_policy_id)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PathPattern", &self.path_pattern)?;
+            if let Some(ref realtime_log_config_arn) = self.realtime_log_config_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RealtimeLogConfigArn", realtime_log_config_arn)?;
+            }
             if let Some(ref smooth_streaming) = self.smooth_streaming {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SmoothStreaming", smooth_streaming)?;
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetOriginId", &self.target_origin_id)?;
+            if let Some(ref trusted_key_groups) = self.trusted_key_groups {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrustedKeyGroups", trusted_key_groups)?;
+            }
             if let Some(ref trusted_signers) = self.trusted_signers {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrustedSigners", trusted_signers)?;
             }
@@ -431,16 +1423,22 @@ pub mod distribution {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut allowed_methods: Option<::ValueList<String>> = None;
+                    let mut cache_policy_id: Option<::Value<String>> = None;
                     let mut cached_methods: Option<::ValueList<String>> = None;
                     let mut compress: Option<::Value<bool>> = None;
                     let mut default_ttl: Option<::Value<f64>> = None;
+                    let mut field_level_encryption_id: Option<::Value<String>> = None;
                     let mut forwarded_values: Option<::Value<ForwardedValues>> = None;
+                    let mut function_associations: Option<::ValueList<FunctionAssociation>> = None;
                     let mut lambda_function_associations: Option<::ValueList<LambdaFunctionAssociation>> = None;
                     let mut max_ttl: Option<::Value<f64>> = None;
                     let mut min_ttl: Option<::Value<f64>> = None;
+                    let mut origin_request_policy_id: Option<::Value<String>> = None;
                     let mut path_pattern: Option<::Value<String>> = None;
+                    let mut realtime_log_config_arn: Option<::Value<String>> = None;
                     let mut smooth_streaming: Option<::Value<bool>> = None;
                     let mut target_origin_id: Option<::Value<String>> = None;
+                    let mut trusted_key_groups: Option<::ValueList<String>> = None;
                     let mut trusted_signers: Option<::ValueList<String>> = None;
                     let mut viewer_protocol_policy: Option<::Value<String>> = None;
 
@@ -448,6 +1446,9 @@ pub mod distribution {
                         match __cfn_key.as_ref() {
                             "AllowedMethods" => {
                                 allowed_methods = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CachePolicyId" => {
+                                cache_policy_id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "CachedMethods" => {
                                 cached_methods = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -458,8 +1459,14 @@ pub mod distribution {
                             "DefaultTTL" => {
                                 default_ttl = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "FieldLevelEncryptionId" => {
+                                field_level_encryption_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "ForwardedValues" => {
                                 forwarded_values = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "FunctionAssociations" => {
+                                function_associations = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "LambdaFunctionAssociations" => {
                                 lambda_function_associations = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -470,14 +1477,23 @@ pub mod distribution {
                             "MinTTL" => {
                                 min_ttl = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "OriginRequestPolicyId" => {
+                                origin_request_policy_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "PathPattern" => {
                                 path_pattern = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RealtimeLogConfigArn" => {
+                                realtime_log_config_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "SmoothStreaming" => {
                                 smooth_streaming = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "TargetOriginId" => {
                                 target_origin_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TrustedKeyGroups" => {
+                                trusted_key_groups = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "TrustedSigners" => {
                                 trusted_signers = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -491,16 +1507,22 @@ pub mod distribution {
 
                     Ok(CacheBehavior {
                         allowed_methods: allowed_methods,
+                        cache_policy_id: cache_policy_id,
                         cached_methods: cached_methods,
                         compress: compress,
                         default_ttl: default_ttl,
-                        forwarded_values: forwarded_values.ok_or(::serde::de::Error::missing_field("ForwardedValues"))?,
+                        field_level_encryption_id: field_level_encryption_id,
+                        forwarded_values: forwarded_values,
+                        function_associations: function_associations,
                         lambda_function_associations: lambda_function_associations,
                         max_ttl: max_ttl,
                         min_ttl: min_ttl,
+                        origin_request_policy_id: origin_request_policy_id,
                         path_pattern: path_pattern.ok_or(::serde::de::Error::missing_field("PathPattern"))?,
+                        realtime_log_config_arn: realtime_log_config_arn,
                         smooth_streaming: smooth_streaming,
                         target_origin_id: target_origin_id.ok_or(::serde::de::Error::missing_field("TargetOriginId"))?,
+                        trusted_key_groups: trusted_key_groups,
                         trusted_signers: trusted_signers,
                         viewer_protocol_policy: viewer_protocol_policy.ok_or(::serde::de::Error::missing_field("ViewerProtocolPolicy"))?,
                     })
@@ -789,6 +1811,11 @@ pub mod distribution {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub allowed_methods: Option<::ValueList<String>>,
+        /// Property [`CachePolicyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-cachepolicyid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cache_policy_id: Option<::Value<String>>,
         /// Property [`CachedMethods`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-cachedmethods).
         ///
         /// Update type: _Mutable_.
@@ -804,11 +1831,21 @@ pub mod distribution {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub default_ttl: Option<::Value<f64>>,
+        /// Property [`FieldLevelEncryptionId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-fieldlevelencryptionid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub field_level_encryption_id: Option<::Value<String>>,
         /// Property [`ForwardedValues`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-forwardedvalues).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub forwarded_values: ::Value<ForwardedValues>,
+        pub forwarded_values: Option<::Value<ForwardedValues>>,
+        /// Property [`FunctionAssociations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-functionassociations).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub function_associations: Option<::ValueList<FunctionAssociation>>,
         /// Property [`LambdaFunctionAssociations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-lambdafunctionassociations).
         ///
         /// Update type: _Mutable_.
@@ -824,6 +1861,16 @@ pub mod distribution {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub min_ttl: Option<::Value<f64>>,
+        /// Property [`OriginRequestPolicyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-originrequestpolicyid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub origin_request_policy_id: Option<::Value<String>>,
+        /// Property [`RealtimeLogConfigArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-realtimelogconfigarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub realtime_log_config_arn: Option<::Value<String>>,
         /// Property [`SmoothStreaming`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-smoothstreaming).
         ///
         /// Update type: _Mutable_.
@@ -834,6 +1881,11 @@ pub mod distribution {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub target_origin_id: ::Value<String>,
+        /// Property [`TrustedKeyGroups`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-trustedkeygroups).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub trusted_key_groups: Option<::ValueList<String>>,
         /// Property [`TrustedSigners`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-trustedsigners).
         ///
         /// Update type: _Mutable_.
@@ -852,6 +1904,9 @@ pub mod distribution {
             if let Some(ref allowed_methods) = self.allowed_methods {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowedMethods", allowed_methods)?;
             }
+            if let Some(ref cache_policy_id) = self.cache_policy_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CachePolicyId", cache_policy_id)?;
+            }
             if let Some(ref cached_methods) = self.cached_methods {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "CachedMethods", cached_methods)?;
             }
@@ -861,7 +1916,15 @@ pub mod distribution {
             if let Some(ref default_ttl) = self.default_ttl {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultTTL", default_ttl)?;
             }
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ForwardedValues", &self.forwarded_values)?;
+            if let Some(ref field_level_encryption_id) = self.field_level_encryption_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FieldLevelEncryptionId", field_level_encryption_id)?;
+            }
+            if let Some(ref forwarded_values) = self.forwarded_values {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ForwardedValues", forwarded_values)?;
+            }
+            if let Some(ref function_associations) = self.function_associations {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FunctionAssociations", function_associations)?;
+            }
             if let Some(ref lambda_function_associations) = self.lambda_function_associations {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaFunctionAssociations", lambda_function_associations)?;
             }
@@ -871,10 +1934,19 @@ pub mod distribution {
             if let Some(ref min_ttl) = self.min_ttl {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinTTL", min_ttl)?;
             }
+            if let Some(ref origin_request_policy_id) = self.origin_request_policy_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginRequestPolicyId", origin_request_policy_id)?;
+            }
+            if let Some(ref realtime_log_config_arn) = self.realtime_log_config_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RealtimeLogConfigArn", realtime_log_config_arn)?;
+            }
             if let Some(ref smooth_streaming) = self.smooth_streaming {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SmoothStreaming", smooth_streaming)?;
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetOriginId", &self.target_origin_id)?;
+            if let Some(ref trusted_key_groups) = self.trusted_key_groups {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrustedKeyGroups", trusted_key_groups)?;
+            }
             if let Some(ref trusted_signers) = self.trusted_signers {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrustedSigners", trusted_signers)?;
             }
@@ -896,15 +1968,21 @@ pub mod distribution {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut allowed_methods: Option<::ValueList<String>> = None;
+                    let mut cache_policy_id: Option<::Value<String>> = None;
                     let mut cached_methods: Option<::ValueList<String>> = None;
                     let mut compress: Option<::Value<bool>> = None;
                     let mut default_ttl: Option<::Value<f64>> = None;
+                    let mut field_level_encryption_id: Option<::Value<String>> = None;
                     let mut forwarded_values: Option<::Value<ForwardedValues>> = None;
+                    let mut function_associations: Option<::ValueList<FunctionAssociation>> = None;
                     let mut lambda_function_associations: Option<::ValueList<LambdaFunctionAssociation>> = None;
                     let mut max_ttl: Option<::Value<f64>> = None;
                     let mut min_ttl: Option<::Value<f64>> = None;
+                    let mut origin_request_policy_id: Option<::Value<String>> = None;
+                    let mut realtime_log_config_arn: Option<::Value<String>> = None;
                     let mut smooth_streaming: Option<::Value<bool>> = None;
                     let mut target_origin_id: Option<::Value<String>> = None;
+                    let mut trusted_key_groups: Option<::ValueList<String>> = None;
                     let mut trusted_signers: Option<::ValueList<String>> = None;
                     let mut viewer_protocol_policy: Option<::Value<String>> = None;
 
@@ -912,6 +1990,9 @@ pub mod distribution {
                         match __cfn_key.as_ref() {
                             "AllowedMethods" => {
                                 allowed_methods = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CachePolicyId" => {
+                                cache_policy_id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "CachedMethods" => {
                                 cached_methods = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -922,8 +2003,14 @@ pub mod distribution {
                             "DefaultTTL" => {
                                 default_ttl = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "FieldLevelEncryptionId" => {
+                                field_level_encryption_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "ForwardedValues" => {
                                 forwarded_values = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "FunctionAssociations" => {
+                                function_associations = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "LambdaFunctionAssociations" => {
                                 lambda_function_associations = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -934,11 +2021,20 @@ pub mod distribution {
                             "MinTTL" => {
                                 min_ttl = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "OriginRequestPolicyId" => {
+                                origin_request_policy_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RealtimeLogConfigArn" => {
+                                realtime_log_config_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "SmoothStreaming" => {
                                 smooth_streaming = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "TargetOriginId" => {
                                 target_origin_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TrustedKeyGroups" => {
+                                trusted_key_groups = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "TrustedSigners" => {
                                 trusted_signers = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -952,15 +2048,21 @@ pub mod distribution {
 
                     Ok(DefaultCacheBehavior {
                         allowed_methods: allowed_methods,
+                        cache_policy_id: cache_policy_id,
                         cached_methods: cached_methods,
                         compress: compress,
                         default_ttl: default_ttl,
-                        forwarded_values: forwarded_values.ok_or(::serde::de::Error::missing_field("ForwardedValues"))?,
+                        field_level_encryption_id: field_level_encryption_id,
+                        forwarded_values: forwarded_values,
+                        function_associations: function_associations,
                         lambda_function_associations: lambda_function_associations,
                         max_ttl: max_ttl,
                         min_ttl: min_ttl,
+                        origin_request_policy_id: origin_request_policy_id,
+                        realtime_log_config_arn: realtime_log_config_arn,
                         smooth_streaming: smooth_streaming,
                         target_origin_id: target_origin_id.ok_or(::serde::de::Error::missing_field("TargetOriginId"))?,
+                        trusted_key_groups: trusted_key_groups,
                         trusted_signers: trusted_signers,
                         viewer_protocol_policy: viewer_protocol_policy.ok_or(::serde::de::Error::missing_field("ViewerProtocolPolicy"))?,
                     })
@@ -979,6 +2081,11 @@ pub mod distribution {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub aliases: Option<::ValueList<String>>,
+        /// Property [`CNAMEs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-cnames).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cnam_es: Option<::ValueList<String>>,
         /// Property [`CacheBehaviors`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-cachebehaviors).
         ///
         /// Update type: _Mutable_.
@@ -994,6 +2101,11 @@ pub mod distribution {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub custom_error_responses: Option<::ValueList<CustomErrorResponse>>,
+        /// Property [`CustomOrigin`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-customorigin).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub custom_origin: Option<::Value<LegacyCustomOrigin>>,
         /// Property [`DefaultCacheBehavior`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-defaultcachebehavior).
         ///
         /// Update type: _Mutable_.
@@ -1024,6 +2136,11 @@ pub mod distribution {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub logging: Option<::Value<Logging>>,
+        /// Property [`OriginGroups`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-origingroups).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub origin_groups: Option<::Value<OriginGroups>>,
         /// Property [`Origins`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-origins).
         ///
         /// Update type: _Mutable_.
@@ -1039,6 +2156,11 @@ pub mod distribution {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub restrictions: Option<::Value<Restrictions>>,
+        /// Property [`S3Origin`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-s3origin).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub s3_origin: Option<::Value<LegacyS3Origin>>,
         /// Property [`ViewerCertificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-viewercertificate).
         ///
         /// Update type: _Mutable_.
@@ -1057,6 +2179,9 @@ pub mod distribution {
             if let Some(ref aliases) = self.aliases {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Aliases", aliases)?;
             }
+            if let Some(ref cnam_es) = self.cnam_es {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CNAMEs", cnam_es)?;
+            }
             if let Some(ref cache_behaviors) = self.cache_behaviors {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "CacheBehaviors", cache_behaviors)?;
             }
@@ -1065,6 +2190,9 @@ pub mod distribution {
             }
             if let Some(ref custom_error_responses) = self.custom_error_responses {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomErrorResponses", custom_error_responses)?;
+            }
+            if let Some(ref custom_origin) = self.custom_origin {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomOrigin", custom_origin)?;
             }
             if let Some(ref default_cache_behavior) = self.default_cache_behavior {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultCacheBehavior", default_cache_behavior)?;
@@ -1082,6 +2210,9 @@ pub mod distribution {
             if let Some(ref logging) = self.logging {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Logging", logging)?;
             }
+            if let Some(ref origin_groups) = self.origin_groups {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginGroups", origin_groups)?;
+            }
             if let Some(ref origins) = self.origins {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Origins", origins)?;
             }
@@ -1090,6 +2221,9 @@ pub mod distribution {
             }
             if let Some(ref restrictions) = self.restrictions {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Restrictions", restrictions)?;
+            }
+            if let Some(ref s3_origin) = self.s3_origin {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Origin", s3_origin)?;
             }
             if let Some(ref viewer_certificate) = self.viewer_certificate {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ViewerCertificate", viewer_certificate)?;
@@ -1114,18 +2248,22 @@ pub mod distribution {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut aliases: Option<::ValueList<String>> = None;
+                    let mut cnam_es: Option<::ValueList<String>> = None;
                     let mut cache_behaviors: Option<::ValueList<CacheBehavior>> = None;
                     let mut comment: Option<::Value<String>> = None;
                     let mut custom_error_responses: Option<::ValueList<CustomErrorResponse>> = None;
+                    let mut custom_origin: Option<::Value<LegacyCustomOrigin>> = None;
                     let mut default_cache_behavior: Option<::Value<DefaultCacheBehavior>> = None;
                     let mut default_root_object: Option<::Value<String>> = None;
                     let mut enabled: Option<::Value<bool>> = None;
                     let mut http_version: Option<::Value<String>> = None;
                     let mut ipv6_enabled: Option<::Value<bool>> = None;
                     let mut logging: Option<::Value<Logging>> = None;
+                    let mut origin_groups: Option<::Value<OriginGroups>> = None;
                     let mut origins: Option<::ValueList<Origin>> = None;
                     let mut price_class: Option<::Value<String>> = None;
                     let mut restrictions: Option<::Value<Restrictions>> = None;
+                    let mut s3_origin: Option<::Value<LegacyS3Origin>> = None;
                     let mut viewer_certificate: Option<::Value<ViewerCertificate>> = None;
                     let mut web_acl_id: Option<::Value<String>> = None;
 
@@ -1133,6 +2271,9 @@ pub mod distribution {
                         match __cfn_key.as_ref() {
                             "Aliases" => {
                                 aliases = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CNAMEs" => {
+                                cnam_es = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "CacheBehaviors" => {
                                 cache_behaviors = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1142,6 +2283,9 @@ pub mod distribution {
                             }
                             "CustomErrorResponses" => {
                                 custom_error_responses = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CustomOrigin" => {
+                                custom_origin = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "DefaultCacheBehavior" => {
                                 default_cache_behavior = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1161,6 +2305,9 @@ pub mod distribution {
                             "Logging" => {
                                 logging = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "OriginGroups" => {
+                                origin_groups = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Origins" => {
                                 origins = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1169,6 +2316,9 @@ pub mod distribution {
                             }
                             "Restrictions" => {
                                 restrictions = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "S3Origin" => {
+                                s3_origin = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "ViewerCertificate" => {
                                 viewer_certificate = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1182,18 +2332,22 @@ pub mod distribution {
 
                     Ok(DistributionConfig {
                         aliases: aliases,
+                        cnam_es: cnam_es,
                         cache_behaviors: cache_behaviors,
                         comment: comment,
                         custom_error_responses: custom_error_responses,
+                        custom_origin: custom_origin,
                         default_cache_behavior: default_cache_behavior,
                         default_root_object: default_root_object,
                         enabled: enabled.ok_or(::serde::de::Error::missing_field("Enabled"))?,
                         http_version: http_version,
                         ipv6_enabled: ipv6_enabled,
                         logging: logging,
+                        origin_groups: origin_groups,
                         origins: origins,
                         price_class: price_class,
                         restrictions: restrictions,
+                        s3_origin: s3_origin,
                         viewer_certificate: viewer_certificate,
                         web_acl_id: web_acl_id,
                     })
@@ -1294,6 +2448,72 @@ pub mod distribution {
         }
     }
 
+    /// The [`AWS::CloudFront::Distribution.FunctionAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-functionassociation.html) property type.
+    #[derive(Debug, Default)]
+    pub struct FunctionAssociation {
+        /// Property [`EventType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-functionassociation.html#cfn-cloudfront-distribution-functionassociation-eventtype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub event_type: Option<::Value<String>>,
+        /// Property [`FunctionARN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-functionassociation.html#cfn-cloudfront-distribution-functionassociation-functionarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub function_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for FunctionAssociation {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref event_type) = self.event_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventType", event_type)?;
+            }
+            if let Some(ref function_arn) = self.function_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FunctionARN", function_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for FunctionAssociation {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<FunctionAssociation, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = FunctionAssociation;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type FunctionAssociation")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut event_type: Option<::Value<String>> = None;
+                    let mut function_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "EventType" => {
+                                event_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "FunctionARN" => {
+                                function_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(FunctionAssociation {
+                        event_type: event_type,
+                        function_arn: function_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::CloudFront::Distribution.GeoRestriction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-georestriction.html) property type.
     #[derive(Debug, Default)]
     pub struct GeoRestriction {
@@ -1366,6 +2586,11 @@ pub mod distribution {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub event_type: Option<::Value<String>>,
+        /// Property [`IncludeBody`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-lambdafunctionassociation.html#cfn-cloudfront-distribution-lambdafunctionassociation-includebody).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub include_body: Option<::Value<bool>>,
         /// Property [`LambdaFunctionARN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-lambdafunctionassociation.html#cfn-cloudfront-distribution-lambdafunctionassociation-lambdafunctionarn).
         ///
         /// Update type: _Mutable_.
@@ -1378,6 +2603,9 @@ pub mod distribution {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             if let Some(ref event_type) = self.event_type {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventType", event_type)?;
+            }
+            if let Some(ref include_body) = self.include_body {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncludeBody", include_body)?;
             }
             if let Some(ref lambda_function_arn) = self.lambda_function_arn {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaFunctionARN", lambda_function_arn)?;
@@ -1399,12 +2627,16 @@ pub mod distribution {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut event_type: Option<::Value<String>> = None;
+                    let mut include_body: Option<::Value<bool>> = None;
                     let mut lambda_function_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "EventType" => {
                                 event_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IncludeBody" => {
+                                include_body = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "LambdaFunctionARN" => {
                                 lambda_function_arn = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1415,7 +2647,171 @@ pub mod distribution {
 
                     Ok(LambdaFunctionAssociation {
                         event_type: event_type,
+                        include_body: include_body,
                         lambda_function_arn: lambda_function_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::Distribution.LegacyCustomOrigin`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacycustomorigin.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LegacyCustomOrigin {
+        /// Property [`DNSName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacycustomorigin.html#cfn-cloudfront-distribution-legacycustomorigin-dnsname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub dns_name: ::Value<String>,
+        /// Property [`HTTPPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacycustomorigin.html#cfn-cloudfront-distribution-legacycustomorigin-httpport).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub http_port: Option<::Value<u32>>,
+        /// Property [`HTTPSPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacycustomorigin.html#cfn-cloudfront-distribution-legacycustomorigin-httpsport).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub https_port: Option<::Value<u32>>,
+        /// Property [`OriginProtocolPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacycustomorigin.html#cfn-cloudfront-distribution-legacycustomorigin-originprotocolpolicy).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub origin_protocol_policy: ::Value<String>,
+        /// Property [`OriginSSLProtocols`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacycustomorigin.html#cfn-cloudfront-distribution-legacycustomorigin-originsslprotocols).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub origin_ssl_protocols: ::ValueList<String>,
+    }
+
+    impl ::codec::SerializeValue for LegacyCustomOrigin {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DNSName", &self.dns_name)?;
+            if let Some(ref http_port) = self.http_port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HTTPPort", http_port)?;
+            }
+            if let Some(ref https_port) = self.https_port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HTTPSPort", https_port)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginProtocolPolicy", &self.origin_protocol_policy)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginSSLProtocols", &self.origin_ssl_protocols)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LegacyCustomOrigin {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LegacyCustomOrigin, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LegacyCustomOrigin;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LegacyCustomOrigin")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut dns_name: Option<::Value<String>> = None;
+                    let mut http_port: Option<::Value<u32>> = None;
+                    let mut https_port: Option<::Value<u32>> = None;
+                    let mut origin_protocol_policy: Option<::Value<String>> = None;
+                    let mut origin_ssl_protocols: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DNSName" => {
+                                dns_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HTTPPort" => {
+                                http_port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HTTPSPort" => {
+                                https_port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OriginProtocolPolicy" => {
+                                origin_protocol_policy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OriginSSLProtocols" => {
+                                origin_ssl_protocols = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LegacyCustomOrigin {
+                        dns_name: dns_name.ok_or(::serde::de::Error::missing_field("DNSName"))?,
+                        http_port: http_port,
+                        https_port: https_port,
+                        origin_protocol_policy: origin_protocol_policy.ok_or(::serde::de::Error::missing_field("OriginProtocolPolicy"))?,
+                        origin_ssl_protocols: origin_ssl_protocols.ok_or(::serde::de::Error::missing_field("OriginSSLProtocols"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::Distribution.LegacyS3Origin`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacys3origin.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LegacyS3Origin {
+        /// Property [`DNSName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacys3origin.html#cfn-cloudfront-distribution-legacys3origin-dnsname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub dns_name: ::Value<String>,
+        /// Property [`OriginAccessIdentity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-legacys3origin.html#cfn-cloudfront-distribution-legacys3origin-originaccessidentity).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub origin_access_identity: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for LegacyS3Origin {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DNSName", &self.dns_name)?;
+            if let Some(ref origin_access_identity) = self.origin_access_identity {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginAccessIdentity", origin_access_identity)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LegacyS3Origin {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LegacyS3Origin, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LegacyS3Origin;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LegacyS3Origin")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut dns_name: Option<::Value<String>> = None;
+                    let mut origin_access_identity: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DNSName" => {
+                                dns_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OriginAccessIdentity" => {
+                                origin_access_identity = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LegacyS3Origin {
+                        dns_name: dns_name.ok_or(::serde::de::Error::missing_field("DNSName"))?,
+                        origin_access_identity: origin_access_identity,
                     })
                 }
             }
@@ -1504,6 +2900,16 @@ pub mod distribution {
     /// The [`AWS::CloudFront::Distribution.Origin`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html) property type.
     #[derive(Debug, Default)]
     pub struct Origin {
+        /// Property [`ConnectionAttempts`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html#cfn-cloudfront-distribution-origin-connectionattempts).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub connection_attempts: Option<::Value<u32>>,
+        /// Property [`ConnectionTimeout`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html#cfn-cloudfront-distribution-origin-connectiontimeout).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub connection_timeout: Option<::Value<u32>>,
         /// Property [`CustomOriginConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html#cfn-cloudfront-distribution-origin-customoriginconfig).
         ///
         /// Update type: _Mutable_.
@@ -1529,6 +2935,11 @@ pub mod distribution {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub origin_path: Option<::Value<String>>,
+        /// Property [`OriginShield`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html#cfn-cloudfront-distribution-origin-originshield).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub origin_shield: Option<::Value<OriginShield>>,
         /// Property [`S3OriginConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html#cfn-cloudfront-distribution-origin-s3originconfig).
         ///
         /// Update type: _Mutable_.
@@ -1539,6 +2950,12 @@ pub mod distribution {
     impl ::codec::SerializeValue for Origin {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref connection_attempts) = self.connection_attempts {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionAttempts", connection_attempts)?;
+            }
+            if let Some(ref connection_timeout) = self.connection_timeout {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionTimeout", connection_timeout)?;
+            }
             if let Some(ref custom_origin_config) = self.custom_origin_config {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomOriginConfig", custom_origin_config)?;
             }
@@ -1549,6 +2966,9 @@ pub mod distribution {
             }
             if let Some(ref origin_path) = self.origin_path {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginPath", origin_path)?;
+            }
+            if let Some(ref origin_shield) = self.origin_shield {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginShield", origin_shield)?;
             }
             if let Some(ref s3_origin_config) = self.s3_origin_config {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3OriginConfig", s3_origin_config)?;
@@ -1569,15 +2989,24 @@ pub mod distribution {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut connection_attempts: Option<::Value<u32>> = None;
+                    let mut connection_timeout: Option<::Value<u32>> = None;
                     let mut custom_origin_config: Option<::Value<CustomOriginConfig>> = None;
                     let mut domain_name: Option<::Value<String>> = None;
                     let mut id: Option<::Value<String>> = None;
                     let mut origin_custom_headers: Option<::ValueList<OriginCustomHeader>> = None;
                     let mut origin_path: Option<::Value<String>> = None;
+                    let mut origin_shield: Option<::Value<OriginShield>> = None;
                     let mut s3_origin_config: Option<::Value<S3OriginConfig>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "ConnectionAttempts" => {
+                                connection_attempts = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ConnectionTimeout" => {
+                                connection_timeout = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "CustomOriginConfig" => {
                                 custom_origin_config = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1593,6 +3022,9 @@ pub mod distribution {
                             "OriginPath" => {
                                 origin_path = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "OriginShield" => {
+                                origin_shield = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "S3OriginConfig" => {
                                 s3_origin_config = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1601,11 +3033,14 @@ pub mod distribution {
                     }
 
                     Ok(Origin {
+                        connection_attempts: connection_attempts,
+                        connection_timeout: connection_timeout,
                         custom_origin_config: custom_origin_config,
                         domain_name: domain_name.ok_or(::serde::de::Error::missing_field("DomainName"))?,
                         id: id.ok_or(::serde::de::Error::missing_field("Id"))?,
                         origin_custom_headers: origin_custom_headers,
                         origin_path: origin_path,
+                        origin_shield: origin_shield,
                         s3_origin_config: s3_origin_config,
                     })
                 }
@@ -1669,6 +3104,373 @@ pub mod distribution {
                     Ok(OriginCustomHeader {
                         header_name: header_name.ok_or(::serde::de::Error::missing_field("HeaderName"))?,
                         header_value: header_value.ok_or(::serde::de::Error::missing_field("HeaderValue"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::Distribution.OriginGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroup.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OriginGroup {
+        /// Property [`FailoverCriteria`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroup.html#cfn-cloudfront-distribution-origingroup-failovercriteria).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub failover_criteria: ::Value<OriginGroupFailoverCriteria>,
+        /// Property [`Id`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroup.html#cfn-cloudfront-distribution-origingroup-id).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub id: ::Value<String>,
+        /// Property [`Members`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroup.html#cfn-cloudfront-distribution-origingroup-members).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub members: ::Value<OriginGroupMembers>,
+    }
+
+    impl ::codec::SerializeValue for OriginGroup {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FailoverCriteria", &self.failover_criteria)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Id", &self.id)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Members", &self.members)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OriginGroup {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OriginGroup, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OriginGroup;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OriginGroup")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut failover_criteria: Option<::Value<OriginGroupFailoverCriteria>> = None;
+                    let mut id: Option<::Value<String>> = None;
+                    let mut members: Option<::Value<OriginGroupMembers>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "FailoverCriteria" => {
+                                failover_criteria = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Id" => {
+                                id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Members" => {
+                                members = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OriginGroup {
+                        failover_criteria: failover_criteria.ok_or(::serde::de::Error::missing_field("FailoverCriteria"))?,
+                        id: id.ok_or(::serde::de::Error::missing_field("Id"))?,
+                        members: members.ok_or(::serde::de::Error::missing_field("Members"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::Distribution.OriginGroupFailoverCriteria`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroupfailovercriteria.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OriginGroupFailoverCriteria {
+        /// Property [`StatusCodes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroupfailovercriteria.html#cfn-cloudfront-distribution-origingroupfailovercriteria-statuscodes).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub status_codes: ::Value<StatusCodes>,
+    }
+
+    impl ::codec::SerializeValue for OriginGroupFailoverCriteria {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StatusCodes", &self.status_codes)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OriginGroupFailoverCriteria {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OriginGroupFailoverCriteria, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OriginGroupFailoverCriteria;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OriginGroupFailoverCriteria")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut status_codes: Option<::Value<StatusCodes>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "StatusCodes" => {
+                                status_codes = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OriginGroupFailoverCriteria {
+                        status_codes: status_codes.ok_or(::serde::de::Error::missing_field("StatusCodes"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::Distribution.OriginGroupMember`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroupmember.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OriginGroupMember {
+        /// Property [`OriginId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroupmember.html#cfn-cloudfront-distribution-origingroupmember-originid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub origin_id: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for OriginGroupMember {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginId", &self.origin_id)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OriginGroupMember {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OriginGroupMember, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OriginGroupMember;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OriginGroupMember")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut origin_id: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "OriginId" => {
+                                origin_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OriginGroupMember {
+                        origin_id: origin_id.ok_or(::serde::de::Error::missing_field("OriginId"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::Distribution.OriginGroupMembers`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroupmembers.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OriginGroupMembers {
+        /// Property [`Items`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroupmembers.html#cfn-cloudfront-distribution-origingroupmembers-items).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub items: ::ValueList<OriginGroupMember>,
+        /// Property [`Quantity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroupmembers.html#cfn-cloudfront-distribution-origingroupmembers-quantity).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub quantity: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for OriginGroupMembers {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Items", &self.items)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Quantity", &self.quantity)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OriginGroupMembers {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OriginGroupMembers, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OriginGroupMembers;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OriginGroupMembers")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut items: Option<::ValueList<OriginGroupMember>> = None;
+                    let mut quantity: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Items" => {
+                                items = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Quantity" => {
+                                quantity = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OriginGroupMembers {
+                        items: items.ok_or(::serde::de::Error::missing_field("Items"))?,
+                        quantity: quantity.ok_or(::serde::de::Error::missing_field("Quantity"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::Distribution.OriginGroups`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroups.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OriginGroups {
+        /// Property [`Items`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroups.html#cfn-cloudfront-distribution-origingroups-items).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub items: Option<::ValueList<OriginGroup>>,
+        /// Property [`Quantity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origingroups.html#cfn-cloudfront-distribution-origingroups-quantity).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub quantity: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for OriginGroups {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref items) = self.items {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Items", items)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Quantity", &self.quantity)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OriginGroups {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OriginGroups, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OriginGroups;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OriginGroups")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut items: Option<::ValueList<OriginGroup>> = None;
+                    let mut quantity: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Items" => {
+                                items = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Quantity" => {
+                                quantity = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OriginGroups {
+                        items: items,
+                        quantity: quantity.ok_or(::serde::de::Error::missing_field("Quantity"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::Distribution.OriginShield`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-originshield.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OriginShield {
+        /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-originshield.html#cfn-cloudfront-distribution-originshield-enabled).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub enabled: Option<::Value<bool>>,
+        /// Property [`OriginShieldRegion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-originshield.html#cfn-cloudfront-distribution-originshield-originshieldregion).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub origin_shield_region: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for OriginShield {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref enabled) = self.enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", enabled)?;
+            }
+            if let Some(ref origin_shield_region) = self.origin_shield_region {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginShieldRegion", origin_shield_region)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OriginShield {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OriginShield, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OriginShield;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OriginShield")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut enabled: Option<::Value<bool>> = None;
+                    let mut origin_shield_region: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Enabled" => {
+                                enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OriginShieldRegion" => {
+                                origin_shield_region = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OriginShield {
+                        enabled: enabled,
+                        origin_shield_region: origin_shield_region,
                     })
                 }
             }
@@ -1781,6 +3583,68 @@ pub mod distribution {
         }
     }
 
+    /// The [`AWS::CloudFront::Distribution.StatusCodes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-statuscodes.html) property type.
+    #[derive(Debug, Default)]
+    pub struct StatusCodes {
+        /// Property [`Items`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-statuscodes.html#cfn-cloudfront-distribution-statuscodes-items).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub items: ::ValueList<u32>,
+        /// Property [`Quantity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-statuscodes.html#cfn-cloudfront-distribution-statuscodes-quantity).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub quantity: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for StatusCodes {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Items", &self.items)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Quantity", &self.quantity)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for StatusCodes {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<StatusCodes, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = StatusCodes;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type StatusCodes")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut items: Option<::ValueList<u32>> = None;
+                    let mut quantity: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Items" => {
+                                items = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Quantity" => {
+                                quantity = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(StatusCodes {
+                        items: items.ok_or(::serde::de::Error::missing_field("Items"))?,
+                        quantity: quantity.ok_or(::serde::de::Error::missing_field("Quantity"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::CloudFront::Distribution.ViewerCertificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-viewercertificate.html) property type.
     #[derive(Debug, Default)]
     pub struct ViewerCertificate {
@@ -1878,6 +3742,715 @@ pub mod distribution {
                         iam_certificate_id: iam_certificate_id,
                         minimum_protocol_version: minimum_protocol_version,
                         ssl_support_method: ssl_support_method,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod function {
+    //! Property types for the `Function` resource.
+
+    /// The [`AWS::CloudFront::Function.FunctionConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-function-functionconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct FunctionConfig {
+        /// Property [`Comment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-function-functionconfig.html#cfn-cloudfront-function-functionconfig-comment).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub comment: ::Value<String>,
+        /// Property [`Runtime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-function-functionconfig.html#cfn-cloudfront-function-functionconfig-runtime).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub runtime: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for FunctionConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", &self.comment)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Runtime", &self.runtime)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for FunctionConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<FunctionConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = FunctionConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type FunctionConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut comment: Option<::Value<String>> = None;
+                    let mut runtime: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Comment" => {
+                                comment = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Runtime" => {
+                                runtime = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(FunctionConfig {
+                        comment: comment.ok_or(::serde::de::Error::missing_field("Comment"))?,
+                        runtime: runtime.ok_or(::serde::de::Error::missing_field("Runtime"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::Function.FunctionMetadata`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-function-functionmetadata.html) property type.
+    #[derive(Debug, Default)]
+    pub struct FunctionMetadata {
+        /// Property [`FunctionARN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-function-functionmetadata.html#cfn-cloudfront-function-functionmetadata-functionarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub function_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for FunctionMetadata {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref function_arn) = self.function_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FunctionARN", function_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for FunctionMetadata {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<FunctionMetadata, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = FunctionMetadata;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type FunctionMetadata")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut function_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "FunctionARN" => {
+                                function_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(FunctionMetadata {
+                        function_arn: function_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod key_group {
+    //! Property types for the `KeyGroup` resource.
+
+    /// The [`AWS::CloudFront::KeyGroup.KeyGroupConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-keygroup-keygroupconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct KeyGroupConfig {
+        /// Property [`Comment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-keygroup-keygroupconfig.html#cfn-cloudfront-keygroup-keygroupconfig-comment).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub comment: Option<::Value<String>>,
+        /// Property [`Items`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-keygroup-keygroupconfig.html#cfn-cloudfront-keygroup-keygroupconfig-items).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub items: ::ValueList<String>,
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-keygroup-keygroupconfig.html#cfn-cloudfront-keygroup-keygroupconfig-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for KeyGroupConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref comment) = self.comment {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", comment)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Items", &self.items)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for KeyGroupConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<KeyGroupConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = KeyGroupConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type KeyGroupConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut comment: Option<::Value<String>> = None;
+                    let mut items: Option<::ValueList<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Comment" => {
+                                comment = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Items" => {
+                                items = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(KeyGroupConfig {
+                        comment: comment,
+                        items: items.ok_or(::serde::de::Error::missing_field("Items"))?,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod origin_request_policy {
+    //! Property types for the `OriginRequestPolicy` resource.
+
+    /// The [`AWS::CloudFront::OriginRequestPolicy.CookiesConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originrequestpolicy-cookiesconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CookiesConfig {
+        /// Property [`CookieBehavior`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originrequestpolicy-cookiesconfig.html#cfn-cloudfront-originrequestpolicy-cookiesconfig-cookiebehavior).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cookie_behavior: ::Value<String>,
+        /// Property [`Cookies`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originrequestpolicy-cookiesconfig.html#cfn-cloudfront-originrequestpolicy-cookiesconfig-cookies).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cookies: Option<::ValueList<String>>,
+    }
+
+    impl ::codec::SerializeValue for CookiesConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CookieBehavior", &self.cookie_behavior)?;
+            if let Some(ref cookies) = self.cookies {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cookies", cookies)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CookiesConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CookiesConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CookiesConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CookiesConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut cookie_behavior: Option<::Value<String>> = None;
+                    let mut cookies: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CookieBehavior" => {
+                                cookie_behavior = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Cookies" => {
+                                cookies = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CookiesConfig {
+                        cookie_behavior: cookie_behavior.ok_or(::serde::de::Error::missing_field("CookieBehavior"))?,
+                        cookies: cookies,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::OriginRequestPolicy.HeadersConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originrequestpolicy-headersconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct HeadersConfig {
+        /// Property [`HeaderBehavior`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originrequestpolicy-headersconfig.html#cfn-cloudfront-originrequestpolicy-headersconfig-headerbehavior).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub header_behavior: ::Value<String>,
+        /// Property [`Headers`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originrequestpolicy-headersconfig.html#cfn-cloudfront-originrequestpolicy-headersconfig-headers).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub headers: Option<::ValueList<String>>,
+    }
+
+    impl ::codec::SerializeValue for HeadersConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HeaderBehavior", &self.header_behavior)?;
+            if let Some(ref headers) = self.headers {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Headers", headers)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for HeadersConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<HeadersConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = HeadersConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type HeadersConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut header_behavior: Option<::Value<String>> = None;
+                    let mut headers: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "HeaderBehavior" => {
+                                header_behavior = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Headers" => {
+                                headers = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(HeadersConfig {
+                        header_behavior: header_behavior.ok_or(::serde::de::Error::missing_field("HeaderBehavior"))?,
+                        headers: headers,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::OriginRequestPolicy.OriginRequestPolicyConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originrequestpolicy-originrequestpolicyconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OriginRequestPolicyConfig {
+        /// Property [`Comment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originrequestpolicy-originrequestpolicyconfig.html#cfn-cloudfront-originrequestpolicy-originrequestpolicyconfig-comment).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub comment: Option<::Value<String>>,
+        /// Property [`CookiesConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originrequestpolicy-originrequestpolicyconfig.html#cfn-cloudfront-originrequestpolicy-originrequestpolicyconfig-cookiesconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cookies_config: ::Value<CookiesConfig>,
+        /// Property [`HeadersConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originrequestpolicy-originrequestpolicyconfig.html#cfn-cloudfront-originrequestpolicy-originrequestpolicyconfig-headersconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub headers_config: ::Value<HeadersConfig>,
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originrequestpolicy-originrequestpolicyconfig.html#cfn-cloudfront-originrequestpolicy-originrequestpolicyconfig-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: ::Value<String>,
+        /// Property [`QueryStringsConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originrequestpolicy-originrequestpolicyconfig.html#cfn-cloudfront-originrequestpolicy-originrequestpolicyconfig-querystringsconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub query_strings_config: ::Value<QueryStringsConfig>,
+    }
+
+    impl ::codec::SerializeValue for OriginRequestPolicyConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref comment) = self.comment {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", comment)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CookiesConfig", &self.cookies_config)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HeadersConfig", &self.headers_config)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "QueryStringsConfig", &self.query_strings_config)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OriginRequestPolicyConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OriginRequestPolicyConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OriginRequestPolicyConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OriginRequestPolicyConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut comment: Option<::Value<String>> = None;
+                    let mut cookies_config: Option<::Value<CookiesConfig>> = None;
+                    let mut headers_config: Option<::Value<HeadersConfig>> = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut query_strings_config: Option<::Value<QueryStringsConfig>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Comment" => {
+                                comment = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CookiesConfig" => {
+                                cookies_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HeadersConfig" => {
+                                headers_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "QueryStringsConfig" => {
+                                query_strings_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OriginRequestPolicyConfig {
+                        comment: comment,
+                        cookies_config: cookies_config.ok_or(::serde::de::Error::missing_field("CookiesConfig"))?,
+                        headers_config: headers_config.ok_or(::serde::de::Error::missing_field("HeadersConfig"))?,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                        query_strings_config: query_strings_config.ok_or(::serde::de::Error::missing_field("QueryStringsConfig"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::OriginRequestPolicy.QueryStringsConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originrequestpolicy-querystringsconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct QueryStringsConfig {
+        /// Property [`QueryStringBehavior`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originrequestpolicy-querystringsconfig.html#cfn-cloudfront-originrequestpolicy-querystringsconfig-querystringbehavior).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub query_string_behavior: ::Value<String>,
+        /// Property [`QueryStrings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-originrequestpolicy-querystringsconfig.html#cfn-cloudfront-originrequestpolicy-querystringsconfig-querystrings).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub query_strings: Option<::ValueList<String>>,
+    }
+
+    impl ::codec::SerializeValue for QueryStringsConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "QueryStringBehavior", &self.query_string_behavior)?;
+            if let Some(ref query_strings) = self.query_strings {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "QueryStrings", query_strings)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for QueryStringsConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<QueryStringsConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = QueryStringsConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type QueryStringsConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut query_string_behavior: Option<::Value<String>> = None;
+                    let mut query_strings: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "QueryStringBehavior" => {
+                                query_string_behavior = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "QueryStrings" => {
+                                query_strings = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(QueryStringsConfig {
+                        query_string_behavior: query_string_behavior.ok_or(::serde::de::Error::missing_field("QueryStringBehavior"))?,
+                        query_strings: query_strings,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod public_key {
+    //! Property types for the `PublicKey` resource.
+
+    /// The [`AWS::CloudFront::PublicKey.PublicKeyConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-publickey-publickeyconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct PublicKeyConfig {
+        /// Property [`CallerReference`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-publickey-publickeyconfig.html#cfn-cloudfront-publickey-publickeyconfig-callerreference).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub caller_reference: ::Value<String>,
+        /// Property [`Comment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-publickey-publickeyconfig.html#cfn-cloudfront-publickey-publickeyconfig-comment).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub comment: Option<::Value<String>>,
+        /// Property [`EncodedKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-publickey-publickeyconfig.html#cfn-cloudfront-publickey-publickeyconfig-encodedkey).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub encoded_key: ::Value<String>,
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-publickey-publickeyconfig.html#cfn-cloudfront-publickey-publickeyconfig-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for PublicKeyConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CallerReference", &self.caller_reference)?;
+            if let Some(ref comment) = self.comment {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", comment)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EncodedKey", &self.encoded_key)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for PublicKeyConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<PublicKeyConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = PublicKeyConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type PublicKeyConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut caller_reference: Option<::Value<String>> = None;
+                    let mut comment: Option<::Value<String>> = None;
+                    let mut encoded_key: Option<::Value<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CallerReference" => {
+                                caller_reference = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Comment" => {
+                                comment = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "EncodedKey" => {
+                                encoded_key = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(PublicKeyConfig {
+                        caller_reference: caller_reference.ok_or(::serde::de::Error::missing_field("CallerReference"))?,
+                        comment: comment,
+                        encoded_key: encoded_key.ok_or(::serde::de::Error::missing_field("EncodedKey"))?,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod realtime_log_config {
+    //! Property types for the `RealtimeLogConfig` resource.
+
+    /// The [`AWS::CloudFront::RealtimeLogConfig.EndPoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-realtimelogconfig-endpoint.html) property type.
+    #[derive(Debug, Default)]
+    pub struct EndPoint {
+        /// Property [`KinesisStreamConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-realtimelogconfig-endpoint.html#cfn-cloudfront-realtimelogconfig-endpoint-kinesisstreamconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub kinesis_stream_config: ::Value<KinesisStreamConfig>,
+        /// Property [`StreamType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-realtimelogconfig-endpoint.html#cfn-cloudfront-realtimelogconfig-endpoint-streamtype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub stream_type: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for EndPoint {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KinesisStreamConfig", &self.kinesis_stream_config)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamType", &self.stream_type)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for EndPoint {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<EndPoint, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = EndPoint;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type EndPoint")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut kinesis_stream_config: Option<::Value<KinesisStreamConfig>> = None;
+                    let mut stream_type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "KinesisStreamConfig" => {
+                                kinesis_stream_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "StreamType" => {
+                                stream_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(EndPoint {
+                        kinesis_stream_config: kinesis_stream_config.ok_or(::serde::de::Error::missing_field("KinesisStreamConfig"))?,
+                        stream_type: stream_type.ok_or(::serde::de::Error::missing_field("StreamType"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::RealtimeLogConfig.KinesisStreamConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-realtimelogconfig-kinesisstreamconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct KinesisStreamConfig {
+        /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-realtimelogconfig-kinesisstreamconfig.html#cfn-cloudfront-realtimelogconfig-kinesisstreamconfig-rolearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub role_arn: ::Value<String>,
+        /// Property [`StreamArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-realtimelogconfig-kinesisstreamconfig.html#cfn-cloudfront-realtimelogconfig-kinesisstreamconfig-streamarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub stream_arn: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for KinesisStreamConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamArn", &self.stream_arn)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for KinesisStreamConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<KinesisStreamConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = KinesisStreamConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type KinesisStreamConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut role_arn: Option<::Value<String>> = None;
+                    let mut stream_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "RoleArn" => {
+                                role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "StreamArn" => {
+                                stream_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(KinesisStreamConfig {
+                        role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
+                        stream_arn: stream_arn.ok_or(::serde::de::Error::missing_field("StreamArn"))?,
                     })
                 }
             }

@@ -55,11 +55,26 @@ pub struct ClusterProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub job_flow_role: ::Value<String>,
+    /// Property [`KerberosAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html#cfn-elasticmapreduce-cluster-kerberosattributes).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub kerberos_attributes: Option<::Value<self::cluster::KerberosAttributes>>,
+    /// Property [`LogEncryptionKmsKeyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html#cfn-elasticmapreduce-cluster-logencryptionkmskeyid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub log_encryption_kms_key_id: Option<::Value<String>>,
     /// Property [`LogUri`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html#cfn-elasticmapreduce-cluster-loguri).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub log_uri: Option<::Value<String>>,
+    /// Property [`ManagedScalingPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html#cfn-elasticmapreduce-cluster-managedscalingpolicy).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub managed_scaling_policy: Option<::Value<self::cluster::ManagedScalingPolicy>>,
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html#cfn-elasticmapreduce-cluster-name).
     ///
     /// Update type: _Immutable_.
@@ -85,6 +100,16 @@ pub struct ClusterProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub service_role: ::Value<String>,
+    /// Property [`StepConcurrencyLevel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html#cfn-elasticmapreduce-cluster-stepconcurrencylevel).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub step_concurrency_level: Option<::Value<u32>>,
+    /// Property [`Steps`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html#cfn-elasticmapreduce-cluster-steps).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub steps: Option<::ValueList<self::cluster::StepConfig>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html#cfn-elasticmapreduce-cluster-tags).
     ///
     /// Update type: _Mutable_.
@@ -123,8 +148,17 @@ impl ::serde::Serialize for ClusterProperties {
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Instances", &self.instances)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "JobFlowRole", &self.job_flow_role)?;
+        if let Some(ref kerberos_attributes) = self.kerberos_attributes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KerberosAttributes", kerberos_attributes)?;
+        }
+        if let Some(ref log_encryption_kms_key_id) = self.log_encryption_kms_key_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogEncryptionKmsKeyId", log_encryption_kms_key_id)?;
+        }
         if let Some(ref log_uri) = self.log_uri {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogUri", log_uri)?;
+        }
+        if let Some(ref managed_scaling_policy) = self.managed_scaling_policy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ManagedScalingPolicy", managed_scaling_policy)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         if let Some(ref release_label) = self.release_label {
@@ -137,6 +171,12 @@ impl ::serde::Serialize for ClusterProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityConfiguration", security_configuration)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceRole", &self.service_role)?;
+        if let Some(ref step_concurrency_level) = self.step_concurrency_level {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StepConcurrencyLevel", step_concurrency_level)?;
+        }
+        if let Some(ref steps) = self.steps {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Steps", steps)?;
+        }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
@@ -168,12 +208,17 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                 let mut ebs_root_volume_size: Option<::Value<u32>> = None;
                 let mut instances: Option<::Value<self::cluster::JobFlowInstancesConfig>> = None;
                 let mut job_flow_role: Option<::Value<String>> = None;
+                let mut kerberos_attributes: Option<::Value<self::cluster::KerberosAttributes>> = None;
+                let mut log_encryption_kms_key_id: Option<::Value<String>> = None;
                 let mut log_uri: Option<::Value<String>> = None;
+                let mut managed_scaling_policy: Option<::Value<self::cluster::ManagedScalingPolicy>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut release_label: Option<::Value<String>> = None;
                 let mut scale_down_behavior: Option<::Value<String>> = None;
                 let mut security_configuration: Option<::Value<String>> = None;
                 let mut service_role: Option<::Value<String>> = None;
+                let mut step_concurrency_level: Option<::Value<u32>> = None;
+                let mut steps: Option<::ValueList<self::cluster::StepConfig>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut visible_to_all_users: Option<::Value<bool>> = None;
 
@@ -206,8 +251,17 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                         "JobFlowRole" => {
                             job_flow_role = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "KerberosAttributes" => {
+                            kerberos_attributes = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "LogEncryptionKmsKeyId" => {
+                            log_encryption_kms_key_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "LogUri" => {
                             log_uri = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ManagedScalingPolicy" => {
+                            managed_scaling_policy = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -223,6 +277,12 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                         }
                         "ServiceRole" => {
                             service_role = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "StepConcurrencyLevel" => {
+                            step_concurrency_level = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Steps" => {
+                            steps = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -244,12 +304,17 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                     ebs_root_volume_size: ebs_root_volume_size,
                     instances: instances.ok_or(::serde::de::Error::missing_field("Instances"))?,
                     job_flow_role: job_flow_role.ok_or(::serde::de::Error::missing_field("JobFlowRole"))?,
+                    kerberos_attributes: kerberos_attributes,
+                    log_encryption_kms_key_id: log_encryption_kms_key_id,
                     log_uri: log_uri,
+                    managed_scaling_policy: managed_scaling_policy,
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     release_label: release_label,
                     scale_down_behavior: scale_down_behavior,
                     security_configuration: security_configuration,
                     service_role: service_role.ok_or(::serde::de::Error::missing_field("ServiceRole"))?,
+                    step_concurrency_level: step_concurrency_level,
+                    steps: steps,
                     tags: tags,
                     visible_to_all_users: visible_to_all_users,
                 })
@@ -816,6 +881,305 @@ impl From<StepProperties> for Step {
     }
 }
 
+/// The [`AWS::EMR::Studio`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html) resource type.
+#[derive(Debug, Default)]
+pub struct Studio {
+    properties: StudioProperties
+}
+
+/// Properties for the `Studio` resource.
+#[derive(Debug, Default)]
+pub struct StudioProperties {
+    /// Property [`AuthMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-authmode).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub auth_mode: ::Value<String>,
+    /// Property [`DefaultS3Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-defaults3location).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub default_s3_location: ::Value<String>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`EngineSecurityGroupId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-enginesecuritygroupid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub engine_security_group_id: ::Value<String>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-name).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub name: ::Value<String>,
+    /// Property [`ServiceRole`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-servicerole).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub service_role: ::Value<String>,
+    /// Property [`SubnetIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-subnetids).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub subnet_ids: ::ValueList<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`UserRole`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-userrole).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub user_role: ::Value<String>,
+    /// Property [`VpcId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-vpcid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub vpc_id: ::Value<String>,
+    /// Property [`WorkspaceSecurityGroupId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-workspacesecuritygroupid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub workspace_security_group_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for StudioProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthMode", &self.auth_mode)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultS3Location", &self.default_s3_location)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EngineSecurityGroupId", &self.engine_security_group_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceRole", &self.service_role)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetIds", &self.subnet_ids)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserRole", &self.user_role)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", &self.vpc_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "WorkspaceSecurityGroupId", &self.workspace_security_group_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for StudioProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<StudioProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = StudioProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type StudioProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut auth_mode: Option<::Value<String>> = None;
+                let mut default_s3_location: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut engine_security_group_id: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut service_role: Option<::Value<String>> = None;
+                let mut subnet_ids: Option<::ValueList<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut user_role: Option<::Value<String>> = None;
+                let mut vpc_id: Option<::Value<String>> = None;
+                let mut workspace_security_group_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AuthMode" => {
+                            auth_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DefaultS3Location" => {
+                            default_s3_location = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "EngineSecurityGroupId" => {
+                            engine_security_group_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ServiceRole" => {
+                            service_role = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SubnetIds" => {
+                            subnet_ids = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "UserRole" => {
+                            user_role = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "VpcId" => {
+                            vpc_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "WorkspaceSecurityGroupId" => {
+                            workspace_security_group_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(StudioProperties {
+                    auth_mode: auth_mode.ok_or(::serde::de::Error::missing_field("AuthMode"))?,
+                    default_s3_location: default_s3_location.ok_or(::serde::de::Error::missing_field("DefaultS3Location"))?,
+                    description: description,
+                    engine_security_group_id: engine_security_group_id.ok_or(::serde::de::Error::missing_field("EngineSecurityGroupId"))?,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    service_role: service_role.ok_or(::serde::de::Error::missing_field("ServiceRole"))?,
+                    subnet_ids: subnet_ids.ok_or(::serde::de::Error::missing_field("SubnetIds"))?,
+                    tags: tags,
+                    user_role: user_role.ok_or(::serde::de::Error::missing_field("UserRole"))?,
+                    vpc_id: vpc_id.ok_or(::serde::de::Error::missing_field("VpcId"))?,
+                    workspace_security_group_id: workspace_security_group_id.ok_or(::serde::de::Error::missing_field("WorkspaceSecurityGroupId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for Studio {
+    type Properties = StudioProperties;
+    const TYPE: &'static str = "AWS::EMR::Studio";
+    fn properties(&self) -> &StudioProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut StudioProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for Studio {}
+
+impl From<StudioProperties> for Studio {
+    fn from(properties: StudioProperties) -> Studio {
+        Studio { properties }
+    }
+}
+
+/// The [`AWS::EMR::StudioSessionMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studiosessionmapping.html) resource type.
+#[derive(Debug, Default)]
+pub struct StudioSessionMapping {
+    properties: StudioSessionMappingProperties
+}
+
+/// Properties for the `StudioSessionMapping` resource.
+#[derive(Debug, Default)]
+pub struct StudioSessionMappingProperties {
+    /// Property [`IdentityName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studiosessionmapping.html#cfn-emr-studiosessionmapping-identityname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub identity_name: ::Value<String>,
+    /// Property [`IdentityType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studiosessionmapping.html#cfn-emr-studiosessionmapping-identitytype).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub identity_type: ::Value<String>,
+    /// Property [`SessionPolicyArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studiosessionmapping.html#cfn-emr-studiosessionmapping-sessionpolicyarn).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub session_policy_arn: ::Value<String>,
+    /// Property [`StudioId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studiosessionmapping.html#cfn-emr-studiosessionmapping-studioid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub studio_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for StudioSessionMappingProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "IdentityName", &self.identity_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "IdentityType", &self.identity_type)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SessionPolicyArn", &self.session_policy_arn)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "StudioId", &self.studio_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for StudioSessionMappingProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<StudioSessionMappingProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = StudioSessionMappingProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type StudioSessionMappingProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut identity_name: Option<::Value<String>> = None;
+                let mut identity_type: Option<::Value<String>> = None;
+                let mut session_policy_arn: Option<::Value<String>> = None;
+                let mut studio_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "IdentityName" => {
+                            identity_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "IdentityType" => {
+                            identity_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SessionPolicyArn" => {
+                            session_policy_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "StudioId" => {
+                            studio_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(StudioSessionMappingProperties {
+                    identity_name: identity_name.ok_or(::serde::de::Error::missing_field("IdentityName"))?,
+                    identity_type: identity_type.ok_or(::serde::de::Error::missing_field("IdentityType"))?,
+                    session_policy_arn: session_policy_arn.ok_or(::serde::de::Error::missing_field("SessionPolicyArn"))?,
+                    studio_id: studio_id.ok_or(::serde::de::Error::missing_field("StudioId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for StudioSessionMapping {
+    type Properties = StudioSessionMappingProperties;
+    const TYPE: &'static str = "AWS::EMR::StudioSessionMapping";
+    fn properties(&self) -> &StudioSessionMappingProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut StudioSessionMappingProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for StudioSessionMapping {}
+
+impl From<StudioSessionMappingProperties> for StudioSessionMapping {
+    fn from(properties: StudioSessionMappingProperties) -> StudioSessionMapping {
+        StudioSessionMapping { properties }
+    }
+}
+
 pub mod cluster {
     //! Property types for the `Cluster` resource.
 
@@ -1184,6 +1548,105 @@ pub mod cluster {
         }
     }
 
+    /// The [`AWS::EMR::Cluster.ComputeLimits`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-computelimits.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ComputeLimits {
+        /// Property [`MaximumCapacityUnits`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-computelimits.html#cfn-elasticmapreduce-cluster-computelimits-maximumcapacityunits).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub maximum_capacity_units: ::Value<u32>,
+        /// Property [`MaximumCoreCapacityUnits`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-computelimits.html#cfn-elasticmapreduce-cluster-computelimits-maximumcorecapacityunits).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub maximum_core_capacity_units: Option<::Value<u32>>,
+        /// Property [`MaximumOnDemandCapacityUnits`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-computelimits.html#cfn-elasticmapreduce-cluster-computelimits-maximumondemandcapacityunits).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub maximum_on_demand_capacity_units: Option<::Value<u32>>,
+        /// Property [`MinimumCapacityUnits`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-computelimits.html#cfn-elasticmapreduce-cluster-computelimits-minimumcapacityunits).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub minimum_capacity_units: ::Value<u32>,
+        /// Property [`UnitType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-computelimits.html#cfn-elasticmapreduce-cluster-computelimits-unittype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub unit_type: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for ComputeLimits {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaximumCapacityUnits", &self.maximum_capacity_units)?;
+            if let Some(ref maximum_core_capacity_units) = self.maximum_core_capacity_units {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaximumCoreCapacityUnits", maximum_core_capacity_units)?;
+            }
+            if let Some(ref maximum_on_demand_capacity_units) = self.maximum_on_demand_capacity_units {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaximumOnDemandCapacityUnits", maximum_on_demand_capacity_units)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinimumCapacityUnits", &self.minimum_capacity_units)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UnitType", &self.unit_type)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ComputeLimits {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ComputeLimits, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ComputeLimits;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ComputeLimits")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut maximum_capacity_units: Option<::Value<u32>> = None;
+                    let mut maximum_core_capacity_units: Option<::Value<u32>> = None;
+                    let mut maximum_on_demand_capacity_units: Option<::Value<u32>> = None;
+                    let mut minimum_capacity_units: Option<::Value<u32>> = None;
+                    let mut unit_type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "MaximumCapacityUnits" => {
+                                maximum_capacity_units = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MaximumCoreCapacityUnits" => {
+                                maximum_core_capacity_units = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MaximumOnDemandCapacityUnits" => {
+                                maximum_on_demand_capacity_units = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MinimumCapacityUnits" => {
+                                minimum_capacity_units = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "UnitType" => {
+                                unit_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ComputeLimits {
+                        maximum_capacity_units: maximum_capacity_units.ok_or(::serde::de::Error::missing_field("MaximumCapacityUnits"))?,
+                        maximum_core_capacity_units: maximum_core_capacity_units,
+                        maximum_on_demand_capacity_units: maximum_on_demand_capacity_units,
+                        minimum_capacity_units: minimum_capacity_units.ok_or(::serde::de::Error::missing_field("MinimumCapacityUnits"))?,
+                        unit_type: unit_type.ok_or(::serde::de::Error::missing_field("UnitType"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::EMR::Cluster.Configuration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-configuration.html) property type.
     #[derive(Debug, Default)]
     pub struct Configuration {
@@ -1393,6 +1856,96 @@ pub mod cluster {
         }
     }
 
+    /// The [`AWS::EMR::Cluster.HadoopJarStepConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-hadoopjarstepconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct HadoopJarStepConfig {
+        /// Property [`Args`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-hadoopjarstepconfig.html#cfn-elasticmapreduce-cluster-hadoopjarstepconfig-args).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub args: Option<::ValueList<String>>,
+        /// Property [`Jar`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-hadoopjarstepconfig.html#cfn-elasticmapreduce-cluster-hadoopjarstepconfig-jar).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub jar: ::Value<String>,
+        /// Property [`MainClass`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-hadoopjarstepconfig.html#cfn-elasticmapreduce-cluster-hadoopjarstepconfig-mainclass).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub main_class: Option<::Value<String>>,
+        /// Property [`StepProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-hadoopjarstepconfig.html#cfn-elasticmapreduce-cluster-hadoopjarstepconfig-stepproperties).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub step_properties: Option<::ValueList<KeyValue>>,
+    }
+
+    impl ::codec::SerializeValue for HadoopJarStepConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref args) = self.args {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Args", args)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Jar", &self.jar)?;
+            if let Some(ref main_class) = self.main_class {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MainClass", main_class)?;
+            }
+            if let Some(ref step_properties) = self.step_properties {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StepProperties", step_properties)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for HadoopJarStepConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<HadoopJarStepConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = HadoopJarStepConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type HadoopJarStepConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut args: Option<::ValueList<String>> = None;
+                    let mut jar: Option<::Value<String>> = None;
+                    let mut main_class: Option<::Value<String>> = None;
+                    let mut step_properties: Option<::ValueList<KeyValue>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Args" => {
+                                args = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Jar" => {
+                                jar = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MainClass" => {
+                                main_class = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "StepProperties" => {
+                                step_properties = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(HadoopJarStepConfig {
+                        args: args,
+                        jar: jar.ok_or(::serde::de::Error::missing_field("Jar"))?,
+                        main_class: main_class,
+                        step_properties: step_properties,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::EMR::Cluster.InstanceFleetConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancefleetconfig.html) property type.
     #[derive(Debug, Default)]
     pub struct InstanceFleetConfig {
@@ -1501,17 +2054,27 @@ pub mod cluster {
     /// The [`AWS::EMR::Cluster.InstanceFleetProvisioningSpecifications`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancefleetprovisioningspecifications.html) property type.
     #[derive(Debug, Default)]
     pub struct InstanceFleetProvisioningSpecifications {
+        /// Property [`OnDemandSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancefleetprovisioningspecifications.html#cfn-elasticmapreduce-cluster-instancefleetprovisioningspecifications-ondemandspecification).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub on_demand_specification: Option<::Value<OnDemandProvisioningSpecification>>,
         /// Property [`SpotSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancefleetprovisioningspecifications.html#cfn-elasticmapreduce-cluster-instancefleetprovisioningspecifications-spotspecification).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub spot_specification: ::Value<SpotProvisioningSpecification>,
+        pub spot_specification: Option<::Value<SpotProvisioningSpecification>>,
     }
 
     impl ::codec::SerializeValue for InstanceFleetProvisioningSpecifications {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotSpecification", &self.spot_specification)?;
+            if let Some(ref on_demand_specification) = self.on_demand_specification {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OnDemandSpecification", on_demand_specification)?;
+            }
+            if let Some(ref spot_specification) = self.spot_specification {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotSpecification", spot_specification)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1528,10 +2091,14 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut on_demand_specification: Option<::Value<OnDemandProvisioningSpecification>> = None;
                     let mut spot_specification: Option<::Value<SpotProvisioningSpecification>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "OnDemandSpecification" => {
+                                on_demand_specification = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "SpotSpecification" => {
                                 spot_specification = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1540,7 +2107,8 @@ pub mod cluster {
                     }
 
                     Ok(InstanceFleetProvisioningSpecifications {
-                        spot_specification: spot_specification.ok_or(::serde::de::Error::missing_field("SpotSpecification"))?,
+                        on_demand_specification: on_demand_specification,
+                        spot_specification: spot_specification,
                     })
                 }
             }
@@ -1838,6 +2406,11 @@ pub mod cluster {
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub ec2_subnet_id: Option<::Value<String>>,
+        /// Property [`Ec2SubnetIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-jobflowinstancesconfig.html#cfn-elasticmapreduce-cluster-jobflowinstancesconfig-ec2subnetids).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub ec2_subnet_ids: Option<::ValueList<String>>,
         /// Property [`EmrManagedMasterSecurityGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-jobflowinstancesconfig.html#cfn-elasticmapreduce-cluster-jobflowinstancesconfig-emrmanagedmastersecuritygroup).
         ///
         /// Update type: _Immutable_.
@@ -1853,6 +2426,11 @@ pub mod cluster {
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub hadoop_version: Option<::Value<String>>,
+        /// Property [`KeepJobFlowAliveWhenNoSteps`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-jobflowinstancesconfig.html#cfn-elasticmapreduce-cluster-jobflowinstancesconfig-keepjobflowalivewhennosteps).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub keep_job_flow_alive_when_no_steps: Option<::Value<bool>>,
         /// Property [`MasterInstanceFleet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-jobflowinstancesconfig.html#cfn-elasticmapreduce-cluster-jobflowinstancesconfig-masterinstancefleet).
         ///
         /// Update type: _Immutable_.
@@ -1901,6 +2479,9 @@ pub mod cluster {
             if let Some(ref ec2_subnet_id) = self.ec2_subnet_id {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ec2SubnetId", ec2_subnet_id)?;
             }
+            if let Some(ref ec2_subnet_ids) = self.ec2_subnet_ids {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ec2SubnetIds", ec2_subnet_ids)?;
+            }
             if let Some(ref emr_managed_master_security_group) = self.emr_managed_master_security_group {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "EmrManagedMasterSecurityGroup", emr_managed_master_security_group)?;
             }
@@ -1909,6 +2490,9 @@ pub mod cluster {
             }
             if let Some(ref hadoop_version) = self.hadoop_version {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "HadoopVersion", hadoop_version)?;
+            }
+            if let Some(ref keep_job_flow_alive_when_no_steps) = self.keep_job_flow_alive_when_no_steps {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeepJobFlowAliveWhenNoSteps", keep_job_flow_alive_when_no_steps)?;
             }
             if let Some(ref master_instance_fleet) = self.master_instance_fleet {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "MasterInstanceFleet", master_instance_fleet)?;
@@ -1947,9 +2531,11 @@ pub mod cluster {
                     let mut core_instance_group: Option<::Value<InstanceGroupConfig>> = None;
                     let mut ec2_key_name: Option<::Value<String>> = None;
                     let mut ec2_subnet_id: Option<::Value<String>> = None;
+                    let mut ec2_subnet_ids: Option<::ValueList<String>> = None;
                     let mut emr_managed_master_security_group: Option<::Value<String>> = None;
                     let mut emr_managed_slave_security_group: Option<::Value<String>> = None;
                     let mut hadoop_version: Option<::Value<String>> = None;
+                    let mut keep_job_flow_alive_when_no_steps: Option<::Value<bool>> = None;
                     let mut master_instance_fleet: Option<::Value<InstanceFleetConfig>> = None;
                     let mut master_instance_group: Option<::Value<InstanceGroupConfig>> = None;
                     let mut placement: Option<::Value<PlacementType>> = None;
@@ -1976,6 +2562,9 @@ pub mod cluster {
                             "Ec2SubnetId" => {
                                 ec2_subnet_id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Ec2SubnetIds" => {
+                                ec2_subnet_ids = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "EmrManagedMasterSecurityGroup" => {
                                 emr_managed_master_security_group = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1984,6 +2573,9 @@ pub mod cluster {
                             }
                             "HadoopVersion" => {
                                 hadoop_version = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "KeepJobFlowAliveWhenNoSteps" => {
+                                keep_job_flow_alive_when_no_steps = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "MasterInstanceFleet" => {
                                 master_instance_fleet = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -2011,14 +2603,236 @@ pub mod cluster {
                         core_instance_group: core_instance_group,
                         ec2_key_name: ec2_key_name,
                         ec2_subnet_id: ec2_subnet_id,
+                        ec2_subnet_ids: ec2_subnet_ids,
                         emr_managed_master_security_group: emr_managed_master_security_group,
                         emr_managed_slave_security_group: emr_managed_slave_security_group,
                         hadoop_version: hadoop_version,
+                        keep_job_flow_alive_when_no_steps: keep_job_flow_alive_when_no_steps,
                         master_instance_fleet: master_instance_fleet,
                         master_instance_group: master_instance_group,
                         placement: placement,
                         service_access_security_group: service_access_security_group,
                         termination_protected: termination_protected,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EMR::Cluster.KerberosAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-kerberosattributes.html) property type.
+    #[derive(Debug, Default)]
+    pub struct KerberosAttributes {
+        /// Property [`ADDomainJoinPassword`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-kerberosattributes.html#cfn-elasticmapreduce-cluster-kerberosattributes-addomainjoinpassword).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ad_domain_join_password: Option<::Value<String>>,
+        /// Property [`ADDomainJoinUser`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-kerberosattributes.html#cfn-elasticmapreduce-cluster-kerberosattributes-addomainjoinuser).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ad_domain_join_user: Option<::Value<String>>,
+        /// Property [`CrossRealmTrustPrincipalPassword`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-kerberosattributes.html#cfn-elasticmapreduce-cluster-kerberosattributes-crossrealmtrustprincipalpassword).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cross_realm_trust_principal_password: Option<::Value<String>>,
+        /// Property [`KdcAdminPassword`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-kerberosattributes.html#cfn-elasticmapreduce-cluster-kerberosattributes-kdcadminpassword).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub kdc_admin_password: ::Value<String>,
+        /// Property [`Realm`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-kerberosattributes.html#cfn-elasticmapreduce-cluster-kerberosattributes-realm).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub realm: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for KerberosAttributes {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref ad_domain_join_password) = self.ad_domain_join_password {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ADDomainJoinPassword", ad_domain_join_password)?;
+            }
+            if let Some(ref ad_domain_join_user) = self.ad_domain_join_user {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ADDomainJoinUser", ad_domain_join_user)?;
+            }
+            if let Some(ref cross_realm_trust_principal_password) = self.cross_realm_trust_principal_password {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CrossRealmTrustPrincipalPassword", cross_realm_trust_principal_password)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KdcAdminPassword", &self.kdc_admin_password)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Realm", &self.realm)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for KerberosAttributes {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<KerberosAttributes, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = KerberosAttributes;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type KerberosAttributes")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut ad_domain_join_password: Option<::Value<String>> = None;
+                    let mut ad_domain_join_user: Option<::Value<String>> = None;
+                    let mut cross_realm_trust_principal_password: Option<::Value<String>> = None;
+                    let mut kdc_admin_password: Option<::Value<String>> = None;
+                    let mut realm: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ADDomainJoinPassword" => {
+                                ad_domain_join_password = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ADDomainJoinUser" => {
+                                ad_domain_join_user = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CrossRealmTrustPrincipalPassword" => {
+                                cross_realm_trust_principal_password = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "KdcAdminPassword" => {
+                                kdc_admin_password = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Realm" => {
+                                realm = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(KerberosAttributes {
+                        ad_domain_join_password: ad_domain_join_password,
+                        ad_domain_join_user: ad_domain_join_user,
+                        cross_realm_trust_principal_password: cross_realm_trust_principal_password,
+                        kdc_admin_password: kdc_admin_password.ok_or(::serde::de::Error::missing_field("KdcAdminPassword"))?,
+                        realm: realm.ok_or(::serde::de::Error::missing_field("Realm"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EMR::Cluster.KeyValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-keyvalue.html) property type.
+    #[derive(Debug, Default)]
+    pub struct KeyValue {
+        /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-keyvalue.html#cfn-elasticmapreduce-cluster-keyvalue-key).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub key: Option<::Value<String>>,
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-keyvalue.html#cfn-elasticmapreduce-cluster-keyvalue-value).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub value: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for KeyValue {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref key) = self.key {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", key)?;
+            }
+            if let Some(ref value) = self.value {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", value)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for KeyValue {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<KeyValue, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = KeyValue;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type KeyValue")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut key: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Key" => {
+                                key = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Value" => {
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(KeyValue {
+                        key: key,
+                        value: value,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EMR::Cluster.ManagedScalingPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-managedscalingpolicy.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ManagedScalingPolicy {
+        /// Property [`ComputeLimits`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-managedscalingpolicy.html#cfn-elasticmapreduce-cluster-managedscalingpolicy-computelimits).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub compute_limits: Option<::Value<ComputeLimits>>,
+    }
+
+    impl ::codec::SerializeValue for ManagedScalingPolicy {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref compute_limits) = self.compute_limits {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComputeLimits", compute_limits)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ManagedScalingPolicy {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ManagedScalingPolicy, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ManagedScalingPolicy;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ManagedScalingPolicy")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut compute_limits: Option<::Value<ComputeLimits>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ComputeLimits" => {
+                                compute_limits = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ManagedScalingPolicy {
+                        compute_limits: compute_limits,
                     })
                 }
             }
@@ -2081,6 +2895,57 @@ pub mod cluster {
                     Ok(MetricDimension {
                         key: key.ok_or(::serde::de::Error::missing_field("Key"))?,
                         value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EMR::Cluster.OnDemandProvisioningSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-ondemandprovisioningspecification.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OnDemandProvisioningSpecification {
+        /// Property [`AllocationStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-ondemandprovisioningspecification.html#cfn-elasticmapreduce-cluster-ondemandprovisioningspecification-allocationstrategy).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub allocation_strategy: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for OnDemandProvisioningSpecification {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocationStrategy", &self.allocation_strategy)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OnDemandProvisioningSpecification {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OnDemandProvisioningSpecification, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OnDemandProvisioningSpecification;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OnDemandProvisioningSpecification")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut allocation_strategy: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AllocationStrategy" => {
+                                allocation_strategy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OnDemandProvisioningSpecification {
+                        allocation_strategy: allocation_strategy.ok_or(::serde::de::Error::missing_field("AllocationStrategy"))?,
                     })
                 }
             }
@@ -2547,6 +3412,11 @@ pub mod cluster {
     /// The [`AWS::EMR::Cluster.SpotProvisioningSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-spotprovisioningspecification.html) property type.
     #[derive(Debug, Default)]
     pub struct SpotProvisioningSpecification {
+        /// Property [`AllocationStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-spotprovisioningspecification.html#cfn-elasticmapreduce-cluster-spotprovisioningspecification-allocationstrategy).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub allocation_strategy: Option<::Value<String>>,
         /// Property [`BlockDurationMinutes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-spotprovisioningspecification.html#cfn-elasticmapreduce-cluster-spotprovisioningspecification-blockdurationminutes).
         ///
         /// Update type: _Mutable_.
@@ -2567,6 +3437,9 @@ pub mod cluster {
     impl ::codec::SerializeValue for SpotProvisioningSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref allocation_strategy) = self.allocation_strategy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocationStrategy", allocation_strategy)?;
+            }
             if let Some(ref block_duration_minutes) = self.block_duration_minutes {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "BlockDurationMinutes", block_duration_minutes)?;
             }
@@ -2588,12 +3461,16 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut allocation_strategy: Option<::Value<String>> = None;
                     let mut block_duration_minutes: Option<::Value<u32>> = None;
                     let mut timeout_action: Option<::Value<String>> = None;
                     let mut timeout_duration_minutes: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "AllocationStrategy" => {
+                                allocation_strategy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "BlockDurationMinutes" => {
                                 block_duration_minutes = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -2608,9 +3485,85 @@ pub mod cluster {
                     }
 
                     Ok(SpotProvisioningSpecification {
+                        allocation_strategy: allocation_strategy,
                         block_duration_minutes: block_duration_minutes,
                         timeout_action: timeout_action.ok_or(::serde::de::Error::missing_field("TimeoutAction"))?,
                         timeout_duration_minutes: timeout_duration_minutes.ok_or(::serde::de::Error::missing_field("TimeoutDurationMinutes"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EMR::Cluster.StepConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-stepconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct StepConfig {
+        /// Property [`ActionOnFailure`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-stepconfig.html#cfn-elasticmapreduce-cluster-stepconfig-actiononfailure).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub action_on_failure: Option<::Value<String>>,
+        /// Property [`HadoopJarStep`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-stepconfig.html#cfn-elasticmapreduce-cluster-stepconfig-hadoopjarstep).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub hadoop_jar_step: ::Value<HadoopJarStepConfig>,
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-stepconfig.html#cfn-elasticmapreduce-cluster-stepconfig-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for StepConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref action_on_failure) = self.action_on_failure {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ActionOnFailure", action_on_failure)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HadoopJarStep", &self.hadoop_jar_step)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for StepConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<StepConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = StepConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type StepConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut action_on_failure: Option<::Value<String>> = None;
+                    let mut hadoop_jar_step: Option<::Value<HadoopJarStepConfig>> = None;
+                    let mut name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ActionOnFailure" => {
+                                action_on_failure = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HadoopJarStep" => {
+                                hadoop_jar_step = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(StepConfig {
+                        action_on_failure: action_on_failure,
+                        hadoop_jar_step: hadoop_jar_step.ok_or(::serde::de::Error::missing_field("HadoopJarStep"))?,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     })
                 }
             }
@@ -2910,17 +3863,27 @@ pub mod instance_fleet_config {
     /// The [`AWS::EMR::InstanceFleetConfig.InstanceFleetProvisioningSpecifications`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-instancefleetprovisioningspecifications.html) property type.
     #[derive(Debug, Default)]
     pub struct InstanceFleetProvisioningSpecifications {
+        /// Property [`OnDemandSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-instancefleetprovisioningspecifications.html#cfn-elasticmapreduce-instancefleetconfig-instancefleetprovisioningspecifications-ondemandspecification).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub on_demand_specification: Option<::Value<OnDemandProvisioningSpecification>>,
         /// Property [`SpotSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-instancefleetprovisioningspecifications.html#cfn-elasticmapreduce-instancefleetconfig-instancefleetprovisioningspecifications-spotspecification).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub spot_specification: ::Value<SpotProvisioningSpecification>,
+        pub spot_specification: Option<::Value<SpotProvisioningSpecification>>,
     }
 
     impl ::codec::SerializeValue for InstanceFleetProvisioningSpecifications {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotSpecification", &self.spot_specification)?;
+            if let Some(ref on_demand_specification) = self.on_demand_specification {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OnDemandSpecification", on_demand_specification)?;
+            }
+            if let Some(ref spot_specification) = self.spot_specification {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotSpecification", spot_specification)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -2937,10 +3900,14 @@ pub mod instance_fleet_config {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut on_demand_specification: Option<::Value<OnDemandProvisioningSpecification>> = None;
                     let mut spot_specification: Option<::Value<SpotProvisioningSpecification>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "OnDemandSpecification" => {
+                                on_demand_specification = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "SpotSpecification" => {
                                 spot_specification = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -2949,7 +3916,8 @@ pub mod instance_fleet_config {
                     }
 
                     Ok(InstanceFleetProvisioningSpecifications {
-                        spot_specification: spot_specification.ok_or(::serde::de::Error::missing_field("SpotSpecification"))?,
+                        on_demand_specification: on_demand_specification,
+                        spot_specification: spot_specification,
                     })
                 }
             }
@@ -3074,9 +4042,65 @@ pub mod instance_fleet_config {
         }
     }
 
+    /// The [`AWS::EMR::InstanceFleetConfig.OnDemandProvisioningSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-ondemandprovisioningspecification.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OnDemandProvisioningSpecification {
+        /// Property [`AllocationStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-ondemandprovisioningspecification.html#cfn-elasticmapreduce-instancefleetconfig-ondemandprovisioningspecification-allocationstrategy).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub allocation_strategy: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for OnDemandProvisioningSpecification {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocationStrategy", &self.allocation_strategy)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OnDemandProvisioningSpecification {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OnDemandProvisioningSpecification, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OnDemandProvisioningSpecification;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OnDemandProvisioningSpecification")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut allocation_strategy: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AllocationStrategy" => {
+                                allocation_strategy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OnDemandProvisioningSpecification {
+                        allocation_strategy: allocation_strategy.ok_or(::serde::de::Error::missing_field("AllocationStrategy"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::EMR::InstanceFleetConfig.SpotProvisioningSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-spotprovisioningspecification.html) property type.
     #[derive(Debug, Default)]
     pub struct SpotProvisioningSpecification {
+        /// Property [`AllocationStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-spotprovisioningspecification.html#cfn-elasticmapreduce-instancefleetconfig-spotprovisioningspecification-allocationstrategy).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub allocation_strategy: Option<::Value<String>>,
         /// Property [`BlockDurationMinutes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-spotprovisioningspecification.html#cfn-elasticmapreduce-instancefleetconfig-spotprovisioningspecification-blockdurationminutes).
         ///
         /// Update type: _Mutable_.
@@ -3097,6 +4121,9 @@ pub mod instance_fleet_config {
     impl ::codec::SerializeValue for SpotProvisioningSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref allocation_strategy) = self.allocation_strategy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocationStrategy", allocation_strategy)?;
+            }
             if let Some(ref block_duration_minutes) = self.block_duration_minutes {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "BlockDurationMinutes", block_duration_minutes)?;
             }
@@ -3118,12 +4145,16 @@ pub mod instance_fleet_config {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut allocation_strategy: Option<::Value<String>> = None;
                     let mut block_duration_minutes: Option<::Value<u32>> = None;
                     let mut timeout_action: Option<::Value<String>> = None;
                     let mut timeout_duration_minutes: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "AllocationStrategy" => {
+                                allocation_strategy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "BlockDurationMinutes" => {
                                 block_duration_minutes = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -3138,6 +4169,7 @@ pub mod instance_fleet_config {
                     }
 
                     Ok(SpotProvisioningSpecification {
+                        allocation_strategy: allocation_strategy,
                         block_duration_minutes: block_duration_minutes,
                         timeout_action: timeout_action.ok_or(::serde::de::Error::missing_field("TimeoutAction"))?,
                         timeout_duration_minutes: timeout_duration_minutes.ok_or(::serde::de::Error::missing_field("TimeoutDurationMinutes"))?,

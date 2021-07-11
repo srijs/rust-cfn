@@ -18,7 +18,7 @@ pub struct AssessmentTargetProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub resource_group_arn: ::Value<String>,
+    pub resource_group_arn: Option<::Value<String>>,
 }
 
 impl ::serde::Serialize for AssessmentTargetProperties {
@@ -27,7 +27,9 @@ impl ::serde::Serialize for AssessmentTargetProperties {
         if let Some(ref assessment_target_name) = self.assessment_target_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssessmentTargetName", assessment_target_name)?;
         }
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceGroupArn", &self.resource_group_arn)?;
+        if let Some(ref resource_group_arn) = self.resource_group_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceGroupArn", resource_group_arn)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -61,7 +63,7 @@ impl<'de> ::serde::Deserialize<'de> for AssessmentTargetProperties {
 
                 Ok(AssessmentTargetProperties {
                     assessment_target_name: assessment_target_name,
-                    resource_group_arn: resource_group_arn.ok_or(::serde::de::Error::missing_field("ResourceGroupArn"))?,
+                    resource_group_arn: resource_group_arn,
                 })
             }
         }

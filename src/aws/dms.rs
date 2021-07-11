@@ -123,11 +123,21 @@ pub struct EndpointProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub database_name: Option<::Value<String>>,
+    /// Property [`DocDbSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-docdbsettings).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub doc_db_settings: Option<::Value<self::endpoint::DocDbSettings>>,
     /// Property [`DynamoDbSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-dynamodbsettings).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub dynamo_db_settings: Option<::Value<self::endpoint::DynamoDbSettings>>,
+    /// Property [`ElasticsearchSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-elasticsearchsettings).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub elasticsearch_settings: Option<::Value<self::endpoint::ElasticsearchSettings>>,
     /// Property [`EndpointIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-endpointidentifier).
     ///
     /// Update type: _Mutable_.
@@ -148,16 +158,51 @@ pub struct EndpointProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub extra_connection_attributes: Option<::Value<String>>,
+    /// Property [`IbmDb2Settings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-ibmdb2settings).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub ibm_db2_settings: Option<::Value<self::endpoint::IbmDb2Settings>>,
+    /// Property [`KafkaSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-kafkasettings).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub kafka_settings: Option<::Value<self::endpoint::KafkaSettings>>,
+    /// Property [`KinesisSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-kinesissettings).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub kinesis_settings: Option<::Value<self::endpoint::KinesisSettings>>,
     /// Property [`KmsKeyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-kmskeyid).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub kms_key_id: Option<::Value<String>>,
+    /// Property [`MicrosoftSqlServerSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-microsoftsqlserversettings).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub microsoft_sql_server_settings: Option<::Value<self::endpoint::MicrosoftSqlServerSettings>>,
     /// Property [`MongoDbSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-mongodbsettings).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub mongo_db_settings: Option<::Value<self::endpoint::MongoDbSettings>>,
+    /// Property [`MySqlSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-mysqlsettings).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub my_sql_settings: Option<::Value<self::endpoint::MySqlSettings>>,
+    /// Property [`NeptuneSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-neptunesettings).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub neptune_settings: Option<::Value<self::endpoint::NeptuneSettings>>,
+    /// Property [`OracleSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-oraclesettings).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub oracle_settings: Option<::Value<self::endpoint::OracleSettings>>,
     /// Property [`Password`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-password).
     ///
     /// Update type: _Mutable_.
@@ -168,6 +213,21 @@ pub struct EndpointProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub port: Option<::Value<u32>>,
+    /// Property [`PostgreSqlSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-postgresqlsettings).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub postgre_sql_settings: Option<::Value<self::endpoint::PostgreSqlSettings>>,
+    /// Property [`RedshiftSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-redshiftsettings).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub redshift_settings: Option<::Value<self::endpoint::RedshiftSettings>>,
+    /// Property [`ResourceIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-resourceidentifier).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub resource_identifier: Option<::Value<String>>,
     /// Property [`S3Settings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-s3settings).
     ///
     /// Update type: _Mutable_.
@@ -183,6 +243,11 @@ pub struct EndpointProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub ssl_mode: Option<::Value<String>>,
+    /// Property [`SybaseSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-sybasesettings).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub sybase_settings: Option<::Value<self::endpoint::SybaseSettings>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-tags).
     ///
     /// Update type: _Immutable_.
@@ -204,8 +269,14 @@ impl ::serde::Serialize for EndpointProperties {
         if let Some(ref database_name) = self.database_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseName", database_name)?;
         }
+        if let Some(ref doc_db_settings) = self.doc_db_settings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocDbSettings", doc_db_settings)?;
+        }
         if let Some(ref dynamo_db_settings) = self.dynamo_db_settings {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DynamoDbSettings", dynamo_db_settings)?;
+        }
+        if let Some(ref elasticsearch_settings) = self.elasticsearch_settings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ElasticsearchSettings", elasticsearch_settings)?;
         }
         if let Some(ref endpoint_identifier) = self.endpoint_identifier {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndpointIdentifier", endpoint_identifier)?;
@@ -215,17 +286,47 @@ impl ::serde::Serialize for EndpointProperties {
         if let Some(ref extra_connection_attributes) = self.extra_connection_attributes {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExtraConnectionAttributes", extra_connection_attributes)?;
         }
+        if let Some(ref ibm_db2_settings) = self.ibm_db2_settings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IbmDb2Settings", ibm_db2_settings)?;
+        }
+        if let Some(ref kafka_settings) = self.kafka_settings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KafkaSettings", kafka_settings)?;
+        }
+        if let Some(ref kinesis_settings) = self.kinesis_settings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KinesisSettings", kinesis_settings)?;
+        }
         if let Some(ref kms_key_id) = self.kms_key_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", kms_key_id)?;
         }
+        if let Some(ref microsoft_sql_server_settings) = self.microsoft_sql_server_settings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MicrosoftSqlServerSettings", microsoft_sql_server_settings)?;
+        }
         if let Some(ref mongo_db_settings) = self.mongo_db_settings {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MongoDbSettings", mongo_db_settings)?;
+        }
+        if let Some(ref my_sql_settings) = self.my_sql_settings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MySqlSettings", my_sql_settings)?;
+        }
+        if let Some(ref neptune_settings) = self.neptune_settings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NeptuneSettings", neptune_settings)?;
+        }
+        if let Some(ref oracle_settings) = self.oracle_settings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OracleSettings", oracle_settings)?;
         }
         if let Some(ref password) = self.password {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Password", password)?;
         }
         if let Some(ref port) = self.port {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", port)?;
+        }
+        if let Some(ref postgre_sql_settings) = self.postgre_sql_settings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PostgreSqlSettings", postgre_sql_settings)?;
+        }
+        if let Some(ref redshift_settings) = self.redshift_settings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RedshiftSettings", redshift_settings)?;
+        }
+        if let Some(ref resource_identifier) = self.resource_identifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceIdentifier", resource_identifier)?;
         }
         if let Some(ref s3_settings) = self.s3_settings {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Settings", s3_settings)?;
@@ -235,6 +336,9 @@ impl ::serde::Serialize for EndpointProperties {
         }
         if let Some(ref ssl_mode) = self.ssl_mode {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SslMode", ssl_mode)?;
+        }
+        if let Some(ref sybase_settings) = self.sybase_settings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SybaseSettings", sybase_settings)?;
         }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
@@ -260,18 +364,31 @@ impl<'de> ::serde::Deserialize<'de> for EndpointProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut certificate_arn: Option<::Value<String>> = None;
                 let mut database_name: Option<::Value<String>> = None;
+                let mut doc_db_settings: Option<::Value<self::endpoint::DocDbSettings>> = None;
                 let mut dynamo_db_settings: Option<::Value<self::endpoint::DynamoDbSettings>> = None;
+                let mut elasticsearch_settings: Option<::Value<self::endpoint::ElasticsearchSettings>> = None;
                 let mut endpoint_identifier: Option<::Value<String>> = None;
                 let mut endpoint_type: Option<::Value<String>> = None;
                 let mut engine_name: Option<::Value<String>> = None;
                 let mut extra_connection_attributes: Option<::Value<String>> = None;
+                let mut ibm_db2_settings: Option<::Value<self::endpoint::IbmDb2Settings>> = None;
+                let mut kafka_settings: Option<::Value<self::endpoint::KafkaSettings>> = None;
+                let mut kinesis_settings: Option<::Value<self::endpoint::KinesisSettings>> = None;
                 let mut kms_key_id: Option<::Value<String>> = None;
+                let mut microsoft_sql_server_settings: Option<::Value<self::endpoint::MicrosoftSqlServerSettings>> = None;
                 let mut mongo_db_settings: Option<::Value<self::endpoint::MongoDbSettings>> = None;
+                let mut my_sql_settings: Option<::Value<self::endpoint::MySqlSettings>> = None;
+                let mut neptune_settings: Option<::Value<self::endpoint::NeptuneSettings>> = None;
+                let mut oracle_settings: Option<::Value<self::endpoint::OracleSettings>> = None;
                 let mut password: Option<::Value<String>> = None;
                 let mut port: Option<::Value<u32>> = None;
+                let mut postgre_sql_settings: Option<::Value<self::endpoint::PostgreSqlSettings>> = None;
+                let mut redshift_settings: Option<::Value<self::endpoint::RedshiftSettings>> = None;
+                let mut resource_identifier: Option<::Value<String>> = None;
                 let mut s3_settings: Option<::Value<self::endpoint::S3Settings>> = None;
                 let mut server_name: Option<::Value<String>> = None;
                 let mut ssl_mode: Option<::Value<String>> = None;
+                let mut sybase_settings: Option<::Value<self::endpoint::SybaseSettings>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut username: Option<::Value<String>> = None;
 
@@ -283,8 +400,14 @@ impl<'de> ::serde::Deserialize<'de> for EndpointProperties {
                         "DatabaseName" => {
                             database_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "DocDbSettings" => {
+                            doc_db_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "DynamoDbSettings" => {
                             dynamo_db_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ElasticsearchSettings" => {
+                            elasticsearch_settings = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "EndpointIdentifier" => {
                             endpoint_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -298,17 +421,47 @@ impl<'de> ::serde::Deserialize<'de> for EndpointProperties {
                         "ExtraConnectionAttributes" => {
                             extra_connection_attributes = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "IbmDb2Settings" => {
+                            ibm_db2_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "KafkaSettings" => {
+                            kafka_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "KinesisSettings" => {
+                            kinesis_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "KmsKeyId" => {
                             kms_key_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "MicrosoftSqlServerSettings" => {
+                            microsoft_sql_server_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "MongoDbSettings" => {
                             mongo_db_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MySqlSettings" => {
+                            my_sql_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "NeptuneSettings" => {
+                            neptune_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "OracleSettings" => {
+                            oracle_settings = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Password" => {
                             password = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Port" => {
                             port = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PostgreSqlSettings" => {
+                            postgre_sql_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "RedshiftSettings" => {
+                            redshift_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ResourceIdentifier" => {
+                            resource_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "S3Settings" => {
                             s3_settings = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -318,6 +471,9 @@ impl<'de> ::serde::Deserialize<'de> for EndpointProperties {
                         }
                         "SslMode" => {
                             ssl_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SybaseSettings" => {
+                            sybase_settings = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -332,18 +488,31 @@ impl<'de> ::serde::Deserialize<'de> for EndpointProperties {
                 Ok(EndpointProperties {
                     certificate_arn: certificate_arn,
                     database_name: database_name,
+                    doc_db_settings: doc_db_settings,
                     dynamo_db_settings: dynamo_db_settings,
+                    elasticsearch_settings: elasticsearch_settings,
                     endpoint_identifier: endpoint_identifier,
                     endpoint_type: endpoint_type.ok_or(::serde::de::Error::missing_field("EndpointType"))?,
                     engine_name: engine_name.ok_or(::serde::de::Error::missing_field("EngineName"))?,
                     extra_connection_attributes: extra_connection_attributes,
+                    ibm_db2_settings: ibm_db2_settings,
+                    kafka_settings: kafka_settings,
+                    kinesis_settings: kinesis_settings,
                     kms_key_id: kms_key_id,
+                    microsoft_sql_server_settings: microsoft_sql_server_settings,
                     mongo_db_settings: mongo_db_settings,
+                    my_sql_settings: my_sql_settings,
+                    neptune_settings: neptune_settings,
+                    oracle_settings: oracle_settings,
                     password: password,
                     port: port,
+                    postgre_sql_settings: postgre_sql_settings,
+                    redshift_settings: redshift_settings,
+                    resource_identifier: resource_identifier,
                     s3_settings: s3_settings,
                     server_name: server_name,
                     ssl_mode: ssl_mode,
+                    sybase_settings: sybase_settings,
                     tags: tags,
                     username: username,
                 })
@@ -553,8 +722,8 @@ pub struct ReplicationInstanceProperties {
     pub auto_minor_version_upgrade: Option<::Value<bool>>,
     /// Property [`AvailabilityZone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationinstance.html#cfn-dms-replicationinstance-availabilityzone).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub availability_zone: Option<::Value<String>>,
     /// Property [`EngineVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationinstance.html#cfn-dms-replicationinstance-engineversion).
     ///
@@ -596,6 +765,11 @@ pub struct ReplicationInstanceProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub replication_subnet_group_identifier: Option<::Value<String>>,
+    /// Property [`ResourceIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationinstance.html#cfn-dms-replicationinstance-resourceidentifier).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub resource_identifier: Option<::Value<String>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationinstance.html#cfn-dms-replicationinstance-tags).
     ///
     /// Update type: _Immutable_.
@@ -645,6 +819,9 @@ impl ::serde::Serialize for ReplicationInstanceProperties {
         if let Some(ref replication_subnet_group_identifier) = self.replication_subnet_group_identifier {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicationSubnetGroupIdentifier", replication_subnet_group_identifier)?;
         }
+        if let Some(ref resource_identifier) = self.resource_identifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceIdentifier", resource_identifier)?;
+        }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
@@ -679,6 +856,7 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationInstanceProperties {
                 let mut replication_instance_class: Option<::Value<String>> = None;
                 let mut replication_instance_identifier: Option<::Value<String>> = None;
                 let mut replication_subnet_group_identifier: Option<::Value<String>> = None;
+                let mut resource_identifier: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut vpc_security_group_ids: Option<::ValueList<String>> = None;
 
@@ -720,6 +898,9 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationInstanceProperties {
                         "ReplicationSubnetGroupIdentifier" => {
                             replication_subnet_group_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ResourceIdentifier" => {
+                            resource_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -743,6 +924,7 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationInstanceProperties {
                     replication_instance_class: replication_instance_class.ok_or(::serde::de::Error::missing_field("ReplicationInstanceClass"))?,
                     replication_instance_identifier: replication_instance_identifier,
                     replication_subnet_group_identifier: replication_subnet_group_identifier,
+                    resource_identifier: resource_identifier,
                     tags: tags,
                     vpc_security_group_ids: vpc_security_group_ids,
                 })
@@ -894,11 +1076,21 @@ pub struct ReplicationTask {
 /// Properties for the `ReplicationTask` resource.
 #[derive(Debug, Default)]
 pub struct ReplicationTaskProperties {
+    /// Property [`CdcStartPosition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationtask.html#cfn-dms-replicationtask-cdcstartposition).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub cdc_start_position: Option<::Value<String>>,
     /// Property [`CdcStartTime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationtask.html#cfn-dms-replicationtask-cdcstarttime).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub cdc_start_time: Option<::Value<f64>>,
+    /// Property [`CdcStopPosition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationtask.html#cfn-dms-replicationtask-cdcstopposition).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub cdc_stop_position: Option<::Value<String>>,
     /// Property [`MigrationType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationtask.html#cfn-dms-replicationtask-migrationtype).
     ///
     /// Update type: _Mutable_.
@@ -919,6 +1111,11 @@ pub struct ReplicationTaskProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub replication_task_settings: Option<::Value<String>>,
+    /// Property [`ResourceIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationtask.html#cfn-dms-replicationtask-resourceidentifier).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub resource_identifier: Option<::Value<String>>,
     /// Property [`SourceEndpointArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationtask.html#cfn-dms-replicationtask-sourceendpointarn).
     ///
     /// Update type: _Immutable_.
@@ -939,13 +1136,24 @@ pub struct ReplicationTaskProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub target_endpoint_arn: ::Value<String>,
+    /// Property [`TaskData`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationtask.html#cfn-dms-replicationtask-taskdata).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub task_data: Option<::Value<String>>,
 }
 
 impl ::serde::Serialize for ReplicationTaskProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref cdc_start_position) = self.cdc_start_position {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CdcStartPosition", cdc_start_position)?;
+        }
         if let Some(ref cdc_start_time) = self.cdc_start_time {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CdcStartTime", cdc_start_time)?;
+        }
+        if let Some(ref cdc_stop_position) = self.cdc_stop_position {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CdcStopPosition", cdc_stop_position)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "MigrationType", &self.migration_type)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicationInstanceArn", &self.replication_instance_arn)?;
@@ -955,12 +1163,18 @@ impl ::serde::Serialize for ReplicationTaskProperties {
         if let Some(ref replication_task_settings) = self.replication_task_settings {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicationTaskSettings", replication_task_settings)?;
         }
+        if let Some(ref resource_identifier) = self.resource_identifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceIdentifier", resource_identifier)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceEndpointArn", &self.source_endpoint_arn)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "TableMappings", &self.table_mappings)?;
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetEndpointArn", &self.target_endpoint_arn)?;
+        if let Some(ref task_data) = self.task_data {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TaskData", task_data)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -977,20 +1191,30 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationTaskProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut cdc_start_position: Option<::Value<String>> = None;
                 let mut cdc_start_time: Option<::Value<f64>> = None;
+                let mut cdc_stop_position: Option<::Value<String>> = None;
                 let mut migration_type: Option<::Value<String>> = None;
                 let mut replication_instance_arn: Option<::Value<String>> = None;
                 let mut replication_task_identifier: Option<::Value<String>> = None;
                 let mut replication_task_settings: Option<::Value<String>> = None;
+                let mut resource_identifier: Option<::Value<String>> = None;
                 let mut source_endpoint_arn: Option<::Value<String>> = None;
                 let mut table_mappings: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut target_endpoint_arn: Option<::Value<String>> = None;
+                let mut task_data: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "CdcStartPosition" => {
+                            cdc_start_position = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "CdcStartTime" => {
                             cdc_start_time = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "CdcStopPosition" => {
+                            cdc_stop_position = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "MigrationType" => {
                             migration_type = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1004,6 +1228,9 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationTaskProperties {
                         "ReplicationTaskSettings" => {
                             replication_task_settings = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ResourceIdentifier" => {
+                            resource_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "SourceEndpointArn" => {
                             source_endpoint_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -1016,20 +1243,27 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationTaskProperties {
                         "TargetEndpointArn" => {
                             target_endpoint_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "TaskData" => {
+                            task_data = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
 
                 Ok(ReplicationTaskProperties {
+                    cdc_start_position: cdc_start_position,
                     cdc_start_time: cdc_start_time,
+                    cdc_stop_position: cdc_stop_position,
                     migration_type: migration_type.ok_or(::serde::de::Error::missing_field("MigrationType"))?,
                     replication_instance_arn: replication_instance_arn.ok_or(::serde::de::Error::missing_field("ReplicationInstanceArn"))?,
                     replication_task_identifier: replication_task_identifier,
                     replication_task_settings: replication_task_settings,
+                    resource_identifier: resource_identifier,
                     source_endpoint_arn: source_endpoint_arn.ok_or(::serde::de::Error::missing_field("SourceEndpointArn"))?,
                     table_mappings: table_mappings.ok_or(::serde::de::Error::missing_field("TableMappings"))?,
                     tags: tags,
                     target_endpoint_arn: target_endpoint_arn.ok_or(::serde::de::Error::missing_field("TargetEndpointArn"))?,
+                    task_data: task_data,
                 })
             }
         }
@@ -1059,6 +1293,72 @@ impl From<ReplicationTaskProperties> for ReplicationTask {
 
 pub mod endpoint {
     //! Property types for the `Endpoint` resource.
+
+    /// The [`AWS::DMS::Endpoint.DocDbSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-docdbsettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DocDbSettings {
+        /// Property [`SecretsManagerAccessRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-docdbsettings.html#cfn-dms-endpoint-docdbsettings-secretsmanageraccessrolearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secrets_manager_access_role_arn: Option<::Value<String>>,
+        /// Property [`SecretsManagerSecretId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-docdbsettings.html#cfn-dms-endpoint-docdbsettings-secretsmanagersecretid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secrets_manager_secret_id: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for DocDbSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref secrets_manager_access_role_arn) = self.secrets_manager_access_role_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecretsManagerAccessRoleArn", secrets_manager_access_role_arn)?;
+            }
+            if let Some(ref secrets_manager_secret_id) = self.secrets_manager_secret_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecretsManagerSecretId", secrets_manager_secret_id)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DocDbSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DocDbSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DocDbSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DocDbSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut secrets_manager_access_role_arn: Option<::Value<String>> = None;
+                    let mut secrets_manager_secret_id: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SecretsManagerAccessRoleArn" => {
+                                secrets_manager_access_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecretsManagerSecretId" => {
+                                secrets_manager_secret_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DocDbSettings {
+                        secrets_manager_access_role_arn: secrets_manager_access_role_arn,
+                        secrets_manager_secret_id: secrets_manager_secret_id,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::DMS::Endpoint.DynamoDbSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-dynamodbsettings.html) property type.
     #[derive(Debug, Default)]
@@ -1105,6 +1405,375 @@ pub mod endpoint {
 
                     Ok(DynamoDbSettings {
                         service_access_role_arn: service_access_role_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DMS::Endpoint.ElasticsearchSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-elasticsearchsettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ElasticsearchSettings {
+        /// Property [`EndpointUri`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-elasticsearchsettings.html#cfn-dms-endpoint-elasticsearchsettings-endpointuri).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub endpoint_uri: Option<::Value<String>>,
+        /// Property [`ErrorRetryDuration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-elasticsearchsettings.html#cfn-dms-endpoint-elasticsearchsettings-errorretryduration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub error_retry_duration: Option<::Value<u32>>,
+        /// Property [`FullLoadErrorPercentage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-elasticsearchsettings.html#cfn-dms-endpoint-elasticsearchsettings-fullloaderrorpercentage).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub full_load_error_percentage: Option<::Value<u32>>,
+        /// Property [`ServiceAccessRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-elasticsearchsettings.html#cfn-dms-endpoint-elasticsearchsettings-serviceaccessrolearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub service_access_role_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for ElasticsearchSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref endpoint_uri) = self.endpoint_uri {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndpointUri", endpoint_uri)?;
+            }
+            if let Some(ref error_retry_duration) = self.error_retry_duration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ErrorRetryDuration", error_retry_duration)?;
+            }
+            if let Some(ref full_load_error_percentage) = self.full_load_error_percentage {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FullLoadErrorPercentage", full_load_error_percentage)?;
+            }
+            if let Some(ref service_access_role_arn) = self.service_access_role_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceAccessRoleArn", service_access_role_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ElasticsearchSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ElasticsearchSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ElasticsearchSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ElasticsearchSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut endpoint_uri: Option<::Value<String>> = None;
+                    let mut error_retry_duration: Option<::Value<u32>> = None;
+                    let mut full_load_error_percentage: Option<::Value<u32>> = None;
+                    let mut service_access_role_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "EndpointUri" => {
+                                endpoint_uri = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ErrorRetryDuration" => {
+                                error_retry_duration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "FullLoadErrorPercentage" => {
+                                full_load_error_percentage = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ServiceAccessRoleArn" => {
+                                service_access_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ElasticsearchSettings {
+                        endpoint_uri: endpoint_uri,
+                        error_retry_duration: error_retry_duration,
+                        full_load_error_percentage: full_load_error_percentage,
+                        service_access_role_arn: service_access_role_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DMS::Endpoint.IbmDb2Settings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-ibmdb2settings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct IbmDb2Settings {
+        /// Property [`SecretsManagerAccessRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-ibmdb2settings.html#cfn-dms-endpoint-ibmdb2settings-secretsmanageraccessrolearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secrets_manager_access_role_arn: Option<::Value<String>>,
+        /// Property [`SecretsManagerSecretId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-ibmdb2settings.html#cfn-dms-endpoint-ibmdb2settings-secretsmanagersecretid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secrets_manager_secret_id: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for IbmDb2Settings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref secrets_manager_access_role_arn) = self.secrets_manager_access_role_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecretsManagerAccessRoleArn", secrets_manager_access_role_arn)?;
+            }
+            if let Some(ref secrets_manager_secret_id) = self.secrets_manager_secret_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecretsManagerSecretId", secrets_manager_secret_id)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for IbmDb2Settings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<IbmDb2Settings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = IbmDb2Settings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type IbmDb2Settings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut secrets_manager_access_role_arn: Option<::Value<String>> = None;
+                    let mut secrets_manager_secret_id: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SecretsManagerAccessRoleArn" => {
+                                secrets_manager_access_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecretsManagerSecretId" => {
+                                secrets_manager_secret_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(IbmDb2Settings {
+                        secrets_manager_access_role_arn: secrets_manager_access_role_arn,
+                        secrets_manager_secret_id: secrets_manager_secret_id,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DMS::Endpoint.KafkaSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-kafkasettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct KafkaSettings {
+        /// Property [`Broker`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-kafkasettings.html#cfn-dms-endpoint-kafkasettings-broker).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub broker: Option<::Value<String>>,
+        /// Property [`Topic`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-kafkasettings.html#cfn-dms-endpoint-kafkasettings-topic).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub topic: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for KafkaSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref broker) = self.broker {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Broker", broker)?;
+            }
+            if let Some(ref topic) = self.topic {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Topic", topic)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for KafkaSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<KafkaSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = KafkaSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type KafkaSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut broker: Option<::Value<String>> = None;
+                    let mut topic: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Broker" => {
+                                broker = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Topic" => {
+                                topic = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(KafkaSettings {
+                        broker: broker,
+                        topic: topic,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DMS::Endpoint.KinesisSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-kinesissettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct KinesisSettings {
+        /// Property [`MessageFormat`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-kinesissettings.html#cfn-dms-endpoint-kinesissettings-messageformat).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub message_format: Option<::Value<String>>,
+        /// Property [`ServiceAccessRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-kinesissettings.html#cfn-dms-endpoint-kinesissettings-serviceaccessrolearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub service_access_role_arn: Option<::Value<String>>,
+        /// Property [`StreamArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-kinesissettings.html#cfn-dms-endpoint-kinesissettings-streamarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub stream_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for KinesisSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref message_format) = self.message_format {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MessageFormat", message_format)?;
+            }
+            if let Some(ref service_access_role_arn) = self.service_access_role_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceAccessRoleArn", service_access_role_arn)?;
+            }
+            if let Some(ref stream_arn) = self.stream_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamArn", stream_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for KinesisSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<KinesisSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = KinesisSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type KinesisSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut message_format: Option<::Value<String>> = None;
+                    let mut service_access_role_arn: Option<::Value<String>> = None;
+                    let mut stream_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "MessageFormat" => {
+                                message_format = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ServiceAccessRoleArn" => {
+                                service_access_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "StreamArn" => {
+                                stream_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(KinesisSettings {
+                        message_format: message_format,
+                        service_access_role_arn: service_access_role_arn,
+                        stream_arn: stream_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DMS::Endpoint.MicrosoftSqlServerSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MicrosoftSqlServerSettings {
+        /// Property [`SecretsManagerAccessRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-secretsmanageraccessrolearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secrets_manager_access_role_arn: Option<::Value<String>>,
+        /// Property [`SecretsManagerSecretId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-secretsmanagersecretid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secrets_manager_secret_id: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for MicrosoftSqlServerSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref secrets_manager_access_role_arn) = self.secrets_manager_access_role_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecretsManagerAccessRoleArn", secrets_manager_access_role_arn)?;
+            }
+            if let Some(ref secrets_manager_secret_id) = self.secrets_manager_secret_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecretsManagerSecretId", secrets_manager_secret_id)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MicrosoftSqlServerSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MicrosoftSqlServerSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MicrosoftSqlServerSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MicrosoftSqlServerSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut secrets_manager_access_role_arn: Option<::Value<String>> = None;
+                    let mut secrets_manager_secret_id: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SecretsManagerAccessRoleArn" => {
+                                secrets_manager_access_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecretsManagerSecretId" => {
+                                secrets_manager_secret_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MicrosoftSqlServerSettings {
+                        secrets_manager_access_role_arn: secrets_manager_access_role_arn,
+                        secrets_manager_secret_id: secrets_manager_secret_id,
                     })
                 }
             }
@@ -1161,6 +1830,16 @@ pub mod endpoint {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub port: Option<::Value<u32>>,
+        /// Property [`SecretsManagerAccessRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html#cfn-dms-endpoint-mongodbsettings-secretsmanageraccessrolearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secrets_manager_access_role_arn: Option<::Value<String>>,
+        /// Property [`SecretsManagerSecretId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html#cfn-dms-endpoint-mongodbsettings-secretsmanagersecretid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secrets_manager_secret_id: Option<::Value<String>>,
         /// Property [`ServerName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html#cfn-dms-endpoint-mongodbsettings-servername).
         ///
         /// Update type: _Mutable_.
@@ -1203,6 +1882,12 @@ pub mod endpoint {
             if let Some(ref port) = self.port {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", port)?;
             }
+            if let Some(ref secrets_manager_access_role_arn) = self.secrets_manager_access_role_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecretsManagerAccessRoleArn", secrets_manager_access_role_arn)?;
+            }
+            if let Some(ref secrets_manager_secret_id) = self.secrets_manager_secret_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecretsManagerSecretId", secrets_manager_secret_id)?;
+            }
             if let Some(ref server_name) = self.server_name {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServerName", server_name)?;
             }
@@ -1234,6 +1919,8 @@ pub mod endpoint {
                     let mut nesting_level: Option<::Value<String>> = None;
                     let mut password: Option<::Value<String>> = None;
                     let mut port: Option<::Value<u32>> = None;
+                    let mut secrets_manager_access_role_arn: Option<::Value<String>> = None;
+                    let mut secrets_manager_secret_id: Option<::Value<String>> = None;
                     let mut server_name: Option<::Value<String>> = None;
                     let mut username: Option<::Value<String>> = None;
 
@@ -1266,6 +1953,12 @@ pub mod endpoint {
                             "Port" => {
                                 port = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "SecretsManagerAccessRoleArn" => {
+                                secrets_manager_access_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecretsManagerSecretId" => {
+                                secrets_manager_secret_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "ServerName" => {
                                 server_name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1286,8 +1979,431 @@ pub mod endpoint {
                         nesting_level: nesting_level,
                         password: password,
                         port: port,
+                        secrets_manager_access_role_arn: secrets_manager_access_role_arn,
+                        secrets_manager_secret_id: secrets_manager_secret_id,
                         server_name: server_name,
                         username: username,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DMS::Endpoint.MySqlSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mysqlsettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MySqlSettings {
+        /// Property [`SecretsManagerAccessRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mysqlsettings.html#cfn-dms-endpoint-mysqlsettings-secretsmanageraccessrolearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secrets_manager_access_role_arn: Option<::Value<String>>,
+        /// Property [`SecretsManagerSecretId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mysqlsettings.html#cfn-dms-endpoint-mysqlsettings-secretsmanagersecretid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secrets_manager_secret_id: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for MySqlSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref secrets_manager_access_role_arn) = self.secrets_manager_access_role_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecretsManagerAccessRoleArn", secrets_manager_access_role_arn)?;
+            }
+            if let Some(ref secrets_manager_secret_id) = self.secrets_manager_secret_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecretsManagerSecretId", secrets_manager_secret_id)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MySqlSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MySqlSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MySqlSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MySqlSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut secrets_manager_access_role_arn: Option<::Value<String>> = None;
+                    let mut secrets_manager_secret_id: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SecretsManagerAccessRoleArn" => {
+                                secrets_manager_access_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecretsManagerSecretId" => {
+                                secrets_manager_secret_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MySqlSettings {
+                        secrets_manager_access_role_arn: secrets_manager_access_role_arn,
+                        secrets_manager_secret_id: secrets_manager_secret_id,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DMS::Endpoint.NeptuneSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-neptunesettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct NeptuneSettings {
+        /// Property [`ErrorRetryDuration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-neptunesettings.html#cfn-dms-endpoint-neptunesettings-errorretryduration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub error_retry_duration: Option<::Value<u32>>,
+        /// Property [`IamAuthEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-neptunesettings.html#cfn-dms-endpoint-neptunesettings-iamauthenabled).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub iam_auth_enabled: Option<::Value<bool>>,
+        /// Property [`MaxFileSize`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-neptunesettings.html#cfn-dms-endpoint-neptunesettings-maxfilesize).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub max_file_size: Option<::Value<u32>>,
+        /// Property [`MaxRetryCount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-neptunesettings.html#cfn-dms-endpoint-neptunesettings-maxretrycount).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub max_retry_count: Option<::Value<u32>>,
+        /// Property [`S3BucketFolder`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-neptunesettings.html#cfn-dms-endpoint-neptunesettings-s3bucketfolder).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub s3_bucket_folder: Option<::Value<String>>,
+        /// Property [`S3BucketName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-neptunesettings.html#cfn-dms-endpoint-neptunesettings-s3bucketname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub s3_bucket_name: Option<::Value<String>>,
+        /// Property [`ServiceAccessRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-neptunesettings.html#cfn-dms-endpoint-neptunesettings-serviceaccessrolearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub service_access_role_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for NeptuneSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref error_retry_duration) = self.error_retry_duration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ErrorRetryDuration", error_retry_duration)?;
+            }
+            if let Some(ref iam_auth_enabled) = self.iam_auth_enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IamAuthEnabled", iam_auth_enabled)?;
+            }
+            if let Some(ref max_file_size) = self.max_file_size {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxFileSize", max_file_size)?;
+            }
+            if let Some(ref max_retry_count) = self.max_retry_count {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxRetryCount", max_retry_count)?;
+            }
+            if let Some(ref s3_bucket_folder) = self.s3_bucket_folder {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3BucketFolder", s3_bucket_folder)?;
+            }
+            if let Some(ref s3_bucket_name) = self.s3_bucket_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3BucketName", s3_bucket_name)?;
+            }
+            if let Some(ref service_access_role_arn) = self.service_access_role_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceAccessRoleArn", service_access_role_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for NeptuneSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<NeptuneSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = NeptuneSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type NeptuneSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut error_retry_duration: Option<::Value<u32>> = None;
+                    let mut iam_auth_enabled: Option<::Value<bool>> = None;
+                    let mut max_file_size: Option<::Value<u32>> = None;
+                    let mut max_retry_count: Option<::Value<u32>> = None;
+                    let mut s3_bucket_folder: Option<::Value<String>> = None;
+                    let mut s3_bucket_name: Option<::Value<String>> = None;
+                    let mut service_access_role_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ErrorRetryDuration" => {
+                                error_retry_duration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IamAuthEnabled" => {
+                                iam_auth_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MaxFileSize" => {
+                                max_file_size = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MaxRetryCount" => {
+                                max_retry_count = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "S3BucketFolder" => {
+                                s3_bucket_folder = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "S3BucketName" => {
+                                s3_bucket_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ServiceAccessRoleArn" => {
+                                service_access_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(NeptuneSettings {
+                        error_retry_duration: error_retry_duration,
+                        iam_auth_enabled: iam_auth_enabled,
+                        max_file_size: max_file_size,
+                        max_retry_count: max_retry_count,
+                        s3_bucket_folder: s3_bucket_folder,
+                        s3_bucket_name: s3_bucket_name,
+                        service_access_role_arn: service_access_role_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DMS::Endpoint.OracleSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-oraclesettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OracleSettings {
+        /// Property [`SecretsManagerAccessRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-oraclesettings.html#cfn-dms-endpoint-oraclesettings-secretsmanageraccessrolearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secrets_manager_access_role_arn: Option<::Value<String>>,
+        /// Property [`SecretsManagerOracleAsmAccessRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-oraclesettings.html#cfn-dms-endpoint-oraclesettings-secretsmanageroracleasmaccessrolearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secrets_manager_oracle_asm_access_role_arn: Option<::Value<String>>,
+        /// Property [`SecretsManagerOracleAsmSecretId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-oraclesettings.html#cfn-dms-endpoint-oraclesettings-secretsmanageroracleasmsecretid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secrets_manager_oracle_asm_secret_id: Option<::Value<String>>,
+        /// Property [`SecretsManagerSecretId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-oraclesettings.html#cfn-dms-endpoint-oraclesettings-secretsmanagersecretid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secrets_manager_secret_id: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for OracleSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref secrets_manager_access_role_arn) = self.secrets_manager_access_role_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecretsManagerAccessRoleArn", secrets_manager_access_role_arn)?;
+            }
+            if let Some(ref secrets_manager_oracle_asm_access_role_arn) = self.secrets_manager_oracle_asm_access_role_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecretsManagerOracleAsmAccessRoleArn", secrets_manager_oracle_asm_access_role_arn)?;
+            }
+            if let Some(ref secrets_manager_oracle_asm_secret_id) = self.secrets_manager_oracle_asm_secret_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecretsManagerOracleAsmSecretId", secrets_manager_oracle_asm_secret_id)?;
+            }
+            if let Some(ref secrets_manager_secret_id) = self.secrets_manager_secret_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecretsManagerSecretId", secrets_manager_secret_id)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OracleSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OracleSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OracleSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OracleSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut secrets_manager_access_role_arn: Option<::Value<String>> = None;
+                    let mut secrets_manager_oracle_asm_access_role_arn: Option<::Value<String>> = None;
+                    let mut secrets_manager_oracle_asm_secret_id: Option<::Value<String>> = None;
+                    let mut secrets_manager_secret_id: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SecretsManagerAccessRoleArn" => {
+                                secrets_manager_access_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecretsManagerOracleAsmAccessRoleArn" => {
+                                secrets_manager_oracle_asm_access_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecretsManagerOracleAsmSecretId" => {
+                                secrets_manager_oracle_asm_secret_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecretsManagerSecretId" => {
+                                secrets_manager_secret_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OracleSettings {
+                        secrets_manager_access_role_arn: secrets_manager_access_role_arn,
+                        secrets_manager_oracle_asm_access_role_arn: secrets_manager_oracle_asm_access_role_arn,
+                        secrets_manager_oracle_asm_secret_id: secrets_manager_oracle_asm_secret_id,
+                        secrets_manager_secret_id: secrets_manager_secret_id,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DMS::Endpoint.PostgreSqlSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-postgresqlsettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct PostgreSqlSettings {
+        /// Property [`SecretsManagerAccessRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-postgresqlsettings.html#cfn-dms-endpoint-postgresqlsettings-secretsmanageraccessrolearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secrets_manager_access_role_arn: Option<::Value<String>>,
+        /// Property [`SecretsManagerSecretId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-postgresqlsettings.html#cfn-dms-endpoint-postgresqlsettings-secretsmanagersecretid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secrets_manager_secret_id: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for PostgreSqlSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref secrets_manager_access_role_arn) = self.secrets_manager_access_role_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecretsManagerAccessRoleArn", secrets_manager_access_role_arn)?;
+            }
+            if let Some(ref secrets_manager_secret_id) = self.secrets_manager_secret_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecretsManagerSecretId", secrets_manager_secret_id)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for PostgreSqlSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<PostgreSqlSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = PostgreSqlSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type PostgreSqlSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut secrets_manager_access_role_arn: Option<::Value<String>> = None;
+                    let mut secrets_manager_secret_id: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SecretsManagerAccessRoleArn" => {
+                                secrets_manager_access_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecretsManagerSecretId" => {
+                                secrets_manager_secret_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(PostgreSqlSettings {
+                        secrets_manager_access_role_arn: secrets_manager_access_role_arn,
+                        secrets_manager_secret_id: secrets_manager_secret_id,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DMS::Endpoint.RedshiftSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-redshiftsettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct RedshiftSettings {
+        /// Property [`SecretsManagerAccessRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-redshiftsettings.html#cfn-dms-endpoint-redshiftsettings-secretsmanageraccessrolearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secrets_manager_access_role_arn: Option<::Value<String>>,
+        /// Property [`SecretsManagerSecretId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-redshiftsettings.html#cfn-dms-endpoint-redshiftsettings-secretsmanagersecretid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secrets_manager_secret_id: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for RedshiftSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref secrets_manager_access_role_arn) = self.secrets_manager_access_role_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecretsManagerAccessRoleArn", secrets_manager_access_role_arn)?;
+            }
+            if let Some(ref secrets_manager_secret_id) = self.secrets_manager_secret_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecretsManagerSecretId", secrets_manager_secret_id)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for RedshiftSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<RedshiftSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = RedshiftSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type RedshiftSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut secrets_manager_access_role_arn: Option<::Value<String>> = None;
+                    let mut secrets_manager_secret_id: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SecretsManagerAccessRoleArn" => {
+                                secrets_manager_access_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecretsManagerSecretId" => {
+                                secrets_manager_secret_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(RedshiftSettings {
+                        secrets_manager_access_role_arn: secrets_manager_access_role_arn,
+                        secrets_manager_secret_id: secrets_manager_secret_id,
                     })
                 }
             }
@@ -1419,6 +2535,72 @@ pub mod endpoint {
                         csv_row_delimiter: csv_row_delimiter,
                         external_table_definition: external_table_definition,
                         service_access_role_arn: service_access_role_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DMS::Endpoint.SybaseSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-sybasesettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SybaseSettings {
+        /// Property [`SecretsManagerAccessRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-sybasesettings.html#cfn-dms-endpoint-sybasesettings-secretsmanageraccessrolearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secrets_manager_access_role_arn: Option<::Value<String>>,
+        /// Property [`SecretsManagerSecretId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-sybasesettings.html#cfn-dms-endpoint-sybasesettings-secretsmanagersecretid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secrets_manager_secret_id: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for SybaseSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref secrets_manager_access_role_arn) = self.secrets_manager_access_role_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecretsManagerAccessRoleArn", secrets_manager_access_role_arn)?;
+            }
+            if let Some(ref secrets_manager_secret_id) = self.secrets_manager_secret_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecretsManagerSecretId", secrets_manager_secret_id)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SybaseSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SybaseSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SybaseSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SybaseSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut secrets_manager_access_role_arn: Option<::Value<String>> = None;
+                    let mut secrets_manager_secret_id: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SecretsManagerAccessRoleArn" => {
+                                secrets_manager_access_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecretsManagerSecretId" => {
+                                secrets_manager_secret_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SybaseSettings {
+                        secrets_manager_access_role_arn: secrets_manager_access_role_arn,
+                        secrets_manager_secret_id: secrets_manager_secret_id,
                     })
                 }
             }

@@ -68,7 +68,7 @@ pub struct AppProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub type_: ::Value<String>,
+    pub r#type: ::Value<String>,
 }
 
 impl ::serde::Serialize for AppProperties {
@@ -103,7 +103,7 @@ impl ::serde::Serialize for AppProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SslConfiguration", ssl_configuration)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "StackId", &self.stack_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -131,7 +131,7 @@ impl<'de> ::serde::Deserialize<'de> for AppProperties {
                 let mut shortname: Option<::Value<String>> = None;
                 let mut ssl_configuration: Option<::Value<self::app::SslConfiguration>> = None;
                 let mut stack_id: Option<::Value<String>> = None;
-                let mut type_: Option<::Value<String>> = None;
+                let mut r#type: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -169,7 +169,7 @@ impl<'de> ::serde::Deserialize<'de> for AppProperties {
                             stack_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Type" => {
-                            type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                            r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -187,7 +187,7 @@ impl<'de> ::serde::Deserialize<'de> for AppProperties {
                     shortname: shortname,
                     ssl_configuration: ssl_configuration,
                     stack_id: stack_id.ok_or(::serde::de::Error::missing_field("StackId"))?,
-                    type_: type_.ok_or(::serde::de::Error::missing_field("Type"))?,
+                    r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
                 })
             }
         }
@@ -727,7 +727,7 @@ pub struct LayerProperties {
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub type_: ::Value<String>,
+    pub r#type: ::Value<String>,
     /// Property [`UseEbsOptimizedInstances`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworks-layer.html#cfn-opsworks-layer-useebsoptimizedinstances).
     ///
     /// Update type: _Mutable_.
@@ -779,7 +779,7 @@ impl ::serde::Serialize for LayerProperties {
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
         if let Some(ref use_ebs_optimized_instances) = self.use_ebs_optimized_instances {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "UseEbsOptimizedInstances", use_ebs_optimized_instances)?;
         }
@@ -818,7 +818,7 @@ impl<'de> ::serde::Deserialize<'de> for LayerProperties {
                 let mut shortname: Option<::Value<String>> = None;
                 let mut stack_id: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
-                let mut type_: Option<::Value<String>> = None;
+                let mut r#type: Option<::Value<String>> = None;
                 let mut use_ebs_optimized_instances: Option<::Value<bool>> = None;
                 let mut volume_configurations: Option<::ValueList<self::layer::VolumeConfiguration>> = None;
 
@@ -873,7 +873,7 @@ impl<'de> ::serde::Deserialize<'de> for LayerProperties {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Type" => {
-                            type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                            r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "UseEbsOptimizedInstances" => {
                             use_ebs_optimized_instances = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -902,7 +902,7 @@ impl<'de> ::serde::Deserialize<'de> for LayerProperties {
                     shortname: shortname.ok_or(::serde::de::Error::missing_field("Shortname"))?,
                     stack_id: stack_id.ok_or(::serde::de::Error::missing_field("StackId"))?,
                     tags: tags,
-                    type_: type_.ok_or(::serde::de::Error::missing_field("Type"))?,
+                    r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
                     use_ebs_optimized_instances: use_ebs_optimized_instances,
                     volume_configurations: volume_configurations,
                 })
@@ -1564,7 +1564,7 @@ pub mod app {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub type_: Option<::Value<String>>,
+        pub r#type: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for DataSource {
@@ -1576,8 +1576,8 @@ pub mod app {
             if let Some(ref database_name) = self.database_name {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseName", database_name)?;
             }
-            if let Some(ref type_) = self.type_ {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", type_)?;
+            if let Some(ref r#type) = self.r#type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", r#type)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -1597,7 +1597,7 @@ pub mod app {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut arn: Option<::Value<String>> = None;
                     let mut database_name: Option<::Value<String>> = None;
-                    let mut type_: Option<::Value<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1608,7 +1608,7 @@ pub mod app {
                                 database_name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Type" => {
-                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -1617,7 +1617,7 @@ pub mod app {
                     Ok(DataSource {
                         arn: arn,
                         database_name: database_name,
-                        type_: type_,
+                        r#type: r#type,
                     })
                 }
             }
@@ -1723,7 +1723,7 @@ pub mod app {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub type_: Option<::Value<String>>,
+        pub r#type: Option<::Value<String>>,
         /// Property [`Url`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-source.html#cfn-opsworks-custcookbooksource-url).
         ///
         /// Update type: _Mutable_.
@@ -1748,8 +1748,8 @@ pub mod app {
             if let Some(ref ssh_key) = self.ssh_key {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SshKey", ssh_key)?;
             }
-            if let Some(ref type_) = self.type_ {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", type_)?;
+            if let Some(ref r#type) = self.r#type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", r#type)?;
             }
             if let Some(ref url) = self.url {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Url", url)?;
@@ -1776,7 +1776,7 @@ pub mod app {
                     let mut password: Option<::Value<String>> = None;
                     let mut revision: Option<::Value<String>> = None;
                     let mut ssh_key: Option<::Value<String>> = None;
-                    let mut type_: Option<::Value<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
                     let mut url: Option<::Value<String>> = None;
                     let mut username: Option<::Value<String>> = None;
 
@@ -1792,7 +1792,7 @@ pub mod app {
                                 ssh_key = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Type" => {
-                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Url" => {
                                 url = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1808,7 +1808,7 @@ pub mod app {
                         password: password,
                         revision: revision,
                         ssh_key: ssh_key,
-                        type_: type_,
+                        r#type: r#type,
                         url: url,
                         username: username,
                     })
@@ -2658,6 +2658,11 @@ pub mod layer {
     /// The [`AWS::OpsWorks::Layer.VolumeConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-volumeconfiguration.html) property type.
     #[derive(Debug, Default)]
     pub struct VolumeConfiguration {
+        /// Property [`Encrypted`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-volumeconfiguration.html#cfn-opsworks-layer-volumeconfiguration-encrypted).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub encrypted: Option<::Value<bool>>,
         /// Property [`Iops`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-layer-volumeconfiguration.html#cfn-opsworks-layer-volconfig-iops).
         ///
         /// Update type: _Mutable_.
@@ -2693,6 +2698,9 @@ pub mod layer {
     impl ::codec::SerializeValue for VolumeConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref encrypted) = self.encrypted {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Encrypted", encrypted)?;
+            }
             if let Some(ref iops) = self.iops {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", iops)?;
             }
@@ -2727,6 +2735,7 @@ pub mod layer {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut encrypted: Option<::Value<bool>> = None;
                     let mut iops: Option<::Value<u32>> = None;
                     let mut mount_point: Option<::Value<String>> = None;
                     let mut number_of_disks: Option<::Value<u32>> = None;
@@ -2736,6 +2745,9 @@ pub mod layer {
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "Encrypted" => {
+                                encrypted = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Iops" => {
                                 iops = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -2759,6 +2771,7 @@ pub mod layer {
                     }
 
                     Ok(VolumeConfiguration {
+                        encrypted: encrypted,
                         iops: iops,
                         mount_point: mount_point,
                         number_of_disks: number_of_disks,
@@ -3002,7 +3015,7 @@ pub mod stack {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub type_: Option<::Value<String>>,
+        pub r#type: Option<::Value<String>>,
         /// Property [`Url`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-opsworks-stack-source.html#cfn-opsworks-custcookbooksource-url).
         ///
         /// Update type: _Mutable_.
@@ -3027,8 +3040,8 @@ pub mod stack {
             if let Some(ref ssh_key) = self.ssh_key {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SshKey", ssh_key)?;
             }
-            if let Some(ref type_) = self.type_ {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", type_)?;
+            if let Some(ref r#type) = self.r#type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", r#type)?;
             }
             if let Some(ref url) = self.url {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Url", url)?;
@@ -3055,7 +3068,7 @@ pub mod stack {
                     let mut password: Option<::Value<String>> = None;
                     let mut revision: Option<::Value<String>> = None;
                     let mut ssh_key: Option<::Value<String>> = None;
-                    let mut type_: Option<::Value<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
                     let mut url: Option<::Value<String>> = None;
                     let mut username: Option<::Value<String>> = None;
 
@@ -3071,7 +3084,7 @@ pub mod stack {
                                 ssh_key = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Type" => {
-                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Url" => {
                                 url = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -3087,7 +3100,7 @@ pub mod stack {
                         password: password,
                         revision: revision,
                         ssh_key: ssh_key,
-                        type_: type_,
+                        r#type: r#type,
                         url: url,
                         username: username,
                     })

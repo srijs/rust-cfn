@@ -19,6 +19,16 @@ pub struct AutoScalingGroupProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub availability_zones: Option<::ValueList<String>>,
+    /// Property [`CapacityRebalance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html#cfn-as-group-capacityrebalance).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub capacity_rebalance: Option<::Value<bool>>,
+    /// Property [`Context`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html#cfn-as-group-context).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub context: Option<::Value<String>>,
     /// Property [`Cooldown`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html#cfn-as-group-cooldown).
     ///
     /// Update type: _Mutable_.
@@ -49,6 +59,11 @@ pub struct AutoScalingGroupProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub launch_configuration_name: Option<::Value<String>>,
+    /// Property [`LaunchTemplate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html#cfn-as-group-launchtemplate).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub launch_template: Option<::Value<self::auto_scaling_group::LaunchTemplateSpecification>>,
     /// Property [`LifecycleHookSpecificationList`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html#cfn-autoscaling-autoscalinggroup-lifecyclehookspecificationlist).
     ///
     /// Update type: _Mutable_.
@@ -59,6 +74,11 @@ pub struct AutoScalingGroupProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub load_balancer_names: Option<::ValueList<String>>,
+    /// Property [`MaxInstanceLifetime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html#cfn-as-group-maxinstancelifetime).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub max_instance_lifetime: Option<::Value<u32>>,
     /// Property [`MaxSize`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html#cfn-as-group-maxsize).
     ///
     /// Update type: _Mutable_.
@@ -74,6 +94,16 @@ pub struct AutoScalingGroupProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub min_size: ::Value<String>,
+    /// Property [`MixedInstancesPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html#cfn-as-group-mixedinstancespolicy).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub mixed_instances_policy: Option<::Value<self::auto_scaling_group::MixedInstancesPolicy>>,
+    /// Property [`NewInstancesProtectedFromScaleIn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html#cfn-as-group-newinstancesprotectedfromscalein).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub new_instances_protected_from_scale_in: Option<::Value<bool>>,
     /// Property [`NotificationConfigurations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html#cfn-as-group-notificationconfigurations).
     ///
     /// Update type: _Mutable_.
@@ -84,6 +114,11 @@ pub struct AutoScalingGroupProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub placement_group: Option<::Value<String>>,
+    /// Property [`ServiceLinkedRoleARN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html#cfn-autoscaling-autoscalinggroup-servicelinkedrolearn).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub service_linked_role_arn: Option<::Value<String>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-group.html#cfn-as-group-tags).
     ///
     /// Update type: _Mutable_.
@@ -115,6 +150,12 @@ impl ::serde::Serialize for AutoScalingGroupProperties {
         if let Some(ref availability_zones) = self.availability_zones {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZones", availability_zones)?;
         }
+        if let Some(ref capacity_rebalance) = self.capacity_rebalance {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CapacityRebalance", capacity_rebalance)?;
+        }
+        if let Some(ref context) = self.context {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Context", context)?;
+        }
         if let Some(ref cooldown) = self.cooldown {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cooldown", cooldown)?;
         }
@@ -133,22 +174,37 @@ impl ::serde::Serialize for AutoScalingGroupProperties {
         if let Some(ref launch_configuration_name) = self.launch_configuration_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchConfigurationName", launch_configuration_name)?;
         }
+        if let Some(ref launch_template) = self.launch_template {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchTemplate", launch_template)?;
+        }
         if let Some(ref lifecycle_hook_specification_list) = self.lifecycle_hook_specification_list {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LifecycleHookSpecificationList", lifecycle_hook_specification_list)?;
         }
         if let Some(ref load_balancer_names) = self.load_balancer_names {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancerNames", load_balancer_names)?;
         }
+        if let Some(ref max_instance_lifetime) = self.max_instance_lifetime {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxInstanceLifetime", max_instance_lifetime)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxSize", &self.max_size)?;
         if let Some(ref metrics_collection) = self.metrics_collection {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricsCollection", metrics_collection)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinSize", &self.min_size)?;
+        if let Some(ref mixed_instances_policy) = self.mixed_instances_policy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MixedInstancesPolicy", mixed_instances_policy)?;
+        }
+        if let Some(ref new_instances_protected_from_scale_in) = self.new_instances_protected_from_scale_in {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NewInstancesProtectedFromScaleIn", new_instances_protected_from_scale_in)?;
+        }
         if let Some(ref notification_configurations) = self.notification_configurations {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationConfigurations", notification_configurations)?;
         }
         if let Some(ref placement_group) = self.placement_group {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PlacementGroup", placement_group)?;
+        }
+        if let Some(ref service_linked_role_arn) = self.service_linked_role_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceLinkedRoleARN", service_linked_role_arn)?;
         }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
@@ -180,19 +236,26 @@ impl<'de> ::serde::Deserialize<'de> for AutoScalingGroupProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut auto_scaling_group_name: Option<::Value<String>> = None;
                 let mut availability_zones: Option<::ValueList<String>> = None;
+                let mut capacity_rebalance: Option<::Value<bool>> = None;
+                let mut context: Option<::Value<String>> = None;
                 let mut cooldown: Option<::Value<String>> = None;
                 let mut desired_capacity: Option<::Value<String>> = None;
                 let mut health_check_grace_period: Option<::Value<u32>> = None;
                 let mut health_check_type: Option<::Value<String>> = None;
                 let mut instance_id: Option<::Value<String>> = None;
                 let mut launch_configuration_name: Option<::Value<String>> = None;
+                let mut launch_template: Option<::Value<self::auto_scaling_group::LaunchTemplateSpecification>> = None;
                 let mut lifecycle_hook_specification_list: Option<::ValueList<self::auto_scaling_group::LifecycleHookSpecification>> = None;
                 let mut load_balancer_names: Option<::ValueList<String>> = None;
+                let mut max_instance_lifetime: Option<::Value<u32>> = None;
                 let mut max_size: Option<::Value<String>> = None;
                 let mut metrics_collection: Option<::ValueList<self::auto_scaling_group::MetricsCollection>> = None;
                 let mut min_size: Option<::Value<String>> = None;
+                let mut mixed_instances_policy: Option<::Value<self::auto_scaling_group::MixedInstancesPolicy>> = None;
+                let mut new_instances_protected_from_scale_in: Option<::Value<bool>> = None;
                 let mut notification_configurations: Option<::ValueList<self::auto_scaling_group::NotificationConfiguration>> = None;
                 let mut placement_group: Option<::Value<String>> = None;
+                let mut service_linked_role_arn: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<self::auto_scaling_group::TagProperty>> = None;
                 let mut target_group_ar_ns: Option<::ValueList<String>> = None;
                 let mut termination_policies: Option<::ValueList<String>> = None;
@@ -205,6 +268,12 @@ impl<'de> ::serde::Deserialize<'de> for AutoScalingGroupProperties {
                         }
                         "AvailabilityZones" => {
                             availability_zones = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "CapacityRebalance" => {
+                            capacity_rebalance = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Context" => {
+                            context = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Cooldown" => {
                             cooldown = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -224,11 +293,17 @@ impl<'de> ::serde::Deserialize<'de> for AutoScalingGroupProperties {
                         "LaunchConfigurationName" => {
                             launch_configuration_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "LaunchTemplate" => {
+                            launch_template = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "LifecycleHookSpecificationList" => {
                             lifecycle_hook_specification_list = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "LoadBalancerNames" => {
                             load_balancer_names = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MaxInstanceLifetime" => {
+                            max_instance_lifetime = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "MaxSize" => {
                             max_size = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -239,11 +314,20 @@ impl<'de> ::serde::Deserialize<'de> for AutoScalingGroupProperties {
                         "MinSize" => {
                             min_size = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "MixedInstancesPolicy" => {
+                            mixed_instances_policy = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "NewInstancesProtectedFromScaleIn" => {
+                            new_instances_protected_from_scale_in = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "NotificationConfigurations" => {
                             notification_configurations = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "PlacementGroup" => {
                             placement_group = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ServiceLinkedRoleARN" => {
+                            service_linked_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -264,19 +348,26 @@ impl<'de> ::serde::Deserialize<'de> for AutoScalingGroupProperties {
                 Ok(AutoScalingGroupProperties {
                     auto_scaling_group_name: auto_scaling_group_name,
                     availability_zones: availability_zones,
+                    capacity_rebalance: capacity_rebalance,
+                    context: context,
                     cooldown: cooldown,
                     desired_capacity: desired_capacity,
                     health_check_grace_period: health_check_grace_period,
                     health_check_type: health_check_type,
                     instance_id: instance_id,
                     launch_configuration_name: launch_configuration_name,
+                    launch_template: launch_template,
                     lifecycle_hook_specification_list: lifecycle_hook_specification_list,
                     load_balancer_names: load_balancer_names,
+                    max_instance_lifetime: max_instance_lifetime,
                     max_size: max_size.ok_or(::serde::de::Error::missing_field("MaxSize"))?,
                     metrics_collection: metrics_collection,
                     min_size: min_size.ok_or(::serde::de::Error::missing_field("MinSize"))?,
+                    mixed_instances_policy: mixed_instances_policy,
+                    new_instances_protected_from_scale_in: new_instances_protected_from_scale_in,
                     notification_configurations: notification_configurations,
                     placement_group: placement_group,
+                    service_linked_role_arn: service_linked_role_arn,
                     tags: tags,
                     target_group_ar_ns: target_group_ar_ns,
                     termination_policies: termination_policies,
@@ -377,6 +468,16 @@ pub struct LaunchConfigurationProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub key_name: Option<::Value<String>>,
+    /// Property [`LaunchConfigurationName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig.html#cfn-autoscaling-launchconfig-launchconfigurationname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub launch_configuration_name: Option<::Value<String>>,
+    /// Property [`MetadataOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig.html#cfn-autoscaling-launchconfig-metadataoptions).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub metadata_options: Option<::Value<self::launch_configuration::MetadataOptions>>,
     /// Property [`PlacementTenancy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig.html#cfn-as-launchconfig-placementtenancy).
     ///
     /// Update type: _Immutable_.
@@ -439,6 +540,12 @@ impl ::serde::Serialize for LaunchConfigurationProperties {
         if let Some(ref key_name) = self.key_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyName", key_name)?;
         }
+        if let Some(ref launch_configuration_name) = self.launch_configuration_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchConfigurationName", launch_configuration_name)?;
+        }
+        if let Some(ref metadata_options) = self.metadata_options {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetadataOptions", metadata_options)?;
+        }
         if let Some(ref placement_tenancy) = self.placement_tenancy {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PlacementTenancy", placement_tenancy)?;
         }
@@ -482,6 +589,8 @@ impl<'de> ::serde::Deserialize<'de> for LaunchConfigurationProperties {
                 let mut instance_type: Option<::Value<String>> = None;
                 let mut kernel_id: Option<::Value<String>> = None;
                 let mut key_name: Option<::Value<String>> = None;
+                let mut launch_configuration_name: Option<::Value<String>> = None;
+                let mut metadata_options: Option<::Value<self::launch_configuration::MetadataOptions>> = None;
                 let mut placement_tenancy: Option<::Value<String>> = None;
                 let mut ram_disk_id: Option<::Value<String>> = None;
                 let mut security_groups: Option<::ValueList<String>> = None;
@@ -526,6 +635,12 @@ impl<'de> ::serde::Deserialize<'de> for LaunchConfigurationProperties {
                         "KeyName" => {
                             key_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "LaunchConfigurationName" => {
+                            launch_configuration_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MetadataOptions" => {
+                            metadata_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "PlacementTenancy" => {
                             placement_tenancy = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -558,6 +673,8 @@ impl<'de> ::serde::Deserialize<'de> for LaunchConfigurationProperties {
                     instance_type: instance_type.ok_or(::serde::de::Error::missing_field("InstanceType"))?,
                     kernel_id: kernel_id,
                     key_name: key_name,
+                    launch_configuration_name: launch_configuration_name,
+                    metadata_options: metadata_options,
                     placement_tenancy: placement_tenancy,
                     ram_disk_id: ram_disk_id,
                     security_groups: security_groups,
@@ -992,6 +1109,11 @@ pub struct ScheduledActionProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub start_time: Option<::Value<String>>,
+    /// Property [`TimeZone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-as-scheduledaction.html#cfn-as-scheduledaction-timezone).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub time_zone: Option<::Value<String>>,
 }
 
 impl ::serde::Serialize for ScheduledActionProperties {
@@ -1016,6 +1138,9 @@ impl ::serde::Serialize for ScheduledActionProperties {
         if let Some(ref start_time) = self.start_time {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "StartTime", start_time)?;
         }
+        if let Some(ref time_zone) = self.time_zone {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimeZone", time_zone)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -1039,6 +1164,7 @@ impl<'de> ::serde::Deserialize<'de> for ScheduledActionProperties {
                 let mut min_size: Option<::Value<u32>> = None;
                 let mut recurrence: Option<::Value<String>> = None;
                 let mut start_time: Option<::Value<String>> = None;
+                let mut time_zone: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1063,6 +1189,9 @@ impl<'de> ::serde::Deserialize<'de> for ScheduledActionProperties {
                         "StartTime" => {
                             start_time = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "TimeZone" => {
+                            time_zone = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
@@ -1075,6 +1204,7 @@ impl<'de> ::serde::Deserialize<'de> for ScheduledActionProperties {
                     min_size: min_size,
                     recurrence: recurrence,
                     start_time: start_time,
+                    time_zone: time_zone,
                 })
             }
         }
@@ -1102,8 +1232,461 @@ impl From<ScheduledActionProperties> for ScheduledAction {
     }
 }
 
+/// The [`AWS::AutoScaling::WarmPool`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-warmpool.html) resource type.
+#[derive(Debug, Default)]
+pub struct WarmPool {
+    properties: WarmPoolProperties
+}
+
+/// Properties for the `WarmPool` resource.
+#[derive(Debug, Default)]
+pub struct WarmPoolProperties {
+    /// Property [`AutoScalingGroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-warmpool.html#cfn-autoscaling-warmpool-autoscalinggroupname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub auto_scaling_group_name: ::Value<String>,
+    /// Property [`MaxGroupPreparedCapacity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-warmpool.html#cfn-autoscaling-warmpool-maxgrouppreparedcapacity).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub max_group_prepared_capacity: Option<::Value<u32>>,
+    /// Property [`MinSize`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-warmpool.html#cfn-autoscaling-warmpool-minsize).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub min_size: Option<::Value<u32>>,
+    /// Property [`PoolState`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-autoscaling-warmpool.html#cfn-autoscaling-warmpool-poolstate).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub pool_state: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for WarmPoolProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoScalingGroupName", &self.auto_scaling_group_name)?;
+        if let Some(ref max_group_prepared_capacity) = self.max_group_prepared_capacity {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxGroupPreparedCapacity", max_group_prepared_capacity)?;
+        }
+        if let Some(ref min_size) = self.min_size {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinSize", min_size)?;
+        }
+        if let Some(ref pool_state) = self.pool_state {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PoolState", pool_state)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for WarmPoolProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<WarmPoolProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = WarmPoolProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type WarmPoolProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut auto_scaling_group_name: Option<::Value<String>> = None;
+                let mut max_group_prepared_capacity: Option<::Value<u32>> = None;
+                let mut min_size: Option<::Value<u32>> = None;
+                let mut pool_state: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AutoScalingGroupName" => {
+                            auto_scaling_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MaxGroupPreparedCapacity" => {
+                            max_group_prepared_capacity = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MinSize" => {
+                            min_size = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PoolState" => {
+                            pool_state = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(WarmPoolProperties {
+                    auto_scaling_group_name: auto_scaling_group_name.ok_or(::serde::de::Error::missing_field("AutoScalingGroupName"))?,
+                    max_group_prepared_capacity: max_group_prepared_capacity,
+                    min_size: min_size,
+                    pool_state: pool_state,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for WarmPool {
+    type Properties = WarmPoolProperties;
+    const TYPE: &'static str = "AWS::AutoScaling::WarmPool";
+    fn properties(&self) -> &WarmPoolProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut WarmPoolProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for WarmPool {}
+
+impl From<WarmPoolProperties> for WarmPool {
+    fn from(properties: WarmPoolProperties) -> WarmPool {
+        WarmPool { properties }
+    }
+}
+
 pub mod auto_scaling_group {
     //! Property types for the `AutoScalingGroup` resource.
+
+    /// The [`AWS::AutoScaling::AutoScalingGroup.InstancesDistribution`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-as-mixedinstancespolicy-instancesdistribution.html) property type.
+    #[derive(Debug, Default)]
+    pub struct InstancesDistribution {
+        /// Property [`OnDemandAllocationStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-as-mixedinstancespolicy-instancesdistribution.html#cfn-autoscaling-autoscalinggroup-instancesdistribution-ondemandallocationstrategy).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub on_demand_allocation_strategy: Option<::Value<String>>,
+        /// Property [`OnDemandBaseCapacity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-as-mixedinstancespolicy-instancesdistribution.html#cfn-autoscaling-autoscalinggroup-instancesdistribution-ondemandbasecapacity).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub on_demand_base_capacity: Option<::Value<u32>>,
+        /// Property [`OnDemandPercentageAboveBaseCapacity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-as-mixedinstancespolicy-instancesdistribution.html#cfn-autoscaling-autoscalinggroup-instancesdistribution-ondemandpercentageabovebasecapacity).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub on_demand_percentage_above_base_capacity: Option<::Value<u32>>,
+        /// Property [`SpotAllocationStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-as-mixedinstancespolicy-instancesdistribution.html#cfn-autoscaling-autoscalinggroup-instancesdistribution-spotallocationstrategy).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub spot_allocation_strategy: Option<::Value<String>>,
+        /// Property [`SpotInstancePools`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-as-mixedinstancespolicy-instancesdistribution.html#cfn-autoscaling-autoscalinggroup-instancesdistribution-spotinstancepools).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub spot_instance_pools: Option<::Value<u32>>,
+        /// Property [`SpotMaxPrice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-as-mixedinstancespolicy-instancesdistribution.html#cfn-autoscaling-autoscalinggroup-instancesdistribution-spotmaxprice).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub spot_max_price: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for InstancesDistribution {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref on_demand_allocation_strategy) = self.on_demand_allocation_strategy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OnDemandAllocationStrategy", on_demand_allocation_strategy)?;
+            }
+            if let Some(ref on_demand_base_capacity) = self.on_demand_base_capacity {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OnDemandBaseCapacity", on_demand_base_capacity)?;
+            }
+            if let Some(ref on_demand_percentage_above_base_capacity) = self.on_demand_percentage_above_base_capacity {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OnDemandPercentageAboveBaseCapacity", on_demand_percentage_above_base_capacity)?;
+            }
+            if let Some(ref spot_allocation_strategy) = self.spot_allocation_strategy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotAllocationStrategy", spot_allocation_strategy)?;
+            }
+            if let Some(ref spot_instance_pools) = self.spot_instance_pools {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotInstancePools", spot_instance_pools)?;
+            }
+            if let Some(ref spot_max_price) = self.spot_max_price {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotMaxPrice", spot_max_price)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for InstancesDistribution {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<InstancesDistribution, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = InstancesDistribution;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type InstancesDistribution")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut on_demand_allocation_strategy: Option<::Value<String>> = None;
+                    let mut on_demand_base_capacity: Option<::Value<u32>> = None;
+                    let mut on_demand_percentage_above_base_capacity: Option<::Value<u32>> = None;
+                    let mut spot_allocation_strategy: Option<::Value<String>> = None;
+                    let mut spot_instance_pools: Option<::Value<u32>> = None;
+                    let mut spot_max_price: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "OnDemandAllocationStrategy" => {
+                                on_demand_allocation_strategy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OnDemandBaseCapacity" => {
+                                on_demand_base_capacity = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OnDemandPercentageAboveBaseCapacity" => {
+                                on_demand_percentage_above_base_capacity = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SpotAllocationStrategy" => {
+                                spot_allocation_strategy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SpotInstancePools" => {
+                                spot_instance_pools = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SpotMaxPrice" => {
+                                spot_max_price = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(InstancesDistribution {
+                        on_demand_allocation_strategy: on_demand_allocation_strategy,
+                        on_demand_base_capacity: on_demand_base_capacity,
+                        on_demand_percentage_above_base_capacity: on_demand_percentage_above_base_capacity,
+                        spot_allocation_strategy: spot_allocation_strategy,
+                        spot_instance_pools: spot_instance_pools,
+                        spot_max_price: spot_max_price,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AutoScaling::AutoScalingGroup.LaunchTemplate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-as-mixedinstancespolicy-launchtemplate.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LaunchTemplate {
+        /// Property [`LaunchTemplateSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-as-mixedinstancespolicy-launchtemplate.html#cfn-as-group-launchtemplate).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub launch_template_specification: ::Value<LaunchTemplateSpecification>,
+        /// Property [`Overrides`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-as-mixedinstancespolicy-launchtemplate.html#cfn-as-mixedinstancespolicy-overrides).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub overrides: Option<::ValueList<LaunchTemplateOverrides>>,
+    }
+
+    impl ::codec::SerializeValue for LaunchTemplate {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchTemplateSpecification", &self.launch_template_specification)?;
+            if let Some(ref overrides) = self.overrides {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Overrides", overrides)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LaunchTemplate {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LaunchTemplate, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LaunchTemplate;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LaunchTemplate")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut launch_template_specification: Option<::Value<LaunchTemplateSpecification>> = None;
+                    let mut overrides: Option<::ValueList<LaunchTemplateOverrides>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "LaunchTemplateSpecification" => {
+                                launch_template_specification = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Overrides" => {
+                                overrides = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LaunchTemplate {
+                        launch_template_specification: launch_template_specification.ok_or(::serde::de::Error::missing_field("LaunchTemplateSpecification"))?,
+                        overrides: overrides,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AutoScaling::AutoScalingGroup.LaunchTemplateOverrides`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-as-mixedinstancespolicy-launchtemplateoverrides.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LaunchTemplateOverrides {
+        /// Property [`InstanceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-as-mixedinstancespolicy-launchtemplateoverrides.html#cfn-autoscaling-autoscalinggroup-launchtemplateoverrides-instancetype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub instance_type: Option<::Value<String>>,
+        /// Property [`LaunchTemplateSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-as-mixedinstancespolicy-launchtemplateoverrides.html#cfn-autoscaling-autoscalinggroup-launchtemplateoverrides-launchtemplatespecification).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub launch_template_specification: Option<::Value<LaunchTemplateSpecification>>,
+        /// Property [`WeightedCapacity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-as-mixedinstancespolicy-launchtemplateoverrides.html#cfn-autoscaling-autoscalinggroup-launchtemplateoverrides-weightedcapacity).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub weighted_capacity: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for LaunchTemplateOverrides {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref instance_type) = self.instance_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceType", instance_type)?;
+            }
+            if let Some(ref launch_template_specification) = self.launch_template_specification {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchTemplateSpecification", launch_template_specification)?;
+            }
+            if let Some(ref weighted_capacity) = self.weighted_capacity {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "WeightedCapacity", weighted_capacity)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LaunchTemplateOverrides {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LaunchTemplateOverrides, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LaunchTemplateOverrides;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LaunchTemplateOverrides")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut instance_type: Option<::Value<String>> = None;
+                    let mut launch_template_specification: Option<::Value<LaunchTemplateSpecification>> = None;
+                    let mut weighted_capacity: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "InstanceType" => {
+                                instance_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LaunchTemplateSpecification" => {
+                                launch_template_specification = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "WeightedCapacity" => {
+                                weighted_capacity = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LaunchTemplateOverrides {
+                        instance_type: instance_type,
+                        launch_template_specification: launch_template_specification,
+                        weighted_capacity: weighted_capacity,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AutoScaling::AutoScalingGroup.LaunchTemplateSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-launchtemplatespecification.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LaunchTemplateSpecification {
+        /// Property [`LaunchTemplateId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-launchtemplatespecification.html#cfn-autoscaling-autoscalinggroup-launchtemplatespecification-launchtemplateid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub launch_template_id: Option<::Value<String>>,
+        /// Property [`LaunchTemplateName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-launchtemplatespecification.html#cfn-autoscaling-autoscalinggroup-launchtemplatespecification-launchtemplatename).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub launch_template_name: Option<::Value<String>>,
+        /// Property [`Version`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-launchtemplatespecification.html#cfn-autoscaling-autoscalinggroup-launchtemplatespecification-version).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub version: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for LaunchTemplateSpecification {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref launch_template_id) = self.launch_template_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchTemplateId", launch_template_id)?;
+            }
+            if let Some(ref launch_template_name) = self.launch_template_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchTemplateName", launch_template_name)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Version", &self.version)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LaunchTemplateSpecification {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LaunchTemplateSpecification, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LaunchTemplateSpecification;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LaunchTemplateSpecification")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut launch_template_id: Option<::Value<String>> = None;
+                    let mut launch_template_name: Option<::Value<String>> = None;
+                    let mut version: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "LaunchTemplateId" => {
+                                launch_template_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LaunchTemplateName" => {
+                                launch_template_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Version" => {
+                                version = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LaunchTemplateSpecification {
+                        launch_template_id: launch_template_id,
+                        launch_template_name: launch_template_name,
+                        version: version.ok_or(::serde::de::Error::missing_field("Version"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::AutoScaling::AutoScalingGroup.LifecycleHookSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-lifecyclehookspecification.html) property type.
     #[derive(Debug, Default)]
@@ -1296,6 +1879,70 @@ pub mod auto_scaling_group {
         }
     }
 
+    /// The [`AWS::AutoScaling::AutoScalingGroup.MixedInstancesPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-as-group-mixedinstancespolicy.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MixedInstancesPolicy {
+        /// Property [`InstancesDistribution`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-as-group-mixedinstancespolicy.html#cfn-as-mixedinstancespolicy-instancesdistribution).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub instances_distribution: Option<::Value<InstancesDistribution>>,
+        /// Property [`LaunchTemplate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-as-group-mixedinstancespolicy.html#cfn-as-mixedinstancespolicy-launchtemplate).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub launch_template: ::Value<LaunchTemplate>,
+    }
+
+    impl ::codec::SerializeValue for MixedInstancesPolicy {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref instances_distribution) = self.instances_distribution {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstancesDistribution", instances_distribution)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchTemplate", &self.launch_template)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MixedInstancesPolicy {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MixedInstancesPolicy, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MixedInstancesPolicy;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MixedInstancesPolicy")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut instances_distribution: Option<::Value<InstancesDistribution>> = None;
+                    let mut launch_template: Option<::Value<LaunchTemplate>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "InstancesDistribution" => {
+                                instances_distribution = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LaunchTemplate" => {
+                                launch_template = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MixedInstancesPolicy {
+                        instances_distribution: instances_distribution,
+                        launch_template: launch_template.ok_or(::serde::de::Error::missing_field("LaunchTemplate"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::AutoScaling::AutoScalingGroup.NotificationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-notificationconfigurations.html) property type.
     #[derive(Debug, Default)]
     pub struct NotificationConfiguration {
@@ -1460,6 +2107,11 @@ pub mod launch_configuration {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub snapshot_id: Option<::Value<String>>,
+        /// Property [`Throughput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig-blockdev-template.html#cfn-as-launchconfig-blockdev-template-throughput).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub throughput: Option<::Value<u32>>,
         /// Property [`VolumeSize`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig-blockdev-template.html#cfn-as-launchconfig-blockdev-template-volumesize).
         ///
         /// Update type: _Mutable_.
@@ -1487,6 +2139,9 @@ pub mod launch_configuration {
             if let Some(ref snapshot_id) = self.snapshot_id {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotId", snapshot_id)?;
             }
+            if let Some(ref throughput) = self.throughput {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Throughput", throughput)?;
+            }
             if let Some(ref volume_size) = self.volume_size {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeSize", volume_size)?;
             }
@@ -1513,6 +2168,7 @@ pub mod launch_configuration {
                     let mut encrypted: Option<::Value<bool>> = None;
                     let mut iops: Option<::Value<u32>> = None;
                     let mut snapshot_id: Option<::Value<String>> = None;
+                    let mut throughput: Option<::Value<u32>> = None;
                     let mut volume_size: Option<::Value<u32>> = None;
                     let mut volume_type: Option<::Value<String>> = None;
 
@@ -1530,6 +2186,9 @@ pub mod launch_configuration {
                             "SnapshotId" => {
                                 snapshot_id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Throughput" => {
+                                throughput = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "VolumeSize" => {
                                 volume_size = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1545,6 +2204,7 @@ pub mod launch_configuration {
                         encrypted: encrypted,
                         iops: iops,
                         snapshot_id: snapshot_id,
+                        throughput: throughput,
                         volume_size: volume_size,
                         volume_type: volume_type,
                     })
@@ -1637,6 +2297,85 @@ pub mod launch_configuration {
                         ebs: ebs,
                         no_device: no_device,
                         virtual_name: virtual_name,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AutoScaling::LaunchConfiguration.MetadataOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-launchconfig-metadataoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MetadataOptions {
+        /// Property [`HttpEndpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-launchconfig-metadataoptions.html#cfn-autoscaling-launchconfig-metadataoptions-httpendpoint).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub http_endpoint: Option<::Value<String>>,
+        /// Property [`HttpPutResponseHopLimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-launchconfig-metadataoptions.html#cfn-autoscaling-launchconfig-metadataoptions-httpputresponsehoplimit).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub http_put_response_hop_limit: Option<::Value<u32>>,
+        /// Property [`HttpTokens`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-launchconfig-metadataoptions.html#cfn-autoscaling-launchconfig-metadataoptions-httptokens).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub http_tokens: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for MetadataOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref http_endpoint) = self.http_endpoint {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HttpEndpoint", http_endpoint)?;
+            }
+            if let Some(ref http_put_response_hop_limit) = self.http_put_response_hop_limit {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HttpPutResponseHopLimit", http_put_response_hop_limit)?;
+            }
+            if let Some(ref http_tokens) = self.http_tokens {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HttpTokens", http_tokens)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MetadataOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MetadataOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MetadataOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MetadataOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut http_endpoint: Option<::Value<String>> = None;
+                    let mut http_put_response_hop_limit: Option<::Value<u32>> = None;
+                    let mut http_tokens: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "HttpEndpoint" => {
+                                http_endpoint = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HttpPutResponseHopLimit" => {
+                                http_put_response_hop_limit = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HttpTokens" => {
+                                http_tokens = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MetadataOptions {
+                        http_endpoint: http_endpoint,
+                        http_put_response_hop_limit: http_put_response_hop_limit,
+                        http_tokens: http_tokens,
                     })
                 }
             }

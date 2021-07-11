@@ -14,6 +14,11 @@ pub struct MicrosoftADProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub create_alias: Option<::Value<bool>>,
+    /// Property [`Edition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-microsoftad.html#cfn-directoryservice-microsoftad-edition).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub edition: Option<::Value<String>>,
     /// Property [`EnableSso`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-microsoftad.html#cfn-directoryservice-microsoftad-enablesso).
     ///
     /// Update type: _Mutable_.
@@ -47,6 +52,9 @@ impl ::serde::Serialize for MicrosoftADProperties {
         if let Some(ref create_alias) = self.create_alias {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CreateAlias", create_alias)?;
         }
+        if let Some(ref edition) = self.edition {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Edition", edition)?;
+        }
         if let Some(ref enable_sso) = self.enable_sso {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableSso", enable_sso)?;
         }
@@ -73,6 +81,7 @@ impl<'de> ::serde::Deserialize<'de> for MicrosoftADProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut create_alias: Option<::Value<bool>> = None;
+                let mut edition: Option<::Value<String>> = None;
                 let mut enable_sso: Option<::Value<bool>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut password: Option<::Value<String>> = None;
@@ -83,6 +92,9 @@ impl<'de> ::serde::Deserialize<'de> for MicrosoftADProperties {
                     match __cfn_key.as_ref() {
                         "CreateAlias" => {
                             create_alias = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Edition" => {
+                            edition = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "EnableSso" => {
                             enable_sso = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -105,6 +117,7 @@ impl<'de> ::serde::Deserialize<'de> for MicrosoftADProperties {
 
                 Ok(MicrosoftADProperties {
                     create_alias: create_alias,
+                    edition: edition,
                     enable_sso: enable_sso,
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     password: password.ok_or(::serde::de::Error::missing_field("Password"))?,

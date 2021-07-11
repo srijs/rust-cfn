@@ -117,6 +117,16 @@ pub struct ApiKeyProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub stage_keys: Option<::ValueList<self::api_key::StageKey>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-apikey.html#cfn-apigateway-apikey-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-apikey.html#cfn-apigateway-apikey-value).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub value: Option<::Value<String>>,
 }
 
 impl ::serde::Serialize for ApiKeyProperties {
@@ -140,6 +150,12 @@ impl ::serde::Serialize for ApiKeyProperties {
         if let Some(ref stage_keys) = self.stage_keys {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "StageKeys", stage_keys)?;
         }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref value) = self.value {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", value)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -162,6 +178,8 @@ impl<'de> ::serde::Deserialize<'de> for ApiKeyProperties {
                 let mut generate_distinct_id: Option<::Value<bool>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut stage_keys: Option<::ValueList<self::api_key::StageKey>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut value: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -183,6 +201,12 @@ impl<'de> ::serde::Deserialize<'de> for ApiKeyProperties {
                         "StageKeys" => {
                             stage_keys = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Value" => {
+                            value = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
@@ -194,6 +218,8 @@ impl<'de> ::serde::Deserialize<'de> for ApiKeyProperties {
                     generate_distinct_id: generate_distinct_id,
                     name: name,
                     stage_keys: stage_keys,
+                    tags: tags,
+                    value: value,
                 })
             }
         }
@@ -279,7 +305,7 @@ pub struct AuthorizerProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub type_: Option<::Value<String>>,
+    pub r#type: ::Value<String>,
 }
 
 impl ::serde::Serialize for AuthorizerProperties {
@@ -310,9 +336,7 @@ impl ::serde::Serialize for AuthorizerProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProviderARNs", provider_ar_ns)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RestApiId", &self.rest_api_id)?;
-        if let Some(ref type_) = self.type_ {
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", type_)?;
-        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -338,7 +362,7 @@ impl<'de> ::serde::Deserialize<'de> for AuthorizerProperties {
                 let mut name: Option<::Value<String>> = None;
                 let mut provider_ar_ns: Option<::ValueList<String>> = None;
                 let mut rest_api_id: Option<::Value<String>> = None;
-                let mut type_: Option<::Value<String>> = None;
+                let mut r#type: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -370,7 +394,7 @@ impl<'de> ::serde::Deserialize<'de> for AuthorizerProperties {
                             rest_api_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Type" => {
-                            type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                            r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -386,7 +410,7 @@ impl<'de> ::serde::Deserialize<'de> for AuthorizerProperties {
                     name: name,
                     provider_ar_ns: provider_ar_ns,
                     rest_api_id: rest_api_id.ok_or(::serde::de::Error::missing_field("RestApiId"))?,
-                    type_: type_,
+                    r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
                 })
             }
         }
@@ -543,6 +567,11 @@ pub struct ClientCertificateProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub description: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-clientcertificate.html#cfn-apigateway-clientcertificate-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
 }
 
 impl ::serde::Serialize for ClientCertificateProperties {
@@ -550,6 +579,9 @@ impl ::serde::Serialize for ClientCertificateProperties {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         if let Some(ref description) = self.description {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
         ::serde::ser::SerializeMap::end(map)
     }
@@ -568,11 +600,15 @@ impl<'de> ::serde::Deserialize<'de> for ClientCertificateProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut description: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "Description" => {
                             description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -580,6 +616,7 @@ impl<'de> ::serde::Deserialize<'de> for ClientCertificateProperties {
 
                 Ok(ClientCertificateProperties {
                     description: description,
+                    tags: tags,
                 })
             }
         }
@@ -616,6 +653,11 @@ pub struct Deployment {
 /// Properties for the `Deployment` resource.
 #[derive(Debug, Default)]
 pub struct DeploymentProperties {
+    /// Property [`DeploymentCanarySettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-deployment.html#cfn-apigateway-deployment-deploymentcanarysettings).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub deployment_canary_settings: Option<::Value<self::deployment::DeploymentCanarySettings>>,
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-deployment.html#cfn-apigateway-deployment-description).
     ///
     /// Update type: _Mutable_.
@@ -641,6 +683,9 @@ pub struct DeploymentProperties {
 impl ::serde::Serialize for DeploymentProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref deployment_canary_settings) = self.deployment_canary_settings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeploymentCanarySettings", deployment_canary_settings)?;
+        }
         if let Some(ref description) = self.description {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
         }
@@ -667,6 +712,7 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut deployment_canary_settings: Option<::Value<self::deployment::DeploymentCanarySettings>> = None;
                 let mut description: Option<::Value<String>> = None;
                 let mut rest_api_id: Option<::Value<String>> = None;
                 let mut stage_description: Option<::Value<self::deployment::StageDescription>> = None;
@@ -674,6 +720,9 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentProperties {
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "DeploymentCanarySettings" => {
+                            deployment_canary_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Description" => {
                             description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -691,6 +740,7 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentProperties {
                 }
 
                 Ok(DeploymentProperties {
+                    deployment_canary_settings: deployment_canary_settings,
                     description: description,
                     rest_api_id: rest_api_id.ok_or(::serde::de::Error::missing_field("RestApiId"))?,
                     stage_description: stage_description,
@@ -938,17 +988,32 @@ pub struct DomainNameProperties {
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub domain_name: ::Value<String>,
+    pub domain_name: Option<::Value<String>>,
     /// Property [`EndpointConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainname.html#cfn-apigateway-domainname-endpointconfiguration).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub endpoint_configuration: Option<::Value<self::domain_name::EndpointConfiguration>>,
+    /// Property [`MutualTlsAuthentication`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainname.html#cfn-apigateway-domainname-mutualtlsauthentication).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub mutual_tls_authentication: Option<::Value<self::domain_name::MutualTlsAuthentication>>,
     /// Property [`RegionalCertificateArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainname.html#cfn-apigateway-domainname-regionalcertificatearn).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub regional_certificate_arn: Option<::Value<String>>,
+    /// Property [`SecurityPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainname.html#cfn-apigateway-domainname-securitypolicy).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub security_policy: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainname.html#cfn-apigateway-domainname-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
 }
 
 impl ::serde::Serialize for DomainNameProperties {
@@ -957,12 +1022,23 @@ impl ::serde::Serialize for DomainNameProperties {
         if let Some(ref certificate_arn) = self.certificate_arn {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificateArn", certificate_arn)?;
         }
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainName", &self.domain_name)?;
+        if let Some(ref domain_name) = self.domain_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainName", domain_name)?;
+        }
         if let Some(ref endpoint_configuration) = self.endpoint_configuration {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndpointConfiguration", endpoint_configuration)?;
         }
+        if let Some(ref mutual_tls_authentication) = self.mutual_tls_authentication {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MutualTlsAuthentication", mutual_tls_authentication)?;
+        }
         if let Some(ref regional_certificate_arn) = self.regional_certificate_arn {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RegionalCertificateArn", regional_certificate_arn)?;
+        }
+        if let Some(ref security_policy) = self.security_policy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityPolicy", security_policy)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
         ::serde::ser::SerializeMap::end(map)
     }
@@ -983,7 +1059,10 @@ impl<'de> ::serde::Deserialize<'de> for DomainNameProperties {
                 let mut certificate_arn: Option<::Value<String>> = None;
                 let mut domain_name: Option<::Value<String>> = None;
                 let mut endpoint_configuration: Option<::Value<self::domain_name::EndpointConfiguration>> = None;
+                let mut mutual_tls_authentication: Option<::Value<self::domain_name::MutualTlsAuthentication>> = None;
                 let mut regional_certificate_arn: Option<::Value<String>> = None;
+                let mut security_policy: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -996,8 +1075,17 @@ impl<'de> ::serde::Deserialize<'de> for DomainNameProperties {
                         "EndpointConfiguration" => {
                             endpoint_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "MutualTlsAuthentication" => {
+                            mutual_tls_authentication = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "RegionalCertificateArn" => {
                             regional_certificate_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SecurityPolicy" => {
+                            security_policy = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -1005,9 +1093,12 @@ impl<'de> ::serde::Deserialize<'de> for DomainNameProperties {
 
                 Ok(DomainNameProperties {
                     certificate_arn: certificate_arn,
-                    domain_name: domain_name.ok_or(::serde::de::Error::missing_field("DomainName"))?,
+                    domain_name: domain_name,
                     endpoint_configuration: endpoint_configuration,
+                    mutual_tls_authentication: mutual_tls_authentication,
                     regional_certificate_arn: regional_certificate_arn,
+                    security_policy: security_policy,
+                    tags: tags,
                 })
             }
         }
@@ -1175,6 +1266,11 @@ pub struct MethodProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub api_key_required: Option<::Value<bool>>,
+    /// Property [`AuthorizationScopes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-method.html#cfn-apigateway-method-authorizationscopes).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub authorization_scopes: Option<::ValueList<String>>,
     /// Property [`AuthorizationType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-method.html#cfn-apigateway-method-authorizationtype).
     ///
     /// Update type: _Mutable_.
@@ -1238,6 +1334,9 @@ impl ::serde::Serialize for MethodProperties {
         if let Some(ref api_key_required) = self.api_key_required {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApiKeyRequired", api_key_required)?;
         }
+        if let Some(ref authorization_scopes) = self.authorization_scopes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthorizationScopes", authorization_scopes)?;
+        }
         if let Some(ref authorization_type) = self.authorization_type {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthorizationType", authorization_type)?;
         }
@@ -1282,6 +1381,7 @@ impl<'de> ::serde::Deserialize<'de> for MethodProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut api_key_required: Option<::Value<bool>> = None;
+                let mut authorization_scopes: Option<::ValueList<String>> = None;
                 let mut authorization_type: Option<::Value<String>> = None;
                 let mut authorizer_id: Option<::Value<String>> = None;
                 let mut http_method: Option<::Value<String>> = None;
@@ -1298,6 +1398,9 @@ impl<'de> ::serde::Deserialize<'de> for MethodProperties {
                     match __cfn_key.as_ref() {
                         "ApiKeyRequired" => {
                             api_key_required = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "AuthorizationScopes" => {
+                            authorization_scopes = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "AuthorizationType" => {
                             authorization_type = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1338,6 +1441,7 @@ impl<'de> ::serde::Deserialize<'de> for MethodProperties {
 
                 Ok(MethodProperties {
                     api_key_required: api_key_required,
+                    authorization_scopes: authorization_scopes,
                     authorization_type: authorization_type,
                     authorizer_id: authorizer_id,
                     http_method: http_method.ok_or(::serde::de::Error::missing_field("HttpMethod"))?,
@@ -1756,6 +1860,11 @@ pub struct RestApiProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub description: Option<::Value<String>>,
+    /// Property [`DisableExecuteApiEndpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html#cfn-apigateway-restapi-disableexecuteapiendpoint).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub disable_execute_api_endpoint: Option<::Value<bool>>,
     /// Property [`EndpointConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html#cfn-apigateway-restapi-endpointconfiguration).
     ///
     /// Update type: _Mutable_.
@@ -1771,6 +1880,11 @@ pub struct RestApiProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub minimum_compression_size: Option<::Value<u32>>,
+    /// Property [`Mode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html#cfn-apigateway-restapi-mode).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub mode: Option<::Value<String>>,
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html#cfn-apigateway-restapi-name).
     ///
     /// Update type: _Mutable_.
@@ -1781,6 +1895,16 @@ pub struct RestApiProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub parameters: Option<::ValueMap<String>>,
+    /// Property [`Policy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html#cfn-apigateway-restapi-policy).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub policy: Option<::Value<::json::Value>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html#cfn-apigateway-restapi-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
 }
 
 impl ::serde::Serialize for RestApiProperties {
@@ -1804,6 +1928,9 @@ impl ::serde::Serialize for RestApiProperties {
         if let Some(ref description) = self.description {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
         }
+        if let Some(ref disable_execute_api_endpoint) = self.disable_execute_api_endpoint {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisableExecuteApiEndpoint", disable_execute_api_endpoint)?;
+        }
         if let Some(ref endpoint_configuration) = self.endpoint_configuration {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndpointConfiguration", endpoint_configuration)?;
         }
@@ -1813,11 +1940,20 @@ impl ::serde::Serialize for RestApiProperties {
         if let Some(ref minimum_compression_size) = self.minimum_compression_size {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinimumCompressionSize", minimum_compression_size)?;
         }
+        if let Some(ref mode) = self.mode {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Mode", mode)?;
+        }
         if let Some(ref name) = self.name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
         }
         if let Some(ref parameters) = self.parameters {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", parameters)?;
+        }
+        if let Some(ref policy) = self.policy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Policy", policy)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
         ::serde::ser::SerializeMap::end(map)
     }
@@ -1841,11 +1977,15 @@ impl<'de> ::serde::Deserialize<'de> for RestApiProperties {
                 let mut body_s3_location: Option<::Value<self::rest_api::S3Location>> = None;
                 let mut clone_from: Option<::Value<String>> = None;
                 let mut description: Option<::Value<String>> = None;
+                let mut disable_execute_api_endpoint: Option<::Value<bool>> = None;
                 let mut endpoint_configuration: Option<::Value<self::rest_api::EndpointConfiguration>> = None;
                 let mut fail_on_warnings: Option<::Value<bool>> = None;
                 let mut minimum_compression_size: Option<::Value<u32>> = None;
+                let mut mode: Option<::Value<String>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut parameters: Option<::ValueMap<String>> = None;
+                let mut policy: Option<::Value<::json::Value>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1867,6 +2007,9 @@ impl<'de> ::serde::Deserialize<'de> for RestApiProperties {
                         "Description" => {
                             description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "DisableExecuteApiEndpoint" => {
+                            disable_execute_api_endpoint = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "EndpointConfiguration" => {
                             endpoint_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -1876,11 +2019,20 @@ impl<'de> ::serde::Deserialize<'de> for RestApiProperties {
                         "MinimumCompressionSize" => {
                             minimum_compression_size = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Mode" => {
+                            mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Parameters" => {
                             parameters = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Policy" => {
+                            policy = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -1893,11 +2045,15 @@ impl<'de> ::serde::Deserialize<'de> for RestApiProperties {
                     body_s3_location: body_s3_location,
                     clone_from: clone_from,
                     description: description,
+                    disable_execute_api_endpoint: disable_execute_api_endpoint,
                     endpoint_configuration: endpoint_configuration,
                     fail_on_warnings: fail_on_warnings,
                     minimum_compression_size: minimum_compression_size,
+                    mode: mode,
                     name: name,
                     parameters: parameters,
+                    policy: policy,
+                    tags: tags,
                 })
             }
         }
@@ -1934,6 +2090,11 @@ pub struct Stage {
 /// Properties for the `Stage` resource.
 #[derive(Debug, Default)]
 pub struct StageProperties {
+    /// Property [`AccessLogSetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html#cfn-apigateway-stage-accesslogsetting).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub access_log_setting: Option<::Value<self::stage::AccessLogSetting>>,
     /// Property [`CacheClusterEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html#cfn-apigateway-stage-cacheclusterenabled).
     ///
     /// Update type: _Mutable_.
@@ -1944,6 +2105,11 @@ pub struct StageProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub cache_cluster_size: Option<::Value<String>>,
+    /// Property [`CanarySetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html#cfn-apigateway-stage-canarysetting).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub canary_setting: Option<::Value<self::stage::CanarySetting>>,
     /// Property [`ClientCertificateId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html#cfn-apigateway-stage-clientcertificateid).
     ///
     /// Update type: _Mutable_.
@@ -1979,6 +2145,16 @@ pub struct StageProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub stage_name: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html#cfn-apigateway-stage-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`TracingEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html#cfn-apigateway-stage-tracingenabled).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tracing_enabled: Option<::Value<bool>>,
     /// Property [`Variables`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html#cfn-apigateway-stage-variables).
     ///
     /// Update type: _Mutable_.
@@ -1989,11 +2165,17 @@ pub struct StageProperties {
 impl ::serde::Serialize for StageProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref access_log_setting) = self.access_log_setting {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessLogSetting", access_log_setting)?;
+        }
         if let Some(ref cache_cluster_enabled) = self.cache_cluster_enabled {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CacheClusterEnabled", cache_cluster_enabled)?;
         }
         if let Some(ref cache_cluster_size) = self.cache_cluster_size {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CacheClusterSize", cache_cluster_size)?;
+        }
+        if let Some(ref canary_setting) = self.canary_setting {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CanarySetting", canary_setting)?;
         }
         if let Some(ref client_certificate_id) = self.client_certificate_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientCertificateId", client_certificate_id)?;
@@ -2014,6 +2196,12 @@ impl ::serde::Serialize for StageProperties {
         if let Some(ref stage_name) = self.stage_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "StageName", stage_name)?;
         }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref tracing_enabled) = self.tracing_enabled {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TracingEnabled", tracing_enabled)?;
+        }
         if let Some(ref variables) = self.variables {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Variables", variables)?;
         }
@@ -2033,8 +2221,10 @@ impl<'de> ::serde::Deserialize<'de> for StageProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut access_log_setting: Option<::Value<self::stage::AccessLogSetting>> = None;
                 let mut cache_cluster_enabled: Option<::Value<bool>> = None;
                 let mut cache_cluster_size: Option<::Value<String>> = None;
+                let mut canary_setting: Option<::Value<self::stage::CanarySetting>> = None;
                 let mut client_certificate_id: Option<::Value<String>> = None;
                 let mut deployment_id: Option<::Value<String>> = None;
                 let mut description: Option<::Value<String>> = None;
@@ -2042,15 +2232,23 @@ impl<'de> ::serde::Deserialize<'de> for StageProperties {
                 let mut method_settings: Option<::ValueList<self::stage::MethodSetting>> = None;
                 let mut rest_api_id: Option<::Value<String>> = None;
                 let mut stage_name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut tracing_enabled: Option<::Value<bool>> = None;
                 let mut variables: Option<::ValueMap<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "AccessLogSetting" => {
+                            access_log_setting = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "CacheClusterEnabled" => {
                             cache_cluster_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "CacheClusterSize" => {
                             cache_cluster_size = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "CanarySetting" => {
+                            canary_setting = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ClientCertificateId" => {
                             client_certificate_id = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -2073,6 +2271,12 @@ impl<'de> ::serde::Deserialize<'de> for StageProperties {
                         "StageName" => {
                             stage_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TracingEnabled" => {
+                            tracing_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Variables" => {
                             variables = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -2081,8 +2285,10 @@ impl<'de> ::serde::Deserialize<'de> for StageProperties {
                 }
 
                 Ok(StageProperties {
+                    access_log_setting: access_log_setting,
                     cache_cluster_enabled: cache_cluster_enabled,
                     cache_cluster_size: cache_cluster_size,
+                    canary_setting: canary_setting,
                     client_certificate_id: client_certificate_id,
                     deployment_id: deployment_id,
                     description: description,
@@ -2090,6 +2296,8 @@ impl<'de> ::serde::Deserialize<'de> for StageProperties {
                     method_settings: method_settings,
                     rest_api_id: rest_api_id.ok_or(::serde::de::Error::missing_field("RestApiId"))?,
                     stage_name: stage_name,
+                    tags: tags,
+                    tracing_enabled: tracing_enabled,
                     variables: variables,
                 })
             }
@@ -2142,6 +2350,11 @@ pub struct UsagePlanProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub quota: Option<::Value<self::usage_plan::QuotaSettings>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-usageplan.html#cfn-apigateway-usageplan-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
     /// Property [`Throttle`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-usageplan.html#cfn-apigateway-usageplan-throttle).
     ///
     /// Update type: _Mutable_.
@@ -2165,6 +2378,9 @@ impl ::serde::Serialize for UsagePlanProperties {
         }
         if let Some(ref quota) = self.quota {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Quota", quota)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
         if let Some(ref throttle) = self.throttle {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Throttle", throttle)?;
@@ -2191,6 +2407,7 @@ impl<'de> ::serde::Deserialize<'de> for UsagePlanProperties {
                 let mut api_stages: Option<::ValueList<self::usage_plan::ApiStage>> = None;
                 let mut description: Option<::Value<String>> = None;
                 let mut quota: Option<::Value<self::usage_plan::QuotaSettings>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut throttle: Option<::Value<self::usage_plan::ThrottleSettings>> = None;
                 let mut usage_plan_name: Option<::Value<String>> = None;
 
@@ -2204,6 +2421,9 @@ impl<'de> ::serde::Deserialize<'de> for UsagePlanProperties {
                         }
                         "Quota" => {
                             quota = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Throttle" => {
                             throttle = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -2219,6 +2439,7 @@ impl<'de> ::serde::Deserialize<'de> for UsagePlanProperties {
                     api_stages: api_stages,
                     description: description,
                     quota: quota,
+                    tags: tags,
                     throttle: throttle,
                     usage_plan_name: usage_plan_name,
                 })
@@ -2519,6 +2740,230 @@ pub mod api_key {
 pub mod deployment {
     //! Property types for the `Deployment` resource.
 
+    /// The [`AWS::ApiGateway::Deployment.AccessLogSetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-accesslogsetting.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AccessLogSetting {
+        /// Property [`DestinationArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-accesslogsetting.html#cfn-apigateway-deployment-accesslogsetting-destinationarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub destination_arn: Option<::Value<String>>,
+        /// Property [`Format`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-accesslogsetting.html#cfn-apigateway-deployment-accesslogsetting-format).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub format: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for AccessLogSetting {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref destination_arn) = self.destination_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationArn", destination_arn)?;
+            }
+            if let Some(ref format) = self.format {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Format", format)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AccessLogSetting {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AccessLogSetting, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AccessLogSetting;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AccessLogSetting")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut destination_arn: Option<::Value<String>> = None;
+                    let mut format: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DestinationArn" => {
+                                destination_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Format" => {
+                                format = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AccessLogSetting {
+                        destination_arn: destination_arn,
+                        format: format,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ApiGateway::Deployment.CanarySetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-canarysetting.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CanarySetting {
+        /// Property [`PercentTraffic`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-canarysetting.html#cfn-apigateway-deployment-canarysetting-percenttraffic).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub percent_traffic: Option<::Value<f64>>,
+        /// Property [`StageVariableOverrides`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-canarysetting.html#cfn-apigateway-deployment-canarysetting-stagevariableoverrides).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub stage_variable_overrides: Option<::ValueMap<String>>,
+        /// Property [`UseStageCache`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-canarysetting.html#cfn-apigateway-deployment-canarysetting-usestagecache).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub use_stage_cache: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for CanarySetting {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref percent_traffic) = self.percent_traffic {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PercentTraffic", percent_traffic)?;
+            }
+            if let Some(ref stage_variable_overrides) = self.stage_variable_overrides {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StageVariableOverrides", stage_variable_overrides)?;
+            }
+            if let Some(ref use_stage_cache) = self.use_stage_cache {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UseStageCache", use_stage_cache)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CanarySetting {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CanarySetting, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CanarySetting;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CanarySetting")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut percent_traffic: Option<::Value<f64>> = None;
+                    let mut stage_variable_overrides: Option<::ValueMap<String>> = None;
+                    let mut use_stage_cache: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "PercentTraffic" => {
+                                percent_traffic = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "StageVariableOverrides" => {
+                                stage_variable_overrides = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "UseStageCache" => {
+                                use_stage_cache = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CanarySetting {
+                        percent_traffic: percent_traffic,
+                        stage_variable_overrides: stage_variable_overrides,
+                        use_stage_cache: use_stage_cache,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ApiGateway::Deployment.DeploymentCanarySettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-deploymentcanarysettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DeploymentCanarySettings {
+        /// Property [`PercentTraffic`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-deploymentcanarysettings.html#cfn-apigateway-deployment-deploymentcanarysettings-percenttraffic).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub percent_traffic: Option<::Value<f64>>,
+        /// Property [`StageVariableOverrides`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-deploymentcanarysettings.html#cfn-apigateway-deployment-deploymentcanarysettings-stagevariableoverrides).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub stage_variable_overrides: Option<::ValueMap<String>>,
+        /// Property [`UseStageCache`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-deploymentcanarysettings.html#cfn-apigateway-deployment-deploymentcanarysettings-usestagecache).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub use_stage_cache: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for DeploymentCanarySettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref percent_traffic) = self.percent_traffic {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PercentTraffic", percent_traffic)?;
+            }
+            if let Some(ref stage_variable_overrides) = self.stage_variable_overrides {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StageVariableOverrides", stage_variable_overrides)?;
+            }
+            if let Some(ref use_stage_cache) = self.use_stage_cache {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UseStageCache", use_stage_cache)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DeploymentCanarySettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DeploymentCanarySettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DeploymentCanarySettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DeploymentCanarySettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut percent_traffic: Option<::Value<f64>> = None;
+                    let mut stage_variable_overrides: Option<::ValueMap<String>> = None;
+                    let mut use_stage_cache: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "PercentTraffic" => {
+                                percent_traffic = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "StageVariableOverrides" => {
+                                stage_variable_overrides = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "UseStageCache" => {
+                                use_stage_cache = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DeploymentCanarySettings {
+                        percent_traffic: percent_traffic,
+                        stage_variable_overrides: stage_variable_overrides,
+                        use_stage_cache: use_stage_cache,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::ApiGateway::Deployment.MethodSetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription-methodsetting.html) property type.
     #[derive(Debug, Default)]
     pub struct MethodSetting {
@@ -2692,6 +3137,11 @@ pub mod deployment {
     /// The [`AWS::ApiGateway::Deployment.StageDescription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription.html) property type.
     #[derive(Debug, Default)]
     pub struct StageDescription {
+        /// Property [`AccessLogSetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription.html#cfn-apigateway-deployment-stagedescription-accesslogsetting).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub access_log_setting: Option<::Value<AccessLogSetting>>,
         /// Property [`CacheClusterEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription.html#cfn-apigateway-deployment-stagedescription-cacheclusterenabled).
         ///
         /// Update type: _Mutable_.
@@ -2717,6 +3167,11 @@ pub mod deployment {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub caching_enabled: Option<::Value<bool>>,
+        /// Property [`CanarySetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription.html#cfn-apigateway-deployment-stagedescription-canarysetting).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub canary_setting: Option<::Value<CanarySetting>>,
         /// Property [`ClientCertificateId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription.html#cfn-apigateway-deployment-stagedescription-clientcertificateid).
         ///
         /// Update type: _Mutable_.
@@ -2752,6 +3207,11 @@ pub mod deployment {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub metrics_enabled: Option<::Value<bool>>,
+        /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription.html#cfn-apigateway-deployment-tags).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tags: Option<::ValueList<::Tag>>,
         /// Property [`ThrottlingBurstLimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription.html#cfn-apigateway-deployment-stagedescription-throttlingburstlimit).
         ///
         /// Update type: _Mutable_.
@@ -2762,6 +3222,11 @@ pub mod deployment {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub throttling_rate_limit: Option<::Value<f64>>,
+        /// Property [`TracingEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription.html#cfn-apigateway-deployment-stagedescription-tracingenabled).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tracing_enabled: Option<::Value<bool>>,
         /// Property [`Variables`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription.html#cfn-apigateway-deployment-stagedescription-variables).
         ///
         /// Update type: _Mutable_.
@@ -2772,6 +3237,9 @@ pub mod deployment {
     impl ::codec::SerializeValue for StageDescription {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref access_log_setting) = self.access_log_setting {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessLogSetting", access_log_setting)?;
+            }
             if let Some(ref cache_cluster_enabled) = self.cache_cluster_enabled {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "CacheClusterEnabled", cache_cluster_enabled)?;
             }
@@ -2786,6 +3254,9 @@ pub mod deployment {
             }
             if let Some(ref caching_enabled) = self.caching_enabled {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "CachingEnabled", caching_enabled)?;
+            }
+            if let Some(ref canary_setting) = self.canary_setting {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CanarySetting", canary_setting)?;
             }
             if let Some(ref client_certificate_id) = self.client_certificate_id {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientCertificateId", client_certificate_id)?;
@@ -2808,11 +3279,17 @@ pub mod deployment {
             if let Some(ref metrics_enabled) = self.metrics_enabled {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricsEnabled", metrics_enabled)?;
             }
+            if let Some(ref tags) = self.tags {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+            }
             if let Some(ref throttling_burst_limit) = self.throttling_burst_limit {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThrottlingBurstLimit", throttling_burst_limit)?;
             }
             if let Some(ref throttling_rate_limit) = self.throttling_rate_limit {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThrottlingRateLimit", throttling_rate_limit)?;
+            }
+            if let Some(ref tracing_enabled) = self.tracing_enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TracingEnabled", tracing_enabled)?;
             }
             if let Some(ref variables) = self.variables {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Variables", variables)?;
@@ -2833,11 +3310,13 @@ pub mod deployment {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut access_log_setting: Option<::Value<AccessLogSetting>> = None;
                     let mut cache_cluster_enabled: Option<::Value<bool>> = None;
                     let mut cache_cluster_size: Option<::Value<String>> = None;
                     let mut cache_data_encrypted: Option<::Value<bool>> = None;
                     let mut cache_ttl_in_seconds: Option<::Value<u32>> = None;
                     let mut caching_enabled: Option<::Value<bool>> = None;
+                    let mut canary_setting: Option<::Value<CanarySetting>> = None;
                     let mut client_certificate_id: Option<::Value<String>> = None;
                     let mut data_trace_enabled: Option<::Value<bool>> = None;
                     let mut description: Option<::Value<String>> = None;
@@ -2845,12 +3324,17 @@ pub mod deployment {
                     let mut logging_level: Option<::Value<String>> = None;
                     let mut method_settings: Option<::ValueList<MethodSetting>> = None;
                     let mut metrics_enabled: Option<::Value<bool>> = None;
+                    let mut tags: Option<::ValueList<::Tag>> = None;
                     let mut throttling_burst_limit: Option<::Value<u32>> = None;
                     let mut throttling_rate_limit: Option<::Value<f64>> = None;
+                    let mut tracing_enabled: Option<::Value<bool>> = None;
                     let mut variables: Option<::ValueMap<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "AccessLogSetting" => {
+                                access_log_setting = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "CacheClusterEnabled" => {
                                 cache_cluster_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -2865,6 +3349,9 @@ pub mod deployment {
                             }
                             "CachingEnabled" => {
                                 caching_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CanarySetting" => {
+                                canary_setting = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "ClientCertificateId" => {
                                 client_certificate_id = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -2887,11 +3374,17 @@ pub mod deployment {
                             "MetricsEnabled" => {
                                 metrics_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Tags" => {
+                                tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "ThrottlingBurstLimit" => {
                                 throttling_burst_limit = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "ThrottlingRateLimit" => {
                                 throttling_rate_limit = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TracingEnabled" => {
+                                tracing_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Variables" => {
                                 variables = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -2901,11 +3394,13 @@ pub mod deployment {
                     }
 
                     Ok(StageDescription {
+                        access_log_setting: access_log_setting,
                         cache_cluster_enabled: cache_cluster_enabled,
                         cache_cluster_size: cache_cluster_size,
                         cache_data_encrypted: cache_data_encrypted,
                         cache_ttl_in_seconds: cache_ttl_in_seconds,
                         caching_enabled: caching_enabled,
+                        canary_setting: canary_setting,
                         client_certificate_id: client_certificate_id,
                         data_trace_enabled: data_trace_enabled,
                         description: description,
@@ -2913,8 +3408,10 @@ pub mod deployment {
                         logging_level: logging_level,
                         method_settings: method_settings,
                         metrics_enabled: metrics_enabled,
+                        tags: tags,
                         throttling_burst_limit: throttling_burst_limit,
                         throttling_rate_limit: throttling_rate_limit,
+                        tracing_enabled: tracing_enabled,
                         variables: variables,
                     })
                 }
@@ -2955,7 +3452,7 @@ pub mod documentation_part {
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
-        pub type_: Option<::Value<String>>,
+        pub r#type: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for Location {
@@ -2973,8 +3470,8 @@ pub mod documentation_part {
             if let Some(ref status_code) = self.status_code {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "StatusCode", status_code)?;
             }
-            if let Some(ref type_) = self.type_ {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", type_)?;
+            if let Some(ref r#type) = self.r#type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", r#type)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -2996,7 +3493,7 @@ pub mod documentation_part {
                     let mut name: Option<::Value<String>> = None;
                     let mut path: Option<::Value<String>> = None;
                     let mut status_code: Option<::Value<String>> = None;
-                    let mut type_: Option<::Value<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -3013,7 +3510,7 @@ pub mod documentation_part {
                                 status_code = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Type" => {
-                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -3024,7 +3521,7 @@ pub mod documentation_part {
                         name: name,
                         path: path,
                         status_code: status_code,
-                        type_: type_,
+                        r#type: r#type,
                     })
                 }
             }
@@ -3089,6 +3586,72 @@ pub mod domain_name {
             d.deserialize_map(Visitor)
         }
     }
+
+    /// The [`AWS::ApiGateway::DomainName.MutualTlsAuthentication`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-domainname-mutualtlsauthentication.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MutualTlsAuthentication {
+        /// Property [`TruststoreUri`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-domainname-mutualtlsauthentication.html#cfn-apigateway-domainname-mutualtlsauthentication-truststoreuri).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub truststore_uri: Option<::Value<String>>,
+        /// Property [`TruststoreVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-domainname-mutualtlsauthentication.html#cfn-apigateway-domainname-mutualtlsauthentication-truststoreversion).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub truststore_version: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for MutualTlsAuthentication {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref truststore_uri) = self.truststore_uri {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TruststoreUri", truststore_uri)?;
+            }
+            if let Some(ref truststore_version) = self.truststore_version {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TruststoreVersion", truststore_version)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MutualTlsAuthentication {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MutualTlsAuthentication, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MutualTlsAuthentication;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MutualTlsAuthentication")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut truststore_uri: Option<::Value<String>> = None;
+                    let mut truststore_version: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "TruststoreUri" => {
+                                truststore_uri = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TruststoreVersion" => {
+                                truststore_version = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MutualTlsAuthentication {
+                        truststore_uri: truststore_uri,
+                        truststore_version: truststore_version,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 }
 
 pub mod method {
@@ -3107,6 +3670,16 @@ pub mod method {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub cache_namespace: Option<::Value<String>>,
+        /// Property [`ConnectionId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-method-integration.html#cfn-apigateway-method-integration-connectionid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub connection_id: Option<::Value<String>>,
+        /// Property [`ConnectionType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-method-integration.html#cfn-apigateway-method-integration-connectiontype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub connection_type: Option<::Value<String>>,
         /// Property [`ContentHandling`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-method-integration.html#cfn-apigateway-method-integration-contenthandling).
         ///
         /// Update type: _Mutable_.
@@ -3142,11 +3715,16 @@ pub mod method {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub request_templates: Option<::ValueMap<String>>,
+        /// Property [`TimeoutInMillis`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-method-integration.html#cfn-apigateway-method-integration-timeoutinmillis).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub timeout_in_millis: Option<::Value<u32>>,
         /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-method-integration.html#cfn-apigateway-method-integration-type).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub type_: Option<::Value<String>>,
+        pub r#type: Option<::Value<String>>,
         /// Property [`Uri`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-method-integration.html#cfn-apigateway-method-integration-uri).
         ///
         /// Update type: _Mutable_.
@@ -3162,6 +3740,12 @@ pub mod method {
             }
             if let Some(ref cache_namespace) = self.cache_namespace {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "CacheNamespace", cache_namespace)?;
+            }
+            if let Some(ref connection_id) = self.connection_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionId", connection_id)?;
+            }
+            if let Some(ref connection_type) = self.connection_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionType", connection_type)?;
             }
             if let Some(ref content_handling) = self.content_handling {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContentHandling", content_handling)?;
@@ -3184,8 +3768,11 @@ pub mod method {
             if let Some(ref request_templates) = self.request_templates {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "RequestTemplates", request_templates)?;
             }
-            if let Some(ref type_) = self.type_ {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", type_)?;
+            if let Some(ref timeout_in_millis) = self.timeout_in_millis {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimeoutInMillis", timeout_in_millis)?;
+            }
+            if let Some(ref r#type) = self.r#type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", r#type)?;
             }
             if let Some(ref uri) = self.uri {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Uri", uri)?;
@@ -3208,6 +3795,8 @@ pub mod method {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut cache_key_parameters: Option<::ValueList<String>> = None;
                     let mut cache_namespace: Option<::Value<String>> = None;
+                    let mut connection_id: Option<::Value<String>> = None;
+                    let mut connection_type: Option<::Value<String>> = None;
                     let mut content_handling: Option<::Value<String>> = None;
                     let mut credentials: Option<::Value<String>> = None;
                     let mut integration_http_method: Option<::Value<String>> = None;
@@ -3215,7 +3804,8 @@ pub mod method {
                     let mut passthrough_behavior: Option<::Value<String>> = None;
                     let mut request_parameters: Option<::ValueMap<String>> = None;
                     let mut request_templates: Option<::ValueMap<String>> = None;
-                    let mut type_: Option<::Value<String>> = None;
+                    let mut timeout_in_millis: Option<::Value<u32>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
                     let mut uri: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -3225,6 +3815,12 @@ pub mod method {
                             }
                             "CacheNamespace" => {
                                 cache_namespace = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ConnectionId" => {
+                                connection_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ConnectionType" => {
+                                connection_type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "ContentHandling" => {
                                 content_handling = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -3247,8 +3843,11 @@ pub mod method {
                             "RequestTemplates" => {
                                 request_templates = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "TimeoutInMillis" => {
+                                timeout_in_millis = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Type" => {
-                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Uri" => {
                                 uri = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -3260,6 +3859,8 @@ pub mod method {
                     Ok(Integration {
                         cache_key_parameters: cache_key_parameters,
                         cache_namespace: cache_namespace,
+                        connection_id: connection_id,
+                        connection_type: connection_type,
                         content_handling: content_handling,
                         credentials: credentials,
                         integration_http_method: integration_http_method,
@@ -3267,7 +3868,8 @@ pub mod method {
                         passthrough_behavior: passthrough_behavior,
                         request_parameters: request_parameters,
                         request_templates: request_templates,
-                        type_: type_,
+                        timeout_in_millis: timeout_in_millis,
+                        r#type: r#type,
                         uri: uri,
                     })
                 }
@@ -3469,6 +4071,11 @@ pub mod rest_api {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub types: Option<::ValueList<String>>,
+        /// Property [`VpcEndpointIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-restapi-endpointconfiguration.html#cfn-apigateway-restapi-endpointconfiguration-vpcendpointids).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub vpc_endpoint_ids: Option<::ValueList<String>>,
     }
 
     impl ::codec::SerializeValue for EndpointConfiguration {
@@ -3476,6 +4083,9 @@ pub mod rest_api {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             if let Some(ref types) = self.types {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Types", types)?;
+            }
+            if let Some(ref vpc_endpoint_ids) = self.vpc_endpoint_ids {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcEndpointIds", vpc_endpoint_ids)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -3494,11 +4104,15 @@ pub mod rest_api {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut types: Option<::ValueList<String>> = None;
+                    let mut vpc_endpoint_ids: Option<::ValueList<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Types" => {
                                 types = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "VpcEndpointIds" => {
+                                vpc_endpoint_ids = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -3506,6 +4120,7 @@ pub mod rest_api {
 
                     Ok(EndpointConfiguration {
                         types: types,
+                        vpc_endpoint_ids: vpc_endpoint_ids,
                     })
                 }
             }
@@ -3609,6 +4224,164 @@ pub mod rest_api {
 
 pub mod stage {
     //! Property types for the `Stage` resource.
+
+    /// The [`AWS::ApiGateway::Stage.AccessLogSetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-accesslogsetting.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AccessLogSetting {
+        /// Property [`DestinationArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-accesslogsetting.html#cfn-apigateway-stage-accesslogsetting-destinationarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub destination_arn: Option<::Value<String>>,
+        /// Property [`Format`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-accesslogsetting.html#cfn-apigateway-stage-accesslogsetting-format).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub format: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for AccessLogSetting {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref destination_arn) = self.destination_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationArn", destination_arn)?;
+            }
+            if let Some(ref format) = self.format {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Format", format)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AccessLogSetting {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AccessLogSetting, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AccessLogSetting;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AccessLogSetting")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut destination_arn: Option<::Value<String>> = None;
+                    let mut format: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DestinationArn" => {
+                                destination_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Format" => {
+                                format = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AccessLogSetting {
+                        destination_arn: destination_arn,
+                        format: format,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ApiGateway::Stage.CanarySetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-canarysetting.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CanarySetting {
+        /// Property [`DeploymentId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-canarysetting.html#cfn-apigateway-stage-canarysetting-deploymentid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub deployment_id: Option<::Value<String>>,
+        /// Property [`PercentTraffic`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-canarysetting.html#cfn-apigateway-stage-canarysetting-percenttraffic).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub percent_traffic: Option<::Value<f64>>,
+        /// Property [`StageVariableOverrides`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-canarysetting.html#cfn-apigateway-stage-canarysetting-stagevariableoverrides).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub stage_variable_overrides: Option<::ValueMap<String>>,
+        /// Property [`UseStageCache`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-canarysetting.html#cfn-apigateway-stage-canarysetting-usestagecache).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub use_stage_cache: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for CanarySetting {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref deployment_id) = self.deployment_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeploymentId", deployment_id)?;
+            }
+            if let Some(ref percent_traffic) = self.percent_traffic {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PercentTraffic", percent_traffic)?;
+            }
+            if let Some(ref stage_variable_overrides) = self.stage_variable_overrides {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StageVariableOverrides", stage_variable_overrides)?;
+            }
+            if let Some(ref use_stage_cache) = self.use_stage_cache {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UseStageCache", use_stage_cache)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CanarySetting {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CanarySetting, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CanarySetting;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CanarySetting")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut deployment_id: Option<::Value<String>> = None;
+                    let mut percent_traffic: Option<::Value<f64>> = None;
+                    let mut stage_variable_overrides: Option<::ValueMap<String>> = None;
+                    let mut use_stage_cache: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DeploymentId" => {
+                                deployment_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PercentTraffic" => {
+                                percent_traffic = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "StageVariableOverrides" => {
+                                stage_variable_overrides = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "UseStageCache" => {
+                                use_stage_cache = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CanarySetting {
+                        deployment_id: deployment_id,
+                        percent_traffic: percent_traffic,
+                        stage_variable_overrides: stage_variable_overrides,
+                        use_stage_cache: use_stage_cache,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::ApiGateway::Stage.MethodSetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-stage-methodsetting.html) property type.
     #[derive(Debug, Default)]
@@ -3797,6 +4570,11 @@ pub mod usage_plan {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub stage: Option<::Value<String>>,
+        /// Property [`Throttle`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-apistage.html#cfn-apigateway-usageplan-apistage-throttle).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub throttle: Option<::ValueMap<ThrottleSettings>>,
     }
 
     impl ::codec::SerializeValue for ApiStage {
@@ -3807,6 +4585,9 @@ pub mod usage_plan {
             }
             if let Some(ref stage) = self.stage {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Stage", stage)?;
+            }
+            if let Some(ref throttle) = self.throttle {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Throttle", throttle)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -3826,6 +4607,7 @@ pub mod usage_plan {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut api_id: Option<::Value<String>> = None;
                     let mut stage: Option<::Value<String>> = None;
+                    let mut throttle: Option<::ValueMap<ThrottleSettings>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -3835,6 +4617,9 @@ pub mod usage_plan {
                             "Stage" => {
                                 stage = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Throttle" => {
+                                throttle = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
@@ -3842,6 +4627,7 @@ pub mod usage_plan {
                     Ok(ApiStage {
                         api_id: api_id,
                         stage: stage,
+                        throttle: throttle,
                     })
                 }
             }

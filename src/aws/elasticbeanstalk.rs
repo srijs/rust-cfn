@@ -387,6 +387,11 @@ pub struct EnvironmentProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub environment_name: Option<::Value<String>>,
+    /// Property [`OperationsRole`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment.html#cfn-beanstalk-environment-operations-role).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub operations_role: Option<::Value<String>>,
     /// Property [`OptionSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment.html#cfn-beanstalk-environment-optionsettings).
     ///
     /// Update type: _Mutable_.
@@ -438,6 +443,9 @@ impl ::serde::Serialize for EnvironmentProperties {
         if let Some(ref environment_name) = self.environment_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnvironmentName", environment_name)?;
         }
+        if let Some(ref operations_role) = self.operations_role {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OperationsRole", operations_role)?;
+        }
         if let Some(ref option_settings) = self.option_settings {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "OptionSettings", option_settings)?;
         }
@@ -479,6 +487,7 @@ impl<'de> ::serde::Deserialize<'de> for EnvironmentProperties {
                 let mut cname_prefix: Option<::Value<String>> = None;
                 let mut description: Option<::Value<String>> = None;
                 let mut environment_name: Option<::Value<String>> = None;
+                let mut operations_role: Option<::Value<String>> = None;
                 let mut option_settings: Option<::ValueList<self::environment::OptionSetting>> = None;
                 let mut platform_arn: Option<::Value<String>> = None;
                 let mut solution_stack_name: Option<::Value<String>> = None;
@@ -500,6 +509,9 @@ impl<'de> ::serde::Deserialize<'de> for EnvironmentProperties {
                         }
                         "EnvironmentName" => {
                             environment_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "OperationsRole" => {
+                            operations_role = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "OptionSettings" => {
                             option_settings = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -531,6 +543,7 @@ impl<'de> ::serde::Deserialize<'de> for EnvironmentProperties {
                     cname_prefix: cname_prefix,
                     description: description,
                     environment_name: environment_name,
+                    operations_role: operations_role,
                     option_settings: option_settings,
                     platform_arn: platform_arn,
                     solution_stack_name: solution_stack_name,
@@ -1182,7 +1195,7 @@ pub mod environment {
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
-        pub type_: Option<::Value<String>>,
+        pub r#type: Option<::Value<String>>,
         /// Property [`Version`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment-tier.html#cfn-beanstalk-env-tier-version).
         ///
         /// Update type: _Mutable_.
@@ -1196,8 +1209,8 @@ pub mod environment {
             if let Some(ref name) = self.name {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
             }
-            if let Some(ref type_) = self.type_ {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", type_)?;
+            if let Some(ref r#type) = self.r#type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", r#type)?;
             }
             if let Some(ref version) = self.version {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Version", version)?;
@@ -1219,7 +1232,7 @@ pub mod environment {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut name: Option<::Value<String>> = None;
-                    let mut type_: Option<::Value<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
                     let mut version: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -1228,7 +1241,7 @@ pub mod environment {
                                 name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Type" => {
-                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Version" => {
                                 version = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1239,7 +1252,7 @@ pub mod environment {
 
                     Ok(Tier {
                         name: name,
-                        type_: type_,
+                        r#type: r#type,
                         version: version,
                     })
                 }

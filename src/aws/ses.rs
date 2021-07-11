@@ -165,6 +165,123 @@ impl From<ConfigurationSetEventDestinationProperties> for ConfigurationSetEventD
     }
 }
 
+/// The [`AWS::SES::ContactList`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-contactlist.html) resource type.
+#[derive(Debug, Default)]
+pub struct ContactList {
+    properties: ContactListProperties
+}
+
+/// Properties for the `ContactList` resource.
+#[derive(Debug, Default)]
+pub struct ContactListProperties {
+    /// Property [`ContactListName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-contactlist.html#cfn-ses-contactlist-contactlistname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub contact_list_name: Option<::Value<String>>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-contactlist.html#cfn-ses-contactlist-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-contactlist.html#cfn-ses-contactlist-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`Topics`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-contactlist.html#cfn-ses-contactlist-topics).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub topics: Option<::ValueList<self::contact_list::Topic>>,
+}
+
+impl ::serde::Serialize for ContactListProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref contact_list_name) = self.contact_list_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContactListName", contact_list_name)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref topics) = self.topics {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Topics", topics)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ContactListProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ContactListProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ContactListProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ContactListProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut contact_list_name: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut topics: Option<::ValueList<self::contact_list::Topic>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "ContactListName" => {
+                            contact_list_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Topics" => {
+                            topics = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ContactListProperties {
+                    contact_list_name: contact_list_name,
+                    description: description,
+                    tags: tags,
+                    topics: topics,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for ContactList {
+    type Properties = ContactListProperties;
+    const TYPE: &'static str = "AWS::SES::ContactList";
+    fn properties(&self) -> &ContactListProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut ContactListProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for ContactList {}
+
+impl From<ContactListProperties> for ContactList {
+    fn from(properties: ContactListProperties) -> ContactList {
+        ContactList { properties }
+    }
+}
+
 /// The [`AWS::SES::ReceiptFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-receiptfilter.html) resource type.
 #[derive(Debug, Default)]
 pub struct ReceiptFilter {
@@ -783,6 +900,96 @@ pub mod configuration_set_event_destination {
                     Ok(KinesisFirehoseDestination {
                         delivery_stream_arn: delivery_stream_arn.ok_or(::serde::de::Error::missing_field("DeliveryStreamARN"))?,
                         iam_role_arn: iam_role_arn.ok_or(::serde::de::Error::missing_field("IAMRoleARN"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod contact_list {
+    //! Property types for the `ContactList` resource.
+
+    /// The [`AWS::SES::ContactList.Topic`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-contactlist-topic.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Topic {
+        /// Property [`DefaultSubscriptionStatus`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-contactlist-topic.html#cfn-ses-contactlist-topic-defaultsubscriptionstatus).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub default_subscription_status: ::Value<String>,
+        /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-contactlist-topic.html#cfn-ses-contactlist-topic-description).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub description: Option<::Value<String>>,
+        /// Property [`DisplayName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-contactlist-topic.html#cfn-ses-contactlist-topic-displayname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub display_name: ::Value<String>,
+        /// Property [`TopicName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-contactlist-topic.html#cfn-ses-contactlist-topic-topicname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub topic_name: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for Topic {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultSubscriptionStatus", &self.default_subscription_status)?;
+            if let Some(ref description) = self.description {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisplayName", &self.display_name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TopicName", &self.topic_name)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Topic {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Topic, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Topic;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Topic")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut default_subscription_status: Option<::Value<String>> = None;
+                    let mut description: Option<::Value<String>> = None;
+                    let mut display_name: Option<::Value<String>> = None;
+                    let mut topic_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DefaultSubscriptionStatus" => {
+                                default_subscription_status = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Description" => {
+                                description = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DisplayName" => {
+                                display_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TopicName" => {
+                                topic_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Topic {
+                        default_subscription_status: default_subscription_status.ok_or(::serde::de::Error::missing_field("DefaultSubscriptionStatus"))?,
+                        description: description,
+                        display_name: display_name.ok_or(::serde::de::Error::missing_field("DisplayName"))?,
+                        topic_name: topic_name.ok_or(::serde::de::Error::missing_field("TopicName"))?,
                     })
                 }
             }

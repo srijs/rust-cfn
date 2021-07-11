@@ -1,5 +1,857 @@
 //! Types for the `EC2` service.
 
+/// The [`AWS::EC2::CapacityReservation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacityreservation.html) resource type.
+#[derive(Debug, Default)]
+pub struct CapacityReservation {
+    properties: CapacityReservationProperties
+}
+
+/// Properties for the `CapacityReservation` resource.
+#[derive(Debug, Default)]
+pub struct CapacityReservationProperties {
+    /// Property [`AvailabilityZone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacityreservation.html#cfn-ec2-capacityreservation-availabilityzone).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub availability_zone: ::Value<String>,
+    /// Property [`EbsOptimized`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacityreservation.html#cfn-ec2-capacityreservation-ebsoptimized).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub ebs_optimized: Option<::Value<bool>>,
+    /// Property [`EndDate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacityreservation.html#cfn-ec2-capacityreservation-enddate).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub end_date: Option<::Value<String>>,
+    /// Property [`EndDateType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacityreservation.html#cfn-ec2-capacityreservation-enddatetype).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub end_date_type: Option<::Value<String>>,
+    /// Property [`EphemeralStorage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacityreservation.html#cfn-ec2-capacityreservation-ephemeralstorage).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub ephemeral_storage: Option<::Value<bool>>,
+    /// Property [`InstanceCount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacityreservation.html#cfn-ec2-capacityreservation-instancecount).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub instance_count: ::Value<u32>,
+    /// Property [`InstanceMatchCriteria`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacityreservation.html#cfn-ec2-capacityreservation-instancematchcriteria).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub instance_match_criteria: Option<::Value<String>>,
+    /// Property [`InstancePlatform`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacityreservation.html#cfn-ec2-capacityreservation-instanceplatform).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub instance_platform: ::Value<String>,
+    /// Property [`InstanceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacityreservation.html#cfn-ec2-capacityreservation-instancetype).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub instance_type: ::Value<String>,
+    /// Property [`TagSpecifications`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacityreservation.html#cfn-ec2-capacityreservation-tagspecifications).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub tag_specifications: Option<::ValueList<self::capacity_reservation::TagSpecification>>,
+    /// Property [`Tenancy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-capacityreservation.html#cfn-ec2-capacityreservation-tenancy).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub tenancy: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for CapacityReservationProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", &self.availability_zone)?;
+        if let Some(ref ebs_optimized) = self.ebs_optimized {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsOptimized", ebs_optimized)?;
+        }
+        if let Some(ref end_date) = self.end_date {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndDate", end_date)?;
+        }
+        if let Some(ref end_date_type) = self.end_date_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndDateType", end_date_type)?;
+        }
+        if let Some(ref ephemeral_storage) = self.ephemeral_storage {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EphemeralStorage", ephemeral_storage)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceCount", &self.instance_count)?;
+        if let Some(ref instance_match_criteria) = self.instance_match_criteria {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceMatchCriteria", instance_match_criteria)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstancePlatform", &self.instance_platform)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceType", &self.instance_type)?;
+        if let Some(ref tag_specifications) = self.tag_specifications {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TagSpecifications", tag_specifications)?;
+        }
+        if let Some(ref tenancy) = self.tenancy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tenancy", tenancy)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for CapacityReservationProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<CapacityReservationProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = CapacityReservationProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type CapacityReservationProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut availability_zone: Option<::Value<String>> = None;
+                let mut ebs_optimized: Option<::Value<bool>> = None;
+                let mut end_date: Option<::Value<String>> = None;
+                let mut end_date_type: Option<::Value<String>> = None;
+                let mut ephemeral_storage: Option<::Value<bool>> = None;
+                let mut instance_count: Option<::Value<u32>> = None;
+                let mut instance_match_criteria: Option<::Value<String>> = None;
+                let mut instance_platform: Option<::Value<String>> = None;
+                let mut instance_type: Option<::Value<String>> = None;
+                let mut tag_specifications: Option<::ValueList<self::capacity_reservation::TagSpecification>> = None;
+                let mut tenancy: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AvailabilityZone" => {
+                            availability_zone = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "EbsOptimized" => {
+                            ebs_optimized = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "EndDate" => {
+                            end_date = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "EndDateType" => {
+                            end_date_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "EphemeralStorage" => {
+                            ephemeral_storage = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "InstanceCount" => {
+                            instance_count = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "InstanceMatchCriteria" => {
+                            instance_match_criteria = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "InstancePlatform" => {
+                            instance_platform = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "InstanceType" => {
+                            instance_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TagSpecifications" => {
+                            tag_specifications = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tenancy" => {
+                            tenancy = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(CapacityReservationProperties {
+                    availability_zone: availability_zone.ok_or(::serde::de::Error::missing_field("AvailabilityZone"))?,
+                    ebs_optimized: ebs_optimized,
+                    end_date: end_date,
+                    end_date_type: end_date_type,
+                    ephemeral_storage: ephemeral_storage,
+                    instance_count: instance_count.ok_or(::serde::de::Error::missing_field("InstanceCount"))?,
+                    instance_match_criteria: instance_match_criteria,
+                    instance_platform: instance_platform.ok_or(::serde::de::Error::missing_field("InstancePlatform"))?,
+                    instance_type: instance_type.ok_or(::serde::de::Error::missing_field("InstanceType"))?,
+                    tag_specifications: tag_specifications,
+                    tenancy: tenancy,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for CapacityReservation {
+    type Properties = CapacityReservationProperties;
+    const TYPE: &'static str = "AWS::EC2::CapacityReservation";
+    fn properties(&self) -> &CapacityReservationProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut CapacityReservationProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for CapacityReservation {}
+
+impl From<CapacityReservationProperties> for CapacityReservation {
+    fn from(properties: CapacityReservationProperties) -> CapacityReservation {
+        CapacityReservation { properties }
+    }
+}
+
+/// The [`AWS::EC2::CarrierGateway`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-carriergateway.html) resource type.
+#[derive(Debug, Default)]
+pub struct CarrierGateway {
+    properties: CarrierGatewayProperties
+}
+
+/// Properties for the `CarrierGateway` resource.
+#[derive(Debug, Default)]
+pub struct CarrierGatewayProperties {
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-carriergateway.html#cfn-ec2-carriergateway-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`VpcId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-carriergateway.html#cfn-ec2-carriergateway-vpcid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub vpc_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for CarrierGatewayProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", &self.vpc_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for CarrierGatewayProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<CarrierGatewayProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = CarrierGatewayProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type CarrierGatewayProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut vpc_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "VpcId" => {
+                            vpc_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(CarrierGatewayProperties {
+                    tags: tags,
+                    vpc_id: vpc_id.ok_or(::serde::de::Error::missing_field("VpcId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for CarrierGateway {
+    type Properties = CarrierGatewayProperties;
+    const TYPE: &'static str = "AWS::EC2::CarrierGateway";
+    fn properties(&self) -> &CarrierGatewayProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut CarrierGatewayProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for CarrierGateway {}
+
+impl From<CarrierGatewayProperties> for CarrierGateway {
+    fn from(properties: CarrierGatewayProperties) -> CarrierGateway {
+        CarrierGateway { properties }
+    }
+}
+
+/// The [`AWS::EC2::ClientVpnAuthorizationRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnauthorizationrule.html) resource type.
+#[derive(Debug, Default)]
+pub struct ClientVpnAuthorizationRule {
+    properties: ClientVpnAuthorizationRuleProperties
+}
+
+/// Properties for the `ClientVpnAuthorizationRule` resource.
+#[derive(Debug, Default)]
+pub struct ClientVpnAuthorizationRuleProperties {
+    /// Property [`AccessGroupId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnauthorizationrule.html#cfn-ec2-clientvpnauthorizationrule-accessgroupid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub access_group_id: Option<::Value<String>>,
+    /// Property [`AuthorizeAllGroups`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnauthorizationrule.html#cfn-ec2-clientvpnauthorizationrule-authorizeallgroups).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub authorize_all_groups: Option<::Value<bool>>,
+    /// Property [`ClientVpnEndpointId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnauthorizationrule.html#cfn-ec2-clientvpnauthorizationrule-clientvpnendpointid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub client_vpn_endpoint_id: ::Value<String>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnauthorizationrule.html#cfn-ec2-clientvpnauthorizationrule-description).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`TargetNetworkCidr`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnauthorizationrule.html#cfn-ec2-clientvpnauthorizationrule-targetnetworkcidr).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub target_network_cidr: ::Value<String>,
+}
+
+impl ::serde::Serialize for ClientVpnAuthorizationRuleProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref access_group_id) = self.access_group_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessGroupId", access_group_id)?;
+        }
+        if let Some(ref authorize_all_groups) = self.authorize_all_groups {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthorizeAllGroups", authorize_all_groups)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientVpnEndpointId", &self.client_vpn_endpoint_id)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetNetworkCidr", &self.target_network_cidr)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ClientVpnAuthorizationRuleProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ClientVpnAuthorizationRuleProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ClientVpnAuthorizationRuleProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ClientVpnAuthorizationRuleProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut access_group_id: Option<::Value<String>> = None;
+                let mut authorize_all_groups: Option<::Value<bool>> = None;
+                let mut client_vpn_endpoint_id: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut target_network_cidr: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AccessGroupId" => {
+                            access_group_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "AuthorizeAllGroups" => {
+                            authorize_all_groups = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ClientVpnEndpointId" => {
+                            client_vpn_endpoint_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TargetNetworkCidr" => {
+                            target_network_cidr = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ClientVpnAuthorizationRuleProperties {
+                    access_group_id: access_group_id,
+                    authorize_all_groups: authorize_all_groups,
+                    client_vpn_endpoint_id: client_vpn_endpoint_id.ok_or(::serde::de::Error::missing_field("ClientVpnEndpointId"))?,
+                    description: description,
+                    target_network_cidr: target_network_cidr.ok_or(::serde::de::Error::missing_field("TargetNetworkCidr"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for ClientVpnAuthorizationRule {
+    type Properties = ClientVpnAuthorizationRuleProperties;
+    const TYPE: &'static str = "AWS::EC2::ClientVpnAuthorizationRule";
+    fn properties(&self) -> &ClientVpnAuthorizationRuleProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut ClientVpnAuthorizationRuleProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for ClientVpnAuthorizationRule {}
+
+impl From<ClientVpnAuthorizationRuleProperties> for ClientVpnAuthorizationRule {
+    fn from(properties: ClientVpnAuthorizationRuleProperties) -> ClientVpnAuthorizationRule {
+        ClientVpnAuthorizationRule { properties }
+    }
+}
+
+/// The [`AWS::EC2::ClientVpnEndpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnendpoint.html) resource type.
+#[derive(Debug, Default)]
+pub struct ClientVpnEndpoint {
+    properties: ClientVpnEndpointProperties
+}
+
+/// Properties for the `ClientVpnEndpoint` resource.
+#[derive(Debug, Default)]
+pub struct ClientVpnEndpointProperties {
+    /// Property [`AuthenticationOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnendpoint.html#cfn-ec2-clientvpnendpoint-authenticationoptions).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub authentication_options: ::ValueList<self::client_vpn_endpoint::ClientAuthenticationRequest>,
+    /// Property [`ClientCidrBlock`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnendpoint.html#cfn-ec2-clientvpnendpoint-clientcidrblock).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub client_cidr_block: ::Value<String>,
+    /// Property [`ClientConnectOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnendpoint.html#cfn-ec2-clientvpnendpoint-clientconnectoptions).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub client_connect_options: Option<::Value<self::client_vpn_endpoint::ClientConnectOptions>>,
+    /// Property [`ConnectionLogOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnendpoint.html#cfn-ec2-clientvpnendpoint-connectionlogoptions).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub connection_log_options: ::Value<self::client_vpn_endpoint::ConnectionLogOptions>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnendpoint.html#cfn-ec2-clientvpnendpoint-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`DnsServers`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnendpoint.html#cfn-ec2-clientvpnendpoint-dnsservers).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub dns_servers: Option<::ValueList<String>>,
+    /// Property [`SecurityGroupIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnendpoint.html#cfn-ec2-clientvpnendpoint-securitygroupids).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub security_group_ids: Option<::ValueList<String>>,
+    /// Property [`SelfServicePortal`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnendpoint.html#cfn-ec2-clientvpnendpoint-selfserviceportal).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub self_service_portal: Option<::Value<String>>,
+    /// Property [`ServerCertificateArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnendpoint.html#cfn-ec2-clientvpnendpoint-servercertificatearn).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub server_certificate_arn: ::Value<String>,
+    /// Property [`SplitTunnel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnendpoint.html#cfn-ec2-clientvpnendpoint-splittunnel).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub split_tunnel: Option<::Value<bool>>,
+    /// Property [`TagSpecifications`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnendpoint.html#cfn-ec2-clientvpnendpoint-tagspecifications).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub tag_specifications: Option<::ValueList<self::client_vpn_endpoint::TagSpecification>>,
+    /// Property [`TransportProtocol`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnendpoint.html#cfn-ec2-clientvpnendpoint-transportprotocol).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub transport_protocol: Option<::Value<String>>,
+    /// Property [`VpcId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnendpoint.html#cfn-ec2-clientvpnendpoint-vpcid).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub vpc_id: Option<::Value<String>>,
+    /// Property [`VpnPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnendpoint.html#cfn-ec2-clientvpnendpoint-vpnport).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub vpn_port: Option<::Value<u32>>,
+}
+
+impl ::serde::Serialize for ClientVpnEndpointProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthenticationOptions", &self.authentication_options)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientCidrBlock", &self.client_cidr_block)?;
+        if let Some(ref client_connect_options) = self.client_connect_options {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientConnectOptions", client_connect_options)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionLogOptions", &self.connection_log_options)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref dns_servers) = self.dns_servers {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DnsServers", dns_servers)?;
+        }
+        if let Some(ref security_group_ids) = self.security_group_ids {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIds", security_group_ids)?;
+        }
+        if let Some(ref self_service_portal) = self.self_service_portal {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SelfServicePortal", self_service_portal)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServerCertificateArn", &self.server_certificate_arn)?;
+        if let Some(ref split_tunnel) = self.split_tunnel {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SplitTunnel", split_tunnel)?;
+        }
+        if let Some(ref tag_specifications) = self.tag_specifications {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TagSpecifications", tag_specifications)?;
+        }
+        if let Some(ref transport_protocol) = self.transport_protocol {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransportProtocol", transport_protocol)?;
+        }
+        if let Some(ref vpc_id) = self.vpc_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", vpc_id)?;
+        }
+        if let Some(ref vpn_port) = self.vpn_port {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpnPort", vpn_port)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ClientVpnEndpointProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ClientVpnEndpointProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ClientVpnEndpointProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ClientVpnEndpointProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut authentication_options: Option<::ValueList<self::client_vpn_endpoint::ClientAuthenticationRequest>> = None;
+                let mut client_cidr_block: Option<::Value<String>> = None;
+                let mut client_connect_options: Option<::Value<self::client_vpn_endpoint::ClientConnectOptions>> = None;
+                let mut connection_log_options: Option<::Value<self::client_vpn_endpoint::ConnectionLogOptions>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut dns_servers: Option<::ValueList<String>> = None;
+                let mut security_group_ids: Option<::ValueList<String>> = None;
+                let mut self_service_portal: Option<::Value<String>> = None;
+                let mut server_certificate_arn: Option<::Value<String>> = None;
+                let mut split_tunnel: Option<::Value<bool>> = None;
+                let mut tag_specifications: Option<::ValueList<self::client_vpn_endpoint::TagSpecification>> = None;
+                let mut transport_protocol: Option<::Value<String>> = None;
+                let mut vpc_id: Option<::Value<String>> = None;
+                let mut vpn_port: Option<::Value<u32>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AuthenticationOptions" => {
+                            authentication_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ClientCidrBlock" => {
+                            client_cidr_block = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ClientConnectOptions" => {
+                            client_connect_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ConnectionLogOptions" => {
+                            connection_log_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DnsServers" => {
+                            dns_servers = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SecurityGroupIds" => {
+                            security_group_ids = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SelfServicePortal" => {
+                            self_service_portal = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ServerCertificateArn" => {
+                            server_certificate_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SplitTunnel" => {
+                            split_tunnel = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TagSpecifications" => {
+                            tag_specifications = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TransportProtocol" => {
+                            transport_protocol = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "VpcId" => {
+                            vpc_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "VpnPort" => {
+                            vpn_port = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ClientVpnEndpointProperties {
+                    authentication_options: authentication_options.ok_or(::serde::de::Error::missing_field("AuthenticationOptions"))?,
+                    client_cidr_block: client_cidr_block.ok_or(::serde::de::Error::missing_field("ClientCidrBlock"))?,
+                    client_connect_options: client_connect_options,
+                    connection_log_options: connection_log_options.ok_or(::serde::de::Error::missing_field("ConnectionLogOptions"))?,
+                    description: description,
+                    dns_servers: dns_servers,
+                    security_group_ids: security_group_ids,
+                    self_service_portal: self_service_portal,
+                    server_certificate_arn: server_certificate_arn.ok_or(::serde::de::Error::missing_field("ServerCertificateArn"))?,
+                    split_tunnel: split_tunnel,
+                    tag_specifications: tag_specifications,
+                    transport_protocol: transport_protocol,
+                    vpc_id: vpc_id,
+                    vpn_port: vpn_port,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for ClientVpnEndpoint {
+    type Properties = ClientVpnEndpointProperties;
+    const TYPE: &'static str = "AWS::EC2::ClientVpnEndpoint";
+    fn properties(&self) -> &ClientVpnEndpointProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut ClientVpnEndpointProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for ClientVpnEndpoint {}
+
+impl From<ClientVpnEndpointProperties> for ClientVpnEndpoint {
+    fn from(properties: ClientVpnEndpointProperties) -> ClientVpnEndpoint {
+        ClientVpnEndpoint { properties }
+    }
+}
+
+/// The [`AWS::EC2::ClientVpnRoute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnroute.html) resource type.
+#[derive(Debug, Default)]
+pub struct ClientVpnRoute {
+    properties: ClientVpnRouteProperties
+}
+
+/// Properties for the `ClientVpnRoute` resource.
+#[derive(Debug, Default)]
+pub struct ClientVpnRouteProperties {
+    /// Property [`ClientVpnEndpointId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnroute.html#cfn-ec2-clientvpnroute-clientvpnendpointid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub client_vpn_endpoint_id: ::Value<String>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnroute.html#cfn-ec2-clientvpnroute-description).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`DestinationCidrBlock`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnroute.html#cfn-ec2-clientvpnroute-destinationcidrblock).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub destination_cidr_block: ::Value<String>,
+    /// Property [`TargetVpcSubnetId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpnroute.html#cfn-ec2-clientvpnroute-targetvpcsubnetid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub target_vpc_subnet_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for ClientVpnRouteProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientVpnEndpointId", &self.client_vpn_endpoint_id)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationCidrBlock", &self.destination_cidr_block)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetVpcSubnetId", &self.target_vpc_subnet_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ClientVpnRouteProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ClientVpnRouteProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ClientVpnRouteProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ClientVpnRouteProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut client_vpn_endpoint_id: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut destination_cidr_block: Option<::Value<String>> = None;
+                let mut target_vpc_subnet_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "ClientVpnEndpointId" => {
+                            client_vpn_endpoint_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DestinationCidrBlock" => {
+                            destination_cidr_block = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TargetVpcSubnetId" => {
+                            target_vpc_subnet_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ClientVpnRouteProperties {
+                    client_vpn_endpoint_id: client_vpn_endpoint_id.ok_or(::serde::de::Error::missing_field("ClientVpnEndpointId"))?,
+                    description: description,
+                    destination_cidr_block: destination_cidr_block.ok_or(::serde::de::Error::missing_field("DestinationCidrBlock"))?,
+                    target_vpc_subnet_id: target_vpc_subnet_id.ok_or(::serde::de::Error::missing_field("TargetVpcSubnetId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for ClientVpnRoute {
+    type Properties = ClientVpnRouteProperties;
+    const TYPE: &'static str = "AWS::EC2::ClientVpnRoute";
+    fn properties(&self) -> &ClientVpnRouteProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut ClientVpnRouteProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for ClientVpnRoute {}
+
+impl From<ClientVpnRouteProperties> for ClientVpnRoute {
+    fn from(properties: ClientVpnRouteProperties) -> ClientVpnRoute {
+        ClientVpnRoute { properties }
+    }
+}
+
+/// The [`AWS::EC2::ClientVpnTargetNetworkAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpntargetnetworkassociation.html) resource type.
+#[derive(Debug, Default)]
+pub struct ClientVpnTargetNetworkAssociation {
+    properties: ClientVpnTargetNetworkAssociationProperties
+}
+
+/// Properties for the `ClientVpnTargetNetworkAssociation` resource.
+#[derive(Debug, Default)]
+pub struct ClientVpnTargetNetworkAssociationProperties {
+    /// Property [`ClientVpnEndpointId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpntargetnetworkassociation.html#cfn-ec2-clientvpntargetnetworkassociation-clientvpnendpointid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub client_vpn_endpoint_id: ::Value<String>,
+    /// Property [`SubnetId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-clientvpntargetnetworkassociation.html#cfn-ec2-clientvpntargetnetworkassociation-subnetid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub subnet_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for ClientVpnTargetNetworkAssociationProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientVpnEndpointId", &self.client_vpn_endpoint_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", &self.subnet_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ClientVpnTargetNetworkAssociationProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ClientVpnTargetNetworkAssociationProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ClientVpnTargetNetworkAssociationProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ClientVpnTargetNetworkAssociationProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut client_vpn_endpoint_id: Option<::Value<String>> = None;
+                let mut subnet_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "ClientVpnEndpointId" => {
+                            client_vpn_endpoint_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SubnetId" => {
+                            subnet_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ClientVpnTargetNetworkAssociationProperties {
+                    client_vpn_endpoint_id: client_vpn_endpoint_id.ok_or(::serde::de::Error::missing_field("ClientVpnEndpointId"))?,
+                    subnet_id: subnet_id.ok_or(::serde::de::Error::missing_field("SubnetId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for ClientVpnTargetNetworkAssociation {
+    type Properties = ClientVpnTargetNetworkAssociationProperties;
+    const TYPE: &'static str = "AWS::EC2::ClientVpnTargetNetworkAssociation";
+    fn properties(&self) -> &ClientVpnTargetNetworkAssociationProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut ClientVpnTargetNetworkAssociationProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for ClientVpnTargetNetworkAssociation {}
+
+impl From<ClientVpnTargetNetworkAssociationProperties> for ClientVpnTargetNetworkAssociation {
+    fn from(properties: ClientVpnTargetNetworkAssociationProperties) -> ClientVpnTargetNetworkAssociation {
+        ClientVpnTargetNetworkAssociation { properties }
+    }
+}
+
 /// The [`AWS::EC2::CustomerGateway`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-customer-gateway.html) resource type.
 #[derive(Debug, Default)]
 pub struct CustomerGateway {
@@ -28,7 +880,7 @@ pub struct CustomerGatewayProperties {
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub type_: ::Value<String>,
+    pub r#type: ::Value<String>,
 }
 
 impl ::serde::Serialize for CustomerGatewayProperties {
@@ -39,7 +891,7 @@ impl ::serde::Serialize for CustomerGatewayProperties {
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -59,7 +911,7 @@ impl<'de> ::serde::Deserialize<'de> for CustomerGatewayProperties {
                 let mut bgp_asn: Option<::Value<u32>> = None;
                 let mut ip_address: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
-                let mut type_: Option<::Value<String>> = None;
+                let mut r#type: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -73,7 +925,7 @@ impl<'de> ::serde::Deserialize<'de> for CustomerGatewayProperties {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Type" => {
-                            type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                            r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -83,7 +935,7 @@ impl<'de> ::serde::Deserialize<'de> for CustomerGatewayProperties {
                     bgp_asn: bgp_asn.ok_or(::serde::de::Error::missing_field("BgpAsn"))?,
                     ip_address: ip_address.ok_or(::serde::de::Error::missing_field("IpAddress"))?,
                     tags: tags,
-                    type_: type_.ok_or(::serde::de::Error::missing_field("Type"))?,
+                    r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
                 })
             }
         }
@@ -254,6 +1106,223 @@ impl From<DHCPOptionsProperties> for DHCPOptions {
     }
 }
 
+/// The [`AWS::EC2::EC2Fleet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ec2fleet.html) resource type.
+#[derive(Debug, Default)]
+pub struct EC2Fleet {
+    properties: EC2FleetProperties
+}
+
+/// Properties for the `EC2Fleet` resource.
+#[derive(Debug, Default)]
+pub struct EC2FleetProperties {
+    /// Property [`Context`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ec2fleet.html#cfn-ec2-ec2fleet-context).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub context: Option<::Value<String>>,
+    /// Property [`ExcessCapacityTerminationPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ec2fleet.html#cfn-ec2-ec2fleet-excesscapacityterminationpolicy).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub excess_capacity_termination_policy: Option<::Value<String>>,
+    /// Property [`LaunchTemplateConfigs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ec2fleet.html#cfn-ec2-ec2fleet-launchtemplateconfigs).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub launch_template_configs: ::ValueList<self::ec2_fleet::FleetLaunchTemplateConfigRequest>,
+    /// Property [`OnDemandOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ec2fleet.html#cfn-ec2-ec2fleet-ondemandoptions).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub on_demand_options: Option<::Value<self::ec2_fleet::OnDemandOptionsRequest>>,
+    /// Property [`ReplaceUnhealthyInstances`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ec2fleet.html#cfn-ec2-ec2fleet-replaceunhealthyinstances).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub replace_unhealthy_instances: Option<::Value<bool>>,
+    /// Property [`SpotOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ec2fleet.html#cfn-ec2-ec2fleet-spotoptions).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub spot_options: Option<::Value<self::ec2_fleet::SpotOptionsRequest>>,
+    /// Property [`TagSpecifications`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ec2fleet.html#cfn-ec2-ec2fleet-tagspecifications).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub tag_specifications: Option<::ValueList<self::ec2_fleet::TagSpecification>>,
+    /// Property [`TargetCapacitySpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ec2fleet.html#cfn-ec2-ec2fleet-targetcapacityspecification).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub target_capacity_specification: ::Value<self::ec2_fleet::TargetCapacitySpecificationRequest>,
+    /// Property [`TerminateInstancesWithExpiration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ec2fleet.html#cfn-ec2-ec2fleet-terminateinstanceswithexpiration).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub terminate_instances_with_expiration: Option<::Value<bool>>,
+    /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ec2fleet.html#cfn-ec2-ec2fleet-type).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub r#type: Option<::Value<String>>,
+    /// Property [`ValidFrom`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ec2fleet.html#cfn-ec2-ec2fleet-validfrom).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub valid_from: Option<::Value<String>>,
+    /// Property [`ValidUntil`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-ec2fleet.html#cfn-ec2-ec2fleet-validuntil).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub valid_until: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for EC2FleetProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref context) = self.context {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Context", context)?;
+        }
+        if let Some(ref excess_capacity_termination_policy) = self.excess_capacity_termination_policy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExcessCapacityTerminationPolicy", excess_capacity_termination_policy)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchTemplateConfigs", &self.launch_template_configs)?;
+        if let Some(ref on_demand_options) = self.on_demand_options {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OnDemandOptions", on_demand_options)?;
+        }
+        if let Some(ref replace_unhealthy_instances) = self.replace_unhealthy_instances {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplaceUnhealthyInstances", replace_unhealthy_instances)?;
+        }
+        if let Some(ref spot_options) = self.spot_options {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotOptions", spot_options)?;
+        }
+        if let Some(ref tag_specifications) = self.tag_specifications {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TagSpecifications", tag_specifications)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetCapacitySpecification", &self.target_capacity_specification)?;
+        if let Some(ref terminate_instances_with_expiration) = self.terminate_instances_with_expiration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TerminateInstancesWithExpiration", terminate_instances_with_expiration)?;
+        }
+        if let Some(ref r#type) = self.r#type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", r#type)?;
+        }
+        if let Some(ref valid_from) = self.valid_from {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ValidFrom", valid_from)?;
+        }
+        if let Some(ref valid_until) = self.valid_until {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ValidUntil", valid_until)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for EC2FleetProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<EC2FleetProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = EC2FleetProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type EC2FleetProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut context: Option<::Value<String>> = None;
+                let mut excess_capacity_termination_policy: Option<::Value<String>> = None;
+                let mut launch_template_configs: Option<::ValueList<self::ec2_fleet::FleetLaunchTemplateConfigRequest>> = None;
+                let mut on_demand_options: Option<::Value<self::ec2_fleet::OnDemandOptionsRequest>> = None;
+                let mut replace_unhealthy_instances: Option<::Value<bool>> = None;
+                let mut spot_options: Option<::Value<self::ec2_fleet::SpotOptionsRequest>> = None;
+                let mut tag_specifications: Option<::ValueList<self::ec2_fleet::TagSpecification>> = None;
+                let mut target_capacity_specification: Option<::Value<self::ec2_fleet::TargetCapacitySpecificationRequest>> = None;
+                let mut terminate_instances_with_expiration: Option<::Value<bool>> = None;
+                let mut r#type: Option<::Value<String>> = None;
+                let mut valid_from: Option<::Value<String>> = None;
+                let mut valid_until: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Context" => {
+                            context = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ExcessCapacityTerminationPolicy" => {
+                            excess_capacity_termination_policy = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "LaunchTemplateConfigs" => {
+                            launch_template_configs = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "OnDemandOptions" => {
+                            on_demand_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ReplaceUnhealthyInstances" => {
+                            replace_unhealthy_instances = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SpotOptions" => {
+                            spot_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TagSpecifications" => {
+                            tag_specifications = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TargetCapacitySpecification" => {
+                            target_capacity_specification = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TerminateInstancesWithExpiration" => {
+                            terminate_instances_with_expiration = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Type" => {
+                            r#type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ValidFrom" => {
+                            valid_from = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ValidUntil" => {
+                            valid_until = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(EC2FleetProperties {
+                    context: context,
+                    excess_capacity_termination_policy: excess_capacity_termination_policy,
+                    launch_template_configs: launch_template_configs.ok_or(::serde::de::Error::missing_field("LaunchTemplateConfigs"))?,
+                    on_demand_options: on_demand_options,
+                    replace_unhealthy_instances: replace_unhealthy_instances,
+                    spot_options: spot_options,
+                    tag_specifications: tag_specifications,
+                    target_capacity_specification: target_capacity_specification.ok_or(::serde::de::Error::missing_field("TargetCapacitySpecification"))?,
+                    terminate_instances_with_expiration: terminate_instances_with_expiration,
+                    r#type: r#type,
+                    valid_from: valid_from,
+                    valid_until: valid_until,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for EC2Fleet {
+    type Properties = EC2FleetProperties;
+    const TYPE: &'static str = "AWS::EC2::EC2Fleet";
+    fn properties(&self) -> &EC2FleetProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut EC2FleetProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for EC2Fleet {}
+
+impl From<EC2FleetProperties> for EC2Fleet {
+    fn from(properties: EC2FleetProperties) -> EC2Fleet {
+        EC2Fleet { properties }
+    }
+}
+
 /// The [`AWS::EC2::EIP`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-eip.html) resource type.
 #[derive(Debug, Default)]
 pub struct EIP {
@@ -270,9 +1339,21 @@ pub struct EIPProperties {
     pub domain: Option<::Value<String>>,
     /// Property [`InstanceId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-eip.html#cfn-ec2-eip-instanceid).
     ///
+    /// Update type: _Conditional_.
+    /// Conditional updates can be mutable or immutable, depending on, for example, which other properties you updated.
+    /// For more information, see the relevant resource type documentation.
+    pub instance_id: Option<::Value<String>>,
+    /// Property [`PublicIpv4Pool`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-eip.html#cfn-ec2-eip-publicipv4pool).
+    ///
+    /// Update type: _Conditional_.
+    /// Conditional updates can be mutable or immutable, depending on, for example, which other properties you updated.
+    /// For more information, see the relevant resource type documentation.
+    pub public_ipv4_pool: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-eip.html#cfn-ec2-eip-tags).
+    ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub instance_id: Option<::Value<String>>,
+    pub tags: Option<::ValueList<::Tag>>,
 }
 
 impl ::serde::Serialize for EIPProperties {
@@ -283,6 +1364,12 @@ impl ::serde::Serialize for EIPProperties {
         }
         if let Some(ref instance_id) = self.instance_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceId", instance_id)?;
+        }
+        if let Some(ref public_ipv4_pool) = self.public_ipv4_pool {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PublicIpv4Pool", public_ipv4_pool)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
         ::serde::ser::SerializeMap::end(map)
     }
@@ -302,6 +1389,8 @@ impl<'de> ::serde::Deserialize<'de> for EIPProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut domain: Option<::Value<String>> = None;
                 let mut instance_id: Option<::Value<String>> = None;
+                let mut public_ipv4_pool: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -311,6 +1400,12 @@ impl<'de> ::serde::Deserialize<'de> for EIPProperties {
                         "InstanceId" => {
                             instance_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "PublicIpv4Pool" => {
+                            public_ipv4_pool = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
@@ -318,6 +1413,8 @@ impl<'de> ::serde::Deserialize<'de> for EIPProperties {
                 Ok(EIPProperties {
                     domain: domain,
                     instance_id: instance_id,
+                    public_ipv4_pool: public_ipv4_pool,
+                    tags: tags,
                 })
             }
         }
@@ -555,6 +1652,93 @@ impl From<EgressOnlyInternetGatewayProperties> for EgressOnlyInternetGateway {
     }
 }
 
+/// The [`AWS::EC2::EnclaveCertificateIamRoleAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-enclavecertificateiamroleassociation.html) resource type.
+#[derive(Debug, Default)]
+pub struct EnclaveCertificateIamRoleAssociation {
+    properties: EnclaveCertificateIamRoleAssociationProperties
+}
+
+/// Properties for the `EnclaveCertificateIamRoleAssociation` resource.
+#[derive(Debug, Default)]
+pub struct EnclaveCertificateIamRoleAssociationProperties {
+    /// Property [`CertificateArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-enclavecertificateiamroleassociation.html#cfn-ec2-enclavecertificateiamroleassociation-certificatearn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub certificate_arn: ::Value<String>,
+    /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-enclavecertificateiamroleassociation.html#cfn-ec2-enclavecertificateiamroleassociation-rolearn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub role_arn: ::Value<String>,
+}
+
+impl ::serde::Serialize for EnclaveCertificateIamRoleAssociationProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificateArn", &self.certificate_arn)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for EnclaveCertificateIamRoleAssociationProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<EnclaveCertificateIamRoleAssociationProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = EnclaveCertificateIamRoleAssociationProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type EnclaveCertificateIamRoleAssociationProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut certificate_arn: Option<::Value<String>> = None;
+                let mut role_arn: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "CertificateArn" => {
+                            certificate_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "RoleArn" => {
+                            role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(EnclaveCertificateIamRoleAssociationProperties {
+                    certificate_arn: certificate_arn.ok_or(::serde::de::Error::missing_field("CertificateArn"))?,
+                    role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for EnclaveCertificateIamRoleAssociation {
+    type Properties = EnclaveCertificateIamRoleAssociationProperties;
+    const TYPE: &'static str = "AWS::EC2::EnclaveCertificateIamRoleAssociation";
+    fn properties(&self) -> &EnclaveCertificateIamRoleAssociationProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut EnclaveCertificateIamRoleAssociationProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for EnclaveCertificateIamRoleAssociation {}
+
+impl From<EnclaveCertificateIamRoleAssociationProperties> for EnclaveCertificateIamRoleAssociation {
+    fn from(properties: EnclaveCertificateIamRoleAssociationProperties) -> EnclaveCertificateIamRoleAssociation {
+        EnclaveCertificateIamRoleAssociation { properties }
+    }
+}
+
 /// The [`AWS::EC2::FlowLog`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html) resource type.
 #[derive(Debug, Default)]
 pub struct FlowLog {
@@ -568,12 +1752,32 @@ pub struct FlowLogProperties {
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub deliver_logs_permission_arn: ::Value<String>,
+    pub deliver_logs_permission_arn: Option<::Value<String>>,
+    /// Property [`LogDestination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html#cfn-ec2-flowlog-logdestination).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub log_destination: Option<::Value<String>>,
+    /// Property [`LogDestinationType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html#cfn-ec2-flowlog-logdestinationtype).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub log_destination_type: Option<::Value<String>>,
+    /// Property [`LogFormat`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html#cfn-ec2-flowlog-logformat).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub log_format: Option<::Value<String>>,
     /// Property [`LogGroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html#cfn-ec2-flowlog-loggroupname).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub log_group_name: ::Value<String>,
+    pub log_group_name: Option<::Value<String>>,
+    /// Property [`MaxAggregationInterval`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html#cfn-ec2-flowlog-maxaggregationinterval).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub max_aggregation_interval: Option<::Value<u32>>,
     /// Property [`ResourceId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html#cfn-ec2-flowlog-resourceid).
     ///
     /// Update type: _Immutable_.
@@ -584,6 +1788,11 @@ pub struct FlowLogProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub resource_type: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html#cfn-ec2-flowlog-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
     /// Property [`TrafficType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html#cfn-ec2-flowlog-traffictype).
     ///
     /// Update type: _Immutable_.
@@ -594,10 +1803,29 @@ pub struct FlowLogProperties {
 impl ::serde::Serialize for FlowLogProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeliverLogsPermissionArn", &self.deliver_logs_permission_arn)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroupName", &self.log_group_name)?;
+        if let Some(ref deliver_logs_permission_arn) = self.deliver_logs_permission_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeliverLogsPermissionArn", deliver_logs_permission_arn)?;
+        }
+        if let Some(ref log_destination) = self.log_destination {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogDestination", log_destination)?;
+        }
+        if let Some(ref log_destination_type) = self.log_destination_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogDestinationType", log_destination_type)?;
+        }
+        if let Some(ref log_format) = self.log_format {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogFormat", log_format)?;
+        }
+        if let Some(ref log_group_name) = self.log_group_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroupName", log_group_name)?;
+        }
+        if let Some(ref max_aggregation_interval) = self.max_aggregation_interval {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxAggregationInterval", max_aggregation_interval)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceId", &self.resource_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceType", &self.resource_type)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrafficType", &self.traffic_type)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -616,9 +1844,14 @@ impl<'de> ::serde::Deserialize<'de> for FlowLogProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut deliver_logs_permission_arn: Option<::Value<String>> = None;
+                let mut log_destination: Option<::Value<String>> = None;
+                let mut log_destination_type: Option<::Value<String>> = None;
+                let mut log_format: Option<::Value<String>> = None;
                 let mut log_group_name: Option<::Value<String>> = None;
+                let mut max_aggregation_interval: Option<::Value<u32>> = None;
                 let mut resource_id: Option<::Value<String>> = None;
                 let mut resource_type: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut traffic_type: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -626,14 +1859,29 @@ impl<'de> ::serde::Deserialize<'de> for FlowLogProperties {
                         "DeliverLogsPermissionArn" => {
                             deliver_logs_permission_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "LogDestination" => {
+                            log_destination = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "LogDestinationType" => {
+                            log_destination_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "LogFormat" => {
+                            log_format = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "LogGroupName" => {
                             log_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MaxAggregationInterval" => {
+                            max_aggregation_interval = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ResourceId" => {
                             resource_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ResourceType" => {
                             resource_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "TrafficType" => {
                             traffic_type = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -643,10 +1891,15 @@ impl<'de> ::serde::Deserialize<'de> for FlowLogProperties {
                 }
 
                 Ok(FlowLogProperties {
-                    deliver_logs_permission_arn: deliver_logs_permission_arn.ok_or(::serde::de::Error::missing_field("DeliverLogsPermissionArn"))?,
-                    log_group_name: log_group_name.ok_or(::serde::de::Error::missing_field("LogGroupName"))?,
+                    deliver_logs_permission_arn: deliver_logs_permission_arn,
+                    log_destination: log_destination,
+                    log_destination_type: log_destination_type,
+                    log_format: log_format,
+                    log_group_name: log_group_name,
+                    max_aggregation_interval: max_aggregation_interval,
                     resource_id: resource_id.ok_or(::serde::de::Error::missing_field("ResourceId"))?,
                     resource_type: resource_type.ok_or(::serde::de::Error::missing_field("ResourceType"))?,
+                    tags: tags,
                     traffic_type: traffic_type.ok_or(::serde::de::Error::missing_field("TrafficType"))?,
                 })
             }
@@ -675,6 +1928,93 @@ impl From<FlowLogProperties> for FlowLog {
     }
 }
 
+/// The [`AWS::EC2::GatewayRouteTableAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-gatewayroutetableassociation.html) resource type.
+#[derive(Debug, Default)]
+pub struct GatewayRouteTableAssociation {
+    properties: GatewayRouteTableAssociationProperties
+}
+
+/// Properties for the `GatewayRouteTableAssociation` resource.
+#[derive(Debug, Default)]
+pub struct GatewayRouteTableAssociationProperties {
+    /// Property [`GatewayId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-gatewayroutetableassociation.html#cfn-ec2-gatewayroutetableassociation-gatewayid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub gateway_id: ::Value<String>,
+    /// Property [`RouteTableId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-gatewayroutetableassociation.html#cfn-ec2-gatewayroutetableassociation-routetableid).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub route_table_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for GatewayRouteTableAssociationProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "GatewayId", &self.gateway_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RouteTableId", &self.route_table_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for GatewayRouteTableAssociationProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<GatewayRouteTableAssociationProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = GatewayRouteTableAssociationProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type GatewayRouteTableAssociationProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut gateway_id: Option<::Value<String>> = None;
+                let mut route_table_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "GatewayId" => {
+                            gateway_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "RouteTableId" => {
+                            route_table_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(GatewayRouteTableAssociationProperties {
+                    gateway_id: gateway_id.ok_or(::serde::de::Error::missing_field("GatewayId"))?,
+                    route_table_id: route_table_id.ok_or(::serde::de::Error::missing_field("RouteTableId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for GatewayRouteTableAssociation {
+    type Properties = GatewayRouteTableAssociationProperties;
+    const TYPE: &'static str = "AWS::EC2::GatewayRouteTableAssociation";
+    fn properties(&self) -> &GatewayRouteTableAssociationProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut GatewayRouteTableAssociationProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for GatewayRouteTableAssociation {}
+
+impl From<GatewayRouteTableAssociationProperties> for GatewayRouteTableAssociation {
+    fn from(properties: GatewayRouteTableAssociationProperties) -> GatewayRouteTableAssociation {
+        GatewayRouteTableAssociation { properties }
+    }
+}
+
 /// The [`AWS::EC2::Host`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-host.html) resource type.
 #[derive(Debug, Default)]
 pub struct Host {
@@ -694,6 +2034,11 @@ pub struct HostProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub availability_zone: ::Value<String>,
+    /// Property [`HostRecovery`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-host.html#cfn-ec2-host-hostrecovery).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub host_recovery: Option<::Value<String>>,
     /// Property [`InstanceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-host.html#cfn-ec2-host-instancetype).
     ///
     /// Update type: _Immutable_.
@@ -708,6 +2053,9 @@ impl ::serde::Serialize for HostProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoPlacement", auto_placement)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", &self.availability_zone)?;
+        if let Some(ref host_recovery) = self.host_recovery {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostRecovery", host_recovery)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceType", &self.instance_type)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -727,6 +2075,7 @@ impl<'de> ::serde::Deserialize<'de> for HostProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut auto_placement: Option<::Value<String>> = None;
                 let mut availability_zone: Option<::Value<String>> = None;
+                let mut host_recovery: Option<::Value<String>> = None;
                 let mut instance_type: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -736,6 +2085,9 @@ impl<'de> ::serde::Deserialize<'de> for HostProperties {
                         }
                         "AvailabilityZone" => {
                             availability_zone = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "HostRecovery" => {
+                            host_recovery = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "InstanceType" => {
                             instance_type = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -747,6 +2099,7 @@ impl<'de> ::serde::Deserialize<'de> for HostProperties {
                 Ok(HostProperties {
                     auto_placement: auto_placement,
                     availability_zone: availability_zone.ok_or(::serde::de::Error::missing_field("AvailabilityZone"))?,
+                    host_recovery: host_recovery,
                     instance_type: instance_type.ok_or(::serde::de::Error::missing_field("InstanceType"))?,
                 })
             }
@@ -807,6 +2160,11 @@ pub struct InstanceProperties {
     /// Conditional updates can be mutable or immutable, depending on, for example, which other properties you updated.
     /// For more information, see the relevant resource type documentation.
     pub block_device_mappings: Option<::ValueList<self::instance::BlockDeviceMapping>>,
+    /// Property [`CpuOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-cpuoptions).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub cpu_options: Option<::Value<self::instance::CpuOptions>>,
     /// Property [`CreditSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-creditspecification).
     ///
     /// Update type: _Mutable_.
@@ -828,12 +2186,32 @@ pub struct InstanceProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub elastic_gpu_specifications: Option<::ValueList<self::instance::ElasticGpuSpecification>>,
+    /// Property [`ElasticInferenceAccelerators`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-elasticinferenceaccelerators).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub elastic_inference_accelerators: Option<::ValueList<self::instance::ElasticInferenceAccelerator>>,
+    /// Property [`EnclaveOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-enclaveoptions).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub enclave_options: Option<::Value<self::instance::EnclaveOptions>>,
+    /// Property [`HibernationOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-hibernationoptions).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub hibernation_options: Option<::Value<self::instance::HibernationOptions>>,
     /// Property [`HostId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-hostid).
     ///
     /// Update type: _Conditional_.
     /// Conditional updates can be mutable or immutable, depending on, for example, which other properties you updated.
     /// For more information, see the relevant resource type documentation.
     pub host_id: Option<::Value<String>>,
+    /// Property [`HostResourceGroupArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-hostresourcegrouparn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub host_resource_group_arn: Option<::Value<String>>,
     /// Property [`IamInstanceProfile`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-iaminstanceprofile).
     ///
     /// Update type: _Mutable_.
@@ -843,7 +2221,7 @@ pub struct InstanceProperties {
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub image_id: ::Value<String>,
+    pub image_id: Option<::Value<String>>,
     /// Property [`InstanceInitiatedShutdownBehavior`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-instanceinitiatedshutdownbehavior).
     ///
     /// Update type: _Mutable_.
@@ -876,6 +2254,16 @@ pub struct InstanceProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub key_name: Option<::Value<String>>,
+    /// Property [`LaunchTemplate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-launchtemplate).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub launch_template: Option<::Value<self::instance::LaunchTemplateSpecification>>,
+    /// Property [`LicenseSpecifications`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-licensespecifications).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub license_specifications: Option<::ValueList<self::instance::LicenseSpecification>>,
     /// Property [`Monitoring`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-monitoring).
     ///
     /// Update type: _Mutable_.
@@ -967,6 +2355,9 @@ impl ::serde::Serialize for InstanceProperties {
         if let Some(ref block_device_mappings) = self.block_device_mappings {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BlockDeviceMappings", block_device_mappings)?;
         }
+        if let Some(ref cpu_options) = self.cpu_options {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CpuOptions", cpu_options)?;
+        }
         if let Some(ref credit_specification) = self.credit_specification {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CreditSpecification", credit_specification)?;
         }
@@ -979,13 +2370,27 @@ impl ::serde::Serialize for InstanceProperties {
         if let Some(ref elastic_gpu_specifications) = self.elastic_gpu_specifications {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ElasticGpuSpecifications", elastic_gpu_specifications)?;
         }
+        if let Some(ref elastic_inference_accelerators) = self.elastic_inference_accelerators {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ElasticInferenceAccelerators", elastic_inference_accelerators)?;
+        }
+        if let Some(ref enclave_options) = self.enclave_options {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnclaveOptions", enclave_options)?;
+        }
+        if let Some(ref hibernation_options) = self.hibernation_options {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HibernationOptions", hibernation_options)?;
+        }
         if let Some(ref host_id) = self.host_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostId", host_id)?;
+        }
+        if let Some(ref host_resource_group_arn) = self.host_resource_group_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostResourceGroupArn", host_resource_group_arn)?;
         }
         if let Some(ref iam_instance_profile) = self.iam_instance_profile {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IamInstanceProfile", iam_instance_profile)?;
         }
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ImageId", &self.image_id)?;
+        if let Some(ref image_id) = self.image_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ImageId", image_id)?;
+        }
         if let Some(ref instance_initiated_shutdown_behavior) = self.instance_initiated_shutdown_behavior {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceInitiatedShutdownBehavior", instance_initiated_shutdown_behavior)?;
         }
@@ -1003,6 +2408,12 @@ impl ::serde::Serialize for InstanceProperties {
         }
         if let Some(ref key_name) = self.key_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyName", key_name)?;
+        }
+        if let Some(ref launch_template) = self.launch_template {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchTemplate", launch_template)?;
+        }
+        if let Some(ref license_specifications) = self.license_specifications {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LicenseSpecifications", license_specifications)?;
         }
         if let Some(ref monitoring) = self.monitoring {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Monitoring", monitoring)?;
@@ -1066,11 +2477,16 @@ impl<'de> ::serde::Deserialize<'de> for InstanceProperties {
                 let mut affinity: Option<::Value<String>> = None;
                 let mut availability_zone: Option<::Value<String>> = None;
                 let mut block_device_mappings: Option<::ValueList<self::instance::BlockDeviceMapping>> = None;
+                let mut cpu_options: Option<::Value<self::instance::CpuOptions>> = None;
                 let mut credit_specification: Option<::Value<self::instance::CreditSpecification>> = None;
                 let mut disable_api_termination: Option<::Value<bool>> = None;
                 let mut ebs_optimized: Option<::Value<bool>> = None;
                 let mut elastic_gpu_specifications: Option<::ValueList<self::instance::ElasticGpuSpecification>> = None;
+                let mut elastic_inference_accelerators: Option<::ValueList<self::instance::ElasticInferenceAccelerator>> = None;
+                let mut enclave_options: Option<::Value<self::instance::EnclaveOptions>> = None;
+                let mut hibernation_options: Option<::Value<self::instance::HibernationOptions>> = None;
                 let mut host_id: Option<::Value<String>> = None;
+                let mut host_resource_group_arn: Option<::Value<String>> = None;
                 let mut iam_instance_profile: Option<::Value<String>> = None;
                 let mut image_id: Option<::Value<String>> = None;
                 let mut instance_initiated_shutdown_behavior: Option<::Value<String>> = None;
@@ -1079,6 +2495,8 @@ impl<'de> ::serde::Deserialize<'de> for InstanceProperties {
                 let mut ipv6_addresses: Option<::ValueList<self::instance::InstanceIpv6Address>> = None;
                 let mut kernel_id: Option<::Value<String>> = None;
                 let mut key_name: Option<::Value<String>> = None;
+                let mut launch_template: Option<::Value<self::instance::LaunchTemplateSpecification>> = None;
+                let mut license_specifications: Option<::ValueList<self::instance::LicenseSpecification>> = None;
                 let mut monitoring: Option<::Value<bool>> = None;
                 let mut network_interfaces: Option<::ValueList<self::instance::NetworkInterface>> = None;
                 let mut placement_group_name: Option<::Value<String>> = None;
@@ -1108,6 +2526,9 @@ impl<'de> ::serde::Deserialize<'de> for InstanceProperties {
                         "BlockDeviceMappings" => {
                             block_device_mappings = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "CpuOptions" => {
+                            cpu_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "CreditSpecification" => {
                             credit_specification = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -1120,8 +2541,20 @@ impl<'de> ::serde::Deserialize<'de> for InstanceProperties {
                         "ElasticGpuSpecifications" => {
                             elastic_gpu_specifications = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ElasticInferenceAccelerators" => {
+                            elastic_inference_accelerators = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "EnclaveOptions" => {
+                            enclave_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "HibernationOptions" => {
+                            hibernation_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "HostId" => {
                             host_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "HostResourceGroupArn" => {
+                            host_resource_group_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "IamInstanceProfile" => {
                             iam_instance_profile = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1146,6 +2579,12 @@ impl<'de> ::serde::Deserialize<'de> for InstanceProperties {
                         }
                         "KeyName" => {
                             key_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "LaunchTemplate" => {
+                            launch_template = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "LicenseSpecifications" => {
+                            license_specifications = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Monitoring" => {
                             monitoring = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1198,19 +2637,26 @@ impl<'de> ::serde::Deserialize<'de> for InstanceProperties {
                     affinity: affinity,
                     availability_zone: availability_zone,
                     block_device_mappings: block_device_mappings,
+                    cpu_options: cpu_options,
                     credit_specification: credit_specification,
                     disable_api_termination: disable_api_termination,
                     ebs_optimized: ebs_optimized,
                     elastic_gpu_specifications: elastic_gpu_specifications,
+                    elastic_inference_accelerators: elastic_inference_accelerators,
+                    enclave_options: enclave_options,
+                    hibernation_options: hibernation_options,
                     host_id: host_id,
+                    host_resource_group_arn: host_resource_group_arn,
                     iam_instance_profile: iam_instance_profile,
-                    image_id: image_id.ok_or(::serde::de::Error::missing_field("ImageId"))?,
+                    image_id: image_id,
                     instance_initiated_shutdown_behavior: instance_initiated_shutdown_behavior,
                     instance_type: instance_type,
                     ipv6_address_count: ipv6_address_count,
                     ipv6_addresses: ipv6_addresses,
                     kernel_id: kernel_id,
                     key_name: key_name,
+                    launch_template: launch_template,
+                    license_specifications: license_specifications,
                     monitoring: monitoring,
                     network_interfaces: network_interfaces,
                     placement_group_name: placement_group_name,
@@ -1330,6 +2776,308 @@ impl From<InternetGatewayProperties> for InternetGateway {
     }
 }
 
+/// The [`AWS::EC2::LaunchTemplate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-launchtemplate.html) resource type.
+#[derive(Debug, Default)]
+pub struct LaunchTemplate {
+    properties: LaunchTemplateProperties
+}
+
+/// Properties for the `LaunchTemplate` resource.
+#[derive(Debug, Default)]
+pub struct LaunchTemplateProperties {
+    /// Property [`LaunchTemplateData`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-launchtemplate.html#cfn-ec2-launchtemplate-launchtemplatedata).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub launch_template_data: Option<::Value<self::launch_template::LaunchTemplateData>>,
+    /// Property [`LaunchTemplateName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-launchtemplate.html#cfn-ec2-launchtemplate-launchtemplatename).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub launch_template_name: Option<::Value<String>>,
+    /// Property [`TagSpecifications`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-launchtemplate.html#cfn-ec2-launchtemplate-tagspecifications).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tag_specifications: Option<::ValueList<self::launch_template::LaunchTemplateTagSpecification>>,
+}
+
+impl ::serde::Serialize for LaunchTemplateProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref launch_template_data) = self.launch_template_data {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchTemplateData", launch_template_data)?;
+        }
+        if let Some(ref launch_template_name) = self.launch_template_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchTemplateName", launch_template_name)?;
+        }
+        if let Some(ref tag_specifications) = self.tag_specifications {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TagSpecifications", tag_specifications)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for LaunchTemplateProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<LaunchTemplateProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = LaunchTemplateProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type LaunchTemplateProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut launch_template_data: Option<::Value<self::launch_template::LaunchTemplateData>> = None;
+                let mut launch_template_name: Option<::Value<String>> = None;
+                let mut tag_specifications: Option<::ValueList<self::launch_template::LaunchTemplateTagSpecification>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "LaunchTemplateData" => {
+                            launch_template_data = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "LaunchTemplateName" => {
+                            launch_template_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TagSpecifications" => {
+                            tag_specifications = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(LaunchTemplateProperties {
+                    launch_template_data: launch_template_data,
+                    launch_template_name: launch_template_name,
+                    tag_specifications: tag_specifications,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for LaunchTemplate {
+    type Properties = LaunchTemplateProperties;
+    const TYPE: &'static str = "AWS::EC2::LaunchTemplate";
+    fn properties(&self) -> &LaunchTemplateProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut LaunchTemplateProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for LaunchTemplate {}
+
+impl From<LaunchTemplateProperties> for LaunchTemplate {
+    fn from(properties: LaunchTemplateProperties) -> LaunchTemplate {
+        LaunchTemplate { properties }
+    }
+}
+
+/// The [`AWS::EC2::LocalGatewayRoute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayroute.html) resource type.
+#[derive(Debug, Default)]
+pub struct LocalGatewayRoute {
+    properties: LocalGatewayRouteProperties
+}
+
+/// Properties for the `LocalGatewayRoute` resource.
+#[derive(Debug, Default)]
+pub struct LocalGatewayRouteProperties {
+    /// Property [`DestinationCidrBlock`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayroute.html#cfn-ec2-localgatewayroute-destinationcidrblock).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub destination_cidr_block: ::Value<String>,
+    /// Property [`LocalGatewayRouteTableId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayroute.html#cfn-ec2-localgatewayroute-localgatewayroutetableid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub local_gateway_route_table_id: ::Value<String>,
+    /// Property [`LocalGatewayVirtualInterfaceGroupId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayroute.html#cfn-ec2-localgatewayroute-localgatewayvirtualinterfacegroupid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub local_gateway_virtual_interface_group_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for LocalGatewayRouteProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationCidrBlock", &self.destination_cidr_block)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LocalGatewayRouteTableId", &self.local_gateway_route_table_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LocalGatewayVirtualInterfaceGroupId", &self.local_gateway_virtual_interface_group_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for LocalGatewayRouteProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<LocalGatewayRouteProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = LocalGatewayRouteProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type LocalGatewayRouteProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut destination_cidr_block: Option<::Value<String>> = None;
+                let mut local_gateway_route_table_id: Option<::Value<String>> = None;
+                let mut local_gateway_virtual_interface_group_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "DestinationCidrBlock" => {
+                            destination_cidr_block = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "LocalGatewayRouteTableId" => {
+                            local_gateway_route_table_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "LocalGatewayVirtualInterfaceGroupId" => {
+                            local_gateway_virtual_interface_group_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(LocalGatewayRouteProperties {
+                    destination_cidr_block: destination_cidr_block.ok_or(::serde::de::Error::missing_field("DestinationCidrBlock"))?,
+                    local_gateway_route_table_id: local_gateway_route_table_id.ok_or(::serde::de::Error::missing_field("LocalGatewayRouteTableId"))?,
+                    local_gateway_virtual_interface_group_id: local_gateway_virtual_interface_group_id.ok_or(::serde::de::Error::missing_field("LocalGatewayVirtualInterfaceGroupId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for LocalGatewayRoute {
+    type Properties = LocalGatewayRouteProperties;
+    const TYPE: &'static str = "AWS::EC2::LocalGatewayRoute";
+    fn properties(&self) -> &LocalGatewayRouteProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut LocalGatewayRouteProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for LocalGatewayRoute {}
+
+impl From<LocalGatewayRouteProperties> for LocalGatewayRoute {
+    fn from(properties: LocalGatewayRouteProperties) -> LocalGatewayRoute {
+        LocalGatewayRoute { properties }
+    }
+}
+
+/// The [`AWS::EC2::LocalGatewayRouteTableVPCAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayroutetablevpcassociation.html) resource type.
+#[derive(Debug, Default)]
+pub struct LocalGatewayRouteTableVPCAssociation {
+    properties: LocalGatewayRouteTableVPCAssociationProperties
+}
+
+/// Properties for the `LocalGatewayRouteTableVPCAssociation` resource.
+#[derive(Debug, Default)]
+pub struct LocalGatewayRouteTableVPCAssociationProperties {
+    /// Property [`LocalGatewayRouteTableId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayroutetablevpcassociation.html#cfn-ec2-localgatewayroutetablevpcassociation-localgatewayroutetableid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub local_gateway_route_table_id: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayroutetablevpcassociation.html#cfn-ec2-localgatewayroutetablevpcassociation-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`VpcId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-localgatewayroutetablevpcassociation.html#cfn-ec2-localgatewayroutetablevpcassociation-vpcid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub vpc_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for LocalGatewayRouteTableVPCAssociationProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LocalGatewayRouteTableId", &self.local_gateway_route_table_id)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", &self.vpc_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for LocalGatewayRouteTableVPCAssociationProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<LocalGatewayRouteTableVPCAssociationProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = LocalGatewayRouteTableVPCAssociationProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type LocalGatewayRouteTableVPCAssociationProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut local_gateway_route_table_id: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut vpc_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "LocalGatewayRouteTableId" => {
+                            local_gateway_route_table_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "VpcId" => {
+                            vpc_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(LocalGatewayRouteTableVPCAssociationProperties {
+                    local_gateway_route_table_id: local_gateway_route_table_id.ok_or(::serde::de::Error::missing_field("LocalGatewayRouteTableId"))?,
+                    tags: tags,
+                    vpc_id: vpc_id.ok_or(::serde::de::Error::missing_field("VpcId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for LocalGatewayRouteTableVPCAssociation {
+    type Properties = LocalGatewayRouteTableVPCAssociationProperties;
+    const TYPE: &'static str = "AWS::EC2::LocalGatewayRouteTableVPCAssociation";
+    fn properties(&self) -> &LocalGatewayRouteTableVPCAssociationProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut LocalGatewayRouteTableVPCAssociationProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for LocalGatewayRouteTableVPCAssociation {}
+
+impl From<LocalGatewayRouteTableVPCAssociationProperties> for LocalGatewayRouteTableVPCAssociation {
+    fn from(properties: LocalGatewayRouteTableVPCAssociationProperties) -> LocalGatewayRouteTableVPCAssociation {
+        LocalGatewayRouteTableVPCAssociation { properties }
+    }
+}
+
 /// The [`AWS::EC2::NatGateway`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-natgateway.html) resource type.
 #[derive(Debug, Default)]
 pub struct NatGateway {
@@ -1343,7 +3091,12 @@ pub struct NatGatewayProperties {
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub allocation_id: ::Value<String>,
+    pub allocation_id: Option<::Value<String>>,
+    /// Property [`ConnectivityType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-natgateway.html#cfn-ec2-natgateway-connectivitytype).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub connectivity_type: Option<::Value<String>>,
     /// Property [`SubnetId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-natgateway.html#cfn-ec2-natgateway-subnetid).
     ///
     /// Update type: _Immutable_.
@@ -1359,7 +3112,12 @@ pub struct NatGatewayProperties {
 impl ::serde::Serialize for NatGatewayProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocationId", &self.allocation_id)?;
+        if let Some(ref allocation_id) = self.allocation_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocationId", allocation_id)?;
+        }
+        if let Some(ref connectivity_type) = self.connectivity_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectivityType", connectivity_type)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", &self.subnet_id)?;
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
@@ -1381,6 +3139,7 @@ impl<'de> ::serde::Deserialize<'de> for NatGatewayProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut allocation_id: Option<::Value<String>> = None;
+                let mut connectivity_type: Option<::Value<String>> = None;
                 let mut subnet_id: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
 
@@ -1388,6 +3147,9 @@ impl<'de> ::serde::Deserialize<'de> for NatGatewayProperties {
                     match __cfn_key.as_ref() {
                         "AllocationId" => {
                             allocation_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ConnectivityType" => {
+                            connectivity_type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SubnetId" => {
                             subnet_id = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1400,7 +3162,8 @@ impl<'de> ::serde::Deserialize<'de> for NatGatewayProperties {
                 }
 
                 Ok(NatGatewayProperties {
-                    allocation_id: allocation_id.ok_or(::serde::de::Error::missing_field("AllocationId"))?,
+                    allocation_id: allocation_id,
+                    connectivity_type: connectivity_type,
                     subnet_id: subnet_id.ok_or(::serde::de::Error::missing_field("SubnetId"))?,
                     tags: tags,
                 })
@@ -1532,7 +3295,7 @@ pub struct NetworkAclEntryProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub cidr_block: ::Value<String>,
+    pub cidr_block: Option<::Value<String>>,
     /// Property [`Egress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl-entry.html#cfn-ec2-networkaclentry-egress).
     ///
     /// Update type: _Immutable_.
@@ -1578,7 +3341,9 @@ pub struct NetworkAclEntryProperties {
 impl ::serde::Serialize for NetworkAclEntryProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrBlock", &self.cidr_block)?;
+        if let Some(ref cidr_block) = self.cidr_block {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrBlock", cidr_block)?;
+        }
         if let Some(ref egress) = self.egress {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Egress", egress)?;
         }
@@ -1655,7 +3420,7 @@ impl<'de> ::serde::Deserialize<'de> for NetworkAclEntryProperties {
                 }
 
                 Ok(NetworkAclEntryProperties {
-                    cidr_block: cidr_block.ok_or(::serde::de::Error::missing_field("CidrBlock"))?,
+                    cidr_block: cidr_block,
                     egress: egress,
                     icmp: icmp,
                     ipv6_cidr_block: ipv6_cidr_block,
@@ -1688,6 +3453,258 @@ impl ::private::Sealed for NetworkAclEntry {}
 impl From<NetworkAclEntryProperties> for NetworkAclEntry {
     fn from(properties: NetworkAclEntryProperties) -> NetworkAclEntry {
         NetworkAclEntry { properties }
+    }
+}
+
+/// The [`AWS::EC2::NetworkInsightsAnalysis`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightsanalysis.html) resource type.
+#[derive(Debug, Default)]
+pub struct NetworkInsightsAnalysis {
+    properties: NetworkInsightsAnalysisProperties
+}
+
+/// Properties for the `NetworkInsightsAnalysis` resource.
+#[derive(Debug, Default)]
+pub struct NetworkInsightsAnalysisProperties {
+    /// Property [`FilterInArns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightsanalysis.html#cfn-ec2-networkinsightsanalysis-filterinarns).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub filter_in_arns: Option<::ValueList<String>>,
+    /// Property [`NetworkInsightsPathId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightsanalysis.html#cfn-ec2-networkinsightsanalysis-networkinsightspathid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub network_insights_path_id: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightsanalysis.html#cfn-ec2-networkinsightsanalysis-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for NetworkInsightsAnalysisProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref filter_in_arns) = self.filter_in_arns {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FilterInArns", filter_in_arns)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInsightsPathId", &self.network_insights_path_id)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for NetworkInsightsAnalysisProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<NetworkInsightsAnalysisProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = NetworkInsightsAnalysisProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type NetworkInsightsAnalysisProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut filter_in_arns: Option<::ValueList<String>> = None;
+                let mut network_insights_path_id: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "FilterInArns" => {
+                            filter_in_arns = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "NetworkInsightsPathId" => {
+                            network_insights_path_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(NetworkInsightsAnalysisProperties {
+                    filter_in_arns: filter_in_arns,
+                    network_insights_path_id: network_insights_path_id.ok_or(::serde::de::Error::missing_field("NetworkInsightsPathId"))?,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for NetworkInsightsAnalysis {
+    type Properties = NetworkInsightsAnalysisProperties;
+    const TYPE: &'static str = "AWS::EC2::NetworkInsightsAnalysis";
+    fn properties(&self) -> &NetworkInsightsAnalysisProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut NetworkInsightsAnalysisProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for NetworkInsightsAnalysis {}
+
+impl From<NetworkInsightsAnalysisProperties> for NetworkInsightsAnalysis {
+    fn from(properties: NetworkInsightsAnalysisProperties) -> NetworkInsightsAnalysis {
+        NetworkInsightsAnalysis { properties }
+    }
+}
+
+/// The [`AWS::EC2::NetworkInsightsPath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightspath.html) resource type.
+#[derive(Debug, Default)]
+pub struct NetworkInsightsPath {
+    properties: NetworkInsightsPathProperties
+}
+
+/// Properties for the `NetworkInsightsPath` resource.
+#[derive(Debug, Default)]
+pub struct NetworkInsightsPathProperties {
+    /// Property [`Destination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightspath.html#cfn-ec2-networkinsightspath-destination).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub destination: ::Value<String>,
+    /// Property [`DestinationIp`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightspath.html#cfn-ec2-networkinsightspath-destinationip).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub destination_ip: Option<::Value<String>>,
+    /// Property [`DestinationPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightspath.html#cfn-ec2-networkinsightspath-destinationport).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub destination_port: Option<::Value<u32>>,
+    /// Property [`Protocol`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightspath.html#cfn-ec2-networkinsightspath-protocol).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub protocol: ::Value<String>,
+    /// Property [`Source`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightspath.html#cfn-ec2-networkinsightspath-source).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub source: ::Value<String>,
+    /// Property [`SourceIp`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightspath.html#cfn-ec2-networkinsightspath-sourceip).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub source_ip: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-networkinsightspath.html#cfn-ec2-networkinsightspath-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for NetworkInsightsPathProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Destination", &self.destination)?;
+        if let Some(ref destination_ip) = self.destination_ip {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationIp", destination_ip)?;
+        }
+        if let Some(ref destination_port) = self.destination_port {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationPort", destination_port)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", &self.protocol)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Source", &self.source)?;
+        if let Some(ref source_ip) = self.source_ip {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceIp", source_ip)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for NetworkInsightsPathProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<NetworkInsightsPathProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = NetworkInsightsPathProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type NetworkInsightsPathProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut destination: Option<::Value<String>> = None;
+                let mut destination_ip: Option<::Value<String>> = None;
+                let mut destination_port: Option<::Value<u32>> = None;
+                let mut protocol: Option<::Value<String>> = None;
+                let mut source: Option<::Value<String>> = None;
+                let mut source_ip: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Destination" => {
+                            destination = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DestinationIp" => {
+                            destination_ip = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DestinationPort" => {
+                            destination_port = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Protocol" => {
+                            protocol = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Source" => {
+                            source = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SourceIp" => {
+                            source_ip = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(NetworkInsightsPathProperties {
+                    destination: destination.ok_or(::serde::de::Error::missing_field("Destination"))?,
+                    destination_ip: destination_ip,
+                    destination_port: destination_port,
+                    protocol: protocol.ok_or(::serde::de::Error::missing_field("Protocol"))?,
+                    source: source.ok_or(::serde::de::Error::missing_field("Source"))?,
+                    source_ip: source_ip,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for NetworkInsightsPath {
+    type Properties = NetworkInsightsPathProperties;
+    const TYPE: &'static str = "AWS::EC2::NetworkInsightsPath";
+    fn properties(&self) -> &NetworkInsightsPathProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut NetworkInsightsPathProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for NetworkInsightsPath {}
+
+impl From<NetworkInsightsPathProperties> for NetworkInsightsPath {
+    fn from(properties: NetworkInsightsPathProperties) -> NetworkInsightsPath {
+        NetworkInsightsPath { properties }
     }
 }
 
@@ -1724,7 +3741,7 @@ pub struct NetworkInterfaceProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub ipv6_addresses: Option<::Value<self::network_interface::InstanceIpv6Address>>,
+    pub ipv6_addresses: Option<::ValueList<self::network_interface::InstanceIpv6Address>>,
     /// Property [`PrivateIpAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-interface.html#cfn-awsec2networkinterface-privateipaddress).
     ///
     /// Update type: _Immutable_.
@@ -1812,7 +3829,7 @@ impl<'de> ::serde::Deserialize<'de> for NetworkInterfaceProperties {
                 let mut group_set: Option<::ValueList<String>> = None;
                 let mut interface_type: Option<::Value<String>> = None;
                 let mut ipv6_address_count: Option<::Value<u32>> = None;
-                let mut ipv6_addresses: Option<::Value<self::network_interface::InstanceIpv6Address>> = None;
+                let mut ipv6_addresses: Option<::ValueList<self::network_interface::InstanceIpv6Address>> = None;
                 let mut private_ip_address: Option<::Value<String>> = None;
                 let mut private_ip_addresses: Option<::ValueList<self::network_interface::PrivateIpAddressSpecification>> = None;
                 let mut secondary_private_ip_address_count: Option<::Value<u32>> = None;
@@ -2185,6 +4202,130 @@ impl From<PlacementGroupProperties> for PlacementGroup {
     }
 }
 
+/// The [`AWS::EC2::PrefixList`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-prefixlist.html) resource type.
+#[derive(Debug, Default)]
+pub struct PrefixList {
+    properties: PrefixListProperties
+}
+
+/// Properties for the `PrefixList` resource.
+#[derive(Debug, Default)]
+pub struct PrefixListProperties {
+    /// Property [`AddressFamily`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-prefixlist.html#cfn-ec2-prefixlist-addressfamily).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub address_family: ::Value<String>,
+    /// Property [`Entries`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-prefixlist.html#cfn-ec2-prefixlist-entries).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub entries: Option<::ValueList<self::prefix_list::Entry>>,
+    /// Property [`MaxEntries`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-prefixlist.html#cfn-ec2-prefixlist-maxentries).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub max_entries: ::Value<u32>,
+    /// Property [`PrefixListName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-prefixlist.html#cfn-ec2-prefixlist-prefixlistname).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub prefix_list_name: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-prefixlist.html#cfn-ec2-prefixlist-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for PrefixListProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AddressFamily", &self.address_family)?;
+        if let Some(ref entries) = self.entries {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Entries", entries)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxEntries", &self.max_entries)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrefixListName", &self.prefix_list_name)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for PrefixListProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<PrefixListProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = PrefixListProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type PrefixListProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut address_family: Option<::Value<String>> = None;
+                let mut entries: Option<::ValueList<self::prefix_list::Entry>> = None;
+                let mut max_entries: Option<::Value<u32>> = None;
+                let mut prefix_list_name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AddressFamily" => {
+                            address_family = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Entries" => {
+                            entries = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MaxEntries" => {
+                            max_entries = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PrefixListName" => {
+                            prefix_list_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(PrefixListProperties {
+                    address_family: address_family.ok_or(::serde::de::Error::missing_field("AddressFamily"))?,
+                    entries: entries,
+                    max_entries: max_entries.ok_or(::serde::de::Error::missing_field("MaxEntries"))?,
+                    prefix_list_name: prefix_list_name.ok_or(::serde::de::Error::missing_field("PrefixListName"))?,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for PrefixList {
+    type Properties = PrefixListProperties;
+    const TYPE: &'static str = "AWS::EC2::PrefixList";
+    fn properties(&self) -> &PrefixListProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut PrefixListProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for PrefixList {}
+
+impl From<PrefixListProperties> for PrefixList {
+    fn from(properties: PrefixListProperties) -> PrefixList {
+        PrefixList { properties }
+    }
+}
+
 /// The [`AWS::EC2::Route`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html) resource type.
 #[derive(Debug, Default)]
 pub struct Route {
@@ -2194,6 +4335,11 @@ pub struct Route {
 /// Properties for the `Route` resource.
 #[derive(Debug, Default)]
 pub struct RouteProperties {
+    /// Property [`CarrierGatewayId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html#cfn-ec2-route-carriergatewayid).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub carrier_gateway_id: Option<::Value<String>>,
     /// Property [`DestinationCidrBlock`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html#cfn-ec2-route-destinationcidrblock).
     ///
     /// Update type: _Immutable_.
@@ -2219,6 +4365,11 @@ pub struct RouteProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub instance_id: Option<::Value<String>>,
+    /// Property [`LocalGatewayId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html#cfn-ec2-route-localgatewayid).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub local_gateway_id: Option<::Value<String>>,
     /// Property [`NatGatewayId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html#cfn-ec2-route-natgatewayid).
     ///
     /// Update type: _Mutable_.
@@ -2234,6 +4385,16 @@ pub struct RouteProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub route_table_id: ::Value<String>,
+    /// Property [`TransitGatewayId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html#cfn-ec2-route-transitgatewayid).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub transit_gateway_id: Option<::Value<String>>,
+    /// Property [`VpcEndpointId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html#cfn-ec2-route-vpcendpointid).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub vpc_endpoint_id: Option<::Value<String>>,
     /// Property [`VpcPeeringConnectionId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html#cfn-ec2-route-vpcpeeringconnectionid).
     ///
     /// Update type: _Mutable_.
@@ -2244,6 +4405,9 @@ pub struct RouteProperties {
 impl ::serde::Serialize for RouteProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref carrier_gateway_id) = self.carrier_gateway_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CarrierGatewayId", carrier_gateway_id)?;
+        }
         if let Some(ref destination_cidr_block) = self.destination_cidr_block {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationCidrBlock", destination_cidr_block)?;
         }
@@ -2259,6 +4423,9 @@ impl ::serde::Serialize for RouteProperties {
         if let Some(ref instance_id) = self.instance_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceId", instance_id)?;
         }
+        if let Some(ref local_gateway_id) = self.local_gateway_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LocalGatewayId", local_gateway_id)?;
+        }
         if let Some(ref nat_gateway_id) = self.nat_gateway_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "NatGatewayId", nat_gateway_id)?;
         }
@@ -2266,6 +4433,12 @@ impl ::serde::Serialize for RouteProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInterfaceId", network_interface_id)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RouteTableId", &self.route_table_id)?;
+        if let Some(ref transit_gateway_id) = self.transit_gateway_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitGatewayId", transit_gateway_id)?;
+        }
+        if let Some(ref vpc_endpoint_id) = self.vpc_endpoint_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcEndpointId", vpc_endpoint_id)?;
+        }
         if let Some(ref vpc_peering_connection_id) = self.vpc_peering_connection_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcPeeringConnectionId", vpc_peering_connection_id)?;
         }
@@ -2285,18 +4458,25 @@ impl<'de> ::serde::Deserialize<'de> for RouteProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut carrier_gateway_id: Option<::Value<String>> = None;
                 let mut destination_cidr_block: Option<::Value<String>> = None;
                 let mut destination_ipv6_cidr_block: Option<::Value<String>> = None;
                 let mut egress_only_internet_gateway_id: Option<::Value<String>> = None;
                 let mut gateway_id: Option<::Value<String>> = None;
                 let mut instance_id: Option<::Value<String>> = None;
+                let mut local_gateway_id: Option<::Value<String>> = None;
                 let mut nat_gateway_id: Option<::Value<String>> = None;
                 let mut network_interface_id: Option<::Value<String>> = None;
                 let mut route_table_id: Option<::Value<String>> = None;
+                let mut transit_gateway_id: Option<::Value<String>> = None;
+                let mut vpc_endpoint_id: Option<::Value<String>> = None;
                 let mut vpc_peering_connection_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "CarrierGatewayId" => {
+                            carrier_gateway_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "DestinationCidrBlock" => {
                             destination_cidr_block = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -2312,6 +4492,9 @@ impl<'de> ::serde::Deserialize<'de> for RouteProperties {
                         "InstanceId" => {
                             instance_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "LocalGatewayId" => {
+                            local_gateway_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "NatGatewayId" => {
                             nat_gateway_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -2321,6 +4504,12 @@ impl<'de> ::serde::Deserialize<'de> for RouteProperties {
                         "RouteTableId" => {
                             route_table_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "TransitGatewayId" => {
+                            transit_gateway_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "VpcEndpointId" => {
+                            vpc_endpoint_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "VpcPeeringConnectionId" => {
                             vpc_peering_connection_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -2329,14 +4518,18 @@ impl<'de> ::serde::Deserialize<'de> for RouteProperties {
                 }
 
                 Ok(RouteProperties {
+                    carrier_gateway_id: carrier_gateway_id,
                     destination_cidr_block: destination_cidr_block,
                     destination_ipv6_cidr_block: destination_ipv6_cidr_block,
                     egress_only_internet_gateway_id: egress_only_internet_gateway_id,
                     gateway_id: gateway_id,
                     instance_id: instance_id,
+                    local_gateway_id: local_gateway_id,
                     nat_gateway_id: nat_gateway_id,
                     network_interface_id: network_interface_id,
                     route_table_id: route_table_id.ok_or(::serde::de::Error::missing_field("RouteTableId"))?,
+                    transit_gateway_id: transit_gateway_id,
+                    vpc_endpoint_id: vpc_endpoint_id,
                     vpc_peering_connection_id: vpc_peering_connection_id,
                 })
             }
@@ -2817,6 +5010,11 @@ pub struct SecurityGroupIngressProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub ip_protocol: ::Value<String>,
+    /// Property [`SourcePrefixListId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html#cfn-ec2-securitygroupingress-sourceprefixlistid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub source_prefix_list_id: Option<::Value<String>>,
     /// Property [`SourceSecurityGroupId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html#cfn-ec2-security-group-ingress-sourcesecuritygroupid).
     ///
     /// Update type: _Immutable_.
@@ -2861,6 +5059,9 @@ impl ::serde::Serialize for SecurityGroupIngressProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupName", group_name)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "IpProtocol", &self.ip_protocol)?;
+        if let Some(ref source_prefix_list_id) = self.source_prefix_list_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourcePrefixListId", source_prefix_list_id)?;
+        }
         if let Some(ref source_security_group_id) = self.source_security_group_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceSecurityGroupId", source_security_group_id)?;
         }
@@ -2896,6 +5097,7 @@ impl<'de> ::serde::Deserialize<'de> for SecurityGroupIngressProperties {
                 let mut group_id: Option<::Value<String>> = None;
                 let mut group_name: Option<::Value<String>> = None;
                 let mut ip_protocol: Option<::Value<String>> = None;
+                let mut source_prefix_list_id: Option<::Value<String>> = None;
                 let mut source_security_group_id: Option<::Value<String>> = None;
                 let mut source_security_group_name: Option<::Value<String>> = None;
                 let mut source_security_group_owner_id: Option<::Value<String>> = None;
@@ -2924,6 +5126,9 @@ impl<'de> ::serde::Deserialize<'de> for SecurityGroupIngressProperties {
                         "IpProtocol" => {
                             ip_protocol = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "SourcePrefixListId" => {
+                            source_prefix_list_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "SourceSecurityGroupId" => {
                             source_security_group_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -2948,6 +5153,7 @@ impl<'de> ::serde::Deserialize<'de> for SecurityGroupIngressProperties {
                     group_id: group_id,
                     group_name: group_name,
                     ip_protocol: ip_protocol.ok_or(::serde::de::Error::missing_field("IpProtocol"))?,
+                    source_prefix_list_id: source_prefix_list_id,
                     source_security_group_id: source_security_group_id,
                     source_security_group_name: source_security_group_name,
                     source_security_group_owner_id: source_security_group_owner_id,
@@ -2990,9 +5196,8 @@ pub struct SpotFleet {
 pub struct SpotFleetProperties {
     /// Property [`SpotFleetRequestConfigData`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-spotfleet.html#cfn-ec2-spotfleet-spotfleetrequestconfigdata).
     ///
-    /// Update type: _Conditional_.
-    /// Conditional updates can be mutable or immutable, depending on, for example, which other properties you updated.
-    /// For more information, see the relevant resource type documentation.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub spot_fleet_request_config_data: ::Value<self::spot_fleet::SpotFleetRequestConfigData>,
 }
 
@@ -3090,6 +5295,11 @@ pub struct SubnetProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub map_public_ip_on_launch: Option<::Value<bool>>,
+    /// Property [`OutpostArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html#cfn-ec2-subnet-outpostarn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub outpost_arn: Option<::Value<String>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html#cfn-ec2-subnet-tags).
     ///
     /// Update type: _Mutable_.
@@ -3118,6 +5328,9 @@ impl ::serde::Serialize for SubnetProperties {
         if let Some(ref map_public_ip_on_launch) = self.map_public_ip_on_launch {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MapPublicIpOnLaunch", map_public_ip_on_launch)?;
         }
+        if let Some(ref outpost_arn) = self.outpost_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutpostArn", outpost_arn)?;
+        }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
@@ -3143,6 +5356,7 @@ impl<'de> ::serde::Deserialize<'de> for SubnetProperties {
                 let mut cidr_block: Option<::Value<String>> = None;
                 let mut ipv6_cidr_block: Option<::Value<String>> = None;
                 let mut map_public_ip_on_launch: Option<::Value<bool>> = None;
+                let mut outpost_arn: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut vpc_id: Option<::Value<String>> = None;
 
@@ -3163,6 +5377,9 @@ impl<'de> ::serde::Deserialize<'de> for SubnetProperties {
                         "MapPublicIpOnLaunch" => {
                             map_public_ip_on_launch = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "OutpostArn" => {
+                            outpost_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -3179,6 +5396,7 @@ impl<'de> ::serde::Deserialize<'de> for SubnetProperties {
                     cidr_block: cidr_block.ok_or(::serde::de::Error::missing_field("CidrBlock"))?,
                     ipv6_cidr_block: ipv6_cidr_block,
                     map_public_ip_on_launch: map_public_ip_on_launch,
+                    outpost_arn: outpost_arn,
                     tags: tags,
                     vpc_id: vpc_id.ok_or(::serde::de::Error::missing_field("VpcId"))?,
                 })
@@ -3469,92 +5687,83 @@ impl From<SubnetRouteTableAssociationProperties> for SubnetRouteTableAssociation
     }
 }
 
-/// The [`AWS::EC2::TrunkInterfaceAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trunkinterfaceassociation.html) resource type.
+/// The [`AWS::EC2::TrafficMirrorFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorfilter.html) resource type.
 #[derive(Debug, Default)]
-pub struct TrunkInterfaceAssociation {
-    properties: TrunkInterfaceAssociationProperties
+pub struct TrafficMirrorFilter {
+    properties: TrafficMirrorFilterProperties
 }
 
-/// Properties for the `TrunkInterfaceAssociation` resource.
+/// Properties for the `TrafficMirrorFilter` resource.
 #[derive(Debug, Default)]
-pub struct TrunkInterfaceAssociationProperties {
-    /// Property [`BranchInterfaceId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trunkinterfaceassociation.html#cfn-ec2-trunkinterfaceassociation-branchinterfaceid).
+pub struct TrafficMirrorFilterProperties {
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorfilter.html#cfn-ec2-trafficmirrorfilter-description).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub branch_interface_id: ::Value<String>,
-    /// Property [`GREKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trunkinterfaceassociation.html#cfn-ec2-trunkinterfaceassociation-grekey).
+    pub description: Option<::Value<String>>,
+    /// Property [`NetworkServices`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorfilter.html#cfn-ec2-trafficmirrorfilter-networkservices).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
-    pub gre_key: Option<::Value<u32>>,
-    /// Property [`TrunkInterfaceId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trunkinterfaceassociation.html#cfn-ec2-trunkinterfaceassociation-trunkinterfaceid).
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub network_services: Option<::ValueList<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorfilter.html#cfn-ec2-trafficmirrorfilter-tags).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
-    pub trunk_interface_id: ::Value<String>,
-    /// Property [`VLANId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trunkinterfaceassociation.html#cfn-ec2-trunkinterfaceassociation-vlanid).
-    ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
-    pub vlan_id: Option<::Value<u32>>,
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
 }
 
-impl ::serde::Serialize for TrunkInterfaceAssociationProperties {
+impl ::serde::Serialize for TrafficMirrorFilterProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "BranchInterfaceId", &self.branch_interface_id)?;
-        if let Some(ref gre_key) = self.gre_key {
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GREKey", gre_key)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
         }
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrunkInterfaceId", &self.trunk_interface_id)?;
-        if let Some(ref vlan_id) = self.vlan_id {
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VLANId", vlan_id)?;
+        if let Some(ref network_services) = self.network_services {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkServices", network_services)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
         ::serde::ser::SerializeMap::end(map)
     }
 }
 
-impl<'de> ::serde::Deserialize<'de> for TrunkInterfaceAssociationProperties {
-    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<TrunkInterfaceAssociationProperties, D::Error> {
+impl<'de> ::serde::Deserialize<'de> for TrafficMirrorFilterProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<TrafficMirrorFilterProperties, D::Error> {
         struct Visitor;
 
         impl<'de> ::serde::de::Visitor<'de> for Visitor {
-            type Value = TrunkInterfaceAssociationProperties;
+            type Value = TrafficMirrorFilterProperties;
 
             fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-                write!(f, "a struct of type TrunkInterfaceAssociationProperties")
+                write!(f, "a struct of type TrafficMirrorFilterProperties")
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut branch_interface_id: Option<::Value<String>> = None;
-                let mut gre_key: Option<::Value<u32>> = None;
-                let mut trunk_interface_id: Option<::Value<String>> = None;
-                let mut vlan_id: Option<::Value<u32>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut network_services: Option<::ValueList<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
-                        "BranchInterfaceId" => {
-                            branch_interface_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
-                        "GREKey" => {
-                            gre_key = ::serde::de::MapAccess::next_value(&mut map)?;
+                        "NetworkServices" => {
+                            network_services = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
-                        "TrunkInterfaceId" => {
-                            trunk_interface_id = ::serde::de::MapAccess::next_value(&mut map)?;
-                        }
-                        "VLANId" => {
-                            vlan_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
                 }
 
-                Ok(TrunkInterfaceAssociationProperties {
-                    branch_interface_id: branch_interface_id.ok_or(::serde::de::Error::missing_field("BranchInterfaceId"))?,
-                    gre_key: gre_key,
-                    trunk_interface_id: trunk_interface_id.ok_or(::serde::de::Error::missing_field("TrunkInterfaceId"))?,
-                    vlan_id: vlan_id,
+                Ok(TrafficMirrorFilterProperties {
+                    description: description,
+                    network_services: network_services,
+                    tags: tags,
                 })
             }
         }
@@ -3563,22 +5772,1772 @@ impl<'de> ::serde::Deserialize<'de> for TrunkInterfaceAssociationProperties {
     }
 }
 
-impl ::Resource for TrunkInterfaceAssociation {
-    type Properties = TrunkInterfaceAssociationProperties;
-    const TYPE: &'static str = "AWS::EC2::TrunkInterfaceAssociation";
-    fn properties(&self) -> &TrunkInterfaceAssociationProperties {
+impl ::Resource for TrafficMirrorFilter {
+    type Properties = TrafficMirrorFilterProperties;
+    const TYPE: &'static str = "AWS::EC2::TrafficMirrorFilter";
+    fn properties(&self) -> &TrafficMirrorFilterProperties {
         &self.properties
     }
-    fn properties_mut(&mut self) -> &mut TrunkInterfaceAssociationProperties {
+    fn properties_mut(&mut self) -> &mut TrafficMirrorFilterProperties {
         &mut self.properties
     }
 }
 
-impl ::private::Sealed for TrunkInterfaceAssociation {}
+impl ::private::Sealed for TrafficMirrorFilter {}
 
-impl From<TrunkInterfaceAssociationProperties> for TrunkInterfaceAssociation {
-    fn from(properties: TrunkInterfaceAssociationProperties) -> TrunkInterfaceAssociation {
-        TrunkInterfaceAssociation { properties }
+impl From<TrafficMirrorFilterProperties> for TrafficMirrorFilter {
+    fn from(properties: TrafficMirrorFilterProperties) -> TrafficMirrorFilter {
+        TrafficMirrorFilter { properties }
+    }
+}
+
+/// The [`AWS::EC2::TrafficMirrorFilterRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorfilterrule.html) resource type.
+#[derive(Debug, Default)]
+pub struct TrafficMirrorFilterRule {
+    properties: TrafficMirrorFilterRuleProperties
+}
+
+/// Properties for the `TrafficMirrorFilterRule` resource.
+#[derive(Debug, Default)]
+pub struct TrafficMirrorFilterRuleProperties {
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorfilterrule.html#cfn-ec2-trafficmirrorfilterrule-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`DestinationCidrBlock`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorfilterrule.html#cfn-ec2-trafficmirrorfilterrule-destinationcidrblock).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub destination_cidr_block: ::Value<String>,
+    /// Property [`DestinationPortRange`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorfilterrule.html#cfn-ec2-trafficmirrorfilterrule-destinationportrange).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub destination_port_range: Option<::Value<self::traffic_mirror_filter_rule::TrafficMirrorPortRange>>,
+    /// Property [`Protocol`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorfilterrule.html#cfn-ec2-trafficmirrorfilterrule-protocol).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub protocol: Option<::Value<u32>>,
+    /// Property [`RuleAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorfilterrule.html#cfn-ec2-trafficmirrorfilterrule-ruleaction).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub rule_action: ::Value<String>,
+    /// Property [`RuleNumber`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorfilterrule.html#cfn-ec2-trafficmirrorfilterrule-rulenumber).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub rule_number: ::Value<u32>,
+    /// Property [`SourceCidrBlock`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorfilterrule.html#cfn-ec2-trafficmirrorfilterrule-sourcecidrblock).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub source_cidr_block: ::Value<String>,
+    /// Property [`SourcePortRange`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorfilterrule.html#cfn-ec2-trafficmirrorfilterrule-sourceportrange).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub source_port_range: Option<::Value<self::traffic_mirror_filter_rule::TrafficMirrorPortRange>>,
+    /// Property [`TrafficDirection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorfilterrule.html#cfn-ec2-trafficmirrorfilterrule-trafficdirection).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub traffic_direction: ::Value<String>,
+    /// Property [`TrafficMirrorFilterId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorfilterrule.html#cfn-ec2-trafficmirrorfilterrule-trafficmirrorfilterid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub traffic_mirror_filter_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for TrafficMirrorFilterRuleProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationCidrBlock", &self.destination_cidr_block)?;
+        if let Some(ref destination_port_range) = self.destination_port_range {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationPortRange", destination_port_range)?;
+        }
+        if let Some(ref protocol) = self.protocol {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", protocol)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleAction", &self.rule_action)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleNumber", &self.rule_number)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceCidrBlock", &self.source_cidr_block)?;
+        if let Some(ref source_port_range) = self.source_port_range {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourcePortRange", source_port_range)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrafficDirection", &self.traffic_direction)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrafficMirrorFilterId", &self.traffic_mirror_filter_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for TrafficMirrorFilterRuleProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<TrafficMirrorFilterRuleProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = TrafficMirrorFilterRuleProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type TrafficMirrorFilterRuleProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut description: Option<::Value<String>> = None;
+                let mut destination_cidr_block: Option<::Value<String>> = None;
+                let mut destination_port_range: Option<::Value<self::traffic_mirror_filter_rule::TrafficMirrorPortRange>> = None;
+                let mut protocol: Option<::Value<u32>> = None;
+                let mut rule_action: Option<::Value<String>> = None;
+                let mut rule_number: Option<::Value<u32>> = None;
+                let mut source_cidr_block: Option<::Value<String>> = None;
+                let mut source_port_range: Option<::Value<self::traffic_mirror_filter_rule::TrafficMirrorPortRange>> = None;
+                let mut traffic_direction: Option<::Value<String>> = None;
+                let mut traffic_mirror_filter_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DestinationCidrBlock" => {
+                            destination_cidr_block = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DestinationPortRange" => {
+                            destination_port_range = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Protocol" => {
+                            protocol = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "RuleAction" => {
+                            rule_action = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "RuleNumber" => {
+                            rule_number = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SourceCidrBlock" => {
+                            source_cidr_block = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SourcePortRange" => {
+                            source_port_range = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TrafficDirection" => {
+                            traffic_direction = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TrafficMirrorFilterId" => {
+                            traffic_mirror_filter_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(TrafficMirrorFilterRuleProperties {
+                    description: description,
+                    destination_cidr_block: destination_cidr_block.ok_or(::serde::de::Error::missing_field("DestinationCidrBlock"))?,
+                    destination_port_range: destination_port_range,
+                    protocol: protocol,
+                    rule_action: rule_action.ok_or(::serde::de::Error::missing_field("RuleAction"))?,
+                    rule_number: rule_number.ok_or(::serde::de::Error::missing_field("RuleNumber"))?,
+                    source_cidr_block: source_cidr_block.ok_or(::serde::de::Error::missing_field("SourceCidrBlock"))?,
+                    source_port_range: source_port_range,
+                    traffic_direction: traffic_direction.ok_or(::serde::de::Error::missing_field("TrafficDirection"))?,
+                    traffic_mirror_filter_id: traffic_mirror_filter_id.ok_or(::serde::de::Error::missing_field("TrafficMirrorFilterId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for TrafficMirrorFilterRule {
+    type Properties = TrafficMirrorFilterRuleProperties;
+    const TYPE: &'static str = "AWS::EC2::TrafficMirrorFilterRule";
+    fn properties(&self) -> &TrafficMirrorFilterRuleProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut TrafficMirrorFilterRuleProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for TrafficMirrorFilterRule {}
+
+impl From<TrafficMirrorFilterRuleProperties> for TrafficMirrorFilterRule {
+    fn from(properties: TrafficMirrorFilterRuleProperties) -> TrafficMirrorFilterRule {
+        TrafficMirrorFilterRule { properties }
+    }
+}
+
+/// The [`AWS::EC2::TrafficMirrorSession`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorsession.html) resource type.
+#[derive(Debug, Default)]
+pub struct TrafficMirrorSession {
+    properties: TrafficMirrorSessionProperties
+}
+
+/// Properties for the `TrafficMirrorSession` resource.
+#[derive(Debug, Default)]
+pub struct TrafficMirrorSessionProperties {
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorsession.html#cfn-ec2-trafficmirrorsession-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`NetworkInterfaceId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorsession.html#cfn-ec2-trafficmirrorsession-networkinterfaceid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub network_interface_id: ::Value<String>,
+    /// Property [`PacketLength`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorsession.html#cfn-ec2-trafficmirrorsession-packetlength).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub packet_length: Option<::Value<u32>>,
+    /// Property [`SessionNumber`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorsession.html#cfn-ec2-trafficmirrorsession-sessionnumber).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub session_number: ::Value<u32>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorsession.html#cfn-ec2-trafficmirrorsession-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`TrafficMirrorFilterId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorsession.html#cfn-ec2-trafficmirrorsession-trafficmirrorfilterid).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub traffic_mirror_filter_id: ::Value<String>,
+    /// Property [`TrafficMirrorTargetId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorsession.html#cfn-ec2-trafficmirrorsession-trafficmirrortargetid).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub traffic_mirror_target_id: ::Value<String>,
+    /// Property [`VirtualNetworkId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrorsession.html#cfn-ec2-trafficmirrorsession-virtualnetworkid).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub virtual_network_id: Option<::Value<u32>>,
+}
+
+impl ::serde::Serialize for TrafficMirrorSessionProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInterfaceId", &self.network_interface_id)?;
+        if let Some(ref packet_length) = self.packet_length {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PacketLength", packet_length)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SessionNumber", &self.session_number)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrafficMirrorFilterId", &self.traffic_mirror_filter_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrafficMirrorTargetId", &self.traffic_mirror_target_id)?;
+        if let Some(ref virtual_network_id) = self.virtual_network_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VirtualNetworkId", virtual_network_id)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for TrafficMirrorSessionProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<TrafficMirrorSessionProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = TrafficMirrorSessionProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type TrafficMirrorSessionProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut description: Option<::Value<String>> = None;
+                let mut network_interface_id: Option<::Value<String>> = None;
+                let mut packet_length: Option<::Value<u32>> = None;
+                let mut session_number: Option<::Value<u32>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut traffic_mirror_filter_id: Option<::Value<String>> = None;
+                let mut traffic_mirror_target_id: Option<::Value<String>> = None;
+                let mut virtual_network_id: Option<::Value<u32>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "NetworkInterfaceId" => {
+                            network_interface_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PacketLength" => {
+                            packet_length = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SessionNumber" => {
+                            session_number = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TrafficMirrorFilterId" => {
+                            traffic_mirror_filter_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TrafficMirrorTargetId" => {
+                            traffic_mirror_target_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "VirtualNetworkId" => {
+                            virtual_network_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(TrafficMirrorSessionProperties {
+                    description: description,
+                    network_interface_id: network_interface_id.ok_or(::serde::de::Error::missing_field("NetworkInterfaceId"))?,
+                    packet_length: packet_length,
+                    session_number: session_number.ok_or(::serde::de::Error::missing_field("SessionNumber"))?,
+                    tags: tags,
+                    traffic_mirror_filter_id: traffic_mirror_filter_id.ok_or(::serde::de::Error::missing_field("TrafficMirrorFilterId"))?,
+                    traffic_mirror_target_id: traffic_mirror_target_id.ok_or(::serde::de::Error::missing_field("TrafficMirrorTargetId"))?,
+                    virtual_network_id: virtual_network_id,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for TrafficMirrorSession {
+    type Properties = TrafficMirrorSessionProperties;
+    const TYPE: &'static str = "AWS::EC2::TrafficMirrorSession";
+    fn properties(&self) -> &TrafficMirrorSessionProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut TrafficMirrorSessionProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for TrafficMirrorSession {}
+
+impl From<TrafficMirrorSessionProperties> for TrafficMirrorSession {
+    fn from(properties: TrafficMirrorSessionProperties) -> TrafficMirrorSession {
+        TrafficMirrorSession { properties }
+    }
+}
+
+/// The [`AWS::EC2::TrafficMirrorTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrortarget.html) resource type.
+#[derive(Debug, Default)]
+pub struct TrafficMirrorTarget {
+    properties: TrafficMirrorTargetProperties
+}
+
+/// Properties for the `TrafficMirrorTarget` resource.
+#[derive(Debug, Default)]
+pub struct TrafficMirrorTargetProperties {
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrortarget.html#cfn-ec2-trafficmirrortarget-description).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`NetworkInterfaceId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrortarget.html#cfn-ec2-trafficmirrortarget-networkinterfaceid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub network_interface_id: Option<::Value<String>>,
+    /// Property [`NetworkLoadBalancerArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrortarget.html#cfn-ec2-trafficmirrortarget-networkloadbalancerarn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub network_load_balancer_arn: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-trafficmirrortarget.html#cfn-ec2-trafficmirrortarget-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for TrafficMirrorTargetProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref network_interface_id) = self.network_interface_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInterfaceId", network_interface_id)?;
+        }
+        if let Some(ref network_load_balancer_arn) = self.network_load_balancer_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkLoadBalancerArn", network_load_balancer_arn)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for TrafficMirrorTargetProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<TrafficMirrorTargetProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = TrafficMirrorTargetProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type TrafficMirrorTargetProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut description: Option<::Value<String>> = None;
+                let mut network_interface_id: Option<::Value<String>> = None;
+                let mut network_load_balancer_arn: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "NetworkInterfaceId" => {
+                            network_interface_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "NetworkLoadBalancerArn" => {
+                            network_load_balancer_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(TrafficMirrorTargetProperties {
+                    description: description,
+                    network_interface_id: network_interface_id,
+                    network_load_balancer_arn: network_load_balancer_arn,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for TrafficMirrorTarget {
+    type Properties = TrafficMirrorTargetProperties;
+    const TYPE: &'static str = "AWS::EC2::TrafficMirrorTarget";
+    fn properties(&self) -> &TrafficMirrorTargetProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut TrafficMirrorTargetProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for TrafficMirrorTarget {}
+
+impl From<TrafficMirrorTargetProperties> for TrafficMirrorTarget {
+    fn from(properties: TrafficMirrorTargetProperties) -> TrafficMirrorTarget {
+        TrafficMirrorTarget { properties }
+    }
+}
+
+/// The [`AWS::EC2::TransitGateway`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgateway.html) resource type.
+#[derive(Debug, Default)]
+pub struct TransitGateway {
+    properties: TransitGatewayProperties
+}
+
+/// Properties for the `TransitGateway` resource.
+#[derive(Debug, Default)]
+pub struct TransitGatewayProperties {
+    /// Property [`AmazonSideAsn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgateway.html#cfn-ec2-transitgateway-amazonsideasn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub amazon_side_asn: Option<::Value<u32>>,
+    /// Property [`AutoAcceptSharedAttachments`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgateway.html#cfn-ec2-transitgateway-autoacceptsharedattachments).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub auto_accept_shared_attachments: Option<::Value<String>>,
+    /// Property [`DefaultRouteTableAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgateway.html#cfn-ec2-transitgateway-defaultroutetableassociation).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub default_route_table_association: Option<::Value<String>>,
+    /// Property [`DefaultRouteTablePropagation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgateway.html#cfn-ec2-transitgateway-defaultroutetablepropagation).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub default_route_table_propagation: Option<::Value<String>>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgateway.html#cfn-ec2-transitgateway-description).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`DnsSupport`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgateway.html#cfn-ec2-transitgateway-dnssupport).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub dns_support: Option<::Value<String>>,
+    /// Property [`MulticastSupport`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgateway.html#cfn-ec2-transitgateway-multicastsupport).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub multicast_support: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgateway.html#cfn-ec2-transitgateway-tags).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`VpnEcmpSupport`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgateway.html#cfn-ec2-transitgateway-vpnecmpsupport).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub vpn_ecmp_support: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for TransitGatewayProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref amazon_side_asn) = self.amazon_side_asn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AmazonSideAsn", amazon_side_asn)?;
+        }
+        if let Some(ref auto_accept_shared_attachments) = self.auto_accept_shared_attachments {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoAcceptSharedAttachments", auto_accept_shared_attachments)?;
+        }
+        if let Some(ref default_route_table_association) = self.default_route_table_association {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultRouteTableAssociation", default_route_table_association)?;
+        }
+        if let Some(ref default_route_table_propagation) = self.default_route_table_propagation {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultRouteTablePropagation", default_route_table_propagation)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref dns_support) = self.dns_support {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DnsSupport", dns_support)?;
+        }
+        if let Some(ref multicast_support) = self.multicast_support {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MulticastSupport", multicast_support)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref vpn_ecmp_support) = self.vpn_ecmp_support {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpnEcmpSupport", vpn_ecmp_support)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for TransitGatewayProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<TransitGatewayProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = TransitGatewayProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type TransitGatewayProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut amazon_side_asn: Option<::Value<u32>> = None;
+                let mut auto_accept_shared_attachments: Option<::Value<String>> = None;
+                let mut default_route_table_association: Option<::Value<String>> = None;
+                let mut default_route_table_propagation: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut dns_support: Option<::Value<String>> = None;
+                let mut multicast_support: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut vpn_ecmp_support: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AmazonSideAsn" => {
+                            amazon_side_asn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "AutoAcceptSharedAttachments" => {
+                            auto_accept_shared_attachments = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DefaultRouteTableAssociation" => {
+                            default_route_table_association = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DefaultRouteTablePropagation" => {
+                            default_route_table_propagation = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DnsSupport" => {
+                            dns_support = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MulticastSupport" => {
+                            multicast_support = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "VpnEcmpSupport" => {
+                            vpn_ecmp_support = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(TransitGatewayProperties {
+                    amazon_side_asn: amazon_side_asn,
+                    auto_accept_shared_attachments: auto_accept_shared_attachments,
+                    default_route_table_association: default_route_table_association,
+                    default_route_table_propagation: default_route_table_propagation,
+                    description: description,
+                    dns_support: dns_support,
+                    multicast_support: multicast_support,
+                    tags: tags,
+                    vpn_ecmp_support: vpn_ecmp_support,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for TransitGateway {
+    type Properties = TransitGatewayProperties;
+    const TYPE: &'static str = "AWS::EC2::TransitGateway";
+    fn properties(&self) -> &TransitGatewayProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut TransitGatewayProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for TransitGateway {}
+
+impl From<TransitGatewayProperties> for TransitGateway {
+    fn from(properties: TransitGatewayProperties) -> TransitGateway {
+        TransitGateway { properties }
+    }
+}
+
+/// The [`AWS::EC2::TransitGatewayAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayattachment.html) resource type.
+#[derive(Debug, Default)]
+pub struct TransitGatewayAttachment {
+    properties: TransitGatewayAttachmentProperties
+}
+
+/// Properties for the `TransitGatewayAttachment` resource.
+#[derive(Debug, Default)]
+pub struct TransitGatewayAttachmentProperties {
+    /// Property [`SubnetIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayattachment.html#cfn-ec2-transitgatewayattachment-subnetids).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub subnet_ids: ::ValueList<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayattachment.html#cfn-ec2-transitgatewayattachment-tags).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`TransitGatewayId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayattachment.html#cfn-ec2-transitgatewayattachment-transitgatewayid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub transit_gateway_id: ::Value<String>,
+    /// Property [`VpcId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayattachment.html#cfn-ec2-transitgatewayattachment-vpcid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub vpc_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for TransitGatewayAttachmentProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetIds", &self.subnet_ids)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitGatewayId", &self.transit_gateway_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", &self.vpc_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for TransitGatewayAttachmentProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<TransitGatewayAttachmentProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = TransitGatewayAttachmentProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type TransitGatewayAttachmentProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut subnet_ids: Option<::ValueList<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut transit_gateway_id: Option<::Value<String>> = None;
+                let mut vpc_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "SubnetIds" => {
+                            subnet_ids = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TransitGatewayId" => {
+                            transit_gateway_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "VpcId" => {
+                            vpc_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(TransitGatewayAttachmentProperties {
+                    subnet_ids: subnet_ids.ok_or(::serde::de::Error::missing_field("SubnetIds"))?,
+                    tags: tags,
+                    transit_gateway_id: transit_gateway_id.ok_or(::serde::de::Error::missing_field("TransitGatewayId"))?,
+                    vpc_id: vpc_id.ok_or(::serde::de::Error::missing_field("VpcId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for TransitGatewayAttachment {
+    type Properties = TransitGatewayAttachmentProperties;
+    const TYPE: &'static str = "AWS::EC2::TransitGatewayAttachment";
+    fn properties(&self) -> &TransitGatewayAttachmentProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut TransitGatewayAttachmentProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for TransitGatewayAttachment {}
+
+impl From<TransitGatewayAttachmentProperties> for TransitGatewayAttachment {
+    fn from(properties: TransitGatewayAttachmentProperties) -> TransitGatewayAttachment {
+        TransitGatewayAttachment { properties }
+    }
+}
+
+/// The [`AWS::EC2::TransitGatewayConnect`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayconnect.html) resource type.
+#[derive(Debug, Default)]
+pub struct TransitGatewayConnect {
+    properties: TransitGatewayConnectProperties
+}
+
+/// Properties for the `TransitGatewayConnect` resource.
+#[derive(Debug, Default)]
+pub struct TransitGatewayConnectProperties {
+    /// Property [`Options`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayconnect.html#cfn-ec2-transitgatewayconnect-options).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub options: ::Value<self::transit_gateway_connect::TransitGatewayConnectOptions>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayconnect.html#cfn-ec2-transitgatewayconnect-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`TransportTransitGatewayAttachmentId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayconnect.html#cfn-ec2-transitgatewayconnect-transporttransitgatewayattachmentid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub transport_transit_gateway_attachment_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for TransitGatewayConnectProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Options", &self.options)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransportTransitGatewayAttachmentId", &self.transport_transit_gateway_attachment_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for TransitGatewayConnectProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<TransitGatewayConnectProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = TransitGatewayConnectProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type TransitGatewayConnectProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut options: Option<::Value<self::transit_gateway_connect::TransitGatewayConnectOptions>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut transport_transit_gateway_attachment_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Options" => {
+                            options = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TransportTransitGatewayAttachmentId" => {
+                            transport_transit_gateway_attachment_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(TransitGatewayConnectProperties {
+                    options: options.ok_or(::serde::de::Error::missing_field("Options"))?,
+                    tags: tags,
+                    transport_transit_gateway_attachment_id: transport_transit_gateway_attachment_id.ok_or(::serde::de::Error::missing_field("TransportTransitGatewayAttachmentId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for TransitGatewayConnect {
+    type Properties = TransitGatewayConnectProperties;
+    const TYPE: &'static str = "AWS::EC2::TransitGatewayConnect";
+    fn properties(&self) -> &TransitGatewayConnectProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut TransitGatewayConnectProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for TransitGatewayConnect {}
+
+impl From<TransitGatewayConnectProperties> for TransitGatewayConnect {
+    fn from(properties: TransitGatewayConnectProperties) -> TransitGatewayConnect {
+        TransitGatewayConnect { properties }
+    }
+}
+
+/// The [`AWS::EC2::TransitGatewayMulticastDomain`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastdomain.html) resource type.
+#[derive(Debug, Default)]
+pub struct TransitGatewayMulticastDomain {
+    properties: TransitGatewayMulticastDomainProperties
+}
+
+/// Properties for the `TransitGatewayMulticastDomain` resource.
+#[derive(Debug, Default)]
+pub struct TransitGatewayMulticastDomainProperties {
+    /// Property [`Options`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastdomain.html#cfn-ec2-transitgatewaymulticastdomain-options).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub options: Option<::Value<::json::Value>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastdomain.html#cfn-ec2-transitgatewaymulticastdomain-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`TransitGatewayId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastdomain.html#cfn-ec2-transitgatewaymulticastdomain-transitgatewayid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub transit_gateway_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for TransitGatewayMulticastDomainProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref options) = self.options {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Options", options)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitGatewayId", &self.transit_gateway_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for TransitGatewayMulticastDomainProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<TransitGatewayMulticastDomainProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = TransitGatewayMulticastDomainProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type TransitGatewayMulticastDomainProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut options: Option<::Value<::json::Value>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut transit_gateway_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Options" => {
+                            options = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TransitGatewayId" => {
+                            transit_gateway_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(TransitGatewayMulticastDomainProperties {
+                    options: options,
+                    tags: tags,
+                    transit_gateway_id: transit_gateway_id.ok_or(::serde::de::Error::missing_field("TransitGatewayId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for TransitGatewayMulticastDomain {
+    type Properties = TransitGatewayMulticastDomainProperties;
+    const TYPE: &'static str = "AWS::EC2::TransitGatewayMulticastDomain";
+    fn properties(&self) -> &TransitGatewayMulticastDomainProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut TransitGatewayMulticastDomainProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for TransitGatewayMulticastDomain {}
+
+impl From<TransitGatewayMulticastDomainProperties> for TransitGatewayMulticastDomain {
+    fn from(properties: TransitGatewayMulticastDomainProperties) -> TransitGatewayMulticastDomain {
+        TransitGatewayMulticastDomain { properties }
+    }
+}
+
+/// The [`AWS::EC2::TransitGatewayMulticastDomainAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastdomainassociation.html) resource type.
+#[derive(Debug, Default)]
+pub struct TransitGatewayMulticastDomainAssociation {
+    properties: TransitGatewayMulticastDomainAssociationProperties
+}
+
+/// Properties for the `TransitGatewayMulticastDomainAssociation` resource.
+#[derive(Debug, Default)]
+pub struct TransitGatewayMulticastDomainAssociationProperties {
+    /// Property [`SubnetId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastdomainassociation.html#cfn-ec2-transitgatewaymulticastdomainassociation-subnetid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub subnet_id: ::Value<String>,
+    /// Property [`TransitGatewayAttachmentId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastdomainassociation.html#cfn-ec2-transitgatewaymulticastdomainassociation-transitgatewayattachmentid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub transit_gateway_attachment_id: ::Value<String>,
+    /// Property [`TransitGatewayMulticastDomainId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastdomainassociation.html#cfn-ec2-transitgatewaymulticastdomainassociation-transitgatewaymulticastdomainid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub transit_gateway_multicast_domain_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for TransitGatewayMulticastDomainAssociationProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", &self.subnet_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitGatewayAttachmentId", &self.transit_gateway_attachment_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitGatewayMulticastDomainId", &self.transit_gateway_multicast_domain_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for TransitGatewayMulticastDomainAssociationProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<TransitGatewayMulticastDomainAssociationProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = TransitGatewayMulticastDomainAssociationProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type TransitGatewayMulticastDomainAssociationProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut subnet_id: Option<::Value<String>> = None;
+                let mut transit_gateway_attachment_id: Option<::Value<String>> = None;
+                let mut transit_gateway_multicast_domain_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "SubnetId" => {
+                            subnet_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TransitGatewayAttachmentId" => {
+                            transit_gateway_attachment_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TransitGatewayMulticastDomainId" => {
+                            transit_gateway_multicast_domain_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(TransitGatewayMulticastDomainAssociationProperties {
+                    subnet_id: subnet_id.ok_or(::serde::de::Error::missing_field("SubnetId"))?,
+                    transit_gateway_attachment_id: transit_gateway_attachment_id.ok_or(::serde::de::Error::missing_field("TransitGatewayAttachmentId"))?,
+                    transit_gateway_multicast_domain_id: transit_gateway_multicast_domain_id.ok_or(::serde::de::Error::missing_field("TransitGatewayMulticastDomainId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for TransitGatewayMulticastDomainAssociation {
+    type Properties = TransitGatewayMulticastDomainAssociationProperties;
+    const TYPE: &'static str = "AWS::EC2::TransitGatewayMulticastDomainAssociation";
+    fn properties(&self) -> &TransitGatewayMulticastDomainAssociationProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut TransitGatewayMulticastDomainAssociationProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for TransitGatewayMulticastDomainAssociation {}
+
+impl From<TransitGatewayMulticastDomainAssociationProperties> for TransitGatewayMulticastDomainAssociation {
+    fn from(properties: TransitGatewayMulticastDomainAssociationProperties) -> TransitGatewayMulticastDomainAssociation {
+        TransitGatewayMulticastDomainAssociation { properties }
+    }
+}
+
+/// The [`AWS::EC2::TransitGatewayMulticastGroupMember`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastgroupmember.html) resource type.
+#[derive(Debug, Default)]
+pub struct TransitGatewayMulticastGroupMember {
+    properties: TransitGatewayMulticastGroupMemberProperties
+}
+
+/// Properties for the `TransitGatewayMulticastGroupMember` resource.
+#[derive(Debug, Default)]
+pub struct TransitGatewayMulticastGroupMemberProperties {
+    /// Property [`GroupIpAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastgroupmember.html#cfn-ec2-transitgatewaymulticastgroupmember-groupipaddress).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub group_ip_address: ::Value<String>,
+    /// Property [`NetworkInterfaceId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastgroupmember.html#cfn-ec2-transitgatewaymulticastgroupmember-networkinterfaceid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub network_interface_id: ::Value<String>,
+    /// Property [`TransitGatewayMulticastDomainId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastgroupmember.html#cfn-ec2-transitgatewaymulticastgroupmember-transitgatewaymulticastdomainid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub transit_gateway_multicast_domain_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for TransitGatewayMulticastGroupMemberProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupIpAddress", &self.group_ip_address)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInterfaceId", &self.network_interface_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitGatewayMulticastDomainId", &self.transit_gateway_multicast_domain_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for TransitGatewayMulticastGroupMemberProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<TransitGatewayMulticastGroupMemberProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = TransitGatewayMulticastGroupMemberProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type TransitGatewayMulticastGroupMemberProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut group_ip_address: Option<::Value<String>> = None;
+                let mut network_interface_id: Option<::Value<String>> = None;
+                let mut transit_gateway_multicast_domain_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "GroupIpAddress" => {
+                            group_ip_address = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "NetworkInterfaceId" => {
+                            network_interface_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TransitGatewayMulticastDomainId" => {
+                            transit_gateway_multicast_domain_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(TransitGatewayMulticastGroupMemberProperties {
+                    group_ip_address: group_ip_address.ok_or(::serde::de::Error::missing_field("GroupIpAddress"))?,
+                    network_interface_id: network_interface_id.ok_or(::serde::de::Error::missing_field("NetworkInterfaceId"))?,
+                    transit_gateway_multicast_domain_id: transit_gateway_multicast_domain_id.ok_or(::serde::de::Error::missing_field("TransitGatewayMulticastDomainId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for TransitGatewayMulticastGroupMember {
+    type Properties = TransitGatewayMulticastGroupMemberProperties;
+    const TYPE: &'static str = "AWS::EC2::TransitGatewayMulticastGroupMember";
+    fn properties(&self) -> &TransitGatewayMulticastGroupMemberProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut TransitGatewayMulticastGroupMemberProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for TransitGatewayMulticastGroupMember {}
+
+impl From<TransitGatewayMulticastGroupMemberProperties> for TransitGatewayMulticastGroupMember {
+    fn from(properties: TransitGatewayMulticastGroupMemberProperties) -> TransitGatewayMulticastGroupMember {
+        TransitGatewayMulticastGroupMember { properties }
+    }
+}
+
+/// The [`AWS::EC2::TransitGatewayMulticastGroupSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastgroupsource.html) resource type.
+#[derive(Debug, Default)]
+pub struct TransitGatewayMulticastGroupSource {
+    properties: TransitGatewayMulticastGroupSourceProperties
+}
+
+/// Properties for the `TransitGatewayMulticastGroupSource` resource.
+#[derive(Debug, Default)]
+pub struct TransitGatewayMulticastGroupSourceProperties {
+    /// Property [`GroupIpAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastgroupsource.html#cfn-ec2-transitgatewaymulticastgroupsource-groupipaddress).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub group_ip_address: ::Value<String>,
+    /// Property [`NetworkInterfaceId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastgroupsource.html#cfn-ec2-transitgatewaymulticastgroupsource-networkinterfaceid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub network_interface_id: ::Value<String>,
+    /// Property [`TransitGatewayMulticastDomainId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaymulticastgroupsource.html#cfn-ec2-transitgatewaymulticastgroupsource-transitgatewaymulticastdomainid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub transit_gateway_multicast_domain_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for TransitGatewayMulticastGroupSourceProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupIpAddress", &self.group_ip_address)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInterfaceId", &self.network_interface_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitGatewayMulticastDomainId", &self.transit_gateway_multicast_domain_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for TransitGatewayMulticastGroupSourceProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<TransitGatewayMulticastGroupSourceProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = TransitGatewayMulticastGroupSourceProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type TransitGatewayMulticastGroupSourceProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut group_ip_address: Option<::Value<String>> = None;
+                let mut network_interface_id: Option<::Value<String>> = None;
+                let mut transit_gateway_multicast_domain_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "GroupIpAddress" => {
+                            group_ip_address = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "NetworkInterfaceId" => {
+                            network_interface_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TransitGatewayMulticastDomainId" => {
+                            transit_gateway_multicast_domain_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(TransitGatewayMulticastGroupSourceProperties {
+                    group_ip_address: group_ip_address.ok_or(::serde::de::Error::missing_field("GroupIpAddress"))?,
+                    network_interface_id: network_interface_id.ok_or(::serde::de::Error::missing_field("NetworkInterfaceId"))?,
+                    transit_gateway_multicast_domain_id: transit_gateway_multicast_domain_id.ok_or(::serde::de::Error::missing_field("TransitGatewayMulticastDomainId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for TransitGatewayMulticastGroupSource {
+    type Properties = TransitGatewayMulticastGroupSourceProperties;
+    const TYPE: &'static str = "AWS::EC2::TransitGatewayMulticastGroupSource";
+    fn properties(&self) -> &TransitGatewayMulticastGroupSourceProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut TransitGatewayMulticastGroupSourceProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for TransitGatewayMulticastGroupSource {}
+
+impl From<TransitGatewayMulticastGroupSourceProperties> for TransitGatewayMulticastGroupSource {
+    fn from(properties: TransitGatewayMulticastGroupSourceProperties) -> TransitGatewayMulticastGroupSource {
+        TransitGatewayMulticastGroupSource { properties }
+    }
+}
+
+/// The [`AWS::EC2::TransitGatewayPeeringAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaypeeringattachment.html) resource type.
+#[derive(Debug, Default)]
+pub struct TransitGatewayPeeringAttachment {
+    properties: TransitGatewayPeeringAttachmentProperties
+}
+
+/// Properties for the `TransitGatewayPeeringAttachment` resource.
+#[derive(Debug, Default)]
+pub struct TransitGatewayPeeringAttachmentProperties {
+    /// Property [`PeerAccountId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaypeeringattachment.html#cfn-ec2-transitgatewaypeeringattachment-peeraccountid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub peer_account_id: ::Value<String>,
+    /// Property [`PeerRegion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaypeeringattachment.html#cfn-ec2-transitgatewaypeeringattachment-peerregion).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub peer_region: ::Value<String>,
+    /// Property [`PeerTransitGatewayId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaypeeringattachment.html#cfn-ec2-transitgatewaypeeringattachment-peertransitgatewayid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub peer_transit_gateway_id: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaypeeringattachment.html#cfn-ec2-transitgatewaypeeringattachment-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`TransitGatewayId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewaypeeringattachment.html#cfn-ec2-transitgatewaypeeringattachment-transitgatewayid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub transit_gateway_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for TransitGatewayPeeringAttachmentProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PeerAccountId", &self.peer_account_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PeerRegion", &self.peer_region)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PeerTransitGatewayId", &self.peer_transit_gateway_id)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitGatewayId", &self.transit_gateway_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for TransitGatewayPeeringAttachmentProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<TransitGatewayPeeringAttachmentProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = TransitGatewayPeeringAttachmentProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type TransitGatewayPeeringAttachmentProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut peer_account_id: Option<::Value<String>> = None;
+                let mut peer_region: Option<::Value<String>> = None;
+                let mut peer_transit_gateway_id: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut transit_gateway_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "PeerAccountId" => {
+                            peer_account_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PeerRegion" => {
+                            peer_region = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PeerTransitGatewayId" => {
+                            peer_transit_gateway_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TransitGatewayId" => {
+                            transit_gateway_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(TransitGatewayPeeringAttachmentProperties {
+                    peer_account_id: peer_account_id.ok_or(::serde::de::Error::missing_field("PeerAccountId"))?,
+                    peer_region: peer_region.ok_or(::serde::de::Error::missing_field("PeerRegion"))?,
+                    peer_transit_gateway_id: peer_transit_gateway_id.ok_or(::serde::de::Error::missing_field("PeerTransitGatewayId"))?,
+                    tags: tags,
+                    transit_gateway_id: transit_gateway_id.ok_or(::serde::de::Error::missing_field("TransitGatewayId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for TransitGatewayPeeringAttachment {
+    type Properties = TransitGatewayPeeringAttachmentProperties;
+    const TYPE: &'static str = "AWS::EC2::TransitGatewayPeeringAttachment";
+    fn properties(&self) -> &TransitGatewayPeeringAttachmentProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut TransitGatewayPeeringAttachmentProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for TransitGatewayPeeringAttachment {}
+
+impl From<TransitGatewayPeeringAttachmentProperties> for TransitGatewayPeeringAttachment {
+    fn from(properties: TransitGatewayPeeringAttachmentProperties) -> TransitGatewayPeeringAttachment {
+        TransitGatewayPeeringAttachment { properties }
+    }
+}
+
+/// The [`AWS::EC2::TransitGatewayRoute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayroute.html) resource type.
+#[derive(Debug, Default)]
+pub struct TransitGatewayRoute {
+    properties: TransitGatewayRouteProperties
+}
+
+/// Properties for the `TransitGatewayRoute` resource.
+#[derive(Debug, Default)]
+pub struct TransitGatewayRouteProperties {
+    /// Property [`Blackhole`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayroute.html#cfn-ec2-transitgatewayroute-blackhole).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub blackhole: Option<::Value<bool>>,
+    /// Property [`DestinationCidrBlock`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayroute.html#cfn-ec2-transitgatewayroute-destinationcidrblock).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub destination_cidr_block: Option<::Value<String>>,
+    /// Property [`TransitGatewayAttachmentId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayroute.html#cfn-ec2-transitgatewayroute-transitgatewayattachmentid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub transit_gateway_attachment_id: Option<::Value<String>>,
+    /// Property [`TransitGatewayRouteTableId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayroute.html#cfn-ec2-transitgatewayroute-transitgatewayroutetableid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub transit_gateway_route_table_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for TransitGatewayRouteProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref blackhole) = self.blackhole {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Blackhole", blackhole)?;
+        }
+        if let Some(ref destination_cidr_block) = self.destination_cidr_block {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationCidrBlock", destination_cidr_block)?;
+        }
+        if let Some(ref transit_gateway_attachment_id) = self.transit_gateway_attachment_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitGatewayAttachmentId", transit_gateway_attachment_id)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitGatewayRouteTableId", &self.transit_gateway_route_table_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for TransitGatewayRouteProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<TransitGatewayRouteProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = TransitGatewayRouteProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type TransitGatewayRouteProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut blackhole: Option<::Value<bool>> = None;
+                let mut destination_cidr_block: Option<::Value<String>> = None;
+                let mut transit_gateway_attachment_id: Option<::Value<String>> = None;
+                let mut transit_gateway_route_table_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Blackhole" => {
+                            blackhole = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DestinationCidrBlock" => {
+                            destination_cidr_block = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TransitGatewayAttachmentId" => {
+                            transit_gateway_attachment_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TransitGatewayRouteTableId" => {
+                            transit_gateway_route_table_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(TransitGatewayRouteProperties {
+                    blackhole: blackhole,
+                    destination_cidr_block: destination_cidr_block,
+                    transit_gateway_attachment_id: transit_gateway_attachment_id,
+                    transit_gateway_route_table_id: transit_gateway_route_table_id.ok_or(::serde::de::Error::missing_field("TransitGatewayRouteTableId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for TransitGatewayRoute {
+    type Properties = TransitGatewayRouteProperties;
+    const TYPE: &'static str = "AWS::EC2::TransitGatewayRoute";
+    fn properties(&self) -> &TransitGatewayRouteProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut TransitGatewayRouteProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for TransitGatewayRoute {}
+
+impl From<TransitGatewayRouteProperties> for TransitGatewayRoute {
+    fn from(properties: TransitGatewayRouteProperties) -> TransitGatewayRoute {
+        TransitGatewayRoute { properties }
+    }
+}
+
+/// The [`AWS::EC2::TransitGatewayRouteTable`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayroutetable.html) resource type.
+#[derive(Debug, Default)]
+pub struct TransitGatewayRouteTable {
+    properties: TransitGatewayRouteTableProperties
+}
+
+/// Properties for the `TransitGatewayRouteTable` resource.
+#[derive(Debug, Default)]
+pub struct TransitGatewayRouteTableProperties {
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayroutetable.html#cfn-ec2-transitgatewayroutetable-tags).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`TransitGatewayId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayroutetable.html#cfn-ec2-transitgatewayroutetable-transitgatewayid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub transit_gateway_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for TransitGatewayRouteTableProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitGatewayId", &self.transit_gateway_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for TransitGatewayRouteTableProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<TransitGatewayRouteTableProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = TransitGatewayRouteTableProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type TransitGatewayRouteTableProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut transit_gateway_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TransitGatewayId" => {
+                            transit_gateway_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(TransitGatewayRouteTableProperties {
+                    tags: tags,
+                    transit_gateway_id: transit_gateway_id.ok_or(::serde::de::Error::missing_field("TransitGatewayId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for TransitGatewayRouteTable {
+    type Properties = TransitGatewayRouteTableProperties;
+    const TYPE: &'static str = "AWS::EC2::TransitGatewayRouteTable";
+    fn properties(&self) -> &TransitGatewayRouteTableProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut TransitGatewayRouteTableProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for TransitGatewayRouteTable {}
+
+impl From<TransitGatewayRouteTableProperties> for TransitGatewayRouteTable {
+    fn from(properties: TransitGatewayRouteTableProperties) -> TransitGatewayRouteTable {
+        TransitGatewayRouteTable { properties }
+    }
+}
+
+/// The [`AWS::EC2::TransitGatewayRouteTableAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayroutetableassociation.html) resource type.
+#[derive(Debug, Default)]
+pub struct TransitGatewayRouteTableAssociation {
+    properties: TransitGatewayRouteTableAssociationProperties
+}
+
+/// Properties for the `TransitGatewayRouteTableAssociation` resource.
+#[derive(Debug, Default)]
+pub struct TransitGatewayRouteTableAssociationProperties {
+    /// Property [`TransitGatewayAttachmentId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayroutetableassociation.html#cfn-ec2-transitgatewayroutetableassociation-transitgatewayattachmentid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub transit_gateway_attachment_id: ::Value<String>,
+    /// Property [`TransitGatewayRouteTableId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayroutetableassociation.html#cfn-ec2-transitgatewayroutetableassociation-transitgatewayroutetableid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub transit_gateway_route_table_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for TransitGatewayRouteTableAssociationProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitGatewayAttachmentId", &self.transit_gateway_attachment_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitGatewayRouteTableId", &self.transit_gateway_route_table_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for TransitGatewayRouteTableAssociationProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<TransitGatewayRouteTableAssociationProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = TransitGatewayRouteTableAssociationProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type TransitGatewayRouteTableAssociationProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut transit_gateway_attachment_id: Option<::Value<String>> = None;
+                let mut transit_gateway_route_table_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "TransitGatewayAttachmentId" => {
+                            transit_gateway_attachment_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TransitGatewayRouteTableId" => {
+                            transit_gateway_route_table_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(TransitGatewayRouteTableAssociationProperties {
+                    transit_gateway_attachment_id: transit_gateway_attachment_id.ok_or(::serde::de::Error::missing_field("TransitGatewayAttachmentId"))?,
+                    transit_gateway_route_table_id: transit_gateway_route_table_id.ok_or(::serde::de::Error::missing_field("TransitGatewayRouteTableId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for TransitGatewayRouteTableAssociation {
+    type Properties = TransitGatewayRouteTableAssociationProperties;
+    const TYPE: &'static str = "AWS::EC2::TransitGatewayRouteTableAssociation";
+    fn properties(&self) -> &TransitGatewayRouteTableAssociationProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut TransitGatewayRouteTableAssociationProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for TransitGatewayRouteTableAssociation {}
+
+impl From<TransitGatewayRouteTableAssociationProperties> for TransitGatewayRouteTableAssociation {
+    fn from(properties: TransitGatewayRouteTableAssociationProperties) -> TransitGatewayRouteTableAssociation {
+        TransitGatewayRouteTableAssociation { properties }
+    }
+}
+
+/// The [`AWS::EC2::TransitGatewayRouteTablePropagation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayroutetablepropagation.html) resource type.
+#[derive(Debug, Default)]
+pub struct TransitGatewayRouteTablePropagation {
+    properties: TransitGatewayRouteTablePropagationProperties
+}
+
+/// Properties for the `TransitGatewayRouteTablePropagation` resource.
+#[derive(Debug, Default)]
+pub struct TransitGatewayRouteTablePropagationProperties {
+    /// Property [`TransitGatewayAttachmentId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayroutetablepropagation.html#cfn-ec2-transitgatewayroutetablepropagation-transitgatewayattachmentid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub transit_gateway_attachment_id: ::Value<String>,
+    /// Property [`TransitGatewayRouteTableId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-transitgatewayroutetablepropagation.html#cfn-ec2-transitgatewayroutetablepropagation-transitgatewayroutetableid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub transit_gateway_route_table_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for TransitGatewayRouteTablePropagationProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitGatewayAttachmentId", &self.transit_gateway_attachment_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitGatewayRouteTableId", &self.transit_gateway_route_table_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for TransitGatewayRouteTablePropagationProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<TransitGatewayRouteTablePropagationProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = TransitGatewayRouteTablePropagationProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type TransitGatewayRouteTablePropagationProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut transit_gateway_attachment_id: Option<::Value<String>> = None;
+                let mut transit_gateway_route_table_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "TransitGatewayAttachmentId" => {
+                            transit_gateway_attachment_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TransitGatewayRouteTableId" => {
+                            transit_gateway_route_table_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(TransitGatewayRouteTablePropagationProperties {
+                    transit_gateway_attachment_id: transit_gateway_attachment_id.ok_or(::serde::de::Error::missing_field("TransitGatewayAttachmentId"))?,
+                    transit_gateway_route_table_id: transit_gateway_route_table_id.ok_or(::serde::de::Error::missing_field("TransitGatewayRouteTableId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for TransitGatewayRouteTablePropagation {
+    type Properties = TransitGatewayRouteTablePropagationProperties;
+    const TYPE: &'static str = "AWS::EC2::TransitGatewayRouteTablePropagation";
+    fn properties(&self) -> &TransitGatewayRouteTablePropagationProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut TransitGatewayRouteTablePropagationProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for TransitGatewayRouteTablePropagation {}
+
+impl From<TransitGatewayRouteTablePropagationProperties> for TransitGatewayRouteTablePropagation {
+    fn from(properties: TransitGatewayRouteTablePropagationProperties) -> TransitGatewayRouteTablePropagation {
+        TransitGatewayRouteTablePropagation { properties }
     }
 }
 
@@ -3913,16 +7872,36 @@ pub struct VPCEndpointProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub policy_document: Option<::Value<::json::Value>>,
+    /// Property [`PrivateDnsEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpoint.html#cfn-ec2-vpcendpoint-privatednsenabled).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub private_dns_enabled: Option<::Value<bool>>,
     /// Property [`RouteTableIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpoint.html#cfn-ec2-vpcendpoint-routetableids).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub route_table_ids: Option<::ValueList<String>>,
+    /// Property [`SecurityGroupIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpoint.html#cfn-ec2-vpcendpoint-securitygroupids).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub security_group_ids: Option<::ValueList<String>>,
     /// Property [`ServiceName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpoint.html#cfn-ec2-vpcendpoint-servicename).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub service_name: ::Value<String>,
+    /// Property [`SubnetIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpoint.html#cfn-ec2-vpcendpoint-subnetids).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub subnet_ids: Option<::ValueList<String>>,
+    /// Property [`VpcEndpointType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpoint.html#cfn-ec2-vpcendpoint-vpcendpointtype).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub vpc_endpoint_type: Option<::Value<String>>,
     /// Property [`VpcId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpoint.html#cfn-ec2-vpcendpoint-vpcid).
     ///
     /// Update type: _Immutable_.
@@ -3936,10 +7915,22 @@ impl ::serde::Serialize for VPCEndpointProperties {
         if let Some(ref policy_document) = self.policy_document {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyDocument", policy_document)?;
         }
+        if let Some(ref private_dns_enabled) = self.private_dns_enabled {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateDnsEnabled", private_dns_enabled)?;
+        }
         if let Some(ref route_table_ids) = self.route_table_ids {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RouteTableIds", route_table_ids)?;
         }
+        if let Some(ref security_group_ids) = self.security_group_ids {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIds", security_group_ids)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceName", &self.service_name)?;
+        if let Some(ref subnet_ids) = self.subnet_ids {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetIds", subnet_ids)?;
+        }
+        if let Some(ref vpc_endpoint_type) = self.vpc_endpoint_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcEndpointType", vpc_endpoint_type)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", &self.vpc_id)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -3958,8 +7949,12 @@ impl<'de> ::serde::Deserialize<'de> for VPCEndpointProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut policy_document: Option<::Value<::json::Value>> = None;
+                let mut private_dns_enabled: Option<::Value<bool>> = None;
                 let mut route_table_ids: Option<::ValueList<String>> = None;
+                let mut security_group_ids: Option<::ValueList<String>> = None;
                 let mut service_name: Option<::Value<String>> = None;
+                let mut subnet_ids: Option<::ValueList<String>> = None;
+                let mut vpc_endpoint_type: Option<::Value<String>> = None;
                 let mut vpc_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -3967,11 +7962,23 @@ impl<'de> ::serde::Deserialize<'de> for VPCEndpointProperties {
                         "PolicyDocument" => {
                             policy_document = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "PrivateDnsEnabled" => {
+                            private_dns_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "RouteTableIds" => {
                             route_table_ids = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "SecurityGroupIds" => {
+                            security_group_ids = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "ServiceName" => {
                             service_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SubnetIds" => {
+                            subnet_ids = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "VpcEndpointType" => {
+                            vpc_endpoint_type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "VpcId" => {
                             vpc_id = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -3982,8 +7989,12 @@ impl<'de> ::serde::Deserialize<'de> for VPCEndpointProperties {
 
                 Ok(VPCEndpointProperties {
                     policy_document: policy_document,
+                    private_dns_enabled: private_dns_enabled,
                     route_table_ids: route_table_ids,
+                    security_group_ids: security_group_ids,
                     service_name: service_name.ok_or(::serde::de::Error::missing_field("ServiceName"))?,
+                    subnet_ids: subnet_ids,
+                    vpc_endpoint_type: vpc_endpoint_type,
                     vpc_id: vpc_id.ok_or(::serde::de::Error::missing_field("VpcId"))?,
                 })
             }
@@ -4009,6 +8020,312 @@ impl ::private::Sealed for VPCEndpoint {}
 impl From<VPCEndpointProperties> for VPCEndpoint {
     fn from(properties: VPCEndpointProperties) -> VPCEndpoint {
         VPCEndpoint { properties }
+    }
+}
+
+/// The [`AWS::EC2::VPCEndpointConnectionNotification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointconnectionnotification.html) resource type.
+#[derive(Debug, Default)]
+pub struct VPCEndpointConnectionNotification {
+    properties: VPCEndpointConnectionNotificationProperties
+}
+
+/// Properties for the `VPCEndpointConnectionNotification` resource.
+#[derive(Debug, Default)]
+pub struct VPCEndpointConnectionNotificationProperties {
+    /// Property [`ConnectionEvents`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointconnectionnotification.html#cfn-ec2-vpcendpointconnectionnotification-connectionevents).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub connection_events: ::ValueList<String>,
+    /// Property [`ConnectionNotificationArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointconnectionnotification.html#cfn-ec2-vpcendpointconnectionnotification-connectionnotificationarn).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub connection_notification_arn: ::Value<String>,
+    /// Property [`ServiceId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointconnectionnotification.html#cfn-ec2-vpcendpointconnectionnotification-serviceid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub service_id: Option<::Value<String>>,
+    /// Property [`VPCEndpointId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointconnectionnotification.html#cfn-ec2-vpcendpointconnectionnotification-vpcendpointid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub vpc_endpoint_id: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for VPCEndpointConnectionNotificationProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionEvents", &self.connection_events)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionNotificationArn", &self.connection_notification_arn)?;
+        if let Some(ref service_id) = self.service_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceId", service_id)?;
+        }
+        if let Some(ref vpc_endpoint_id) = self.vpc_endpoint_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VPCEndpointId", vpc_endpoint_id)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for VPCEndpointConnectionNotificationProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<VPCEndpointConnectionNotificationProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = VPCEndpointConnectionNotificationProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type VPCEndpointConnectionNotificationProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut connection_events: Option<::ValueList<String>> = None;
+                let mut connection_notification_arn: Option<::Value<String>> = None;
+                let mut service_id: Option<::Value<String>> = None;
+                let mut vpc_endpoint_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "ConnectionEvents" => {
+                            connection_events = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ConnectionNotificationArn" => {
+                            connection_notification_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ServiceId" => {
+                            service_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "VPCEndpointId" => {
+                            vpc_endpoint_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(VPCEndpointConnectionNotificationProperties {
+                    connection_events: connection_events.ok_or(::serde::de::Error::missing_field("ConnectionEvents"))?,
+                    connection_notification_arn: connection_notification_arn.ok_or(::serde::de::Error::missing_field("ConnectionNotificationArn"))?,
+                    service_id: service_id,
+                    vpc_endpoint_id: vpc_endpoint_id,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for VPCEndpointConnectionNotification {
+    type Properties = VPCEndpointConnectionNotificationProperties;
+    const TYPE: &'static str = "AWS::EC2::VPCEndpointConnectionNotification";
+    fn properties(&self) -> &VPCEndpointConnectionNotificationProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut VPCEndpointConnectionNotificationProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for VPCEndpointConnectionNotification {}
+
+impl From<VPCEndpointConnectionNotificationProperties> for VPCEndpointConnectionNotification {
+    fn from(properties: VPCEndpointConnectionNotificationProperties) -> VPCEndpointConnectionNotification {
+        VPCEndpointConnectionNotification { properties }
+    }
+}
+
+/// The [`AWS::EC2::VPCEndpointService`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointservice.html) resource type.
+#[derive(Debug, Default)]
+pub struct VPCEndpointService {
+    properties: VPCEndpointServiceProperties
+}
+
+/// Properties for the `VPCEndpointService` resource.
+#[derive(Debug, Default)]
+pub struct VPCEndpointServiceProperties {
+    /// Property [`AcceptanceRequired`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointservice.html#cfn-ec2-vpcendpointservice-acceptancerequired).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub acceptance_required: Option<::Value<bool>>,
+    /// Property [`GatewayLoadBalancerArns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointservice.html#cfn-ec2-vpcendpointservice-gatewayloadbalancerarns).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub gateway_load_balancer_arns: Option<::ValueList<String>>,
+    /// Property [`NetworkLoadBalancerArns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointservice.html#cfn-ec2-vpcendpointservice-networkloadbalancerarns).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub network_load_balancer_arns: Option<::ValueList<String>>,
+}
+
+impl ::serde::Serialize for VPCEndpointServiceProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref acceptance_required) = self.acceptance_required {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AcceptanceRequired", acceptance_required)?;
+        }
+        if let Some(ref gateway_load_balancer_arns) = self.gateway_load_balancer_arns {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GatewayLoadBalancerArns", gateway_load_balancer_arns)?;
+        }
+        if let Some(ref network_load_balancer_arns) = self.network_load_balancer_arns {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkLoadBalancerArns", network_load_balancer_arns)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for VPCEndpointServiceProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<VPCEndpointServiceProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = VPCEndpointServiceProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type VPCEndpointServiceProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut acceptance_required: Option<::Value<bool>> = None;
+                let mut gateway_load_balancer_arns: Option<::ValueList<String>> = None;
+                let mut network_load_balancer_arns: Option<::ValueList<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AcceptanceRequired" => {
+                            acceptance_required = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "GatewayLoadBalancerArns" => {
+                            gateway_load_balancer_arns = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "NetworkLoadBalancerArns" => {
+                            network_load_balancer_arns = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(VPCEndpointServiceProperties {
+                    acceptance_required: acceptance_required,
+                    gateway_load_balancer_arns: gateway_load_balancer_arns,
+                    network_load_balancer_arns: network_load_balancer_arns,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for VPCEndpointService {
+    type Properties = VPCEndpointServiceProperties;
+    const TYPE: &'static str = "AWS::EC2::VPCEndpointService";
+    fn properties(&self) -> &VPCEndpointServiceProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut VPCEndpointServiceProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for VPCEndpointService {}
+
+impl From<VPCEndpointServiceProperties> for VPCEndpointService {
+    fn from(properties: VPCEndpointServiceProperties) -> VPCEndpointService {
+        VPCEndpointService { properties }
+    }
+}
+
+/// The [`AWS::EC2::VPCEndpointServicePermissions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointservicepermissions.html) resource type.
+#[derive(Debug, Default)]
+pub struct VPCEndpointServicePermissions {
+    properties: VPCEndpointServicePermissionsProperties
+}
+
+/// Properties for the `VPCEndpointServicePermissions` resource.
+#[derive(Debug, Default)]
+pub struct VPCEndpointServicePermissionsProperties {
+    /// Property [`AllowedPrincipals`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointservicepermissions.html#cfn-ec2-vpcendpointservicepermissions-allowedprincipals).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub allowed_principals: Option<::ValueList<String>>,
+    /// Property [`ServiceId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcendpointservicepermissions.html#cfn-ec2-vpcendpointservicepermissions-serviceid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub service_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for VPCEndpointServicePermissionsProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref allowed_principals) = self.allowed_principals {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowedPrincipals", allowed_principals)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceId", &self.service_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for VPCEndpointServicePermissionsProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<VPCEndpointServicePermissionsProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = VPCEndpointServicePermissionsProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type VPCEndpointServicePermissionsProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut allowed_principals: Option<::ValueList<String>> = None;
+                let mut service_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AllowedPrincipals" => {
+                            allowed_principals = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ServiceId" => {
+                            service_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(VPCEndpointServicePermissionsProperties {
+                    allowed_principals: allowed_principals,
+                    service_id: service_id.ok_or(::serde::de::Error::missing_field("ServiceId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for VPCEndpointServicePermissions {
+    type Properties = VPCEndpointServicePermissionsProperties;
+    const TYPE: &'static str = "AWS::EC2::VPCEndpointServicePermissions";
+    fn properties(&self) -> &VPCEndpointServicePermissionsProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut VPCEndpointServicePermissionsProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for VPCEndpointServicePermissions {}
+
+impl From<VPCEndpointServicePermissionsProperties> for VPCEndpointServicePermissions {
+    fn from(properties: VPCEndpointServicePermissionsProperties) -> VPCEndpointServicePermissions {
+        VPCEndpointServicePermissions { properties }
     }
 }
 
@@ -4128,6 +8445,11 @@ pub struct VPCPeeringConnectionProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub peer_owner_id: Option<::Value<String>>,
+    /// Property [`PeerRegion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcpeeringconnection.html#cfn-ec2-vpcpeeringconnection-peerregion).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub peer_region: Option<::Value<String>>,
     /// Property [`PeerRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpcpeeringconnection.html#cfn-ec2-vpcpeeringconnection-peerrolearn).
     ///
     /// Update type: _Immutable_.
@@ -4156,6 +8478,9 @@ impl ::serde::Serialize for VPCPeeringConnectionProperties {
         if let Some(ref peer_owner_id) = self.peer_owner_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PeerOwnerId", peer_owner_id)?;
         }
+        if let Some(ref peer_region) = self.peer_region {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PeerRegion", peer_region)?;
+        }
         if let Some(ref peer_role_arn) = self.peer_role_arn {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PeerRoleArn", peer_role_arn)?;
         }
@@ -4181,6 +8506,7 @@ impl<'de> ::serde::Deserialize<'de> for VPCPeeringConnectionProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut peer_owner_id: Option<::Value<String>> = None;
+                let mut peer_region: Option<::Value<String>> = None;
                 let mut peer_role_arn: Option<::Value<String>> = None;
                 let mut peer_vpc_id: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
@@ -4190,6 +8516,9 @@ impl<'de> ::serde::Deserialize<'de> for VPCPeeringConnectionProperties {
                     match __cfn_key.as_ref() {
                         "PeerOwnerId" => {
                             peer_owner_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PeerRegion" => {
+                            peer_region = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "PeerRoleArn" => {
                             peer_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -4209,6 +8538,7 @@ impl<'de> ::serde::Deserialize<'de> for VPCPeeringConnectionProperties {
 
                 Ok(VPCPeeringConnectionProperties {
                     peer_owner_id: peer_owner_id,
+                    peer_region: peer_region,
                     peer_role_arn: peer_role_arn,
                     peer_vpc_id: peer_vpc_id.ok_or(::serde::de::Error::missing_field("PeerVpcId"))?,
                     tags: tags,
@@ -4264,16 +8594,21 @@ pub struct VPNConnectionProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`TransitGatewayId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-connection.html#cfn-ec2-vpnconnection-transitgatewayid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub transit_gateway_id: Option<::Value<String>>,
     /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-connection.html#cfn-ec2-vpnconnection-type).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub type_: ::Value<String>,
+    pub r#type: ::Value<String>,
     /// Property [`VpnGatewayId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-connection.html#cfn-ec2-vpnconnection-vpngatewayid).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub vpn_gateway_id: ::Value<String>,
+    pub vpn_gateway_id: Option<::Value<String>>,
     /// Property [`VpnTunnelOptionsSpecifications`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpn-connection.html#cfn-ec2-vpnconnection-vpntunneloptionsspecifications).
     ///
     /// Update type: _Immutable_.
@@ -4291,8 +8626,13 @@ impl ::serde::Serialize for VPNConnectionProperties {
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpnGatewayId", &self.vpn_gateway_id)?;
+        if let Some(ref transit_gateway_id) = self.transit_gateway_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitGatewayId", transit_gateway_id)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
+        if let Some(ref vpn_gateway_id) = self.vpn_gateway_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpnGatewayId", vpn_gateway_id)?;
+        }
         if let Some(ref vpn_tunnel_options_specifications) = self.vpn_tunnel_options_specifications {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpnTunnelOptionsSpecifications", vpn_tunnel_options_specifications)?;
         }
@@ -4315,7 +8655,8 @@ impl<'de> ::serde::Deserialize<'de> for VPNConnectionProperties {
                 let mut customer_gateway_id: Option<::Value<String>> = None;
                 let mut static_routes_only: Option<::Value<bool>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
-                let mut type_: Option<::Value<String>> = None;
+                let mut transit_gateway_id: Option<::Value<String>> = None;
+                let mut r#type: Option<::Value<String>> = None;
                 let mut vpn_gateway_id: Option<::Value<String>> = None;
                 let mut vpn_tunnel_options_specifications: Option<::ValueList<self::vpn_connection::VpnTunnelOptionsSpecification>> = None;
 
@@ -4330,8 +8671,11 @@ impl<'de> ::serde::Deserialize<'de> for VPNConnectionProperties {
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "TransitGatewayId" => {
+                            transit_gateway_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Type" => {
-                            type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                            r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "VpnGatewayId" => {
                             vpn_gateway_id = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -4347,8 +8691,9 @@ impl<'de> ::serde::Deserialize<'de> for VPNConnectionProperties {
                     customer_gateway_id: customer_gateway_id.ok_or(::serde::de::Error::missing_field("CustomerGatewayId"))?,
                     static_routes_only: static_routes_only,
                     tags: tags,
-                    type_: type_.ok_or(::serde::de::Error::missing_field("Type"))?,
-                    vpn_gateway_id: vpn_gateway_id.ok_or(::serde::de::Error::missing_field("VpnGatewayId"))?,
+                    transit_gateway_id: transit_gateway_id,
+                    r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
+                    vpn_gateway_id: vpn_gateway_id,
                     vpn_tunnel_options_specifications: vpn_tunnel_options_specifications,
                 })
             }
@@ -4487,7 +8832,7 @@ pub struct VPNGatewayProperties {
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub type_: ::Value<String>,
+    pub r#type: ::Value<String>,
 }
 
 impl ::serde::Serialize for VPNGatewayProperties {
@@ -4499,7 +8844,7 @@ impl ::serde::Serialize for VPNGatewayProperties {
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -4518,7 +8863,7 @@ impl<'de> ::serde::Deserialize<'de> for VPNGatewayProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut amazon_side_asn: Option<::Value<u64>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
-                let mut type_: Option<::Value<String>> = None;
+                let mut r#type: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -4529,7 +8874,7 @@ impl<'de> ::serde::Deserialize<'de> for VPNGatewayProperties {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Type" => {
-                            type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                            r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -4538,7 +8883,7 @@ impl<'de> ::serde::Deserialize<'de> for VPNGatewayProperties {
                 Ok(VPNGatewayProperties {
                     amazon_side_asn: amazon_side_asn,
                     tags: tags,
-                    type_: type_.ok_or(::serde::de::Error::missing_field("Type"))?,
+                    r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
                 })
             }
         }
@@ -4687,6 +9032,16 @@ pub struct VolumeProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub kms_key_id: Option<::Value<String>>,
+    /// Property [`MultiAttachEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volume.html#cfn-ec2-ebs-volume-multiattachenabled).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub multi_attach_enabled: Option<::Value<bool>>,
+    /// Property [`OutpostArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volume.html#cfn-ec2-ebs-volume-outpostarn).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub outpost_arn: Option<::Value<String>>,
     /// Property [`Size`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volume.html#cfn-ec2-ebs-volume-size).
     ///
     /// Update type: _Mutable_.
@@ -4702,6 +9057,11 @@ pub struct VolumeProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`Throughput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volume.html#cfn-ec2-ebs-volume-throughput).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub throughput: Option<::Value<u32>>,
     /// Property [`VolumeType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ebs-volume.html#cfn-ec2-ebs-volume-volumetype).
     ///
     /// Update type: _Mutable_.
@@ -4725,6 +9085,12 @@ impl ::serde::Serialize for VolumeProperties {
         if let Some(ref kms_key_id) = self.kms_key_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", kms_key_id)?;
         }
+        if let Some(ref multi_attach_enabled) = self.multi_attach_enabled {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MultiAttachEnabled", multi_attach_enabled)?;
+        }
+        if let Some(ref outpost_arn) = self.outpost_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutpostArn", outpost_arn)?;
+        }
         if let Some(ref size) = self.size {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Size", size)?;
         }
@@ -4733,6 +9099,9 @@ impl ::serde::Serialize for VolumeProperties {
         }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref throughput) = self.throughput {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Throughput", throughput)?;
         }
         if let Some(ref volume_type) = self.volume_type {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeType", volume_type)?;
@@ -4758,9 +9127,12 @@ impl<'de> ::serde::Deserialize<'de> for VolumeProperties {
                 let mut encrypted: Option<::Value<bool>> = None;
                 let mut iops: Option<::Value<u32>> = None;
                 let mut kms_key_id: Option<::Value<String>> = None;
+                let mut multi_attach_enabled: Option<::Value<bool>> = None;
+                let mut outpost_arn: Option<::Value<String>> = None;
                 let mut size: Option<::Value<u32>> = None;
                 let mut snapshot_id: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut throughput: Option<::Value<u32>> = None;
                 let mut volume_type: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -4780,6 +9152,12 @@ impl<'de> ::serde::Deserialize<'de> for VolumeProperties {
                         "KmsKeyId" => {
                             kms_key_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "MultiAttachEnabled" => {
+                            multi_attach_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "OutpostArn" => {
+                            outpost_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Size" => {
                             size = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -4788,6 +9166,9 @@ impl<'de> ::serde::Deserialize<'de> for VolumeProperties {
                         }
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Throughput" => {
+                            throughput = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "VolumeType" => {
                             volume_type = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -4802,9 +9183,12 @@ impl<'de> ::serde::Deserialize<'de> for VolumeProperties {
                     encrypted: encrypted,
                     iops: iops,
                     kms_key_id: kms_key_id,
+                    multi_attach_enabled: multi_attach_enabled,
+                    outpost_arn: outpost_arn,
                     size: size,
                     snapshot_id: snapshot_id,
                     tags: tags,
+                    throughput: throughput,
                     volume_type: volume_type,
                 })
             }
@@ -4928,6 +9312,1421 @@ impl ::private::Sealed for VolumeAttachment {}
 impl From<VolumeAttachmentProperties> for VolumeAttachment {
     fn from(properties: VolumeAttachmentProperties) -> VolumeAttachment {
         VolumeAttachment { properties }
+    }
+}
+
+pub mod capacity_reservation {
+    //! Property types for the `CapacityReservation` resource.
+
+    /// The [`AWS::EC2::CapacityReservation.TagSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-capacityreservation-tagspecification.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TagSpecification {
+        /// Property [`ResourceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-capacityreservation-tagspecification.html#cfn-ec2-capacityreservation-tagspecification-resourcetype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub resource_type: Option<::Value<String>>,
+        /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-capacityreservation-tagspecification.html#cfn-ec2-capacityreservation-tagspecification-tags).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tags: Option<::ValueList<::Tag>>,
+    }
+
+    impl ::codec::SerializeValue for TagSpecification {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref resource_type) = self.resource_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceType", resource_type)?;
+            }
+            if let Some(ref tags) = self.tags {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TagSpecification {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TagSpecification, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TagSpecification;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TagSpecification")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut resource_type: Option<::Value<String>> = None;
+                    let mut tags: Option<::ValueList<::Tag>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ResourceType" => {
+                                resource_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Tags" => {
+                                tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TagSpecification {
+                        resource_type: resource_type,
+                        tags: tags,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod client_vpn_endpoint {
+    //! Property types for the `ClientVpnEndpoint` resource.
+
+    /// The [`AWS::EC2::ClientVpnEndpoint.CertificateAuthenticationRequest`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-certificateauthenticationrequest.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CertificateAuthenticationRequest {
+        /// Property [`ClientRootCertificateChainArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-certificateauthenticationrequest.html#cfn-ec2-clientvpnendpoint-certificateauthenticationrequest-clientrootcertificatechainarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub client_root_certificate_chain_arn: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for CertificateAuthenticationRequest {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientRootCertificateChainArn", &self.client_root_certificate_chain_arn)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CertificateAuthenticationRequest {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CertificateAuthenticationRequest, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CertificateAuthenticationRequest;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CertificateAuthenticationRequest")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut client_root_certificate_chain_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ClientRootCertificateChainArn" => {
+                                client_root_certificate_chain_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CertificateAuthenticationRequest {
+                        client_root_certificate_chain_arn: client_root_certificate_chain_arn.ok_or(::serde::de::Error::missing_field("ClientRootCertificateChainArn"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::ClientVpnEndpoint.ClientAuthenticationRequest`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-clientauthenticationrequest.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ClientAuthenticationRequest {
+        /// Property [`ActiveDirectory`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-clientauthenticationrequest.html#cfn-ec2-clientvpnendpoint-clientauthenticationrequest-activedirectory).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub active_directory: Option<::Value<DirectoryServiceAuthenticationRequest>>,
+        /// Property [`FederatedAuthentication`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-clientauthenticationrequest.html#cfn-ec2-clientvpnendpoint-clientauthenticationrequest-federatedauthentication).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub federated_authentication: Option<::Value<FederatedAuthenticationRequest>>,
+        /// Property [`MutualAuthentication`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-clientauthenticationrequest.html#cfn-ec2-clientvpnendpoint-clientauthenticationrequest-mutualauthentication).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub mutual_authentication: Option<::Value<CertificateAuthenticationRequest>>,
+        /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-clientauthenticationrequest.html#cfn-ec2-clientvpnendpoint-clientauthenticationrequest-type).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub r#type: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for ClientAuthenticationRequest {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref active_directory) = self.active_directory {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ActiveDirectory", active_directory)?;
+            }
+            if let Some(ref federated_authentication) = self.federated_authentication {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FederatedAuthentication", federated_authentication)?;
+            }
+            if let Some(ref mutual_authentication) = self.mutual_authentication {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MutualAuthentication", mutual_authentication)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ClientAuthenticationRequest {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ClientAuthenticationRequest, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ClientAuthenticationRequest;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ClientAuthenticationRequest")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut active_directory: Option<::Value<DirectoryServiceAuthenticationRequest>> = None;
+                    let mut federated_authentication: Option<::Value<FederatedAuthenticationRequest>> = None;
+                    let mut mutual_authentication: Option<::Value<CertificateAuthenticationRequest>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ActiveDirectory" => {
+                                active_directory = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "FederatedAuthentication" => {
+                                federated_authentication = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MutualAuthentication" => {
+                                mutual_authentication = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Type" => {
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ClientAuthenticationRequest {
+                        active_directory: active_directory,
+                        federated_authentication: federated_authentication,
+                        mutual_authentication: mutual_authentication,
+                        r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::ClientVpnEndpoint.ClientConnectOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-clientconnectoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ClientConnectOptions {
+        /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-clientconnectoptions.html#cfn-ec2-clientvpnendpoint-clientconnectoptions-enabled).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub enabled: ::Value<bool>,
+        /// Property [`LambdaFunctionArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-clientconnectoptions.html#cfn-ec2-clientvpnendpoint-clientconnectoptions-lambdafunctionarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub lambda_function_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for ClientConnectOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
+            if let Some(ref lambda_function_arn) = self.lambda_function_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaFunctionArn", lambda_function_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ClientConnectOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ClientConnectOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ClientConnectOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ClientConnectOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut enabled: Option<::Value<bool>> = None;
+                    let mut lambda_function_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Enabled" => {
+                                enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LambdaFunctionArn" => {
+                                lambda_function_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ClientConnectOptions {
+                        enabled: enabled.ok_or(::serde::de::Error::missing_field("Enabled"))?,
+                        lambda_function_arn: lambda_function_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::ClientVpnEndpoint.ConnectionLogOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-connectionlogoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ConnectionLogOptions {
+        /// Property [`CloudwatchLogGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-connectionlogoptions.html#cfn-ec2-clientvpnendpoint-connectionlogoptions-cloudwatchloggroup).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cloudwatch_log_group: Option<::Value<String>>,
+        /// Property [`CloudwatchLogStream`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-connectionlogoptions.html#cfn-ec2-clientvpnendpoint-connectionlogoptions-cloudwatchlogstream).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cloudwatch_log_stream: Option<::Value<String>>,
+        /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-connectionlogoptions.html#cfn-ec2-clientvpnendpoint-connectionlogoptions-enabled).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub enabled: ::Value<bool>,
+    }
+
+    impl ::codec::SerializeValue for ConnectionLogOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref cloudwatch_log_group) = self.cloudwatch_log_group {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudwatchLogGroup", cloudwatch_log_group)?;
+            }
+            if let Some(ref cloudwatch_log_stream) = self.cloudwatch_log_stream {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudwatchLogStream", cloudwatch_log_stream)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ConnectionLogOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ConnectionLogOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ConnectionLogOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ConnectionLogOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut cloudwatch_log_group: Option<::Value<String>> = None;
+                    let mut cloudwatch_log_stream: Option<::Value<String>> = None;
+                    let mut enabled: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CloudwatchLogGroup" => {
+                                cloudwatch_log_group = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CloudwatchLogStream" => {
+                                cloudwatch_log_stream = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Enabled" => {
+                                enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ConnectionLogOptions {
+                        cloudwatch_log_group: cloudwatch_log_group,
+                        cloudwatch_log_stream: cloudwatch_log_stream,
+                        enabled: enabled.ok_or(::serde::de::Error::missing_field("Enabled"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::ClientVpnEndpoint.DirectoryServiceAuthenticationRequest`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-directoryserviceauthenticationrequest.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DirectoryServiceAuthenticationRequest {
+        /// Property [`DirectoryId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-directoryserviceauthenticationrequest.html#cfn-ec2-clientvpnendpoint-directoryserviceauthenticationrequest-directoryid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub directory_id: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for DirectoryServiceAuthenticationRequest {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DirectoryId", &self.directory_id)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DirectoryServiceAuthenticationRequest {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DirectoryServiceAuthenticationRequest, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DirectoryServiceAuthenticationRequest;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DirectoryServiceAuthenticationRequest")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut directory_id: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DirectoryId" => {
+                                directory_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DirectoryServiceAuthenticationRequest {
+                        directory_id: directory_id.ok_or(::serde::de::Error::missing_field("DirectoryId"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::ClientVpnEndpoint.FederatedAuthenticationRequest`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-federatedauthenticationrequest.html) property type.
+    #[derive(Debug, Default)]
+    pub struct FederatedAuthenticationRequest {
+        /// Property [`SAMLProviderArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-federatedauthenticationrequest.html#cfn-ec2-clientvpnendpoint-federatedauthenticationrequest-samlproviderarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub saml_provider_arn: ::Value<String>,
+        /// Property [`SelfServiceSAMLProviderArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-federatedauthenticationrequest.html#cfn-ec2-clientvpnendpoint-federatedauthenticationrequest-selfservicesamlproviderarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub self_service_saml_provider_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for FederatedAuthenticationRequest {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SAMLProviderArn", &self.saml_provider_arn)?;
+            if let Some(ref self_service_saml_provider_arn) = self.self_service_saml_provider_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SelfServiceSAMLProviderArn", self_service_saml_provider_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for FederatedAuthenticationRequest {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<FederatedAuthenticationRequest, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = FederatedAuthenticationRequest;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type FederatedAuthenticationRequest")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut saml_provider_arn: Option<::Value<String>> = None;
+                    let mut self_service_saml_provider_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SAMLProviderArn" => {
+                                saml_provider_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SelfServiceSAMLProviderArn" => {
+                                self_service_saml_provider_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(FederatedAuthenticationRequest {
+                        saml_provider_arn: saml_provider_arn.ok_or(::serde::de::Error::missing_field("SAMLProviderArn"))?,
+                        self_service_saml_provider_arn: self_service_saml_provider_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::ClientVpnEndpoint.TagSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-tagspecification.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TagSpecification {
+        /// Property [`ResourceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-tagspecification.html#cfn-ec2-clientvpnendpoint-tagspecification-resourcetype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub resource_type: ::Value<String>,
+        /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-clientvpnendpoint-tagspecification.html#cfn-ec2-clientvpnendpoint-tagspecification-tags).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tags: ::ValueList<::Tag>,
+    }
+
+    impl ::codec::SerializeValue for TagSpecification {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceType", &self.resource_type)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TagSpecification {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TagSpecification, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TagSpecification;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TagSpecification")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut resource_type: Option<::Value<String>> = None;
+                    let mut tags: Option<::ValueList<::Tag>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ResourceType" => {
+                                resource_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Tags" => {
+                                tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TagSpecification {
+                        resource_type: resource_type.ok_or(::serde::de::Error::missing_field("ResourceType"))?,
+                        tags: tags.ok_or(::serde::de::Error::missing_field("Tags"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod ec2_fleet {
+    //! Property types for the `EC2Fleet` resource.
+
+    /// The [`AWS::EC2::EC2Fleet.CapacityReservationOptionsRequest`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-capacityreservationoptionsrequest.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CapacityReservationOptionsRequest {
+        /// Property [`UsageStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-capacityreservationoptionsrequest.html#cfn-ec2-ec2fleet-capacityreservationoptionsrequest-usagestrategy).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub usage_strategy: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for CapacityReservationOptionsRequest {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref usage_strategy) = self.usage_strategy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UsageStrategy", usage_strategy)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CapacityReservationOptionsRequest {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CapacityReservationOptionsRequest, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CapacityReservationOptionsRequest;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CapacityReservationOptionsRequest")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut usage_strategy: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "UsageStrategy" => {
+                                usage_strategy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CapacityReservationOptionsRequest {
+                        usage_strategy: usage_strategy,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::EC2Fleet.FleetLaunchTemplateConfigRequest`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-fleetlaunchtemplateconfigrequest.html) property type.
+    #[derive(Debug, Default)]
+    pub struct FleetLaunchTemplateConfigRequest {
+        /// Property [`LaunchTemplateSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-fleetlaunchtemplateconfigrequest.html#cfn-ec2-ec2fleet-fleetlaunchtemplateconfigrequest-launchtemplatespecification).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub launch_template_specification: Option<::Value<FleetLaunchTemplateSpecificationRequest>>,
+        /// Property [`Overrides`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-fleetlaunchtemplateconfigrequest.html#cfn-ec2-ec2fleet-fleetlaunchtemplateconfigrequest-overrides).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub overrides: Option<::ValueList<FleetLaunchTemplateOverridesRequest>>,
+    }
+
+    impl ::codec::SerializeValue for FleetLaunchTemplateConfigRequest {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref launch_template_specification) = self.launch_template_specification {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchTemplateSpecification", launch_template_specification)?;
+            }
+            if let Some(ref overrides) = self.overrides {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Overrides", overrides)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for FleetLaunchTemplateConfigRequest {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<FleetLaunchTemplateConfigRequest, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = FleetLaunchTemplateConfigRequest;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type FleetLaunchTemplateConfigRequest")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut launch_template_specification: Option<::Value<FleetLaunchTemplateSpecificationRequest>> = None;
+                    let mut overrides: Option<::ValueList<FleetLaunchTemplateOverridesRequest>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "LaunchTemplateSpecification" => {
+                                launch_template_specification = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Overrides" => {
+                                overrides = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(FleetLaunchTemplateConfigRequest {
+                        launch_template_specification: launch_template_specification,
+                        overrides: overrides,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::EC2Fleet.FleetLaunchTemplateOverridesRequest`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-fleetlaunchtemplateoverridesrequest.html) property type.
+    #[derive(Debug, Default)]
+    pub struct FleetLaunchTemplateOverridesRequest {
+        /// Property [`AvailabilityZone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-fleetlaunchtemplateoverridesrequest.html#cfn-ec2-ec2fleet-fleetlaunchtemplateoverridesrequest-availabilityzone).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub availability_zone: Option<::Value<String>>,
+        /// Property [`InstanceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-fleetlaunchtemplateoverridesrequest.html#cfn-ec2-ec2fleet-fleetlaunchtemplateoverridesrequest-instancetype).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub instance_type: Option<::Value<String>>,
+        /// Property [`MaxPrice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-fleetlaunchtemplateoverridesrequest.html#cfn-ec2-ec2fleet-fleetlaunchtemplateoverridesrequest-maxprice).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub max_price: Option<::Value<String>>,
+        /// Property [`Placement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-fleetlaunchtemplateoverridesrequest.html#cfn-ec2-ec2fleet-fleetlaunchtemplateoverridesrequest-placement).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub placement: Option<::Value<Placement>>,
+        /// Property [`Priority`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-fleetlaunchtemplateoverridesrequest.html#cfn-ec2-ec2fleet-fleetlaunchtemplateoverridesrequest-priority).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub priority: Option<::Value<f64>>,
+        /// Property [`SubnetId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-fleetlaunchtemplateoverridesrequest.html#cfn-ec2-ec2fleet-fleetlaunchtemplateoverridesrequest-subnetid).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub subnet_id: Option<::Value<String>>,
+        /// Property [`WeightedCapacity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-fleetlaunchtemplateoverridesrequest.html#cfn-ec2-ec2fleet-fleetlaunchtemplateoverridesrequest-weightedcapacity).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub weighted_capacity: Option<::Value<f64>>,
+    }
+
+    impl ::codec::SerializeValue for FleetLaunchTemplateOverridesRequest {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref availability_zone) = self.availability_zone {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", availability_zone)?;
+            }
+            if let Some(ref instance_type) = self.instance_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceType", instance_type)?;
+            }
+            if let Some(ref max_price) = self.max_price {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxPrice", max_price)?;
+            }
+            if let Some(ref placement) = self.placement {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Placement", placement)?;
+            }
+            if let Some(ref priority) = self.priority {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Priority", priority)?;
+            }
+            if let Some(ref subnet_id) = self.subnet_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", subnet_id)?;
+            }
+            if let Some(ref weighted_capacity) = self.weighted_capacity {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "WeightedCapacity", weighted_capacity)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for FleetLaunchTemplateOverridesRequest {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<FleetLaunchTemplateOverridesRequest, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = FleetLaunchTemplateOverridesRequest;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type FleetLaunchTemplateOverridesRequest")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut availability_zone: Option<::Value<String>> = None;
+                    let mut instance_type: Option<::Value<String>> = None;
+                    let mut max_price: Option<::Value<String>> = None;
+                    let mut placement: Option<::Value<Placement>> = None;
+                    let mut priority: Option<::Value<f64>> = None;
+                    let mut subnet_id: Option<::Value<String>> = None;
+                    let mut weighted_capacity: Option<::Value<f64>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AvailabilityZone" => {
+                                availability_zone = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "InstanceType" => {
+                                instance_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MaxPrice" => {
+                                max_price = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Placement" => {
+                                placement = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Priority" => {
+                                priority = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SubnetId" => {
+                                subnet_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "WeightedCapacity" => {
+                                weighted_capacity = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(FleetLaunchTemplateOverridesRequest {
+                        availability_zone: availability_zone,
+                        instance_type: instance_type,
+                        max_price: max_price,
+                        placement: placement,
+                        priority: priority,
+                        subnet_id: subnet_id,
+                        weighted_capacity: weighted_capacity,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::EC2Fleet.FleetLaunchTemplateSpecificationRequest`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-fleetlaunchtemplatespecificationrequest.html) property type.
+    #[derive(Debug, Default)]
+    pub struct FleetLaunchTemplateSpecificationRequest {
+        /// Property [`LaunchTemplateId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-fleetlaunchtemplatespecificationrequest.html#cfn-ec2-ec2fleet-fleetlaunchtemplatespecificationrequest-launchtemplateid).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub launch_template_id: Option<::Value<String>>,
+        /// Property [`LaunchTemplateName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-fleetlaunchtemplatespecificationrequest.html#cfn-ec2-ec2fleet-fleetlaunchtemplatespecificationrequest-launchtemplatename).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub launch_template_name: Option<::Value<String>>,
+        /// Property [`Version`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-fleetlaunchtemplatespecificationrequest.html#cfn-ec2-ec2fleet-fleetlaunchtemplatespecificationrequest-version).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub version: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for FleetLaunchTemplateSpecificationRequest {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref launch_template_id) = self.launch_template_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchTemplateId", launch_template_id)?;
+            }
+            if let Some(ref launch_template_name) = self.launch_template_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchTemplateName", launch_template_name)?;
+            }
+            if let Some(ref version) = self.version {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Version", version)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for FleetLaunchTemplateSpecificationRequest {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<FleetLaunchTemplateSpecificationRequest, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = FleetLaunchTemplateSpecificationRequest;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type FleetLaunchTemplateSpecificationRequest")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut launch_template_id: Option<::Value<String>> = None;
+                    let mut launch_template_name: Option<::Value<String>> = None;
+                    let mut version: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "LaunchTemplateId" => {
+                                launch_template_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LaunchTemplateName" => {
+                                launch_template_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Version" => {
+                                version = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(FleetLaunchTemplateSpecificationRequest {
+                        launch_template_id: launch_template_id,
+                        launch_template_name: launch_template_name,
+                        version: version,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::EC2Fleet.OnDemandOptionsRequest`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-ondemandoptionsrequest.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OnDemandOptionsRequest {
+        /// Property [`AllocationStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-ondemandoptionsrequest.html#cfn-ec2-ec2fleet-ondemandoptionsrequest-allocationstrategy).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub allocation_strategy: Option<::Value<String>>,
+        /// Property [`CapacityReservationOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-ondemandoptionsrequest.html#cfn-ec2-ec2fleet-ondemandoptionsrequest-capacityreservationoptions).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub capacity_reservation_options: Option<::Value<CapacityReservationOptionsRequest>>,
+        /// Property [`MaxTotalPrice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-ondemandoptionsrequest.html#cfn-ec2-ec2fleet-ondemandoptionsrequest-maxtotalprice).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub max_total_price: Option<::Value<String>>,
+        /// Property [`MinTargetCapacity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-ondemandoptionsrequest.html#cfn-ec2-ec2fleet-ondemandoptionsrequest-mintargetcapacity).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub min_target_capacity: Option<::Value<u32>>,
+        /// Property [`SingleAvailabilityZone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-ondemandoptionsrequest.html#cfn-ec2-ec2fleet-ondemandoptionsrequest-singleavailabilityzone).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub single_availability_zone: Option<::Value<bool>>,
+        /// Property [`SingleInstanceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-ondemandoptionsrequest.html#cfn-ec2-ec2fleet-ondemandoptionsrequest-singleinstancetype).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub single_instance_type: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for OnDemandOptionsRequest {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref allocation_strategy) = self.allocation_strategy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocationStrategy", allocation_strategy)?;
+            }
+            if let Some(ref capacity_reservation_options) = self.capacity_reservation_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CapacityReservationOptions", capacity_reservation_options)?;
+            }
+            if let Some(ref max_total_price) = self.max_total_price {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxTotalPrice", max_total_price)?;
+            }
+            if let Some(ref min_target_capacity) = self.min_target_capacity {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinTargetCapacity", min_target_capacity)?;
+            }
+            if let Some(ref single_availability_zone) = self.single_availability_zone {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SingleAvailabilityZone", single_availability_zone)?;
+            }
+            if let Some(ref single_instance_type) = self.single_instance_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SingleInstanceType", single_instance_type)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OnDemandOptionsRequest {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OnDemandOptionsRequest, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OnDemandOptionsRequest;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OnDemandOptionsRequest")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut allocation_strategy: Option<::Value<String>> = None;
+                    let mut capacity_reservation_options: Option<::Value<CapacityReservationOptionsRequest>> = None;
+                    let mut max_total_price: Option<::Value<String>> = None;
+                    let mut min_target_capacity: Option<::Value<u32>> = None;
+                    let mut single_availability_zone: Option<::Value<bool>> = None;
+                    let mut single_instance_type: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AllocationStrategy" => {
+                                allocation_strategy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CapacityReservationOptions" => {
+                                capacity_reservation_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MaxTotalPrice" => {
+                                max_total_price = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MinTargetCapacity" => {
+                                min_target_capacity = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SingleAvailabilityZone" => {
+                                single_availability_zone = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SingleInstanceType" => {
+                                single_instance_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OnDemandOptionsRequest {
+                        allocation_strategy: allocation_strategy,
+                        capacity_reservation_options: capacity_reservation_options,
+                        max_total_price: max_total_price,
+                        min_target_capacity: min_target_capacity,
+                        single_availability_zone: single_availability_zone,
+                        single_instance_type: single_instance_type,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::EC2Fleet.Placement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-placement.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Placement {
+        /// Property [`Affinity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-placement.html#cfn-ec2-ec2fleet-placement-affinity).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub affinity: Option<::Value<String>>,
+        /// Property [`AvailabilityZone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-placement.html#cfn-ec2-ec2fleet-placement-availabilityzone).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub availability_zone: Option<::Value<String>>,
+        /// Property [`GroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-placement.html#cfn-ec2-ec2fleet-placement-groupname).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub group_name: Option<::Value<String>>,
+        /// Property [`HostId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-placement.html#cfn-ec2-ec2fleet-placement-hostid).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub host_id: Option<::Value<String>>,
+        /// Property [`HostResourceGroupArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-placement.html#cfn-ec2-ec2fleet-placement-hostresourcegrouparn).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub host_resource_group_arn: Option<::Value<String>>,
+        /// Property [`PartitionNumber`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-placement.html#cfn-ec2-ec2fleet-placement-partitionnumber).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub partition_number: Option<::Value<u32>>,
+        /// Property [`SpreadDomain`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-placement.html#cfn-ec2-ec2fleet-placement-spreaddomain).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub spread_domain: Option<::Value<String>>,
+        /// Property [`Tenancy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-placement.html#cfn-ec2-ec2fleet-placement-tenancy).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub tenancy: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for Placement {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref affinity) = self.affinity {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Affinity", affinity)?;
+            }
+            if let Some(ref availability_zone) = self.availability_zone {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", availability_zone)?;
+            }
+            if let Some(ref group_name) = self.group_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupName", group_name)?;
+            }
+            if let Some(ref host_id) = self.host_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostId", host_id)?;
+            }
+            if let Some(ref host_resource_group_arn) = self.host_resource_group_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostResourceGroupArn", host_resource_group_arn)?;
+            }
+            if let Some(ref partition_number) = self.partition_number {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PartitionNumber", partition_number)?;
+            }
+            if let Some(ref spread_domain) = self.spread_domain {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpreadDomain", spread_domain)?;
+            }
+            if let Some(ref tenancy) = self.tenancy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tenancy", tenancy)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Placement {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Placement, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Placement;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Placement")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut affinity: Option<::Value<String>> = None;
+                    let mut availability_zone: Option<::Value<String>> = None;
+                    let mut group_name: Option<::Value<String>> = None;
+                    let mut host_id: Option<::Value<String>> = None;
+                    let mut host_resource_group_arn: Option<::Value<String>> = None;
+                    let mut partition_number: Option<::Value<u32>> = None;
+                    let mut spread_domain: Option<::Value<String>> = None;
+                    let mut tenancy: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Affinity" => {
+                                affinity = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "AvailabilityZone" => {
+                                availability_zone = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "GroupName" => {
+                                group_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HostId" => {
+                                host_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HostResourceGroupArn" => {
+                                host_resource_group_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PartitionNumber" => {
+                                partition_number = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SpreadDomain" => {
+                                spread_domain = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Tenancy" => {
+                                tenancy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Placement {
+                        affinity: affinity,
+                        availability_zone: availability_zone,
+                        group_name: group_name,
+                        host_id: host_id,
+                        host_resource_group_arn: host_resource_group_arn,
+                        partition_number: partition_number,
+                        spread_domain: spread_domain,
+                        tenancy: tenancy,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::EC2Fleet.SpotOptionsRequest`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-spotoptionsrequest.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SpotOptionsRequest {
+        /// Property [`AllocationStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-spotoptionsrequest.html#cfn-ec2-ec2fleet-spotoptionsrequest-allocationstrategy).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub allocation_strategy: Option<::Value<String>>,
+        /// Property [`InstanceInterruptionBehavior`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-spotoptionsrequest.html#cfn-ec2-ec2fleet-spotoptionsrequest-instanceinterruptionbehavior).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub instance_interruption_behavior: Option<::Value<String>>,
+        /// Property [`InstancePoolsToUseCount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-spotoptionsrequest.html#cfn-ec2-ec2fleet-spotoptionsrequest-instancepoolstousecount).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub instance_pools_to_use_count: Option<::Value<u32>>,
+        /// Property [`MaxTotalPrice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-spotoptionsrequest.html#cfn-ec2-ec2fleet-spotoptionsrequest-maxtotalprice).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub max_total_price: Option<::Value<String>>,
+        /// Property [`MinTargetCapacity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-spotoptionsrequest.html#cfn-ec2-ec2fleet-spotoptionsrequest-mintargetcapacity).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub min_target_capacity: Option<::Value<u32>>,
+        /// Property [`SingleAvailabilityZone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-spotoptionsrequest.html#cfn-ec2-ec2fleet-spotoptionsrequest-singleavailabilityzone).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub single_availability_zone: Option<::Value<bool>>,
+        /// Property [`SingleInstanceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-spotoptionsrequest.html#cfn-ec2-ec2fleet-spotoptionsrequest-singleinstancetype).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub single_instance_type: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for SpotOptionsRequest {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref allocation_strategy) = self.allocation_strategy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocationStrategy", allocation_strategy)?;
+            }
+            if let Some(ref instance_interruption_behavior) = self.instance_interruption_behavior {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceInterruptionBehavior", instance_interruption_behavior)?;
+            }
+            if let Some(ref instance_pools_to_use_count) = self.instance_pools_to_use_count {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstancePoolsToUseCount", instance_pools_to_use_count)?;
+            }
+            if let Some(ref max_total_price) = self.max_total_price {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxTotalPrice", max_total_price)?;
+            }
+            if let Some(ref min_target_capacity) = self.min_target_capacity {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinTargetCapacity", min_target_capacity)?;
+            }
+            if let Some(ref single_availability_zone) = self.single_availability_zone {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SingleAvailabilityZone", single_availability_zone)?;
+            }
+            if let Some(ref single_instance_type) = self.single_instance_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SingleInstanceType", single_instance_type)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SpotOptionsRequest {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SpotOptionsRequest, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SpotOptionsRequest;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SpotOptionsRequest")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut allocation_strategy: Option<::Value<String>> = None;
+                    let mut instance_interruption_behavior: Option<::Value<String>> = None;
+                    let mut instance_pools_to_use_count: Option<::Value<u32>> = None;
+                    let mut max_total_price: Option<::Value<String>> = None;
+                    let mut min_target_capacity: Option<::Value<u32>> = None;
+                    let mut single_availability_zone: Option<::Value<bool>> = None;
+                    let mut single_instance_type: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AllocationStrategy" => {
+                                allocation_strategy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "InstanceInterruptionBehavior" => {
+                                instance_interruption_behavior = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "InstancePoolsToUseCount" => {
+                                instance_pools_to_use_count = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MaxTotalPrice" => {
+                                max_total_price = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MinTargetCapacity" => {
+                                min_target_capacity = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SingleAvailabilityZone" => {
+                                single_availability_zone = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SingleInstanceType" => {
+                                single_instance_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SpotOptionsRequest {
+                        allocation_strategy: allocation_strategy,
+                        instance_interruption_behavior: instance_interruption_behavior,
+                        instance_pools_to_use_count: instance_pools_to_use_count,
+                        max_total_price: max_total_price,
+                        min_target_capacity: min_target_capacity,
+                        single_availability_zone: single_availability_zone,
+                        single_instance_type: single_instance_type,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::EC2Fleet.TagSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-tagspecification.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TagSpecification {
+        /// Property [`ResourceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-tagspecification.html#cfn-ec2-ec2fleet-tagspecification-resourcetype).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub resource_type: Option<::Value<String>>,
+        /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-tagspecification.html#cfn-ec2-ec2fleet-tagspecification-tags).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub tags: Option<::ValueList<::Tag>>,
+    }
+
+    impl ::codec::SerializeValue for TagSpecification {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref resource_type) = self.resource_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceType", resource_type)?;
+            }
+            if let Some(ref tags) = self.tags {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TagSpecification {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TagSpecification, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TagSpecification;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TagSpecification")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut resource_type: Option<::Value<String>> = None;
+                    let mut tags: Option<::ValueList<::Tag>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ResourceType" => {
+                                resource_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Tags" => {
+                                tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TagSpecification {
+                        resource_type: resource_type,
+                        tags: tags,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::EC2Fleet.TargetCapacitySpecificationRequest`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-targetcapacityspecificationrequest.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TargetCapacitySpecificationRequest {
+        /// Property [`DefaultTargetCapacityType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-targetcapacityspecificationrequest.html#cfn-ec2-ec2fleet-targetcapacityspecificationrequest-defaulttargetcapacitytype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub default_target_capacity_type: Option<::Value<String>>,
+        /// Property [`OnDemandTargetCapacity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-targetcapacityspecificationrequest.html#cfn-ec2-ec2fleet-targetcapacityspecificationrequest-ondemandtargetcapacity).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub on_demand_target_capacity: Option<::Value<u32>>,
+        /// Property [`SpotTargetCapacity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-targetcapacityspecificationrequest.html#cfn-ec2-ec2fleet-targetcapacityspecificationrequest-spottargetcapacity).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub spot_target_capacity: Option<::Value<u32>>,
+        /// Property [`TotalTargetCapacity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-ec2fleet-targetcapacityspecificationrequest.html#cfn-ec2-ec2fleet-targetcapacityspecificationrequest-totaltargetcapacity).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub total_target_capacity: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for TargetCapacitySpecificationRequest {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref default_target_capacity_type) = self.default_target_capacity_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultTargetCapacityType", default_target_capacity_type)?;
+            }
+            if let Some(ref on_demand_target_capacity) = self.on_demand_target_capacity {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OnDemandTargetCapacity", on_demand_target_capacity)?;
+            }
+            if let Some(ref spot_target_capacity) = self.spot_target_capacity {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotTargetCapacity", spot_target_capacity)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TotalTargetCapacity", &self.total_target_capacity)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TargetCapacitySpecificationRequest {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TargetCapacitySpecificationRequest, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TargetCapacitySpecificationRequest;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TargetCapacitySpecificationRequest")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut default_target_capacity_type: Option<::Value<String>> = None;
+                    let mut on_demand_target_capacity: Option<::Value<u32>> = None;
+                    let mut spot_target_capacity: Option<::Value<u32>> = None;
+                    let mut total_target_capacity: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DefaultTargetCapacityType" => {
+                                default_target_capacity_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OnDemandTargetCapacity" => {
+                                on_demand_target_capacity = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SpotTargetCapacity" => {
+                                spot_target_capacity = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TotalTargetCapacity" => {
+                                total_target_capacity = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TargetCapacitySpecificationRequest {
+                        default_target_capacity_type: default_target_capacity_type,
+                        on_demand_target_capacity: on_demand_target_capacity,
+                        spot_target_capacity: spot_target_capacity,
+                        total_target_capacity: total_target_capacity.ok_or(::serde::de::Error::missing_field("TotalTargetCapacity"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
     }
 }
 
@@ -5086,6 +10885,72 @@ pub mod instance {
         }
     }
 
+    /// The [`AWS::EC2::Instance.CpuOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-cpuoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CpuOptions {
+        /// Property [`CoreCount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-cpuoptions.html#cfn-ec2-instance-cpuoptions-corecount).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub core_count: Option<::Value<u32>>,
+        /// Property [`ThreadsPerCore`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-cpuoptions.html#cfn-ec2-instance-cpuoptions-threadspercore).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub threads_per_core: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for CpuOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref core_count) = self.core_count {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CoreCount", core_count)?;
+            }
+            if let Some(ref threads_per_core) = self.threads_per_core {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThreadsPerCore", threads_per_core)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CpuOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CpuOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CpuOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CpuOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut core_count: Option<::Value<u32>> = None;
+                    let mut threads_per_core: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CoreCount" => {
+                                core_count = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ThreadsPerCore" => {
+                                threads_per_core = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CpuOptions {
+                        core_count: core_count,
+                        threads_per_core: threads_per_core,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::EC2::Instance.CreditSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-creditspecification.html) property type.
     #[derive(Debug, Default)]
     pub struct CreditSpecification {
@@ -5157,6 +11022,11 @@ pub mod instance {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub iops: Option<::Value<u32>>,
+        /// Property [`KmsKeyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-blockdev-template.html#cfn-ec2-instance-ebs-kmskeyid).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub kms_key_id: Option<::Value<String>>,
         /// Property [`SnapshotId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-blockdev-template.html#cfn-ec2-blockdev-template-snapshotid).
         ///
         /// Update type: _Mutable_.
@@ -5186,6 +11056,9 @@ pub mod instance {
             if let Some(ref iops) = self.iops {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", iops)?;
             }
+            if let Some(ref kms_key_id) = self.kms_key_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", kms_key_id)?;
+            }
             if let Some(ref snapshot_id) = self.snapshot_id {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotId", snapshot_id)?;
             }
@@ -5214,6 +11087,7 @@ pub mod instance {
                     let mut delete_on_termination: Option<::Value<bool>> = None;
                     let mut encrypted: Option<::Value<bool>> = None;
                     let mut iops: Option<::Value<u32>> = None;
+                    let mut kms_key_id: Option<::Value<String>> = None;
                     let mut snapshot_id: Option<::Value<String>> = None;
                     let mut volume_size: Option<::Value<u32>> = None;
                     let mut volume_type: Option<::Value<String>> = None;
@@ -5228,6 +11102,9 @@ pub mod instance {
                             }
                             "Iops" => {
                                 iops = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "KmsKeyId" => {
+                                kms_key_id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "SnapshotId" => {
                                 snapshot_id = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -5246,6 +11123,7 @@ pub mod instance {
                         delete_on_termination: delete_on_termination,
                         encrypted: encrypted,
                         iops: iops,
+                        kms_key_id: kms_key_id,
                         snapshot_id: snapshot_id,
                         volume_size: volume_size,
                         volume_type: volume_type,
@@ -5264,13 +11142,13 @@ pub mod instance {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub type_: ::Value<String>,
+        pub r#type: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for ElasticGpuSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.type_)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -5287,19 +11165,189 @@ pub mod instance {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut type_: Option<::Value<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Type" => {
-                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
                     }
 
                     Ok(ElasticGpuSpecification {
-                        type_: type_.ok_or(::serde::de::Error::missing_field("Type"))?,
+                        r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::Instance.ElasticInferenceAccelerator`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-elasticinferenceaccelerator.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ElasticInferenceAccelerator {
+        /// Property [`Count`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-elasticinferenceaccelerator.html#cfn-ec2-instance-elasticinferenceaccelerator-count).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub count: Option<::Value<u32>>,
+        /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-elasticinferenceaccelerator.html#cfn-ec2-instance-elasticinferenceaccelerator-type).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub r#type: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for ElasticInferenceAccelerator {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref count) = self.count {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Count", count)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ElasticInferenceAccelerator {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ElasticInferenceAccelerator, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ElasticInferenceAccelerator;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ElasticInferenceAccelerator")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut count: Option<::Value<u32>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Count" => {
+                                count = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Type" => {
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ElasticInferenceAccelerator {
+                        count: count,
+                        r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::Instance.EnclaveOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-enclaveoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct EnclaveOptions {
+        /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-enclaveoptions.html#cfn-ec2-instance-enclaveoptions-enabled).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub enabled: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for EnclaveOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref enabled) = self.enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", enabled)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for EnclaveOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<EnclaveOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = EnclaveOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type EnclaveOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut enabled: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Enabled" => {
+                                enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(EnclaveOptions {
+                        enabled: enabled,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::Instance.HibernationOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-hibernationoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct HibernationOptions {
+        /// Property [`Configured`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-hibernationoptions.html#cfn-ec2-instance-hibernationoptions-configured).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub configured: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for HibernationOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref configured) = self.configured {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Configured", configured)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for HibernationOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<HibernationOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = HibernationOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type HibernationOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut configured: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Configured" => {
+                                configured = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(HibernationOptions {
+                        configured: configured,
                     })
                 }
             }
@@ -5351,6 +11399,134 @@ pub mod instance {
 
                     Ok(InstanceIpv6Address {
                         ipv6_address: ipv6_address.ok_or(::serde::de::Error::missing_field("Ipv6Address"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::Instance.LaunchTemplateSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-launchtemplatespecification.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LaunchTemplateSpecification {
+        /// Property [`LaunchTemplateId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-launchtemplatespecification.html#cfn-ec2-instance-launchtemplatespecification-launchtemplateid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub launch_template_id: Option<::Value<String>>,
+        /// Property [`LaunchTemplateName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-launchtemplatespecification.html#cfn-ec2-instance-launchtemplatespecification-launchtemplatename).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub launch_template_name: Option<::Value<String>>,
+        /// Property [`Version`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-launchtemplatespecification.html#cfn-ec2-instance-launchtemplatespecification-version).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub version: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for LaunchTemplateSpecification {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref launch_template_id) = self.launch_template_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchTemplateId", launch_template_id)?;
+            }
+            if let Some(ref launch_template_name) = self.launch_template_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchTemplateName", launch_template_name)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Version", &self.version)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LaunchTemplateSpecification {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LaunchTemplateSpecification, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LaunchTemplateSpecification;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LaunchTemplateSpecification")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut launch_template_id: Option<::Value<String>> = None;
+                    let mut launch_template_name: Option<::Value<String>> = None;
+                    let mut version: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "LaunchTemplateId" => {
+                                launch_template_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LaunchTemplateName" => {
+                                launch_template_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Version" => {
+                                version = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LaunchTemplateSpecification {
+                        launch_template_id: launch_template_id,
+                        launch_template_name: launch_template_name,
+                        version: version.ok_or(::serde::de::Error::missing_field("Version"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::Instance.LicenseSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-licensespecification.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LicenseSpecification {
+        /// Property [`LicenseConfigurationArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-licensespecification.html#cfn-ec2-instance-licensespecification-licenseconfigurationarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub license_configuration_arn: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for LicenseSpecification {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LicenseConfigurationArn", &self.license_configuration_arn)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LicenseSpecification {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LicenseSpecification, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LicenseSpecification;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LicenseSpecification")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut license_configuration_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "LicenseConfigurationArn" => {
+                                license_configuration_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LicenseSpecification {
+                        license_configuration_arn: license_configuration_arn.ok_or(::serde::de::Error::missing_field("LicenseConfigurationArn"))?,
                     })
                 }
             }
@@ -5774,6 +11950,2165 @@ pub mod instance {
     }
 }
 
+pub mod launch_template {
+    //! Property types for the `LaunchTemplate` resource.
+
+    /// The [`AWS::EC2::LaunchTemplate.BlockDeviceMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping.html) property type.
+    #[derive(Debug, Default)]
+    pub struct BlockDeviceMapping {
+        /// Property [`DeviceName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping.html#cfn-ec2-launchtemplate-blockdevicemapping-devicename).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub device_name: Option<::Value<String>>,
+        /// Property [`Ebs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping.html#cfn-ec2-launchtemplate-blockdevicemapping-ebs).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ebs: Option<::Value<Ebs>>,
+        /// Property [`NoDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping.html#cfn-ec2-launchtemplate-blockdevicemapping-nodevice).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub no_device: Option<::Value<String>>,
+        /// Property [`VirtualName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping.html#cfn-ec2-launchtemplate-blockdevicemapping-virtualname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub virtual_name: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for BlockDeviceMapping {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref device_name) = self.device_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceName", device_name)?;
+            }
+            if let Some(ref ebs) = self.ebs {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ebs", ebs)?;
+            }
+            if let Some(ref no_device) = self.no_device {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NoDevice", no_device)?;
+            }
+            if let Some(ref virtual_name) = self.virtual_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VirtualName", virtual_name)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for BlockDeviceMapping {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<BlockDeviceMapping, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = BlockDeviceMapping;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type BlockDeviceMapping")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut device_name: Option<::Value<String>> = None;
+                    let mut ebs: Option<::Value<Ebs>> = None;
+                    let mut no_device: Option<::Value<String>> = None;
+                    let mut virtual_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DeviceName" => {
+                                device_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Ebs" => {
+                                ebs = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "NoDevice" => {
+                                no_device = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "VirtualName" => {
+                                virtual_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(BlockDeviceMapping {
+                        device_name: device_name,
+                        ebs: ebs,
+                        no_device: no_device,
+                        virtual_name: virtual_name,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::LaunchTemplate.CapacityReservationSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-capacityreservationspecification.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CapacityReservationSpecification {
+        /// Property [`CapacityReservationPreference`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-capacityreservationspecification.html#cfn-ec2-launchtemplate-launchtemplatedata-capacityreservationspecification-capacityreservationpreference).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub capacity_reservation_preference: Option<::Value<String>>,
+        /// Property [`CapacityReservationTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-capacityreservationspecification.html#cfn-ec2-launchtemplate-launchtemplatedata-capacityreservationspecification-capacityreservationtarget).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub capacity_reservation_target: Option<::Value<CapacityReservationTarget>>,
+    }
+
+    impl ::codec::SerializeValue for CapacityReservationSpecification {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref capacity_reservation_preference) = self.capacity_reservation_preference {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CapacityReservationPreference", capacity_reservation_preference)?;
+            }
+            if let Some(ref capacity_reservation_target) = self.capacity_reservation_target {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CapacityReservationTarget", capacity_reservation_target)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CapacityReservationSpecification {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CapacityReservationSpecification, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CapacityReservationSpecification;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CapacityReservationSpecification")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut capacity_reservation_preference: Option<::Value<String>> = None;
+                    let mut capacity_reservation_target: Option<::Value<CapacityReservationTarget>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CapacityReservationPreference" => {
+                                capacity_reservation_preference = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CapacityReservationTarget" => {
+                                capacity_reservation_target = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CapacityReservationSpecification {
+                        capacity_reservation_preference: capacity_reservation_preference,
+                        capacity_reservation_target: capacity_reservation_target,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::LaunchTemplate.CapacityReservationTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-capacityreservationtarget.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CapacityReservationTarget {
+        /// Property [`CapacityReservationId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-capacityreservationtarget.html#cfn-ec2-launchtemplate-capacityreservationtarget-capacityreservationid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub capacity_reservation_id: Option<::Value<String>>,
+        /// Property [`CapacityReservationResourceGroupArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-capacityreservationtarget.html#cfn-ec2-launchtemplate-capacityreservationtarget-capacityreservationresourcegrouparn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub capacity_reservation_resource_group_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for CapacityReservationTarget {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref capacity_reservation_id) = self.capacity_reservation_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CapacityReservationId", capacity_reservation_id)?;
+            }
+            if let Some(ref capacity_reservation_resource_group_arn) = self.capacity_reservation_resource_group_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CapacityReservationResourceGroupArn", capacity_reservation_resource_group_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CapacityReservationTarget {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CapacityReservationTarget, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CapacityReservationTarget;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CapacityReservationTarget")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut capacity_reservation_id: Option<::Value<String>> = None;
+                    let mut capacity_reservation_resource_group_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CapacityReservationId" => {
+                                capacity_reservation_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CapacityReservationResourceGroupArn" => {
+                                capacity_reservation_resource_group_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CapacityReservationTarget {
+                        capacity_reservation_id: capacity_reservation_id,
+                        capacity_reservation_resource_group_arn: capacity_reservation_resource_group_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::LaunchTemplate.CpuOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-cpuoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CpuOptions {
+        /// Property [`CoreCount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-cpuoptions.html#cfn-ec2-launchtemplate-launchtemplatedata-cpuoptions-corecount).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub core_count: Option<::Value<u32>>,
+        /// Property [`ThreadsPerCore`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-cpuoptions.html#cfn-ec2-launchtemplate-launchtemplatedata-cpuoptions-threadspercore).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub threads_per_core: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for CpuOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref core_count) = self.core_count {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CoreCount", core_count)?;
+            }
+            if let Some(ref threads_per_core) = self.threads_per_core {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThreadsPerCore", threads_per_core)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CpuOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CpuOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CpuOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CpuOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut core_count: Option<::Value<u32>> = None;
+                    let mut threads_per_core: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CoreCount" => {
+                                core_count = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ThreadsPerCore" => {
+                                threads_per_core = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CpuOptions {
+                        core_count: core_count,
+                        threads_per_core: threads_per_core,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::LaunchTemplate.CreditSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-creditspecification.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CreditSpecification {
+        /// Property [`CpuCredits`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-creditspecification.html#cfn-ec2-launchtemplate-launchtemplatedata-creditspecification-cpucredits).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cpu_credits: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for CreditSpecification {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref cpu_credits) = self.cpu_credits {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CpuCredits", cpu_credits)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CreditSpecification {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CreditSpecification, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CreditSpecification;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CreditSpecification")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut cpu_credits: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CpuCredits" => {
+                                cpu_credits = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CreditSpecification {
+                        cpu_credits: cpu_credits,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::LaunchTemplate.Ebs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping-ebs.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Ebs {
+        /// Property [`DeleteOnTermination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping-ebs.html#cfn-ec2-launchtemplate-blockdevicemapping-ebs-deleteontermination).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub delete_on_termination: Option<::Value<bool>>,
+        /// Property [`Encrypted`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping-ebs.html#cfn-ec2-launchtemplate-blockdevicemapping-ebs-encrypted).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub encrypted: Option<::Value<bool>>,
+        /// Property [`Iops`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping-ebs.html#cfn-ec2-launchtemplate-blockdevicemapping-ebs-iops).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub iops: Option<::Value<u32>>,
+        /// Property [`KmsKeyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping-ebs.html#cfn-ec2-launchtemplate-blockdevicemapping-ebs-kmskeyid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub kms_key_id: Option<::Value<String>>,
+        /// Property [`SnapshotId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping-ebs.html#cfn-ec2-launchtemplate-blockdevicemapping-ebs-snapshotid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub snapshot_id: Option<::Value<String>>,
+        /// Property [`Throughput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping-ebs.html#cfn-ec2-launchtemplate-blockdevicemapping-ebs-throughput).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub throughput: Option<::Value<u32>>,
+        /// Property [`VolumeSize`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping-ebs.html#cfn-ec2-launchtemplate-blockdevicemapping-ebs-volumesize).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub volume_size: Option<::Value<u32>>,
+        /// Property [`VolumeType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-blockdevicemapping-ebs.html#cfn-ec2-launchtemplate-blockdevicemapping-ebs-volumetype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub volume_type: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for Ebs {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref delete_on_termination) = self.delete_on_termination {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteOnTermination", delete_on_termination)?;
+            }
+            if let Some(ref encrypted) = self.encrypted {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Encrypted", encrypted)?;
+            }
+            if let Some(ref iops) = self.iops {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", iops)?;
+            }
+            if let Some(ref kms_key_id) = self.kms_key_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", kms_key_id)?;
+            }
+            if let Some(ref snapshot_id) = self.snapshot_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotId", snapshot_id)?;
+            }
+            if let Some(ref throughput) = self.throughput {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Throughput", throughput)?;
+            }
+            if let Some(ref volume_size) = self.volume_size {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeSize", volume_size)?;
+            }
+            if let Some(ref volume_type) = self.volume_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeType", volume_type)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Ebs {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Ebs, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Ebs;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Ebs")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut delete_on_termination: Option<::Value<bool>> = None;
+                    let mut encrypted: Option<::Value<bool>> = None;
+                    let mut iops: Option<::Value<u32>> = None;
+                    let mut kms_key_id: Option<::Value<String>> = None;
+                    let mut snapshot_id: Option<::Value<String>> = None;
+                    let mut throughput: Option<::Value<u32>> = None;
+                    let mut volume_size: Option<::Value<u32>> = None;
+                    let mut volume_type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DeleteOnTermination" => {
+                                delete_on_termination = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Encrypted" => {
+                                encrypted = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Iops" => {
+                                iops = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "KmsKeyId" => {
+                                kms_key_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SnapshotId" => {
+                                snapshot_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Throughput" => {
+                                throughput = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "VolumeSize" => {
+                                volume_size = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "VolumeType" => {
+                                volume_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Ebs {
+                        delete_on_termination: delete_on_termination,
+                        encrypted: encrypted,
+                        iops: iops,
+                        kms_key_id: kms_key_id,
+                        snapshot_id: snapshot_id,
+                        throughput: throughput,
+                        volume_size: volume_size,
+                        volume_type: volume_type,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::LaunchTemplate.ElasticGpuSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-elasticgpuspecification.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ElasticGpuSpecification {
+        /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-elasticgpuspecification.html#cfn-ec2-launchtemplate-elasticgpuspecification-type).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub r#type: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for ElasticGpuSpecification {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref r#type) = self.r#type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", r#type)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ElasticGpuSpecification {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ElasticGpuSpecification, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ElasticGpuSpecification;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ElasticGpuSpecification")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut r#type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Type" => {
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ElasticGpuSpecification {
+                        r#type: r#type,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::LaunchTemplate.EnclaveOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-enclaveoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct EnclaveOptions {
+        /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-enclaveoptions.html#cfn-ec2-launchtemplate-launchtemplatedata-enclaveoptions-enabled).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub enabled: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for EnclaveOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref enabled) = self.enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", enabled)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for EnclaveOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<EnclaveOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = EnclaveOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type EnclaveOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut enabled: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Enabled" => {
+                                enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(EnclaveOptions {
+                        enabled: enabled,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::LaunchTemplate.HibernationOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-hibernationoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct HibernationOptions {
+        /// Property [`Configured`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-hibernationoptions.html#cfn-ec2-launchtemplate-launchtemplatedata-hibernationoptions-configured).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub configured: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for HibernationOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref configured) = self.configured {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Configured", configured)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for HibernationOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<HibernationOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = HibernationOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type HibernationOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut configured: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Configured" => {
+                                configured = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(HibernationOptions {
+                        configured: configured,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::LaunchTemplate.IamInstanceProfile`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-iaminstanceprofile.html) property type.
+    #[derive(Debug, Default)]
+    pub struct IamInstanceProfile {
+        /// Property [`Arn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-iaminstanceprofile.html#cfn-ec2-launchtemplate-launchtemplatedata-iaminstanceprofile-arn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub arn: Option<::Value<String>>,
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-iaminstanceprofile.html#cfn-ec2-launchtemplate-launchtemplatedata-iaminstanceprofile-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for IamInstanceProfile {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref arn) = self.arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Arn", arn)?;
+            }
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for IamInstanceProfile {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<IamInstanceProfile, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = IamInstanceProfile;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type IamInstanceProfile")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut arn: Option<::Value<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Arn" => {
+                                arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(IamInstanceProfile {
+                        arn: arn,
+                        name: name,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::LaunchTemplate.InstanceMarketOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-instancemarketoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct InstanceMarketOptions {
+        /// Property [`MarketType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-instancemarketoptions.html#cfn-ec2-launchtemplate-launchtemplatedata-instancemarketoptions-markettype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub market_type: Option<::Value<String>>,
+        /// Property [`SpotOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-instancemarketoptions.html#cfn-ec2-launchtemplate-launchtemplatedata-instancemarketoptions-spotoptions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub spot_options: Option<::Value<SpotOptions>>,
+    }
+
+    impl ::codec::SerializeValue for InstanceMarketOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref market_type) = self.market_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MarketType", market_type)?;
+            }
+            if let Some(ref spot_options) = self.spot_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotOptions", spot_options)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for InstanceMarketOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<InstanceMarketOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = InstanceMarketOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type InstanceMarketOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut market_type: Option<::Value<String>> = None;
+                    let mut spot_options: Option<::Value<SpotOptions>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "MarketType" => {
+                                market_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SpotOptions" => {
+                                spot_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(InstanceMarketOptions {
+                        market_type: market_type,
+                        spot_options: spot_options,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::LaunchTemplate.Ipv6Add`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-ipv6add.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Ipv6Add {
+        /// Property [`Ipv6Address`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-ipv6add.html#cfn-ec2-launchtemplate-ipv6add-ipv6address).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ipv6_address: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for Ipv6Add {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref ipv6_address) = self.ipv6_address {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6Address", ipv6_address)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Ipv6Add {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Ipv6Add, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Ipv6Add;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Ipv6Add")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut ipv6_address: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Ipv6Address" => {
+                                ipv6_address = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Ipv6Add {
+                        ipv6_address: ipv6_address,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::LaunchTemplate.LaunchTemplateData`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LaunchTemplateData {
+        /// Property [`BlockDeviceMappings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-blockdevicemappings).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub block_device_mappings: Option<::ValueList<BlockDeviceMapping>>,
+        /// Property [`CapacityReservationSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-capacityreservationspecification).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub capacity_reservation_specification: Option<::Value<CapacityReservationSpecification>>,
+        /// Property [`CpuOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-cpuoptions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cpu_options: Option<::Value<CpuOptions>>,
+        /// Property [`CreditSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-creditspecification).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub credit_specification: Option<::Value<CreditSpecification>>,
+        /// Property [`DisableApiTermination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-disableapitermination).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub disable_api_termination: Option<::Value<bool>>,
+        /// Property [`EbsOptimized`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-ebsoptimized).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ebs_optimized: Option<::Value<bool>>,
+        /// Property [`ElasticGpuSpecifications`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-elasticgpuspecifications).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub elastic_gpu_specifications: Option<::ValueList<ElasticGpuSpecification>>,
+        /// Property [`ElasticInferenceAccelerators`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-elasticinferenceaccelerators).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub elastic_inference_accelerators: Option<::ValueList<LaunchTemplateElasticInferenceAccelerator>>,
+        /// Property [`EnclaveOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-enclaveoptions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub enclave_options: Option<::Value<EnclaveOptions>>,
+        /// Property [`HibernationOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-hibernationoptions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub hibernation_options: Option<::Value<HibernationOptions>>,
+        /// Property [`IamInstanceProfile`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-iaminstanceprofile).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub iam_instance_profile: Option<::Value<IamInstanceProfile>>,
+        /// Property [`ImageId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-imageid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub image_id: Option<::Value<String>>,
+        /// Property [`InstanceInitiatedShutdownBehavior`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-instanceinitiatedshutdownbehavior).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub instance_initiated_shutdown_behavior: Option<::Value<String>>,
+        /// Property [`InstanceMarketOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-instancemarketoptions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub instance_market_options: Option<::Value<InstanceMarketOptions>>,
+        /// Property [`InstanceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-instancetype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub instance_type: Option<::Value<String>>,
+        /// Property [`KernelId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-kernelid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub kernel_id: Option<::Value<String>>,
+        /// Property [`KeyName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-keyname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub key_name: Option<::Value<String>>,
+        /// Property [`LicenseSpecifications`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-licensespecifications).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub license_specifications: Option<::ValueList<LicenseSpecification>>,
+        /// Property [`MetadataOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-metadataoptions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub metadata_options: Option<::Value<MetadataOptions>>,
+        /// Property [`Monitoring`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-monitoring).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub monitoring: Option<::Value<Monitoring>>,
+        /// Property [`NetworkInterfaces`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-networkinterfaces).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub network_interfaces: Option<::ValueList<NetworkInterface>>,
+        /// Property [`Placement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-placement).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub placement: Option<::Value<Placement>>,
+        /// Property [`RamDiskId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-ramdiskid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ram_disk_id: Option<::Value<String>>,
+        /// Property [`SecurityGroupIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-securitygroupids).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub security_group_ids: Option<::ValueList<String>>,
+        /// Property [`SecurityGroups`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-securitygroups).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub security_groups: Option<::ValueList<String>>,
+        /// Property [`TagSpecifications`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-tagspecifications).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tag_specifications: Option<::ValueList<TagSpecification>>,
+        /// Property [`UserData`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html#cfn-ec2-launchtemplate-launchtemplatedata-userdata).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub user_data: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for LaunchTemplateData {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref block_device_mappings) = self.block_device_mappings {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BlockDeviceMappings", block_device_mappings)?;
+            }
+            if let Some(ref capacity_reservation_specification) = self.capacity_reservation_specification {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CapacityReservationSpecification", capacity_reservation_specification)?;
+            }
+            if let Some(ref cpu_options) = self.cpu_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CpuOptions", cpu_options)?;
+            }
+            if let Some(ref credit_specification) = self.credit_specification {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CreditSpecification", credit_specification)?;
+            }
+            if let Some(ref disable_api_termination) = self.disable_api_termination {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisableApiTermination", disable_api_termination)?;
+            }
+            if let Some(ref ebs_optimized) = self.ebs_optimized {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsOptimized", ebs_optimized)?;
+            }
+            if let Some(ref elastic_gpu_specifications) = self.elastic_gpu_specifications {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ElasticGpuSpecifications", elastic_gpu_specifications)?;
+            }
+            if let Some(ref elastic_inference_accelerators) = self.elastic_inference_accelerators {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ElasticInferenceAccelerators", elastic_inference_accelerators)?;
+            }
+            if let Some(ref enclave_options) = self.enclave_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnclaveOptions", enclave_options)?;
+            }
+            if let Some(ref hibernation_options) = self.hibernation_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HibernationOptions", hibernation_options)?;
+            }
+            if let Some(ref iam_instance_profile) = self.iam_instance_profile {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IamInstanceProfile", iam_instance_profile)?;
+            }
+            if let Some(ref image_id) = self.image_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ImageId", image_id)?;
+            }
+            if let Some(ref instance_initiated_shutdown_behavior) = self.instance_initiated_shutdown_behavior {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceInitiatedShutdownBehavior", instance_initiated_shutdown_behavior)?;
+            }
+            if let Some(ref instance_market_options) = self.instance_market_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceMarketOptions", instance_market_options)?;
+            }
+            if let Some(ref instance_type) = self.instance_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceType", instance_type)?;
+            }
+            if let Some(ref kernel_id) = self.kernel_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KernelId", kernel_id)?;
+            }
+            if let Some(ref key_name) = self.key_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyName", key_name)?;
+            }
+            if let Some(ref license_specifications) = self.license_specifications {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LicenseSpecifications", license_specifications)?;
+            }
+            if let Some(ref metadata_options) = self.metadata_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetadataOptions", metadata_options)?;
+            }
+            if let Some(ref monitoring) = self.monitoring {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Monitoring", monitoring)?;
+            }
+            if let Some(ref network_interfaces) = self.network_interfaces {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInterfaces", network_interfaces)?;
+            }
+            if let Some(ref placement) = self.placement {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Placement", placement)?;
+            }
+            if let Some(ref ram_disk_id) = self.ram_disk_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RamDiskId", ram_disk_id)?;
+            }
+            if let Some(ref security_group_ids) = self.security_group_ids {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIds", security_group_ids)?;
+            }
+            if let Some(ref security_groups) = self.security_groups {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroups", security_groups)?;
+            }
+            if let Some(ref tag_specifications) = self.tag_specifications {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TagSpecifications", tag_specifications)?;
+            }
+            if let Some(ref user_data) = self.user_data {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserData", user_data)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LaunchTemplateData {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LaunchTemplateData, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LaunchTemplateData;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LaunchTemplateData")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut block_device_mappings: Option<::ValueList<BlockDeviceMapping>> = None;
+                    let mut capacity_reservation_specification: Option<::Value<CapacityReservationSpecification>> = None;
+                    let mut cpu_options: Option<::Value<CpuOptions>> = None;
+                    let mut credit_specification: Option<::Value<CreditSpecification>> = None;
+                    let mut disable_api_termination: Option<::Value<bool>> = None;
+                    let mut ebs_optimized: Option<::Value<bool>> = None;
+                    let mut elastic_gpu_specifications: Option<::ValueList<ElasticGpuSpecification>> = None;
+                    let mut elastic_inference_accelerators: Option<::ValueList<LaunchTemplateElasticInferenceAccelerator>> = None;
+                    let mut enclave_options: Option<::Value<EnclaveOptions>> = None;
+                    let mut hibernation_options: Option<::Value<HibernationOptions>> = None;
+                    let mut iam_instance_profile: Option<::Value<IamInstanceProfile>> = None;
+                    let mut image_id: Option<::Value<String>> = None;
+                    let mut instance_initiated_shutdown_behavior: Option<::Value<String>> = None;
+                    let mut instance_market_options: Option<::Value<InstanceMarketOptions>> = None;
+                    let mut instance_type: Option<::Value<String>> = None;
+                    let mut kernel_id: Option<::Value<String>> = None;
+                    let mut key_name: Option<::Value<String>> = None;
+                    let mut license_specifications: Option<::ValueList<LicenseSpecification>> = None;
+                    let mut metadata_options: Option<::Value<MetadataOptions>> = None;
+                    let mut monitoring: Option<::Value<Monitoring>> = None;
+                    let mut network_interfaces: Option<::ValueList<NetworkInterface>> = None;
+                    let mut placement: Option<::Value<Placement>> = None;
+                    let mut ram_disk_id: Option<::Value<String>> = None;
+                    let mut security_group_ids: Option<::ValueList<String>> = None;
+                    let mut security_groups: Option<::ValueList<String>> = None;
+                    let mut tag_specifications: Option<::ValueList<TagSpecification>> = None;
+                    let mut user_data: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "BlockDeviceMappings" => {
+                                block_device_mappings = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CapacityReservationSpecification" => {
+                                capacity_reservation_specification = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CpuOptions" => {
+                                cpu_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CreditSpecification" => {
+                                credit_specification = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DisableApiTermination" => {
+                                disable_api_termination = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "EbsOptimized" => {
+                                ebs_optimized = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ElasticGpuSpecifications" => {
+                                elastic_gpu_specifications = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ElasticInferenceAccelerators" => {
+                                elastic_inference_accelerators = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "EnclaveOptions" => {
+                                enclave_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HibernationOptions" => {
+                                hibernation_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IamInstanceProfile" => {
+                                iam_instance_profile = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ImageId" => {
+                                image_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "InstanceInitiatedShutdownBehavior" => {
+                                instance_initiated_shutdown_behavior = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "InstanceMarketOptions" => {
+                                instance_market_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "InstanceType" => {
+                                instance_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "KernelId" => {
+                                kernel_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "KeyName" => {
+                                key_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LicenseSpecifications" => {
+                                license_specifications = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MetadataOptions" => {
+                                metadata_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Monitoring" => {
+                                monitoring = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "NetworkInterfaces" => {
+                                network_interfaces = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Placement" => {
+                                placement = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RamDiskId" => {
+                                ram_disk_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecurityGroupIds" => {
+                                security_group_ids = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecurityGroups" => {
+                                security_groups = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TagSpecifications" => {
+                                tag_specifications = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "UserData" => {
+                                user_data = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LaunchTemplateData {
+                        block_device_mappings: block_device_mappings,
+                        capacity_reservation_specification: capacity_reservation_specification,
+                        cpu_options: cpu_options,
+                        credit_specification: credit_specification,
+                        disable_api_termination: disable_api_termination,
+                        ebs_optimized: ebs_optimized,
+                        elastic_gpu_specifications: elastic_gpu_specifications,
+                        elastic_inference_accelerators: elastic_inference_accelerators,
+                        enclave_options: enclave_options,
+                        hibernation_options: hibernation_options,
+                        iam_instance_profile: iam_instance_profile,
+                        image_id: image_id,
+                        instance_initiated_shutdown_behavior: instance_initiated_shutdown_behavior,
+                        instance_market_options: instance_market_options,
+                        instance_type: instance_type,
+                        kernel_id: kernel_id,
+                        key_name: key_name,
+                        license_specifications: license_specifications,
+                        metadata_options: metadata_options,
+                        monitoring: monitoring,
+                        network_interfaces: network_interfaces,
+                        placement: placement,
+                        ram_disk_id: ram_disk_id,
+                        security_group_ids: security_group_ids,
+                        security_groups: security_groups,
+                        tag_specifications: tag_specifications,
+                        user_data: user_data,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::LaunchTemplate.LaunchTemplateElasticInferenceAccelerator`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplateelasticinferenceaccelerator.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LaunchTemplateElasticInferenceAccelerator {
+        /// Property [`Count`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplateelasticinferenceaccelerator.html#cfn-ec2-launchtemplate-launchtemplateelasticinferenceaccelerator-count).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub count: Option<::Value<u32>>,
+        /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplateelasticinferenceaccelerator.html#cfn-ec2-launchtemplate-launchtemplateelasticinferenceaccelerator-type).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub r#type: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for LaunchTemplateElasticInferenceAccelerator {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref count) = self.count {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Count", count)?;
+            }
+            if let Some(ref r#type) = self.r#type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", r#type)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LaunchTemplateElasticInferenceAccelerator {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LaunchTemplateElasticInferenceAccelerator, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LaunchTemplateElasticInferenceAccelerator;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LaunchTemplateElasticInferenceAccelerator")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut count: Option<::Value<u32>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Count" => {
+                                count = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Type" => {
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LaunchTemplateElasticInferenceAccelerator {
+                        count: count,
+                        r#type: r#type,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::LaunchTemplate.LaunchTemplateTagSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatetagspecification.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LaunchTemplateTagSpecification {
+        /// Property [`ResourceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatetagspecification.html#cfn-ec2-launchtemplate-launchtemplatetagspecification-resourcetype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub resource_type: Option<::Value<String>>,
+        /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatetagspecification.html#cfn-ec2-launchtemplate-launchtemplatetagspecification-tags).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tags: Option<::ValueList<::Tag>>,
+    }
+
+    impl ::codec::SerializeValue for LaunchTemplateTagSpecification {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref resource_type) = self.resource_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceType", resource_type)?;
+            }
+            if let Some(ref tags) = self.tags {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LaunchTemplateTagSpecification {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LaunchTemplateTagSpecification, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LaunchTemplateTagSpecification;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LaunchTemplateTagSpecification")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut resource_type: Option<::Value<String>> = None;
+                    let mut tags: Option<::ValueList<::Tag>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ResourceType" => {
+                                resource_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Tags" => {
+                                tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LaunchTemplateTagSpecification {
+                        resource_type: resource_type,
+                        tags: tags,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::LaunchTemplate.LicenseSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-licensespecification.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LicenseSpecification {
+        /// Property [`LicenseConfigurationArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-licensespecification.html#cfn-ec2-launchtemplate-licensespecification-licenseconfigurationarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub license_configuration_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for LicenseSpecification {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref license_configuration_arn) = self.license_configuration_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LicenseConfigurationArn", license_configuration_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LicenseSpecification {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LicenseSpecification, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LicenseSpecification;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LicenseSpecification")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut license_configuration_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "LicenseConfigurationArn" => {
+                                license_configuration_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LicenseSpecification {
+                        license_configuration_arn: license_configuration_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::LaunchTemplate.MetadataOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-metadataoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MetadataOptions {
+        /// Property [`HttpEndpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-metadataoptions.html#cfn-ec2-launchtemplate-launchtemplatedata-metadataoptions-httpendpoint).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub http_endpoint: Option<::Value<String>>,
+        /// Property [`HttpPutResponseHopLimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-metadataoptions.html#cfn-ec2-launchtemplate-launchtemplatedata-metadataoptions-httpputresponsehoplimit).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub http_put_response_hop_limit: Option<::Value<u32>>,
+        /// Property [`HttpTokens`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-metadataoptions.html#cfn-ec2-launchtemplate-launchtemplatedata-metadataoptions-httptokens).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub http_tokens: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for MetadataOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref http_endpoint) = self.http_endpoint {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HttpEndpoint", http_endpoint)?;
+            }
+            if let Some(ref http_put_response_hop_limit) = self.http_put_response_hop_limit {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HttpPutResponseHopLimit", http_put_response_hop_limit)?;
+            }
+            if let Some(ref http_tokens) = self.http_tokens {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HttpTokens", http_tokens)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MetadataOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MetadataOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MetadataOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MetadataOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut http_endpoint: Option<::Value<String>> = None;
+                    let mut http_put_response_hop_limit: Option<::Value<u32>> = None;
+                    let mut http_tokens: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "HttpEndpoint" => {
+                                http_endpoint = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HttpPutResponseHopLimit" => {
+                                http_put_response_hop_limit = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HttpTokens" => {
+                                http_tokens = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MetadataOptions {
+                        http_endpoint: http_endpoint,
+                        http_put_response_hop_limit: http_put_response_hop_limit,
+                        http_tokens: http_tokens,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::LaunchTemplate.Monitoring`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-monitoring.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Monitoring {
+        /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-monitoring.html#cfn-ec2-launchtemplate-launchtemplatedata-monitoring-enabled).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub enabled: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for Monitoring {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref enabled) = self.enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", enabled)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Monitoring {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Monitoring, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Monitoring;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Monitoring")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut enabled: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Enabled" => {
+                                enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Monitoring {
+                        enabled: enabled,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::LaunchTemplate.NetworkInterface`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html) property type.
+    #[derive(Debug, Default)]
+    pub struct NetworkInterface {
+        /// Property [`AssociateCarrierIpAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-associatecarrieripaddress).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub associate_carrier_ip_address: Option<::Value<bool>>,
+        /// Property [`AssociatePublicIpAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-associatepublicipaddress).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub associate_public_ip_address: Option<::Value<bool>>,
+        /// Property [`DeleteOnTermination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-deleteontermination).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub delete_on_termination: Option<::Value<bool>>,
+        /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-description).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub description: Option<::Value<String>>,
+        /// Property [`DeviceIndex`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-deviceindex).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub device_index: Option<::Value<u32>>,
+        /// Property [`Groups`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-groups).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub groups: Option<::ValueList<String>>,
+        /// Property [`InterfaceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-interfacetype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub interface_type: Option<::Value<String>>,
+        /// Property [`Ipv6AddressCount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-ipv6addresscount).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ipv6_address_count: Option<::Value<u32>>,
+        /// Property [`Ipv6Addresses`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-ipv6addresses).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ipv6_addresses: Option<::ValueList<Ipv6Add>>,
+        /// Property [`NetworkCardIndex`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-networkcardindex).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub network_card_index: Option<::Value<u32>>,
+        /// Property [`NetworkInterfaceId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-networkinterfaceid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub network_interface_id: Option<::Value<String>>,
+        /// Property [`PrivateIpAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-privateipaddress).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub private_ip_address: Option<::Value<String>>,
+        /// Property [`PrivateIpAddresses`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-privateipaddresses).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub private_ip_addresses: Option<::ValueList<PrivateIpAdd>>,
+        /// Property [`SecondaryPrivateIpAddressCount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-secondaryprivateipaddresscount).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secondary_private_ip_address_count: Option<::Value<u32>>,
+        /// Property [`SubnetId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-networkinterface.html#cfn-ec2-launchtemplate-networkinterface-subnetid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub subnet_id: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for NetworkInterface {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref associate_carrier_ip_address) = self.associate_carrier_ip_address {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssociateCarrierIpAddress", associate_carrier_ip_address)?;
+            }
+            if let Some(ref associate_public_ip_address) = self.associate_public_ip_address {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssociatePublicIpAddress", associate_public_ip_address)?;
+            }
+            if let Some(ref delete_on_termination) = self.delete_on_termination {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeleteOnTermination", delete_on_termination)?;
+            }
+            if let Some(ref description) = self.description {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+            }
+            if let Some(ref device_index) = self.device_index {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceIndex", device_index)?;
+            }
+            if let Some(ref groups) = self.groups {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Groups", groups)?;
+            }
+            if let Some(ref interface_type) = self.interface_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InterfaceType", interface_type)?;
+            }
+            if let Some(ref ipv6_address_count) = self.ipv6_address_count {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6AddressCount", ipv6_address_count)?;
+            }
+            if let Some(ref ipv6_addresses) = self.ipv6_addresses {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6Addresses", ipv6_addresses)?;
+            }
+            if let Some(ref network_card_index) = self.network_card_index {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkCardIndex", network_card_index)?;
+            }
+            if let Some(ref network_interface_id) = self.network_interface_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInterfaceId", network_interface_id)?;
+            }
+            if let Some(ref private_ip_address) = self.private_ip_address {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateIpAddress", private_ip_address)?;
+            }
+            if let Some(ref private_ip_addresses) = self.private_ip_addresses {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateIpAddresses", private_ip_addresses)?;
+            }
+            if let Some(ref secondary_private_ip_address_count) = self.secondary_private_ip_address_count {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecondaryPrivateIpAddressCount", secondary_private_ip_address_count)?;
+            }
+            if let Some(ref subnet_id) = self.subnet_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", subnet_id)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for NetworkInterface {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<NetworkInterface, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = NetworkInterface;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type NetworkInterface")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut associate_carrier_ip_address: Option<::Value<bool>> = None;
+                    let mut associate_public_ip_address: Option<::Value<bool>> = None;
+                    let mut delete_on_termination: Option<::Value<bool>> = None;
+                    let mut description: Option<::Value<String>> = None;
+                    let mut device_index: Option<::Value<u32>> = None;
+                    let mut groups: Option<::ValueList<String>> = None;
+                    let mut interface_type: Option<::Value<String>> = None;
+                    let mut ipv6_address_count: Option<::Value<u32>> = None;
+                    let mut ipv6_addresses: Option<::ValueList<Ipv6Add>> = None;
+                    let mut network_card_index: Option<::Value<u32>> = None;
+                    let mut network_interface_id: Option<::Value<String>> = None;
+                    let mut private_ip_address: Option<::Value<String>> = None;
+                    let mut private_ip_addresses: Option<::ValueList<PrivateIpAdd>> = None;
+                    let mut secondary_private_ip_address_count: Option<::Value<u32>> = None;
+                    let mut subnet_id: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AssociateCarrierIpAddress" => {
+                                associate_carrier_ip_address = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "AssociatePublicIpAddress" => {
+                                associate_public_ip_address = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DeleteOnTermination" => {
+                                delete_on_termination = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Description" => {
+                                description = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DeviceIndex" => {
+                                device_index = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Groups" => {
+                                groups = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "InterfaceType" => {
+                                interface_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Ipv6AddressCount" => {
+                                ipv6_address_count = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Ipv6Addresses" => {
+                                ipv6_addresses = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "NetworkCardIndex" => {
+                                network_card_index = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "NetworkInterfaceId" => {
+                                network_interface_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PrivateIpAddress" => {
+                                private_ip_address = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PrivateIpAddresses" => {
+                                private_ip_addresses = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecondaryPrivateIpAddressCount" => {
+                                secondary_private_ip_address_count = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SubnetId" => {
+                                subnet_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(NetworkInterface {
+                        associate_carrier_ip_address: associate_carrier_ip_address,
+                        associate_public_ip_address: associate_public_ip_address,
+                        delete_on_termination: delete_on_termination,
+                        description: description,
+                        device_index: device_index,
+                        groups: groups,
+                        interface_type: interface_type,
+                        ipv6_address_count: ipv6_address_count,
+                        ipv6_addresses: ipv6_addresses,
+                        network_card_index: network_card_index,
+                        network_interface_id: network_interface_id,
+                        private_ip_address: private_ip_address,
+                        private_ip_addresses: private_ip_addresses,
+                        secondary_private_ip_address_count: secondary_private_ip_address_count,
+                        subnet_id: subnet_id,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::LaunchTemplate.Placement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-placement.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Placement {
+        /// Property [`Affinity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-placement.html#cfn-ec2-launchtemplate-launchtemplatedata-placement-affinity).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub affinity: Option<::Value<String>>,
+        /// Property [`AvailabilityZone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-placement.html#cfn-ec2-launchtemplate-launchtemplatedata-placement-availabilityzone).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub availability_zone: Option<::Value<String>>,
+        /// Property [`GroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-placement.html#cfn-ec2-launchtemplate-launchtemplatedata-placement-groupname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub group_name: Option<::Value<String>>,
+        /// Property [`HostId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-placement.html#cfn-ec2-launchtemplate-launchtemplatedata-placement-hostid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub host_id: Option<::Value<String>>,
+        /// Property [`HostResourceGroupArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-placement.html#cfn-ec2-launchtemplate-launchtemplatedata-placement-hostresourcegrouparn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub host_resource_group_arn: Option<::Value<String>>,
+        /// Property [`PartitionNumber`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-placement.html#cfn-ec2-launchtemplate-launchtemplatedata-placement-partitionnumber).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub partition_number: Option<::Value<u32>>,
+        /// Property [`SpreadDomain`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-placement.html#cfn-ec2-launchtemplate-launchtemplatedata-placement-spreaddomain).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub spread_domain: Option<::Value<String>>,
+        /// Property [`Tenancy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-placement.html#cfn-ec2-launchtemplate-launchtemplatedata-placement-tenancy).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tenancy: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for Placement {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref affinity) = self.affinity {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Affinity", affinity)?;
+            }
+            if let Some(ref availability_zone) = self.availability_zone {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", availability_zone)?;
+            }
+            if let Some(ref group_name) = self.group_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupName", group_name)?;
+            }
+            if let Some(ref host_id) = self.host_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostId", host_id)?;
+            }
+            if let Some(ref host_resource_group_arn) = self.host_resource_group_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostResourceGroupArn", host_resource_group_arn)?;
+            }
+            if let Some(ref partition_number) = self.partition_number {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PartitionNumber", partition_number)?;
+            }
+            if let Some(ref spread_domain) = self.spread_domain {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpreadDomain", spread_domain)?;
+            }
+            if let Some(ref tenancy) = self.tenancy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tenancy", tenancy)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Placement {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Placement, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Placement;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Placement")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut affinity: Option<::Value<String>> = None;
+                    let mut availability_zone: Option<::Value<String>> = None;
+                    let mut group_name: Option<::Value<String>> = None;
+                    let mut host_id: Option<::Value<String>> = None;
+                    let mut host_resource_group_arn: Option<::Value<String>> = None;
+                    let mut partition_number: Option<::Value<u32>> = None;
+                    let mut spread_domain: Option<::Value<String>> = None;
+                    let mut tenancy: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Affinity" => {
+                                affinity = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "AvailabilityZone" => {
+                                availability_zone = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "GroupName" => {
+                                group_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HostId" => {
+                                host_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HostResourceGroupArn" => {
+                                host_resource_group_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PartitionNumber" => {
+                                partition_number = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SpreadDomain" => {
+                                spread_domain = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Tenancy" => {
+                                tenancy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Placement {
+                        affinity: affinity,
+                        availability_zone: availability_zone,
+                        group_name: group_name,
+                        host_id: host_id,
+                        host_resource_group_arn: host_resource_group_arn,
+                        partition_number: partition_number,
+                        spread_domain: spread_domain,
+                        tenancy: tenancy,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::LaunchTemplate.PrivateIpAdd`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-privateipadd.html) property type.
+    #[derive(Debug, Default)]
+    pub struct PrivateIpAdd {
+        /// Property [`Primary`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-privateipadd.html#cfn-ec2-launchtemplate-privateipadd-primary).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub primary: Option<::Value<bool>>,
+        /// Property [`PrivateIpAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-privateipadd.html#cfn-ec2-launchtemplate-privateipadd-privateipaddress).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub private_ip_address: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for PrivateIpAdd {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref primary) = self.primary {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Primary", primary)?;
+            }
+            if let Some(ref private_ip_address) = self.private_ip_address {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateIpAddress", private_ip_address)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for PrivateIpAdd {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<PrivateIpAdd, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = PrivateIpAdd;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type PrivateIpAdd")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut primary: Option<::Value<bool>> = None;
+                    let mut private_ip_address: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Primary" => {
+                                primary = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PrivateIpAddress" => {
+                                private_ip_address = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(PrivateIpAdd {
+                        primary: primary,
+                        private_ip_address: private_ip_address,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::LaunchTemplate.SpotOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-instancemarketoptions-spotoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SpotOptions {
+        /// Property [`BlockDurationMinutes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-instancemarketoptions-spotoptions.html#cfn-ec2-launchtemplate-launchtemplatedata-instancemarketoptions-spotoptions-blockdurationminutes).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub block_duration_minutes: Option<::Value<u32>>,
+        /// Property [`InstanceInterruptionBehavior`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-instancemarketoptions-spotoptions.html#cfn-ec2-launchtemplate-launchtemplatedata-instancemarketoptions-spotoptions-instanceinterruptionbehavior).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub instance_interruption_behavior: Option<::Value<String>>,
+        /// Property [`MaxPrice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-instancemarketoptions-spotoptions.html#cfn-ec2-launchtemplate-launchtemplatedata-instancemarketoptions-spotoptions-maxprice).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub max_price: Option<::Value<String>>,
+        /// Property [`SpotInstanceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-instancemarketoptions-spotoptions.html#cfn-ec2-launchtemplate-launchtemplatedata-instancemarketoptions-spotoptions-spotinstancetype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub spot_instance_type: Option<::Value<String>>,
+        /// Property [`ValidUntil`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata-instancemarketoptions-spotoptions.html#cfn-ec2-launchtemplate-launchtemplatedata-instancemarketoptions-spotoptions-validuntil).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub valid_until: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for SpotOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref block_duration_minutes) = self.block_duration_minutes {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BlockDurationMinutes", block_duration_minutes)?;
+            }
+            if let Some(ref instance_interruption_behavior) = self.instance_interruption_behavior {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceInterruptionBehavior", instance_interruption_behavior)?;
+            }
+            if let Some(ref max_price) = self.max_price {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxPrice", max_price)?;
+            }
+            if let Some(ref spot_instance_type) = self.spot_instance_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotInstanceType", spot_instance_type)?;
+            }
+            if let Some(ref valid_until) = self.valid_until {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ValidUntil", valid_until)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SpotOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SpotOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SpotOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SpotOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut block_duration_minutes: Option<::Value<u32>> = None;
+                    let mut instance_interruption_behavior: Option<::Value<String>> = None;
+                    let mut max_price: Option<::Value<String>> = None;
+                    let mut spot_instance_type: Option<::Value<String>> = None;
+                    let mut valid_until: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "BlockDurationMinutes" => {
+                                block_duration_minutes = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "InstanceInterruptionBehavior" => {
+                                instance_interruption_behavior = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MaxPrice" => {
+                                max_price = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SpotInstanceType" => {
+                                spot_instance_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ValidUntil" => {
+                                valid_until = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SpotOptions {
+                        block_duration_minutes: block_duration_minutes,
+                        instance_interruption_behavior: instance_interruption_behavior,
+                        max_price: max_price,
+                        spot_instance_type: spot_instance_type,
+                        valid_until: valid_until,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::LaunchTemplate.TagSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-tagspecification.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TagSpecification {
+        /// Property [`ResourceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-tagspecification.html#cfn-ec2-launchtemplate-tagspecification-resourcetype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub resource_type: Option<::Value<String>>,
+        /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-tagspecification.html#cfn-ec2-launchtemplate-tagspecification-tags).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tags: Option<::ValueList<::Tag>>,
+    }
+
+    impl ::codec::SerializeValue for TagSpecification {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref resource_type) = self.resource_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceType", resource_type)?;
+            }
+            if let Some(ref tags) = self.tags {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TagSpecification {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TagSpecification, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TagSpecification;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TagSpecification")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut resource_type: Option<::Value<String>> = None;
+                    let mut tags: Option<::ValueList<::Tag>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ResourceType" => {
+                                resource_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Tags" => {
+                                tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TagSpecification {
+                        resource_type: resource_type,
+                        tags: tags,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
 pub mod network_acl_entry {
     //! Property types for the `NetworkAclEntry` resource.
 
@@ -5789,7 +14124,7 @@ pub mod network_acl_entry {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub type_: Option<::Value<u32>>,
+        pub r#type: Option<::Value<u32>>,
     }
 
     impl ::codec::SerializeValue for Icmp {
@@ -5798,8 +14133,8 @@ pub mod network_acl_entry {
             if let Some(ref code) = self.code {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Code", code)?;
             }
-            if let Some(ref type_) = self.type_ {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", type_)?;
+            if let Some(ref r#type) = self.r#type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", r#type)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -5818,7 +14153,7 @@ pub mod network_acl_entry {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut code: Option<::Value<u32>> = None;
-                    let mut type_: Option<::Value<u32>> = None;
+                    let mut r#type: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -5826,7 +14161,7 @@ pub mod network_acl_entry {
                                 code = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Type" => {
-                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -5834,7 +14169,7 @@ pub mod network_acl_entry {
 
                     Ok(Icmp {
                         code: code,
-                        type_: type_,
+                        r#type: r#type,
                     })
                 }
             }
@@ -5852,6 +14187,1685 @@ pub mod network_acl_entry {
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub from: Option<::Value<u32>>,
         /// Property [`To`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-portrange.html#cfn-ec2-networkaclentry-portrange-to).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub to: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for PortRange {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref from) = self.from {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "From", from)?;
+            }
+            if let Some(ref to) = self.to {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "To", to)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for PortRange {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<PortRange, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = PortRange;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type PortRange")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut from: Option<::Value<u32>> = None;
+                    let mut to: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "From" => {
+                                from = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "To" => {
+                                to = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(PortRange {
+                        from: from,
+                        to: to,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod network_insights_analysis {
+    //! Property types for the `NetworkInsightsAnalysis` resource.
+
+    /// The [`AWS::EC2::NetworkInsightsAnalysis.AlternatePathHint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-alternatepathhint.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AlternatePathHint {
+        /// Property [`ComponentArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-alternatepathhint.html#cfn-ec2-networkinsightsanalysis-alternatepathhint-componentarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub component_arn: Option<::Value<String>>,
+        /// Property [`ComponentId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-alternatepathhint.html#cfn-ec2-networkinsightsanalysis-alternatepathhint-componentid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub component_id: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for AlternatePathHint {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref component_arn) = self.component_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComponentArn", component_arn)?;
+            }
+            if let Some(ref component_id) = self.component_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComponentId", component_id)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AlternatePathHint {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AlternatePathHint, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AlternatePathHint;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AlternatePathHint")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut component_arn: Option<::Value<String>> = None;
+                    let mut component_id: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ComponentArn" => {
+                                component_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ComponentId" => {
+                                component_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AlternatePathHint {
+                        component_arn: component_arn,
+                        component_id: component_id,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::NetworkInsightsAnalysis.AnalysisAclRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisaclrule.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AnalysisAclRule {
+        /// Property [`Cidr`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisaclrule.html#cfn-ec2-networkinsightsanalysis-analysisaclrule-cidr).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cidr: Option<::Value<String>>,
+        /// Property [`Egress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisaclrule.html#cfn-ec2-networkinsightsanalysis-analysisaclrule-egress).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub egress: Option<::Value<bool>>,
+        /// Property [`PortRange`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisaclrule.html#cfn-ec2-networkinsightsanalysis-analysisaclrule-portrange).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub port_range: Option<::Value<PortRange>>,
+        /// Property [`Protocol`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisaclrule.html#cfn-ec2-networkinsightsanalysis-analysisaclrule-protocol).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub protocol: Option<::Value<String>>,
+        /// Property [`RuleAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisaclrule.html#cfn-ec2-networkinsightsanalysis-analysisaclrule-ruleaction).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub rule_action: Option<::Value<String>>,
+        /// Property [`RuleNumber`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisaclrule.html#cfn-ec2-networkinsightsanalysis-analysisaclrule-rulenumber).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub rule_number: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for AnalysisAclRule {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref cidr) = self.cidr {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cidr", cidr)?;
+            }
+            if let Some(ref egress) = self.egress {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Egress", egress)?;
+            }
+            if let Some(ref port_range) = self.port_range {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PortRange", port_range)?;
+            }
+            if let Some(ref protocol) = self.protocol {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", protocol)?;
+            }
+            if let Some(ref rule_action) = self.rule_action {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleAction", rule_action)?;
+            }
+            if let Some(ref rule_number) = self.rule_number {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleNumber", rule_number)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AnalysisAclRule {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AnalysisAclRule, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AnalysisAclRule;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AnalysisAclRule")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut cidr: Option<::Value<String>> = None;
+                    let mut egress: Option<::Value<bool>> = None;
+                    let mut port_range: Option<::Value<PortRange>> = None;
+                    let mut protocol: Option<::Value<String>> = None;
+                    let mut rule_action: Option<::Value<String>> = None;
+                    let mut rule_number: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Cidr" => {
+                                cidr = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Egress" => {
+                                egress = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PortRange" => {
+                                port_range = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Protocol" => {
+                                protocol = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RuleAction" => {
+                                rule_action = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RuleNumber" => {
+                                rule_number = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AnalysisAclRule {
+                        cidr: cidr,
+                        egress: egress,
+                        port_range: port_range,
+                        protocol: protocol,
+                        rule_action: rule_action,
+                        rule_number: rule_number,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::NetworkInsightsAnalysis.AnalysisComponent`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysiscomponent.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AnalysisComponent {
+        /// Property [`Arn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysiscomponent.html#cfn-ec2-networkinsightsanalysis-analysiscomponent-arn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub arn: Option<::Value<String>>,
+        /// Property [`Id`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysiscomponent.html#cfn-ec2-networkinsightsanalysis-analysiscomponent-id).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub id: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for AnalysisComponent {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref arn) = self.arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Arn", arn)?;
+            }
+            if let Some(ref id) = self.id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Id", id)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AnalysisComponent {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AnalysisComponent, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AnalysisComponent;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AnalysisComponent")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut arn: Option<::Value<String>> = None;
+                    let mut id: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Arn" => {
+                                arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Id" => {
+                                id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AnalysisComponent {
+                        arn: arn,
+                        id: id,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::NetworkInsightsAnalysis.AnalysisLoadBalancerListener`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisloadbalancerlistener.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AnalysisLoadBalancerListener {
+        /// Property [`InstancePort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisloadbalancerlistener.html#cfn-ec2-networkinsightsanalysis-analysisloadbalancerlistener-instanceport).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub instance_port: Option<::Value<u32>>,
+        /// Property [`LoadBalancerPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisloadbalancerlistener.html#cfn-ec2-networkinsightsanalysis-analysisloadbalancerlistener-loadbalancerport).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub load_balancer_port: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for AnalysisLoadBalancerListener {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref instance_port) = self.instance_port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstancePort", instance_port)?;
+            }
+            if let Some(ref load_balancer_port) = self.load_balancer_port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancerPort", load_balancer_port)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AnalysisLoadBalancerListener {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AnalysisLoadBalancerListener, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AnalysisLoadBalancerListener;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AnalysisLoadBalancerListener")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut instance_port: Option<::Value<u32>> = None;
+                    let mut load_balancer_port: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "InstancePort" => {
+                                instance_port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LoadBalancerPort" => {
+                                load_balancer_port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AnalysisLoadBalancerListener {
+                        instance_port: instance_port,
+                        load_balancer_port: load_balancer_port,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::NetworkInsightsAnalysis.AnalysisLoadBalancerTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisloadbalancertarget.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AnalysisLoadBalancerTarget {
+        /// Property [`Address`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisloadbalancertarget.html#cfn-ec2-networkinsightsanalysis-analysisloadbalancertarget-address).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub address: Option<::Value<String>>,
+        /// Property [`AvailabilityZone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisloadbalancertarget.html#cfn-ec2-networkinsightsanalysis-analysisloadbalancertarget-availabilityzone).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub availability_zone: Option<::Value<String>>,
+        /// Property [`Instance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisloadbalancertarget.html#cfn-ec2-networkinsightsanalysis-analysisloadbalancertarget-instance).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub instance: Option<::Value<AnalysisComponent>>,
+        /// Property [`Port`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisloadbalancertarget.html#cfn-ec2-networkinsightsanalysis-analysisloadbalancertarget-port).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub port: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for AnalysisLoadBalancerTarget {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref address) = self.address {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Address", address)?;
+            }
+            if let Some(ref availability_zone) = self.availability_zone {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", availability_zone)?;
+            }
+            if let Some(ref instance) = self.instance {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Instance", instance)?;
+            }
+            if let Some(ref port) = self.port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", port)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AnalysisLoadBalancerTarget {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AnalysisLoadBalancerTarget, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AnalysisLoadBalancerTarget;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AnalysisLoadBalancerTarget")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut address: Option<::Value<String>> = None;
+                    let mut availability_zone: Option<::Value<String>> = None;
+                    let mut instance: Option<::Value<AnalysisComponent>> = None;
+                    let mut port: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Address" => {
+                                address = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "AvailabilityZone" => {
+                                availability_zone = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Instance" => {
+                                instance = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Port" => {
+                                port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AnalysisLoadBalancerTarget {
+                        address: address,
+                        availability_zone: availability_zone,
+                        instance: instance,
+                        port: port,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::NetworkInsightsAnalysis.AnalysisPacketHeader`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysispacketheader.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AnalysisPacketHeader {
+        /// Property [`DestinationAddresses`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysispacketheader.html#cfn-ec2-networkinsightsanalysis-analysispacketheader-destinationaddresses).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub destination_addresses: Option<::ValueList<String>>,
+        /// Property [`DestinationPortRanges`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysispacketheader.html#cfn-ec2-networkinsightsanalysis-analysispacketheader-destinationportranges).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub destination_port_ranges: Option<::ValueList<PortRange>>,
+        /// Property [`Protocol`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysispacketheader.html#cfn-ec2-networkinsightsanalysis-analysispacketheader-protocol).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub protocol: Option<::Value<String>>,
+        /// Property [`SourceAddresses`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysispacketheader.html#cfn-ec2-networkinsightsanalysis-analysispacketheader-sourceaddresses).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub source_addresses: Option<::ValueList<String>>,
+        /// Property [`SourcePortRanges`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysispacketheader.html#cfn-ec2-networkinsightsanalysis-analysispacketheader-sourceportranges).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub source_port_ranges: Option<::ValueList<PortRange>>,
+    }
+
+    impl ::codec::SerializeValue for AnalysisPacketHeader {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref destination_addresses) = self.destination_addresses {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationAddresses", destination_addresses)?;
+            }
+            if let Some(ref destination_port_ranges) = self.destination_port_ranges {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationPortRanges", destination_port_ranges)?;
+            }
+            if let Some(ref protocol) = self.protocol {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", protocol)?;
+            }
+            if let Some(ref source_addresses) = self.source_addresses {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceAddresses", source_addresses)?;
+            }
+            if let Some(ref source_port_ranges) = self.source_port_ranges {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourcePortRanges", source_port_ranges)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AnalysisPacketHeader {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AnalysisPacketHeader, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AnalysisPacketHeader;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AnalysisPacketHeader")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut destination_addresses: Option<::ValueList<String>> = None;
+                    let mut destination_port_ranges: Option<::ValueList<PortRange>> = None;
+                    let mut protocol: Option<::Value<String>> = None;
+                    let mut source_addresses: Option<::ValueList<String>> = None;
+                    let mut source_port_ranges: Option<::ValueList<PortRange>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DestinationAddresses" => {
+                                destination_addresses = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DestinationPortRanges" => {
+                                destination_port_ranges = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Protocol" => {
+                                protocol = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SourceAddresses" => {
+                                source_addresses = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SourcePortRanges" => {
+                                source_port_ranges = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AnalysisPacketHeader {
+                        destination_addresses: destination_addresses,
+                        destination_port_ranges: destination_port_ranges,
+                        protocol: protocol,
+                        source_addresses: source_addresses,
+                        source_port_ranges: source_port_ranges,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::NetworkInsightsAnalysis.AnalysisRouteTableRoute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisroutetableroute.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AnalysisRouteTableRoute {
+        /// Property [`NatGatewayId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisroutetableroute.html#cfn-ec2-networkinsightsanalysis-analysisroutetableroute-natgatewayid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub nat_gateway_id: Option<::Value<String>>,
+        /// Property [`NetworkInterfaceId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisroutetableroute.html#cfn-ec2-networkinsightsanalysis-analysisroutetableroute-networkinterfaceid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub network_interface_id: Option<::Value<String>>,
+        /// Property [`Origin`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisroutetableroute.html#cfn-ec2-networkinsightsanalysis-analysisroutetableroute-origin).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub origin: Option<::Value<String>>,
+        /// Property [`TransitGatewayId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisroutetableroute.html#cfn-ec2-networkinsightsanalysis-analysisroutetableroute-transitgatewayid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub transit_gateway_id: Option<::Value<String>>,
+        /// Property [`VpcPeeringConnectionId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisroutetableroute.html#cfn-ec2-networkinsightsanalysis-analysisroutetableroute-vpcpeeringconnectionid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub vpc_peering_connection_id: Option<::Value<String>>,
+        /// Property [`destinationCidr`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisroutetableroute.html#cfn-ec2-networkinsightsanalysis-analysisroutetableroute-destinationcidr).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub destination_cidr: Option<::Value<String>>,
+        /// Property [`destinationPrefixListId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisroutetableroute.html#cfn-ec2-networkinsightsanalysis-analysisroutetableroute-destinationprefixlistid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub destination_prefix_list_id: Option<::Value<String>>,
+        /// Property [`egressOnlyInternetGatewayId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisroutetableroute.html#cfn-ec2-networkinsightsanalysis-analysisroutetableroute-egressonlyinternetgatewayid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub egress_only_internet_gateway_id: Option<::Value<String>>,
+        /// Property [`gatewayId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisroutetableroute.html#cfn-ec2-networkinsightsanalysis-analysisroutetableroute-gatewayid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub gateway_id: Option<::Value<String>>,
+        /// Property [`instanceId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysisroutetableroute.html#cfn-ec2-networkinsightsanalysis-analysisroutetableroute-instanceid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub instance_id: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for AnalysisRouteTableRoute {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref nat_gateway_id) = self.nat_gateway_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NatGatewayId", nat_gateway_id)?;
+            }
+            if let Some(ref network_interface_id) = self.network_interface_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInterfaceId", network_interface_id)?;
+            }
+            if let Some(ref origin) = self.origin {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Origin", origin)?;
+            }
+            if let Some(ref transit_gateway_id) = self.transit_gateway_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitGatewayId", transit_gateway_id)?;
+            }
+            if let Some(ref vpc_peering_connection_id) = self.vpc_peering_connection_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcPeeringConnectionId", vpc_peering_connection_id)?;
+            }
+            if let Some(ref destination_cidr) = self.destination_cidr {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "destinationCidr", destination_cidr)?;
+            }
+            if let Some(ref destination_prefix_list_id) = self.destination_prefix_list_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "destinationPrefixListId", destination_prefix_list_id)?;
+            }
+            if let Some(ref egress_only_internet_gateway_id) = self.egress_only_internet_gateway_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "egressOnlyInternetGatewayId", egress_only_internet_gateway_id)?;
+            }
+            if let Some(ref gateway_id) = self.gateway_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "gatewayId", gateway_id)?;
+            }
+            if let Some(ref instance_id) = self.instance_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "instanceId", instance_id)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AnalysisRouteTableRoute {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AnalysisRouteTableRoute, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AnalysisRouteTableRoute;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AnalysisRouteTableRoute")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut nat_gateway_id: Option<::Value<String>> = None;
+                    let mut network_interface_id: Option<::Value<String>> = None;
+                    let mut origin: Option<::Value<String>> = None;
+                    let mut transit_gateway_id: Option<::Value<String>> = None;
+                    let mut vpc_peering_connection_id: Option<::Value<String>> = None;
+                    let mut destination_cidr: Option<::Value<String>> = None;
+                    let mut destination_prefix_list_id: Option<::Value<String>> = None;
+                    let mut egress_only_internet_gateway_id: Option<::Value<String>> = None;
+                    let mut gateway_id: Option<::Value<String>> = None;
+                    let mut instance_id: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "NatGatewayId" => {
+                                nat_gateway_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "NetworkInterfaceId" => {
+                                network_interface_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Origin" => {
+                                origin = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TransitGatewayId" => {
+                                transit_gateway_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "VpcPeeringConnectionId" => {
+                                vpc_peering_connection_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "destinationCidr" => {
+                                destination_cidr = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "destinationPrefixListId" => {
+                                destination_prefix_list_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "egressOnlyInternetGatewayId" => {
+                                egress_only_internet_gateway_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "gatewayId" => {
+                                gateway_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "instanceId" => {
+                                instance_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AnalysisRouteTableRoute {
+                        nat_gateway_id: nat_gateway_id,
+                        network_interface_id: network_interface_id,
+                        origin: origin,
+                        transit_gateway_id: transit_gateway_id,
+                        vpc_peering_connection_id: vpc_peering_connection_id,
+                        destination_cidr: destination_cidr,
+                        destination_prefix_list_id: destination_prefix_list_id,
+                        egress_only_internet_gateway_id: egress_only_internet_gateway_id,
+                        gateway_id: gateway_id,
+                        instance_id: instance_id,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::NetworkInsightsAnalysis.AnalysisSecurityGroupRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysissecuritygrouprule.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AnalysisSecurityGroupRule {
+        /// Property [`Cidr`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysissecuritygrouprule.html#cfn-ec2-networkinsightsanalysis-analysissecuritygrouprule-cidr).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cidr: Option<::Value<String>>,
+        /// Property [`Direction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysissecuritygrouprule.html#cfn-ec2-networkinsightsanalysis-analysissecuritygrouprule-direction).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub direction: Option<::Value<String>>,
+        /// Property [`PortRange`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysissecuritygrouprule.html#cfn-ec2-networkinsightsanalysis-analysissecuritygrouprule-portrange).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub port_range: Option<::Value<PortRange>>,
+        /// Property [`PrefixListId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysissecuritygrouprule.html#cfn-ec2-networkinsightsanalysis-analysissecuritygrouprule-prefixlistid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub prefix_list_id: Option<::Value<String>>,
+        /// Property [`Protocol`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysissecuritygrouprule.html#cfn-ec2-networkinsightsanalysis-analysissecuritygrouprule-protocol).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub protocol: Option<::Value<String>>,
+        /// Property [`SecurityGroupId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-analysissecuritygrouprule.html#cfn-ec2-networkinsightsanalysis-analysissecuritygrouprule-securitygroupid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub security_group_id: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for AnalysisSecurityGroupRule {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref cidr) = self.cidr {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cidr", cidr)?;
+            }
+            if let Some(ref direction) = self.direction {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Direction", direction)?;
+            }
+            if let Some(ref port_range) = self.port_range {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PortRange", port_range)?;
+            }
+            if let Some(ref prefix_list_id) = self.prefix_list_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrefixListId", prefix_list_id)?;
+            }
+            if let Some(ref protocol) = self.protocol {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", protocol)?;
+            }
+            if let Some(ref security_group_id) = self.security_group_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupId", security_group_id)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AnalysisSecurityGroupRule {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AnalysisSecurityGroupRule, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AnalysisSecurityGroupRule;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AnalysisSecurityGroupRule")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut cidr: Option<::Value<String>> = None;
+                    let mut direction: Option<::Value<String>> = None;
+                    let mut port_range: Option<::Value<PortRange>> = None;
+                    let mut prefix_list_id: Option<::Value<String>> = None;
+                    let mut protocol: Option<::Value<String>> = None;
+                    let mut security_group_id: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Cidr" => {
+                                cidr = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Direction" => {
+                                direction = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PortRange" => {
+                                port_range = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PrefixListId" => {
+                                prefix_list_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Protocol" => {
+                                protocol = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecurityGroupId" => {
+                                security_group_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AnalysisSecurityGroupRule {
+                        cidr: cidr,
+                        direction: direction,
+                        port_range: port_range,
+                        prefix_list_id: prefix_list_id,
+                        protocol: protocol,
+                        security_group_id: security_group_id,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::NetworkInsightsAnalysis.Explanation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Explanation {
+        /// Property [`Acl`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-acl).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub acl: Option<::Value<AnalysisComponent>>,
+        /// Property [`AclRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-aclrule).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub acl_rule: Option<::Value<AnalysisAclRule>>,
+        /// Property [`Address`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-address).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub address: Option<::Value<String>>,
+        /// Property [`Addresses`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-addresses).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub addresses: Option<::ValueList<String>>,
+        /// Property [`AttachedTo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-attachedto).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub attached_to: Option<::Value<AnalysisComponent>>,
+        /// Property [`AvailabilityZones`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-availabilityzones).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub availability_zones: Option<::ValueList<String>>,
+        /// Property [`Cidrs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-cidrs).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cidrs: Option<::ValueList<String>>,
+        /// Property [`ClassicLoadBalancerListener`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-classicloadbalancerlistener).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub classic_load_balancer_listener: Option<::Value<AnalysisLoadBalancerListener>>,
+        /// Property [`Component`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-component).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub component: Option<::Value<AnalysisComponent>>,
+        /// Property [`CustomerGateway`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-customergateway).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub customer_gateway: Option<::Value<AnalysisComponent>>,
+        /// Property [`Destination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-destination).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub destination: Option<::Value<AnalysisComponent>>,
+        /// Property [`DestinationVpc`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-destinationvpc).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub destination_vpc: Option<::Value<AnalysisComponent>>,
+        /// Property [`Direction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-direction).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub direction: Option<::Value<String>>,
+        /// Property [`ElasticLoadBalancerListener`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-elasticloadbalancerlistener).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub elastic_load_balancer_listener: Option<::Value<AnalysisComponent>>,
+        /// Property [`ExplanationCode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-explanationcode).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub explanation_code: Option<::Value<String>>,
+        /// Property [`IngressRouteTable`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-ingressroutetable).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ingress_route_table: Option<::Value<AnalysisComponent>>,
+        /// Property [`InternetGateway`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-internetgateway).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub internet_gateway: Option<::Value<AnalysisComponent>>,
+        /// Property [`LoadBalancerArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-loadbalancerarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub load_balancer_arn: Option<::Value<String>>,
+        /// Property [`LoadBalancerListenerPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-loadbalancerlistenerport).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub load_balancer_listener_port: Option<::Value<u32>>,
+        /// Property [`LoadBalancerTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-loadbalancertarget).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub load_balancer_target: Option<::Value<AnalysisLoadBalancerTarget>>,
+        /// Property [`LoadBalancerTargetGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-loadbalancertargetgroup).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub load_balancer_target_group: Option<::Value<AnalysisComponent>>,
+        /// Property [`LoadBalancerTargetGroups`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-loadbalancertargetgroups).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub load_balancer_target_groups: Option<::ValueList<AnalysisComponent>>,
+        /// Property [`LoadBalancerTargetPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-loadbalancertargetport).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub load_balancer_target_port: Option<::Value<u32>>,
+        /// Property [`MissingComponent`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-missingcomponent).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub missing_component: Option<::Value<String>>,
+        /// Property [`NatGateway`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-natgateway).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub nat_gateway: Option<::Value<AnalysisComponent>>,
+        /// Property [`NetworkInterface`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-networkinterface).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub network_interface: Option<::Value<AnalysisComponent>>,
+        /// Property [`PacketField`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-packetfield).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub packet_field: Option<::Value<String>>,
+        /// Property [`Port`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-port).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub port: Option<::Value<u32>>,
+        /// Property [`PortRanges`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-portranges).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub port_ranges: Option<::ValueList<PortRange>>,
+        /// Property [`PrefixList`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-prefixlist).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub prefix_list: Option<::Value<AnalysisComponent>>,
+        /// Property [`Protocols`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-protocols).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub protocols: Option<::ValueList<String>>,
+        /// Property [`RouteTable`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-routetable).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub route_table: Option<::Value<AnalysisComponent>>,
+        /// Property [`RouteTableRoute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-routetableroute).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub route_table_route: Option<::Value<AnalysisRouteTableRoute>>,
+        /// Property [`SecurityGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-securitygroup).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub security_group: Option<::Value<AnalysisComponent>>,
+        /// Property [`SecurityGroupRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-securitygrouprule).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub security_group_rule: Option<::Value<AnalysisSecurityGroupRule>>,
+        /// Property [`SecurityGroups`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-securitygroups).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub security_groups: Option<::ValueList<AnalysisComponent>>,
+        /// Property [`SourceVpc`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-sourcevpc).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub source_vpc: Option<::Value<AnalysisComponent>>,
+        /// Property [`State`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-state).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub state: Option<::Value<String>>,
+        /// Property [`Subnet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-subnet).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub subnet: Option<::Value<AnalysisComponent>>,
+        /// Property [`SubnetRouteTable`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-subnetroutetable).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub subnet_route_table: Option<::Value<AnalysisComponent>>,
+        /// Property [`Vpc`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-vpc).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub vpc: Option<::Value<AnalysisComponent>>,
+        /// Property [`VpcPeeringConnection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-vpcpeeringconnection).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub vpc_peering_connection: Option<::Value<AnalysisComponent>>,
+        /// Property [`VpnConnection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-vpnconnection).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub vpn_connection: Option<::Value<AnalysisComponent>>,
+        /// Property [`VpnGateway`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-vpngateway).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub vpn_gateway: Option<::Value<AnalysisComponent>>,
+        /// Property [`vpcEndpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-explanation.html#cfn-ec2-networkinsightsanalysis-explanation-vpcendpoint).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub vpc_endpoint: Option<::Value<AnalysisComponent>>,
+    }
+
+    impl ::codec::SerializeValue for Explanation {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref acl) = self.acl {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Acl", acl)?;
+            }
+            if let Some(ref acl_rule) = self.acl_rule {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AclRule", acl_rule)?;
+            }
+            if let Some(ref address) = self.address {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Address", address)?;
+            }
+            if let Some(ref addresses) = self.addresses {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Addresses", addresses)?;
+            }
+            if let Some(ref attached_to) = self.attached_to {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AttachedTo", attached_to)?;
+            }
+            if let Some(ref availability_zones) = self.availability_zones {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZones", availability_zones)?;
+            }
+            if let Some(ref cidrs) = self.cidrs {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cidrs", cidrs)?;
+            }
+            if let Some(ref classic_load_balancer_listener) = self.classic_load_balancer_listener {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClassicLoadBalancerListener", classic_load_balancer_listener)?;
+            }
+            if let Some(ref component) = self.component {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Component", component)?;
+            }
+            if let Some(ref customer_gateway) = self.customer_gateway {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomerGateway", customer_gateway)?;
+            }
+            if let Some(ref destination) = self.destination {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Destination", destination)?;
+            }
+            if let Some(ref destination_vpc) = self.destination_vpc {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationVpc", destination_vpc)?;
+            }
+            if let Some(ref direction) = self.direction {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Direction", direction)?;
+            }
+            if let Some(ref elastic_load_balancer_listener) = self.elastic_load_balancer_listener {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ElasticLoadBalancerListener", elastic_load_balancer_listener)?;
+            }
+            if let Some(ref explanation_code) = self.explanation_code {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExplanationCode", explanation_code)?;
+            }
+            if let Some(ref ingress_route_table) = self.ingress_route_table {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IngressRouteTable", ingress_route_table)?;
+            }
+            if let Some(ref internet_gateway) = self.internet_gateway {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InternetGateway", internet_gateway)?;
+            }
+            if let Some(ref load_balancer_arn) = self.load_balancer_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancerArn", load_balancer_arn)?;
+            }
+            if let Some(ref load_balancer_listener_port) = self.load_balancer_listener_port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancerListenerPort", load_balancer_listener_port)?;
+            }
+            if let Some(ref load_balancer_target) = self.load_balancer_target {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancerTarget", load_balancer_target)?;
+            }
+            if let Some(ref load_balancer_target_group) = self.load_balancer_target_group {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancerTargetGroup", load_balancer_target_group)?;
+            }
+            if let Some(ref load_balancer_target_groups) = self.load_balancer_target_groups {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancerTargetGroups", load_balancer_target_groups)?;
+            }
+            if let Some(ref load_balancer_target_port) = self.load_balancer_target_port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancerTargetPort", load_balancer_target_port)?;
+            }
+            if let Some(ref missing_component) = self.missing_component {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MissingComponent", missing_component)?;
+            }
+            if let Some(ref nat_gateway) = self.nat_gateway {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NatGateway", nat_gateway)?;
+            }
+            if let Some(ref network_interface) = self.network_interface {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInterface", network_interface)?;
+            }
+            if let Some(ref packet_field) = self.packet_field {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PacketField", packet_field)?;
+            }
+            if let Some(ref port) = self.port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", port)?;
+            }
+            if let Some(ref port_ranges) = self.port_ranges {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PortRanges", port_ranges)?;
+            }
+            if let Some(ref prefix_list) = self.prefix_list {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrefixList", prefix_list)?;
+            }
+            if let Some(ref protocols) = self.protocols {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocols", protocols)?;
+            }
+            if let Some(ref route_table) = self.route_table {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RouteTable", route_table)?;
+            }
+            if let Some(ref route_table_route) = self.route_table_route {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RouteTableRoute", route_table_route)?;
+            }
+            if let Some(ref security_group) = self.security_group {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroup", security_group)?;
+            }
+            if let Some(ref security_group_rule) = self.security_group_rule {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupRule", security_group_rule)?;
+            }
+            if let Some(ref security_groups) = self.security_groups {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroups", security_groups)?;
+            }
+            if let Some(ref source_vpc) = self.source_vpc {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceVpc", source_vpc)?;
+            }
+            if let Some(ref state) = self.state {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "State", state)?;
+            }
+            if let Some(ref subnet) = self.subnet {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Subnet", subnet)?;
+            }
+            if let Some(ref subnet_route_table) = self.subnet_route_table {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetRouteTable", subnet_route_table)?;
+            }
+            if let Some(ref vpc) = self.vpc {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Vpc", vpc)?;
+            }
+            if let Some(ref vpc_peering_connection) = self.vpc_peering_connection {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcPeeringConnection", vpc_peering_connection)?;
+            }
+            if let Some(ref vpn_connection) = self.vpn_connection {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpnConnection", vpn_connection)?;
+            }
+            if let Some(ref vpn_gateway) = self.vpn_gateway {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpnGateway", vpn_gateway)?;
+            }
+            if let Some(ref vpc_endpoint) = self.vpc_endpoint {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "vpcEndpoint", vpc_endpoint)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Explanation {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Explanation, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Explanation;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Explanation")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut acl: Option<::Value<AnalysisComponent>> = None;
+                    let mut acl_rule: Option<::Value<AnalysisAclRule>> = None;
+                    let mut address: Option<::Value<String>> = None;
+                    let mut addresses: Option<::ValueList<String>> = None;
+                    let mut attached_to: Option<::Value<AnalysisComponent>> = None;
+                    let mut availability_zones: Option<::ValueList<String>> = None;
+                    let mut cidrs: Option<::ValueList<String>> = None;
+                    let mut classic_load_balancer_listener: Option<::Value<AnalysisLoadBalancerListener>> = None;
+                    let mut component: Option<::Value<AnalysisComponent>> = None;
+                    let mut customer_gateway: Option<::Value<AnalysisComponent>> = None;
+                    let mut destination: Option<::Value<AnalysisComponent>> = None;
+                    let mut destination_vpc: Option<::Value<AnalysisComponent>> = None;
+                    let mut direction: Option<::Value<String>> = None;
+                    let mut elastic_load_balancer_listener: Option<::Value<AnalysisComponent>> = None;
+                    let mut explanation_code: Option<::Value<String>> = None;
+                    let mut ingress_route_table: Option<::Value<AnalysisComponent>> = None;
+                    let mut internet_gateway: Option<::Value<AnalysisComponent>> = None;
+                    let mut load_balancer_arn: Option<::Value<String>> = None;
+                    let mut load_balancer_listener_port: Option<::Value<u32>> = None;
+                    let mut load_balancer_target: Option<::Value<AnalysisLoadBalancerTarget>> = None;
+                    let mut load_balancer_target_group: Option<::Value<AnalysisComponent>> = None;
+                    let mut load_balancer_target_groups: Option<::ValueList<AnalysisComponent>> = None;
+                    let mut load_balancer_target_port: Option<::Value<u32>> = None;
+                    let mut missing_component: Option<::Value<String>> = None;
+                    let mut nat_gateway: Option<::Value<AnalysisComponent>> = None;
+                    let mut network_interface: Option<::Value<AnalysisComponent>> = None;
+                    let mut packet_field: Option<::Value<String>> = None;
+                    let mut port: Option<::Value<u32>> = None;
+                    let mut port_ranges: Option<::ValueList<PortRange>> = None;
+                    let mut prefix_list: Option<::Value<AnalysisComponent>> = None;
+                    let mut protocols: Option<::ValueList<String>> = None;
+                    let mut route_table: Option<::Value<AnalysisComponent>> = None;
+                    let mut route_table_route: Option<::Value<AnalysisRouteTableRoute>> = None;
+                    let mut security_group: Option<::Value<AnalysisComponent>> = None;
+                    let mut security_group_rule: Option<::Value<AnalysisSecurityGroupRule>> = None;
+                    let mut security_groups: Option<::ValueList<AnalysisComponent>> = None;
+                    let mut source_vpc: Option<::Value<AnalysisComponent>> = None;
+                    let mut state: Option<::Value<String>> = None;
+                    let mut subnet: Option<::Value<AnalysisComponent>> = None;
+                    let mut subnet_route_table: Option<::Value<AnalysisComponent>> = None;
+                    let mut vpc: Option<::Value<AnalysisComponent>> = None;
+                    let mut vpc_peering_connection: Option<::Value<AnalysisComponent>> = None;
+                    let mut vpn_connection: Option<::Value<AnalysisComponent>> = None;
+                    let mut vpn_gateway: Option<::Value<AnalysisComponent>> = None;
+                    let mut vpc_endpoint: Option<::Value<AnalysisComponent>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Acl" => {
+                                acl = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "AclRule" => {
+                                acl_rule = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Address" => {
+                                address = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Addresses" => {
+                                addresses = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "AttachedTo" => {
+                                attached_to = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "AvailabilityZones" => {
+                                availability_zones = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Cidrs" => {
+                                cidrs = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ClassicLoadBalancerListener" => {
+                                classic_load_balancer_listener = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Component" => {
+                                component = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CustomerGateway" => {
+                                customer_gateway = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Destination" => {
+                                destination = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DestinationVpc" => {
+                                destination_vpc = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Direction" => {
+                                direction = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ElasticLoadBalancerListener" => {
+                                elastic_load_balancer_listener = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ExplanationCode" => {
+                                explanation_code = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IngressRouteTable" => {
+                                ingress_route_table = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "InternetGateway" => {
+                                internet_gateway = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LoadBalancerArn" => {
+                                load_balancer_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LoadBalancerListenerPort" => {
+                                load_balancer_listener_port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LoadBalancerTarget" => {
+                                load_balancer_target = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LoadBalancerTargetGroup" => {
+                                load_balancer_target_group = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LoadBalancerTargetGroups" => {
+                                load_balancer_target_groups = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LoadBalancerTargetPort" => {
+                                load_balancer_target_port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MissingComponent" => {
+                                missing_component = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "NatGateway" => {
+                                nat_gateway = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "NetworkInterface" => {
+                                network_interface = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PacketField" => {
+                                packet_field = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Port" => {
+                                port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PortRanges" => {
+                                port_ranges = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PrefixList" => {
+                                prefix_list = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Protocols" => {
+                                protocols = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RouteTable" => {
+                                route_table = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RouteTableRoute" => {
+                                route_table_route = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecurityGroup" => {
+                                security_group = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecurityGroupRule" => {
+                                security_group_rule = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecurityGroups" => {
+                                security_groups = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SourceVpc" => {
+                                source_vpc = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "State" => {
+                                state = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Subnet" => {
+                                subnet = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SubnetRouteTable" => {
+                                subnet_route_table = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Vpc" => {
+                                vpc = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "VpcPeeringConnection" => {
+                                vpc_peering_connection = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "VpnConnection" => {
+                                vpn_connection = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "VpnGateway" => {
+                                vpn_gateway = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "vpcEndpoint" => {
+                                vpc_endpoint = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Explanation {
+                        acl: acl,
+                        acl_rule: acl_rule,
+                        address: address,
+                        addresses: addresses,
+                        attached_to: attached_to,
+                        availability_zones: availability_zones,
+                        cidrs: cidrs,
+                        classic_load_balancer_listener: classic_load_balancer_listener,
+                        component: component,
+                        customer_gateway: customer_gateway,
+                        destination: destination,
+                        destination_vpc: destination_vpc,
+                        direction: direction,
+                        elastic_load_balancer_listener: elastic_load_balancer_listener,
+                        explanation_code: explanation_code,
+                        ingress_route_table: ingress_route_table,
+                        internet_gateway: internet_gateway,
+                        load_balancer_arn: load_balancer_arn,
+                        load_balancer_listener_port: load_balancer_listener_port,
+                        load_balancer_target: load_balancer_target,
+                        load_balancer_target_group: load_balancer_target_group,
+                        load_balancer_target_groups: load_balancer_target_groups,
+                        load_balancer_target_port: load_balancer_target_port,
+                        missing_component: missing_component,
+                        nat_gateway: nat_gateway,
+                        network_interface: network_interface,
+                        packet_field: packet_field,
+                        port: port,
+                        port_ranges: port_ranges,
+                        prefix_list: prefix_list,
+                        protocols: protocols,
+                        route_table: route_table,
+                        route_table_route: route_table_route,
+                        security_group: security_group,
+                        security_group_rule: security_group_rule,
+                        security_groups: security_groups,
+                        source_vpc: source_vpc,
+                        state: state,
+                        subnet: subnet,
+                        subnet_route_table: subnet_route_table,
+                        vpc: vpc,
+                        vpc_peering_connection: vpc_peering_connection,
+                        vpn_connection: vpn_connection,
+                        vpn_gateway: vpn_gateway,
+                        vpc_endpoint: vpc_endpoint,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::NetworkInsightsAnalysis.PathComponent`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-pathcomponent.html) property type.
+    #[derive(Debug, Default)]
+    pub struct PathComponent {
+        /// Property [`AclRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-pathcomponent.html#cfn-ec2-networkinsightsanalysis-pathcomponent-aclrule).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub acl_rule: Option<::Value<AnalysisAclRule>>,
+        /// Property [`Component`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-pathcomponent.html#cfn-ec2-networkinsightsanalysis-pathcomponent-component).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub component: Option<::Value<AnalysisComponent>>,
+        /// Property [`DestinationVpc`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-pathcomponent.html#cfn-ec2-networkinsightsanalysis-pathcomponent-destinationvpc).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub destination_vpc: Option<::Value<AnalysisComponent>>,
+        /// Property [`InboundHeader`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-pathcomponent.html#cfn-ec2-networkinsightsanalysis-pathcomponent-inboundheader).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub inbound_header: Option<::Value<AnalysisPacketHeader>>,
+        /// Property [`OutboundHeader`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-pathcomponent.html#cfn-ec2-networkinsightsanalysis-pathcomponent-outboundheader).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub outbound_header: Option<::Value<AnalysisPacketHeader>>,
+        /// Property [`RouteTableRoute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-pathcomponent.html#cfn-ec2-networkinsightsanalysis-pathcomponent-routetableroute).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub route_table_route: Option<::Value<AnalysisRouteTableRoute>>,
+        /// Property [`SecurityGroupRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-pathcomponent.html#cfn-ec2-networkinsightsanalysis-pathcomponent-securitygrouprule).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub security_group_rule: Option<::Value<AnalysisSecurityGroupRule>>,
+        /// Property [`SequenceNumber`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-pathcomponent.html#cfn-ec2-networkinsightsanalysis-pathcomponent-sequencenumber).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub sequence_number: Option<::Value<u32>>,
+        /// Property [`SourceVpc`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-pathcomponent.html#cfn-ec2-networkinsightsanalysis-pathcomponent-sourcevpc).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub source_vpc: Option<::Value<AnalysisComponent>>,
+        /// Property [`Subnet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-pathcomponent.html#cfn-ec2-networkinsightsanalysis-pathcomponent-subnet).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub subnet: Option<::Value<AnalysisComponent>>,
+        /// Property [`Vpc`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-pathcomponent.html#cfn-ec2-networkinsightsanalysis-pathcomponent-vpc).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub vpc: Option<::Value<AnalysisComponent>>,
+    }
+
+    impl ::codec::SerializeValue for PathComponent {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref acl_rule) = self.acl_rule {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AclRule", acl_rule)?;
+            }
+            if let Some(ref component) = self.component {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Component", component)?;
+            }
+            if let Some(ref destination_vpc) = self.destination_vpc {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationVpc", destination_vpc)?;
+            }
+            if let Some(ref inbound_header) = self.inbound_header {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InboundHeader", inbound_header)?;
+            }
+            if let Some(ref outbound_header) = self.outbound_header {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutboundHeader", outbound_header)?;
+            }
+            if let Some(ref route_table_route) = self.route_table_route {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RouteTableRoute", route_table_route)?;
+            }
+            if let Some(ref security_group_rule) = self.security_group_rule {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupRule", security_group_rule)?;
+            }
+            if let Some(ref sequence_number) = self.sequence_number {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SequenceNumber", sequence_number)?;
+            }
+            if let Some(ref source_vpc) = self.source_vpc {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceVpc", source_vpc)?;
+            }
+            if let Some(ref subnet) = self.subnet {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Subnet", subnet)?;
+            }
+            if let Some(ref vpc) = self.vpc {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Vpc", vpc)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for PathComponent {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<PathComponent, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = PathComponent;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type PathComponent")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut acl_rule: Option<::Value<AnalysisAclRule>> = None;
+                    let mut component: Option<::Value<AnalysisComponent>> = None;
+                    let mut destination_vpc: Option<::Value<AnalysisComponent>> = None;
+                    let mut inbound_header: Option<::Value<AnalysisPacketHeader>> = None;
+                    let mut outbound_header: Option<::Value<AnalysisPacketHeader>> = None;
+                    let mut route_table_route: Option<::Value<AnalysisRouteTableRoute>> = None;
+                    let mut security_group_rule: Option<::Value<AnalysisSecurityGroupRule>> = None;
+                    let mut sequence_number: Option<::Value<u32>> = None;
+                    let mut source_vpc: Option<::Value<AnalysisComponent>> = None;
+                    let mut subnet: Option<::Value<AnalysisComponent>> = None;
+                    let mut vpc: Option<::Value<AnalysisComponent>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AclRule" => {
+                                acl_rule = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Component" => {
+                                component = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DestinationVpc" => {
+                                destination_vpc = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "InboundHeader" => {
+                                inbound_header = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OutboundHeader" => {
+                                outbound_header = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RouteTableRoute" => {
+                                route_table_route = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecurityGroupRule" => {
+                                security_group_rule = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SequenceNumber" => {
+                                sequence_number = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SourceVpc" => {
+                                source_vpc = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Subnet" => {
+                                subnet = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Vpc" => {
+                                vpc = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(PathComponent {
+                        acl_rule: acl_rule,
+                        component: component,
+                        destination_vpc: destination_vpc,
+                        inbound_header: inbound_header,
+                        outbound_header: outbound_header,
+                        route_table_route: route_table_route,
+                        security_group_rule: security_group_rule,
+                        sequence_number: sequence_number,
+                        source_vpc: source_vpc,
+                        subnet: subnet,
+                        vpc: vpc,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::NetworkInsightsAnalysis.PortRange`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-portrange.html) property type.
+    #[derive(Debug, Default)]
+    pub struct PortRange {
+        /// Property [`From`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-portrange.html#cfn-ec2-networkinsightsanalysis-portrange-from).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub from: Option<::Value<u32>>,
+        /// Property [`To`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkinsightsanalysis-portrange.html#cfn-ec2-networkinsightsanalysis-portrange-to).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -6018,6 +16032,74 @@ pub mod network_interface {
                     Ok(PrivateIpAddressSpecification {
                         primary: primary.ok_or(::serde::de::Error::missing_field("Primary"))?,
                         private_ip_address: private_ip_address.ok_or(::serde::de::Error::missing_field("PrivateIpAddress"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod prefix_list {
+    //! Property types for the `PrefixList` resource.
+
+    /// The [`AWS::EC2::PrefixList.Entry`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-prefixlist-entry.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Entry {
+        /// Property [`Cidr`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-prefixlist-entry.html#cfn-ec2-prefixlist-entry-cidr).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cidr: ::Value<String>,
+        /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-prefixlist-entry.html#cfn-ec2-prefixlist-entry-description).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub description: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for Entry {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cidr", &self.cidr)?;
+            if let Some(ref description) = self.description {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Entry {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Entry, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Entry;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Entry")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut cidr: Option<::Value<String>> = None;
+                    let mut description: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Cidr" => {
+                                cidr = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Description" => {
+                                description = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Entry {
+                        cidr: cidr.ok_or(::serde::de::Error::missing_field("Cidr"))?,
+                        description: description,
                     })
                 }
             }
@@ -6200,6 +16282,11 @@ pub mod security_group {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub ip_protocol: ::Value<String>,
+        /// Property [`SourcePrefixListId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-rule.html#cfn-ec2-securitygroup-ingress-sourceprefixlistid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub source_prefix_list_id: Option<::Value<String>>,
         /// Property [`SourceSecurityGroupId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-rule.html#cfn-ec2-security-group-rule-sourcesecuritygroupid).
         ///
         /// Update type: _Mutable_.
@@ -6238,6 +16325,9 @@ pub mod security_group {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "FromPort", from_port)?;
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IpProtocol", &self.ip_protocol)?;
+            if let Some(ref source_prefix_list_id) = self.source_prefix_list_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourcePrefixListId", source_prefix_list_id)?;
+            }
             if let Some(ref source_security_group_id) = self.source_security_group_id {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceSecurityGroupId", source_security_group_id)?;
             }
@@ -6271,6 +16361,7 @@ pub mod security_group {
                     let mut description: Option<::Value<String>> = None;
                     let mut from_port: Option<::Value<u32>> = None;
                     let mut ip_protocol: Option<::Value<String>> = None;
+                    let mut source_prefix_list_id: Option<::Value<String>> = None;
                     let mut source_security_group_id: Option<::Value<String>> = None;
                     let mut source_security_group_name: Option<::Value<String>> = None;
                     let mut source_security_group_owner_id: Option<::Value<String>> = None;
@@ -6292,6 +16383,9 @@ pub mod security_group {
                             }
                             "IpProtocol" => {
                                 ip_protocol = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SourcePrefixListId" => {
+                                source_prefix_list_id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "SourceSecurityGroupId" => {
                                 source_security_group_id = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -6315,6 +16409,7 @@ pub mod security_group {
                         description: description,
                         from_port: from_port,
                         ip_protocol: ip_protocol.ok_or(::serde::de::Error::missing_field("IpProtocol"))?,
+                        source_prefix_list_id: source_prefix_list_id,
                         source_security_group_id: source_security_group_id,
                         source_security_group_name: source_security_group_name,
                         source_security_group_owner_id: source_security_group_owner_id,
@@ -6331,28 +16426,28 @@ pub mod security_group {
 pub mod spot_fleet {
     //! Property types for the `SpotFleet` resource.
 
-    /// The [`AWS::EC2::SpotFleet.BlockDeviceMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings.html) property type.
+    /// The [`AWS::EC2::SpotFleet.BlockDeviceMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-blockdevicemapping.html) property type.
     #[derive(Debug, Default)]
     pub struct BlockDeviceMapping {
-        /// Property [`DeviceName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings.html#cfn-ec2-spotfleet-blockdevicemapping-devicename).
+        /// Property [`DeviceName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-blockdevicemapping.html#cfn-ec2-spotfleet-blockdevicemapping-devicename).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub device_name: ::Value<String>,
-        /// Property [`Ebs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings.html#cfn-ec2-spotfleet-blockdevicemapping-ebs).
+        /// Property [`Ebs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-blockdevicemapping.html#cfn-ec2-spotfleet-blockdevicemapping-ebs).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub ebs: Option<::Value<EbsBlockDevice>>,
-        /// Property [`NoDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings.html#cfn-ec2-spotfleet-blockdevicemapping-nodevice).
+        /// Property [`NoDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-blockdevicemapping.html#cfn-ec2-spotfleet-blockdevicemapping-nodevice).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub no_device: Option<::Value<String>>,
-        /// Property [`VirtualName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings.html#cfn-ec2-spotfleet-blockdevicemapping-virtualname).
+        /// Property [`VirtualName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-blockdevicemapping.html#cfn-ec2-spotfleet-blockdevicemapping-virtualname).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub virtual_name: Option<::Value<String>>,
     }
 
@@ -6421,38 +16516,140 @@ pub mod spot_fleet {
         }
     }
 
-    /// The [`AWS::EC2::SpotFleet.EbsBlockDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings-ebs.html) property type.
+    /// The [`AWS::EC2::SpotFleet.ClassicLoadBalancer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-classicloadbalancer.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ClassicLoadBalancer {
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-classicloadbalancer.html#cfn-ec2-spotfleet-classicloadbalancer-name).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub name: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for ClassicLoadBalancer {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ClassicLoadBalancer {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ClassicLoadBalancer, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ClassicLoadBalancer;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ClassicLoadBalancer")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ClassicLoadBalancer {
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::SpotFleet.ClassicLoadBalancersConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-classicloadbalancersconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ClassicLoadBalancersConfig {
+        /// Property [`ClassicLoadBalancers`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-classicloadbalancersconfig.html#cfn-ec2-spotfleet-classicloadbalancersconfig-classicloadbalancers).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub classic_load_balancers: ::ValueList<ClassicLoadBalancer>,
+    }
+
+    impl ::codec::SerializeValue for ClassicLoadBalancersConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClassicLoadBalancers", &self.classic_load_balancers)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ClassicLoadBalancersConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ClassicLoadBalancersConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ClassicLoadBalancersConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ClassicLoadBalancersConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut classic_load_balancers: Option<::ValueList<ClassicLoadBalancer>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ClassicLoadBalancers" => {
+                                classic_load_balancers = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ClassicLoadBalancersConfig {
+                        classic_load_balancers: classic_load_balancers.ok_or(::serde::de::Error::missing_field("ClassicLoadBalancers"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::SpotFleet.EbsBlockDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-ebsblockdevice.html) property type.
     #[derive(Debug, Default)]
     pub struct EbsBlockDevice {
-        /// Property [`DeleteOnTermination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings-ebs.html#cfn-ec2-spotfleet-ebsblockdevice-deleteontermination).
+        /// Property [`DeleteOnTermination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-ebsblockdevice.html#cfn-ec2-spotfleet-ebsblockdevice-deleteontermination).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub delete_on_termination: Option<::Value<bool>>,
-        /// Property [`Encrypted`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings-ebs.html#cfn-ec2-spotfleet-ebsblockdevice-encrypted).
+        /// Property [`Encrypted`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-ebsblockdevice.html#cfn-ec2-spotfleet-ebsblockdevice-encrypted).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub encrypted: Option<::Value<bool>>,
-        /// Property [`Iops`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings-ebs.html#cfn-ec2-spotfleet-ebsblockdevice-iops).
+        /// Property [`Iops`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-ebsblockdevice.html#cfn-ec2-spotfleet-ebsblockdevice-iops).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub iops: Option<::Value<u32>>,
-        /// Property [`SnapshotId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings-ebs.html#cfn-ec2-spotfleet-ebsblockdevice-snapshotid).
+        /// Property [`SnapshotId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-ebsblockdevice.html#cfn-ec2-spotfleet-ebsblockdevice-snapshotid).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub snapshot_id: Option<::Value<String>>,
-        /// Property [`VolumeSize`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings-ebs.html#cfn-ec2-spotfleet-ebsblockdevice-volumesize).
+        /// Property [`VolumeSize`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-ebsblockdevice.html#cfn-ec2-spotfleet-ebsblockdevice-volumesize).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub volume_size: Option<::Value<u32>>,
-        /// Property [`VolumeType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings-ebs.html#cfn-ec2-spotfleet-ebsblockdevice-volumetype).
+        /// Property [`VolumeType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-ebsblockdevice.html#cfn-ec2-spotfleet-ebsblockdevice-volumetype).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub volume_type: Option<::Value<String>>,
     }
 
@@ -6539,13 +16736,90 @@ pub mod spot_fleet {
         }
     }
 
-    /// The [`AWS::EC2::SpotFleet.GroupIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-securitygroups.html) property type.
+    /// The [`AWS::EC2::SpotFleet.FleetLaunchTemplateSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-fleetlaunchtemplatespecification.html) property type.
+    #[derive(Debug, Default)]
+    pub struct FleetLaunchTemplateSpecification {
+        /// Property [`LaunchTemplateId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-fleetlaunchtemplatespecification.html#cfn-ec2-spotfleet-fleetlaunchtemplatespecification-launchtemplateid).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub launch_template_id: Option<::Value<String>>,
+        /// Property [`LaunchTemplateName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-fleetlaunchtemplatespecification.html#cfn-ec2-spotfleet-fleetlaunchtemplatespecification-launchtemplatename).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub launch_template_name: Option<::Value<String>>,
+        /// Property [`Version`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-fleetlaunchtemplatespecification.html#cfn-ec2-spotfleet-fleetlaunchtemplatespecification-version).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub version: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for FleetLaunchTemplateSpecification {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref launch_template_id) = self.launch_template_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchTemplateId", launch_template_id)?;
+            }
+            if let Some(ref launch_template_name) = self.launch_template_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchTemplateName", launch_template_name)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Version", &self.version)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for FleetLaunchTemplateSpecification {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<FleetLaunchTemplateSpecification, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = FleetLaunchTemplateSpecification;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type FleetLaunchTemplateSpecification")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut launch_template_id: Option<::Value<String>> = None;
+                    let mut launch_template_name: Option<::Value<String>> = None;
+                    let mut version: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "LaunchTemplateId" => {
+                                launch_template_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LaunchTemplateName" => {
+                                launch_template_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Version" => {
+                                version = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(FleetLaunchTemplateSpecification {
+                        launch_template_id: launch_template_id,
+                        launch_template_name: launch_template_name,
+                        version: version.ok_or(::serde::de::Error::missing_field("Version"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::SpotFleet.GroupIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-groupidentifier.html) property type.
     #[derive(Debug, Default)]
     pub struct GroupIdentifier {
-        /// Property [`GroupId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-securitygroups.html#cfn-ec2-spotfleet-groupidentifier-groupid).
+        /// Property [`GroupId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-groupidentifier.html#cfn-ec2-spotfleet-groupidentifier-groupid).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub group_id: ::Value<String>,
     }
 
@@ -6590,13 +16864,13 @@ pub mod spot_fleet {
         }
     }
 
-    /// The [`AWS::EC2::SpotFleet.IamInstanceProfileSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-iaminstanceprofile.html) property type.
+    /// The [`AWS::EC2::SpotFleet.IamInstanceProfileSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-iaminstanceprofilespecification.html) property type.
     #[derive(Debug, Default)]
     pub struct IamInstanceProfileSpecification {
-        /// Property [`Arn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-iaminstanceprofile.html#cfn-ec2-spotfleet-iaminstanceprofilespecification-arn).
+        /// Property [`Arn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-iaminstanceprofilespecification.html#cfn-ec2-spotfleet-iaminstanceprofilespecification-arn).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub arn: Option<::Value<String>>,
     }
 
@@ -6648,8 +16922,8 @@ pub mod spot_fleet {
     pub struct InstanceIpv6Address {
         /// Property [`Ipv6Address`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-instanceipv6address.html#cfn-ec2-spotfleet-instanceipv6address-ipv6address).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub ipv6_address: ::Value<String>,
     }
 
@@ -6694,63 +16968,63 @@ pub mod spot_fleet {
         }
     }
 
-    /// The [`AWS::EC2::SpotFleet.InstanceNetworkInterfaceSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces.html) property type.
+    /// The [`AWS::EC2::SpotFleet.InstanceNetworkInterfaceSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-instancenetworkinterfacespecification.html) property type.
     #[derive(Debug, Default)]
     pub struct InstanceNetworkInterfaceSpecification {
-        /// Property [`AssociatePublicIpAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces.html#cfn-ec2-spotfleet-instancenetworkinterfacespecification-associatepublicipaddress).
+        /// Property [`AssociatePublicIpAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-instancenetworkinterfacespecification.html#cfn-ec2-spotfleet-instancenetworkinterfacespecification-associatepublicipaddress).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub associate_public_ip_address: Option<::Value<bool>>,
-        /// Property [`DeleteOnTermination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces.html#cfn-ec2-spotfleet-instancenetworkinterfacespecification-deleteontermination).
+        /// Property [`DeleteOnTermination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-instancenetworkinterfacespecification.html#cfn-ec2-spotfleet-instancenetworkinterfacespecification-deleteontermination).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub delete_on_termination: Option<::Value<bool>>,
-        /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces.html#cfn-ec2-spotfleet-instancenetworkinterfacespecification-description).
+        /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-instancenetworkinterfacespecification.html#cfn-ec2-spotfleet-instancenetworkinterfacespecification-description).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub description: Option<::Value<String>>,
-        /// Property [`DeviceIndex`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces.html#cfn-ec2-spotfleet-instancenetworkinterfacespecification-deviceindex).
+        /// Property [`DeviceIndex`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-instancenetworkinterfacespecification.html#cfn-ec2-spotfleet-instancenetworkinterfacespecification-deviceindex).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub device_index: Option<::Value<u32>>,
-        /// Property [`Groups`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces.html#cfn-ec2-spotfleet-instancenetworkinterfacespecification-groups).
+        /// Property [`Groups`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-instancenetworkinterfacespecification.html#cfn-ec2-spotfleet-instancenetworkinterfacespecification-groups).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub groups: Option<::ValueList<String>>,
-        /// Property [`Ipv6AddressCount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces.html#cfn-ec2-spotfleet-instancenetworkinterfacespecification-ipv6addresscount).
+        /// Property [`Ipv6AddressCount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-instancenetworkinterfacespecification.html#cfn-ec2-spotfleet-instancenetworkinterfacespecification-ipv6addresscount).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub ipv6_address_count: Option<::Value<u32>>,
-        /// Property [`Ipv6Addresses`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces.html#cfn-ec2-spotfleet-instancenetworkinterfacespecification-ipv6addresses).
+        /// Property [`Ipv6Addresses`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-instancenetworkinterfacespecification.html#cfn-ec2-spotfleet-instancenetworkinterfacespecification-ipv6addresses).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub ipv6_addresses: Option<::ValueList<InstanceIpv6Address>>,
-        /// Property [`NetworkInterfaceId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces.html#cfn-ec2-spotfleet-instancenetworkinterfacespecification-networkinterfaceid).
+        /// Property [`NetworkInterfaceId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-instancenetworkinterfacespecification.html#cfn-ec2-spotfleet-instancenetworkinterfacespecification-networkinterfaceid).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub network_interface_id: Option<::Value<String>>,
-        /// Property [`PrivateIpAddresses`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces.html#cfn-ec2-spotfleet-instancenetworkinterfacespecification-privateipaddresses).
+        /// Property [`PrivateIpAddresses`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-instancenetworkinterfacespecification.html#cfn-ec2-spotfleet-instancenetworkinterfacespecification-privateipaddresses).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub private_ip_addresses: Option<::ValueList<PrivateIpAddressSpecification>>,
-        /// Property [`SecondaryPrivateIpAddressCount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces.html#cfn-ec2-spotfleet-instancenetworkinterfacespecification-secondaryprivateipaddresscount).
+        /// Property [`SecondaryPrivateIpAddressCount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-instancenetworkinterfacespecification.html#cfn-ec2-spotfleet-instancenetworkinterfacespecification-secondaryprivateipaddresscount).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub secondary_private_ip_address_count: Option<::Value<u32>>,
-        /// Property [`SubnetId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces.html#cfn-ec2-spotfleet-instancenetworkinterfacespecification-subnetid).
+        /// Property [`SubnetId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-instancenetworkinterfacespecification.html#cfn-ec2-spotfleet-instancenetworkinterfacespecification-subnetid).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub subnet_id: Option<::Value<String>>,
     }
 
@@ -6877,18 +17151,255 @@ pub mod spot_fleet {
         }
     }
 
-    /// The [`AWS::EC2::SpotFleet.PrivateIpAddressSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces-privateipaddresses.html) property type.
+    /// The [`AWS::EC2::SpotFleet.LaunchTemplateConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-launchtemplateconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LaunchTemplateConfig {
+        /// Property [`LaunchTemplateSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-launchtemplateconfig.html#cfn-ec2-spotfleet-launchtemplateconfig-launchtemplatespecification).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub launch_template_specification: Option<::Value<FleetLaunchTemplateSpecification>>,
+        /// Property [`Overrides`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-launchtemplateconfig.html#cfn-ec2-spotfleet-launchtemplateconfig-overrides).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub overrides: Option<::ValueList<LaunchTemplateOverrides>>,
+    }
+
+    impl ::codec::SerializeValue for LaunchTemplateConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref launch_template_specification) = self.launch_template_specification {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchTemplateSpecification", launch_template_specification)?;
+            }
+            if let Some(ref overrides) = self.overrides {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Overrides", overrides)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LaunchTemplateConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LaunchTemplateConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LaunchTemplateConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LaunchTemplateConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut launch_template_specification: Option<::Value<FleetLaunchTemplateSpecification>> = None;
+                    let mut overrides: Option<::ValueList<LaunchTemplateOverrides>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "LaunchTemplateSpecification" => {
+                                launch_template_specification = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Overrides" => {
+                                overrides = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LaunchTemplateConfig {
+                        launch_template_specification: launch_template_specification,
+                        overrides: overrides,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::SpotFleet.LaunchTemplateOverrides`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-launchtemplateoverrides.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LaunchTemplateOverrides {
+        /// Property [`AvailabilityZone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-launchtemplateoverrides.html#cfn-ec2-spotfleet-launchtemplateoverrides-availabilityzone).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub availability_zone: Option<::Value<String>>,
+        /// Property [`InstanceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-launchtemplateoverrides.html#cfn-ec2-spotfleet-launchtemplateoverrides-instancetype).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub instance_type: Option<::Value<String>>,
+        /// Property [`SpotPrice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-launchtemplateoverrides.html#cfn-ec2-spotfleet-launchtemplateoverrides-spotprice).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub spot_price: Option<::Value<String>>,
+        /// Property [`SubnetId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-launchtemplateoverrides.html#cfn-ec2-spotfleet-launchtemplateoverrides-subnetid).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub subnet_id: Option<::Value<String>>,
+        /// Property [`WeightedCapacity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-launchtemplateoverrides.html#cfn-ec2-spotfleet-launchtemplateoverrides-weightedcapacity).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub weighted_capacity: Option<::Value<f64>>,
+    }
+
+    impl ::codec::SerializeValue for LaunchTemplateOverrides {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref availability_zone) = self.availability_zone {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", availability_zone)?;
+            }
+            if let Some(ref instance_type) = self.instance_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceType", instance_type)?;
+            }
+            if let Some(ref spot_price) = self.spot_price {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotPrice", spot_price)?;
+            }
+            if let Some(ref subnet_id) = self.subnet_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", subnet_id)?;
+            }
+            if let Some(ref weighted_capacity) = self.weighted_capacity {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "WeightedCapacity", weighted_capacity)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LaunchTemplateOverrides {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LaunchTemplateOverrides, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LaunchTemplateOverrides;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LaunchTemplateOverrides")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut availability_zone: Option<::Value<String>> = None;
+                    let mut instance_type: Option<::Value<String>> = None;
+                    let mut spot_price: Option<::Value<String>> = None;
+                    let mut subnet_id: Option<::Value<String>> = None;
+                    let mut weighted_capacity: Option<::Value<f64>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AvailabilityZone" => {
+                                availability_zone = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "InstanceType" => {
+                                instance_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SpotPrice" => {
+                                spot_price = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SubnetId" => {
+                                subnet_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "WeightedCapacity" => {
+                                weighted_capacity = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LaunchTemplateOverrides {
+                        availability_zone: availability_zone,
+                        instance_type: instance_type,
+                        spot_price: spot_price,
+                        subnet_id: subnet_id,
+                        weighted_capacity: weighted_capacity,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::SpotFleet.LoadBalancersConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-loadbalancersconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LoadBalancersConfig {
+        /// Property [`ClassicLoadBalancersConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-loadbalancersconfig.html#cfn-ec2-spotfleet-loadbalancersconfig-classicloadbalancersconfig).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub classic_load_balancers_config: Option<::Value<ClassicLoadBalancersConfig>>,
+        /// Property [`TargetGroupsConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-loadbalancersconfig.html#cfn-ec2-spotfleet-loadbalancersconfig-targetgroupsconfig).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub target_groups_config: Option<::Value<TargetGroupsConfig>>,
+    }
+
+    impl ::codec::SerializeValue for LoadBalancersConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref classic_load_balancers_config) = self.classic_load_balancers_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClassicLoadBalancersConfig", classic_load_balancers_config)?;
+            }
+            if let Some(ref target_groups_config) = self.target_groups_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetGroupsConfig", target_groups_config)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LoadBalancersConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LoadBalancersConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LoadBalancersConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LoadBalancersConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut classic_load_balancers_config: Option<::Value<ClassicLoadBalancersConfig>> = None;
+                    let mut target_groups_config: Option<::Value<TargetGroupsConfig>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ClassicLoadBalancersConfig" => {
+                                classic_load_balancers_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TargetGroupsConfig" => {
+                                target_groups_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LoadBalancersConfig {
+                        classic_load_balancers_config: classic_load_balancers_config,
+                        target_groups_config: target_groups_config,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::SpotFleet.PrivateIpAddressSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-privateipaddressspecification.html) property type.
     #[derive(Debug, Default)]
     pub struct PrivateIpAddressSpecification {
-        /// Property [`Primary`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces-privateipaddresses.html#cfn-ec2-spotfleet-privateipaddressspecification-primary).
+        /// Property [`Primary`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-privateipaddressspecification.html#cfn-ec2-spotfleet-privateipaddressspecification-primary).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub primary: Option<::Value<bool>>,
-        /// Property [`PrivateIpAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces-privateipaddresses.html#cfn-ec2-spotfleet-privateipaddressspecification-privateipaddress).
+        /// Property [`PrivateIpAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-privateipaddressspecification.html#cfn-ec2-spotfleet-privateipaddressspecification-privateipaddress).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub private_ip_address: ::Value<String>,
     }
 
@@ -6941,93 +17452,146 @@ pub mod spot_fleet {
         }
     }
 
-    /// The [`AWS::EC2::SpotFleet.SpotFleetLaunchSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications.html) property type.
+    /// The [`AWS::EC2::SpotFleet.SpotCapacityRebalance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotcapacityrebalance.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SpotCapacityRebalance {
+        /// Property [`ReplacementStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotcapacityrebalance.html#cfn-ec2-spotfleet-spotcapacityrebalance-replacementstrategy).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub replacement_strategy: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for SpotCapacityRebalance {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref replacement_strategy) = self.replacement_strategy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplacementStrategy", replacement_strategy)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SpotCapacityRebalance {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SpotCapacityRebalance, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SpotCapacityRebalance;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SpotCapacityRebalance")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut replacement_strategy: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ReplacementStrategy" => {
+                                replacement_strategy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SpotCapacityRebalance {
+                        replacement_strategy: replacement_strategy,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::SpotFleet.SpotFleetLaunchSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetlaunchspecification.html) property type.
     #[derive(Debug, Default)]
     pub struct SpotFleetLaunchSpecification {
-        /// Property [`BlockDeviceMappings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-blockdevicemappings).
+        /// Property [`BlockDeviceMappings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetlaunchspecification.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-blockdevicemappings).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub block_device_mappings: Option<::ValueList<BlockDeviceMapping>>,
-        /// Property [`EbsOptimized`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-ebsoptimized).
+        /// Property [`EbsOptimized`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetlaunchspecification.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-ebsoptimized).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub ebs_optimized: Option<::Value<bool>>,
-        /// Property [`IamInstanceProfile`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-iaminstanceprofile).
+        /// Property [`IamInstanceProfile`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetlaunchspecification.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-iaminstanceprofile).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub iam_instance_profile: Option<::Value<IamInstanceProfileSpecification>>,
-        /// Property [`ImageId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-imageid).
+        /// Property [`ImageId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetlaunchspecification.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-imageid).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub image_id: ::Value<String>,
-        /// Property [`InstanceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-instancetype).
+        /// Property [`InstanceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetlaunchspecification.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-instancetype).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub instance_type: ::Value<String>,
-        /// Property [`KernelId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-kernelid).
+        /// Property [`KernelId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetlaunchspecification.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-kernelid).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub kernel_id: Option<::Value<String>>,
-        /// Property [`KeyName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-keyname).
+        /// Property [`KeyName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetlaunchspecification.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-keyname).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub key_name: Option<::Value<String>>,
-        /// Property [`Monitoring`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-monitoring).
+        /// Property [`Monitoring`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetlaunchspecification.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-monitoring).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub monitoring: Option<::Value<SpotFleetMonitoring>>,
-        /// Property [`NetworkInterfaces`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-networkinterfaces).
+        /// Property [`NetworkInterfaces`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetlaunchspecification.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-networkinterfaces).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub network_interfaces: Option<::ValueList<InstanceNetworkInterfaceSpecification>>,
-        /// Property [`Placement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-placement).
+        /// Property [`Placement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetlaunchspecification.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-placement).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub placement: Option<::Value<SpotPlacement>>,
-        /// Property [`RamdiskId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-ramdiskid).
+        /// Property [`RamdiskId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetlaunchspecification.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-ramdiskid).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub ramdisk_id: Option<::Value<String>>,
-        /// Property [`SecurityGroups`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-securitygroups).
+        /// Property [`SecurityGroups`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetlaunchspecification.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-securitygroups).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub security_groups: Option<::ValueList<GroupIdentifier>>,
-        /// Property [`SpotPrice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-spotprice).
+        /// Property [`SpotPrice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetlaunchspecification.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-spotprice).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub spot_price: Option<::Value<String>>,
-        /// Property [`SubnetId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-subnetid).
+        /// Property [`SubnetId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetlaunchspecification.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-subnetid).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub subnet_id: Option<::Value<String>>,
-        /// Property [`TagSpecifications`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-tagspecifications).
+        /// Property [`TagSpecifications`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetlaunchspecification.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-tagspecifications).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub tag_specifications: Option<::ValueList<SpotFleetTagSpecification>>,
-        /// Property [`UserData`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-userdata).
+        /// Property [`UserData`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetlaunchspecification.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-userdata).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub user_data: Option<::Value<String>>,
-        /// Property [`WeightedCapacity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-weightedcapacity).
+        /// Property [`WeightedCapacity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetlaunchspecification.html#cfn-ec2-spotfleet-spotfleetlaunchspecification-weightedcapacity).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub weighted_capacity: Option<::Value<f64>>,
     }
 
@@ -7198,13 +17762,13 @@ pub mod spot_fleet {
         }
     }
 
-    /// The [`AWS::EC2::SpotFleet.SpotFleetMonitoring`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-monitoring.html) property type.
+    /// The [`AWS::EC2::SpotFleet.SpotFleetMonitoring`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetmonitoring.html) property type.
     #[derive(Debug, Default)]
     pub struct SpotFleetMonitoring {
-        /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-monitoring.html#cfn-ec2-spotfleet-spotfleetmonitoring-enabled).
+        /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetmonitoring.html#cfn-ec2-spotfleet-spotfleetmonitoring-enabled).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub enabled: Option<::Value<bool>>,
     }
 
@@ -7259,6 +17823,11 @@ pub mod spot_fleet {
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub allocation_strategy: Option<::Value<String>>,
+        /// Property [`Context`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html#cfn-ec2-spotfleet-spotfleetrequestconfigdata-context).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub context: Option<::Value<String>>,
         /// Property [`ExcessCapacityTerminationPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html#cfn-ec2-spotfleet-spotfleetrequestconfigdata-excesscapacityterminationpolicy).
         ///
         /// Update type: _Mutable_.
@@ -7269,16 +17838,61 @@ pub mod spot_fleet {
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub iam_fleet_role: ::Value<String>,
+        /// Property [`InstanceInterruptionBehavior`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html#cfn-ec2-spotfleet-spotfleetrequestconfigdata-instanceinterruptionbehavior).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub instance_interruption_behavior: Option<::Value<String>>,
+        /// Property [`InstancePoolsToUseCount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html#cfn-ec2-spotfleet-spotfleetrequestconfigdata-instancepoolstousecount).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub instance_pools_to_use_count: Option<::Value<u32>>,
         /// Property [`LaunchSpecifications`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html#cfn-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
-        pub launch_specifications: ::ValueList<SpotFleetLaunchSpecification>,
+        pub launch_specifications: Option<::ValueList<SpotFleetLaunchSpecification>>,
+        /// Property [`LaunchTemplateConfigs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html#cfn-ec2-spotfleet-spotfleetrequestconfigdata-launchtemplateconfigs).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub launch_template_configs: Option<::ValueList<LaunchTemplateConfig>>,
+        /// Property [`LoadBalancersConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html#cfn-ec2-spotfleet-spotfleetrequestconfigdata-loadbalancersconfig).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub load_balancers_config: Option<::Value<LoadBalancersConfig>>,
+        /// Property [`OnDemandAllocationStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html#cfn-ec2-spotfleet-spotfleetrequestconfigdata-ondemandallocationstrategy).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub on_demand_allocation_strategy: Option<::Value<String>>,
+        /// Property [`OnDemandMaxTotalPrice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html#cfn-ec2-spotfleet-spotfleetrequestconfigdata-ondemandmaxtotalprice).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub on_demand_max_total_price: Option<::Value<String>>,
+        /// Property [`OnDemandTargetCapacity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html#cfn-ec2-spotfleet-spotfleetrequestconfigdata-ondemandtargetcapacity).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub on_demand_target_capacity: Option<::Value<u32>>,
         /// Property [`ReplaceUnhealthyInstances`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html#cfn-ec2-spotfleet-spotfleetrequestconfigdata-replaceunhealthyinstances).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub replace_unhealthy_instances: Option<::Value<bool>>,
+        /// Property [`SpotMaintenanceStrategies`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html#cfn-ec2-spotfleet-spotfleetrequestconfigdata-spotmaintenancestrategies).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub spot_maintenance_strategies: Option<::Value<SpotMaintenanceStrategies>>,
+        /// Property [`SpotMaxTotalPrice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html#cfn-ec2-spotfleet-spotfleetrequestconfigdata-spotmaxtotalprice).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub spot_max_total_price: Option<::Value<String>>,
         /// Property [`SpotPrice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html#cfn-ec2-spotfleet-spotfleetrequestconfigdata-spotprice).
         ///
         /// Update type: _Immutable_.
@@ -7298,7 +17912,7 @@ pub mod spot_fleet {
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
-        pub type_: Option<::Value<String>>,
+        pub r#type: Option<::Value<String>>,
         /// Property [`ValidFrom`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata.html#cfn-ec2-spotfleet-spotfleetrequestconfigdata-validfrom).
         ///
         /// Update type: _Immutable_.
@@ -7317,13 +17931,45 @@ pub mod spot_fleet {
             if let Some(ref allocation_strategy) = self.allocation_strategy {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllocationStrategy", allocation_strategy)?;
             }
+            if let Some(ref context) = self.context {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Context", context)?;
+            }
             if let Some(ref excess_capacity_termination_policy) = self.excess_capacity_termination_policy {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExcessCapacityTerminationPolicy", excess_capacity_termination_policy)?;
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IamFleetRole", &self.iam_fleet_role)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchSpecifications", &self.launch_specifications)?;
+            if let Some(ref instance_interruption_behavior) = self.instance_interruption_behavior {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceInterruptionBehavior", instance_interruption_behavior)?;
+            }
+            if let Some(ref instance_pools_to_use_count) = self.instance_pools_to_use_count {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstancePoolsToUseCount", instance_pools_to_use_count)?;
+            }
+            if let Some(ref launch_specifications) = self.launch_specifications {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchSpecifications", launch_specifications)?;
+            }
+            if let Some(ref launch_template_configs) = self.launch_template_configs {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchTemplateConfigs", launch_template_configs)?;
+            }
+            if let Some(ref load_balancers_config) = self.load_balancers_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancersConfig", load_balancers_config)?;
+            }
+            if let Some(ref on_demand_allocation_strategy) = self.on_demand_allocation_strategy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OnDemandAllocationStrategy", on_demand_allocation_strategy)?;
+            }
+            if let Some(ref on_demand_max_total_price) = self.on_demand_max_total_price {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OnDemandMaxTotalPrice", on_demand_max_total_price)?;
+            }
+            if let Some(ref on_demand_target_capacity) = self.on_demand_target_capacity {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OnDemandTargetCapacity", on_demand_target_capacity)?;
+            }
             if let Some(ref replace_unhealthy_instances) = self.replace_unhealthy_instances {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplaceUnhealthyInstances", replace_unhealthy_instances)?;
+            }
+            if let Some(ref spot_maintenance_strategies) = self.spot_maintenance_strategies {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotMaintenanceStrategies", spot_maintenance_strategies)?;
+            }
+            if let Some(ref spot_max_total_price) = self.spot_max_total_price {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotMaxTotalPrice", spot_max_total_price)?;
             }
             if let Some(ref spot_price) = self.spot_price {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SpotPrice", spot_price)?;
@@ -7332,8 +17978,8 @@ pub mod spot_fleet {
             if let Some(ref terminate_instances_with_expiration) = self.terminate_instances_with_expiration {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "TerminateInstancesWithExpiration", terminate_instances_with_expiration)?;
             }
-            if let Some(ref type_) = self.type_ {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", type_)?;
+            if let Some(ref r#type) = self.r#type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", r#type)?;
             }
             if let Some(ref valid_from) = self.valid_from {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ValidFrom", valid_from)?;
@@ -7358,14 +18004,24 @@ pub mod spot_fleet {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut allocation_strategy: Option<::Value<String>> = None;
+                    let mut context: Option<::Value<String>> = None;
                     let mut excess_capacity_termination_policy: Option<::Value<String>> = None;
                     let mut iam_fleet_role: Option<::Value<String>> = None;
+                    let mut instance_interruption_behavior: Option<::Value<String>> = None;
+                    let mut instance_pools_to_use_count: Option<::Value<u32>> = None;
                     let mut launch_specifications: Option<::ValueList<SpotFleetLaunchSpecification>> = None;
+                    let mut launch_template_configs: Option<::ValueList<LaunchTemplateConfig>> = None;
+                    let mut load_balancers_config: Option<::Value<LoadBalancersConfig>> = None;
+                    let mut on_demand_allocation_strategy: Option<::Value<String>> = None;
+                    let mut on_demand_max_total_price: Option<::Value<String>> = None;
+                    let mut on_demand_target_capacity: Option<::Value<u32>> = None;
                     let mut replace_unhealthy_instances: Option<::Value<bool>> = None;
+                    let mut spot_maintenance_strategies: Option<::Value<SpotMaintenanceStrategies>> = None;
+                    let mut spot_max_total_price: Option<::Value<String>> = None;
                     let mut spot_price: Option<::Value<String>> = None;
                     let mut target_capacity: Option<::Value<u32>> = None;
                     let mut terminate_instances_with_expiration: Option<::Value<bool>> = None;
-                    let mut type_: Option<::Value<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
                     let mut valid_from: Option<::Value<String>> = None;
                     let mut valid_until: Option<::Value<String>> = None;
 
@@ -7374,17 +18030,47 @@ pub mod spot_fleet {
                             "AllocationStrategy" => {
                                 allocation_strategy = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Context" => {
+                                context = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "ExcessCapacityTerminationPolicy" => {
                                 excess_capacity_termination_policy = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "IamFleetRole" => {
                                 iam_fleet_role = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "InstanceInterruptionBehavior" => {
+                                instance_interruption_behavior = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "InstancePoolsToUseCount" => {
+                                instance_pools_to_use_count = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "LaunchSpecifications" => {
                                 launch_specifications = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "LaunchTemplateConfigs" => {
+                                launch_template_configs = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LoadBalancersConfig" => {
+                                load_balancers_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OnDemandAllocationStrategy" => {
+                                on_demand_allocation_strategy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OnDemandMaxTotalPrice" => {
+                                on_demand_max_total_price = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OnDemandTargetCapacity" => {
+                                on_demand_target_capacity = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "ReplaceUnhealthyInstances" => {
                                 replace_unhealthy_instances = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SpotMaintenanceStrategies" => {
+                                spot_maintenance_strategies = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SpotMaxTotalPrice" => {
+                                spot_max_total_price = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "SpotPrice" => {
                                 spot_price = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -7396,7 +18082,7 @@ pub mod spot_fleet {
                                 terminate_instances_with_expiration = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Type" => {
-                                type_ = ::serde::de::MapAccess::next_value(&mut map)?;
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "ValidFrom" => {
                                 valid_from = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -7410,14 +18096,24 @@ pub mod spot_fleet {
 
                     Ok(SpotFleetRequestConfigData {
                         allocation_strategy: allocation_strategy,
+                        context: context,
                         excess_capacity_termination_policy: excess_capacity_termination_policy,
                         iam_fleet_role: iam_fleet_role.ok_or(::serde::de::Error::missing_field("IamFleetRole"))?,
-                        launch_specifications: launch_specifications.ok_or(::serde::de::Error::missing_field("LaunchSpecifications"))?,
+                        instance_interruption_behavior: instance_interruption_behavior,
+                        instance_pools_to_use_count: instance_pools_to_use_count,
+                        launch_specifications: launch_specifications,
+                        launch_template_configs: launch_template_configs,
+                        load_balancers_config: load_balancers_config,
+                        on_demand_allocation_strategy: on_demand_allocation_strategy,
+                        on_demand_max_total_price: on_demand_max_total_price,
+                        on_demand_target_capacity: on_demand_target_capacity,
                         replace_unhealthy_instances: replace_unhealthy_instances,
+                        spot_maintenance_strategies: spot_maintenance_strategies,
+                        spot_max_total_price: spot_max_total_price,
                         spot_price: spot_price,
                         target_capacity: target_capacity.ok_or(::serde::de::Error::missing_field("TargetCapacity"))?,
                         terminate_instances_with_expiration: terminate_instances_with_expiration,
-                        type_: type_,
+                        r#type: r#type,
                         valid_from: valid_from,
                         valid_until: valid_until,
                     })
@@ -7428,14 +18124,19 @@ pub mod spot_fleet {
         }
     }
 
-    /// The [`AWS::EC2::SpotFleet.SpotFleetTagSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-tagspecifications.html) property type.
+    /// The [`AWS::EC2::SpotFleet.SpotFleetTagSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleettagspecification.html) property type.
     #[derive(Debug, Default)]
     pub struct SpotFleetTagSpecification {
-        /// Property [`ResourceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-tagspecifications.html#cfn-ec2-spotfleet-spotfleettagspecification-resourcetype).
+        /// Property [`ResourceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleettagspecification.html#cfn-ec2-spotfleet-spotfleettagspecification-resourcetype).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub resource_type: Option<::Value<String>>,
+        /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleettagspecification.html#cfn-ec2-spotfleet-spotfleettagspecification-tags).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub tags: Option<::ValueList<::Tag>>,
     }
 
     impl ::codec::SerializeValue for SpotFleetTagSpecification {
@@ -7443,6 +18144,9 @@ pub mod spot_fleet {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             if let Some(ref resource_type) = self.resource_type {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceType", resource_type)?;
+            }
+            if let Some(ref tags) = self.tags {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -7461,11 +18165,15 @@ pub mod spot_fleet {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut resource_type: Option<::Value<String>> = None;
+                    let mut tags: Option<::ValueList<::Tag>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "ResourceType" => {
                                 resource_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Tags" => {
+                                tags = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -7473,6 +18181,7 @@ pub mod spot_fleet {
 
                     Ok(SpotFleetTagSpecification {
                         resource_type: resource_type,
+                        tags: tags,
                     })
                 }
             }
@@ -7481,19 +18190,77 @@ pub mod spot_fleet {
         }
     }
 
-    /// The [`AWS::EC2::SpotFleet.SpotPlacement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-placement.html) property type.
+    /// The [`AWS::EC2::SpotFleet.SpotMaintenanceStrategies`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotmaintenancestrategies.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SpotMaintenanceStrategies {
+        /// Property [`CapacityRebalance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotmaintenancestrategies.html#cfn-ec2-spotfleet-spotmaintenancestrategies-capacityrebalance).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub capacity_rebalance: Option<::Value<SpotCapacityRebalance>>,
+    }
+
+    impl ::codec::SerializeValue for SpotMaintenanceStrategies {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref capacity_rebalance) = self.capacity_rebalance {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CapacityRebalance", capacity_rebalance)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SpotMaintenanceStrategies {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SpotMaintenanceStrategies, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SpotMaintenanceStrategies;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SpotMaintenanceStrategies")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut capacity_rebalance: Option<::Value<SpotCapacityRebalance>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CapacityRebalance" => {
+                                capacity_rebalance = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SpotMaintenanceStrategies {
+                        capacity_rebalance: capacity_rebalance,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::SpotFleet.SpotPlacement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotplacement.html) property type.
     #[derive(Debug, Default)]
     pub struct SpotPlacement {
-        /// Property [`AvailabilityZone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-placement.html#cfn-ec2-spotfleet-spotplacement-availabilityzone).
+        /// Property [`AvailabilityZone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotplacement.html#cfn-ec2-spotfleet-spotplacement-availabilityzone).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub availability_zone: Option<::Value<String>>,
-        /// Property [`GroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-placement.html#cfn-ec2-spotfleet-spotplacement-groupname).
+        /// Property [`GroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotplacement.html#cfn-ec2-spotfleet-spotplacement-groupname).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub group_name: Option<::Value<String>>,
+        /// Property [`Tenancy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-spotplacement.html#cfn-ec2-spotfleet-spotplacement-tenancy).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub tenancy: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for SpotPlacement {
@@ -7504,6 +18271,9 @@ pub mod spot_fleet {
             }
             if let Some(ref group_name) = self.group_name {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupName", group_name)?;
+            }
+            if let Some(ref tenancy) = self.tenancy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tenancy", tenancy)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -7523,6 +18293,7 @@ pub mod spot_fleet {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut availability_zone: Option<::Value<String>> = None;
                     let mut group_name: Option<::Value<String>> = None;
+                    let mut tenancy: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -7532,6 +18303,9 @@ pub mod spot_fleet {
                             "GroupName" => {
                                 group_name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Tenancy" => {
+                                tenancy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
@@ -7539,6 +18313,232 @@ pub mod spot_fleet {
                     Ok(SpotPlacement {
                         availability_zone: availability_zone,
                         group_name: group_name,
+                        tenancy: tenancy,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::SpotFleet.TargetGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-targetgroup.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TargetGroup {
+        /// Property [`Arn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-targetgroup.html#cfn-ec2-spotfleet-targetgroup-arn).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub arn: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for TargetGroup {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Arn", &self.arn)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TargetGroup {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TargetGroup, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TargetGroup;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TargetGroup")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Arn" => {
+                                arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TargetGroup {
+                        arn: arn.ok_or(::serde::de::Error::missing_field("Arn"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EC2::SpotFleet.TargetGroupsConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-targetgroupsconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TargetGroupsConfig {
+        /// Property [`TargetGroups`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-spotfleet-targetgroupsconfig.html#cfn-ec2-spotfleet-targetgroupsconfig-targetgroups).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub target_groups: ::ValueList<TargetGroup>,
+    }
+
+    impl ::codec::SerializeValue for TargetGroupsConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetGroups", &self.target_groups)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TargetGroupsConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TargetGroupsConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TargetGroupsConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TargetGroupsConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut target_groups: Option<::ValueList<TargetGroup>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "TargetGroups" => {
+                                target_groups = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TargetGroupsConfig {
+                        target_groups: target_groups.ok_or(::serde::de::Error::missing_field("TargetGroups"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod traffic_mirror_filter_rule {
+    //! Property types for the `TrafficMirrorFilterRule` resource.
+
+    /// The [`AWS::EC2::TrafficMirrorFilterRule.TrafficMirrorPortRange`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-trafficmirrorfilterrule-trafficmirrorportrange.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TrafficMirrorPortRange {
+        /// Property [`FromPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-trafficmirrorfilterrule-trafficmirrorportrange.html#cfn-ec2-trafficmirrorfilterrule-trafficmirrorportrange-fromport).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub from_port: ::Value<u32>,
+        /// Property [`ToPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-trafficmirrorfilterrule-trafficmirrorportrange.html#cfn-ec2-trafficmirrorfilterrule-trafficmirrorportrange-toport).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub to_port: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for TrafficMirrorPortRange {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FromPort", &self.from_port)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ToPort", &self.to_port)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TrafficMirrorPortRange {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TrafficMirrorPortRange, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TrafficMirrorPortRange;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TrafficMirrorPortRange")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut from_port: Option<::Value<u32>> = None;
+                    let mut to_port: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "FromPort" => {
+                                from_port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ToPort" => {
+                                to_port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TrafficMirrorPortRange {
+                        from_port: from_port.ok_or(::serde::de::Error::missing_field("FromPort"))?,
+                        to_port: to_port.ok_or(::serde::de::Error::missing_field("ToPort"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod transit_gateway_connect {
+    //! Property types for the `TransitGatewayConnect` resource.
+
+    /// The [`AWS::EC2::TransitGatewayConnect.TransitGatewayConnectOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-transitgatewayconnect-transitgatewayconnectoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TransitGatewayConnectOptions {
+        /// Property [`Protocol`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-transitgatewayconnect-transitgatewayconnectoptions.html#cfn-ec2-transitgatewayconnect-transitgatewayconnectoptions-protocol).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub protocol: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for TransitGatewayConnectOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref protocol) = self.protocol {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", protocol)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TransitGatewayConnectOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TransitGatewayConnectOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TransitGatewayConnectOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TransitGatewayConnectOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut protocol: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Protocol" => {
+                                protocol = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TransitGatewayConnectOptions {
+                        protocol: protocol,
                     })
                 }
             }

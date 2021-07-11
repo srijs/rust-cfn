@@ -44,6 +44,11 @@ pub struct ScalableTargetProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub service_namespace: ::Value<String>,
+    /// Property [`SuspendedState`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalabletarget.html#cfn-applicationautoscaling-scalabletarget-suspendedstate).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub suspended_state: Option<::Value<self::scalable_target::SuspendedState>>,
 }
 
 impl ::serde::Serialize for ScalableTargetProperties {
@@ -58,6 +63,9 @@ impl ::serde::Serialize for ScalableTargetProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScheduledActions", scheduled_actions)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceNamespace", &self.service_namespace)?;
+        if let Some(ref suspended_state) = self.suspended_state {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SuspendedState", suspended_state)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -81,6 +89,7 @@ impl<'de> ::serde::Deserialize<'de> for ScalableTargetProperties {
                 let mut scalable_dimension: Option<::Value<String>> = None;
                 let mut scheduled_actions: Option<::ValueList<self::scalable_target::ScheduledAction>> = None;
                 let mut service_namespace: Option<::Value<String>> = None;
+                let mut suspended_state: Option<::Value<self::scalable_target::SuspendedState>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -105,6 +114,9 @@ impl<'de> ::serde::Deserialize<'de> for ScalableTargetProperties {
                         "ServiceNamespace" => {
                             service_namespace = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "SuspendedState" => {
+                            suspended_state = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
@@ -117,6 +129,7 @@ impl<'de> ::serde::Deserialize<'de> for ScalableTargetProperties {
                     scalable_dimension: scalable_dimension.ok_or(::serde::de::Error::missing_field("ScalableDimension"))?,
                     scheduled_actions: scheduled_actions,
                     service_namespace: service_namespace.ok_or(::serde::de::Error::missing_field("ServiceNamespace"))?,
+                    suspended_state: suspended_state,
                 })
             }
         }
@@ -406,6 +419,11 @@ pub mod scalable_target {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub start_time: Option<::Value<String>>,
+        /// Property [`Timezone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalabletarget-scheduledaction.html#cfn-applicationautoscaling-scalabletarget-scheduledaction-timezone).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub timezone: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for ScheduledAction {
@@ -421,6 +439,9 @@ pub mod scalable_target {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScheduledActionName", &self.scheduled_action_name)?;
             if let Some(ref start_time) = self.start_time {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "StartTime", start_time)?;
+            }
+            if let Some(ref timezone) = self.timezone {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Timezone", timezone)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -443,6 +464,7 @@ pub mod scalable_target {
                     let mut schedule: Option<::Value<String>> = None;
                     let mut scheduled_action_name: Option<::Value<String>> = None;
                     let mut start_time: Option<::Value<String>> = None;
+                    let mut timezone: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -461,6 +483,9 @@ pub mod scalable_target {
                             "StartTime" => {
                                 start_time = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Timezone" => {
+                                timezone = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
@@ -471,6 +496,86 @@ pub mod scalable_target {
                         schedule: schedule.ok_or(::serde::de::Error::missing_field("Schedule"))?,
                         scheduled_action_name: scheduled_action_name.ok_or(::serde::de::Error::missing_field("ScheduledActionName"))?,
                         start_time: start_time,
+                        timezone: timezone,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ApplicationAutoScaling::ScalableTarget.SuspendedState`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalabletarget-suspendedstate.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SuspendedState {
+        /// Property [`DynamicScalingInSuspended`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalabletarget-suspendedstate.html#cfn-applicationautoscaling-scalabletarget-suspendedstate-dynamicscalinginsuspended).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub dynamic_scaling_in_suspended: Option<::Value<bool>>,
+        /// Property [`DynamicScalingOutSuspended`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalabletarget-suspendedstate.html#cfn-applicationautoscaling-scalabletarget-suspendedstate-dynamicscalingoutsuspended).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub dynamic_scaling_out_suspended: Option<::Value<bool>>,
+        /// Property [`ScheduledScalingSuspended`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalabletarget-suspendedstate.html#cfn-applicationautoscaling-scalabletarget-suspendedstate-scheduledscalingsuspended).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub scheduled_scaling_suspended: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for SuspendedState {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref dynamic_scaling_in_suspended) = self.dynamic_scaling_in_suspended {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DynamicScalingInSuspended", dynamic_scaling_in_suspended)?;
+            }
+            if let Some(ref dynamic_scaling_out_suspended) = self.dynamic_scaling_out_suspended {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DynamicScalingOutSuspended", dynamic_scaling_out_suspended)?;
+            }
+            if let Some(ref scheduled_scaling_suspended) = self.scheduled_scaling_suspended {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScheduledScalingSuspended", scheduled_scaling_suspended)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SuspendedState {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SuspendedState, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SuspendedState;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SuspendedState")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut dynamic_scaling_in_suspended: Option<::Value<bool>> = None;
+                    let mut dynamic_scaling_out_suspended: Option<::Value<bool>> = None;
+                    let mut scheduled_scaling_suspended: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DynamicScalingInSuspended" => {
+                                dynamic_scaling_in_suspended = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DynamicScalingOutSuspended" => {
+                                dynamic_scaling_out_suspended = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ScheduledScalingSuspended" => {
+                                scheduled_scaling_suspended = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SuspendedState {
+                        dynamic_scaling_in_suspended: dynamic_scaling_in_suspended,
+                        dynamic_scaling_out_suspended: dynamic_scaling_out_suspended,
+                        scheduled_scaling_suspended: scheduled_scaling_suspended,
                     })
                 }
             }

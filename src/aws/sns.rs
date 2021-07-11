@@ -9,35 +9,79 @@ pub struct Subscription {
 /// Properties for the `Subscription` resource.
 #[derive(Debug, Default)]
 pub struct SubscriptionProperties {
+    /// Property [`DeliveryPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html#cfn-sns-subscription-deliverypolicy).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub delivery_policy: Option<::Value<::json::Value>>,
     /// Property [`Endpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html#cfn-sns-endpoint).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub endpoint: Option<::Value<String>>,
+    /// Property [`FilterPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html#cfn-sns-subscription-filterpolicy).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub filter_policy: Option<::Value<::json::Value>>,
     /// Property [`Protocol`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html#cfn-sns-protocol).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub protocol: Option<::Value<String>>,
+    pub protocol: ::Value<String>,
+    /// Property [`RawMessageDelivery`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html#cfn-sns-subscription-rawmessagedelivery).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub raw_message_delivery: Option<::Value<bool>>,
+    /// Property [`RedrivePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html#cfn-sns-subscription-redrivepolicy).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub redrive_policy: Option<::Value<::json::Value>>,
+    /// Property [`Region`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html#cfn-sns-subscription-region).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub region: Option<::Value<String>>,
+    /// Property [`SubscriptionRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html#cfn-sns-subscription-subscriptionrolearn).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub subscription_role_arn: Option<::Value<String>>,
     /// Property [`TopicArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html#topicarn).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub topic_arn: Option<::Value<String>>,
+    pub topic_arn: ::Value<String>,
 }
 
 impl ::serde::Serialize for SubscriptionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref delivery_policy) = self.delivery_policy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeliveryPolicy", delivery_policy)?;
+        }
         if let Some(ref endpoint) = self.endpoint {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Endpoint", endpoint)?;
         }
-        if let Some(ref protocol) = self.protocol {
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", protocol)?;
+        if let Some(ref filter_policy) = self.filter_policy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FilterPolicy", filter_policy)?;
         }
-        if let Some(ref topic_arn) = self.topic_arn {
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TopicArn", topic_arn)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", &self.protocol)?;
+        if let Some(ref raw_message_delivery) = self.raw_message_delivery {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RawMessageDelivery", raw_message_delivery)?;
         }
+        if let Some(ref redrive_policy) = self.redrive_policy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RedrivePolicy", redrive_policy)?;
+        }
+        if let Some(ref region) = self.region {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Region", region)?;
+        }
+        if let Some(ref subscription_role_arn) = self.subscription_role_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubscriptionRoleArn", subscription_role_arn)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TopicArn", &self.topic_arn)?;
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -54,17 +98,41 @@ impl<'de> ::serde::Deserialize<'de> for SubscriptionProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut delivery_policy: Option<::Value<::json::Value>> = None;
                 let mut endpoint: Option<::Value<String>> = None;
+                let mut filter_policy: Option<::Value<::json::Value>> = None;
                 let mut protocol: Option<::Value<String>> = None;
+                let mut raw_message_delivery: Option<::Value<bool>> = None;
+                let mut redrive_policy: Option<::Value<::json::Value>> = None;
+                let mut region: Option<::Value<String>> = None;
+                let mut subscription_role_arn: Option<::Value<String>> = None;
                 let mut topic_arn: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "DeliveryPolicy" => {
+                            delivery_policy = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Endpoint" => {
                             endpoint = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "FilterPolicy" => {
+                            filter_policy = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Protocol" => {
                             protocol = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "RawMessageDelivery" => {
+                            raw_message_delivery = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "RedrivePolicy" => {
+                            redrive_policy = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Region" => {
+                            region = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SubscriptionRoleArn" => {
+                            subscription_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "TopicArn" => {
                             topic_arn = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -74,9 +142,15 @@ impl<'de> ::serde::Deserialize<'de> for SubscriptionProperties {
                 }
 
                 Ok(SubscriptionProperties {
+                    delivery_policy: delivery_policy,
                     endpoint: endpoint,
-                    protocol: protocol,
-                    topic_arn: topic_arn,
+                    filter_policy: filter_policy,
+                    protocol: protocol.ok_or(::serde::de::Error::missing_field("Protocol"))?,
+                    raw_message_delivery: raw_message_delivery,
+                    redrive_policy: redrive_policy,
+                    region: region,
+                    subscription_role_arn: subscription_role_arn,
+                    topic_arn: topic_arn.ok_or(::serde::de::Error::missing_field("TopicArn"))?,
                 })
             }
         }
@@ -113,16 +187,36 @@ pub struct Topic {
 /// Properties for the `Topic` resource.
 #[derive(Debug, Default)]
 pub struct TopicProperties {
+    /// Property [`ContentBasedDeduplication`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html#cfn-sns-topic-contentbaseddeduplication).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub content_based_deduplication: Option<::Value<bool>>,
     /// Property [`DisplayName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html#cfn-sns-topic-displayname).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub display_name: Option<::Value<String>>,
+    /// Property [`FifoTopic`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html#cfn-sns-topic-fifotopic).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub fifo_topic: Option<::Value<bool>>,
+    /// Property [`KmsMasterKeyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html#cfn-sns-topic-kmsmasterkeyid).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub kms_master_key_id: Option<::Value<String>>,
     /// Property [`Subscription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html#cfn-sns-topic-subscription).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub subscription: Option<::ValueList<self::topic::Subscription>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html#cfn-sns-topic-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
     /// Property [`TopicName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html#cfn-sns-topic-topicname).
     ///
     /// Update type: _Immutable_.
@@ -133,11 +227,23 @@ pub struct TopicProperties {
 impl ::serde::Serialize for TopicProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref content_based_deduplication) = self.content_based_deduplication {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContentBasedDeduplication", content_based_deduplication)?;
+        }
         if let Some(ref display_name) = self.display_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisplayName", display_name)?;
         }
+        if let Some(ref fifo_topic) = self.fifo_topic {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FifoTopic", fifo_topic)?;
+        }
+        if let Some(ref kms_master_key_id) = self.kms_master_key_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsMasterKeyId", kms_master_key_id)?;
+        }
         if let Some(ref subscription) = self.subscription {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Subscription", subscription)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
         if let Some(ref topic_name) = self.topic_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TopicName", topic_name)?;
@@ -158,17 +264,33 @@ impl<'de> ::serde::Deserialize<'de> for TopicProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut content_based_deduplication: Option<::Value<bool>> = None;
                 let mut display_name: Option<::Value<String>> = None;
+                let mut fifo_topic: Option<::Value<bool>> = None;
+                let mut kms_master_key_id: Option<::Value<String>> = None;
                 let mut subscription: Option<::ValueList<self::topic::Subscription>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut topic_name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "ContentBasedDeduplication" => {
+                            content_based_deduplication = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "DisplayName" => {
                             display_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "FifoTopic" => {
+                            fifo_topic = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "KmsMasterKeyId" => {
+                            kms_master_key_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Subscription" => {
                             subscription = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "TopicName" => {
                             topic_name = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -178,8 +300,12 @@ impl<'de> ::serde::Deserialize<'de> for TopicProperties {
                 }
 
                 Ok(TopicProperties {
+                    content_based_deduplication: content_based_deduplication,
                     display_name: display_name,
+                    fifo_topic: fifo_topic,
+                    kms_master_key_id: kms_master_key_id,
                     subscription: subscription,
+                    tags: tags,
                     topic_name: topic_name,
                 })
             }
