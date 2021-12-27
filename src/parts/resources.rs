@@ -41,6 +41,11 @@ impl Resources {
         };
         self.0.insert(id.to_owned(), inner);
     }
+
+    /// Return an iterator over the id-tag pairs of the resources, in their order
+    pub fn iter(&self) -> impl Iterator<Item=(&str, &str)> + '_ {
+        self.0.iter().map(|(id, inner)| (id.as_str(), inner.tag.as_str()))
+    }
 }
 
 fn empty_object() -> ::serde_json::Value {

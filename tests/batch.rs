@@ -60,4 +60,22 @@ fn managed_ec2_batch_environment() {
     assert_eq!("JobQueue", output_queue_arn.value.as_reference().unwrap());
     let output_definition_arn = tpl.outputs().get::<String>("JobDefinitionArn").unwrap();
     assert_eq!("JobDefinition", output_definition_arn.value.as_reference().unwrap());
+
+    let resources: Vec<_> = tpl.resources().iter().collect();
+    assert_eq!(resources, [
+        ("VPC", "AWS::EC2::VPC"),
+        ("InternetGateway", "AWS::EC2::InternetGateway"),
+        ("RouteTable", "AWS::EC2::RouteTable"),
+        ("VPCGatewayAttachment", "AWS::EC2::VPCGatewayAttachment"),
+        ("SecurityGroup", "AWS::EC2::SecurityGroup"),
+        ("Subnet", "AWS::EC2::Subnet"),
+        ("Route", "AWS::EC2::Route"),
+        ("SubnetRouteTableAssociation", "AWS::EC2::SubnetRouteTableAssociation"),
+        ("BatchServiceRole", "AWS::IAM::Role"),
+        ("IamInstanceProfile", "AWS::IAM::InstanceProfile"),
+        ("EcsInstanceRole", "AWS::IAM::Role"),
+        ("JobDefinition", "AWS::Batch::JobDefinition"),
+        ("JobQueue", "AWS::Batch::JobQueue"),
+        ("ComputeEnvironment", "AWS::Batch::ComputeEnvironment"),
+    ]);
 }
