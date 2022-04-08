@@ -69,6 +69,11 @@ pub struct ProjectProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub queued_timeout_in_minutes: Option<::Value<u32>>,
+    /// Property [`ResourceAccessRole`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html#cfn-codebuild-project-resourceaccessrole).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub resource_access_role: Option<::Value<String>>,
     /// Property [`SecondaryArtifacts`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html#cfn-codebuild-project-secondaryartifacts).
     ///
     /// Update type: _Mutable_.
@@ -114,6 +119,11 @@ pub struct ProjectProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub triggers: Option<::Value<self::project::ProjectTriggers>>,
+    /// Property [`Visibility`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html#cfn-codebuild-project-visibility).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub visibility: Option<::Value<String>>,
     /// Property [`VpcConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html#cfn-codebuild-project-vpcconfig).
     ///
     /// Update type: _Mutable_.
@@ -156,6 +166,9 @@ impl ::serde::Serialize for ProjectProperties {
         if let Some(ref queued_timeout_in_minutes) = self.queued_timeout_in_minutes {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "QueuedTimeoutInMinutes", queued_timeout_in_minutes)?;
         }
+        if let Some(ref resource_access_role) = self.resource_access_role {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceAccessRole", resource_access_role)?;
+        }
         if let Some(ref secondary_artifacts) = self.secondary_artifacts {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecondaryArtifacts", secondary_artifacts)?;
         }
@@ -178,6 +191,9 @@ impl ::serde::Serialize for ProjectProperties {
         }
         if let Some(ref triggers) = self.triggers {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Triggers", triggers)?;
+        }
+        if let Some(ref visibility) = self.visibility {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Visibility", visibility)?;
         }
         if let Some(ref vpc_config) = self.vpc_config {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcConfig", vpc_config)?;
@@ -210,6 +226,7 @@ impl<'de> ::serde::Deserialize<'de> for ProjectProperties {
                 let mut logs_config: Option<::Value<self::project::LogsConfig>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut queued_timeout_in_minutes: Option<::Value<u32>> = None;
+                let mut resource_access_role: Option<::Value<String>> = None;
                 let mut secondary_artifacts: Option<::ValueList<self::project::Artifacts>> = None;
                 let mut secondary_source_versions: Option<::ValueList<self::project::ProjectSourceVersion>> = None;
                 let mut secondary_sources: Option<::ValueList<self::project::Source>> = None;
@@ -219,6 +236,7 @@ impl<'de> ::serde::Deserialize<'de> for ProjectProperties {
                 let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut timeout_in_minutes: Option<::Value<u32>> = None;
                 let mut triggers: Option<::Value<self::project::ProjectTriggers>> = None;
+                let mut visibility: Option<::Value<String>> = None;
                 let mut vpc_config: Option<::Value<self::project::VpcConfig>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -259,6 +277,9 @@ impl<'de> ::serde::Deserialize<'de> for ProjectProperties {
                         "QueuedTimeoutInMinutes" => {
                             queued_timeout_in_minutes = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ResourceAccessRole" => {
+                            resource_access_role = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "SecondaryArtifacts" => {
                             secondary_artifacts = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -286,6 +307,9 @@ impl<'de> ::serde::Deserialize<'de> for ProjectProperties {
                         "Triggers" => {
                             triggers = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Visibility" => {
+                            visibility = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "VpcConfig" => {
                             vpc_config = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -306,6 +330,7 @@ impl<'de> ::serde::Deserialize<'de> for ProjectProperties {
                     logs_config: logs_config,
                     name: name,
                     queued_timeout_in_minutes: queued_timeout_in_minutes,
+                    resource_access_role: resource_access_role,
                     secondary_artifacts: secondary_artifacts,
                     secondary_source_versions: secondary_source_versions,
                     secondary_sources: secondary_sources,
@@ -315,6 +340,7 @@ impl<'de> ::serde::Deserialize<'de> for ProjectProperties {
                     tags: tags,
                     timeout_in_minutes: timeout_in_minutes,
                     triggers: triggers,
+                    visibility: visibility,
                     vpc_config: vpc_config,
                 })
             }
@@ -1312,6 +1338,11 @@ pub mod project {
     /// The [`AWS::CodeBuild::Project.ProjectBuildBatchConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projectbuildbatchconfig.html) property type.
     #[derive(Debug, Default)]
     pub struct ProjectBuildBatchConfig {
+        /// Property [`BatchReportMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projectbuildbatchconfig.html#cfn-codebuild-project-projectbuildbatchconfig-batchreportmode).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub batch_report_mode: Option<::Value<String>>,
         /// Property [`CombineArtifacts`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projectbuildbatchconfig.html#cfn-codebuild-project-projectbuildbatchconfig-combineartifacts).
         ///
         /// Update type: _Mutable_.
@@ -1337,6 +1368,9 @@ pub mod project {
     impl ::codec::SerializeValue for ProjectBuildBatchConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref batch_report_mode) = self.batch_report_mode {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BatchReportMode", batch_report_mode)?;
+            }
             if let Some(ref combine_artifacts) = self.combine_artifacts {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "CombineArtifacts", combine_artifacts)?;
             }
@@ -1365,6 +1399,7 @@ pub mod project {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut batch_report_mode: Option<::Value<String>> = None;
                     let mut combine_artifacts: Option<::Value<bool>> = None;
                     let mut restrictions: Option<::Value<BatchRestrictions>> = None;
                     let mut service_role: Option<::Value<String>> = None;
@@ -1372,6 +1407,9 @@ pub mod project {
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "BatchReportMode" => {
+                                batch_report_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "CombineArtifacts" => {
                                 combine_artifacts = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1389,6 +1427,7 @@ pub mod project {
                     }
 
                     Ok(ProjectBuildBatchConfig {
+                        batch_report_mode: batch_report_mode,
                         combine_artifacts: combine_artifacts,
                         restrictions: restrictions,
                         service_role: service_role,

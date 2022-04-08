@@ -626,6 +626,16 @@ pub mod launch_profile {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub max_session_length_in_minutes: Option<::Value<f64>>,
+        /// Property [`MaxStoppedSessionLengthInMinutes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-nimblestudio-launchprofile-streamconfiguration.html#cfn-nimblestudio-launchprofile-streamconfiguration-maxstoppedsessionlengthinminutes).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub max_stopped_session_length_in_minutes: Option<::Value<f64>>,
+        /// Property [`SessionStorage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-nimblestudio-launchprofile-streamconfiguration.html#cfn-nimblestudio-launchprofile-streamconfiguration-sessionstorage).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub session_storage: Option<::Value<StreamConfigurationSessionStorage>>,
         /// Property [`StreamingImageIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-nimblestudio-launchprofile-streamconfiguration.html#cfn-nimblestudio-launchprofile-streamconfiguration-streamingimageids).
         ///
         /// Update type: _Mutable_.
@@ -640,6 +650,12 @@ pub mod launch_profile {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ec2InstanceTypes", &self.ec2_instance_types)?;
             if let Some(ref max_session_length_in_minutes) = self.max_session_length_in_minutes {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxSessionLengthInMinutes", max_session_length_in_minutes)?;
+            }
+            if let Some(ref max_stopped_session_length_in_minutes) = self.max_stopped_session_length_in_minutes {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxStoppedSessionLengthInMinutes", max_stopped_session_length_in_minutes)?;
+            }
+            if let Some(ref session_storage) = self.session_storage {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SessionStorage", session_storage)?;
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamingImageIds", &self.streaming_image_ids)?;
             ::serde::ser::SerializeMap::end(map)
@@ -661,6 +677,8 @@ pub mod launch_profile {
                     let mut clipboard_mode: Option<::Value<String>> = None;
                     let mut ec2_instance_types: Option<::ValueList<String>> = None;
                     let mut max_session_length_in_minutes: Option<::Value<f64>> = None;
+                    let mut max_stopped_session_length_in_minutes: Option<::Value<f64>> = None;
+                    let mut session_storage: Option<::Value<StreamConfigurationSessionStorage>> = None;
                     let mut streaming_image_ids: Option<::ValueList<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -674,6 +692,12 @@ pub mod launch_profile {
                             "MaxSessionLengthInMinutes" => {
                                 max_session_length_in_minutes = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "MaxStoppedSessionLengthInMinutes" => {
+                                max_stopped_session_length_in_minutes = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SessionStorage" => {
+                                session_storage = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "StreamingImageIds" => {
                                 streaming_image_ids = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -685,7 +709,141 @@ pub mod launch_profile {
                         clipboard_mode: clipboard_mode.ok_or(::serde::de::Error::missing_field("ClipboardMode"))?,
                         ec2_instance_types: ec2_instance_types.ok_or(::serde::de::Error::missing_field("Ec2InstanceTypes"))?,
                         max_session_length_in_minutes: max_session_length_in_minutes,
+                        max_stopped_session_length_in_minutes: max_stopped_session_length_in_minutes,
+                        session_storage: session_storage,
                         streaming_image_ids: streaming_image_ids.ok_or(::serde::de::Error::missing_field("StreamingImageIds"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::NimbleStudio::LaunchProfile.StreamConfigurationSessionStorage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-nimblestudio-launchprofile-streamconfigurationsessionstorage.html) property type.
+    #[derive(Debug, Default)]
+    pub struct StreamConfigurationSessionStorage {
+        /// Property [`Mode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-nimblestudio-launchprofile-streamconfigurationsessionstorage.html#cfn-nimblestudio-launchprofile-streamconfigurationsessionstorage-mode).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub mode: Option<::ValueList<String>>,
+        /// Property [`Root`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-nimblestudio-launchprofile-streamconfigurationsessionstorage.html#cfn-nimblestudio-launchprofile-streamconfigurationsessionstorage-root).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub root: Option<::Value<StreamingSessionStorageRoot>>,
+    }
+
+    impl ::codec::SerializeValue for StreamConfigurationSessionStorage {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref mode) = self.mode {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Mode", mode)?;
+            }
+            if let Some(ref root) = self.root {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Root", root)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for StreamConfigurationSessionStorage {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<StreamConfigurationSessionStorage, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = StreamConfigurationSessionStorage;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type StreamConfigurationSessionStorage")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut mode: Option<::ValueList<String>> = None;
+                    let mut root: Option<::Value<StreamingSessionStorageRoot>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Mode" => {
+                                mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Root" => {
+                                root = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(StreamConfigurationSessionStorage {
+                        mode: mode,
+                        root: root,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::NimbleStudio::LaunchProfile.StreamingSessionStorageRoot`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-nimblestudio-launchprofile-streamingsessionstorageroot.html) property type.
+    #[derive(Debug, Default)]
+    pub struct StreamingSessionStorageRoot {
+        /// Property [`Linux`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-nimblestudio-launchprofile-streamingsessionstorageroot.html#cfn-nimblestudio-launchprofile-streamingsessionstorageroot-linux).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub linux: Option<::Value<String>>,
+        /// Property [`Windows`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-nimblestudio-launchprofile-streamingsessionstorageroot.html#cfn-nimblestudio-launchprofile-streamingsessionstorageroot-windows).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub windows: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for StreamingSessionStorageRoot {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref linux) = self.linux {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Linux", linux)?;
+            }
+            if let Some(ref windows) = self.windows {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Windows", windows)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for StreamingSessionStorageRoot {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<StreamingSessionStorageRoot, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = StreamingSessionStorageRoot;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type StreamingSessionStorageRoot")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut linux: Option<::Value<String>> = None;
+                    let mut windows: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Linux" => {
+                                linux = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Windows" => {
+                                windows = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(StreamingSessionStorageRoot {
+                        linux: linux,
+                        windows: windows,
                     })
                 }
             }

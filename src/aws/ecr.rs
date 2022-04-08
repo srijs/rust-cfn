@@ -117,6 +117,97 @@ impl From<PublicRepositoryProperties> for PublicRepository {
     }
 }
 
+/// The [`AWS::ECR::PullThroughCacheRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-pullthroughcacherule.html) resource type.
+#[derive(Debug, Default)]
+pub struct PullThroughCacheRule {
+    properties: PullThroughCacheRuleProperties
+}
+
+/// Properties for the `PullThroughCacheRule` resource.
+#[derive(Debug, Default)]
+pub struct PullThroughCacheRuleProperties {
+    /// Property [`EcrRepositoryPrefix`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-pullthroughcacherule.html#cfn-ecr-pullthroughcacherule-ecrrepositoryprefix).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub ecr_repository_prefix: Option<::Value<String>>,
+    /// Property [`UpstreamRegistryUrl`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-pullthroughcacherule.html#cfn-ecr-pullthroughcacherule-upstreamregistryurl).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub upstream_registry_url: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for PullThroughCacheRuleProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref ecr_repository_prefix) = self.ecr_repository_prefix {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EcrRepositoryPrefix", ecr_repository_prefix)?;
+        }
+        if let Some(ref upstream_registry_url) = self.upstream_registry_url {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UpstreamRegistryUrl", upstream_registry_url)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for PullThroughCacheRuleProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<PullThroughCacheRuleProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = PullThroughCacheRuleProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type PullThroughCacheRuleProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut ecr_repository_prefix: Option<::Value<String>> = None;
+                let mut upstream_registry_url: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "EcrRepositoryPrefix" => {
+                            ecr_repository_prefix = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "UpstreamRegistryUrl" => {
+                            upstream_registry_url = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(PullThroughCacheRuleProperties {
+                    ecr_repository_prefix: ecr_repository_prefix,
+                    upstream_registry_url: upstream_registry_url,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for PullThroughCacheRule {
+    type Properties = PullThroughCacheRuleProperties;
+    const TYPE: &'static str = "AWS::ECR::PullThroughCacheRule";
+    fn properties(&self) -> &PullThroughCacheRuleProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut PullThroughCacheRuleProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for PullThroughCacheRule {}
+
+impl From<PullThroughCacheRuleProperties> for PullThroughCacheRule {
+    fn from(properties: PullThroughCacheRuleProperties) -> PullThroughCacheRule {
+        PullThroughCacheRule { properties }
+    }
+}
+
 /// The [`AWS::ECR::RegistryPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-registrypolicy.html) resource type.
 #[derive(Debug, Default)]
 pub struct RegistryPolicy {
@@ -549,12 +640,20 @@ pub mod replication_configuration {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub destinations: ::ValueList<ReplicationDestination>,
+        /// Property [`RepositoryFilters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-replicationconfiguration-replicationrule.html#cfn-ecr-replicationconfiguration-replicationrule-repositoryfilters).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub repository_filters: Option<::ValueList<RepositoryFilter>>,
     }
 
     impl ::codec::SerializeValue for ReplicationRule {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Destinations", &self.destinations)?;
+            if let Some(ref repository_filters) = self.repository_filters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RepositoryFilters", repository_filters)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -572,11 +671,15 @@ pub mod replication_configuration {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut destinations: Option<::ValueList<ReplicationDestination>> = None;
+                    let mut repository_filters: Option<::ValueList<RepositoryFilter>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Destinations" => {
                                 destinations = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RepositoryFilters" => {
+                                repository_filters = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -584,6 +687,69 @@ pub mod replication_configuration {
 
                     Ok(ReplicationRule {
                         destinations: destinations.ok_or(::serde::de::Error::missing_field("Destinations"))?,
+                        repository_filters: repository_filters,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ECR::ReplicationConfiguration.RepositoryFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-replicationconfiguration-repositoryfilter.html) property type.
+    #[derive(Debug, Default)]
+    pub struct RepositoryFilter {
+        /// Property [`Filter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-replicationconfiguration-repositoryfilter.html#cfn-ecr-replicationconfiguration-repositoryfilter-filter).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub filter: ::Value<String>,
+        /// Property [`FilterType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecr-replicationconfiguration-repositoryfilter.html#cfn-ecr-replicationconfiguration-repositoryfilter-filtertype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub filter_type: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for RepositoryFilter {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Filter", &self.filter)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FilterType", &self.filter_type)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for RepositoryFilter {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<RepositoryFilter, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = RepositoryFilter;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type RepositoryFilter")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut filter: Option<::Value<String>> = None;
+                    let mut filter_type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Filter" => {
+                                filter = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "FilterType" => {
+                                filter_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(RepositoryFilter {
+                        filter: filter.ok_or(::serde::de::Error::missing_field("Filter"))?,
+                        filter_type: filter_type.ok_or(::serde::de::Error::missing_field("FilterType"))?,
                     })
                 }
             }

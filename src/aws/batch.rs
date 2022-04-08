@@ -19,6 +19,11 @@ pub struct ComputeEnvironmentProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub compute_resources: Option<::Value<self::compute_environment::ComputeResources>>,
+    /// Property [`ReplaceComputeEnvironment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-computeenvironment.html#cfn-batch-computeenvironment-replacecomputeenvironment).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub replace_compute_environment: Option<::Value<bool>>,
     /// Property [`ServiceRole`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-computeenvironment.html#cfn-batch-computeenvironment-servicerole).
     ///
     /// Update type: _Mutable_.
@@ -33,12 +38,22 @@ pub struct ComputeEnvironmentProperties {
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub tags: Option<::Value<::json::Value>>,
+    pub tags: Option<::ValueMap<String>>,
     /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-computeenvironment.html#cfn-batch-computeenvironment-type).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub r#type: ::Value<String>,
+    /// Property [`UnmanagedvCpus`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-computeenvironment.html#cfn-batch-computeenvironment-unmanagedvcpus).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub unmanagedv_cpus: Option<::Value<u32>>,
+    /// Property [`UpdatePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-computeenvironment.html#cfn-batch-computeenvironment-updatepolicy).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub update_policy: Option<::Value<self::compute_environment::UpdatePolicy>>,
 }
 
 impl ::serde::Serialize for ComputeEnvironmentProperties {
@@ -50,6 +65,9 @@ impl ::serde::Serialize for ComputeEnvironmentProperties {
         if let Some(ref compute_resources) = self.compute_resources {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComputeResources", compute_resources)?;
         }
+        if let Some(ref replace_compute_environment) = self.replace_compute_environment {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplaceComputeEnvironment", replace_compute_environment)?;
+        }
         if let Some(ref service_role) = self.service_role {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceRole", service_role)?;
         }
@@ -60,6 +78,12 @@ impl ::serde::Serialize for ComputeEnvironmentProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
+        if let Some(ref unmanagedv_cpus) = self.unmanagedv_cpus {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UnmanagedvCpus", unmanagedv_cpus)?;
+        }
+        if let Some(ref update_policy) = self.update_policy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UpdatePolicy", update_policy)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -78,10 +102,13 @@ impl<'de> ::serde::Deserialize<'de> for ComputeEnvironmentProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut compute_environment_name: Option<::Value<String>> = None;
                 let mut compute_resources: Option<::Value<self::compute_environment::ComputeResources>> = None;
+                let mut replace_compute_environment: Option<::Value<bool>> = None;
                 let mut service_role: Option<::Value<String>> = None;
                 let mut state: Option<::Value<String>> = None;
-                let mut tags: Option<::Value<::json::Value>> = None;
+                let mut tags: Option<::ValueMap<String>> = None;
                 let mut r#type: Option<::Value<String>> = None;
+                let mut unmanagedv_cpus: Option<::Value<u32>> = None;
+                let mut update_policy: Option<::Value<self::compute_environment::UpdatePolicy>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -90,6 +117,9 @@ impl<'de> ::serde::Deserialize<'de> for ComputeEnvironmentProperties {
                         }
                         "ComputeResources" => {
                             compute_resources = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ReplaceComputeEnvironment" => {
+                            replace_compute_environment = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ServiceRole" => {
                             service_role = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -103,6 +133,12 @@ impl<'de> ::serde::Deserialize<'de> for ComputeEnvironmentProperties {
                         "Type" => {
                             r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "UnmanagedvCpus" => {
+                            unmanagedv_cpus = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "UpdatePolicy" => {
+                            update_policy = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
@@ -110,10 +146,13 @@ impl<'de> ::serde::Deserialize<'de> for ComputeEnvironmentProperties {
                 Ok(ComputeEnvironmentProperties {
                     compute_environment_name: compute_environment_name,
                     compute_resources: compute_resources,
+                    replace_compute_environment: replace_compute_environment,
                     service_role: service_role,
                     state: state,
                     tags: tags,
                     r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
+                    unmanagedv_cpus: unmanagedv_cpus,
+                    update_policy: update_policy,
                 })
             }
         }
@@ -185,6 +224,11 @@ pub struct JobDefinitionProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub retry_strategy: Option<::Value<self::job_definition::RetryStrategy>>,
+    /// Property [`SchedulingPriority`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html#cfn-batch-jobdefinition-schedulingpriority).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub scheduling_priority: Option<::Value<u32>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html#cfn-batch-jobdefinition-tags).
     ///
     /// Update type: _Immutable_.
@@ -226,6 +270,9 @@ impl ::serde::Serialize for JobDefinitionProperties {
         if let Some(ref retry_strategy) = self.retry_strategy {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RetryStrategy", retry_strategy)?;
         }
+        if let Some(ref scheduling_priority) = self.scheduling_priority {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SchedulingPriority", scheduling_priority)?;
+        }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
@@ -256,6 +303,7 @@ impl<'de> ::serde::Deserialize<'de> for JobDefinitionProperties {
                 let mut platform_capabilities: Option<::ValueList<String>> = None;
                 let mut propagate_tags: Option<::Value<bool>> = None;
                 let mut retry_strategy: Option<::Value<self::job_definition::RetryStrategy>> = None;
+                let mut scheduling_priority: Option<::Value<u32>> = None;
                 let mut tags: Option<::Value<::json::Value>> = None;
                 let mut timeout: Option<::Value<self::job_definition::Timeout>> = None;
                 let mut r#type: Option<::Value<String>> = None;
@@ -283,6 +331,9 @@ impl<'de> ::serde::Deserialize<'de> for JobDefinitionProperties {
                         "RetryStrategy" => {
                             retry_strategy = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "SchedulingPriority" => {
+                            scheduling_priority = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -304,6 +355,7 @@ impl<'de> ::serde::Deserialize<'de> for JobDefinitionProperties {
                     platform_capabilities: platform_capabilities,
                     propagate_tags: propagate_tags,
                     retry_strategy: retry_strategy,
+                    scheduling_priority: scheduling_priority,
                     tags: tags,
                     timeout: timeout,
                     r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
@@ -358,6 +410,11 @@ pub struct JobQueueProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub priority: ::Value<u32>,
+    /// Property [`SchedulingPolicyArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobqueue.html#cfn-batch-jobqueue-schedulingpolicyarn).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub scheduling_policy_arn: Option<::Value<String>>,
     /// Property [`State`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobqueue.html#cfn-batch-jobqueue-state).
     ///
     /// Update type: _Mutable_.
@@ -367,7 +424,7 @@ pub struct JobQueueProperties {
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub tags: Option<::Value<::json::Value>>,
+    pub tags: Option<::ValueMap<String>>,
 }
 
 impl ::serde::Serialize for JobQueueProperties {
@@ -378,6 +435,9 @@ impl ::serde::Serialize for JobQueueProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "JobQueueName", job_queue_name)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Priority", &self.priority)?;
+        if let Some(ref scheduling_policy_arn) = self.scheduling_policy_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SchedulingPolicyArn", scheduling_policy_arn)?;
+        }
         if let Some(ref state) = self.state {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "State", state)?;
         }
@@ -403,8 +463,9 @@ impl<'de> ::serde::Deserialize<'de> for JobQueueProperties {
                 let mut compute_environment_order: Option<::ValueList<self::job_queue::ComputeEnvironmentOrder>> = None;
                 let mut job_queue_name: Option<::Value<String>> = None;
                 let mut priority: Option<::Value<u32>> = None;
+                let mut scheduling_policy_arn: Option<::Value<String>> = None;
                 let mut state: Option<::Value<String>> = None;
-                let mut tags: Option<::Value<::json::Value>> = None;
+                let mut tags: Option<::ValueMap<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -416,6 +477,9 @@ impl<'de> ::serde::Deserialize<'de> for JobQueueProperties {
                         }
                         "Priority" => {
                             priority = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SchedulingPolicyArn" => {
+                            scheduling_policy_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "State" => {
                             state = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -431,6 +495,7 @@ impl<'de> ::serde::Deserialize<'de> for JobQueueProperties {
                     compute_environment_order: compute_environment_order.ok_or(::serde::de::Error::missing_field("ComputeEnvironmentOrder"))?,
                     job_queue_name: job_queue_name,
                     priority: priority.ok_or(::serde::de::Error::missing_field("Priority"))?,
+                    scheduling_policy_arn: scheduling_policy_arn,
                     state: state,
                     tags: tags,
                 })
@@ -460,6 +525,110 @@ impl From<JobQueueProperties> for JobQueue {
     }
 }
 
+/// The [`AWS::Batch::SchedulingPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-schedulingpolicy.html) resource type.
+#[derive(Debug, Default)]
+pub struct SchedulingPolicy {
+    properties: SchedulingPolicyProperties
+}
+
+/// Properties for the `SchedulingPolicy` resource.
+#[derive(Debug, Default)]
+pub struct SchedulingPolicyProperties {
+    /// Property [`FairsharePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-schedulingpolicy.html#cfn-batch-schedulingpolicy-fairsharepolicy).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub fairshare_policy: Option<::Value<self::scheduling_policy::FairsharePolicy>>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-schedulingpolicy.html#cfn-batch-schedulingpolicy-name).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub name: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-schedulingpolicy.html#cfn-batch-schedulingpolicy-tags).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub tags: Option<::ValueMap<String>>,
+}
+
+impl ::serde::Serialize for SchedulingPolicyProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref fairshare_policy) = self.fairshare_policy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FairsharePolicy", fairshare_policy)?;
+        }
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for SchedulingPolicyProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<SchedulingPolicyProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = SchedulingPolicyProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type SchedulingPolicyProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut fairshare_policy: Option<::Value<self::scheduling_policy::FairsharePolicy>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueMap<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "FairsharePolicy" => {
+                            fairshare_policy = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(SchedulingPolicyProperties {
+                    fairshare_policy: fairshare_policy,
+                    name: name,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for SchedulingPolicy {
+    type Properties = SchedulingPolicyProperties;
+    const TYPE: &'static str = "AWS::Batch::SchedulingPolicy";
+    fn properties(&self) -> &SchedulingPolicyProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut SchedulingPolicyProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for SchedulingPolicy {}
+
+impl From<SchedulingPolicyProperties> for SchedulingPolicy {
+    fn from(properties: SchedulingPolicyProperties) -> SchedulingPolicy {
+        SchedulingPolicy { properties }
+    }
+}
+
 pub mod compute_environment {
     //! Property types for the `ComputeEnvironment` resource.
 
@@ -468,13 +637,13 @@ pub mod compute_environment {
     pub struct ComputeResources {
         /// Property [`AllocationStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-allocationstrategy).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub allocation_strategy: Option<::Value<String>>,
         /// Property [`BidPercentage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-bidpercentage).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub bid_percentage: Option<::Value<u32>>,
         /// Property [`DesiredvCpus`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-desiredvcpus).
         ///
@@ -483,33 +652,33 @@ pub mod compute_environment {
         pub desiredv_cpus: Option<::Value<u32>>,
         /// Property [`Ec2Configuration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-ec2configuration).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub ec2_configuration: Option<::ValueList<Ec2ConfigurationObject>>,
         /// Property [`Ec2KeyPair`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-ec2keypair).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub ec2_key_pair: Option<::Value<String>>,
         /// Property [`ImageId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-imageid).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub image_id: Option<::Value<String>>,
         /// Property [`InstanceRole`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-instancerole).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub instance_role: Option<::Value<String>>,
         /// Property [`InstanceTypes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-instancetypes).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub instance_types: Option<::ValueList<String>>,
         /// Property [`LaunchTemplate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-launchtemplate).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub launch_template: Option<::Value<LaunchTemplateSpecification>>,
         /// Property [`MaxvCpus`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-maxvcpus).
         ///
@@ -523,8 +692,8 @@ pub mod compute_environment {
         pub minv_cpus: Option<::Value<u32>>,
         /// Property [`PlacementGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-placementgroup).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub placement_group: Option<::Value<String>>,
         /// Property [`SecurityGroupIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-securitygroupids).
         ///
@@ -543,14 +712,19 @@ pub mod compute_environment {
         pub subnets: ::ValueList<String>,
         /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-tags).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
-        pub tags: Option<::Value<::json::Value>>,
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tags: Option<::ValueMap<String>>,
         /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-type).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub r#type: ::Value<String>,
+        /// Property [`UpdateToLatestImageVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-computeresources.html#cfn-batch-computeenvironment-computeresources-updatetolatestimageversion).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub update_to_latest_image_version: Option<::Value<bool>>,
     }
 
     impl ::codec::SerializeValue for ComputeResources {
@@ -601,6 +775,9 @@ pub mod compute_environment {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
+            if let Some(ref update_to_latest_image_version) = self.update_to_latest_image_version {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UpdateToLatestImageVersion", update_to_latest_image_version)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -632,8 +809,9 @@ pub mod compute_environment {
                     let mut security_group_ids: Option<::ValueList<String>> = None;
                     let mut spot_iam_fleet_role: Option<::Value<String>> = None;
                     let mut subnets: Option<::ValueList<String>> = None;
-                    let mut tags: Option<::Value<::json::Value>> = None;
+                    let mut tags: Option<::ValueMap<String>> = None;
                     let mut r#type: Option<::Value<String>> = None;
+                    let mut update_to_latest_image_version: Option<::Value<bool>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -688,6 +866,9 @@ pub mod compute_environment {
                             "Type" => {
                                 r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "UpdateToLatestImageVersion" => {
+                                update_to_latest_image_version = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
@@ -710,6 +891,7 @@ pub mod compute_environment {
                         subnets: subnets.ok_or(::serde::de::Error::missing_field("Subnets"))?,
                         tags: tags,
                         r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
+                        update_to_latest_image_version: update_to_latest_image_version,
                     })
                 }
             }
@@ -723,13 +905,13 @@ pub mod compute_environment {
     pub struct Ec2ConfigurationObject {
         /// Property [`ImageIdOverride`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-ec2configurationobject.html#cfn-batch-computeenvironment-ec2configurationobject-imageidoverride).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub image_id_override: Option<::Value<String>>,
         /// Property [`ImageType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-ec2configurationobject.html#cfn-batch-computeenvironment-ec2configurationobject-imagetype).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub image_type: ::Value<String>,
     }
 
@@ -787,18 +969,18 @@ pub mod compute_environment {
     pub struct LaunchTemplateSpecification {
         /// Property [`LaunchTemplateId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-launchtemplatespecification.html#cfn-batch-computeenvironment-launchtemplatespecification-launchtemplateid).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub launch_template_id: Option<::Value<String>>,
         /// Property [`LaunchTemplateName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-launchtemplatespecification.html#cfn-batch-computeenvironment-launchtemplatespecification-launchtemplatename).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub launch_template_name: Option<::Value<String>>,
         /// Property [`Version`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-launchtemplatespecification.html#cfn-batch-computeenvironment-launchtemplatespecification-version).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub version: Option<::Value<String>>,
     }
 
@@ -853,6 +1035,72 @@ pub mod compute_environment {
                         launch_template_id: launch_template_id,
                         launch_template_name: launch_template_name,
                         version: version,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Batch::ComputeEnvironment.UpdatePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-updatepolicy.html) property type.
+    #[derive(Debug, Default)]
+    pub struct UpdatePolicy {
+        /// Property [`JobExecutionTimeoutMinutes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-updatepolicy.html#cfn-batch-computeenvironment-updatepolicy-jobexecutiontimeoutminutes).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub job_execution_timeout_minutes: Option<::Value<u32>>,
+        /// Property [`TerminateJobsOnUpdate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-computeenvironment-updatepolicy.html#cfn-batch-computeenvironment-updatepolicy-terminatejobsonupdate).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub terminate_jobs_on_update: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for UpdatePolicy {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref job_execution_timeout_minutes) = self.job_execution_timeout_minutes {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "JobExecutionTimeoutMinutes", job_execution_timeout_minutes)?;
+            }
+            if let Some(ref terminate_jobs_on_update) = self.terminate_jobs_on_update {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TerminateJobsOnUpdate", terminate_jobs_on_update)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for UpdatePolicy {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<UpdatePolicy, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = UpdatePolicy;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type UpdatePolicy")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut job_execution_timeout_minutes: Option<::Value<u32>> = None;
+                    let mut terminate_jobs_on_update: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "JobExecutionTimeoutMinutes" => {
+                                job_execution_timeout_minutes = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TerminateJobsOnUpdate" => {
+                                terminate_jobs_on_update = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(UpdatePolicy {
+                        job_execution_timeout_minutes: job_execution_timeout_minutes,
+                        terminate_jobs_on_update: terminate_jobs_on_update,
                     })
                 }
             }
@@ -2669,6 +2917,155 @@ pub mod job_queue {
                     Ok(ComputeEnvironmentOrder {
                         compute_environment: compute_environment.ok_or(::serde::de::Error::missing_field("ComputeEnvironment"))?,
                         order: order.ok_or(::serde::de::Error::missing_field("Order"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod scheduling_policy {
+    //! Property types for the `SchedulingPolicy` resource.
+
+    /// The [`AWS::Batch::SchedulingPolicy.FairsharePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-schedulingpolicy-fairsharepolicy.html) property type.
+    #[derive(Debug, Default)]
+    pub struct FairsharePolicy {
+        /// Property [`ComputeReservation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-schedulingpolicy-fairsharepolicy.html#cfn-batch-schedulingpolicy-fairsharepolicy-computereservation).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub compute_reservation: Option<::Value<f64>>,
+        /// Property [`ShareDecaySeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-schedulingpolicy-fairsharepolicy.html#cfn-batch-schedulingpolicy-fairsharepolicy-sharedecayseconds).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub share_decay_seconds: Option<::Value<f64>>,
+        /// Property [`ShareDistribution`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-schedulingpolicy-fairsharepolicy.html#cfn-batch-schedulingpolicy-fairsharepolicy-sharedistribution).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub share_distribution: Option<::ValueList<ShareAttributes>>,
+    }
+
+    impl ::codec::SerializeValue for FairsharePolicy {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref compute_reservation) = self.compute_reservation {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComputeReservation", compute_reservation)?;
+            }
+            if let Some(ref share_decay_seconds) = self.share_decay_seconds {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ShareDecaySeconds", share_decay_seconds)?;
+            }
+            if let Some(ref share_distribution) = self.share_distribution {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ShareDistribution", share_distribution)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for FairsharePolicy {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<FairsharePolicy, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = FairsharePolicy;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type FairsharePolicy")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut compute_reservation: Option<::Value<f64>> = None;
+                    let mut share_decay_seconds: Option<::Value<f64>> = None;
+                    let mut share_distribution: Option<::ValueList<ShareAttributes>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ComputeReservation" => {
+                                compute_reservation = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ShareDecaySeconds" => {
+                                share_decay_seconds = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ShareDistribution" => {
+                                share_distribution = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(FairsharePolicy {
+                        compute_reservation: compute_reservation,
+                        share_decay_seconds: share_decay_seconds,
+                        share_distribution: share_distribution,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Batch::SchedulingPolicy.ShareAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-schedulingpolicy-shareattributes.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ShareAttributes {
+        /// Property [`ShareIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-schedulingpolicy-shareattributes.html#cfn-batch-schedulingpolicy-shareattributes-shareidentifier).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub share_identifier: Option<::Value<String>>,
+        /// Property [`WeightFactor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-batch-schedulingpolicy-shareattributes.html#cfn-batch-schedulingpolicy-shareattributes-weightfactor).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub weight_factor: Option<::Value<f64>>,
+    }
+
+    impl ::codec::SerializeValue for ShareAttributes {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref share_identifier) = self.share_identifier {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ShareIdentifier", share_identifier)?;
+            }
+            if let Some(ref weight_factor) = self.weight_factor {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "WeightFactor", weight_factor)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ShareAttributes {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ShareAttributes, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ShareAttributes;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ShareAttributes")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut share_identifier: Option<::Value<String>> = None;
+                    let mut weight_factor: Option<::Value<f64>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ShareIdentifier" => {
+                                share_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "WeightFactor" => {
+                                weight_factor = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ShareAttributes {
+                        share_identifier: share_identifier,
+                        weight_factor: weight_factor,
                     })
                 }
             }

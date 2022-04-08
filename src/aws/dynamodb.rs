@@ -267,6 +267,11 @@ pub struct TableProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub stream_specification: Option<::Value<self::table::StreamSpecification>>,
+    /// Property [`TableClass`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-tableclass).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub table_class: Option<::Value<String>>,
     /// Property [`TableName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-tablename).
     ///
     /// Update type: _Immutable_.
@@ -318,6 +323,9 @@ impl ::serde::Serialize for TableProperties {
         if let Some(ref stream_specification) = self.stream_specification {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamSpecification", stream_specification)?;
         }
+        if let Some(ref table_class) = self.table_class {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TableClass", table_class)?;
+        }
         if let Some(ref table_name) = self.table_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TableName", table_name)?;
         }
@@ -354,6 +362,7 @@ impl<'de> ::serde::Deserialize<'de> for TableProperties {
                 let mut provisioned_throughput: Option<::Value<self::table::ProvisionedThroughput>> = None;
                 let mut sse_specification: Option<::Value<self::table::SSESpecification>> = None;
                 let mut stream_specification: Option<::Value<self::table::StreamSpecification>> = None;
+                let mut table_class: Option<::Value<String>> = None;
                 let mut table_name: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut time_to_live_specification: Option<::Value<self::table::TimeToLiveSpecification>> = None;
@@ -393,6 +402,9 @@ impl<'de> ::serde::Deserialize<'de> for TableProperties {
                         "StreamSpecification" => {
                             stream_specification = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "TableClass" => {
+                            table_class = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "TableName" => {
                             table_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -418,6 +430,7 @@ impl<'de> ::serde::Deserialize<'de> for TableProperties {
                     provisioned_throughput: provisioned_throughput,
                     sse_specification: sse_specification,
                     stream_specification: stream_specification,
+                    table_class: table_class,
                     table_name: table_name,
                     tags: tags,
                     time_to_live_specification: time_to_live_specification,
@@ -1217,6 +1230,11 @@ pub mod global_table {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub sse_specification: Option<::Value<ReplicaSSESpecification>>,
+        /// Property [`TableClass`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-replicaspecification.html#cfn-dynamodb-globaltable-replicaspecification-tableclass).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub table_class: Option<::Value<String>>,
         /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-replicaspecification.html#cfn-dynamodb-globaltable-replicaspecification-tags).
         ///
         /// Update type: _Mutable_.
@@ -1243,6 +1261,9 @@ pub mod global_table {
             if let Some(ref sse_specification) = self.sse_specification {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SSESpecification", sse_specification)?;
             }
+            if let Some(ref table_class) = self.table_class {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TableClass", table_class)?;
+            }
             if let Some(ref tags) = self.tags {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
             }
@@ -1268,6 +1289,7 @@ pub mod global_table {
                     let mut read_provisioned_throughput_settings: Option<::Value<ReadProvisionedThroughputSettings>> = None;
                     let mut region: Option<::Value<String>> = None;
                     let mut sse_specification: Option<::Value<ReplicaSSESpecification>> = None;
+                    let mut table_class: Option<::Value<String>> = None;
                     let mut tags: Option<::ValueList<::Tag>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -1290,6 +1312,9 @@ pub mod global_table {
                             "SSESpecification" => {
                                 sse_specification = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "TableClass" => {
+                                table_class = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Tags" => {
                                 tags = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1304,6 +1329,7 @@ pub mod global_table {
                         read_provisioned_throughput_settings: read_provisioned_throughput_settings,
                         region: region.ok_or(::serde::de::Error::missing_field("Region"))?,
                         sse_specification: sse_specification,
+                        table_class: table_class,
                         tags: tags,
                     })
                 }

@@ -9,6 +9,11 @@ pub struct DeliveryStream {
 /// Properties for the `DeliveryStream` resource.
 #[derive(Debug, Default)]
 pub struct DeliveryStreamProperties {
+    /// Property [`AmazonopensearchserviceDestinationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisfirehose-deliverystream.html#cfn-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub amazonopensearchservice_destination_configuration: Option<::Value<self::delivery_stream::AmazonopensearchserviceDestinationConfiguration>>,
     /// Property [`DeliveryStreamEncryptionConfigurationInput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisfirehose-deliverystream.html#cfn-kinesisfirehose-deliverystream-deliverystreamencryptionconfigurationinput).
     ///
     /// Update type: _Mutable_.
@@ -69,6 +74,9 @@ pub struct DeliveryStreamProperties {
 impl ::serde::Serialize for DeliveryStreamProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref amazonopensearchservice_destination_configuration) = self.amazonopensearchservice_destination_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AmazonopensearchserviceDestinationConfiguration", amazonopensearchservice_destination_configuration)?;
+        }
         if let Some(ref delivery_stream_encryption_configuration_input) = self.delivery_stream_encryption_configuration_input {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeliveryStreamEncryptionConfigurationInput", delivery_stream_encryption_configuration_input)?;
         }
@@ -118,6 +126,7 @@ impl<'de> ::serde::Deserialize<'de> for DeliveryStreamProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut amazonopensearchservice_destination_configuration: Option<::Value<self::delivery_stream::AmazonopensearchserviceDestinationConfiguration>> = None;
                 let mut delivery_stream_encryption_configuration_input: Option<::Value<self::delivery_stream::DeliveryStreamEncryptionConfigurationInput>> = None;
                 let mut delivery_stream_name: Option<::Value<String>> = None;
                 let mut delivery_stream_type: Option<::Value<String>> = None;
@@ -132,6 +141,9 @@ impl<'de> ::serde::Deserialize<'de> for DeliveryStreamProperties {
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "AmazonopensearchserviceDestinationConfiguration" => {
+                            amazonopensearchservice_destination_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "DeliveryStreamEncryptionConfigurationInput" => {
                             delivery_stream_encryption_configuration_input = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -170,6 +182,7 @@ impl<'de> ::serde::Deserialize<'de> for DeliveryStreamProperties {
                 }
 
                 Ok(DeliveryStreamProperties {
+                    amazonopensearchservice_destination_configuration: amazonopensearchservice_destination_configuration,
                     delivery_stream_encryption_configuration_input: delivery_stream_encryption_configuration_input,
                     delivery_stream_name: delivery_stream_name,
                     delivery_stream_type: delivery_stream_type,
@@ -210,6 +223,328 @@ impl From<DeliveryStreamProperties> for DeliveryStream {
 
 pub mod delivery_stream {
     //! Property types for the `DeliveryStream` resource.
+
+    /// The [`AWS::KinesisFirehose::DeliveryStream.AmazonopensearchserviceBufferingHints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchservicebufferinghints.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AmazonopensearchserviceBufferingHints {
+        /// Property [`IntervalInSeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchservicebufferinghints.html#cfn-kinesisfirehose-deliverystream-amazonopensearchservicebufferinghints-intervalinseconds).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub interval_in_seconds: Option<::Value<u32>>,
+        /// Property [`SizeInMBs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchservicebufferinghints.html#cfn-kinesisfirehose-deliverystream-amazonopensearchservicebufferinghints-sizeinmbs).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub size_in_m_bs: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for AmazonopensearchserviceBufferingHints {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref interval_in_seconds) = self.interval_in_seconds {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IntervalInSeconds", interval_in_seconds)?;
+            }
+            if let Some(ref size_in_m_bs) = self.size_in_m_bs {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SizeInMBs", size_in_m_bs)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AmazonopensearchserviceBufferingHints {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AmazonopensearchserviceBufferingHints, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AmazonopensearchserviceBufferingHints;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AmazonopensearchserviceBufferingHints")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut interval_in_seconds: Option<::Value<u32>> = None;
+                    let mut size_in_m_bs: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "IntervalInSeconds" => {
+                                interval_in_seconds = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SizeInMBs" => {
+                                size_in_m_bs = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AmazonopensearchserviceBufferingHints {
+                        interval_in_seconds: interval_in_seconds,
+                        size_in_m_bs: size_in_m_bs,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::KinesisFirehose::DeliveryStream.AmazonopensearchserviceDestinationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AmazonopensearchserviceDestinationConfiguration {
+        /// Property [`BufferingHints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration-bufferinghints).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub buffering_hints: Option<::Value<AmazonopensearchserviceBufferingHints>>,
+        /// Property [`CloudWatchLoggingOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration-cloudwatchloggingoptions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cloud_watch_logging_options: Option<::Value<CloudWatchLoggingOptions>>,
+        /// Property [`ClusterEndpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration-clusterendpoint).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cluster_endpoint: Option<::Value<String>>,
+        /// Property [`DomainARN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration-domainarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub domain_arn: Option<::Value<String>>,
+        /// Property [`IndexName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration-indexname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub index_name: ::Value<String>,
+        /// Property [`IndexRotationPeriod`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration-indexrotationperiod).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub index_rotation_period: Option<::Value<String>>,
+        /// Property [`ProcessingConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration-processingconfiguration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub processing_configuration: Option<::Value<ProcessingConfiguration>>,
+        /// Property [`RetryOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration-retryoptions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub retry_options: Option<::Value<AmazonopensearchserviceRetryOptions>>,
+        /// Property [`RoleARN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration-rolearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub role_arn: ::Value<String>,
+        /// Property [`S3BackupMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration-s3backupmode).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub s3_backup_mode: Option<::Value<String>>,
+        /// Property [`S3Configuration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration-s3configuration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub s3_configuration: ::Value<S3DestinationConfiguration>,
+        /// Property [`TypeName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration-typename).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub type_name: Option<::Value<String>>,
+        /// Property [`VpcConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration.html#cfn-kinesisfirehose-deliverystream-amazonopensearchservicedestinationconfiguration-vpcconfiguration).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub vpc_configuration: Option<::Value<VpcConfiguration>>,
+    }
+
+    impl ::codec::SerializeValue for AmazonopensearchserviceDestinationConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref buffering_hints) = self.buffering_hints {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BufferingHints", buffering_hints)?;
+            }
+            if let Some(ref cloud_watch_logging_options) = self.cloud_watch_logging_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchLoggingOptions", cloud_watch_logging_options)?;
+            }
+            if let Some(ref cluster_endpoint) = self.cluster_endpoint {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClusterEndpoint", cluster_endpoint)?;
+            }
+            if let Some(ref domain_arn) = self.domain_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainARN", domain_arn)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IndexName", &self.index_name)?;
+            if let Some(ref index_rotation_period) = self.index_rotation_period {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IndexRotationPeriod", index_rotation_period)?;
+            }
+            if let Some(ref processing_configuration) = self.processing_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProcessingConfiguration", processing_configuration)?;
+            }
+            if let Some(ref retry_options) = self.retry_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RetryOptions", retry_options)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleARN", &self.role_arn)?;
+            if let Some(ref s3_backup_mode) = self.s3_backup_mode {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3BackupMode", s3_backup_mode)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Configuration", &self.s3_configuration)?;
+            if let Some(ref type_name) = self.type_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TypeName", type_name)?;
+            }
+            if let Some(ref vpc_configuration) = self.vpc_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcConfiguration", vpc_configuration)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AmazonopensearchserviceDestinationConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AmazonopensearchserviceDestinationConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AmazonopensearchserviceDestinationConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AmazonopensearchserviceDestinationConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut buffering_hints: Option<::Value<AmazonopensearchserviceBufferingHints>> = None;
+                    let mut cloud_watch_logging_options: Option<::Value<CloudWatchLoggingOptions>> = None;
+                    let mut cluster_endpoint: Option<::Value<String>> = None;
+                    let mut domain_arn: Option<::Value<String>> = None;
+                    let mut index_name: Option<::Value<String>> = None;
+                    let mut index_rotation_period: Option<::Value<String>> = None;
+                    let mut processing_configuration: Option<::Value<ProcessingConfiguration>> = None;
+                    let mut retry_options: Option<::Value<AmazonopensearchserviceRetryOptions>> = None;
+                    let mut role_arn: Option<::Value<String>> = None;
+                    let mut s3_backup_mode: Option<::Value<String>> = None;
+                    let mut s3_configuration: Option<::Value<S3DestinationConfiguration>> = None;
+                    let mut type_name: Option<::Value<String>> = None;
+                    let mut vpc_configuration: Option<::Value<VpcConfiguration>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "BufferingHints" => {
+                                buffering_hints = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CloudWatchLoggingOptions" => {
+                                cloud_watch_logging_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ClusterEndpoint" => {
+                                cluster_endpoint = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DomainARN" => {
+                                domain_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IndexName" => {
+                                index_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IndexRotationPeriod" => {
+                                index_rotation_period = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ProcessingConfiguration" => {
+                                processing_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RetryOptions" => {
+                                retry_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RoleARN" => {
+                                role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "S3BackupMode" => {
+                                s3_backup_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "S3Configuration" => {
+                                s3_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TypeName" => {
+                                type_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "VpcConfiguration" => {
+                                vpc_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AmazonopensearchserviceDestinationConfiguration {
+                        buffering_hints: buffering_hints,
+                        cloud_watch_logging_options: cloud_watch_logging_options,
+                        cluster_endpoint: cluster_endpoint,
+                        domain_arn: domain_arn,
+                        index_name: index_name.ok_or(::serde::de::Error::missing_field("IndexName"))?,
+                        index_rotation_period: index_rotation_period,
+                        processing_configuration: processing_configuration,
+                        retry_options: retry_options,
+                        role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleARN"))?,
+                        s3_backup_mode: s3_backup_mode,
+                        s3_configuration: s3_configuration.ok_or(::serde::de::Error::missing_field("S3Configuration"))?,
+                        type_name: type_name,
+                        vpc_configuration: vpc_configuration,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::KinesisFirehose::DeliveryStream.AmazonopensearchserviceRetryOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchserviceretryoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AmazonopensearchserviceRetryOptions {
+        /// Property [`DurationInSeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-amazonopensearchserviceretryoptions.html#cfn-kinesisfirehose-deliverystream-amazonopensearchserviceretryoptions-durationinseconds).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub duration_in_seconds: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for AmazonopensearchserviceRetryOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref duration_in_seconds) = self.duration_in_seconds {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DurationInSeconds", duration_in_seconds)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AmazonopensearchserviceRetryOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AmazonopensearchserviceRetryOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AmazonopensearchserviceRetryOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AmazonopensearchserviceRetryOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut duration_in_seconds: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DurationInSeconds" => {
+                                duration_in_seconds = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AmazonopensearchserviceRetryOptions {
+                        duration_in_seconds: duration_in_seconds,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::KinesisFirehose::DeliveryStream.BufferingHints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-bufferinghints.html) property type.
     #[derive(Debug, Default)]
@@ -655,6 +990,72 @@ pub mod delivery_stream {
         }
     }
 
+    /// The [`AWS::KinesisFirehose::DeliveryStream.DynamicPartitioningConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-dynamicpartitioningconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DynamicPartitioningConfiguration {
+        /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-dynamicpartitioningconfiguration.html#cfn-kinesisfirehose-deliverystream-dynamicpartitioningconfiguration-enabled).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub enabled: Option<::Value<bool>>,
+        /// Property [`RetryOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-dynamicpartitioningconfiguration.html#cfn-kinesisfirehose-deliverystream-dynamicpartitioningconfiguration-retryoptions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub retry_options: Option<::Value<RetryOptions>>,
+    }
+
+    impl ::codec::SerializeValue for DynamicPartitioningConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref enabled) = self.enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", enabled)?;
+            }
+            if let Some(ref retry_options) = self.retry_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RetryOptions", retry_options)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DynamicPartitioningConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DynamicPartitioningConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DynamicPartitioningConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DynamicPartitioningConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut enabled: Option<::Value<bool>> = None;
+                    let mut retry_options: Option<::Value<RetryOptions>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Enabled" => {
+                                enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RetryOptions" => {
+                                retry_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DynamicPartitioningConfiguration {
+                        enabled: enabled,
+                        retry_options: retry_options,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::KinesisFirehose::DeliveryStream.ElasticsearchBufferingHints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-elasticsearchbufferinghints.html) property type.
     #[derive(Debug, Default)]
     pub struct ElasticsearchBufferingHints {
@@ -1071,6 +1472,11 @@ pub mod delivery_stream {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub data_format_conversion_configuration: Option<::Value<DataFormatConversionConfiguration>>,
+        /// Property [`DynamicPartitioningConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-extendeds3destinationconfiguration.html#cfn-kinesisfirehose-deliverystream-extendeds3destinationconfiguration-dynamicpartitioningconfiguration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub dynamic_partitioning_configuration: Option<::Value<DynamicPartitioningConfiguration>>,
         /// Property [`EncryptionConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-deliverystream-extendeds3destinationconfiguration.html#cfn-kinesisfirehose-deliverystream-extendeds3destinationconfiguration-encryptionconfiguration).
         ///
         /// Update type: _Mutable_.
@@ -1124,6 +1530,9 @@ pub mod delivery_stream {
             if let Some(ref data_format_conversion_configuration) = self.data_format_conversion_configuration {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataFormatConversionConfiguration", data_format_conversion_configuration)?;
             }
+            if let Some(ref dynamic_partitioning_configuration) = self.dynamic_partitioning_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DynamicPartitioningConfiguration", dynamic_partitioning_configuration)?;
+            }
             if let Some(ref encryption_configuration) = self.encryption_configuration {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "EncryptionConfiguration", encryption_configuration)?;
             }
@@ -1164,6 +1573,7 @@ pub mod delivery_stream {
                     let mut cloud_watch_logging_options: Option<::Value<CloudWatchLoggingOptions>> = None;
                     let mut compression_format: Option<::Value<String>> = None;
                     let mut data_format_conversion_configuration: Option<::Value<DataFormatConversionConfiguration>> = None;
+                    let mut dynamic_partitioning_configuration: Option<::Value<DynamicPartitioningConfiguration>> = None;
                     let mut encryption_configuration: Option<::Value<EncryptionConfiguration>> = None;
                     let mut error_output_prefix: Option<::Value<String>> = None;
                     let mut prefix: Option<::Value<String>> = None;
@@ -1188,6 +1598,9 @@ pub mod delivery_stream {
                             }
                             "DataFormatConversionConfiguration" => {
                                 data_format_conversion_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DynamicPartitioningConfiguration" => {
+                                dynamic_partitioning_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "EncryptionConfiguration" => {
                                 encryption_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1220,6 +1633,7 @@ pub mod delivery_stream {
                         cloud_watch_logging_options: cloud_watch_logging_options,
                         compression_format: compression_format,
                         data_format_conversion_configuration: data_format_conversion_configuration,
+                        dynamic_partitioning_configuration: dynamic_partitioning_configuration,
                         encryption_configuration: encryption_configuration,
                         error_output_prefix: error_output_prefix,
                         prefix: prefix,

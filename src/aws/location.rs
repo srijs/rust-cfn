@@ -28,7 +28,7 @@ pub struct GeofenceCollectionProperties {
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub pricing_plan: ::Value<String>,
+    pub pricing_plan: Option<::Value<String>>,
     /// Property [`PricingPlanDataSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-geofencecollection.html#cfn-location-geofencecollection-pricingplandatasource).
     ///
     /// Update type: _Immutable_.
@@ -46,7 +46,9 @@ impl ::serde::Serialize for GeofenceCollectionProperties {
         if let Some(ref kms_key_id) = self.kms_key_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", kms_key_id)?;
         }
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PricingPlan", &self.pricing_plan)?;
+        if let Some(ref pricing_plan) = self.pricing_plan {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PricingPlan", pricing_plan)?;
+        }
         if let Some(ref pricing_plan_data_source) = self.pricing_plan_data_source {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PricingPlanDataSource", pricing_plan_data_source)?;
         }
@@ -97,7 +99,7 @@ impl<'de> ::serde::Deserialize<'de> for GeofenceCollectionProperties {
                     collection_name: collection_name.ok_or(::serde::de::Error::missing_field("CollectionName"))?,
                     description: description,
                     kms_key_id: kms_key_id,
-                    pricing_plan: pricing_plan.ok_or(::serde::de::Error::missing_field("PricingPlan"))?,
+                    pricing_plan: pricing_plan,
                     pricing_plan_data_source: pricing_plan_data_source,
                 })
             }
@@ -154,7 +156,7 @@ pub struct MapProperties {
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub pricing_plan: ::Value<String>,
+    pub pricing_plan: Option<::Value<String>>,
 }
 
 impl ::serde::Serialize for MapProperties {
@@ -165,7 +167,9 @@ impl ::serde::Serialize for MapProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "MapName", &self.map_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PricingPlan", &self.pricing_plan)?;
+        if let Some(ref pricing_plan) = self.pricing_plan {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PricingPlan", pricing_plan)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -209,7 +213,7 @@ impl<'de> ::serde::Deserialize<'de> for MapProperties {
                     configuration: configuration.ok_or(::serde::de::Error::missing_field("Configuration"))?,
                     description: description,
                     map_name: map_name.ok_or(::serde::de::Error::missing_field("MapName"))?,
-                    pricing_plan: pricing_plan.ok_or(::serde::de::Error::missing_field("PricingPlan"))?,
+                    pricing_plan: pricing_plan,
                 })
             }
         }
@@ -270,7 +274,7 @@ pub struct PlaceIndexProperties {
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub pricing_plan: ::Value<String>,
+    pub pricing_plan: Option<::Value<String>>,
 }
 
 impl ::serde::Serialize for PlaceIndexProperties {
@@ -284,7 +288,9 @@ impl ::serde::Serialize for PlaceIndexProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "IndexName", &self.index_name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PricingPlan", &self.pricing_plan)?;
+        if let Some(ref pricing_plan) = self.pricing_plan {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PricingPlan", pricing_plan)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -333,7 +339,7 @@ impl<'de> ::serde::Deserialize<'de> for PlaceIndexProperties {
                     data_source_configuration: data_source_configuration,
                     description: description,
                     index_name: index_name.ok_or(::serde::de::Error::missing_field("IndexName"))?,
-                    pricing_plan: pricing_plan.ok_or(::serde::de::Error::missing_field("PricingPlan"))?,
+                    pricing_plan: pricing_plan,
                 })
             }
         }
@@ -389,7 +395,7 @@ pub struct RouteCalculatorProperties {
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub pricing_plan: ::Value<String>,
+    pub pricing_plan: Option<::Value<String>>,
 }
 
 impl ::serde::Serialize for RouteCalculatorProperties {
@@ -400,7 +406,9 @@ impl ::serde::Serialize for RouteCalculatorProperties {
         if let Some(ref description) = self.description {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
         }
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PricingPlan", &self.pricing_plan)?;
+        if let Some(ref pricing_plan) = self.pricing_plan {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PricingPlan", pricing_plan)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -444,7 +452,7 @@ impl<'de> ::serde::Deserialize<'de> for RouteCalculatorProperties {
                     calculator_name: calculator_name.ok_or(::serde::de::Error::missing_field("CalculatorName"))?,
                     data_source: data_source.ok_or(::serde::de::Error::missing_field("DataSource"))?,
                     description: description,
-                    pricing_plan: pricing_plan.ok_or(::serde::de::Error::missing_field("PricingPlan"))?,
+                    pricing_plan: pricing_plan,
                 })
             }
         }
@@ -491,11 +499,16 @@ pub struct TrackerProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub kms_key_id: Option<::Value<String>>,
+    /// Property [`PositionFiltering`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-tracker.html#cfn-location-tracker-positionfiltering).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub position_filtering: Option<::Value<String>>,
     /// Property [`PricingPlan`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-tracker.html#cfn-location-tracker-pricingplan).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub pricing_plan: ::Value<String>,
+    pub pricing_plan: Option<::Value<String>>,
     /// Property [`PricingPlanDataSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-location-tracker.html#cfn-location-tracker-pricingplandatasource).
     ///
     /// Update type: _Immutable_.
@@ -517,7 +530,12 @@ impl ::serde::Serialize for TrackerProperties {
         if let Some(ref kms_key_id) = self.kms_key_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", kms_key_id)?;
         }
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PricingPlan", &self.pricing_plan)?;
+        if let Some(ref position_filtering) = self.position_filtering {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PositionFiltering", position_filtering)?;
+        }
+        if let Some(ref pricing_plan) = self.pricing_plan {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PricingPlan", pricing_plan)?;
+        }
         if let Some(ref pricing_plan_data_source) = self.pricing_plan_data_source {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PricingPlanDataSource", pricing_plan_data_source)?;
         }
@@ -540,6 +558,7 @@ impl<'de> ::serde::Deserialize<'de> for TrackerProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut description: Option<::Value<String>> = None;
                 let mut kms_key_id: Option<::Value<String>> = None;
+                let mut position_filtering: Option<::Value<String>> = None;
                 let mut pricing_plan: Option<::Value<String>> = None;
                 let mut pricing_plan_data_source: Option<::Value<String>> = None;
                 let mut tracker_name: Option<::Value<String>> = None;
@@ -551,6 +570,9 @@ impl<'de> ::serde::Deserialize<'de> for TrackerProperties {
                         }
                         "KmsKeyId" => {
                             kms_key_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PositionFiltering" => {
+                            position_filtering = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "PricingPlan" => {
                             pricing_plan = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -568,7 +590,8 @@ impl<'de> ::serde::Deserialize<'de> for TrackerProperties {
                 Ok(TrackerProperties {
                     description: description,
                     kms_key_id: kms_key_id,
-                    pricing_plan: pricing_plan.ok_or(::serde::de::Error::missing_field("PricingPlan"))?,
+                    position_filtering: position_filtering,
+                    pricing_plan: pricing_plan,
                     pricing_plan_data_source: pricing_plan_data_source,
                     tracker_name: tracker_name.ok_or(::serde::de::Error::missing_field("TrackerName"))?,
                 })

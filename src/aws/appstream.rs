@@ -1,5 +1,536 @@
 //! Types for the `AppStream` service.
 
+/// The [`AWS::AppStream::AppBlock`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-appblock.html) resource type.
+#[derive(Debug, Default)]
+pub struct AppBlock {
+    properties: AppBlockProperties
+}
+
+/// Properties for the `AppBlock` resource.
+#[derive(Debug, Default)]
+pub struct AppBlockProperties {
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-appblock.html#cfn-appstream-appblock-description).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`DisplayName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-appblock.html#cfn-appstream-appblock-displayname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub display_name: Option<::Value<String>>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-appblock.html#cfn-appstream-appblock-name).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub name: ::Value<String>,
+    /// Property [`SetupScriptDetails`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-appblock.html#cfn-appstream-appblock-setupscriptdetails).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub setup_script_details: ::Value<self::app_block::ScriptDetails>,
+    /// Property [`SourceS3Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-appblock.html#cfn-appstream-appblock-sources3location).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub source_s3_location: ::Value<self::app_block::S3Location>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-appblock.html#cfn-appstream-appblock-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for AppBlockProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref display_name) = self.display_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisplayName", display_name)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SetupScriptDetails", &self.setup_script_details)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceS3Location", &self.source_s3_location)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for AppBlockProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<AppBlockProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = AppBlockProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type AppBlockProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut description: Option<::Value<String>> = None;
+                let mut display_name: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut setup_script_details: Option<::Value<self::app_block::ScriptDetails>> = None;
+                let mut source_s3_location: Option<::Value<self::app_block::S3Location>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DisplayName" => {
+                            display_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SetupScriptDetails" => {
+                            setup_script_details = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SourceS3Location" => {
+                            source_s3_location = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(AppBlockProperties {
+                    description: description,
+                    display_name: display_name,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    setup_script_details: setup_script_details.ok_or(::serde::de::Error::missing_field("SetupScriptDetails"))?,
+                    source_s3_location: source_s3_location.ok_or(::serde::de::Error::missing_field("SourceS3Location"))?,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for AppBlock {
+    type Properties = AppBlockProperties;
+    const TYPE: &'static str = "AWS::AppStream::AppBlock";
+    fn properties(&self) -> &AppBlockProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut AppBlockProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for AppBlock {}
+
+impl From<AppBlockProperties> for AppBlock {
+    fn from(properties: AppBlockProperties) -> AppBlock {
+        AppBlock { properties }
+    }
+}
+
+/// The [`AWS::AppStream::Application`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-application.html) resource type.
+#[derive(Debug, Default)]
+pub struct Application {
+    properties: ApplicationProperties
+}
+
+/// Properties for the `Application` resource.
+#[derive(Debug, Default)]
+pub struct ApplicationProperties {
+    /// Property [`AppBlockArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-application.html#cfn-appstream-application-appblockarn).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub app_block_arn: ::Value<String>,
+    /// Property [`AttributesToDelete`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-application.html#cfn-appstream-application-attributestodelete).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub attributes_to_delete: Option<::ValueList<String>>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-application.html#cfn-appstream-application-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`DisplayName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-application.html#cfn-appstream-application-displayname).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub display_name: Option<::Value<String>>,
+    /// Property [`IconS3Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-application.html#cfn-appstream-application-icons3location).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub icon_s3_location: ::Value<self::application::S3Location>,
+    /// Property [`InstanceFamilies`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-application.html#cfn-appstream-application-instancefamilies).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub instance_families: ::ValueList<String>,
+    /// Property [`LaunchParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-application.html#cfn-appstream-application-launchparameters).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub launch_parameters: Option<::Value<String>>,
+    /// Property [`LaunchPath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-application.html#cfn-appstream-application-launchpath).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub launch_path: ::Value<String>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-application.html#cfn-appstream-application-name).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub name: ::Value<String>,
+    /// Property [`Platforms`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-application.html#cfn-appstream-application-platforms).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub platforms: ::ValueList<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-application.html#cfn-appstream-application-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`WorkingDirectory`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-application.html#cfn-appstream-application-workingdirectory).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub working_directory: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for ApplicationProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AppBlockArn", &self.app_block_arn)?;
+        if let Some(ref attributes_to_delete) = self.attributes_to_delete {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AttributesToDelete", attributes_to_delete)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref display_name) = self.display_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisplayName", display_name)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "IconS3Location", &self.icon_s3_location)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceFamilies", &self.instance_families)?;
+        if let Some(ref launch_parameters) = self.launch_parameters {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchParameters", launch_parameters)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchPath", &self.launch_path)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Platforms", &self.platforms)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref working_directory) = self.working_directory {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "WorkingDirectory", working_directory)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ApplicationProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ApplicationProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ApplicationProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ApplicationProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut app_block_arn: Option<::Value<String>> = None;
+                let mut attributes_to_delete: Option<::ValueList<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut display_name: Option<::Value<String>> = None;
+                let mut icon_s3_location: Option<::Value<self::application::S3Location>> = None;
+                let mut instance_families: Option<::ValueList<String>> = None;
+                let mut launch_parameters: Option<::Value<String>> = None;
+                let mut launch_path: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut platforms: Option<::ValueList<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut working_directory: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AppBlockArn" => {
+                            app_block_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "AttributesToDelete" => {
+                            attributes_to_delete = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DisplayName" => {
+                            display_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "IconS3Location" => {
+                            icon_s3_location = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "InstanceFamilies" => {
+                            instance_families = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "LaunchParameters" => {
+                            launch_parameters = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "LaunchPath" => {
+                            launch_path = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Platforms" => {
+                            platforms = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "WorkingDirectory" => {
+                            working_directory = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ApplicationProperties {
+                    app_block_arn: app_block_arn.ok_or(::serde::de::Error::missing_field("AppBlockArn"))?,
+                    attributes_to_delete: attributes_to_delete,
+                    description: description,
+                    display_name: display_name,
+                    icon_s3_location: icon_s3_location.ok_or(::serde::de::Error::missing_field("IconS3Location"))?,
+                    instance_families: instance_families.ok_or(::serde::de::Error::missing_field("InstanceFamilies"))?,
+                    launch_parameters: launch_parameters,
+                    launch_path: launch_path.ok_or(::serde::de::Error::missing_field("LaunchPath"))?,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    platforms: platforms.ok_or(::serde::de::Error::missing_field("Platforms"))?,
+                    tags: tags,
+                    working_directory: working_directory,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for Application {
+    type Properties = ApplicationProperties;
+    const TYPE: &'static str = "AWS::AppStream::Application";
+    fn properties(&self) -> &ApplicationProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut ApplicationProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for Application {}
+
+impl From<ApplicationProperties> for Application {
+    fn from(properties: ApplicationProperties) -> Application {
+        Application { properties }
+    }
+}
+
+/// The [`AWS::AppStream::ApplicationEntitlementAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-applicationentitlementassociation.html) resource type.
+#[derive(Debug, Default)]
+pub struct ApplicationEntitlementAssociation {
+    properties: ApplicationEntitlementAssociationProperties
+}
+
+/// Properties for the `ApplicationEntitlementAssociation` resource.
+#[derive(Debug, Default)]
+pub struct ApplicationEntitlementAssociationProperties {
+    /// Property [`ApplicationIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-applicationentitlementassociation.html#cfn-appstream-applicationentitlementassociation-applicationidentifier).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub application_identifier: ::Value<String>,
+    /// Property [`EntitlementName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-applicationentitlementassociation.html#cfn-appstream-applicationentitlementassociation-entitlementname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub entitlement_name: ::Value<String>,
+    /// Property [`StackName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-applicationentitlementassociation.html#cfn-appstream-applicationentitlementassociation-stackname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub stack_name: ::Value<String>,
+}
+
+impl ::serde::Serialize for ApplicationEntitlementAssociationProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationIdentifier", &self.application_identifier)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EntitlementName", &self.entitlement_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "StackName", &self.stack_name)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ApplicationEntitlementAssociationProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ApplicationEntitlementAssociationProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ApplicationEntitlementAssociationProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ApplicationEntitlementAssociationProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut application_identifier: Option<::Value<String>> = None;
+                let mut entitlement_name: Option<::Value<String>> = None;
+                let mut stack_name: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "ApplicationIdentifier" => {
+                            application_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "EntitlementName" => {
+                            entitlement_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "StackName" => {
+                            stack_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ApplicationEntitlementAssociationProperties {
+                    application_identifier: application_identifier.ok_or(::serde::de::Error::missing_field("ApplicationIdentifier"))?,
+                    entitlement_name: entitlement_name.ok_or(::serde::de::Error::missing_field("EntitlementName"))?,
+                    stack_name: stack_name.ok_or(::serde::de::Error::missing_field("StackName"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for ApplicationEntitlementAssociation {
+    type Properties = ApplicationEntitlementAssociationProperties;
+    const TYPE: &'static str = "AWS::AppStream::ApplicationEntitlementAssociation";
+    fn properties(&self) -> &ApplicationEntitlementAssociationProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut ApplicationEntitlementAssociationProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for ApplicationEntitlementAssociation {}
+
+impl From<ApplicationEntitlementAssociationProperties> for ApplicationEntitlementAssociation {
+    fn from(properties: ApplicationEntitlementAssociationProperties) -> ApplicationEntitlementAssociation {
+        ApplicationEntitlementAssociation { properties }
+    }
+}
+
+/// The [`AWS::AppStream::ApplicationFleetAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-applicationfleetassociation.html) resource type.
+#[derive(Debug, Default)]
+pub struct ApplicationFleetAssociation {
+    properties: ApplicationFleetAssociationProperties
+}
+
+/// Properties for the `ApplicationFleetAssociation` resource.
+#[derive(Debug, Default)]
+pub struct ApplicationFleetAssociationProperties {
+    /// Property [`ApplicationArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-applicationfleetassociation.html#cfn-appstream-applicationfleetassociation-applicationarn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub application_arn: ::Value<String>,
+    /// Property [`FleetName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-applicationfleetassociation.html#cfn-appstream-applicationfleetassociation-fleetname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub fleet_name: ::Value<String>,
+}
+
+impl ::serde::Serialize for ApplicationFleetAssociationProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationArn", &self.application_arn)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "FleetName", &self.fleet_name)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ApplicationFleetAssociationProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ApplicationFleetAssociationProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ApplicationFleetAssociationProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ApplicationFleetAssociationProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut application_arn: Option<::Value<String>> = None;
+                let mut fleet_name: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "ApplicationArn" => {
+                            application_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "FleetName" => {
+                            fleet_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ApplicationFleetAssociationProperties {
+                    application_arn: application_arn.ok_or(::serde::de::Error::missing_field("ApplicationArn"))?,
+                    fleet_name: fleet_name.ok_or(::serde::de::Error::missing_field("FleetName"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for ApplicationFleetAssociation {
+    type Properties = ApplicationFleetAssociationProperties;
+    const TYPE: &'static str = "AWS::AppStream::ApplicationFleetAssociation";
+    fn properties(&self) -> &ApplicationFleetAssociationProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut ApplicationFleetAssociationProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for ApplicationFleetAssociation {}
+
+impl From<ApplicationFleetAssociationProperties> for ApplicationFleetAssociation {
+    fn from(properties: ApplicationFleetAssociationProperties) -> ApplicationFleetAssociation {
+        ApplicationFleetAssociation { properties }
+    }
+}
+
 /// The [`AWS::AppStream::DirectoryConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-directoryconfig.html) resource type.
 #[derive(Debug, Default)]
 pub struct DirectoryConfig {
@@ -98,6 +629,128 @@ impl From<DirectoryConfigProperties> for DirectoryConfig {
     }
 }
 
+/// The [`AWS::AppStream::Entitlement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-entitlement.html) resource type.
+#[derive(Debug, Default)]
+pub struct Entitlement {
+    properties: EntitlementProperties
+}
+
+/// Properties for the `Entitlement` resource.
+#[derive(Debug, Default)]
+pub struct EntitlementProperties {
+    /// Property [`AppVisibility`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-entitlement.html#cfn-appstream-entitlement-appvisibility).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub app_visibility: ::Value<String>,
+    /// Property [`Attributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-entitlement.html#cfn-appstream-entitlement-attributes).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub attributes: ::ValueList<self::entitlement::Attribute>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-entitlement.html#cfn-appstream-entitlement-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-entitlement.html#cfn-appstream-entitlement-name).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub name: ::Value<String>,
+    /// Property [`StackName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-entitlement.html#cfn-appstream-entitlement-stackname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub stack_name: ::Value<String>,
+}
+
+impl ::serde::Serialize for EntitlementProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AppVisibility", &self.app_visibility)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attributes", &self.attributes)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "StackName", &self.stack_name)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for EntitlementProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<EntitlementProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = EntitlementProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type EntitlementProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut app_visibility: Option<::Value<String>> = None;
+                let mut attributes: Option<::ValueList<self::entitlement::Attribute>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut stack_name: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AppVisibility" => {
+                            app_visibility = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Attributes" => {
+                            attributes = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "StackName" => {
+                            stack_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(EntitlementProperties {
+                    app_visibility: app_visibility.ok_or(::serde::de::Error::missing_field("AppVisibility"))?,
+                    attributes: attributes.ok_or(::serde::de::Error::missing_field("Attributes"))?,
+                    description: description,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    stack_name: stack_name.ok_or(::serde::de::Error::missing_field("StackName"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for Entitlement {
+    type Properties = EntitlementProperties;
+    const TYPE: &'static str = "AWS::AppStream::Entitlement";
+    fn properties(&self) -> &EntitlementProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut EntitlementProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for Entitlement {}
+
+impl From<EntitlementProperties> for Entitlement {
+    fn from(properties: EntitlementProperties) -> Entitlement {
+        Entitlement { properties }
+    }
+}
+
 /// The [`AWS::AppStream::Fleet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-fleet.html) resource type.
 #[derive(Debug, Default)]
 pub struct Fleet {
@@ -111,7 +764,7 @@ pub struct FleetProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub compute_capacity: ::Value<self::fleet::ComputeCapacity>,
+    pub compute_capacity: Option<::Value<self::fleet::ComputeCapacity>>,
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-fleet.html#cfn-appstream-fleet-description).
     ///
     /// Update type: _Mutable_.
@@ -167,6 +820,11 @@ pub struct FleetProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub instance_type: ::Value<String>,
+    /// Property [`MaxConcurrentSessions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-fleet.html#cfn-appstream-fleet-maxconcurrentsessions).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub max_concurrent_sessions: Option<::Value<u32>>,
     /// Property [`MaxUserDurationInSeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-fleet.html#cfn-appstream-fleet-maxuserdurationinseconds).
     ///
     /// Update type: _Mutable_.
@@ -177,6 +835,11 @@ pub struct FleetProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub name: ::Value<String>,
+    /// Property [`Platform`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-fleet.html#cfn-appstream-fleet-platform).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub platform: Option<::Value<String>>,
     /// Property [`StreamView`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-fleet.html#cfn-appstream-fleet-streamview).
     ///
     /// Update type: _Mutable_.
@@ -187,6 +850,11 @@ pub struct FleetProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`UsbDeviceFilterStrings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-fleet.html#cfn-appstream-fleet-usbdevicefilterstrings).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub usb_device_filter_strings: Option<::ValueList<String>>,
     /// Property [`VpcConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appstream-fleet.html#cfn-appstream-fleet-vpcconfig).
     ///
     /// Update type: _Mutable_.
@@ -197,7 +865,9 @@ pub struct FleetProperties {
 impl ::serde::Serialize for FleetProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComputeCapacity", &self.compute_capacity)?;
+        if let Some(ref compute_capacity) = self.compute_capacity {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComputeCapacity", compute_capacity)?;
+        }
         if let Some(ref description) = self.description {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
         }
@@ -229,15 +899,24 @@ impl ::serde::Serialize for FleetProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ImageName", image_name)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceType", &self.instance_type)?;
+        if let Some(ref max_concurrent_sessions) = self.max_concurrent_sessions {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxConcurrentSessions", max_concurrent_sessions)?;
+        }
         if let Some(ref max_user_duration_in_seconds) = self.max_user_duration_in_seconds {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxUserDurationInSeconds", max_user_duration_in_seconds)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref platform) = self.platform {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Platform", platform)?;
+        }
         if let Some(ref stream_view) = self.stream_view {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamView", stream_view)?;
         }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref usb_device_filter_strings) = self.usb_device_filter_strings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UsbDeviceFilterStrings", usb_device_filter_strings)?;
         }
         if let Some(ref vpc_config) = self.vpc_config {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcConfig", vpc_config)?;
@@ -270,10 +949,13 @@ impl<'de> ::serde::Deserialize<'de> for FleetProperties {
                 let mut image_arn: Option<::Value<String>> = None;
                 let mut image_name: Option<::Value<String>> = None;
                 let mut instance_type: Option<::Value<String>> = None;
+                let mut max_concurrent_sessions: Option<::Value<u32>> = None;
                 let mut max_user_duration_in_seconds: Option<::Value<u32>> = None;
                 let mut name: Option<::Value<String>> = None;
+                let mut platform: Option<::Value<String>> = None;
                 let mut stream_view: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut usb_device_filter_strings: Option<::ValueList<String>> = None;
                 let mut vpc_config: Option<::Value<self::fleet::VpcConfig>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -314,17 +996,26 @@ impl<'de> ::serde::Deserialize<'de> for FleetProperties {
                         "InstanceType" => {
                             instance_type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "MaxConcurrentSessions" => {
+                            max_concurrent_sessions = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "MaxUserDurationInSeconds" => {
                             max_user_duration_in_seconds = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Platform" => {
+                            platform = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "StreamView" => {
                             stream_view = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "UsbDeviceFilterStrings" => {
+                            usb_device_filter_strings = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "VpcConfig" => {
                             vpc_config = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -334,7 +1025,7 @@ impl<'de> ::serde::Deserialize<'de> for FleetProperties {
                 }
 
                 Ok(FleetProperties {
-                    compute_capacity: compute_capacity.ok_or(::serde::de::Error::missing_field("ComputeCapacity"))?,
+                    compute_capacity: compute_capacity,
                     description: description,
                     disconnect_timeout_in_seconds: disconnect_timeout_in_seconds,
                     display_name: display_name,
@@ -346,10 +1037,13 @@ impl<'de> ::serde::Deserialize<'de> for FleetProperties {
                     image_arn: image_arn,
                     image_name: image_name,
                     instance_type: instance_type.ok_or(::serde::de::Error::missing_field("InstanceType"))?,
+                    max_concurrent_sessions: max_concurrent_sessions,
                     max_user_duration_in_seconds: max_user_duration_in_seconds,
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    platform: platform,
                     stream_view: stream_view,
                     tags: tags,
+                    usb_device_filter_strings: usb_device_filter_strings,
                     vpc_config: vpc_config,
                 })
             }
@@ -1166,6 +1860,224 @@ impl From<UserProperties> for User {
     }
 }
 
+pub mod app_block {
+    //! Property types for the `AppBlock` resource.
+
+    /// The [`AWS::AppStream::AppBlock.S3Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-appblock-s3location.html) property type.
+    #[derive(Debug, Default)]
+    pub struct S3Location {
+        /// Property [`S3Bucket`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-appblock-s3location.html#cfn-appstream-appblock-s3location-s3bucket).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub s3_bucket: ::Value<String>,
+        /// Property [`S3Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-appblock-s3location.html#cfn-appstream-appblock-s3location-s3key).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub s3_key: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for S3Location {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Bucket", &self.s3_bucket)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Key", &self.s3_key)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for S3Location {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<S3Location, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = S3Location;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type S3Location")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut s3_bucket: Option<::Value<String>> = None;
+                    let mut s3_key: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "S3Bucket" => {
+                                s3_bucket = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "S3Key" => {
+                                s3_key = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(S3Location {
+                        s3_bucket: s3_bucket.ok_or(::serde::de::Error::missing_field("S3Bucket"))?,
+                        s3_key: s3_key.ok_or(::serde::de::Error::missing_field("S3Key"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppStream::AppBlock.ScriptDetails`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-appblock-scriptdetails.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ScriptDetails {
+        /// Property [`ExecutableParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-appblock-scriptdetails.html#cfn-appstream-appblock-scriptdetails-executableparameters).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub executable_parameters: Option<::Value<String>>,
+        /// Property [`ExecutablePath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-appblock-scriptdetails.html#cfn-appstream-appblock-scriptdetails-executablepath).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub executable_path: ::Value<String>,
+        /// Property [`ScriptS3Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-appblock-scriptdetails.html#cfn-appstream-appblock-scriptdetails-scripts3location).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub script_s3_location: ::Value<S3Location>,
+        /// Property [`TimeoutInSeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-appblock-scriptdetails.html#cfn-appstream-appblock-scriptdetails-timeoutinseconds).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub timeout_in_seconds: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for ScriptDetails {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref executable_parameters) = self.executable_parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExecutableParameters", executable_parameters)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExecutablePath", &self.executable_path)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScriptS3Location", &self.script_s3_location)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimeoutInSeconds", &self.timeout_in_seconds)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ScriptDetails {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ScriptDetails, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ScriptDetails;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ScriptDetails")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut executable_parameters: Option<::Value<String>> = None;
+                    let mut executable_path: Option<::Value<String>> = None;
+                    let mut script_s3_location: Option<::Value<S3Location>> = None;
+                    let mut timeout_in_seconds: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ExecutableParameters" => {
+                                executable_parameters = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ExecutablePath" => {
+                                executable_path = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ScriptS3Location" => {
+                                script_s3_location = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TimeoutInSeconds" => {
+                                timeout_in_seconds = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ScriptDetails {
+                        executable_parameters: executable_parameters,
+                        executable_path: executable_path.ok_or(::serde::de::Error::missing_field("ExecutablePath"))?,
+                        script_s3_location: script_s3_location.ok_or(::serde::de::Error::missing_field("ScriptS3Location"))?,
+                        timeout_in_seconds: timeout_in_seconds.ok_or(::serde::de::Error::missing_field("TimeoutInSeconds"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod application {
+    //! Property types for the `Application` resource.
+
+    /// The [`AWS::AppStream::Application.S3Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-application-s3location.html) property type.
+    #[derive(Debug, Default)]
+    pub struct S3Location {
+        /// Property [`S3Bucket`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-application-s3location.html#cfn-appstream-application-s3location-s3bucket).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub s3_bucket: ::Value<String>,
+        /// Property [`S3Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-application-s3location.html#cfn-appstream-application-s3location-s3key).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub s3_key: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for S3Location {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Bucket", &self.s3_bucket)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Key", &self.s3_key)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for S3Location {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<S3Location, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = S3Location;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type S3Location")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut s3_bucket: Option<::Value<String>> = None;
+                    let mut s3_key: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "S3Bucket" => {
+                                s3_bucket = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "S3Key" => {
+                                s3_key = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(S3Location {
+                        s3_bucket: s3_bucket.ok_or(::serde::de::Error::missing_field("S3Bucket"))?,
+                        s3_key: s3_key.ok_or(::serde::de::Error::missing_field("S3Key"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
 pub mod directory_config {
     //! Property types for the `DirectoryConfig` resource.
 
@@ -1223,6 +2135,72 @@ pub mod directory_config {
                     Ok(ServiceAccountCredentials {
                         account_name: account_name.ok_or(::serde::de::Error::missing_field("AccountName"))?,
                         account_password: account_password.ok_or(::serde::de::Error::missing_field("AccountPassword"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod entitlement {
+    //! Property types for the `Entitlement` resource.
+
+    /// The [`AWS::AppStream::Entitlement.Attribute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-entitlement-attribute.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Attribute {
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-entitlement-attribute.html#cfn-appstream-entitlement-attribute-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: ::Value<String>,
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appstream-entitlement-attribute.html#cfn-appstream-entitlement-attribute-value).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub value: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for Attribute {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Attribute {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Attribute, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Attribute;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Attribute")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut name: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Value" => {
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Attribute {
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                        value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
                     })
                 }
             }

@@ -692,6 +692,11 @@ pub struct ReplicationGroupProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub cache_subnet_group_name: Option<::Value<String>>,
+    /// Property [`DataTieringEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html#cfn-elasticache-replicationgroup-datatieringenabled).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub data_tiering_enabled: Option<::Value<bool>>,
     /// Property [`Engine`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html#cfn-elasticache-replicationgroup-engine).
     ///
     /// Update type: _Immutable_.
@@ -853,6 +858,9 @@ impl ::serde::Serialize for ReplicationGroupProperties {
         if let Some(ref cache_subnet_group_name) = self.cache_subnet_group_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CacheSubnetGroupName", cache_subnet_group_name)?;
         }
+        if let Some(ref data_tiering_enabled) = self.data_tiering_enabled {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataTieringEnabled", data_tiering_enabled)?;
+        }
         if let Some(ref engine) = self.engine {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Engine", engine)?;
         }
@@ -953,6 +961,7 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationGroupProperties {
                 let mut cache_parameter_group_name: Option<::Value<String>> = None;
                 let mut cache_security_group_names: Option<::ValueList<String>> = None;
                 let mut cache_subnet_group_name: Option<::Value<String>> = None;
+                let mut data_tiering_enabled: Option<::Value<bool>> = None;
                 let mut engine: Option<::Value<String>> = None;
                 let mut engine_version: Option<::Value<String>> = None;
                 let mut global_replication_group_id: Option<::Value<String>> = None;
@@ -1005,6 +1014,9 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationGroupProperties {
                         }
                         "CacheSubnetGroupName" => {
                             cache_subnet_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DataTieringEnabled" => {
+                            data_tiering_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Engine" => {
                             engine = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1097,6 +1109,7 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationGroupProperties {
                     cache_parameter_group_name: cache_parameter_group_name,
                     cache_security_group_names: cache_security_group_names,
                     cache_subnet_group_name: cache_subnet_group_name,
+                    data_tiering_enabled: data_tiering_enabled,
                     engine: engine,
                     engine_version: engine_version,
                     global_replication_group_id: global_replication_group_id,
@@ -1699,15 +1712,13 @@ pub mod cache_cluster {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub log_group: Option<::Value<String>>,
+        pub log_group: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for CloudWatchLogsDestinationDetails {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref log_group) = self.log_group {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroup", log_group)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroup", &self.log_group)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1736,7 +1747,7 @@ pub mod cache_cluster {
                     }
 
                     Ok(CloudWatchLogsDestinationDetails {
-                        log_group: log_group,
+                        log_group: log_group.ok_or(::serde::de::Error::missing_field("LogGroup"))?,
                     })
                 }
             }
@@ -1818,15 +1829,13 @@ pub mod cache_cluster {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub delivery_stream: Option<::Value<String>>,
+        pub delivery_stream: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for KinesisFirehoseDestinationDetails {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref delivery_stream) = self.delivery_stream {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeliveryStream", delivery_stream)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeliveryStream", &self.delivery_stream)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1855,7 +1864,7 @@ pub mod cache_cluster {
                     }
 
                     Ok(KinesisFirehoseDestinationDetails {
-                        delivery_stream: delivery_stream,
+                        delivery_stream: delivery_stream.ok_or(::serde::de::Error::missing_field("DeliveryStream"))?,
                     })
                 }
             }
@@ -1871,39 +1880,31 @@ pub mod cache_cluster {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub destination_details: Option<::Value<DestinationDetails>>,
+        pub destination_details: ::Value<DestinationDetails>,
         /// Property [`DestinationType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cachecluster-logdeliveryconfigurationrequest.html#cfn-elasticache-cachecluster-logdeliveryconfigurationrequest-destinationtype).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub destination_type: Option<::Value<String>>,
+        pub destination_type: ::Value<String>,
         /// Property [`LogFormat`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cachecluster-logdeliveryconfigurationrequest.html#cfn-elasticache-cachecluster-logdeliveryconfigurationrequest-logformat).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub log_format: Option<::Value<String>>,
+        pub log_format: ::Value<String>,
         /// Property [`LogType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cachecluster-logdeliveryconfigurationrequest.html#cfn-elasticache-cachecluster-logdeliveryconfigurationrequest-logtype).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub log_type: Option<::Value<String>>,
+        pub log_type: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for LogDeliveryConfigurationRequest {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref destination_details) = self.destination_details {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationDetails", destination_details)?;
-            }
-            if let Some(ref destination_type) = self.destination_type {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationType", destination_type)?;
-            }
-            if let Some(ref log_format) = self.log_format {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogFormat", log_format)?;
-            }
-            if let Some(ref log_type) = self.log_type {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogType", log_type)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationDetails", &self.destination_details)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationType", &self.destination_type)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogFormat", &self.log_format)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogType", &self.log_type)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1944,10 +1945,10 @@ pub mod cache_cluster {
                     }
 
                     Ok(LogDeliveryConfigurationRequest {
-                        destination_details: destination_details,
-                        destination_type: destination_type,
-                        log_format: log_format,
-                        log_type: log_type,
+                        destination_details: destination_details.ok_or(::serde::de::Error::missing_field("DestinationDetails"))?,
+                        destination_type: destination_type.ok_or(::serde::de::Error::missing_field("DestinationType"))?,
+                        log_format: log_format.ok_or(::serde::de::Error::missing_field("LogFormat"))?,
+                        log_type: log_type.ok_or(::serde::de::Error::missing_field("LogType"))?,
                     })
                 }
             }
@@ -2195,15 +2196,13 @@ pub mod replication_group {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub log_group: Option<::Value<String>>,
+        pub log_group: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for CloudWatchLogsDestinationDetails {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref log_group) = self.log_group {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroup", log_group)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroup", &self.log_group)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -2232,7 +2231,7 @@ pub mod replication_group {
                     }
 
                     Ok(CloudWatchLogsDestinationDetails {
-                        log_group: log_group,
+                        log_group: log_group.ok_or(::serde::de::Error::missing_field("LogGroup"))?,
                     })
                 }
             }
@@ -2314,15 +2313,13 @@ pub mod replication_group {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub delivery_stream: Option<::Value<String>>,
+        pub delivery_stream: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for KinesisFirehoseDestinationDetails {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref delivery_stream) = self.delivery_stream {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeliveryStream", delivery_stream)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeliveryStream", &self.delivery_stream)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -2351,7 +2348,7 @@ pub mod replication_group {
                     }
 
                     Ok(KinesisFirehoseDestinationDetails {
-                        delivery_stream: delivery_stream,
+                        delivery_stream: delivery_stream.ok_or(::serde::de::Error::missing_field("DeliveryStream"))?,
                     })
                 }
             }
@@ -2367,39 +2364,31 @@ pub mod replication_group {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub destination_details: Option<::Value<DestinationDetails>>,
+        pub destination_details: ::Value<DestinationDetails>,
         /// Property [`DestinationType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-replicationgroup-logdeliveryconfigurationrequest.html#cfn-elasticache-replicationgroup-logdeliveryconfigurationrequest-destinationtype).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub destination_type: Option<::Value<String>>,
+        pub destination_type: ::Value<String>,
         /// Property [`LogFormat`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-replicationgroup-logdeliveryconfigurationrequest.html#cfn-elasticache-replicationgroup-logdeliveryconfigurationrequest-logformat).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub log_format: Option<::Value<String>>,
+        pub log_format: ::Value<String>,
         /// Property [`LogType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-replicationgroup-logdeliveryconfigurationrequest.html#cfn-elasticache-replicationgroup-logdeliveryconfigurationrequest-logtype).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub log_type: Option<::Value<String>>,
+        pub log_type: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for LogDeliveryConfigurationRequest {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref destination_details) = self.destination_details {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationDetails", destination_details)?;
-            }
-            if let Some(ref destination_type) = self.destination_type {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationType", destination_type)?;
-            }
-            if let Some(ref log_format) = self.log_format {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogFormat", log_format)?;
-            }
-            if let Some(ref log_type) = self.log_type {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogType", log_type)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationDetails", &self.destination_details)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationType", &self.destination_type)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogFormat", &self.log_format)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogType", &self.log_type)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -2440,10 +2429,10 @@ pub mod replication_group {
                     }
 
                     Ok(LogDeliveryConfigurationRequest {
-                        destination_details: destination_details,
-                        destination_type: destination_type,
-                        log_format: log_format,
-                        log_type: log_type,
+                        destination_details: destination_details.ok_or(::serde::de::Error::missing_field("DestinationDetails"))?,
+                        destination_type: destination_type.ok_or(::serde::de::Error::missing_field("DestinationType"))?,
+                        log_format: log_format.ok_or(::serde::de::Error::missing_field("LogFormat"))?,
+                        log_type: log_type.ok_or(::serde::de::Error::missing_field("LogType"))?,
                     })
                 }
             }

@@ -76,6 +76,338 @@ impl From<CustomResourceProperties> for CustomResource {
     }
 }
 
+/// The [`AWS::CloudFormation::HookDefaultVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-hookdefaultversion.html) resource type.
+#[derive(Debug, Default)]
+pub struct HookDefaultVersion {
+    properties: HookDefaultVersionProperties
+}
+
+/// Properties for the `HookDefaultVersion` resource.
+#[derive(Debug, Default)]
+pub struct HookDefaultVersionProperties {
+    /// Property [`TypeName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-hookdefaultversion.html#cfn-cloudformation-hookdefaultversion-typename).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub type_name: Option<::Value<String>>,
+    /// Property [`TypeVersionArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-hookdefaultversion.html#cfn-cloudformation-hookdefaultversion-typeversionarn).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub type_version_arn: Option<::Value<String>>,
+    /// Property [`VersionId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-hookdefaultversion.html#cfn-cloudformation-hookdefaultversion-versionid).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub version_id: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for HookDefaultVersionProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref type_name) = self.type_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TypeName", type_name)?;
+        }
+        if let Some(ref type_version_arn) = self.type_version_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TypeVersionArn", type_version_arn)?;
+        }
+        if let Some(ref version_id) = self.version_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VersionId", version_id)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for HookDefaultVersionProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<HookDefaultVersionProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = HookDefaultVersionProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type HookDefaultVersionProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut type_name: Option<::Value<String>> = None;
+                let mut type_version_arn: Option<::Value<String>> = None;
+                let mut version_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "TypeName" => {
+                            type_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TypeVersionArn" => {
+                            type_version_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "VersionId" => {
+                            version_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(HookDefaultVersionProperties {
+                    type_name: type_name,
+                    type_version_arn: type_version_arn,
+                    version_id: version_id,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for HookDefaultVersion {
+    type Properties = HookDefaultVersionProperties;
+    const TYPE: &'static str = "AWS::CloudFormation::HookDefaultVersion";
+    fn properties(&self) -> &HookDefaultVersionProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut HookDefaultVersionProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for HookDefaultVersion {}
+
+impl From<HookDefaultVersionProperties> for HookDefaultVersion {
+    fn from(properties: HookDefaultVersionProperties) -> HookDefaultVersion {
+        HookDefaultVersion { properties }
+    }
+}
+
+/// The [`AWS::CloudFormation::HookTypeConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-hooktypeconfig.html) resource type.
+#[derive(Debug, Default)]
+pub struct HookTypeConfig {
+    properties: HookTypeConfigProperties
+}
+
+/// Properties for the `HookTypeConfig` resource.
+#[derive(Debug, Default)]
+pub struct HookTypeConfigProperties {
+    /// Property [`Configuration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-hooktypeconfig.html#cfn-cloudformation-hooktypeconfig-configuration).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub configuration: ::Value<String>,
+    /// Property [`ConfigurationAlias`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-hooktypeconfig.html#cfn-cloudformation-hooktypeconfig-configurationalias).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub configuration_alias: Option<::Value<String>>,
+    /// Property [`TypeArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-hooktypeconfig.html#cfn-cloudformation-hooktypeconfig-typearn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub type_arn: Option<::Value<String>>,
+    /// Property [`TypeName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-hooktypeconfig.html#cfn-cloudformation-hooktypeconfig-typename).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub type_name: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for HookTypeConfigProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Configuration", &self.configuration)?;
+        if let Some(ref configuration_alias) = self.configuration_alias {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConfigurationAlias", configuration_alias)?;
+        }
+        if let Some(ref type_arn) = self.type_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TypeArn", type_arn)?;
+        }
+        if let Some(ref type_name) = self.type_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TypeName", type_name)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for HookTypeConfigProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<HookTypeConfigProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = HookTypeConfigProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type HookTypeConfigProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut configuration: Option<::Value<String>> = None;
+                let mut configuration_alias: Option<::Value<String>> = None;
+                let mut type_arn: Option<::Value<String>> = None;
+                let mut type_name: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Configuration" => {
+                            configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ConfigurationAlias" => {
+                            configuration_alias = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TypeArn" => {
+                            type_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TypeName" => {
+                            type_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(HookTypeConfigProperties {
+                    configuration: configuration.ok_or(::serde::de::Error::missing_field("Configuration"))?,
+                    configuration_alias: configuration_alias,
+                    type_arn: type_arn,
+                    type_name: type_name,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for HookTypeConfig {
+    type Properties = HookTypeConfigProperties;
+    const TYPE: &'static str = "AWS::CloudFormation::HookTypeConfig";
+    fn properties(&self) -> &HookTypeConfigProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut HookTypeConfigProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for HookTypeConfig {}
+
+impl From<HookTypeConfigProperties> for HookTypeConfig {
+    fn from(properties: HookTypeConfigProperties) -> HookTypeConfig {
+        HookTypeConfig { properties }
+    }
+}
+
+/// The [`AWS::CloudFormation::HookVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-hookversion.html) resource type.
+#[derive(Debug, Default)]
+pub struct HookVersion {
+    properties: HookVersionProperties
+}
+
+/// Properties for the `HookVersion` resource.
+#[derive(Debug, Default)]
+pub struct HookVersionProperties {
+    /// Property [`ExecutionRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-hookversion.html#cfn-cloudformation-hookversion-executionrolearn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub execution_role_arn: Option<::Value<String>>,
+    /// Property [`LoggingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-hookversion.html#cfn-cloudformation-hookversion-loggingconfig).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub logging_config: Option<::Value<self::hook_version::LoggingConfig>>,
+    /// Property [`SchemaHandlerPackage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-hookversion.html#cfn-cloudformation-hookversion-schemahandlerpackage).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub schema_handler_package: ::Value<String>,
+    /// Property [`TypeName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-hookversion.html#cfn-cloudformation-hookversion-typename).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub type_name: ::Value<String>,
+}
+
+impl ::serde::Serialize for HookVersionProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref execution_role_arn) = self.execution_role_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExecutionRoleArn", execution_role_arn)?;
+        }
+        if let Some(ref logging_config) = self.logging_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoggingConfig", logging_config)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SchemaHandlerPackage", &self.schema_handler_package)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TypeName", &self.type_name)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for HookVersionProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<HookVersionProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = HookVersionProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type HookVersionProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut execution_role_arn: Option<::Value<String>> = None;
+                let mut logging_config: Option<::Value<self::hook_version::LoggingConfig>> = None;
+                let mut schema_handler_package: Option<::Value<String>> = None;
+                let mut type_name: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "ExecutionRoleArn" => {
+                            execution_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "LoggingConfig" => {
+                            logging_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SchemaHandlerPackage" => {
+                            schema_handler_package = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TypeName" => {
+                            type_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(HookVersionProperties {
+                    execution_role_arn: execution_role_arn,
+                    logging_config: logging_config,
+                    schema_handler_package: schema_handler_package.ok_or(::serde::de::Error::missing_field("SchemaHandlerPackage"))?,
+                    type_name: type_name.ok_or(::serde::de::Error::missing_field("TypeName"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for HookVersion {
+    type Properties = HookVersionProperties;
+    const TYPE: &'static str = "AWS::CloudFormation::HookVersion";
+    fn properties(&self) -> &HookVersionProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut HookVersionProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for HookVersion {}
+
+impl From<HookVersionProperties> for HookVersion {
+    fn from(properties: HookVersionProperties) -> HookVersion {
+        HookVersion { properties }
+    }
+}
+
 /// The [`AWS::CloudFormation::Macro`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-macro.html) resource type.
 #[derive(Debug, Default)]
 pub struct Macro {
@@ -996,6 +1328,11 @@ pub struct StackSetProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub execution_role_name: Option<::Value<String>>,
+    /// Property [`ManagedExecution`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-stackset.html#cfn-cloudformation-stackset-managedexecution).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub managed_execution: Option<::Value<::json::Value>>,
     /// Property [`OperationPreferences`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-stackset.html#cfn-cloudformation-stackset-operationpreferences).
     ///
     /// Update type: _Mutable_.
@@ -1059,6 +1396,9 @@ impl ::serde::Serialize for StackSetProperties {
         if let Some(ref execution_role_name) = self.execution_role_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExecutionRoleName", execution_role_name)?;
         }
+        if let Some(ref managed_execution) = self.managed_execution {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ManagedExecution", managed_execution)?;
+        }
         if let Some(ref operation_preferences) = self.operation_preferences {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "OperationPreferences", operation_preferences)?;
         }
@@ -1101,6 +1441,7 @@ impl<'de> ::serde::Deserialize<'de> for StackSetProperties {
                 let mut capabilities: Option<::ValueList<String>> = None;
                 let mut description: Option<::Value<String>> = None;
                 let mut execution_role_name: Option<::Value<String>> = None;
+                let mut managed_execution: Option<::Value<::json::Value>> = None;
                 let mut operation_preferences: Option<::Value<self::stack_set::OperationPreferences>> = None;
                 let mut parameters: Option<::ValueList<self::stack_set::Parameter>> = None;
                 let mut permission_model: Option<::Value<String>> = None;
@@ -1129,6 +1470,9 @@ impl<'de> ::serde::Deserialize<'de> for StackSetProperties {
                         }
                         "ExecutionRoleName" => {
                             execution_role_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ManagedExecution" => {
+                            managed_execution = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "OperationPreferences" => {
                             operation_preferences = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1165,6 +1509,7 @@ impl<'de> ::serde::Deserialize<'de> for StackSetProperties {
                     capabilities: capabilities,
                     description: description,
                     execution_role_name: execution_role_name,
+                    managed_execution: managed_execution,
                     operation_preferences: operation_preferences,
                     parameters: parameters,
                     permission_model: permission_model.ok_or(::serde::de::Error::missing_field("PermissionModel"))?,
@@ -1553,6 +1898,76 @@ impl ::private::Sealed for WaitConditionHandle {}
 impl From<WaitConditionHandleProperties> for WaitConditionHandle {
     fn from(properties: WaitConditionHandleProperties) -> WaitConditionHandle {
         WaitConditionHandle { properties }
+    }
+}
+
+pub mod hook_version {
+    //! Property types for the `HookVersion` resource.
+
+    /// The [`AWS::CloudFormation::HookVersion.LoggingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-hookversion-loggingconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LoggingConfig {
+        /// Property [`LogGroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-hookversion-loggingconfig.html#cfn-cloudformation-hookversion-loggingconfig-loggroupname).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub log_group_name: Option<::Value<String>>,
+        /// Property [`LogRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-hookversion-loggingconfig.html#cfn-cloudformation-hookversion-loggingconfig-logrolearn).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub log_role_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for LoggingConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref log_group_name) = self.log_group_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroupName", log_group_name)?;
+            }
+            if let Some(ref log_role_arn) = self.log_role_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogRoleArn", log_role_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LoggingConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LoggingConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LoggingConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LoggingConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut log_group_name: Option<::Value<String>> = None;
+                    let mut log_role_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "LogGroupName" => {
+                                log_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LogRoleArn" => {
+                                log_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LoggingConfig {
+                        log_group_name: log_group_name,
+                        log_role_arn: log_role_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
     }
 }
 

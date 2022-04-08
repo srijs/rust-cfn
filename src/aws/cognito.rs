@@ -3579,6 +3579,11 @@ pub mod user_pool {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub sns_caller_arn: Option<::Value<String>>,
+        /// Property [`SnsRegion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-smsconfiguration.html#cfn-cognito-userpool-smsconfiguration-snsregion).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub sns_region: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for SmsConfiguration {
@@ -3589,6 +3594,9 @@ pub mod user_pool {
             }
             if let Some(ref sns_caller_arn) = self.sns_caller_arn {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnsCallerArn", sns_caller_arn)?;
+            }
+            if let Some(ref sns_region) = self.sns_region {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnsRegion", sns_region)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -3608,6 +3616,7 @@ pub mod user_pool {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut external_id: Option<::Value<String>> = None;
                     let mut sns_caller_arn: Option<::Value<String>> = None;
+                    let mut sns_region: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -3617,6 +3626,9 @@ pub mod user_pool {
                             "SnsCallerArn" => {
                                 sns_caller_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "SnsRegion" => {
+                                sns_region = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
@@ -3624,6 +3636,7 @@ pub mod user_pool {
                     Ok(SmsConfiguration {
                         external_id: external_id,
                         sns_caller_arn: sns_caller_arn,
+                        sns_region: sns_region,
                     })
                 }
             }

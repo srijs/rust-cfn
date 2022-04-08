@@ -477,8 +477,8 @@ pub struct ServiceProperties {
     pub desired_count: Option<::Value<u32>>,
     /// Property [`EnableECSManagedTags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-enableecsmanagedtags).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub enable_ecs_managed_tags: Option<::Value<bool>>,
     /// Property [`EnableExecuteCommand`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-enableexecutecommand).
     ///
@@ -497,8 +497,8 @@ pub struct ServiceProperties {
     pub launch_type: Option<::Value<String>>,
     /// Property [`LoadBalancers`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-loadbalancers).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub load_balancers: Option<::ValueList<self::service::LoadBalancer>>,
     /// Property [`NetworkConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-networkconfiguration).
     ///
@@ -507,13 +507,13 @@ pub struct ServiceProperties {
     pub network_configuration: Option<::Value<self::service::NetworkConfiguration>>,
     /// Property [`PlacementConstraints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-placementconstraints).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub placement_constraints: Option<::ValueList<self::service::PlacementConstraint>>,
     /// Property [`PlacementStrategies`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-placementstrategies).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub placement_strategies: Option<::ValueList<self::service::PlacementStrategy>>,
     /// Property [`PlatformVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-platformversion).
     ///
@@ -522,8 +522,8 @@ pub struct ServiceProperties {
     pub platform_version: Option<::Value<String>>,
     /// Property [`PropagateTags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-propagatetags).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub propagate_tags: Option<::Value<String>>,
     /// Property [`Role`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-role).
     ///
@@ -542,8 +542,8 @@ pub struct ServiceProperties {
     pub service_name: Option<::Value<String>>,
     /// Property [`ServiceRegistries`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-serviceregistries).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub service_registries: Option<::ValueList<self::service::ServiceRegistry>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-tags).
     ///
@@ -853,6 +853,11 @@ pub struct TaskDefinitionProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub requires_compatibilities: Option<::ValueList<String>>,
+    /// Property [`RuntimePlatform`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html#cfn-ecs-taskdefinition-runtimeplatform).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub runtime_platform: Option<::Value<self::task_definition::RuntimePlatform>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html#cfn-ecs-taskdefinition-tags).
     ///
     /// Update type: _Mutable_.
@@ -912,6 +917,9 @@ impl ::serde::Serialize for TaskDefinitionProperties {
         if let Some(ref requires_compatibilities) = self.requires_compatibilities {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RequiresCompatibilities", requires_compatibilities)?;
         }
+        if let Some(ref runtime_platform) = self.runtime_platform {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuntimePlatform", runtime_platform)?;
+        }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
@@ -950,6 +958,7 @@ impl<'de> ::serde::Deserialize<'de> for TaskDefinitionProperties {
                 let mut placement_constraints: Option<::ValueList<self::task_definition::TaskDefinitionPlacementConstraint>> = None;
                 let mut proxy_configuration: Option<::Value<self::task_definition::ProxyConfiguration>> = None;
                 let mut requires_compatibilities: Option<::ValueList<String>> = None;
+                let mut runtime_platform: Option<::Value<self::task_definition::RuntimePlatform>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut task_role_arn: Option<::Value<String>> = None;
                 let mut volumes: Option<::ValueList<self::task_definition::Volume>> = None;
@@ -995,6 +1004,9 @@ impl<'de> ::serde::Deserialize<'de> for TaskDefinitionProperties {
                         "RequiresCompatibilities" => {
                             requires_compatibilities = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "RuntimePlatform" => {
+                            runtime_platform = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -1022,6 +1034,7 @@ impl<'de> ::serde::Deserialize<'de> for TaskDefinitionProperties {
                     placement_constraints: placement_constraints,
                     proxy_configuration: proxy_configuration,
                     requires_compatibilities: requires_compatibilities,
+                    runtime_platform: runtime_platform,
                     tags: tags,
                     task_role_arn: task_role_arn,
                     volumes: volumes,
@@ -2254,23 +2267,23 @@ pub mod service {
     pub struct LoadBalancer {
         /// Property [`ContainerName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-loadbalancer.html#cfn-ecs-service-loadbalancer-containername).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub container_name: Option<::Value<String>>,
         /// Property [`ContainerPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-loadbalancer.html#cfn-ecs-service-loadbalancer-containerport).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub container_port: Option<::Value<u32>>,
         /// Property [`LoadBalancerName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-loadbalancer.html#cfn-ecs-service-loadbalancer-loadbalancername).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub load_balancer_name: Option<::Value<String>>,
         /// Property [`TargetGroupArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-loadbalancer.html#cfn-ecs-service-loadbalancer-targetgrouparn).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub target_group_arn: Option<::Value<String>>,
     }
 
@@ -2399,13 +2412,13 @@ pub mod service {
     pub struct PlacementConstraint {
         /// Property [`Expression`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-placementconstraint.html#cfn-ecs-service-placementconstraint-expression).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub expression: Option<::Value<String>>,
         /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-placementconstraint.html#cfn-ecs-service-placementconstraint-type).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub r#type: ::Value<String>,
     }
 
@@ -2463,13 +2476,13 @@ pub mod service {
     pub struct PlacementStrategy {
         /// Property [`Field`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-placementstrategy.html#cfn-ecs-service-placementstrategy-field).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub field: Option<::Value<String>>,
         /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-placementstrategy.html#cfn-ecs-service-placementstrategy-type).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub r#type: ::Value<String>,
     }
 
@@ -2527,23 +2540,23 @@ pub mod service {
     pub struct ServiceRegistry {
         /// Property [`ContainerName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceregistry.html#cfn-ecs-service-serviceregistry-containername).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub container_name: Option<::Value<String>>,
         /// Property [`ContainerPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceregistry.html#cfn-ecs-service-serviceregistry-containerport).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub container_port: Option<::Value<u32>>,
         /// Property [`Port`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceregistry.html#cfn-ecs-service-serviceregistry-port).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub port: Option<::Value<u32>>,
         /// Property [`RegistryArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceregistry.html#cfn-ecs-service-serviceregistry-registryarn).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub registry_arn: Option<::Value<String>>,
     }
 
@@ -4741,6 +4754,72 @@ pub mod task_definition {
                     Ok(ResourceRequirement {
                         r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
                         value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ECS::TaskDefinition.RuntimePlatform`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-runtimeplatform.html) property type.
+    #[derive(Debug, Default)]
+    pub struct RuntimePlatform {
+        /// Property [`CpuArchitecture`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-runtimeplatform.html#cfn-ecs-taskdefinition-runtimeplatform-cpuarchitecture).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub cpu_architecture: Option<::Value<String>>,
+        /// Property [`OperatingSystemFamily`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-runtimeplatform.html#cfn-ecs-taskdefinition-runtimeplatform-operatingsystemfamily).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub operating_system_family: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for RuntimePlatform {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref cpu_architecture) = self.cpu_architecture {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CpuArchitecture", cpu_architecture)?;
+            }
+            if let Some(ref operating_system_family) = self.operating_system_family {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OperatingSystemFamily", operating_system_family)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for RuntimePlatform {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<RuntimePlatform, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = RuntimePlatform;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type RuntimePlatform")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut cpu_architecture: Option<::Value<String>> = None;
+                    let mut operating_system_family: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CpuArchitecture" => {
+                                cpu_architecture = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OperatingSystemFamily" => {
+                                operating_system_family = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(RuntimePlatform {
+                        cpu_architecture: cpu_architecture,
+                        operating_system_family: operating_system_family,
                     })
                 }
             }

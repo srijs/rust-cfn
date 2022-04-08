@@ -320,6 +320,16 @@ pub struct Endpoint {
 /// Properties for the `Endpoint` resource.
 #[derive(Debug, Default)]
 pub struct EndpointProperties {
+    /// Property [`AccessType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-endpoint.html#cfn-s3outposts-endpoint-accesstype).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub access_type: Option<::Value<String>>,
+    /// Property [`CustomerOwnedIpv4Pool`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-endpoint.html#cfn-s3outposts-endpoint-customerownedipv4pool).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub customer_owned_ipv4_pool: Option<::Value<String>>,
     /// Property [`OutpostId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-endpoint.html#cfn-s3outposts-endpoint-outpostid).
     ///
     /// Update type: _Immutable_.
@@ -340,6 +350,12 @@ pub struct EndpointProperties {
 impl ::serde::Serialize for EndpointProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref access_type) = self.access_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessType", access_type)?;
+        }
+        if let Some(ref customer_owned_ipv4_pool) = self.customer_owned_ipv4_pool {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomerOwnedIpv4Pool", customer_owned_ipv4_pool)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutpostId", &self.outpost_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupId", &self.security_group_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", &self.subnet_id)?;
@@ -359,12 +375,20 @@ impl<'de> ::serde::Deserialize<'de> for EndpointProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut access_type: Option<::Value<String>> = None;
+                let mut customer_owned_ipv4_pool: Option<::Value<String>> = None;
                 let mut outpost_id: Option<::Value<String>> = None;
                 let mut security_group_id: Option<::Value<String>> = None;
                 let mut subnet_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "AccessType" => {
+                            access_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "CustomerOwnedIpv4Pool" => {
+                            customer_owned_ipv4_pool = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "OutpostId" => {
                             outpost_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -379,6 +403,8 @@ impl<'de> ::serde::Deserialize<'de> for EndpointProperties {
                 }
 
                 Ok(EndpointProperties {
+                    access_type: access_type,
+                    customer_owned_ipv4_pool: customer_owned_ipv4_pool,
                     outpost_id: outpost_id.ok_or(::serde::de::Error::missing_field("OutpostId"))?,
                     security_group_id: security_group_id.ok_or(::serde::de::Error::missing_field("SecurityGroupId"))?,
                     subnet_id: subnet_id.ok_or(::serde::de::Error::missing_field("SubnetId"))?,

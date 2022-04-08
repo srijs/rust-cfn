@@ -854,13 +854,23 @@ pub mod file_system {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub transition_to_ia: ::Value<String>,
+        pub transition_to_ia: Option<::Value<String>>,
+        /// Property [`TransitionToPrimaryStorageClass`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-lifecyclepolicy.html#cfn-efs-filesystem-lifecyclepolicy-transitiontoprimarystorageclass).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub transition_to_primary_storage_class: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for LifecyclePolicy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitionToIA", &self.transition_to_ia)?;
+            if let Some(ref transition_to_ia) = self.transition_to_ia {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitionToIA", transition_to_ia)?;
+            }
+            if let Some(ref transition_to_primary_storage_class) = self.transition_to_primary_storage_class {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitionToPrimaryStorageClass", transition_to_primary_storage_class)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -878,18 +888,23 @@ pub mod file_system {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut transition_to_ia: Option<::Value<String>> = None;
+                    let mut transition_to_primary_storage_class: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "TransitionToIA" => {
                                 transition_to_ia = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "TransitionToPrimaryStorageClass" => {
+                                transition_to_primary_storage_class = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
 
                     Ok(LifecyclePolicy {
-                        transition_to_ia: transition_to_ia.ok_or(::serde::de::Error::missing_field("TransitionToIA"))?,
+                        transition_to_ia: transition_to_ia,
+                        transition_to_primary_storage_class: transition_to_primary_storage_class,
                     })
                 }
             }

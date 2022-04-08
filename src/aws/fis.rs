@@ -19,6 +19,11 @@ pub struct ExperimentTemplateProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub description: ::Value<String>,
+    /// Property [`LogConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fis-experimenttemplate.html#cfn-fis-experimenttemplate-logconfiguration).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub log_configuration: Option<::Value<self::experiment_template::ExperimentTemplateLogConfiguration>>,
     /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fis-experimenttemplate.html#cfn-fis-experimenttemplate-rolearn).
     ///
     /// Update type: _Mutable_.
@@ -48,6 +53,9 @@ impl ::serde::Serialize for ExperimentTemplateProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Actions", actions)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
+        if let Some(ref log_configuration) = self.log_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogConfiguration", log_configuration)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "StopConditions", &self.stop_conditions)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
@@ -70,6 +78,7 @@ impl<'de> ::serde::Deserialize<'de> for ExperimentTemplateProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut actions: Option<::ValueMap<self::experiment_template::ExperimentTemplateAction>> = None;
                 let mut description: Option<::Value<String>> = None;
+                let mut log_configuration: Option<::Value<self::experiment_template::ExperimentTemplateLogConfiguration>> = None;
                 let mut role_arn: Option<::Value<String>> = None;
                 let mut stop_conditions: Option<::ValueList<self::experiment_template::ExperimentTemplateStopCondition>> = None;
                 let mut tags: Option<::ValueMap<String>> = None;
@@ -82,6 +91,9 @@ impl<'de> ::serde::Deserialize<'de> for ExperimentTemplateProperties {
                         }
                         "Description" => {
                             description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "LogConfiguration" => {
+                            log_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "RoleArn" => {
                             role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -102,6 +114,7 @@ impl<'de> ::serde::Deserialize<'de> for ExperimentTemplateProperties {
                 Ok(ExperimentTemplateProperties {
                     actions: actions,
                     description: description.ok_or(::serde::de::Error::missing_field("Description"))?,
+                    log_configuration: log_configuration,
                     role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
                     stop_conditions: stop_conditions.ok_or(::serde::de::Error::missing_field("StopConditions"))?,
                     tags: tags.ok_or(::serde::de::Error::missing_field("Tags"))?,
@@ -239,6 +252,83 @@ pub mod experiment_template {
         }
     }
 
+    /// The [`AWS::FIS::ExperimentTemplate.ExperimentTemplateLogConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplatelogconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ExperimentTemplateLogConfiguration {
+        /// Property [`CloudWatchLogsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplatelogconfiguration.html#cfn-fis-experimenttemplate-experimenttemplatelogconfiguration-cloudwatchlogsconfiguration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cloud_watch_logs_configuration: Option<::Value<::json::Value>>,
+        /// Property [`LogSchemaVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplatelogconfiguration.html#cfn-fis-experimenttemplate-experimenttemplatelogconfiguration-logschemaversion).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub log_schema_version: ::Value<u32>,
+        /// Property [`S3Configuration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplatelogconfiguration.html#cfn-fis-experimenttemplate-experimenttemplatelogconfiguration-s3configuration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub s3_configuration: Option<::Value<::json::Value>>,
+    }
+
+    impl ::codec::SerializeValue for ExperimentTemplateLogConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref cloud_watch_logs_configuration) = self.cloud_watch_logs_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchLogsConfiguration", cloud_watch_logs_configuration)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogSchemaVersion", &self.log_schema_version)?;
+            if let Some(ref s3_configuration) = self.s3_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Configuration", s3_configuration)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ExperimentTemplateLogConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ExperimentTemplateLogConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ExperimentTemplateLogConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ExperimentTemplateLogConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut cloud_watch_logs_configuration: Option<::Value<::json::Value>> = None;
+                    let mut log_schema_version: Option<::Value<u32>> = None;
+                    let mut s3_configuration: Option<::Value<::json::Value>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CloudWatchLogsConfiguration" => {
+                                cloud_watch_logs_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LogSchemaVersion" => {
+                                log_schema_version = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "S3Configuration" => {
+                                s3_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ExperimentTemplateLogConfiguration {
+                        cloud_watch_logs_configuration: cloud_watch_logs_configuration,
+                        log_schema_version: log_schema_version.ok_or(::serde::de::Error::missing_field("LogSchemaVersion"))?,
+                        s3_configuration: s3_configuration,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::FIS::ExperimentTemplate.ExperimentTemplateStopCondition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplatestopcondition.html) property type.
     #[derive(Debug, Default)]
     pub struct ExperimentTemplateStopCondition {
@@ -311,6 +401,11 @@ pub mod experiment_template {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub filters: Option<::ValueList<ExperimentTemplateTargetFilter>>,
+        /// Property [`Parameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplatetarget.html#cfn-fis-experimenttemplate-experimenttemplatetarget-parameters).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub parameters: Option<::ValueMap<String>>,
         /// Property [`ResourceArns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplatetarget.html#cfn-fis-experimenttemplate-experimenttemplatetarget-resourcearns).
         ///
         /// Update type: _Mutable_.
@@ -339,6 +434,9 @@ pub mod experiment_template {
             if let Some(ref filters) = self.filters {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Filters", filters)?;
             }
+            if let Some(ref parameters) = self.parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", parameters)?;
+            }
             if let Some(ref resource_arns) = self.resource_arns {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceArns", resource_arns)?;
             }
@@ -364,6 +462,7 @@ pub mod experiment_template {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut filters: Option<::ValueList<ExperimentTemplateTargetFilter>> = None;
+                    let mut parameters: Option<::ValueMap<String>> = None;
                     let mut resource_arns: Option<::ValueList<String>> = None;
                     let mut resource_tags: Option<::ValueMap<String>> = None;
                     let mut resource_type: Option<::Value<String>> = None;
@@ -373,6 +472,9 @@ pub mod experiment_template {
                         match __cfn_key.as_ref() {
                             "Filters" => {
                                 filters = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Parameters" => {
+                                parameters = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "ResourceArns" => {
                                 resource_arns = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -392,6 +494,7 @@ pub mod experiment_template {
 
                     Ok(ExperimentTemplateTarget {
                         filters: filters,
+                        parameters: parameters,
                         resource_arns: resource_arns,
                         resource_tags: resource_tags,
                         resource_type: resource_type.ok_or(::serde::de::Error::missing_field("ResourceType"))?,

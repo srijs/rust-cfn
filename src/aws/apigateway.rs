@@ -290,7 +290,7 @@ pub struct AuthorizerProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub name: Option<::Value<String>>,
+    pub name: ::Value<String>,
     /// Property [`ProviderARNs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-authorizer.html#cfn-apigateway-authorizer-providerarns).
     ///
     /// Update type: _Mutable_.
@@ -329,9 +329,7 @@ impl ::serde::Serialize for AuthorizerProperties {
         if let Some(ref identity_validation_expression) = self.identity_validation_expression {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IdentityValidationExpression", identity_validation_expression)?;
         }
-        if let Some(ref name) = self.name {
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
-        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         if let Some(ref provider_ar_ns) = self.provider_ar_ns {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProviderARNs", provider_ar_ns)?;
         }
@@ -407,7 +405,7 @@ impl<'de> ::serde::Deserialize<'de> for AuthorizerProperties {
                     authorizer_uri: authorizer_uri,
                     identity_source: identity_source,
                     identity_validation_expression: identity_validation_expression,
-                    name: name,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     provider_ar_ns: provider_ar_ns,
                     rest_api_id: rest_api_id.ok_or(::serde::de::Error::missing_field("RestApiId"))?,
                     r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
@@ -457,6 +455,11 @@ pub struct BasePathMappingProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub domain_name: ::Value<String>,
+    /// Property [`Id`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-basepathmapping.html#cfn-apigateway-basepathmapping-id).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub id: Option<::Value<String>>,
     /// Property [`RestApiId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-basepathmapping.html#cfn-apigateway-basepathmapping-restapiid).
     ///
     /// Update type: _Mutable_.
@@ -476,6 +479,9 @@ impl ::serde::Serialize for BasePathMappingProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BasePath", base_path)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainName", &self.domain_name)?;
+        if let Some(ref id) = self.id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Id", id)?;
+        }
         if let Some(ref rest_api_id) = self.rest_api_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RestApiId", rest_api_id)?;
         }
@@ -500,6 +506,7 @@ impl<'de> ::serde::Deserialize<'de> for BasePathMappingProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut base_path: Option<::Value<String>> = None;
                 let mut domain_name: Option<::Value<String>> = None;
+                let mut id: Option<::Value<String>> = None;
                 let mut rest_api_id: Option<::Value<String>> = None;
                 let mut stage: Option<::Value<String>> = None;
 
@@ -510,6 +517,9 @@ impl<'de> ::serde::Deserialize<'de> for BasePathMappingProperties {
                         }
                         "DomainName" => {
                             domain_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Id" => {
+                            id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "RestApiId" => {
                             rest_api_id = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -524,6 +534,7 @@ impl<'de> ::serde::Deserialize<'de> for BasePathMappingProperties {
                 Ok(BasePathMappingProperties {
                     base_path: base_path,
                     domain_name: domain_name.ok_or(::serde::de::Error::missing_field("DomainName"))?,
+                    id: id,
                     rest_api_id: rest_api_id,
                     stage: stage,
                 })
@@ -999,6 +1010,11 @@ pub struct DomainNameProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub mutual_tls_authentication: Option<::Value<self::domain_name::MutualTlsAuthentication>>,
+    /// Property [`OwnershipVerificationCertificateArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainname.html#cfn-apigateway-domainname-ownershipverificationcertificatearn).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub ownership_verification_certificate_arn: Option<::Value<String>>,
     /// Property [`RegionalCertificateArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainname.html#cfn-apigateway-domainname-regionalcertificatearn).
     ///
     /// Update type: _Mutable_.
@@ -1031,6 +1047,9 @@ impl ::serde::Serialize for DomainNameProperties {
         if let Some(ref mutual_tls_authentication) = self.mutual_tls_authentication {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MutualTlsAuthentication", mutual_tls_authentication)?;
         }
+        if let Some(ref ownership_verification_certificate_arn) = self.ownership_verification_certificate_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OwnershipVerificationCertificateArn", ownership_verification_certificate_arn)?;
+        }
         if let Some(ref regional_certificate_arn) = self.regional_certificate_arn {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RegionalCertificateArn", regional_certificate_arn)?;
         }
@@ -1060,6 +1079,7 @@ impl<'de> ::serde::Deserialize<'de> for DomainNameProperties {
                 let mut domain_name: Option<::Value<String>> = None;
                 let mut endpoint_configuration: Option<::Value<self::domain_name::EndpointConfiguration>> = None;
                 let mut mutual_tls_authentication: Option<::Value<self::domain_name::MutualTlsAuthentication>> = None;
+                let mut ownership_verification_certificate_arn: Option<::Value<String>> = None;
                 let mut regional_certificate_arn: Option<::Value<String>> = None;
                 let mut security_policy: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
@@ -1077,6 +1097,9 @@ impl<'de> ::serde::Deserialize<'de> for DomainNameProperties {
                         }
                         "MutualTlsAuthentication" => {
                             mutual_tls_authentication = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "OwnershipVerificationCertificateArn" => {
+                            ownership_verification_certificate_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "RegionalCertificateArn" => {
                             regional_certificate_arn = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1096,6 +1119,7 @@ impl<'de> ::serde::Deserialize<'de> for DomainNameProperties {
                     domain_name: domain_name,
                     endpoint_configuration: endpoint_configuration,
                     mutual_tls_authentication: mutual_tls_authentication,
+                    ownership_verification_certificate_arn: ownership_verification_certificate_arn,
                     regional_certificate_arn: regional_certificate_arn,
                     security_policy: security_policy,
                     tags: tags,
@@ -2586,6 +2610,11 @@ pub struct VpcLinkProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub name: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-vpclink.html#cfn-apigateway-vpclink-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
     /// Property [`TargetArns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-vpclink.html#cfn-apigateway-vpclink-targetarns).
     ///
     /// Update type: _Immutable_.
@@ -2600,6 +2629,9 @@ impl ::serde::Serialize for VpcLinkProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetArns", &self.target_arns)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -2619,6 +2651,7 @@ impl<'de> ::serde::Deserialize<'de> for VpcLinkProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut description: Option<::Value<String>> = None;
                 let mut name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut target_arns: Option<::ValueList<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -2628,6 +2661,9 @@ impl<'de> ::serde::Deserialize<'de> for VpcLinkProperties {
                         }
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "TargetArns" => {
                             target_arns = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -2639,6 +2675,7 @@ impl<'de> ::serde::Deserialize<'de> for VpcLinkProperties {
                 Ok(VpcLinkProperties {
                     description: description,
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    tags: tags,
                     target_arns: target_arns.ok_or(::serde::de::Error::missing_field("TargetArns"))?,
                 })
             }
@@ -2964,55 +3001,55 @@ pub mod deployment {
         }
     }
 
-    /// The [`AWS::ApiGateway::Deployment.MethodSetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription-methodsetting.html) property type.
+    /// The [`AWS::ApiGateway::Deployment.MethodSetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-methodsetting.html) property type.
     #[derive(Debug, Default)]
     pub struct MethodSetting {
-        /// Property [`CacheDataEncrypted`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription-methodsetting.html#cfn-apigateway-deployment-stagedescription-methodsetting-cachedataencrypted).
+        /// Property [`CacheDataEncrypted`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-methodsetting.html#cfn-apigateway-deployment-methodsetting-cachedataencrypted).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub cache_data_encrypted: Option<::Value<bool>>,
-        /// Property [`CacheTtlInSeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription-methodsetting.html#cfn-apigateway-deployment-stagedescription-methodsetting-cachettlinseconds).
+        /// Property [`CacheTtlInSeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-methodsetting.html#cfn-apigateway-deployment-methodsetting-cachettlinseconds).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub cache_ttl_in_seconds: Option<::Value<u32>>,
-        /// Property [`CachingEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription-methodsetting.html#cfn-apigateway-deployment-stagedescription-methodsetting-cachingenabled).
+        /// Property [`CachingEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-methodsetting.html#cfn-apigateway-deployment-methodsetting-cachingenabled).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub caching_enabled: Option<::Value<bool>>,
-        /// Property [`DataTraceEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription-methodsetting.html#cfn-apigateway-deployment-stagedescription-methodsetting-datatraceenabled).
+        /// Property [`DataTraceEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-methodsetting.html#cfn-apigateway-deployment-methodsetting-datatraceenabled).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub data_trace_enabled: Option<::Value<bool>>,
-        /// Property [`HttpMethod`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription-methodsetting.html#cfn-apigateway-deployment-stagedescription-methodsetting-httpmethod).
+        /// Property [`HttpMethod`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-methodsetting.html#cfn-apigateway-deployment-methodsetting-httpmethod).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub http_method: Option<::Value<String>>,
-        /// Property [`LoggingLevel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription-methodsetting.html#cfn-apigateway-deployment-stagedescription-methodsetting-logginglevel).
+        /// Property [`LoggingLevel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-methodsetting.html#cfn-apigateway-deployment-methodsetting-logginglevel).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub logging_level: Option<::Value<String>>,
-        /// Property [`MetricsEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription-methodsetting.html#cfn-apigateway-deployment-stagedescription-methodsetting-metricsenabled).
+        /// Property [`MetricsEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-methodsetting.html#cfn-apigateway-deployment-methodsetting-metricsenabled).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub metrics_enabled: Option<::Value<bool>>,
-        /// Property [`ResourcePath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription-methodsetting.html#cfn-apigateway-deployment-stagedescription-methodsetting-resourcepath).
+        /// Property [`ResourcePath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-methodsetting.html#cfn-apigateway-deployment-methodsetting-resourcepath).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub resource_path: Option<::Value<String>>,
-        /// Property [`ThrottlingBurstLimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription-methodsetting.html#cfn-apigateway-deployment-stagedescription-methodsetting-throttlingburstlimit).
+        /// Property [`ThrottlingBurstLimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-methodsetting.html#cfn-apigateway-deployment-methodsetting-throttlingburstlimit).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub throttling_burst_limit: Option<::Value<u32>>,
-        /// Property [`ThrottlingRateLimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription-methodsetting.html#cfn-apigateway-deployment-stagedescription-methodsetting-throttlingratelimit).
+        /// Property [`ThrottlingRateLimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-methodsetting.html#cfn-apigateway-deployment-methodsetting-throttlingratelimit).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -3207,7 +3244,7 @@ pub mod deployment {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub metrics_enabled: Option<::Value<bool>>,
-        /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription.html#cfn-apigateway-deployment-tags).
+        /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-deployment-stagedescription.html#cfn-apigateway-deployment-stagedescription-tags).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -4383,55 +4420,55 @@ pub mod stage {
         }
     }
 
-    /// The [`AWS::ApiGateway::Stage.MethodSetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-stage-methodsetting.html) property type.
+    /// The [`AWS::ApiGateway::Stage.MethodSetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-methodsetting.html) property type.
     #[derive(Debug, Default)]
     pub struct MethodSetting {
-        /// Property [`CacheDataEncrypted`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-stage-methodsetting.html#cfn-apigateway-stage-methodsetting-cachedataencrypted).
+        /// Property [`CacheDataEncrypted`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-methodsetting.html#cfn-apigateway-stage-methodsetting-cachedataencrypted).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub cache_data_encrypted: Option<::Value<bool>>,
-        /// Property [`CacheTtlInSeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-stage-methodsetting.html#cfn-apigateway-stage-methodsetting-cachettlinseconds).
+        /// Property [`CacheTtlInSeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-methodsetting.html#cfn-apigateway-stage-methodsetting-cachettlinseconds).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub cache_ttl_in_seconds: Option<::Value<u32>>,
-        /// Property [`CachingEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-stage-methodsetting.html#cfn-apigateway-stage-methodsetting-cachingenabled).
+        /// Property [`CachingEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-methodsetting.html#cfn-apigateway-stage-methodsetting-cachingenabled).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub caching_enabled: Option<::Value<bool>>,
-        /// Property [`DataTraceEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-stage-methodsetting.html#cfn-apigateway-stage-methodsetting-datatraceenabled).
+        /// Property [`DataTraceEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-methodsetting.html#cfn-apigateway-stage-methodsetting-datatraceenabled).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub data_trace_enabled: Option<::Value<bool>>,
-        /// Property [`HttpMethod`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-stage-methodsetting.html#cfn-apigateway-stage-methodsetting-httpmethod).
+        /// Property [`HttpMethod`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-methodsetting.html#cfn-apigateway-stage-methodsetting-httpmethod).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub http_method: Option<::Value<String>>,
-        /// Property [`LoggingLevel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-stage-methodsetting.html#cfn-apigateway-stage-methodsetting-logginglevel).
+        /// Property [`LoggingLevel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-methodsetting.html#cfn-apigateway-stage-methodsetting-logginglevel).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub logging_level: Option<::Value<String>>,
-        /// Property [`MetricsEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-stage-methodsetting.html#cfn-apigateway-stage-methodsetting-metricsenabled).
+        /// Property [`MetricsEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-methodsetting.html#cfn-apigateway-stage-methodsetting-metricsenabled).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub metrics_enabled: Option<::Value<bool>>,
-        /// Property [`ResourcePath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-stage-methodsetting.html#cfn-apigateway-stage-methodsetting-resourcepath).
+        /// Property [`ResourcePath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-methodsetting.html#cfn-apigateway-stage-methodsetting-resourcepath).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub resource_path: Option<::Value<String>>,
-        /// Property [`ThrottlingBurstLimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-stage-methodsetting.html#cfn-apigateway-stage-methodsetting-throttlingburstlimit).
+        /// Property [`ThrottlingBurstLimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-methodsetting.html#cfn-apigateway-stage-methodsetting-throttlingburstlimit).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub throttling_burst_limit: Option<::Value<u32>>,
-        /// Property [`ThrottlingRateLimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-stage-methodsetting.html#cfn-apigateway-stage-methodsetting-throttlingratelimit).
+        /// Property [`ThrottlingRateLimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-stage-methodsetting.html#cfn-apigateway-stage-methodsetting-throttlingratelimit).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.

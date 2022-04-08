@@ -43,7 +43,7 @@ pub struct AnalysisProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub source_entity: Option<::Value<self::analysis::AnalysisSourceEntity>>,
+    pub source_entity: ::Value<self::analysis::AnalysisSourceEntity>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-analysis.html#cfn-quicksight-analysis-tags).
     ///
     /// Update type: _Mutable_.
@@ -73,9 +73,7 @@ impl ::serde::Serialize for AnalysisProperties {
         if let Some(ref permissions) = self.permissions {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Permissions", permissions)?;
         }
-        if let Some(ref source_entity) = self.source_entity {
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceEntity", source_entity)?;
-        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceEntity", &self.source_entity)?;
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
@@ -148,7 +146,7 @@ impl<'de> ::serde::Deserialize<'de> for AnalysisProperties {
                     name: name,
                     parameters: parameters,
                     permissions: permissions,
-                    source_entity: source_entity,
+                    source_entity: source_entity.ok_or(::serde::de::Error::missing_field("SourceEntity"))?,
                     tags: tags,
                     theme_arn: theme_arn,
                 })
@@ -221,7 +219,7 @@ pub struct DashboardProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub source_entity: Option<::Value<self::dashboard::DashboardSourceEntity>>,
+    pub source_entity: ::Value<self::dashboard::DashboardSourceEntity>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-dashboard.html#cfn-quicksight-dashboard-tags).
     ///
     /// Update type: _Mutable_.
@@ -256,9 +254,7 @@ impl ::serde::Serialize for DashboardProperties {
         if let Some(ref permissions) = self.permissions {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Permissions", permissions)?;
         }
-        if let Some(ref source_entity) = self.source_entity {
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceEntity", source_entity)?;
-        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceEntity", &self.source_entity)?;
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
@@ -338,7 +334,7 @@ impl<'de> ::serde::Deserialize<'de> for DashboardProperties {
                     name: name,
                     parameters: parameters,
                     permissions: permissions,
-                    source_entity: source_entity,
+                    source_entity: source_entity.ok_or(::serde::de::Error::missing_field("SourceEntity"))?,
                     tags: tags,
                     theme_arn: theme_arn,
                     version_description: version_description,
@@ -852,7 +848,7 @@ pub struct TemplateProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub source_entity: Option<::Value<self::template::TemplateSourceEntity>>,
+    pub source_entity: ::Value<self::template::TemplateSourceEntity>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-quicksight-template.html#cfn-quicksight-template-tags).
     ///
     /// Update type: _Mutable_.
@@ -880,9 +876,7 @@ impl ::serde::Serialize for TemplateProperties {
         if let Some(ref permissions) = self.permissions {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Permissions", permissions)?;
         }
-        if let Some(ref source_entity) = self.source_entity {
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceEntity", source_entity)?;
-        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceEntity", &self.source_entity)?;
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
@@ -945,7 +939,7 @@ impl<'de> ::serde::Deserialize<'de> for TemplateProperties {
                     aws_account_id: aws_account_id.ok_or(::serde::de::Error::missing_field("AwsAccountId"))?,
                     name: name,
                     permissions: permissions,
-                    source_entity: source_entity,
+                    source_entity: source_entity.ok_or(::serde::de::Error::missing_field("SourceEntity"))?,
                     tags: tags,
                     template_id: template_id.ok_or(::serde::de::Error::missing_field("TemplateId"))?,
                     version_description: version_description,
@@ -4265,6 +4259,11 @@ pub mod data_set {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub arn: ::Value<String>,
+        /// Property [`FormatVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-rowlevelpermissiondataset.html#cfn-quicksight-dataset-rowlevelpermissiondataset-formatversion).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub format_version: Option<::Value<String>>,
         /// Property [`Namespace`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-dataset-rowlevelpermissiondataset.html#cfn-quicksight-dataset-rowlevelpermissiondataset-namespace).
         ///
         /// Update type: _Mutable_.
@@ -4281,6 +4280,9 @@ pub mod data_set {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Arn", &self.arn)?;
+            if let Some(ref format_version) = self.format_version {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FormatVersion", format_version)?;
+            }
             if let Some(ref namespace) = self.namespace {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Namespace", namespace)?;
             }
@@ -4302,6 +4304,7 @@ pub mod data_set {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut arn: Option<::Value<String>> = None;
+                    let mut format_version: Option<::Value<String>> = None;
                     let mut namespace: Option<::Value<String>> = None;
                     let mut permission_policy: Option<::Value<String>> = None;
 
@@ -4309,6 +4312,9 @@ pub mod data_set {
                         match __cfn_key.as_ref() {
                             "Arn" => {
                                 arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "FormatVersion" => {
+                                format_version = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Namespace" => {
                                 namespace = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -4322,6 +4328,7 @@ pub mod data_set {
 
                     Ok(RowLevelPermissionDataSet {
                         arn: arn.ok_or(::serde::de::Error::missing_field("Arn"))?,
+                        format_version: format_version,
                         namespace: namespace,
                         permission_policy: permission_policy.ok_or(::serde::de::Error::missing_field("PermissionPolicy"))?,
                     })
@@ -4747,6 +4754,57 @@ pub mod data_source {
         }
     }
 
+    /// The [`AWS::QuickSight::DataSource.AmazonOpenSearchParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-amazonopensearchparameters.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AmazonOpenSearchParameters {
+        /// Property [`Domain`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-amazonopensearchparameters.html#cfn-quicksight-datasource-amazonopensearchparameters-domain).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub domain: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for AmazonOpenSearchParameters {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Domain", &self.domain)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AmazonOpenSearchParameters {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AmazonOpenSearchParameters, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AmazonOpenSearchParameters;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AmazonOpenSearchParameters")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut domain: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Domain" => {
+                                domain = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AmazonOpenSearchParameters {
+                        domain: domain.ok_or(::serde::de::Error::missing_field("Domain"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::QuickSight::DataSource.AthenaParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-athenaparameters.html) property type.
     #[derive(Debug, Default)]
     pub struct AthenaParameters {
@@ -5161,6 +5219,11 @@ pub mod data_source {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub amazon_elasticsearch_parameters: Option<::Value<AmazonElasticsearchParameters>>,
+        /// Property [`AmazonOpenSearchParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-datasourceparameters.html#cfn-quicksight-datasource-datasourceparameters-amazonopensearchparameters).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub amazon_open_search_parameters: Option<::Value<AmazonOpenSearchParameters>>,
         /// Property [`AthenaParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-quicksight-datasource-datasourceparameters.html#cfn-quicksight-datasource-datasourceparameters-athenaparameters).
         ///
         /// Update type: _Mutable_.
@@ -5244,6 +5307,9 @@ pub mod data_source {
             if let Some(ref amazon_elasticsearch_parameters) = self.amazon_elasticsearch_parameters {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "AmazonElasticsearchParameters", amazon_elasticsearch_parameters)?;
             }
+            if let Some(ref amazon_open_search_parameters) = self.amazon_open_search_parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AmazonOpenSearchParameters", amazon_open_search_parameters)?;
+            }
             if let Some(ref athena_parameters) = self.athena_parameters {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "AthenaParameters", athena_parameters)?;
             }
@@ -5306,6 +5372,7 @@ pub mod data_source {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut amazon_elasticsearch_parameters: Option<::Value<AmazonElasticsearchParameters>> = None;
+                    let mut amazon_open_search_parameters: Option<::Value<AmazonOpenSearchParameters>> = None;
                     let mut athena_parameters: Option<::Value<AthenaParameters>> = None;
                     let mut aurora_parameters: Option<::Value<AuroraParameters>> = None;
                     let mut aurora_postgre_sql_parameters: Option<::Value<AuroraPostgreSqlParameters>> = None;
@@ -5326,6 +5393,9 @@ pub mod data_source {
                         match __cfn_key.as_ref() {
                             "AmazonElasticsearchParameters" => {
                                 amazon_elasticsearch_parameters = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "AmazonOpenSearchParameters" => {
+                                amazon_open_search_parameters = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "AthenaParameters" => {
                                 athena_parameters = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -5378,6 +5448,7 @@ pub mod data_source {
 
                     Ok(DataSourceParameters {
                         amazon_elasticsearch_parameters: amazon_elasticsearch_parameters,
+                        amazon_open_search_parameters: amazon_open_search_parameters,
                         athena_parameters: athena_parameters,
                         aurora_parameters: aurora_parameters,
                         aurora_postgre_sql_parameters: aurora_postgre_sql_parameters,

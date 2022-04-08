@@ -774,6 +774,11 @@ pub struct Project {
 /// Properties for the `Project` resource.
 #[derive(Debug, Default)]
 pub struct ProjectProperties {
+    /// Property [`AssetIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-project.html#cfn-iotsitewise-project-assetids).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub asset_ids: Option<::ValueList<String>>,
     /// Property [`PortalId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotsitewise-project.html#cfn-iotsitewise-project-portalid).
     ///
     /// Update type: _Immutable_.
@@ -799,6 +804,9 @@ pub struct ProjectProperties {
 impl ::serde::Serialize for ProjectProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref asset_ids) = self.asset_ids {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssetIds", asset_ids)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "PortalId", &self.portal_id)?;
         if let Some(ref project_description) = self.project_description {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProjectDescription", project_description)?;
@@ -823,6 +831,7 @@ impl<'de> ::serde::Deserialize<'de> for ProjectProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut asset_ids: Option<::ValueList<String>> = None;
                 let mut portal_id: Option<::Value<String>> = None;
                 let mut project_description: Option<::Value<String>> = None;
                 let mut project_name: Option<::Value<String>> = None;
@@ -830,6 +839,9 @@ impl<'de> ::serde::Deserialize<'de> for ProjectProperties {
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "AssetIds" => {
+                            asset_ids = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "PortalId" => {
                             portal_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -847,6 +859,7 @@ impl<'de> ::serde::Deserialize<'de> for ProjectProperties {
                 }
 
                 Ok(ProjectProperties {
+                    asset_ids: asset_ids,
                     portal_id: portal_id.ok_or(::serde::de::Error::missing_field("PortalId"))?,
                     project_description: project_description,
                     project_name: project_name.ok_or(::serde::de::Error::missing_field("ProjectName"))?,
@@ -2110,12 +2123,20 @@ pub mod asset_model {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub interval: ::Value<String>,
+        /// Property [`Offset`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-assetmodel-tumblingwindow.html#cfn-iotsitewise-assetmodel-tumblingwindow-offset).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub offset: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for TumblingWindow {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Interval", &self.interval)?;
+            if let Some(ref offset) = self.offset {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Offset", offset)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -2133,11 +2154,15 @@ pub mod asset_model {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut interval: Option<::Value<String>> = None;
+                    let mut offset: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Interval" => {
                                 interval = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Offset" => {
+                                offset = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -2145,6 +2170,7 @@ pub mod asset_model {
 
                     Ok(TumblingWindow {
                         interval: interval.ok_or(::serde::de::Error::missing_field("Interval"))?,
+                        offset: offset,
                     })
                 }
             }
@@ -2292,13 +2318,23 @@ pub mod gateway {
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
-        pub greengrass: ::Value<Greengrass>,
+        pub greengrass: Option<::Value<Greengrass>>,
+        /// Property [`GreengrassV2`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-gateway-gatewayplatform.html#cfn-iotsitewise-gateway-gatewayplatform-greengrassv2).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub greengrass_v2: Option<::Value<GreengrassV2>>,
     }
 
     impl ::codec::SerializeValue for GatewayPlatform {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Greengrass", &self.greengrass)?;
+            if let Some(ref greengrass) = self.greengrass {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Greengrass", greengrass)?;
+            }
+            if let Some(ref greengrass_v2) = self.greengrass_v2 {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "GreengrassV2", greengrass_v2)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -2316,18 +2352,23 @@ pub mod gateway {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut greengrass: Option<::Value<Greengrass>> = None;
+                    let mut greengrass_v2: Option<::Value<GreengrassV2>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Greengrass" => {
                                 greengrass = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "GreengrassV2" => {
+                                greengrass_v2 = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
 
                     Ok(GatewayPlatform {
-                        greengrass: greengrass.ok_or(::serde::de::Error::missing_field("Greengrass"))?,
+                        greengrass: greengrass,
+                        greengrass_v2: greengrass_v2,
                     })
                 }
             }
@@ -2379,6 +2420,57 @@ pub mod gateway {
 
                     Ok(Greengrass {
                         group_arn: group_arn.ok_or(::serde::de::Error::missing_field("GroupArn"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::IoTSiteWise::Gateway.GreengrassV2`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-gateway-greengrassv2.html) property type.
+    #[derive(Debug, Default)]
+    pub struct GreengrassV2 {
+        /// Property [`CoreDeviceThingName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotsitewise-gateway-greengrassv2.html#cfn-iotsitewise-gateway-greengrassv2-coredevicethingname).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub core_device_thing_name: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for GreengrassV2 {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CoreDeviceThingName", &self.core_device_thing_name)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for GreengrassV2 {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<GreengrassV2, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = GreengrassV2;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type GreengrassV2")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut core_device_thing_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CoreDeviceThingName" => {
+                                core_device_thing_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(GreengrassV2 {
+                        core_device_thing_name: core_device_thing_name.ok_or(::serde::de::Error::missing_field("CoreDeviceThingName"))?,
                     })
                 }
             }

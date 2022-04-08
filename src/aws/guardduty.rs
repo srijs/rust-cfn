@@ -720,6 +720,11 @@ pub mod detector {
     /// The [`AWS::GuardDuty::Detector.CFNDataSourceConfigurations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-cfndatasourceconfigurations.html) property type.
     #[derive(Debug, Default)]
     pub struct CFNDataSourceConfigurations {
+        /// Property [`Kubernetes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-cfndatasourceconfigurations.html#cfn-guardduty-detector-cfndatasourceconfigurations-kubernetes).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub kubernetes: Option<::Value<CFNKubernetesConfiguration>>,
         /// Property [`S3Logs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-cfndatasourceconfigurations.html#cfn-guardduty-detector-cfndatasourceconfigurations-s3logs).
         ///
         /// Update type: _Mutable_.
@@ -730,6 +735,9 @@ pub mod detector {
     impl ::codec::SerializeValue for CFNDataSourceConfigurations {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref kubernetes) = self.kubernetes {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Kubernetes", kubernetes)?;
+            }
             if let Some(ref s3_logs) = self.s3_logs {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Logs", s3_logs)?;
             }
@@ -749,10 +757,14 @@ pub mod detector {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut kubernetes: Option<::Value<CFNKubernetesConfiguration>> = None;
                     let mut s3_logs: Option<::Value<CFNS3LogsConfiguration>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "Kubernetes" => {
+                                kubernetes = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "S3Logs" => {
                                 s3_logs = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -761,7 +773,114 @@ pub mod detector {
                     }
 
                     Ok(CFNDataSourceConfigurations {
+                        kubernetes: kubernetes,
                         s3_logs: s3_logs,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::GuardDuty::Detector.CFNKubernetesAuditLogsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-cfnkubernetesauditlogsconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CFNKubernetesAuditLogsConfiguration {
+        /// Property [`Enable`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-cfnkubernetesauditlogsconfiguration.html#cfn-guardduty-detector-cfnkubernetesauditlogsconfiguration-enable).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub enable: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for CFNKubernetesAuditLogsConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref enable) = self.enable {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enable", enable)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CFNKubernetesAuditLogsConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CFNKubernetesAuditLogsConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CFNKubernetesAuditLogsConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CFNKubernetesAuditLogsConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut enable: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Enable" => {
+                                enable = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CFNKubernetesAuditLogsConfiguration {
+                        enable: enable,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::GuardDuty::Detector.CFNKubernetesConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-cfnkubernetesconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CFNKubernetesConfiguration {
+        /// Property [`AuditLogs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-guardduty-detector-cfnkubernetesconfiguration.html#cfn-guardduty-detector-cfnkubernetesconfiguration-auditlogs).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub audit_logs: Option<::Value<CFNKubernetesAuditLogsConfiguration>>,
+    }
+
+    impl ::codec::SerializeValue for CFNKubernetesConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref audit_logs) = self.audit_logs {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuditLogs", audit_logs)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CFNKubernetesConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CFNKubernetesConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CFNKubernetesConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CFNKubernetesConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut audit_logs: Option<::Value<CFNKubernetesAuditLogsConfiguration>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AuditLogs" => {
+                                audit_logs = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CFNKubernetesConfiguration {
+                        audit_logs: audit_logs,
                     })
                 }
             }

@@ -9,6 +9,11 @@ pub struct Discoverer {
 /// Properties for the `Discoverer` resource.
 #[derive(Debug, Default)]
 pub struct DiscovererProperties {
+    /// Property [`CrossAccount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eventschemas-discoverer.html#cfn-eventschemas-discoverer-crossaccount).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub cross_account: Option<::Value<bool>>,
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eventschemas-discoverer.html#cfn-eventschemas-discoverer-description).
     ///
     /// Update type: _Mutable_.
@@ -29,6 +34,9 @@ pub struct DiscovererProperties {
 impl ::serde::Serialize for DiscovererProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref cross_account) = self.cross_account {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CrossAccount", cross_account)?;
+        }
         if let Some(ref description) = self.description {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
         }
@@ -52,12 +60,16 @@ impl<'de> ::serde::Deserialize<'de> for DiscovererProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut cross_account: Option<::Value<bool>> = None;
                 let mut description: Option<::Value<String>> = None;
                 let mut source_arn: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<self::discoverer::TagsEntry>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "CrossAccount" => {
+                            cross_account = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Description" => {
                             description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -72,6 +84,7 @@ impl<'de> ::serde::Deserialize<'de> for DiscovererProperties {
                 }
 
                 Ok(DiscovererProperties {
+                    cross_account: cross_account,
                     description: description,
                     source_arn: source_arn.ok_or(::serde::de::Error::missing_field("SourceArn"))?,
                     tags: tags,

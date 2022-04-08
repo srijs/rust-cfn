@@ -137,6 +137,119 @@ impl From<IPSetProperties> for IPSet {
     }
 }
 
+/// The [`AWS::WAFv2::LoggingConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-loggingconfiguration.html) resource type.
+#[derive(Debug, Default)]
+pub struct LoggingConfiguration {
+    properties: LoggingConfigurationProperties
+}
+
+/// Properties for the `LoggingConfiguration` resource.
+#[derive(Debug, Default)]
+pub struct LoggingConfigurationProperties {
+    /// Property [`LogDestinationConfigs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-loggingconfiguration.html#cfn-wafv2-loggingconfiguration-logdestinationconfigs).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub log_destination_configs: ::ValueList<String>,
+    /// Property [`LoggingFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-loggingconfiguration.html#cfn-wafv2-loggingconfiguration-loggingfilter).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub logging_filter: Option<::Value<::json::Value>>,
+    /// Property [`RedactedFields`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-loggingconfiguration.html#cfn-wafv2-loggingconfiguration-redactedfields).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub redacted_fields: Option<::ValueList<self::logging_configuration::FieldToMatch>>,
+    /// Property [`ResourceArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-loggingconfiguration.html#cfn-wafv2-loggingconfiguration-resourcearn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub resource_arn: ::Value<String>,
+}
+
+impl ::serde::Serialize for LoggingConfigurationProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogDestinationConfigs", &self.log_destination_configs)?;
+        if let Some(ref logging_filter) = self.logging_filter {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoggingFilter", logging_filter)?;
+        }
+        if let Some(ref redacted_fields) = self.redacted_fields {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RedactedFields", redacted_fields)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceArn", &self.resource_arn)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for LoggingConfigurationProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<LoggingConfigurationProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = LoggingConfigurationProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type LoggingConfigurationProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut log_destination_configs: Option<::ValueList<String>> = None;
+                let mut logging_filter: Option<::Value<::json::Value>> = None;
+                let mut redacted_fields: Option<::ValueList<self::logging_configuration::FieldToMatch>> = None;
+                let mut resource_arn: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "LogDestinationConfigs" => {
+                            log_destination_configs = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "LoggingFilter" => {
+                            logging_filter = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "RedactedFields" => {
+                            redacted_fields = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ResourceArn" => {
+                            resource_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(LoggingConfigurationProperties {
+                    log_destination_configs: log_destination_configs.ok_or(::serde::de::Error::missing_field("LogDestinationConfigs"))?,
+                    logging_filter: logging_filter,
+                    redacted_fields: redacted_fields,
+                    resource_arn: resource_arn.ok_or(::serde::de::Error::missing_field("ResourceArn"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for LoggingConfiguration {
+    type Properties = LoggingConfigurationProperties;
+    const TYPE: &'static str = "AWS::WAFv2::LoggingConfiguration";
+    fn properties(&self) -> &LoggingConfigurationProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut LoggingConfigurationProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for LoggingConfiguration {}
+
+impl From<LoggingConfigurationProperties> for LoggingConfiguration {
+    fn from(properties: LoggingConfigurationProperties) -> LoggingConfiguration {
+        LoggingConfiguration { properties }
+    }
+}
+
 /// The [`AWS::WAFv2::RegexPatternSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-regexpatternset.html) resource type.
 #[derive(Debug, Default)]
 pub struct RegexPatternSet {
@@ -435,6 +548,11 @@ pub struct WebACL {
 /// Properties for the `WebACL` resource.
 #[derive(Debug, Default)]
 pub struct WebACLProperties {
+    /// Property [`CaptchaConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webacl.html#cfn-wafv2-webacl-captchaconfig).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub captcha_config: Option<::Value<self::web_acl::CaptchaConfig>>,
     /// Property [`CustomResponseBodies`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-wafv2-webacl.html#cfn-wafv2-webacl-customresponsebodies).
     ///
     /// Update type: _Mutable_.
@@ -480,6 +598,9 @@ pub struct WebACLProperties {
 impl ::serde::Serialize for WebACLProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref captcha_config) = self.captcha_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CaptchaConfig", captcha_config)?;
+        }
         if let Some(ref custom_response_bodies) = self.custom_response_bodies {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomResponseBodies", custom_response_bodies)?;
         }
@@ -514,6 +635,7 @@ impl<'de> ::serde::Deserialize<'de> for WebACLProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut captcha_config: Option<::Value<self::web_acl::CaptchaConfig>> = None;
                 let mut custom_response_bodies: Option<::ValueMap<self::web_acl::CustomResponseBody>> = None;
                 let mut default_action: Option<::Value<self::web_acl::DefaultAction>> = None;
                 let mut description: Option<::Value<String>> = None;
@@ -525,6 +647,9 @@ impl<'de> ::serde::Deserialize<'de> for WebACLProperties {
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "CaptchaConfig" => {
+                            captcha_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "CustomResponseBodies" => {
                             custom_response_bodies = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -554,6 +679,7 @@ impl<'de> ::serde::Deserialize<'de> for WebACLProperties {
                 }
 
                 Ok(WebACLProperties {
+                    captcha_config: captcha_config,
                     custom_response_bodies: custom_response_bodies,
                     default_action: default_action.ok_or(::serde::de::Error::missing_field("DefaultAction"))?,
                     description: description,
@@ -673,6 +799,115 @@ impl ::private::Sealed for WebACLAssociation {}
 impl From<WebACLAssociationProperties> for WebACLAssociation {
     fn from(properties: WebACLAssociationProperties) -> WebACLAssociation {
         WebACLAssociation { properties }
+    }
+}
+
+pub mod logging_configuration {
+    //! Property types for the `LoggingConfiguration` resource.
+
+    /// The [`AWS::WAFv2::LoggingConfiguration.FieldToMatch`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-loggingconfiguration-fieldtomatch.html) property type.
+    #[derive(Debug, Default)]
+    pub struct FieldToMatch {
+        /// Property [`JsonBody`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-loggingconfiguration-fieldtomatch.html#cfn-wafv2-loggingconfiguration-fieldtomatch-jsonbody).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub json_body: Option<::Value<::json::Value>>,
+        /// Property [`Method`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-loggingconfiguration-fieldtomatch.html#cfn-wafv2-loggingconfiguration-fieldtomatch-method).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub method: Option<::Value<::json::Value>>,
+        /// Property [`QueryString`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-loggingconfiguration-fieldtomatch.html#cfn-wafv2-loggingconfiguration-fieldtomatch-querystring).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub query_string: Option<::Value<::json::Value>>,
+        /// Property [`SingleHeader`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-loggingconfiguration-fieldtomatch.html#cfn-wafv2-loggingconfiguration-fieldtomatch-singleheader).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub single_header: Option<::Value<::json::Value>>,
+        /// Property [`UriPath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-loggingconfiguration-fieldtomatch.html#cfn-wafv2-loggingconfiguration-fieldtomatch-uripath).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub uri_path: Option<::Value<::json::Value>>,
+    }
+
+    impl ::codec::SerializeValue for FieldToMatch {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref json_body) = self.json_body {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "JsonBody", json_body)?;
+            }
+            if let Some(ref method) = self.method {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Method", method)?;
+            }
+            if let Some(ref query_string) = self.query_string {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "QueryString", query_string)?;
+            }
+            if let Some(ref single_header) = self.single_header {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SingleHeader", single_header)?;
+            }
+            if let Some(ref uri_path) = self.uri_path {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UriPath", uri_path)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for FieldToMatch {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<FieldToMatch, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = FieldToMatch;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type FieldToMatch")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut json_body: Option<::Value<::json::Value>> = None;
+                    let mut method: Option<::Value<::json::Value>> = None;
+                    let mut query_string: Option<::Value<::json::Value>> = None;
+                    let mut single_header: Option<::Value<::json::Value>> = None;
+                    let mut uri_path: Option<::Value<::json::Value>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "JsonBody" => {
+                                json_body = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Method" => {
+                                method = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "QueryString" => {
+                                query_string = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SingleHeader" => {
+                                single_header = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "UriPath" => {
+                                uri_path = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(FieldToMatch {
+                        json_body: json_body,
+                        method: method,
+                        query_string: query_string,
+                        single_header: single_header,
+                        uri_path: uri_path,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
     }
 }
 
@@ -821,6 +1056,59 @@ pub mod rule_group {
                         search_string: search_string,
                         search_string_base64: search_string_base64,
                         text_transformations: text_transformations.ok_or(::serde::de::Error::missing_field("TextTransformations"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::WAFv2::RuleGroup.CaptchaConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-captchaconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CaptchaConfig {
+        /// Property [`ImmunityTimeProperty`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-captchaconfig.html#cfn-wafv2-rulegroup-captchaconfig-immunitytimeproperty).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub immunity_time_property: Option<::Value<ImmunityTimeProperty>>,
+    }
+
+    impl ::codec::SerializeValue for CaptchaConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref immunity_time_property) = self.immunity_time_property {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ImmunityTimeProperty", immunity_time_property)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CaptchaConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CaptchaConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CaptchaConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CaptchaConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut immunity_time_property: Option<::Value<ImmunityTimeProperty>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ImmunityTimeProperty" => {
+                                immunity_time_property = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CaptchaConfig {
+                        immunity_time_property: immunity_time_property,
                     })
                 }
             }
@@ -1292,6 +1580,57 @@ pub mod rule_group {
                     Ok(IPSetReferenceStatement {
                         arn: arn.ok_or(::serde::de::Error::missing_field("Arn"))?,
                         ip_set_forwarded_ip_config: ip_set_forwarded_ip_config,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::WAFv2::RuleGroup.ImmunityTimeProperty`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-immunitytimeproperty.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ImmunityTimeProperty {
+        /// Property [`ImmunityTime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-immunitytimeproperty.html#cfn-wafv2-rulegroup-immunitytimeproperty-immunitytime).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub immunity_time: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for ImmunityTimeProperty {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ImmunityTime", &self.immunity_time)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ImmunityTimeProperty {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ImmunityTimeProperty, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ImmunityTimeProperty;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ImmunityTimeProperty")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut immunity_time: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ImmunityTime" => {
+                                immunity_time = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ImmunityTimeProperty {
+                        immunity_time: immunity_time.ok_or(::serde::de::Error::missing_field("ImmunityTime"))?,
                     })
                 }
             }
@@ -1797,6 +2136,79 @@ pub mod rule_group {
         }
     }
 
+    /// The [`AWS::WAFv2::RuleGroup.RegexMatchStatement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-regexmatchstatement.html) property type.
+    #[derive(Debug, Default)]
+    pub struct RegexMatchStatement {
+        /// Property [`FieldToMatch`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-regexmatchstatement.html#cfn-wafv2-rulegroup-regexmatchstatement-fieldtomatch).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub field_to_match: ::Value<FieldToMatch>,
+        /// Property [`RegexString`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-regexmatchstatement.html#cfn-wafv2-rulegroup-regexmatchstatement-regexstring).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub regex_string: ::Value<String>,
+        /// Property [`TextTransformations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-regexmatchstatement.html#cfn-wafv2-rulegroup-regexmatchstatement-texttransformations).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub text_transformations: ::ValueList<TextTransformation>,
+    }
+
+    impl ::codec::SerializeValue for RegexMatchStatement {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FieldToMatch", &self.field_to_match)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RegexString", &self.regex_string)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TextTransformations", &self.text_transformations)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for RegexMatchStatement {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<RegexMatchStatement, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = RegexMatchStatement;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type RegexMatchStatement")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut field_to_match: Option<::Value<FieldToMatch>> = None;
+                    let mut regex_string: Option<::Value<String>> = None;
+                    let mut text_transformations: Option<::ValueList<TextTransformation>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "FieldToMatch" => {
+                                field_to_match = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RegexString" => {
+                                regex_string = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TextTransformations" => {
+                                text_transformations = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(RegexMatchStatement {
+                        field_to_match: field_to_match.ok_or(::serde::de::Error::missing_field("FieldToMatch"))?,
+                        regex_string: regex_string.ok_or(::serde::de::Error::missing_field("RegexString"))?,
+                        text_transformations: text_transformations.ok_or(::serde::de::Error::missing_field("TextTransformations"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::WAFv2::RuleGroup.RegexPatternSetReferenceStatement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-regexpatternsetreferencestatement.html) property type.
     #[derive(Debug, Default)]
     pub struct RegexPatternSetReferenceStatement {
@@ -1878,6 +2290,11 @@ pub mod rule_group {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub action: Option<::Value<RuleAction>>,
+        /// Property [`CaptchaConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-rule.html#cfn-wafv2-rulegroup-rule-captchaconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub captcha_config: Option<::Value<CaptchaConfig>>,
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-rule.html#cfn-wafv2-rulegroup-rule-name).
         ///
         /// Update type: _Mutable_.
@@ -1911,6 +2328,9 @@ pub mod rule_group {
             if let Some(ref action) = self.action {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Action", action)?;
             }
+            if let Some(ref captcha_config) = self.captcha_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CaptchaConfig", captcha_config)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Priority", &self.priority)?;
             if let Some(ref rule_labels) = self.rule_labels {
@@ -1935,6 +2355,7 @@ pub mod rule_group {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut action: Option<::Value<RuleAction>> = None;
+                    let mut captcha_config: Option<::Value<CaptchaConfig>> = None;
                     let mut name: Option<::Value<String>> = None;
                     let mut priority: Option<::Value<u32>> = None;
                     let mut rule_labels: Option<::ValueList<Label>> = None;
@@ -1945,6 +2366,9 @@ pub mod rule_group {
                         match __cfn_key.as_ref() {
                             "Action" => {
                                 action = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CaptchaConfig" => {
+                                captcha_config = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Name" => {
                                 name = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1967,6 +2391,7 @@ pub mod rule_group {
 
                     Ok(Rule {
                         action: action,
+                        captcha_config: captcha_config,
                         name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                         priority: priority.ok_or(::serde::de::Error::missing_field("Priority"))?,
                         rule_labels: rule_labels,
@@ -1993,6 +2418,11 @@ pub mod rule_group {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub block: Option<::Value<::json::Value>>,
+        /// Property [`Captcha`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ruleaction.html#cfn-wafv2-rulegroup-ruleaction-captcha).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub captcha: Option<::Value<::json::Value>>,
         /// Property [`Count`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-ruleaction.html#cfn-wafv2-rulegroup-ruleaction-count).
         ///
         /// Update type: _Mutable_.
@@ -2008,6 +2438,9 @@ pub mod rule_group {
             }
             if let Some(ref block) = self.block {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Block", block)?;
+            }
+            if let Some(ref captcha) = self.captcha {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Captcha", captcha)?;
             }
             if let Some(ref count) = self.count {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Count", count)?;
@@ -2030,6 +2463,7 @@ pub mod rule_group {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut allow: Option<::Value<::json::Value>> = None;
                     let mut block: Option<::Value<::json::Value>> = None;
+                    let mut captcha: Option<::Value<::json::Value>> = None;
                     let mut count: Option<::Value<::json::Value>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -2039,6 +2473,9 @@ pub mod rule_group {
                             }
                             "Block" => {
                                 block = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Captcha" => {
+                                captcha = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Count" => {
                                 count = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -2050,6 +2487,7 @@ pub mod rule_group {
                     Ok(RuleAction {
                         allow: allow,
                         block: block,
+                        captcha: captcha,
                         count: count,
                     })
                 }
@@ -2248,6 +2686,11 @@ pub mod rule_group {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub rate_based_statement: Option<::Value<RateBasedStatement>>,
+        /// Property [`RegexMatchStatement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-statement.html#cfn-wafv2-rulegroup-statement-regexmatchstatement).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub regex_match_statement: Option<::Value<RegexMatchStatement>>,
         /// Property [`RegexPatternSetReferenceStatement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-rulegroup-statement.html#cfn-wafv2-rulegroup-statement-regexpatternsetreferencestatement).
         ///
         /// Update type: _Mutable_.
@@ -2297,6 +2740,9 @@ pub mod rule_group {
             if let Some(ref rate_based_statement) = self.rate_based_statement {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "RateBasedStatement", rate_based_statement)?;
             }
+            if let Some(ref regex_match_statement) = self.regex_match_statement {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RegexMatchStatement", regex_match_statement)?;
+            }
             if let Some(ref regex_pattern_set_reference_statement) = self.regex_pattern_set_reference_statement {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "RegexPatternSetReferenceStatement", regex_pattern_set_reference_statement)?;
             }
@@ -2333,6 +2779,7 @@ pub mod rule_group {
                     let mut not_statement: Option<::Value<NotStatement>> = None;
                     let mut or_statement: Option<::Value<OrStatement>> = None;
                     let mut rate_based_statement: Option<::Value<RateBasedStatement>> = None;
+                    let mut regex_match_statement: Option<::Value<RegexMatchStatement>> = None;
                     let mut regex_pattern_set_reference_statement: Option<::Value<RegexPatternSetReferenceStatement>> = None;
                     let mut size_constraint_statement: Option<::Value<SizeConstraintStatement>> = None;
                     let mut sqli_match_statement: Option<::Value<SqliMatchStatement>> = None;
@@ -2364,6 +2811,9 @@ pub mod rule_group {
                             "RateBasedStatement" => {
                                 rate_based_statement = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "RegexMatchStatement" => {
+                                regex_match_statement = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "RegexPatternSetReferenceStatement" => {
                                 regex_pattern_set_reference_statement = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -2389,6 +2839,7 @@ pub mod rule_group {
                         not_statement: not_statement,
                         or_statement: or_statement,
                         rate_based_statement: rate_based_statement,
+                        regex_match_statement: regex_match_statement,
                         regex_pattern_set_reference_statement: regex_pattern_set_reference_statement,
                         size_constraint_statement: size_constraint_statement,
                         sqli_match_statement: sqli_match_statement,
@@ -2858,6 +3309,112 @@ pub mod web_acl {
         }
     }
 
+    /// The [`AWS::WAFv2::WebACL.CaptchaAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-captchaaction.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CaptchaAction {
+        /// Property [`CustomRequestHandling`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-captchaaction.html#cfn-wafv2-webacl-captchaaction-customrequesthandling).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub custom_request_handling: Option<::Value<CustomRequestHandling>>,
+    }
+
+    impl ::codec::SerializeValue for CaptchaAction {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref custom_request_handling) = self.custom_request_handling {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomRequestHandling", custom_request_handling)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CaptchaAction {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CaptchaAction, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CaptchaAction;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CaptchaAction")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut custom_request_handling: Option<::Value<CustomRequestHandling>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CustomRequestHandling" => {
+                                custom_request_handling = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CaptchaAction {
+                        custom_request_handling: custom_request_handling,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::WAFv2::WebACL.CaptchaConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-captchaconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CaptchaConfig {
+        /// Property [`ImmunityTimeProperty`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-captchaconfig.html#cfn-wafv2-webacl-captchaconfig-immunitytimeproperty).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub immunity_time_property: Option<::Value<ImmunityTimeProperty>>,
+    }
+
+    impl ::codec::SerializeValue for CaptchaConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref immunity_time_property) = self.immunity_time_property {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ImmunityTimeProperty", immunity_time_property)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CaptchaConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CaptchaConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CaptchaConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CaptchaConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut immunity_time_property: Option<::Value<ImmunityTimeProperty>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ImmunityTimeProperty" => {
+                                immunity_time_property = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CaptchaConfig {
+                        immunity_time_property: immunity_time_property,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::WAFv2::WebACL.CountAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-countaction.html) property type.
     #[derive(Debug, Default)]
     pub struct CountAction {
@@ -3280,6 +3837,57 @@ pub mod web_acl {
         }
     }
 
+    /// The [`AWS::WAFv2::WebACL.FieldIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-fieldidentifier.html) property type.
+    #[derive(Debug, Default)]
+    pub struct FieldIdentifier {
+        /// Property [`Identifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-fieldidentifier.html#cfn-wafv2-webacl-fieldidentifier-identifier).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub identifier: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for FieldIdentifier {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Identifier", &self.identifier)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for FieldIdentifier {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<FieldIdentifier, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = FieldIdentifier;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type FieldIdentifier")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut identifier: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Identifier" => {
+                                identifier = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(FieldIdentifier {
+                        identifier: identifier.ok_or(::serde::de::Error::missing_field("Identifier"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::WAFv2::WebACL.FieldToMatch`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-fieldtomatch.html) property type.
     #[derive(Debug, Default)]
     pub struct FieldToMatch {
@@ -3689,6 +4297,57 @@ pub mod web_acl {
         }
     }
 
+    /// The [`AWS::WAFv2::WebACL.ImmunityTimeProperty`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-immunitytimeproperty.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ImmunityTimeProperty {
+        /// Property [`ImmunityTime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-immunitytimeproperty.html#cfn-wafv2-webacl-immunitytimeproperty-immunitytime).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub immunity_time: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for ImmunityTimeProperty {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ImmunityTime", &self.immunity_time)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ImmunityTimeProperty {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ImmunityTimeProperty, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ImmunityTimeProperty;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ImmunityTimeProperty")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut immunity_time: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ImmunityTime" => {
+                                immunity_time = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ImmunityTimeProperty {
+                        immunity_time: immunity_time.ok_or(::serde::de::Error::missing_field("ImmunityTime"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::WAFv2::WebACL.JsonBody`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-jsonbody.html) property type.
     #[derive(Debug, Default)]
     pub struct JsonBody {
@@ -3943,6 +4602,98 @@ pub mod web_acl {
         }
     }
 
+    /// The [`AWS::WAFv2::WebACL.ManagedRuleGroupConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-managedrulegroupconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ManagedRuleGroupConfig {
+        /// Property [`LoginPath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-managedrulegroupconfig.html#cfn-wafv2-webacl-managedrulegroupconfig-loginpath).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub login_path: Option<::Value<String>>,
+        /// Property [`PasswordField`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-managedrulegroupconfig.html#cfn-wafv2-webacl-managedrulegroupconfig-passwordfield).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub password_field: Option<::Value<FieldIdentifier>>,
+        /// Property [`PayloadType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-managedrulegroupconfig.html#cfn-wafv2-webacl-managedrulegroupconfig-payloadtype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub payload_type: Option<::Value<String>>,
+        /// Property [`UsernameField`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-managedrulegroupconfig.html#cfn-wafv2-webacl-managedrulegroupconfig-usernamefield).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub username_field: Option<::Value<FieldIdentifier>>,
+    }
+
+    impl ::codec::SerializeValue for ManagedRuleGroupConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref login_path) = self.login_path {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoginPath", login_path)?;
+            }
+            if let Some(ref password_field) = self.password_field {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PasswordField", password_field)?;
+            }
+            if let Some(ref payload_type) = self.payload_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PayloadType", payload_type)?;
+            }
+            if let Some(ref username_field) = self.username_field {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UsernameField", username_field)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ManagedRuleGroupConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ManagedRuleGroupConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ManagedRuleGroupConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ManagedRuleGroupConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut login_path: Option<::Value<String>> = None;
+                    let mut password_field: Option<::Value<FieldIdentifier>> = None;
+                    let mut payload_type: Option<::Value<String>> = None;
+                    let mut username_field: Option<::Value<FieldIdentifier>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "LoginPath" => {
+                                login_path = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PasswordField" => {
+                                password_field = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PayloadType" => {
+                                payload_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "UsernameField" => {
+                                username_field = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ManagedRuleGroupConfig {
+                        login_path: login_path,
+                        password_field: password_field,
+                        payload_type: payload_type,
+                        username_field: username_field,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::WAFv2::WebACL.ManagedRuleGroupStatement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-managedrulegroupstatement.html) property type.
     #[derive(Debug, Default)]
     pub struct ManagedRuleGroupStatement {
@@ -3951,6 +4702,11 @@ pub mod web_acl {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub excluded_rules: Option<::ValueList<ExcludedRule>>,
+        /// Property [`ManagedRuleGroupConfigs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-managedrulegroupstatement.html#cfn-wafv2-webacl-managedrulegroupstatement-managedrulegroupconfigs).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub managed_rule_group_configs: Option<::ValueList<ManagedRuleGroupConfig>>,
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-managedrulegroupstatement.html#cfn-wafv2-webacl-managedrulegroupstatement-name).
         ///
         /// Update type: _Mutable_.
@@ -3966,6 +4722,11 @@ pub mod web_acl {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub vendor_name: ::Value<String>,
+        /// Property [`Version`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-managedrulegroupstatement.html#cfn-wafv2-webacl-managedrulegroupstatement-version).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub version: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for ManagedRuleGroupStatement {
@@ -3974,11 +4735,17 @@ pub mod web_acl {
             if let Some(ref excluded_rules) = self.excluded_rules {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExcludedRules", excluded_rules)?;
             }
+            if let Some(ref managed_rule_group_configs) = self.managed_rule_group_configs {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ManagedRuleGroupConfigs", managed_rule_group_configs)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             if let Some(ref scope_down_statement) = self.scope_down_statement {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScopeDownStatement", scope_down_statement)?;
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "VendorName", &self.vendor_name)?;
+            if let Some(ref version) = self.version {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Version", version)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -3996,14 +4763,19 @@ pub mod web_acl {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut excluded_rules: Option<::ValueList<ExcludedRule>> = None;
+                    let mut managed_rule_group_configs: Option<::ValueList<ManagedRuleGroupConfig>> = None;
                     let mut name: Option<::Value<String>> = None;
                     let mut scope_down_statement: Option<::Value<Statement>> = None;
                     let mut vendor_name: Option<::Value<String>> = None;
+                    let mut version: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "ExcludedRules" => {
                                 excluded_rules = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ManagedRuleGroupConfigs" => {
+                                managed_rule_group_configs = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Name" => {
                                 name = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -4014,15 +4786,20 @@ pub mod web_acl {
                             "VendorName" => {
                                 vendor_name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Version" => {
+                                version = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
 
                     Ok(ManagedRuleGroupStatement {
                         excluded_rules: excluded_rules,
+                        managed_rule_group_configs: managed_rule_group_configs,
                         name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                         scope_down_statement: scope_down_statement,
                         vendor_name: vendor_name.ok_or(::serde::de::Error::missing_field("VendorName"))?,
+                        version: version,
                     })
                 }
             }
@@ -4287,6 +5064,79 @@ pub mod web_acl {
         }
     }
 
+    /// The [`AWS::WAFv2::WebACL.RegexMatchStatement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-regexmatchstatement.html) property type.
+    #[derive(Debug, Default)]
+    pub struct RegexMatchStatement {
+        /// Property [`FieldToMatch`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-regexmatchstatement.html#cfn-wafv2-webacl-regexmatchstatement-fieldtomatch).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub field_to_match: ::Value<FieldToMatch>,
+        /// Property [`RegexString`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-regexmatchstatement.html#cfn-wafv2-webacl-regexmatchstatement-regexstring).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub regex_string: ::Value<String>,
+        /// Property [`TextTransformations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-regexmatchstatement.html#cfn-wafv2-webacl-regexmatchstatement-texttransformations).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub text_transformations: ::ValueList<TextTransformation>,
+    }
+
+    impl ::codec::SerializeValue for RegexMatchStatement {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FieldToMatch", &self.field_to_match)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RegexString", &self.regex_string)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TextTransformations", &self.text_transformations)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for RegexMatchStatement {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<RegexMatchStatement, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = RegexMatchStatement;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type RegexMatchStatement")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut field_to_match: Option<::Value<FieldToMatch>> = None;
+                    let mut regex_string: Option<::Value<String>> = None;
+                    let mut text_transformations: Option<::ValueList<TextTransformation>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "FieldToMatch" => {
+                                field_to_match = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RegexString" => {
+                                regex_string = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TextTransformations" => {
+                                text_transformations = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(RegexMatchStatement {
+                        field_to_match: field_to_match.ok_or(::serde::de::Error::missing_field("FieldToMatch"))?,
+                        regex_string: regex_string.ok_or(::serde::de::Error::missing_field("RegexString"))?,
+                        text_transformations: text_transformations.ok_or(::serde::de::Error::missing_field("TextTransformations"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::WAFv2::WebACL.RegexPatternSetReferenceStatement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-regexpatternsetreferencestatement.html) property type.
     #[derive(Debug, Default)]
     pub struct RegexPatternSetReferenceStatement {
@@ -4368,6 +5218,11 @@ pub mod web_acl {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub action: Option<::Value<RuleAction>>,
+        /// Property [`CaptchaConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-rule.html#cfn-wafv2-webacl-rule-captchaconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub captcha_config: Option<::Value<CaptchaConfig>>,
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-rule.html#cfn-wafv2-webacl-rule-name).
         ///
         /// Update type: _Mutable_.
@@ -4406,6 +5261,9 @@ pub mod web_acl {
             if let Some(ref action) = self.action {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Action", action)?;
             }
+            if let Some(ref captcha_config) = self.captcha_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CaptchaConfig", captcha_config)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             if let Some(ref override_action) = self.override_action {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "OverrideAction", override_action)?;
@@ -4433,6 +5291,7 @@ pub mod web_acl {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut action: Option<::Value<RuleAction>> = None;
+                    let mut captcha_config: Option<::Value<CaptchaConfig>> = None;
                     let mut name: Option<::Value<String>> = None;
                     let mut override_action: Option<::Value<OverrideAction>> = None;
                     let mut priority: Option<::Value<u32>> = None;
@@ -4444,6 +5303,9 @@ pub mod web_acl {
                         match __cfn_key.as_ref() {
                             "Action" => {
                                 action = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CaptchaConfig" => {
+                                captcha_config = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Name" => {
                                 name = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -4469,6 +5331,7 @@ pub mod web_acl {
 
                     Ok(Rule {
                         action: action,
+                        captcha_config: captcha_config,
                         name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                         override_action: override_action,
                         priority: priority.ok_or(::serde::de::Error::missing_field("Priority"))?,
@@ -4496,6 +5359,11 @@ pub mod web_acl {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub block: Option<::Value<BlockAction>>,
+        /// Property [`Captcha`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ruleaction.html#cfn-wafv2-webacl-ruleaction-captcha).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub captcha: Option<::Value<CaptchaAction>>,
         /// Property [`Count`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-ruleaction.html#cfn-wafv2-webacl-ruleaction-count).
         ///
         /// Update type: _Mutable_.
@@ -4511,6 +5379,9 @@ pub mod web_acl {
             }
             if let Some(ref block) = self.block {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Block", block)?;
+            }
+            if let Some(ref captcha) = self.captcha {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Captcha", captcha)?;
             }
             if let Some(ref count) = self.count {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Count", count)?;
@@ -4533,6 +5404,7 @@ pub mod web_acl {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut allow: Option<::Value<AllowAction>> = None;
                     let mut block: Option<::Value<BlockAction>> = None;
+                    let mut captcha: Option<::Value<CaptchaAction>> = None;
                     let mut count: Option<::Value<CountAction>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -4542,6 +5414,9 @@ pub mod web_acl {
                             }
                             "Block" => {
                                 block = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Captcha" => {
+                                captcha = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Count" => {
                                 count = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -4553,6 +5428,7 @@ pub mod web_acl {
                     Ok(RuleAction {
                         allow: allow,
                         block: block,
+                        captcha: captcha,
                         count: count,
                     })
                 }
@@ -4820,6 +5696,11 @@ pub mod web_acl {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub rate_based_statement: Option<::Value<RateBasedStatement>>,
+        /// Property [`RegexMatchStatement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-statement.html#cfn-wafv2-webacl-statement-regexmatchstatement).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub regex_match_statement: Option<::Value<RegexMatchStatement>>,
         /// Property [`RegexPatternSetReferenceStatement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-wafv2-webacl-statement.html#cfn-wafv2-webacl-statement-regexpatternsetreferencestatement).
         ///
         /// Update type: _Mutable_.
@@ -4877,6 +5758,9 @@ pub mod web_acl {
             if let Some(ref rate_based_statement) = self.rate_based_statement {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "RateBasedStatement", rate_based_statement)?;
             }
+            if let Some(ref regex_match_statement) = self.regex_match_statement {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RegexMatchStatement", regex_match_statement)?;
+            }
             if let Some(ref regex_pattern_set_reference_statement) = self.regex_pattern_set_reference_statement {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "RegexPatternSetReferenceStatement", regex_pattern_set_reference_statement)?;
             }
@@ -4917,6 +5801,7 @@ pub mod web_acl {
                     let mut not_statement: Option<::Value<NotStatement>> = None;
                     let mut or_statement: Option<::Value<OrStatement>> = None;
                     let mut rate_based_statement: Option<::Value<RateBasedStatement>> = None;
+                    let mut regex_match_statement: Option<::Value<RegexMatchStatement>> = None;
                     let mut regex_pattern_set_reference_statement: Option<::Value<RegexPatternSetReferenceStatement>> = None;
                     let mut rule_group_reference_statement: Option<::Value<RuleGroupReferenceStatement>> = None;
                     let mut size_constraint_statement: Option<::Value<SizeConstraintStatement>> = None;
@@ -4952,6 +5837,9 @@ pub mod web_acl {
                             "RateBasedStatement" => {
                                 rate_based_statement = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "RegexMatchStatement" => {
+                                regex_match_statement = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "RegexPatternSetReferenceStatement" => {
                                 regex_pattern_set_reference_statement = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -4981,6 +5869,7 @@ pub mod web_acl {
                         not_statement: not_statement,
                         or_statement: or_statement,
                         rate_based_statement: rate_based_statement,
+                        regex_match_statement: regex_match_statement,
                         regex_pattern_set_reference_statement: regex_pattern_set_reference_statement,
                         rule_group_reference_statement: rule_group_reference_statement,
                         size_constraint_statement: size_constraint_statement,

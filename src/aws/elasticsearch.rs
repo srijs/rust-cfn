@@ -437,6 +437,59 @@ pub mod domain {
         }
     }
 
+    /// The [`AWS::Elasticsearch::Domain.ColdStorageOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-coldstorageoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ColdStorageOptions {
+        /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-coldstorageoptions.html#cfn-elasticsearch-domain-coldstorageoptions-enabled).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub enabled: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for ColdStorageOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref enabled) = self.enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", enabled)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ColdStorageOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ColdStorageOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ColdStorageOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ColdStorageOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut enabled: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Enabled" => {
+                                enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ColdStorageOptions {
+                        enabled: enabled,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::Elasticsearch::Domain.DomainEndpointOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-domainendpointoptions.html) property type.
     #[derive(Debug, Default)]
     pub struct DomainEndpointOptions {
@@ -637,6 +690,11 @@ pub mod domain {
     /// The [`AWS::Elasticsearch::Domain.ElasticsearchClusterConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-elasticsearchclusterconfig.html) property type.
     #[derive(Debug, Default)]
     pub struct ElasticsearchClusterConfig {
+        /// Property [`ColdStorageOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-elasticsearchclusterconfig.html#cfn-elasticsearch-domain-elasticsearchclusterconfig-coldstorageoptions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cold_storage_options: Option<::Value<ColdStorageOptions>>,
         /// Property [`DedicatedMasterCount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-elasticsearchclusterconfig.html#cfn-elasticsearch-domain-elasticseachclusterconfig-dedicatedmastercount).
         ///
         /// Update type: _Mutable_.
@@ -692,6 +750,9 @@ pub mod domain {
     impl ::codec::SerializeValue for ElasticsearchClusterConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref cold_storage_options) = self.cold_storage_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ColdStorageOptions", cold_storage_options)?;
+            }
             if let Some(ref dedicated_master_count) = self.dedicated_master_count {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "DedicatedMasterCount", dedicated_master_count)?;
             }
@@ -738,6 +799,7 @@ pub mod domain {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut cold_storage_options: Option<::Value<ColdStorageOptions>> = None;
                     let mut dedicated_master_count: Option<::Value<u32>> = None;
                     let mut dedicated_master_enabled: Option<::Value<bool>> = None;
                     let mut dedicated_master_type: Option<::Value<String>> = None;
@@ -751,6 +813,9 @@ pub mod domain {
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "ColdStorageOptions" => {
+                                cold_storage_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "DedicatedMasterCount" => {
                                 dedicated_master_count = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -786,6 +851,7 @@ pub mod domain {
                     }
 
                     Ok(ElasticsearchClusterConfig {
+                        cold_storage_options: cold_storage_options,
                         dedicated_master_count: dedicated_master_count,
                         dedicated_master_enabled: dedicated_master_enabled,
                         dedicated_master_type: dedicated_master_type,

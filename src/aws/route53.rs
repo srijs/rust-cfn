@@ -188,7 +188,7 @@ pub struct HostedZoneProperties {
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub name: ::Value<String>,
+    pub name: Option<::Value<String>>,
     /// Property [`QueryLoggingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-hostedzone.html#cfn-route53-hostedzone-queryloggingconfig).
     ///
     /// Update type: _Mutable_.
@@ -210,7 +210,9 @@ impl ::serde::Serialize for HostedZoneProperties {
         if let Some(ref hosted_zone_tags) = self.hosted_zone_tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedZoneTags", hosted_zone_tags)?;
         }
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
         if let Some(ref query_logging_config) = self.query_logging_config {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "QueryLoggingConfig", query_logging_config)?;
         }
@@ -263,7 +265,7 @@ impl<'de> ::serde::Deserialize<'de> for HostedZoneProperties {
                 Ok(HostedZoneProperties {
                     hosted_zone_config: hosted_zone_config,
                     hosted_zone_tags: hosted_zone_tags,
-                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    name: name,
                     query_logging_config: query_logging_config,
                     vp_cs: vp_cs,
                 })
@@ -1396,11 +1398,6 @@ pub mod record_set_group {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub alias_target: Option<::Value<AliasTarget>>,
-        /// Property [`Comment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html#cfn-route53-recordset-comment).
-        ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub comment: Option<::Value<String>>,
         /// Property [`Failover`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-recordset.html#cfn-route53-recordset-failover).
         ///
         /// Update type: _Mutable_.
@@ -1474,9 +1471,6 @@ pub mod record_set_group {
             if let Some(ref alias_target) = self.alias_target {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "AliasTarget", alias_target)?;
             }
-            if let Some(ref comment) = self.comment {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", comment)?;
-            }
             if let Some(ref failover) = self.failover {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Failover", failover)?;
             }
@@ -1529,7 +1523,6 @@ pub mod record_set_group {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut alias_target: Option<::Value<AliasTarget>> = None;
-                    let mut comment: Option<::Value<String>> = None;
                     let mut failover: Option<::Value<String>> = None;
                     let mut geo_location: Option<::Value<GeoLocation>> = None;
                     let mut health_check_id: Option<::Value<String>> = None;
@@ -1548,9 +1541,6 @@ pub mod record_set_group {
                         match __cfn_key.as_ref() {
                             "AliasTarget" => {
                                 alias_target = ::serde::de::MapAccess::next_value(&mut map)?;
-                            }
-                            "Comment" => {
-                                comment = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Failover" => {
                                 failover = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1597,7 +1587,6 @@ pub mod record_set_group {
 
                     Ok(RecordSet {
                         alias_target: alias_target,
-                        comment: comment,
                         failover: failover,
                         geo_location: geo_location,
                         health_check_id: health_check_id,

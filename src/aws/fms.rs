@@ -141,6 +141,11 @@ pub struct PolicyProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub resource_type_list: Option<::ValueList<String>>,
+    /// Property [`ResourcesCleanUp`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fms-policy.html#cfn-fms-policy-resourcescleanup).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub resources_clean_up: Option<::Value<bool>>,
     /// Property [`SecurityServicePolicyData`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fms-policy.html#cfn-fms-policy-securityservicepolicydata).
     ///
     /// Update type: _Mutable_.
@@ -175,6 +180,9 @@ impl ::serde::Serialize for PolicyProperties {
         if let Some(ref resource_type_list) = self.resource_type_list {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceTypeList", resource_type_list)?;
         }
+        if let Some(ref resources_clean_up) = self.resources_clean_up {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourcesCleanUp", resources_clean_up)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityServicePolicyData", &self.security_service_policy_data)?;
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
@@ -204,6 +212,7 @@ impl<'de> ::serde::Deserialize<'de> for PolicyProperties {
                 let mut resource_tags: Option<::ValueList<self::policy::ResourceTag>> = None;
                 let mut resource_type: Option<::Value<String>> = None;
                 let mut resource_type_list: Option<::ValueList<String>> = None;
+                let mut resources_clean_up: Option<::Value<bool>> = None;
                 let mut security_service_policy_data: Option<::Value<::json::Value>> = None;
                 let mut tags: Option<::ValueList<self::policy::PolicyTag>> = None;
 
@@ -236,6 +245,9 @@ impl<'de> ::serde::Deserialize<'de> for PolicyProperties {
                         "ResourceTypeList" => {
                             resource_type_list = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ResourcesCleanUp" => {
+                            resources_clean_up = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "SecurityServicePolicyData" => {
                             security_service_policy_data = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -256,6 +268,7 @@ impl<'de> ::serde::Deserialize<'de> for PolicyProperties {
                     resource_tags: resource_tags,
                     resource_type: resource_type.ok_or(::serde::de::Error::missing_field("ResourceType"))?,
                     resource_type_list: resource_type_list,
+                    resources_clean_up: resources_clean_up,
                     security_service_policy_data: security_service_policy_data.ok_or(::serde::de::Error::missing_field("SecurityServicePolicyData"))?,
                     tags: tags,
                 })

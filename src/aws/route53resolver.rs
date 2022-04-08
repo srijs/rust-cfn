@@ -358,6 +358,93 @@ impl From<FirewallRuleGroupAssociationProperties> for FirewallRuleGroupAssociati
     }
 }
 
+/// The [`AWS::Route53Resolver::ResolverConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverconfig.html) resource type.
+#[derive(Debug, Default)]
+pub struct ResolverConfig {
+    properties: ResolverConfigProperties
+}
+
+/// Properties for the `ResolverConfig` resource.
+#[derive(Debug, Default)]
+pub struct ResolverConfigProperties {
+    /// Property [`AutodefinedReverseFlag`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverconfig.html#cfn-route53resolver-resolverconfig-autodefinedreverseflag).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub autodefined_reverse_flag: ::Value<String>,
+    /// Property [`ResourceId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverconfig.html#cfn-route53resolver-resolverconfig-resourceid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub resource_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for ResolverConfigProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutodefinedReverseFlag", &self.autodefined_reverse_flag)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceId", &self.resource_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ResolverConfigProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ResolverConfigProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ResolverConfigProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ResolverConfigProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut autodefined_reverse_flag: Option<::Value<String>> = None;
+                let mut resource_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AutodefinedReverseFlag" => {
+                            autodefined_reverse_flag = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ResourceId" => {
+                            resource_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ResolverConfigProperties {
+                    autodefined_reverse_flag: autodefined_reverse_flag.ok_or(::serde::de::Error::missing_field("AutodefinedReverseFlag"))?,
+                    resource_id: resource_id.ok_or(::serde::de::Error::missing_field("ResourceId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for ResolverConfig {
+    type Properties = ResolverConfigProperties;
+    const TYPE: &'static str = "AWS::Route53Resolver::ResolverConfig";
+    fn properties(&self) -> &ResolverConfigProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut ResolverConfigProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for ResolverConfig {}
+
+impl From<ResolverConfigProperties> for ResolverConfig {
+    fn from(properties: ResolverConfigProperties) -> ResolverConfig {
+        ResolverConfig { properties }
+    }
+}
+
 /// The [`AWS::Route53Resolver::ResolverDNSSECConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverdnssecconfig.html) resource type.
 #[derive(Debug, Default)]
 pub struct ResolverDNSSECConfig {

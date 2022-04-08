@@ -141,6 +141,11 @@ pub struct ConfigurationProfileProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub tags: Option<::ValueList<self::configuration_profile::Tags>>,
+    /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-configurationprofile.html#cfn-appconfig-configurationprofile-type).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub r#type: Option<::Value<String>>,
     /// Property [`Validators`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-configurationprofile.html#cfn-appconfig-configurationprofile-validators).
     ///
     /// Update type: _Mutable_.
@@ -162,6 +167,9 @@ impl ::serde::Serialize for ConfigurationProfileProperties {
         }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref r#type) = self.r#type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", r#type)?;
         }
         if let Some(ref validators) = self.validators {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Validators", validators)?;
@@ -188,6 +196,7 @@ impl<'de> ::serde::Deserialize<'de> for ConfigurationProfileProperties {
                 let mut name: Option<::Value<String>> = None;
                 let mut retrieval_role_arn: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<self::configuration_profile::Tags>> = None;
+                let mut r#type: Option<::Value<String>> = None;
                 let mut validators: Option<::ValueList<self::configuration_profile::Validators>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -210,6 +219,9 @@ impl<'de> ::serde::Deserialize<'de> for ConfigurationProfileProperties {
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Type" => {
+                            r#type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Validators" => {
                             validators = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -224,6 +236,7 @@ impl<'de> ::serde::Deserialize<'de> for ConfigurationProfileProperties {
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     retrieval_role_arn: retrieval_role_arn,
                     tags: tags,
+                    r#type: r#type,
                     validators: validators,
                 })
             }

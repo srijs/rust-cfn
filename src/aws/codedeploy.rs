@@ -305,11 +305,21 @@ pub struct DeploymentGroupProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub on_premises_tag_set: Option<::Value<self::deployment_group::OnPremisesTagSet>>,
+    /// Property [`OutdatedInstancesStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-outdatedinstancesstrategy).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub outdated_instances_strategy: Option<::Value<String>>,
     /// Property [`ServiceRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-servicerolearn).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub service_role_arn: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
     /// Property [`TriggerConfigurations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-triggerconfigurations).
     ///
     /// Update type: _Mutable_.
@@ -363,7 +373,13 @@ impl ::serde::Serialize for DeploymentGroupProperties {
         if let Some(ref on_premises_tag_set) = self.on_premises_tag_set {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "OnPremisesTagSet", on_premises_tag_set)?;
         }
+        if let Some(ref outdated_instances_strategy) = self.outdated_instances_strategy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutdatedInstancesStrategy", outdated_instances_strategy)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceRoleArn", &self.service_role_arn)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         if let Some(ref trigger_configurations) = self.trigger_configurations {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TriggerConfigurations", trigger_configurations)?;
         }
@@ -398,7 +414,9 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentGroupProperties {
                 let mut load_balancer_info: Option<::Value<self::deployment_group::LoadBalancerInfo>> = None;
                 let mut on_premises_instance_tag_filters: Option<::ValueList<self::deployment_group::TagFilter>> = None;
                 let mut on_premises_tag_set: Option<::Value<self::deployment_group::OnPremisesTagSet>> = None;
+                let mut outdated_instances_strategy: Option<::Value<String>> = None;
                 let mut service_role_arn: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut trigger_configurations: Option<::ValueList<self::deployment_group::TriggerConfig>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -448,8 +466,14 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentGroupProperties {
                         "OnPremisesTagSet" => {
                             on_premises_tag_set = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "OutdatedInstancesStrategy" => {
+                            outdated_instances_strategy = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "ServiceRoleArn" => {
                             service_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "TriggerConfigurations" => {
                             trigger_configurations = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -474,7 +498,9 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentGroupProperties {
                     load_balancer_info: load_balancer_info,
                     on_premises_instance_tag_filters: on_premises_instance_tag_filters,
                     on_premises_tag_set: on_premises_tag_set,
+                    outdated_instances_strategy: outdated_instances_strategy,
                     service_role_arn: service_role_arn.ok_or(::serde::de::Error::missing_field("ServiceRoleArn"))?,
+                    tags: tags,
                     trigger_configurations: trigger_configurations,
                 })
             }
@@ -1753,6 +1779,11 @@ pub mod deployment_group {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub target_group_info_list: Option<::ValueList<TargetGroupInfo>>,
+        /// Property [`TargetGroupPairInfoList`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-loadbalancerinfo.html#cfn-codedeploy-deploymentgroup-loadbalancerinfo-targetgrouppairinfolist).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub target_group_pair_info_list: Option<::ValueList<TargetGroupPairInfo>>,
     }
 
     impl ::codec::SerializeValue for LoadBalancerInfo {
@@ -1763,6 +1794,9 @@ pub mod deployment_group {
             }
             if let Some(ref target_group_info_list) = self.target_group_info_list {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetGroupInfoList", target_group_info_list)?;
+            }
+            if let Some(ref target_group_pair_info_list) = self.target_group_pair_info_list {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetGroupPairInfoList", target_group_pair_info_list)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -1782,6 +1816,7 @@ pub mod deployment_group {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut elb_info_list: Option<::ValueList<ELBInfo>> = None;
                     let mut target_group_info_list: Option<::ValueList<TargetGroupInfo>> = None;
+                    let mut target_group_pair_info_list: Option<::ValueList<TargetGroupPairInfo>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1791,6 +1826,9 @@ pub mod deployment_group {
                             "TargetGroupInfoList" => {
                                 target_group_info_list = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "TargetGroupPairInfoList" => {
+                                target_group_pair_info_list = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
@@ -1798,6 +1836,7 @@ pub mod deployment_group {
                     Ok(LoadBalancerInfo {
                         elb_info_list: elb_info_list,
                         target_group_info_list: target_group_info_list,
+                        target_group_pair_info_list: target_group_pair_info_list,
                     })
                 }
             }
@@ -2216,6 +2255,138 @@ pub mod deployment_group {
 
                     Ok(TargetGroupInfo {
                         name: name,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CodeDeploy::DeploymentGroup.TargetGroupPairInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-targetgrouppairinfo.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TargetGroupPairInfo {
+        /// Property [`ProdTrafficRoute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-targetgrouppairinfo.html#cfn-codedeploy-deploymentgroup-targetgrouppairinfo-prodtrafficroute).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub prod_traffic_route: Option<::Value<TrafficRoute>>,
+        /// Property [`TargetGroups`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-targetgrouppairinfo.html#cfn-codedeploy-deploymentgroup-targetgrouppairinfo-targetgroups).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub target_groups: Option<::ValueList<TargetGroupInfo>>,
+        /// Property [`TestTrafficRoute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-targetgrouppairinfo.html#cfn-codedeploy-deploymentgroup-targetgrouppairinfo-testtrafficroute).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub test_traffic_route: Option<::Value<TrafficRoute>>,
+    }
+
+    impl ::codec::SerializeValue for TargetGroupPairInfo {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref prod_traffic_route) = self.prod_traffic_route {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProdTrafficRoute", prod_traffic_route)?;
+            }
+            if let Some(ref target_groups) = self.target_groups {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetGroups", target_groups)?;
+            }
+            if let Some(ref test_traffic_route) = self.test_traffic_route {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TestTrafficRoute", test_traffic_route)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TargetGroupPairInfo {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TargetGroupPairInfo, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TargetGroupPairInfo;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TargetGroupPairInfo")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut prod_traffic_route: Option<::Value<TrafficRoute>> = None;
+                    let mut target_groups: Option<::ValueList<TargetGroupInfo>> = None;
+                    let mut test_traffic_route: Option<::Value<TrafficRoute>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ProdTrafficRoute" => {
+                                prod_traffic_route = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TargetGroups" => {
+                                target_groups = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TestTrafficRoute" => {
+                                test_traffic_route = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TargetGroupPairInfo {
+                        prod_traffic_route: prod_traffic_route,
+                        target_groups: target_groups,
+                        test_traffic_route: test_traffic_route,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CodeDeploy::DeploymentGroup.TrafficRoute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-trafficroute.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TrafficRoute {
+        /// Property [`ListenerArns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-trafficroute.html#cfn-codedeploy-deploymentgroup-trafficroute-listenerarns).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub listener_arns: Option<::ValueList<String>>,
+    }
+
+    impl ::codec::SerializeValue for TrafficRoute {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref listener_arns) = self.listener_arns {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ListenerArns", listener_arns)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TrafficRoute {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TrafficRoute, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TrafficRoute;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TrafficRoute")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut listener_arns: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ListenerArns" => {
+                                listener_arns = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TrafficRoute {
+                        listener_arns: listener_arns,
                     })
                 }
             }

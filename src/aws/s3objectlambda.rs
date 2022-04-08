@@ -13,21 +13,21 @@ pub struct AccessPointProperties {
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub name: ::Value<String>,
+    pub name: Option<::Value<String>>,
     /// Property [`ObjectLambdaConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3objectlambda-accesspoint.html#cfn-s3objectlambda-accesspoint-objectlambdaconfiguration).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub object_lambda_configuration: Option<::Value<self::access_point::ObjectLambdaConfiguration>>,
+    pub object_lambda_configuration: ::Value<self::access_point::ObjectLambdaConfiguration>,
 }
 
 impl ::serde::Serialize for AccessPointProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-        if let Some(ref object_lambda_configuration) = self.object_lambda_configuration {
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ObjectLambdaConfiguration", object_lambda_configuration)?;
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
         }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ObjectLambdaConfiguration", &self.object_lambda_configuration)?;
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -60,8 +60,8 @@ impl<'de> ::serde::Deserialize<'de> for AccessPointProperties {
                 }
 
                 Ok(AccessPointProperties {
-                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
-                    object_lambda_configuration: object_lambda_configuration,
+                    name: name,
+                    object_lambda_configuration: object_lambda_configuration.ok_or(::serde::de::Error::missing_field("ObjectLambdaConfiguration"))?,
                 })
             }
         }
@@ -274,23 +274,19 @@ pub mod access_point {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub actions: Option<::ValueList<String>>,
+        pub actions: ::ValueList<String>,
         /// Property [`ContentTransformation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3objectlambda-accesspoint-transformationconfiguration.html#cfn-s3objectlambda-accesspoint-transformationconfiguration-contenttransformation).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub content_transformation: Option<::Value<::json::Value>>,
+        pub content_transformation: ::Value<::json::Value>,
     }
 
     impl ::codec::SerializeValue for TransformationConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref actions) = self.actions {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Actions", actions)?;
-            }
-            if let Some(ref content_transformation) = self.content_transformation {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContentTransformation", content_transformation)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Actions", &self.actions)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContentTransformation", &self.content_transformation)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -323,8 +319,8 @@ pub mod access_point {
                     }
 
                     Ok(TransformationConfiguration {
-                        actions: actions,
-                        content_transformation: content_transformation,
+                        actions: actions.ok_or(::serde::de::Error::missing_field("Actions"))?,
+                        content_transformation: content_transformation.ok_or(::serde::de::Error::missing_field("ContentTransformation"))?,
                     })
                 }
             }

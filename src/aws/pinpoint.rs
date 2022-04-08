@@ -1213,6 +1213,11 @@ pub struct CampaignProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub name: ::Value<String>,
+    /// Property [`Priority`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-campaign.html#cfn-pinpoint-campaign-priority).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub priority: Option<::Value<u32>>,
     /// Property [`Schedule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-campaign.html#cfn-pinpoint-campaign-schedule).
     ///
     /// Update type: _Mutable_.
@@ -1269,6 +1274,9 @@ impl ::serde::Serialize for CampaignProperties {
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "MessageConfiguration", &self.message_configuration)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref priority) = self.priority {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Priority", priority)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Schedule", &self.schedule)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SegmentId", &self.segment_id)?;
         if let Some(ref segment_version) = self.segment_version {
@@ -1308,6 +1316,7 @@ impl<'de> ::serde::Deserialize<'de> for CampaignProperties {
                 let mut limits: Option<::Value<self::campaign::Limits>> = None;
                 let mut message_configuration: Option<::Value<self::campaign::MessageConfiguration>> = None;
                 let mut name: Option<::Value<String>> = None;
+                let mut priority: Option<::Value<u32>> = None;
                 let mut schedule: Option<::Value<self::campaign::Schedule>> = None;
                 let mut segment_id: Option<::Value<String>> = None;
                 let mut segment_version: Option<::Value<u32>> = None;
@@ -1344,6 +1353,9 @@ impl<'de> ::serde::Deserialize<'de> for CampaignProperties {
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Priority" => {
+                            priority = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Schedule" => {
                             schedule = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -1376,6 +1388,7 @@ impl<'de> ::serde::Deserialize<'de> for CampaignProperties {
                     limits: limits,
                     message_configuration: message_configuration.ok_or(::serde::de::Error::missing_field("MessageConfiguration"))?,
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    priority: priority,
                     schedule: schedule.ok_or(::serde::de::Error::missing_field("Schedule"))?,
                     segment_id: segment_id.ok_or(::serde::de::Error::missing_field("SegmentId"))?,
                     segment_version: segment_version,
@@ -1893,6 +1906,147 @@ impl ::private::Sealed for GCMChannel {}
 impl From<GCMChannelProperties> for GCMChannel {
     fn from(properties: GCMChannelProperties) -> GCMChannel {
         GCMChannel { properties }
+    }
+}
+
+/// The [`AWS::Pinpoint::InAppTemplate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-inapptemplate.html) resource type.
+#[derive(Debug, Default)]
+pub struct InAppTemplate {
+    properties: InAppTemplateProperties
+}
+
+/// Properties for the `InAppTemplate` resource.
+#[derive(Debug, Default)]
+pub struct InAppTemplateProperties {
+    /// Property [`Content`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-inapptemplate.html#cfn-pinpoint-inapptemplate-content).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub content: Option<::ValueList<self::in_app_template::InAppMessageContent>>,
+    /// Property [`CustomConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-inapptemplate.html#cfn-pinpoint-inapptemplate-customconfig).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub custom_config: Option<::Value<::json::Value>>,
+    /// Property [`Layout`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-inapptemplate.html#cfn-pinpoint-inapptemplate-layout).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub layout: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-inapptemplate.html#cfn-pinpoint-inapptemplate-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::Value<::json::Value>>,
+    /// Property [`TemplateDescription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-inapptemplate.html#cfn-pinpoint-inapptemplate-templatedescription).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub template_description: Option<::Value<String>>,
+    /// Property [`TemplateName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-pinpoint-inapptemplate.html#cfn-pinpoint-inapptemplate-templatename).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub template_name: ::Value<String>,
+}
+
+impl ::serde::Serialize for InAppTemplateProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref content) = self.content {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Content", content)?;
+        }
+        if let Some(ref custom_config) = self.custom_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomConfig", custom_config)?;
+        }
+        if let Some(ref layout) = self.layout {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Layout", layout)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref template_description) = self.template_description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TemplateDescription", template_description)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TemplateName", &self.template_name)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for InAppTemplateProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<InAppTemplateProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = InAppTemplateProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type InAppTemplateProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut content: Option<::ValueList<self::in_app_template::InAppMessageContent>> = None;
+                let mut custom_config: Option<::Value<::json::Value>> = None;
+                let mut layout: Option<::Value<String>> = None;
+                let mut tags: Option<::Value<::json::Value>> = None;
+                let mut template_description: Option<::Value<String>> = None;
+                let mut template_name: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Content" => {
+                            content = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "CustomConfig" => {
+                            custom_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Layout" => {
+                            layout = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TemplateDescription" => {
+                            template_description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TemplateName" => {
+                            template_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(InAppTemplateProperties {
+                    content: content,
+                    custom_config: custom_config,
+                    layout: layout,
+                    tags: tags,
+                    template_description: template_description,
+                    template_name: template_name.ok_or(::serde::de::Error::missing_field("TemplateName"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for InAppTemplate {
+    type Properties = InAppTemplateProperties;
+    const TYPE: &'static str = "AWS::Pinpoint::InAppTemplate";
+    fn properties(&self) -> &InAppTemplateProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut InAppTemplateProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for InAppTemplate {}
+
+impl From<InAppTemplateProperties> for InAppTemplate {
+    fn from(properties: InAppTemplateProperties) -> InAppTemplate {
+        InAppTemplate { properties }
     }
 }
 
@@ -3075,6 +3229,85 @@ pub mod campaign {
         }
     }
 
+    /// The [`AWS::Pinpoint::Campaign.CampaignInAppMessage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-campaigninappmessage.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CampaignInAppMessage {
+        /// Property [`Content`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-campaigninappmessage.html#cfn-pinpoint-campaign-campaigninappmessage-content).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub content: Option<::ValueList<InAppMessageContent>>,
+        /// Property [`CustomConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-campaigninappmessage.html#cfn-pinpoint-campaign-campaigninappmessage-customconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub custom_config: Option<::Value<::json::Value>>,
+        /// Property [`Layout`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-campaigninappmessage.html#cfn-pinpoint-campaign-campaigninappmessage-layout).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub layout: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for CampaignInAppMessage {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref content) = self.content {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Content", content)?;
+            }
+            if let Some(ref custom_config) = self.custom_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomConfig", custom_config)?;
+            }
+            if let Some(ref layout) = self.layout {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Layout", layout)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CampaignInAppMessage {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CampaignInAppMessage, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CampaignInAppMessage;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CampaignInAppMessage")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut content: Option<::ValueList<InAppMessageContent>> = None;
+                    let mut custom_config: Option<::Value<::json::Value>> = None;
+                    let mut layout: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Content" => {
+                                content = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CustomConfig" => {
+                                custom_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Layout" => {
+                                layout = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CampaignInAppMessage {
+                        content: content,
+                        custom_config: custom_config,
+                        layout: layout,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::Pinpoint::Campaign.CampaignSmsMessage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-campaignsmsmessage.html) property type.
     #[derive(Debug, Default)]
     pub struct CampaignSmsMessage {
@@ -3193,6 +3426,124 @@ pub mod campaign {
         }
     }
 
+    /// The [`AWS::Pinpoint::Campaign.DefaultButtonConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-defaultbuttonconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DefaultButtonConfiguration {
+        /// Property [`BackgroundColor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-defaultbuttonconfiguration.html#cfn-pinpoint-campaign-defaultbuttonconfiguration-backgroundcolor).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub background_color: Option<::Value<String>>,
+        /// Property [`BorderRadius`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-defaultbuttonconfiguration.html#cfn-pinpoint-campaign-defaultbuttonconfiguration-borderradius).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub border_radius: Option<::Value<u32>>,
+        /// Property [`ButtonAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-defaultbuttonconfiguration.html#cfn-pinpoint-campaign-defaultbuttonconfiguration-buttonaction).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub button_action: Option<::Value<String>>,
+        /// Property [`Link`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-defaultbuttonconfiguration.html#cfn-pinpoint-campaign-defaultbuttonconfiguration-link).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub link: Option<::Value<String>>,
+        /// Property [`Text`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-defaultbuttonconfiguration.html#cfn-pinpoint-campaign-defaultbuttonconfiguration-text).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub text: Option<::Value<String>>,
+        /// Property [`TextColor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-defaultbuttonconfiguration.html#cfn-pinpoint-campaign-defaultbuttonconfiguration-textcolor).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub text_color: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for DefaultButtonConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref background_color) = self.background_color {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BackgroundColor", background_color)?;
+            }
+            if let Some(ref border_radius) = self.border_radius {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BorderRadius", border_radius)?;
+            }
+            if let Some(ref button_action) = self.button_action {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ButtonAction", button_action)?;
+            }
+            if let Some(ref link) = self.link {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Link", link)?;
+            }
+            if let Some(ref text) = self.text {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Text", text)?;
+            }
+            if let Some(ref text_color) = self.text_color {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TextColor", text_color)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DefaultButtonConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DefaultButtonConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DefaultButtonConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DefaultButtonConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut background_color: Option<::Value<String>> = None;
+                    let mut border_radius: Option<::Value<u32>> = None;
+                    let mut button_action: Option<::Value<String>> = None;
+                    let mut link: Option<::Value<String>> = None;
+                    let mut text: Option<::Value<String>> = None;
+                    let mut text_color: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "BackgroundColor" => {
+                                background_color = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "BorderRadius" => {
+                                border_radius = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ButtonAction" => {
+                                button_action = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Link" => {
+                                link = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Text" => {
+                                text = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TextColor" => {
+                                text_color = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DefaultButtonConfiguration {
+                        background_color: background_color,
+                        border_radius: border_radius,
+                        button_action: button_action,
+                        link: link,
+                        text: text,
+                        text_color: text_color,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::Pinpoint::Campaign.EventDimensions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-eventdimensions.html) property type.
     #[derive(Debug, Default)]
     pub struct EventDimensions {
@@ -3272,6 +3623,374 @@ pub mod campaign {
         }
     }
 
+    /// The [`AWS::Pinpoint::Campaign.InAppMessageBodyConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessagebodyconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct InAppMessageBodyConfig {
+        /// Property [`Alignment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessagebodyconfig.html#cfn-pinpoint-campaign-inappmessagebodyconfig-alignment).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub alignment: Option<::Value<String>>,
+        /// Property [`Body`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessagebodyconfig.html#cfn-pinpoint-campaign-inappmessagebodyconfig-body).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub body: Option<::Value<String>>,
+        /// Property [`TextColor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessagebodyconfig.html#cfn-pinpoint-campaign-inappmessagebodyconfig-textcolor).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub text_color: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for InAppMessageBodyConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref alignment) = self.alignment {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Alignment", alignment)?;
+            }
+            if let Some(ref body) = self.body {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Body", body)?;
+            }
+            if let Some(ref text_color) = self.text_color {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TextColor", text_color)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for InAppMessageBodyConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<InAppMessageBodyConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = InAppMessageBodyConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type InAppMessageBodyConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut alignment: Option<::Value<String>> = None;
+                    let mut body: Option<::Value<String>> = None;
+                    let mut text_color: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Alignment" => {
+                                alignment = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Body" => {
+                                body = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TextColor" => {
+                                text_color = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(InAppMessageBodyConfig {
+                        alignment: alignment,
+                        body: body,
+                        text_color: text_color,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Pinpoint::Campaign.InAppMessageButton`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessagebutton.html) property type.
+    #[derive(Debug, Default)]
+    pub struct InAppMessageButton {
+        /// Property [`Android`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessagebutton.html#cfn-pinpoint-campaign-inappmessagebutton-android).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub android: Option<::Value<OverrideButtonConfiguration>>,
+        /// Property [`DefaultConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessagebutton.html#cfn-pinpoint-campaign-inappmessagebutton-defaultconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub default_config: Option<::Value<DefaultButtonConfiguration>>,
+        /// Property [`IOS`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessagebutton.html#cfn-pinpoint-campaign-inappmessagebutton-ios).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ios: Option<::Value<OverrideButtonConfiguration>>,
+        /// Property [`Web`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessagebutton.html#cfn-pinpoint-campaign-inappmessagebutton-web).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub web: Option<::Value<OverrideButtonConfiguration>>,
+    }
+
+    impl ::codec::SerializeValue for InAppMessageButton {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref android) = self.android {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Android", android)?;
+            }
+            if let Some(ref default_config) = self.default_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultConfig", default_config)?;
+            }
+            if let Some(ref ios) = self.ios {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IOS", ios)?;
+            }
+            if let Some(ref web) = self.web {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Web", web)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for InAppMessageButton {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<InAppMessageButton, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = InAppMessageButton;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type InAppMessageButton")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut android: Option<::Value<OverrideButtonConfiguration>> = None;
+                    let mut default_config: Option<::Value<DefaultButtonConfiguration>> = None;
+                    let mut ios: Option<::Value<OverrideButtonConfiguration>> = None;
+                    let mut web: Option<::Value<OverrideButtonConfiguration>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Android" => {
+                                android = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DefaultConfig" => {
+                                default_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IOS" => {
+                                ios = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Web" => {
+                                web = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(InAppMessageButton {
+                        android: android,
+                        default_config: default_config,
+                        ios: ios,
+                        web: web,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Pinpoint::Campaign.InAppMessageContent`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessagecontent.html) property type.
+    #[derive(Debug, Default)]
+    pub struct InAppMessageContent {
+        /// Property [`BackgroundColor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessagecontent.html#cfn-pinpoint-campaign-inappmessagecontent-backgroundcolor).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub background_color: Option<::Value<String>>,
+        /// Property [`BodyConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessagecontent.html#cfn-pinpoint-campaign-inappmessagecontent-bodyconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub body_config: Option<::Value<InAppMessageBodyConfig>>,
+        /// Property [`HeaderConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessagecontent.html#cfn-pinpoint-campaign-inappmessagecontent-headerconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub header_config: Option<::Value<InAppMessageHeaderConfig>>,
+        /// Property [`ImageUrl`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessagecontent.html#cfn-pinpoint-campaign-inappmessagecontent-imageurl).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub image_url: Option<::Value<String>>,
+        /// Property [`PrimaryBtn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessagecontent.html#cfn-pinpoint-campaign-inappmessagecontent-primarybtn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub primary_btn: Option<::Value<InAppMessageButton>>,
+        /// Property [`SecondaryBtn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessagecontent.html#cfn-pinpoint-campaign-inappmessagecontent-secondarybtn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secondary_btn: Option<::Value<InAppMessageButton>>,
+    }
+
+    impl ::codec::SerializeValue for InAppMessageContent {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref background_color) = self.background_color {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BackgroundColor", background_color)?;
+            }
+            if let Some(ref body_config) = self.body_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BodyConfig", body_config)?;
+            }
+            if let Some(ref header_config) = self.header_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HeaderConfig", header_config)?;
+            }
+            if let Some(ref image_url) = self.image_url {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ImageUrl", image_url)?;
+            }
+            if let Some(ref primary_btn) = self.primary_btn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrimaryBtn", primary_btn)?;
+            }
+            if let Some(ref secondary_btn) = self.secondary_btn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecondaryBtn", secondary_btn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for InAppMessageContent {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<InAppMessageContent, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = InAppMessageContent;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type InAppMessageContent")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut background_color: Option<::Value<String>> = None;
+                    let mut body_config: Option<::Value<InAppMessageBodyConfig>> = None;
+                    let mut header_config: Option<::Value<InAppMessageHeaderConfig>> = None;
+                    let mut image_url: Option<::Value<String>> = None;
+                    let mut primary_btn: Option<::Value<InAppMessageButton>> = None;
+                    let mut secondary_btn: Option<::Value<InAppMessageButton>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "BackgroundColor" => {
+                                background_color = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "BodyConfig" => {
+                                body_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HeaderConfig" => {
+                                header_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ImageUrl" => {
+                                image_url = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PrimaryBtn" => {
+                                primary_btn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecondaryBtn" => {
+                                secondary_btn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(InAppMessageContent {
+                        background_color: background_color,
+                        body_config: body_config,
+                        header_config: header_config,
+                        image_url: image_url,
+                        primary_btn: primary_btn,
+                        secondary_btn: secondary_btn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Pinpoint::Campaign.InAppMessageHeaderConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessageheaderconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct InAppMessageHeaderConfig {
+        /// Property [`Alignment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessageheaderconfig.html#cfn-pinpoint-campaign-inappmessageheaderconfig-alignment).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub alignment: Option<::Value<String>>,
+        /// Property [`Header`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessageheaderconfig.html#cfn-pinpoint-campaign-inappmessageheaderconfig-header).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub header: Option<::Value<String>>,
+        /// Property [`TextColor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-inappmessageheaderconfig.html#cfn-pinpoint-campaign-inappmessageheaderconfig-textcolor).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub text_color: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for InAppMessageHeaderConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref alignment) = self.alignment {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Alignment", alignment)?;
+            }
+            if let Some(ref header) = self.header {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Header", header)?;
+            }
+            if let Some(ref text_color) = self.text_color {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TextColor", text_color)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for InAppMessageHeaderConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<InAppMessageHeaderConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = InAppMessageHeaderConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type InAppMessageHeaderConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut alignment: Option<::Value<String>> = None;
+                    let mut header: Option<::Value<String>> = None;
+                    let mut text_color: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Alignment" => {
+                                alignment = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Header" => {
+                                header = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TextColor" => {
+                                text_color = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(InAppMessageHeaderConfig {
+                        alignment: alignment,
+                        header: header,
+                        text_color: text_color,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::Pinpoint::Campaign.Limits`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-limits.html) property type.
     #[derive(Debug, Default)]
     pub struct Limits {
@@ -3290,6 +4009,11 @@ pub mod campaign {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub messages_per_second: Option<::Value<u32>>,
+        /// Property [`Session`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-limits.html#cfn-pinpoint-campaign-limits-session).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub session: Option<::Value<u32>>,
         /// Property [`Total`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-limits.html#cfn-pinpoint-campaign-limits-total).
         ///
         /// Update type: _Mutable_.
@@ -3308,6 +4032,9 @@ pub mod campaign {
             }
             if let Some(ref messages_per_second) = self.messages_per_second {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "MessagesPerSecond", messages_per_second)?;
+            }
+            if let Some(ref session) = self.session {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Session", session)?;
             }
             if let Some(ref total) = self.total {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Total", total)?;
@@ -3331,6 +4058,7 @@ pub mod campaign {
                     let mut daily: Option<::Value<u32>> = None;
                     let mut maximum_duration: Option<::Value<u32>> = None;
                     let mut messages_per_second: Option<::Value<u32>> = None;
+                    let mut session: Option<::Value<u32>> = None;
                     let mut total: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -3344,6 +4072,9 @@ pub mod campaign {
                             "MessagesPerSecond" => {
                                 messages_per_second = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Session" => {
+                                session = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Total" => {
                                 total = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -3355,6 +4086,7 @@ pub mod campaign {
                         daily: daily,
                         maximum_duration: maximum_duration,
                         messages_per_second: messages_per_second,
+                        session: session,
                         total: total,
                     })
                 }
@@ -3593,6 +4325,11 @@ pub mod campaign {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub gcm_message: Option<::Value<Message>>,
+        /// Property [`InAppMessage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-messageconfiguration.html#cfn-pinpoint-campaign-messageconfiguration-inappmessage).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub in_app_message: Option<::Value<CampaignInAppMessage>>,
         /// Property [`SMSMessage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-messageconfiguration.html#cfn-pinpoint-campaign-messageconfiguration-smsmessage).
         ///
         /// Update type: _Mutable_.
@@ -3621,6 +4358,9 @@ pub mod campaign {
             if let Some(ref gcm_message) = self.gcm_message {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "GCMMessage", gcm_message)?;
             }
+            if let Some(ref in_app_message) = self.in_app_message {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InAppMessage", in_app_message)?;
+            }
             if let Some(ref sms_message) = self.sms_message {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SMSMessage", sms_message)?;
             }
@@ -3646,6 +4386,7 @@ pub mod campaign {
                     let mut default_message: Option<::Value<Message>> = None;
                     let mut email_message: Option<::Value<CampaignEmailMessage>> = None;
                     let mut gcm_message: Option<::Value<Message>> = None;
+                    let mut in_app_message: Option<::Value<CampaignInAppMessage>> = None;
                     let mut sms_message: Option<::Value<CampaignSmsMessage>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -3668,6 +4409,9 @@ pub mod campaign {
                             "GCMMessage" => {
                                 gcm_message = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "InAppMessage" => {
+                                in_app_message = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "SMSMessage" => {
                                 sms_message = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -3682,6 +4426,7 @@ pub mod campaign {
                         default_message: default_message,
                         email_message: email_message,
                         gcm_message: gcm_message,
+                        in_app_message: in_app_message,
                         sms_message: sms_message,
                     })
                 }
@@ -3749,6 +4494,72 @@ pub mod campaign {
                     Ok(MetricDimension {
                         comparison_operator: comparison_operator,
                         value: value,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Pinpoint::Campaign.OverrideButtonConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-overridebuttonconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OverrideButtonConfiguration {
+        /// Property [`ButtonAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-overridebuttonconfiguration.html#cfn-pinpoint-campaign-overridebuttonconfiguration-buttonaction).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub button_action: Option<::Value<String>>,
+        /// Property [`Link`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-campaign-overridebuttonconfiguration.html#cfn-pinpoint-campaign-overridebuttonconfiguration-link).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub link: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for OverrideButtonConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref button_action) = self.button_action {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ButtonAction", button_action)?;
+            }
+            if let Some(ref link) = self.link {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Link", link)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OverrideButtonConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OverrideButtonConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OverrideButtonConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OverrideButtonConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut button_action: Option<::Value<String>> = None;
+                    let mut link: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ButtonAction" => {
+                                button_action = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Link" => {
+                                link = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OverrideButtonConfiguration {
+                        button_action: button_action,
+                        link: link,
                     })
                 }
             }
@@ -4113,6 +4924,562 @@ pub mod campaign {
                         size_percent: size_percent,
                         treatment_description: treatment_description,
                         treatment_name: treatment_name,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod in_app_template {
+    //! Property types for the `InAppTemplate` resource.
+
+    /// The [`AWS::Pinpoint::InAppTemplate.BodyConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-bodyconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct BodyConfig {
+        /// Property [`Alignment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-bodyconfig.html#cfn-pinpoint-inapptemplate-bodyconfig-alignment).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub alignment: Option<::Value<String>>,
+        /// Property [`Body`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-bodyconfig.html#cfn-pinpoint-inapptemplate-bodyconfig-body).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub body: Option<::Value<String>>,
+        /// Property [`TextColor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-bodyconfig.html#cfn-pinpoint-inapptemplate-bodyconfig-textcolor).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub text_color: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for BodyConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref alignment) = self.alignment {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Alignment", alignment)?;
+            }
+            if let Some(ref body) = self.body {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Body", body)?;
+            }
+            if let Some(ref text_color) = self.text_color {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TextColor", text_color)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for BodyConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<BodyConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = BodyConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type BodyConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut alignment: Option<::Value<String>> = None;
+                    let mut body: Option<::Value<String>> = None;
+                    let mut text_color: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Alignment" => {
+                                alignment = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Body" => {
+                                body = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TextColor" => {
+                                text_color = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(BodyConfig {
+                        alignment: alignment,
+                        body: body,
+                        text_color: text_color,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Pinpoint::InAppTemplate.ButtonConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-buttonconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ButtonConfig {
+        /// Property [`Android`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-buttonconfig.html#cfn-pinpoint-inapptemplate-buttonconfig-android).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub android: Option<::Value<OverrideButtonConfiguration>>,
+        /// Property [`DefaultConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-buttonconfig.html#cfn-pinpoint-inapptemplate-buttonconfig-defaultconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub default_config: Option<::Value<DefaultButtonConfiguration>>,
+        /// Property [`IOS`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-buttonconfig.html#cfn-pinpoint-inapptemplate-buttonconfig-ios).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ios: Option<::Value<OverrideButtonConfiguration>>,
+        /// Property [`Web`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-buttonconfig.html#cfn-pinpoint-inapptemplate-buttonconfig-web).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub web: Option<::Value<OverrideButtonConfiguration>>,
+    }
+
+    impl ::codec::SerializeValue for ButtonConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref android) = self.android {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Android", android)?;
+            }
+            if let Some(ref default_config) = self.default_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultConfig", default_config)?;
+            }
+            if let Some(ref ios) = self.ios {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IOS", ios)?;
+            }
+            if let Some(ref web) = self.web {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Web", web)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ButtonConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ButtonConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ButtonConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ButtonConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut android: Option<::Value<OverrideButtonConfiguration>> = None;
+                    let mut default_config: Option<::Value<DefaultButtonConfiguration>> = None;
+                    let mut ios: Option<::Value<OverrideButtonConfiguration>> = None;
+                    let mut web: Option<::Value<OverrideButtonConfiguration>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Android" => {
+                                android = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DefaultConfig" => {
+                                default_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IOS" => {
+                                ios = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Web" => {
+                                web = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ButtonConfig {
+                        android: android,
+                        default_config: default_config,
+                        ios: ios,
+                        web: web,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Pinpoint::InAppTemplate.DefaultButtonConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-defaultbuttonconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DefaultButtonConfiguration {
+        /// Property [`BackgroundColor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-defaultbuttonconfiguration.html#cfn-pinpoint-inapptemplate-defaultbuttonconfiguration-backgroundcolor).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub background_color: Option<::Value<String>>,
+        /// Property [`BorderRadius`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-defaultbuttonconfiguration.html#cfn-pinpoint-inapptemplate-defaultbuttonconfiguration-borderradius).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub border_radius: Option<::Value<u32>>,
+        /// Property [`ButtonAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-defaultbuttonconfiguration.html#cfn-pinpoint-inapptemplate-defaultbuttonconfiguration-buttonaction).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub button_action: Option<::Value<String>>,
+        /// Property [`Link`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-defaultbuttonconfiguration.html#cfn-pinpoint-inapptemplate-defaultbuttonconfiguration-link).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub link: Option<::Value<String>>,
+        /// Property [`Text`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-defaultbuttonconfiguration.html#cfn-pinpoint-inapptemplate-defaultbuttonconfiguration-text).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub text: Option<::Value<String>>,
+        /// Property [`TextColor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-defaultbuttonconfiguration.html#cfn-pinpoint-inapptemplate-defaultbuttonconfiguration-textcolor).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub text_color: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for DefaultButtonConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref background_color) = self.background_color {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BackgroundColor", background_color)?;
+            }
+            if let Some(ref border_radius) = self.border_radius {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BorderRadius", border_radius)?;
+            }
+            if let Some(ref button_action) = self.button_action {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ButtonAction", button_action)?;
+            }
+            if let Some(ref link) = self.link {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Link", link)?;
+            }
+            if let Some(ref text) = self.text {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Text", text)?;
+            }
+            if let Some(ref text_color) = self.text_color {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TextColor", text_color)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DefaultButtonConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DefaultButtonConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DefaultButtonConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DefaultButtonConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut background_color: Option<::Value<String>> = None;
+                    let mut border_radius: Option<::Value<u32>> = None;
+                    let mut button_action: Option<::Value<String>> = None;
+                    let mut link: Option<::Value<String>> = None;
+                    let mut text: Option<::Value<String>> = None;
+                    let mut text_color: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "BackgroundColor" => {
+                                background_color = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "BorderRadius" => {
+                                border_radius = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ButtonAction" => {
+                                button_action = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Link" => {
+                                link = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Text" => {
+                                text = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TextColor" => {
+                                text_color = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DefaultButtonConfiguration {
+                        background_color: background_color,
+                        border_radius: border_radius,
+                        button_action: button_action,
+                        link: link,
+                        text: text,
+                        text_color: text_color,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Pinpoint::InAppTemplate.HeaderConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-headerconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct HeaderConfig {
+        /// Property [`Alignment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-headerconfig.html#cfn-pinpoint-inapptemplate-headerconfig-alignment).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub alignment: Option<::Value<String>>,
+        /// Property [`Header`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-headerconfig.html#cfn-pinpoint-inapptemplate-headerconfig-header).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub header: Option<::Value<String>>,
+        /// Property [`TextColor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-headerconfig.html#cfn-pinpoint-inapptemplate-headerconfig-textcolor).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub text_color: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for HeaderConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref alignment) = self.alignment {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Alignment", alignment)?;
+            }
+            if let Some(ref header) = self.header {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Header", header)?;
+            }
+            if let Some(ref text_color) = self.text_color {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TextColor", text_color)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for HeaderConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<HeaderConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = HeaderConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type HeaderConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut alignment: Option<::Value<String>> = None;
+                    let mut header: Option<::Value<String>> = None;
+                    let mut text_color: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Alignment" => {
+                                alignment = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Header" => {
+                                header = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TextColor" => {
+                                text_color = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(HeaderConfig {
+                        alignment: alignment,
+                        header: header,
+                        text_color: text_color,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Pinpoint::InAppTemplate.InAppMessageContent`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-inappmessagecontent.html) property type.
+    #[derive(Debug, Default)]
+    pub struct InAppMessageContent {
+        /// Property [`BackgroundColor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-inappmessagecontent.html#cfn-pinpoint-inapptemplate-inappmessagecontent-backgroundcolor).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub background_color: Option<::Value<String>>,
+        /// Property [`BodyConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-inappmessagecontent.html#cfn-pinpoint-inapptemplate-inappmessagecontent-bodyconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub body_config: Option<::Value<BodyConfig>>,
+        /// Property [`HeaderConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-inappmessagecontent.html#cfn-pinpoint-inapptemplate-inappmessagecontent-headerconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub header_config: Option<::Value<HeaderConfig>>,
+        /// Property [`ImageUrl`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-inappmessagecontent.html#cfn-pinpoint-inapptemplate-inappmessagecontent-imageurl).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub image_url: Option<::Value<String>>,
+        /// Property [`PrimaryBtn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-inappmessagecontent.html#cfn-pinpoint-inapptemplate-inappmessagecontent-primarybtn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub primary_btn: Option<::Value<ButtonConfig>>,
+        /// Property [`SecondaryBtn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-inappmessagecontent.html#cfn-pinpoint-inapptemplate-inappmessagecontent-secondarybtn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secondary_btn: Option<::Value<ButtonConfig>>,
+    }
+
+    impl ::codec::SerializeValue for InAppMessageContent {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref background_color) = self.background_color {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BackgroundColor", background_color)?;
+            }
+            if let Some(ref body_config) = self.body_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BodyConfig", body_config)?;
+            }
+            if let Some(ref header_config) = self.header_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HeaderConfig", header_config)?;
+            }
+            if let Some(ref image_url) = self.image_url {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ImageUrl", image_url)?;
+            }
+            if let Some(ref primary_btn) = self.primary_btn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrimaryBtn", primary_btn)?;
+            }
+            if let Some(ref secondary_btn) = self.secondary_btn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecondaryBtn", secondary_btn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for InAppMessageContent {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<InAppMessageContent, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = InAppMessageContent;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type InAppMessageContent")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut background_color: Option<::Value<String>> = None;
+                    let mut body_config: Option<::Value<BodyConfig>> = None;
+                    let mut header_config: Option<::Value<HeaderConfig>> = None;
+                    let mut image_url: Option<::Value<String>> = None;
+                    let mut primary_btn: Option<::Value<ButtonConfig>> = None;
+                    let mut secondary_btn: Option<::Value<ButtonConfig>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "BackgroundColor" => {
+                                background_color = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "BodyConfig" => {
+                                body_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HeaderConfig" => {
+                                header_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ImageUrl" => {
+                                image_url = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PrimaryBtn" => {
+                                primary_btn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecondaryBtn" => {
+                                secondary_btn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(InAppMessageContent {
+                        background_color: background_color,
+                        body_config: body_config,
+                        header_config: header_config,
+                        image_url: image_url,
+                        primary_btn: primary_btn,
+                        secondary_btn: secondary_btn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Pinpoint::InAppTemplate.OverrideButtonConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-overridebuttonconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OverrideButtonConfiguration {
+        /// Property [`ButtonAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-overridebuttonconfiguration.html#cfn-pinpoint-inapptemplate-overridebuttonconfiguration-buttonaction).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub button_action: Option<::Value<String>>,
+        /// Property [`Link`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-pinpoint-inapptemplate-overridebuttonconfiguration.html#cfn-pinpoint-inapptemplate-overridebuttonconfiguration-link).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub link: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for OverrideButtonConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref button_action) = self.button_action {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ButtonAction", button_action)?;
+            }
+            if let Some(ref link) = self.link {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Link", link)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OverrideButtonConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OverrideButtonConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OverrideButtonConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OverrideButtonConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut button_action: Option<::Value<String>> = None;
+                    let mut link: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ButtonAction" => {
+                                button_action = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Link" => {
+                                link = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OverrideButtonConfiguration {
+                        button_action: button_action,
+                        link: link,
                     })
                 }
             }

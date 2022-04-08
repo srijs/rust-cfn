@@ -158,6 +158,11 @@ pub struct ClusterProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub kubernetes_network_config: Option<::Value<self::cluster::KubernetesNetworkConfig>>,
+    /// Property [`Logging`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-cluster.html#cfn-eks-cluster-logging).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub logging: Option<::Value<self::cluster::Logging>>,
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-cluster.html#cfn-eks-cluster-name).
     ///
     /// Update type: _Immutable_.
@@ -165,14 +170,19 @@ pub struct ClusterProperties {
     pub name: Option<::Value<String>>,
     /// Property [`ResourcesVpcConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-cluster.html#cfn-eks-cluster-resourcesvpcconfig).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub resources_vpc_config: ::Value<self::cluster::ResourcesVpcConfig>,
     /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-cluster.html#cfn-eks-cluster-rolearn).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub role_arn: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-cluster.html#cfn-eks-cluster-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
     /// Property [`Version`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-cluster.html#cfn-eks-cluster-version).
     ///
     /// Update type: _Mutable_.
@@ -189,11 +199,17 @@ impl ::serde::Serialize for ClusterProperties {
         if let Some(ref kubernetes_network_config) = self.kubernetes_network_config {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KubernetesNetworkConfig", kubernetes_network_config)?;
         }
+        if let Some(ref logging) = self.logging {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Logging", logging)?;
+        }
         if let Some(ref name) = self.name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourcesVpcConfig", &self.resources_vpc_config)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         if let Some(ref version) = self.version {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Version", version)?;
         }
@@ -215,9 +231,11 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut encryption_config: Option<::ValueList<self::cluster::EncryptionConfig>> = None;
                 let mut kubernetes_network_config: Option<::Value<self::cluster::KubernetesNetworkConfig>> = None;
+                let mut logging: Option<::Value<self::cluster::Logging>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut resources_vpc_config: Option<::Value<self::cluster::ResourcesVpcConfig>> = None;
                 let mut role_arn: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut version: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -228,6 +246,9 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                         "KubernetesNetworkConfig" => {
                             kubernetes_network_config = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Logging" => {
+                            logging = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -236,6 +257,9 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                         }
                         "RoleArn" => {
                             role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Version" => {
                             version = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -247,9 +271,11 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                 Ok(ClusterProperties {
                     encryption_config: encryption_config,
                     kubernetes_network_config: kubernetes_network_config,
+                    logging: logging,
                     name: name,
                     resources_vpc_config: resources_vpc_config.ok_or(::serde::de::Error::missing_field("ResourcesVpcConfig"))?,
                     role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
+                    tags: tags,
                     version: version,
                 })
             }
@@ -415,6 +441,132 @@ impl From<FargateProfileProperties> for FargateProfile {
     }
 }
 
+/// The [`AWS::EKS::IdentityProviderConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-identityproviderconfig.html) resource type.
+#[derive(Debug, Default)]
+pub struct IdentityProviderConfig {
+    properties: IdentityProviderConfigProperties
+}
+
+/// Properties for the `IdentityProviderConfig` resource.
+#[derive(Debug, Default)]
+pub struct IdentityProviderConfigProperties {
+    /// Property [`ClusterName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-identityproviderconfig.html#cfn-eks-identityproviderconfig-clustername).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub cluster_name: ::Value<String>,
+    /// Property [`IdentityProviderConfigName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-identityproviderconfig.html#cfn-eks-identityproviderconfig-identityproviderconfigname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub identity_provider_config_name: Option<::Value<String>>,
+    /// Property [`Oidc`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-identityproviderconfig.html#cfn-eks-identityproviderconfig-oidc).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub oidc: Option<::Value<self::identity_provider_config::OidcIdentityProviderConfig>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-identityproviderconfig.html#cfn-eks-identityproviderconfig-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-identityproviderconfig.html#cfn-eks-identityproviderconfig-type).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub r#type: ::Value<String>,
+}
+
+impl ::serde::Serialize for IdentityProviderConfigProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClusterName", &self.cluster_name)?;
+        if let Some(ref identity_provider_config_name) = self.identity_provider_config_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IdentityProviderConfigName", identity_provider_config_name)?;
+        }
+        if let Some(ref oidc) = self.oidc {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Oidc", oidc)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for IdentityProviderConfigProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<IdentityProviderConfigProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = IdentityProviderConfigProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type IdentityProviderConfigProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut cluster_name: Option<::Value<String>> = None;
+                let mut identity_provider_config_name: Option<::Value<String>> = None;
+                let mut oidc: Option<::Value<self::identity_provider_config::OidcIdentityProviderConfig>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut r#type: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "ClusterName" => {
+                            cluster_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "IdentityProviderConfigName" => {
+                            identity_provider_config_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Oidc" => {
+                            oidc = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Type" => {
+                            r#type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(IdentityProviderConfigProperties {
+                    cluster_name: cluster_name.ok_or(::serde::de::Error::missing_field("ClusterName"))?,
+                    identity_provider_config_name: identity_provider_config_name,
+                    oidc: oidc,
+                    tags: tags,
+                    r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for IdentityProviderConfig {
+    type Properties = IdentityProviderConfigProperties;
+    const TYPE: &'static str = "AWS::EKS::IdentityProviderConfig";
+    fn properties(&self) -> &IdentityProviderConfigProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut IdentityProviderConfigProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for IdentityProviderConfig {}
+
+impl From<IdentityProviderConfigProperties> for IdentityProviderConfig {
+    fn from(properties: IdentityProviderConfigProperties) -> IdentityProviderConfig {
+        IdentityProviderConfig { properties }
+    }
+}
+
 /// The [`AWS::EKS::Nodegroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-nodegroup.html) resource type.
 #[derive(Debug, Default)]
 pub struct Nodegroup {
@@ -443,7 +595,7 @@ pub struct NodegroupProperties {
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub disk_size: Option<::Value<f64>>,
+    pub disk_size: Option<::Value<u32>>,
     /// Property [`ForceUpdateEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-nodegroup.html#cfn-eks-nodegroup-forceupdateenabled).
     ///
     /// Update type: _Mutable_.
@@ -586,7 +738,7 @@ impl<'de> ::serde::Deserialize<'de> for NodegroupProperties {
                 let mut ami_type: Option<::Value<String>> = None;
                 let mut capacity_type: Option<::Value<String>> = None;
                 let mut cluster_name: Option<::Value<String>> = None;
-                let mut disk_size: Option<::Value<f64>> = None;
+                let mut disk_size: Option<::Value<u32>> = None;
                 let mut force_update_enabled: Option<::Value<bool>> = None;
                 let mut instance_types: Option<::ValueList<String>> = None;
                 let mut labels: Option<::Value<::json::Value>> = None;
@@ -711,18 +863,71 @@ impl From<NodegroupProperties> for Nodegroup {
 pub mod cluster {
     //! Property types for the `Cluster` resource.
 
+    /// The [`AWS::EKS::Cluster.ClusterLogging`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-clusterlogging.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ClusterLogging {
+        /// Property [`EnabledTypes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-clusterlogging.html#cfn-eks-cluster-clusterlogging-enabledtypes).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub enabled_types: Option<::ValueList<LoggingTypeConfig>>,
+    }
+
+    impl ::codec::SerializeValue for ClusterLogging {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref enabled_types) = self.enabled_types {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnabledTypes", enabled_types)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ClusterLogging {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ClusterLogging, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ClusterLogging;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ClusterLogging")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut enabled_types: Option<::ValueList<LoggingTypeConfig>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "EnabledTypes" => {
+                                enabled_types = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ClusterLogging {
+                        enabled_types: enabled_types,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::EKS::Cluster.EncryptionConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-encryptionconfig.html) property type.
     #[derive(Debug, Default)]
     pub struct EncryptionConfig {
         /// Property [`Provider`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-encryptionconfig.html#cfn-eks-cluster-encryptionconfig-provider).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub provider: Option<::Value<Provider>>,
         /// Property [`Resources`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-encryptionconfig.html#cfn-eks-cluster-encryptionconfig-resources).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub resources: Option<::ValueList<String>>,
     }
 
@@ -780,18 +985,34 @@ pub mod cluster {
     /// The [`AWS::EKS::Cluster.KubernetesNetworkConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-kubernetesnetworkconfig.html) property type.
     #[derive(Debug, Default)]
     pub struct KubernetesNetworkConfig {
+        /// Property [`IpFamily`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-kubernetesnetworkconfig.html#cfn-eks-cluster-kubernetesnetworkconfig-ipfamily).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub ip_family: Option<::Value<String>>,
         /// Property [`ServiceIpv4Cidr`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-kubernetesnetworkconfig.html#cfn-eks-cluster-kubernetesnetworkconfig-serviceipv4cidr).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub service_ipv4_cidr: Option<::Value<String>>,
+        /// Property [`ServiceIpv6Cidr`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-kubernetesnetworkconfig.html#cfn-eks-cluster-kubernetesnetworkconfig-serviceipv6cidr).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub service_ipv6_cidr: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for KubernetesNetworkConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref ip_family) = self.ip_family {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IpFamily", ip_family)?;
+            }
             if let Some(ref service_ipv4_cidr) = self.service_ipv4_cidr {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceIpv4Cidr", service_ipv4_cidr)?;
+            }
+            if let Some(ref service_ipv6_cidr) = self.service_ipv6_cidr {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceIpv6Cidr", service_ipv6_cidr)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -809,19 +1030,135 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut ip_family: Option<::Value<String>> = None;
                     let mut service_ipv4_cidr: Option<::Value<String>> = None;
+                    let mut service_ipv6_cidr: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "IpFamily" => {
+                                ip_family = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "ServiceIpv4Cidr" => {
                                 service_ipv4_cidr = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ServiceIpv6Cidr" => {
+                                service_ipv6_cidr = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
                     }
 
                     Ok(KubernetesNetworkConfig {
+                        ip_family: ip_family,
                         service_ipv4_cidr: service_ipv4_cidr,
+                        service_ipv6_cidr: service_ipv6_cidr,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EKS::Cluster.Logging`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-logging.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Logging {
+        /// Property [`ClusterLogging`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-logging.html#cfn-eks-cluster-logging-clusterlogging).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cluster_logging: Option<::Value<ClusterLogging>>,
+    }
+
+    impl ::codec::SerializeValue for Logging {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref cluster_logging) = self.cluster_logging {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClusterLogging", cluster_logging)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Logging {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Logging, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Logging;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Logging")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut cluster_logging: Option<::Value<ClusterLogging>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ClusterLogging" => {
+                                cluster_logging = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Logging {
+                        cluster_logging: cluster_logging,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EKS::Cluster.LoggingTypeConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-loggingtypeconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LoggingTypeConfig {
+        /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-loggingtypeconfig.html#cfn-eks-cluster-loggingtypeconfig-type).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub r#type: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for LoggingTypeConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref r#type) = self.r#type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", r#type)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LoggingTypeConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LoggingTypeConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LoggingTypeConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LoggingTypeConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut r#type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Type" => {
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LoggingTypeConfig {
+                        r#type: r#type,
                     })
                 }
             }
@@ -835,8 +1172,8 @@ pub mod cluster {
     pub struct Provider {
         /// Property [`KeyArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-provider.html#cfn-eks-cluster-provider-keyarn).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub key_arn: Option<::Value<String>>,
     }
 
@@ -886,21 +1223,45 @@ pub mod cluster {
     /// The [`AWS::EKS::Cluster.ResourcesVpcConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-resourcesvpcconfig.html) property type.
     #[derive(Debug, Default)]
     pub struct ResourcesVpcConfig {
-        /// Property [`SecurityGroupIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-resourcesvpcconfig.html#cfn-eks-cluster-resourcesvpcconfig-securitygroupids).
+        /// Property [`EndpointPrivateAccess`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-resourcesvpcconfig.html#cfn-eks-cluster-resourcesvpcconfig-endpointprivateaccess).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub endpoint_private_access: Option<::Value<bool>>,
+        /// Property [`EndpointPublicAccess`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-resourcesvpcconfig.html#cfn-eks-cluster-resourcesvpcconfig-endpointpublicaccess).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub endpoint_public_access: Option<::Value<bool>>,
+        /// Property [`PublicAccessCidrs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-resourcesvpcconfig.html#cfn-eks-cluster-resourcesvpcconfig-publicaccesscidrs).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub public_access_cidrs: Option<::ValueList<String>>,
+        /// Property [`SecurityGroupIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-resourcesvpcconfig.html#cfn-eks-cluster-resourcesvpcconfig-securitygroupids).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub security_group_ids: Option<::ValueList<String>>,
         /// Property [`SubnetIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-cluster-resourcesvpcconfig.html#cfn-eks-cluster-resourcesvpcconfig-subnetids).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub subnet_ids: ::ValueList<String>,
     }
 
     impl ::codec::SerializeValue for ResourcesVpcConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref endpoint_private_access) = self.endpoint_private_access {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndpointPrivateAccess", endpoint_private_access)?;
+            }
+            if let Some(ref endpoint_public_access) = self.endpoint_public_access {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndpointPublicAccess", endpoint_public_access)?;
+            }
+            if let Some(ref public_access_cidrs) = self.public_access_cidrs {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PublicAccessCidrs", public_access_cidrs)?;
+            }
             if let Some(ref security_group_ids) = self.security_group_ids {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIds", security_group_ids)?;
             }
@@ -921,11 +1282,23 @@ pub mod cluster {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut endpoint_private_access: Option<::Value<bool>> = None;
+                    let mut endpoint_public_access: Option<::Value<bool>> = None;
+                    let mut public_access_cidrs: Option<::ValueList<String>> = None;
                     let mut security_group_ids: Option<::ValueList<String>> = None;
                     let mut subnet_ids: Option<::ValueList<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "EndpointPrivateAccess" => {
+                                endpoint_private_access = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "EndpointPublicAccess" => {
+                                endpoint_public_access = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PublicAccessCidrs" => {
+                                public_access_cidrs = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "SecurityGroupIds" => {
                                 security_group_ids = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -937,6 +1310,9 @@ pub mod cluster {
                     }
 
                     Ok(ResourcesVpcConfig {
+                        endpoint_private_access: endpoint_private_access,
+                        endpoint_public_access: endpoint_public_access,
+                        public_access_cidrs: public_access_cidrs,
                         security_group_ids: security_group_ids,
                         subnet_ids: subnet_ids.ok_or(::serde::de::Error::missing_field("SubnetIds"))?,
                     })
@@ -1069,6 +1445,199 @@ pub mod fargate_profile {
                     Ok(Selector {
                         labels: labels,
                         namespace: namespace.ok_or(::serde::de::Error::missing_field("Namespace"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod identity_provider_config {
+    //! Property types for the `IdentityProviderConfig` resource.
+
+    /// The [`AWS::EKS::IdentityProviderConfig.OidcIdentityProviderConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-identityproviderconfig-oidcidentityproviderconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OidcIdentityProviderConfig {
+        /// Property [`ClientId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-identityproviderconfig-oidcidentityproviderconfig.html#cfn-eks-identityproviderconfig-oidcidentityproviderconfig-clientid).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub client_id: ::Value<String>,
+        /// Property [`GroupsClaim`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-identityproviderconfig-oidcidentityproviderconfig.html#cfn-eks-identityproviderconfig-oidcidentityproviderconfig-groupsclaim).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub groups_claim: Option<::Value<String>>,
+        /// Property [`GroupsPrefix`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-identityproviderconfig-oidcidentityproviderconfig.html#cfn-eks-identityproviderconfig-oidcidentityproviderconfig-groupsprefix).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub groups_prefix: Option<::Value<String>>,
+        /// Property [`IssuerUrl`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-identityproviderconfig-oidcidentityproviderconfig.html#cfn-eks-identityproviderconfig-oidcidentityproviderconfig-issuerurl).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub issuer_url: ::Value<String>,
+        /// Property [`RequiredClaims`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-identityproviderconfig-oidcidentityproviderconfig.html#cfn-eks-identityproviderconfig-oidcidentityproviderconfig-requiredclaims).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub required_claims: Option<::ValueList<RequiredClaim>>,
+        /// Property [`UsernameClaim`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-identityproviderconfig-oidcidentityproviderconfig.html#cfn-eks-identityproviderconfig-oidcidentityproviderconfig-usernameclaim).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub username_claim: Option<::Value<String>>,
+        /// Property [`UsernamePrefix`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-identityproviderconfig-oidcidentityproviderconfig.html#cfn-eks-identityproviderconfig-oidcidentityproviderconfig-usernameprefix).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub username_prefix: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for OidcIdentityProviderConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientId", &self.client_id)?;
+            if let Some(ref groups_claim) = self.groups_claim {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupsClaim", groups_claim)?;
+            }
+            if let Some(ref groups_prefix) = self.groups_prefix {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupsPrefix", groups_prefix)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IssuerUrl", &self.issuer_url)?;
+            if let Some(ref required_claims) = self.required_claims {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RequiredClaims", required_claims)?;
+            }
+            if let Some(ref username_claim) = self.username_claim {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UsernameClaim", username_claim)?;
+            }
+            if let Some(ref username_prefix) = self.username_prefix {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UsernamePrefix", username_prefix)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OidcIdentityProviderConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OidcIdentityProviderConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OidcIdentityProviderConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OidcIdentityProviderConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut client_id: Option<::Value<String>> = None;
+                    let mut groups_claim: Option<::Value<String>> = None;
+                    let mut groups_prefix: Option<::Value<String>> = None;
+                    let mut issuer_url: Option<::Value<String>> = None;
+                    let mut required_claims: Option<::ValueList<RequiredClaim>> = None;
+                    let mut username_claim: Option<::Value<String>> = None;
+                    let mut username_prefix: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ClientId" => {
+                                client_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "GroupsClaim" => {
+                                groups_claim = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "GroupsPrefix" => {
+                                groups_prefix = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IssuerUrl" => {
+                                issuer_url = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RequiredClaims" => {
+                                required_claims = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "UsernameClaim" => {
+                                username_claim = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "UsernamePrefix" => {
+                                username_prefix = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OidcIdentityProviderConfig {
+                        client_id: client_id.ok_or(::serde::de::Error::missing_field("ClientId"))?,
+                        groups_claim: groups_claim,
+                        groups_prefix: groups_prefix,
+                        issuer_url: issuer_url.ok_or(::serde::de::Error::missing_field("IssuerUrl"))?,
+                        required_claims: required_claims,
+                        username_claim: username_claim,
+                        username_prefix: username_prefix,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EKS::IdentityProviderConfig.RequiredClaim`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-identityproviderconfig-requiredclaim.html) property type.
+    #[derive(Debug, Default)]
+    pub struct RequiredClaim {
+        /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-identityproviderconfig-requiredclaim.html#cfn-eks-identityproviderconfig-requiredclaim-key).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub key: ::Value<String>,
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-identityproviderconfig-requiredclaim.html#cfn-eks-identityproviderconfig-requiredclaim-value).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub value: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for RequiredClaim {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for RequiredClaim {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<RequiredClaim, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = RequiredClaim;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type RequiredClaim")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut key: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Key" => {
+                                key = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Value" => {
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(RequiredClaim {
+                        key: key.ok_or(::serde::de::Error::missing_field("Key"))?,
+                        value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
                     })
                 }
             }
@@ -1231,17 +1800,17 @@ pub mod nodegroup {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub desired_size: Option<::Value<f64>>,
+        pub desired_size: Option<::Value<u32>>,
         /// Property [`MaxSize`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-nodegroup-scalingconfig.html#cfn-eks-nodegroup-scalingconfig-maxsize).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub max_size: Option<::Value<f64>>,
+        pub max_size: Option<::Value<u32>>,
         /// Property [`MinSize`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-eks-nodegroup-scalingconfig.html#cfn-eks-nodegroup-scalingconfig-minsize).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub min_size: Option<::Value<f64>>,
+        pub min_size: Option<::Value<u32>>,
     }
 
     impl ::codec::SerializeValue for ScalingConfig {
@@ -1272,9 +1841,9 @@ pub mod nodegroup {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut desired_size: Option<::Value<f64>> = None;
-                    let mut max_size: Option<::Value<f64>> = None;
-                    let mut min_size: Option<::Value<f64>> = None;
+                    let mut desired_size: Option<::Value<u32>> = None;
+                    let mut max_size: Option<::Value<u32>> = None;
+                    let mut min_size: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
