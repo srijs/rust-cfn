@@ -3,7 +3,7 @@ use std::io::{self, Write};
 use std::path::Path;
 
 use heck::SnakeCase;
-use itertools::{Itertools, EitherOrBoth, merge_join_by};
+use itertools::{merge_join_by, EitherOrBoth, Itertools};
 
 use model::*;
 
@@ -11,67 +11,108 @@ mod printer;
 use self::printer::Printer;
 
 mod serde;
-use self::serde::{
-    generate_serialize,
-    generate_deserialize,
-    generate_deserialize_value
-};
+use self::serde::{generate_deserialize, generate_deserialize_value, generate_serialize};
 
 pub fn generate<P: AsRef<Path>>(spec: Specification, base_path: P) -> io::Result<()> {
-    let resource_groups = spec.resource_types.into_iter().filter_map(|(res_name, res_spec)| {
-        if res_name.starts_with("AWS::") {
-            let split = res_name[5..].split("::").collect::<Vec<_>>();
-            assert!(split.len() == 2);
-            Some((split[0].to_owned(), split[1].to_owned(), res_spec))
-        } else {
-            None
-        }
-    }).group_by(|&(ref service_name, _, _)| service_name.to_owned());
+    let resource_groups = spec
+        .resource_types
+        .into_iter()
+        .filter_map(|(res_name, res_spec)| {
+            if res_name.starts_with("AWS::") {
+                let split = res_name[5..].split("::").collect::<Vec<_>>();
+                assert!(split.len() == 2);
+                Some((split[0].to_owned(), split[1].to_owned(), res_spec))
+            } else {
+                None
+            }
+        })
+        .group_by(|&(ref service_name, _, _)| service_name.to_owned());
 
-    let property_groups = spec.property_types.into_iter().flatten().filter_map(|(prop_name, prop_spec)| {
-        if prop_name.starts_with("AWS::") {
-            let split = prop_name[5..].split("::").collect::<Vec<_>>();
-            assert!(split.len() == 2);
-            let split2 = split[1].split(".").collect::<Vec<_>>();
-            assert!(split2.len() == 2);
-            Some((split[0].to_owned(), split2[0].to_owned(), split2[1].to_owned(), prop_spec))
-        } else {
-            None
-        }
-    }).group_by(|&(ref service_name, _, _, _)| service_name.to_owned());
+    let property_groups = spec
+        .property_types
+        .into_iter()
+        .flatten()
+        .filter_map(|(prop_name, prop_spec)| {
+            if prop_name.starts_with("AWS::") {
+                let split = prop_name[5..].split("::").collect::<Vec<_>>();
+                assert!(split.len() == 2);
+                let split2 = split[1].split(".").collect::<Vec<_>>();
+                assert!(split2.len() == 2);
+                Some((
+                    split[0].to_owned(),
+                    split2[0].to_owned(),
+                    split2[1].to_owned(),
+                    prop_spec,
+                ))
+            } else {
+                None
+            }
+        })
+        .group_by(|&(ref service_name, _, _, _)| service_name.to_owned());
 
-    let groups = merge_join_by(resource_groups.into_iter(), property_groups.into_iter(),
-        |&(ref service_name_left, _), &(ref service_name_right, _)| service_name_left.cmp(service_name_right));
+    let groups = merge_join_by(
+        resource_groups.into_iter(),
+        property_groups.into_iter(),
+        |&(ref service_name_left, _), &(ref service_name_right, _)| {
+            service_name_left.cmp(service_name_right)
+        },
+    );
 
     let mut services = Vec::new();
     let mut resources = Vec::new();
     for joined_specs in groups {
-        let (service_name, resource_specs_opt, property_specs_opt) = factor_joined_specs(joined_specs);
+        let (service_name, resource_specs_opt, property_specs_opt) =
+            factor_joined_specs(joined_specs);
         services.push(service_name.to_owned());
-        let file_path = base_path.as_ref().join(format!("{}.rs", service_name.to_lowercase()));
+        let file_path = base_path
+            .as_ref()
+            .join(format!("{}.rs", service_name.to_lowercase()));
         let file = File::create(file_path)?;
         let mut printer = Printer::new(file);
 
-        printer.line(format_args!("//! Types for the `{}` service.", service_name))?;
+        printer.line(format_args!(
+            "//! Types for the `{}` service.",
+            service_name
+        ))?;
 
         if let Some(resource_specs) = resource_specs_opt {
             for (_, resource_name, resource_spec) in resource_specs {
                 resources.push((service_name.to_owned(), resource_name.to_owned()));
-                generate_resource_declaration(&service_name, &resource_name, &resource_spec, &mut printer)?;
+                generate_resource_declaration(
+                    &service_name,
+                    &resource_name,
+                    &resource_spec,
+                    &mut printer,
+                )?;
             }
         }
 
         if let Some(property_specs) = property_specs_opt {
-            let properties_by_resource = property_specs.group_by(|&(_, ref resource_name, _, _)| resource_name.to_owned());
+            let properties_by_resource =
+                property_specs.group_by(|&(_, ref resource_name, _, _)| resource_name.to_owned());
             for (resource_name, resource_property_specs) in properties_by_resource.into_iter() {
                 printer.newline()?;
-                printer.block(format_args!("pub mod {}", resource_name.to_snake_case()), |p| {
-                    p.line(format_args!("//! Property types for the `{}` resource.", resource_name))?;
-                    for (_, resource_name, property_name, property_spec) in resource_property_specs {
-                        generate_property_declaration(&service_name, &resource_name, &property_name, &property_spec, p)?;
-                    }
-                    Ok(())
-                })?
+                printer.block(
+                    format_args!("pub mod {}", resource_name.to_snake_case()),
+                    |p| {
+                        p.line(format_args!(
+                            "//! Property types for the `{}` resource.",
+                            resource_name
+                        ))?;
+                        for (_, resource_name, property_name, property_spec) in
+                            resource_property_specs
+                        {
+                            generate_property_declaration(
+                                &service_name,
+                                &resource_name,
+                                &property_name,
+                                &property_spec,
+                                p,
+                            )?;
+                        }
+                        Ok(())
+                    },
+                )?
             }
         }
     }
@@ -79,7 +120,10 @@ pub fn generate<P: AsRef<Path>>(spec: Specification, base_path: P) -> io::Result
     {
         let mod_file_path = base_path.as_ref().join("mod.rs");
         let mut mod_file = File::create(mod_file_path)?;
-        write!(mod_file, "//! Types for CloudFormation resources and their properties.\n")?;
+        write!(
+            mod_file,
+            "//! Types for CloudFormation resources and their properties.\n"
+        )?;
         for service_name in services {
             writeln!(mod_file, "pub mod {};", service_name.to_lowercase())?;
         }
@@ -92,13 +136,22 @@ fn factor_joined_specs<X, A, B>(either: EitherOrBoth<(X, A), (X, B)>) -> (X, Opt
     match either {
         EitherOrBoth::Left((key, left)) => (key, Some(left), None),
         EitherOrBoth::Right((key, right)) => (key, None, Some(right)),
-        EitherOrBoth::Both((key, left), (_, right)) => (key, Some(left), Some(right))
+        EitherOrBoth::Both((key, left), (_, right)) => (key, Some(left), Some(right)),
     }
 }
 
-fn generate_property_declaration(service: &str, resource_name: &str, name: &str, spec: &PropertyType, p: &mut Printer) -> io::Result<()> {
+fn generate_property_declaration(
+    service: &str,
+    resource_name: &str,
+    name: &str,
+    spec: &PropertyType,
+    p: &mut Printer,
+) -> io::Result<()> {
     p.newline()?;
-    p.line(format_args!("/// The [`AWS::{}::{}.{}`]({}) property type.", service, resource_name, name, spec.documentation))?;
+    p.line(format_args!(
+        "/// The [`AWS::{}::{}.{}`]({}) property type.",
+        service, resource_name, name, spec.documentation
+    ))?;
     p.line(format_args!("#[derive(Debug, Default)]"))?;
     p.block(format_args!("pub struct {}", name), |p| {
         for (ref property_name, ref property_spec) in spec.properties.iter() {
@@ -116,11 +169,19 @@ fn generate_property_declaration(service: &str, resource_name: &str, name: &str,
     Ok(())
 }
 
-fn generate_resource_declaration(service: &str, name: &str, spec: &ResourceType, p: &mut Printer) -> io::Result<()> {
+fn generate_resource_declaration(
+    service: &str,
+    name: &str,
+    spec: &ResourceType,
+    p: &mut Printer,
+) -> io::Result<()> {
     let namespace = name.to_snake_case();
 
     p.newline()?;
-    p.line(format_args!("/// The [`AWS::{}::{}`]({}) resource type.", service, name, spec.documentation))?;
+    p.line(format_args!(
+        "/// The [`AWS::{}::{}`]({}) resource type.",
+        service, name, spec.documentation
+    ))?;
     p.line(format_args!("#[derive(Debug, Default)]"))?;
     p.block(format_args!("pub struct {}", name), |p| {
         p.line(format_args!("properties: {}Properties", name))
@@ -137,19 +198,38 @@ fn generate_resource_declaration(service: &str, name: &str, spec: &ResourceType,
     })?;
 
     p.newline()?;
-    generate_serialize("::serde::Serialize", &format!("{}Properties", name), &spec.properties, p)?;
+    generate_serialize(
+        "::serde::Serialize",
+        &format!("{}Properties", name),
+        &spec.properties,
+        p,
+    )?;
 
     p.newline()?;
-    generate_deserialize(&format!("{}Properties", name), Some(&namespace), &spec.properties, p)?;
+    generate_deserialize(
+        &format!("{}Properties", name),
+        Some(&namespace),
+        &spec.properties,
+        p,
+    )?;
 
     p.newline()?;
     p.block(format_args!("impl ::Resource for {}", name), |p| {
         p.line(format_args!("type Properties = {}Properties;", name))?;
-        p.line(format_args!("const TYPE: &'static str = \"AWS::{}::{}\";", service, name))?;
-        p.line(format_args!("fn properties(&self) -> &{}Properties {{", name))?;
+        p.line(format_args!(
+            "const TYPE: &'static str = \"AWS::{}::{}\";",
+            service, name
+        ))?;
+        p.line(format_args!(
+            "fn properties(&self) -> &{}Properties {{",
+            name
+        ))?;
         p.line(format_args!("    &self.properties"))?;
         p.line(format_args!("}}"))?;
-        p.line(format_args!("fn properties_mut(&mut self) -> &mut {}Properties {{", name))?;
+        p.line(format_args!(
+            "fn properties_mut(&mut self) -> &mut {}Properties {{",
+            name
+        ))?;
         p.line(format_args!("    &mut self.properties"))?;
         p.line(format_args!("}}"))
     })?;
@@ -158,19 +238,33 @@ fn generate_resource_declaration(service: &str, name: &str, spec: &ResourceType,
     p.line(format_args!("impl ::private::Sealed for {} {{}}", name))?;
 
     p.newline()?;
-    p.block(format_args!("impl From<{}Properties> for {}", name, name), |p| {
-        p.line(format_args!("fn from(properties: {}Properties) -> {} {{", name, name))?;
-        p.line(format_args!("    {} {{ properties }}", name))?;
-        p.line(format_args!("}}"))
-    })?;
+    p.block(
+        format_args!("impl From<{}Properties> for {}", name, name),
+        |p| {
+            p.line(format_args!(
+                "fn from(properties: {}Properties) -> {} {{",
+                name, name
+            ))?;
+            p.line(format_args!("    {} {{ properties }}", name))?;
+            p.line(format_args!("}}"))
+        },
+    )?;
 
     Ok(())
 }
 
-fn generate_field(namespace_opt: Option<&str>, name: &str, spec: &PropertySpecification, p: &mut Printer) -> io::Result<()> {
+fn generate_field(
+    namespace_opt: Option<&str>,
+    name: &str,
+    spec: &PropertySpecification,
+    p: &mut Printer,
+) -> io::Result<()> {
     let field_name = mutate_field_name(name);
 
-    p.line(format_args!("/// Property [`{}`]({}).", name, spec.documentation))?;
+    p.line(format_args!(
+        "/// Property [`{}`]({}).",
+        name, spec.documentation
+    ))?;
 
     if let Some(update_type) = spec.update_type {
         p.line(format_args!("///"))?;
@@ -178,23 +272,35 @@ fn generate_field(namespace_opt: Option<&str>, name: &str, spec: &PropertySpecif
             UpdateType::Mutable => {
                 p.line(format_args!("/// Update type: _Mutable_."))?;
                 p.line(format_args!("/// AWS CloudFormation doesn't replace the resource when you change this property."))?;
-            },
+            }
             UpdateType::Immutable => {
                 p.line(format_args!("/// Update type: _Immutable_."))?;
-                p.line(format_args!("/// AWS CloudFormation replaces the resource when you change this property."))?;
-            },
+                p.line(format_args!(
+                    "/// AWS CloudFormation replaces the resource when you change this property."
+                ))?;
+            }
             UpdateType::Conditional => {
                 p.line(format_args!("/// Update type: _Conditional_."))?;
                 p.line(format_args!("/// Conditional updates can be mutable or immutable, depending on, for example, which other properties you updated."))?;
-                p.line(format_args!("/// For more information, see the relevant resource type documentation."))?;
+                p.line(format_args!(
+                    "/// For more information, see the relevant resource type documentation."
+                ))?;
             }
         }
     }
 
     if spec.required.unwrap_or(true) {
-        p.line(format_args!("pub {}: {},", field_name, generate_field_type(namespace_opt, spec)))?;
+        p.line(format_args!(
+            "pub {}: {},",
+            field_name,
+            generate_field_type(namespace_opt, spec)
+        ))?;
     } else {
-        p.line(format_args!("pub {}: Option<{}>,", field_name, generate_field_type(namespace_opt, spec)))?;
+        p.line(format_args!(
+            "pub {}: Option<{}>,",
+            field_name,
+            generate_field_type(namespace_opt, spec)
+        ))?;
     }
 
     Ok(())
@@ -206,21 +312,28 @@ fn generate_field_type(namespace_opt: Option<&str>, spec: &PropertySpecification
             if let Some(ref item_type) = spec.item_type {
                 format!("::ValueList<{}>", generate_type(namespace_opt, item_type))
             } else {
-                format!("::ValueList<{}>",
-                    generate_primitive_type(spec.primitive_item_type.as_ref().unwrap()))
+                format!(
+                    "::ValueList<{}>",
+                    generate_primitive_type(spec.primitive_item_type.as_ref().unwrap())
+                )
             }
         } else if type_name == "Map" {
             if let Some(ref item_type) = spec.item_type {
                 format!("::ValueMap<{}>", generate_type(namespace_opt, item_type))
             } else {
-                format!("::ValueMap<{}>",
-                    generate_primitive_type(spec.primitive_item_type.as_ref().unwrap()))
+                format!(
+                    "::ValueMap<{}>",
+                    generate_primitive_type(spec.primitive_item_type.as_ref().unwrap())
+                )
             }
         } else {
             format!("::Value<{}>", generate_type(namespace_opt, type_name))
         }
     } else {
-        format!("::Value<{}>", generate_primitive_type(spec.primitive_type.as_ref().unwrap()))
+        format!(
+            "::Value<{}>",
+            generate_primitive_type(spec.primitive_type.as_ref().unwrap())
+        )
     }
 }
 
@@ -229,10 +342,12 @@ fn mutate_field_name(name: &str) -> String {
 
     if field_name == "type" {
         field_name = "r#type".into();
-    }
-
-    if field_name == "match" {
+    } else if field_name == "match" {
         field_name = "r#match".into();
+    } else if field_name == "override" {
+        field_name = "r#override".into();
+    } else if field_name == "else" {
+        field_name = "r#else".into();
     }
 
     field_name
@@ -256,6 +371,6 @@ fn generate_primitive_type(primitive_type: &PrimitiveType) -> &str {
         &PrimitiveType::Double => "f64",
         &PrimitiveType::Boolean => "bool",
         &PrimitiveType::Timestamp => "String",
-        &PrimitiveType::Json => "::json::Value"
+        &PrimitiveType::Json => "::json::Value",
     }
 }

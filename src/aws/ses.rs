@@ -1919,7 +1919,7 @@ pub mod template {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub subject_part: Option<::Value<String>>,
+        pub subject_part: ::Value<String>,
         /// Property [`TemplateName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-template-template.html#cfn-ses-template-template-templatename).
         ///
         /// Update type: _Immutable_.
@@ -1938,9 +1938,7 @@ pub mod template {
             if let Some(ref html_part) = self.html_part {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "HtmlPart", html_part)?;
             }
-            if let Some(ref subject_part) = self.subject_part {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubjectPart", subject_part)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubjectPart", &self.subject_part)?;
             if let Some(ref template_name) = self.template_name {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "TemplateName", template_name)?;
             }
@@ -1988,7 +1986,7 @@ pub mod template {
 
                     Ok(Template {
                         html_part: html_part,
-                        subject_part: subject_part,
+                        subject_part: subject_part.ok_or(::serde::de::Error::missing_field("SubjectPart"))?,
                         template_name: template_name,
                         text_part: text_part,
                     })

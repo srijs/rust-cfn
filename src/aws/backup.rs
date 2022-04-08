@@ -205,6 +205,11 @@ pub struct BackupVaultProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub encryption_key_arn: Option<::Value<String>>,
+    /// Property [`LockConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-backupvault.html#cfn-backup-backupvault-lockconfiguration).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub lock_configuration: Option<::Value<self::backup_vault::LockConfigurationType>>,
     /// Property [`Notifications`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-backupvault.html#cfn-backup-backupvault-notifications).
     ///
     /// Update type: _Mutable_.
@@ -224,6 +229,9 @@ impl ::serde::Serialize for BackupVaultProperties {
         }
         if let Some(ref encryption_key_arn) = self.encryption_key_arn {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EncryptionKeyArn", encryption_key_arn)?;
+        }
+        if let Some(ref lock_configuration) = self.lock_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LockConfiguration", lock_configuration)?;
         }
         if let Some(ref notifications) = self.notifications {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Notifications", notifications)?;
@@ -248,6 +256,7 @@ impl<'de> ::serde::Deserialize<'de> for BackupVaultProperties {
                 let mut backup_vault_name: Option<::Value<String>> = None;
                 let mut backup_vault_tags: Option<::ValueMap<String>> = None;
                 let mut encryption_key_arn: Option<::Value<String>> = None;
+                let mut lock_configuration: Option<::Value<self::backup_vault::LockConfigurationType>> = None;
                 let mut notifications: Option<::Value<self::backup_vault::NotificationObjectType>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -264,6 +273,9 @@ impl<'de> ::serde::Deserialize<'de> for BackupVaultProperties {
                         "EncryptionKeyArn" => {
                             encryption_key_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "LockConfiguration" => {
+                            lock_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Notifications" => {
                             notifications = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -276,6 +288,7 @@ impl<'de> ::serde::Deserialize<'de> for BackupVaultProperties {
                     backup_vault_name: backup_vault_name.ok_or(::serde::de::Error::missing_field("BackupVaultName"))?,
                     backup_vault_tags: backup_vault_tags,
                     encryption_key_arn: encryption_key_arn,
+                    lock_configuration: lock_configuration,
                     notifications: notifications,
                 })
             }
@@ -301,6 +314,247 @@ impl ::private::Sealed for BackupVault {}
 impl From<BackupVaultProperties> for BackupVault {
     fn from(properties: BackupVaultProperties) -> BackupVault {
         BackupVault { properties }
+    }
+}
+
+/// The [`AWS::Backup::Framework`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-framework.html) resource type.
+#[derive(Debug, Default)]
+pub struct Framework {
+    properties: FrameworkProperties
+}
+
+/// Properties for the `Framework` resource.
+#[derive(Debug, Default)]
+pub struct FrameworkProperties {
+    /// Property [`FrameworkControls`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-framework.html#cfn-backup-framework-frameworkcontrols).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub framework_controls: ::ValueList<self::framework::FrameworkControl>,
+    /// Property [`FrameworkDescription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-framework.html#cfn-backup-framework-frameworkdescription).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub framework_description: Option<::Value<String>>,
+    /// Property [`FrameworkName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-framework.html#cfn-backup-framework-frameworkname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub framework_name: Option<::Value<String>>,
+    /// Property [`FrameworkTags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-framework.html#cfn-backup-framework-frameworktags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub framework_tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for FrameworkProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "FrameworkControls", &self.framework_controls)?;
+        if let Some(ref framework_description) = self.framework_description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FrameworkDescription", framework_description)?;
+        }
+        if let Some(ref framework_name) = self.framework_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FrameworkName", framework_name)?;
+        }
+        if let Some(ref framework_tags) = self.framework_tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FrameworkTags", framework_tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for FrameworkProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<FrameworkProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = FrameworkProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type FrameworkProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut framework_controls: Option<::ValueList<self::framework::FrameworkControl>> = None;
+                let mut framework_description: Option<::Value<String>> = None;
+                let mut framework_name: Option<::Value<String>> = None;
+                let mut framework_tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "FrameworkControls" => {
+                            framework_controls = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "FrameworkDescription" => {
+                            framework_description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "FrameworkName" => {
+                            framework_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "FrameworkTags" => {
+                            framework_tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(FrameworkProperties {
+                    framework_controls: framework_controls.ok_or(::serde::de::Error::missing_field("FrameworkControls"))?,
+                    framework_description: framework_description,
+                    framework_name: framework_name,
+                    framework_tags: framework_tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for Framework {
+    type Properties = FrameworkProperties;
+    const TYPE: &'static str = "AWS::Backup::Framework";
+    fn properties(&self) -> &FrameworkProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut FrameworkProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for Framework {}
+
+impl From<FrameworkProperties> for Framework {
+    fn from(properties: FrameworkProperties) -> Framework {
+        Framework { properties }
+    }
+}
+
+/// The [`AWS::Backup::ReportPlan`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-reportplan.html) resource type.
+#[derive(Debug, Default)]
+pub struct ReportPlan {
+    properties: ReportPlanProperties
+}
+
+/// Properties for the `ReportPlan` resource.
+#[derive(Debug, Default)]
+pub struct ReportPlanProperties {
+    /// Property [`ReportDeliveryChannel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-reportplan.html#cfn-backup-reportplan-reportdeliverychannel).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub report_delivery_channel: ::Value<::json::Value>,
+    /// Property [`ReportPlanDescription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-reportplan.html#cfn-backup-reportplan-reportplandescription).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub report_plan_description: Option<::Value<String>>,
+    /// Property [`ReportPlanName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-reportplan.html#cfn-backup-reportplan-reportplanname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub report_plan_name: Option<::Value<String>>,
+    /// Property [`ReportPlanTags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-reportplan.html#cfn-backup-reportplan-reportplantags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub report_plan_tags: Option<::ValueList<::Tag>>,
+    /// Property [`ReportSetting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-reportplan.html#cfn-backup-reportplan-reportsetting).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub report_setting: ::Value<::json::Value>,
+}
+
+impl ::serde::Serialize for ReportPlanProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReportDeliveryChannel", &self.report_delivery_channel)?;
+        if let Some(ref report_plan_description) = self.report_plan_description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReportPlanDescription", report_plan_description)?;
+        }
+        if let Some(ref report_plan_name) = self.report_plan_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReportPlanName", report_plan_name)?;
+        }
+        if let Some(ref report_plan_tags) = self.report_plan_tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReportPlanTags", report_plan_tags)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReportSetting", &self.report_setting)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ReportPlanProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ReportPlanProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ReportPlanProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ReportPlanProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut report_delivery_channel: Option<::Value<::json::Value>> = None;
+                let mut report_plan_description: Option<::Value<String>> = None;
+                let mut report_plan_name: Option<::Value<String>> = None;
+                let mut report_plan_tags: Option<::ValueList<::Tag>> = None;
+                let mut report_setting: Option<::Value<::json::Value>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "ReportDeliveryChannel" => {
+                            report_delivery_channel = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ReportPlanDescription" => {
+                            report_plan_description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ReportPlanName" => {
+                            report_plan_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ReportPlanTags" => {
+                            report_plan_tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ReportSetting" => {
+                            report_setting = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ReportPlanProperties {
+                    report_delivery_channel: report_delivery_channel.ok_or(::serde::de::Error::missing_field("ReportDeliveryChannel"))?,
+                    report_plan_description: report_plan_description,
+                    report_plan_name: report_plan_name,
+                    report_plan_tags: report_plan_tags,
+                    report_setting: report_setting.ok_or(::serde::de::Error::missing_field("ReportSetting"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for ReportPlan {
+    type Properties = ReportPlanProperties;
+    const TYPE: &'static str = "AWS::Backup::ReportPlan";
+    fn properties(&self) -> &ReportPlanProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut ReportPlanProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for ReportPlan {}
+
+impl From<ReportPlanProperties> for ReportPlan {
+    fn from(properties: ReportPlanProperties) -> ReportPlan {
+        ReportPlan { properties }
     }
 }
 
@@ -734,6 +988,11 @@ pub mod backup_selection {
     /// The [`AWS::Backup::BackupSelection.BackupSelectionResourceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupselection-backupselectionresourcetype.html) property type.
     #[derive(Debug, Default)]
     pub struct BackupSelectionResourceType {
+        /// Property [`Conditions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupselection-backupselectionresourcetype.html#cfn-backup-backupselection-backupselectionresourcetype-conditions).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub conditions: Option<::Value<::json::Value>>,
         /// Property [`IamRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupselection-backupselectionresourcetype.html#cfn-backup-backupselection-backupselectionresourcetype-iamrolearn).
         ///
         /// Update type: _Immutable_.
@@ -744,6 +1003,11 @@ pub mod backup_selection {
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub list_of_tags: Option<::ValueList<ConditionResourceType>>,
+        /// Property [`NotResources`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupselection-backupselectionresourcetype.html#cfn-backup-backupselection-backupselectionresourcetype-notresources).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub not_resources: Option<::ValueList<String>>,
         /// Property [`Resources`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupselection-backupselectionresourcetype.html#cfn-backup-backupselection-backupselectionresourcetype-resources).
         ///
         /// Update type: _Immutable_.
@@ -759,9 +1023,15 @@ pub mod backup_selection {
     impl ::codec::SerializeValue for BackupSelectionResourceType {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref conditions) = self.conditions {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Conditions", conditions)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IamRoleArn", &self.iam_role_arn)?;
             if let Some(ref list_of_tags) = self.list_of_tags {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ListOfTags", list_of_tags)?;
+            }
+            if let Some(ref not_resources) = self.not_resources {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotResources", not_resources)?;
             }
             if let Some(ref resources) = self.resources {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Resources", resources)?;
@@ -783,18 +1053,26 @@ pub mod backup_selection {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut conditions: Option<::Value<::json::Value>> = None;
                     let mut iam_role_arn: Option<::Value<String>> = None;
                     let mut list_of_tags: Option<::ValueList<ConditionResourceType>> = None;
+                    let mut not_resources: Option<::ValueList<String>> = None;
                     let mut resources: Option<::ValueList<String>> = None;
                     let mut selection_name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "Conditions" => {
+                                conditions = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "IamRoleArn" => {
                                 iam_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "ListOfTags" => {
                                 list_of_tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "NotResources" => {
+                                not_resources = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Resources" => {
                                 resources = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -807,8 +1085,10 @@ pub mod backup_selection {
                     }
 
                     Ok(BackupSelectionResourceType {
+                        conditions: conditions,
                         iam_role_arn: iam_role_arn.ok_or(::serde::de::Error::missing_field("IamRoleArn"))?,
                         list_of_tags: list_of_tags,
+                        not_resources: not_resources,
                         resources: resources,
                         selection_name: selection_name.ok_or(::serde::de::Error::missing_field("SelectionName"))?,
                     })
@@ -896,6 +1176,83 @@ pub mod backup_selection {
 pub mod backup_vault {
     //! Property types for the `BackupVault` resource.
 
+    /// The [`AWS::Backup::BackupVault.LockConfigurationType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupvault-lockconfigurationtype.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LockConfigurationType {
+        /// Property [`ChangeableForDays`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupvault-lockconfigurationtype.html#cfn-backup-backupvault-lockconfigurationtype-changeablefordays).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub changeable_for_days: Option<::Value<f64>>,
+        /// Property [`MaxRetentionDays`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupvault-lockconfigurationtype.html#cfn-backup-backupvault-lockconfigurationtype-maxretentiondays).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub max_retention_days: Option<::Value<f64>>,
+        /// Property [`MinRetentionDays`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupvault-lockconfigurationtype.html#cfn-backup-backupvault-lockconfigurationtype-minretentiondays).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub min_retention_days: ::Value<f64>,
+    }
+
+    impl ::codec::SerializeValue for LockConfigurationType {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref changeable_for_days) = self.changeable_for_days {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ChangeableForDays", changeable_for_days)?;
+            }
+            if let Some(ref max_retention_days) = self.max_retention_days {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxRetentionDays", max_retention_days)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinRetentionDays", &self.min_retention_days)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LockConfigurationType {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LockConfigurationType, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LockConfigurationType;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LockConfigurationType")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut changeable_for_days: Option<::Value<f64>> = None;
+                    let mut max_retention_days: Option<::Value<f64>> = None;
+                    let mut min_retention_days: Option<::Value<f64>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ChangeableForDays" => {
+                                changeable_for_days = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MaxRetentionDays" => {
+                                max_retention_days = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MinRetentionDays" => {
+                                min_retention_days = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LockConfigurationType {
+                        changeable_for_days: changeable_for_days,
+                        max_retention_days: max_retention_days,
+                        min_retention_days: min_retention_days.ok_or(::serde::de::Error::missing_field("MinRetentionDays"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::Backup::BackupVault.NotificationObjectType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-backupvault-notificationobjecttype.html) property type.
     #[derive(Debug, Default)]
     pub struct NotificationObjectType {
@@ -950,6 +1307,149 @@ pub mod backup_vault {
                     Ok(NotificationObjectType {
                         backup_vault_events: backup_vault_events.ok_or(::serde::de::Error::missing_field("BackupVaultEvents"))?,
                         sns_topic_arn: sns_topic_arn.ok_or(::serde::de::Error::missing_field("SNSTopicArn"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod framework {
+    //! Property types for the `Framework` resource.
+
+    /// The [`AWS::Backup::Framework.ControlInputParameter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-framework-controlinputparameter.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ControlInputParameter {
+        /// Property [`ParameterName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-framework-controlinputparameter.html#cfn-backup-framework-controlinputparameter-parametername).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub parameter_name: ::Value<String>,
+        /// Property [`ParameterValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-framework-controlinputparameter.html#cfn-backup-framework-controlinputparameter-parametervalue).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub parameter_value: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for ControlInputParameter {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ParameterName", &self.parameter_name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ParameterValue", &self.parameter_value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ControlInputParameter {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ControlInputParameter, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ControlInputParameter;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ControlInputParameter")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut parameter_name: Option<::Value<String>> = None;
+                    let mut parameter_value: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ParameterName" => {
+                                parameter_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ParameterValue" => {
+                                parameter_value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ControlInputParameter {
+                        parameter_name: parameter_name.ok_or(::serde::de::Error::missing_field("ParameterName"))?,
+                        parameter_value: parameter_value.ok_or(::serde::de::Error::missing_field("ParameterValue"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Backup::Framework.FrameworkControl`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-framework-frameworkcontrol.html) property type.
+    #[derive(Debug, Default)]
+    pub struct FrameworkControl {
+        /// Property [`ControlInputParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-framework-frameworkcontrol.html#cfn-backup-framework-frameworkcontrol-controlinputparameters).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub control_input_parameters: Option<::ValueList<ControlInputParameter>>,
+        /// Property [`ControlName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-framework-frameworkcontrol.html#cfn-backup-framework-frameworkcontrol-controlname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub control_name: ::Value<String>,
+        /// Property [`ControlScope`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-backup-framework-frameworkcontrol.html#cfn-backup-framework-frameworkcontrol-controlscope).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub control_scope: Option<::Value<::json::Value>>,
+    }
+
+    impl ::codec::SerializeValue for FrameworkControl {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref control_input_parameters) = self.control_input_parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ControlInputParameters", control_input_parameters)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ControlName", &self.control_name)?;
+            if let Some(ref control_scope) = self.control_scope {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ControlScope", control_scope)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for FrameworkControl {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<FrameworkControl, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = FrameworkControl;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type FrameworkControl")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut control_input_parameters: Option<::ValueList<ControlInputParameter>> = None;
+                    let mut control_name: Option<::Value<String>> = None;
+                    let mut control_scope: Option<::Value<::json::Value>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ControlInputParameters" => {
+                                control_input_parameters = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ControlName" => {
+                                control_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ControlScope" => {
+                                control_scope = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(FrameworkControl {
+                        control_input_parameters: control_input_parameters,
+                        control_name: control_name.ok_or(::serde::de::Error::missing_field("ControlName"))?,
+                        control_scope: control_scope,
                     })
                 }
             }

@@ -265,11 +265,6 @@ pub struct FunctionProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub function_config: Option<::Value<self::function::FunctionConfig>>,
-    /// Property [`FunctionMetadata`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-function.html#cfn-cloudfront-function-functionmetadata).
-    ///
-    /// Update type: _Mutable_.
-    /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub function_metadata: Option<::Value<self::function::FunctionMetadata>>,
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-function.html#cfn-cloudfront-function-name).
     ///
     /// Update type: _Mutable_.
@@ -288,9 +283,6 @@ impl ::serde::Serialize for FunctionProperties {
         }
         if let Some(ref function_config) = self.function_config {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "FunctionConfig", function_config)?;
-        }
-        if let Some(ref function_metadata) = self.function_metadata {
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FunctionMetadata", function_metadata)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         ::serde::ser::SerializeMap::end(map)
@@ -312,7 +304,6 @@ impl<'de> ::serde::Deserialize<'de> for FunctionProperties {
                 let mut auto_publish: Option<::Value<bool>> = None;
                 let mut function_code: Option<::Value<String>> = None;
                 let mut function_config: Option<::Value<self::function::FunctionConfig>> = None;
-                let mut function_metadata: Option<::Value<self::function::FunctionMetadata>> = None;
                 let mut name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -326,9 +317,6 @@ impl<'de> ::serde::Deserialize<'de> for FunctionProperties {
                         "FunctionConfig" => {
                             function_config = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
-                        "FunctionMetadata" => {
-                            function_metadata = ::serde::de::MapAccess::next_value(&mut map)?;
-                        }
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -340,7 +328,6 @@ impl<'de> ::serde::Deserialize<'de> for FunctionProperties {
                     auto_publish: auto_publish,
                     function_code: function_code,
                     function_config: function_config,
-                    function_metadata: function_metadata,
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                 })
             }
@@ -703,6 +690,82 @@ impl ::private::Sealed for RealtimeLogConfig {}
 impl From<RealtimeLogConfigProperties> for RealtimeLogConfig {
     fn from(properties: RealtimeLogConfigProperties) -> RealtimeLogConfig {
         RealtimeLogConfig { properties }
+    }
+}
+
+/// The [`AWS::CloudFront::ResponseHeadersPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-responseheaderspolicy.html) resource type.
+#[derive(Debug, Default)]
+pub struct ResponseHeadersPolicy {
+    properties: ResponseHeadersPolicyProperties
+}
+
+/// Properties for the `ResponseHeadersPolicy` resource.
+#[derive(Debug, Default)]
+pub struct ResponseHeadersPolicyProperties {
+    /// Property [`ResponseHeadersPolicyConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-responseheaderspolicy.html#cfn-cloudfront-responseheaderspolicy-responseheaderspolicyconfig).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub response_headers_policy_config: ::Value<self::response_headers_policy::ResponseHeadersPolicyConfig>,
+}
+
+impl ::serde::Serialize for ResponseHeadersPolicyProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResponseHeadersPolicyConfig", &self.response_headers_policy_config)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ResponseHeadersPolicyProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ResponseHeadersPolicyProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ResponseHeadersPolicyProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ResponseHeadersPolicyProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut response_headers_policy_config: Option<::Value<self::response_headers_policy::ResponseHeadersPolicyConfig>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "ResponseHeadersPolicyConfig" => {
+                            response_headers_policy_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ResponseHeadersPolicyProperties {
+                    response_headers_policy_config: response_headers_policy_config.ok_or(::serde::de::Error::missing_field("ResponseHeadersPolicyConfig"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for ResponseHeadersPolicy {
+    type Properties = ResponseHeadersPolicyProperties;
+    const TYPE: &'static str = "AWS::CloudFront::ResponseHeadersPolicy";
+    fn properties(&self) -> &ResponseHeadersPolicyProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut ResponseHeadersPolicyProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for ResponseHeadersPolicy {}
+
+impl From<ResponseHeadersPolicyProperties> for ResponseHeadersPolicy {
+    fn from(properties: ResponseHeadersPolicyProperties) -> ResponseHeadersPolicy {
+        ResponseHeadersPolicy { properties }
     }
 }
 
@@ -1325,6 +1388,11 @@ pub mod distribution {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub realtime_log_config_arn: Option<::Value<String>>,
+        /// Property [`ResponseHeadersPolicyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-responseheaderspolicyid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub response_headers_policy_id: Option<::Value<String>>,
         /// Property [`SmoothStreaming`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-cachebehavior.html#cfn-cloudfront-distribution-cachebehavior-smoothstreaming).
         ///
         /// Update type: _Mutable_.
@@ -1395,6 +1463,9 @@ pub mod distribution {
             if let Some(ref realtime_log_config_arn) = self.realtime_log_config_arn {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "RealtimeLogConfigArn", realtime_log_config_arn)?;
             }
+            if let Some(ref response_headers_policy_id) = self.response_headers_policy_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResponseHeadersPolicyId", response_headers_policy_id)?;
+            }
             if let Some(ref smooth_streaming) = self.smooth_streaming {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SmoothStreaming", smooth_streaming)?;
             }
@@ -1436,6 +1507,7 @@ pub mod distribution {
                     let mut origin_request_policy_id: Option<::Value<String>> = None;
                     let mut path_pattern: Option<::Value<String>> = None;
                     let mut realtime_log_config_arn: Option<::Value<String>> = None;
+                    let mut response_headers_policy_id: Option<::Value<String>> = None;
                     let mut smooth_streaming: Option<::Value<bool>> = None;
                     let mut target_origin_id: Option<::Value<String>> = None;
                     let mut trusted_key_groups: Option<::ValueList<String>> = None;
@@ -1486,6 +1558,9 @@ pub mod distribution {
                             "RealtimeLogConfigArn" => {
                                 realtime_log_config_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "ResponseHeadersPolicyId" => {
+                                response_headers_policy_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "SmoothStreaming" => {
                                 smooth_streaming = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1520,6 +1595,7 @@ pub mod distribution {
                         origin_request_policy_id: origin_request_policy_id,
                         path_pattern: path_pattern.ok_or(::serde::de::Error::missing_field("PathPattern"))?,
                         realtime_log_config_arn: realtime_log_config_arn,
+                        response_headers_policy_id: response_headers_policy_id,
                         smooth_streaming: smooth_streaming,
                         target_origin_id: target_origin_id.ok_or(::serde::de::Error::missing_field("TargetOriginId"))?,
                         trusted_key_groups: trusted_key_groups,
@@ -1871,6 +1947,11 @@ pub mod distribution {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub realtime_log_config_arn: Option<::Value<String>>,
+        /// Property [`ResponseHeadersPolicyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-responseheaderspolicyid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub response_headers_policy_id: Option<::Value<String>>,
         /// Property [`SmoothStreaming`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-defaultcachebehavior.html#cfn-cloudfront-distribution-defaultcachebehavior-smoothstreaming).
         ///
         /// Update type: _Mutable_.
@@ -1940,6 +2021,9 @@ pub mod distribution {
             if let Some(ref realtime_log_config_arn) = self.realtime_log_config_arn {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "RealtimeLogConfigArn", realtime_log_config_arn)?;
             }
+            if let Some(ref response_headers_policy_id) = self.response_headers_policy_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResponseHeadersPolicyId", response_headers_policy_id)?;
+            }
             if let Some(ref smooth_streaming) = self.smooth_streaming {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SmoothStreaming", smooth_streaming)?;
             }
@@ -1980,6 +2064,7 @@ pub mod distribution {
                     let mut min_ttl: Option<::Value<f64>> = None;
                     let mut origin_request_policy_id: Option<::Value<String>> = None;
                     let mut realtime_log_config_arn: Option<::Value<String>> = None;
+                    let mut response_headers_policy_id: Option<::Value<String>> = None;
                     let mut smooth_streaming: Option<::Value<bool>> = None;
                     let mut target_origin_id: Option<::Value<String>> = None;
                     let mut trusted_key_groups: Option<::ValueList<String>> = None;
@@ -2027,6 +2112,9 @@ pub mod distribution {
                             "RealtimeLogConfigArn" => {
                                 realtime_log_config_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "ResponseHeadersPolicyId" => {
+                                response_headers_policy_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "SmoothStreaming" => {
                                 smooth_streaming = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -2060,6 +2148,7 @@ pub mod distribution {
                         min_ttl: min_ttl,
                         origin_request_policy_id: origin_request_policy_id,
                         realtime_log_config_arn: realtime_log_config_arn,
+                        response_headers_policy_id: response_headers_policy_id,
                         smooth_streaming: smooth_streaming,
                         target_origin_id: target_origin_id.ok_or(::serde::de::Error::missing_field("TargetOriginId"))?,
                         trusted_key_groups: trusted_key_groups,
@@ -4451,6 +4540,1093 @@ pub mod realtime_log_config {
                     Ok(KinesisStreamConfig {
                         role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
                         stream_arn: stream_arn.ok_or(::serde::de::Error::missing_field("StreamArn"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod response_headers_policy {
+    //! Property types for the `ResponseHeadersPolicy` resource.
+
+    /// The [`AWS::CloudFront::ResponseHeadersPolicy.AccessControlAllowHeaders`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-accesscontrolallowheaders.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AccessControlAllowHeaders {
+        /// Property [`Items`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-accesscontrolallowheaders.html#cfn-cloudfront-responseheaderspolicy-accesscontrolallowheaders-items).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub items: ::ValueList<String>,
+    }
+
+    impl ::codec::SerializeValue for AccessControlAllowHeaders {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Items", &self.items)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AccessControlAllowHeaders {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AccessControlAllowHeaders, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AccessControlAllowHeaders;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AccessControlAllowHeaders")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut items: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Items" => {
+                                items = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AccessControlAllowHeaders {
+                        items: items.ok_or(::serde::de::Error::missing_field("Items"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::ResponseHeadersPolicy.AccessControlAllowMethods`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-accesscontrolallowmethods.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AccessControlAllowMethods {
+        /// Property [`Items`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-accesscontrolallowmethods.html#cfn-cloudfront-responseheaderspolicy-accesscontrolallowmethods-items).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub items: ::ValueList<String>,
+    }
+
+    impl ::codec::SerializeValue for AccessControlAllowMethods {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Items", &self.items)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AccessControlAllowMethods {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AccessControlAllowMethods, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AccessControlAllowMethods;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AccessControlAllowMethods")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut items: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Items" => {
+                                items = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AccessControlAllowMethods {
+                        items: items.ok_or(::serde::de::Error::missing_field("Items"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::ResponseHeadersPolicy.AccessControlAllowOrigins`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-accesscontrolalloworigins.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AccessControlAllowOrigins {
+        /// Property [`Items`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-accesscontrolalloworigins.html#cfn-cloudfront-responseheaderspolicy-accesscontrolalloworigins-items).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub items: ::ValueList<String>,
+    }
+
+    impl ::codec::SerializeValue for AccessControlAllowOrigins {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Items", &self.items)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AccessControlAllowOrigins {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AccessControlAllowOrigins, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AccessControlAllowOrigins;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AccessControlAllowOrigins")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut items: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Items" => {
+                                items = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AccessControlAllowOrigins {
+                        items: items.ok_or(::serde::de::Error::missing_field("Items"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::ResponseHeadersPolicy.AccessControlExposeHeaders`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-accesscontrolexposeheaders.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AccessControlExposeHeaders {
+        /// Property [`Items`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-accesscontrolexposeheaders.html#cfn-cloudfront-responseheaderspolicy-accesscontrolexposeheaders-items).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub items: ::ValueList<String>,
+    }
+
+    impl ::codec::SerializeValue for AccessControlExposeHeaders {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Items", &self.items)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AccessControlExposeHeaders {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AccessControlExposeHeaders, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AccessControlExposeHeaders;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AccessControlExposeHeaders")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut items: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Items" => {
+                                items = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AccessControlExposeHeaders {
+                        items: items.ok_or(::serde::de::Error::missing_field("Items"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::ResponseHeadersPolicy.ContentSecurityPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-contentsecuritypolicy.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ContentSecurityPolicy {
+        /// Property [`ContentSecurityPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-contentsecuritypolicy.html#cfn-cloudfront-responseheaderspolicy-contentsecuritypolicy-contentsecuritypolicy).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub content_security_policy: ::Value<String>,
+        /// Property [`Override`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-contentsecuritypolicy.html#cfn-cloudfront-responseheaderspolicy-contentsecuritypolicy-override).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub r#override: ::Value<bool>,
+    }
+
+    impl ::codec::SerializeValue for ContentSecurityPolicy {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContentSecurityPolicy", &self.content_security_policy)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Override", &self.r#override)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ContentSecurityPolicy {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ContentSecurityPolicy, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ContentSecurityPolicy;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ContentSecurityPolicy")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut content_security_policy: Option<::Value<String>> = None;
+                    let mut r#override: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ContentSecurityPolicy" => {
+                                content_security_policy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Override" => {
+                                r#override = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ContentSecurityPolicy {
+                        content_security_policy: content_security_policy.ok_or(::serde::de::Error::missing_field("ContentSecurityPolicy"))?,
+                        r#override: r#override.ok_or(::serde::de::Error::missing_field("Override"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::ResponseHeadersPolicy.ContentTypeOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-contenttypeoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ContentTypeOptions {
+        /// Property [`Override`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-contenttypeoptions.html#cfn-cloudfront-responseheaderspolicy-contenttypeoptions-override).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub r#override: ::Value<bool>,
+    }
+
+    impl ::codec::SerializeValue for ContentTypeOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Override", &self.r#override)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ContentTypeOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ContentTypeOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ContentTypeOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ContentTypeOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut r#override: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Override" => {
+                                r#override = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ContentTypeOptions {
+                        r#override: r#override.ok_or(::serde::de::Error::missing_field("Override"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::ResponseHeadersPolicy.CorsConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-corsconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CorsConfig {
+        /// Property [`AccessControlAllowCredentials`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-corsconfig.html#cfn-cloudfront-responseheaderspolicy-corsconfig-accesscontrolallowcredentials).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub access_control_allow_credentials: ::Value<bool>,
+        /// Property [`AccessControlAllowHeaders`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-corsconfig.html#cfn-cloudfront-responseheaderspolicy-corsconfig-accesscontrolallowheaders).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub access_control_allow_headers: ::Value<AccessControlAllowHeaders>,
+        /// Property [`AccessControlAllowMethods`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-corsconfig.html#cfn-cloudfront-responseheaderspolicy-corsconfig-accesscontrolallowmethods).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub access_control_allow_methods: ::Value<AccessControlAllowMethods>,
+        /// Property [`AccessControlAllowOrigins`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-corsconfig.html#cfn-cloudfront-responseheaderspolicy-corsconfig-accesscontrolalloworigins).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub access_control_allow_origins: ::Value<AccessControlAllowOrigins>,
+        /// Property [`AccessControlExposeHeaders`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-corsconfig.html#cfn-cloudfront-responseheaderspolicy-corsconfig-accesscontrolexposeheaders).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub access_control_expose_headers: Option<::Value<AccessControlExposeHeaders>>,
+        /// Property [`AccessControlMaxAgeSec`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-corsconfig.html#cfn-cloudfront-responseheaderspolicy-corsconfig-accesscontrolmaxagesec).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub access_control_max_age_sec: Option<::Value<u32>>,
+        /// Property [`OriginOverride`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-corsconfig.html#cfn-cloudfront-responseheaderspolicy-corsconfig-originoverride).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub origin_override: ::Value<bool>,
+    }
+
+    impl ::codec::SerializeValue for CorsConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessControlAllowCredentials", &self.access_control_allow_credentials)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessControlAllowHeaders", &self.access_control_allow_headers)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessControlAllowMethods", &self.access_control_allow_methods)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessControlAllowOrigins", &self.access_control_allow_origins)?;
+            if let Some(ref access_control_expose_headers) = self.access_control_expose_headers {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessControlExposeHeaders", access_control_expose_headers)?;
+            }
+            if let Some(ref access_control_max_age_sec) = self.access_control_max_age_sec {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessControlMaxAgeSec", access_control_max_age_sec)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OriginOverride", &self.origin_override)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CorsConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CorsConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CorsConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CorsConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut access_control_allow_credentials: Option<::Value<bool>> = None;
+                    let mut access_control_allow_headers: Option<::Value<AccessControlAllowHeaders>> = None;
+                    let mut access_control_allow_methods: Option<::Value<AccessControlAllowMethods>> = None;
+                    let mut access_control_allow_origins: Option<::Value<AccessControlAllowOrigins>> = None;
+                    let mut access_control_expose_headers: Option<::Value<AccessControlExposeHeaders>> = None;
+                    let mut access_control_max_age_sec: Option<::Value<u32>> = None;
+                    let mut origin_override: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AccessControlAllowCredentials" => {
+                                access_control_allow_credentials = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "AccessControlAllowHeaders" => {
+                                access_control_allow_headers = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "AccessControlAllowMethods" => {
+                                access_control_allow_methods = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "AccessControlAllowOrigins" => {
+                                access_control_allow_origins = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "AccessControlExposeHeaders" => {
+                                access_control_expose_headers = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "AccessControlMaxAgeSec" => {
+                                access_control_max_age_sec = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OriginOverride" => {
+                                origin_override = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CorsConfig {
+                        access_control_allow_credentials: access_control_allow_credentials.ok_or(::serde::de::Error::missing_field("AccessControlAllowCredentials"))?,
+                        access_control_allow_headers: access_control_allow_headers.ok_or(::serde::de::Error::missing_field("AccessControlAllowHeaders"))?,
+                        access_control_allow_methods: access_control_allow_methods.ok_or(::serde::de::Error::missing_field("AccessControlAllowMethods"))?,
+                        access_control_allow_origins: access_control_allow_origins.ok_or(::serde::de::Error::missing_field("AccessControlAllowOrigins"))?,
+                        access_control_expose_headers: access_control_expose_headers,
+                        access_control_max_age_sec: access_control_max_age_sec,
+                        origin_override: origin_override.ok_or(::serde::de::Error::missing_field("OriginOverride"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::ResponseHeadersPolicy.CustomHeader`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-customheader.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CustomHeader {
+        /// Property [`Header`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-customheader.html#cfn-cloudfront-responseheaderspolicy-customheader-header).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub header: ::Value<String>,
+        /// Property [`Override`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-customheader.html#cfn-cloudfront-responseheaderspolicy-customheader-override).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub r#override: ::Value<bool>,
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-customheader.html#cfn-cloudfront-responseheaderspolicy-customheader-value).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub value: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for CustomHeader {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Header", &self.header)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Override", &self.r#override)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CustomHeader {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CustomHeader, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CustomHeader;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CustomHeader")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut header: Option<::Value<String>> = None;
+                    let mut r#override: Option<::Value<bool>> = None;
+                    let mut value: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Header" => {
+                                header = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Override" => {
+                                r#override = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Value" => {
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CustomHeader {
+                        header: header.ok_or(::serde::de::Error::missing_field("Header"))?,
+                        r#override: r#override.ok_or(::serde::de::Error::missing_field("Override"))?,
+                        value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::ResponseHeadersPolicy.CustomHeadersConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-customheadersconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CustomHeadersConfig {
+        /// Property [`Items`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-customheadersconfig.html#cfn-cloudfront-responseheaderspolicy-customheadersconfig-items).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub items: ::ValueList<CustomHeader>,
+    }
+
+    impl ::codec::SerializeValue for CustomHeadersConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Items", &self.items)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CustomHeadersConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CustomHeadersConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CustomHeadersConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CustomHeadersConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut items: Option<::ValueList<CustomHeader>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Items" => {
+                                items = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CustomHeadersConfig {
+                        items: items.ok_or(::serde::de::Error::missing_field("Items"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::ResponseHeadersPolicy.FrameOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-frameoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct FrameOptions {
+        /// Property [`FrameOption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-frameoptions.html#cfn-cloudfront-responseheaderspolicy-frameoptions-frameoption).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub frame_option: ::Value<String>,
+        /// Property [`Override`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-frameoptions.html#cfn-cloudfront-responseheaderspolicy-frameoptions-override).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub r#override: ::Value<bool>,
+    }
+
+    impl ::codec::SerializeValue for FrameOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FrameOption", &self.frame_option)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Override", &self.r#override)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for FrameOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<FrameOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = FrameOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type FrameOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut frame_option: Option<::Value<String>> = None;
+                    let mut r#override: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "FrameOption" => {
+                                frame_option = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Override" => {
+                                r#override = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(FrameOptions {
+                        frame_option: frame_option.ok_or(::serde::de::Error::missing_field("FrameOption"))?,
+                        r#override: r#override.ok_or(::serde::de::Error::missing_field("Override"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::ResponseHeadersPolicy.ReferrerPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-referrerpolicy.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ReferrerPolicy {
+        /// Property [`Override`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-referrerpolicy.html#cfn-cloudfront-responseheaderspolicy-referrerpolicy-override).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub r#override: ::Value<bool>,
+        /// Property [`ReferrerPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-referrerpolicy.html#cfn-cloudfront-responseheaderspolicy-referrerpolicy-referrerpolicy).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub referrer_policy: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for ReferrerPolicy {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Override", &self.r#override)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReferrerPolicy", &self.referrer_policy)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ReferrerPolicy {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ReferrerPolicy, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ReferrerPolicy;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ReferrerPolicy")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut r#override: Option<::Value<bool>> = None;
+                    let mut referrer_policy: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Override" => {
+                                r#override = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ReferrerPolicy" => {
+                                referrer_policy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ReferrerPolicy {
+                        r#override: r#override.ok_or(::serde::de::Error::missing_field("Override"))?,
+                        referrer_policy: referrer_policy.ok_or(::serde::de::Error::missing_field("ReferrerPolicy"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::ResponseHeadersPolicy.ResponseHeadersPolicyConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-responseheaderspolicyconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ResponseHeadersPolicyConfig {
+        /// Property [`Comment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-responseheaderspolicyconfig.html#cfn-cloudfront-responseheaderspolicy-responseheaderspolicyconfig-comment).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub comment: Option<::Value<String>>,
+        /// Property [`CorsConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-responseheaderspolicyconfig.html#cfn-cloudfront-responseheaderspolicy-responseheaderspolicyconfig-corsconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cors_config: Option<::Value<CorsConfig>>,
+        /// Property [`CustomHeadersConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-responseheaderspolicyconfig.html#cfn-cloudfront-responseheaderspolicy-responseheaderspolicyconfig-customheadersconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub custom_headers_config: Option<::Value<CustomHeadersConfig>>,
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-responseheaderspolicyconfig.html#cfn-cloudfront-responseheaderspolicy-responseheaderspolicyconfig-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: ::Value<String>,
+        /// Property [`SecurityHeadersConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-responseheaderspolicyconfig.html#cfn-cloudfront-responseheaderspolicy-responseheaderspolicyconfig-securityheadersconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub security_headers_config: Option<::Value<SecurityHeadersConfig>>,
+    }
+
+    impl ::codec::SerializeValue for ResponseHeadersPolicyConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref comment) = self.comment {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Comment", comment)?;
+            }
+            if let Some(ref cors_config) = self.cors_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CorsConfig", cors_config)?;
+            }
+            if let Some(ref custom_headers_config) = self.custom_headers_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomHeadersConfig", custom_headers_config)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            if let Some(ref security_headers_config) = self.security_headers_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityHeadersConfig", security_headers_config)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ResponseHeadersPolicyConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ResponseHeadersPolicyConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ResponseHeadersPolicyConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ResponseHeadersPolicyConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut comment: Option<::Value<String>> = None;
+                    let mut cors_config: Option<::Value<CorsConfig>> = None;
+                    let mut custom_headers_config: Option<::Value<CustomHeadersConfig>> = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut security_headers_config: Option<::Value<SecurityHeadersConfig>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Comment" => {
+                                comment = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CorsConfig" => {
+                                cors_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CustomHeadersConfig" => {
+                                custom_headers_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecurityHeadersConfig" => {
+                                security_headers_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ResponseHeadersPolicyConfig {
+                        comment: comment,
+                        cors_config: cors_config,
+                        custom_headers_config: custom_headers_config,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                        security_headers_config: security_headers_config,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::ResponseHeadersPolicy.SecurityHeadersConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-securityheadersconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SecurityHeadersConfig {
+        /// Property [`ContentSecurityPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-securityheadersconfig.html#cfn-cloudfront-responseheaderspolicy-securityheadersconfig-contentsecuritypolicy).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub content_security_policy: Option<::Value<ContentSecurityPolicy>>,
+        /// Property [`ContentTypeOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-securityheadersconfig.html#cfn-cloudfront-responseheaderspolicy-securityheadersconfig-contenttypeoptions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub content_type_options: Option<::Value<ContentTypeOptions>>,
+        /// Property [`FrameOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-securityheadersconfig.html#cfn-cloudfront-responseheaderspolicy-securityheadersconfig-frameoptions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub frame_options: Option<::Value<FrameOptions>>,
+        /// Property [`ReferrerPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-securityheadersconfig.html#cfn-cloudfront-responseheaderspolicy-securityheadersconfig-referrerpolicy).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub referrer_policy: Option<::Value<ReferrerPolicy>>,
+        /// Property [`StrictTransportSecurity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-securityheadersconfig.html#cfn-cloudfront-responseheaderspolicy-securityheadersconfig-stricttransportsecurity).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub strict_transport_security: Option<::Value<StrictTransportSecurity>>,
+        /// Property [`XSSProtection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-securityheadersconfig.html#cfn-cloudfront-responseheaderspolicy-securityheadersconfig-xssprotection).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub xss_protection: Option<::Value<XSSProtection>>,
+    }
+
+    impl ::codec::SerializeValue for SecurityHeadersConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref content_security_policy) = self.content_security_policy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContentSecurityPolicy", content_security_policy)?;
+            }
+            if let Some(ref content_type_options) = self.content_type_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContentTypeOptions", content_type_options)?;
+            }
+            if let Some(ref frame_options) = self.frame_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FrameOptions", frame_options)?;
+            }
+            if let Some(ref referrer_policy) = self.referrer_policy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReferrerPolicy", referrer_policy)?;
+            }
+            if let Some(ref strict_transport_security) = self.strict_transport_security {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StrictTransportSecurity", strict_transport_security)?;
+            }
+            if let Some(ref xss_protection) = self.xss_protection {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "XSSProtection", xss_protection)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SecurityHeadersConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SecurityHeadersConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SecurityHeadersConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SecurityHeadersConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut content_security_policy: Option<::Value<ContentSecurityPolicy>> = None;
+                    let mut content_type_options: Option<::Value<ContentTypeOptions>> = None;
+                    let mut frame_options: Option<::Value<FrameOptions>> = None;
+                    let mut referrer_policy: Option<::Value<ReferrerPolicy>> = None;
+                    let mut strict_transport_security: Option<::Value<StrictTransportSecurity>> = None;
+                    let mut xss_protection: Option<::Value<XSSProtection>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ContentSecurityPolicy" => {
+                                content_security_policy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ContentTypeOptions" => {
+                                content_type_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "FrameOptions" => {
+                                frame_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ReferrerPolicy" => {
+                                referrer_policy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "StrictTransportSecurity" => {
+                                strict_transport_security = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "XSSProtection" => {
+                                xss_protection = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SecurityHeadersConfig {
+                        content_security_policy: content_security_policy,
+                        content_type_options: content_type_options,
+                        frame_options: frame_options,
+                        referrer_policy: referrer_policy,
+                        strict_transport_security: strict_transport_security,
+                        xss_protection: xss_protection,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::ResponseHeadersPolicy.StrictTransportSecurity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-stricttransportsecurity.html) property type.
+    #[derive(Debug, Default)]
+    pub struct StrictTransportSecurity {
+        /// Property [`AccessControlMaxAgeSec`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-stricttransportsecurity.html#cfn-cloudfront-responseheaderspolicy-stricttransportsecurity-accesscontrolmaxagesec).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub access_control_max_age_sec: ::Value<u32>,
+        /// Property [`IncludeSubdomains`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-stricttransportsecurity.html#cfn-cloudfront-responseheaderspolicy-stricttransportsecurity-includesubdomains).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub include_subdomains: Option<::Value<bool>>,
+        /// Property [`Override`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-stricttransportsecurity.html#cfn-cloudfront-responseheaderspolicy-stricttransportsecurity-override).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub r#override: ::Value<bool>,
+        /// Property [`Preload`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-stricttransportsecurity.html#cfn-cloudfront-responseheaderspolicy-stricttransportsecurity-preload).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub preload: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for StrictTransportSecurity {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessControlMaxAgeSec", &self.access_control_max_age_sec)?;
+            if let Some(ref include_subdomains) = self.include_subdomains {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncludeSubdomains", include_subdomains)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Override", &self.r#override)?;
+            if let Some(ref preload) = self.preload {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Preload", preload)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for StrictTransportSecurity {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<StrictTransportSecurity, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = StrictTransportSecurity;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type StrictTransportSecurity")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut access_control_max_age_sec: Option<::Value<u32>> = None;
+                    let mut include_subdomains: Option<::Value<bool>> = None;
+                    let mut r#override: Option<::Value<bool>> = None;
+                    let mut preload: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AccessControlMaxAgeSec" => {
+                                access_control_max_age_sec = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IncludeSubdomains" => {
+                                include_subdomains = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Override" => {
+                                r#override = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Preload" => {
+                                preload = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(StrictTransportSecurity {
+                        access_control_max_age_sec: access_control_max_age_sec.ok_or(::serde::de::Error::missing_field("AccessControlMaxAgeSec"))?,
+                        include_subdomains: include_subdomains,
+                        r#override: r#override.ok_or(::serde::de::Error::missing_field("Override"))?,
+                        preload: preload,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudFront::ResponseHeadersPolicy.XSSProtection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-xssprotection.html) property type.
+    #[derive(Debug, Default)]
+    pub struct XSSProtection {
+        /// Property [`ModeBlock`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-xssprotection.html#cfn-cloudfront-responseheaderspolicy-xssprotection-modeblock).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub mode_block: Option<::Value<bool>>,
+        /// Property [`Override`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-xssprotection.html#cfn-cloudfront-responseheaderspolicy-xssprotection-override).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub r#override: ::Value<bool>,
+        /// Property [`Protection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-xssprotection.html#cfn-cloudfront-responseheaderspolicy-xssprotection-protection).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub protection: ::Value<bool>,
+        /// Property [`ReportUri`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-responseheaderspolicy-xssprotection.html#cfn-cloudfront-responseheaderspolicy-xssprotection-reporturi).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub report_uri: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for XSSProtection {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref mode_block) = self.mode_block {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ModeBlock", mode_block)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Override", &self.r#override)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protection", &self.protection)?;
+            if let Some(ref report_uri) = self.report_uri {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReportUri", report_uri)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for XSSProtection {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<XSSProtection, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = XSSProtection;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type XSSProtection")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut mode_block: Option<::Value<bool>> = None;
+                    let mut r#override: Option<::Value<bool>> = None;
+                    let mut protection: Option<::Value<bool>> = None;
+                    let mut report_uri: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ModeBlock" => {
+                                mode_block = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Override" => {
+                                r#override = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Protection" => {
+                                protection = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ReportUri" => {
+                                report_uri = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(XSSProtection {
+                        mode_block: mode_block,
+                        r#override: r#override.ok_or(::serde::de::Error::missing_field("Override"))?,
+                        protection: protection.ok_or(::serde::de::Error::missing_field("Protection"))?,
+                        report_uri: report_uri,
                     })
                 }
             }

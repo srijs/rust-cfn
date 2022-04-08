@@ -422,6 +422,117 @@ impl From<CertificateAuthorityActivationProperties> for CertificateAuthorityActi
     }
 }
 
+/// The [`AWS::ACMPCA::Permission`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-acmpca-permission.html) resource type.
+#[derive(Debug, Default)]
+pub struct Permission {
+    properties: PermissionProperties
+}
+
+/// Properties for the `Permission` resource.
+#[derive(Debug, Default)]
+pub struct PermissionProperties {
+    /// Property [`Actions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-acmpca-permission.html#cfn-acmpca-permission-actions).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub actions: ::ValueList<String>,
+    /// Property [`CertificateAuthorityArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-acmpca-permission.html#cfn-acmpca-permission-certificateauthorityarn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub certificate_authority_arn: ::Value<String>,
+    /// Property [`Principal`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-acmpca-permission.html#cfn-acmpca-permission-principal).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub principal: ::Value<String>,
+    /// Property [`SourceAccount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-acmpca-permission.html#cfn-acmpca-permission-sourceaccount).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub source_account: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for PermissionProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Actions", &self.actions)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificateAuthorityArn", &self.certificate_authority_arn)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Principal", &self.principal)?;
+        if let Some(ref source_account) = self.source_account {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceAccount", source_account)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for PermissionProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<PermissionProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = PermissionProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type PermissionProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut actions: Option<::ValueList<String>> = None;
+                let mut certificate_authority_arn: Option<::Value<String>> = None;
+                let mut principal: Option<::Value<String>> = None;
+                let mut source_account: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Actions" => {
+                            actions = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "CertificateAuthorityArn" => {
+                            certificate_authority_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Principal" => {
+                            principal = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SourceAccount" => {
+                            source_account = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(PermissionProperties {
+                    actions: actions.ok_or(::serde::de::Error::missing_field("Actions"))?,
+                    certificate_authority_arn: certificate_authority_arn.ok_or(::serde::de::Error::missing_field("CertificateAuthorityArn"))?,
+                    principal: principal.ok_or(::serde::de::Error::missing_field("Principal"))?,
+                    source_account: source_account,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for Permission {
+    type Properties = PermissionProperties;
+    const TYPE: &'static str = "AWS::ACMPCA::Permission";
+    fn properties(&self) -> &PermissionProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut PermissionProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for Permission {}
+
+impl From<PermissionProperties> for Permission {
+    fn from(properties: PermissionProperties) -> Permission {
+        Permission { properties }
+    }
+}
+
 pub mod certificate {
     //! Property types for the `Certificate` resource.
 
@@ -483,6 +594,143 @@ pub mod certificate {
                     Ok(ApiPassthrough {
                         extensions: extensions,
                         subject: subject,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ACMPCA::Certificate.CustomAttribute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-customattribute.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CustomAttribute {
+        /// Property [`ObjectIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-customattribute.html#cfn-acmpca-certificate-customattribute-objectidentifier).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub object_identifier: ::Value<String>,
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-customattribute.html#cfn-acmpca-certificate-customattribute-value).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub value: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for CustomAttribute {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ObjectIdentifier", &self.object_identifier)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CustomAttribute {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CustomAttribute, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CustomAttribute;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CustomAttribute")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut object_identifier: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ObjectIdentifier" => {
+                                object_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Value" => {
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CustomAttribute {
+                        object_identifier: object_identifier.ok_or(::serde::de::Error::missing_field("ObjectIdentifier"))?,
+                        value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ACMPCA::Certificate.CustomExtension`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-customextension.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CustomExtension {
+        /// Property [`Critical`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-customextension.html#cfn-acmpca-certificate-customextension-critical).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub critical: Option<::Value<bool>>,
+        /// Property [`ObjectIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-customextension.html#cfn-acmpca-certificate-customextension-objectidentifier).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub object_identifier: ::Value<String>,
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-customextension.html#cfn-acmpca-certificate-customextension-value).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub value: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for CustomExtension {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref critical) = self.critical {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Critical", critical)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ObjectIdentifier", &self.object_identifier)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CustomExtension {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CustomExtension, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CustomExtension;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CustomExtension")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut critical: Option<::Value<bool>> = None;
+                    let mut object_identifier: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Critical" => {
+                                critical = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ObjectIdentifier" => {
+                                object_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Value" => {
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CustomExtension {
+                        critical: critical,
+                        object_identifier: object_identifier.ok_or(::serde::de::Error::missing_field("ObjectIdentifier"))?,
+                        value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
                     })
                 }
             }
@@ -627,6 +875,11 @@ pub mod certificate {
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub certificate_policies: Option<::ValueList<PolicyInformation>>,
+        /// Property [`CustomExtensions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-extensions.html#cfn-acmpca-certificate-extensions-customextensions).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub custom_extensions: Option<::ValueList<CustomExtension>>,
         /// Property [`ExtendedKeyUsage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-extensions.html#cfn-acmpca-certificate-extensions-extendedkeyusage).
         ///
         /// Update type: _Immutable_.
@@ -649,6 +902,9 @@ pub mod certificate {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             if let Some(ref certificate_policies) = self.certificate_policies {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificatePolicies", certificate_policies)?;
+            }
+            if let Some(ref custom_extensions) = self.custom_extensions {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomExtensions", custom_extensions)?;
             }
             if let Some(ref extended_key_usage) = self.extended_key_usage {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExtendedKeyUsage", extended_key_usage)?;
@@ -676,6 +932,7 @@ pub mod certificate {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut certificate_policies: Option<::ValueList<PolicyInformation>> = None;
+                    let mut custom_extensions: Option<::ValueList<CustomExtension>> = None;
                     let mut extended_key_usage: Option<::ValueList<ExtendedKeyUsage>> = None;
                     let mut key_usage: Option<::Value<KeyUsage>> = None;
                     let mut subject_alternative_names: Option<::ValueList<GeneralName>> = None;
@@ -684,6 +941,9 @@ pub mod certificate {
                         match __cfn_key.as_ref() {
                             "CertificatePolicies" => {
                                 certificate_policies = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CustomExtensions" => {
+                                custom_extensions = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "ExtendedKeyUsage" => {
                                 extended_key_usage = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -700,6 +960,7 @@ pub mod certificate {
 
                     Ok(Extensions {
                         certificate_policies: certificate_policies,
+                        custom_extensions: custom_extensions,
                         extended_key_usage: extended_key_usage,
                         key_usage: key_usage,
                         subject_alternative_names: subject_alternative_names,
@@ -1264,6 +1525,11 @@ pub mod certificate {
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub country: Option<::Value<String>>,
+        /// Property [`CustomAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-subject.html#cfn-acmpca-certificate-subject-customattributes).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub custom_attributes: Option<::ValueList<CustomAttribute>>,
         /// Property [`DistinguishedNameQualifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificate-subject.html#cfn-acmpca-certificate-subject-distinguishednamequalifier).
         ///
         /// Update type: _Immutable_.
@@ -1335,6 +1601,9 @@ pub mod certificate {
             if let Some(ref country) = self.country {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Country", country)?;
             }
+            if let Some(ref custom_attributes) = self.custom_attributes {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomAttributes", custom_attributes)?;
+            }
             if let Some(ref distinguished_name_qualifier) = self.distinguished_name_qualifier {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "DistinguishedNameQualifier", distinguished_name_qualifier)?;
             }
@@ -1389,6 +1658,7 @@ pub mod certificate {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut common_name: Option<::Value<String>> = None;
                     let mut country: Option<::Value<String>> = None;
+                    let mut custom_attributes: Option<::ValueList<CustomAttribute>> = None;
                     let mut distinguished_name_qualifier: Option<::Value<String>> = None;
                     let mut generation_qualifier: Option<::Value<String>> = None;
                     let mut given_name: Option<::Value<String>> = None;
@@ -1409,6 +1679,9 @@ pub mod certificate {
                             }
                             "Country" => {
                                 country = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CustomAttributes" => {
+                                custom_attributes = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "DistinguishedNameQualifier" => {
                                 distinguished_name_qualifier = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1453,6 +1726,7 @@ pub mod certificate {
                     Ok(Subject {
                         common_name: common_name,
                         country: country,
+                        custom_attributes: custom_attributes,
                         distinguished_name_qualifier: distinguished_name_qualifier,
                         generation_qualifier: generation_qualifier,
                         given_name: given_name,
@@ -1838,6 +2112,68 @@ pub mod certificate_authority {
         }
     }
 
+    /// The [`AWS::ACMPCA::CertificateAuthority.CustomAttribute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-customattribute.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CustomAttribute {
+        /// Property [`ObjectIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-customattribute.html#cfn-acmpca-certificateauthority-customattribute-objectidentifier).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub object_identifier: ::Value<String>,
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-customattribute.html#cfn-acmpca-certificateauthority-customattribute-value).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub value: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for CustomAttribute {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ObjectIdentifier", &self.object_identifier)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CustomAttribute {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CustomAttribute, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CustomAttribute;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CustomAttribute")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut object_identifier: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ObjectIdentifier" => {
+                                object_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Value" => {
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CustomAttribute {
+                        object_identifier: object_identifier.ok_or(::serde::de::Error::missing_field("ObjectIdentifier"))?,
+                        value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::ACMPCA::CertificateAuthority.EdiPartyName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-edipartyname.html) property type.
     #[derive(Debug, Default)]
     pub struct EdiPartyName {
@@ -2201,6 +2537,72 @@ pub mod certificate_authority {
         }
     }
 
+    /// The [`AWS::ACMPCA::CertificateAuthority.OcspConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-ocspconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OcspConfiguration {
+        /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-ocspconfiguration.html#cfn-acmpca-certificateauthority-ocspconfiguration-enabled).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub enabled: Option<::Value<bool>>,
+        /// Property [`OcspCustomCname`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-ocspconfiguration.html#cfn-acmpca-certificateauthority-ocspconfiguration-ocspcustomcname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ocsp_custom_cname: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for OcspConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref enabled) = self.enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", enabled)?;
+            }
+            if let Some(ref ocsp_custom_cname) = self.ocsp_custom_cname {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OcspCustomCname", ocsp_custom_cname)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OcspConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OcspConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OcspConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OcspConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut enabled: Option<::Value<bool>> = None;
+                    let mut ocsp_custom_cname: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Enabled" => {
+                                enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OcspCustomCname" => {
+                                ocsp_custom_cname = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OcspConfiguration {
+                        enabled: enabled,
+                        ocsp_custom_cname: ocsp_custom_cname,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::ACMPCA::CertificateAuthority.OtherName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-othername.html) property type.
     #[derive(Debug, Default)]
     pub struct OtherName {
@@ -2271,6 +2673,11 @@ pub mod certificate_authority {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub crl_configuration: Option<::Value<CrlConfiguration>>,
+        /// Property [`OcspConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-revocationconfiguration.html#cfn-acmpca-certificateauthority-revocationconfiguration-ocspconfiguration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ocsp_configuration: Option<::Value<OcspConfiguration>>,
     }
 
     impl ::codec::SerializeValue for RevocationConfiguration {
@@ -2278,6 +2685,9 @@ pub mod certificate_authority {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             if let Some(ref crl_configuration) = self.crl_configuration {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "CrlConfiguration", crl_configuration)?;
+            }
+            if let Some(ref ocsp_configuration) = self.ocsp_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OcspConfiguration", ocsp_configuration)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -2296,11 +2706,15 @@ pub mod certificate_authority {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut crl_configuration: Option<::Value<CrlConfiguration>> = None;
+                    let mut ocsp_configuration: Option<::Value<OcspConfiguration>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "CrlConfiguration" => {
                                 crl_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OcspConfiguration" => {
+                                ocsp_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -2308,6 +2722,7 @@ pub mod certificate_authority {
 
                     Ok(RevocationConfiguration {
                         crl_configuration: crl_configuration,
+                        ocsp_configuration: ocsp_configuration,
                     })
                 }
             }
@@ -2329,6 +2744,11 @@ pub mod certificate_authority {
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub country: Option<::Value<String>>,
+        /// Property [`CustomAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-subject.html#cfn-acmpca-certificateauthority-subject-customattributes).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub custom_attributes: Option<::ValueList<CustomAttribute>>,
         /// Property [`DistinguishedNameQualifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-acmpca-certificateauthority-subject.html#cfn-acmpca-certificateauthority-subject-distinguishednamequalifier).
         ///
         /// Update type: _Immutable_.
@@ -2400,6 +2820,9 @@ pub mod certificate_authority {
             if let Some(ref country) = self.country {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Country", country)?;
             }
+            if let Some(ref custom_attributes) = self.custom_attributes {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomAttributes", custom_attributes)?;
+            }
             if let Some(ref distinguished_name_qualifier) = self.distinguished_name_qualifier {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "DistinguishedNameQualifier", distinguished_name_qualifier)?;
             }
@@ -2454,6 +2877,7 @@ pub mod certificate_authority {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut common_name: Option<::Value<String>> = None;
                     let mut country: Option<::Value<String>> = None;
+                    let mut custom_attributes: Option<::ValueList<CustomAttribute>> = None;
                     let mut distinguished_name_qualifier: Option<::Value<String>> = None;
                     let mut generation_qualifier: Option<::Value<String>> = None;
                     let mut given_name: Option<::Value<String>> = None;
@@ -2474,6 +2898,9 @@ pub mod certificate_authority {
                             }
                             "Country" => {
                                 country = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CustomAttributes" => {
+                                custom_attributes = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "DistinguishedNameQualifier" => {
                                 distinguished_name_qualifier = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -2518,6 +2945,7 @@ pub mod certificate_authority {
                     Ok(Subject {
                         common_name: common_name,
                         country: country,
+                        custom_attributes: custom_attributes,
                         distinguished_name_qualifier: distinguished_name_qualifier,
                         generation_qualifier: generation_qualifier,
                         given_name: given_name,

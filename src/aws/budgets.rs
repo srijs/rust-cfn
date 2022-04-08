@@ -137,7 +137,7 @@ pub struct BudgetsActionProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub subscribers: Option<::ValueList<self::budgets_action::Subscriber>>,
+    pub subscribers: ::ValueList<self::budgets_action::Subscriber>,
 }
 
 impl ::serde::Serialize for BudgetsActionProperties {
@@ -152,9 +152,7 @@ impl ::serde::Serialize for BudgetsActionProperties {
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Definition", &self.definition)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExecutionRoleArn", &self.execution_role_arn)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationType", &self.notification_type)?;
-        if let Some(ref subscribers) = self.subscribers {
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Subscribers", subscribers)?;
-        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Subscribers", &self.subscribers)?;
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -218,7 +216,7 @@ impl<'de> ::serde::Deserialize<'de> for BudgetsActionProperties {
                     definition: definition.ok_or(::serde::de::Error::missing_field("Definition"))?,
                     execution_role_arn: execution_role_arn.ok_or(::serde::de::Error::missing_field("ExecutionRoleArn"))?,
                     notification_type: notification_type.ok_or(::serde::de::Error::missing_field("NotificationType"))?,
-                    subscribers: subscribers,
+                    subscribers: subscribers.ok_or(::serde::de::Error::missing_field("Subscribers"))?,
                 })
             }
         }

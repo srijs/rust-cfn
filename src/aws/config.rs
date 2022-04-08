@@ -761,6 +761,11 @@ pub struct OrganizationConfigRuleProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub organization_config_rule_name: ::Value<String>,
+    /// Property [`OrganizationCustomCodeRuleMetadata`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-organizationconfigrule.html#cfn-config-organizationconfigrule-organizationcustomcoderulemetadata).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub organization_custom_code_rule_metadata: Option<::Value<self::organization_config_rule::OrganizationCustomCodeRuleMetadata>>,
     /// Property [`OrganizationCustomRuleMetadata`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-organizationconfigrule.html#cfn-config-organizationconfigrule-organizationcustomrulemetadata).
     ///
     /// Update type: _Mutable_.
@@ -780,6 +785,9 @@ impl ::serde::Serialize for OrganizationConfigRuleProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExcludedAccounts", excluded_accounts)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "OrganizationConfigRuleName", &self.organization_config_rule_name)?;
+        if let Some(ref organization_custom_code_rule_metadata) = self.organization_custom_code_rule_metadata {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OrganizationCustomCodeRuleMetadata", organization_custom_code_rule_metadata)?;
+        }
         if let Some(ref organization_custom_rule_metadata) = self.organization_custom_rule_metadata {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "OrganizationCustomRuleMetadata", organization_custom_rule_metadata)?;
         }
@@ -804,6 +812,7 @@ impl<'de> ::serde::Deserialize<'de> for OrganizationConfigRuleProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut excluded_accounts: Option<::ValueList<String>> = None;
                 let mut organization_config_rule_name: Option<::Value<String>> = None;
+                let mut organization_custom_code_rule_metadata: Option<::Value<self::organization_config_rule::OrganizationCustomCodeRuleMetadata>> = None;
                 let mut organization_custom_rule_metadata: Option<::Value<self::organization_config_rule::OrganizationCustomRuleMetadata>> = None;
                 let mut organization_managed_rule_metadata: Option<::Value<self::organization_config_rule::OrganizationManagedRuleMetadata>> = None;
 
@@ -814,6 +823,9 @@ impl<'de> ::serde::Deserialize<'de> for OrganizationConfigRuleProperties {
                         }
                         "OrganizationConfigRuleName" => {
                             organization_config_rule_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "OrganizationCustomCodeRuleMetadata" => {
+                            organization_custom_code_rule_metadata = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "OrganizationCustomRuleMetadata" => {
                             organization_custom_rule_metadata = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -828,6 +840,7 @@ impl<'de> ::serde::Deserialize<'de> for OrganizationConfigRuleProperties {
                 Ok(OrganizationConfigRuleProperties {
                     excluded_accounts: excluded_accounts,
                     organization_config_rule_name: organization_config_rule_name.ok_or(::serde::de::Error::missing_field("OrganizationConfigRuleName"))?,
+                    organization_custom_code_rule_metadata: organization_custom_code_rule_metadata,
                     organization_custom_rule_metadata: organization_custom_rule_metadata,
                     organization_managed_rule_metadata: organization_managed_rule_metadata,
                 })
@@ -1925,6 +1938,185 @@ pub mod delivery_channel {
 
 pub mod organization_config_rule {
     //! Property types for the `OrganizationConfigRule` resource.
+
+    /// The [`AWS::Config::OrganizationConfigRule.OrganizationCustomCodeRuleMetadata`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustomcoderulemetadata.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OrganizationCustomCodeRuleMetadata {
+        /// Property [`CodeText`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustomcoderulemetadata.html#cfn-config-organizationconfigrule-organizationcustomcoderulemetadata-codetext).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub code_text: ::Value<String>,
+        /// Property [`DebugLogDeliveryAccounts`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustomcoderulemetadata.html#cfn-config-organizationconfigrule-organizationcustomcoderulemetadata-debuglogdeliveryaccounts).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub debug_log_delivery_accounts: Option<::ValueList<String>>,
+        /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustomcoderulemetadata.html#cfn-config-organizationconfigrule-organizationcustomcoderulemetadata-description).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub description: Option<::Value<String>>,
+        /// Property [`InputParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustomcoderulemetadata.html#cfn-config-organizationconfigrule-organizationcustomcoderulemetadata-inputparameters).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub input_parameters: Option<::Value<String>>,
+        /// Property [`MaximumExecutionFrequency`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustomcoderulemetadata.html#cfn-config-organizationconfigrule-organizationcustomcoderulemetadata-maximumexecutionfrequency).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub maximum_execution_frequency: Option<::Value<String>>,
+        /// Property [`OrganizationConfigRuleTriggerTypes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustomcoderulemetadata.html#cfn-config-organizationconfigrule-organizationcustomcoderulemetadata-organizationconfigruletriggertypes).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub organization_config_rule_trigger_types: Option<::ValueList<String>>,
+        /// Property [`ResourceIdScope`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustomcoderulemetadata.html#cfn-config-organizationconfigrule-organizationcustomcoderulemetadata-resourceidscope).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub resource_id_scope: Option<::Value<String>>,
+        /// Property [`ResourceTypesScope`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustomcoderulemetadata.html#cfn-config-organizationconfigrule-organizationcustomcoderulemetadata-resourcetypesscope).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub resource_types_scope: Option<::ValueList<String>>,
+        /// Property [`Runtime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustomcoderulemetadata.html#cfn-config-organizationconfigrule-organizationcustomcoderulemetadata-runtime).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub runtime: ::Value<String>,
+        /// Property [`TagKeyScope`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustomcoderulemetadata.html#cfn-config-organizationconfigrule-organizationcustomcoderulemetadata-tagkeyscope).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tag_key_scope: Option<::Value<String>>,
+        /// Property [`TagValueScope`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustomcoderulemetadata.html#cfn-config-organizationconfigrule-organizationcustomcoderulemetadata-tagvaluescope).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tag_value_scope: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for OrganizationCustomCodeRuleMetadata {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CodeText", &self.code_text)?;
+            if let Some(ref debug_log_delivery_accounts) = self.debug_log_delivery_accounts {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DebugLogDeliveryAccounts", debug_log_delivery_accounts)?;
+            }
+            if let Some(ref description) = self.description {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+            }
+            if let Some(ref input_parameters) = self.input_parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputParameters", input_parameters)?;
+            }
+            if let Some(ref maximum_execution_frequency) = self.maximum_execution_frequency {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaximumExecutionFrequency", maximum_execution_frequency)?;
+            }
+            if let Some(ref organization_config_rule_trigger_types) = self.organization_config_rule_trigger_types {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OrganizationConfigRuleTriggerTypes", organization_config_rule_trigger_types)?;
+            }
+            if let Some(ref resource_id_scope) = self.resource_id_scope {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceIdScope", resource_id_scope)?;
+            }
+            if let Some(ref resource_types_scope) = self.resource_types_scope {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceTypesScope", resource_types_scope)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Runtime", &self.runtime)?;
+            if let Some(ref tag_key_scope) = self.tag_key_scope {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TagKeyScope", tag_key_scope)?;
+            }
+            if let Some(ref tag_value_scope) = self.tag_value_scope {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TagValueScope", tag_value_scope)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OrganizationCustomCodeRuleMetadata {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OrganizationCustomCodeRuleMetadata, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OrganizationCustomCodeRuleMetadata;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OrganizationCustomCodeRuleMetadata")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut code_text: Option<::Value<String>> = None;
+                    let mut debug_log_delivery_accounts: Option<::ValueList<String>> = None;
+                    let mut description: Option<::Value<String>> = None;
+                    let mut input_parameters: Option<::Value<String>> = None;
+                    let mut maximum_execution_frequency: Option<::Value<String>> = None;
+                    let mut organization_config_rule_trigger_types: Option<::ValueList<String>> = None;
+                    let mut resource_id_scope: Option<::Value<String>> = None;
+                    let mut resource_types_scope: Option<::ValueList<String>> = None;
+                    let mut runtime: Option<::Value<String>> = None;
+                    let mut tag_key_scope: Option<::Value<String>> = None;
+                    let mut tag_value_scope: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CodeText" => {
+                                code_text = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DebugLogDeliveryAccounts" => {
+                                debug_log_delivery_accounts = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Description" => {
+                                description = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "InputParameters" => {
+                                input_parameters = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MaximumExecutionFrequency" => {
+                                maximum_execution_frequency = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OrganizationConfigRuleTriggerTypes" => {
+                                organization_config_rule_trigger_types = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ResourceIdScope" => {
+                                resource_id_scope = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ResourceTypesScope" => {
+                                resource_types_scope = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Runtime" => {
+                                runtime = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TagKeyScope" => {
+                                tag_key_scope = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TagValueScope" => {
+                                tag_value_scope = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OrganizationCustomCodeRuleMetadata {
+                        code_text: code_text.ok_or(::serde::de::Error::missing_field("CodeText"))?,
+                        debug_log_delivery_accounts: debug_log_delivery_accounts,
+                        description: description,
+                        input_parameters: input_parameters,
+                        maximum_execution_frequency: maximum_execution_frequency,
+                        organization_config_rule_trigger_types: organization_config_rule_trigger_types,
+                        resource_id_scope: resource_id_scope,
+                        resource_types_scope: resource_types_scope,
+                        runtime: runtime.ok_or(::serde::de::Error::missing_field("Runtime"))?,
+                        tag_key_scope: tag_key_scope,
+                        tag_value_scope: tag_value_scope,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::Config::OrganizationConfigRule.OrganizationCustomRuleMetadata`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustomrulemetadata.html) property type.
     #[derive(Debug, Default)]

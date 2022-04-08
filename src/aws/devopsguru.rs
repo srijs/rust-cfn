@@ -326,6 +326,11 @@ pub mod resource_collection {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub cloud_formation: Option<::Value<CloudFormationCollectionFilter>>,
+        /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsguru-resourcecollection-resourcecollectionfilter.html#cfn-devopsguru-resourcecollection-resourcecollectionfilter-tags).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tags: Option<::ValueList<TagCollection>>,
     }
 
     impl ::codec::SerializeValue for ResourceCollectionFilter {
@@ -333,6 +338,9 @@ pub mod resource_collection {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             if let Some(ref cloud_formation) = self.cloud_formation {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudFormation", cloud_formation)?;
+            }
+            if let Some(ref tags) = self.tags {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -351,11 +359,15 @@ pub mod resource_collection {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut cloud_formation: Option<::Value<CloudFormationCollectionFilter>> = None;
+                    let mut tags: Option<::ValueList<TagCollection>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "CloudFormation" => {
                                 cloud_formation = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Tags" => {
+                                tags = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -363,6 +375,73 @@ pub mod resource_collection {
 
                     Ok(ResourceCollectionFilter {
                         cloud_formation: cloud_formation,
+                        tags: tags,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DevOpsGuru::ResourceCollection.TagCollection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsguru-resourcecollection-tagcollection.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TagCollection {
+        /// Property [`AppBoundaryKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsguru-resourcecollection-tagcollection.html#cfn-devopsguru-resourcecollection-tagcollection-appboundarykey).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub app_boundary_key: Option<::Value<String>>,
+        /// Property [`TagValues`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-devopsguru-resourcecollection-tagcollection.html#cfn-devopsguru-resourcecollection-tagcollection-tagvalues).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tag_values: Option<::ValueList<String>>,
+    }
+
+    impl ::codec::SerializeValue for TagCollection {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref app_boundary_key) = self.app_boundary_key {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AppBoundaryKey", app_boundary_key)?;
+            }
+            if let Some(ref tag_values) = self.tag_values {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TagValues", tag_values)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TagCollection {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TagCollection, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TagCollection;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TagCollection")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut app_boundary_key: Option<::Value<String>> = None;
+                    let mut tag_values: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AppBoundaryKey" => {
+                                app_boundary_key = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TagValues" => {
+                                tag_values = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TagCollection {
+                        app_boundary_key: app_boundary_key,
+                        tag_values: tag_values,
                     })
                 }
             }

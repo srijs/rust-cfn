@@ -133,6 +133,11 @@ pub struct LogGroupProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub retention_in_days: Option<::Value<u32>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html#cfn-logs-loggroup-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
 }
 
 impl ::serde::Serialize for LogGroupProperties {
@@ -146,6 +151,9 @@ impl ::serde::Serialize for LogGroupProperties {
         }
         if let Some(ref retention_in_days) = self.retention_in_days {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RetentionInDays", retention_in_days)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
         ::serde::ser::SerializeMap::end(map)
     }
@@ -166,6 +174,7 @@ impl<'de> ::serde::Deserialize<'de> for LogGroupProperties {
                 let mut kms_key_id: Option<::Value<String>> = None;
                 let mut log_group_name: Option<::Value<String>> = None;
                 let mut retention_in_days: Option<::Value<u32>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -178,6 +187,9 @@ impl<'de> ::serde::Deserialize<'de> for LogGroupProperties {
                         "RetentionInDays" => {
                             retention_in_days = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
@@ -186,6 +198,7 @@ impl<'de> ::serde::Deserialize<'de> for LogGroupProperties {
                     kms_key_id: kms_key_id,
                     log_group_name: log_group_name,
                     retention_in_days: retention_in_days,
+                    tags: tags,
                 })
             }
         }
@@ -497,6 +510,93 @@ impl ::private::Sealed for QueryDefinition {}
 impl From<QueryDefinitionProperties> for QueryDefinition {
     fn from(properties: QueryDefinitionProperties) -> QueryDefinition {
         QueryDefinition { properties }
+    }
+}
+
+/// The [`AWS::Logs::ResourcePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-resourcepolicy.html) resource type.
+#[derive(Debug, Default)]
+pub struct ResourcePolicy {
+    properties: ResourcePolicyProperties
+}
+
+/// Properties for the `ResourcePolicy` resource.
+#[derive(Debug, Default)]
+pub struct ResourcePolicyProperties {
+    /// Property [`PolicyDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-resourcepolicy.html#cfn-logs-resourcepolicy-policydocument).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub policy_document: ::Value<String>,
+    /// Property [`PolicyName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-resourcepolicy.html#cfn-logs-resourcepolicy-policyname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub policy_name: ::Value<String>,
+}
+
+impl ::serde::Serialize for ResourcePolicyProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyDocument", &self.policy_document)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyName", &self.policy_name)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ResourcePolicyProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ResourcePolicyProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ResourcePolicyProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ResourcePolicyProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut policy_document: Option<::Value<String>> = None;
+                let mut policy_name: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "PolicyDocument" => {
+                            policy_document = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PolicyName" => {
+                            policy_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ResourcePolicyProperties {
+                    policy_document: policy_document.ok_or(::serde::de::Error::missing_field("PolicyDocument"))?,
+                    policy_name: policy_name.ok_or(::serde::de::Error::missing_field("PolicyName"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for ResourcePolicy {
+    type Properties = ResourcePolicyProperties;
+    const TYPE: &'static str = "AWS::Logs::ResourcePolicy";
+    fn properties(&self) -> &ResourcePolicyProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut ResourcePolicyProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for ResourcePolicy {}
+
+impl From<ResourcePolicyProperties> for ResourcePolicy {
+    fn from(properties: ResourcePolicyProperties) -> ResourcePolicy {
+        ResourcePolicy { properties }
     }
 }
 

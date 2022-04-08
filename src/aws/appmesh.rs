@@ -1187,6 +1187,11 @@ pub mod gateway_route {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub http_route: Option<::Value<HttpGatewayRoute>>,
+        /// Property [`Priority`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-gatewayroute-gatewayroutespec.html#cfn-appmesh-gatewayroute-gatewayroutespec-priority).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub priority: Option<::Value<u32>>,
     }
 
     impl ::codec::SerializeValue for GatewayRouteSpec {
@@ -1200,6 +1205,9 @@ pub mod gateway_route {
             }
             if let Some(ref http_route) = self.http_route {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "HttpRoute", http_route)?;
+            }
+            if let Some(ref priority) = self.priority {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Priority", priority)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -1220,6 +1228,7 @@ pub mod gateway_route {
                     let mut grpc_route: Option<::Value<GrpcGatewayRoute>> = None;
                     let mut http2_route: Option<::Value<HttpGatewayRoute>> = None;
                     let mut http_route: Option<::Value<HttpGatewayRoute>> = None;
+                    let mut priority: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1232,6 +1241,9 @@ pub mod gateway_route {
                             "HttpRoute" => {
                                 http_route = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Priority" => {
+                                priority = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
@@ -1240,6 +1252,7 @@ pub mod gateway_route {
                         grpc_route: grpc_route,
                         http2_route: http2_route,
                         http_route: http_route,
+                        priority: priority,
                     })
                 }
             }
@@ -2540,6 +2553,38 @@ pub mod mesh {
                     Ok(EgressFilter {
                         r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
                     })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppMesh::Mesh.MeshServiceDiscovery`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appmesh-mesh-meshservicediscovery.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MeshServiceDiscovery {
+    }
+
+    impl ::codec::SerializeValue for MeshServiceDiscovery {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MeshServiceDiscovery {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MeshServiceDiscovery, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MeshServiceDiscovery;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MeshServiceDiscovery")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, _map: A) -> Result<Self::Value, A::Error> {
+                    Ok(MeshServiceDiscovery {})
                 }
             }
 

@@ -1008,38 +1008,6 @@ pub mod application {
         }
     }
 
-    /// The [`AWS::KinesisAnalyticsV2::Application.CustomArtifactsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-customartifactsconfiguration.html) property type.
-    #[derive(Debug, Default)]
-    pub struct CustomArtifactsConfiguration {
-    }
-
-    impl ::codec::SerializeValue for CustomArtifactsConfiguration {
-        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            let map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::end(map)
-        }
-    }
-
-    impl ::codec::DeserializeValue for CustomArtifactsConfiguration {
-        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CustomArtifactsConfiguration, D::Error> {
-            struct Visitor;
-
-            impl<'de> ::serde::de::Visitor<'de> for Visitor {
-                type Value = CustomArtifactsConfiguration;
-
-                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-                    write!(f, "a struct of type CustomArtifactsConfiguration")
-                }
-
-                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, _map: A) -> Result<Self::Value, A::Error> {
-                    Ok(CustomArtifactsConfiguration {})
-                }
-            }
-
-            d.deserialize_map(Visitor)
-        }
-    }
-
     /// The [`AWS::KinesisAnalyticsV2::Application.DeployAsApplicationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-deployasapplicationconfiguration.html) property type.
     #[derive(Debug, Default)]
     pub struct DeployAsApplicationConfiguration {
@@ -2492,7 +2460,7 @@ pub mod application {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub custom_artifacts_configuration: Option<::Value<CustomArtifactsConfiguration>>,
+        pub custom_artifacts_configuration: Option<::ValueList<CustomArtifactConfiguration>>,
         /// Property [`DeployAsApplicationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-zeppelinapplicationconfiguration.html#cfn-kinesisanalyticsv2-application-zeppelinapplicationconfiguration-deployasapplicationconfiguration).
         ///
         /// Update type: _Mutable_.
@@ -2537,7 +2505,7 @@ pub mod application {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut catalog_configuration: Option<::Value<CatalogConfiguration>> = None;
-                    let mut custom_artifacts_configuration: Option<::Value<CustomArtifactsConfiguration>> = None;
+                    let mut custom_artifacts_configuration: Option<::ValueList<CustomArtifactConfiguration>> = None;
                     let mut deploy_as_application_configuration: Option<::Value<DeployAsApplicationConfiguration>> = None;
                     let mut monitoring_configuration: Option<::Value<ZeppelinMonitoringConfiguration>> = None;
 

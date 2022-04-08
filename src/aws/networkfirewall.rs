@@ -751,6 +751,16 @@ pub mod firewall_policy {
     /// The [`AWS::NetworkFirewall::FirewallPolicy.FirewallPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-firewallpolicy.html) property type.
     #[derive(Debug, Default)]
     pub struct FirewallPolicy {
+        /// Property [`StatefulDefaultActions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-firewallpolicy.html#cfn-networkfirewall-firewallpolicy-firewallpolicy-statefuldefaultactions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub stateful_default_actions: Option<::ValueList<String>>,
+        /// Property [`StatefulEngineOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-firewallpolicy.html#cfn-networkfirewall-firewallpolicy-firewallpolicy-statefulengineoptions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub stateful_engine_options: Option<::Value<StatefulEngineOptions>>,
         /// Property [`StatefulRuleGroupReferences`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-firewallpolicy.html#cfn-networkfirewall-firewallpolicy-firewallpolicy-statefulrulegroupreferences).
         ///
         /// Update type: _Mutable_.
@@ -781,6 +791,12 @@ pub mod firewall_policy {
     impl ::codec::SerializeValue for FirewallPolicy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref stateful_default_actions) = self.stateful_default_actions {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StatefulDefaultActions", stateful_default_actions)?;
+            }
+            if let Some(ref stateful_engine_options) = self.stateful_engine_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StatefulEngineOptions", stateful_engine_options)?;
+            }
             if let Some(ref stateful_rule_group_references) = self.stateful_rule_group_references {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "StatefulRuleGroupReferences", stateful_rule_group_references)?;
             }
@@ -808,6 +824,8 @@ pub mod firewall_policy {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut stateful_default_actions: Option<::ValueList<String>> = None;
+                    let mut stateful_engine_options: Option<::Value<StatefulEngineOptions>> = None;
                     let mut stateful_rule_group_references: Option<::ValueList<StatefulRuleGroupReference>> = None;
                     let mut stateless_custom_actions: Option<::ValueList<CustomAction>> = None;
                     let mut stateless_default_actions: Option<::ValueList<String>> = None;
@@ -816,6 +834,12 @@ pub mod firewall_policy {
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "StatefulDefaultActions" => {
+                                stateful_default_actions = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "StatefulEngineOptions" => {
+                                stateful_engine_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "StatefulRuleGroupReferences" => {
                                 stateful_rule_group_references = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -836,6 +860,8 @@ pub mod firewall_policy {
                     }
 
                     Ok(FirewallPolicy {
+                        stateful_default_actions: stateful_default_actions,
+                        stateful_engine_options: stateful_engine_options,
                         stateful_rule_group_references: stateful_rule_group_references,
                         stateless_custom_actions: stateless_custom_actions,
                         stateless_default_actions: stateless_default_actions.ok_or(::serde::de::Error::missing_field("StatelessDefaultActions"))?,
@@ -900,9 +926,67 @@ pub mod firewall_policy {
         }
     }
 
+    /// The [`AWS::NetworkFirewall::FirewallPolicy.StatefulEngineOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-statefulengineoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct StatefulEngineOptions {
+        /// Property [`RuleOrder`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-statefulengineoptions.html#cfn-networkfirewall-firewallpolicy-statefulengineoptions-ruleorder).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub rule_order: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for StatefulEngineOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref rule_order) = self.rule_order {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleOrder", rule_order)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for StatefulEngineOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<StatefulEngineOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = StatefulEngineOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type StatefulEngineOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut rule_order: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "RuleOrder" => {
+                                rule_order = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(StatefulEngineOptions {
+                        rule_order: rule_order,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::NetworkFirewall::FirewallPolicy.StatefulRuleGroupReference`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-statefulrulegroupreference.html) property type.
     #[derive(Debug, Default)]
     pub struct StatefulRuleGroupReference {
+        /// Property [`Priority`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-statefulrulegroupreference.html#cfn-networkfirewall-firewallpolicy-statefulrulegroupreference-priority).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub priority: Option<::Value<u32>>,
         /// Property [`ResourceArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-statefulrulegroupreference.html#cfn-networkfirewall-firewallpolicy-statefulrulegroupreference-resourcearn).
         ///
         /// Update type: _Mutable_.
@@ -913,6 +997,9 @@ pub mod firewall_policy {
     impl ::codec::SerializeValue for StatefulRuleGroupReference {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref priority) = self.priority {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Priority", priority)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceArn", &self.resource_arn)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -930,10 +1017,14 @@ pub mod firewall_policy {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut priority: Option<::Value<u32>> = None;
                     let mut resource_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "Priority" => {
+                                priority = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "ResourceArn" => {
                                 resource_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -942,6 +1033,7 @@ pub mod firewall_policy {
                     }
 
                     Ok(StatefulRuleGroupReference {
+                        priority: priority,
                         resource_arn: resource_arn.ok_or(::serde::de::Error::missing_field("ResourceArn"))?,
                     })
                 }
@@ -1880,6 +1972,11 @@ pub mod rule_group {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub rules_source: ::Value<RulesSource>,
+        /// Property [`StatefulRuleOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-rulegroup.html#cfn-networkfirewall-rulegroup-rulegroup-statefulruleoptions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub stateful_rule_options: Option<::Value<StatefulRuleOptions>>,
     }
 
     impl ::codec::SerializeValue for RuleGroup {
@@ -1889,6 +1986,9 @@ pub mod rule_group {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleVariables", rule_variables)?;
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RulesSource", &self.rules_source)?;
+            if let Some(ref stateful_rule_options) = self.stateful_rule_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StatefulRuleOptions", stateful_rule_options)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1907,6 +2007,7 @@ pub mod rule_group {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut rule_variables: Option<::Value<RuleVariables>> = None;
                     let mut rules_source: Option<::Value<RulesSource>> = None;
+                    let mut stateful_rule_options: Option<::Value<StatefulRuleOptions>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1916,6 +2017,9 @@ pub mod rule_group {
                             "RulesSource" => {
                                 rules_source = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "StatefulRuleOptions" => {
+                                stateful_rule_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
@@ -1923,6 +2027,7 @@ pub mod rule_group {
                     Ok(RuleGroup {
                         rule_variables: rule_variables,
                         rules_source: rules_source.ok_or(::serde::de::Error::missing_field("RulesSource"))?,
+                        stateful_rule_options: stateful_rule_options,
                     })
                 }
             }
@@ -2291,6 +2396,59 @@ pub mod rule_group {
                         action: action.ok_or(::serde::de::Error::missing_field("Action"))?,
                         header: header.ok_or(::serde::de::Error::missing_field("Header"))?,
                         rule_options: rule_options.ok_or(::serde::de::Error::missing_field("RuleOptions"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::NetworkFirewall::RuleGroup.StatefulRuleOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-statefulruleoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct StatefulRuleOptions {
+        /// Property [`RuleOrder`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-statefulruleoptions.html#cfn-networkfirewall-rulegroup-statefulruleoptions-ruleorder).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub rule_order: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for StatefulRuleOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref rule_order) = self.rule_order {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleOrder", rule_order)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for StatefulRuleOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<StatefulRuleOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = StatefulRuleOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type StatefulRuleOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut rule_order: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "RuleOrder" => {
+                                rule_order = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(StatefulRuleOptions {
+                        rule_order: rule_order,
                     })
                 }
             }

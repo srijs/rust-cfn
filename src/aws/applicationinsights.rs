@@ -491,6 +491,16 @@ pub mod application {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub alarms: Option<::ValueList<Alarm>>,
+        /// Property [`HAClusterPrometheusExporter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-configurationdetails.html#cfn-applicationinsights-application-configurationdetails-haclusterprometheusexporter).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ha_cluster_prometheus_exporter: Option<::Value<HAClusterPrometheusExporter>>,
+        /// Property [`HANAPrometheusExporter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-configurationdetails.html#cfn-applicationinsights-application-configurationdetails-hanaprometheusexporter).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub hana_prometheus_exporter: Option<::Value<HANAPrometheusExporter>>,
         /// Property [`JMXPrometheusExporter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-configurationdetails.html#cfn-applicationinsights-application-configurationdetails-jmxprometheusexporter).
         ///
         /// Update type: _Mutable_.
@@ -516,6 +526,12 @@ pub mod application {
             }
             if let Some(ref alarms) = self.alarms {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Alarms", alarms)?;
+            }
+            if let Some(ref ha_cluster_prometheus_exporter) = self.ha_cluster_prometheus_exporter {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HAClusterPrometheusExporter", ha_cluster_prometheus_exporter)?;
+            }
+            if let Some(ref hana_prometheus_exporter) = self.hana_prometheus_exporter {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HANAPrometheusExporter", hana_prometheus_exporter)?;
             }
             if let Some(ref jmx_prometheus_exporter) = self.jmx_prometheus_exporter {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "JMXPrometheusExporter", jmx_prometheus_exporter)?;
@@ -544,6 +560,8 @@ pub mod application {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut alarm_metrics: Option<::ValueList<AlarmMetric>> = None;
                     let mut alarms: Option<::ValueList<Alarm>> = None;
+                    let mut ha_cluster_prometheus_exporter: Option<::Value<HAClusterPrometheusExporter>> = None;
+                    let mut hana_prometheus_exporter: Option<::Value<HANAPrometheusExporter>> = None;
                     let mut jmx_prometheus_exporter: Option<::Value<JMXPrometheusExporter>> = None;
                     let mut logs: Option<::ValueList<Log>> = None;
                     let mut windows_events: Option<::ValueList<WindowsEvent>> = None;
@@ -555,6 +573,12 @@ pub mod application {
                             }
                             "Alarms" => {
                                 alarms = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HAClusterPrometheusExporter" => {
+                                ha_cluster_prometheus_exporter = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HANAPrometheusExporter" => {
+                                hana_prometheus_exporter = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "JMXPrometheusExporter" => {
                                 jmx_prometheus_exporter = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -572,6 +596,8 @@ pub mod application {
                     Ok(ConfigurationDetails {
                         alarm_metrics: alarm_metrics,
                         alarms: alarms,
+                        ha_cluster_prometheus_exporter: ha_cluster_prometheus_exporter,
+                        hana_prometheus_exporter: hana_prometheus_exporter,
                         jmx_prometheus_exporter: jmx_prometheus_exporter,
                         logs: logs,
                         windows_events: windows_events,
@@ -637,6 +663,156 @@ pub mod application {
                     Ok(CustomComponent {
                         component_name: component_name.ok_or(::serde::de::Error::missing_field("ComponentName"))?,
                         resource_list: resource_list.ok_or(::serde::de::Error::missing_field("ResourceList"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ApplicationInsights::Application.HAClusterPrometheusExporter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-haclusterprometheusexporter.html) property type.
+    #[derive(Debug, Default)]
+    pub struct HAClusterPrometheusExporter {
+        /// Property [`PrometheusPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-haclusterprometheusexporter.html#cfn-applicationinsights-application-haclusterprometheusexporter-prometheusport).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub prometheus_port: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for HAClusterPrometheusExporter {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref prometheus_port) = self.prometheus_port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrometheusPort", prometheus_port)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for HAClusterPrometheusExporter {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<HAClusterPrometheusExporter, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = HAClusterPrometheusExporter;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type HAClusterPrometheusExporter")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut prometheus_port: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "PrometheusPort" => {
+                                prometheus_port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(HAClusterPrometheusExporter {
+                        prometheus_port: prometheus_port,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ApplicationInsights::Application.HANAPrometheusExporter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-hanaprometheusexporter.html) property type.
+    #[derive(Debug, Default)]
+    pub struct HANAPrometheusExporter {
+        /// Property [`AgreeToInstallHANADBClient`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-hanaprometheusexporter.html#cfn-applicationinsights-application-hanaprometheusexporter-agreetoinstallhanadbclient).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub agree_to_install_hanadb_client: ::Value<bool>,
+        /// Property [`HANAPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-hanaprometheusexporter.html#cfn-applicationinsights-application-hanaprometheusexporter-hanaport).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub hana_port: ::Value<String>,
+        /// Property [`HANASID`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-hanaprometheusexporter.html#cfn-applicationinsights-application-hanaprometheusexporter-hanasid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub hanasid: ::Value<String>,
+        /// Property [`HANASecretName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-hanaprometheusexporter.html#cfn-applicationinsights-application-hanaprometheusexporter-hanasecretname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub hana_secret_name: ::Value<String>,
+        /// Property [`PrometheusPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationinsights-application-hanaprometheusexporter.html#cfn-applicationinsights-application-hanaprometheusexporter-prometheusport).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub prometheus_port: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for HANAPrometheusExporter {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AgreeToInstallHANADBClient", &self.agree_to_install_hanadb_client)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HANAPort", &self.hana_port)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HANASID", &self.hanasid)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "HANASecretName", &self.hana_secret_name)?;
+            if let Some(ref prometheus_port) = self.prometheus_port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrometheusPort", prometheus_port)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for HANAPrometheusExporter {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<HANAPrometheusExporter, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = HANAPrometheusExporter;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type HANAPrometheusExporter")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut agree_to_install_hanadb_client: Option<::Value<bool>> = None;
+                    let mut hana_port: Option<::Value<String>> = None;
+                    let mut hanasid: Option<::Value<String>> = None;
+                    let mut hana_secret_name: Option<::Value<String>> = None;
+                    let mut prometheus_port: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AgreeToInstallHANADBClient" => {
+                                agree_to_install_hanadb_client = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HANAPort" => {
+                                hana_port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HANASID" => {
+                                hanasid = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HANASecretName" => {
+                                hana_secret_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PrometheusPort" => {
+                                prometheus_port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(HANAPrometheusExporter {
+                        agree_to_install_hanadb_client: agree_to_install_hanadb_client.ok_or(::serde::de::Error::missing_field("AgreeToInstallHANADBClient"))?,
+                        hana_port: hana_port.ok_or(::serde::de::Error::missing_field("HANAPort"))?,
+                        hanasid: hanasid.ok_or(::serde::de::Error::missing_field("HANASID"))?,
+                        hana_secret_name: hana_secret_name.ok_or(::serde::de::Error::missing_field("HANASecretName"))?,
+                        prometheus_port: prometheus_port,
                     })
                 }
             }

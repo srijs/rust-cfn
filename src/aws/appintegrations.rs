@@ -1,5 +1,140 @@
 //! Types for the `AppIntegrations` service.
 
+/// The [`AWS::AppIntegrations::DataIntegration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appintegrations-dataintegration.html) resource type.
+#[derive(Debug, Default)]
+pub struct DataIntegration {
+    properties: DataIntegrationProperties
+}
+
+/// Properties for the `DataIntegration` resource.
+#[derive(Debug, Default)]
+pub struct DataIntegrationProperties {
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appintegrations-dataintegration.html#cfn-appintegrations-dataintegration-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`KmsKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appintegrations-dataintegration.html#cfn-appintegrations-dataintegration-kmskey).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub kms_key: ::Value<String>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appintegrations-dataintegration.html#cfn-appintegrations-dataintegration-name).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub name: ::Value<String>,
+    /// Property [`ScheduleConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appintegrations-dataintegration.html#cfn-appintegrations-dataintegration-scheduleconfig).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub schedule_config: ::Value<self::data_integration::ScheduleConfig>,
+    /// Property [`SourceURI`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appintegrations-dataintegration.html#cfn-appintegrations-dataintegration-sourceuri).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub source_uri: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appintegrations-dataintegration.html#cfn-appintegrations-dataintegration-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for DataIntegrationProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKey", &self.kms_key)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScheduleConfig", &self.schedule_config)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceURI", &self.source_uri)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for DataIntegrationProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<DataIntegrationProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = DataIntegrationProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type DataIntegrationProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut description: Option<::Value<String>> = None;
+                let mut kms_key: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut schedule_config: Option<::Value<self::data_integration::ScheduleConfig>> = None;
+                let mut source_uri: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "KmsKey" => {
+                            kms_key = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ScheduleConfig" => {
+                            schedule_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SourceURI" => {
+                            source_uri = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(DataIntegrationProperties {
+                    description: description,
+                    kms_key: kms_key.ok_or(::serde::de::Error::missing_field("KmsKey"))?,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    schedule_config: schedule_config.ok_or(::serde::de::Error::missing_field("ScheduleConfig"))?,
+                    source_uri: source_uri.ok_or(::serde::de::Error::missing_field("SourceURI"))?,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for DataIntegration {
+    type Properties = DataIntegrationProperties;
+    const TYPE: &'static str = "AWS::AppIntegrations::DataIntegration";
+    fn properties(&self) -> &DataIntegrationProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut DataIntegrationProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for DataIntegration {}
+
+impl From<DataIntegrationProperties> for DataIntegration {
+    fn from(properties: DataIntegrationProperties) -> DataIntegration {
+        DataIntegration { properties }
+    }
+}
+
 /// The [`AWS::AppIntegrations::EventIntegration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appintegrations-eventintegration.html) resource type.
 #[derive(Debug, Default)]
 pub struct EventIntegration {
@@ -121,6 +256,83 @@ impl ::private::Sealed for EventIntegration {}
 impl From<EventIntegrationProperties> for EventIntegration {
     fn from(properties: EventIntegrationProperties) -> EventIntegration {
         EventIntegration { properties }
+    }
+}
+
+pub mod data_integration {
+    //! Property types for the `DataIntegration` resource.
+
+    /// The [`AWS::AppIntegrations::DataIntegration.ScheduleConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appintegrations-dataintegration-scheduleconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ScheduleConfig {
+        /// Property [`FirstExecutionFrom`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appintegrations-dataintegration-scheduleconfig.html#cfn-appintegrations-dataintegration-scheduleconfig-firstexecutionfrom).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub first_execution_from: ::Value<String>,
+        /// Property [`Object`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appintegrations-dataintegration-scheduleconfig.html#cfn-appintegrations-dataintegration-scheduleconfig-object).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub object: ::Value<String>,
+        /// Property [`ScheduleExpression`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appintegrations-dataintegration-scheduleconfig.html#cfn-appintegrations-dataintegration-scheduleconfig-scheduleexpression).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub schedule_expression: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for ScheduleConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FirstExecutionFrom", &self.first_execution_from)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Object", &self.object)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScheduleExpression", &self.schedule_expression)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ScheduleConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ScheduleConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ScheduleConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ScheduleConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut first_execution_from: Option<::Value<String>> = None;
+                    let mut object: Option<::Value<String>> = None;
+                    let mut schedule_expression: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "FirstExecutionFrom" => {
+                                first_execution_from = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Object" => {
+                                object = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ScheduleExpression" => {
+                                schedule_expression = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ScheduleConfig {
+                        first_execution_from: first_execution_from.ok_or(::serde::de::Error::missing_field("FirstExecutionFrom"))?,
+                        object: object.ok_or(::serde::de::Error::missing_field("Object"))?,
+                        schedule_expression: schedule_expression.ok_or(::serde::de::Error::missing_field("ScheduleExpression"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
     }
 }
 

@@ -300,6 +300,11 @@ pub struct FlowOutputProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub max_latency: Option<::Value<u32>>,
+    /// Property [`MinLatency`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowoutput.html#cfn-mediaconnect-flowoutput-minlatency).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub min_latency: Option<::Value<u32>>,
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowoutput.html#cfn-mediaconnect-flowoutput-name).
     ///
     /// Update type: _Immutable_.
@@ -356,6 +361,9 @@ impl ::serde::Serialize for FlowOutputProperties {
         if let Some(ref max_latency) = self.max_latency {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxLatency", max_latency)?;
         }
+        if let Some(ref min_latency) = self.min_latency {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinLatency", min_latency)?;
+        }
         if let Some(ref name) = self.name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
         }
@@ -397,6 +405,7 @@ impl<'de> ::serde::Deserialize<'de> for FlowOutputProperties {
                 let mut encryption: Option<::Value<self::flow_output::Encryption>> = None;
                 let mut flow_arn: Option<::Value<String>> = None;
                 let mut max_latency: Option<::Value<u32>> = None;
+                let mut min_latency: Option<::Value<u32>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut port: Option<::Value<u32>> = None;
                 let mut protocol: Option<::Value<String>> = None;
@@ -424,6 +433,9 @@ impl<'de> ::serde::Deserialize<'de> for FlowOutputProperties {
                         }
                         "MaxLatency" => {
                             max_latency = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MinLatency" => {
+                            min_latency = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -457,6 +469,7 @@ impl<'de> ::serde::Deserialize<'de> for FlowOutputProperties {
                     encryption: encryption,
                     flow_arn: flow_arn.ok_or(::serde::de::Error::missing_field("FlowArn"))?,
                     max_latency: max_latency,
+                    min_latency: min_latency,
                     name: name,
                     port: port,
                     protocol: protocol.ok_or(::serde::de::Error::missing_field("Protocol"))?,
@@ -838,7 +851,7 @@ pub mod flow {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub algorithm: ::Value<String>,
+        pub algorithm: Option<::Value<String>>,
         /// Property [`ConstantInitializationVector`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-encryption.html#cfn-mediaconnect-flow-encryption-constantinitializationvector).
         ///
         /// Update type: _Mutable_.
@@ -884,7 +897,9 @@ pub mod flow {
     impl ::codec::SerializeValue for Encryption {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Algorithm", &self.algorithm)?;
+            if let Some(ref algorithm) = self.algorithm {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Algorithm", algorithm)?;
+            }
             if let Some(ref constant_initialization_vector) = self.constant_initialization_vector {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConstantInitializationVector", constant_initialization_vector)?;
             }
@@ -967,7 +982,7 @@ pub mod flow {
                     }
 
                     Ok(Encryption {
-                        algorithm: algorithm.ok_or(::serde::de::Error::missing_field("Algorithm"))?,
+                        algorithm: algorithm,
                         constant_initialization_vector: constant_initialization_vector,
                         device_id: device_id,
                         key_type: key_type,
@@ -1088,6 +1103,11 @@ pub mod flow {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub max_latency: Option<::Value<u32>>,
+        /// Property [`MinLatency`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-source.html#cfn-mediaconnect-flow-source-minlatency).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub min_latency: Option<::Value<u32>>,
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-source.html#cfn-mediaconnect-flow-source-name).
         ///
         /// Update type: _Immutable_.
@@ -1103,6 +1123,11 @@ pub mod flow {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub source_arn: Option<::Value<String>>,
+        /// Property [`SourceIngestPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-source.html#cfn-mediaconnect-flow-source-sourceingestport).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub source_ingest_port: Option<::Value<String>>,
         /// Property [`StreamId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-source.html#cfn-mediaconnect-flow-source-streamid).
         ///
         /// Update type: _Mutable_.
@@ -1144,6 +1169,9 @@ pub mod flow {
             if let Some(ref max_latency) = self.max_latency {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxLatency", max_latency)?;
             }
+            if let Some(ref min_latency) = self.min_latency {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinLatency", min_latency)?;
+            }
             if let Some(ref name) = self.name {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
             }
@@ -1152,6 +1180,9 @@ pub mod flow {
             }
             if let Some(ref source_arn) = self.source_arn {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceArn", source_arn)?;
+            }
+            if let Some(ref source_ingest_port) = self.source_ingest_port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceIngestPort", source_ingest_port)?;
             }
             if let Some(ref stream_id) = self.stream_id {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamId", stream_id)?;
@@ -1185,9 +1216,11 @@ pub mod flow {
                     let mut ingest_port: Option<::Value<u32>> = None;
                     let mut max_bitrate: Option<::Value<u32>> = None;
                     let mut max_latency: Option<::Value<u32>> = None;
+                    let mut min_latency: Option<::Value<u32>> = None;
                     let mut name: Option<::Value<String>> = None;
                     let mut protocol: Option<::Value<String>> = None;
                     let mut source_arn: Option<::Value<String>> = None;
+                    let mut source_ingest_port: Option<::Value<String>> = None;
                     let mut stream_id: Option<::Value<String>> = None;
                     let mut vpc_interface_name: Option<::Value<String>> = None;
                     let mut whitelist_cidr: Option<::Value<String>> = None;
@@ -1215,6 +1248,9 @@ pub mod flow {
                             "MaxLatency" => {
                                 max_latency = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "MinLatency" => {
+                                min_latency = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Name" => {
                                 name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1223,6 +1259,9 @@ pub mod flow {
                             }
                             "SourceArn" => {
                                 source_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SourceIngestPort" => {
+                                source_ingest_port = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "StreamId" => {
                                 stream_id = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1245,9 +1284,11 @@ pub mod flow {
                         ingest_port: ingest_port,
                         max_bitrate: max_bitrate,
                         max_latency: max_latency,
+                        min_latency: min_latency,
                         name: name,
                         protocol: protocol,
                         source_arn: source_arn,
+                        source_ingest_port: source_ingest_port,
                         stream_id: stream_id,
                         vpc_interface_name: vpc_interface_name,
                         whitelist_cidr: whitelist_cidr,
@@ -1427,7 +1468,7 @@ pub mod flow_output {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub algorithm: ::Value<String>,
+        pub algorithm: Option<::Value<String>>,
         /// Property [`KeyType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-encryption.html#cfn-mediaconnect-flowoutput-encryption-keytype).
         ///
         /// Update type: _Mutable_.
@@ -1448,7 +1489,9 @@ pub mod flow_output {
     impl ::codec::SerializeValue for Encryption {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Algorithm", &self.algorithm)?;
+            if let Some(ref algorithm) = self.algorithm {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Algorithm", algorithm)?;
+            }
             if let Some(ref key_type) = self.key_type {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyType", key_type)?;
             }
@@ -1494,7 +1537,7 @@ pub mod flow_output {
                     }
 
                     Ok(Encryption {
-                        algorithm: algorithm.ok_or(::serde::de::Error::missing_field("Algorithm"))?,
+                        algorithm: algorithm,
                         key_type: key_type,
                         role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
                         secret_arn: secret_arn.ok_or(::serde::de::Error::missing_field("SecretArn"))?,

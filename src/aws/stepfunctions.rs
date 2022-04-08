@@ -135,8 +135,8 @@ pub struct StateMachineProperties {
     pub state_machine_name: Option<::Value<String>>,
     /// Property [`StateMachineType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html#cfn-stepfunctions-statemachine-statemachinetype).
     ///
-    /// Update type: _Mutable_.
-    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub state_machine_type: Option<::Value<String>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html#cfn-stepfunctions-statemachine-tags).
     ///

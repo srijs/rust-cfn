@@ -561,8 +561,8 @@ pub struct Image {
 pub struct ImageProperties {
     /// Property [`ContainerRecipeArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-image.html#cfn-imagebuilder-image-containerrecipearn).
     ///
-    /// Update type: _Mutable_.
-    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub container_recipe_arn: Option<::Value<String>>,
     /// Property [`DistributionConfigurationArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-image.html#cfn-imagebuilder-image-distributionconfigurationarn).
     ///
@@ -917,6 +917,11 @@ pub struct ImageRecipe {
 /// Properties for the `ImageRecipe` resource.
 #[derive(Debug, Default)]
 pub struct ImageRecipeProperties {
+    /// Property [`AdditionalInstanceConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-imagerecipe.html#cfn-imagebuilder-imagerecipe-additionalinstanceconfiguration).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub additional_instance_configuration: Option<::Value<self::image_recipe::AdditionalInstanceConfiguration>>,
     /// Property [`BlockDeviceMappings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-imagerecipe.html#cfn-imagebuilder-imagerecipe-blockdevicemappings).
     ///
     /// Update type: _Immutable_.
@@ -962,6 +967,9 @@ pub struct ImageRecipeProperties {
 impl ::serde::Serialize for ImageRecipeProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref additional_instance_configuration) = self.additional_instance_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AdditionalInstanceConfiguration", additional_instance_configuration)?;
+        }
         if let Some(ref block_device_mappings) = self.block_device_mappings {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BlockDeviceMappings", block_device_mappings)?;
         }
@@ -994,6 +1002,7 @@ impl<'de> ::serde::Deserialize<'de> for ImageRecipeProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut additional_instance_configuration: Option<::Value<self::image_recipe::AdditionalInstanceConfiguration>> = None;
                 let mut block_device_mappings: Option<::ValueList<self::image_recipe::InstanceBlockDeviceMapping>> = None;
                 let mut components: Option<::ValueList<self::image_recipe::ComponentConfiguration>> = None;
                 let mut description: Option<::Value<String>> = None;
@@ -1005,6 +1014,9 @@ impl<'de> ::serde::Deserialize<'de> for ImageRecipeProperties {
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "AdditionalInstanceConfiguration" => {
+                            additional_instance_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "BlockDeviceMappings" => {
                             block_device_mappings = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -1034,6 +1046,7 @@ impl<'de> ::serde::Deserialize<'de> for ImageRecipeProperties {
                 }
 
                 Ok(ImageRecipeProperties {
+                    additional_instance_configuration: additional_instance_configuration,
                     block_device_mappings: block_device_mappings,
                     components: components.ok_or(::serde::de::Error::missing_field("Components"))?,
                     description: description,
@@ -1083,6 +1096,11 @@ pub struct InfrastructureConfigurationProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub description: Option<::Value<String>>,
+    /// Property [`InstanceMetadataOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-infrastructureconfiguration.html#cfn-imagebuilder-infrastructureconfiguration-instancemetadataoptions).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub instance_metadata_options: Option<::Value<self::infrastructure_configuration::InstanceMetadataOptions>>,
     /// Property [`InstanceProfileName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-imagebuilder-infrastructureconfiguration.html#cfn-imagebuilder-infrastructureconfiguration-instanceprofilename).
     ///
     /// Update type: _Mutable_.
@@ -1146,6 +1164,9 @@ impl ::serde::Serialize for InfrastructureConfigurationProperties {
         if let Some(ref description) = self.description {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
         }
+        if let Some(ref instance_metadata_options) = self.instance_metadata_options {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceMetadataOptions", instance_metadata_options)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceProfileName", &self.instance_profile_name)?;
         if let Some(ref instance_types) = self.instance_types {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceTypes", instance_types)?;
@@ -1192,6 +1213,7 @@ impl<'de> ::serde::Deserialize<'de> for InfrastructureConfigurationProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut description: Option<::Value<String>> = None;
+                let mut instance_metadata_options: Option<::Value<self::infrastructure_configuration::InstanceMetadataOptions>> = None;
                 let mut instance_profile_name: Option<::Value<String>> = None;
                 let mut instance_types: Option<::ValueList<String>> = None;
                 let mut key_pair: Option<::Value<String>> = None;
@@ -1208,6 +1230,9 @@ impl<'de> ::serde::Deserialize<'de> for InfrastructureConfigurationProperties {
                     match __cfn_key.as_ref() {
                         "Description" => {
                             description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "InstanceMetadataOptions" => {
+                            instance_metadata_options = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "InstanceProfileName" => {
                             instance_profile_name = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1248,6 +1273,7 @@ impl<'de> ::serde::Deserialize<'de> for InfrastructureConfigurationProperties {
 
                 Ok(InfrastructureConfigurationProperties {
                     description: description,
+                    instance_metadata_options: instance_metadata_options,
                     instance_profile_name: instance_profile_name.ok_or(::serde::de::Error::missing_field("InstanceProfileName"))?,
                     instance_types: instance_types,
                     key_pair: key_pair,
@@ -1370,6 +1396,11 @@ pub mod container_recipe {
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub snapshot_id: Option<::Value<String>>,
+        /// Property [`Throughput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-containerrecipe-ebsinstanceblockdevicespecification.html#cfn-imagebuilder-containerrecipe-ebsinstanceblockdevicespecification-throughput).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub throughput: Option<::Value<u32>>,
         /// Property [`VolumeSize`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-containerrecipe-ebsinstanceblockdevicespecification.html#cfn-imagebuilder-containerrecipe-ebsinstanceblockdevicespecification-volumesize).
         ///
         /// Update type: _Immutable_.
@@ -1400,6 +1431,9 @@ pub mod container_recipe {
             if let Some(ref snapshot_id) = self.snapshot_id {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotId", snapshot_id)?;
             }
+            if let Some(ref throughput) = self.throughput {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Throughput", throughput)?;
+            }
             if let Some(ref volume_size) = self.volume_size {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeSize", volume_size)?;
             }
@@ -1427,6 +1461,7 @@ pub mod container_recipe {
                     let mut iops: Option<::Value<u32>> = None;
                     let mut kms_key_id: Option<::Value<String>> = None;
                     let mut snapshot_id: Option<::Value<String>> = None;
+                    let mut throughput: Option<::Value<u32>> = None;
                     let mut volume_size: Option<::Value<u32>> = None;
                     let mut volume_type: Option<::Value<String>> = None;
 
@@ -1447,6 +1482,9 @@ pub mod container_recipe {
                             "SnapshotId" => {
                                 snapshot_id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Throughput" => {
+                                throughput = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "VolumeSize" => {
                                 volume_size = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1463,6 +1501,7 @@ pub mod container_recipe {
                         iops: iops,
                         kms_key_id: kms_key_id,
                         snapshot_id: snapshot_id,
+                        throughput: throughput,
                         volume_size: volume_size,
                         volume_type: volume_type,
                     })
@@ -2093,6 +2132,72 @@ pub mod image_pipeline {
 pub mod image_recipe {
     //! Property types for the `ImageRecipe` resource.
 
+    /// The [`AWS::ImageBuilder::ImageRecipe.AdditionalInstanceConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-additionalinstanceconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AdditionalInstanceConfiguration {
+        /// Property [`SystemsManagerAgent`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-additionalinstanceconfiguration.html#cfn-imagebuilder-imagerecipe-additionalinstanceconfiguration-systemsmanageragent).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub systems_manager_agent: Option<::Value<SystemsManagerAgent>>,
+        /// Property [`UserDataOverride`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-additionalinstanceconfiguration.html#cfn-imagebuilder-imagerecipe-additionalinstanceconfiguration-userdataoverride).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub user_data_override: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for AdditionalInstanceConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref systems_manager_agent) = self.systems_manager_agent {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SystemsManagerAgent", systems_manager_agent)?;
+            }
+            if let Some(ref user_data_override) = self.user_data_override {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserDataOverride", user_data_override)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AdditionalInstanceConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AdditionalInstanceConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AdditionalInstanceConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AdditionalInstanceConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut systems_manager_agent: Option<::Value<SystemsManagerAgent>> = None;
+                    let mut user_data_override: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SystemsManagerAgent" => {
+                                systems_manager_agent = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "UserDataOverride" => {
+                                user_data_override = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AdditionalInstanceConfiguration {
+                        systems_manager_agent: systems_manager_agent,
+                        user_data_override: user_data_override,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::ImageBuilder::ImageRecipe.ComponentConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-componentconfiguration.html) property type.
     #[derive(Debug, Default)]
     pub struct ComponentConfiguration {
@@ -2101,6 +2206,11 @@ pub mod image_recipe {
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub component_arn: Option<::Value<String>>,
+        /// Property [`Parameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-componentconfiguration.html#cfn-imagebuilder-imagerecipe-componentconfiguration-parameters).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub parameters: Option<::ValueList<ComponentParameter>>,
     }
 
     impl ::codec::SerializeValue for ComponentConfiguration {
@@ -2108,6 +2218,9 @@ pub mod image_recipe {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             if let Some(ref component_arn) = self.component_arn {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComponentArn", component_arn)?;
+            }
+            if let Some(ref parameters) = self.parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", parameters)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -2126,11 +2239,15 @@ pub mod image_recipe {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut component_arn: Option<::Value<String>> = None;
+                    let mut parameters: Option<::ValueList<ComponentParameter>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "ComponentArn" => {
                                 component_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Parameters" => {
+                                parameters = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -2138,6 +2255,69 @@ pub mod image_recipe {
 
                     Ok(ComponentConfiguration {
                         component_arn: component_arn,
+                        parameters: parameters,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ImageBuilder::ImageRecipe.ComponentParameter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-componentparameter.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ComponentParameter {
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-componentparameter.html#cfn-imagebuilder-imagerecipe-componentparameter-name).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub name: ::Value<String>,
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-componentparameter.html#cfn-imagebuilder-imagerecipe-componentparameter-value).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub value: ::ValueList<String>,
+    }
+
+    impl ::codec::SerializeValue for ComponentParameter {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ComponentParameter {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ComponentParameter, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ComponentParameter;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ComponentParameter")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut name: Option<::Value<String>> = None;
+                    let mut value: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Value" => {
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ComponentParameter {
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                        value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
                     })
                 }
             }
@@ -2174,6 +2354,11 @@ pub mod image_recipe {
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub snapshot_id: Option<::Value<String>>,
+        /// Property [`Throughput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-ebsinstanceblockdevicespecification.html#cfn-imagebuilder-imagerecipe-ebsinstanceblockdevicespecification-throughput).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub throughput: Option<::Value<u32>>,
         /// Property [`VolumeSize`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-ebsinstanceblockdevicespecification.html#cfn-imagebuilder-imagerecipe-ebsinstanceblockdevicespecification-volumesize).
         ///
         /// Update type: _Immutable_.
@@ -2204,6 +2389,9 @@ pub mod image_recipe {
             if let Some(ref snapshot_id) = self.snapshot_id {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotId", snapshot_id)?;
             }
+            if let Some(ref throughput) = self.throughput {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Throughput", throughput)?;
+            }
             if let Some(ref volume_size) = self.volume_size {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeSize", volume_size)?;
             }
@@ -2231,6 +2419,7 @@ pub mod image_recipe {
                     let mut iops: Option<::Value<u32>> = None;
                     let mut kms_key_id: Option<::Value<String>> = None;
                     let mut snapshot_id: Option<::Value<String>> = None;
+                    let mut throughput: Option<::Value<u32>> = None;
                     let mut volume_size: Option<::Value<u32>> = None;
                     let mut volume_type: Option<::Value<String>> = None;
 
@@ -2251,6 +2440,9 @@ pub mod image_recipe {
                             "SnapshotId" => {
                                 snapshot_id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Throughput" => {
+                                throughput = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "VolumeSize" => {
                                 volume_size = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -2267,6 +2459,7 @@ pub mod image_recipe {
                         iops: iops,
                         kms_key_id: kms_key_id,
                         snapshot_id: snapshot_id,
+                        throughput: throughput,
                         volume_size: volume_size,
                         volume_type: volume_type,
                     })
@@ -2368,10 +2561,129 @@ pub mod image_recipe {
             d.deserialize_map(Visitor)
         }
     }
+
+    /// The [`AWS::ImageBuilder::ImageRecipe.SystemsManagerAgent`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-systemsmanageragent.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SystemsManagerAgent {
+        /// Property [`UninstallAfterBuild`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-imagerecipe-systemsmanageragent.html#cfn-imagebuilder-imagerecipe-systemsmanageragent-uninstallafterbuild).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub uninstall_after_build: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for SystemsManagerAgent {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref uninstall_after_build) = self.uninstall_after_build {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UninstallAfterBuild", uninstall_after_build)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SystemsManagerAgent {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SystemsManagerAgent, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SystemsManagerAgent;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SystemsManagerAgent")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut uninstall_after_build: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "UninstallAfterBuild" => {
+                                uninstall_after_build = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SystemsManagerAgent {
+                        uninstall_after_build: uninstall_after_build,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 }
 
 pub mod infrastructure_configuration {
     //! Property types for the `InfrastructureConfiguration` resource.
+
+    /// The [`AWS::ImageBuilder::InfrastructureConfiguration.InstanceMetadataOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-infrastructureconfiguration-instancemetadataoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct InstanceMetadataOptions {
+        /// Property [`HttpPutResponseHopLimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-infrastructureconfiguration-instancemetadataoptions.html#cfn-imagebuilder-infrastructureconfiguration-instancemetadataoptions-httpputresponsehoplimit).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub http_put_response_hop_limit: Option<::Value<u32>>,
+        /// Property [`HttpTokens`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-infrastructureconfiguration-instancemetadataoptions.html#cfn-imagebuilder-infrastructureconfiguration-instancemetadataoptions-httptokens).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub http_tokens: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for InstanceMetadataOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref http_put_response_hop_limit) = self.http_put_response_hop_limit {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HttpPutResponseHopLimit", http_put_response_hop_limit)?;
+            }
+            if let Some(ref http_tokens) = self.http_tokens {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HttpTokens", http_tokens)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for InstanceMetadataOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<InstanceMetadataOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = InstanceMetadataOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type InstanceMetadataOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut http_put_response_hop_limit: Option<::Value<u32>> = None;
+                    let mut http_tokens: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "HttpPutResponseHopLimit" => {
+                                http_put_response_hop_limit = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HttpTokens" => {
+                                http_tokens = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(InstanceMetadataOptions {
+                        http_put_response_hop_limit: http_put_response_hop_limit,
+                        http_tokens: http_tokens,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::ImageBuilder::InfrastructureConfiguration.Logging`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-imagebuilder-infrastructureconfiguration-logging.html) property type.
     #[derive(Debug, Default)]

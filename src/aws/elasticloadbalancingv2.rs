@@ -574,6 +574,11 @@ pub struct TargetGroupProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub healthy_threshold_count: Option<::Value<u32>>,
+    /// Property [`IpAddressType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html#cfn-elasticloadbalancingv2-targetgroup-ipaddresstype).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub ip_address_type: Option<::Value<String>>,
     /// Property [`Matcher`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html#cfn-elasticloadbalancingv2-targetgroup-matcher).
     ///
     /// Update type: _Mutable_.
@@ -655,6 +660,9 @@ impl ::serde::Serialize for TargetGroupProperties {
         if let Some(ref healthy_threshold_count) = self.healthy_threshold_count {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthyThresholdCount", healthy_threshold_count)?;
         }
+        if let Some(ref ip_address_type) = self.ip_address_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IpAddressType", ip_address_type)?;
+        }
         if let Some(ref matcher) = self.matcher {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Matcher", matcher)?;
         }
@@ -711,6 +719,7 @@ impl<'de> ::serde::Deserialize<'de> for TargetGroupProperties {
                 let mut health_check_protocol: Option<::Value<String>> = None;
                 let mut health_check_timeout_seconds: Option<::Value<u32>> = None;
                 let mut healthy_threshold_count: Option<::Value<u32>> = None;
+                let mut ip_address_type: Option<::Value<String>> = None;
                 let mut matcher: Option<::Value<self::target_group::Matcher>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut port: Option<::Value<u32>> = None;
@@ -745,6 +754,9 @@ impl<'de> ::serde::Deserialize<'de> for TargetGroupProperties {
                         }
                         "HealthyThresholdCount" => {
                             healthy_threshold_count = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "IpAddressType" => {
+                            ip_address_type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Matcher" => {
                             matcher = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -791,6 +803,7 @@ impl<'de> ::serde::Deserialize<'de> for TargetGroupProperties {
                     health_check_protocol: health_check_protocol,
                     health_check_timeout_seconds: health_check_timeout_seconds,
                     healthy_threshold_count: healthy_threshold_count,
+                    ip_address_type: ip_address_type,
                     matcher: matcher,
                     name: name,
                     port: port,

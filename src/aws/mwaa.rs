@@ -98,7 +98,7 @@ pub struct EnvironmentProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub tags: Option<::Value<self::environment::TagMap>>,
+    pub tags: Option<::Value<::json::Value>>,
     /// Property [`WebserverAccessMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mwaa-environment.html#cfn-mwaa-environment-webserveraccessmode).
     ///
     /// Update type: _Mutable_.
@@ -205,7 +205,7 @@ impl<'de> ::serde::Deserialize<'de> for EnvironmentProperties {
                 let mut requirements_s3_path: Option<::Value<String>> = None;
                 let mut schedulers: Option<::Value<u32>> = None;
                 let mut source_bucket_arn: Option<::Value<String>> = None;
-                let mut tags: Option<::Value<self::environment::TagMap>> = None;
+                let mut tags: Option<::Value<::json::Value>> = None;
                 let mut webserver_access_mode: Option<::Value<String>> = None;
                 let mut weekly_maintenance_window_start: Option<::Value<String>> = None;
 
@@ -569,38 +569,6 @@ pub mod environment {
                         security_group_ids: security_group_ids,
                         subnet_ids: subnet_ids,
                     })
-                }
-            }
-
-            d.deserialize_map(Visitor)
-        }
-    }
-
-    /// The [`AWS::MWAA::Environment.TagMap`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mwaa-environment-tagmap.html) property type.
-    #[derive(Debug, Default)]
-    pub struct TagMap {
-    }
-
-    impl ::codec::SerializeValue for TagMap {
-        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            let map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::end(map)
-        }
-    }
-
-    impl ::codec::DeserializeValue for TagMap {
-        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TagMap, D::Error> {
-            struct Visitor;
-
-            impl<'de> ::serde::de::Visitor<'de> for Visitor {
-                type Value = TagMap;
-
-                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-                    write!(f, "a struct of type TagMap")
-                }
-
-                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, _map: A) -> Result<Self::Value, A::Error> {
-                    Ok(TagMap {})
                 }
             }
 

@@ -2979,6 +2979,11 @@ pub mod domain_name {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub endpoint_type: Option<::Value<String>>,
+        /// Property [`OwnershipVerificationCertificateArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-domainname-domainnameconfiguration.html#cfn-apigatewayv2-domainname-domainnameconfiguration-ownershipverificationcertificatearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ownership_verification_certificate_arn: Option<::Value<String>>,
         /// Property [`SecurityPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-domainname-domainnameconfiguration.html#cfn-apigatewayv2-domainname-domainnameconfiguration-securitypolicy).
         ///
         /// Update type: _Mutable_.
@@ -2997,6 +3002,9 @@ pub mod domain_name {
             }
             if let Some(ref endpoint_type) = self.endpoint_type {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndpointType", endpoint_type)?;
+            }
+            if let Some(ref ownership_verification_certificate_arn) = self.ownership_verification_certificate_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OwnershipVerificationCertificateArn", ownership_verification_certificate_arn)?;
             }
             if let Some(ref security_policy) = self.security_policy {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityPolicy", security_policy)?;
@@ -3020,6 +3028,7 @@ pub mod domain_name {
                     let mut certificate_arn: Option<::Value<String>> = None;
                     let mut certificate_name: Option<::Value<String>> = None;
                     let mut endpoint_type: Option<::Value<String>> = None;
+                    let mut ownership_verification_certificate_arn: Option<::Value<String>> = None;
                     let mut security_policy: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -3033,6 +3042,9 @@ pub mod domain_name {
                             "EndpointType" => {
                                 endpoint_type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "OwnershipVerificationCertificateArn" => {
+                                ownership_verification_certificate_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "SecurityPolicy" => {
                                 security_policy = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -3044,6 +3056,7 @@ pub mod domain_name {
                         certificate_arn: certificate_arn,
                         certificate_name: certificate_name,
                         endpoint_type: endpoint_type,
+                        ownership_verification_certificate_arn: ownership_verification_certificate_arn,
                         security_policy: security_policy,
                     })
                 }

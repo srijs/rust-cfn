@@ -262,6 +262,11 @@ pub struct CostCategoryProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub rules: ::Value<String>,
+    /// Property [`SplitChargeRules`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ce-costcategory.html#cfn-ce-costcategory-splitchargerules).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub split_charge_rules: Option<::Value<String>>,
 }
 
 impl ::serde::Serialize for CostCategoryProperties {
@@ -273,6 +278,9 @@ impl ::serde::Serialize for CostCategoryProperties {
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleVersion", &self.rule_version)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Rules", &self.rules)?;
+        if let Some(ref split_charge_rules) = self.split_charge_rules {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SplitChargeRules", split_charge_rules)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -293,6 +301,7 @@ impl<'de> ::serde::Deserialize<'de> for CostCategoryProperties {
                 let mut name: Option<::Value<String>> = None;
                 let mut rule_version: Option<::Value<String>> = None;
                 let mut rules: Option<::Value<String>> = None;
+                let mut split_charge_rules: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -308,6 +317,9 @@ impl<'de> ::serde::Deserialize<'de> for CostCategoryProperties {
                         "Rules" => {
                             rules = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "SplitChargeRules" => {
+                            split_charge_rules = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
@@ -317,6 +329,7 @@ impl<'de> ::serde::Deserialize<'de> for CostCategoryProperties {
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     rule_version: rule_version.ok_or(::serde::de::Error::missing_field("RuleVersion"))?,
                     rules: rules.ok_or(::serde::de::Error::missing_field("Rules"))?,
+                    split_charge_rules: split_charge_rules,
                 })
             }
         }

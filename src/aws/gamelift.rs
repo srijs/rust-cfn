@@ -786,6 +786,11 @@ pub struct GameSessionQueueProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub priority_configuration: Option<::Value<self::game_session_queue::PriorityConfiguration>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-gamesessionqueue.html#cfn-gamelift-gamesessionqueue-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
     /// Property [`TimeoutInSeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-gamesessionqueue.html#cfn-gamelift-gamesessionqueue-timeoutinseconds).
     ///
     /// Update type: _Mutable_.
@@ -815,6 +820,9 @@ impl ::serde::Serialize for GameSessionQueueProperties {
         if let Some(ref priority_configuration) = self.priority_configuration {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PriorityConfiguration", priority_configuration)?;
         }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         if let Some(ref timeout_in_seconds) = self.timeout_in_seconds {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimeoutInSeconds", timeout_in_seconds)?;
         }
@@ -841,6 +849,7 @@ impl<'de> ::serde::Deserialize<'de> for GameSessionQueueProperties {
                 let mut notification_target: Option<::Value<String>> = None;
                 let mut player_latency_policies: Option<::ValueList<self::game_session_queue::PlayerLatencyPolicy>> = None;
                 let mut priority_configuration: Option<::Value<self::game_session_queue::PriorityConfiguration>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut timeout_in_seconds: Option<::Value<u32>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -866,6 +875,9 @@ impl<'de> ::serde::Deserialize<'de> for GameSessionQueueProperties {
                         "PriorityConfiguration" => {
                             priority_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "TimeoutInSeconds" => {
                             timeout_in_seconds = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -881,6 +893,7 @@ impl<'de> ::serde::Deserialize<'de> for GameSessionQueueProperties {
                     notification_target: notification_target,
                     player_latency_policies: player_latency_policies,
                     priority_configuration: priority_configuration,
+                    tags: tags,
                     timeout_in_seconds: timeout_in_seconds,
                 })
             }
@@ -988,6 +1001,11 @@ pub struct MatchmakingConfigurationProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub rule_set_name: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-matchmakingconfiguration.html#cfn-gamelift-matchmakingconfiguration-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
 }
 
 impl ::serde::Serialize for MatchmakingConfigurationProperties {
@@ -1027,6 +1045,9 @@ impl ::serde::Serialize for MatchmakingConfigurationProperties {
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RequestTimeoutSeconds", &self.request_timeout_seconds)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleSetName", &self.rule_set_name)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -1057,6 +1078,7 @@ impl<'de> ::serde::Deserialize<'de> for MatchmakingConfigurationProperties {
                 let mut notification_target: Option<::Value<String>> = None;
                 let mut request_timeout_seconds: Option<::Value<u32>> = None;
                 let mut rule_set_name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1102,6 +1124,9 @@ impl<'de> ::serde::Deserialize<'de> for MatchmakingConfigurationProperties {
                         "RuleSetName" => {
                             rule_set_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
@@ -1121,6 +1146,7 @@ impl<'de> ::serde::Deserialize<'de> for MatchmakingConfigurationProperties {
                     notification_target: notification_target,
                     request_timeout_seconds: request_timeout_seconds.ok_or(::serde::de::Error::missing_field("RequestTimeoutSeconds"))?,
                     rule_set_name: rule_set_name.ok_or(::serde::de::Error::missing_field("RuleSetName"))?,
+                    tags: tags,
                 })
             }
         }
@@ -1167,6 +1193,11 @@ pub struct MatchmakingRuleSetProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub rule_set_body: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-matchmakingruleset.html#cfn-gamelift-matchmakingruleset-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
 }
 
 impl ::serde::Serialize for MatchmakingRuleSetProperties {
@@ -1174,6 +1205,9 @@ impl ::serde::Serialize for MatchmakingRuleSetProperties {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleSetBody", &self.rule_set_body)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -1192,6 +1226,7 @@ impl<'de> ::serde::Deserialize<'de> for MatchmakingRuleSetProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut name: Option<::Value<String>> = None;
                 let mut rule_set_body: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1201,6 +1236,9 @@ impl<'de> ::serde::Deserialize<'de> for MatchmakingRuleSetProperties {
                         "RuleSetBody" => {
                             rule_set_body = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
@@ -1208,6 +1246,7 @@ impl<'de> ::serde::Deserialize<'de> for MatchmakingRuleSetProperties {
                 Ok(MatchmakingRuleSetProperties {
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     rule_set_body: rule_set_body.ok_or(::serde::de::Error::missing_field("RuleSetBody"))?,
+                    tags: tags,
                 })
             }
         }
@@ -1254,6 +1293,11 @@ pub struct ScriptProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub storage_location: ::Value<self::script::S3Location>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-script.html#cfn-gamelift-script-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
     /// Property [`Version`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-script.html#cfn-gamelift-script-version).
     ///
     /// Update type: _Mutable_.
@@ -1268,6 +1312,9 @@ impl ::serde::Serialize for ScriptProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "StorageLocation", &self.storage_location)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         if let Some(ref version) = self.version {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Version", version)?;
         }
@@ -1289,6 +1336,7 @@ impl<'de> ::serde::Deserialize<'de> for ScriptProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut name: Option<::Value<String>> = None;
                 let mut storage_location: Option<::Value<self::script::S3Location>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut version: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -1298,6 +1346,9 @@ impl<'de> ::serde::Deserialize<'de> for ScriptProperties {
                         }
                         "StorageLocation" => {
                             storage_location = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Version" => {
                             version = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1309,6 +1360,7 @@ impl<'de> ::serde::Deserialize<'de> for ScriptProperties {
                 Ok(ScriptProperties {
                     name: name,
                     storage_location: storage_location.ok_or(::serde::de::Error::missing_field("StorageLocation"))?,
+                    tags: tags,
                     version: version,
                 })
             }

@@ -269,6 +269,11 @@ pub struct RecordingConfigurationProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`ThumbnailConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ivs-recordingconfiguration.html#cfn-ivs-recordingconfiguration-thumbnailconfiguration).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub thumbnail_configuration: Option<::Value<self::recording_configuration::ThumbnailConfiguration>>,
 }
 
 impl ::serde::Serialize for RecordingConfigurationProperties {
@@ -280,6 +285,9 @@ impl ::serde::Serialize for RecordingConfigurationProperties {
         }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref thumbnail_configuration) = self.thumbnail_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThumbnailConfiguration", thumbnail_configuration)?;
         }
         ::serde::ser::SerializeMap::end(map)
     }
@@ -300,6 +308,7 @@ impl<'de> ::serde::Deserialize<'de> for RecordingConfigurationProperties {
                 let mut destination_configuration: Option<::Value<self::recording_configuration::DestinationConfiguration>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut thumbnail_configuration: Option<::Value<self::recording_configuration::ThumbnailConfiguration>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -312,6 +321,9 @@ impl<'de> ::serde::Deserialize<'de> for RecordingConfigurationProperties {
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ThumbnailConfiguration" => {
+                            thumbnail_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
@@ -320,6 +332,7 @@ impl<'de> ::serde::Deserialize<'de> for RecordingConfigurationProperties {
                     destination_configuration: destination_configuration.ok_or(::serde::de::Error::missing_field("DestinationConfiguration"))?,
                     name: name,
                     tags: tags,
+                    thumbnail_configuration: thumbnail_configuration,
                 })
             }
         }
@@ -533,6 +546,70 @@ pub mod recording_configuration {
 
                     Ok(S3DestinationConfiguration {
                         bucket_name: bucket_name.ok_or(::serde::de::Error::missing_field("BucketName"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::IVS::RecordingConfiguration.ThumbnailConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-recordingconfiguration-thumbnailconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ThumbnailConfiguration {
+        /// Property [`RecordingMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-recordingconfiguration-thumbnailconfiguration.html#cfn-ivs-recordingconfiguration-thumbnailconfiguration-recordingmode).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub recording_mode: ::Value<String>,
+        /// Property [`TargetIntervalSeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ivs-recordingconfiguration-thumbnailconfiguration.html#cfn-ivs-recordingconfiguration-thumbnailconfiguration-targetintervalseconds).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub target_interval_seconds: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for ThumbnailConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordingMode", &self.recording_mode)?;
+            if let Some(ref target_interval_seconds) = self.target_interval_seconds {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetIntervalSeconds", target_interval_seconds)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ThumbnailConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ThumbnailConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ThumbnailConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ThumbnailConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut recording_mode: Option<::Value<String>> = None;
+                    let mut target_interval_seconds: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "RecordingMode" => {
+                                recording_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TargetIntervalSeconds" => {
+                                target_interval_seconds = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ThumbnailConfiguration {
+                        recording_mode: recording_mode.ok_or(::serde::de::Error::missing_field("RecordingMode"))?,
+                        target_interval_seconds: target_interval_seconds,
                     })
                 }
             }

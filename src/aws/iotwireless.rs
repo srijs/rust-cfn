@@ -239,6 +239,336 @@ impl From<DeviceProfileProperties> for DeviceProfile {
     }
 }
 
+/// The [`AWS::IoTWireless::FuotaTask`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html) resource type.
+#[derive(Debug, Default)]
+pub struct FuotaTask {
+    properties: FuotaTaskProperties
+}
+
+/// Properties for the `FuotaTask` resource.
+#[derive(Debug, Default)]
+pub struct FuotaTaskProperties {
+    /// Property [`AssociateMulticastGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html#cfn-iotwireless-fuotatask-associatemulticastgroup).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub associate_multicast_group: Option<::Value<String>>,
+    /// Property [`AssociateWirelessDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html#cfn-iotwireless-fuotatask-associatewirelessdevice).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub associate_wireless_device: Option<::Value<String>>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html#cfn-iotwireless-fuotatask-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`DisassociateMulticastGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html#cfn-iotwireless-fuotatask-disassociatemulticastgroup).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub disassociate_multicast_group: Option<::Value<String>>,
+    /// Property [`DisassociateWirelessDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html#cfn-iotwireless-fuotatask-disassociatewirelessdevice).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub disassociate_wireless_device: Option<::Value<String>>,
+    /// Property [`FirmwareUpdateImage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html#cfn-iotwireless-fuotatask-firmwareupdateimage).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub firmware_update_image: ::Value<String>,
+    /// Property [`FirmwareUpdateRole`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html#cfn-iotwireless-fuotatask-firmwareupdaterole).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub firmware_update_role: ::Value<String>,
+    /// Property [`LoRaWAN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html#cfn-iotwireless-fuotatask-lorawan).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub lo_ra_wan: ::Value<self::fuota_task::LoRaWAN>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html#cfn-iotwireless-fuotatask-name).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub name: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html#cfn-iotwireless-fuotatask-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for FuotaTaskProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref associate_multicast_group) = self.associate_multicast_group {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssociateMulticastGroup", associate_multicast_group)?;
+        }
+        if let Some(ref associate_wireless_device) = self.associate_wireless_device {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssociateWirelessDevice", associate_wireless_device)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref disassociate_multicast_group) = self.disassociate_multicast_group {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisassociateMulticastGroup", disassociate_multicast_group)?;
+        }
+        if let Some(ref disassociate_wireless_device) = self.disassociate_wireless_device {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisassociateWirelessDevice", disassociate_wireless_device)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "FirmwareUpdateImage", &self.firmware_update_image)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "FirmwareUpdateRole", &self.firmware_update_role)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoRaWAN", &self.lo_ra_wan)?;
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for FuotaTaskProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<FuotaTaskProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = FuotaTaskProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type FuotaTaskProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut associate_multicast_group: Option<::Value<String>> = None;
+                let mut associate_wireless_device: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut disassociate_multicast_group: Option<::Value<String>> = None;
+                let mut disassociate_wireless_device: Option<::Value<String>> = None;
+                let mut firmware_update_image: Option<::Value<String>> = None;
+                let mut firmware_update_role: Option<::Value<String>> = None;
+                let mut lo_ra_wan: Option<::Value<self::fuota_task::LoRaWAN>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AssociateMulticastGroup" => {
+                            associate_multicast_group = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "AssociateWirelessDevice" => {
+                            associate_wireless_device = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DisassociateMulticastGroup" => {
+                            disassociate_multicast_group = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DisassociateWirelessDevice" => {
+                            disassociate_wireless_device = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "FirmwareUpdateImage" => {
+                            firmware_update_image = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "FirmwareUpdateRole" => {
+                            firmware_update_role = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "LoRaWAN" => {
+                            lo_ra_wan = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(FuotaTaskProperties {
+                    associate_multicast_group: associate_multicast_group,
+                    associate_wireless_device: associate_wireless_device,
+                    description: description,
+                    disassociate_multicast_group: disassociate_multicast_group,
+                    disassociate_wireless_device: disassociate_wireless_device,
+                    firmware_update_image: firmware_update_image.ok_or(::serde::de::Error::missing_field("FirmwareUpdateImage"))?,
+                    firmware_update_role: firmware_update_role.ok_or(::serde::de::Error::missing_field("FirmwareUpdateRole"))?,
+                    lo_ra_wan: lo_ra_wan.ok_or(::serde::de::Error::missing_field("LoRaWAN"))?,
+                    name: name,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for FuotaTask {
+    type Properties = FuotaTaskProperties;
+    const TYPE: &'static str = "AWS::IoTWireless::FuotaTask";
+    fn properties(&self) -> &FuotaTaskProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut FuotaTaskProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for FuotaTask {}
+
+impl From<FuotaTaskProperties> for FuotaTask {
+    fn from(properties: FuotaTaskProperties) -> FuotaTask {
+        FuotaTask { properties }
+    }
+}
+
+/// The [`AWS::IoTWireless::MulticastGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-multicastgroup.html) resource type.
+#[derive(Debug, Default)]
+pub struct MulticastGroup {
+    properties: MulticastGroupProperties
+}
+
+/// Properties for the `MulticastGroup` resource.
+#[derive(Debug, Default)]
+pub struct MulticastGroupProperties {
+    /// Property [`AssociateWirelessDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-multicastgroup.html#cfn-iotwireless-multicastgroup-associatewirelessdevice).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub associate_wireless_device: Option<::Value<String>>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-multicastgroup.html#cfn-iotwireless-multicastgroup-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`DisassociateWirelessDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-multicastgroup.html#cfn-iotwireless-multicastgroup-disassociatewirelessdevice).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub disassociate_wireless_device: Option<::Value<String>>,
+    /// Property [`LoRaWAN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-multicastgroup.html#cfn-iotwireless-multicastgroup-lorawan).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub lo_ra_wan: ::Value<self::multicast_group::LoRaWAN>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-multicastgroup.html#cfn-iotwireless-multicastgroup-name).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub name: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-multicastgroup.html#cfn-iotwireless-multicastgroup-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for MulticastGroupProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref associate_wireless_device) = self.associate_wireless_device {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssociateWirelessDevice", associate_wireless_device)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref disassociate_wireless_device) = self.disassociate_wireless_device {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisassociateWirelessDevice", disassociate_wireless_device)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoRaWAN", &self.lo_ra_wan)?;
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for MulticastGroupProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<MulticastGroupProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = MulticastGroupProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type MulticastGroupProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut associate_wireless_device: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut disassociate_wireless_device: Option<::Value<String>> = None;
+                let mut lo_ra_wan: Option<::Value<self::multicast_group::LoRaWAN>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AssociateWirelessDevice" => {
+                            associate_wireless_device = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DisassociateWirelessDevice" => {
+                            disassociate_wireless_device = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "LoRaWAN" => {
+                            lo_ra_wan = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(MulticastGroupProperties {
+                    associate_wireless_device: associate_wireless_device,
+                    description: description,
+                    disassociate_wireless_device: disassociate_wireless_device,
+                    lo_ra_wan: lo_ra_wan.ok_or(::serde::de::Error::missing_field("LoRaWAN"))?,
+                    name: name,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for MulticastGroup {
+    type Properties = MulticastGroupProperties;
+    const TYPE: &'static str = "AWS::IoTWireless::MulticastGroup";
+    fn properties(&self) -> &MulticastGroupProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut MulticastGroupProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for MulticastGroup {}
+
+impl From<MulticastGroupProperties> for MulticastGroup {
+    fn from(properties: MulticastGroupProperties) -> MulticastGroup {
+        MulticastGroup { properties }
+    }
+}
+
 /// The [`AWS::IoTWireless::PartnerAccount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-partneraccount.html) resource type.
 #[derive(Debug, Default)]
 pub struct PartnerAccount {
@@ -1163,6 +1493,166 @@ pub mod device_profile {
                         supports_class_b: supports_class_b,
                         supports_class_c: supports_class_c,
                         supports_join: supports_join,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod fuota_task {
+    //! Property types for the `FuotaTask` resource.
+
+    /// The [`AWS::IoTWireless::FuotaTask.LoRaWAN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-fuotatask-lorawan.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LoRaWAN {
+        /// Property [`RfRegion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-fuotatask-lorawan.html#cfn-iotwireless-fuotatask-lorawan-rfregion).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub rf_region: ::Value<String>,
+        /// Property [`StartTime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-fuotatask-lorawan.html#cfn-iotwireless-fuotatask-lorawan-starttime).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub start_time: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for LoRaWAN {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RfRegion", &self.rf_region)?;
+            if let Some(ref start_time) = self.start_time {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StartTime", start_time)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LoRaWAN {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LoRaWAN, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LoRaWAN;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LoRaWAN")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut rf_region: Option<::Value<String>> = None;
+                    let mut start_time: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "RfRegion" => {
+                                rf_region = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "StartTime" => {
+                                start_time = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LoRaWAN {
+                        rf_region: rf_region.ok_or(::serde::de::Error::missing_field("RfRegion"))?,
+                        start_time: start_time,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod multicast_group {
+    //! Property types for the `MulticastGroup` resource.
+
+    /// The [`AWS::IoTWireless::MulticastGroup.LoRaWAN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-multicastgroup-lorawan.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LoRaWAN {
+        /// Property [`DlClass`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-multicastgroup-lorawan.html#cfn-iotwireless-multicastgroup-lorawan-dlclass).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub dl_class: ::Value<String>,
+        /// Property [`NumberOfDevicesInGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-multicastgroup-lorawan.html#cfn-iotwireless-multicastgroup-lorawan-numberofdevicesingroup).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub number_of_devices_in_group: Option<::Value<u32>>,
+        /// Property [`NumberOfDevicesRequested`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-multicastgroup-lorawan.html#cfn-iotwireless-multicastgroup-lorawan-numberofdevicesrequested).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub number_of_devices_requested: Option<::Value<u32>>,
+        /// Property [`RfRegion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-multicastgroup-lorawan.html#cfn-iotwireless-multicastgroup-lorawan-rfregion).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub rf_region: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for LoRaWAN {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DlClass", &self.dl_class)?;
+            if let Some(ref number_of_devices_in_group) = self.number_of_devices_in_group {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NumberOfDevicesInGroup", number_of_devices_in_group)?;
+            }
+            if let Some(ref number_of_devices_requested) = self.number_of_devices_requested {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NumberOfDevicesRequested", number_of_devices_requested)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RfRegion", &self.rf_region)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LoRaWAN {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LoRaWAN, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LoRaWAN;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LoRaWAN")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut dl_class: Option<::Value<String>> = None;
+                    let mut number_of_devices_in_group: Option<::Value<u32>> = None;
+                    let mut number_of_devices_requested: Option<::Value<u32>> = None;
+                    let mut rf_region: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DlClass" => {
+                                dl_class = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "NumberOfDevicesInGroup" => {
+                                number_of_devices_in_group = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "NumberOfDevicesRequested" => {
+                                number_of_devices_requested = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RfRegion" => {
+                                rf_region = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LoRaWAN {
+                        dl_class: dl_class.ok_or(::serde::de::Error::missing_field("DlClass"))?,
+                        number_of_devices_in_group: number_of_devices_in_group,
+                        number_of_devices_requested: number_of_devices_requested,
+                        rf_region: rf_region.ok_or(::serde::de::Error::missing_field("RfRegion"))?,
                     })
                 }
             }

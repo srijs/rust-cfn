@@ -16,14 +16,19 @@ pub struct AccessPointProperties {
     pub bucket: ::Value<String>,
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-accesspoint.html#cfn-s3-accesspoint-name).
     ///
-    /// Update type: _Mutable_.
-    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub name: Option<::Value<String>>,
     /// Property [`Policy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-accesspoint.html#cfn-s3-accesspoint-policy).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub policy: Option<::Value<::json::Value>>,
+    /// Property [`PolicyStatus`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-accesspoint.html#cfn-s3-accesspoint-policystatus).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub policy_status: Option<::Value<::json::Value>>,
     /// Property [`PublicAccessBlockConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-accesspoint.html#cfn-s3-accesspoint-publicaccessblockconfiguration).
     ///
     /// Update type: _Immutable_.
@@ -45,6 +50,9 @@ impl ::serde::Serialize for AccessPointProperties {
         }
         if let Some(ref policy) = self.policy {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Policy", policy)?;
+        }
+        if let Some(ref policy_status) = self.policy_status {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyStatus", policy_status)?;
         }
         if let Some(ref public_access_block_configuration) = self.public_access_block_configuration {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PublicAccessBlockConfiguration", public_access_block_configuration)?;
@@ -71,6 +79,7 @@ impl<'de> ::serde::Deserialize<'de> for AccessPointProperties {
                 let mut bucket: Option<::Value<String>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut policy: Option<::Value<::json::Value>> = None;
+                let mut policy_status: Option<::Value<::json::Value>> = None;
                 let mut public_access_block_configuration: Option<::Value<self::access_point::PublicAccessBlockConfiguration>> = None;
                 let mut vpc_configuration: Option<::Value<self::access_point::VpcConfiguration>> = None;
 
@@ -84,6 +93,9 @@ impl<'de> ::serde::Deserialize<'de> for AccessPointProperties {
                         }
                         "Policy" => {
                             policy = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PolicyStatus" => {
+                            policy_status = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "PublicAccessBlockConfiguration" => {
                             public_access_block_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -99,6 +111,7 @@ impl<'de> ::serde::Deserialize<'de> for AccessPointProperties {
                     bucket: bucket.ok_or(::serde::de::Error::missing_field("Bucket"))?,
                     name: name,
                     policy: policy,
+                    policy_status: policy_status,
                     public_access_block_configuration: public_access_block_configuration,
                     vpc_configuration: vpc_configuration,
                 })
@@ -537,6 +550,195 @@ impl ::private::Sealed for BucketPolicy {}
 impl From<BucketPolicyProperties> for BucketPolicy {
     fn from(properties: BucketPolicyProperties) -> BucketPolicy {
         BucketPolicy { properties }
+    }
+}
+
+/// The [`AWS::S3::MultiRegionAccessPoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-multiregionaccesspoint.html) resource type.
+#[derive(Debug, Default)]
+pub struct MultiRegionAccessPoint {
+    properties: MultiRegionAccessPointProperties
+}
+
+/// Properties for the `MultiRegionAccessPoint` resource.
+#[derive(Debug, Default)]
+pub struct MultiRegionAccessPointProperties {
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-multiregionaccesspoint.html#cfn-s3-multiregionaccesspoint-name).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub name: Option<::Value<String>>,
+    /// Property [`PublicAccessBlockConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-multiregionaccesspoint.html#cfn-s3-multiregionaccesspoint-publicaccessblockconfiguration).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub public_access_block_configuration: Option<::Value<self::multi_region_access_point::PublicAccessBlockConfiguration>>,
+    /// Property [`Regions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-multiregionaccesspoint.html#cfn-s3-multiregionaccesspoint-regions).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub regions: ::ValueList<self::multi_region_access_point::Region>,
+}
+
+impl ::serde::Serialize for MultiRegionAccessPointProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
+        if let Some(ref public_access_block_configuration) = self.public_access_block_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PublicAccessBlockConfiguration", public_access_block_configuration)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Regions", &self.regions)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for MultiRegionAccessPointProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<MultiRegionAccessPointProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = MultiRegionAccessPointProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type MultiRegionAccessPointProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut name: Option<::Value<String>> = None;
+                let mut public_access_block_configuration: Option<::Value<self::multi_region_access_point::PublicAccessBlockConfiguration>> = None;
+                let mut regions: Option<::ValueList<self::multi_region_access_point::Region>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PublicAccessBlockConfiguration" => {
+                            public_access_block_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Regions" => {
+                            regions = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(MultiRegionAccessPointProperties {
+                    name: name,
+                    public_access_block_configuration: public_access_block_configuration,
+                    regions: regions.ok_or(::serde::de::Error::missing_field("Regions"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for MultiRegionAccessPoint {
+    type Properties = MultiRegionAccessPointProperties;
+    const TYPE: &'static str = "AWS::S3::MultiRegionAccessPoint";
+    fn properties(&self) -> &MultiRegionAccessPointProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut MultiRegionAccessPointProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for MultiRegionAccessPoint {}
+
+impl From<MultiRegionAccessPointProperties> for MultiRegionAccessPoint {
+    fn from(properties: MultiRegionAccessPointProperties) -> MultiRegionAccessPoint {
+        MultiRegionAccessPoint { properties }
+    }
+}
+
+/// The [`AWS::S3::MultiRegionAccessPointPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-multiregionaccesspointpolicy.html) resource type.
+#[derive(Debug, Default)]
+pub struct MultiRegionAccessPointPolicy {
+    properties: MultiRegionAccessPointPolicyProperties
+}
+
+/// Properties for the `MultiRegionAccessPointPolicy` resource.
+#[derive(Debug, Default)]
+pub struct MultiRegionAccessPointPolicyProperties {
+    /// Property [`MrapName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-multiregionaccesspointpolicy.html#cfn-s3-multiregionaccesspointpolicy-mrapname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub mrap_name: ::Value<String>,
+    /// Property [`Policy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-multiregionaccesspointpolicy.html#cfn-s3-multiregionaccesspointpolicy-policy).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub policy: ::Value<::json::Value>,
+}
+
+impl ::serde::Serialize for MultiRegionAccessPointPolicyProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MrapName", &self.mrap_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Policy", &self.policy)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for MultiRegionAccessPointPolicyProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<MultiRegionAccessPointPolicyProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = MultiRegionAccessPointPolicyProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type MultiRegionAccessPointPolicyProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut mrap_name: Option<::Value<String>> = None;
+                let mut policy: Option<::Value<::json::Value>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "MrapName" => {
+                            mrap_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Policy" => {
+                            policy = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(MultiRegionAccessPointPolicyProperties {
+                    mrap_name: mrap_name.ok_or(::serde::de::Error::missing_field("MrapName"))?,
+                    policy: policy.ok_or(::serde::de::Error::missing_field("Policy"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for MultiRegionAccessPointPolicy {
+    type Properties = MultiRegionAccessPointPolicyProperties;
+    const TYPE: &'static str = "AWS::S3::MultiRegionAccessPointPolicy";
+    fn properties(&self) -> &MultiRegionAccessPointPolicyProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut MultiRegionAccessPointPolicyProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for MultiRegionAccessPointPolicy {}
+
+impl From<MultiRegionAccessPointPolicyProperties> for MultiRegionAccessPointPolicy {
+    fn from(properties: MultiRegionAccessPointPolicyProperties) -> MultiRegionAccessPointPolicy {
+        MultiRegionAccessPointPolicy { properties }
     }
 }
 
@@ -1571,6 +1773,59 @@ pub mod bucket {
         }
     }
 
+    /// The [`AWS::S3::Bucket.EventBridgeConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig-eventbridgeconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct EventBridgeConfiguration {
+        /// Property [`EventBridgeEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig-eventbridgeconfig.html#cfn-s3-bucket-eventbridgeconfiguration-eventbridgeenabled).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub event_bridge_enabled: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for EventBridgeConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref event_bridge_enabled) = self.event_bridge_enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventBridgeEnabled", event_bridge_enabled)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for EventBridgeConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<EventBridgeConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = EventBridgeConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type EventBridgeConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut event_bridge_enabled: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "EventBridgeEnabled" => {
+                                event_bridge_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(EventBridgeConfiguration {
+                        event_bridge_enabled: event_bridge_enabled,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::S3::Bucket.FilterRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfiguration-config-filter-s3key-rules.html) property type.
     #[derive(Debug, Default)]
     pub struct FilterRule {
@@ -2112,6 +2367,11 @@ pub mod bucket {
     /// The [`AWS::S3::Bucket.MetricsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-metricsconfiguration.html) property type.
     #[derive(Debug, Default)]
     pub struct MetricsConfiguration {
+        /// Property [`AccessPointArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-metricsconfiguration.html#cfn-s3-bucket-metricsconfiguration-accesspointarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub access_point_arn: Option<::Value<String>>,
         /// Property [`Id`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-metricsconfiguration.html#cfn-s3-bucket-metricsconfiguration-id).
         ///
         /// Update type: _Mutable_.
@@ -2132,6 +2392,9 @@ pub mod bucket {
     impl ::codec::SerializeValue for MetricsConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref access_point_arn) = self.access_point_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessPointArn", access_point_arn)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Id", &self.id)?;
             if let Some(ref prefix) = self.prefix {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Prefix", prefix)?;
@@ -2155,12 +2418,16 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut access_point_arn: Option<::Value<String>> = None;
                     let mut id: Option<::Value<String>> = None;
                     let mut prefix: Option<::Value<String>> = None;
                     let mut tag_filters: Option<::ValueList<TagFilter>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "AccessPointArn" => {
+                                access_point_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Id" => {
                                 id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -2175,6 +2442,7 @@ pub mod bucket {
                     }
 
                     Ok(MetricsConfiguration {
+                        access_point_arn: access_point_arn,
                         id: id.ok_or(::serde::de::Error::missing_field("Id"))?,
                         prefix: prefix,
                         tag_filters: tag_filters,
@@ -2186,9 +2454,78 @@ pub mod bucket {
         }
     }
 
+    /// The [`AWS::S3::Bucket.NoncurrentVersionExpiration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule-noncurrentversionexpiration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct NoncurrentVersionExpiration {
+        /// Property [`NewerNoncurrentVersions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule-noncurrentversionexpiration.html#cfn-s3-bucket-lifecycleconfig-rule-noncurrentversionexpiration-newernoncurrentversions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub newer_noncurrent_versions: Option<::Value<u32>>,
+        /// Property [`NoncurrentDays`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule-noncurrentversionexpiration.html#cfn-s3-bucket-lifecycleconfig-rule-noncurrentversionexpiration-noncurrentdays).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub noncurrent_days: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for NoncurrentVersionExpiration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref newer_noncurrent_versions) = self.newer_noncurrent_versions {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NewerNoncurrentVersions", newer_noncurrent_versions)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NoncurrentDays", &self.noncurrent_days)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for NoncurrentVersionExpiration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<NoncurrentVersionExpiration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = NoncurrentVersionExpiration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type NoncurrentVersionExpiration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut newer_noncurrent_versions: Option<::Value<u32>> = None;
+                    let mut noncurrent_days: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "NewerNoncurrentVersions" => {
+                                newer_noncurrent_versions = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "NoncurrentDays" => {
+                                noncurrent_days = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(NoncurrentVersionExpiration {
+                        newer_noncurrent_versions: newer_noncurrent_versions,
+                        noncurrent_days: noncurrent_days.ok_or(::serde::de::Error::missing_field("NoncurrentDays"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::S3::Bucket.NoncurrentVersionTransition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule-noncurrentversiontransition.html) property type.
     #[derive(Debug, Default)]
     pub struct NoncurrentVersionTransition {
+        /// Property [`NewerNoncurrentVersions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule-noncurrentversiontransition.html#cfn-s3-bucket-lifecycleconfig-rule-noncurrentversiontransition-newernoncurrentversions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub newer_noncurrent_versions: Option<::Value<u32>>,
         /// Property [`StorageClass`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule-noncurrentversiontransition.html#cfn-s3-bucket-lifecycleconfig-rule-noncurrentversiontransition-storageclass).
         ///
         /// Update type: _Mutable_.
@@ -2204,6 +2541,9 @@ pub mod bucket {
     impl ::codec::SerializeValue for NoncurrentVersionTransition {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref newer_noncurrent_versions) = self.newer_noncurrent_versions {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NewerNoncurrentVersions", newer_noncurrent_versions)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "StorageClass", &self.storage_class)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitionInDays", &self.transition_in_days)?;
             ::serde::ser::SerializeMap::end(map)
@@ -2222,11 +2562,15 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut newer_noncurrent_versions: Option<::Value<u32>> = None;
                     let mut storage_class: Option<::Value<String>> = None;
                     let mut transition_in_days: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "NewerNoncurrentVersions" => {
+                                newer_noncurrent_versions = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "StorageClass" => {
                                 storage_class = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -2238,6 +2582,7 @@ pub mod bucket {
                     }
 
                     Ok(NoncurrentVersionTransition {
+                        newer_noncurrent_versions: newer_noncurrent_versions,
                         storage_class: storage_class.ok_or(::serde::de::Error::missing_field("StorageClass"))?,
                         transition_in_days: transition_in_days.ok_or(::serde::de::Error::missing_field("TransitionInDays"))?,
                     })
@@ -2251,6 +2596,11 @@ pub mod bucket {
     /// The [`AWS::S3::Bucket.NotificationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig.html) property type.
     #[derive(Debug, Default)]
     pub struct NotificationConfiguration {
+        /// Property [`EventBridgeConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig.html#cfn-s3-bucket-notificationconfig-eventbridgeconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub event_bridge_configuration: Option<::Value<EventBridgeConfiguration>>,
         /// Property [`LambdaConfigurations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-notificationconfig.html#cfn-s3-bucket-notificationconfig-lambdaconfig).
         ///
         /// Update type: _Mutable_.
@@ -2271,6 +2621,9 @@ pub mod bucket {
     impl ::codec::SerializeValue for NotificationConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref event_bridge_configuration) = self.event_bridge_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventBridgeConfiguration", event_bridge_configuration)?;
+            }
             if let Some(ref lambda_configurations) = self.lambda_configurations {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaConfigurations", lambda_configurations)?;
             }
@@ -2296,12 +2649,16 @@ pub mod bucket {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut event_bridge_configuration: Option<::Value<EventBridgeConfiguration>> = None;
                     let mut lambda_configurations: Option<::ValueList<LambdaConfiguration>> = None;
                     let mut queue_configurations: Option<::ValueList<QueueConfiguration>> = None;
                     let mut topic_configurations: Option<::ValueList<TopicConfiguration>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "EventBridgeConfiguration" => {
+                                event_bridge_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "LambdaConfigurations" => {
                                 lambda_configurations = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -2316,6 +2673,7 @@ pub mod bucket {
                     }
 
                     Ok(NotificationConfiguration {
+                        event_bridge_configuration: event_bridge_configuration,
                         lambda_configurations: lambda_configurations,
                         queue_configurations: queue_configurations,
                         topic_configurations: topic_configurations,
@@ -3735,6 +4093,11 @@ pub mod bucket {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub id: Option<::Value<String>>,
+        /// Property [`NoncurrentVersionExpiration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule.html#cfn-s3-bucket-lifecycleconfig-rule-noncurrentversionexpiration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub noncurrent_version_expiration: Option<::Value<NoncurrentVersionExpiration>>,
         /// Property [`NoncurrentVersionExpirationInDays`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule.html#cfn-s3-bucket-lifecycleconfig-rule-noncurrentversionexpirationindays).
         ///
         /// Update type: _Mutable_.
@@ -3750,6 +4113,16 @@ pub mod bucket {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub noncurrent_version_transitions: Option<::ValueList<NoncurrentVersionTransition>>,
+        /// Property [`ObjectSizeGreaterThan`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule.html#cfn-s3-bucket-lifecycleconfig-rule-objectsizegreaterthan).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub object_size_greater_than: Option<::Value<u64>>,
+        /// Property [`ObjectSizeLessThan`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule.html#cfn-s3-bucket-lifecycleconfig-rule-objectsizelessthan).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub object_size_less_than: Option<::Value<u64>>,
         /// Property [`Prefix`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-lifecycleconfig-rule.html#cfn-s3-bucket-lifecycleconfig-rule-prefix).
         ///
         /// Update type: _Mutable_.
@@ -3795,6 +4168,9 @@ pub mod bucket {
             if let Some(ref id) = self.id {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Id", id)?;
             }
+            if let Some(ref noncurrent_version_expiration) = self.noncurrent_version_expiration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NoncurrentVersionExpiration", noncurrent_version_expiration)?;
+            }
             if let Some(ref noncurrent_version_expiration_in_days) = self.noncurrent_version_expiration_in_days {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "NoncurrentVersionExpirationInDays", noncurrent_version_expiration_in_days)?;
             }
@@ -3803,6 +4179,12 @@ pub mod bucket {
             }
             if let Some(ref noncurrent_version_transitions) = self.noncurrent_version_transitions {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "NoncurrentVersionTransitions", noncurrent_version_transitions)?;
+            }
+            if let Some(ref object_size_greater_than) = self.object_size_greater_than {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ObjectSizeGreaterThan", object_size_greater_than)?;
+            }
+            if let Some(ref object_size_less_than) = self.object_size_less_than {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ObjectSizeLessThan", object_size_less_than)?;
             }
             if let Some(ref prefix) = self.prefix {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Prefix", prefix)?;
@@ -3838,9 +4220,12 @@ pub mod bucket {
                     let mut expiration_in_days: Option<::Value<u32>> = None;
                     let mut expired_object_delete_marker: Option<::Value<bool>> = None;
                     let mut id: Option<::Value<String>> = None;
+                    let mut noncurrent_version_expiration: Option<::Value<NoncurrentVersionExpiration>> = None;
                     let mut noncurrent_version_expiration_in_days: Option<::Value<u32>> = None;
                     let mut noncurrent_version_transition: Option<::Value<NoncurrentVersionTransition>> = None;
                     let mut noncurrent_version_transitions: Option<::ValueList<NoncurrentVersionTransition>> = None;
+                    let mut object_size_greater_than: Option<::Value<u64>> = None;
+                    let mut object_size_less_than: Option<::Value<u64>> = None;
                     let mut prefix: Option<::Value<String>> = None;
                     let mut status: Option<::Value<String>> = None;
                     let mut tag_filters: Option<::ValueList<TagFilter>> = None;
@@ -3864,6 +4249,9 @@ pub mod bucket {
                             "Id" => {
                                 id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "NoncurrentVersionExpiration" => {
+                                noncurrent_version_expiration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "NoncurrentVersionExpirationInDays" => {
                                 noncurrent_version_expiration_in_days = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -3872,6 +4260,12 @@ pub mod bucket {
                             }
                             "NoncurrentVersionTransitions" => {
                                 noncurrent_version_transitions = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ObjectSizeGreaterThan" => {
+                                object_size_greater_than = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ObjectSizeLessThan" => {
+                                object_size_less_than = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Prefix" => {
                                 prefix = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -3898,9 +4292,12 @@ pub mod bucket {
                         expiration_in_days: expiration_in_days,
                         expired_object_delete_marker: expired_object_delete_marker,
                         id: id,
+                        noncurrent_version_expiration: noncurrent_version_expiration,
                         noncurrent_version_expiration_in_days: noncurrent_version_expiration_in_days,
                         noncurrent_version_transition: noncurrent_version_transition,
                         noncurrent_version_transitions: noncurrent_version_transitions,
+                        object_size_greater_than: object_size_greater_than,
+                        object_size_less_than: object_size_less_than,
                         prefix: prefix,
                         status: status.ok_or(::serde::de::Error::missing_field("Status"))?,
                         tag_filters: tag_filters,
@@ -4685,6 +5082,153 @@ pub mod bucket {
     }
 }
 
+pub mod multi_region_access_point {
+    //! Property types for the `MultiRegionAccessPoint` resource.
+
+    /// The [`AWS::S3::MultiRegionAccessPoint.PublicAccessBlockConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-multiregionaccesspoint-publicaccessblockconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct PublicAccessBlockConfiguration {
+        /// Property [`BlockPublicAcls`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-multiregionaccesspoint-publicaccessblockconfiguration.html#cfn-s3-multiregionaccesspoint-publicaccessblockconfiguration-blockpublicacls).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub block_public_acls: Option<::Value<bool>>,
+        /// Property [`BlockPublicPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-multiregionaccesspoint-publicaccessblockconfiguration.html#cfn-s3-multiregionaccesspoint-publicaccessblockconfiguration-blockpublicpolicy).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub block_public_policy: Option<::Value<bool>>,
+        /// Property [`IgnorePublicAcls`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-multiregionaccesspoint-publicaccessblockconfiguration.html#cfn-s3-multiregionaccesspoint-publicaccessblockconfiguration-ignorepublicacls).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub ignore_public_acls: Option<::Value<bool>>,
+        /// Property [`RestrictPublicBuckets`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-multiregionaccesspoint-publicaccessblockconfiguration.html#cfn-s3-multiregionaccesspoint-publicaccessblockconfiguration-restrictpublicbuckets).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub restrict_public_buckets: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for PublicAccessBlockConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref block_public_acls) = self.block_public_acls {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BlockPublicAcls", block_public_acls)?;
+            }
+            if let Some(ref block_public_policy) = self.block_public_policy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BlockPublicPolicy", block_public_policy)?;
+            }
+            if let Some(ref ignore_public_acls) = self.ignore_public_acls {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IgnorePublicAcls", ignore_public_acls)?;
+            }
+            if let Some(ref restrict_public_buckets) = self.restrict_public_buckets {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RestrictPublicBuckets", restrict_public_buckets)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for PublicAccessBlockConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<PublicAccessBlockConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = PublicAccessBlockConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type PublicAccessBlockConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut block_public_acls: Option<::Value<bool>> = None;
+                    let mut block_public_policy: Option<::Value<bool>> = None;
+                    let mut ignore_public_acls: Option<::Value<bool>> = None;
+                    let mut restrict_public_buckets: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "BlockPublicAcls" => {
+                                block_public_acls = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "BlockPublicPolicy" => {
+                                block_public_policy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IgnorePublicAcls" => {
+                                ignore_public_acls = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RestrictPublicBuckets" => {
+                                restrict_public_buckets = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(PublicAccessBlockConfiguration {
+                        block_public_acls: block_public_acls,
+                        block_public_policy: block_public_policy,
+                        ignore_public_acls: ignore_public_acls,
+                        restrict_public_buckets: restrict_public_buckets,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::S3::MultiRegionAccessPoint.Region`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-multiregionaccesspoint-region.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Region {
+        /// Property [`Bucket`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-multiregionaccesspoint-region.html#cfn-s3-multiregionaccesspoint-region-bucket).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub bucket: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for Region {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Bucket", &self.bucket)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Region {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Region, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Region;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Region")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut bucket: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Bucket" => {
+                                bucket = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Region {
+                        bucket: bucket.ok_or(::serde::de::Error::missing_field("Bucket"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
 pub mod storage_lens {
     //! Property types for the `StorageLens` resource.
 
@@ -4988,20 +5532,81 @@ pub mod storage_lens {
         }
     }
 
+    /// The [`AWS::S3::StorageLens.CloudWatchMetrics`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-cloudwatchmetrics.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CloudWatchMetrics {
+        /// Property [`IsEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-cloudwatchmetrics.html#cfn-s3-storagelens-cloudwatchmetrics-isenabled).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub is_enabled: ::Value<bool>,
+    }
+
+    impl ::codec::SerializeValue for CloudWatchMetrics {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IsEnabled", &self.is_enabled)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CloudWatchMetrics {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CloudWatchMetrics, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CloudWatchMetrics;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CloudWatchMetrics")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut is_enabled: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "IsEnabled" => {
+                                is_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CloudWatchMetrics {
+                        is_enabled: is_enabled.ok_or(::serde::de::Error::missing_field("IsEnabled"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::S3::StorageLens.DataExport`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-dataexport.html) property type.
     #[derive(Debug, Default)]
     pub struct DataExport {
+        /// Property [`CloudWatchMetrics`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-dataexport.html#cfn-s3-storagelens-dataexport-cloudwatchmetrics).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cloud_watch_metrics: Option<::Value<CloudWatchMetrics>>,
         /// Property [`S3BucketDestination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-dataexport.html#cfn-s3-storagelens-dataexport-s3bucketdestination).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub s3_bucket_destination: ::Value<S3BucketDestination>,
+        pub s3_bucket_destination: Option<::Value<S3BucketDestination>>,
     }
 
     impl ::codec::SerializeValue for DataExport {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3BucketDestination", &self.s3_bucket_destination)?;
+            if let Some(ref cloud_watch_metrics) = self.cloud_watch_metrics {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchMetrics", cloud_watch_metrics)?;
+            }
+            if let Some(ref s3_bucket_destination) = self.s3_bucket_destination {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3BucketDestination", s3_bucket_destination)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -5018,10 +5623,14 @@ pub mod storage_lens {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut cloud_watch_metrics: Option<::Value<CloudWatchMetrics>> = None;
                     let mut s3_bucket_destination: Option<::Value<S3BucketDestination>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "CloudWatchMetrics" => {
+                                cloud_watch_metrics = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "S3BucketDestination" => {
                                 s3_bucket_destination = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -5030,7 +5639,8 @@ pub mod storage_lens {
                     }
 
                     Ok(DataExport {
-                        s3_bucket_destination: s3_bucket_destination.ok_or(::serde::de::Error::missing_field("S3BucketDestination"))?,
+                        cloud_watch_metrics: cloud_watch_metrics,
+                        s3_bucket_destination: s3_bucket_destination,
                     })
                 }
             }

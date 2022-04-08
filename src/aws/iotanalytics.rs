@@ -1068,22 +1068,20 @@ pub mod dataset {
         }
     }
 
-    /// The [`AWS::IoTAnalytics::Dataset.DatasetContentVersionValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-variable-datasetcontentversionvalue.html) property type.
+    /// The [`AWS::IoTAnalytics::Dataset.DatasetContentVersionValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-datasetcontentversionvalue.html) property type.
     #[derive(Debug, Default)]
     pub struct DatasetContentVersionValue {
-        /// Property [`DatasetName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-variable-datasetcontentversionvalue.html#cfn-iotanalytics-dataset-variable-datasetcontentversionvalue-datasetname).
+        /// Property [`DatasetName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-datasetcontentversionvalue.html#cfn-iotanalytics-dataset-datasetcontentversionvalue-datasetname).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub dataset_name: Option<::Value<String>>,
+        pub dataset_name: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for DatasetContentVersionValue {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref dataset_name) = self.dataset_name {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatasetName", dataset_name)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatasetName", &self.dataset_name)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1112,7 +1110,7 @@ pub mod dataset {
                     }
 
                     Ok(DatasetContentVersionValue {
-                        dataset_name: dataset_name,
+                        dataset_name: dataset_name.ok_or(::serde::de::Error::missing_field("DatasetName"))?,
                     })
                 }
             }
@@ -1528,22 +1526,20 @@ pub mod dataset {
         }
     }
 
-    /// The [`AWS::IoTAnalytics::Dataset.OutputFileUriValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-variable-outputfileurivalue.html) property type.
+    /// The [`AWS::IoTAnalytics::Dataset.OutputFileUriValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-outputfileurivalue.html) property type.
     #[derive(Debug, Default)]
     pub struct OutputFileUriValue {
-        /// Property [`FileName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-variable-outputfileurivalue.html#cfn-iotanalytics-dataset-variable-outputfileurivalue-filename).
+        /// Property [`FileName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-outputfileurivalue.html#cfn-iotanalytics-dataset-outputfileurivalue-filename).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub file_name: Option<::Value<String>>,
+        pub file_name: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for OutputFileUriValue {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref file_name) = self.file_name {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FileName", file_name)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FileName", &self.file_name)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1572,7 +1568,7 @@ pub mod dataset {
                     }
 
                     Ok(OutputFileUriValue {
-                        file_name: file_name,
+                        file_name: file_name.ok_or(::serde::de::Error::missing_field("FileName"))?,
                     })
                 }
             }
@@ -1714,19 +1710,23 @@ pub mod dataset {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub number_of_days: ::Value<u32>,
+        pub number_of_days: Option<::Value<u32>>,
         /// Property [`Unlimited`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-retentionperiod.html#cfn-iotanalytics-dataset-retentionperiod-unlimited).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub unlimited: ::Value<bool>,
+        pub unlimited: Option<::Value<bool>>,
     }
 
     impl ::codec::SerializeValue for RetentionPeriod {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NumberOfDays", &self.number_of_days)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Unlimited", &self.unlimited)?;
+            if let Some(ref number_of_days) = self.number_of_days {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NumberOfDays", number_of_days)?;
+            }
+            if let Some(ref unlimited) = self.unlimited {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Unlimited", unlimited)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1759,8 +1759,8 @@ pub mod dataset {
                     }
 
                     Ok(RetentionPeriod {
-                        number_of_days: number_of_days.ok_or(::serde::de::Error::missing_field("NumberOfDays"))?,
-                        unlimited: unlimited.ok_or(::serde::de::Error::missing_field("Unlimited"))?,
+                        number_of_days: number_of_days,
+                        unlimited: unlimited,
                     })
                 }
             }
@@ -1855,10 +1855,10 @@ pub mod dataset {
         }
     }
 
-    /// The [`AWS::IoTAnalytics::Dataset.Schedule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-trigger-schedule.html) property type.
+    /// The [`AWS::IoTAnalytics::Dataset.Schedule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-schedule.html) property type.
     #[derive(Debug, Default)]
     pub struct Schedule {
-        /// Property [`ScheduleExpression`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-trigger-schedule.html#cfn-iotanalytics-dataset-trigger-schedule-scheduleexpression).
+        /// Property [`ScheduleExpression`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-dataset-schedule.html#cfn-iotanalytics-dataset-schedule-scheduleexpression).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -2333,6 +2333,70 @@ pub mod datastore {
         }
     }
 
+    /// The [`AWS::IoTAnalytics::Datastore.CustomerManagedS3Storage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-customermanageds3storage.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CustomerManagedS3Storage {
+        /// Property [`Bucket`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-customermanageds3storage.html#cfn-iotanalytics-datastore-customermanageds3storage-bucket).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub bucket: ::Value<String>,
+        /// Property [`KeyPrefix`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-customermanageds3storage.html#cfn-iotanalytics-datastore-customermanageds3storage-keyprefix).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub key_prefix: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for CustomerManagedS3Storage {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Bucket", &self.bucket)?;
+            if let Some(ref key_prefix) = self.key_prefix {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyPrefix", key_prefix)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CustomerManagedS3Storage {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CustomerManagedS3Storage, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CustomerManagedS3Storage;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CustomerManagedS3Storage")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut bucket: Option<::Value<String>> = None;
+                    let mut key_prefix: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Bucket" => {
+                                bucket = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "KeyPrefix" => {
+                                key_prefix = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CustomerManagedS3Storage {
+                        bucket: bucket.ok_or(::serde::de::Error::missing_field("Bucket"))?,
+                        key_prefix: key_prefix,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::IoTAnalytics::Datastore.DatastorePartition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-datastorepartition.html) property type.
     #[derive(Debug, Default)]
     pub struct DatastorePartition {
@@ -2460,6 +2524,11 @@ pub mod datastore {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub customer_managed_s3: Option<::Value<CustomerManagedS3>>,
+        /// Property [`IotSiteWiseMultiLayerStorage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-datastorestorage.html#cfn-iotanalytics-datastore-datastorestorage-iotsitewisemultilayerstorage).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub iot_site_wise_multi_layer_storage: Option<::Value<IotSiteWiseMultiLayerStorage>>,
         /// Property [`ServiceManagedS3`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-datastorestorage.html#cfn-iotanalytics-datastore-datastorestorage-servicemanageds3).
         ///
         /// Update type: _Mutable_.
@@ -2472,6 +2541,9 @@ pub mod datastore {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             if let Some(ref customer_managed_s3) = self.customer_managed_s3 {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomerManagedS3", customer_managed_s3)?;
+            }
+            if let Some(ref iot_site_wise_multi_layer_storage) = self.iot_site_wise_multi_layer_storage {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IotSiteWiseMultiLayerStorage", iot_site_wise_multi_layer_storage)?;
             }
             if let Some(ref service_managed_s3) = self.service_managed_s3 {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceManagedS3", service_managed_s3)?;
@@ -2493,12 +2565,16 @@ pub mod datastore {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut customer_managed_s3: Option<::Value<CustomerManagedS3>> = None;
+                    let mut iot_site_wise_multi_layer_storage: Option<::Value<IotSiteWiseMultiLayerStorage>> = None;
                     let mut service_managed_s3: Option<::Value<ServiceManagedS3>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "CustomerManagedS3" => {
                                 customer_managed_s3 = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IotSiteWiseMultiLayerStorage" => {
+                                iot_site_wise_multi_layer_storage = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "ServiceManagedS3" => {
                                 service_managed_s3 = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -2509,6 +2585,7 @@ pub mod datastore {
 
                     Ok(DatastoreStorage {
                         customer_managed_s3: customer_managed_s3,
+                        iot_site_wise_multi_layer_storage: iot_site_wise_multi_layer_storage,
                         service_managed_s3: service_managed_s3,
                     })
                 }
@@ -2576,6 +2653,59 @@ pub mod datastore {
                     Ok(FileFormatConfiguration {
                         json_configuration: json_configuration,
                         parquet_configuration: parquet_configuration,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::IoTAnalytics::Datastore.IotSiteWiseMultiLayerStorage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-iotsitewisemultilayerstorage.html) property type.
+    #[derive(Debug, Default)]
+    pub struct IotSiteWiseMultiLayerStorage {
+        /// Property [`CustomerManagedS3Storage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-datastore-iotsitewisemultilayerstorage.html#cfn-iotanalytics-datastore-iotsitewisemultilayerstorage-customermanageds3storage).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub customer_managed_s3_storage: Option<::Value<CustomerManagedS3Storage>>,
+    }
+
+    impl ::codec::SerializeValue for IotSiteWiseMultiLayerStorage {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref customer_managed_s3_storage) = self.customer_managed_s3_storage {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomerManagedS3Storage", customer_managed_s3_storage)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for IotSiteWiseMultiLayerStorage {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<IotSiteWiseMultiLayerStorage, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = IotSiteWiseMultiLayerStorage;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type IotSiteWiseMultiLayerStorage")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut customer_managed_s3_storage: Option<::Value<CustomerManagedS3Storage>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CustomerManagedS3Storage" => {
+                                customer_managed_s3_storage = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(IotSiteWiseMultiLayerStorage {
+                        customer_managed_s3_storage: customer_managed_s3_storage,
                     })
                 }
             }
@@ -3116,12 +3246,12 @@ pub mod pipeline {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub attributes: Option<::Value<::json::Value>>,
+        pub attributes: ::ValueMap<String>,
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-addattributes.html#cfn-iotanalytics-pipeline-addattributes-name).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub name: Option<::Value<String>>,
+        pub name: ::Value<String>,
         /// Property [`Next`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-addattributes.html#cfn-iotanalytics-pipeline-addattributes-next).
         ///
         /// Update type: _Mutable_.
@@ -3132,12 +3262,8 @@ pub mod pipeline {
     impl ::codec::SerializeValue for AddAttributes {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref attributes) = self.attributes {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attributes", attributes)?;
-            }
-            if let Some(ref name) = self.name {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attributes", &self.attributes)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             if let Some(ref next) = self.next {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Next", next)?;
             }
@@ -3157,7 +3283,7 @@ pub mod pipeline {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut attributes: Option<::Value<::json::Value>> = None;
+                    let mut attributes: Option<::ValueMap<String>> = None;
                     let mut name: Option<::Value<String>> = None;
                     let mut next: Option<::Value<String>> = None;
 
@@ -3177,8 +3303,8 @@ pub mod pipeline {
                     }
 
                     Ok(AddAttributes {
-                        attributes: attributes,
-                        name: name,
+                        attributes: attributes.ok_or(::serde::de::Error::missing_field("Attributes"))?,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                         next: next,
                     })
                 }
@@ -3195,12 +3321,12 @@ pub mod pipeline {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub channel_name: Option<::Value<String>>,
+        pub channel_name: ::Value<String>,
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-channel.html#cfn-iotanalytics-pipeline-channel-name).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub name: Option<::Value<String>>,
+        pub name: ::Value<String>,
         /// Property [`Next`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-channel.html#cfn-iotanalytics-pipeline-channel-next).
         ///
         /// Update type: _Mutable_.
@@ -3211,12 +3337,8 @@ pub mod pipeline {
     impl ::codec::SerializeValue for Channel {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref channel_name) = self.channel_name {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ChannelName", channel_name)?;
-            }
-            if let Some(ref name) = self.name {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ChannelName", &self.channel_name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             if let Some(ref next) = self.next {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Next", next)?;
             }
@@ -3256,8 +3378,8 @@ pub mod pipeline {
                     }
 
                     Ok(Channel {
-                        channel_name: channel_name,
-                        name: name,
+                        channel_name: channel_name.ok_or(::serde::de::Error::missing_field("ChannelName"))?,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                         next: next,
                     })
                 }
@@ -3274,23 +3396,19 @@ pub mod pipeline {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub datastore_name: Option<::Value<String>>,
+        pub datastore_name: ::Value<String>,
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-datastore.html#cfn-iotanalytics-pipeline-datastore-name).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub name: Option<::Value<String>>,
+        pub name: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for Datastore {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref datastore_name) = self.datastore_name {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatastoreName", datastore_name)?;
-            }
-            if let Some(ref name) = self.name {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatastoreName", &self.datastore_name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -3323,8 +3441,8 @@ pub mod pipeline {
                     }
 
                     Ok(Datastore {
-                        datastore_name: datastore_name,
-                        name: name,
+                        datastore_name: datastore_name.ok_or(::serde::de::Error::missing_field("DatastoreName"))?,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     })
                 }
             }
@@ -3340,12 +3458,12 @@ pub mod pipeline {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub attribute: Option<::Value<String>>,
+        pub attribute: ::Value<String>,
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-deviceregistryenrich.html#cfn-iotanalytics-pipeline-deviceregistryenrich-name).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub name: Option<::Value<String>>,
+        pub name: ::Value<String>,
         /// Property [`Next`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-deviceregistryenrich.html#cfn-iotanalytics-pipeline-deviceregistryenrich-next).
         ///
         /// Update type: _Mutable_.
@@ -3355,32 +3473,24 @@ pub mod pipeline {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub role_arn: Option<::Value<String>>,
+        pub role_arn: ::Value<String>,
         /// Property [`ThingName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-deviceregistryenrich.html#cfn-iotanalytics-pipeline-deviceregistryenrich-thingname).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub thing_name: Option<::Value<String>>,
+        pub thing_name: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for DeviceRegistryEnrich {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref attribute) = self.attribute {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attribute", attribute)?;
-            }
-            if let Some(ref name) = self.name {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attribute", &self.attribute)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             if let Some(ref next) = self.next {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Next", next)?;
             }
-            if let Some(ref role_arn) = self.role_arn {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", role_arn)?;
-            }
-            if let Some(ref thing_name) = self.thing_name {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThingName", thing_name)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThingName", &self.thing_name)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -3425,11 +3535,11 @@ pub mod pipeline {
                     }
 
                     Ok(DeviceRegistryEnrich {
-                        attribute: attribute,
-                        name: name,
+                        attribute: attribute.ok_or(::serde::de::Error::missing_field("Attribute"))?,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                         next: next,
-                        role_arn: role_arn,
-                        thing_name: thing_name,
+                        role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
+                        thing_name: thing_name.ok_or(::serde::de::Error::missing_field("ThingName"))?,
                     })
                 }
             }
@@ -3445,12 +3555,12 @@ pub mod pipeline {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub attribute: Option<::Value<String>>,
+        pub attribute: ::Value<String>,
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-deviceshadowenrich.html#cfn-iotanalytics-pipeline-deviceshadowenrich-name).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub name: Option<::Value<String>>,
+        pub name: ::Value<String>,
         /// Property [`Next`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-deviceshadowenrich.html#cfn-iotanalytics-pipeline-deviceshadowenrich-next).
         ///
         /// Update type: _Mutable_.
@@ -3460,32 +3570,24 @@ pub mod pipeline {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub role_arn: Option<::Value<String>>,
+        pub role_arn: ::Value<String>,
         /// Property [`ThingName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-deviceshadowenrich.html#cfn-iotanalytics-pipeline-deviceshadowenrich-thingname).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub thing_name: Option<::Value<String>>,
+        pub thing_name: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for DeviceShadowEnrich {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref attribute) = self.attribute {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attribute", attribute)?;
-            }
-            if let Some(ref name) = self.name {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attribute", &self.attribute)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             if let Some(ref next) = self.next {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Next", next)?;
             }
-            if let Some(ref role_arn) = self.role_arn {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", role_arn)?;
-            }
-            if let Some(ref thing_name) = self.thing_name {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThingName", thing_name)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThingName", &self.thing_name)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -3530,11 +3632,11 @@ pub mod pipeline {
                     }
 
                     Ok(DeviceShadowEnrich {
-                        attribute: attribute,
-                        name: name,
+                        attribute: attribute.ok_or(::serde::de::Error::missing_field("Attribute"))?,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                         next: next,
-                        role_arn: role_arn,
-                        thing_name: thing_name,
+                        role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
+                        thing_name: thing_name.ok_or(::serde::de::Error::missing_field("ThingName"))?,
                     })
                 }
             }
@@ -3550,12 +3652,12 @@ pub mod pipeline {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub filter: Option<::Value<String>>,
+        pub filter: ::Value<String>,
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-filter.html#cfn-iotanalytics-pipeline-filter-name).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub name: Option<::Value<String>>,
+        pub name: ::Value<String>,
         /// Property [`Next`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-filter.html#cfn-iotanalytics-pipeline-filter-next).
         ///
         /// Update type: _Mutable_.
@@ -3566,12 +3668,8 @@ pub mod pipeline {
     impl ::codec::SerializeValue for Filter {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref filter) = self.filter {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Filter", filter)?;
-            }
-            if let Some(ref name) = self.name {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Filter", &self.filter)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             if let Some(ref next) = self.next {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Next", next)?;
             }
@@ -3611,8 +3709,8 @@ pub mod pipeline {
                     }
 
                     Ok(Filter {
-                        filter: filter,
-                        name: name,
+                        filter: filter.ok_or(::serde::de::Error::missing_field("Filter"))?,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                         next: next,
                     })
                 }
@@ -3629,17 +3727,17 @@ pub mod pipeline {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub batch_size: Option<::Value<u32>>,
+        pub batch_size: ::Value<u32>,
         /// Property [`LambdaName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-lambda.html#cfn-iotanalytics-pipeline-lambda-lambdaname).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub lambda_name: Option<::Value<String>>,
+        pub lambda_name: ::Value<String>,
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-lambda.html#cfn-iotanalytics-pipeline-lambda-name).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub name: Option<::Value<String>>,
+        pub name: ::Value<String>,
         /// Property [`Next`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-lambda.html#cfn-iotanalytics-pipeline-lambda-next).
         ///
         /// Update type: _Mutable_.
@@ -3650,15 +3748,9 @@ pub mod pipeline {
     impl ::codec::SerializeValue for Lambda {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref batch_size) = self.batch_size {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BatchSize", batch_size)?;
-            }
-            if let Some(ref lambda_name) = self.lambda_name {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaName", lambda_name)?;
-            }
-            if let Some(ref name) = self.name {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BatchSize", &self.batch_size)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaName", &self.lambda_name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             if let Some(ref next) = self.next {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Next", next)?;
             }
@@ -3702,9 +3794,9 @@ pub mod pipeline {
                     }
 
                     Ok(Lambda {
-                        batch_size: batch_size,
-                        lambda_name: lambda_name,
-                        name: name,
+                        batch_size: batch_size.ok_or(::serde::de::Error::missing_field("BatchSize"))?,
+                        lambda_name: lambda_name.ok_or(::serde::de::Error::missing_field("LambdaName"))?,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                         next: next,
                     })
                 }
@@ -3721,17 +3813,17 @@ pub mod pipeline {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub attribute: Option<::Value<String>>,
+        pub attribute: ::Value<String>,
         /// Property [`Math`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-math.html#cfn-iotanalytics-pipeline-math-math).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub math: Option<::Value<String>>,
+        pub math: ::Value<String>,
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-math.html#cfn-iotanalytics-pipeline-math-name).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub name: Option<::Value<String>>,
+        pub name: ::Value<String>,
         /// Property [`Next`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-math.html#cfn-iotanalytics-pipeline-math-next).
         ///
         /// Update type: _Mutable_.
@@ -3742,15 +3834,9 @@ pub mod pipeline {
     impl ::codec::SerializeValue for Math {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref attribute) = self.attribute {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attribute", attribute)?;
-            }
-            if let Some(ref math) = self.math {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Math", math)?;
-            }
-            if let Some(ref name) = self.name {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attribute", &self.attribute)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Math", &self.math)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             if let Some(ref next) = self.next {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Next", next)?;
             }
@@ -3794,9 +3880,9 @@ pub mod pipeline {
                     }
 
                     Ok(Math {
-                        attribute: attribute,
-                        math: math,
-                        name: name,
+                        attribute: attribute.ok_or(::serde::de::Error::missing_field("Attribute"))?,
+                        math: math.ok_or(::serde::de::Error::missing_field("Math"))?,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                         next: next,
                     })
                 }
@@ -3813,12 +3899,12 @@ pub mod pipeline {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub attributes: Option<::ValueList<String>>,
+        pub attributes: ::ValueList<String>,
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-removeattributes.html#cfn-iotanalytics-pipeline-removeattributes-name).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub name: Option<::Value<String>>,
+        pub name: ::Value<String>,
         /// Property [`Next`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-removeattributes.html#cfn-iotanalytics-pipeline-removeattributes-next).
         ///
         /// Update type: _Mutable_.
@@ -3829,12 +3915,8 @@ pub mod pipeline {
     impl ::codec::SerializeValue for RemoveAttributes {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref attributes) = self.attributes {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attributes", attributes)?;
-            }
-            if let Some(ref name) = self.name {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attributes", &self.attributes)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             if let Some(ref next) = self.next {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Next", next)?;
             }
@@ -3874,8 +3956,8 @@ pub mod pipeline {
                     }
 
                     Ok(RemoveAttributes {
-                        attributes: attributes,
-                        name: name,
+                        attributes: attributes.ok_or(::serde::de::Error::missing_field("Attributes"))?,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                         next: next,
                     })
                 }
@@ -3892,12 +3974,12 @@ pub mod pipeline {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub attributes: Option<::ValueList<String>>,
+        pub attributes: ::ValueList<String>,
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-selectattributes.html#cfn-iotanalytics-pipeline-selectattributes-name).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub name: Option<::Value<String>>,
+        pub name: ::Value<String>,
         /// Property [`Next`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotanalytics-pipeline-selectattributes.html#cfn-iotanalytics-pipeline-selectattributes-next).
         ///
         /// Update type: _Mutable_.
@@ -3908,12 +3990,8 @@ pub mod pipeline {
     impl ::codec::SerializeValue for SelectAttributes {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref attributes) = self.attributes {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attributes", attributes)?;
-            }
-            if let Some(ref name) = self.name {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attributes", &self.attributes)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             if let Some(ref next) = self.next {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Next", next)?;
             }
@@ -3953,8 +4031,8 @@ pub mod pipeline {
                     }
 
                     Ok(SelectAttributes {
-                        attributes: attributes,
-                        name: name,
+                        attributes: attributes.ok_or(::serde::de::Error::missing_field("Attributes"))?,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                         next: next,
                     })
                 }

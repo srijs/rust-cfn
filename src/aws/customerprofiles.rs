@@ -151,7 +151,12 @@ pub struct IntegrationProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub object_type_name: ::Value<String>,
+    pub object_type_name: Option<::Value<String>>,
+    /// Property [`ObjectTypeNames`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-integration.html#cfn-customerprofiles-integration-objecttypenames).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub object_type_names: Option<::ValueList<self::integration::ObjectTypeMapping>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-integration.html#cfn-customerprofiles-integration-tags).
     ///
     /// Update type: _Mutable_.
@@ -171,7 +176,12 @@ impl ::serde::Serialize for IntegrationProperties {
         if let Some(ref flow_definition) = self.flow_definition {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "FlowDefinition", flow_definition)?;
         }
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ObjectTypeName", &self.object_type_name)?;
+        if let Some(ref object_type_name) = self.object_type_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ObjectTypeName", object_type_name)?;
+        }
+        if let Some(ref object_type_names) = self.object_type_names {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ObjectTypeNames", object_type_names)?;
+        }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
@@ -197,6 +207,7 @@ impl<'de> ::serde::Deserialize<'de> for IntegrationProperties {
                 let mut domain_name: Option<::Value<String>> = None;
                 let mut flow_definition: Option<::Value<self::integration::FlowDefinition>> = None;
                 let mut object_type_name: Option<::Value<String>> = None;
+                let mut object_type_names: Option<::ValueList<self::integration::ObjectTypeMapping>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut uri: Option<::Value<String>> = None;
 
@@ -211,6 +222,9 @@ impl<'de> ::serde::Deserialize<'de> for IntegrationProperties {
                         "ObjectTypeName" => {
                             object_type_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ObjectTypeNames" => {
+                            object_type_names = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -224,7 +238,8 @@ impl<'de> ::serde::Deserialize<'de> for IntegrationProperties {
                 Ok(IntegrationProperties {
                     domain_name: domain_name.ok_or(::serde::de::Error::missing_field("DomainName"))?,
                     flow_definition: flow_definition,
-                    object_type_name: object_type_name.ok_or(::serde::de::Error::missing_field("ObjectTypeName"))?,
+                    object_type_name: object_type_name,
+                    object_type_names: object_type_names,
                     tags: tags,
                     uri: uri,
                 })
@@ -759,6 +774,68 @@ pub mod integration {
 
                     Ok(MarketoSourceProperties {
                         object: object.ok_or(::serde::de::Error::missing_field("Object"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CustomerProfiles::Integration.ObjectTypeMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-objecttypemapping.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ObjectTypeMapping {
+        /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-objecttypemapping.html#cfn-customerprofiles-integration-objecttypemapping-key).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub key: ::Value<String>,
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-objecttypemapping.html#cfn-customerprofiles-integration-objecttypemapping-value).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub value: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for ObjectTypeMapping {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ObjectTypeMapping {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ObjectTypeMapping, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ObjectTypeMapping;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ObjectTypeMapping")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut key: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Key" => {
+                                key = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Value" => {
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ObjectTypeMapping {
+                        key: key.ok_or(::serde::de::Error::missing_field("Key"))?,
+                        value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
                     })
                 }
             }

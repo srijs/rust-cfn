@@ -34,6 +34,11 @@ pub struct TrailProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub include_global_service_events: Option<::Value<bool>>,
+    /// Property [`InsightSelectors`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-insightselectors).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub insight_selectors: Option<::ValueList<self::trail::InsightSelector>>,
     /// Property [`IsLogging`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-islogging).
     ///
     /// Update type: _Mutable_.
@@ -44,6 +49,11 @@ pub struct TrailProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub is_multi_region_trail: Option<::Value<bool>>,
+    /// Property [`IsOrganizationTrail`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-isorganizationtrail).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub is_organization_trail: Option<::Value<bool>>,
     /// Property [`KMSKeyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudtrail-trail.html#cfn-cloudtrail-trail-kmskeyid).
     ///
     /// Update type: _Mutable_.
@@ -94,9 +104,15 @@ impl ::serde::Serialize for TrailProperties {
         if let Some(ref include_global_service_events) = self.include_global_service_events {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncludeGlobalServiceEvents", include_global_service_events)?;
         }
+        if let Some(ref insight_selectors) = self.insight_selectors {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InsightSelectors", insight_selectors)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "IsLogging", &self.is_logging)?;
         if let Some(ref is_multi_region_trail) = self.is_multi_region_trail {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IsMultiRegionTrail", is_multi_region_trail)?;
+        }
+        if let Some(ref is_organization_trail) = self.is_organization_trail {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IsOrganizationTrail", is_organization_trail)?;
         }
         if let Some(ref kms_key_id) = self.kms_key_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KMSKeyId", kms_key_id)?;
@@ -135,8 +151,10 @@ impl<'de> ::serde::Deserialize<'de> for TrailProperties {
                 let mut enable_log_file_validation: Option<::Value<bool>> = None;
                 let mut event_selectors: Option<::ValueList<self::trail::EventSelector>> = None;
                 let mut include_global_service_events: Option<::Value<bool>> = None;
+                let mut insight_selectors: Option<::ValueList<self::trail::InsightSelector>> = None;
                 let mut is_logging: Option<::Value<bool>> = None;
                 let mut is_multi_region_trail: Option<::Value<bool>> = None;
+                let mut is_organization_trail: Option<::Value<bool>> = None;
                 let mut kms_key_id: Option<::Value<String>> = None;
                 let mut s3_bucket_name: Option<::Value<String>> = None;
                 let mut s3_key_prefix: Option<::Value<String>> = None;
@@ -161,11 +179,17 @@ impl<'de> ::serde::Deserialize<'de> for TrailProperties {
                         "IncludeGlobalServiceEvents" => {
                             include_global_service_events = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "InsightSelectors" => {
+                            insight_selectors = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "IsLogging" => {
                             is_logging = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "IsMultiRegionTrail" => {
                             is_multi_region_trail = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "IsOrganizationTrail" => {
+                            is_organization_trail = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "KMSKeyId" => {
                             kms_key_id = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -195,8 +219,10 @@ impl<'de> ::serde::Deserialize<'de> for TrailProperties {
                     enable_log_file_validation: enable_log_file_validation,
                     event_selectors: event_selectors,
                     include_global_service_events: include_global_service_events,
+                    insight_selectors: insight_selectors,
                     is_logging: is_logging.ok_or(::serde::de::Error::missing_field("IsLogging"))?,
                     is_multi_region_trail: is_multi_region_trail,
+                    is_organization_trail: is_organization_trail,
                     kms_key_id: kms_key_id,
                     s3_bucket_name: s3_bucket_name.ok_or(::serde::de::Error::missing_field("S3BucketName"))?,
                     s3_key_prefix: s3_key_prefix,
@@ -305,6 +331,11 @@ pub mod trail {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub data_resources: Option<::ValueList<DataResource>>,
+        /// Property [`ExcludeManagementEventSources`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-eventselector.html#cfn-cloudtrail-trail-eventselector-excludemanagementeventsources).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub exclude_management_event_sources: Option<::ValueList<String>>,
         /// Property [`IncludeManagementEvents`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-eventselector.html#cfn-cloudtrail-trail-eventselector-includemanagementevents).
         ///
         /// Update type: _Mutable_.
@@ -322,6 +353,9 @@ pub mod trail {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             if let Some(ref data_resources) = self.data_resources {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataResources", data_resources)?;
+            }
+            if let Some(ref exclude_management_event_sources) = self.exclude_management_event_sources {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExcludeManagementEventSources", exclude_management_event_sources)?;
             }
             if let Some(ref include_management_events) = self.include_management_events {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncludeManagementEvents", include_management_events)?;
@@ -346,6 +380,7 @@ pub mod trail {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut data_resources: Option<::ValueList<DataResource>> = None;
+                    let mut exclude_management_event_sources: Option<::ValueList<String>> = None;
                     let mut include_management_events: Option<::Value<bool>> = None;
                     let mut read_write_type: Option<::Value<String>> = None;
 
@@ -353,6 +388,9 @@ pub mod trail {
                         match __cfn_key.as_ref() {
                             "DataResources" => {
                                 data_resources = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ExcludeManagementEventSources" => {
+                                exclude_management_event_sources = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "IncludeManagementEvents" => {
                                 include_management_events = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -366,8 +404,62 @@ pub mod trail {
 
                     Ok(EventSelector {
                         data_resources: data_resources,
+                        exclude_management_event_sources: exclude_management_event_sources,
                         include_management_events: include_management_events,
                         read_write_type: read_write_type,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CloudTrail::Trail.InsightSelector`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-insightselector.html) property type.
+    #[derive(Debug, Default)]
+    pub struct InsightSelector {
+        /// Property [`InsightType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudtrail-trail-insightselector.html#cfn-cloudtrail-trail-insightselector-insighttype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub insight_type: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for InsightSelector {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref insight_type) = self.insight_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InsightType", insight_type)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for InsightSelector {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<InsightSelector, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = InsightSelector;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type InsightSelector")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut insight_type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "InsightType" => {
+                                insight_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(InsightSelector {
+                        insight_type: insight_type,
                     })
                 }
             }

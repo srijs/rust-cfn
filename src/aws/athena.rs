@@ -16,8 +16,8 @@ pub struct DataCatalogProperties {
     pub description: Option<::Value<String>>,
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-datacatalog.html#cfn-athena-datacatalog-name).
     ///
-    /// Update type: _Mutable_.
-    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub name: ::Value<String>,
     /// Property [`Parameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-datacatalog.html#cfn-athena-datacatalog-parameters).
     ///
@@ -249,6 +249,117 @@ impl ::private::Sealed for NamedQuery {}
 impl From<NamedQueryProperties> for NamedQuery {
     fn from(properties: NamedQueryProperties) -> NamedQuery {
         NamedQuery { properties }
+    }
+}
+
+/// The [`AWS::Athena::PreparedStatement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-preparedstatement.html) resource type.
+#[derive(Debug, Default)]
+pub struct PreparedStatement {
+    properties: PreparedStatementProperties
+}
+
+/// Properties for the `PreparedStatement` resource.
+#[derive(Debug, Default)]
+pub struct PreparedStatementProperties {
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-preparedstatement.html#cfn-athena-preparedstatement-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`QueryStatement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-preparedstatement.html#cfn-athena-preparedstatement-querystatement).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub query_statement: ::Value<String>,
+    /// Property [`StatementName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-preparedstatement.html#cfn-athena-preparedstatement-statementname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub statement_name: ::Value<String>,
+    /// Property [`WorkGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-athena-preparedstatement.html#cfn-athena-preparedstatement-workgroup).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub work_group: ::Value<String>,
+}
+
+impl ::serde::Serialize for PreparedStatementProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "QueryStatement", &self.query_statement)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "StatementName", &self.statement_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "WorkGroup", &self.work_group)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for PreparedStatementProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<PreparedStatementProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = PreparedStatementProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type PreparedStatementProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut description: Option<::Value<String>> = None;
+                let mut query_statement: Option<::Value<String>> = None;
+                let mut statement_name: Option<::Value<String>> = None;
+                let mut work_group: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "QueryStatement" => {
+                            query_statement = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "StatementName" => {
+                            statement_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "WorkGroup" => {
+                            work_group = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(PreparedStatementProperties {
+                    description: description,
+                    query_statement: query_statement.ok_or(::serde::de::Error::missing_field("QueryStatement"))?,
+                    statement_name: statement_name.ok_or(::serde::de::Error::missing_field("StatementName"))?,
+                    work_group: work_group.ok_or(::serde::de::Error::missing_field("WorkGroup"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for PreparedStatement {
+    type Properties = PreparedStatementProperties;
+    const TYPE: &'static str = "AWS::Athena::PreparedStatement";
+    fn properties(&self) -> &PreparedStatementProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut PreparedStatementProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for PreparedStatement {}
+
+impl From<PreparedStatementProperties> for PreparedStatement {
+    fn from(properties: PreparedStatementProperties) -> PreparedStatement {
+        PreparedStatement { properties }
     }
 }
 

@@ -520,6 +520,11 @@ pub struct InstanceGroupConfigProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub configurations: Option<::ValueList<self::instance_group_config::Configuration>>,
+    /// Property [`CustomAmiId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-instancegroupconfig.html#cfn-emr-instancegroupconfig-customamiid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub custom_ami_id: Option<::Value<String>>,
     /// Property [`EbsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-instancegroupconfig.html#cfn-emr-instancegroupconfig-ebsconfiguration).
     ///
     /// Update type: _Immutable_.
@@ -569,6 +574,9 @@ impl ::serde::Serialize for InstanceGroupConfigProperties {
         if let Some(ref configurations) = self.configurations {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Configurations", configurations)?;
         }
+        if let Some(ref custom_ami_id) = self.custom_ami_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomAmiId", custom_ami_id)?;
+        }
         if let Some(ref ebs_configuration) = self.ebs_configuration {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsConfiguration", ebs_configuration)?;
         }
@@ -601,6 +609,7 @@ impl<'de> ::serde::Deserialize<'de> for InstanceGroupConfigProperties {
                 let mut auto_scaling_policy: Option<::Value<self::instance_group_config::AutoScalingPolicy>> = None;
                 let mut bid_price: Option<::Value<String>> = None;
                 let mut configurations: Option<::ValueList<self::instance_group_config::Configuration>> = None;
+                let mut custom_ami_id: Option<::Value<String>> = None;
                 let mut ebs_configuration: Option<::Value<self::instance_group_config::EbsConfiguration>> = None;
                 let mut instance_count: Option<::Value<u32>> = None;
                 let mut instance_role: Option<::Value<String>> = None;
@@ -619,6 +628,9 @@ impl<'de> ::serde::Deserialize<'de> for InstanceGroupConfigProperties {
                         }
                         "Configurations" => {
                             configurations = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "CustomAmiId" => {
+                            custom_ami_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "EbsConfiguration" => {
                             ebs_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -649,6 +661,7 @@ impl<'de> ::serde::Deserialize<'de> for InstanceGroupConfigProperties {
                     auto_scaling_policy: auto_scaling_policy,
                     bid_price: bid_price,
                     configurations: configurations,
+                    custom_ami_id: custom_ami_id,
                     ebs_configuration: ebs_configuration,
                     instance_count: instance_count.ok_or(::serde::de::Error::missing_field("InstanceCount"))?,
                     instance_role: instance_role.ok_or(::serde::de::Error::missing_field("InstanceRole"))?,
@@ -910,6 +923,16 @@ pub struct StudioProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub engine_security_group_id: ::Value<String>,
+    /// Property [`IdpAuthUrl`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-idpauthurl).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub idp_auth_url: Option<::Value<String>>,
+    /// Property [`IdpRelayStateParameterName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-idprelaystateparametername).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub idp_relay_state_parameter_name: Option<::Value<String>>,
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-name).
     ///
     /// Update type: _Mutable_.
@@ -934,7 +957,7 @@ pub struct StudioProperties {
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub user_role: ::Value<String>,
+    pub user_role: Option<::Value<String>>,
     /// Property [`VpcId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-vpcid).
     ///
     /// Update type: _Immutable_.
@@ -956,13 +979,21 @@ impl ::serde::Serialize for StudioProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "EngineSecurityGroupId", &self.engine_security_group_id)?;
+        if let Some(ref idp_auth_url) = self.idp_auth_url {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IdpAuthUrl", idp_auth_url)?;
+        }
+        if let Some(ref idp_relay_state_parameter_name) = self.idp_relay_state_parameter_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IdpRelayStateParameterName", idp_relay_state_parameter_name)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceRole", &self.service_role)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetIds", &self.subnet_ids)?;
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserRole", &self.user_role)?;
+        if let Some(ref user_role) = self.user_role {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserRole", user_role)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", &self.vpc_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "WorkspaceSecurityGroupId", &self.workspace_security_group_id)?;
         ::serde::ser::SerializeMap::end(map)
@@ -985,6 +1016,8 @@ impl<'de> ::serde::Deserialize<'de> for StudioProperties {
                 let mut default_s3_location: Option<::Value<String>> = None;
                 let mut description: Option<::Value<String>> = None;
                 let mut engine_security_group_id: Option<::Value<String>> = None;
+                let mut idp_auth_url: Option<::Value<String>> = None;
+                let mut idp_relay_state_parameter_name: Option<::Value<String>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut service_role: Option<::Value<String>> = None;
                 let mut subnet_ids: Option<::ValueList<String>> = None;
@@ -1006,6 +1039,12 @@ impl<'de> ::serde::Deserialize<'de> for StudioProperties {
                         }
                         "EngineSecurityGroupId" => {
                             engine_security_group_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "IdpAuthUrl" => {
+                            idp_auth_url = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "IdpRelayStateParameterName" => {
+                            idp_relay_state_parameter_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1037,11 +1076,13 @@ impl<'de> ::serde::Deserialize<'de> for StudioProperties {
                     default_s3_location: default_s3_location.ok_or(::serde::de::Error::missing_field("DefaultS3Location"))?,
                     description: description,
                     engine_security_group_id: engine_security_group_id.ok_or(::serde::de::Error::missing_field("EngineSecurityGroupId"))?,
+                    idp_auth_url: idp_auth_url,
+                    idp_relay_state_parameter_name: idp_relay_state_parameter_name,
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     service_role: service_role.ok_or(::serde::de::Error::missing_field("ServiceRole"))?,
                     subnet_ids: subnet_ids.ok_or(::serde::de::Error::missing_field("SubnetIds"))?,
                     tags: tags,
-                    user_role: user_role.ok_or(::serde::de::Error::missing_field("UserRole"))?,
+                    user_role: user_role,
                     vpc_id: vpc_id.ok_or(::serde::de::Error::missing_field("VpcId"))?,
                     workspace_security_group_id: workspace_security_group_id.ok_or(::serde::de::Error::missing_field("WorkspaceSecurityGroupId"))?,
                 })
@@ -2135,6 +2176,11 @@ pub mod cluster {
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub configurations: Option<::ValueList<Configuration>>,
+        /// Property [`CustomAmiId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancegroupconfig.html#cfn-elasticmapreduce-cluster-instancegroupconfig-customamiid).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub custom_ami_id: Option<::Value<String>>,
         /// Property [`EbsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancegroupconfig.html#cfn-elasticmapreduce-cluster-instancegroupconfig-ebsconfiguration).
         ///
         /// Update type: _Immutable_.
@@ -2174,6 +2220,9 @@ pub mod cluster {
             if let Some(ref configurations) = self.configurations {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Configurations", configurations)?;
             }
+            if let Some(ref custom_ami_id) = self.custom_ami_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomAmiId", custom_ami_id)?;
+            }
             if let Some(ref ebs_configuration) = self.ebs_configuration {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsConfiguration", ebs_configuration)?;
             }
@@ -2204,6 +2253,7 @@ pub mod cluster {
                     let mut auto_scaling_policy: Option<::Value<AutoScalingPolicy>> = None;
                     let mut bid_price: Option<::Value<String>> = None;
                     let mut configurations: Option<::ValueList<Configuration>> = None;
+                    let mut custom_ami_id: Option<::Value<String>> = None;
                     let mut ebs_configuration: Option<::Value<EbsConfiguration>> = None;
                     let mut instance_count: Option<::Value<u32>> = None;
                     let mut instance_type: Option<::Value<String>> = None;
@@ -2220,6 +2270,9 @@ pub mod cluster {
                             }
                             "Configurations" => {
                                 configurations = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CustomAmiId" => {
+                                custom_ami_id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "EbsConfiguration" => {
                                 ebs_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -2244,6 +2297,7 @@ pub mod cluster {
                         auto_scaling_policy: auto_scaling_policy,
                         bid_price: bid_price,
                         configurations: configurations,
+                        custom_ami_id: custom_ami_id,
                         ebs_configuration: ebs_configuration,
                         instance_count: instance_count.ok_or(::serde::de::Error::missing_field("InstanceCount"))?,
                         instance_type: instance_type.ok_or(::serde::de::Error::missing_field("InstanceType"))?,
@@ -2275,6 +2329,11 @@ pub mod cluster {
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub configurations: Option<::ValueList<Configuration>>,
+        /// Property [`CustomAmiId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancetypeconfig.html#cfn-elasticmapreduce-cluster-instancetypeconfig-customamiid).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub custom_ami_id: Option<::Value<String>>,
         /// Property [`EbsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancetypeconfig.html#cfn-elasticmapreduce-cluster-instancetypeconfig-ebsconfiguration).
         ///
         /// Update type: _Immutable_.
@@ -2304,6 +2363,9 @@ pub mod cluster {
             if let Some(ref configurations) = self.configurations {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Configurations", configurations)?;
             }
+            if let Some(ref custom_ami_id) = self.custom_ami_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomAmiId", custom_ami_id)?;
+            }
             if let Some(ref ebs_configuration) = self.ebs_configuration {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsConfiguration", ebs_configuration)?;
             }
@@ -2330,6 +2392,7 @@ pub mod cluster {
                     let mut bid_price: Option<::Value<String>> = None;
                     let mut bid_price_as_percentage_of_on_demand_price: Option<::Value<f64>> = None;
                     let mut configurations: Option<::ValueList<Configuration>> = None;
+                    let mut custom_ami_id: Option<::Value<String>> = None;
                     let mut ebs_configuration: Option<::Value<EbsConfiguration>> = None;
                     let mut instance_type: Option<::Value<String>> = None;
                     let mut weighted_capacity: Option<::Value<u32>> = None;
@@ -2344,6 +2407,9 @@ pub mod cluster {
                             }
                             "Configurations" => {
                                 configurations = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CustomAmiId" => {
+                                custom_ami_id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "EbsConfiguration" => {
                                 ebs_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -2362,6 +2428,7 @@ pub mod cluster {
                         bid_price: bid_price,
                         bid_price_as_percentage_of_on_demand_price: bid_price_as_percentage_of_on_demand_price,
                         configurations: configurations,
+                        custom_ami_id: custom_ami_id,
                         ebs_configuration: ebs_configuration,
                         instance_type: instance_type.ok_or(::serde::de::Error::missing_field("InstanceType"))?,
                         weighted_capacity: weighted_capacity,
@@ -3944,6 +4011,11 @@ pub mod instance_fleet_config {
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub configurations: Option<::ValueList<Configuration>>,
+        /// Property [`CustomAmiId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-instancetypeconfig.html#cfn-elasticmapreduce-instancefleetconfig-instancetypeconfig-customamiid).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub custom_ami_id: Option<::Value<String>>,
         /// Property [`EbsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-instancetypeconfig.html#cfn-elasticmapreduce-instancefleetconfig-instancetypeconfig-ebsconfiguration).
         ///
         /// Update type: _Immutable_.
@@ -3973,6 +4045,9 @@ pub mod instance_fleet_config {
             if let Some(ref configurations) = self.configurations {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Configurations", configurations)?;
             }
+            if let Some(ref custom_ami_id) = self.custom_ami_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomAmiId", custom_ami_id)?;
+            }
             if let Some(ref ebs_configuration) = self.ebs_configuration {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsConfiguration", ebs_configuration)?;
             }
@@ -3999,6 +4074,7 @@ pub mod instance_fleet_config {
                     let mut bid_price: Option<::Value<String>> = None;
                     let mut bid_price_as_percentage_of_on_demand_price: Option<::Value<f64>> = None;
                     let mut configurations: Option<::ValueList<Configuration>> = None;
+                    let mut custom_ami_id: Option<::Value<String>> = None;
                     let mut ebs_configuration: Option<::Value<EbsConfiguration>> = None;
                     let mut instance_type: Option<::Value<String>> = None;
                     let mut weighted_capacity: Option<::Value<u32>> = None;
@@ -4013,6 +4089,9 @@ pub mod instance_fleet_config {
                             }
                             "Configurations" => {
                                 configurations = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CustomAmiId" => {
+                                custom_ami_id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "EbsConfiguration" => {
                                 ebs_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -4031,6 +4110,7 @@ pub mod instance_fleet_config {
                         bid_price: bid_price,
                         bid_price_as_percentage_of_on_demand_price: bid_price_as_percentage_of_on_demand_price,
                         configurations: configurations,
+                        custom_ami_id: custom_ami_id,
                         ebs_configuration: ebs_configuration,
                         instance_type: instance_type.ok_or(::serde::de::Error::missing_field("InstanceType"))?,
                         weighted_capacity: weighted_capacity,
