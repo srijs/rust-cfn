@@ -96,6 +96,11 @@ pub struct Key {
 /// Properties for the `Key` resource.
 #[derive(Debug, Default)]
 pub struct KeyProperties {
+    /// Property [`BypassPolicyLockoutSafetyCheck`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html#cfn-kms-key-bypasspolicylockoutsafetycheck).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub bypass_policy_lockout_safety_check: Option<::Value<bool>>,
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html#cfn-kms-key-description).
     ///
     /// Update type: _Mutable_.
@@ -115,7 +120,7 @@ pub struct KeyProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub key_policy: ::Value<::json::Value>,
+    pub key_policy: Option<::Value<::json::Value>>,
     /// Property [`KeySpec`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html#cfn-kms-key-keyspec).
     ///
     /// Update type: _Mutable_.
@@ -131,6 +136,11 @@ pub struct KeyProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub multi_region: Option<::Value<bool>>,
+    /// Property [`Origin`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html#cfn-kms-key-origin).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub origin: Option<::Value<String>>,
     /// Property [`PendingWindowInDays`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html#cfn-kms-key-pendingwindowindays).
     ///
     /// Update type: _Mutable_.
@@ -146,6 +156,9 @@ pub struct KeyProperties {
 impl ::serde::Serialize for KeyProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref bypass_policy_lockout_safety_check) = self.bypass_policy_lockout_safety_check {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BypassPolicyLockoutSafetyCheck", bypass_policy_lockout_safety_check)?;
+        }
         if let Some(ref description) = self.description {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
         }
@@ -155,7 +168,9 @@ impl ::serde::Serialize for KeyProperties {
         if let Some(ref enabled) = self.enabled {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", enabled)?;
         }
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyPolicy", &self.key_policy)?;
+        if let Some(ref key_policy) = self.key_policy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyPolicy", key_policy)?;
+        }
         if let Some(ref key_spec) = self.key_spec {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeySpec", key_spec)?;
         }
@@ -164,6 +179,9 @@ impl ::serde::Serialize for KeyProperties {
         }
         if let Some(ref multi_region) = self.multi_region {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MultiRegion", multi_region)?;
+        }
+        if let Some(ref origin) = self.origin {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Origin", origin)?;
         }
         if let Some(ref pending_window_in_days) = self.pending_window_in_days {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PendingWindowInDays", pending_window_in_days)?;
@@ -187,6 +205,7 @@ impl<'de> ::serde::Deserialize<'de> for KeyProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut bypass_policy_lockout_safety_check: Option<::Value<bool>> = None;
                 let mut description: Option<::Value<String>> = None;
                 let mut enable_key_rotation: Option<::Value<bool>> = None;
                 let mut enabled: Option<::Value<bool>> = None;
@@ -194,11 +213,15 @@ impl<'de> ::serde::Deserialize<'de> for KeyProperties {
                 let mut key_spec: Option<::Value<String>> = None;
                 let mut key_usage: Option<::Value<String>> = None;
                 let mut multi_region: Option<::Value<bool>> = None;
+                let mut origin: Option<::Value<String>> = None;
                 let mut pending_window_in_days: Option<::Value<u32>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "BypassPolicyLockoutSafetyCheck" => {
+                            bypass_policy_lockout_safety_check = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Description" => {
                             description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -220,6 +243,9 @@ impl<'de> ::serde::Deserialize<'de> for KeyProperties {
                         "MultiRegion" => {
                             multi_region = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Origin" => {
+                            origin = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "PendingWindowInDays" => {
                             pending_window_in_days = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -231,13 +257,15 @@ impl<'de> ::serde::Deserialize<'de> for KeyProperties {
                 }
 
                 Ok(KeyProperties {
+                    bypass_policy_lockout_safety_check: bypass_policy_lockout_safety_check,
                     description: description,
                     enable_key_rotation: enable_key_rotation,
                     enabled: enabled,
-                    key_policy: key_policy.ok_or(::serde::de::Error::missing_field("KeyPolicy"))?,
+                    key_policy: key_policy,
                     key_spec: key_spec,
                     key_usage: key_usage,
                     multi_region: multi_region,
+                    origin: origin,
                     pending_window_in_days: pending_window_in_days,
                     tags: tags,
                 })

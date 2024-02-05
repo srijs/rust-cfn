@@ -279,6 +279,11 @@ pub struct DataSourceProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub elasticsearch_config: Option<::Value<self::data_source::ElasticsearchConfig>>,
+    /// Property [`EventBridgeConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-datasource.html#cfn-appsync-datasource-eventbridgeconfig).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub event_bridge_config: Option<::Value<self::data_source::EventBridgeConfig>>,
     /// Property [`HttpConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-datasource.html#cfn-appsync-datasource-httpconfig).
     ///
     /// Update type: _Mutable_.
@@ -294,6 +299,11 @@ pub struct DataSourceProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub name: ::Value<String>,
+    /// Property [`OpenSearchServiceConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-datasource.html#cfn-appsync-datasource-opensearchserviceconfig).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub open_search_service_config: Option<::Value<self::data_source::OpenSearchServiceConfig>>,
     /// Property [`RelationalDatabaseConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-datasource.html#cfn-appsync-datasource-relationaldatabaseconfig).
     ///
     /// Update type: _Mutable_.
@@ -324,6 +334,9 @@ impl ::serde::Serialize for DataSourceProperties {
         if let Some(ref elasticsearch_config) = self.elasticsearch_config {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ElasticsearchConfig", elasticsearch_config)?;
         }
+        if let Some(ref event_bridge_config) = self.event_bridge_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventBridgeConfig", event_bridge_config)?;
+        }
         if let Some(ref http_config) = self.http_config {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "HttpConfig", http_config)?;
         }
@@ -331,6 +344,9 @@ impl ::serde::Serialize for DataSourceProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaConfig", lambda_config)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref open_search_service_config) = self.open_search_service_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OpenSearchServiceConfig", open_search_service_config)?;
+        }
         if let Some(ref relational_database_config) = self.relational_database_config {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RelationalDatabaseConfig", relational_database_config)?;
         }
@@ -358,9 +374,11 @@ impl<'de> ::serde::Deserialize<'de> for DataSourceProperties {
                 let mut description: Option<::Value<String>> = None;
                 let mut dynamo_db_config: Option<::Value<self::data_source::DynamoDBConfig>> = None;
                 let mut elasticsearch_config: Option<::Value<self::data_source::ElasticsearchConfig>> = None;
+                let mut event_bridge_config: Option<::Value<self::data_source::EventBridgeConfig>> = None;
                 let mut http_config: Option<::Value<self::data_source::HttpConfig>> = None;
                 let mut lambda_config: Option<::Value<self::data_source::LambdaConfig>> = None;
                 let mut name: Option<::Value<String>> = None;
+                let mut open_search_service_config: Option<::Value<self::data_source::OpenSearchServiceConfig>> = None;
                 let mut relational_database_config: Option<::Value<self::data_source::RelationalDatabaseConfig>> = None;
                 let mut service_role_arn: Option<::Value<String>> = None;
                 let mut r#type: Option<::Value<String>> = None;
@@ -379,6 +397,9 @@ impl<'de> ::serde::Deserialize<'de> for DataSourceProperties {
                         "ElasticsearchConfig" => {
                             elasticsearch_config = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "EventBridgeConfig" => {
+                            event_bridge_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "HttpConfig" => {
                             http_config = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -387,6 +408,9 @@ impl<'de> ::serde::Deserialize<'de> for DataSourceProperties {
                         }
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "OpenSearchServiceConfig" => {
+                            open_search_service_config = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "RelationalDatabaseConfig" => {
                             relational_database_config = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -406,9 +430,11 @@ impl<'de> ::serde::Deserialize<'de> for DataSourceProperties {
                     description: description,
                     dynamo_db_config: dynamo_db_config,
                     elasticsearch_config: elasticsearch_config,
+                    event_bridge_config: event_bridge_config,
                     http_config: http_config,
                     lambda_config: lambda_config,
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    open_search_service_config: open_search_service_config,
                     relational_database_config: relational_database_config,
                     service_role_arn: service_role_arn,
                     r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
@@ -439,6 +465,193 @@ impl From<DataSourceProperties> for DataSource {
     }
 }
 
+/// The [`AWS::AppSync::DomainName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-domainname.html) resource type.
+#[derive(Debug, Default)]
+pub struct DomainName {
+    properties: DomainNameProperties
+}
+
+/// Properties for the `DomainName` resource.
+#[derive(Debug, Default)]
+pub struct DomainNameProperties {
+    /// Property [`CertificateArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-domainname.html#cfn-appsync-domainname-certificatearn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub certificate_arn: ::Value<String>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-domainname.html#cfn-appsync-domainname-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`DomainName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-domainname.html#cfn-appsync-domainname-domainname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub domain_name: ::Value<String>,
+}
+
+impl ::serde::Serialize for DomainNameProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificateArn", &self.certificate_arn)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainName", &self.domain_name)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for DomainNameProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<DomainNameProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = DomainNameProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type DomainNameProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut certificate_arn: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut domain_name: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "CertificateArn" => {
+                            certificate_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DomainName" => {
+                            domain_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(DomainNameProperties {
+                    certificate_arn: certificate_arn.ok_or(::serde::de::Error::missing_field("CertificateArn"))?,
+                    description: description,
+                    domain_name: domain_name.ok_or(::serde::de::Error::missing_field("DomainName"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for DomainName {
+    type Properties = DomainNameProperties;
+    const TYPE: &'static str = "AWS::AppSync::DomainName";
+    fn properties(&self) -> &DomainNameProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut DomainNameProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for DomainName {}
+
+impl From<DomainNameProperties> for DomainName {
+    fn from(properties: DomainNameProperties) -> DomainName {
+        DomainName { properties }
+    }
+}
+
+/// The [`AWS::AppSync::DomainNameApiAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-domainnameapiassociation.html) resource type.
+#[derive(Debug, Default)]
+pub struct DomainNameApiAssociation {
+    properties: DomainNameApiAssociationProperties
+}
+
+/// Properties for the `DomainNameApiAssociation` resource.
+#[derive(Debug, Default)]
+pub struct DomainNameApiAssociationProperties {
+    /// Property [`ApiId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-domainnameapiassociation.html#cfn-appsync-domainnameapiassociation-apiid).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub api_id: ::Value<String>,
+    /// Property [`DomainName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-domainnameapiassociation.html#cfn-appsync-domainnameapiassociation-domainname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub domain_name: ::Value<String>,
+}
+
+impl ::serde::Serialize for DomainNameApiAssociationProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApiId", &self.api_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainName", &self.domain_name)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for DomainNameApiAssociationProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<DomainNameApiAssociationProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = DomainNameApiAssociationProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type DomainNameApiAssociationProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut api_id: Option<::Value<String>> = None;
+                let mut domain_name: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "ApiId" => {
+                            api_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DomainName" => {
+                            domain_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(DomainNameApiAssociationProperties {
+                    api_id: api_id.ok_or(::serde::de::Error::missing_field("ApiId"))?,
+                    domain_name: domain_name.ok_or(::serde::de::Error::missing_field("DomainName"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for DomainNameApiAssociation {
+    type Properties = DomainNameApiAssociationProperties;
+    const TYPE: &'static str = "AWS::AppSync::DomainNameApiAssociation";
+    fn properties(&self) -> &DomainNameApiAssociationProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut DomainNameApiAssociationProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for DomainNameApiAssociation {}
+
+impl From<DomainNameApiAssociationProperties> for DomainNameApiAssociation {
+    fn from(properties: DomainNameApiAssociationProperties) -> DomainNameApiAssociation {
+        DomainNameApiAssociation { properties }
+    }
+}
+
 /// The [`AWS::AppSync::FunctionConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-functionconfiguration.html) resource type.
 #[derive(Debug, Default)]
 pub struct FunctionConfiguration {
@@ -453,6 +666,16 @@ pub struct FunctionConfigurationProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub api_id: ::Value<String>,
+    /// Property [`Code`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-functionconfiguration.html#cfn-appsync-functionconfiguration-code).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub code: Option<::Value<String>>,
+    /// Property [`CodeS3Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-functionconfiguration.html#cfn-appsync-functionconfiguration-codes3location).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub code_s3_location: Option<::Value<String>>,
     /// Property [`DataSourceName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-functionconfiguration.html#cfn-appsync-functionconfiguration-datasourcename).
     ///
     /// Update type: _Mutable_.
@@ -467,7 +690,12 @@ pub struct FunctionConfigurationProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub function_version: ::Value<String>,
+    pub function_version: Option<::Value<String>>,
+    /// Property [`MaxBatchSize`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-functionconfiguration.html#cfn-appsync-functionconfiguration-maxbatchsize).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub max_batch_size: Option<::Value<u32>>,
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-functionconfiguration.html#cfn-appsync-functionconfiguration-name).
     ///
     /// Update type: _Mutable_.
@@ -493,6 +721,11 @@ pub struct FunctionConfigurationProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub response_mapping_template_s3_location: Option<::Value<String>>,
+    /// Property [`Runtime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-functionconfiguration.html#cfn-appsync-functionconfiguration-runtime).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub runtime: Option<::Value<self::function_configuration::AppSyncRuntime>>,
     /// Property [`SyncConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-functionconfiguration.html#cfn-appsync-functionconfiguration-syncconfig).
     ///
     /// Update type: _Mutable_.
@@ -504,11 +737,22 @@ impl ::serde::Serialize for FunctionConfigurationProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApiId", &self.api_id)?;
+        if let Some(ref code) = self.code {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Code", code)?;
+        }
+        if let Some(ref code_s3_location) = self.code_s3_location {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CodeS3Location", code_s3_location)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataSourceName", &self.data_source_name)?;
         if let Some(ref description) = self.description {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
         }
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "FunctionVersion", &self.function_version)?;
+        if let Some(ref function_version) = self.function_version {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FunctionVersion", function_version)?;
+        }
+        if let Some(ref max_batch_size) = self.max_batch_size {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxBatchSize", max_batch_size)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         if let Some(ref request_mapping_template) = self.request_mapping_template {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RequestMappingTemplate", request_mapping_template)?;
@@ -521,6 +765,9 @@ impl ::serde::Serialize for FunctionConfigurationProperties {
         }
         if let Some(ref response_mapping_template_s3_location) = self.response_mapping_template_s3_location {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResponseMappingTemplateS3Location", response_mapping_template_s3_location)?;
+        }
+        if let Some(ref runtime) = self.runtime {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Runtime", runtime)?;
         }
         if let Some(ref sync_config) = self.sync_config {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SyncConfig", sync_config)?;
@@ -542,20 +789,30 @@ impl<'de> ::serde::Deserialize<'de> for FunctionConfigurationProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut api_id: Option<::Value<String>> = None;
+                let mut code: Option<::Value<String>> = None;
+                let mut code_s3_location: Option<::Value<String>> = None;
                 let mut data_source_name: Option<::Value<String>> = None;
                 let mut description: Option<::Value<String>> = None;
                 let mut function_version: Option<::Value<String>> = None;
+                let mut max_batch_size: Option<::Value<u32>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut request_mapping_template: Option<::Value<String>> = None;
                 let mut request_mapping_template_s3_location: Option<::Value<String>> = None;
                 let mut response_mapping_template: Option<::Value<String>> = None;
                 let mut response_mapping_template_s3_location: Option<::Value<String>> = None;
+                let mut runtime: Option<::Value<self::function_configuration::AppSyncRuntime>> = None;
                 let mut sync_config: Option<::Value<self::function_configuration::SyncConfig>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "ApiId" => {
                             api_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Code" => {
+                            code = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "CodeS3Location" => {
+                            code_s3_location = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "DataSourceName" => {
                             data_source_name = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -565,6 +822,9 @@ impl<'de> ::serde::Deserialize<'de> for FunctionConfigurationProperties {
                         }
                         "FunctionVersion" => {
                             function_version = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MaxBatchSize" => {
+                            max_batch_size = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -581,6 +841,9 @@ impl<'de> ::serde::Deserialize<'de> for FunctionConfigurationProperties {
                         "ResponseMappingTemplateS3Location" => {
                             response_mapping_template_s3_location = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Runtime" => {
+                            runtime = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "SyncConfig" => {
                             sync_config = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -590,14 +853,18 @@ impl<'de> ::serde::Deserialize<'de> for FunctionConfigurationProperties {
 
                 Ok(FunctionConfigurationProperties {
                     api_id: api_id.ok_or(::serde::de::Error::missing_field("ApiId"))?,
+                    code: code,
+                    code_s3_location: code_s3_location,
                     data_source_name: data_source_name.ok_or(::serde::de::Error::missing_field("DataSourceName"))?,
                     description: description,
-                    function_version: function_version.ok_or(::serde::de::Error::missing_field("FunctionVersion"))?,
+                    function_version: function_version,
+                    max_batch_size: max_batch_size,
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     request_mapping_template: request_mapping_template,
                     request_mapping_template_s3_location: request_mapping_template_s3_location,
                     response_mapping_template: response_mapping_template,
                     response_mapping_template_s3_location: response_mapping_template_s3_location,
+                    runtime: runtime,
                     sync_config: sync_config,
                 })
             }
@@ -639,17 +906,37 @@ pub struct GraphQLApiProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub additional_authentication_providers: Option<::Value<self::graph_ql_api::AdditionalAuthenticationProviders>>,
+    pub additional_authentication_providers: Option<::ValueList<self::graph_ql_api::AdditionalAuthenticationProvider>>,
+    /// Property [`ApiType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html#cfn-appsync-graphqlapi-apitype).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub api_type: Option<::Value<String>>,
     /// Property [`AuthenticationType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html#cfn-appsync-graphqlapi-authenticationtype).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub authentication_type: ::Value<String>,
+    /// Property [`IntrospectionConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html#cfn-appsync-graphqlapi-introspectionconfig).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub introspection_config: Option<::Value<String>>,
+    /// Property [`LambdaAuthorizerConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html#cfn-appsync-graphqlapi-lambdaauthorizerconfig).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub lambda_authorizer_config: Option<::Value<self::graph_ql_api::LambdaAuthorizerConfig>>,
     /// Property [`LogConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html#cfn-appsync-graphqlapi-logconfig).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub log_config: Option<::Value<self::graph_ql_api::LogConfig>>,
+    /// Property [`MergedApiExecutionRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html#cfn-appsync-graphqlapi-mergedapiexecutionrolearn).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub merged_api_execution_role_arn: Option<::Value<String>>,
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html#cfn-appsync-graphqlapi-name).
     ///
     /// Update type: _Mutable_.
@@ -660,16 +947,36 @@ pub struct GraphQLApiProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub open_id_connect_config: Option<::Value<self::graph_ql_api::OpenIDConnectConfig>>,
+    /// Property [`OwnerContact`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html#cfn-appsync-graphqlapi-ownercontact).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub owner_contact: Option<::Value<String>>,
+    /// Property [`QueryDepthLimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html#cfn-appsync-graphqlapi-querydepthlimit).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub query_depth_limit: Option<::Value<u32>>,
+    /// Property [`ResolverCountLimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html#cfn-appsync-graphqlapi-resolvercountlimit).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub resolver_count_limit: Option<::Value<u32>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html#cfn-appsync-graphqlapi-tags).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub tags: Option<::Value<self::graph_ql_api::Tags>>,
+    pub tags: Option<::ValueList<::Tag>>,
     /// Property [`UserPoolConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html#cfn-appsync-graphqlapi-userpoolconfig).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub user_pool_config: Option<::Value<self::graph_ql_api::UserPoolConfig>>,
+    /// Property [`Visibility`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html#cfn-appsync-graphqlapi-visibility).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub visibility: Option<::Value<String>>,
     /// Property [`XrayEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-graphqlapi.html#cfn-appsync-graphqlapi-xrayenabled).
     ///
     /// Update type: _Mutable_.
@@ -683,19 +990,43 @@ impl ::serde::Serialize for GraphQLApiProperties {
         if let Some(ref additional_authentication_providers) = self.additional_authentication_providers {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AdditionalAuthenticationProviders", additional_authentication_providers)?;
         }
+        if let Some(ref api_type) = self.api_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApiType", api_type)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthenticationType", &self.authentication_type)?;
+        if let Some(ref introspection_config) = self.introspection_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IntrospectionConfig", introspection_config)?;
+        }
+        if let Some(ref lambda_authorizer_config) = self.lambda_authorizer_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaAuthorizerConfig", lambda_authorizer_config)?;
+        }
         if let Some(ref log_config) = self.log_config {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogConfig", log_config)?;
+        }
+        if let Some(ref merged_api_execution_role_arn) = self.merged_api_execution_role_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MergedApiExecutionRoleArn", merged_api_execution_role_arn)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         if let Some(ref open_id_connect_config) = self.open_id_connect_config {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "OpenIDConnectConfig", open_id_connect_config)?;
+        }
+        if let Some(ref owner_contact) = self.owner_contact {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OwnerContact", owner_contact)?;
+        }
+        if let Some(ref query_depth_limit) = self.query_depth_limit {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "QueryDepthLimit", query_depth_limit)?;
+        }
+        if let Some(ref resolver_count_limit) = self.resolver_count_limit {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResolverCountLimit", resolver_count_limit)?;
         }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
         if let Some(ref user_pool_config) = self.user_pool_config {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserPoolConfig", user_pool_config)?;
+        }
+        if let Some(ref visibility) = self.visibility {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Visibility", visibility)?;
         }
         if let Some(ref xray_enabled) = self.xray_enabled {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "XrayEnabled", xray_enabled)?;
@@ -716,13 +1047,21 @@ impl<'de> ::serde::Deserialize<'de> for GraphQLApiProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut additional_authentication_providers: Option<::Value<self::graph_ql_api::AdditionalAuthenticationProviders>> = None;
+                let mut additional_authentication_providers: Option<::ValueList<self::graph_ql_api::AdditionalAuthenticationProvider>> = None;
+                let mut api_type: Option<::Value<String>> = None;
                 let mut authentication_type: Option<::Value<String>> = None;
+                let mut introspection_config: Option<::Value<String>> = None;
+                let mut lambda_authorizer_config: Option<::Value<self::graph_ql_api::LambdaAuthorizerConfig>> = None;
                 let mut log_config: Option<::Value<self::graph_ql_api::LogConfig>> = None;
+                let mut merged_api_execution_role_arn: Option<::Value<String>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut open_id_connect_config: Option<::Value<self::graph_ql_api::OpenIDConnectConfig>> = None;
-                let mut tags: Option<::Value<self::graph_ql_api::Tags>> = None;
+                let mut owner_contact: Option<::Value<String>> = None;
+                let mut query_depth_limit: Option<::Value<u32>> = None;
+                let mut resolver_count_limit: Option<::Value<u32>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut user_pool_config: Option<::Value<self::graph_ql_api::UserPoolConfig>> = None;
+                let mut visibility: Option<::Value<String>> = None;
                 let mut xray_enabled: Option<::Value<bool>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -730,11 +1069,23 @@ impl<'de> ::serde::Deserialize<'de> for GraphQLApiProperties {
                         "AdditionalAuthenticationProviders" => {
                             additional_authentication_providers = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ApiType" => {
+                            api_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "AuthenticationType" => {
                             authentication_type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "IntrospectionConfig" => {
+                            introspection_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "LambdaAuthorizerConfig" => {
+                            lambda_authorizer_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "LogConfig" => {
                             log_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MergedApiExecutionRoleArn" => {
+                            merged_api_execution_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -742,11 +1093,23 @@ impl<'de> ::serde::Deserialize<'de> for GraphQLApiProperties {
                         "OpenIDConnectConfig" => {
                             open_id_connect_config = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "OwnerContact" => {
+                            owner_contact = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "QueryDepthLimit" => {
+                            query_depth_limit = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ResolverCountLimit" => {
+                            resolver_count_limit = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "UserPoolConfig" => {
                             user_pool_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Visibility" => {
+                            visibility = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "XrayEnabled" => {
                             xray_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -757,12 +1120,20 @@ impl<'de> ::serde::Deserialize<'de> for GraphQLApiProperties {
 
                 Ok(GraphQLApiProperties {
                     additional_authentication_providers: additional_authentication_providers,
+                    api_type: api_type,
                     authentication_type: authentication_type.ok_or(::serde::de::Error::missing_field("AuthenticationType"))?,
+                    introspection_config: introspection_config,
+                    lambda_authorizer_config: lambda_authorizer_config,
                     log_config: log_config,
+                    merged_api_execution_role_arn: merged_api_execution_role_arn,
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     open_id_connect_config: open_id_connect_config,
+                    owner_contact: owner_contact,
+                    query_depth_limit: query_depth_limit,
+                    resolver_count_limit: resolver_count_limit,
                     tags: tags,
                     user_pool_config: user_pool_config,
+                    visibility: visibility,
                     xray_enabled: xray_enabled,
                 })
             }
@@ -912,6 +1283,16 @@ pub struct ResolverProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub caching_config: Option<::Value<self::resolver::CachingConfig>>,
+    /// Property [`Code`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-resolver.html#cfn-appsync-resolver-code).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub code: Option<::Value<String>>,
+    /// Property [`CodeS3Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-resolver.html#cfn-appsync-resolver-codes3location).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub code_s3_location: Option<::Value<String>>,
     /// Property [`DataSourceName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-resolver.html#cfn-appsync-resolver-datasourcename).
     ///
     /// Update type: _Mutable_.
@@ -927,6 +1308,11 @@ pub struct ResolverProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub kind: Option<::Value<String>>,
+    /// Property [`MaxBatchSize`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-resolver.html#cfn-appsync-resolver-maxbatchsize).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub max_batch_size: Option<::Value<u32>>,
     /// Property [`PipelineConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-resolver.html#cfn-appsync-resolver-pipelineconfig).
     ///
     /// Update type: _Mutable_.
@@ -952,6 +1338,11 @@ pub struct ResolverProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub response_mapping_template_s3_location: Option<::Value<String>>,
+    /// Property [`Runtime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-resolver.html#cfn-appsync-resolver-runtime).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub runtime: Option<::Value<self::resolver::AppSyncRuntime>>,
     /// Property [`SyncConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-resolver.html#cfn-appsync-resolver-syncconfig).
     ///
     /// Update type: _Mutable_.
@@ -971,12 +1362,21 @@ impl ::serde::Serialize for ResolverProperties {
         if let Some(ref caching_config) = self.caching_config {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CachingConfig", caching_config)?;
         }
+        if let Some(ref code) = self.code {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Code", code)?;
+        }
+        if let Some(ref code_s3_location) = self.code_s3_location {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CodeS3Location", code_s3_location)?;
+        }
         if let Some(ref data_source_name) = self.data_source_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataSourceName", data_source_name)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "FieldName", &self.field_name)?;
         if let Some(ref kind) = self.kind {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Kind", kind)?;
+        }
+        if let Some(ref max_batch_size) = self.max_batch_size {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxBatchSize", max_batch_size)?;
         }
         if let Some(ref pipeline_config) = self.pipeline_config {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PipelineConfig", pipeline_config)?;
@@ -992,6 +1392,9 @@ impl ::serde::Serialize for ResolverProperties {
         }
         if let Some(ref response_mapping_template_s3_location) = self.response_mapping_template_s3_location {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResponseMappingTemplateS3Location", response_mapping_template_s3_location)?;
+        }
+        if let Some(ref runtime) = self.runtime {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Runtime", runtime)?;
         }
         if let Some(ref sync_config) = self.sync_config {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SyncConfig", sync_config)?;
@@ -1015,14 +1418,18 @@ impl<'de> ::serde::Deserialize<'de> for ResolverProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut api_id: Option<::Value<String>> = None;
                 let mut caching_config: Option<::Value<self::resolver::CachingConfig>> = None;
+                let mut code: Option<::Value<String>> = None;
+                let mut code_s3_location: Option<::Value<String>> = None;
                 let mut data_source_name: Option<::Value<String>> = None;
                 let mut field_name: Option<::Value<String>> = None;
                 let mut kind: Option<::Value<String>> = None;
+                let mut max_batch_size: Option<::Value<u32>> = None;
                 let mut pipeline_config: Option<::Value<self::resolver::PipelineConfig>> = None;
                 let mut request_mapping_template: Option<::Value<String>> = None;
                 let mut request_mapping_template_s3_location: Option<::Value<String>> = None;
                 let mut response_mapping_template: Option<::Value<String>> = None;
                 let mut response_mapping_template_s3_location: Option<::Value<String>> = None;
+                let mut runtime: Option<::Value<self::resolver::AppSyncRuntime>> = None;
                 let mut sync_config: Option<::Value<self::resolver::SyncConfig>> = None;
                 let mut type_name: Option<::Value<String>> = None;
 
@@ -1034,6 +1441,12 @@ impl<'de> ::serde::Deserialize<'de> for ResolverProperties {
                         "CachingConfig" => {
                             caching_config = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Code" => {
+                            code = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "CodeS3Location" => {
+                            code_s3_location = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "DataSourceName" => {
                             data_source_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -1042,6 +1455,9 @@ impl<'de> ::serde::Deserialize<'de> for ResolverProperties {
                         }
                         "Kind" => {
                             kind = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MaxBatchSize" => {
+                            max_batch_size = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "PipelineConfig" => {
                             pipeline_config = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1058,6 +1474,9 @@ impl<'de> ::serde::Deserialize<'de> for ResolverProperties {
                         "ResponseMappingTemplateS3Location" => {
                             response_mapping_template_s3_location = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Runtime" => {
+                            runtime = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "SyncConfig" => {
                             sync_config = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -1071,14 +1490,18 @@ impl<'de> ::serde::Deserialize<'de> for ResolverProperties {
                 Ok(ResolverProperties {
                     api_id: api_id.ok_or(::serde::de::Error::missing_field("ApiId"))?,
                     caching_config: caching_config,
+                    code: code,
+                    code_s3_location: code_s3_location,
                     data_source_name: data_source_name,
                     field_name: field_name.ok_or(::serde::de::Error::missing_field("FieldName"))?,
                     kind: kind,
+                    max_batch_size: max_batch_size,
                     pipeline_config: pipeline_config,
                     request_mapping_template: request_mapping_template,
                     request_mapping_template_s3_location: request_mapping_template_s3_location,
                     response_mapping_template: response_mapping_template,
                     response_mapping_template_s3_location: response_mapping_template_s3_location,
+                    runtime: runtime,
                     sync_config: sync_config,
                     type_name: type_name.ok_or(::serde::de::Error::missing_field("TypeName"))?,
                 })
@@ -1105,6 +1528,123 @@ impl ::private::Sealed for Resolver {}
 impl From<ResolverProperties> for Resolver {
     fn from(properties: ResolverProperties) -> Resolver {
         Resolver { properties }
+    }
+}
+
+/// The [`AWS::AppSync::SourceApiAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-sourceapiassociation.html) resource type.
+#[derive(Debug, Default)]
+pub struct SourceApiAssociation {
+    properties: SourceApiAssociationProperties
+}
+
+/// Properties for the `SourceApiAssociation` resource.
+#[derive(Debug, Default)]
+pub struct SourceApiAssociationProperties {
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-sourceapiassociation.html#cfn-appsync-sourceapiassociation-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`MergedApiIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-sourceapiassociation.html#cfn-appsync-sourceapiassociation-mergedapiidentifier).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub merged_api_identifier: Option<::Value<String>>,
+    /// Property [`SourceApiAssociationConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-sourceapiassociation.html#cfn-appsync-sourceapiassociation-sourceapiassociationconfig).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub source_api_association_config: Option<::Value<self::source_api_association::SourceApiAssociationConfig>>,
+    /// Property [`SourceApiIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appsync-sourceapiassociation.html#cfn-appsync-sourceapiassociation-sourceapiidentifier).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub source_api_identifier: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for SourceApiAssociationProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref merged_api_identifier) = self.merged_api_identifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MergedApiIdentifier", merged_api_identifier)?;
+        }
+        if let Some(ref source_api_association_config) = self.source_api_association_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceApiAssociationConfig", source_api_association_config)?;
+        }
+        if let Some(ref source_api_identifier) = self.source_api_identifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceApiIdentifier", source_api_identifier)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for SourceApiAssociationProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<SourceApiAssociationProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = SourceApiAssociationProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type SourceApiAssociationProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut description: Option<::Value<String>> = None;
+                let mut merged_api_identifier: Option<::Value<String>> = None;
+                let mut source_api_association_config: Option<::Value<self::source_api_association::SourceApiAssociationConfig>> = None;
+                let mut source_api_identifier: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MergedApiIdentifier" => {
+                            merged_api_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SourceApiAssociationConfig" => {
+                            source_api_association_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SourceApiIdentifier" => {
+                            source_api_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(SourceApiAssociationProperties {
+                    description: description,
+                    merged_api_identifier: merged_api_identifier,
+                    source_api_association_config: source_api_association_config,
+                    source_api_identifier: source_api_identifier,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for SourceApiAssociation {
+    type Properties = SourceApiAssociationProperties;
+    const TYPE: &'static str = "AWS::AppSync::SourceApiAssociation";
+    fn properties(&self) -> &SourceApiAssociationProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut SourceApiAssociationProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for SourceApiAssociation {}
+
+impl From<SourceApiAssociationProperties> for SourceApiAssociation {
+    fn from(properties: SourceApiAssociationProperties) -> SourceApiAssociation {
+        SourceApiAssociation { properties }
     }
 }
 
@@ -1477,6 +2017,57 @@ pub mod data_source {
         }
     }
 
+    /// The [`AWS::AppSync::DataSource.EventBridgeConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-eventbridgeconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct EventBridgeConfig {
+        /// Property [`EventBusArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-eventbridgeconfig.html#cfn-appsync-datasource-eventbridgeconfig-eventbusarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub event_bus_arn: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for EventBridgeConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventBusArn", &self.event_bus_arn)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for EventBridgeConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<EventBridgeConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = EventBridgeConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type EventBridgeConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut event_bus_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "EventBusArn" => {
+                                event_bus_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(EventBridgeConfig {
+                        event_bus_arn: event_bus_arn.ok_or(::serde::de::Error::missing_field("EventBusArn"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::AppSync::DataSource.HttpConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-httpconfig.html) property type.
     #[derive(Debug, Default)]
     pub struct HttpConfig {
@@ -1584,6 +2175,68 @@ pub mod data_source {
 
                     Ok(LambdaConfig {
                         lambda_function_arn: lambda_function_arn.ok_or(::serde::de::Error::missing_field("LambdaFunctionArn"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppSync::DataSource.OpenSearchServiceConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-opensearchserviceconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OpenSearchServiceConfig {
+        /// Property [`AwsRegion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-opensearchserviceconfig.html#cfn-appsync-datasource-opensearchserviceconfig-awsregion).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub aws_region: ::Value<String>,
+        /// Property [`Endpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-datasource-opensearchserviceconfig.html#cfn-appsync-datasource-opensearchserviceconfig-endpoint).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub endpoint: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for OpenSearchServiceConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AwsRegion", &self.aws_region)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Endpoint", &self.endpoint)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OpenSearchServiceConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OpenSearchServiceConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OpenSearchServiceConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OpenSearchServiceConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut aws_region: Option<::Value<String>> = None;
+                    let mut endpoint: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AwsRegion" => {
+                                aws_region = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Endpoint" => {
+                                endpoint = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OpenSearchServiceConfig {
+                        aws_region: aws_region.ok_or(::serde::de::Error::missing_field("AwsRegion"))?,
+                        endpoint: endpoint.ok_or(::serde::de::Error::missing_field("Endpoint"))?,
                     })
                 }
             }
@@ -1759,6 +2412,68 @@ pub mod data_source {
 pub mod function_configuration {
     //! Property types for the `FunctionConfiguration` resource.
 
+    /// The [`AWS::AppSync::FunctionConfiguration.AppSyncRuntime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-functionconfiguration-appsyncruntime.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AppSyncRuntime {
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-functionconfiguration-appsyncruntime.html#cfn-appsync-functionconfiguration-appsyncruntime-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: ::Value<String>,
+        /// Property [`RuntimeVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-functionconfiguration-appsyncruntime.html#cfn-appsync-functionconfiguration-appsyncruntime-runtimeversion).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub runtime_version: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for AppSyncRuntime {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuntimeVersion", &self.runtime_version)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AppSyncRuntime {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AppSyncRuntime, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AppSyncRuntime;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AppSyncRuntime")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut name: Option<::Value<String>> = None;
+                    let mut runtime_version: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RuntimeVersion" => {
+                                runtime_version = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AppSyncRuntime {
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                        runtime_version: runtime_version.ok_or(::serde::de::Error::missing_field("RuntimeVersion"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::AppSync::FunctionConfiguration.LambdaConflictHandlerConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-functionconfiguration-lambdaconflicthandlerconfig.html) property type.
     #[derive(Debug, Default)]
     pub struct LambdaConflictHandlerConfig {
@@ -1901,6 +2616,11 @@ pub mod graph_ql_api {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub authentication_type: ::Value<String>,
+        /// Property [`LambdaAuthorizerConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-additionalauthenticationprovider.html#cfn-appsync-graphqlapi-additionalauthenticationprovider-lambdaauthorizerconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub lambda_authorizer_config: Option<::Value<LambdaAuthorizerConfig>>,
         /// Property [`OpenIDConnectConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-additionalauthenticationprovider.html#cfn-appsync-graphqlapi-additionalauthenticationprovider-openidconnectconfig).
         ///
         /// Update type: _Mutable_.
@@ -1917,6 +2637,9 @@ pub mod graph_ql_api {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthenticationType", &self.authentication_type)?;
+            if let Some(ref lambda_authorizer_config) = self.lambda_authorizer_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaAuthorizerConfig", lambda_authorizer_config)?;
+            }
             if let Some(ref open_id_connect_config) = self.open_id_connect_config {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "OpenIDConnectConfig", open_id_connect_config)?;
             }
@@ -1940,6 +2663,7 @@ pub mod graph_ql_api {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut authentication_type: Option<::Value<String>> = None;
+                    let mut lambda_authorizer_config: Option<::Value<LambdaAuthorizerConfig>> = None;
                     let mut open_id_connect_config: Option<::Value<OpenIDConnectConfig>> = None;
                     let mut user_pool_config: Option<::Value<CognitoUserPoolConfig>> = None;
 
@@ -1947,6 +2671,9 @@ pub mod graph_ql_api {
                         match __cfn_key.as_ref() {
                             "AuthenticationType" => {
                                 authentication_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LambdaAuthorizerConfig" => {
+                                lambda_authorizer_config = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "OpenIDConnectConfig" => {
                                 open_id_connect_config = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1960,41 +2687,10 @@ pub mod graph_ql_api {
 
                     Ok(AdditionalAuthenticationProvider {
                         authentication_type: authentication_type.ok_or(::serde::de::Error::missing_field("AuthenticationType"))?,
+                        lambda_authorizer_config: lambda_authorizer_config,
                         open_id_connect_config: open_id_connect_config,
                         user_pool_config: user_pool_config,
                     })
-                }
-            }
-
-            d.deserialize_map(Visitor)
-        }
-    }
-
-    /// The [`AWS::AppSync::GraphQLApi.AdditionalAuthenticationProviders`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-additionalauthenticationproviders.html) property type.
-    #[derive(Debug, Default)]
-    pub struct AdditionalAuthenticationProviders {
-    }
-
-    impl ::codec::SerializeValue for AdditionalAuthenticationProviders {
-        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            let map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::end(map)
-        }
-    }
-
-    impl ::codec::DeserializeValue for AdditionalAuthenticationProviders {
-        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AdditionalAuthenticationProviders, D::Error> {
-            struct Visitor;
-
-            impl<'de> ::serde::de::Visitor<'de> for Visitor {
-                type Value = AdditionalAuthenticationProviders;
-
-                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-                    write!(f, "a struct of type AdditionalAuthenticationProviders")
-                }
-
-                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, _map: A) -> Result<Self::Value, A::Error> {
-                    Ok(AdditionalAuthenticationProviders {})
                 }
             }
 
@@ -2073,6 +2769,85 @@ pub mod graph_ql_api {
                         app_id_client_regex: app_id_client_regex,
                         aws_region: aws_region,
                         user_pool_id: user_pool_id,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppSync::GraphQLApi.LambdaAuthorizerConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-lambdaauthorizerconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LambdaAuthorizerConfig {
+        /// Property [`AuthorizerResultTtlInSeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-lambdaauthorizerconfig.html#cfn-appsync-graphqlapi-lambdaauthorizerconfig-authorizerresultttlinseconds).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub authorizer_result_ttl_in_seconds: Option<::Value<f64>>,
+        /// Property [`AuthorizerUri`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-lambdaauthorizerconfig.html#cfn-appsync-graphqlapi-lambdaauthorizerconfig-authorizeruri).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub authorizer_uri: Option<::Value<String>>,
+        /// Property [`IdentityValidationExpression`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-lambdaauthorizerconfig.html#cfn-appsync-graphqlapi-lambdaauthorizerconfig-identityvalidationexpression).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub identity_validation_expression: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for LambdaAuthorizerConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref authorizer_result_ttl_in_seconds) = self.authorizer_result_ttl_in_seconds {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthorizerResultTtlInSeconds", authorizer_result_ttl_in_seconds)?;
+            }
+            if let Some(ref authorizer_uri) = self.authorizer_uri {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthorizerUri", authorizer_uri)?;
+            }
+            if let Some(ref identity_validation_expression) = self.identity_validation_expression {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IdentityValidationExpression", identity_validation_expression)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LambdaAuthorizerConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LambdaAuthorizerConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LambdaAuthorizerConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LambdaAuthorizerConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut authorizer_result_ttl_in_seconds: Option<::Value<f64>> = None;
+                    let mut authorizer_uri: Option<::Value<String>> = None;
+                    let mut identity_validation_expression: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AuthorizerResultTtlInSeconds" => {
+                                authorizer_result_ttl_in_seconds = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "AuthorizerUri" => {
+                                authorizer_uri = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IdentityValidationExpression" => {
+                                identity_validation_expression = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LambdaAuthorizerConfig {
+                        authorizer_result_ttl_in_seconds: authorizer_result_ttl_in_seconds,
+                        authorizer_uri: authorizer_uri,
+                        identity_validation_expression: identity_validation_expression,
                     })
                 }
             }
@@ -2252,38 +3027,6 @@ pub mod graph_ql_api {
         }
     }
 
-    /// The [`AWS::AppSync::GraphQLApi.Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-tags.html) property type.
-    #[derive(Debug, Default)]
-    pub struct Tags {
-    }
-
-    impl ::codec::SerializeValue for Tags {
-        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            let map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::end(map)
-        }
-    }
-
-    impl ::codec::DeserializeValue for Tags {
-        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Tags, D::Error> {
-            struct Visitor;
-
-            impl<'de> ::serde::de::Visitor<'de> for Visitor {
-                type Value = Tags;
-
-                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-                    write!(f, "a struct of type Tags")
-                }
-
-                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, _map: A) -> Result<Self::Value, A::Error> {
-                    Ok(Tags {})
-                }
-            }
-
-            d.deserialize_map(Visitor)
-        }
-    }
-
     /// The [`AWS::AppSync::GraphQLApi.UserPoolConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-graphqlapi-userpoolconfig.html) property type.
     #[derive(Debug, Default)]
     pub struct UserPoolConfig {
@@ -2380,6 +3123,68 @@ pub mod graph_ql_api {
 pub mod resolver {
     //! Property types for the `Resolver` resource.
 
+    /// The [`AWS::AppSync::Resolver.AppSyncRuntime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-resolver-appsyncruntime.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AppSyncRuntime {
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-resolver-appsyncruntime.html#cfn-appsync-resolver-appsyncruntime-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: ::Value<String>,
+        /// Property [`RuntimeVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-resolver-appsyncruntime.html#cfn-appsync-resolver-appsyncruntime-runtimeversion).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub runtime_version: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for AppSyncRuntime {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuntimeVersion", &self.runtime_version)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AppSyncRuntime {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AppSyncRuntime, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AppSyncRuntime;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AppSyncRuntime")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut name: Option<::Value<String>> = None;
+                    let mut runtime_version: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RuntimeVersion" => {
+                                runtime_version = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AppSyncRuntime {
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                        runtime_version: runtime_version.ok_or(::serde::de::Error::missing_field("RuntimeVersion"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::AppSync::Resolver.CachingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-resolver-cachingconfig.html) property type.
     #[derive(Debug, Default)]
     pub struct CachingConfig {
@@ -2392,7 +3197,7 @@ pub mod resolver {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub ttl: Option<::Value<f64>>,
+        pub ttl: ::Value<f64>,
     }
 
     impl ::codec::SerializeValue for CachingConfig {
@@ -2401,9 +3206,7 @@ pub mod resolver {
             if let Some(ref caching_keys) = self.caching_keys {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "CachingKeys", caching_keys)?;
             }
-            if let Some(ref ttl) = self.ttl {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ttl", ttl)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ttl", &self.ttl)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -2437,7 +3240,7 @@ pub mod resolver {
 
                     Ok(CachingConfig {
                         caching_keys: caching_keys,
-                        ttl: ttl,
+                        ttl: ttl.ok_or(::serde::de::Error::missing_field("Ttl"))?,
                     })
                 }
             }
@@ -2621,6 +3424,63 @@ pub mod resolver {
                         conflict_detection: conflict_detection.ok_or(::serde::de::Error::missing_field("ConflictDetection"))?,
                         conflict_handler: conflict_handler,
                         lambda_conflict_handler_config: lambda_conflict_handler_config,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod source_api_association {
+    //! Property types for the `SourceApiAssociation` resource.
+
+    /// The [`AWS::AppSync::SourceApiAssociation.SourceApiAssociationConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-sourceapiassociation-sourceapiassociationconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SourceApiAssociationConfig {
+        /// Property [`MergeType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appsync-sourceapiassociation-sourceapiassociationconfig.html#cfn-appsync-sourceapiassociation-sourceapiassociationconfig-mergetype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub merge_type: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for SourceApiAssociationConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref merge_type) = self.merge_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MergeType", merge_type)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SourceApiAssociationConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SourceApiAssociationConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SourceApiAssociationConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SourceApiAssociationConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut merge_type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "MergeType" => {
+                                merge_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SourceApiAssociationConfig {
+                        merge_type: merge_type,
                     })
                 }
             }

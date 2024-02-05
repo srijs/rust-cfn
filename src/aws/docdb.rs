@@ -19,6 +19,11 @@ pub struct DBClusterProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub backup_retention_period: Option<::Value<u32>>,
+    /// Property [`CopyTagsToSnapshot`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html#cfn-docdb-dbcluster-copytagstosnapshot).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub copy_tags_to_snapshot: Option<::Value<bool>>,
     /// Property [`DBClusterIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html#cfn-docdb-dbcluster-dbclusteridentifier).
     ///
     /// Update type: _Immutable_.
@@ -46,8 +51,8 @@ pub struct DBClusterProperties {
     pub enable_cloudwatch_logs_exports: Option<::ValueList<String>>,
     /// Property [`EngineVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html#cfn-docdb-dbcluster-engineversion).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub engine_version: Option<::Value<String>>,
     /// Property [`KmsKeyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html#cfn-docdb-dbcluster-kmskeyid).
     ///
@@ -58,12 +63,12 @@ pub struct DBClusterProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub master_user_password: ::Value<String>,
+    pub master_user_password: Option<::Value<String>>,
     /// Property [`MasterUsername`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html#cfn-docdb-dbcluster-masterusername).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub master_username: ::Value<String>,
+    pub master_username: Option<::Value<String>>,
     /// Property [`Port`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html#cfn-docdb-dbcluster-port).
     ///
     /// Update type: _Mutable_.
@@ -79,21 +84,46 @@ pub struct DBClusterProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub preferred_maintenance_window: Option<::Value<String>>,
+    /// Property [`RestoreToTime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html#cfn-docdb-dbcluster-restoretotime).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub restore_to_time: Option<::Value<String>>,
+    /// Property [`RestoreType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html#cfn-docdb-dbcluster-restoretype).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub restore_type: Option<::Value<String>>,
     /// Property [`SnapshotIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html#cfn-docdb-dbcluster-snapshotidentifier).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub snapshot_identifier: Option<::Value<String>>,
+    /// Property [`SourceDBClusterIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html#cfn-docdb-dbcluster-sourcedbclusteridentifier).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub source_db_cluster_identifier: Option<::Value<String>>,
     /// Property [`StorageEncrypted`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html#cfn-docdb-dbcluster-storageencrypted).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub storage_encrypted: Option<::Value<bool>>,
+    /// Property [`StorageType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html#cfn-docdb-dbcluster-storagetype).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub storage_type: Option<::Value<String>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html#cfn-docdb-dbcluster-tags).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`UseLatestRestorableTime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html#cfn-docdb-dbcluster-uselatestrestorabletime).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub use_latest_restorable_time: Option<::Value<bool>>,
     /// Property [`VpcSecurityGroupIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html#cfn-docdb-dbcluster-vpcsecuritygroupids).
     ///
     /// Update type: _Mutable_.
@@ -109,6 +139,9 @@ impl ::serde::Serialize for DBClusterProperties {
         }
         if let Some(ref backup_retention_period) = self.backup_retention_period {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BackupRetentionPeriod", backup_retention_period)?;
+        }
+        if let Some(ref copy_tags_to_snapshot) = self.copy_tags_to_snapshot {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CopyTagsToSnapshot", copy_tags_to_snapshot)?;
         }
         if let Some(ref db_cluster_identifier) = self.db_cluster_identifier {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBClusterIdentifier", db_cluster_identifier)?;
@@ -131,8 +164,12 @@ impl ::serde::Serialize for DBClusterProperties {
         if let Some(ref kms_key_id) = self.kms_key_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", kms_key_id)?;
         }
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MasterUserPassword", &self.master_user_password)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MasterUsername", &self.master_username)?;
+        if let Some(ref master_user_password) = self.master_user_password {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MasterUserPassword", master_user_password)?;
+        }
+        if let Some(ref master_username) = self.master_username {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MasterUsername", master_username)?;
+        }
         if let Some(ref port) = self.port {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", port)?;
         }
@@ -142,14 +179,29 @@ impl ::serde::Serialize for DBClusterProperties {
         if let Some(ref preferred_maintenance_window) = self.preferred_maintenance_window {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreferredMaintenanceWindow", preferred_maintenance_window)?;
         }
+        if let Some(ref restore_to_time) = self.restore_to_time {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RestoreToTime", restore_to_time)?;
+        }
+        if let Some(ref restore_type) = self.restore_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RestoreType", restore_type)?;
+        }
         if let Some(ref snapshot_identifier) = self.snapshot_identifier {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotIdentifier", snapshot_identifier)?;
+        }
+        if let Some(ref source_db_cluster_identifier) = self.source_db_cluster_identifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceDBClusterIdentifier", source_db_cluster_identifier)?;
         }
         if let Some(ref storage_encrypted) = self.storage_encrypted {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "StorageEncrypted", storage_encrypted)?;
         }
+        if let Some(ref storage_type) = self.storage_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StorageType", storage_type)?;
+        }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref use_latest_restorable_time) = self.use_latest_restorable_time {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UseLatestRestorableTime", use_latest_restorable_time)?;
         }
         if let Some(ref vpc_security_group_ids) = self.vpc_security_group_ids {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcSecurityGroupIds", vpc_security_group_ids)?;
@@ -172,6 +224,7 @@ impl<'de> ::serde::Deserialize<'de> for DBClusterProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut availability_zones: Option<::ValueList<String>> = None;
                 let mut backup_retention_period: Option<::Value<u32>> = None;
+                let mut copy_tags_to_snapshot: Option<::Value<bool>> = None;
                 let mut db_cluster_identifier: Option<::Value<String>> = None;
                 let mut db_cluster_parameter_group_name: Option<::Value<String>> = None;
                 let mut db_subnet_group_name: Option<::Value<String>> = None;
@@ -184,9 +237,14 @@ impl<'de> ::serde::Deserialize<'de> for DBClusterProperties {
                 let mut port: Option<::Value<u32>> = None;
                 let mut preferred_backup_window: Option<::Value<String>> = None;
                 let mut preferred_maintenance_window: Option<::Value<String>> = None;
+                let mut restore_to_time: Option<::Value<String>> = None;
+                let mut restore_type: Option<::Value<String>> = None;
                 let mut snapshot_identifier: Option<::Value<String>> = None;
+                let mut source_db_cluster_identifier: Option<::Value<String>> = None;
                 let mut storage_encrypted: Option<::Value<bool>> = None;
+                let mut storage_type: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut use_latest_restorable_time: Option<::Value<bool>> = None;
                 let mut vpc_security_group_ids: Option<::ValueList<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -196,6 +254,9 @@ impl<'de> ::serde::Deserialize<'de> for DBClusterProperties {
                         }
                         "BackupRetentionPeriod" => {
                             backup_retention_period = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "CopyTagsToSnapshot" => {
+                            copy_tags_to_snapshot = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "DBClusterIdentifier" => {
                             db_cluster_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -233,14 +294,29 @@ impl<'de> ::serde::Deserialize<'de> for DBClusterProperties {
                         "PreferredMaintenanceWindow" => {
                             preferred_maintenance_window = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "RestoreToTime" => {
+                            restore_to_time = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "RestoreType" => {
+                            restore_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "SnapshotIdentifier" => {
                             snapshot_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SourceDBClusterIdentifier" => {
+                            source_db_cluster_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "StorageEncrypted" => {
                             storage_encrypted = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "StorageType" => {
+                            storage_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "UseLatestRestorableTime" => {
+                            use_latest_restorable_time = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "VpcSecurityGroupIds" => {
                             vpc_security_group_ids = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -252,6 +328,7 @@ impl<'de> ::serde::Deserialize<'de> for DBClusterProperties {
                 Ok(DBClusterProperties {
                     availability_zones: availability_zones,
                     backup_retention_period: backup_retention_period,
+                    copy_tags_to_snapshot: copy_tags_to_snapshot,
                     db_cluster_identifier: db_cluster_identifier,
                     db_cluster_parameter_group_name: db_cluster_parameter_group_name,
                     db_subnet_group_name: db_subnet_group_name,
@@ -259,14 +336,19 @@ impl<'de> ::serde::Deserialize<'de> for DBClusterProperties {
                     enable_cloudwatch_logs_exports: enable_cloudwatch_logs_exports,
                     engine_version: engine_version,
                     kms_key_id: kms_key_id,
-                    master_user_password: master_user_password.ok_or(::serde::de::Error::missing_field("MasterUserPassword"))?,
-                    master_username: master_username.ok_or(::serde::de::Error::missing_field("MasterUsername"))?,
+                    master_user_password: master_user_password,
+                    master_username: master_username,
                     port: port,
                     preferred_backup_window: preferred_backup_window,
                     preferred_maintenance_window: preferred_maintenance_window,
+                    restore_to_time: restore_to_time,
+                    restore_type: restore_type,
                     snapshot_identifier: snapshot_identifier,
+                    source_db_cluster_identifier: source_db_cluster_identifier,
                     storage_encrypted: storage_encrypted,
+                    storage_type: storage_type,
                     tags: tags,
+                    use_latest_restorable_time: use_latest_restorable_time,
                     vpc_security_group_ids: vpc_security_group_ids,
                 })
             }
@@ -438,6 +520,16 @@ pub struct DBInstanceProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub availability_zone: Option<::Value<String>>,
+    /// Property [`CACertificateIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbinstance.html#cfn-docdb-dbinstance-cacertificateidentifier).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub ca_certificate_identifier: Option<::Value<String>>,
+    /// Property [`CertificateRotationRestart`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbinstance.html#cfn-docdb-dbinstance-certificaterotationrestart).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub certificate_rotation_restart: Option<::Value<bool>>,
     /// Property [`DBClusterIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbinstance.html#cfn-docdb-dbinstance-dbclusteridentifier).
     ///
     /// Update type: _Immutable_.
@@ -453,6 +545,11 @@ pub struct DBInstanceProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub db_instance_identifier: Option<::Value<String>>,
+    /// Property [`EnablePerformanceInsights`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbinstance.html#cfn-docdb-dbinstance-enableperformanceinsights).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub enable_performance_insights: Option<::Value<bool>>,
     /// Property [`PreferredMaintenanceWindow`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbinstance.html#cfn-docdb-dbinstance-preferredmaintenancewindow).
     ///
     /// Update type: _Mutable_.
@@ -474,10 +571,19 @@ impl ::serde::Serialize for DBInstanceProperties {
         if let Some(ref availability_zone) = self.availability_zone {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZone", availability_zone)?;
         }
+        if let Some(ref ca_certificate_identifier) = self.ca_certificate_identifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CACertificateIdentifier", ca_certificate_identifier)?;
+        }
+        if let Some(ref certificate_rotation_restart) = self.certificate_rotation_restart {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificateRotationRestart", certificate_rotation_restart)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBClusterIdentifier", &self.db_cluster_identifier)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBInstanceClass", &self.db_instance_class)?;
         if let Some(ref db_instance_identifier) = self.db_instance_identifier {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBInstanceIdentifier", db_instance_identifier)?;
+        }
+        if let Some(ref enable_performance_insights) = self.enable_performance_insights {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnablePerformanceInsights", enable_performance_insights)?;
         }
         if let Some(ref preferred_maintenance_window) = self.preferred_maintenance_window {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreferredMaintenanceWindow", preferred_maintenance_window)?;
@@ -503,9 +609,12 @@ impl<'de> ::serde::Deserialize<'de> for DBInstanceProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut auto_minor_version_upgrade: Option<::Value<bool>> = None;
                 let mut availability_zone: Option<::Value<String>> = None;
+                let mut ca_certificate_identifier: Option<::Value<String>> = None;
+                let mut certificate_rotation_restart: Option<::Value<bool>> = None;
                 let mut db_cluster_identifier: Option<::Value<String>> = None;
                 let mut db_instance_class: Option<::Value<String>> = None;
                 let mut db_instance_identifier: Option<::Value<String>> = None;
+                let mut enable_performance_insights: Option<::Value<bool>> = None;
                 let mut preferred_maintenance_window: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
 
@@ -517,6 +626,12 @@ impl<'de> ::serde::Deserialize<'de> for DBInstanceProperties {
                         "AvailabilityZone" => {
                             availability_zone = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "CACertificateIdentifier" => {
+                            ca_certificate_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "CertificateRotationRestart" => {
+                            certificate_rotation_restart = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "DBClusterIdentifier" => {
                             db_cluster_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -525,6 +640,9 @@ impl<'de> ::serde::Deserialize<'de> for DBInstanceProperties {
                         }
                         "DBInstanceIdentifier" => {
                             db_instance_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "EnablePerformanceInsights" => {
+                            enable_performance_insights = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "PreferredMaintenanceWindow" => {
                             preferred_maintenance_window = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -539,9 +657,12 @@ impl<'de> ::serde::Deserialize<'de> for DBInstanceProperties {
                 Ok(DBInstanceProperties {
                     auto_minor_version_upgrade: auto_minor_version_upgrade,
                     availability_zone: availability_zone,
+                    ca_certificate_identifier: ca_certificate_identifier,
+                    certificate_rotation_restart: certificate_rotation_restart,
                     db_cluster_identifier: db_cluster_identifier.ok_or(::serde::de::Error::missing_field("DBClusterIdentifier"))?,
                     db_instance_class: db_instance_class.ok_or(::serde::de::Error::missing_field("DBInstanceClass"))?,
                     db_instance_identifier: db_instance_identifier,
+                    enable_performance_insights: enable_performance_insights,
                     preferred_maintenance_window: preferred_maintenance_window,
                     tags: tags,
                 })
@@ -681,5 +802,146 @@ impl ::private::Sealed for DBSubnetGroup {}
 impl From<DBSubnetGroupProperties> for DBSubnetGroup {
     fn from(properties: DBSubnetGroupProperties) -> DBSubnetGroup {
         DBSubnetGroup { properties }
+    }
+}
+
+/// The [`AWS::DocDB::EventSubscription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-eventsubscription.html) resource type.
+#[derive(Debug, Default)]
+pub struct EventSubscription {
+    properties: EventSubscriptionProperties
+}
+
+/// Properties for the `EventSubscription` resource.
+#[derive(Debug, Default)]
+pub struct EventSubscriptionProperties {
+    /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-eventsubscription.html#cfn-docdb-eventsubscription-enabled).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub enabled: Option<::Value<bool>>,
+    /// Property [`EventCategories`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-eventsubscription.html#cfn-docdb-eventsubscription-eventcategories).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub event_categories: Option<::ValueList<String>>,
+    /// Property [`SnsTopicArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-eventsubscription.html#cfn-docdb-eventsubscription-snstopicarn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub sns_topic_arn: ::Value<String>,
+    /// Property [`SourceIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-eventsubscription.html#cfn-docdb-eventsubscription-sourceids).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub source_ids: Option<::ValueList<String>>,
+    /// Property [`SourceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-eventsubscription.html#cfn-docdb-eventsubscription-sourcetype).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub source_type: Option<::Value<String>>,
+    /// Property [`SubscriptionName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-eventsubscription.html#cfn-docdb-eventsubscription-subscriptionname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub subscription_name: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for EventSubscriptionProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref enabled) = self.enabled {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", enabled)?;
+        }
+        if let Some(ref event_categories) = self.event_categories {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventCategories", event_categories)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnsTopicArn", &self.sns_topic_arn)?;
+        if let Some(ref source_ids) = self.source_ids {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceIds", source_ids)?;
+        }
+        if let Some(ref source_type) = self.source_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceType", source_type)?;
+        }
+        if let Some(ref subscription_name) = self.subscription_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubscriptionName", subscription_name)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for EventSubscriptionProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<EventSubscriptionProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = EventSubscriptionProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type EventSubscriptionProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut enabled: Option<::Value<bool>> = None;
+                let mut event_categories: Option<::ValueList<String>> = None;
+                let mut sns_topic_arn: Option<::Value<String>> = None;
+                let mut source_ids: Option<::ValueList<String>> = None;
+                let mut source_type: Option<::Value<String>> = None;
+                let mut subscription_name: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Enabled" => {
+                            enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "EventCategories" => {
+                            event_categories = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SnsTopicArn" => {
+                            sns_topic_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SourceIds" => {
+                            source_ids = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SourceType" => {
+                            source_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SubscriptionName" => {
+                            subscription_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(EventSubscriptionProperties {
+                    enabled: enabled,
+                    event_categories: event_categories,
+                    sns_topic_arn: sns_topic_arn.ok_or(::serde::de::Error::missing_field("SnsTopicArn"))?,
+                    source_ids: source_ids,
+                    source_type: source_type,
+                    subscription_name: subscription_name,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for EventSubscription {
+    type Properties = EventSubscriptionProperties;
+    const TYPE: &'static str = "AWS::DocDB::EventSubscription";
+    fn properties(&self) -> &EventSubscriptionProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut EventSubscriptionProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for EventSubscription {}
+
+impl From<EventSubscriptionProperties> for EventSubscription {
+    fn from(properties: EventSubscriptionProperties) -> EventSubscription {
+        EventSubscription { properties }
     }
 }

@@ -133,6 +133,11 @@ pub struct DeploymentConfigProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub traffic_routing_config: Option<::Value<self::deployment_config::TrafficRoutingConfig>>,
+    /// Property [`ZonalConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentconfig.html#cfn-codedeploy-deploymentconfig-zonalconfig).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub zonal_config: Option<::Value<self::deployment_config::ZonalConfig>>,
 }
 
 impl ::serde::Serialize for DeploymentConfigProperties {
@@ -149,6 +154,9 @@ impl ::serde::Serialize for DeploymentConfigProperties {
         }
         if let Some(ref traffic_routing_config) = self.traffic_routing_config {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrafficRoutingConfig", traffic_routing_config)?;
+        }
+        if let Some(ref zonal_config) = self.zonal_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ZonalConfig", zonal_config)?;
         }
         ::serde::ser::SerializeMap::end(map)
     }
@@ -170,6 +178,7 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentConfigProperties {
                 let mut deployment_config_name: Option<::Value<String>> = None;
                 let mut minimum_healthy_hosts: Option<::Value<self::deployment_config::MinimumHealthyHosts>> = None;
                 let mut traffic_routing_config: Option<::Value<self::deployment_config::TrafficRoutingConfig>> = None;
+                let mut zonal_config: Option<::Value<self::deployment_config::ZonalConfig>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -185,6 +194,9 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentConfigProperties {
                         "TrafficRoutingConfig" => {
                             traffic_routing_config = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ZonalConfig" => {
+                            zonal_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
@@ -194,6 +206,7 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentConfigProperties {
                     deployment_config_name: deployment_config_name,
                     minimum_healthy_hosts: minimum_healthy_hosts,
                     traffic_routing_config: traffic_routing_config,
+                    zonal_config: zonal_config,
                 })
             }
         }
@@ -305,11 +318,26 @@ pub struct DeploymentGroupProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub on_premises_tag_set: Option<::Value<self::deployment_group::OnPremisesTagSet>>,
+    /// Property [`OutdatedInstancesStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-outdatedinstancesstrategy).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub outdated_instances_strategy: Option<::Value<String>>,
     /// Property [`ServiceRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-servicerolearn).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub service_role_arn: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`TerminationHookEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-terminationhookenabled).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub termination_hook_enabled: Option<::Value<bool>>,
     /// Property [`TriggerConfigurations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html#cfn-codedeploy-deploymentgroup-triggerconfigurations).
     ///
     /// Update type: _Mutable_.
@@ -363,7 +391,16 @@ impl ::serde::Serialize for DeploymentGroupProperties {
         if let Some(ref on_premises_tag_set) = self.on_premises_tag_set {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "OnPremisesTagSet", on_premises_tag_set)?;
         }
+        if let Some(ref outdated_instances_strategy) = self.outdated_instances_strategy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutdatedInstancesStrategy", outdated_instances_strategy)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceRoleArn", &self.service_role_arn)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref termination_hook_enabled) = self.termination_hook_enabled {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TerminationHookEnabled", termination_hook_enabled)?;
+        }
         if let Some(ref trigger_configurations) = self.trigger_configurations {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TriggerConfigurations", trigger_configurations)?;
         }
@@ -398,7 +435,10 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentGroupProperties {
                 let mut load_balancer_info: Option<::Value<self::deployment_group::LoadBalancerInfo>> = None;
                 let mut on_premises_instance_tag_filters: Option<::ValueList<self::deployment_group::TagFilter>> = None;
                 let mut on_premises_tag_set: Option<::Value<self::deployment_group::OnPremisesTagSet>> = None;
+                let mut outdated_instances_strategy: Option<::Value<String>> = None;
                 let mut service_role_arn: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut termination_hook_enabled: Option<::Value<bool>> = None;
                 let mut trigger_configurations: Option<::ValueList<self::deployment_group::TriggerConfig>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -448,8 +488,17 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentGroupProperties {
                         "OnPremisesTagSet" => {
                             on_premises_tag_set = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "OutdatedInstancesStrategy" => {
+                            outdated_instances_strategy = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "ServiceRoleArn" => {
                             service_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TerminationHookEnabled" => {
+                            termination_hook_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "TriggerConfigurations" => {
                             trigger_configurations = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -474,7 +523,10 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentGroupProperties {
                     load_balancer_info: load_balancer_info,
                     on_premises_instance_tag_filters: on_premises_instance_tag_filters,
                     on_premises_tag_set: on_premises_tag_set,
+                    outdated_instances_strategy: outdated_instances_strategy,
                     service_role_arn: service_role_arn.ok_or(::serde::de::Error::missing_field("ServiceRoleArn"))?,
+                    tags: tags,
+                    termination_hook_enabled: termination_hook_enabled,
                     trigger_configurations: trigger_configurations,
                 })
             }
@@ -511,13 +563,13 @@ pub mod deployment_config {
     pub struct MinimumHealthyHosts {
         /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-minimumhealthyhosts.html#cfn-codedeploy-deploymentconfig-minimumhealthyhosts-type).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub r#type: ::Value<String>,
         /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-minimumhealthyhosts.html#cfn-codedeploy-deploymentconfig-minimumhealthyhosts-value).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub value: ::Value<u32>,
     }
 
@@ -568,18 +620,80 @@ pub mod deployment_config {
         }
     }
 
+    /// The [`AWS::CodeDeploy::DeploymentConfig.MinimumHealthyHostsPerZone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-minimumhealthyhostsperzone.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MinimumHealthyHostsPerZone {
+        /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-minimumhealthyhostsperzone.html#cfn-codedeploy-deploymentconfig-minimumhealthyhostsperzone-type).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub r#type: ::Value<String>,
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-minimumhealthyhostsperzone.html#cfn-codedeploy-deploymentconfig-minimumhealthyhostsperzone-value).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub value: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for MinimumHealthyHostsPerZone {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MinimumHealthyHostsPerZone {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MinimumHealthyHostsPerZone, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MinimumHealthyHostsPerZone;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MinimumHealthyHostsPerZone")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut r#type: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Type" => {
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Value" => {
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MinimumHealthyHostsPerZone {
+                        r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
+                        value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::CodeDeploy::DeploymentConfig.TimeBasedCanary`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-timebasedcanary.html) property type.
     #[derive(Debug, Default)]
     pub struct TimeBasedCanary {
-        /// Property [`CanaryInterval`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-timebasedcanary.html#cfn-properties-codedeploy-deploymentconfig-trafficroutingconfig-timebasedcanary-canaryinterval).
+        /// Property [`CanaryInterval`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-timebasedcanary.html#cfn-codedeploy-deploymentconfig-timebasedcanary-canaryinterval).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub canary_interval: ::Value<u32>,
-        /// Property [`CanaryPercentage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-timebasedcanary.html#cfn-properties-codedeploy-deploymentconfig-trafficroutingconfig-timebasedcanary-canarypercentage).
+        /// Property [`CanaryPercentage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-timebasedcanary.html#cfn-codedeploy-deploymentconfig-timebasedcanary-canarypercentage).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub canary_percentage: ::Value<u32>,
     }
 
@@ -633,15 +747,15 @@ pub mod deployment_config {
     /// The [`AWS::CodeDeploy::DeploymentConfig.TimeBasedLinear`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-timebasedlinear.html) property type.
     #[derive(Debug, Default)]
     pub struct TimeBasedLinear {
-        /// Property [`LinearInterval`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-timebasedlinear.html#cfn-properties-codedeploy-deploymentconfig-trafficroutingconfig-timebasedlinear-linearinterval).
+        /// Property [`LinearInterval`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-timebasedlinear.html#cfn-codedeploy-deploymentconfig-timebasedlinear-linearinterval).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub linear_interval: ::Value<u32>,
-        /// Property [`LinearPercentage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-timebasedlinear.html#cfn-properties-codedeploy-deploymentconfig-trafficroutingconfig-timebasedlinear-linearpercentage).
+        /// Property [`LinearPercentage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-timebasedlinear.html#cfn-codedeploy-deploymentconfig-timebasedlinear-linearpercentage).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub linear_percentage: ::Value<u32>,
     }
 
@@ -695,20 +809,20 @@ pub mod deployment_config {
     /// The [`AWS::CodeDeploy::DeploymentConfig.TrafficRoutingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-trafficroutingconfig.html) property type.
     #[derive(Debug, Default)]
     pub struct TrafficRoutingConfig {
-        /// Property [`TimeBasedCanary`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-trafficroutingconfig.html#cfn-properties-codedeploy-deploymentconfig-trafficroutingconfig-timebasedcanary).
+        /// Property [`TimeBasedCanary`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-trafficroutingconfig.html#cfn-codedeploy-deploymentconfig-trafficroutingconfig-timebasedcanary).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub time_based_canary: Option<::Value<TimeBasedCanary>>,
-        /// Property [`TimeBasedLinear`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-trafficroutingconfig.html#cfn-properties-codedeploy-deploymentconfig-trafficroutingconfig-timebasedlinear).
+        /// Property [`TimeBasedLinear`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-trafficroutingconfig.html#cfn-codedeploy-deploymentconfig-trafficroutingconfig-timebasedlinear).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub time_based_linear: Option<::Value<TimeBasedLinear>>,
-        /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-trafficroutingconfig.html#cfn-properties-codedeploy-deploymentconfig-trafficroutingconfig-type).
+        /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-trafficroutingconfig.html#cfn-codedeploy-deploymentconfig-trafficroutingconfig-type).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub r#type: ::Value<String>,
     }
 
@@ -761,6 +875,85 @@ pub mod deployment_config {
                         time_based_canary: time_based_canary,
                         time_based_linear: time_based_linear,
                         r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CodeDeploy::DeploymentConfig.ZonalConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-zonalconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ZonalConfig {
+        /// Property [`FirstZoneMonitorDurationInSeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-zonalconfig.html#cfn-codedeploy-deploymentconfig-zonalconfig-firstzonemonitordurationinseconds).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub first_zone_monitor_duration_in_seconds: Option<::Value<u32>>,
+        /// Property [`MinimumHealthyHostsPerZone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-zonalconfig.html#cfn-codedeploy-deploymentconfig-zonalconfig-minimumhealthyhostsperzone).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub minimum_healthy_hosts_per_zone: Option<::Value<MinimumHealthyHostsPerZone>>,
+        /// Property [`MonitorDurationInSeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-zonalconfig.html#cfn-codedeploy-deploymentconfig-zonalconfig-monitordurationinseconds).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub monitor_duration_in_seconds: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for ZonalConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref first_zone_monitor_duration_in_seconds) = self.first_zone_monitor_duration_in_seconds {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FirstZoneMonitorDurationInSeconds", first_zone_monitor_duration_in_seconds)?;
+            }
+            if let Some(ref minimum_healthy_hosts_per_zone) = self.minimum_healthy_hosts_per_zone {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinimumHealthyHostsPerZone", minimum_healthy_hosts_per_zone)?;
+            }
+            if let Some(ref monitor_duration_in_seconds) = self.monitor_duration_in_seconds {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MonitorDurationInSeconds", monitor_duration_in_seconds)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ZonalConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ZonalConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ZonalConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ZonalConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut first_zone_monitor_duration_in_seconds: Option<::Value<u32>> = None;
+                    let mut minimum_healthy_hosts_per_zone: Option<::Value<MinimumHealthyHostsPerZone>> = None;
+                    let mut monitor_duration_in_seconds: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "FirstZoneMonitorDurationInSeconds" => {
+                                first_zone_monitor_duration_in_seconds = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MinimumHealthyHostsPerZone" => {
+                                minimum_healthy_hosts_per_zone = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MonitorDurationInSeconds" => {
+                                monitor_duration_in_seconds = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ZonalConfig {
+                        first_zone_monitor_duration_in_seconds: first_zone_monitor_duration_in_seconds,
+                        minimum_healthy_hosts_per_zone: minimum_healthy_hosts_per_zone,
+                        monitor_duration_in_seconds: monitor_duration_in_seconds,
                     })
                 }
             }
@@ -1753,6 +1946,11 @@ pub mod deployment_group {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub target_group_info_list: Option<::ValueList<TargetGroupInfo>>,
+        /// Property [`TargetGroupPairInfoList`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-loadbalancerinfo.html#cfn-codedeploy-deploymentgroup-loadbalancerinfo-targetgrouppairinfolist).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub target_group_pair_info_list: Option<::ValueList<TargetGroupPairInfo>>,
     }
 
     impl ::codec::SerializeValue for LoadBalancerInfo {
@@ -1763,6 +1961,9 @@ pub mod deployment_group {
             }
             if let Some(ref target_group_info_list) = self.target_group_info_list {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetGroupInfoList", target_group_info_list)?;
+            }
+            if let Some(ref target_group_pair_info_list) = self.target_group_pair_info_list {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetGroupPairInfoList", target_group_pair_info_list)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -1782,6 +1983,7 @@ pub mod deployment_group {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut elb_info_list: Option<::ValueList<ELBInfo>> = None;
                     let mut target_group_info_list: Option<::ValueList<TargetGroupInfo>> = None;
+                    let mut target_group_pair_info_list: Option<::ValueList<TargetGroupPairInfo>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1791,6 +1993,9 @@ pub mod deployment_group {
                             "TargetGroupInfoList" => {
                                 target_group_info_list = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "TargetGroupPairInfoList" => {
+                                target_group_pair_info_list = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
@@ -1798,6 +2003,7 @@ pub mod deployment_group {
                     Ok(LoadBalancerInfo {
                         elb_info_list: elb_info_list,
                         target_group_info_list: target_group_info_list,
+                        target_group_pair_info_list: target_group_pair_info_list,
                     })
                 }
             }
@@ -2216,6 +2422,138 @@ pub mod deployment_group {
 
                     Ok(TargetGroupInfo {
                         name: name,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CodeDeploy::DeploymentGroup.TargetGroupPairInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-targetgrouppairinfo.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TargetGroupPairInfo {
+        /// Property [`ProdTrafficRoute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-targetgrouppairinfo.html#cfn-codedeploy-deploymentgroup-targetgrouppairinfo-prodtrafficroute).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub prod_traffic_route: Option<::Value<TrafficRoute>>,
+        /// Property [`TargetGroups`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-targetgrouppairinfo.html#cfn-codedeploy-deploymentgroup-targetgrouppairinfo-targetgroups).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub target_groups: Option<::ValueList<TargetGroupInfo>>,
+        /// Property [`TestTrafficRoute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-targetgrouppairinfo.html#cfn-codedeploy-deploymentgroup-targetgrouppairinfo-testtrafficroute).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub test_traffic_route: Option<::Value<TrafficRoute>>,
+    }
+
+    impl ::codec::SerializeValue for TargetGroupPairInfo {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref prod_traffic_route) = self.prod_traffic_route {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProdTrafficRoute", prod_traffic_route)?;
+            }
+            if let Some(ref target_groups) = self.target_groups {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetGroups", target_groups)?;
+            }
+            if let Some(ref test_traffic_route) = self.test_traffic_route {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TestTrafficRoute", test_traffic_route)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TargetGroupPairInfo {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TargetGroupPairInfo, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TargetGroupPairInfo;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TargetGroupPairInfo")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut prod_traffic_route: Option<::Value<TrafficRoute>> = None;
+                    let mut target_groups: Option<::ValueList<TargetGroupInfo>> = None;
+                    let mut test_traffic_route: Option<::Value<TrafficRoute>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ProdTrafficRoute" => {
+                                prod_traffic_route = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TargetGroups" => {
+                                target_groups = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TestTrafficRoute" => {
+                                test_traffic_route = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TargetGroupPairInfo {
+                        prod_traffic_route: prod_traffic_route,
+                        target_groups: target_groups,
+                        test_traffic_route: test_traffic_route,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CodeDeploy::DeploymentGroup.TrafficRoute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-trafficroute.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TrafficRoute {
+        /// Property [`ListenerArns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentgroup-trafficroute.html#cfn-codedeploy-deploymentgroup-trafficroute-listenerarns).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub listener_arns: Option<::ValueList<String>>,
+    }
+
+    impl ::codec::SerializeValue for TrafficRoute {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref listener_arns) = self.listener_arns {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ListenerArns", listener_arns)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TrafficRoute {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TrafficRoute, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TrafficRoute;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TrafficRoute")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut listener_arns: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ListenerArns" => {
+                                listener_arns = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TrafficRoute {
+                        listener_arns: listener_arns,
                     })
                 }
             }

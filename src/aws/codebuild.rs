@@ -1,5 +1,135 @@
 //! Types for the `CodeBuild` service.
 
+/// The [`AWS::CodeBuild::Fleet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-fleet.html) resource type.
+#[derive(Debug, Default)]
+pub struct Fleet {
+    properties: FleetProperties
+}
+
+/// Properties for the `Fleet` resource.
+#[derive(Debug, Default)]
+pub struct FleetProperties {
+    /// Property [`BaseCapacity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-fleet.html#cfn-codebuild-fleet-basecapacity).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub base_capacity: Option<::Value<u32>>,
+    /// Property [`ComputeType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-fleet.html#cfn-codebuild-fleet-computetype).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub compute_type: Option<::Value<String>>,
+    /// Property [`EnvironmentType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-fleet.html#cfn-codebuild-fleet-environmenttype).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub environment_type: Option<::Value<String>>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-fleet.html#cfn-codebuild-fleet-name).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub name: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-fleet.html#cfn-codebuild-fleet-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for FleetProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref base_capacity) = self.base_capacity {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BaseCapacity", base_capacity)?;
+        }
+        if let Some(ref compute_type) = self.compute_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComputeType", compute_type)?;
+        }
+        if let Some(ref environment_type) = self.environment_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnvironmentType", environment_type)?;
+        }
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for FleetProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<FleetProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = FleetProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type FleetProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut base_capacity: Option<::Value<u32>> = None;
+                let mut compute_type: Option<::Value<String>> = None;
+                let mut environment_type: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "BaseCapacity" => {
+                            base_capacity = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ComputeType" => {
+                            compute_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "EnvironmentType" => {
+                            environment_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(FleetProperties {
+                    base_capacity: base_capacity,
+                    compute_type: compute_type,
+                    environment_type: environment_type,
+                    name: name,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for Fleet {
+    type Properties = FleetProperties;
+    const TYPE: &'static str = "AWS::CodeBuild::Fleet";
+    fn properties(&self) -> &FleetProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut FleetProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for Fleet {}
+
+impl From<FleetProperties> for Fleet {
+    fn from(properties: FleetProperties) -> Fleet {
+        Fleet { properties }
+    }
+}
+
 /// The [`AWS::CodeBuild::Project`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html) resource type.
 #[derive(Debug, Default)]
 pub struct Project {
@@ -69,6 +199,11 @@ pub struct ProjectProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub queued_timeout_in_minutes: Option<::Value<u32>>,
+    /// Property [`ResourceAccessRole`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html#cfn-codebuild-project-resourceaccessrole).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub resource_access_role: Option<::Value<String>>,
     /// Property [`SecondaryArtifacts`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html#cfn-codebuild-project-secondaryartifacts).
     ///
     /// Update type: _Mutable_.
@@ -114,6 +249,11 @@ pub struct ProjectProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub triggers: Option<::Value<self::project::ProjectTriggers>>,
+    /// Property [`Visibility`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html#cfn-codebuild-project-visibility).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub visibility: Option<::Value<String>>,
     /// Property [`VpcConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html#cfn-codebuild-project-vpcconfig).
     ///
     /// Update type: _Mutable_.
@@ -156,6 +296,9 @@ impl ::serde::Serialize for ProjectProperties {
         if let Some(ref queued_timeout_in_minutes) = self.queued_timeout_in_minutes {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "QueuedTimeoutInMinutes", queued_timeout_in_minutes)?;
         }
+        if let Some(ref resource_access_role) = self.resource_access_role {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceAccessRole", resource_access_role)?;
+        }
         if let Some(ref secondary_artifacts) = self.secondary_artifacts {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecondaryArtifacts", secondary_artifacts)?;
         }
@@ -178,6 +321,9 @@ impl ::serde::Serialize for ProjectProperties {
         }
         if let Some(ref triggers) = self.triggers {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Triggers", triggers)?;
+        }
+        if let Some(ref visibility) = self.visibility {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Visibility", visibility)?;
         }
         if let Some(ref vpc_config) = self.vpc_config {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcConfig", vpc_config)?;
@@ -210,6 +356,7 @@ impl<'de> ::serde::Deserialize<'de> for ProjectProperties {
                 let mut logs_config: Option<::Value<self::project::LogsConfig>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut queued_timeout_in_minutes: Option<::Value<u32>> = None;
+                let mut resource_access_role: Option<::Value<String>> = None;
                 let mut secondary_artifacts: Option<::ValueList<self::project::Artifacts>> = None;
                 let mut secondary_source_versions: Option<::ValueList<self::project::ProjectSourceVersion>> = None;
                 let mut secondary_sources: Option<::ValueList<self::project::Source>> = None;
@@ -219,6 +366,7 @@ impl<'de> ::serde::Deserialize<'de> for ProjectProperties {
                 let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut timeout_in_minutes: Option<::Value<u32>> = None;
                 let mut triggers: Option<::Value<self::project::ProjectTriggers>> = None;
+                let mut visibility: Option<::Value<String>> = None;
                 let mut vpc_config: Option<::Value<self::project::VpcConfig>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -259,6 +407,9 @@ impl<'de> ::serde::Deserialize<'de> for ProjectProperties {
                         "QueuedTimeoutInMinutes" => {
                             queued_timeout_in_minutes = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ResourceAccessRole" => {
+                            resource_access_role = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "SecondaryArtifacts" => {
                             secondary_artifacts = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -286,6 +437,9 @@ impl<'de> ::serde::Deserialize<'de> for ProjectProperties {
                         "Triggers" => {
                             triggers = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Visibility" => {
+                            visibility = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "VpcConfig" => {
                             vpc_config = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -306,6 +460,7 @@ impl<'de> ::serde::Deserialize<'de> for ProjectProperties {
                     logs_config: logs_config,
                     name: name,
                     queued_timeout_in_minutes: queued_timeout_in_minutes,
+                    resource_access_role: resource_access_role,
                     secondary_artifacts: secondary_artifacts,
                     secondary_source_versions: secondary_source_versions,
                     secondary_sources: secondary_sources,
@@ -315,6 +470,7 @@ impl<'de> ::serde::Deserialize<'de> for ProjectProperties {
                     tags: tags,
                     timeout_in_minutes: timeout_in_minutes,
                     triggers: triggers,
+                    visibility: visibility,
                     vpc_config: vpc_config,
                 })
             }
@@ -965,6 +1121,11 @@ pub mod project {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub environment_variables: Option<::ValueList<EnvironmentVariable>>,
+        /// Property [`Fleet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environment.html#cfn-codebuild-project-environment-fleet).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub fleet: Option<::Value<ProjectFleet>>,
         /// Property [`Image`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-environment.html#cfn-codebuild-project-environment-image).
         ///
         /// Update type: _Mutable_.
@@ -1002,6 +1163,9 @@ pub mod project {
             if let Some(ref environment_variables) = self.environment_variables {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnvironmentVariables", environment_variables)?;
             }
+            if let Some(ref fleet) = self.fleet {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Fleet", fleet)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Image", &self.image)?;
             if let Some(ref image_pull_credentials_type) = self.image_pull_credentials_type {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ImagePullCredentialsType", image_pull_credentials_type)?;
@@ -1032,6 +1196,7 @@ pub mod project {
                     let mut certificate: Option<::Value<String>> = None;
                     let mut compute_type: Option<::Value<String>> = None;
                     let mut environment_variables: Option<::ValueList<EnvironmentVariable>> = None;
+                    let mut fleet: Option<::Value<ProjectFleet>> = None;
                     let mut image: Option<::Value<String>> = None;
                     let mut image_pull_credentials_type: Option<::Value<String>> = None;
                     let mut privileged_mode: Option<::Value<bool>> = None;
@@ -1048,6 +1213,9 @@ pub mod project {
                             }
                             "EnvironmentVariables" => {
                                 environment_variables = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Fleet" => {
+                                fleet = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Image" => {
                                 image = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1072,6 +1240,7 @@ pub mod project {
                         certificate: certificate,
                         compute_type: compute_type.ok_or(::serde::de::Error::missing_field("ComputeType"))?,
                         environment_variables: environment_variables,
+                        fleet: fleet,
                         image: image.ok_or(::serde::de::Error::missing_field("Image"))?,
                         image_pull_credentials_type: image_pull_credentials_type,
                         privileged_mode: privileged_mode,
@@ -1312,6 +1481,11 @@ pub mod project {
     /// The [`AWS::CodeBuild::Project.ProjectBuildBatchConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projectbuildbatchconfig.html) property type.
     #[derive(Debug, Default)]
     pub struct ProjectBuildBatchConfig {
+        /// Property [`BatchReportMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projectbuildbatchconfig.html#cfn-codebuild-project-projectbuildbatchconfig-batchreportmode).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub batch_report_mode: Option<::Value<String>>,
         /// Property [`CombineArtifacts`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projectbuildbatchconfig.html#cfn-codebuild-project-projectbuildbatchconfig-combineartifacts).
         ///
         /// Update type: _Mutable_.
@@ -1337,6 +1511,9 @@ pub mod project {
     impl ::codec::SerializeValue for ProjectBuildBatchConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref batch_report_mode) = self.batch_report_mode {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BatchReportMode", batch_report_mode)?;
+            }
             if let Some(ref combine_artifacts) = self.combine_artifacts {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "CombineArtifacts", combine_artifacts)?;
             }
@@ -1365,6 +1542,7 @@ pub mod project {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut batch_report_mode: Option<::Value<String>> = None;
                     let mut combine_artifacts: Option<::Value<bool>> = None;
                     let mut restrictions: Option<::Value<BatchRestrictions>> = None;
                     let mut service_role: Option<::Value<String>> = None;
@@ -1372,6 +1550,9 @@ pub mod project {
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "BatchReportMode" => {
+                                batch_report_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "CombineArtifacts" => {
                                 combine_artifacts = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1389,6 +1570,7 @@ pub mod project {
                     }
 
                     Ok(ProjectBuildBatchConfig {
+                        batch_report_mode: batch_report_mode,
                         combine_artifacts: combine_artifacts,
                         restrictions: restrictions,
                         service_role: service_role,
@@ -1567,6 +1749,59 @@ pub mod project {
                         mount_options: mount_options,
                         mount_point: mount_point.ok_or(::serde::de::Error::missing_field("MountPoint"))?,
                         r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CodeBuild::Project.ProjectFleet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projectfleet.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ProjectFleet {
+        /// Property [`FleetArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codebuild-project-projectfleet.html#cfn-codebuild-project-projectfleet-fleetarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub fleet_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for ProjectFleet {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref fleet_arn) = self.fleet_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FleetArn", fleet_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ProjectFleet {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ProjectFleet, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ProjectFleet;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ProjectFleet")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut fleet_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "FleetArn" => {
+                                fleet_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ProjectFleet {
+                        fleet_arn: fleet_arn,
                     })
                 }
             }

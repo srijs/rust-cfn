@@ -206,6 +206,119 @@ impl From<IdentityPoolProperties> for IdentityPool {
     }
 }
 
+/// The [`AWS::Cognito::IdentityPoolPrincipalTag`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolprincipaltag.html) resource type.
+#[derive(Debug, Default)]
+pub struct IdentityPoolPrincipalTag {
+    properties: IdentityPoolPrincipalTagProperties
+}
+
+/// Properties for the `IdentityPoolPrincipalTag` resource.
+#[derive(Debug, Default)]
+pub struct IdentityPoolPrincipalTagProperties {
+    /// Property [`IdentityPoolId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolprincipaltag.html#cfn-cognito-identitypoolprincipaltag-identitypoolid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub identity_pool_id: ::Value<String>,
+    /// Property [`IdentityProviderName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolprincipaltag.html#cfn-cognito-identitypoolprincipaltag-identityprovidername).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub identity_provider_name: ::Value<String>,
+    /// Property [`PrincipalTags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolprincipaltag.html#cfn-cognito-identitypoolprincipaltag-principaltags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub principal_tags: Option<::Value<::json::Value>>,
+    /// Property [`UseDefaults`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolprincipaltag.html#cfn-cognito-identitypoolprincipaltag-usedefaults).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub use_defaults: Option<::Value<bool>>,
+}
+
+impl ::serde::Serialize for IdentityPoolPrincipalTagProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "IdentityPoolId", &self.identity_pool_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "IdentityProviderName", &self.identity_provider_name)?;
+        if let Some(ref principal_tags) = self.principal_tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrincipalTags", principal_tags)?;
+        }
+        if let Some(ref use_defaults) = self.use_defaults {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UseDefaults", use_defaults)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for IdentityPoolPrincipalTagProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<IdentityPoolPrincipalTagProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = IdentityPoolPrincipalTagProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type IdentityPoolPrincipalTagProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut identity_pool_id: Option<::Value<String>> = None;
+                let mut identity_provider_name: Option<::Value<String>> = None;
+                let mut principal_tags: Option<::Value<::json::Value>> = None;
+                let mut use_defaults: Option<::Value<bool>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "IdentityPoolId" => {
+                            identity_pool_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "IdentityProviderName" => {
+                            identity_provider_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PrincipalTags" => {
+                            principal_tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "UseDefaults" => {
+                            use_defaults = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(IdentityPoolPrincipalTagProperties {
+                    identity_pool_id: identity_pool_id.ok_or(::serde::de::Error::missing_field("IdentityPoolId"))?,
+                    identity_provider_name: identity_provider_name.ok_or(::serde::de::Error::missing_field("IdentityProviderName"))?,
+                    principal_tags: principal_tags,
+                    use_defaults: use_defaults,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for IdentityPoolPrincipalTag {
+    type Properties = IdentityPoolPrincipalTagProperties;
+    const TYPE: &'static str = "AWS::Cognito::IdentityPoolPrincipalTag";
+    fn properties(&self) -> &IdentityPoolPrincipalTagProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut IdentityPoolPrincipalTagProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for IdentityPoolPrincipalTag {}
+
+impl From<IdentityPoolPrincipalTagProperties> for IdentityPoolPrincipalTag {
+    fn from(properties: IdentityPoolPrincipalTagProperties) -> IdentityPoolPrincipalTag {
+        IdentityPoolPrincipalTag { properties }
+    }
+}
+
 /// The [`AWS::Cognito::IdentityPoolRoleAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolroleattachment.html) resource type.
 #[derive(Debug, Default)]
 pub struct IdentityPoolRoleAttachment {
@@ -224,12 +337,12 @@ pub struct IdentityPoolRoleAttachmentProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub role_mappings: Option<::Value<::json::Value>>,
+    pub role_mappings: Option<::ValueMap<self::identity_pool_role_attachment::RoleMapping>>,
     /// Property [`Roles`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolroleattachment.html#cfn-cognito-identitypoolroleattachment-roles).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub roles: Option<::Value<::json::Value>>,
+    pub roles: Option<::ValueMap<String>>,
 }
 
 impl ::serde::Serialize for IdentityPoolRoleAttachmentProperties {
@@ -259,8 +372,8 @@ impl<'de> ::serde::Deserialize<'de> for IdentityPoolRoleAttachmentProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut identity_pool_id: Option<::Value<String>> = None;
-                let mut role_mappings: Option<::Value<::json::Value>> = None;
-                let mut roles: Option<::Value<::json::Value>> = None;
+                let mut role_mappings: Option<::ValueMap<self::identity_pool_role_attachment::RoleMapping>> = None;
+                let mut roles: Option<::ValueMap<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -308,6 +421,95 @@ impl From<IdentityPoolRoleAttachmentProperties> for IdentityPoolRoleAttachment {
     }
 }
 
+/// The [`AWS::Cognito::LogDeliveryConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-logdeliveryconfiguration.html) resource type.
+#[derive(Debug, Default)]
+pub struct LogDeliveryConfiguration {
+    properties: LogDeliveryConfigurationProperties
+}
+
+/// Properties for the `LogDeliveryConfiguration` resource.
+#[derive(Debug, Default)]
+pub struct LogDeliveryConfigurationProperties {
+    /// Property [`LogConfigurations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-logdeliveryconfiguration.html#cfn-cognito-logdeliveryconfiguration-logconfigurations).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub log_configurations: Option<::ValueList<self::log_delivery_configuration::LogConfiguration>>,
+    /// Property [`UserPoolId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-logdeliveryconfiguration.html#cfn-cognito-logdeliveryconfiguration-userpoolid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub user_pool_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for LogDeliveryConfigurationProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref log_configurations) = self.log_configurations {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogConfigurations", log_configurations)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserPoolId", &self.user_pool_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for LogDeliveryConfigurationProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<LogDeliveryConfigurationProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = LogDeliveryConfigurationProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type LogDeliveryConfigurationProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut log_configurations: Option<::ValueList<self::log_delivery_configuration::LogConfiguration>> = None;
+                let mut user_pool_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "LogConfigurations" => {
+                            log_configurations = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "UserPoolId" => {
+                            user_pool_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(LogDeliveryConfigurationProperties {
+                    log_configurations: log_configurations,
+                    user_pool_id: user_pool_id.ok_or(::serde::de::Error::missing_field("UserPoolId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for LogDeliveryConfiguration {
+    type Properties = LogDeliveryConfigurationProperties;
+    const TYPE: &'static str = "AWS::Cognito::LogDeliveryConfiguration";
+    fn properties(&self) -> &LogDeliveryConfigurationProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut LogDeliveryConfigurationProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for LogDeliveryConfiguration {}
+
+impl From<LogDeliveryConfigurationProperties> for LogDeliveryConfiguration {
+    fn from(properties: LogDeliveryConfigurationProperties) -> LogDeliveryConfiguration {
+        LogDeliveryConfiguration { properties }
+    }
+}
+
 /// The [`AWS::Cognito::UserPool`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html) resource type.
 #[derive(Debug, Default)]
 pub struct UserPool {
@@ -337,6 +539,11 @@ pub struct UserPoolProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub auto_verified_attributes: Option<::ValueList<String>>,
+    /// Property [`DeletionProtection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html#cfn-cognito-userpool-deletionprotection).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub deletion_protection: Option<::Value<String>>,
     /// Property [`DeviceConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html#cfn-cognito-userpool-deviceconfiguration).
     ///
     /// Update type: _Mutable_.
@@ -397,6 +604,11 @@ pub struct UserPoolProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub sms_verification_message: Option<::Value<String>>,
+    /// Property [`UserAttributeUpdateSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html#cfn-cognito-userpool-userattributeupdatesettings).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub user_attribute_update_settings: Option<::Value<self::user_pool::UserAttributeUpdateSettings>>,
     /// Property [`UserPoolAddOns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html#cfn-cognito-userpool-userpooladdons).
     ///
     /// Update type: _Mutable_.
@@ -411,7 +623,7 @@ pub struct UserPoolProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub user_pool_tags: Option<::Value<::json::Value>>,
+    pub user_pool_tags: Option<::ValueMap<String>>,
     /// Property [`UsernameAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html#cfn-cognito-userpool-usernameattributes).
     ///
     /// Update type: _Mutable_.
@@ -443,6 +655,9 @@ impl ::serde::Serialize for UserPoolProperties {
         }
         if let Some(ref auto_verified_attributes) = self.auto_verified_attributes {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoVerifiedAttributes", auto_verified_attributes)?;
+        }
+        if let Some(ref deletion_protection) = self.deletion_protection {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeletionProtection", deletion_protection)?;
         }
         if let Some(ref device_configuration) = self.device_configuration {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceConfiguration", device_configuration)?;
@@ -479,6 +694,9 @@ impl ::serde::Serialize for UserPoolProperties {
         }
         if let Some(ref sms_verification_message) = self.sms_verification_message {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SmsVerificationMessage", sms_verification_message)?;
+        }
+        if let Some(ref user_attribute_update_settings) = self.user_attribute_update_settings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserAttributeUpdateSettings", user_attribute_update_settings)?;
         }
         if let Some(ref user_pool_add_ons) = self.user_pool_add_ons {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserPoolAddOns", user_pool_add_ons)?;
@@ -518,6 +736,7 @@ impl<'de> ::serde::Deserialize<'de> for UserPoolProperties {
                 let mut admin_create_user_config: Option<::Value<self::user_pool::AdminCreateUserConfig>> = None;
                 let mut alias_attributes: Option<::ValueList<String>> = None;
                 let mut auto_verified_attributes: Option<::ValueList<String>> = None;
+                let mut deletion_protection: Option<::Value<String>> = None;
                 let mut device_configuration: Option<::Value<self::user_pool::DeviceConfiguration>> = None;
                 let mut email_configuration: Option<::Value<self::user_pool::EmailConfiguration>> = None;
                 let mut email_verification_message: Option<::Value<String>> = None;
@@ -530,9 +749,10 @@ impl<'de> ::serde::Deserialize<'de> for UserPoolProperties {
                 let mut sms_authentication_message: Option<::Value<String>> = None;
                 let mut sms_configuration: Option<::Value<self::user_pool::SmsConfiguration>> = None;
                 let mut sms_verification_message: Option<::Value<String>> = None;
+                let mut user_attribute_update_settings: Option<::Value<self::user_pool::UserAttributeUpdateSettings>> = None;
                 let mut user_pool_add_ons: Option<::Value<self::user_pool::UserPoolAddOns>> = None;
                 let mut user_pool_name: Option<::Value<String>> = None;
-                let mut user_pool_tags: Option<::Value<::json::Value>> = None;
+                let mut user_pool_tags: Option<::ValueMap<String>> = None;
                 let mut username_attributes: Option<::ValueList<String>> = None;
                 let mut username_configuration: Option<::Value<self::user_pool::UsernameConfiguration>> = None;
                 let mut verification_message_template: Option<::Value<self::user_pool::VerificationMessageTemplate>> = None;
@@ -550,6 +770,9 @@ impl<'de> ::serde::Deserialize<'de> for UserPoolProperties {
                         }
                         "AutoVerifiedAttributes" => {
                             auto_verified_attributes = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DeletionProtection" => {
+                            deletion_protection = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "DeviceConfiguration" => {
                             device_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -587,6 +810,9 @@ impl<'de> ::serde::Deserialize<'de> for UserPoolProperties {
                         "SmsVerificationMessage" => {
                             sms_verification_message = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "UserAttributeUpdateSettings" => {
+                            user_attribute_update_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "UserPoolAddOns" => {
                             user_pool_add_ons = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -614,6 +840,7 @@ impl<'de> ::serde::Deserialize<'de> for UserPoolProperties {
                     admin_create_user_config: admin_create_user_config,
                     alias_attributes: alias_attributes,
                     auto_verified_attributes: auto_verified_attributes,
+                    deletion_protection: deletion_protection,
                     device_configuration: device_configuration,
                     email_configuration: email_configuration,
                     email_verification_message: email_verification_message,
@@ -626,6 +853,7 @@ impl<'de> ::serde::Deserialize<'de> for UserPoolProperties {
                     sms_authentication_message: sms_authentication_message,
                     sms_configuration: sms_configuration,
                     sms_verification_message: sms_verification_message,
+                    user_attribute_update_settings: user_attribute_update_settings,
                     user_pool_add_ons: user_pool_add_ons,
                     user_pool_name: user_pool_name,
                     user_pool_tags: user_pool_tags,
@@ -693,6 +921,11 @@ pub struct UserPoolClientProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub analytics_configuration: Option<::Value<self::user_pool_client::AnalyticsConfiguration>>,
+    /// Property [`AuthSessionValidity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolclient.html#cfn-cognito-userpoolclient-authsessionvalidity).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub auth_session_validity: Option<::Value<u32>>,
     /// Property [`CallbackURLs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolclient.html#cfn-cognito-userpoolclient-callbackurls).
     ///
     /// Update type: _Mutable_.
@@ -708,6 +941,11 @@ pub struct UserPoolClientProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub default_redirect_uri: Option<::Value<String>>,
+    /// Property [`EnablePropagateAdditionalUserContextData`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolclient.html#cfn-cognito-userpoolclient-enablepropagateadditionalusercontextdata).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub enable_propagate_additional_user_context_data: Option<::Value<bool>>,
     /// Property [`EnableTokenRevocation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolclient.html#cfn-cognito-userpoolclient-enabletokenrevocation).
     ///
     /// Update type: _Mutable_.
@@ -788,6 +1026,9 @@ impl ::serde::Serialize for UserPoolClientProperties {
         if let Some(ref analytics_configuration) = self.analytics_configuration {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AnalyticsConfiguration", analytics_configuration)?;
         }
+        if let Some(ref auth_session_validity) = self.auth_session_validity {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthSessionValidity", auth_session_validity)?;
+        }
         if let Some(ref callback_ur_ls) = self.callback_ur_ls {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CallbackURLs", callback_ur_ls)?;
         }
@@ -796,6 +1037,9 @@ impl ::serde::Serialize for UserPoolClientProperties {
         }
         if let Some(ref default_redirect_uri) = self.default_redirect_uri {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultRedirectURI", default_redirect_uri)?;
+        }
+        if let Some(ref enable_propagate_additional_user_context_data) = self.enable_propagate_additional_user_context_data {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnablePropagateAdditionalUserContextData", enable_propagate_additional_user_context_data)?;
         }
         if let Some(ref enable_token_revocation) = self.enable_token_revocation {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableTokenRevocation", enable_token_revocation)?;
@@ -852,9 +1096,11 @@ impl<'de> ::serde::Deserialize<'de> for UserPoolClientProperties {
                 let mut allowed_o_auth_flows_user_pool_client: Option<::Value<bool>> = None;
                 let mut allowed_o_auth_scopes: Option<::ValueList<String>> = None;
                 let mut analytics_configuration: Option<::Value<self::user_pool_client::AnalyticsConfiguration>> = None;
+                let mut auth_session_validity: Option<::Value<u32>> = None;
                 let mut callback_ur_ls: Option<::ValueList<String>> = None;
                 let mut client_name: Option<::Value<String>> = None;
                 let mut default_redirect_uri: Option<::Value<String>> = None;
+                let mut enable_propagate_additional_user_context_data: Option<::Value<bool>> = None;
                 let mut enable_token_revocation: Option<::Value<bool>> = None;
                 let mut explicit_auth_flows: Option<::ValueList<String>> = None;
                 let mut generate_secret: Option<::Value<bool>> = None;
@@ -885,6 +1131,9 @@ impl<'de> ::serde::Deserialize<'de> for UserPoolClientProperties {
                         "AnalyticsConfiguration" => {
                             analytics_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "AuthSessionValidity" => {
+                            auth_session_validity = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "CallbackURLs" => {
                             callback_ur_ls = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -893,6 +1142,9 @@ impl<'de> ::serde::Deserialize<'de> for UserPoolClientProperties {
                         }
                         "DefaultRedirectURI" => {
                             default_redirect_uri = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "EnablePropagateAdditionalUserContextData" => {
+                            enable_propagate_additional_user_context_data = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "EnableTokenRevocation" => {
                             enable_token_revocation = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -940,9 +1192,11 @@ impl<'de> ::serde::Deserialize<'de> for UserPoolClientProperties {
                     allowed_o_auth_flows_user_pool_client: allowed_o_auth_flows_user_pool_client,
                     allowed_o_auth_scopes: allowed_o_auth_scopes,
                     analytics_configuration: analytics_configuration,
+                    auth_session_validity: auth_session_validity,
                     callback_ur_ls: callback_ur_ls,
                     client_name: client_name,
                     default_redirect_uri: default_redirect_uri,
+                    enable_propagate_additional_user_context_data: enable_propagate_additional_user_context_data,
                     enable_token_revocation: enable_token_revocation,
                     explicit_auth_flows: explicit_auth_flows,
                     generate_secret: generate_secret,
@@ -1105,7 +1359,7 @@ pub struct UserPoolGroupProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub precedence: Option<::Value<f64>>,
+    pub precedence: Option<::Value<u32>>,
     /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolgroup.html#cfn-cognito-userpoolgroup-rolearn).
     ///
     /// Update type: _Mutable_.
@@ -1152,7 +1406,7 @@ impl<'de> ::serde::Deserialize<'de> for UserPoolGroupProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut description: Option<::Value<String>> = None;
                 let mut group_name: Option<::Value<String>> = None;
-                let mut precedence: Option<::Value<f64>> = None;
+                let mut precedence: Option<::Value<u32>> = None;
                 let mut role_arn: Option<::Value<String>> = None;
                 let mut user_pool_id: Option<::Value<String>> = None;
 
@@ -1697,7 +1951,7 @@ pub struct UserPoolUserProperties {
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub client_metadata: Option<::Value<::json::Value>>,
+    pub client_metadata: Option<::ValueMap<String>>,
     /// Property [`DesiredDeliveryMediums`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpooluser.html#cfn-cognito-userpooluser-desireddeliverymediums).
     ///
     /// Update type: _Immutable_.
@@ -1776,7 +2030,7 @@ impl<'de> ::serde::Deserialize<'de> for UserPoolUserProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut client_metadata: Option<::Value<::json::Value>> = None;
+                let mut client_metadata: Option<::ValueMap<String>> = None;
                 let mut desired_delivery_mediums: Option<::ValueList<String>> = None;
                 let mut force_alias_creation: Option<::Value<bool>> = None;
                 let mut message_action: Option<::Value<String>> = None;
@@ -1959,12 +2213,12 @@ pub mod identity_pool {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub client_id: Option<::Value<String>>,
+        pub client_id: ::Value<String>,
         /// Property [`ProviderName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypool-cognitoidentityprovider.html#cfn-cognito-identitypool-cognitoidentityprovider-providername).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub provider_name: Option<::Value<String>>,
+        pub provider_name: ::Value<String>,
         /// Property [`ServerSideTokenCheck`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-identitypool-cognitoidentityprovider.html#cfn-cognito-identitypool-cognitoidentityprovider-serversidetokencheck).
         ///
         /// Update type: _Mutable_.
@@ -1975,12 +2229,8 @@ pub mod identity_pool {
     impl ::codec::SerializeValue for CognitoIdentityProvider {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref client_id) = self.client_id {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientId", client_id)?;
-            }
-            if let Some(ref provider_name) = self.provider_name {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProviderName", provider_name)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientId", &self.client_id)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProviderName", &self.provider_name)?;
             if let Some(ref server_side_token_check) = self.server_side_token_check {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServerSideTokenCheck", server_side_token_check)?;
             }
@@ -2020,8 +2270,8 @@ pub mod identity_pool {
                     }
 
                     Ok(CognitoIdentityProvider {
-                        client_id: client_id,
-                        provider_name: provider_name,
+                        client_id: client_id.ok_or(::serde::de::Error::missing_field("ClientId"))?,
+                        provider_name: provider_name.ok_or(::serde::de::Error::missing_field("ProviderName"))?,
                         server_side_token_check: server_side_token_check,
                     })
                 }
@@ -2397,6 +2647,142 @@ pub mod identity_pool_role_attachment {
 
                     Ok(RulesConfigurationType {
                         rules: rules.ok_or(::serde::de::Error::missing_field("Rules"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod log_delivery_configuration {
+    //! Property types for the `LogDeliveryConfiguration` resource.
+
+    /// The [`AWS::Cognito::LogDeliveryConfiguration.CloudWatchLogsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-logdeliveryconfiguration-cloudwatchlogsconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CloudWatchLogsConfiguration {
+        /// Property [`LogGroupArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-logdeliveryconfiguration-cloudwatchlogsconfiguration.html#cfn-cognito-logdeliveryconfiguration-cloudwatchlogsconfiguration-loggrouparn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub log_group_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for CloudWatchLogsConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref log_group_arn) = self.log_group_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroupArn", log_group_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CloudWatchLogsConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CloudWatchLogsConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CloudWatchLogsConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CloudWatchLogsConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut log_group_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "LogGroupArn" => {
+                                log_group_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CloudWatchLogsConfiguration {
+                        log_group_arn: log_group_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Cognito::LogDeliveryConfiguration.LogConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-logdeliveryconfiguration-logconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LogConfiguration {
+        /// Property [`CloudWatchLogsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-logdeliveryconfiguration-logconfiguration.html#cfn-cognito-logdeliveryconfiguration-logconfiguration-cloudwatchlogsconfiguration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cloud_watch_logs_configuration: Option<::Value<CloudWatchLogsConfiguration>>,
+        /// Property [`EventSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-logdeliveryconfiguration-logconfiguration.html#cfn-cognito-logdeliveryconfiguration-logconfiguration-eventsource).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub event_source: Option<::Value<String>>,
+        /// Property [`LogLevel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-logdeliveryconfiguration-logconfiguration.html#cfn-cognito-logdeliveryconfiguration-logconfiguration-loglevel).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub log_level: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for LogConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref cloud_watch_logs_configuration) = self.cloud_watch_logs_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchLogsConfiguration", cloud_watch_logs_configuration)?;
+            }
+            if let Some(ref event_source) = self.event_source {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventSource", event_source)?;
+            }
+            if let Some(ref log_level) = self.log_level {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogLevel", log_level)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LogConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LogConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LogConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LogConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut cloud_watch_logs_configuration: Option<::Value<CloudWatchLogsConfiguration>> = None;
+                    let mut event_source: Option<::Value<String>> = None;
+                    let mut log_level: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CloudWatchLogsConfiguration" => {
+                                cloud_watch_logs_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "EventSource" => {
+                                event_source = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LogLevel" => {
+                                log_level = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LogConfiguration {
+                        cloud_watch_logs_configuration: cloud_watch_logs_configuration,
+                        event_source: event_source,
+                        log_level: log_level,
                     })
                 }
             }
@@ -2981,6 +3367,11 @@ pub mod user_pool {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub pre_token_generation: Option<::Value<String>>,
+        /// Property [`PreTokenGenerationConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-lambdaconfig.html#cfn-cognito-userpool-lambdaconfig-pretokengenerationconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub pre_token_generation_config: Option<::Value<PreTokenGenerationConfig>>,
         /// Property [`UserMigration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-lambdaconfig.html#cfn-cognito-userpool-lambdaconfig-usermigration).
         ///
         /// Update type: _Mutable_.
@@ -3029,6 +3420,9 @@ pub mod user_pool {
             if let Some(ref pre_token_generation) = self.pre_token_generation {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreTokenGeneration", pre_token_generation)?;
             }
+            if let Some(ref pre_token_generation_config) = self.pre_token_generation_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreTokenGenerationConfig", pre_token_generation_config)?;
+            }
             if let Some(ref user_migration) = self.user_migration {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserMigration", user_migration)?;
             }
@@ -3062,6 +3456,7 @@ pub mod user_pool {
                     let mut pre_authentication: Option<::Value<String>> = None;
                     let mut pre_sign_up: Option<::Value<String>> = None;
                     let mut pre_token_generation: Option<::Value<String>> = None;
+                    let mut pre_token_generation_config: Option<::Value<PreTokenGenerationConfig>> = None;
                     let mut user_migration: Option<::Value<String>> = None;
                     let mut verify_auth_challenge_response: Option<::Value<String>> = None;
 
@@ -3100,6 +3495,9 @@ pub mod user_pool {
                             "PreTokenGeneration" => {
                                 pre_token_generation = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "PreTokenGenerationConfig" => {
+                                pre_token_generation_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "UserMigration" => {
                                 user_migration = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -3122,6 +3520,7 @@ pub mod user_pool {
                         pre_authentication: pre_authentication,
                         pre_sign_up: pre_sign_up,
                         pre_token_generation: pre_token_generation,
+                        pre_token_generation_config: pre_token_generation_config,
                         user_migration: user_migration,
                         verify_auth_challenge_response: verify_auth_challenge_response,
                     })
@@ -3369,6 +3768,72 @@ pub mod user_pool {
         }
     }
 
+    /// The [`AWS::Cognito::UserPool.PreTokenGenerationConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-pretokengenerationconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct PreTokenGenerationConfig {
+        /// Property [`LambdaArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-pretokengenerationconfig.html#cfn-cognito-userpool-pretokengenerationconfig-lambdaarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub lambda_arn: Option<::Value<String>>,
+        /// Property [`LambdaVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-pretokengenerationconfig.html#cfn-cognito-userpool-pretokengenerationconfig-lambdaversion).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub lambda_version: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for PreTokenGenerationConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref lambda_arn) = self.lambda_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaArn", lambda_arn)?;
+            }
+            if let Some(ref lambda_version) = self.lambda_version {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaVersion", lambda_version)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for PreTokenGenerationConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<PreTokenGenerationConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = PreTokenGenerationConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type PreTokenGenerationConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut lambda_arn: Option<::Value<String>> = None;
+                    let mut lambda_version: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "LambdaArn" => {
+                                lambda_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LambdaVersion" => {
+                                lambda_version = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(PreTokenGenerationConfig {
+                        lambda_arn: lambda_arn,
+                        lambda_version: lambda_version,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::Cognito::UserPool.RecoveryOption`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-recoveryoption.html) property type.
     #[derive(Debug, Default)]
     pub struct RecoveryOption {
@@ -3579,6 +4044,11 @@ pub mod user_pool {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub sns_caller_arn: Option<::Value<String>>,
+        /// Property [`SnsRegion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-smsconfiguration.html#cfn-cognito-userpool-smsconfiguration-snsregion).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub sns_region: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for SmsConfiguration {
@@ -3589,6 +4059,9 @@ pub mod user_pool {
             }
             if let Some(ref sns_caller_arn) = self.sns_caller_arn {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnsCallerArn", sns_caller_arn)?;
+            }
+            if let Some(ref sns_region) = self.sns_region {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnsRegion", sns_region)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -3608,6 +4081,7 @@ pub mod user_pool {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut external_id: Option<::Value<String>> = None;
                     let mut sns_caller_arn: Option<::Value<String>> = None;
+                    let mut sns_region: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -3617,6 +4091,9 @@ pub mod user_pool {
                             "SnsCallerArn" => {
                                 sns_caller_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "SnsRegion" => {
+                                sns_region = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
@@ -3624,6 +4101,7 @@ pub mod user_pool {
                     Ok(SmsConfiguration {
                         external_id: external_id,
                         sns_caller_arn: sns_caller_arn,
+                        sns_region: sns_region,
                     })
                 }
             }
@@ -3690,6 +4168,57 @@ pub mod user_pool {
                     Ok(StringAttributeConstraints {
                         max_length: max_length,
                         min_length: min_length,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Cognito::UserPool.UserAttributeUpdateSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-userattributeupdatesettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct UserAttributeUpdateSettings {
+        /// Property [`AttributesRequireVerificationBeforeUpdate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-userattributeupdatesettings.html#cfn-cognito-userpool-userattributeupdatesettings-attributesrequireverificationbeforeupdate).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub attributes_require_verification_before_update: ::ValueList<String>,
+    }
+
+    impl ::codec::SerializeValue for UserAttributeUpdateSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AttributesRequireVerificationBeforeUpdate", &self.attributes_require_verification_before_update)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for UserAttributeUpdateSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<UserAttributeUpdateSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = UserAttributeUpdateSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type UserAttributeUpdateSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut attributes_require_verification_before_update: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AttributesRequireVerificationBeforeUpdate" => {
+                                attributes_require_verification_before_update = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(UserAttributeUpdateSettings {
+                        attributes_require_verification_before_update: attributes_require_verification_before_update.ok_or(::serde::de::Error::missing_field("AttributesRequireVerificationBeforeUpdate"))?,
                     })
                 }
             }
@@ -4825,13 +5354,13 @@ pub mod user_pool_user {
     pub struct AttributeType {
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpooluser-attributetype.html#cfn-cognito-userpooluser-attributetype-name).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub name: Option<::Value<String>>,
         /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpooluser-attributetype.html#cfn-cognito-userpooluser-attributetype-value).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub value: Option<::Value<String>>,
     }
 

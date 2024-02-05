@@ -9,6 +9,11 @@ pub struct Analyzer {
 /// Properties for the `Analyzer` resource.
 #[derive(Debug, Default)]
 pub struct AnalyzerProperties {
+    /// Property [`AnalyzerConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-accessanalyzer-analyzer.html#cfn-accessanalyzer-analyzer-analyzerconfiguration).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub analyzer_configuration: Option<::Value<self::analyzer::AnalyzerConfiguration>>,
     /// Property [`AnalyzerName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-accessanalyzer-analyzer.html#cfn-accessanalyzer-analyzer-analyzername).
     ///
     /// Update type: _Immutable_.
@@ -34,6 +39,9 @@ pub struct AnalyzerProperties {
 impl ::serde::Serialize for AnalyzerProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref analyzer_configuration) = self.analyzer_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AnalyzerConfiguration", analyzer_configuration)?;
+        }
         if let Some(ref analyzer_name) = self.analyzer_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AnalyzerName", analyzer_name)?;
         }
@@ -60,6 +68,7 @@ impl<'de> ::serde::Deserialize<'de> for AnalyzerProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut analyzer_configuration: Option<::Value<self::analyzer::AnalyzerConfiguration>> = None;
                 let mut analyzer_name: Option<::Value<String>> = None;
                 let mut archive_rules: Option<::ValueList<self::analyzer::ArchiveRule>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
@@ -67,6 +76,9 @@ impl<'de> ::serde::Deserialize<'de> for AnalyzerProperties {
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "AnalyzerConfiguration" => {
+                            analyzer_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "AnalyzerName" => {
                             analyzer_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -84,6 +96,7 @@ impl<'de> ::serde::Deserialize<'de> for AnalyzerProperties {
                 }
 
                 Ok(AnalyzerProperties {
+                    analyzer_configuration: analyzer_configuration,
                     analyzer_name: analyzer_name,
                     archive_rules: archive_rules,
                     tags: tags,
@@ -117,6 +130,59 @@ impl From<AnalyzerProperties> for Analyzer {
 
 pub mod analyzer {
     //! Property types for the `Analyzer` resource.
+
+    /// The [`AWS::AccessAnalyzer::Analyzer.AnalyzerConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-accessanalyzer-analyzer-analyzerconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AnalyzerConfiguration {
+        /// Property [`UnusedAccessConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-accessanalyzer-analyzer-analyzerconfiguration.html#cfn-accessanalyzer-analyzer-analyzerconfiguration-unusedaccessconfiguration).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub unused_access_configuration: Option<::Value<UnusedAccessConfiguration>>,
+    }
+
+    impl ::codec::SerializeValue for AnalyzerConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref unused_access_configuration) = self.unused_access_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UnusedAccessConfiguration", unused_access_configuration)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AnalyzerConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AnalyzerConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AnalyzerConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AnalyzerConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut unused_access_configuration: Option<::Value<UnusedAccessConfiguration>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "UnusedAccessConfiguration" => {
+                                unused_access_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AnalyzerConfiguration {
+                        unused_access_configuration: unused_access_configuration,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::AccessAnalyzer::Analyzer.ArchiveRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-accessanalyzer-analyzer-archiverule.html) property type.
     #[derive(Debug, Default)]
@@ -275,6 +341,59 @@ pub mod analyzer {
                         exists: exists,
                         neq: neq,
                         property: property.ok_or(::serde::de::Error::missing_field("Property"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AccessAnalyzer::Analyzer.UnusedAccessConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-accessanalyzer-analyzer-unusedaccessconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct UnusedAccessConfiguration {
+        /// Property [`UnusedAccessAge`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-accessanalyzer-analyzer-unusedaccessconfiguration.html#cfn-accessanalyzer-analyzer-unusedaccessconfiguration-unusedaccessage).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub unused_access_age: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for UnusedAccessConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref unused_access_age) = self.unused_access_age {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UnusedAccessAge", unused_access_age)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for UnusedAccessConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<UnusedAccessConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = UnusedAccessConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type UnusedAccessConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut unused_access_age: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "UnusedAccessAge" => {
+                                unused_access_age = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(UnusedAccessConfiguration {
+                        unused_access_age: unused_access_age,
                     })
                 }
             }

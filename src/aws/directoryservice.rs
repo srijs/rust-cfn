@@ -183,7 +183,7 @@ pub struct SimpleADProperties {
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub password: ::Value<String>,
+    pub password: Option<::Value<String>>,
     /// Property [`ShortName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-directoryservice-simplead.html#cfn-directoryservice-simplead-shortname).
     ///
     /// Update type: _Immutable_.
@@ -214,7 +214,9 @@ impl ::serde::Serialize for SimpleADProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableSso", enable_sso)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Password", &self.password)?;
+        if let Some(ref password) = self.password {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Password", password)?;
+        }
         if let Some(ref short_name) = self.short_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ShortName", short_name)?;
         }
@@ -280,7 +282,7 @@ impl<'de> ::serde::Deserialize<'de> for SimpleADProperties {
                     description: description,
                     enable_sso: enable_sso,
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
-                    password: password.ok_or(::serde::de::Error::missing_field("Password"))?,
+                    password: password,
                     short_name: short_name,
                     size: size.ok_or(::serde::de::Error::missing_field("Size"))?,
                     vpc_settings: vpc_settings.ok_or(::serde::de::Error::missing_field("VpcSettings"))?,
@@ -385,13 +387,13 @@ pub mod simple_ad {
     pub struct VpcSettings {
         /// Property [`SubnetIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-directoryservice-simplead-vpcsettings.html#cfn-directoryservice-simplead-vpcsettings-subnetids).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub subnet_ids: ::ValueList<String>,
         /// Property [`VpcId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-directoryservice-simplead-vpcsettings.html#cfn-directoryservice-simplead-vpcsettings-vpcid).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub vpc_id: ::Value<String>,
     }
 

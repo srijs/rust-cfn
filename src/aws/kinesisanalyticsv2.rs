@@ -19,6 +19,11 @@ pub struct ApplicationProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub application_description: Option<::Value<String>>,
+    /// Property [`ApplicationMaintenanceConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalyticsv2-application.html#cfn-kinesisanalyticsv2-application-applicationmaintenanceconfiguration).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub application_maintenance_configuration: Option<::Value<self::application::ApplicationMaintenanceConfiguration>>,
     /// Property [`ApplicationMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalyticsv2-application.html#cfn-kinesisanalyticsv2-application-applicationmode).
     ///
     /// Update type: _Immutable_.
@@ -29,6 +34,11 @@ pub struct ApplicationProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub application_name: Option<::Value<String>>,
+    /// Property [`RunConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalyticsv2-application.html#cfn-kinesisanalyticsv2-application-runconfiguration).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub run_configuration: Option<::Value<self::application::RunConfiguration>>,
     /// Property [`RuntimeEnvironment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kinesisanalyticsv2-application.html#cfn-kinesisanalyticsv2-application-runtimeenvironment).
     ///
     /// Update type: _Immutable_.
@@ -55,11 +65,17 @@ impl ::serde::Serialize for ApplicationProperties {
         if let Some(ref application_description) = self.application_description {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationDescription", application_description)?;
         }
+        if let Some(ref application_maintenance_configuration) = self.application_maintenance_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationMaintenanceConfiguration", application_maintenance_configuration)?;
+        }
         if let Some(ref application_mode) = self.application_mode {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationMode", application_mode)?;
         }
         if let Some(ref application_name) = self.application_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationName", application_name)?;
+        }
+        if let Some(ref run_configuration) = self.run_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RunConfiguration", run_configuration)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuntimeEnvironment", &self.runtime_environment)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceExecutionRole", &self.service_execution_role)?;
@@ -84,8 +100,10 @@ impl<'de> ::serde::Deserialize<'de> for ApplicationProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut application_configuration: Option<::Value<self::application::ApplicationConfiguration>> = None;
                 let mut application_description: Option<::Value<String>> = None;
+                let mut application_maintenance_configuration: Option<::Value<self::application::ApplicationMaintenanceConfiguration>> = None;
                 let mut application_mode: Option<::Value<String>> = None;
                 let mut application_name: Option<::Value<String>> = None;
+                let mut run_configuration: Option<::Value<self::application::RunConfiguration>> = None;
                 let mut runtime_environment: Option<::Value<String>> = None;
                 let mut service_execution_role: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
@@ -98,11 +116,17 @@ impl<'de> ::serde::Deserialize<'de> for ApplicationProperties {
                         "ApplicationDescription" => {
                             application_description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ApplicationMaintenanceConfiguration" => {
+                            application_maintenance_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "ApplicationMode" => {
                             application_mode = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ApplicationName" => {
                             application_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "RunConfiguration" => {
+                            run_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "RuntimeEnvironment" => {
                             runtime_environment = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -120,8 +144,10 @@ impl<'de> ::serde::Deserialize<'de> for ApplicationProperties {
                 Ok(ApplicationProperties {
                     application_configuration: application_configuration,
                     application_description: application_description,
+                    application_maintenance_configuration: application_maintenance_configuration,
                     application_mode: application_mode,
                     application_name: application_name,
+                    run_configuration: run_configuration,
                     runtime_environment: runtime_environment.ok_or(::serde::de::Error::missing_field("RuntimeEnvironment"))?,
                     service_execution_role: service_execution_role.ok_or(::serde::de::Error::missing_field("ServiceExecutionRole"))?,
                     tags: tags,
@@ -506,6 +532,11 @@ pub mod application {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub sql_application_configuration: Option<::Value<SqlApplicationConfiguration>>,
+        /// Property [`VpcConfigurations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-applicationconfiguration.html#cfn-kinesisanalyticsv2-application-applicationconfiguration-vpcconfigurations).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub vpc_configurations: Option<::ValueList<VpcConfiguration>>,
         /// Property [`ZeppelinApplicationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-applicationconfiguration.html#cfn-kinesisanalyticsv2-application-applicationconfiguration-zeppelinapplicationconfiguration).
         ///
         /// Update type: _Mutable_.
@@ -531,6 +562,9 @@ pub mod application {
             if let Some(ref sql_application_configuration) = self.sql_application_configuration {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SqlApplicationConfiguration", sql_application_configuration)?;
             }
+            if let Some(ref vpc_configurations) = self.vpc_configurations {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcConfigurations", vpc_configurations)?;
+            }
             if let Some(ref zeppelin_application_configuration) = self.zeppelin_application_configuration {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ZeppelinApplicationConfiguration", zeppelin_application_configuration)?;
             }
@@ -555,6 +589,7 @@ pub mod application {
                     let mut environment_properties: Option<::Value<EnvironmentProperties>> = None;
                     let mut flink_application_configuration: Option<::Value<FlinkApplicationConfiguration>> = None;
                     let mut sql_application_configuration: Option<::Value<SqlApplicationConfiguration>> = None;
+                    let mut vpc_configurations: Option<::ValueList<VpcConfiguration>> = None;
                     let mut zeppelin_application_configuration: Option<::Value<ZeppelinApplicationConfiguration>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -574,6 +609,9 @@ pub mod application {
                             "SqlApplicationConfiguration" => {
                                 sql_application_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "VpcConfigurations" => {
+                                vpc_configurations = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "ZeppelinApplicationConfiguration" => {
                                 zeppelin_application_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -587,7 +625,123 @@ pub mod application {
                         environment_properties: environment_properties,
                         flink_application_configuration: flink_application_configuration,
                         sql_application_configuration: sql_application_configuration,
+                        vpc_configurations: vpc_configurations,
                         zeppelin_application_configuration: zeppelin_application_configuration,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::KinesisAnalyticsV2::Application.ApplicationMaintenanceConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-applicationmaintenanceconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ApplicationMaintenanceConfiguration {
+        /// Property [`ApplicationMaintenanceWindowStartTime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-applicationmaintenanceconfiguration.html#cfn-kinesisanalyticsv2-application-applicationmaintenanceconfiguration-applicationmaintenancewindowstarttime).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub application_maintenance_window_start_time: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for ApplicationMaintenanceConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationMaintenanceWindowStartTime", &self.application_maintenance_window_start_time)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ApplicationMaintenanceConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ApplicationMaintenanceConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ApplicationMaintenanceConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ApplicationMaintenanceConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut application_maintenance_window_start_time: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ApplicationMaintenanceWindowStartTime" => {
+                                application_maintenance_window_start_time = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ApplicationMaintenanceConfiguration {
+                        application_maintenance_window_start_time: application_maintenance_window_start_time.ok_or(::serde::de::Error::missing_field("ApplicationMaintenanceWindowStartTime"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::KinesisAnalyticsV2::Application.ApplicationRestoreConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-applicationrestoreconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ApplicationRestoreConfiguration {
+        /// Property [`ApplicationRestoreType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-applicationrestoreconfiguration.html#cfn-kinesisanalyticsv2-application-applicationrestoreconfiguration-applicationrestoretype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub application_restore_type: ::Value<String>,
+        /// Property [`SnapshotName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-applicationrestoreconfiguration.html#cfn-kinesisanalyticsv2-application-applicationrestoreconfiguration-snapshotname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub snapshot_name: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for ApplicationRestoreConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationRestoreType", &self.application_restore_type)?;
+            if let Some(ref snapshot_name) = self.snapshot_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotName", snapshot_name)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ApplicationRestoreConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ApplicationRestoreConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ApplicationRestoreConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ApplicationRestoreConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut application_restore_type: Option<::Value<String>> = None;
+                    let mut snapshot_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ApplicationRestoreType" => {
+                                application_restore_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SnapshotName" => {
+                                snapshot_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ApplicationRestoreConfiguration {
+                        application_restore_type: application_restore_type.ok_or(::serde::de::Error::missing_field("ApplicationRestoreType"))?,
+                        snapshot_name: snapshot_name,
                     })
                 }
             }
@@ -1008,38 +1162,6 @@ pub mod application {
         }
     }
 
-    /// The [`AWS::KinesisAnalyticsV2::Application.CustomArtifactsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-customartifactsconfiguration.html) property type.
-    #[derive(Debug, Default)]
-    pub struct CustomArtifactsConfiguration {
-    }
-
-    impl ::codec::SerializeValue for CustomArtifactsConfiguration {
-        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            let map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::end(map)
-        }
-    }
-
-    impl ::codec::DeserializeValue for CustomArtifactsConfiguration {
-        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CustomArtifactsConfiguration, D::Error> {
-            struct Visitor;
-
-            impl<'de> ::serde::de::Visitor<'de> for Visitor {
-                type Value = CustomArtifactsConfiguration;
-
-                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-                    write!(f, "a struct of type CustomArtifactsConfiguration")
-                }
-
-                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, _map: A) -> Result<Self::Value, A::Error> {
-                    Ok(CustomArtifactsConfiguration {})
-                }
-            }
-
-            d.deserialize_map(Visitor)
-        }
-    }
-
     /// The [`AWS::KinesisAnalyticsV2::Application.DeployAsApplicationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-deployasapplicationconfiguration.html) property type.
     #[derive(Debug, Default)]
     pub struct DeployAsApplicationConfiguration {
@@ -1215,6 +1337,59 @@ pub mod application {
                         checkpoint_configuration: checkpoint_configuration,
                         monitoring_configuration: monitoring_configuration,
                         parallelism_configuration: parallelism_configuration,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::KinesisAnalyticsV2::Application.FlinkRunConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-flinkrunconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct FlinkRunConfiguration {
+        /// Property [`AllowNonRestoredState`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-flinkrunconfiguration.html#cfn-kinesisanalyticsv2-application-flinkrunconfiguration-allownonrestoredstate).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub allow_non_restored_state: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for FlinkRunConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref allow_non_restored_state) = self.allow_non_restored_state {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowNonRestoredState", allow_non_restored_state)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for FlinkRunConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<FlinkRunConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = FlinkRunConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type FlinkRunConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut allow_non_restored_state: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AllowNonRestoredState" => {
+                                allow_non_restored_state = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(FlinkRunConfiguration {
+                        allow_non_restored_state: allow_non_restored_state,
                     })
                 }
             }
@@ -2093,7 +2268,7 @@ pub mod application {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub property_map: Option<::Value<::json::Value>>,
+        pub property_map: Option<::ValueMap<String>>,
     }
 
     impl ::codec::SerializeValue for PropertyGroup {
@@ -2122,7 +2297,7 @@ pub mod application {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut property_group_id: Option<::Value<String>> = None;
-                    let mut property_map: Option<::Value<::json::Value>> = None;
+                    let mut property_map: Option<::ValueMap<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2286,6 +2461,72 @@ pub mod application {
         }
     }
 
+    /// The [`AWS::KinesisAnalyticsV2::Application.RunConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-runconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct RunConfiguration {
+        /// Property [`ApplicationRestoreConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-runconfiguration.html#cfn-kinesisanalyticsv2-application-runconfiguration-applicationrestoreconfiguration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub application_restore_configuration: Option<::Value<ApplicationRestoreConfiguration>>,
+        /// Property [`FlinkRunConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-runconfiguration.html#cfn-kinesisanalyticsv2-application-runconfiguration-flinkrunconfiguration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub flink_run_configuration: Option<::Value<FlinkRunConfiguration>>,
+    }
+
+    impl ::codec::SerializeValue for RunConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref application_restore_configuration) = self.application_restore_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationRestoreConfiguration", application_restore_configuration)?;
+            }
+            if let Some(ref flink_run_configuration) = self.flink_run_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FlinkRunConfiguration", flink_run_configuration)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for RunConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<RunConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = RunConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type RunConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut application_restore_configuration: Option<::Value<ApplicationRestoreConfiguration>> = None;
+                    let mut flink_run_configuration: Option<::Value<FlinkRunConfiguration>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ApplicationRestoreConfiguration" => {
+                                application_restore_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "FlinkRunConfiguration" => {
+                                flink_run_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(RunConfiguration {
+                        application_restore_configuration: application_restore_configuration,
+                        flink_run_configuration: flink_run_configuration,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::KinesisAnalyticsV2::Application.S3ContentBaseLocation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-s3contentbaselocation.html) property type.
     #[derive(Debug, Default)]
     pub struct S3ContentBaseLocation {
@@ -2293,7 +2534,7 @@ pub mod application {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub base_path: ::Value<String>,
+        pub base_path: Option<::Value<String>>,
         /// Property [`BucketARN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-s3contentbaselocation.html#cfn-kinesisanalyticsv2-application-s3contentbaselocation-bucketarn).
         ///
         /// Update type: _Mutable_.
@@ -2304,7 +2545,9 @@ pub mod application {
     impl ::codec::SerializeValue for S3ContentBaseLocation {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BasePath", &self.base_path)?;
+            if let Some(ref base_path) = self.base_path {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BasePath", base_path)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketARN", &self.bucket_arn)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -2338,7 +2581,7 @@ pub mod application {
                     }
 
                     Ok(S3ContentBaseLocation {
-                        base_path: base_path.ok_or(::serde::de::Error::missing_field("BasePath"))?,
+                        base_path: base_path,
                         bucket_arn: bucket_arn.ok_or(::serde::de::Error::missing_field("BucketARN"))?,
                     })
                 }
@@ -2355,12 +2598,12 @@ pub mod application {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub bucket_arn: Option<::Value<String>>,
+        pub bucket_arn: ::Value<String>,
         /// Property [`FileKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-s3contentlocation.html#cfn-kinesisanalyticsv2-application-s3contentlocation-filekey).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub file_key: Option<::Value<String>>,
+        pub file_key: ::Value<String>,
         /// Property [`ObjectVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-s3contentlocation.html#cfn-kinesisanalyticsv2-application-s3contentlocation-objectversion).
         ///
         /// Update type: _Mutable_.
@@ -2371,12 +2614,8 @@ pub mod application {
     impl ::codec::SerializeValue for S3ContentLocation {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref bucket_arn) = self.bucket_arn {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketARN", bucket_arn)?;
-            }
-            if let Some(ref file_key) = self.file_key {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FileKey", file_key)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketARN", &self.bucket_arn)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FileKey", &self.file_key)?;
             if let Some(ref object_version) = self.object_version {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ObjectVersion", object_version)?;
             }
@@ -2416,8 +2655,8 @@ pub mod application {
                     }
 
                     Ok(S3ContentLocation {
-                        bucket_arn: bucket_arn,
-                        file_key: file_key,
+                        bucket_arn: bucket_arn.ok_or(::serde::de::Error::missing_field("BucketARN"))?,
+                        file_key: file_key.ok_or(::serde::de::Error::missing_field("FileKey"))?,
                         object_version: object_version,
                     })
                 }
@@ -2480,6 +2719,68 @@ pub mod application {
         }
     }
 
+    /// The [`AWS::KinesisAnalyticsV2::Application.VpcConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-vpcconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct VpcConfiguration {
+        /// Property [`SecurityGroupIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-vpcconfiguration.html#cfn-kinesisanalyticsv2-application-vpcconfiguration-securitygroupids).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub security_group_ids: ::ValueList<String>,
+        /// Property [`SubnetIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-vpcconfiguration.html#cfn-kinesisanalyticsv2-application-vpcconfiguration-subnetids).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub subnet_ids: ::ValueList<String>,
+    }
+
+    impl ::codec::SerializeValue for VpcConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIds", &self.security_group_ids)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetIds", &self.subnet_ids)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for VpcConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<VpcConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = VpcConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type VpcConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut security_group_ids: Option<::ValueList<String>> = None;
+                    let mut subnet_ids: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SecurityGroupIds" => {
+                                security_group_ids = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SubnetIds" => {
+                                subnet_ids = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(VpcConfiguration {
+                        security_group_ids: security_group_ids.ok_or(::serde::de::Error::missing_field("SecurityGroupIds"))?,
+                        subnet_ids: subnet_ids.ok_or(::serde::de::Error::missing_field("SubnetIds"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::KinesisAnalyticsV2::Application.ZeppelinApplicationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-zeppelinapplicationconfiguration.html) property type.
     #[derive(Debug, Default)]
     pub struct ZeppelinApplicationConfiguration {
@@ -2492,7 +2793,7 @@ pub mod application {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub custom_artifacts_configuration: Option<::Value<CustomArtifactsConfiguration>>,
+        pub custom_artifacts_configuration: Option<::ValueList<CustomArtifactConfiguration>>,
         /// Property [`DeployAsApplicationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisanalyticsv2-application-zeppelinapplicationconfiguration.html#cfn-kinesisanalyticsv2-application-zeppelinapplicationconfiguration-deployasapplicationconfiguration).
         ///
         /// Update type: _Mutable_.
@@ -2537,7 +2838,7 @@ pub mod application {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut catalog_configuration: Option<::Value<CatalogConfiguration>> = None;
-                    let mut custom_artifacts_configuration: Option<::Value<CustomArtifactsConfiguration>> = None;
+                    let mut custom_artifacts_configuration: Option<::ValueList<CustomArtifactConfiguration>> = None;
                     let mut deploy_as_application_configuration: Option<::Value<DeployAsApplicationConfiguration>> = None;
                     let mut monitoring_configuration: Option<::Value<ZeppelinMonitoringConfiguration>> = None;
 

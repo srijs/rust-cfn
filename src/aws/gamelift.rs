@@ -119,11 +119,16 @@ pub struct BuildProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub operating_system: Option<::Value<String>>,
+    /// Property [`ServerSdkVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-build.html#cfn-gamelift-build-serversdkversion).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub server_sdk_version: Option<::Value<String>>,
     /// Property [`StorageLocation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-build.html#cfn-gamelift-build-storagelocation).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub storage_location: Option<::Value<self::build::S3Location>>,
+    pub storage_location: Option<::Value<self::build::StorageLocation>>,
     /// Property [`Version`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-build.html#cfn-gamelift-build-version).
     ///
     /// Update type: _Mutable_.
@@ -139,6 +144,9 @@ impl ::serde::Serialize for BuildProperties {
         }
         if let Some(ref operating_system) = self.operating_system {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "OperatingSystem", operating_system)?;
+        }
+        if let Some(ref server_sdk_version) = self.server_sdk_version {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServerSdkVersion", server_sdk_version)?;
         }
         if let Some(ref storage_location) = self.storage_location {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "StorageLocation", storage_location)?;
@@ -164,7 +172,8 @@ impl<'de> ::serde::Deserialize<'de> for BuildProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut name: Option<::Value<String>> = None;
                 let mut operating_system: Option<::Value<String>> = None;
-                let mut storage_location: Option<::Value<self::build::S3Location>> = None;
+                let mut server_sdk_version: Option<::Value<String>> = None;
+                let mut storage_location: Option<::Value<self::build::StorageLocation>> = None;
                 let mut version: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -174,6 +183,9 @@ impl<'de> ::serde::Deserialize<'de> for BuildProperties {
                         }
                         "OperatingSystem" => {
                             operating_system = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ServerSdkVersion" => {
+                            server_sdk_version = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "StorageLocation" => {
                             storage_location = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -188,6 +200,7 @@ impl<'de> ::serde::Deserialize<'de> for BuildProperties {
                 Ok(BuildProperties {
                     name: name,
                     operating_system: operating_system,
+                    server_sdk_version: server_sdk_version,
                     storage_location: storage_location,
                     version: version,
                 })
@@ -226,6 +239,16 @@ pub struct Fleet {
 /// Properties for the `Fleet` resource.
 #[derive(Debug, Default)]
 pub struct FleetProperties {
+    /// Property [`AnywhereConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html#cfn-gamelift-fleet-anywhereconfiguration).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub anywhere_configuration: Option<::Value<self::fleet::AnywhereConfiguration>>,
+    /// Property [`ApplyCapacity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html#cfn-gamelift-fleet-applycapacity).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub apply_capacity: Option<::Value<String>>,
     /// Property [`BuildId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html#cfn-gamelift-fleet-buildid).
     ///
     /// Update type: _Immutable_.
@@ -236,6 +259,11 @@ pub struct FleetProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub certificate_configuration: Option<::Value<self::fleet::CertificateConfiguration>>,
+    /// Property [`ComputeType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html#cfn-gamelift-fleet-computetype).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub compute_type: Option<::Value<String>>,
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html#cfn-gamelift-fleet-description).
     ///
     /// Update type: _Mutable_.
@@ -266,6 +294,11 @@ pub struct FleetProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub instance_role_arn: Option<::Value<String>>,
+    /// Property [`InstanceRoleCredentialsProvider`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html#cfn-gamelift-fleet-instancerolecredentialsprovider).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub instance_role_credentials_provider: Option<::Value<String>>,
     /// Property [`Locations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html#cfn-gamelift-fleet-locations).
     ///
     /// Update type: _Mutable_.
@@ -290,7 +323,7 @@ pub struct FleetProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub name: Option<::Value<String>>,
+    pub name: ::Value<String>,
     /// Property [`NewGameSessionProtectionPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html#cfn-gamelift-fleet-newgamesessionprotectionpolicy).
     ///
     /// Update type: _Mutable_.
@@ -316,6 +349,11 @@ pub struct FleetProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub runtime_configuration: Option<::Value<self::fleet::RuntimeConfiguration>>,
+    /// Property [`ScalingPolicies`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html#cfn-gamelift-fleet-scalingpolicies).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub scaling_policies: Option<::ValueList<self::fleet::ScalingPolicy>>,
     /// Property [`ScriptId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-fleet.html#cfn-gamelift-fleet-scriptid).
     ///
     /// Update type: _Immutable_.
@@ -326,11 +364,20 @@ pub struct FleetProperties {
 impl ::serde::Serialize for FleetProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref anywhere_configuration) = self.anywhere_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AnywhereConfiguration", anywhere_configuration)?;
+        }
+        if let Some(ref apply_capacity) = self.apply_capacity {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplyCapacity", apply_capacity)?;
+        }
         if let Some(ref build_id) = self.build_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BuildId", build_id)?;
         }
         if let Some(ref certificate_configuration) = self.certificate_configuration {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificateConfiguration", certificate_configuration)?;
+        }
+        if let Some(ref compute_type) = self.compute_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComputeType", compute_type)?;
         }
         if let Some(ref description) = self.description {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
@@ -350,6 +397,9 @@ impl ::serde::Serialize for FleetProperties {
         if let Some(ref instance_role_arn) = self.instance_role_arn {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceRoleARN", instance_role_arn)?;
         }
+        if let Some(ref instance_role_credentials_provider) = self.instance_role_credentials_provider {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceRoleCredentialsProvider", instance_role_credentials_provider)?;
+        }
         if let Some(ref locations) = self.locations {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Locations", locations)?;
         }
@@ -362,9 +412,7 @@ impl ::serde::Serialize for FleetProperties {
         if let Some(ref min_size) = self.min_size {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinSize", min_size)?;
         }
-        if let Some(ref name) = self.name {
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
-        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         if let Some(ref new_game_session_protection_policy) = self.new_game_session_protection_policy {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "NewGameSessionProtectionPolicy", new_game_session_protection_policy)?;
         }
@@ -379,6 +427,9 @@ impl ::serde::Serialize for FleetProperties {
         }
         if let Some(ref runtime_configuration) = self.runtime_configuration {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuntimeConfiguration", runtime_configuration)?;
+        }
+        if let Some(ref scaling_policies) = self.scaling_policies {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScalingPolicies", scaling_policies)?;
         }
         if let Some(ref script_id) = self.script_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScriptId", script_id)?;
@@ -399,14 +450,18 @@ impl<'de> ::serde::Deserialize<'de> for FleetProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut anywhere_configuration: Option<::Value<self::fleet::AnywhereConfiguration>> = None;
+                let mut apply_capacity: Option<::Value<String>> = None;
                 let mut build_id: Option<::Value<String>> = None;
                 let mut certificate_configuration: Option<::Value<self::fleet::CertificateConfiguration>> = None;
+                let mut compute_type: Option<::Value<String>> = None;
                 let mut description: Option<::Value<String>> = None;
                 let mut desired_ec2_instances: Option<::Value<u32>> = None;
                 let mut ec2_inbound_permissions: Option<::ValueList<self::fleet::IpPermission>> = None;
                 let mut ec2_instance_type: Option<::Value<String>> = None;
                 let mut fleet_type: Option<::Value<String>> = None;
                 let mut instance_role_arn: Option<::Value<String>> = None;
+                let mut instance_role_credentials_provider: Option<::Value<String>> = None;
                 let mut locations: Option<::ValueList<self::fleet::LocationConfiguration>> = None;
                 let mut max_size: Option<::Value<u32>> = None;
                 let mut metric_groups: Option<::ValueList<String>> = None;
@@ -417,15 +472,25 @@ impl<'de> ::serde::Deserialize<'de> for FleetProperties {
                 let mut peer_vpc_id: Option<::Value<String>> = None;
                 let mut resource_creation_limit_policy: Option<::Value<self::fleet::ResourceCreationLimitPolicy>> = None;
                 let mut runtime_configuration: Option<::Value<self::fleet::RuntimeConfiguration>> = None;
+                let mut scaling_policies: Option<::ValueList<self::fleet::ScalingPolicy>> = None;
                 let mut script_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "AnywhereConfiguration" => {
+                            anywhere_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ApplyCapacity" => {
+                            apply_capacity = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "BuildId" => {
                             build_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "CertificateConfiguration" => {
                             certificate_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ComputeType" => {
+                            compute_type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Description" => {
                             description = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -444,6 +509,9 @@ impl<'de> ::serde::Deserialize<'de> for FleetProperties {
                         }
                         "InstanceRoleARN" => {
                             instance_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "InstanceRoleCredentialsProvider" => {
+                            instance_role_credentials_provider = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Locations" => {
                             locations = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -475,6 +543,9 @@ impl<'de> ::serde::Deserialize<'de> for FleetProperties {
                         "RuntimeConfiguration" => {
                             runtime_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ScalingPolicies" => {
+                            scaling_policies = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "ScriptId" => {
                             script_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -483,24 +554,29 @@ impl<'de> ::serde::Deserialize<'de> for FleetProperties {
                 }
 
                 Ok(FleetProperties {
+                    anywhere_configuration: anywhere_configuration,
+                    apply_capacity: apply_capacity,
                     build_id: build_id,
                     certificate_configuration: certificate_configuration,
+                    compute_type: compute_type,
                     description: description,
                     desired_ec2_instances: desired_ec2_instances,
                     ec2_inbound_permissions: ec2_inbound_permissions,
                     ec2_instance_type: ec2_instance_type,
                     fleet_type: fleet_type,
                     instance_role_arn: instance_role_arn,
+                    instance_role_credentials_provider: instance_role_credentials_provider,
                     locations: locations,
                     max_size: max_size,
                     metric_groups: metric_groups,
                     min_size: min_size,
-                    name: name,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     new_game_session_protection_policy: new_game_session_protection_policy,
                     peer_vpc_aws_account_id: peer_vpc_aws_account_id,
                     peer_vpc_id: peer_vpc_id,
                     resource_creation_limit_policy: resource_creation_limit_policy,
                     runtime_configuration: runtime_configuration,
+                    scaling_policies: scaling_policies,
                     script_id: script_id,
                 })
             }
@@ -572,7 +648,7 @@ pub struct GameServerGroupProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub launch_template: ::Value<self::game_server_group::LaunchTemplate>,
+    pub launch_template: Option<::Value<self::game_server_group::LaunchTemplate>>,
     /// Property [`MaxSize`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-gameservergroup.html#cfn-gamelift-gameservergroup-maxsize).
     ///
     /// Update type: _Mutable_.
@@ -617,7 +693,9 @@ impl ::serde::Serialize for GameServerGroupProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "GameServerProtectionPolicy", game_server_protection_policy)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceDefinitions", &self.instance_definitions)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchTemplate", &self.launch_template)?;
+        if let Some(ref launch_template) = self.launch_template {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LaunchTemplate", launch_template)?;
+        }
         if let Some(ref max_size) = self.max_size {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxSize", max_size)?;
         }
@@ -709,7 +787,7 @@ impl<'de> ::serde::Deserialize<'de> for GameServerGroupProperties {
                     game_server_group_name: game_server_group_name.ok_or(::serde::de::Error::missing_field("GameServerGroupName"))?,
                     game_server_protection_policy: game_server_protection_policy,
                     instance_definitions: instance_definitions.ok_or(::serde::de::Error::missing_field("InstanceDefinitions"))?,
-                    launch_template: launch_template.ok_or(::serde::de::Error::missing_field("LaunchTemplate"))?,
+                    launch_template: launch_template,
                     max_size: max_size,
                     min_size: min_size,
                     role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
@@ -760,7 +838,7 @@ pub struct GameSessionQueueProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub destinations: Option<::ValueList<self::game_session_queue::Destination>>,
+    pub destinations: Option<::ValueList<self::game_session_queue::GameSessionQueueDestination>>,
     /// Property [`FilterConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-gamesessionqueue.html#cfn-gamelift-gamesessionqueue-filterconfiguration).
     ///
     /// Update type: _Mutable_.
@@ -786,6 +864,11 @@ pub struct GameSessionQueueProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub priority_configuration: Option<::Value<self::game_session_queue::PriorityConfiguration>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-gamesessionqueue.html#cfn-gamelift-gamesessionqueue-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
     /// Property [`TimeoutInSeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-gamesessionqueue.html#cfn-gamelift-gamesessionqueue-timeoutinseconds).
     ///
     /// Update type: _Mutable_.
@@ -815,6 +898,9 @@ impl ::serde::Serialize for GameSessionQueueProperties {
         if let Some(ref priority_configuration) = self.priority_configuration {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PriorityConfiguration", priority_configuration)?;
         }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         if let Some(ref timeout_in_seconds) = self.timeout_in_seconds {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimeoutInSeconds", timeout_in_seconds)?;
         }
@@ -835,12 +921,13 @@ impl<'de> ::serde::Deserialize<'de> for GameSessionQueueProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut custom_event_data: Option<::Value<String>> = None;
-                let mut destinations: Option<::ValueList<self::game_session_queue::Destination>> = None;
+                let mut destinations: Option<::ValueList<self::game_session_queue::GameSessionQueueDestination>> = None;
                 let mut filter_configuration: Option<::Value<self::game_session_queue::FilterConfiguration>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut notification_target: Option<::Value<String>> = None;
                 let mut player_latency_policies: Option<::ValueList<self::game_session_queue::PlayerLatencyPolicy>> = None;
                 let mut priority_configuration: Option<::Value<self::game_session_queue::PriorityConfiguration>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut timeout_in_seconds: Option<::Value<u32>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -866,6 +953,9 @@ impl<'de> ::serde::Deserialize<'de> for GameSessionQueueProperties {
                         "PriorityConfiguration" => {
                             priority_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "TimeoutInSeconds" => {
                             timeout_in_seconds = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -881,6 +971,7 @@ impl<'de> ::serde::Deserialize<'de> for GameSessionQueueProperties {
                     notification_target: notification_target,
                     player_latency_policies: player_latency_policies,
                     priority_configuration: priority_configuration,
+                    tags: tags,
                     timeout_in_seconds: timeout_in_seconds,
                 })
             }
@@ -906,6 +997,95 @@ impl ::private::Sealed for GameSessionQueue {}
 impl From<GameSessionQueueProperties> for GameSessionQueue {
     fn from(properties: GameSessionQueueProperties) -> GameSessionQueue {
         GameSessionQueue { properties }
+    }
+}
+
+/// The [`AWS::GameLift::Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-location.html) resource type.
+#[derive(Debug, Default)]
+pub struct Location {
+    properties: LocationProperties
+}
+
+/// Properties for the `Location` resource.
+#[derive(Debug, Default)]
+pub struct LocationProperties {
+    /// Property [`LocationName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-location.html#cfn-gamelift-location-locationname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub location_name: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-location.html#cfn-gamelift-location-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for LocationProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LocationName", &self.location_name)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for LocationProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<LocationProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = LocationProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type LocationProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut location_name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "LocationName" => {
+                            location_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(LocationProperties {
+                    location_name: location_name.ok_or(::serde::de::Error::missing_field("LocationName"))?,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for Location {
+    type Properties = LocationProperties;
+    const TYPE: &'static str = "AWS::GameLift::Location";
+    fn properties(&self) -> &LocationProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut LocationProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for Location {}
+
+impl From<LocationProperties> for Location {
+    fn from(properties: LocationProperties) -> Location {
+        Location { properties }
     }
 }
 
@@ -938,6 +1118,11 @@ pub struct MatchmakingConfigurationProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub backfill_mode: Option<::Value<String>>,
+    /// Property [`CreationTime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-matchmakingconfiguration.html#cfn-gamelift-matchmakingconfiguration-creationtime).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub creation_time: Option<::Value<String>>,
     /// Property [`CustomEventData`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-matchmakingconfiguration.html#cfn-gamelift-matchmakingconfiguration-customeventdata).
     ///
     /// Update type: _Mutable_.
@@ -983,11 +1168,21 @@ pub struct MatchmakingConfigurationProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub request_timeout_seconds: ::Value<u32>,
+    /// Property [`RuleSetArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-matchmakingconfiguration.html#cfn-gamelift-matchmakingconfiguration-rulesetarn).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub rule_set_arn: Option<::Value<String>>,
     /// Property [`RuleSetName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-matchmakingconfiguration.html#cfn-gamelift-matchmakingconfiguration-rulesetname).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub rule_set_name: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-matchmakingconfiguration.html#cfn-gamelift-matchmakingconfiguration-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
 }
 
 impl ::serde::Serialize for MatchmakingConfigurationProperties {
@@ -1002,6 +1197,9 @@ impl ::serde::Serialize for MatchmakingConfigurationProperties {
         }
         if let Some(ref backfill_mode) = self.backfill_mode {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BackfillMode", backfill_mode)?;
+        }
+        if let Some(ref creation_time) = self.creation_time {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CreationTime", creation_time)?;
         }
         if let Some(ref custom_event_data) = self.custom_event_data {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomEventData", custom_event_data)?;
@@ -1026,7 +1224,13 @@ impl ::serde::Serialize for MatchmakingConfigurationProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationTarget", notification_target)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RequestTimeoutSeconds", &self.request_timeout_seconds)?;
+        if let Some(ref rule_set_arn) = self.rule_set_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleSetArn", rule_set_arn)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleSetName", &self.rule_set_name)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -1047,6 +1251,7 @@ impl<'de> ::serde::Deserialize<'de> for MatchmakingConfigurationProperties {
                 let mut acceptance_timeout_seconds: Option<::Value<u32>> = None;
                 let mut additional_player_count: Option<::Value<u32>> = None;
                 let mut backfill_mode: Option<::Value<String>> = None;
+                let mut creation_time: Option<::Value<String>> = None;
                 let mut custom_event_data: Option<::Value<String>> = None;
                 let mut description: Option<::Value<String>> = None;
                 let mut flex_match_mode: Option<::Value<String>> = None;
@@ -1056,7 +1261,9 @@ impl<'de> ::serde::Deserialize<'de> for MatchmakingConfigurationProperties {
                 let mut name: Option<::Value<String>> = None;
                 let mut notification_target: Option<::Value<String>> = None;
                 let mut request_timeout_seconds: Option<::Value<u32>> = None;
+                let mut rule_set_arn: Option<::Value<String>> = None;
                 let mut rule_set_name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1071,6 +1278,9 @@ impl<'de> ::serde::Deserialize<'de> for MatchmakingConfigurationProperties {
                         }
                         "BackfillMode" => {
                             backfill_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "CreationTime" => {
+                            creation_time = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "CustomEventData" => {
                             custom_event_data = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1099,8 +1309,14 @@ impl<'de> ::serde::Deserialize<'de> for MatchmakingConfigurationProperties {
                         "RequestTimeoutSeconds" => {
                             request_timeout_seconds = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "RuleSetArn" => {
+                            rule_set_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "RuleSetName" => {
                             rule_set_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -1111,6 +1327,7 @@ impl<'de> ::serde::Deserialize<'de> for MatchmakingConfigurationProperties {
                     acceptance_timeout_seconds: acceptance_timeout_seconds,
                     additional_player_count: additional_player_count,
                     backfill_mode: backfill_mode,
+                    creation_time: creation_time,
                     custom_event_data: custom_event_data,
                     description: description,
                     flex_match_mode: flex_match_mode,
@@ -1120,7 +1337,9 @@ impl<'de> ::serde::Deserialize<'de> for MatchmakingConfigurationProperties {
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     notification_target: notification_target,
                     request_timeout_seconds: request_timeout_seconds.ok_or(::serde::de::Error::missing_field("RequestTimeoutSeconds"))?,
+                    rule_set_arn: rule_set_arn,
                     rule_set_name: rule_set_name.ok_or(::serde::de::Error::missing_field("RuleSetName"))?,
+                    tags: tags,
                 })
             }
         }
@@ -1167,6 +1386,11 @@ pub struct MatchmakingRuleSetProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub rule_set_body: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-matchmakingruleset.html#cfn-gamelift-matchmakingruleset-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
 }
 
 impl ::serde::Serialize for MatchmakingRuleSetProperties {
@@ -1174,6 +1398,9 @@ impl ::serde::Serialize for MatchmakingRuleSetProperties {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleSetBody", &self.rule_set_body)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -1192,6 +1419,7 @@ impl<'de> ::serde::Deserialize<'de> for MatchmakingRuleSetProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut name: Option<::Value<String>> = None;
                 let mut rule_set_body: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1201,6 +1429,9 @@ impl<'de> ::serde::Deserialize<'de> for MatchmakingRuleSetProperties {
                         "RuleSetBody" => {
                             rule_set_body = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
@@ -1208,6 +1439,7 @@ impl<'de> ::serde::Deserialize<'de> for MatchmakingRuleSetProperties {
                 Ok(MatchmakingRuleSetProperties {
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     rule_set_body: rule_set_body.ok_or(::serde::de::Error::missing_field("RuleSetBody"))?,
+                    tags: tags,
                 })
             }
         }
@@ -1254,6 +1486,11 @@ pub struct ScriptProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub storage_location: ::Value<self::script::S3Location>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-script.html#cfn-gamelift-script-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
     /// Property [`Version`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-gamelift-script.html#cfn-gamelift-script-version).
     ///
     /// Update type: _Mutable_.
@@ -1268,6 +1505,9 @@ impl ::serde::Serialize for ScriptProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "StorageLocation", &self.storage_location)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         if let Some(ref version) = self.version {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Version", version)?;
         }
@@ -1289,6 +1529,7 @@ impl<'de> ::serde::Deserialize<'de> for ScriptProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut name: Option<::Value<String>> = None;
                 let mut storage_location: Option<::Value<self::script::S3Location>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut version: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -1298,6 +1539,9 @@ impl<'de> ::serde::Deserialize<'de> for ScriptProperties {
                         }
                         "StorageLocation" => {
                             storage_location = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Version" => {
                             version = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1309,6 +1553,7 @@ impl<'de> ::serde::Deserialize<'de> for ScriptProperties {
                 Ok(ScriptProperties {
                     name: name,
                     storage_location: storage_location.ok_or(::serde::de::Error::missing_field("StorageLocation"))?,
+                    tags: tags,
                     version: version,
                 })
             }
@@ -1421,32 +1666,32 @@ pub mod alias {
 pub mod build {
     //! Property types for the `Build` resource.
 
-    /// The [`AWS::GameLift::Build.S3Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-build-storagelocation.html) property type.
+    /// The [`AWS::GameLift::Build.StorageLocation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-build-storagelocation.html) property type.
     #[derive(Debug, Default)]
-    pub struct S3Location {
-        /// Property [`Bucket`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-build-storagelocation.html#cfn-gamelift-build-storage-bucket).
+    pub struct StorageLocation {
+        /// Property [`Bucket`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-build-storagelocation.html#cfn-gamelift-build-storagelocation-bucket).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub bucket: ::Value<String>,
-        /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-build-storagelocation.html#cfn-gamelift-build-storage-key).
+        /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-build-storagelocation.html#cfn-gamelift-build-storagelocation-key).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub key: ::Value<String>,
-        /// Property [`ObjectVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-build-storagelocation.html#cfn-gamelift-build-object-verison).
+        /// Property [`ObjectVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-build-storagelocation.html#cfn-gamelift-build-storagelocation-objectversion).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub object_version: Option<::Value<String>>,
-        /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-build-storagelocation.html#cfn-gamelift-build-storage-rolearn).
+        /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-build-storagelocation.html#cfn-gamelift-build-storagelocation-rolearn).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub role_arn: ::Value<String>,
     }
 
-    impl ::codec::SerializeValue for S3Location {
+    impl ::codec::SerializeValue for StorageLocation {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Bucket", &self.bucket)?;
@@ -1459,15 +1704,15 @@ pub mod build {
         }
     }
 
-    impl ::codec::DeserializeValue for S3Location {
-        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<S3Location, D::Error> {
+    impl ::codec::DeserializeValue for StorageLocation {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<StorageLocation, D::Error> {
             struct Visitor;
 
             impl<'de> ::serde::de::Visitor<'de> for Visitor {
-                type Value = S3Location;
+                type Value = StorageLocation;
 
                 fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-                    write!(f, "a struct of type S3Location")
+                    write!(f, "a struct of type StorageLocation")
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
@@ -1494,7 +1739,7 @@ pub mod build {
                         }
                     }
 
-                    Ok(S3Location {
+                    Ok(StorageLocation {
                         bucket: bucket.ok_or(::serde::de::Error::missing_field("Bucket"))?,
                         key: key.ok_or(::serde::de::Error::missing_field("Key"))?,
                         object_version: object_version,
@@ -1510,6 +1755,57 @@ pub mod build {
 
 pub mod fleet {
     //! Property types for the `Fleet` resource.
+
+    /// The [`AWS::GameLift::Fleet.AnywhereConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-anywhereconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AnywhereConfiguration {
+        /// Property [`Cost`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-anywhereconfiguration.html#cfn-gamelift-fleet-anywhereconfiguration-cost).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cost: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for AnywhereConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cost", &self.cost)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AnywhereConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AnywhereConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AnywhereConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AnywhereConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut cost: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Cost" => {
+                                cost = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AnywhereConfiguration {
+                        cost: cost.ok_or(::serde::de::Error::missing_field("Cost"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::GameLift::Fleet.CertificateConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-certificateconfiguration.html) property type.
     #[derive(Debug, Default)]
@@ -1928,6 +2224,198 @@ pub mod fleet {
         }
     }
 
+    /// The [`AWS::GameLift::Fleet.ScalingPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-scalingpolicy.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ScalingPolicy {
+        /// Property [`ComparisonOperator`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-scalingpolicy.html#cfn-gamelift-fleet-scalingpolicy-comparisonoperator).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub comparison_operator: Option<::Value<String>>,
+        /// Property [`EvaluationPeriods`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-scalingpolicy.html#cfn-gamelift-fleet-scalingpolicy-evaluationperiods).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub evaluation_periods: Option<::Value<u32>>,
+        /// Property [`Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-scalingpolicy.html#cfn-gamelift-fleet-scalingpolicy-location).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub location: Option<::Value<String>>,
+        /// Property [`MetricName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-scalingpolicy.html#cfn-gamelift-fleet-scalingpolicy-metricname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub metric_name: ::Value<String>,
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-scalingpolicy.html#cfn-gamelift-fleet-scalingpolicy-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: ::Value<String>,
+        /// Property [`PolicyType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-scalingpolicy.html#cfn-gamelift-fleet-scalingpolicy-policytype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub policy_type: Option<::Value<String>>,
+        /// Property [`ScalingAdjustment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-scalingpolicy.html#cfn-gamelift-fleet-scalingpolicy-scalingadjustment).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub scaling_adjustment: Option<::Value<u32>>,
+        /// Property [`ScalingAdjustmentType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-scalingpolicy.html#cfn-gamelift-fleet-scalingpolicy-scalingadjustmenttype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub scaling_adjustment_type: Option<::Value<String>>,
+        /// Property [`Status`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-scalingpolicy.html#cfn-gamelift-fleet-scalingpolicy-status).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub status: Option<::Value<String>>,
+        /// Property [`TargetConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-scalingpolicy.html#cfn-gamelift-fleet-scalingpolicy-targetconfiguration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub target_configuration: Option<::Value<TargetConfiguration>>,
+        /// Property [`Threshold`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-scalingpolicy.html#cfn-gamelift-fleet-scalingpolicy-threshold).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub threshold: Option<::Value<f64>>,
+        /// Property [`UpdateStatus`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-scalingpolicy.html#cfn-gamelift-fleet-scalingpolicy-updatestatus).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub update_status: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for ScalingPolicy {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref comparison_operator) = self.comparison_operator {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ComparisonOperator", comparison_operator)?;
+            }
+            if let Some(ref evaluation_periods) = self.evaluation_periods {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EvaluationPeriods", evaluation_periods)?;
+            }
+            if let Some(ref location) = self.location {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Location", location)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricName", &self.metric_name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            if let Some(ref policy_type) = self.policy_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyType", policy_type)?;
+            }
+            if let Some(ref scaling_adjustment) = self.scaling_adjustment {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScalingAdjustment", scaling_adjustment)?;
+            }
+            if let Some(ref scaling_adjustment_type) = self.scaling_adjustment_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScalingAdjustmentType", scaling_adjustment_type)?;
+            }
+            if let Some(ref status) = self.status {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Status", status)?;
+            }
+            if let Some(ref target_configuration) = self.target_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetConfiguration", target_configuration)?;
+            }
+            if let Some(ref threshold) = self.threshold {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Threshold", threshold)?;
+            }
+            if let Some(ref update_status) = self.update_status {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UpdateStatus", update_status)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ScalingPolicy {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ScalingPolicy, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ScalingPolicy;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ScalingPolicy")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut comparison_operator: Option<::Value<String>> = None;
+                    let mut evaluation_periods: Option<::Value<u32>> = None;
+                    let mut location: Option<::Value<String>> = None;
+                    let mut metric_name: Option<::Value<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut policy_type: Option<::Value<String>> = None;
+                    let mut scaling_adjustment: Option<::Value<u32>> = None;
+                    let mut scaling_adjustment_type: Option<::Value<String>> = None;
+                    let mut status: Option<::Value<String>> = None;
+                    let mut target_configuration: Option<::Value<TargetConfiguration>> = None;
+                    let mut threshold: Option<::Value<f64>> = None;
+                    let mut update_status: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ComparisonOperator" => {
+                                comparison_operator = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "EvaluationPeriods" => {
+                                evaluation_periods = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Location" => {
+                                location = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MetricName" => {
+                                metric_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PolicyType" => {
+                                policy_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ScalingAdjustment" => {
+                                scaling_adjustment = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ScalingAdjustmentType" => {
+                                scaling_adjustment_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Status" => {
+                                status = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TargetConfiguration" => {
+                                target_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Threshold" => {
+                                threshold = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "UpdateStatus" => {
+                                update_status = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ScalingPolicy {
+                        comparison_operator: comparison_operator,
+                        evaluation_periods: evaluation_periods,
+                        location: location,
+                        metric_name: metric_name.ok_or(::serde::de::Error::missing_field("MetricName"))?,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                        policy_type: policy_type,
+                        scaling_adjustment: scaling_adjustment,
+                        scaling_adjustment_type: scaling_adjustment_type,
+                        status: status,
+                        target_configuration: target_configuration,
+                        threshold: threshold,
+                        update_status: update_status,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::GameLift::Fleet.ServerProcess`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-serverprocess.html) property type.
     #[derive(Debug, Default)]
     pub struct ServerProcess {
@@ -1995,6 +2483,57 @@ pub mod fleet {
                         concurrent_executions: concurrent_executions.ok_or(::serde::de::Error::missing_field("ConcurrentExecutions"))?,
                         launch_path: launch_path.ok_or(::serde::de::Error::missing_field("LaunchPath"))?,
                         parameters: parameters,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::GameLift::Fleet.TargetConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-targetconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TargetConfiguration {
+        /// Property [`TargetValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-fleet-targetconfiguration.html#cfn-gamelift-fleet-targetconfiguration-targetvalue).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub target_value: ::Value<f64>,
+    }
+
+    impl ::codec::SerializeValue for TargetConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetValue", &self.target_value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TargetConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TargetConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TargetConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TargetConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut target_value: Option<::Value<f64>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "TargetValue" => {
+                                target_value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TargetConfiguration {
+                        target_value: target_value.ok_or(::serde::de::Error::missing_field("TargetValue"))?,
                     })
                 }
             }
@@ -2269,59 +2808,6 @@ pub mod game_server_group {
 pub mod game_session_queue {
     //! Property types for the `GameSessionQueue` resource.
 
-    /// The [`AWS::GameLift::GameSessionQueue.Destination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-gamesessionqueue-destination.html) property type.
-    #[derive(Debug, Default)]
-    pub struct Destination {
-        /// Property [`DestinationArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-gamesessionqueue-destination.html#cfn-gamelift-gamesessionqueue-destination-destinationarn).
-        ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub destination_arn: Option<::Value<String>>,
-    }
-
-    impl ::codec::SerializeValue for Destination {
-        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref destination_arn) = self.destination_arn {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationArn", destination_arn)?;
-            }
-            ::serde::ser::SerializeMap::end(map)
-        }
-    }
-
-    impl ::codec::DeserializeValue for Destination {
-        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Destination, D::Error> {
-            struct Visitor;
-
-            impl<'de> ::serde::de::Visitor<'de> for Visitor {
-                type Value = Destination;
-
-                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-                    write!(f, "a struct of type Destination")
-                }
-
-                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut destination_arn: Option<::Value<String>> = None;
-
-                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
-                        match __cfn_key.as_ref() {
-                            "DestinationArn" => {
-                                destination_arn = ::serde::de::MapAccess::next_value(&mut map)?;
-                            }
-                            _ => {}
-                        }
-                    }
-
-                    Ok(Destination {
-                        destination_arn: destination_arn,
-                    })
-                }
-            }
-
-            d.deserialize_map(Visitor)
-        }
-    }
-
     /// The [`AWS::GameLift::GameSessionQueue.FilterConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-gamesessionqueue-filterconfiguration.html) property type.
     #[derive(Debug, Default)]
     pub struct FilterConfiguration {
@@ -2367,6 +2853,59 @@ pub mod game_session_queue {
 
                     Ok(FilterConfiguration {
                         allowed_locations: allowed_locations,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::GameLift::GameSessionQueue.GameSessionQueueDestination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-gamesessionqueue-gamesessionqueuedestination.html) property type.
+    #[derive(Debug, Default)]
+    pub struct GameSessionQueueDestination {
+        /// Property [`DestinationArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-gamesessionqueue-gamesessionqueuedestination.html#cfn-gamelift-gamesessionqueue-gamesessionqueuedestination-destinationarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub destination_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for GameSessionQueueDestination {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref destination_arn) = self.destination_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationArn", destination_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for GameSessionQueueDestination {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<GameSessionQueueDestination, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = GameSessionQueueDestination;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type GameSessionQueueDestination")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut destination_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DestinationArn" => {
+                                destination_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(GameSessionQueueDestination {
+                        destination_arn: destination_arn,
                     })
                 }
             }

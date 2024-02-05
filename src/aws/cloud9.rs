@@ -28,7 +28,7 @@ pub struct EnvironmentEC2Properties {
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub image_id: Option<::Value<String>>,
+    pub image_id: ::Value<String>,
     /// Property [`InstanceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloud9-environmentec2.html#cfn-cloud9-environmentec2-instancetype).
     ///
     /// Update type: _Immutable_.
@@ -73,9 +73,7 @@ impl ::serde::Serialize for EnvironmentEC2Properties {
         if let Some(ref description) = self.description {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
         }
-        if let Some(ref image_id) = self.image_id {
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ImageId", image_id)?;
-        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ImageId", &self.image_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceType", &self.instance_type)?;
         if let Some(ref name) = self.name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
@@ -159,7 +157,7 @@ impl<'de> ::serde::Deserialize<'de> for EnvironmentEC2Properties {
                     automatic_stop_time_minutes: automatic_stop_time_minutes,
                     connection_type: connection_type,
                     description: description,
-                    image_id: image_id,
+                    image_id: image_id.ok_or(::serde::de::Error::missing_field("ImageId"))?,
                     instance_type: instance_type.ok_or(::serde::de::Error::missing_field("InstanceType"))?,
                     name: name,
                     owner_arn: owner_arn,

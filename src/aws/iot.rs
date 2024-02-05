@@ -130,6 +130,11 @@ pub struct AuthorizerProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub authorizer_name: Option<::Value<String>>,
+    /// Property [`EnableCachingForHttp`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-authorizer.html#cfn-iot-authorizer-enablecachingforhttp).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub enable_caching_for_http: Option<::Value<bool>>,
     /// Property [`SigningDisabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-authorizer.html#cfn-iot-authorizer-signingdisabled).
     ///
     /// Update type: _Immutable_.
@@ -164,6 +169,9 @@ impl ::serde::Serialize for AuthorizerProperties {
         if let Some(ref authorizer_name) = self.authorizer_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthorizerName", authorizer_name)?;
         }
+        if let Some(ref enable_caching_for_http) = self.enable_caching_for_http {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableCachingForHttp", enable_caching_for_http)?;
+        }
         if let Some(ref signing_disabled) = self.signing_disabled {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SigningDisabled", signing_disabled)?;
         }
@@ -197,6 +205,7 @@ impl<'de> ::serde::Deserialize<'de> for AuthorizerProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut authorizer_function_arn: Option<::Value<String>> = None;
                 let mut authorizer_name: Option<::Value<String>> = None;
+                let mut enable_caching_for_http: Option<::Value<bool>> = None;
                 let mut signing_disabled: Option<::Value<bool>> = None;
                 let mut status: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
@@ -210,6 +219,9 @@ impl<'de> ::serde::Deserialize<'de> for AuthorizerProperties {
                         }
                         "AuthorizerName" => {
                             authorizer_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "EnableCachingForHttp" => {
+                            enable_caching_for_http = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SigningDisabled" => {
                             signing_disabled = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -233,6 +245,7 @@ impl<'de> ::serde::Deserialize<'de> for AuthorizerProperties {
                 Ok(AuthorizerProperties {
                     authorizer_function_arn: authorizer_function_arn.ok_or(::serde::de::Error::missing_field("AuthorizerFunctionArn"))?,
                     authorizer_name: authorizer_name,
+                    enable_caching_for_http: enable_caching_for_http,
                     signing_disabled: signing_disabled,
                     status: status,
                     tags: tags,
@@ -262,6 +275,275 @@ impl ::private::Sealed for Authorizer {}
 impl From<AuthorizerProperties> for Authorizer {
     fn from(properties: AuthorizerProperties) -> Authorizer {
         Authorizer { properties }
+    }
+}
+
+/// The [`AWS::IoT::BillingGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-billinggroup.html) resource type.
+#[derive(Debug, Default)]
+pub struct BillingGroup {
+    properties: BillingGroupProperties
+}
+
+/// Properties for the `BillingGroup` resource.
+#[derive(Debug, Default)]
+pub struct BillingGroupProperties {
+    /// Property [`BillingGroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-billinggroup.html#cfn-iot-billinggroup-billinggroupname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub billing_group_name: Option<::Value<String>>,
+    /// Property [`BillingGroupProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-billinggroup.html#cfn-iot-billinggroup-billinggroupproperties).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub billing_group_properties: Option<::Value<self::billing_group::BillingGroupProperties>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-billinggroup.html#cfn-iot-billinggroup-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for BillingGroupProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref billing_group_name) = self.billing_group_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BillingGroupName", billing_group_name)?;
+        }
+        if let Some(ref billing_group_properties) = self.billing_group_properties {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BillingGroupProperties", billing_group_properties)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for BillingGroupProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<BillingGroupProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = BillingGroupProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type BillingGroupProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut billing_group_name: Option<::Value<String>> = None;
+                let mut billing_group_properties: Option<::Value<self::billing_group::BillingGroupProperties>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "BillingGroupName" => {
+                            billing_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "BillingGroupProperties" => {
+                            billing_group_properties = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(BillingGroupProperties {
+                    billing_group_name: billing_group_name,
+                    billing_group_properties: billing_group_properties,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for BillingGroup {
+    type Properties = BillingGroupProperties;
+    const TYPE: &'static str = "AWS::IoT::BillingGroup";
+    fn properties(&self) -> &BillingGroupProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut BillingGroupProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for BillingGroup {}
+
+impl From<BillingGroupProperties> for BillingGroup {
+    fn from(properties: BillingGroupProperties) -> BillingGroup {
+        BillingGroup { properties }
+    }
+}
+
+/// The [`AWS::IoT::CACertificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-cacertificate.html) resource type.
+#[derive(Debug, Default)]
+pub struct CACertificate {
+    properties: CACertificateProperties
+}
+
+/// Properties for the `CACertificate` resource.
+#[derive(Debug, Default)]
+pub struct CACertificateProperties {
+    /// Property [`AutoRegistrationStatus`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-cacertificate.html#cfn-iot-cacertificate-autoregistrationstatus).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub auto_registration_status: Option<::Value<String>>,
+    /// Property [`CACertificatePem`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-cacertificate.html#cfn-iot-cacertificate-cacertificatepem).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub ca_certificate_pem: ::Value<String>,
+    /// Property [`CertificateMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-cacertificate.html#cfn-iot-cacertificate-certificatemode).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub certificate_mode: Option<::Value<String>>,
+    /// Property [`RegistrationConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-cacertificate.html#cfn-iot-cacertificate-registrationconfig).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub registration_config: Option<::Value<self::ca_certificate::RegistrationConfig>>,
+    /// Property [`RemoveAutoRegistration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-cacertificate.html#cfn-iot-cacertificate-removeautoregistration).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub remove_auto_registration: Option<::Value<bool>>,
+    /// Property [`Status`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-cacertificate.html#cfn-iot-cacertificate-status).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub status: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-cacertificate.html#cfn-iot-cacertificate-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`VerificationCertificatePem`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-cacertificate.html#cfn-iot-cacertificate-verificationcertificatepem).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub verification_certificate_pem: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for CACertificateProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref auto_registration_status) = self.auto_registration_status {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoRegistrationStatus", auto_registration_status)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CACertificatePem", &self.ca_certificate_pem)?;
+        if let Some(ref certificate_mode) = self.certificate_mode {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificateMode", certificate_mode)?;
+        }
+        if let Some(ref registration_config) = self.registration_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RegistrationConfig", registration_config)?;
+        }
+        if let Some(ref remove_auto_registration) = self.remove_auto_registration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RemoveAutoRegistration", remove_auto_registration)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Status", &self.status)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref verification_certificate_pem) = self.verification_certificate_pem {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VerificationCertificatePem", verification_certificate_pem)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for CACertificateProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<CACertificateProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = CACertificateProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type CACertificateProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut auto_registration_status: Option<::Value<String>> = None;
+                let mut ca_certificate_pem: Option<::Value<String>> = None;
+                let mut certificate_mode: Option<::Value<String>> = None;
+                let mut registration_config: Option<::Value<self::ca_certificate::RegistrationConfig>> = None;
+                let mut remove_auto_registration: Option<::Value<bool>> = None;
+                let mut status: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut verification_certificate_pem: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AutoRegistrationStatus" => {
+                            auto_registration_status = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "CACertificatePem" => {
+                            ca_certificate_pem = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "CertificateMode" => {
+                            certificate_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "RegistrationConfig" => {
+                            registration_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "RemoveAutoRegistration" => {
+                            remove_auto_registration = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Status" => {
+                            status = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "VerificationCertificatePem" => {
+                            verification_certificate_pem = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(CACertificateProperties {
+                    auto_registration_status: auto_registration_status,
+                    ca_certificate_pem: ca_certificate_pem.ok_or(::serde::de::Error::missing_field("CACertificatePem"))?,
+                    certificate_mode: certificate_mode,
+                    registration_config: registration_config,
+                    remove_auto_registration: remove_auto_registration,
+                    status: status.ok_or(::serde::de::Error::missing_field("Status"))?,
+                    tags: tags,
+                    verification_certificate_pem: verification_certificate_pem,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for CACertificate {
+    type Properties = CACertificateProperties;
+    const TYPE: &'static str = "AWS::IoT::CACertificate";
+    fn properties(&self) -> &CACertificateProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut CACertificateProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for CACertificate {}
+
+impl From<CACertificateProperties> for CACertificate {
+    fn from(properties: CACertificateProperties) -> CACertificate {
+        CACertificate { properties }
     }
 }
 
@@ -390,6 +672,119 @@ impl ::private::Sealed for Certificate {}
 impl From<CertificateProperties> for Certificate {
     fn from(properties: CertificateProperties) -> Certificate {
         Certificate { properties }
+    }
+}
+
+/// The [`AWS::IoT::CertificateProvider`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-certificateprovider.html) resource type.
+#[derive(Debug, Default)]
+pub struct CertificateProvider {
+    properties: CertificateProviderProperties
+}
+
+/// Properties for the `CertificateProvider` resource.
+#[derive(Debug, Default)]
+pub struct CertificateProviderProperties {
+    /// Property [`AccountDefaultForOperations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-certificateprovider.html#cfn-iot-certificateprovider-accountdefaultforoperations).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub account_default_for_operations: ::ValueList<String>,
+    /// Property [`CertificateProviderName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-certificateprovider.html#cfn-iot-certificateprovider-certificateprovidername).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub certificate_provider_name: Option<::Value<String>>,
+    /// Property [`LambdaFunctionArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-certificateprovider.html#cfn-iot-certificateprovider-lambdafunctionarn).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub lambda_function_arn: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-certificateprovider.html#cfn-iot-certificateprovider-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for CertificateProviderProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccountDefaultForOperations", &self.account_default_for_operations)?;
+        if let Some(ref certificate_provider_name) = self.certificate_provider_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificateProviderName", certificate_provider_name)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaFunctionArn", &self.lambda_function_arn)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for CertificateProviderProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<CertificateProviderProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = CertificateProviderProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type CertificateProviderProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut account_default_for_operations: Option<::ValueList<String>> = None;
+                let mut certificate_provider_name: Option<::Value<String>> = None;
+                let mut lambda_function_arn: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AccountDefaultForOperations" => {
+                            account_default_for_operations = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "CertificateProviderName" => {
+                            certificate_provider_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "LambdaFunctionArn" => {
+                            lambda_function_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(CertificateProviderProperties {
+                    account_default_for_operations: account_default_for_operations.ok_or(::serde::de::Error::missing_field("AccountDefaultForOperations"))?,
+                    certificate_provider_name: certificate_provider_name,
+                    lambda_function_arn: lambda_function_arn.ok_or(::serde::de::Error::missing_field("LambdaFunctionArn"))?,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for CertificateProvider {
+    type Properties = CertificateProviderProperties;
+    const TYPE: &'static str = "AWS::IoT::CertificateProvider";
+    fn properties(&self) -> &CertificateProviderProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut CertificateProviderProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for CertificateProvider {}
+
+impl From<CertificateProviderProperties> for CertificateProvider {
+    fn from(properties: CertificateProviderProperties) -> CertificateProvider {
+        CertificateProvider { properties }
     }
 }
 
@@ -665,6 +1060,11 @@ pub struct DomainConfigurationProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`TlsConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-domainconfiguration.html#cfn-iot-domainconfiguration-tlsconfig).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tls_config: Option<::Value<self::domain_configuration::TlsConfig>>,
     /// Property [`ValidationCertificateArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-domainconfiguration.html#cfn-iot-domainconfiguration-validationcertificatearn).
     ///
     /// Update type: _Immutable_.
@@ -696,6 +1096,9 @@ impl ::serde::Serialize for DomainConfigurationProperties {
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
+        if let Some(ref tls_config) = self.tls_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TlsConfig", tls_config)?;
+        }
         if let Some(ref validation_certificate_arn) = self.validation_certificate_arn {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ValidationCertificateArn", validation_certificate_arn)?;
         }
@@ -722,6 +1125,7 @@ impl<'de> ::serde::Deserialize<'de> for DomainConfigurationProperties {
                 let mut server_certificate_arns: Option<::ValueList<String>> = None;
                 let mut service_type: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut tls_config: Option<::Value<self::domain_configuration::TlsConfig>> = None;
                 let mut validation_certificate_arn: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -747,6 +1151,9 @@ impl<'de> ::serde::Deserialize<'de> for DomainConfigurationProperties {
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "TlsConfig" => {
+                            tls_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "ValidationCertificateArn" => {
                             validation_certificate_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -762,6 +1169,7 @@ impl<'de> ::serde::Deserialize<'de> for DomainConfigurationProperties {
                     server_certificate_arns: server_certificate_arns,
                     service_type: service_type,
                     tags: tags,
+                    tls_config: tls_config,
                     validation_certificate_arn: validation_certificate_arn,
                 })
             }
@@ -787,6 +1195,527 @@ impl ::private::Sealed for DomainConfiguration {}
 impl From<DomainConfigurationProperties> for DomainConfiguration {
     fn from(properties: DomainConfigurationProperties) -> DomainConfiguration {
         DomainConfiguration { properties }
+    }
+}
+
+/// The [`AWS::IoT::FleetMetric`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-fleetmetric.html) resource type.
+#[derive(Debug, Default)]
+pub struct FleetMetric {
+    properties: FleetMetricProperties
+}
+
+/// Properties for the `FleetMetric` resource.
+#[derive(Debug, Default)]
+pub struct FleetMetricProperties {
+    /// Property [`AggregationField`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-fleetmetric.html#cfn-iot-fleetmetric-aggregationfield).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub aggregation_field: Option<::Value<String>>,
+    /// Property [`AggregationType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-fleetmetric.html#cfn-iot-fleetmetric-aggregationtype).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub aggregation_type: Option<::Value<self::fleet_metric::AggregationType>>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-fleetmetric.html#cfn-iot-fleetmetric-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`IndexName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-fleetmetric.html#cfn-iot-fleetmetric-indexname).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub index_name: Option<::Value<String>>,
+    /// Property [`MetricName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-fleetmetric.html#cfn-iot-fleetmetric-metricname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub metric_name: ::Value<String>,
+    /// Property [`Period`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-fleetmetric.html#cfn-iot-fleetmetric-period).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub period: Option<::Value<u32>>,
+    /// Property [`QueryString`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-fleetmetric.html#cfn-iot-fleetmetric-querystring).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub query_string: Option<::Value<String>>,
+    /// Property [`QueryVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-fleetmetric.html#cfn-iot-fleetmetric-queryversion).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub query_version: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-fleetmetric.html#cfn-iot-fleetmetric-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`Unit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-fleetmetric.html#cfn-iot-fleetmetric-unit).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub unit: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for FleetMetricProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref aggregation_field) = self.aggregation_field {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AggregationField", aggregation_field)?;
+        }
+        if let Some(ref aggregation_type) = self.aggregation_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AggregationType", aggregation_type)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref index_name) = self.index_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IndexName", index_name)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricName", &self.metric_name)?;
+        if let Some(ref period) = self.period {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Period", period)?;
+        }
+        if let Some(ref query_string) = self.query_string {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "QueryString", query_string)?;
+        }
+        if let Some(ref query_version) = self.query_version {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "QueryVersion", query_version)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref unit) = self.unit {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Unit", unit)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for FleetMetricProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<FleetMetricProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = FleetMetricProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type FleetMetricProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut aggregation_field: Option<::Value<String>> = None;
+                let mut aggregation_type: Option<::Value<self::fleet_metric::AggregationType>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut index_name: Option<::Value<String>> = None;
+                let mut metric_name: Option<::Value<String>> = None;
+                let mut period: Option<::Value<u32>> = None;
+                let mut query_string: Option<::Value<String>> = None;
+                let mut query_version: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut unit: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AggregationField" => {
+                            aggregation_field = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "AggregationType" => {
+                            aggregation_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "IndexName" => {
+                            index_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MetricName" => {
+                            metric_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Period" => {
+                            period = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "QueryString" => {
+                            query_string = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "QueryVersion" => {
+                            query_version = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Unit" => {
+                            unit = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(FleetMetricProperties {
+                    aggregation_field: aggregation_field,
+                    aggregation_type: aggregation_type,
+                    description: description,
+                    index_name: index_name,
+                    metric_name: metric_name.ok_or(::serde::de::Error::missing_field("MetricName"))?,
+                    period: period,
+                    query_string: query_string,
+                    query_version: query_version,
+                    tags: tags,
+                    unit: unit,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for FleetMetric {
+    type Properties = FleetMetricProperties;
+    const TYPE: &'static str = "AWS::IoT::FleetMetric";
+    fn properties(&self) -> &FleetMetricProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut FleetMetricProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for FleetMetric {}
+
+impl From<FleetMetricProperties> for FleetMetric {
+    fn from(properties: FleetMetricProperties) -> FleetMetric {
+        FleetMetric { properties }
+    }
+}
+
+/// The [`AWS::IoT::JobTemplate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-jobtemplate.html) resource type.
+#[derive(Debug, Default)]
+pub struct JobTemplate {
+    properties: JobTemplateProperties
+}
+
+/// Properties for the `JobTemplate` resource.
+#[derive(Debug, Default)]
+pub struct JobTemplateProperties {
+    /// Property [`AbortConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-jobtemplate.html#cfn-iot-jobtemplate-abortconfig).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub abort_config: Option<::Value<self::job_template::AbortConfig>>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-jobtemplate.html#cfn-iot-jobtemplate-description).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub description: ::Value<String>,
+    /// Property [`DestinationPackageVersions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-jobtemplate.html#cfn-iot-jobtemplate-destinationpackageversions).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub destination_package_versions: Option<::ValueList<String>>,
+    /// Property [`Document`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-jobtemplate.html#cfn-iot-jobtemplate-document).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub document: Option<::Value<String>>,
+    /// Property [`DocumentSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-jobtemplate.html#cfn-iot-jobtemplate-documentsource).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub document_source: Option<::Value<String>>,
+    /// Property [`JobArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-jobtemplate.html#cfn-iot-jobtemplate-jobarn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub job_arn: Option<::Value<String>>,
+    /// Property [`JobExecutionsRetryConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-jobtemplate.html#cfn-iot-jobtemplate-jobexecutionsretryconfig).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub job_executions_retry_config: Option<::Value<self::job_template::JobExecutionsRetryConfig>>,
+    /// Property [`JobExecutionsRolloutConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-jobtemplate.html#cfn-iot-jobtemplate-jobexecutionsrolloutconfig).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub job_executions_rollout_config: Option<::Value<self::job_template::JobExecutionsRolloutConfig>>,
+    /// Property [`JobTemplateId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-jobtemplate.html#cfn-iot-jobtemplate-jobtemplateid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub job_template_id: ::Value<String>,
+    /// Property [`MaintenanceWindows`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-jobtemplate.html#cfn-iot-jobtemplate-maintenancewindows).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub maintenance_windows: Option<::ValueList<self::job_template::MaintenanceWindow>>,
+    /// Property [`PresignedUrlConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-jobtemplate.html#cfn-iot-jobtemplate-presignedurlconfig).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub presigned_url_config: Option<::Value<self::job_template::PresignedUrlConfig>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-jobtemplate.html#cfn-iot-jobtemplate-tags).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`TimeoutConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-jobtemplate.html#cfn-iot-jobtemplate-timeoutconfig).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub timeout_config: Option<::Value<self::job_template::TimeoutConfig>>,
+}
+
+impl ::serde::Serialize for JobTemplateProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref abort_config) = self.abort_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AbortConfig", abort_config)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
+        if let Some(ref destination_package_versions) = self.destination_package_versions {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationPackageVersions", destination_package_versions)?;
+        }
+        if let Some(ref document) = self.document {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Document", document)?;
+        }
+        if let Some(ref document_source) = self.document_source {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentSource", document_source)?;
+        }
+        if let Some(ref job_arn) = self.job_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "JobArn", job_arn)?;
+        }
+        if let Some(ref job_executions_retry_config) = self.job_executions_retry_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "JobExecutionsRetryConfig", job_executions_retry_config)?;
+        }
+        if let Some(ref job_executions_rollout_config) = self.job_executions_rollout_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "JobExecutionsRolloutConfig", job_executions_rollout_config)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "JobTemplateId", &self.job_template_id)?;
+        if let Some(ref maintenance_windows) = self.maintenance_windows {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaintenanceWindows", maintenance_windows)?;
+        }
+        if let Some(ref presigned_url_config) = self.presigned_url_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PresignedUrlConfig", presigned_url_config)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref timeout_config) = self.timeout_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimeoutConfig", timeout_config)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for JobTemplateProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<JobTemplateProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = JobTemplateProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type JobTemplateProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut abort_config: Option<::Value<self::job_template::AbortConfig>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut destination_package_versions: Option<::ValueList<String>> = None;
+                let mut document: Option<::Value<String>> = None;
+                let mut document_source: Option<::Value<String>> = None;
+                let mut job_arn: Option<::Value<String>> = None;
+                let mut job_executions_retry_config: Option<::Value<self::job_template::JobExecutionsRetryConfig>> = None;
+                let mut job_executions_rollout_config: Option<::Value<self::job_template::JobExecutionsRolloutConfig>> = None;
+                let mut job_template_id: Option<::Value<String>> = None;
+                let mut maintenance_windows: Option<::ValueList<self::job_template::MaintenanceWindow>> = None;
+                let mut presigned_url_config: Option<::Value<self::job_template::PresignedUrlConfig>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut timeout_config: Option<::Value<self::job_template::TimeoutConfig>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AbortConfig" => {
+                            abort_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DestinationPackageVersions" => {
+                            destination_package_versions = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Document" => {
+                            document = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DocumentSource" => {
+                            document_source = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "JobArn" => {
+                            job_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "JobExecutionsRetryConfig" => {
+                            job_executions_retry_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "JobExecutionsRolloutConfig" => {
+                            job_executions_rollout_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "JobTemplateId" => {
+                            job_template_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MaintenanceWindows" => {
+                            maintenance_windows = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PresignedUrlConfig" => {
+                            presigned_url_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TimeoutConfig" => {
+                            timeout_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(JobTemplateProperties {
+                    abort_config: abort_config,
+                    description: description.ok_or(::serde::de::Error::missing_field("Description"))?,
+                    destination_package_versions: destination_package_versions,
+                    document: document,
+                    document_source: document_source,
+                    job_arn: job_arn,
+                    job_executions_retry_config: job_executions_retry_config,
+                    job_executions_rollout_config: job_executions_rollout_config,
+                    job_template_id: job_template_id.ok_or(::serde::de::Error::missing_field("JobTemplateId"))?,
+                    maintenance_windows: maintenance_windows,
+                    presigned_url_config: presigned_url_config,
+                    tags: tags,
+                    timeout_config: timeout_config,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for JobTemplate {
+    type Properties = JobTemplateProperties;
+    const TYPE: &'static str = "AWS::IoT::JobTemplate";
+    fn properties(&self) -> &JobTemplateProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut JobTemplateProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for JobTemplate {}
+
+impl From<JobTemplateProperties> for JobTemplate {
+    fn from(properties: JobTemplateProperties) -> JobTemplate {
+        JobTemplate { properties }
+    }
+}
+
+/// The [`AWS::IoT::Logging`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-logging.html) resource type.
+#[derive(Debug, Default)]
+pub struct Logging {
+    properties: LoggingProperties
+}
+
+/// Properties for the `Logging` resource.
+#[derive(Debug, Default)]
+pub struct LoggingProperties {
+    /// Property [`AccountId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-logging.html#cfn-iot-logging-accountid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub account_id: ::Value<String>,
+    /// Property [`DefaultLogLevel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-logging.html#cfn-iot-logging-defaultloglevel).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub default_log_level: ::Value<String>,
+    /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-logging.html#cfn-iot-logging-rolearn).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub role_arn: ::Value<String>,
+}
+
+impl ::serde::Serialize for LoggingProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccountId", &self.account_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultLogLevel", &self.default_log_level)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for LoggingProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<LoggingProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = LoggingProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type LoggingProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut account_id: Option<::Value<String>> = None;
+                let mut default_log_level: Option<::Value<String>> = None;
+                let mut role_arn: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AccountId" => {
+                            account_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DefaultLogLevel" => {
+                            default_log_level = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "RoleArn" => {
+                            role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(LoggingProperties {
+                    account_id: account_id.ok_or(::serde::de::Error::missing_field("AccountId"))?,
+                    default_log_level: default_log_level.ok_or(::serde::de::Error::missing_field("DefaultLogLevel"))?,
+                    role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for Logging {
+    type Properties = LoggingProperties;
+    const TYPE: &'static str = "AWS::IoT::Logging";
+    fn properties(&self) -> &LoggingProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut LoggingProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for Logging {}
+
+impl From<LoggingProperties> for Logging {
+    fn from(properties: LoggingProperties) -> Logging {
+        Logging { properties }
     }
 }
 
@@ -914,14 +1843,19 @@ pub struct Policy {
 pub struct PolicyProperties {
     /// Property [`PolicyDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policy.html#cfn-iot-policy-policydocument).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub policy_document: ::Value<::json::Value>,
     /// Property [`PolicyName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policy.html#cfn-iot-policy-policyname).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub policy_name: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-policy.html#cfn-iot-policy-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
 }
 
 impl ::serde::Serialize for PolicyProperties {
@@ -930,6 +1864,9 @@ impl ::serde::Serialize for PolicyProperties {
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyDocument", &self.policy_document)?;
         if let Some(ref policy_name) = self.policy_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyName", policy_name)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
         ::serde::ser::SerializeMap::end(map)
     }
@@ -949,6 +1886,7 @@ impl<'de> ::serde::Deserialize<'de> for PolicyProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut policy_document: Option<::Value<::json::Value>> = None;
                 let mut policy_name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -958,6 +1896,9 @@ impl<'de> ::serde::Deserialize<'de> for PolicyProperties {
                         "PolicyName" => {
                             policy_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
@@ -965,6 +1906,7 @@ impl<'de> ::serde::Deserialize<'de> for PolicyProperties {
                 Ok(PolicyProperties {
                     policy_document: policy_document.ok_or(::serde::de::Error::missing_field("PolicyDocument"))?,
                     policy_name: policy_name,
+                    tags: tags,
                 })
             }
         }
@@ -1123,6 +2065,11 @@ pub struct ProvisioningTemplateProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub template_name: Option<::Value<String>>,
+    /// Property [`TemplateType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-provisioningtemplate.html#cfn-iot-provisioningtemplate-templatetype).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub template_type: Option<::Value<String>>,
 }
 
 impl ::serde::Serialize for ProvisioningTemplateProperties {
@@ -1144,6 +2091,9 @@ impl ::serde::Serialize for ProvisioningTemplateProperties {
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "TemplateBody", &self.template_body)?;
         if let Some(ref template_name) = self.template_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TemplateName", template_name)?;
+        }
+        if let Some(ref template_type) = self.template_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TemplateType", template_type)?;
         }
         ::serde::ser::SerializeMap::end(map)
     }
@@ -1168,6 +2118,7 @@ impl<'de> ::serde::Deserialize<'de> for ProvisioningTemplateProperties {
                 let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut template_body: Option<::Value<String>> = None;
                 let mut template_name: Option<::Value<String>> = None;
+                let mut template_type: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1192,6 +2143,9 @@ impl<'de> ::serde::Deserialize<'de> for ProvisioningTemplateProperties {
                         "TemplateName" => {
                             template_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "TemplateType" => {
+                            template_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
@@ -1204,6 +2158,7 @@ impl<'de> ::serde::Deserialize<'de> for ProvisioningTemplateProperties {
                     tags: tags,
                     template_body: template_body.ok_or(::serde::de::Error::missing_field("TemplateBody"))?,
                     template_name: template_name,
+                    template_type: template_type,
                 })
             }
         }
@@ -1228,6 +2183,219 @@ impl ::private::Sealed for ProvisioningTemplate {}
 impl From<ProvisioningTemplateProperties> for ProvisioningTemplate {
     fn from(properties: ProvisioningTemplateProperties) -> ProvisioningTemplate {
         ProvisioningTemplate { properties }
+    }
+}
+
+/// The [`AWS::IoT::ResourceSpecificLogging`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-resourcespecificlogging.html) resource type.
+#[derive(Debug, Default)]
+pub struct ResourceSpecificLogging {
+    properties: ResourceSpecificLoggingProperties
+}
+
+/// Properties for the `ResourceSpecificLogging` resource.
+#[derive(Debug, Default)]
+pub struct ResourceSpecificLoggingProperties {
+    /// Property [`LogLevel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-resourcespecificlogging.html#cfn-iot-resourcespecificlogging-loglevel).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub log_level: ::Value<String>,
+    /// Property [`TargetName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-resourcespecificlogging.html#cfn-iot-resourcespecificlogging-targetname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub target_name: ::Value<String>,
+    /// Property [`TargetType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-resourcespecificlogging.html#cfn-iot-resourcespecificlogging-targettype).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub target_type: ::Value<String>,
+}
+
+impl ::serde::Serialize for ResourceSpecificLoggingProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogLevel", &self.log_level)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetName", &self.target_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetType", &self.target_type)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ResourceSpecificLoggingProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ResourceSpecificLoggingProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ResourceSpecificLoggingProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ResourceSpecificLoggingProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut log_level: Option<::Value<String>> = None;
+                let mut target_name: Option<::Value<String>> = None;
+                let mut target_type: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "LogLevel" => {
+                            log_level = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TargetName" => {
+                            target_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TargetType" => {
+                            target_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ResourceSpecificLoggingProperties {
+                    log_level: log_level.ok_or(::serde::de::Error::missing_field("LogLevel"))?,
+                    target_name: target_name.ok_or(::serde::de::Error::missing_field("TargetName"))?,
+                    target_type: target_type.ok_or(::serde::de::Error::missing_field("TargetType"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for ResourceSpecificLogging {
+    type Properties = ResourceSpecificLoggingProperties;
+    const TYPE: &'static str = "AWS::IoT::ResourceSpecificLogging";
+    fn properties(&self) -> &ResourceSpecificLoggingProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut ResourceSpecificLoggingProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for ResourceSpecificLogging {}
+
+impl From<ResourceSpecificLoggingProperties> for ResourceSpecificLogging {
+    fn from(properties: ResourceSpecificLoggingProperties) -> ResourceSpecificLogging {
+        ResourceSpecificLogging { properties }
+    }
+}
+
+/// The [`AWS::IoT::RoleAlias`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-rolealias.html) resource type.
+#[derive(Debug, Default)]
+pub struct RoleAlias {
+    properties: RoleAliasProperties
+}
+
+/// Properties for the `RoleAlias` resource.
+#[derive(Debug, Default)]
+pub struct RoleAliasProperties {
+    /// Property [`CredentialDurationSeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-rolealias.html#cfn-iot-rolealias-credentialdurationseconds).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub credential_duration_seconds: Option<::Value<u32>>,
+    /// Property [`RoleAlias`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-rolealias.html#cfn-iot-rolealias-rolealias).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub role_alias: Option<::Value<String>>,
+    /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-rolealias.html#cfn-iot-rolealias-rolearn).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub role_arn: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-rolealias.html#cfn-iot-rolealias-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for RoleAliasProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref credential_duration_seconds) = self.credential_duration_seconds {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CredentialDurationSeconds", credential_duration_seconds)?;
+        }
+        if let Some(ref role_alias) = self.role_alias {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleAlias", role_alias)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for RoleAliasProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<RoleAliasProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = RoleAliasProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type RoleAliasProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut credential_duration_seconds: Option<::Value<u32>> = None;
+                let mut role_alias: Option<::Value<String>> = None;
+                let mut role_arn: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "CredentialDurationSeconds" => {
+                            credential_duration_seconds = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "RoleAlias" => {
+                            role_alias = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "RoleArn" => {
+                            role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(RoleAliasProperties {
+                    credential_duration_seconds: credential_duration_seconds,
+                    role_alias: role_alias,
+                    role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for RoleAlias {
+    type Properties = RoleAliasProperties;
+    const TYPE: &'static str = "AWS::IoT::RoleAlias";
+    fn properties(&self) -> &RoleAliasProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut RoleAliasProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for RoleAlias {}
+
+impl From<RoleAliasProperties> for RoleAlias {
+    fn from(properties: RoleAliasProperties) -> RoleAlias {
+        RoleAlias { properties }
     }
 }
 
@@ -1394,6 +2562,11 @@ pub struct SecurityProfileProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub behaviors: Option<::ValueList<self::security_profile::Behavior>>,
+    /// Property [`MetricsExportConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-securityprofile.html#cfn-iot-securityprofile-metricsexportconfig).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub metrics_export_config: Option<::Value<self::security_profile::MetricsExportConfig>>,
     /// Property [`SecurityProfileDescription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-securityprofile.html#cfn-iot-securityprofile-securityprofiledescription).
     ///
     /// Update type: _Mutable_.
@@ -1428,6 +2601,9 @@ impl ::serde::Serialize for SecurityProfileProperties {
         if let Some(ref behaviors) = self.behaviors {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Behaviors", behaviors)?;
         }
+        if let Some(ref metrics_export_config) = self.metrics_export_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricsExportConfig", metrics_export_config)?;
+        }
         if let Some(ref security_profile_description) = self.security_profile_description {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityProfileDescription", security_profile_description)?;
         }
@@ -1459,6 +2635,7 @@ impl<'de> ::serde::Deserialize<'de> for SecurityProfileProperties {
                 let mut additional_metrics_to_retain_v2: Option<::ValueList<self::security_profile::MetricToRetain>> = None;
                 let mut alert_targets: Option<::ValueMap<self::security_profile::AlertTarget>> = None;
                 let mut behaviors: Option<::ValueList<self::security_profile::Behavior>> = None;
+                let mut metrics_export_config: Option<::Value<self::security_profile::MetricsExportConfig>> = None;
                 let mut security_profile_description: Option<::Value<String>> = None;
                 let mut security_profile_name: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
@@ -1474,6 +2651,9 @@ impl<'de> ::serde::Deserialize<'de> for SecurityProfileProperties {
                         }
                         "Behaviors" => {
                             behaviors = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MetricsExportConfig" => {
+                            metrics_export_config = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SecurityProfileDescription" => {
                             security_profile_description = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1495,6 +2675,7 @@ impl<'de> ::serde::Deserialize<'de> for SecurityProfileProperties {
                     additional_metrics_to_retain_v2: additional_metrics_to_retain_v2,
                     alert_targets: alert_targets,
                     behaviors: behaviors,
+                    metrics_export_config: metrics_export_config,
                     security_profile_description: security_profile_description,
                     security_profile_name: security_profile_name,
                     tags: tags,
@@ -1523,6 +2704,238 @@ impl ::private::Sealed for SecurityProfile {}
 impl From<SecurityProfileProperties> for SecurityProfile {
     fn from(properties: SecurityProfileProperties) -> SecurityProfile {
         SecurityProfile { properties }
+    }
+}
+
+/// The [`AWS::IoT::SoftwarePackage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-softwarepackage.html) resource type.
+#[derive(Debug, Default)]
+pub struct SoftwarePackage {
+    properties: SoftwarePackageProperties
+}
+
+/// Properties for the `SoftwarePackage` resource.
+#[derive(Debug, Default)]
+pub struct SoftwarePackageProperties {
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-softwarepackage.html#cfn-iot-softwarepackage-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`PackageName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-softwarepackage.html#cfn-iot-softwarepackage-packagename).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub package_name: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-softwarepackage.html#cfn-iot-softwarepackage-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for SoftwarePackageProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref package_name) = self.package_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PackageName", package_name)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for SoftwarePackageProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<SoftwarePackageProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = SoftwarePackageProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type SoftwarePackageProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut description: Option<::Value<String>> = None;
+                let mut package_name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PackageName" => {
+                            package_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(SoftwarePackageProperties {
+                    description: description,
+                    package_name: package_name,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for SoftwarePackage {
+    type Properties = SoftwarePackageProperties;
+    const TYPE: &'static str = "AWS::IoT::SoftwarePackage";
+    fn properties(&self) -> &SoftwarePackageProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut SoftwarePackageProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for SoftwarePackage {}
+
+impl From<SoftwarePackageProperties> for SoftwarePackage {
+    fn from(properties: SoftwarePackageProperties) -> SoftwarePackage {
+        SoftwarePackage { properties }
+    }
+}
+
+/// The [`AWS::IoT::SoftwarePackageVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-softwarepackageversion.html) resource type.
+#[derive(Debug, Default)]
+pub struct SoftwarePackageVersion {
+    properties: SoftwarePackageVersionProperties
+}
+
+/// Properties for the `SoftwarePackageVersion` resource.
+#[derive(Debug, Default)]
+pub struct SoftwarePackageVersionProperties {
+    /// Property [`Attributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-softwarepackageversion.html#cfn-iot-softwarepackageversion-attributes).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub attributes: Option<::ValueMap<String>>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-softwarepackageversion.html#cfn-iot-softwarepackageversion-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`PackageName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-softwarepackageversion.html#cfn-iot-softwarepackageversion-packagename).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub package_name: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-softwarepackageversion.html#cfn-iot-softwarepackageversion-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`VersionName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-softwarepackageversion.html#cfn-iot-softwarepackageversion-versionname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub version_name: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for SoftwarePackageVersionProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref attributes) = self.attributes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attributes", attributes)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PackageName", &self.package_name)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref version_name) = self.version_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VersionName", version_name)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for SoftwarePackageVersionProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<SoftwarePackageVersionProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = SoftwarePackageVersionProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type SoftwarePackageVersionProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut attributes: Option<::ValueMap<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut package_name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut version_name: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Attributes" => {
+                            attributes = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PackageName" => {
+                            package_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "VersionName" => {
+                            version_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(SoftwarePackageVersionProperties {
+                    attributes: attributes,
+                    description: description,
+                    package_name: package_name.ok_or(::serde::de::Error::missing_field("PackageName"))?,
+                    tags: tags,
+                    version_name: version_name,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for SoftwarePackageVersion {
+    type Properties = SoftwarePackageVersionProperties;
+    const TYPE: &'static str = "AWS::IoT::SoftwarePackageVersion";
+    fn properties(&self) -> &SoftwarePackageVersionProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut SoftwarePackageVersionProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for SoftwarePackageVersion {}
+
+impl From<SoftwarePackageVersionProperties> for SoftwarePackageVersion {
+    fn from(properties: SoftwarePackageVersionProperties) -> SoftwarePackageVersion {
+        SoftwarePackageVersion { properties }
     }
 }
 
@@ -1617,6 +3030,136 @@ impl From<ThingProperties> for Thing {
     }
 }
 
+/// The [`AWS::IoT::ThingGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thinggroup.html) resource type.
+#[derive(Debug, Default)]
+pub struct ThingGroup {
+    properties: ThingGroupProperties
+}
+
+/// Properties for the `ThingGroup` resource.
+#[derive(Debug, Default)]
+pub struct ThingGroupProperties {
+    /// Property [`ParentGroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thinggroup.html#cfn-iot-thinggroup-parentgroupname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub parent_group_name: Option<::Value<String>>,
+    /// Property [`QueryString`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thinggroup.html#cfn-iot-thinggroup-querystring).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub query_string: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thinggroup.html#cfn-iot-thinggroup-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`ThingGroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thinggroup.html#cfn-iot-thinggroup-thinggroupname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub thing_group_name: Option<::Value<String>>,
+    /// Property [`ThingGroupProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thinggroup.html#cfn-iot-thinggroup-thinggroupproperties).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub thing_group_properties: Option<::Value<self::thing_group::ThingGroupProperties>>,
+}
+
+impl ::serde::Serialize for ThingGroupProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref parent_group_name) = self.parent_group_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ParentGroupName", parent_group_name)?;
+        }
+        if let Some(ref query_string) = self.query_string {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "QueryString", query_string)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref thing_group_name) = self.thing_group_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThingGroupName", thing_group_name)?;
+        }
+        if let Some(ref thing_group_properties) = self.thing_group_properties {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThingGroupProperties", thing_group_properties)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ThingGroupProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ThingGroupProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ThingGroupProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ThingGroupProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut parent_group_name: Option<::Value<String>> = None;
+                let mut query_string: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut thing_group_name: Option<::Value<String>> = None;
+                let mut thing_group_properties: Option<::Value<self::thing_group::ThingGroupProperties>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "ParentGroupName" => {
+                            parent_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "QueryString" => {
+                            query_string = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ThingGroupName" => {
+                            thing_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ThingGroupProperties" => {
+                            thing_group_properties = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ThingGroupProperties {
+                    parent_group_name: parent_group_name,
+                    query_string: query_string,
+                    tags: tags,
+                    thing_group_name: thing_group_name,
+                    thing_group_properties: thing_group_properties,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for ThingGroup {
+    type Properties = ThingGroupProperties;
+    const TYPE: &'static str = "AWS::IoT::ThingGroup";
+    fn properties(&self) -> &ThingGroupProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut ThingGroupProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for ThingGroup {}
+
+impl From<ThingGroupProperties> for ThingGroup {
+    fn from(properties: ThingGroupProperties) -> ThingGroup {
+        ThingGroup { properties }
+    }
+}
+
 /// The [`AWS::IoT::ThingPrincipalAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thingprincipalattachment.html) resource type.
 #[derive(Debug, Default)]
 pub struct ThingPrincipalAttachment {
@@ -1701,6 +3244,123 @@ impl ::private::Sealed for ThingPrincipalAttachment {}
 impl From<ThingPrincipalAttachmentProperties> for ThingPrincipalAttachment {
     fn from(properties: ThingPrincipalAttachmentProperties) -> ThingPrincipalAttachment {
         ThingPrincipalAttachment { properties }
+    }
+}
+
+/// The [`AWS::IoT::ThingType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thingtype.html) resource type.
+#[derive(Debug, Default)]
+pub struct ThingType {
+    properties: ThingTypeProperties
+}
+
+/// Properties for the `ThingType` resource.
+#[derive(Debug, Default)]
+pub struct ThingTypeProperties {
+    /// Property [`DeprecateThingType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thingtype.html#cfn-iot-thingtype-deprecatethingtype).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub deprecate_thing_type: Option<::Value<bool>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thingtype.html#cfn-iot-thingtype-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`ThingTypeName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thingtype.html#cfn-iot-thingtype-thingtypename).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub thing_type_name: Option<::Value<String>>,
+    /// Property [`ThingTypeProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-thingtype.html#cfn-iot-thingtype-thingtypeproperties).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub thing_type_properties: Option<::Value<self::thing_type::ThingTypeProperties>>,
+}
+
+impl ::serde::Serialize for ThingTypeProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref deprecate_thing_type) = self.deprecate_thing_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeprecateThingType", deprecate_thing_type)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref thing_type_name) = self.thing_type_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThingTypeName", thing_type_name)?;
+        }
+        if let Some(ref thing_type_properties) = self.thing_type_properties {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThingTypeProperties", thing_type_properties)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ThingTypeProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ThingTypeProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ThingTypeProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ThingTypeProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut deprecate_thing_type: Option<::Value<bool>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut thing_type_name: Option<::Value<String>> = None;
+                let mut thing_type_properties: Option<::Value<self::thing_type::ThingTypeProperties>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "DeprecateThingType" => {
+                            deprecate_thing_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ThingTypeName" => {
+                            thing_type_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ThingTypeProperties" => {
+                            thing_type_properties = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ThingTypeProperties {
+                    deprecate_thing_type: deprecate_thing_type,
+                    tags: tags,
+                    thing_type_name: thing_type_name,
+                    thing_type_properties: thing_type_properties,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for ThingType {
+    type Properties = ThingTypeProperties;
+    const TYPE: &'static str = "AWS::IoT::ThingType";
+    fn properties(&self) -> &ThingTypeProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut ThingTypeProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for ThingType {}
+
+impl From<ThingTypeProperties> for ThingType {
+    fn from(properties: ThingTypeProperties) -> ThingType {
+        ThingType { properties }
     }
 }
 
@@ -2004,6 +3664,16 @@ pub mod account_audit_configuration {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub device_certificate_shared_check: Option<::Value<AuditCheckConfiguration>>,
+        /// Property [`IntermediateCaRevokedForActiveDeviceCertificatesCheck`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-accountauditconfiguration-auditcheckconfigurations.html#cfn-iot-accountauditconfiguration-auditcheckconfigurations-intermediatecarevokedforactivedevicecertificatescheck).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub intermediate_ca_revoked_for_active_device_certificates_check: Option<::Value<AuditCheckConfiguration>>,
+        /// Property [`IoTPolicyPotentialMisConfigurationCheck`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-accountauditconfiguration-auditcheckconfigurations.html#cfn-iot-accountauditconfiguration-auditcheckconfigurations-iotpolicypotentialmisconfigurationcheck).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub io_t_policy_potential_mis_configuration_check: Option<::Value<AuditCheckConfiguration>>,
         /// Property [`IotPolicyOverlyPermissiveCheck`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-accountauditconfiguration-auditcheckconfigurations.html#cfn-iot-accountauditconfiguration-auditcheckconfigurations-iotpolicyoverlypermissivecheck).
         ///
         /// Update type: _Mutable_.
@@ -2065,6 +3735,12 @@ pub mod account_audit_configuration {
             if let Some(ref device_certificate_shared_check) = self.device_certificate_shared_check {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceCertificateSharedCheck", device_certificate_shared_check)?;
             }
+            if let Some(ref intermediate_ca_revoked_for_active_device_certificates_check) = self.intermediate_ca_revoked_for_active_device_certificates_check {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IntermediateCaRevokedForActiveDeviceCertificatesCheck", intermediate_ca_revoked_for_active_device_certificates_check)?;
+            }
+            if let Some(ref io_t_policy_potential_mis_configuration_check) = self.io_t_policy_potential_mis_configuration_check {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IoTPolicyPotentialMisConfigurationCheck", io_t_policy_potential_mis_configuration_check)?;
+            }
             if let Some(ref iot_policy_overly_permissive_check) = self.iot_policy_overly_permissive_check {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "IotPolicyOverlyPermissiveCheck", iot_policy_overly_permissive_check)?;
             }
@@ -2109,6 +3785,8 @@ pub mod account_audit_configuration {
                     let mut device_certificate_expiring_check: Option<::Value<AuditCheckConfiguration>> = None;
                     let mut device_certificate_key_quality_check: Option<::Value<AuditCheckConfiguration>> = None;
                     let mut device_certificate_shared_check: Option<::Value<AuditCheckConfiguration>> = None;
+                    let mut intermediate_ca_revoked_for_active_device_certificates_check: Option<::Value<AuditCheckConfiguration>> = None;
+                    let mut io_t_policy_potential_mis_configuration_check: Option<::Value<AuditCheckConfiguration>> = None;
                     let mut iot_policy_overly_permissive_check: Option<::Value<AuditCheckConfiguration>> = None;
                     let mut iot_role_alias_allows_access_to_unused_services_check: Option<::Value<AuditCheckConfiguration>> = None;
                     let mut iot_role_alias_overly_permissive_check: Option<::Value<AuditCheckConfiguration>> = None;
@@ -2139,6 +3817,12 @@ pub mod account_audit_configuration {
                             }
                             "DeviceCertificateSharedCheck" => {
                                 device_certificate_shared_check = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IntermediateCaRevokedForActiveDeviceCertificatesCheck" => {
+                                intermediate_ca_revoked_for_active_device_certificates_check = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IoTPolicyPotentialMisConfigurationCheck" => {
+                                io_t_policy_potential_mis_configuration_check = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "IotPolicyOverlyPermissiveCheck" => {
                                 iot_policy_overly_permissive_check = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -2173,6 +3857,8 @@ pub mod account_audit_configuration {
                         device_certificate_expiring_check: device_certificate_expiring_check,
                         device_certificate_key_quality_check: device_certificate_key_quality_check,
                         device_certificate_shared_check: device_certificate_shared_check,
+                        intermediate_ca_revoked_for_active_device_certificates_check: intermediate_ca_revoked_for_active_device_certificates_check,
+                        io_t_policy_potential_mis_configuration_check: io_t_policy_potential_mis_configuration_check,
                         iot_policy_overly_permissive_check: iot_policy_overly_permissive_check,
                         iot_role_alias_allows_access_to_unused_services_check: iot_role_alias_allows_access_to_unused_services_check,
                         iot_role_alias_overly_permissive_check: iot_role_alias_overly_permissive_check,
@@ -2312,6 +3998,146 @@ pub mod account_audit_configuration {
 
                     Ok(AuditNotificationTargetConfigurations {
                         sns: sns,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod billing_group {
+    //! Property types for the `BillingGroup` resource.
+
+    /// The [`AWS::IoT::BillingGroup.BillingGroupProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-billinggroup-billinggroupproperties.html) property type.
+    #[derive(Debug, Default)]
+    pub struct BillingGroupProperties {
+        /// Property [`BillingGroupDescription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-billinggroup-billinggroupproperties.html#cfn-iot-billinggroup-billinggroupproperties-billinggroupdescription).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub billing_group_description: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for BillingGroupProperties {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref billing_group_description) = self.billing_group_description {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BillingGroupDescription", billing_group_description)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for BillingGroupProperties {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<BillingGroupProperties, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = BillingGroupProperties;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type BillingGroupProperties")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut billing_group_description: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "BillingGroupDescription" => {
+                                billing_group_description = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(BillingGroupProperties {
+                        billing_group_description: billing_group_description,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod ca_certificate {
+    //! Property types for the `CACertificate` resource.
+
+    /// The [`AWS::IoT::CACertificate.RegistrationConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-cacertificate-registrationconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct RegistrationConfig {
+        /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-cacertificate-registrationconfig.html#cfn-iot-cacertificate-registrationconfig-rolearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub role_arn: Option<::Value<String>>,
+        /// Property [`TemplateBody`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-cacertificate-registrationconfig.html#cfn-iot-cacertificate-registrationconfig-templatebody).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub template_body: Option<::Value<String>>,
+        /// Property [`TemplateName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-cacertificate-registrationconfig.html#cfn-iot-cacertificate-registrationconfig-templatename).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub template_name: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for RegistrationConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref role_arn) = self.role_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", role_arn)?;
+            }
+            if let Some(ref template_body) = self.template_body {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TemplateBody", template_body)?;
+            }
+            if let Some(ref template_name) = self.template_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TemplateName", template_name)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for RegistrationConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<RegistrationConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = RegistrationConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type RegistrationConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut role_arn: Option<::Value<String>> = None;
+                    let mut template_body: Option<::Value<String>> = None;
+                    let mut template_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "RoleArn" => {
+                                role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TemplateBody" => {
+                                template_body = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TemplateName" => {
+                                template_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(RegistrationConfig {
+                        role_arn: role_arn,
+                        template_body: template_body,
+                        template_name: template_name,
                     })
                 }
             }
@@ -2461,6 +4287,769 @@ pub mod domain_configuration {
                         server_certificate_arn: server_certificate_arn,
                         server_certificate_status: server_certificate_status,
                         server_certificate_status_detail: server_certificate_status_detail,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::IoT::DomainConfiguration.TlsConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-domainconfiguration-tlsconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TlsConfig {
+        /// Property [`SecurityPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-domainconfiguration-tlsconfig.html#cfn-iot-domainconfiguration-tlsconfig-securitypolicy).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub security_policy: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for TlsConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref security_policy) = self.security_policy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityPolicy", security_policy)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TlsConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TlsConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TlsConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TlsConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut security_policy: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SecurityPolicy" => {
+                                security_policy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TlsConfig {
+                        security_policy: security_policy,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod fleet_metric {
+    //! Property types for the `FleetMetric` resource.
+
+    /// The [`AWS::IoT::FleetMetric.AggregationType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-fleetmetric-aggregationtype.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AggregationType {
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-fleetmetric-aggregationtype.html#cfn-iot-fleetmetric-aggregationtype-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: ::Value<String>,
+        /// Property [`Values`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-fleetmetric-aggregationtype.html#cfn-iot-fleetmetric-aggregationtype-values).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub values: ::ValueList<String>,
+    }
+
+    impl ::codec::SerializeValue for AggregationType {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Values", &self.values)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AggregationType {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AggregationType, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AggregationType;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AggregationType")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut name: Option<::Value<String>> = None;
+                    let mut values: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Values" => {
+                                values = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AggregationType {
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                        values: values.ok_or(::serde::de::Error::missing_field("Values"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod job_template {
+    //! Property types for the `JobTemplate` resource.
+
+    /// The [`AWS::IoT::JobTemplate.AbortConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-abortconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AbortConfig {
+        /// Property [`CriteriaList`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-abortconfig.html#cfn-iot-jobtemplate-abortconfig-criterialist).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub criteria_list: ::ValueList<AbortCriteria>,
+    }
+
+    impl ::codec::SerializeValue for AbortConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CriteriaList", &self.criteria_list)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AbortConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AbortConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AbortConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AbortConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut criteria_list: Option<::ValueList<AbortCriteria>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CriteriaList" => {
+                                criteria_list = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AbortConfig {
+                        criteria_list: criteria_list.ok_or(::serde::de::Error::missing_field("CriteriaList"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::IoT::JobTemplate.AbortCriteria`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-abortcriteria.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AbortCriteria {
+        /// Property [`Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-abortcriteria.html#cfn-iot-jobtemplate-abortcriteria-action).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub action: ::Value<String>,
+        /// Property [`FailureType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-abortcriteria.html#cfn-iot-jobtemplate-abortcriteria-failuretype).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub failure_type: ::Value<String>,
+        /// Property [`MinNumberOfExecutedThings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-abortcriteria.html#cfn-iot-jobtemplate-abortcriteria-minnumberofexecutedthings).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub min_number_of_executed_things: ::Value<u32>,
+        /// Property [`ThresholdPercentage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-abortcriteria.html#cfn-iot-jobtemplate-abortcriteria-thresholdpercentage).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub threshold_percentage: ::Value<f64>,
+    }
+
+    impl ::codec::SerializeValue for AbortCriteria {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Action", &self.action)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FailureType", &self.failure_type)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinNumberOfExecutedThings", &self.min_number_of_executed_things)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThresholdPercentage", &self.threshold_percentage)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AbortCriteria {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AbortCriteria, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AbortCriteria;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AbortCriteria")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut action: Option<::Value<String>> = None;
+                    let mut failure_type: Option<::Value<String>> = None;
+                    let mut min_number_of_executed_things: Option<::Value<u32>> = None;
+                    let mut threshold_percentage: Option<::Value<f64>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Action" => {
+                                action = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "FailureType" => {
+                                failure_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MinNumberOfExecutedThings" => {
+                                min_number_of_executed_things = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ThresholdPercentage" => {
+                                threshold_percentage = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AbortCriteria {
+                        action: action.ok_or(::serde::de::Error::missing_field("Action"))?,
+                        failure_type: failure_type.ok_or(::serde::de::Error::missing_field("FailureType"))?,
+                        min_number_of_executed_things: min_number_of_executed_things.ok_or(::serde::de::Error::missing_field("MinNumberOfExecutedThings"))?,
+                        threshold_percentage: threshold_percentage.ok_or(::serde::de::Error::missing_field("ThresholdPercentage"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::IoT::JobTemplate.ExponentialRolloutRate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-exponentialrolloutrate.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ExponentialRolloutRate {
+        /// Property [`BaseRatePerMinute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-exponentialrolloutrate.html#cfn-iot-jobtemplate-exponentialrolloutrate-baserateperminute).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub base_rate_per_minute: ::Value<u32>,
+        /// Property [`IncrementFactor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-exponentialrolloutrate.html#cfn-iot-jobtemplate-exponentialrolloutrate-incrementfactor).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub increment_factor: ::Value<f64>,
+        /// Property [`RateIncreaseCriteria`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-exponentialrolloutrate.html#cfn-iot-jobtemplate-exponentialrolloutrate-rateincreasecriteria).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub rate_increase_criteria: ::Value<RateIncreaseCriteria>,
+    }
+
+    impl ::codec::SerializeValue for ExponentialRolloutRate {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BaseRatePerMinute", &self.base_rate_per_minute)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncrementFactor", &self.increment_factor)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RateIncreaseCriteria", &self.rate_increase_criteria)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ExponentialRolloutRate {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ExponentialRolloutRate, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ExponentialRolloutRate;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ExponentialRolloutRate")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut base_rate_per_minute: Option<::Value<u32>> = None;
+                    let mut increment_factor: Option<::Value<f64>> = None;
+                    let mut rate_increase_criteria: Option<::Value<RateIncreaseCriteria>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "BaseRatePerMinute" => {
+                                base_rate_per_minute = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IncrementFactor" => {
+                                increment_factor = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RateIncreaseCriteria" => {
+                                rate_increase_criteria = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ExponentialRolloutRate {
+                        base_rate_per_minute: base_rate_per_minute.ok_or(::serde::de::Error::missing_field("BaseRatePerMinute"))?,
+                        increment_factor: increment_factor.ok_or(::serde::de::Error::missing_field("IncrementFactor"))?,
+                        rate_increase_criteria: rate_increase_criteria.ok_or(::serde::de::Error::missing_field("RateIncreaseCriteria"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::IoT::JobTemplate.JobExecutionsRetryConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-jobexecutionsretryconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct JobExecutionsRetryConfig {
+        /// Property [`RetryCriteriaList`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-jobexecutionsretryconfig.html#cfn-iot-jobtemplate-jobexecutionsretryconfig-retrycriterialist).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub retry_criteria_list: Option<::ValueList<RetryCriteria>>,
+    }
+
+    impl ::codec::SerializeValue for JobExecutionsRetryConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref retry_criteria_list) = self.retry_criteria_list {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RetryCriteriaList", retry_criteria_list)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for JobExecutionsRetryConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<JobExecutionsRetryConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = JobExecutionsRetryConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type JobExecutionsRetryConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut retry_criteria_list: Option<::ValueList<RetryCriteria>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "RetryCriteriaList" => {
+                                retry_criteria_list = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(JobExecutionsRetryConfig {
+                        retry_criteria_list: retry_criteria_list,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::IoT::JobTemplate.JobExecutionsRolloutConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-jobexecutionsrolloutconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct JobExecutionsRolloutConfig {
+        /// Property [`ExponentialRolloutRate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-jobexecutionsrolloutconfig.html#cfn-iot-jobtemplate-jobexecutionsrolloutconfig-exponentialrolloutrate).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub exponential_rollout_rate: Option<::Value<ExponentialRolloutRate>>,
+        /// Property [`MaximumPerMinute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-jobexecutionsrolloutconfig.html#cfn-iot-jobtemplate-jobexecutionsrolloutconfig-maximumperminute).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub maximum_per_minute: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for JobExecutionsRolloutConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref exponential_rollout_rate) = self.exponential_rollout_rate {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExponentialRolloutRate", exponential_rollout_rate)?;
+            }
+            if let Some(ref maximum_per_minute) = self.maximum_per_minute {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaximumPerMinute", maximum_per_minute)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for JobExecutionsRolloutConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<JobExecutionsRolloutConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = JobExecutionsRolloutConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type JobExecutionsRolloutConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut exponential_rollout_rate: Option<::Value<ExponentialRolloutRate>> = None;
+                    let mut maximum_per_minute: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ExponentialRolloutRate" => {
+                                exponential_rollout_rate = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MaximumPerMinute" => {
+                                maximum_per_minute = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(JobExecutionsRolloutConfig {
+                        exponential_rollout_rate: exponential_rollout_rate,
+                        maximum_per_minute: maximum_per_minute,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::IoT::JobTemplate.MaintenanceWindow`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-maintenancewindow.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MaintenanceWindow {
+        /// Property [`DurationInMinutes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-maintenancewindow.html#cfn-iot-jobtemplate-maintenancewindow-durationinminutes).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub duration_in_minutes: Option<::Value<u32>>,
+        /// Property [`StartTime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-maintenancewindow.html#cfn-iot-jobtemplate-maintenancewindow-starttime).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub start_time: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for MaintenanceWindow {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref duration_in_minutes) = self.duration_in_minutes {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DurationInMinutes", duration_in_minutes)?;
+            }
+            if let Some(ref start_time) = self.start_time {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StartTime", start_time)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MaintenanceWindow {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MaintenanceWindow, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MaintenanceWindow;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MaintenanceWindow")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut duration_in_minutes: Option<::Value<u32>> = None;
+                    let mut start_time: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DurationInMinutes" => {
+                                duration_in_minutes = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "StartTime" => {
+                                start_time = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MaintenanceWindow {
+                        duration_in_minutes: duration_in_minutes,
+                        start_time: start_time,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::IoT::JobTemplate.PresignedUrlConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-presignedurlconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct PresignedUrlConfig {
+        /// Property [`ExpiresInSec`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-presignedurlconfig.html#cfn-iot-jobtemplate-presignedurlconfig-expiresinsec).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub expires_in_sec: Option<::Value<u32>>,
+        /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-presignedurlconfig.html#cfn-iot-jobtemplate-presignedurlconfig-rolearn).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub role_arn: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for PresignedUrlConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref expires_in_sec) = self.expires_in_sec {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExpiresInSec", expires_in_sec)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for PresignedUrlConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<PresignedUrlConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = PresignedUrlConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type PresignedUrlConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut expires_in_sec: Option<::Value<u32>> = None;
+                    let mut role_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ExpiresInSec" => {
+                                expires_in_sec = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RoleArn" => {
+                                role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(PresignedUrlConfig {
+                        expires_in_sec: expires_in_sec,
+                        role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::IoT::JobTemplate.RateIncreaseCriteria`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-rateincreasecriteria.html) property type.
+    #[derive(Debug, Default)]
+    pub struct RateIncreaseCriteria {
+        /// Property [`NumberOfNotifiedThings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-rateincreasecriteria.html#cfn-iot-jobtemplate-rateincreasecriteria-numberofnotifiedthings).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub number_of_notified_things: Option<::Value<u32>>,
+        /// Property [`NumberOfSucceededThings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-rateincreasecriteria.html#cfn-iot-jobtemplate-rateincreasecriteria-numberofsucceededthings).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub number_of_succeeded_things: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for RateIncreaseCriteria {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref number_of_notified_things) = self.number_of_notified_things {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NumberOfNotifiedThings", number_of_notified_things)?;
+            }
+            if let Some(ref number_of_succeeded_things) = self.number_of_succeeded_things {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NumberOfSucceededThings", number_of_succeeded_things)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for RateIncreaseCriteria {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<RateIncreaseCriteria, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = RateIncreaseCriteria;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type RateIncreaseCriteria")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut number_of_notified_things: Option<::Value<u32>> = None;
+                    let mut number_of_succeeded_things: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "NumberOfNotifiedThings" => {
+                                number_of_notified_things = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "NumberOfSucceededThings" => {
+                                number_of_succeeded_things = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(RateIncreaseCriteria {
+                        number_of_notified_things: number_of_notified_things,
+                        number_of_succeeded_things: number_of_succeeded_things,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::IoT::JobTemplate.RetryCriteria`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-retrycriteria.html) property type.
+    #[derive(Debug, Default)]
+    pub struct RetryCriteria {
+        /// Property [`FailureType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-retrycriteria.html#cfn-iot-jobtemplate-retrycriteria-failuretype).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub failure_type: Option<::Value<String>>,
+        /// Property [`NumberOfRetries`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-retrycriteria.html#cfn-iot-jobtemplate-retrycriteria-numberofretries).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub number_of_retries: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for RetryCriteria {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref failure_type) = self.failure_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FailureType", failure_type)?;
+            }
+            if let Some(ref number_of_retries) = self.number_of_retries {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NumberOfRetries", number_of_retries)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for RetryCriteria {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<RetryCriteria, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = RetryCriteria;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type RetryCriteria")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut failure_type: Option<::Value<String>> = None;
+                    let mut number_of_retries: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "FailureType" => {
+                                failure_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "NumberOfRetries" => {
+                                number_of_retries = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(RetryCriteria {
+                        failure_type: failure_type,
+                        number_of_retries: number_of_retries,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::IoT::JobTemplate.TimeoutConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-timeoutconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TimeoutConfig {
+        /// Property [`InProgressTimeoutInMinutes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-jobtemplate-timeoutconfig.html#cfn-iot-jobtemplate-timeoutconfig-inprogresstimeoutinminutes).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub in_progress_timeout_in_minutes: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for TimeoutConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InProgressTimeoutInMinutes", &self.in_progress_timeout_in_minutes)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TimeoutConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TimeoutConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TimeoutConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TimeoutConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut in_progress_timeout_in_minutes: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "InProgressTimeoutInMinutes" => {
+                                in_progress_timeout_in_minutes = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TimeoutConfig {
+                        in_progress_timeout_in_minutes: in_progress_timeout_in_minutes.ok_or(::serde::de::Error::missing_field("InProgressTimeoutInMinutes"))?,
                     })
                 }
             }
@@ -3065,6 +5654,11 @@ pub mod security_profile {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub criteria: Option<::Value<BehaviorCriteria>>,
+        /// Property [`ExportMetric`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-behavior.html#cfn-iot-securityprofile-behavior-exportmetric).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub export_metric: Option<::Value<bool>>,
         /// Property [`Metric`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-behavior.html#cfn-iot-securityprofile-behavior-metric).
         ///
         /// Update type: _Mutable_.
@@ -3093,6 +5687,9 @@ pub mod security_profile {
             if let Some(ref criteria) = self.criteria {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Criteria", criteria)?;
             }
+            if let Some(ref export_metric) = self.export_metric {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExportMetric", export_metric)?;
+            }
             if let Some(ref metric) = self.metric {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Metric", metric)?;
             }
@@ -3120,6 +5717,7 @@ pub mod security_profile {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut criteria: Option<::Value<BehaviorCriteria>> = None;
+                    let mut export_metric: Option<::Value<bool>> = None;
                     let mut metric: Option<::Value<String>> = None;
                     let mut metric_dimension: Option<::Value<MetricDimension>> = None;
                     let mut name: Option<::Value<String>> = None;
@@ -3129,6 +5727,9 @@ pub mod security_profile {
                         match __cfn_key.as_ref() {
                             "Criteria" => {
                                 criteria = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ExportMetric" => {
+                                export_metric = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Metric" => {
                                 metric = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -3148,6 +5749,7 @@ pub mod security_profile {
 
                     Ok(Behavior {
                         criteria: criteria,
+                        export_metric: export_metric,
                         metric: metric,
                         metric_dimension: metric_dimension,
                         name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
@@ -3411,6 +6013,11 @@ pub mod security_profile {
     /// The [`AWS::IoT::SecurityProfile.MetricToRetain`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-metrictoretain.html) property type.
     #[derive(Debug, Default)]
     pub struct MetricToRetain {
+        /// Property [`ExportMetric`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-metrictoretain.html#cfn-iot-securityprofile-metrictoretain-exportmetric).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub export_metric: Option<::Value<bool>>,
         /// Property [`Metric`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-metrictoretain.html#cfn-iot-securityprofile-metrictoretain-metric).
         ///
         /// Update type: _Mutable_.
@@ -3426,6 +6033,9 @@ pub mod security_profile {
     impl ::codec::SerializeValue for MetricToRetain {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref export_metric) = self.export_metric {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExportMetric", export_metric)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Metric", &self.metric)?;
             if let Some(ref metric_dimension) = self.metric_dimension {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricDimension", metric_dimension)?;
@@ -3446,11 +6056,15 @@ pub mod security_profile {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut export_metric: Option<::Value<bool>> = None;
                     let mut metric: Option<::Value<String>> = None;
                     let mut metric_dimension: Option<::Value<MetricDimension>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "ExportMetric" => {
+                                export_metric = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Metric" => {
                                 metric = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -3462,6 +6076,7 @@ pub mod security_profile {
                     }
 
                     Ok(MetricToRetain {
+                        export_metric: export_metric,
                         metric: metric.ok_or(::serde::de::Error::missing_field("Metric"))?,
                         metric_dimension: metric_dimension,
                     })
@@ -3590,6 +6205,68 @@ pub mod security_profile {
         }
     }
 
+    /// The [`AWS::IoT::SecurityProfile.MetricsExportConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-metricsexportconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MetricsExportConfig {
+        /// Property [`MqttTopic`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-metricsexportconfig.html#cfn-iot-securityprofile-metricsexportconfig-mqtttopic).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub mqtt_topic: ::Value<String>,
+        /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-metricsexportconfig.html#cfn-iot-securityprofile-metricsexportconfig-rolearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub role_arn: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for MetricsExportConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MqttTopic", &self.mqtt_topic)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MetricsExportConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MetricsExportConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MetricsExportConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MetricsExportConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut mqtt_topic: Option<::Value<String>> = None;
+                    let mut role_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "MqttTopic" => {
+                                mqtt_topic = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RoleArn" => {
+                                role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MetricsExportConfig {
+                        mqtt_topic: mqtt_topic.ok_or(::serde::de::Error::missing_field("MqttTopic"))?,
+                        role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::IoT::SecurityProfile.StatisticalThreshold`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-securityprofile-statisticalthreshold.html) property type.
     #[derive(Debug, Default)]
     pub struct StatisticalThreshold {
@@ -3701,6 +6378,199 @@ pub mod thing {
     }
 }
 
+pub mod thing_group {
+    //! Property types for the `ThingGroup` resource.
+
+    /// The [`AWS::IoT::ThingGroup.AttributePayload`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-thinggroup-attributepayload.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AttributePayload {
+        /// Property [`Attributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-thinggroup-attributepayload.html#cfn-iot-thinggroup-attributepayload-attributes).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub attributes: Option<::ValueMap<String>>,
+    }
+
+    impl ::codec::SerializeValue for AttributePayload {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref attributes) = self.attributes {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attributes", attributes)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AttributePayload {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AttributePayload, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AttributePayload;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AttributePayload")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut attributes: Option<::ValueMap<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Attributes" => {
+                                attributes = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AttributePayload {
+                        attributes: attributes,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::IoT::ThingGroup.ThingGroupProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-thinggroup-thinggroupproperties.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ThingGroupProperties {
+        /// Property [`AttributePayload`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-thinggroup-thinggroupproperties.html#cfn-iot-thinggroup-thinggroupproperties-attributepayload).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub attribute_payload: Option<::Value<AttributePayload>>,
+        /// Property [`ThingGroupDescription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-thinggroup-thinggroupproperties.html#cfn-iot-thinggroup-thinggroupproperties-thinggroupdescription).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub thing_group_description: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for ThingGroupProperties {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref attribute_payload) = self.attribute_payload {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AttributePayload", attribute_payload)?;
+            }
+            if let Some(ref thing_group_description) = self.thing_group_description {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThingGroupDescription", thing_group_description)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ThingGroupProperties {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ThingGroupProperties, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ThingGroupProperties;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ThingGroupProperties")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut attribute_payload: Option<::Value<AttributePayload>> = None;
+                    let mut thing_group_description: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AttributePayload" => {
+                                attribute_payload = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ThingGroupDescription" => {
+                                thing_group_description = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ThingGroupProperties {
+                        attribute_payload: attribute_payload,
+                        thing_group_description: thing_group_description,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod thing_type {
+    //! Property types for the `ThingType` resource.
+
+    /// The [`AWS::IoT::ThingType.ThingTypeProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-thingtype-thingtypeproperties.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ThingTypeProperties {
+        /// Property [`SearchableAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-thingtype-thingtypeproperties.html#cfn-iot-thingtype-thingtypeproperties-searchableattributes).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub searchable_attributes: Option<::ValueList<String>>,
+        /// Property [`ThingTypeDescription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-thingtype-thingtypeproperties.html#cfn-iot-thingtype-thingtypeproperties-thingtypedescription).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub thing_type_description: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for ThingTypeProperties {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref searchable_attributes) = self.searchable_attributes {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SearchableAttributes", searchable_attributes)?;
+            }
+            if let Some(ref thing_type_description) = self.thing_type_description {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThingTypeDescription", thing_type_description)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ThingTypeProperties {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ThingTypeProperties, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ThingTypeProperties;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ThingTypeProperties")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut searchable_attributes: Option<::ValueList<String>> = None;
+                    let mut thing_type_description: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SearchableAttributes" => {
+                                searchable_attributes = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ThingTypeDescription" => {
+                                thing_type_description = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ThingTypeProperties {
+                        searchable_attributes: searchable_attributes,
+                        thing_type_description: thing_type_description,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
 pub mod topic_rule {
     //! Property types for the `TopicRule` resource.
 
@@ -3777,6 +6647,16 @@ pub mod topic_rule {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub lambda: Option<::Value<LambdaAction>>,
+        /// Property [`Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-action.html#cfn-iot-topicrule-action-location).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub location: Option<::Value<LocationAction>>,
+        /// Property [`OpenSearch`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-action.html#cfn-iot-topicrule-action-opensearch).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub open_search: Option<::Value<OpenSearchAction>>,
         /// Property [`Republish`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-action.html#cfn-iot-topicrule-action-republish).
         ///
         /// Update type: _Mutable_.
@@ -3854,6 +6734,12 @@ pub mod topic_rule {
             if let Some(ref lambda) = self.lambda {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Lambda", lambda)?;
             }
+            if let Some(ref location) = self.location {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Location", location)?;
+            }
+            if let Some(ref open_search) = self.open_search {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OpenSearch", open_search)?;
+            }
             if let Some(ref republish) = self.republish {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Republish", republish)?;
             }
@@ -3902,6 +6788,8 @@ pub mod topic_rule {
                     let mut kafka: Option<::Value<KafkaAction>> = None;
                     let mut kinesis: Option<::Value<KinesisAction>> = None;
                     let mut lambda: Option<::Value<LambdaAction>> = None;
+                    let mut location: Option<::Value<LocationAction>> = None;
+                    let mut open_search: Option<::Value<OpenSearchAction>> = None;
                     let mut republish: Option<::Value<RepublishAction>> = None;
                     let mut s3: Option<::Value<S3Action>> = None;
                     let mut sns: Option<::Value<SnsAction>> = None;
@@ -3953,6 +6841,12 @@ pub mod topic_rule {
                             "Lambda" => {
                                 lambda = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Location" => {
+                                location = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OpenSearch" => {
+                                open_search = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Republish" => {
                                 republish = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -3990,6 +6884,8 @@ pub mod topic_rule {
                         kafka: kafka,
                         kinesis: kinesis,
                         lambda: lambda,
+                        location: location,
+                        open_search: open_search,
                         republish: republish,
                         s3: s3,
                         sns: sns,
@@ -4322,6 +7218,11 @@ pub mod topic_rule {
     /// The [`AWS::IoT::TopicRule.CloudwatchLogsAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchlogsaction.html) property type.
     #[derive(Debug, Default)]
     pub struct CloudwatchLogsAction {
+        /// Property [`BatchMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchlogsaction.html#cfn-iot-topicrule-cloudwatchlogsaction-batchmode).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub batch_mode: Option<::Value<bool>>,
         /// Property [`LogGroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-cloudwatchlogsaction.html#cfn-iot-topicrule-cloudwatchlogsaction-loggroupname).
         ///
         /// Update type: _Mutable_.
@@ -4337,6 +7238,9 @@ pub mod topic_rule {
     impl ::codec::SerializeValue for CloudwatchLogsAction {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref batch_mode) = self.batch_mode {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BatchMode", batch_mode)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroupName", &self.log_group_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
             ::serde::ser::SerializeMap::end(map)
@@ -4355,11 +7259,15 @@ pub mod topic_rule {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut batch_mode: Option<::Value<bool>> = None;
                     let mut log_group_name: Option<::Value<String>> = None;
                     let mut role_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "BatchMode" => {
+                                batch_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "LogGroupName" => {
                                 log_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -4371,6 +7279,7 @@ pub mod topic_rule {
                     }
 
                     Ok(CloudwatchLogsAction {
+                        batch_mode: batch_mode,
                         log_group_name: log_group_name.ok_or(::serde::de::Error::missing_field("LogGroupName"))?,
                         role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
                     })
@@ -5330,6 +8239,11 @@ pub mod topic_rule {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub destination_arn: ::Value<String>,
+        /// Property [`Headers`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-kafkaaction.html#cfn-iot-topicrule-kafkaaction-headers).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub headers: Option<::ValueList<KafkaActionHeader>>,
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-kafkaaction.html#cfn-iot-topicrule-kafkaaction-key).
         ///
         /// Update type: _Mutable_.
@@ -5352,6 +8266,9 @@ pub mod topic_rule {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientProperties", &self.client_properties)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationArn", &self.destination_arn)?;
+            if let Some(ref headers) = self.headers {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Headers", headers)?;
+            }
             if let Some(ref key) = self.key {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", key)?;
             }
@@ -5377,6 +8294,7 @@ pub mod topic_rule {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut client_properties: Option<::ValueMap<String>> = None;
                     let mut destination_arn: Option<::Value<String>> = None;
+                    let mut headers: Option<::ValueList<KafkaActionHeader>> = None;
                     let mut key: Option<::Value<String>> = None;
                     let mut partition: Option<::Value<String>> = None;
                     let mut topic: Option<::Value<String>> = None;
@@ -5388,6 +8306,9 @@ pub mod topic_rule {
                             }
                             "DestinationArn" => {
                                 destination_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Headers" => {
+                                headers = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Key" => {
                                 key = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -5405,9 +8326,72 @@ pub mod topic_rule {
                     Ok(KafkaAction {
                         client_properties: client_properties.ok_or(::serde::de::Error::missing_field("ClientProperties"))?,
                         destination_arn: destination_arn.ok_or(::serde::de::Error::missing_field("DestinationArn"))?,
+                        headers: headers,
                         key: key,
                         partition: partition,
                         topic: topic.ok_or(::serde::de::Error::missing_field("Topic"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::IoT::TopicRule.KafkaActionHeader`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-kafkaactionheader.html) property type.
+    #[derive(Debug, Default)]
+    pub struct KafkaActionHeader {
+        /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-kafkaactionheader.html#cfn-iot-topicrule-kafkaactionheader-key).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub key: ::Value<String>,
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-kafkaactionheader.html#cfn-iot-topicrule-kafkaactionheader-value).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub value: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for KafkaActionHeader {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for KafkaActionHeader {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<KafkaActionHeader, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = KafkaActionHeader;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type KafkaActionHeader")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut key: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Key" => {
+                                key = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Value" => {
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(KafkaActionHeader {
+                        key: key.ok_or(::serde::de::Error::missing_field("Key"))?,
+                        value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
                     })
                 }
             }
@@ -5536,6 +8520,209 @@ pub mod topic_rule {
 
                     Ok(LambdaAction {
                         function_arn: function_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::IoT::TopicRule.LocationAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-locationaction.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LocationAction {
+        /// Property [`DeviceId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-locationaction.html#cfn-iot-topicrule-locationaction-deviceid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub device_id: ::Value<String>,
+        /// Property [`Latitude`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-locationaction.html#cfn-iot-topicrule-locationaction-latitude).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub latitude: ::Value<String>,
+        /// Property [`Longitude`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-locationaction.html#cfn-iot-topicrule-locationaction-longitude).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub longitude: ::Value<String>,
+        /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-locationaction.html#cfn-iot-topicrule-locationaction-rolearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub role_arn: ::Value<String>,
+        /// Property [`Timestamp`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-locationaction.html#cfn-iot-topicrule-locationaction-timestamp).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub timestamp: Option<::Value<Timestamp>>,
+        /// Property [`TrackerName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-locationaction.html#cfn-iot-topicrule-locationaction-trackername).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tracker_name: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for LocationAction {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceId", &self.device_id)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Latitude", &self.latitude)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Longitude", &self.longitude)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
+            if let Some(ref timestamp) = self.timestamp {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Timestamp", timestamp)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrackerName", &self.tracker_name)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LocationAction {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LocationAction, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LocationAction;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LocationAction")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut device_id: Option<::Value<String>> = None;
+                    let mut latitude: Option<::Value<String>> = None;
+                    let mut longitude: Option<::Value<String>> = None;
+                    let mut role_arn: Option<::Value<String>> = None;
+                    let mut timestamp: Option<::Value<Timestamp>> = None;
+                    let mut tracker_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DeviceId" => {
+                                device_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Latitude" => {
+                                latitude = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Longitude" => {
+                                longitude = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RoleArn" => {
+                                role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Timestamp" => {
+                                timestamp = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TrackerName" => {
+                                tracker_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LocationAction {
+                        device_id: device_id.ok_or(::serde::de::Error::missing_field("DeviceId"))?,
+                        latitude: latitude.ok_or(::serde::de::Error::missing_field("Latitude"))?,
+                        longitude: longitude.ok_or(::serde::de::Error::missing_field("Longitude"))?,
+                        role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
+                        timestamp: timestamp,
+                        tracker_name: tracker_name.ok_or(::serde::de::Error::missing_field("TrackerName"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::IoT::TopicRule.OpenSearchAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-opensearchaction.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OpenSearchAction {
+        /// Property [`Endpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-opensearchaction.html#cfn-iot-topicrule-opensearchaction-endpoint).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub endpoint: ::Value<String>,
+        /// Property [`Id`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-opensearchaction.html#cfn-iot-topicrule-opensearchaction-id).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub id: ::Value<String>,
+        /// Property [`Index`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-opensearchaction.html#cfn-iot-topicrule-opensearchaction-index).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub index: ::Value<String>,
+        /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-opensearchaction.html#cfn-iot-topicrule-opensearchaction-rolearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub role_arn: ::Value<String>,
+        /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-opensearchaction.html#cfn-iot-topicrule-opensearchaction-type).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub r#type: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for OpenSearchAction {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Endpoint", &self.endpoint)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Id", &self.id)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Index", &self.index)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OpenSearchAction {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OpenSearchAction, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OpenSearchAction;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OpenSearchAction")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut endpoint: Option<::Value<String>> = None;
+                    let mut id: Option<::Value<String>> = None;
+                    let mut index: Option<::Value<String>> = None;
+                    let mut role_arn: Option<::Value<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Endpoint" => {
+                                endpoint = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Id" => {
+                                id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Index" => {
+                                index = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RoleArn" => {
+                                role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Type" => {
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OpenSearchAction {
+                        endpoint: endpoint.ok_or(::serde::de::Error::missing_field("Endpoint"))?,
+                        id: id.ok_or(::serde::de::Error::missing_field("Id"))?,
+                        index: index.ok_or(::serde::de::Error::missing_field("Index"))?,
+                        role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
+                        r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
                     })
                 }
             }
@@ -5701,6 +8888,11 @@ pub mod topic_rule {
     /// The [`AWS::IoT::TopicRule.RepublishAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-republishaction.html) property type.
     #[derive(Debug, Default)]
     pub struct RepublishAction {
+        /// Property [`Headers`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-republishaction.html#cfn-iot-topicrule-republishaction-headers).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub headers: Option<::Value<RepublishActionHeaders>>,
         /// Property [`Qos`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-republishaction.html#cfn-iot-topicrule-republishaction-qos).
         ///
         /// Update type: _Mutable_.
@@ -5721,6 +8913,9 @@ pub mod topic_rule {
     impl ::codec::SerializeValue for RepublishAction {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref headers) = self.headers {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Headers", headers)?;
+            }
             if let Some(ref qos) = self.qos {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Qos", qos)?;
             }
@@ -5742,12 +8937,16 @@ pub mod topic_rule {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut headers: Option<::Value<RepublishActionHeaders>> = None;
                     let mut qos: Option<::Value<u32>> = None;
                     let mut role_arn: Option<::Value<String>> = None;
                     let mut topic: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "Headers" => {
+                                headers = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Qos" => {
                                 qos = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -5762,9 +8961,128 @@ pub mod topic_rule {
                     }
 
                     Ok(RepublishAction {
+                        headers: headers,
                         qos: qos,
                         role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
                         topic: topic.ok_or(::serde::de::Error::missing_field("Topic"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::IoT::TopicRule.RepublishActionHeaders`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-republishactionheaders.html) property type.
+    #[derive(Debug, Default)]
+    pub struct RepublishActionHeaders {
+        /// Property [`ContentType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-republishactionheaders.html#cfn-iot-topicrule-republishactionheaders-contenttype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub content_type: Option<::Value<String>>,
+        /// Property [`CorrelationData`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-republishactionheaders.html#cfn-iot-topicrule-republishactionheaders-correlationdata).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub correlation_data: Option<::Value<String>>,
+        /// Property [`MessageExpiry`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-republishactionheaders.html#cfn-iot-topicrule-republishactionheaders-messageexpiry).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub message_expiry: Option<::Value<String>>,
+        /// Property [`PayloadFormatIndicator`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-republishactionheaders.html#cfn-iot-topicrule-republishactionheaders-payloadformatindicator).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub payload_format_indicator: Option<::Value<String>>,
+        /// Property [`ResponseTopic`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-republishactionheaders.html#cfn-iot-topicrule-republishactionheaders-responsetopic).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub response_topic: Option<::Value<String>>,
+        /// Property [`UserProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-republishactionheaders.html#cfn-iot-topicrule-republishactionheaders-userproperties).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub user_properties: Option<::ValueList<UserProperty>>,
+    }
+
+    impl ::codec::SerializeValue for RepublishActionHeaders {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref content_type) = self.content_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContentType", content_type)?;
+            }
+            if let Some(ref correlation_data) = self.correlation_data {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CorrelationData", correlation_data)?;
+            }
+            if let Some(ref message_expiry) = self.message_expiry {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MessageExpiry", message_expiry)?;
+            }
+            if let Some(ref payload_format_indicator) = self.payload_format_indicator {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PayloadFormatIndicator", payload_format_indicator)?;
+            }
+            if let Some(ref response_topic) = self.response_topic {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResponseTopic", response_topic)?;
+            }
+            if let Some(ref user_properties) = self.user_properties {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserProperties", user_properties)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for RepublishActionHeaders {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<RepublishActionHeaders, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = RepublishActionHeaders;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type RepublishActionHeaders")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut content_type: Option<::Value<String>> = None;
+                    let mut correlation_data: Option<::Value<String>> = None;
+                    let mut message_expiry: Option<::Value<String>> = None;
+                    let mut payload_format_indicator: Option<::Value<String>> = None;
+                    let mut response_topic: Option<::Value<String>> = None;
+                    let mut user_properties: Option<::ValueList<UserProperty>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ContentType" => {
+                                content_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CorrelationData" => {
+                                correlation_data = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MessageExpiry" => {
+                                message_expiry = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PayloadFormatIndicator" => {
+                                payload_format_indicator = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ResponseTopic" => {
+                                response_topic = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "UserProperties" => {
+                                user_properties = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(RepublishActionHeaders {
+                        content_type: content_type,
+                        correlation_data: correlation_data,
+                        message_expiry: message_expiry,
+                        payload_format_indicator: payload_format_indicator,
+                        response_topic: response_topic,
+                        user_properties: user_properties,
                     })
                 }
             }
@@ -6157,14 +9475,73 @@ pub mod topic_rule {
         }
     }
 
-    /// The [`AWS::IoT::TopicRule.TimestreamAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-timestreamaction.html) property type.
+    /// The [`AWS::IoT::TopicRule.Timestamp`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-timestamp.html) property type.
     #[derive(Debug, Default)]
-    pub struct TimestreamAction {
-        /// Property [`BatchMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-timestreamaction.html#cfn-iot-topicrule-timestreamaction-batchmode).
+    pub struct Timestamp {
+        /// Property [`Unit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-timestamp.html#cfn-iot-topicrule-timestamp-unit).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub batch_mode: Option<::Value<bool>>,
+        pub unit: Option<::Value<String>>,
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-timestamp.html#cfn-iot-topicrule-timestamp-value).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub value: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for Timestamp {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref unit) = self.unit {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Unit", unit)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Timestamp {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Timestamp, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Timestamp;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Timestamp")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut unit: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Unit" => {
+                                unit = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Value" => {
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Timestamp {
+                        unit: unit,
+                        value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::IoT::TopicRule.TimestreamAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-timestreamaction.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TimestreamAction {
         /// Property [`DatabaseName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-timestreamaction.html#cfn-iot-topicrule-timestreamaction-databasename).
         ///
         /// Update type: _Mutable_.
@@ -6195,9 +9572,6 @@ pub mod topic_rule {
     impl ::codec::SerializeValue for TimestreamAction {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref batch_mode) = self.batch_mode {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BatchMode", batch_mode)?;
-            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseName", &self.database_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Dimensions", &self.dimensions)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
@@ -6221,7 +9595,6 @@ pub mod topic_rule {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut batch_mode: Option<::Value<bool>> = None;
                     let mut database_name: Option<::Value<String>> = None;
                     let mut dimensions: Option<::ValueList<TimestreamDimension>> = None;
                     let mut role_arn: Option<::Value<String>> = None;
@@ -6230,9 +9603,6 @@ pub mod topic_rule {
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
-                            "BatchMode" => {
-                                batch_mode = ::serde::de::MapAccess::next_value(&mut map)?;
-                            }
                             "DatabaseName" => {
                                 database_name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -6253,7 +9623,6 @@ pub mod topic_rule {
                     }
 
                     Ok(TimestreamAction {
-                        batch_mode: batch_mode,
                         database_name: database_name.ok_or(::serde::de::Error::missing_field("DatabaseName"))?,
                         dimensions: dimensions.ok_or(::serde::de::Error::missing_field("Dimensions"))?,
                         role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
@@ -6497,6 +9866,68 @@ pub mod topic_rule {
                         error_action: error_action,
                         rule_disabled: rule_disabled,
                         sql: sql.ok_or(::serde::de::Error::missing_field("Sql"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::IoT::TopicRule.UserProperty`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-userproperty.html) property type.
+    #[derive(Debug, Default)]
+    pub struct UserProperty {
+        /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-userproperty.html#cfn-iot-topicrule-userproperty-key).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub key: ::Value<String>,
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrule-userproperty.html#cfn-iot-topicrule-userproperty-value).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub value: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for UserProperty {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for UserProperty {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<UserProperty, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = UserProperty;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type UserProperty")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut key: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Key" => {
+                                key = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Value" => {
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(UserProperty {
+                        key: key.ok_or(::serde::de::Error::missing_field("Key"))?,
+                        value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
                     })
                 }
             }

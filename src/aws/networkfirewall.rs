@@ -524,12 +524,130 @@ impl From<RuleGroupProperties> for RuleGroup {
     }
 }
 
+/// The [`AWS::NetworkFirewall::TLSInspectionConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-tlsinspectionconfiguration.html) resource type.
+#[derive(Debug, Default)]
+pub struct TLSInspectionConfiguration {
+    properties: TLSInspectionConfigurationProperties
+}
+
+/// Properties for the `TLSInspectionConfiguration` resource.
+#[derive(Debug, Default)]
+pub struct TLSInspectionConfigurationProperties {
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-tlsinspectionconfiguration.html#cfn-networkfirewall-tlsinspectionconfiguration-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`TLSInspectionConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-tlsinspectionconfiguration.html#cfn-networkfirewall-tlsinspectionconfiguration-tlsinspectionconfiguration).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tls_inspection_configuration: ::Value<self::tls_inspection_configuration::TLSInspectionConfiguration>,
+    /// Property [`TLSInspectionConfigurationName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-tlsinspectionconfiguration.html#cfn-networkfirewall-tlsinspectionconfiguration-tlsinspectionconfigurationname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub tls_inspection_configuration_name: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-tlsinspectionconfiguration.html#cfn-networkfirewall-tlsinspectionconfiguration-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for TLSInspectionConfigurationProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TLSInspectionConfiguration", &self.tls_inspection_configuration)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TLSInspectionConfigurationName", &self.tls_inspection_configuration_name)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for TLSInspectionConfigurationProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<TLSInspectionConfigurationProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = TLSInspectionConfigurationProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type TLSInspectionConfigurationProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut description: Option<::Value<String>> = None;
+                let mut tls_inspection_configuration: Option<::Value<self::tls_inspection_configuration::TLSInspectionConfiguration>> = None;
+                let mut tls_inspection_configuration_name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TLSInspectionConfiguration" => {
+                            tls_inspection_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TLSInspectionConfigurationName" => {
+                            tls_inspection_configuration_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(TLSInspectionConfigurationProperties {
+                    description: description,
+                    tls_inspection_configuration: tls_inspection_configuration.ok_or(::serde::de::Error::missing_field("TLSInspectionConfiguration"))?,
+                    tls_inspection_configuration_name: tls_inspection_configuration_name.ok_or(::serde::de::Error::missing_field("TLSInspectionConfigurationName"))?,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for TLSInspectionConfiguration {
+    type Properties = TLSInspectionConfigurationProperties;
+    const TYPE: &'static str = "AWS::NetworkFirewall::TLSInspectionConfiguration";
+    fn properties(&self) -> &TLSInspectionConfigurationProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut TLSInspectionConfigurationProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for TLSInspectionConfiguration {}
+
+impl From<TLSInspectionConfigurationProperties> for TLSInspectionConfiguration {
+    fn from(properties: TLSInspectionConfigurationProperties) -> TLSInspectionConfiguration {
+        TLSInspectionConfiguration { properties }
+    }
+}
+
 pub mod firewall {
     //! Property types for the `Firewall` resource.
 
     /// The [`AWS::NetworkFirewall::Firewall.SubnetMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewall-subnetmapping.html) property type.
     #[derive(Debug, Default)]
     pub struct SubnetMapping {
+        /// Property [`IPAddressType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewall-subnetmapping.html#cfn-networkfirewall-firewall-subnetmapping-ipaddresstype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ip_address_type: Option<::Value<String>>,
         /// Property [`SubnetId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewall-subnetmapping.html#cfn-networkfirewall-firewall-subnetmapping-subnetid).
         ///
         /// Update type: _Mutable_.
@@ -540,6 +658,9 @@ pub mod firewall {
     impl ::codec::SerializeValue for SubnetMapping {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref ip_address_type) = self.ip_address_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IPAddressType", ip_address_type)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", &self.subnet_id)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -557,10 +678,14 @@ pub mod firewall {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut ip_address_type: Option<::Value<String>> = None;
                     let mut subnet_id: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "IPAddressType" => {
+                                ip_address_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "SubnetId" => {
                                 subnet_id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -569,6 +694,7 @@ pub mod firewall {
                     }
 
                     Ok(SubnetMapping {
+                        ip_address_type: ip_address_type,
                         subnet_id: subnet_id.ok_or(::serde::de::Error::missing_field("SubnetId"))?,
                     })
                 }
@@ -751,6 +877,21 @@ pub mod firewall_policy {
     /// The [`AWS::NetworkFirewall::FirewallPolicy.FirewallPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-firewallpolicy.html) property type.
     #[derive(Debug, Default)]
     pub struct FirewallPolicy {
+        /// Property [`PolicyVariables`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-firewallpolicy.html#cfn-networkfirewall-firewallpolicy-firewallpolicy-policyvariables).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub policy_variables: Option<::Value<PolicyVariables>>,
+        /// Property [`StatefulDefaultActions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-firewallpolicy.html#cfn-networkfirewall-firewallpolicy-firewallpolicy-statefuldefaultactions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub stateful_default_actions: Option<::ValueList<String>>,
+        /// Property [`StatefulEngineOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-firewallpolicy.html#cfn-networkfirewall-firewallpolicy-firewallpolicy-statefulengineoptions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub stateful_engine_options: Option<::Value<StatefulEngineOptions>>,
         /// Property [`StatefulRuleGroupReferences`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-firewallpolicy.html#cfn-networkfirewall-firewallpolicy-firewallpolicy-statefulrulegroupreferences).
         ///
         /// Update type: _Mutable_.
@@ -776,11 +917,25 @@ pub mod firewall_policy {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub stateless_rule_group_references: Option<::ValueList<StatelessRuleGroupReference>>,
+        /// Property [`TLSInspectionConfigurationArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-firewallpolicy.html#cfn-networkfirewall-firewallpolicy-firewallpolicy-tlsinspectionconfigurationarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tls_inspection_configuration_arn: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for FirewallPolicy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref policy_variables) = self.policy_variables {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyVariables", policy_variables)?;
+            }
+            if let Some(ref stateful_default_actions) = self.stateful_default_actions {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StatefulDefaultActions", stateful_default_actions)?;
+            }
+            if let Some(ref stateful_engine_options) = self.stateful_engine_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StatefulEngineOptions", stateful_engine_options)?;
+            }
             if let Some(ref stateful_rule_group_references) = self.stateful_rule_group_references {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "StatefulRuleGroupReferences", stateful_rule_group_references)?;
             }
@@ -791,6 +946,9 @@ pub mod firewall_policy {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "StatelessFragmentDefaultActions", &self.stateless_fragment_default_actions)?;
             if let Some(ref stateless_rule_group_references) = self.stateless_rule_group_references {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "StatelessRuleGroupReferences", stateless_rule_group_references)?;
+            }
+            if let Some(ref tls_inspection_configuration_arn) = self.tls_inspection_configuration_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TLSInspectionConfigurationArn", tls_inspection_configuration_arn)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -808,14 +966,27 @@ pub mod firewall_policy {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut policy_variables: Option<::Value<PolicyVariables>> = None;
+                    let mut stateful_default_actions: Option<::ValueList<String>> = None;
+                    let mut stateful_engine_options: Option<::Value<StatefulEngineOptions>> = None;
                     let mut stateful_rule_group_references: Option<::ValueList<StatefulRuleGroupReference>> = None;
                     let mut stateless_custom_actions: Option<::ValueList<CustomAction>> = None;
                     let mut stateless_default_actions: Option<::ValueList<String>> = None;
                     let mut stateless_fragment_default_actions: Option<::ValueList<String>> = None;
                     let mut stateless_rule_group_references: Option<::ValueList<StatelessRuleGroupReference>> = None;
+                    let mut tls_inspection_configuration_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "PolicyVariables" => {
+                                policy_variables = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "StatefulDefaultActions" => {
+                                stateful_default_actions = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "StatefulEngineOptions" => {
+                                stateful_engine_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "StatefulRuleGroupReferences" => {
                                 stateful_rule_group_references = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -831,16 +1002,129 @@ pub mod firewall_policy {
                             "StatelessRuleGroupReferences" => {
                                 stateless_rule_group_references = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "TLSInspectionConfigurationArn" => {
+                                tls_inspection_configuration_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
 
                     Ok(FirewallPolicy {
+                        policy_variables: policy_variables,
+                        stateful_default_actions: stateful_default_actions,
+                        stateful_engine_options: stateful_engine_options,
                         stateful_rule_group_references: stateful_rule_group_references,
                         stateless_custom_actions: stateless_custom_actions,
                         stateless_default_actions: stateless_default_actions.ok_or(::serde::de::Error::missing_field("StatelessDefaultActions"))?,
                         stateless_fragment_default_actions: stateless_fragment_default_actions.ok_or(::serde::de::Error::missing_field("StatelessFragmentDefaultActions"))?,
                         stateless_rule_group_references: stateless_rule_group_references,
+                        tls_inspection_configuration_arn: tls_inspection_configuration_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::NetworkFirewall::FirewallPolicy.IPSet`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-ipset.html) property type.
+    #[derive(Debug, Default)]
+    pub struct IPSet {
+        /// Property [`Definition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-ipset.html#cfn-networkfirewall-firewallpolicy-ipset-definition).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub definition: Option<::ValueList<String>>,
+    }
+
+    impl ::codec::SerializeValue for IPSet {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref definition) = self.definition {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Definition", definition)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for IPSet {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<IPSet, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = IPSet;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type IPSet")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut definition: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Definition" => {
+                                definition = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(IPSet {
+                        definition: definition,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::NetworkFirewall::FirewallPolicy.PolicyVariables`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-policyvariables.html) property type.
+    #[derive(Debug, Default)]
+    pub struct PolicyVariables {
+        /// Property [`RuleVariables`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-policyvariables.html#cfn-networkfirewall-firewallpolicy-policyvariables-rulevariables).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub rule_variables: Option<::ValueMap<IPSet>>,
+    }
+
+    impl ::codec::SerializeValue for PolicyVariables {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref rule_variables) = self.rule_variables {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleVariables", rule_variables)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for PolicyVariables {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<PolicyVariables, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = PolicyVariables;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type PolicyVariables")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut rule_variables: Option<::ValueMap<IPSet>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "RuleVariables" => {
+                                rule_variables = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(PolicyVariables {
+                        rule_variables: rule_variables,
                     })
                 }
             }
@@ -900,9 +1184,138 @@ pub mod firewall_policy {
         }
     }
 
+    /// The [`AWS::NetworkFirewall::FirewallPolicy.StatefulEngineOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-statefulengineoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct StatefulEngineOptions {
+        /// Property [`RuleOrder`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-statefulengineoptions.html#cfn-networkfirewall-firewallpolicy-statefulengineoptions-ruleorder).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub rule_order: Option<::Value<String>>,
+        /// Property [`StreamExceptionPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-statefulengineoptions.html#cfn-networkfirewall-firewallpolicy-statefulengineoptions-streamexceptionpolicy).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub stream_exception_policy: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for StatefulEngineOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref rule_order) = self.rule_order {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleOrder", rule_order)?;
+            }
+            if let Some(ref stream_exception_policy) = self.stream_exception_policy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamExceptionPolicy", stream_exception_policy)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for StatefulEngineOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<StatefulEngineOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = StatefulEngineOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type StatefulEngineOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut rule_order: Option<::Value<String>> = None;
+                    let mut stream_exception_policy: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "RuleOrder" => {
+                                rule_order = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "StreamExceptionPolicy" => {
+                                stream_exception_policy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(StatefulEngineOptions {
+                        rule_order: rule_order,
+                        stream_exception_policy: stream_exception_policy,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::NetworkFirewall::FirewallPolicy.StatefulRuleGroupOverride`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-statefulrulegroupoverride.html) property type.
+    #[derive(Debug, Default)]
+    pub struct StatefulRuleGroupOverride {
+        /// Property [`Action`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-statefulrulegroupoverride.html#cfn-networkfirewall-firewallpolicy-statefulrulegroupoverride-action).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub action: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for StatefulRuleGroupOverride {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref action) = self.action {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Action", action)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for StatefulRuleGroupOverride {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<StatefulRuleGroupOverride, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = StatefulRuleGroupOverride;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type StatefulRuleGroupOverride")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut action: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Action" => {
+                                action = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(StatefulRuleGroupOverride {
+                        action: action,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::NetworkFirewall::FirewallPolicy.StatefulRuleGroupReference`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-statefulrulegroupreference.html) property type.
     #[derive(Debug, Default)]
     pub struct StatefulRuleGroupReference {
+        /// Property [`Override`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-statefulrulegroupreference.html#cfn-networkfirewall-firewallpolicy-statefulrulegroupreference-override).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub r#override: Option<::Value<StatefulRuleGroupOverride>>,
+        /// Property [`Priority`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-statefulrulegroupreference.html#cfn-networkfirewall-firewallpolicy-statefulrulegroupreference-priority).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub priority: Option<::Value<u32>>,
         /// Property [`ResourceArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-firewallpolicy-statefulrulegroupreference.html#cfn-networkfirewall-firewallpolicy-statefulrulegroupreference-resourcearn).
         ///
         /// Update type: _Mutable_.
@@ -913,6 +1326,12 @@ pub mod firewall_policy {
     impl ::codec::SerializeValue for StatefulRuleGroupReference {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref r#override) = self.r#override {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Override", r#override)?;
+            }
+            if let Some(ref priority) = self.priority {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Priority", priority)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceArn", &self.resource_arn)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -930,10 +1349,18 @@ pub mod firewall_policy {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut r#override: Option<::Value<StatefulRuleGroupOverride>> = None;
+                    let mut priority: Option<::Value<u32>> = None;
                     let mut resource_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "Override" => {
+                                r#override = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Priority" => {
+                                priority = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "ResourceArn" => {
                                 resource_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -942,6 +1369,8 @@ pub mod firewall_policy {
                     }
 
                     Ok(StatefulRuleGroupReference {
+                        r#override: r#override,
+                        priority: priority,
                         resource_arn: resource_arn.ok_or(::serde::de::Error::missing_field("ResourceArn"))?,
                     })
                 }
@@ -1521,6 +1950,59 @@ pub mod rule_group {
         }
     }
 
+    /// The [`AWS::NetworkFirewall::RuleGroup.IPSetReference`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-ipsetreference.html) property type.
+    #[derive(Debug, Default)]
+    pub struct IPSetReference {
+        /// Property [`ReferenceArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-ipsetreference.html#cfn-networkfirewall-rulegroup-ipsetreference-referencearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub reference_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for IPSetReference {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref reference_arn) = self.reference_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReferenceArn", reference_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for IPSetReference {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<IPSetReference, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = IPSetReference;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type IPSetReference")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut reference_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ReferenceArn" => {
+                                reference_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(IPSetReference {
+                        reference_arn: reference_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::NetworkFirewall::RuleGroup.MatchAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-matchattributes.html) property type.
     #[derive(Debug, Default)]
     pub struct MatchAttributes {
@@ -1805,6 +2287,59 @@ pub mod rule_group {
         }
     }
 
+    /// The [`AWS::NetworkFirewall::RuleGroup.ReferenceSets`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-referencesets.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ReferenceSets {
+        /// Property [`IPSetReferences`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-referencesets.html#cfn-networkfirewall-rulegroup-referencesets-ipsetreferences).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ip_set_references: Option<::ValueMap<IPSetReference>>,
+    }
+
+    impl ::codec::SerializeValue for ReferenceSets {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref ip_set_references) = self.ip_set_references {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IPSetReferences", ip_set_references)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ReferenceSets {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ReferenceSets, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ReferenceSets;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ReferenceSets")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut ip_set_references: Option<::ValueMap<IPSetReference>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "IPSetReferences" => {
+                                ip_set_references = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ReferenceSets {
+                        ip_set_references: ip_set_references,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::NetworkFirewall::RuleGroup.RuleDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-ruledefinition.html) property type.
     #[derive(Debug, Default)]
     pub struct RuleDefinition {
@@ -1870,6 +2405,11 @@ pub mod rule_group {
     /// The [`AWS::NetworkFirewall::RuleGroup.RuleGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-rulegroup.html) property type.
     #[derive(Debug, Default)]
     pub struct RuleGroup {
+        /// Property [`ReferenceSets`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-rulegroup.html#cfn-networkfirewall-rulegroup-rulegroup-referencesets).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub reference_sets: Option<::Value<ReferenceSets>>,
         /// Property [`RuleVariables`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-rulegroup.html#cfn-networkfirewall-rulegroup-rulegroup-rulevariables).
         ///
         /// Update type: _Mutable_.
@@ -1880,15 +2420,26 @@ pub mod rule_group {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub rules_source: ::Value<RulesSource>,
+        /// Property [`StatefulRuleOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-rulegroup.html#cfn-networkfirewall-rulegroup-rulegroup-statefulruleoptions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub stateful_rule_options: Option<::Value<StatefulRuleOptions>>,
     }
 
     impl ::codec::SerializeValue for RuleGroup {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref reference_sets) = self.reference_sets {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReferenceSets", reference_sets)?;
+            }
             if let Some(ref rule_variables) = self.rule_variables {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleVariables", rule_variables)?;
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RulesSource", &self.rules_source)?;
+            if let Some(ref stateful_rule_options) = self.stateful_rule_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StatefulRuleOptions", stateful_rule_options)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1905,24 +2456,34 @@ pub mod rule_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut reference_sets: Option<::Value<ReferenceSets>> = None;
                     let mut rule_variables: Option<::Value<RuleVariables>> = None;
                     let mut rules_source: Option<::Value<RulesSource>> = None;
+                    let mut stateful_rule_options: Option<::Value<StatefulRuleOptions>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "ReferenceSets" => {
+                                reference_sets = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "RuleVariables" => {
                                 rule_variables = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "RulesSource" => {
                                 rules_source = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "StatefulRuleOptions" => {
+                                stateful_rule_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
 
                     Ok(RuleGroup {
+                        reference_sets: reference_sets,
                         rule_variables: rule_variables,
                         rules_source: rules_source.ok_or(::serde::de::Error::missing_field("RulesSource"))?,
+                        stateful_rule_options: stateful_rule_options,
                     })
                 }
             }
@@ -2299,6 +2860,59 @@ pub mod rule_group {
         }
     }
 
+    /// The [`AWS::NetworkFirewall::RuleGroup.StatefulRuleOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-statefulruleoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct StatefulRuleOptions {
+        /// Property [`RuleOrder`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-statefulruleoptions.html#cfn-networkfirewall-rulegroup-statefulruleoptions-ruleorder).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub rule_order: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for StatefulRuleOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref rule_order) = self.rule_order {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleOrder", rule_order)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for StatefulRuleOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<StatefulRuleOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = StatefulRuleOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type StatefulRuleOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut rule_order: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "RuleOrder" => {
+                                rule_order = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(StatefulRuleOptions {
+                        rule_order: rule_order,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::NetworkFirewall::RuleGroup.StatelessRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-rulegroup-statelessrule.html) property type.
     #[derive(Debug, Default)]
     pub struct StatelessRule {
@@ -2481,6 +3095,492 @@ pub mod rule_group {
                     Ok(TCPFlagField {
                         flags: flags.ok_or(::serde::de::Error::missing_field("Flags"))?,
                         masks: masks,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod tls_inspection_configuration {
+    //! Property types for the `TLSInspectionConfiguration` resource.
+
+    /// The [`AWS::NetworkFirewall::TLSInspectionConfiguration.Address`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-address.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Address {
+        /// Property [`AddressDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-address.html#cfn-networkfirewall-tlsinspectionconfiguration-address-addressdefinition).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub address_definition: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for Address {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AddressDefinition", &self.address_definition)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Address {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Address, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Address;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Address")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut address_definition: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AddressDefinition" => {
+                                address_definition = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Address {
+                        address_definition: address_definition.ok_or(::serde::de::Error::missing_field("AddressDefinition"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::NetworkFirewall::TLSInspectionConfiguration.CheckCertificateRevocationStatus`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-checkcertificaterevocationstatus.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CheckCertificateRevocationStatus {
+        /// Property [`RevokedStatusAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-checkcertificaterevocationstatus.html#cfn-networkfirewall-tlsinspectionconfiguration-checkcertificaterevocationstatus-revokedstatusaction).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub revoked_status_action: Option<::Value<String>>,
+        /// Property [`UnknownStatusAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-checkcertificaterevocationstatus.html#cfn-networkfirewall-tlsinspectionconfiguration-checkcertificaterevocationstatus-unknownstatusaction).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub unknown_status_action: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for CheckCertificateRevocationStatus {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref revoked_status_action) = self.revoked_status_action {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RevokedStatusAction", revoked_status_action)?;
+            }
+            if let Some(ref unknown_status_action) = self.unknown_status_action {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UnknownStatusAction", unknown_status_action)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CheckCertificateRevocationStatus {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CheckCertificateRevocationStatus, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CheckCertificateRevocationStatus;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CheckCertificateRevocationStatus")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut revoked_status_action: Option<::Value<String>> = None;
+                    let mut unknown_status_action: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "RevokedStatusAction" => {
+                                revoked_status_action = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "UnknownStatusAction" => {
+                                unknown_status_action = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CheckCertificateRevocationStatus {
+                        revoked_status_action: revoked_status_action,
+                        unknown_status_action: unknown_status_action,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::NetworkFirewall::TLSInspectionConfiguration.PortRange`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-portrange.html) property type.
+    #[derive(Debug, Default)]
+    pub struct PortRange {
+        /// Property [`FromPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-portrange.html#cfn-networkfirewall-tlsinspectionconfiguration-portrange-fromport).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub from_port: ::Value<u32>,
+        /// Property [`ToPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-portrange.html#cfn-networkfirewall-tlsinspectionconfiguration-portrange-toport).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub to_port: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for PortRange {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FromPort", &self.from_port)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ToPort", &self.to_port)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for PortRange {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<PortRange, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = PortRange;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type PortRange")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut from_port: Option<::Value<u32>> = None;
+                    let mut to_port: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "FromPort" => {
+                                from_port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ToPort" => {
+                                to_port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(PortRange {
+                        from_port: from_port.ok_or(::serde::de::Error::missing_field("FromPort"))?,
+                        to_port: to_port.ok_or(::serde::de::Error::missing_field("ToPort"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::NetworkFirewall::TLSInspectionConfiguration.ServerCertificate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-servercertificate.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ServerCertificate {
+        /// Property [`ResourceArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-servercertificate.html#cfn-networkfirewall-tlsinspectionconfiguration-servercertificate-resourcearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub resource_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for ServerCertificate {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref resource_arn) = self.resource_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceArn", resource_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ServerCertificate {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ServerCertificate, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ServerCertificate;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ServerCertificate")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut resource_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ResourceArn" => {
+                                resource_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ServerCertificate {
+                        resource_arn: resource_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::NetworkFirewall::TLSInspectionConfiguration.ServerCertificateConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-servercertificateconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ServerCertificateConfiguration {
+        /// Property [`CertificateAuthorityArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-servercertificateconfiguration.html#cfn-networkfirewall-tlsinspectionconfiguration-servercertificateconfiguration-certificateauthorityarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub certificate_authority_arn: Option<::Value<String>>,
+        /// Property [`CheckCertificateRevocationStatus`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-servercertificateconfiguration.html#cfn-networkfirewall-tlsinspectionconfiguration-servercertificateconfiguration-checkcertificaterevocationstatus).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub check_certificate_revocation_status: Option<::Value<CheckCertificateRevocationStatus>>,
+        /// Property [`Scopes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-servercertificateconfiguration.html#cfn-networkfirewall-tlsinspectionconfiguration-servercertificateconfiguration-scopes).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub scopes: Option<::ValueList<ServerCertificateScope>>,
+        /// Property [`ServerCertificates`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-servercertificateconfiguration.html#cfn-networkfirewall-tlsinspectionconfiguration-servercertificateconfiguration-servercertificates).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub server_certificates: Option<::ValueList<ServerCertificate>>,
+    }
+
+    impl ::codec::SerializeValue for ServerCertificateConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref certificate_authority_arn) = self.certificate_authority_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CertificateAuthorityArn", certificate_authority_arn)?;
+            }
+            if let Some(ref check_certificate_revocation_status) = self.check_certificate_revocation_status {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CheckCertificateRevocationStatus", check_certificate_revocation_status)?;
+            }
+            if let Some(ref scopes) = self.scopes {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Scopes", scopes)?;
+            }
+            if let Some(ref server_certificates) = self.server_certificates {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServerCertificates", server_certificates)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ServerCertificateConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ServerCertificateConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ServerCertificateConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ServerCertificateConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut certificate_authority_arn: Option<::Value<String>> = None;
+                    let mut check_certificate_revocation_status: Option<::Value<CheckCertificateRevocationStatus>> = None;
+                    let mut scopes: Option<::ValueList<ServerCertificateScope>> = None;
+                    let mut server_certificates: Option<::ValueList<ServerCertificate>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CertificateAuthorityArn" => {
+                                certificate_authority_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CheckCertificateRevocationStatus" => {
+                                check_certificate_revocation_status = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Scopes" => {
+                                scopes = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ServerCertificates" => {
+                                server_certificates = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ServerCertificateConfiguration {
+                        certificate_authority_arn: certificate_authority_arn,
+                        check_certificate_revocation_status: check_certificate_revocation_status,
+                        scopes: scopes,
+                        server_certificates: server_certificates,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::NetworkFirewall::TLSInspectionConfiguration.ServerCertificateScope`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-servercertificatescope.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ServerCertificateScope {
+        /// Property [`DestinationPorts`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-servercertificatescope.html#cfn-networkfirewall-tlsinspectionconfiguration-servercertificatescope-destinationports).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub destination_ports: Option<::ValueList<PortRange>>,
+        /// Property [`Destinations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-servercertificatescope.html#cfn-networkfirewall-tlsinspectionconfiguration-servercertificatescope-destinations).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub destinations: Option<::ValueList<Address>>,
+        /// Property [`Protocols`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-servercertificatescope.html#cfn-networkfirewall-tlsinspectionconfiguration-servercertificatescope-protocols).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub protocols: Option<::ValueList<u32>>,
+        /// Property [`SourcePorts`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-servercertificatescope.html#cfn-networkfirewall-tlsinspectionconfiguration-servercertificatescope-sourceports).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub source_ports: Option<::ValueList<PortRange>>,
+        /// Property [`Sources`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-servercertificatescope.html#cfn-networkfirewall-tlsinspectionconfiguration-servercertificatescope-sources).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub sources: Option<::ValueList<Address>>,
+    }
+
+    impl ::codec::SerializeValue for ServerCertificateScope {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref destination_ports) = self.destination_ports {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationPorts", destination_ports)?;
+            }
+            if let Some(ref destinations) = self.destinations {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Destinations", destinations)?;
+            }
+            if let Some(ref protocols) = self.protocols {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocols", protocols)?;
+            }
+            if let Some(ref source_ports) = self.source_ports {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourcePorts", source_ports)?;
+            }
+            if let Some(ref sources) = self.sources {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Sources", sources)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ServerCertificateScope {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ServerCertificateScope, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ServerCertificateScope;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ServerCertificateScope")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut destination_ports: Option<::ValueList<PortRange>> = None;
+                    let mut destinations: Option<::ValueList<Address>> = None;
+                    let mut protocols: Option<::ValueList<u32>> = None;
+                    let mut source_ports: Option<::ValueList<PortRange>> = None;
+                    let mut sources: Option<::ValueList<Address>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DestinationPorts" => {
+                                destination_ports = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Destinations" => {
+                                destinations = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Protocols" => {
+                                protocols = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SourcePorts" => {
+                                source_ports = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Sources" => {
+                                sources = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ServerCertificateScope {
+                        destination_ports: destination_ports,
+                        destinations: destinations,
+                        protocols: protocols,
+                        source_ports: source_ports,
+                        sources: sources,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::NetworkFirewall::TLSInspectionConfiguration.TLSInspectionConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-tlsinspectionconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TLSInspectionConfiguration {
+        /// Property [`ServerCertificateConfigurations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-networkfirewall-tlsinspectionconfiguration-tlsinspectionconfiguration.html#cfn-networkfirewall-tlsinspectionconfiguration-tlsinspectionconfiguration-servercertificateconfigurations).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub server_certificate_configurations: Option<::ValueList<ServerCertificateConfiguration>>,
+    }
+
+    impl ::codec::SerializeValue for TLSInspectionConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref server_certificate_configurations) = self.server_certificate_configurations {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServerCertificateConfigurations", server_certificate_configurations)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TLSInspectionConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TLSInspectionConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TLSInspectionConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TLSInspectionConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut server_certificate_configurations: Option<::ValueList<ServerCertificateConfiguration>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ServerCertificateConfigurations" => {
+                                server_certificate_configurations = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TLSInspectionConfiguration {
+                        server_certificate_configurations: server_certificate_configurations,
                     })
                 }
             }

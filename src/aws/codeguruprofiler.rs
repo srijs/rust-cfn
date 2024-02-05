@@ -13,7 +13,7 @@ pub struct ProfilingGroupProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub agent_permissions: Option<::Value<::json::Value>>,
+    pub agent_permissions: Option<::Value<self::profiling_group::AgentPermissions>>,
     /// Property [`AnomalyDetectionNotificationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codeguruprofiler-profilinggroup.html#cfn-codeguruprofiler-profilinggroup-anomalydetectionnotificationconfiguration).
     ///
     /// Update type: _Mutable_.
@@ -68,7 +68,7 @@ impl<'de> ::serde::Deserialize<'de> for ProfilingGroupProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut agent_permissions: Option<::Value<::json::Value>> = None;
+                let mut agent_permissions: Option<::Value<self::profiling_group::AgentPermissions>> = None;
                 let mut anomaly_detection_notification_configuration: Option<::ValueList<self::profiling_group::Channel>> = None;
                 let mut compute_platform: Option<::Value<String>> = None;
                 let mut profiling_group_name: Option<::Value<String>> = None;
@@ -130,6 +130,57 @@ impl From<ProfilingGroupProperties> for ProfilingGroup {
 
 pub mod profiling_group {
     //! Property types for the `ProfilingGroup` resource.
+
+    /// The [`AWS::CodeGuruProfiler::ProfilingGroup.AgentPermissions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codeguruprofiler-profilinggroup-agentpermissions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AgentPermissions {
+        /// Property [`Principals`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codeguruprofiler-profilinggroup-agentpermissions.html#cfn-codeguruprofiler-profilinggroup-agentpermissions-principals).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub principals: ::ValueList<String>,
+    }
+
+    impl ::codec::SerializeValue for AgentPermissions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Principals", &self.principals)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AgentPermissions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AgentPermissions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AgentPermissions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AgentPermissions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut principals: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Principals" => {
+                                principals = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AgentPermissions {
+                        principals: principals.ok_or(::serde::de::Error::missing_field("Principals"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::CodeGuruProfiler::ProfilingGroup.Channel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codeguruprofiler-profilinggroup-channel.html) property type.
     #[derive(Debug, Default)]

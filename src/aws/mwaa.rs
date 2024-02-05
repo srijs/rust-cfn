@@ -24,6 +24,11 @@ pub struct EnvironmentProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub dag_s3_path: Option<::Value<String>>,
+    /// Property [`EndpointManagement`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mwaa-environment.html#cfn-mwaa-environment-endpointmanagement).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub endpoint_management: Option<::Value<String>>,
     /// Property [`EnvironmentClass`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mwaa-environment.html#cfn-mwaa-environment-environmentclass).
     ///
     /// Update type: _Mutable_.
@@ -94,11 +99,21 @@ pub struct EnvironmentProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub source_bucket_arn: Option<::Value<String>>,
+    /// Property [`StartupScriptS3ObjectVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mwaa-environment.html#cfn-mwaa-environment-startupscripts3objectversion).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub startup_script_s3_object_version: Option<::Value<String>>,
+    /// Property [`StartupScriptS3Path`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mwaa-environment.html#cfn-mwaa-environment-startupscripts3path).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub startup_script_s3_path: Option<::Value<String>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mwaa-environment.html#cfn-mwaa-environment-tags).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub tags: Option<::Value<self::environment::TagMap>>,
+    pub tags: Option<::Value<::json::Value>>,
     /// Property [`WebserverAccessMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mwaa-environment.html#cfn-mwaa-environment-webserveraccessmode).
     ///
     /// Update type: _Mutable_.
@@ -122,6 +137,9 @@ impl ::serde::Serialize for EnvironmentProperties {
         }
         if let Some(ref dag_s3_path) = self.dag_s3_path {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DagS3Path", dag_s3_path)?;
+        }
+        if let Some(ref endpoint_management) = self.endpoint_management {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndpointManagement", endpoint_management)?;
         }
         if let Some(ref environment_class) = self.environment_class {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnvironmentClass", environment_class)?;
@@ -163,6 +181,12 @@ impl ::serde::Serialize for EnvironmentProperties {
         if let Some(ref source_bucket_arn) = self.source_bucket_arn {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceBucketArn", source_bucket_arn)?;
         }
+        if let Some(ref startup_script_s3_object_version) = self.startup_script_s3_object_version {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StartupScriptS3ObjectVersion", startup_script_s3_object_version)?;
+        }
+        if let Some(ref startup_script_s3_path) = self.startup_script_s3_path {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StartupScriptS3Path", startup_script_s3_path)?;
+        }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
@@ -191,6 +215,7 @@ impl<'de> ::serde::Deserialize<'de> for EnvironmentProperties {
                 let mut airflow_configuration_options: Option<::Value<::json::Value>> = None;
                 let mut airflow_version: Option<::Value<String>> = None;
                 let mut dag_s3_path: Option<::Value<String>> = None;
+                let mut endpoint_management: Option<::Value<String>> = None;
                 let mut environment_class: Option<::Value<String>> = None;
                 let mut execution_role_arn: Option<::Value<String>> = None;
                 let mut kms_key: Option<::Value<String>> = None;
@@ -205,7 +230,9 @@ impl<'de> ::serde::Deserialize<'de> for EnvironmentProperties {
                 let mut requirements_s3_path: Option<::Value<String>> = None;
                 let mut schedulers: Option<::Value<u32>> = None;
                 let mut source_bucket_arn: Option<::Value<String>> = None;
-                let mut tags: Option<::Value<self::environment::TagMap>> = None;
+                let mut startup_script_s3_object_version: Option<::Value<String>> = None;
+                let mut startup_script_s3_path: Option<::Value<String>> = None;
+                let mut tags: Option<::Value<::json::Value>> = None;
                 let mut webserver_access_mode: Option<::Value<String>> = None;
                 let mut weekly_maintenance_window_start: Option<::Value<String>> = None;
 
@@ -219,6 +246,9 @@ impl<'de> ::serde::Deserialize<'de> for EnvironmentProperties {
                         }
                         "DagS3Path" => {
                             dag_s3_path = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "EndpointManagement" => {
+                            endpoint_management = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "EnvironmentClass" => {
                             environment_class = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -262,6 +292,12 @@ impl<'de> ::serde::Deserialize<'de> for EnvironmentProperties {
                         "SourceBucketArn" => {
                             source_bucket_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "StartupScriptS3ObjectVersion" => {
+                            startup_script_s3_object_version = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "StartupScriptS3Path" => {
+                            startup_script_s3_path = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -279,6 +315,7 @@ impl<'de> ::serde::Deserialize<'de> for EnvironmentProperties {
                     airflow_configuration_options: airflow_configuration_options,
                     airflow_version: airflow_version,
                     dag_s3_path: dag_s3_path,
+                    endpoint_management: endpoint_management,
                     environment_class: environment_class,
                     execution_role_arn: execution_role_arn,
                     kms_key: kms_key,
@@ -293,6 +330,8 @@ impl<'de> ::serde::Deserialize<'de> for EnvironmentProperties {
                     requirements_s3_path: requirements_s3_path,
                     schedulers: schedulers,
                     source_bucket_arn: source_bucket_arn,
+                    startup_script_s3_object_version: startup_script_s3_object_version,
+                    startup_script_s3_path: startup_script_s3_path,
                     tags: tags,
                     webserver_access_mode: webserver_access_mode,
                     weekly_maintenance_window_start: weekly_maintenance_window_start,
@@ -569,38 +608,6 @@ pub mod environment {
                         security_group_ids: security_group_ids,
                         subnet_ids: subnet_ids,
                     })
-                }
-            }
-
-            d.deserialize_map(Visitor)
-        }
-    }
-
-    /// The [`AWS::MWAA::Environment.TagMap`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mwaa-environment-tagmap.html) property type.
-    #[derive(Debug, Default)]
-    pub struct TagMap {
-    }
-
-    impl ::codec::SerializeValue for TagMap {
-        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            let map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::end(map)
-        }
-    }
-
-    impl ::codec::DeserializeValue for TagMap {
-        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TagMap, D::Error> {
-            struct Visitor;
-
-            impl<'de> ::serde::de::Visitor<'de> for Visitor {
-                type Value = TagMap;
-
-                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-                    write!(f, "a struct of type TagMap")
-                }
-
-                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, _map: A) -> Result<Self::Value, A::Error> {
-                    Ok(TagMap {})
                 }
             }
 

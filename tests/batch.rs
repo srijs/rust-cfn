@@ -11,7 +11,7 @@ fn managed_ec2_batch_environment() {
         "AWS CloudFormation Sample Template Managed Single Batch Job Queue"));
 
     let vpc = tpl.resources().get::<cfn::aws::ec2::VPC>("VPC").unwrap();
-    assert_eq!(vpc.properties().cidr_block.as_value().unwrap(), "10.0.0.0/16");
+    assert_eq!(vpc.properties().cidr_block.as_ref().unwrap().as_value().unwrap(), "10.0.0.0/16");
 
     let _ = tpl.resources().get::<cfn::aws::ec2::InternetGateway>("InternetGateway").unwrap();
 
@@ -24,7 +24,7 @@ fn managed_ec2_batch_environment() {
         "InternetGateway");
 
     let subnet = tpl.resources().get::<cfn::aws::ec2::Subnet>("Subnet").unwrap();
-    assert_eq!(subnet.properties().cidr_block.as_value().unwrap(), "10.0.0.0/24");
+    assert_eq!(subnet.properties().cidr_block.as_ref().unwrap().as_value().unwrap(), "10.0.0.0/24");
     assert_eq!(subnet.properties().vpc_id.as_reference().unwrap(), "VPC");
     assert_eq!(subnet.properties().map_public_ip_on_launch.as_ref().unwrap().as_value().unwrap(), &true);
 
