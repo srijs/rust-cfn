@@ -114,6 +114,11 @@ pub struct RotationScheduleProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub hosted_rotation_lambda: Option<::Value<self::rotation_schedule::HostedRotationLambda>>,
+    /// Property [`RotateImmediatelyOnUpdate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-rotationschedule.html#cfn-secretsmanager-rotationschedule-rotateimmediatelyonupdate).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub rotate_immediately_on_update: Option<::Value<bool>>,
     /// Property [`RotationLambdaARN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-rotationschedule.html#cfn-secretsmanager-rotationschedule-rotationlambdaarn).
     ///
     /// Update type: _Mutable_.
@@ -136,6 +141,9 @@ impl ::serde::Serialize for RotationScheduleProperties {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         if let Some(ref hosted_rotation_lambda) = self.hosted_rotation_lambda {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostedRotationLambda", hosted_rotation_lambda)?;
+        }
+        if let Some(ref rotate_immediately_on_update) = self.rotate_immediately_on_update {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RotateImmediatelyOnUpdate", rotate_immediately_on_update)?;
         }
         if let Some(ref rotation_lambda_arn) = self.rotation_lambda_arn {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RotationLambdaARN", rotation_lambda_arn)?;
@@ -161,6 +169,7 @@ impl<'de> ::serde::Deserialize<'de> for RotationScheduleProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut hosted_rotation_lambda: Option<::Value<self::rotation_schedule::HostedRotationLambda>> = None;
+                let mut rotate_immediately_on_update: Option<::Value<bool>> = None;
                 let mut rotation_lambda_arn: Option<::Value<String>> = None;
                 let mut rotation_rules: Option<::Value<self::rotation_schedule::RotationRules>> = None;
                 let mut secret_id: Option<::Value<String>> = None;
@@ -169,6 +178,9 @@ impl<'de> ::serde::Deserialize<'de> for RotationScheduleProperties {
                     match __cfn_key.as_ref() {
                         "HostedRotationLambda" => {
                             hosted_rotation_lambda = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "RotateImmediatelyOnUpdate" => {
+                            rotate_immediately_on_update = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "RotationLambdaARN" => {
                             rotation_lambda_arn = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -185,6 +197,7 @@ impl<'de> ::serde::Deserialize<'de> for RotationScheduleProperties {
 
                 Ok(RotationScheduleProperties {
                     hosted_rotation_lambda: hosted_rotation_lambda,
+                    rotate_immediately_on_update: rotate_immediately_on_update,
                     rotation_lambda_arn: rotation_lambda_arn,
                     rotation_rules: rotation_rules,
                     secret_id: secret_id.ok_or(::serde::de::Error::missing_field("SecretId"))?,
@@ -475,6 +488,11 @@ pub mod rotation_schedule {
     /// The [`AWS::SecretsManager::RotationSchedule.HostedRotationLambda`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-rotationschedule-hostedrotationlambda.html) property type.
     #[derive(Debug, Default)]
     pub struct HostedRotationLambda {
+        /// Property [`ExcludeCharacters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-rotationschedule-hostedrotationlambda.html#cfn-secretsmanager-rotationschedule-hostedrotationlambda-excludecharacters).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub exclude_characters: Option<::Value<String>>,
         /// Property [`KmsKeyArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-rotationschedule-hostedrotationlambda.html#cfn-secretsmanager-rotationschedule-hostedrotationlambda-kmskeyarn).
         ///
         /// Update type: _Mutable_.
@@ -500,6 +518,21 @@ pub mod rotation_schedule {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub rotation_type: ::Value<String>,
+        /// Property [`Runtime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-rotationschedule-hostedrotationlambda.html#cfn-secretsmanager-rotationschedule-hostedrotationlambda-runtime).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub runtime: Option<::Value<String>>,
+        /// Property [`SuperuserSecretArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-rotationschedule-hostedrotationlambda.html#cfn-secretsmanager-rotationschedule-hostedrotationlambda-superusersecretarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub superuser_secret_arn: Option<::Value<String>>,
+        /// Property [`SuperuserSecretKmsKeyArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-rotationschedule-hostedrotationlambda.html#cfn-secretsmanager-rotationschedule-hostedrotationlambda-superusersecretkmskeyarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub superuser_secret_kms_key_arn: Option<::Value<String>>,
         /// Property [`VpcSecurityGroupIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-rotationschedule-hostedrotationlambda.html#cfn-secretsmanager-rotationschedule-hostedrotationlambda-vpcsecuritygroupids).
         ///
         /// Update type: _Mutable_.
@@ -515,6 +548,9 @@ pub mod rotation_schedule {
     impl ::codec::SerializeValue for HostedRotationLambda {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref exclude_characters) = self.exclude_characters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExcludeCharacters", exclude_characters)?;
+            }
             if let Some(ref kms_key_arn) = self.kms_key_arn {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyArn", kms_key_arn)?;
             }
@@ -528,6 +564,15 @@ pub mod rotation_schedule {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "RotationLambdaName", rotation_lambda_name)?;
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RotationType", &self.rotation_type)?;
+            if let Some(ref runtime) = self.runtime {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Runtime", runtime)?;
+            }
+            if let Some(ref superuser_secret_arn) = self.superuser_secret_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SuperuserSecretArn", superuser_secret_arn)?;
+            }
+            if let Some(ref superuser_secret_kms_key_arn) = self.superuser_secret_kms_key_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SuperuserSecretKmsKeyArn", superuser_secret_kms_key_arn)?;
+            }
             if let Some(ref vpc_security_group_ids) = self.vpc_security_group_ids {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcSecurityGroupIds", vpc_security_group_ids)?;
             }
@@ -550,16 +595,23 @@ pub mod rotation_schedule {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut exclude_characters: Option<::Value<String>> = None;
                     let mut kms_key_arn: Option<::Value<String>> = None;
                     let mut master_secret_arn: Option<::Value<String>> = None;
                     let mut master_secret_kms_key_arn: Option<::Value<String>> = None;
                     let mut rotation_lambda_name: Option<::Value<String>> = None;
                     let mut rotation_type: Option<::Value<String>> = None;
+                    let mut runtime: Option<::Value<String>> = None;
+                    let mut superuser_secret_arn: Option<::Value<String>> = None;
+                    let mut superuser_secret_kms_key_arn: Option<::Value<String>> = None;
                     let mut vpc_security_group_ids: Option<::Value<String>> = None;
                     let mut vpc_subnet_ids: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "ExcludeCharacters" => {
+                                exclude_characters = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "KmsKeyArn" => {
                                 kms_key_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -575,6 +627,15 @@ pub mod rotation_schedule {
                             "RotationType" => {
                                 rotation_type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Runtime" => {
+                                runtime = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SuperuserSecretArn" => {
+                                superuser_secret_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SuperuserSecretKmsKeyArn" => {
+                                superuser_secret_kms_key_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "VpcSecurityGroupIds" => {
                                 vpc_security_group_ids = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -586,11 +647,15 @@ pub mod rotation_schedule {
                     }
 
                     Ok(HostedRotationLambda {
+                        exclude_characters: exclude_characters,
                         kms_key_arn: kms_key_arn,
                         master_secret_arn: master_secret_arn,
                         master_secret_kms_key_arn: master_secret_kms_key_arn,
                         rotation_lambda_name: rotation_lambda_name,
                         rotation_type: rotation_type.ok_or(::serde::de::Error::missing_field("RotationType"))?,
+                        runtime: runtime,
+                        superuser_secret_arn: superuser_secret_arn,
+                        superuser_secret_kms_key_arn: superuser_secret_kms_key_arn,
                         vpc_security_group_ids: vpc_security_group_ids,
                         vpc_subnet_ids: vpc_subnet_ids,
                     })
@@ -609,6 +674,16 @@ pub mod rotation_schedule {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub automatically_after_days: Option<::Value<u32>>,
+        /// Property [`Duration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-rotationschedule-rotationrules.html#cfn-secretsmanager-rotationschedule-rotationrules-duration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub duration: Option<::Value<String>>,
+        /// Property [`ScheduleExpression`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-secretsmanager-rotationschedule-rotationrules.html#cfn-secretsmanager-rotationschedule-rotationrules-scheduleexpression).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub schedule_expression: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for RotationRules {
@@ -616,6 +691,12 @@ pub mod rotation_schedule {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             if let Some(ref automatically_after_days) = self.automatically_after_days {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutomaticallyAfterDays", automatically_after_days)?;
+            }
+            if let Some(ref duration) = self.duration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Duration", duration)?;
+            }
+            if let Some(ref schedule_expression) = self.schedule_expression {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScheduleExpression", schedule_expression)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -634,11 +715,19 @@ pub mod rotation_schedule {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut automatically_after_days: Option<::Value<u32>> = None;
+                    let mut duration: Option<::Value<String>> = None;
+                    let mut schedule_expression: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "AutomaticallyAfterDays" => {
                                 automatically_after_days = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Duration" => {
+                                duration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ScheduleExpression" => {
+                                schedule_expression = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -646,6 +735,8 @@ pub mod rotation_schedule {
 
                     Ok(RotationRules {
                         automatically_after_days: automatically_after_days,
+                        duration: duration,
+                        schedule_expression: schedule_expression,
                     })
                 }
             }

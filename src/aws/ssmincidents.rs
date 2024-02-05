@@ -19,6 +19,11 @@ pub struct ReplicationSetProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub regions: ::ValueList<self::replication_set::ReplicationRegion>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmincidents-replicationset.html#cfn-ssmincidents-replicationset-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
 }
 
 impl ::serde::Serialize for ReplicationSetProperties {
@@ -28,6 +33,9 @@ impl ::serde::Serialize for ReplicationSetProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeletionProtected", deletion_protected)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Regions", &self.regions)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -46,6 +54,7 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationSetProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut deletion_protected: Option<::Value<bool>> = None;
                 let mut regions: Option<::ValueList<self::replication_set::ReplicationRegion>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -55,6 +64,9 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationSetProperties {
                         "Regions" => {
                             regions = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
@@ -62,6 +74,7 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationSetProperties {
                 Ok(ReplicationSetProperties {
                     deletion_protected: deletion_protected,
                     regions: regions.ok_or(::serde::de::Error::missing_field("Regions"))?,
+                    tags: tags,
                 })
             }
         }
@@ -123,6 +136,11 @@ pub struct ResponsePlanProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub incident_template: ::Value<self::response_plan::IncidentTemplate>,
+    /// Property [`Integrations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmincidents-responseplan.html#cfn-ssmincidents-responseplan-integrations).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub integrations: Option<::ValueList<self::response_plan::Integration>>,
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssmincidents-responseplan.html#cfn-ssmincidents-responseplan-name).
     ///
     /// Update type: _Immutable_.
@@ -151,6 +169,9 @@ impl ::serde::Serialize for ResponsePlanProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Engagements", engagements)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncidentTemplate", &self.incident_template)?;
+        if let Some(ref integrations) = self.integrations {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Integrations", integrations)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
@@ -176,6 +197,7 @@ impl<'de> ::serde::Deserialize<'de> for ResponsePlanProperties {
                 let mut display_name: Option<::Value<String>> = None;
                 let mut engagements: Option<::ValueList<String>> = None;
                 let mut incident_template: Option<::Value<self::response_plan::IncidentTemplate>> = None;
+                let mut integrations: Option<::ValueList<self::response_plan::Integration>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
 
@@ -196,6 +218,9 @@ impl<'de> ::serde::Deserialize<'de> for ResponsePlanProperties {
                         "IncidentTemplate" => {
                             incident_template = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Integrations" => {
+                            integrations = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -212,6 +237,7 @@ impl<'de> ::serde::Deserialize<'de> for ResponsePlanProperties {
                     display_name: display_name,
                     engagements: engagements,
                     incident_template: incident_template.ok_or(::serde::de::Error::missing_field("IncidentTemplate"))?,
+                    integrations: integrations,
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     tags: tags,
                 })
@@ -471,6 +497,121 @@ pub mod response_plan {
         }
     }
 
+    /// The [`AWS::SSMIncidents::ResponsePlan.DynamicSsmParameter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-dynamicssmparameter.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DynamicSsmParameter {
+        /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-dynamicssmparameter.html#cfn-ssmincidents-responseplan-dynamicssmparameter-key).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub key: ::Value<String>,
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-dynamicssmparameter.html#cfn-ssmincidents-responseplan-dynamicssmparameter-value).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub value: ::Value<DynamicSsmParameterValue>,
+    }
+
+    impl ::codec::SerializeValue for DynamicSsmParameter {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DynamicSsmParameter {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DynamicSsmParameter, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DynamicSsmParameter;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DynamicSsmParameter")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut key: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<DynamicSsmParameterValue>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Key" => {
+                                key = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Value" => {
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DynamicSsmParameter {
+                        key: key.ok_or(::serde::de::Error::missing_field("Key"))?,
+                        value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::SSMIncidents::ResponsePlan.DynamicSsmParameterValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-dynamicssmparametervalue.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DynamicSsmParameterValue {
+        /// Property [`Variable`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-dynamicssmparametervalue.html#cfn-ssmincidents-responseplan-dynamicssmparametervalue-variable).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub variable: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for DynamicSsmParameterValue {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref variable) = self.variable {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Variable", variable)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DynamicSsmParameterValue {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DynamicSsmParameterValue, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DynamicSsmParameterValue;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DynamicSsmParameterValue")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut variable: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Variable" => {
+                                variable = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DynamicSsmParameterValue {
+                        variable: variable,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::SSMIncidents::ResponsePlan.IncidentTemplate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-incidenttemplate.html) property type.
     #[derive(Debug, Default)]
     pub struct IncidentTemplate {
@@ -484,6 +625,11 @@ pub mod response_plan {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub impact: ::Value<u32>,
+        /// Property [`IncidentTags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-incidenttemplate.html#cfn-ssmincidents-responseplan-incidenttemplate-incidenttags).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub incident_tags: Option<::ValueList<::Tag>>,
         /// Property [`NotificationTargets`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-incidenttemplate.html#cfn-ssmincidents-responseplan-incidenttemplate-notificationtargets).
         ///
         /// Update type: _Mutable_.
@@ -508,6 +654,9 @@ pub mod response_plan {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "DedupeString", dedupe_string)?;
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Impact", &self.impact)?;
+            if let Some(ref incident_tags) = self.incident_tags {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncidentTags", incident_tags)?;
+            }
             if let Some(ref notification_targets) = self.notification_targets {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationTargets", notification_targets)?;
             }
@@ -533,6 +682,7 @@ pub mod response_plan {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut dedupe_string: Option<::Value<String>> = None;
                     let mut impact: Option<::Value<u32>> = None;
+                    let mut incident_tags: Option<::ValueList<::Tag>> = None;
                     let mut notification_targets: Option<::ValueList<NotificationTargetItem>> = None;
                     let mut summary: Option<::Value<String>> = None;
                     let mut title: Option<::Value<String>> = None;
@@ -544,6 +694,9 @@ pub mod response_plan {
                             }
                             "Impact" => {
                                 impact = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IncidentTags" => {
+                                incident_tags = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "NotificationTargets" => {
                                 notification_targets = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -561,9 +714,61 @@ pub mod response_plan {
                     Ok(IncidentTemplate {
                         dedupe_string: dedupe_string,
                         impact: impact.ok_or(::serde::de::Error::missing_field("Impact"))?,
+                        incident_tags: incident_tags,
                         notification_targets: notification_targets,
                         summary: summary,
                         title: title.ok_or(::serde::de::Error::missing_field("Title"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::SSMIncidents::ResponsePlan.Integration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-integration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Integration {
+        /// Property [`PagerDutyConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-integration.html#cfn-ssmincidents-responseplan-integration-pagerdutyconfiguration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub pager_duty_configuration: ::Value<PagerDutyConfiguration>,
+    }
+
+    impl ::codec::SerializeValue for Integration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PagerDutyConfiguration", &self.pager_duty_configuration)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Integration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Integration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Integration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Integration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut pager_duty_configuration: Option<::Value<PagerDutyConfiguration>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "PagerDutyConfiguration" => {
+                                pager_duty_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Integration {
+                        pager_duty_configuration: pager_duty_configuration.ok_or(::serde::de::Error::missing_field("PagerDutyConfiguration"))?,
                     })
                 }
             }
@@ -625,6 +830,130 @@ pub mod response_plan {
         }
     }
 
+    /// The [`AWS::SSMIncidents::ResponsePlan.PagerDutyConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-pagerdutyconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct PagerDutyConfiguration {
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-pagerdutyconfiguration.html#cfn-ssmincidents-responseplan-pagerdutyconfiguration-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: ::Value<String>,
+        /// Property [`PagerDutyIncidentConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-pagerdutyconfiguration.html#cfn-ssmincidents-responseplan-pagerdutyconfiguration-pagerdutyincidentconfiguration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub pager_duty_incident_configuration: ::Value<PagerDutyIncidentConfiguration>,
+        /// Property [`SecretId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-pagerdutyconfiguration.html#cfn-ssmincidents-responseplan-pagerdutyconfiguration-secretid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secret_id: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for PagerDutyConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PagerDutyIncidentConfiguration", &self.pager_duty_incident_configuration)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecretId", &self.secret_id)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for PagerDutyConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<PagerDutyConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = PagerDutyConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type PagerDutyConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut name: Option<::Value<String>> = None;
+                    let mut pager_duty_incident_configuration: Option<::Value<PagerDutyIncidentConfiguration>> = None;
+                    let mut secret_id: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PagerDutyIncidentConfiguration" => {
+                                pager_duty_incident_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecretId" => {
+                                secret_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(PagerDutyConfiguration {
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                        pager_duty_incident_configuration: pager_duty_incident_configuration.ok_or(::serde::de::Error::missing_field("PagerDutyIncidentConfiguration"))?,
+                        secret_id: secret_id.ok_or(::serde::de::Error::missing_field("SecretId"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::SSMIncidents::ResponsePlan.PagerDutyIncidentConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-pagerdutyincidentconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct PagerDutyIncidentConfiguration {
+        /// Property [`ServiceId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-pagerdutyincidentconfiguration.html#cfn-ssmincidents-responseplan-pagerdutyincidentconfiguration-serviceid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub service_id: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for PagerDutyIncidentConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceId", &self.service_id)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for PagerDutyIncidentConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<PagerDutyIncidentConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = PagerDutyIncidentConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type PagerDutyIncidentConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut service_id: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ServiceId" => {
+                                service_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(PagerDutyIncidentConfiguration {
+                        service_id: service_id.ok_or(::serde::de::Error::missing_field("ServiceId"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::SSMIncidents::ResponsePlan.SsmAutomation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-ssmautomation.html) property type.
     #[derive(Debug, Default)]
     pub struct SsmAutomation {
@@ -638,6 +967,11 @@ pub mod response_plan {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub document_version: Option<::Value<String>>,
+        /// Property [`DynamicParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-ssmautomation.html#cfn-ssmincidents-responseplan-ssmautomation-dynamicparameters).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub dynamic_parameters: Option<::ValueList<DynamicSsmParameter>>,
         /// Property [`Parameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ssmincidents-responseplan-ssmautomation.html#cfn-ssmincidents-responseplan-ssmautomation-parameters).
         ///
         /// Update type: _Mutable_.
@@ -661,6 +995,9 @@ pub mod response_plan {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentName", &self.document_name)?;
             if let Some(ref document_version) = self.document_version {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentVersion", document_version)?;
+            }
+            if let Some(ref dynamic_parameters) = self.dynamic_parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DynamicParameters", dynamic_parameters)?;
             }
             if let Some(ref parameters) = self.parameters {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", parameters)?;
@@ -687,6 +1024,7 @@ pub mod response_plan {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut document_name: Option<::Value<String>> = None;
                     let mut document_version: Option<::Value<String>> = None;
+                    let mut dynamic_parameters: Option<::ValueList<DynamicSsmParameter>> = None;
                     let mut parameters: Option<::ValueList<SsmParameter>> = None;
                     let mut role_arn: Option<::Value<String>> = None;
                     let mut target_account: Option<::Value<String>> = None;
@@ -698,6 +1036,9 @@ pub mod response_plan {
                             }
                             "DocumentVersion" => {
                                 document_version = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DynamicParameters" => {
+                                dynamic_parameters = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Parameters" => {
                                 parameters = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -715,6 +1056,7 @@ pub mod response_plan {
                     Ok(SsmAutomation {
                         document_name: document_name.ok_or(::serde::de::Error::missing_field("DocumentName"))?,
                         document_version: document_version,
+                        dynamic_parameters: dynamic_parameters,
                         parameters: parameters,
                         role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
                         target_account: target_account,

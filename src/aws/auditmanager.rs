@@ -19,6 +19,11 @@ pub struct AssessmentProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub aws_account: Option<::Value<self::assessment::AWSAccount>>,
+    /// Property [`Delegations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-auditmanager-assessment.html#cfn-auditmanager-assessment-delegations).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub delegations: Option<::ValueList<self::assessment::Delegation>>,
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-auditmanager-assessment.html#cfn-auditmanager-assessment-description).
     ///
     /// Update type: _Mutable_.
@@ -65,6 +70,9 @@ impl ::serde::Serialize for AssessmentProperties {
         if let Some(ref aws_account) = self.aws_account {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AwsAccount", aws_account)?;
         }
+        if let Some(ref delegations) = self.delegations {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Delegations", delegations)?;
+        }
         if let Some(ref description) = self.description {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
         }
@@ -104,6 +112,7 @@ impl<'de> ::serde::Deserialize<'de> for AssessmentProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut assessment_reports_destination: Option<::Value<self::assessment::AssessmentReportsDestination>> = None;
                 let mut aws_account: Option<::Value<self::assessment::AWSAccount>> = None;
+                let mut delegations: Option<::ValueList<self::assessment::Delegation>> = None;
                 let mut description: Option<::Value<String>> = None;
                 let mut framework_id: Option<::Value<String>> = None;
                 let mut name: Option<::Value<String>> = None;
@@ -119,6 +128,9 @@ impl<'de> ::serde::Deserialize<'de> for AssessmentProperties {
                         }
                         "AwsAccount" => {
                             aws_account = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Delegations" => {
+                            delegations = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Description" => {
                             description = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -148,6 +160,7 @@ impl<'de> ::serde::Deserialize<'de> for AssessmentProperties {
                 Ok(AssessmentProperties {
                     assessment_reports_destination: assessment_reports_destination,
                     aws_account: aws_account,
+                    delegations: delegations,
                     description: description,
                     framework_id: framework_id,
                     name: name,
@@ -190,18 +203,21 @@ pub mod assessment {
     pub struct AWSAccount {
         /// Property [`EmailAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-auditmanager-assessment-awsaccount.html#cfn-auditmanager-assessment-awsaccount-emailaddress).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Conditional_.
+        /// Conditional updates can be mutable or immutable, depending on, for example, which other properties you updated.
+        /// For more information, see the relevant resource type documentation.
         pub email_address: Option<::Value<String>>,
         /// Property [`Id`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-auditmanager-assessment-awsaccount.html#cfn-auditmanager-assessment-awsaccount-id).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Conditional_.
+        /// Conditional updates can be mutable or immutable, depending on, for example, which other properties you updated.
+        /// For more information, see the relevant resource type documentation.
         pub id: Option<::Value<String>>,
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-auditmanager-assessment-awsaccount.html#cfn-auditmanager-assessment-awsaccount-name).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Conditional_.
+        /// Conditional updates can be mutable or immutable, depending on, for example, which other properties you updated.
+        /// For more information, see the relevant resource type documentation.
         pub name: Option<::Value<String>>,
     }
 

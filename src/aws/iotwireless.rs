@@ -33,7 +33,7 @@ pub struct DestinationProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub role_arn: ::Value<String>,
+    pub role_arn: Option<::Value<String>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-destination.html#cfn-iotwireless-destination-tags).
     ///
     /// Update type: _Mutable_.
@@ -50,7 +50,9 @@ impl ::serde::Serialize for DestinationProperties {
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Expression", &self.expression)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExpressionType", &self.expression_type)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
+        if let Some(ref role_arn) = self.role_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", role_arn)?;
+        }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
@@ -106,7 +108,7 @@ impl<'de> ::serde::Deserialize<'de> for DestinationProperties {
                     expression: expression.ok_or(::serde::de::Error::missing_field("Expression"))?,
                     expression_type: expression_type.ok_or(::serde::de::Error::missing_field("ExpressionType"))?,
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
-                    role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
+                    role_arn: role_arn,
                     tags: tags,
                 })
             }
@@ -239,6 +241,477 @@ impl From<DeviceProfileProperties> for DeviceProfile {
     }
 }
 
+/// The [`AWS::IoTWireless::FuotaTask`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html) resource type.
+#[derive(Debug, Default)]
+pub struct FuotaTask {
+    properties: FuotaTaskProperties
+}
+
+/// Properties for the `FuotaTask` resource.
+#[derive(Debug, Default)]
+pub struct FuotaTaskProperties {
+    /// Property [`AssociateMulticastGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html#cfn-iotwireless-fuotatask-associatemulticastgroup).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub associate_multicast_group: Option<::Value<String>>,
+    /// Property [`AssociateWirelessDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html#cfn-iotwireless-fuotatask-associatewirelessdevice).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub associate_wireless_device: Option<::Value<String>>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html#cfn-iotwireless-fuotatask-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`DisassociateMulticastGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html#cfn-iotwireless-fuotatask-disassociatemulticastgroup).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub disassociate_multicast_group: Option<::Value<String>>,
+    /// Property [`DisassociateWirelessDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html#cfn-iotwireless-fuotatask-disassociatewirelessdevice).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub disassociate_wireless_device: Option<::Value<String>>,
+    /// Property [`FirmwareUpdateImage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html#cfn-iotwireless-fuotatask-firmwareupdateimage).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub firmware_update_image: ::Value<String>,
+    /// Property [`FirmwareUpdateRole`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html#cfn-iotwireless-fuotatask-firmwareupdaterole).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub firmware_update_role: ::Value<String>,
+    /// Property [`LoRaWAN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html#cfn-iotwireless-fuotatask-lorawan).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub lo_ra_wan: ::Value<self::fuota_task::LoRaWAN>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html#cfn-iotwireless-fuotatask-name).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub name: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-fuotatask.html#cfn-iotwireless-fuotatask-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for FuotaTaskProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref associate_multicast_group) = self.associate_multicast_group {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssociateMulticastGroup", associate_multicast_group)?;
+        }
+        if let Some(ref associate_wireless_device) = self.associate_wireless_device {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssociateWirelessDevice", associate_wireless_device)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref disassociate_multicast_group) = self.disassociate_multicast_group {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisassociateMulticastGroup", disassociate_multicast_group)?;
+        }
+        if let Some(ref disassociate_wireless_device) = self.disassociate_wireless_device {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisassociateWirelessDevice", disassociate_wireless_device)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "FirmwareUpdateImage", &self.firmware_update_image)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "FirmwareUpdateRole", &self.firmware_update_role)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoRaWAN", &self.lo_ra_wan)?;
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for FuotaTaskProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<FuotaTaskProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = FuotaTaskProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type FuotaTaskProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut associate_multicast_group: Option<::Value<String>> = None;
+                let mut associate_wireless_device: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut disassociate_multicast_group: Option<::Value<String>> = None;
+                let mut disassociate_wireless_device: Option<::Value<String>> = None;
+                let mut firmware_update_image: Option<::Value<String>> = None;
+                let mut firmware_update_role: Option<::Value<String>> = None;
+                let mut lo_ra_wan: Option<::Value<self::fuota_task::LoRaWAN>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AssociateMulticastGroup" => {
+                            associate_multicast_group = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "AssociateWirelessDevice" => {
+                            associate_wireless_device = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DisassociateMulticastGroup" => {
+                            disassociate_multicast_group = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DisassociateWirelessDevice" => {
+                            disassociate_wireless_device = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "FirmwareUpdateImage" => {
+                            firmware_update_image = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "FirmwareUpdateRole" => {
+                            firmware_update_role = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "LoRaWAN" => {
+                            lo_ra_wan = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(FuotaTaskProperties {
+                    associate_multicast_group: associate_multicast_group,
+                    associate_wireless_device: associate_wireless_device,
+                    description: description,
+                    disassociate_multicast_group: disassociate_multicast_group,
+                    disassociate_wireless_device: disassociate_wireless_device,
+                    firmware_update_image: firmware_update_image.ok_or(::serde::de::Error::missing_field("FirmwareUpdateImage"))?,
+                    firmware_update_role: firmware_update_role.ok_or(::serde::de::Error::missing_field("FirmwareUpdateRole"))?,
+                    lo_ra_wan: lo_ra_wan.ok_or(::serde::de::Error::missing_field("LoRaWAN"))?,
+                    name: name,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for FuotaTask {
+    type Properties = FuotaTaskProperties;
+    const TYPE: &'static str = "AWS::IoTWireless::FuotaTask";
+    fn properties(&self) -> &FuotaTaskProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut FuotaTaskProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for FuotaTask {}
+
+impl From<FuotaTaskProperties> for FuotaTask {
+    fn from(properties: FuotaTaskProperties) -> FuotaTask {
+        FuotaTask { properties }
+    }
+}
+
+/// The [`AWS::IoTWireless::MulticastGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-multicastgroup.html) resource type.
+#[derive(Debug, Default)]
+pub struct MulticastGroup {
+    properties: MulticastGroupProperties
+}
+
+/// Properties for the `MulticastGroup` resource.
+#[derive(Debug, Default)]
+pub struct MulticastGroupProperties {
+    /// Property [`AssociateWirelessDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-multicastgroup.html#cfn-iotwireless-multicastgroup-associatewirelessdevice).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub associate_wireless_device: Option<::Value<String>>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-multicastgroup.html#cfn-iotwireless-multicastgroup-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`DisassociateWirelessDevice`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-multicastgroup.html#cfn-iotwireless-multicastgroup-disassociatewirelessdevice).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub disassociate_wireless_device: Option<::Value<String>>,
+    /// Property [`LoRaWAN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-multicastgroup.html#cfn-iotwireless-multicastgroup-lorawan).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub lo_ra_wan: ::Value<self::multicast_group::LoRaWAN>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-multicastgroup.html#cfn-iotwireless-multicastgroup-name).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub name: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-multicastgroup.html#cfn-iotwireless-multicastgroup-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for MulticastGroupProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref associate_wireless_device) = self.associate_wireless_device {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AssociateWirelessDevice", associate_wireless_device)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref disassociate_wireless_device) = self.disassociate_wireless_device {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisassociateWirelessDevice", disassociate_wireless_device)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoRaWAN", &self.lo_ra_wan)?;
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for MulticastGroupProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<MulticastGroupProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = MulticastGroupProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type MulticastGroupProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut associate_wireless_device: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut disassociate_wireless_device: Option<::Value<String>> = None;
+                let mut lo_ra_wan: Option<::Value<self::multicast_group::LoRaWAN>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AssociateWirelessDevice" => {
+                            associate_wireless_device = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DisassociateWirelessDevice" => {
+                            disassociate_wireless_device = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "LoRaWAN" => {
+                            lo_ra_wan = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(MulticastGroupProperties {
+                    associate_wireless_device: associate_wireless_device,
+                    description: description,
+                    disassociate_wireless_device: disassociate_wireless_device,
+                    lo_ra_wan: lo_ra_wan.ok_or(::serde::de::Error::missing_field("LoRaWAN"))?,
+                    name: name,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for MulticastGroup {
+    type Properties = MulticastGroupProperties;
+    const TYPE: &'static str = "AWS::IoTWireless::MulticastGroup";
+    fn properties(&self) -> &MulticastGroupProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut MulticastGroupProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for MulticastGroup {}
+
+impl From<MulticastGroupProperties> for MulticastGroup {
+    fn from(properties: MulticastGroupProperties) -> MulticastGroup {
+        MulticastGroup { properties }
+    }
+}
+
+/// The [`AWS::IoTWireless::NetworkAnalyzerConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-networkanalyzerconfiguration.html) resource type.
+#[derive(Debug, Default)]
+pub struct NetworkAnalyzerConfiguration {
+    properties: NetworkAnalyzerConfigurationProperties
+}
+
+/// Properties for the `NetworkAnalyzerConfiguration` resource.
+#[derive(Debug, Default)]
+pub struct NetworkAnalyzerConfigurationProperties {
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-networkanalyzerconfiguration.html#cfn-iotwireless-networkanalyzerconfiguration-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-networkanalyzerconfiguration.html#cfn-iotwireless-networkanalyzerconfiguration-name).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub name: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-networkanalyzerconfiguration.html#cfn-iotwireless-networkanalyzerconfiguration-tags).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`TraceContent`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-networkanalyzerconfiguration.html#cfn-iotwireless-networkanalyzerconfiguration-tracecontent).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub trace_content: Option<::Value<self::network_analyzer_configuration::TraceContent>>,
+    /// Property [`WirelessDevices`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-networkanalyzerconfiguration.html#cfn-iotwireless-networkanalyzerconfiguration-wirelessdevices).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub wireless_devices: Option<::ValueList<String>>,
+    /// Property [`WirelessGateways`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-networkanalyzerconfiguration.html#cfn-iotwireless-networkanalyzerconfiguration-wirelessgateways).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub wireless_gateways: Option<::ValueList<String>>,
+}
+
+impl ::serde::Serialize for NetworkAnalyzerConfigurationProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref trace_content) = self.trace_content {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TraceContent", trace_content)?;
+        }
+        if let Some(ref wireless_devices) = self.wireless_devices {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "WirelessDevices", wireless_devices)?;
+        }
+        if let Some(ref wireless_gateways) = self.wireless_gateways {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "WirelessGateways", wireless_gateways)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for NetworkAnalyzerConfigurationProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<NetworkAnalyzerConfigurationProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = NetworkAnalyzerConfigurationProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type NetworkAnalyzerConfigurationProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut description: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut trace_content: Option<::Value<self::network_analyzer_configuration::TraceContent>> = None;
+                let mut wireless_devices: Option<::ValueList<String>> = None;
+                let mut wireless_gateways: Option<::ValueList<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TraceContent" => {
+                            trace_content = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "WirelessDevices" => {
+                            wireless_devices = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "WirelessGateways" => {
+                            wireless_gateways = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(NetworkAnalyzerConfigurationProperties {
+                    description: description,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    tags: tags,
+                    trace_content: trace_content,
+                    wireless_devices: wireless_devices,
+                    wireless_gateways: wireless_gateways,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for NetworkAnalyzerConfiguration {
+    type Properties = NetworkAnalyzerConfigurationProperties;
+    const TYPE: &'static str = "AWS::IoTWireless::NetworkAnalyzerConfiguration";
+    fn properties(&self) -> &NetworkAnalyzerConfigurationProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut NetworkAnalyzerConfigurationProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for NetworkAnalyzerConfiguration {}
+
+impl From<NetworkAnalyzerConfigurationProperties> for NetworkAnalyzerConfiguration {
+    fn from(properties: NetworkAnalyzerConfigurationProperties) -> NetworkAnalyzerConfiguration {
+        NetworkAnalyzerConfiguration { properties }
+    }
+}
+
 /// The [`AWS::IoTWireless::PartnerAccount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-partneraccount.html) resource type.
 #[derive(Debug, Default)]
 pub struct PartnerAccount {
@@ -253,11 +726,6 @@ pub struct PartnerAccountProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub account_linked: Option<::Value<bool>>,
-    /// Property [`Fingerprint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-partneraccount.html#cfn-iotwireless-partneraccount-fingerprint).
-    ///
-    /// Update type: _Mutable_.
-    /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub fingerprint: Option<::Value<String>>,
     /// Property [`PartnerAccountId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-partneraccount.html#cfn-iotwireless-partneraccount-partneraccountid).
     ///
     /// Update type: _Immutable_.
@@ -273,6 +741,11 @@ pub struct PartnerAccountProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub sidewalk: Option<::Value<self::partner_account::SidewalkAccountInfo>>,
+    /// Property [`SidewalkResponse`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-partneraccount.html#cfn-iotwireless-partneraccount-sidewalkresponse).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub sidewalk_response: Option<::Value<self::partner_account::SidewalkAccountInfoWithFingerprint>>,
     /// Property [`SidewalkUpdate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-partneraccount.html#cfn-iotwireless-partneraccount-sidewalkupdate).
     ///
     /// Update type: _Mutable_.
@@ -291,9 +764,6 @@ impl ::serde::Serialize for PartnerAccountProperties {
         if let Some(ref account_linked) = self.account_linked {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccountLinked", account_linked)?;
         }
-        if let Some(ref fingerprint) = self.fingerprint {
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Fingerprint", fingerprint)?;
-        }
         if let Some(ref partner_account_id) = self.partner_account_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PartnerAccountId", partner_account_id)?;
         }
@@ -302,6 +772,9 @@ impl ::serde::Serialize for PartnerAccountProperties {
         }
         if let Some(ref sidewalk) = self.sidewalk {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Sidewalk", sidewalk)?;
+        }
+        if let Some(ref sidewalk_response) = self.sidewalk_response {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SidewalkResponse", sidewalk_response)?;
         }
         if let Some(ref sidewalk_update) = self.sidewalk_update {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SidewalkUpdate", sidewalk_update)?;
@@ -326,10 +799,10 @@ impl<'de> ::serde::Deserialize<'de> for PartnerAccountProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut account_linked: Option<::Value<bool>> = None;
-                let mut fingerprint: Option<::Value<String>> = None;
                 let mut partner_account_id: Option<::Value<String>> = None;
                 let mut partner_type: Option<::Value<String>> = None;
                 let mut sidewalk: Option<::Value<self::partner_account::SidewalkAccountInfo>> = None;
+                let mut sidewalk_response: Option<::Value<self::partner_account::SidewalkAccountInfoWithFingerprint>> = None;
                 let mut sidewalk_update: Option<::Value<self::partner_account::SidewalkUpdateAccount>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
 
@@ -337,9 +810,6 @@ impl<'de> ::serde::Deserialize<'de> for PartnerAccountProperties {
                     match __cfn_key.as_ref() {
                         "AccountLinked" => {
                             account_linked = ::serde::de::MapAccess::next_value(&mut map)?;
-                        }
-                        "Fingerprint" => {
-                            fingerprint = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "PartnerAccountId" => {
                             partner_account_id = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -349,6 +819,9 @@ impl<'de> ::serde::Deserialize<'de> for PartnerAccountProperties {
                         }
                         "Sidewalk" => {
                             sidewalk = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SidewalkResponse" => {
+                            sidewalk_response = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SidewalkUpdate" => {
                             sidewalk_update = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -362,10 +835,10 @@ impl<'de> ::serde::Deserialize<'de> for PartnerAccountProperties {
 
                 Ok(PartnerAccountProperties {
                     account_linked: account_linked,
-                    fingerprint: fingerprint,
                     partner_account_id: partner_account_id,
                     partner_type: partner_type,
                     sidewalk: sidewalk,
+                    sidewalk_response: sidewalk_response,
                     sidewalk_update: sidewalk_update,
                     tags: tags,
                 })
@@ -805,6 +1278,106 @@ impl From<WirelessDeviceProperties> for WirelessDevice {
     }
 }
 
+/// The [`AWS::IoTWireless::WirelessDeviceImportTask`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-wirelessdeviceimporttask.html) resource type.
+#[derive(Debug, Default)]
+pub struct WirelessDeviceImportTask {
+    properties: WirelessDeviceImportTaskProperties
+}
+
+/// Properties for the `WirelessDeviceImportTask` resource.
+#[derive(Debug, Default)]
+pub struct WirelessDeviceImportTaskProperties {
+    /// Property [`DestinationName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-wirelessdeviceimporttask.html#cfn-iotwireless-wirelessdeviceimporttask-destinationname).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub destination_name: ::Value<String>,
+    /// Property [`Sidewalk`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-wirelessdeviceimporttask.html#cfn-iotwireless-wirelessdeviceimporttask-sidewalk).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub sidewalk: ::Value<self::wireless_device_import_task::Sidewalk>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-wirelessdeviceimporttask.html#cfn-iotwireless-wirelessdeviceimporttask-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for WirelessDeviceImportTaskProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationName", &self.destination_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Sidewalk", &self.sidewalk)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for WirelessDeviceImportTaskProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<WirelessDeviceImportTaskProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = WirelessDeviceImportTaskProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type WirelessDeviceImportTaskProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut destination_name: Option<::Value<String>> = None;
+                let mut sidewalk: Option<::Value<self::wireless_device_import_task::Sidewalk>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "DestinationName" => {
+                            destination_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Sidewalk" => {
+                            sidewalk = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(WirelessDeviceImportTaskProperties {
+                    destination_name: destination_name.ok_or(::serde::de::Error::missing_field("DestinationName"))?,
+                    sidewalk: sidewalk.ok_or(::serde::de::Error::missing_field("Sidewalk"))?,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for WirelessDeviceImportTask {
+    type Properties = WirelessDeviceImportTaskProperties;
+    const TYPE: &'static str = "AWS::IoTWireless::WirelessDeviceImportTask";
+    fn properties(&self) -> &WirelessDeviceImportTaskProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut WirelessDeviceImportTaskProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for WirelessDeviceImportTask {}
+
+impl From<WirelessDeviceImportTaskProperties> for WirelessDeviceImportTask {
+    fn from(properties: WirelessDeviceImportTaskProperties) -> WirelessDeviceImportTask {
+        WirelessDeviceImportTask { properties }
+    }
+}
+
 /// The [`AWS::IoTWireless::WirelessGateway`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-wirelessgateway.html) resource type.
 #[derive(Debug, Default)]
 pub struct WirelessGateway {
@@ -844,6 +1417,11 @@ pub struct WirelessGatewayProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub thing_arn: Option<::Value<String>>,
+    /// Property [`ThingName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iotwireless-wirelessgateway.html#cfn-iotwireless-wirelessgateway-thingname).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub thing_name: Option<::Value<String>>,
 }
 
 impl ::serde::Serialize for WirelessGatewayProperties {
@@ -864,6 +1442,9 @@ impl ::serde::Serialize for WirelessGatewayProperties {
         }
         if let Some(ref thing_arn) = self.thing_arn {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThingArn", thing_arn)?;
+        }
+        if let Some(ref thing_name) = self.thing_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThingName", thing_name)?;
         }
         ::serde::ser::SerializeMap::end(map)
     }
@@ -887,6 +1468,7 @@ impl<'de> ::serde::Deserialize<'de> for WirelessGatewayProperties {
                 let mut name: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut thing_arn: Option<::Value<String>> = None;
+                let mut thing_name: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -908,6 +1490,9 @@ impl<'de> ::serde::Deserialize<'de> for WirelessGatewayProperties {
                         "ThingArn" => {
                             thing_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ThingName" => {
+                            thing_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
@@ -919,6 +1504,7 @@ impl<'de> ::serde::Deserialize<'de> for WirelessGatewayProperties {
                     name: name,
                     tags: tags,
                     thing_arn: thing_arn,
+                    thing_name: thing_name,
                 })
             }
         }
@@ -962,6 +1548,11 @@ pub mod device_profile {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub class_c_timeout: Option<::Value<u32>>,
+        /// Property [`FactoryPresetFreqsList`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-deviceprofile-lorawandeviceprofile.html#cfn-iotwireless-deviceprofile-lorawandeviceprofile-factorypresetfreqslist).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub factory_preset_freqs_list: Option<::ValueList<u32>>,
         /// Property [`MacVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-deviceprofile-lorawandeviceprofile.html#cfn-iotwireless-deviceprofile-lorawandeviceprofile-macversion).
         ///
         /// Update type: _Mutable_.
@@ -1002,6 +1593,26 @@ pub mod device_profile {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub rf_region: Option<::Value<String>>,
+        /// Property [`RxDataRate2`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-deviceprofile-lorawandeviceprofile.html#cfn-iotwireless-deviceprofile-lorawandeviceprofile-rxdatarate2).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub rx_data_rate2: Option<::Value<u32>>,
+        /// Property [`RxDelay1`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-deviceprofile-lorawandeviceprofile.html#cfn-iotwireless-deviceprofile-lorawandeviceprofile-rxdelay1).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub rx_delay1: Option<::Value<u32>>,
+        /// Property [`RxDrOffset1`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-deviceprofile-lorawandeviceprofile.html#cfn-iotwireless-deviceprofile-lorawandeviceprofile-rxdroffset1).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub rx_dr_offset1: Option<::Value<u32>>,
+        /// Property [`RxFreq2`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-deviceprofile-lorawandeviceprofile.html#cfn-iotwireless-deviceprofile-lorawandeviceprofile-rxfreq2).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub rx_freq2: Option<::Value<u32>>,
         /// Property [`Supports32BitFCnt`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-deviceprofile-lorawandeviceprofile.html#cfn-iotwireless-deviceprofile-lorawandeviceprofile-supports32bitfcnt).
         ///
         /// Update type: _Mutable_.
@@ -1033,6 +1644,9 @@ pub mod device_profile {
             if let Some(ref class_c_timeout) = self.class_c_timeout {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClassCTimeout", class_c_timeout)?;
             }
+            if let Some(ref factory_preset_freqs_list) = self.factory_preset_freqs_list {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FactoryPresetFreqsList", factory_preset_freqs_list)?;
+            }
             if let Some(ref mac_version) = self.mac_version {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "MacVersion", mac_version)?;
             }
@@ -1056,6 +1670,18 @@ pub mod device_profile {
             }
             if let Some(ref rf_region) = self.rf_region {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "RfRegion", rf_region)?;
+            }
+            if let Some(ref rx_data_rate2) = self.rx_data_rate2 {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RxDataRate2", rx_data_rate2)?;
+            }
+            if let Some(ref rx_delay1) = self.rx_delay1 {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RxDelay1", rx_delay1)?;
+            }
+            if let Some(ref rx_dr_offset1) = self.rx_dr_offset1 {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RxDrOffset1", rx_dr_offset1)?;
+            }
+            if let Some(ref rx_freq2) = self.rx_freq2 {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RxFreq2", rx_freq2)?;
             }
             if let Some(ref supports32_bit_f_cnt) = self.supports32_bit_f_cnt {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Supports32BitFCnt", supports32_bit_f_cnt)?;
@@ -1087,6 +1713,7 @@ pub mod device_profile {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut class_b_timeout: Option<::Value<u32>> = None;
                     let mut class_c_timeout: Option<::Value<u32>> = None;
+                    let mut factory_preset_freqs_list: Option<::ValueList<u32>> = None;
                     let mut mac_version: Option<::Value<String>> = None;
                     let mut max_duty_cycle: Option<::Value<u32>> = None;
                     let mut max_eirp: Option<::Value<u32>> = None;
@@ -1095,6 +1722,10 @@ pub mod device_profile {
                     let mut ping_slot_period: Option<::Value<u32>> = None;
                     let mut reg_params_revision: Option<::Value<String>> = None;
                     let mut rf_region: Option<::Value<String>> = None;
+                    let mut rx_data_rate2: Option<::Value<u32>> = None;
+                    let mut rx_delay1: Option<::Value<u32>> = None;
+                    let mut rx_dr_offset1: Option<::Value<u32>> = None;
+                    let mut rx_freq2: Option<::Value<u32>> = None;
                     let mut supports32_bit_f_cnt: Option<::Value<bool>> = None;
                     let mut supports_class_b: Option<::Value<bool>> = None;
                     let mut supports_class_c: Option<::Value<bool>> = None;
@@ -1107,6 +1738,9 @@ pub mod device_profile {
                             }
                             "ClassCTimeout" => {
                                 class_c_timeout = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "FactoryPresetFreqsList" => {
+                                factory_preset_freqs_list = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "MacVersion" => {
                                 mac_version = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1132,6 +1766,18 @@ pub mod device_profile {
                             "RfRegion" => {
                                 rf_region = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "RxDataRate2" => {
+                                rx_data_rate2 = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RxDelay1" => {
+                                rx_delay1 = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RxDrOffset1" => {
+                                rx_dr_offset1 = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RxFreq2" => {
+                                rx_freq2 = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Supports32BitFCnt" => {
                                 supports32_bit_f_cnt = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1151,6 +1797,7 @@ pub mod device_profile {
                     Ok(LoRaWANDeviceProfile {
                         class_b_timeout: class_b_timeout,
                         class_c_timeout: class_c_timeout,
+                        factory_preset_freqs_list: factory_preset_freqs_list,
                         mac_version: mac_version,
                         max_duty_cycle: max_duty_cycle,
                         max_eirp: max_eirp,
@@ -1159,10 +1806,244 @@ pub mod device_profile {
                         ping_slot_period: ping_slot_period,
                         reg_params_revision: reg_params_revision,
                         rf_region: rf_region,
+                        rx_data_rate2: rx_data_rate2,
+                        rx_delay1: rx_delay1,
+                        rx_dr_offset1: rx_dr_offset1,
+                        rx_freq2: rx_freq2,
                         supports32_bit_f_cnt: supports32_bit_f_cnt,
                         supports_class_b: supports_class_b,
                         supports_class_c: supports_class_c,
                         supports_join: supports_join,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod fuota_task {
+    //! Property types for the `FuotaTask` resource.
+
+    /// The [`AWS::IoTWireless::FuotaTask.LoRaWAN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-fuotatask-lorawan.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LoRaWAN {
+        /// Property [`RfRegion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-fuotatask-lorawan.html#cfn-iotwireless-fuotatask-lorawan-rfregion).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub rf_region: ::Value<String>,
+        /// Property [`StartTime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-fuotatask-lorawan.html#cfn-iotwireless-fuotatask-lorawan-starttime).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub start_time: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for LoRaWAN {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RfRegion", &self.rf_region)?;
+            if let Some(ref start_time) = self.start_time {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StartTime", start_time)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LoRaWAN {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LoRaWAN, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LoRaWAN;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LoRaWAN")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut rf_region: Option<::Value<String>> = None;
+                    let mut start_time: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "RfRegion" => {
+                                rf_region = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "StartTime" => {
+                                start_time = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LoRaWAN {
+                        rf_region: rf_region.ok_or(::serde::de::Error::missing_field("RfRegion"))?,
+                        start_time: start_time,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod multicast_group {
+    //! Property types for the `MulticastGroup` resource.
+
+    /// The [`AWS::IoTWireless::MulticastGroup.LoRaWAN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-multicastgroup-lorawan.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LoRaWAN {
+        /// Property [`DlClass`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-multicastgroup-lorawan.html#cfn-iotwireless-multicastgroup-lorawan-dlclass).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub dl_class: ::Value<String>,
+        /// Property [`NumberOfDevicesInGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-multicastgroup-lorawan.html#cfn-iotwireless-multicastgroup-lorawan-numberofdevicesingroup).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub number_of_devices_in_group: Option<::Value<u32>>,
+        /// Property [`NumberOfDevicesRequested`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-multicastgroup-lorawan.html#cfn-iotwireless-multicastgroup-lorawan-numberofdevicesrequested).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub number_of_devices_requested: Option<::Value<u32>>,
+        /// Property [`RfRegion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-multicastgroup-lorawan.html#cfn-iotwireless-multicastgroup-lorawan-rfregion).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub rf_region: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for LoRaWAN {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DlClass", &self.dl_class)?;
+            if let Some(ref number_of_devices_in_group) = self.number_of_devices_in_group {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NumberOfDevicesInGroup", number_of_devices_in_group)?;
+            }
+            if let Some(ref number_of_devices_requested) = self.number_of_devices_requested {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NumberOfDevicesRequested", number_of_devices_requested)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RfRegion", &self.rf_region)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LoRaWAN {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LoRaWAN, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LoRaWAN;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LoRaWAN")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut dl_class: Option<::Value<String>> = None;
+                    let mut number_of_devices_in_group: Option<::Value<u32>> = None;
+                    let mut number_of_devices_requested: Option<::Value<u32>> = None;
+                    let mut rf_region: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DlClass" => {
+                                dl_class = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "NumberOfDevicesInGroup" => {
+                                number_of_devices_in_group = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "NumberOfDevicesRequested" => {
+                                number_of_devices_requested = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RfRegion" => {
+                                rf_region = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LoRaWAN {
+                        dl_class: dl_class.ok_or(::serde::de::Error::missing_field("DlClass"))?,
+                        number_of_devices_in_group: number_of_devices_in_group,
+                        number_of_devices_requested: number_of_devices_requested,
+                        rf_region: rf_region.ok_or(::serde::de::Error::missing_field("RfRegion"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod network_analyzer_configuration {
+    //! Property types for the `NetworkAnalyzerConfiguration` resource.
+
+    /// The [`AWS::IoTWireless::NetworkAnalyzerConfiguration.TraceContent`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-networkanalyzerconfiguration-tracecontent.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TraceContent {
+        /// Property [`LogLevel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-networkanalyzerconfiguration-tracecontent.html#cfn-iotwireless-networkanalyzerconfiguration-tracecontent-loglevel).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub log_level: Option<::Value<String>>,
+        /// Property [`WirelessDeviceFrameInfo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-networkanalyzerconfiguration-tracecontent.html#cfn-iotwireless-networkanalyzerconfiguration-tracecontent-wirelessdeviceframeinfo).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub wireless_device_frame_info: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for TraceContent {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref log_level) = self.log_level {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogLevel", log_level)?;
+            }
+            if let Some(ref wireless_device_frame_info) = self.wireless_device_frame_info {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "WirelessDeviceFrameInfo", wireless_device_frame_info)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TraceContent {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TraceContent, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TraceContent;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TraceContent")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut log_level: Option<::Value<String>> = None;
+                    let mut wireless_device_frame_info: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "LogLevel" => {
+                                log_level = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "WirelessDeviceFrameInfo" => {
+                                wireless_device_frame_info = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TraceContent {
+                        log_level: log_level,
+                        wireless_device_frame_info: wireless_device_frame_info,
                     })
                 }
             }
@@ -1218,6 +2099,85 @@ pub mod partner_account {
 
                     Ok(SidewalkAccountInfo {
                         app_server_private_key: app_server_private_key.ok_or(::serde::de::Error::missing_field("AppServerPrivateKey"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::IoTWireless::PartnerAccount.SidewalkAccountInfoWithFingerprint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-partneraccount-sidewalkaccountinfowithfingerprint.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SidewalkAccountInfoWithFingerprint {
+        /// Property [`AmazonId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-partneraccount-sidewalkaccountinfowithfingerprint.html#cfn-iotwireless-partneraccount-sidewalkaccountinfowithfingerprint-amazonid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub amazon_id: Option<::Value<String>>,
+        /// Property [`Arn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-partneraccount-sidewalkaccountinfowithfingerprint.html#cfn-iotwireless-partneraccount-sidewalkaccountinfowithfingerprint-arn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub arn: Option<::Value<String>>,
+        /// Property [`Fingerprint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-partneraccount-sidewalkaccountinfowithfingerprint.html#cfn-iotwireless-partneraccount-sidewalkaccountinfowithfingerprint-fingerprint).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub fingerprint: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for SidewalkAccountInfoWithFingerprint {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref amazon_id) = self.amazon_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AmazonId", amazon_id)?;
+            }
+            if let Some(ref arn) = self.arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Arn", arn)?;
+            }
+            if let Some(ref fingerprint) = self.fingerprint {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Fingerprint", fingerprint)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SidewalkAccountInfoWithFingerprint {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SidewalkAccountInfoWithFingerprint, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SidewalkAccountInfoWithFingerprint;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SidewalkAccountInfoWithFingerprint")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut amazon_id: Option<::Value<String>> = None;
+                    let mut arn: Option<::Value<String>> = None;
+                    let mut fingerprint: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AmazonId" => {
+                                amazon_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Arn" => {
+                                arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Fingerprint" => {
+                                fingerprint = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SidewalkAccountInfoWithFingerprint {
+                        amazon_id: amazon_id,
+                        arn: arn,
+                        fingerprint: fingerprint,
                     })
                 }
             }
@@ -2422,6 +3382,102 @@ pub mod wireless_device {
                         f_nwk_s_int_key: f_nwk_s_int_key.ok_or(::serde::de::Error::missing_field("FNwkSIntKey"))?,
                         nwk_s_enc_key: nwk_s_enc_key.ok_or(::serde::de::Error::missing_field("NwkSEncKey"))?,
                         s_nwk_s_int_key: s_nwk_s_int_key.ok_or(::serde::de::Error::missing_field("SNwkSIntKey"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod wireless_device_import_task {
+    //! Property types for the `WirelessDeviceImportTask` resource.
+
+    /// The [`AWS::IoTWireless::WirelessDeviceImportTask.Sidewalk`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdeviceimporttask-sidewalk.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Sidewalk {
+        /// Property [`DeviceCreationFile`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdeviceimporttask-sidewalk.html#cfn-iotwireless-wirelessdeviceimporttask-sidewalk-devicecreationfile).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub device_creation_file: Option<::Value<String>>,
+        /// Property [`DeviceCreationFileList`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdeviceimporttask-sidewalk.html#cfn-iotwireless-wirelessdeviceimporttask-sidewalk-devicecreationfilelist).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub device_creation_file_list: Option<::ValueList<String>>,
+        /// Property [`Role`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdeviceimporttask-sidewalk.html#cfn-iotwireless-wirelessdeviceimporttask-sidewalk-role).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub role: Option<::Value<String>>,
+        /// Property [`SidewalkManufacturingSn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iotwireless-wirelessdeviceimporttask-sidewalk.html#cfn-iotwireless-wirelessdeviceimporttask-sidewalk-sidewalkmanufacturingsn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub sidewalk_manufacturing_sn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for Sidewalk {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref device_creation_file) = self.device_creation_file {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceCreationFile", device_creation_file)?;
+            }
+            if let Some(ref device_creation_file_list) = self.device_creation_file_list {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeviceCreationFileList", device_creation_file_list)?;
+            }
+            if let Some(ref role) = self.role {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Role", role)?;
+            }
+            if let Some(ref sidewalk_manufacturing_sn) = self.sidewalk_manufacturing_sn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SidewalkManufacturingSn", sidewalk_manufacturing_sn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Sidewalk {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Sidewalk, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Sidewalk;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Sidewalk")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut device_creation_file: Option<::Value<String>> = None;
+                    let mut device_creation_file_list: Option<::ValueList<String>> = None;
+                    let mut role: Option<::Value<String>> = None;
+                    let mut sidewalk_manufacturing_sn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DeviceCreationFile" => {
+                                device_creation_file = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DeviceCreationFileList" => {
+                                device_creation_file_list = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Role" => {
+                                role = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SidewalkManufacturingSn" => {
+                                sidewalk_manufacturing_sn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Sidewalk {
+                        device_creation_file: device_creation_file,
+                        device_creation_file_list: device_creation_file_list,
+                        role: role,
+                        sidewalk_manufacturing_sn: sidewalk_manufacturing_sn,
                     })
                 }
             }

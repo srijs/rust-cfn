@@ -121,6 +121,11 @@ pub struct ConfigurationProfileProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub description: Option<::Value<String>>,
+    /// Property [`KmsKeyIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-configurationprofile.html#cfn-appconfig-configurationprofile-kmskeyidentifier).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub kms_key_identifier: Option<::Value<String>>,
     /// Property [`LocationUri`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-configurationprofile.html#cfn-appconfig-configurationprofile-locationuri).
     ///
     /// Update type: _Immutable_.
@@ -141,6 +146,11 @@ pub struct ConfigurationProfileProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub tags: Option<::ValueList<self::configuration_profile::Tags>>,
+    /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-configurationprofile.html#cfn-appconfig-configurationprofile-type).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub r#type: Option<::Value<String>>,
     /// Property [`Validators`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-configurationprofile.html#cfn-appconfig-configurationprofile-validators).
     ///
     /// Update type: _Mutable_.
@@ -155,6 +165,9 @@ impl ::serde::Serialize for ConfigurationProfileProperties {
         if let Some(ref description) = self.description {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
         }
+        if let Some(ref kms_key_identifier) = self.kms_key_identifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyIdentifier", kms_key_identifier)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "LocationUri", &self.location_uri)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         if let Some(ref retrieval_role_arn) = self.retrieval_role_arn {
@@ -162,6 +175,9 @@ impl ::serde::Serialize for ConfigurationProfileProperties {
         }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref r#type) = self.r#type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", r#type)?;
         }
         if let Some(ref validators) = self.validators {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Validators", validators)?;
@@ -184,10 +200,12 @@ impl<'de> ::serde::Deserialize<'de> for ConfigurationProfileProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut application_id: Option<::Value<String>> = None;
                 let mut description: Option<::Value<String>> = None;
+                let mut kms_key_identifier: Option<::Value<String>> = None;
                 let mut location_uri: Option<::Value<String>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut retrieval_role_arn: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<self::configuration_profile::Tags>> = None;
+                let mut r#type: Option<::Value<String>> = None;
                 let mut validators: Option<::ValueList<self::configuration_profile::Validators>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -197,6 +215,9 @@ impl<'de> ::serde::Deserialize<'de> for ConfigurationProfileProperties {
                         }
                         "Description" => {
                             description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "KmsKeyIdentifier" => {
+                            kms_key_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "LocationUri" => {
                             location_uri = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -210,6 +231,9 @@ impl<'de> ::serde::Deserialize<'de> for ConfigurationProfileProperties {
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Type" => {
+                            r#type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Validators" => {
                             validators = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -220,10 +244,12 @@ impl<'de> ::serde::Deserialize<'de> for ConfigurationProfileProperties {
                 Ok(ConfigurationProfileProperties {
                     application_id: application_id.ok_or(::serde::de::Error::missing_field("ApplicationId"))?,
                     description: description,
+                    kms_key_identifier: kms_key_identifier,
                     location_uri: location_uri.ok_or(::serde::de::Error::missing_field("LocationUri"))?,
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     retrieval_role_arn: retrieval_role_arn,
                     tags: tags,
+                    r#type: r#type,
                     validators: validators,
                 })
             }
@@ -291,10 +317,15 @@ pub struct DeploymentProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub environment_id: ::Value<String>,
+    /// Property [`KmsKeyIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-deployment.html#cfn-appconfig-deployment-kmskeyidentifier).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub kms_key_identifier: Option<::Value<String>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-deployment.html#cfn-appconfig-deployment-tags).
     ///
-    /// Update type: _Mutable_.
-    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub tags: Option<::ValueList<self::deployment::Tags>>,
 }
 
@@ -309,6 +340,9 @@ impl ::serde::Serialize for DeploymentProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnvironmentId", &self.environment_id)?;
+        if let Some(ref kms_key_identifier) = self.kms_key_identifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyIdentifier", kms_key_identifier)?;
+        }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
@@ -334,6 +368,7 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentProperties {
                 let mut deployment_strategy_id: Option<::Value<String>> = None;
                 let mut description: Option<::Value<String>> = None;
                 let mut environment_id: Option<::Value<String>> = None;
+                let mut kms_key_identifier: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<self::deployment::Tags>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -356,6 +391,9 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentProperties {
                         "EnvironmentId" => {
                             environment_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "KmsKeyIdentifier" => {
+                            kms_key_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -370,6 +408,7 @@ impl<'de> ::serde::Deserialize<'de> for DeploymentProperties {
                     deployment_strategy_id: deployment_strategy_id.ok_or(::serde::de::Error::missing_field("DeploymentStrategyId"))?,
                     description: description,
                     environment_id: environment_id.ok_or(::serde::de::Error::missing_field("EnvironmentId"))?,
+                    kms_key_identifier: kms_key_identifier,
                     tags: tags,
                 })
             }
@@ -685,6 +724,275 @@ impl From<EnvironmentProperties> for Environment {
     }
 }
 
+/// The [`AWS::AppConfig::Extension`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-extension.html) resource type.
+#[derive(Debug, Default)]
+pub struct Extension {
+    properties: ExtensionProperties
+}
+
+/// Properties for the `Extension` resource.
+#[derive(Debug, Default)]
+pub struct ExtensionProperties {
+    /// Property [`Actions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-extension.html#cfn-appconfig-extension-actions).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub actions: ::Value<::json::Value>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-extension.html#cfn-appconfig-extension-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`LatestVersionNumber`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-extension.html#cfn-appconfig-extension-latestversionnumber).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub latest_version_number: Option<::Value<u32>>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-extension.html#cfn-appconfig-extension-name).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub name: ::Value<String>,
+    /// Property [`Parameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-extension.html#cfn-appconfig-extension-parameters).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub parameters: Option<::ValueMap<self::extension::Parameter>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-extension.html#cfn-appconfig-extension-tags).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for ExtensionProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Actions", &self.actions)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref latest_version_number) = self.latest_version_number {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LatestVersionNumber", latest_version_number)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref parameters) = self.parameters {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", parameters)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ExtensionProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ExtensionProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ExtensionProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ExtensionProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut actions: Option<::Value<::json::Value>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut latest_version_number: Option<::Value<u32>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut parameters: Option<::ValueMap<self::extension::Parameter>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Actions" => {
+                            actions = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "LatestVersionNumber" => {
+                            latest_version_number = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Parameters" => {
+                            parameters = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ExtensionProperties {
+                    actions: actions.ok_or(::serde::de::Error::missing_field("Actions"))?,
+                    description: description,
+                    latest_version_number: latest_version_number,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    parameters: parameters,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for Extension {
+    type Properties = ExtensionProperties;
+    const TYPE: &'static str = "AWS::AppConfig::Extension";
+    fn properties(&self) -> &ExtensionProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut ExtensionProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for Extension {}
+
+impl From<ExtensionProperties> for Extension {
+    fn from(properties: ExtensionProperties) -> Extension {
+        Extension { properties }
+    }
+}
+
+/// The [`AWS::AppConfig::ExtensionAssociation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-extensionassociation.html) resource type.
+#[derive(Debug, Default)]
+pub struct ExtensionAssociation {
+    properties: ExtensionAssociationProperties
+}
+
+/// Properties for the `ExtensionAssociation` resource.
+#[derive(Debug, Default)]
+pub struct ExtensionAssociationProperties {
+    /// Property [`ExtensionIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-extensionassociation.html#cfn-appconfig-extensionassociation-extensionidentifier).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub extension_identifier: Option<::Value<String>>,
+    /// Property [`ExtensionVersionNumber`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-extensionassociation.html#cfn-appconfig-extensionassociation-extensionversionnumber).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub extension_version_number: Option<::Value<u32>>,
+    /// Property [`Parameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-extensionassociation.html#cfn-appconfig-extensionassociation-parameters).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub parameters: Option<::ValueMap<String>>,
+    /// Property [`ResourceIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-extensionassociation.html#cfn-appconfig-extensionassociation-resourceidentifier).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub resource_identifier: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-extensionassociation.html#cfn-appconfig-extensionassociation-tags).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for ExtensionAssociationProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref extension_identifier) = self.extension_identifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExtensionIdentifier", extension_identifier)?;
+        }
+        if let Some(ref extension_version_number) = self.extension_version_number {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExtensionVersionNumber", extension_version_number)?;
+        }
+        if let Some(ref parameters) = self.parameters {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", parameters)?;
+        }
+        if let Some(ref resource_identifier) = self.resource_identifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceIdentifier", resource_identifier)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ExtensionAssociationProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ExtensionAssociationProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ExtensionAssociationProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ExtensionAssociationProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut extension_identifier: Option<::Value<String>> = None;
+                let mut extension_version_number: Option<::Value<u32>> = None;
+                let mut parameters: Option<::ValueMap<String>> = None;
+                let mut resource_identifier: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "ExtensionIdentifier" => {
+                            extension_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ExtensionVersionNumber" => {
+                            extension_version_number = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Parameters" => {
+                            parameters = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ResourceIdentifier" => {
+                            resource_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ExtensionAssociationProperties {
+                    extension_identifier: extension_identifier,
+                    extension_version_number: extension_version_number,
+                    parameters: parameters,
+                    resource_identifier: resource_identifier,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for ExtensionAssociation {
+    type Properties = ExtensionAssociationProperties;
+    const TYPE: &'static str = "AWS::AppConfig::ExtensionAssociation";
+    fn properties(&self) -> &ExtensionAssociationProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut ExtensionAssociationProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for ExtensionAssociation {}
+
+impl From<ExtensionAssociationProperties> for ExtensionAssociation {
+    fn from(properties: ExtensionAssociationProperties) -> ExtensionAssociation {
+        ExtensionAssociation { properties }
+    }
+}
+
 /// The [`AWS::AppConfig::HostedConfigurationVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-hostedconfigurationversion.html) resource type.
 #[derive(Debug, Default)]
 pub struct HostedConfigurationVersion {
@@ -724,6 +1032,11 @@ pub struct HostedConfigurationVersionProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub latest_version_number: Option<::Value<f64>>,
+    /// Property [`VersionLabel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appconfig-hostedconfigurationversion.html#cfn-appconfig-hostedconfigurationversion-versionlabel).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub version_label: Option<::Value<String>>,
 }
 
 impl ::serde::Serialize for HostedConfigurationVersionProperties {
@@ -738,6 +1051,9 @@ impl ::serde::Serialize for HostedConfigurationVersionProperties {
         }
         if let Some(ref latest_version_number) = self.latest_version_number {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LatestVersionNumber", latest_version_number)?;
+        }
+        if let Some(ref version_label) = self.version_label {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VersionLabel", version_label)?;
         }
         ::serde::ser::SerializeMap::end(map)
     }
@@ -761,6 +1077,7 @@ impl<'de> ::serde::Deserialize<'de> for HostedConfigurationVersionProperties {
                 let mut content_type: Option<::Value<String>> = None;
                 let mut description: Option<::Value<String>> = None;
                 let mut latest_version_number: Option<::Value<f64>> = None;
+                let mut version_label: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -782,6 +1099,9 @@ impl<'de> ::serde::Deserialize<'de> for HostedConfigurationVersionProperties {
                         "LatestVersionNumber" => {
                             latest_version_number = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "VersionLabel" => {
+                            version_label = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
@@ -793,6 +1113,7 @@ impl<'de> ::serde::Deserialize<'de> for HostedConfigurationVersionProperties {
                     content_type: content_type.ok_or(::serde::de::Error::missing_field("ContentType"))?,
                     description: description,
                     latest_version_number: latest_version_number,
+                    version_label: version_label,
                 })
             }
         }
@@ -830,23 +1151,19 @@ pub mod application {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub key: Option<::Value<String>>,
+        pub key: ::Value<String>,
         /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appconfig-application-tags.html#cfn-appconfig-application-tags-value).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub value: Option<::Value<String>>,
+        pub value: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for Tags {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref key) = self.key {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", key)?;
-            }
-            if let Some(ref value) = self.value {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", value)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -879,8 +1196,8 @@ pub mod application {
                     }
 
                     Ok(Tags {
-                        key: key,
-                        value: value,
+                        key: key.ok_or(::serde::de::Error::missing_field("Key"))?,
+                        value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
                     })
                 }
             }
@@ -1293,6 +1610,74 @@ pub mod environment {
                     Ok(Tags {
                         key: key,
                         value: value,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod extension {
+    //! Property types for the `Extension` resource.
+
+    /// The [`AWS::AppConfig::Extension.Parameter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appconfig-extension-parameter.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Parameter {
+        /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appconfig-extension-parameter.html#cfn-appconfig-extension-parameter-description).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub description: Option<::Value<String>>,
+        /// Property [`Required`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appconfig-extension-parameter.html#cfn-appconfig-extension-parameter-required).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub required: ::Value<bool>,
+    }
+
+    impl ::codec::SerializeValue for Parameter {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref description) = self.description {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Required", &self.required)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Parameter {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Parameter, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Parameter;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Parameter")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut description: Option<::Value<String>> = None;
+                    let mut required: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Description" => {
+                                description = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Required" => {
+                                required = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Parameter {
+                        description: description,
+                        required: required.ok_or(::serde::de::Error::missing_field("Required"))?,
                     })
                 }
             }

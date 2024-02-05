@@ -1,5 +1,118 @@
 //! Types for the `AppFlow` service.
 
+/// The [`AWS::AppFlow::Connector`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appflow-connector.html) resource type.
+#[derive(Debug, Default)]
+pub struct Connector {
+    properties: ConnectorProperties
+}
+
+/// Properties for the `Connector` resource.
+#[derive(Debug, Default)]
+pub struct ConnectorProperties {
+    /// Property [`ConnectorLabel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appflow-connector.html#cfn-appflow-connector-connectorlabel).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub connector_label: Option<::Value<String>>,
+    /// Property [`ConnectorProvisioningConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appflow-connector.html#cfn-appflow-connector-connectorprovisioningconfig).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub connector_provisioning_config: ::Value<self::connector::ConnectorProvisioningConfig>,
+    /// Property [`ConnectorProvisioningType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appflow-connector.html#cfn-appflow-connector-connectorprovisioningtype).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub connector_provisioning_type: ::Value<String>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appflow-connector.html#cfn-appflow-connector-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for ConnectorProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref connector_label) = self.connector_label {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectorLabel", connector_label)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectorProvisioningConfig", &self.connector_provisioning_config)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectorProvisioningType", &self.connector_provisioning_type)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ConnectorProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ConnectorProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ConnectorProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ConnectorProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut connector_label: Option<::Value<String>> = None;
+                let mut connector_provisioning_config: Option<::Value<self::connector::ConnectorProvisioningConfig>> = None;
+                let mut connector_provisioning_type: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "ConnectorLabel" => {
+                            connector_label = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ConnectorProvisioningConfig" => {
+                            connector_provisioning_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ConnectorProvisioningType" => {
+                            connector_provisioning_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ConnectorProperties {
+                    connector_label: connector_label,
+                    connector_provisioning_config: connector_provisioning_config.ok_or(::serde::de::Error::missing_field("ConnectorProvisioningConfig"))?,
+                    connector_provisioning_type: connector_provisioning_type.ok_or(::serde::de::Error::missing_field("ConnectorProvisioningType"))?,
+                    description: description,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for Connector {
+    type Properties = ConnectorProperties;
+    const TYPE: &'static str = "AWS::AppFlow::Connector";
+    fn properties(&self) -> &ConnectorProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut ConnectorProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for Connector {}
+
+impl From<ConnectorProperties> for Connector {
+    fn from(properties: ConnectorProperties) -> Connector {
+        Connector { properties }
+    }
+}
+
 /// The [`AWS::AppFlow::ConnectorProfile`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appflow-connectorprofile.html) resource type.
 #[derive(Debug, Default)]
 pub struct ConnectorProfile {
@@ -14,6 +127,11 @@ pub struct ConnectorProfileProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub connection_mode: ::Value<String>,
+    /// Property [`ConnectorLabel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appflow-connectorprofile.html#cfn-appflow-connectorprofile-connectorlabel).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub connector_label: Option<::Value<String>>,
     /// Property [`ConnectorProfileConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appflow-connectorprofile.html#cfn-appflow-connectorprofile-connectorprofileconfig).
     ///
     /// Update type: _Mutable_.
@@ -31,8 +149,8 @@ pub struct ConnectorProfileProperties {
     pub connector_type: ::Value<String>,
     /// Property [`KMSArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appflow-connectorprofile.html#cfn-appflow-connectorprofile-kmsarn).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub kms_arn: Option<::Value<String>>,
 }
 
@@ -40,6 +158,9 @@ impl ::serde::Serialize for ConnectorProfileProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionMode", &self.connection_mode)?;
+        if let Some(ref connector_label) = self.connector_label {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectorLabel", connector_label)?;
+        }
         if let Some(ref connector_profile_config) = self.connector_profile_config {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectorProfileConfig", connector_profile_config)?;
         }
@@ -65,6 +186,7 @@ impl<'de> ::serde::Deserialize<'de> for ConnectorProfileProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut connection_mode: Option<::Value<String>> = None;
+                let mut connector_label: Option<::Value<String>> = None;
                 let mut connector_profile_config: Option<::Value<self::connector_profile::ConnectorProfileConfig>> = None;
                 let mut connector_profile_name: Option<::Value<String>> = None;
                 let mut connector_type: Option<::Value<String>> = None;
@@ -74,6 +196,9 @@ impl<'de> ::serde::Deserialize<'de> for ConnectorProfileProperties {
                     match __cfn_key.as_ref() {
                         "ConnectionMode" => {
                             connection_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ConnectorLabel" => {
+                            connector_label = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ConnectorProfileConfig" => {
                             connector_profile_config = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -93,6 +218,7 @@ impl<'de> ::serde::Deserialize<'de> for ConnectorProfileProperties {
 
                 Ok(ConnectorProfileProperties {
                     connection_mode: connection_mode.ok_or(::serde::de::Error::missing_field("ConnectionMode"))?,
+                    connector_label: connector_label,
                     connector_profile_config: connector_profile_config,
                     connector_profile_name: connector_profile_name.ok_or(::serde::de::Error::missing_field("ConnectorProfileName"))?,
                     connector_type: connector_type.ok_or(::serde::de::Error::missing_field("ConnectorType"))?,
@@ -148,11 +274,21 @@ pub struct FlowProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub flow_name: ::Value<String>,
+    /// Property [`FlowStatus`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appflow-flow.html#cfn-appflow-flow-flowstatus).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub flow_status: Option<::Value<String>>,
     /// Property [`KMSArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appflow-flow.html#cfn-appflow-flow-kmsarn).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub kms_arn: Option<::Value<String>>,
+    /// Property [`MetadataCatalogConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appflow-flow.html#cfn-appflow-flow-metadatacatalogconfig).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub metadata_catalog_config: Option<::Value<self::flow::MetadataCatalogConfig>>,
     /// Property [`SourceFlowConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-appflow-flow.html#cfn-appflow-flow-sourceflowconfig).
     ///
     /// Update type: _Mutable_.
@@ -183,8 +319,14 @@ impl ::serde::Serialize for FlowProperties {
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationFlowConfigList", &self.destination_flow_config_list)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "FlowName", &self.flow_name)?;
+        if let Some(ref flow_status) = self.flow_status {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FlowStatus", flow_status)?;
+        }
         if let Some(ref kms_arn) = self.kms_arn {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KMSArn", kms_arn)?;
+        }
+        if let Some(ref metadata_catalog_config) = self.metadata_catalog_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetadataCatalogConfig", metadata_catalog_config)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceFlowConfig", &self.source_flow_config)?;
         if let Some(ref tags) = self.tags {
@@ -211,7 +353,9 @@ impl<'de> ::serde::Deserialize<'de> for FlowProperties {
                 let mut description: Option<::Value<String>> = None;
                 let mut destination_flow_config_list: Option<::ValueList<self::flow::DestinationFlowConfig>> = None;
                 let mut flow_name: Option<::Value<String>> = None;
+                let mut flow_status: Option<::Value<String>> = None;
                 let mut kms_arn: Option<::Value<String>> = None;
+                let mut metadata_catalog_config: Option<::Value<self::flow::MetadataCatalogConfig>> = None;
                 let mut source_flow_config: Option<::Value<self::flow::SourceFlowConfig>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut tasks: Option<::ValueList<self::flow::Task>> = None;
@@ -228,8 +372,14 @@ impl<'de> ::serde::Deserialize<'de> for FlowProperties {
                         "FlowName" => {
                             flow_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "FlowStatus" => {
+                            flow_status = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "KMSArn" => {
                             kms_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MetadataCatalogConfig" => {
+                            metadata_catalog_config = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SourceFlowConfig" => {
                             source_flow_config = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -251,7 +401,9 @@ impl<'de> ::serde::Deserialize<'de> for FlowProperties {
                     description: description,
                     destination_flow_config_list: destination_flow_config_list.ok_or(::serde::de::Error::missing_field("DestinationFlowConfigList"))?,
                     flow_name: flow_name.ok_or(::serde::de::Error::missing_field("FlowName"))?,
+                    flow_status: flow_status,
                     kms_arn: kms_arn,
+                    metadata_catalog_config: metadata_catalog_config,
                     source_flow_config: source_flow_config.ok_or(::serde::de::Error::missing_field("SourceFlowConfig"))?,
                     tags: tags,
                     tasks: tasks.ok_or(::serde::de::Error::missing_field("Tasks"))?,
@@ -280,6 +432,114 @@ impl ::private::Sealed for Flow {}
 impl From<FlowProperties> for Flow {
     fn from(properties: FlowProperties) -> Flow {
         Flow { properties }
+    }
+}
+
+pub mod connector {
+    //! Property types for the `Connector` resource.
+
+    /// The [`AWS::AppFlow::Connector.ConnectorProvisioningConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connector-connectorprovisioningconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ConnectorProvisioningConfig {
+        /// Property [`Lambda`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connector-connectorprovisioningconfig.html#cfn-appflow-connector-connectorprovisioningconfig-lambda).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub lambda: Option<::Value<LambdaConnectorProvisioningConfig>>,
+    }
+
+    impl ::codec::SerializeValue for ConnectorProvisioningConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref lambda) = self.lambda {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Lambda", lambda)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ConnectorProvisioningConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ConnectorProvisioningConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ConnectorProvisioningConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ConnectorProvisioningConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut lambda: Option<::Value<LambdaConnectorProvisioningConfig>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Lambda" => {
+                                lambda = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ConnectorProvisioningConfig {
+                        lambda: lambda,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppFlow::Connector.LambdaConnectorProvisioningConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connector-lambdaconnectorprovisioningconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LambdaConnectorProvisioningConfig {
+        /// Property [`LambdaArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connector-lambdaconnectorprovisioningconfig.html#cfn-appflow-connector-lambdaconnectorprovisioningconfig-lambdaarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub lambda_arn: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for LambdaConnectorProvisioningConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaArn", &self.lambda_arn)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LambdaConnectorProvisioningConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LambdaConnectorProvisioningConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LambdaConnectorProvisioningConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LambdaConnectorProvisioningConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut lambda_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "LambdaArn" => {
+                                lambda_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LambdaConnectorProvisioningConfig {
+                        lambda_arn: lambda_arn.ok_or(::serde::de::Error::missing_field("LambdaArn"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
     }
 }
 
@@ -340,6 +600,132 @@ pub mod connector_profile {
                     Ok(AmplitudeConnectorProfileCredentials {
                         api_key: api_key.ok_or(::serde::de::Error::missing_field("ApiKey"))?,
                         secret_key: secret_key.ok_or(::serde::de::Error::missing_field("SecretKey"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppFlow::ConnectorProfile.ApiKeyCredentials`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-apikeycredentials.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ApiKeyCredentials {
+        /// Property [`ApiKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-apikeycredentials.html#cfn-appflow-connectorprofile-apikeycredentials-apikey).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub api_key: ::Value<String>,
+        /// Property [`ApiSecretKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-apikeycredentials.html#cfn-appflow-connectorprofile-apikeycredentials-apisecretkey).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub api_secret_key: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for ApiKeyCredentials {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApiKey", &self.api_key)?;
+            if let Some(ref api_secret_key) = self.api_secret_key {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApiSecretKey", api_secret_key)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ApiKeyCredentials {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ApiKeyCredentials, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ApiKeyCredentials;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ApiKeyCredentials")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut api_key: Option<::Value<String>> = None;
+                    let mut api_secret_key: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ApiKey" => {
+                                api_key = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ApiSecretKey" => {
+                                api_secret_key = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ApiKeyCredentials {
+                        api_key: api_key.ok_or(::serde::de::Error::missing_field("ApiKey"))?,
+                        api_secret_key: api_secret_key,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppFlow::ConnectorProfile.BasicAuthCredentials`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-basicauthcredentials.html) property type.
+    #[derive(Debug, Default)]
+    pub struct BasicAuthCredentials {
+        /// Property [`Password`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-basicauthcredentials.html#cfn-appflow-connectorprofile-basicauthcredentials-password).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub password: ::Value<String>,
+        /// Property [`Username`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-basicauthcredentials.html#cfn-appflow-connectorprofile-basicauthcredentials-username).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub username: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for BasicAuthCredentials {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Password", &self.password)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Username", &self.username)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for BasicAuthCredentials {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<BasicAuthCredentials, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = BasicAuthCredentials;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type BasicAuthCredentials")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut password: Option<::Value<String>> = None;
+                    let mut username: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Password" => {
+                                password = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Username" => {
+                                username = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(BasicAuthCredentials {
+                        password: password.ok_or(::serde::de::Error::missing_field("Password"))?,
+                        username: username.ok_or(::serde::de::Error::missing_field("Username"))?,
                     })
                 }
             }
@@ -421,7 +807,7 @@ pub mod connector_profile {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub connector_profile_credentials: ::Value<ConnectorProfileCredentials>,
+        pub connector_profile_credentials: Option<::Value<ConnectorProfileCredentials>>,
         /// Property [`ConnectorProfileProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-connectorprofileconfig.html#cfn-appflow-connectorprofile-connectorprofileconfig-connectorprofileproperties).
         ///
         /// Update type: _Mutable_.
@@ -432,7 +818,9 @@ pub mod connector_profile {
     impl ::codec::SerializeValue for ConnectorProfileConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectorProfileCredentials", &self.connector_profile_credentials)?;
+            if let Some(ref connector_profile_credentials) = self.connector_profile_credentials {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectorProfileCredentials", connector_profile_credentials)?;
+            }
             if let Some(ref connector_profile_properties) = self.connector_profile_properties {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectorProfileProperties", connector_profile_properties)?;
             }
@@ -468,7 +856,7 @@ pub mod connector_profile {
                     }
 
                     Ok(ConnectorProfileConfig {
-                        connector_profile_credentials: connector_profile_credentials.ok_or(::serde::de::Error::missing_field("ConnectorProfileCredentials"))?,
+                        connector_profile_credentials: connector_profile_credentials,
                         connector_profile_properties: connector_profile_properties,
                     })
                 }
@@ -486,6 +874,11 @@ pub mod connector_profile {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub amplitude: Option<::Value<AmplitudeConnectorProfileCredentials>>,
+        /// Property [`CustomConnector`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-connectorprofilecredentials.html#cfn-appflow-connectorprofile-connectorprofilecredentials-customconnector).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub custom_connector: Option<::Value<CustomConnectorProfileCredentials>>,
         /// Property [`Datadog`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-connectorprofilecredentials.html#cfn-appflow-connectorprofile-connectorprofilecredentials-datadog).
         ///
         /// Update type: _Mutable_.
@@ -511,11 +904,21 @@ pub mod connector_profile {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub marketo: Option<::Value<MarketoConnectorProfileCredentials>>,
+        /// Property [`Pardot`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-connectorprofilecredentials.html#cfn-appflow-connectorprofile-connectorprofilecredentials-pardot).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub pardot: Option<::Value<PardotConnectorProfileCredentials>>,
         /// Property [`Redshift`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-connectorprofilecredentials.html#cfn-appflow-connectorprofile-connectorprofilecredentials-redshift).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub redshift: Option<::Value<RedshiftConnectorProfileCredentials>>,
+        /// Property [`SAPOData`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-connectorprofilecredentials.html#cfn-appflow-connectorprofile-connectorprofilecredentials-sapodata).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub sapo_data: Option<::Value<SAPODataConnectorProfileCredentials>>,
         /// Property [`Salesforce`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-connectorprofilecredentials.html#cfn-appflow-connectorprofile-connectorprofilecredentials-salesforce).
         ///
         /// Update type: _Mutable_.
@@ -564,6 +967,9 @@ pub mod connector_profile {
             if let Some(ref amplitude) = self.amplitude {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Amplitude", amplitude)?;
             }
+            if let Some(ref custom_connector) = self.custom_connector {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomConnector", custom_connector)?;
+            }
             if let Some(ref datadog) = self.datadog {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Datadog", datadog)?;
             }
@@ -579,8 +985,14 @@ pub mod connector_profile {
             if let Some(ref marketo) = self.marketo {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Marketo", marketo)?;
             }
+            if let Some(ref pardot) = self.pardot {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Pardot", pardot)?;
+            }
             if let Some(ref redshift) = self.redshift {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Redshift", redshift)?;
+            }
+            if let Some(ref sapo_data) = self.sapo_data {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SAPOData", sapo_data)?;
             }
             if let Some(ref salesforce) = self.salesforce {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Salesforce", salesforce)?;
@@ -623,12 +1035,15 @@ pub mod connector_profile {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut amplitude: Option<::Value<AmplitudeConnectorProfileCredentials>> = None;
+                    let mut custom_connector: Option<::Value<CustomConnectorProfileCredentials>> = None;
                     let mut datadog: Option<::Value<DatadogConnectorProfileCredentials>> = None;
                     let mut dynatrace: Option<::Value<DynatraceConnectorProfileCredentials>> = None;
                     let mut google_analytics: Option<::Value<GoogleAnalyticsConnectorProfileCredentials>> = None;
                     let mut infor_nexus: Option<::Value<InforNexusConnectorProfileCredentials>> = None;
                     let mut marketo: Option<::Value<MarketoConnectorProfileCredentials>> = None;
+                    let mut pardot: Option<::Value<PardotConnectorProfileCredentials>> = None;
                     let mut redshift: Option<::Value<RedshiftConnectorProfileCredentials>> = None;
+                    let mut sapo_data: Option<::Value<SAPODataConnectorProfileCredentials>> = None;
                     let mut salesforce: Option<::Value<SalesforceConnectorProfileCredentials>> = None;
                     let mut service_now: Option<::Value<ServiceNowConnectorProfileCredentials>> = None;
                     let mut singular: Option<::Value<SingularConnectorProfileCredentials>> = None;
@@ -642,6 +1057,9 @@ pub mod connector_profile {
                         match __cfn_key.as_ref() {
                             "Amplitude" => {
                                 amplitude = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CustomConnector" => {
+                                custom_connector = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Datadog" => {
                                 datadog = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -658,8 +1076,14 @@ pub mod connector_profile {
                             "Marketo" => {
                                 marketo = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Pardot" => {
+                                pardot = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Redshift" => {
                                 redshift = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SAPOData" => {
+                                sapo_data = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Salesforce" => {
                                 salesforce = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -691,12 +1115,15 @@ pub mod connector_profile {
 
                     Ok(ConnectorProfileCredentials {
                         amplitude: amplitude,
+                        custom_connector: custom_connector,
                         datadog: datadog,
                         dynatrace: dynatrace,
                         google_analytics: google_analytics,
                         infor_nexus: infor_nexus,
                         marketo: marketo,
+                        pardot: pardot,
                         redshift: redshift,
+                        sapo_data: sapo_data,
                         salesforce: salesforce,
                         service_now: service_now,
                         singular: singular,
@@ -716,6 +1143,11 @@ pub mod connector_profile {
     /// The [`AWS::AppFlow::ConnectorProfile.ConnectorProfileProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-connectorprofileproperties.html) property type.
     #[derive(Debug, Default)]
     pub struct ConnectorProfileProperties {
+        /// Property [`CustomConnector`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-connectorprofileproperties.html#cfn-appflow-connectorprofile-connectorprofileproperties-customconnector).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub custom_connector: Option<::Value<CustomConnectorProfileProperties>>,
         /// Property [`Datadog`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-connectorprofileproperties.html#cfn-appflow-connectorprofile-connectorprofileproperties-datadog).
         ///
         /// Update type: _Mutable_.
@@ -736,11 +1168,21 @@ pub mod connector_profile {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub marketo: Option<::Value<MarketoConnectorProfileProperties>>,
+        /// Property [`Pardot`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-connectorprofileproperties.html#cfn-appflow-connectorprofile-connectorprofileproperties-pardot).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub pardot: Option<::Value<PardotConnectorProfileProperties>>,
         /// Property [`Redshift`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-connectorprofileproperties.html#cfn-appflow-connectorprofile-connectorprofileproperties-redshift).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub redshift: Option<::Value<RedshiftConnectorProfileProperties>>,
+        /// Property [`SAPOData`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-connectorprofileproperties.html#cfn-appflow-connectorprofile-connectorprofileproperties-sapodata).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub sapo_data: Option<::Value<SAPODataConnectorProfileProperties>>,
         /// Property [`Salesforce`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-connectorprofileproperties.html#cfn-appflow-connectorprofile-connectorprofileproperties-salesforce).
         ///
         /// Update type: _Mutable_.
@@ -776,6 +1218,9 @@ pub mod connector_profile {
     impl ::codec::SerializeValue for ConnectorProfileProperties {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref custom_connector) = self.custom_connector {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomConnector", custom_connector)?;
+            }
             if let Some(ref datadog) = self.datadog {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Datadog", datadog)?;
             }
@@ -788,8 +1233,14 @@ pub mod connector_profile {
             if let Some(ref marketo) = self.marketo {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Marketo", marketo)?;
             }
+            if let Some(ref pardot) = self.pardot {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Pardot", pardot)?;
+            }
             if let Some(ref redshift) = self.redshift {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Redshift", redshift)?;
+            }
+            if let Some(ref sapo_data) = self.sapo_data {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SAPOData", sapo_data)?;
             }
             if let Some(ref salesforce) = self.salesforce {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Salesforce", salesforce)?;
@@ -825,11 +1276,14 @@ pub mod connector_profile {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut custom_connector: Option<::Value<CustomConnectorProfileProperties>> = None;
                     let mut datadog: Option<::Value<DatadogConnectorProfileProperties>> = None;
                     let mut dynatrace: Option<::Value<DynatraceConnectorProfileProperties>> = None;
                     let mut infor_nexus: Option<::Value<InforNexusConnectorProfileProperties>> = None;
                     let mut marketo: Option<::Value<MarketoConnectorProfileProperties>> = None;
+                    let mut pardot: Option<::Value<PardotConnectorProfileProperties>> = None;
                     let mut redshift: Option<::Value<RedshiftConnectorProfileProperties>> = None;
+                    let mut sapo_data: Option<::Value<SAPODataConnectorProfileProperties>> = None;
                     let mut salesforce: Option<::Value<SalesforceConnectorProfileProperties>> = None;
                     let mut service_now: Option<::Value<ServiceNowConnectorProfileProperties>> = None;
                     let mut slack: Option<::Value<SlackConnectorProfileProperties>> = None;
@@ -839,6 +1293,9 @@ pub mod connector_profile {
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "CustomConnector" => {
+                                custom_connector = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Datadog" => {
                                 datadog = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -851,8 +1308,14 @@ pub mod connector_profile {
                             "Marketo" => {
                                 marketo = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Pardot" => {
+                                pardot = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Redshift" => {
                                 redshift = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SAPOData" => {
+                                sapo_data = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Salesforce" => {
                                 salesforce = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -877,17 +1340,253 @@ pub mod connector_profile {
                     }
 
                     Ok(ConnectorProfileProperties {
+                        custom_connector: custom_connector,
                         datadog: datadog,
                         dynatrace: dynatrace,
                         infor_nexus: infor_nexus,
                         marketo: marketo,
+                        pardot: pardot,
                         redshift: redshift,
+                        sapo_data: sapo_data,
                         salesforce: salesforce,
                         service_now: service_now,
                         slack: slack,
                         snowflake: snowflake,
                         veeva: veeva,
                         zendesk: zendesk,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppFlow::ConnectorProfile.CustomAuthCredentials`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-customauthcredentials.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CustomAuthCredentials {
+        /// Property [`CredentialsMap`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-customauthcredentials.html#cfn-appflow-connectorprofile-customauthcredentials-credentialsmap).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub credentials_map: Option<::ValueMap<String>>,
+        /// Property [`CustomAuthenticationType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-customauthcredentials.html#cfn-appflow-connectorprofile-customauthcredentials-customauthenticationtype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub custom_authentication_type: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for CustomAuthCredentials {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref credentials_map) = self.credentials_map {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CredentialsMap", credentials_map)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomAuthenticationType", &self.custom_authentication_type)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CustomAuthCredentials {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CustomAuthCredentials, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CustomAuthCredentials;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CustomAuthCredentials")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut credentials_map: Option<::ValueMap<String>> = None;
+                    let mut custom_authentication_type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CredentialsMap" => {
+                                credentials_map = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CustomAuthenticationType" => {
+                                custom_authentication_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CustomAuthCredentials {
+                        credentials_map: credentials_map,
+                        custom_authentication_type: custom_authentication_type.ok_or(::serde::de::Error::missing_field("CustomAuthenticationType"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppFlow::ConnectorProfile.CustomConnectorProfileCredentials`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-customconnectorprofilecredentials.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CustomConnectorProfileCredentials {
+        /// Property [`ApiKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-customconnectorprofilecredentials.html#cfn-appflow-connectorprofile-customconnectorprofilecredentials-apikey).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub api_key: Option<::Value<ApiKeyCredentials>>,
+        /// Property [`AuthenticationType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-customconnectorprofilecredentials.html#cfn-appflow-connectorprofile-customconnectorprofilecredentials-authenticationtype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub authentication_type: ::Value<String>,
+        /// Property [`Basic`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-customconnectorprofilecredentials.html#cfn-appflow-connectorprofile-customconnectorprofilecredentials-basic).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub basic: Option<::Value<BasicAuthCredentials>>,
+        /// Property [`Custom`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-customconnectorprofilecredentials.html#cfn-appflow-connectorprofile-customconnectorprofilecredentials-custom).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub custom: Option<::Value<CustomAuthCredentials>>,
+        /// Property [`Oauth2`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-customconnectorprofilecredentials.html#cfn-appflow-connectorprofile-customconnectorprofilecredentials-oauth2).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub oauth2: Option<::Value<OAuth2Credentials>>,
+    }
+
+    impl ::codec::SerializeValue for CustomConnectorProfileCredentials {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref api_key) = self.api_key {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApiKey", api_key)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthenticationType", &self.authentication_type)?;
+            if let Some(ref basic) = self.basic {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Basic", basic)?;
+            }
+            if let Some(ref custom) = self.custom {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Custom", custom)?;
+            }
+            if let Some(ref oauth2) = self.oauth2 {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Oauth2", oauth2)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CustomConnectorProfileCredentials {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CustomConnectorProfileCredentials, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CustomConnectorProfileCredentials;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CustomConnectorProfileCredentials")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut api_key: Option<::Value<ApiKeyCredentials>> = None;
+                    let mut authentication_type: Option<::Value<String>> = None;
+                    let mut basic: Option<::Value<BasicAuthCredentials>> = None;
+                    let mut custom: Option<::Value<CustomAuthCredentials>> = None;
+                    let mut oauth2: Option<::Value<OAuth2Credentials>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ApiKey" => {
+                                api_key = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "AuthenticationType" => {
+                                authentication_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Basic" => {
+                                basic = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Custom" => {
+                                custom = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Oauth2" => {
+                                oauth2 = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CustomConnectorProfileCredentials {
+                        api_key: api_key,
+                        authentication_type: authentication_type.ok_or(::serde::de::Error::missing_field("AuthenticationType"))?,
+                        basic: basic,
+                        custom: custom,
+                        oauth2: oauth2,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppFlow::ConnectorProfile.CustomConnectorProfileProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-customconnectorprofileproperties.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CustomConnectorProfileProperties {
+        /// Property [`OAuth2Properties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-customconnectorprofileproperties.html#cfn-appflow-connectorprofile-customconnectorprofileproperties-oauth2properties).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub o_auth2_properties: Option<::Value<OAuth2Properties>>,
+        /// Property [`ProfileProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-customconnectorprofileproperties.html#cfn-appflow-connectorprofile-customconnectorprofileproperties-profileproperties).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub profile_properties: Option<::ValueMap<String>>,
+    }
+
+    impl ::codec::SerializeValue for CustomConnectorProfileProperties {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref o_auth2_properties) = self.o_auth2_properties {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OAuth2Properties", o_auth2_properties)?;
+            }
+            if let Some(ref profile_properties) = self.profile_properties {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProfileProperties", profile_properties)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CustomConnectorProfileProperties {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CustomConnectorProfileProperties, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CustomConnectorProfileProperties;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CustomConnectorProfileProperties")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut o_auth2_properties: Option<::Value<OAuth2Properties>> = None;
+                    let mut profile_properties: Option<::ValueMap<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "OAuth2Properties" => {
+                                o_auth2_properties = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ProfileProperties" => {
+                                profile_properties = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CustomConnectorProfileProperties {
+                        o_auth2_properties: o_auth2_properties,
+                        profile_properties: profile_properties,
                     })
                 }
             }
@@ -1486,6 +2185,543 @@ pub mod connector_profile {
         }
     }
 
+    /// The [`AWS::AppFlow::ConnectorProfile.OAuth2Credentials`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauth2credentials.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OAuth2Credentials {
+        /// Property [`AccessToken`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauth2credentials.html#cfn-appflow-connectorprofile-oauth2credentials-accesstoken).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub access_token: Option<::Value<String>>,
+        /// Property [`ClientId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauth2credentials.html#cfn-appflow-connectorprofile-oauth2credentials-clientid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub client_id: Option<::Value<String>>,
+        /// Property [`ClientSecret`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauth2credentials.html#cfn-appflow-connectorprofile-oauth2credentials-clientsecret).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub client_secret: Option<::Value<String>>,
+        /// Property [`OAuthRequest`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauth2credentials.html#cfn-appflow-connectorprofile-oauth2credentials-oauthrequest).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub o_auth_request: Option<::Value<ConnectorOAuthRequest>>,
+        /// Property [`RefreshToken`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauth2credentials.html#cfn-appflow-connectorprofile-oauth2credentials-refreshtoken).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub refresh_token: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for OAuth2Credentials {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref access_token) = self.access_token {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessToken", access_token)?;
+            }
+            if let Some(ref client_id) = self.client_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientId", client_id)?;
+            }
+            if let Some(ref client_secret) = self.client_secret {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientSecret", client_secret)?;
+            }
+            if let Some(ref o_auth_request) = self.o_auth_request {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OAuthRequest", o_auth_request)?;
+            }
+            if let Some(ref refresh_token) = self.refresh_token {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RefreshToken", refresh_token)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OAuth2Credentials {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OAuth2Credentials, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OAuth2Credentials;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OAuth2Credentials")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut access_token: Option<::Value<String>> = None;
+                    let mut client_id: Option<::Value<String>> = None;
+                    let mut client_secret: Option<::Value<String>> = None;
+                    let mut o_auth_request: Option<::Value<ConnectorOAuthRequest>> = None;
+                    let mut refresh_token: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AccessToken" => {
+                                access_token = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ClientId" => {
+                                client_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ClientSecret" => {
+                                client_secret = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OAuthRequest" => {
+                                o_auth_request = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RefreshToken" => {
+                                refresh_token = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OAuth2Credentials {
+                        access_token: access_token,
+                        client_id: client_id,
+                        client_secret: client_secret,
+                        o_auth_request: o_auth_request,
+                        refresh_token: refresh_token,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppFlow::ConnectorProfile.OAuth2Properties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauth2properties.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OAuth2Properties {
+        /// Property [`OAuth2GrantType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauth2properties.html#cfn-appflow-connectorprofile-oauth2properties-oauth2granttype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub o_auth2_grant_type: Option<::Value<String>>,
+        /// Property [`TokenUrl`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauth2properties.html#cfn-appflow-connectorprofile-oauth2properties-tokenurl).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub token_url: Option<::Value<String>>,
+        /// Property [`TokenUrlCustomProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauth2properties.html#cfn-appflow-connectorprofile-oauth2properties-tokenurlcustomproperties).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub token_url_custom_properties: Option<::ValueMap<String>>,
+    }
+
+    impl ::codec::SerializeValue for OAuth2Properties {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref o_auth2_grant_type) = self.o_auth2_grant_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OAuth2GrantType", o_auth2_grant_type)?;
+            }
+            if let Some(ref token_url) = self.token_url {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TokenUrl", token_url)?;
+            }
+            if let Some(ref token_url_custom_properties) = self.token_url_custom_properties {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TokenUrlCustomProperties", token_url_custom_properties)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OAuth2Properties {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OAuth2Properties, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OAuth2Properties;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OAuth2Properties")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut o_auth2_grant_type: Option<::Value<String>> = None;
+                    let mut token_url: Option<::Value<String>> = None;
+                    let mut token_url_custom_properties: Option<::ValueMap<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "OAuth2GrantType" => {
+                                o_auth2_grant_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TokenUrl" => {
+                                token_url = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TokenUrlCustomProperties" => {
+                                token_url_custom_properties = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OAuth2Properties {
+                        o_auth2_grant_type: o_auth2_grant_type,
+                        token_url: token_url,
+                        token_url_custom_properties: token_url_custom_properties,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppFlow::ConnectorProfile.OAuthCredentials`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauthcredentials.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OAuthCredentials {
+        /// Property [`AccessToken`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauthcredentials.html#cfn-appflow-connectorprofile-oauthcredentials-accesstoken).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub access_token: Option<::Value<String>>,
+        /// Property [`ClientId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauthcredentials.html#cfn-appflow-connectorprofile-oauthcredentials-clientid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub client_id: Option<::Value<String>>,
+        /// Property [`ClientSecret`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauthcredentials.html#cfn-appflow-connectorprofile-oauthcredentials-clientsecret).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub client_secret: Option<::Value<String>>,
+        /// Property [`ConnectorOAuthRequest`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauthcredentials.html#cfn-appflow-connectorprofile-oauthcredentials-connectoroauthrequest).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub connector_o_auth_request: Option<::Value<ConnectorOAuthRequest>>,
+        /// Property [`RefreshToken`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauthcredentials.html#cfn-appflow-connectorprofile-oauthcredentials-refreshtoken).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub refresh_token: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for OAuthCredentials {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref access_token) = self.access_token {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessToken", access_token)?;
+            }
+            if let Some(ref client_id) = self.client_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientId", client_id)?;
+            }
+            if let Some(ref client_secret) = self.client_secret {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientSecret", client_secret)?;
+            }
+            if let Some(ref connector_o_auth_request) = self.connector_o_auth_request {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectorOAuthRequest", connector_o_auth_request)?;
+            }
+            if let Some(ref refresh_token) = self.refresh_token {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RefreshToken", refresh_token)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OAuthCredentials {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OAuthCredentials, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OAuthCredentials;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OAuthCredentials")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut access_token: Option<::Value<String>> = None;
+                    let mut client_id: Option<::Value<String>> = None;
+                    let mut client_secret: Option<::Value<String>> = None;
+                    let mut connector_o_auth_request: Option<::Value<ConnectorOAuthRequest>> = None;
+                    let mut refresh_token: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AccessToken" => {
+                                access_token = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ClientId" => {
+                                client_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ClientSecret" => {
+                                client_secret = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ConnectorOAuthRequest" => {
+                                connector_o_auth_request = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RefreshToken" => {
+                                refresh_token = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OAuthCredentials {
+                        access_token: access_token,
+                        client_id: client_id,
+                        client_secret: client_secret,
+                        connector_o_auth_request: connector_o_auth_request,
+                        refresh_token: refresh_token,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppFlow::ConnectorProfile.OAuthProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauthproperties.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OAuthProperties {
+        /// Property [`AuthCodeUrl`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauthproperties.html#cfn-appflow-connectorprofile-oauthproperties-authcodeurl).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub auth_code_url: Option<::Value<String>>,
+        /// Property [`OAuthScopes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauthproperties.html#cfn-appflow-connectorprofile-oauthproperties-oauthscopes).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub o_auth_scopes: Option<::ValueList<String>>,
+        /// Property [`TokenUrl`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-oauthproperties.html#cfn-appflow-connectorprofile-oauthproperties-tokenurl).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub token_url: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for OAuthProperties {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref auth_code_url) = self.auth_code_url {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthCodeUrl", auth_code_url)?;
+            }
+            if let Some(ref o_auth_scopes) = self.o_auth_scopes {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OAuthScopes", o_auth_scopes)?;
+            }
+            if let Some(ref token_url) = self.token_url {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TokenUrl", token_url)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OAuthProperties {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OAuthProperties, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OAuthProperties;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OAuthProperties")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut auth_code_url: Option<::Value<String>> = None;
+                    let mut o_auth_scopes: Option<::ValueList<String>> = None;
+                    let mut token_url: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AuthCodeUrl" => {
+                                auth_code_url = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OAuthScopes" => {
+                                o_auth_scopes = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TokenUrl" => {
+                                token_url = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OAuthProperties {
+                        auth_code_url: auth_code_url,
+                        o_auth_scopes: o_auth_scopes,
+                        token_url: token_url,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppFlow::ConnectorProfile.PardotConnectorProfileCredentials`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-pardotconnectorprofilecredentials.html) property type.
+    #[derive(Debug, Default)]
+    pub struct PardotConnectorProfileCredentials {
+        /// Property [`AccessToken`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-pardotconnectorprofilecredentials.html#cfn-appflow-connectorprofile-pardotconnectorprofilecredentials-accesstoken).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub access_token: Option<::Value<String>>,
+        /// Property [`ClientCredentialsArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-pardotconnectorprofilecredentials.html#cfn-appflow-connectorprofile-pardotconnectorprofilecredentials-clientcredentialsarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub client_credentials_arn: Option<::Value<String>>,
+        /// Property [`ConnectorOAuthRequest`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-pardotconnectorprofilecredentials.html#cfn-appflow-connectorprofile-pardotconnectorprofilecredentials-connectoroauthrequest).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub connector_o_auth_request: Option<::Value<ConnectorOAuthRequest>>,
+        /// Property [`RefreshToken`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-pardotconnectorprofilecredentials.html#cfn-appflow-connectorprofile-pardotconnectorprofilecredentials-refreshtoken).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub refresh_token: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for PardotConnectorProfileCredentials {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref access_token) = self.access_token {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessToken", access_token)?;
+            }
+            if let Some(ref client_credentials_arn) = self.client_credentials_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientCredentialsArn", client_credentials_arn)?;
+            }
+            if let Some(ref connector_o_auth_request) = self.connector_o_auth_request {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectorOAuthRequest", connector_o_auth_request)?;
+            }
+            if let Some(ref refresh_token) = self.refresh_token {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RefreshToken", refresh_token)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for PardotConnectorProfileCredentials {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<PardotConnectorProfileCredentials, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = PardotConnectorProfileCredentials;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type PardotConnectorProfileCredentials")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut access_token: Option<::Value<String>> = None;
+                    let mut client_credentials_arn: Option<::Value<String>> = None;
+                    let mut connector_o_auth_request: Option<::Value<ConnectorOAuthRequest>> = None;
+                    let mut refresh_token: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AccessToken" => {
+                                access_token = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ClientCredentialsArn" => {
+                                client_credentials_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ConnectorOAuthRequest" => {
+                                connector_o_auth_request = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RefreshToken" => {
+                                refresh_token = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(PardotConnectorProfileCredentials {
+                        access_token: access_token,
+                        client_credentials_arn: client_credentials_arn,
+                        connector_o_auth_request: connector_o_auth_request,
+                        refresh_token: refresh_token,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppFlow::ConnectorProfile.PardotConnectorProfileProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-pardotconnectorprofileproperties.html) property type.
+    #[derive(Debug, Default)]
+    pub struct PardotConnectorProfileProperties {
+        /// Property [`BusinessUnitId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-pardotconnectorprofileproperties.html#cfn-appflow-connectorprofile-pardotconnectorprofileproperties-businessunitid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub business_unit_id: ::Value<String>,
+        /// Property [`InstanceUrl`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-pardotconnectorprofileproperties.html#cfn-appflow-connectorprofile-pardotconnectorprofileproperties-instanceurl).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub instance_url: Option<::Value<String>>,
+        /// Property [`IsSandboxEnvironment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-pardotconnectorprofileproperties.html#cfn-appflow-connectorprofile-pardotconnectorprofileproperties-issandboxenvironment).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub is_sandbox_environment: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for PardotConnectorProfileProperties {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BusinessUnitId", &self.business_unit_id)?;
+            if let Some(ref instance_url) = self.instance_url {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceUrl", instance_url)?;
+            }
+            if let Some(ref is_sandbox_environment) = self.is_sandbox_environment {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IsSandboxEnvironment", is_sandbox_environment)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for PardotConnectorProfileProperties {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<PardotConnectorProfileProperties, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = PardotConnectorProfileProperties;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type PardotConnectorProfileProperties")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut business_unit_id: Option<::Value<String>> = None;
+                    let mut instance_url: Option<::Value<String>> = None;
+                    let mut is_sandbox_environment: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "BusinessUnitId" => {
+                                business_unit_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "InstanceUrl" => {
+                                instance_url = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IsSandboxEnvironment" => {
+                                is_sandbox_environment = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(PardotConnectorProfileProperties {
+                        business_unit_id: business_unit_id.ok_or(::serde::de::Error::missing_field("BusinessUnitId"))?,
+                        instance_url: instance_url,
+                        is_sandbox_environment: is_sandbox_environment,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::AppFlow::ConnectorProfile.RedshiftConnectorProfileCredentials`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-redshiftconnectorprofilecredentials.html) property type.
     #[derive(Debug, Default)]
     pub struct RedshiftConnectorProfileCredentials {
@@ -1493,19 +2729,23 @@ pub mod connector_profile {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub password: ::Value<String>,
+        pub password: Option<::Value<String>>,
         /// Property [`Username`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-redshiftconnectorprofilecredentials.html#cfn-appflow-connectorprofile-redshiftconnectorprofilecredentials-username).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub username: ::Value<String>,
+        pub username: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for RedshiftConnectorProfileCredentials {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Password", &self.password)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Username", &self.username)?;
+            if let Some(ref password) = self.password {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Password", password)?;
+            }
+            if let Some(ref username) = self.username {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Username", username)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1538,8 +2778,8 @@ pub mod connector_profile {
                     }
 
                     Ok(RedshiftConnectorProfileCredentials {
-                        password: password.ok_or(::serde::de::Error::missing_field("Password"))?,
-                        username: username.ok_or(::serde::de::Error::missing_field("Username"))?,
+                        password: password,
+                        username: username,
                     })
                 }
             }
@@ -1561,16 +2801,41 @@ pub mod connector_profile {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub bucket_prefix: Option<::Value<String>>,
+        /// Property [`ClusterIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-redshiftconnectorprofileproperties.html#cfn-appflow-connectorprofile-redshiftconnectorprofileproperties-clusteridentifier).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cluster_identifier: Option<::Value<String>>,
+        /// Property [`DataApiRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-redshiftconnectorprofileproperties.html#cfn-appflow-connectorprofile-redshiftconnectorprofileproperties-dataapirolearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub data_api_role_arn: Option<::Value<String>>,
+        /// Property [`DatabaseName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-redshiftconnectorprofileproperties.html#cfn-appflow-connectorprofile-redshiftconnectorprofileproperties-databasename).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub database_name: Option<::Value<String>>,
         /// Property [`DatabaseUrl`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-redshiftconnectorprofileproperties.html#cfn-appflow-connectorprofile-redshiftconnectorprofileproperties-databaseurl).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub database_url: ::Value<String>,
+        pub database_url: Option<::Value<String>>,
+        /// Property [`IsRedshiftServerless`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-redshiftconnectorprofileproperties.html#cfn-appflow-connectorprofile-redshiftconnectorprofileproperties-isredshiftserverless).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub is_redshift_serverless: Option<::Value<bool>>,
         /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-redshiftconnectorprofileproperties.html#cfn-appflow-connectorprofile-redshiftconnectorprofileproperties-rolearn).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub role_arn: ::Value<String>,
+        /// Property [`WorkgroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-redshiftconnectorprofileproperties.html#cfn-appflow-connectorprofile-redshiftconnectorprofileproperties-workgroupname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub workgroup_name: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for RedshiftConnectorProfileProperties {
@@ -1580,8 +2845,25 @@ pub mod connector_profile {
             if let Some(ref bucket_prefix) = self.bucket_prefix {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketPrefix", bucket_prefix)?;
             }
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseUrl", &self.database_url)?;
+            if let Some(ref cluster_identifier) = self.cluster_identifier {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClusterIdentifier", cluster_identifier)?;
+            }
+            if let Some(ref data_api_role_arn) = self.data_api_role_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataApiRoleArn", data_api_role_arn)?;
+            }
+            if let Some(ref database_name) = self.database_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseName", database_name)?;
+            }
+            if let Some(ref database_url) = self.database_url {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseUrl", database_url)?;
+            }
+            if let Some(ref is_redshift_serverless) = self.is_redshift_serverless {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IsRedshiftServerless", is_redshift_serverless)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
+            if let Some(ref workgroup_name) = self.workgroup_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "WorkgroupName", workgroup_name)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1600,8 +2882,13 @@ pub mod connector_profile {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut bucket_name: Option<::Value<String>> = None;
                     let mut bucket_prefix: Option<::Value<String>> = None;
+                    let mut cluster_identifier: Option<::Value<String>> = None;
+                    let mut data_api_role_arn: Option<::Value<String>> = None;
+                    let mut database_name: Option<::Value<String>> = None;
                     let mut database_url: Option<::Value<String>> = None;
+                    let mut is_redshift_serverless: Option<::Value<bool>> = None;
                     let mut role_arn: Option<::Value<String>> = None;
+                    let mut workgroup_name: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1611,11 +2898,26 @@ pub mod connector_profile {
                             "BucketPrefix" => {
                                 bucket_prefix = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "ClusterIdentifier" => {
+                                cluster_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DataApiRoleArn" => {
+                                data_api_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DatabaseName" => {
+                                database_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "DatabaseUrl" => {
                                 database_url = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "IsRedshiftServerless" => {
+                                is_redshift_serverless = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "RoleArn" => {
                                 role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "WorkgroupName" => {
+                                workgroup_name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -1624,8 +2926,223 @@ pub mod connector_profile {
                     Ok(RedshiftConnectorProfileProperties {
                         bucket_name: bucket_name.ok_or(::serde::de::Error::missing_field("BucketName"))?,
                         bucket_prefix: bucket_prefix,
-                        database_url: database_url.ok_or(::serde::de::Error::missing_field("DatabaseUrl"))?,
+                        cluster_identifier: cluster_identifier,
+                        data_api_role_arn: data_api_role_arn,
+                        database_name: database_name,
+                        database_url: database_url,
+                        is_redshift_serverless: is_redshift_serverless,
                         role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
+                        workgroup_name: workgroup_name,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppFlow::ConnectorProfile.SAPODataConnectorProfileCredentials`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-sapodataconnectorprofilecredentials.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SAPODataConnectorProfileCredentials {
+        /// Property [`BasicAuthCredentials`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-sapodataconnectorprofilecredentials.html#cfn-appflow-connectorprofile-sapodataconnectorprofilecredentials-basicauthcredentials).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub basic_auth_credentials: Option<::Value<BasicAuthCredentials>>,
+        /// Property [`OAuthCredentials`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-sapodataconnectorprofilecredentials.html#cfn-appflow-connectorprofile-sapodataconnectorprofilecredentials-oauthcredentials).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub o_auth_credentials: Option<::Value<OAuthCredentials>>,
+    }
+
+    impl ::codec::SerializeValue for SAPODataConnectorProfileCredentials {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref basic_auth_credentials) = self.basic_auth_credentials {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BasicAuthCredentials", basic_auth_credentials)?;
+            }
+            if let Some(ref o_auth_credentials) = self.o_auth_credentials {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OAuthCredentials", o_auth_credentials)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SAPODataConnectorProfileCredentials {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SAPODataConnectorProfileCredentials, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SAPODataConnectorProfileCredentials;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SAPODataConnectorProfileCredentials")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut basic_auth_credentials: Option<::Value<BasicAuthCredentials>> = None;
+                    let mut o_auth_credentials: Option<::Value<OAuthCredentials>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "BasicAuthCredentials" => {
+                                basic_auth_credentials = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OAuthCredentials" => {
+                                o_auth_credentials = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SAPODataConnectorProfileCredentials {
+                        basic_auth_credentials: basic_auth_credentials,
+                        o_auth_credentials: o_auth_credentials,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppFlow::ConnectorProfile.SAPODataConnectorProfileProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-sapodataconnectorprofileproperties.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SAPODataConnectorProfileProperties {
+        /// Property [`ApplicationHostUrl`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-sapodataconnectorprofileproperties.html#cfn-appflow-connectorprofile-sapodataconnectorprofileproperties-applicationhosturl).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub application_host_url: Option<::Value<String>>,
+        /// Property [`ApplicationServicePath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-sapodataconnectorprofileproperties.html#cfn-appflow-connectorprofile-sapodataconnectorprofileproperties-applicationservicepath).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub application_service_path: Option<::Value<String>>,
+        /// Property [`ClientNumber`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-sapodataconnectorprofileproperties.html#cfn-appflow-connectorprofile-sapodataconnectorprofileproperties-clientnumber).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub client_number: Option<::Value<String>>,
+        /// Property [`DisableSSO`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-sapodataconnectorprofileproperties.html#cfn-appflow-connectorprofile-sapodataconnectorprofileproperties-disablesso).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub disable_sso: Option<::Value<bool>>,
+        /// Property [`LogonLanguage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-sapodataconnectorprofileproperties.html#cfn-appflow-connectorprofile-sapodataconnectorprofileproperties-logonlanguage).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub logon_language: Option<::Value<String>>,
+        /// Property [`OAuthProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-sapodataconnectorprofileproperties.html#cfn-appflow-connectorprofile-sapodataconnectorprofileproperties-oauthproperties).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub o_auth_properties: Option<::Value<OAuthProperties>>,
+        /// Property [`PortNumber`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-sapodataconnectorprofileproperties.html#cfn-appflow-connectorprofile-sapodataconnectorprofileproperties-portnumber).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub port_number: Option<::Value<u32>>,
+        /// Property [`PrivateLinkServiceName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-sapodataconnectorprofileproperties.html#cfn-appflow-connectorprofile-sapodataconnectorprofileproperties-privatelinkservicename).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub private_link_service_name: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for SAPODataConnectorProfileProperties {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref application_host_url) = self.application_host_url {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationHostUrl", application_host_url)?;
+            }
+            if let Some(ref application_service_path) = self.application_service_path {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationServicePath", application_service_path)?;
+            }
+            if let Some(ref client_number) = self.client_number {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientNumber", client_number)?;
+            }
+            if let Some(ref disable_sso) = self.disable_sso {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisableSSO", disable_sso)?;
+            }
+            if let Some(ref logon_language) = self.logon_language {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogonLanguage", logon_language)?;
+            }
+            if let Some(ref o_auth_properties) = self.o_auth_properties {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OAuthProperties", o_auth_properties)?;
+            }
+            if let Some(ref port_number) = self.port_number {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PortNumber", port_number)?;
+            }
+            if let Some(ref private_link_service_name) = self.private_link_service_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateLinkServiceName", private_link_service_name)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SAPODataConnectorProfileProperties {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SAPODataConnectorProfileProperties, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SAPODataConnectorProfileProperties;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SAPODataConnectorProfileProperties")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut application_host_url: Option<::Value<String>> = None;
+                    let mut application_service_path: Option<::Value<String>> = None;
+                    let mut client_number: Option<::Value<String>> = None;
+                    let mut disable_sso: Option<::Value<bool>> = None;
+                    let mut logon_language: Option<::Value<String>> = None;
+                    let mut o_auth_properties: Option<::Value<OAuthProperties>> = None;
+                    let mut port_number: Option<::Value<u32>> = None;
+                    let mut private_link_service_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ApplicationHostUrl" => {
+                                application_host_url = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ApplicationServicePath" => {
+                                application_service_path = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ClientNumber" => {
+                                client_number = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DisableSSO" => {
+                                disable_sso = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LogonLanguage" => {
+                                logon_language = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OAuthProperties" => {
+                                o_auth_properties = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PortNumber" => {
+                                port_number = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PrivateLinkServiceName" => {
+                                private_link_service_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SAPODataConnectorProfileProperties {
+                        application_host_url: application_host_url,
+                        application_service_path: application_service_path,
+                        client_number: client_number,
+                        disable_sso: disable_sso,
+                        logon_language: logon_language,
+                        o_auth_properties: o_auth_properties,
+                        port_number: port_number,
+                        private_link_service_name: private_link_service_name,
                     })
                 }
             }
@@ -1652,6 +3169,16 @@ pub mod connector_profile {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub connector_o_auth_request: Option<::Value<ConnectorOAuthRequest>>,
+        /// Property [`JwtToken`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-salesforceconnectorprofilecredentials.html#cfn-appflow-connectorprofile-salesforceconnectorprofilecredentials-jwttoken).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub jwt_token: Option<::Value<String>>,
+        /// Property [`OAuth2GrantType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-salesforceconnectorprofilecredentials.html#cfn-appflow-connectorprofile-salesforceconnectorprofilecredentials-oauth2granttype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub o_auth2_grant_type: Option<::Value<String>>,
         /// Property [`RefreshToken`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-salesforceconnectorprofilecredentials.html#cfn-appflow-connectorprofile-salesforceconnectorprofilecredentials-refreshtoken).
         ///
         /// Update type: _Mutable_.
@@ -1670,6 +3197,12 @@ pub mod connector_profile {
             }
             if let Some(ref connector_o_auth_request) = self.connector_o_auth_request {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectorOAuthRequest", connector_o_auth_request)?;
+            }
+            if let Some(ref jwt_token) = self.jwt_token {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "JwtToken", jwt_token)?;
+            }
+            if let Some(ref o_auth2_grant_type) = self.o_auth2_grant_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OAuth2GrantType", o_auth2_grant_type)?;
             }
             if let Some(ref refresh_token) = self.refresh_token {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "RefreshToken", refresh_token)?;
@@ -1693,6 +3226,8 @@ pub mod connector_profile {
                     let mut access_token: Option<::Value<String>> = None;
                     let mut client_credentials_arn: Option<::Value<String>> = None;
                     let mut connector_o_auth_request: Option<::Value<ConnectorOAuthRequest>> = None;
+                    let mut jwt_token: Option<::Value<String>> = None;
+                    let mut o_auth2_grant_type: Option<::Value<String>> = None;
                     let mut refresh_token: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -1706,6 +3241,12 @@ pub mod connector_profile {
                             "ConnectorOAuthRequest" => {
                                 connector_o_auth_request = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "JwtToken" => {
+                                jwt_token = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OAuth2GrantType" => {
+                                o_auth2_grant_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "RefreshToken" => {
                                 refresh_token = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1717,6 +3258,8 @@ pub mod connector_profile {
                         access_token: access_token,
                         client_credentials_arn: client_credentials_arn,
                         connector_o_auth_request: connector_o_auth_request,
+                        jwt_token: jwt_token,
+                        o_auth2_grant_type: o_auth2_grant_type,
                         refresh_token: refresh_token,
                     })
                 }
@@ -1739,6 +3282,11 @@ pub mod connector_profile {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub is_sandbox_environment: Option<::Value<bool>>,
+        /// Property [`usePrivateLinkForMetadataAndAuthorization`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-salesforceconnectorprofileproperties.html#cfn-appflow-connectorprofile-salesforceconnectorprofileproperties-useprivatelinkformetadataandauthorization).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub use_private_link_for_metadata_and_authorization: Option<::Value<bool>>,
     }
 
     impl ::codec::SerializeValue for SalesforceConnectorProfileProperties {
@@ -1749,6 +3297,9 @@ pub mod connector_profile {
             }
             if let Some(ref is_sandbox_environment) = self.is_sandbox_environment {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "isSandboxEnvironment", is_sandbox_environment)?;
+            }
+            if let Some(ref use_private_link_for_metadata_and_authorization) = self.use_private_link_for_metadata_and_authorization {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "usePrivateLinkForMetadataAndAuthorization", use_private_link_for_metadata_and_authorization)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -1768,6 +3319,7 @@ pub mod connector_profile {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut instance_url: Option<::Value<String>> = None;
                     let mut is_sandbox_environment: Option<::Value<bool>> = None;
+                    let mut use_private_link_for_metadata_and_authorization: Option<::Value<bool>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1777,6 +3329,9 @@ pub mod connector_profile {
                             "isSandboxEnvironment" => {
                                 is_sandbox_environment = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "usePrivateLinkForMetadataAndAuthorization" => {
+                                use_private_link_for_metadata_and_authorization = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
@@ -1784,6 +3339,7 @@ pub mod connector_profile {
                     Ok(SalesforceConnectorProfileProperties {
                         instance_url: instance_url,
                         is_sandbox_environment: is_sandbox_environment,
+                        use_private_link_for_metadata_and_authorization: use_private_link_for_metadata_and_authorization,
                     })
                 }
             }
@@ -1795,23 +3351,35 @@ pub mod connector_profile {
     /// The [`AWS::AppFlow::ConnectorProfile.ServiceNowConnectorProfileCredentials`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-servicenowconnectorprofilecredentials.html) property type.
     #[derive(Debug, Default)]
     pub struct ServiceNowConnectorProfileCredentials {
+        /// Property [`OAuth2Credentials`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-servicenowconnectorprofilecredentials.html#cfn-appflow-connectorprofile-servicenowconnectorprofilecredentials-oauth2credentials).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub o_auth2_credentials: Option<::Value<OAuth2Credentials>>,
         /// Property [`Password`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-servicenowconnectorprofilecredentials.html#cfn-appflow-connectorprofile-servicenowconnectorprofilecredentials-password).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub password: ::Value<String>,
+        pub password: Option<::Value<String>>,
         /// Property [`Username`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-connectorprofile-servicenowconnectorprofilecredentials.html#cfn-appflow-connectorprofile-servicenowconnectorprofilecredentials-username).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub username: ::Value<String>,
+        pub username: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for ServiceNowConnectorProfileCredentials {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Password", &self.password)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Username", &self.username)?;
+            if let Some(ref o_auth2_credentials) = self.o_auth2_credentials {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OAuth2Credentials", o_auth2_credentials)?;
+            }
+            if let Some(ref password) = self.password {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Password", password)?;
+            }
+            if let Some(ref username) = self.username {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Username", username)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1828,11 +3396,15 @@ pub mod connector_profile {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut o_auth2_credentials: Option<::Value<OAuth2Credentials>> = None;
                     let mut password: Option<::Value<String>> = None;
                     let mut username: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "OAuth2Credentials" => {
+                                o_auth2_credentials = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Password" => {
                                 password = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1844,8 +3416,9 @@ pub mod connector_profile {
                     }
 
                     Ok(ServiceNowConnectorProfileCredentials {
-                        password: password.ok_or(::serde::de::Error::missing_field("Password"))?,
-                        username: username.ok_or(::serde::de::Error::missing_field("Username"))?,
+                        o_auth2_credentials: o_auth2_credentials,
+                        password: password,
+                        username: username,
                     })
                 }
             }
@@ -2597,6 +4170,11 @@ pub mod flow {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub aggregation_type: Option<::Value<String>>,
+        /// Property [`TargetFileSize`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-aggregationconfig.html#cfn-appflow-flow-aggregationconfig-targetfilesize).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub target_file_size: Option<::Value<u32>>,
     }
 
     impl ::codec::SerializeValue for AggregationConfig {
@@ -2604,6 +4182,9 @@ pub mod flow {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             if let Some(ref aggregation_type) = self.aggregation_type {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "AggregationType", aggregation_type)?;
+            }
+            if let Some(ref target_file_size) = self.target_file_size {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetFileSize", target_file_size)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -2622,11 +4203,15 @@ pub mod flow {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut aggregation_type: Option<::Value<String>> = None;
+                    let mut target_file_size: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "AggregationType" => {
                                 aggregation_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TargetFileSize" => {
+                                target_file_size = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -2634,6 +4219,7 @@ pub mod flow {
 
                     Ok(AggregationConfig {
                         aggregation_type: aggregation_type,
+                        target_file_size: target_file_size,
                     })
                 }
             }
@@ -2701,6 +4287,11 @@ pub mod flow {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub amplitude: Option<::Value<String>>,
+        /// Property [`CustomConnector`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-connectoroperator.html#cfn-appflow-flow-connectoroperator-customconnector).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub custom_connector: Option<::Value<String>>,
         /// Property [`Datadog`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-connectoroperator.html#cfn-appflow-flow-connectoroperator-datadog).
         ///
         /// Update type: _Mutable_.
@@ -2726,11 +4317,21 @@ pub mod flow {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub marketo: Option<::Value<String>>,
+        /// Property [`Pardot`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-connectoroperator.html#cfn-appflow-flow-connectoroperator-pardot).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub pardot: Option<::Value<String>>,
         /// Property [`S3`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-connectoroperator.html#cfn-appflow-flow-connectoroperator-s3).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub s3: Option<::Value<String>>,
+        /// Property [`SAPOData`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-connectoroperator.html#cfn-appflow-flow-connectoroperator-sapodata).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub sapo_data: Option<::Value<String>>,
         /// Property [`Salesforce`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-connectoroperator.html#cfn-appflow-flow-connectoroperator-salesforce).
         ///
         /// Update type: _Mutable_.
@@ -2774,6 +4375,9 @@ pub mod flow {
             if let Some(ref amplitude) = self.amplitude {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Amplitude", amplitude)?;
             }
+            if let Some(ref custom_connector) = self.custom_connector {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomConnector", custom_connector)?;
+            }
             if let Some(ref datadog) = self.datadog {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Datadog", datadog)?;
             }
@@ -2789,8 +4393,14 @@ pub mod flow {
             if let Some(ref marketo) = self.marketo {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Marketo", marketo)?;
             }
+            if let Some(ref pardot) = self.pardot {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Pardot", pardot)?;
+            }
             if let Some(ref s3) = self.s3 {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3", s3)?;
+            }
+            if let Some(ref sapo_data) = self.sapo_data {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SAPOData", sapo_data)?;
             }
             if let Some(ref salesforce) = self.salesforce {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Salesforce", salesforce)?;
@@ -2830,12 +4440,15 @@ pub mod flow {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut amplitude: Option<::Value<String>> = None;
+                    let mut custom_connector: Option<::Value<String>> = None;
                     let mut datadog: Option<::Value<String>> = None;
                     let mut dynatrace: Option<::Value<String>> = None;
                     let mut google_analytics: Option<::Value<String>> = None;
                     let mut infor_nexus: Option<::Value<String>> = None;
                     let mut marketo: Option<::Value<String>> = None;
+                    let mut pardot: Option<::Value<String>> = None;
                     let mut s3: Option<::Value<String>> = None;
+                    let mut sapo_data: Option<::Value<String>> = None;
                     let mut salesforce: Option<::Value<String>> = None;
                     let mut service_now: Option<::Value<String>> = None;
                     let mut singular: Option<::Value<String>> = None;
@@ -2848,6 +4461,9 @@ pub mod flow {
                         match __cfn_key.as_ref() {
                             "Amplitude" => {
                                 amplitude = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CustomConnector" => {
+                                custom_connector = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Datadog" => {
                                 datadog = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -2864,8 +4480,14 @@ pub mod flow {
                             "Marketo" => {
                                 marketo = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Pardot" => {
+                                pardot = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "S3" => {
                                 s3 = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SAPOData" => {
+                                sapo_data = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Salesforce" => {
                                 salesforce = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -2894,12 +4516,15 @@ pub mod flow {
 
                     Ok(ConnectorOperator {
                         amplitude: amplitude,
+                        custom_connector: custom_connector,
                         datadog: datadog,
                         dynatrace: dynatrace,
                         google_analytics: google_analytics,
                         infor_nexus: infor_nexus,
                         marketo: marketo,
+                        pardot: pardot,
                         s3: s3,
+                        sapo_data: sapo_data,
                         salesforce: salesforce,
                         service_now: service_now,
                         singular: singular,
@@ -2907,6 +4532,248 @@ pub mod flow {
                         trendmicro: trendmicro,
                         veeva: veeva,
                         zendesk: zendesk,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppFlow::Flow.CustomConnectorDestinationProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-customconnectordestinationproperties.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CustomConnectorDestinationProperties {
+        /// Property [`CustomProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-customconnectordestinationproperties.html#cfn-appflow-flow-customconnectordestinationproperties-customproperties).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub custom_properties: Option<::ValueMap<String>>,
+        /// Property [`EntityName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-customconnectordestinationproperties.html#cfn-appflow-flow-customconnectordestinationproperties-entityname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub entity_name: ::Value<String>,
+        /// Property [`ErrorHandlingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-customconnectordestinationproperties.html#cfn-appflow-flow-customconnectordestinationproperties-errorhandlingconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub error_handling_config: Option<::Value<ErrorHandlingConfig>>,
+        /// Property [`IdFieldNames`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-customconnectordestinationproperties.html#cfn-appflow-flow-customconnectordestinationproperties-idfieldnames).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub id_field_names: Option<::ValueList<String>>,
+        /// Property [`WriteOperationType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-customconnectordestinationproperties.html#cfn-appflow-flow-customconnectordestinationproperties-writeoperationtype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub write_operation_type: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for CustomConnectorDestinationProperties {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref custom_properties) = self.custom_properties {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomProperties", custom_properties)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EntityName", &self.entity_name)?;
+            if let Some(ref error_handling_config) = self.error_handling_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ErrorHandlingConfig", error_handling_config)?;
+            }
+            if let Some(ref id_field_names) = self.id_field_names {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IdFieldNames", id_field_names)?;
+            }
+            if let Some(ref write_operation_type) = self.write_operation_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "WriteOperationType", write_operation_type)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CustomConnectorDestinationProperties {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CustomConnectorDestinationProperties, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CustomConnectorDestinationProperties;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CustomConnectorDestinationProperties")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut custom_properties: Option<::ValueMap<String>> = None;
+                    let mut entity_name: Option<::Value<String>> = None;
+                    let mut error_handling_config: Option<::Value<ErrorHandlingConfig>> = None;
+                    let mut id_field_names: Option<::ValueList<String>> = None;
+                    let mut write_operation_type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CustomProperties" => {
+                                custom_properties = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "EntityName" => {
+                                entity_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ErrorHandlingConfig" => {
+                                error_handling_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IdFieldNames" => {
+                                id_field_names = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "WriteOperationType" => {
+                                write_operation_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CustomConnectorDestinationProperties {
+                        custom_properties: custom_properties,
+                        entity_name: entity_name.ok_or(::serde::de::Error::missing_field("EntityName"))?,
+                        error_handling_config: error_handling_config,
+                        id_field_names: id_field_names,
+                        write_operation_type: write_operation_type,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppFlow::Flow.CustomConnectorSourceProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-customconnectorsourceproperties.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CustomConnectorSourceProperties {
+        /// Property [`CustomProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-customconnectorsourceproperties.html#cfn-appflow-flow-customconnectorsourceproperties-customproperties).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub custom_properties: Option<::ValueMap<String>>,
+        /// Property [`DataTransferApi`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-customconnectorsourceproperties.html#cfn-appflow-flow-customconnectorsourceproperties-datatransferapi).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub data_transfer_api: Option<::Value<DataTransferApi>>,
+        /// Property [`EntityName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-customconnectorsourceproperties.html#cfn-appflow-flow-customconnectorsourceproperties-entityname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub entity_name: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for CustomConnectorSourceProperties {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref custom_properties) = self.custom_properties {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomProperties", custom_properties)?;
+            }
+            if let Some(ref data_transfer_api) = self.data_transfer_api {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataTransferApi", data_transfer_api)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EntityName", &self.entity_name)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CustomConnectorSourceProperties {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CustomConnectorSourceProperties, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CustomConnectorSourceProperties;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CustomConnectorSourceProperties")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut custom_properties: Option<::ValueMap<String>> = None;
+                    let mut data_transfer_api: Option<::Value<DataTransferApi>> = None;
+                    let mut entity_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CustomProperties" => {
+                                custom_properties = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DataTransferApi" => {
+                                data_transfer_api = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "EntityName" => {
+                                entity_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CustomConnectorSourceProperties {
+                        custom_properties: custom_properties,
+                        data_transfer_api: data_transfer_api,
+                        entity_name: entity_name.ok_or(::serde::de::Error::missing_field("EntityName"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppFlow::Flow.DataTransferApi`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-datatransferapi.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DataTransferApi {
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-datatransferapi.html#cfn-appflow-flow-datatransferapi-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: ::Value<String>,
+        /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-datatransferapi.html#cfn-appflow-flow-datatransferapi-type).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub r#type: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for DataTransferApi {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DataTransferApi {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DataTransferApi, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DataTransferApi;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DataTransferApi")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut name: Option<::Value<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Type" => {
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DataTransferApi {
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                        r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
                     })
                 }
             }
@@ -2969,6 +4836,11 @@ pub mod flow {
     /// The [`AWS::AppFlow::Flow.DestinationConnectorProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-destinationconnectorproperties.html) property type.
     #[derive(Debug, Default)]
     pub struct DestinationConnectorProperties {
+        /// Property [`CustomConnector`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-destinationconnectorproperties.html#cfn-appflow-flow-destinationconnectorproperties-customconnector).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub custom_connector: Option<::Value<CustomConnectorDestinationProperties>>,
         /// Property [`EventBridge`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-destinationconnectorproperties.html#cfn-appflow-flow-destinationconnectorproperties-eventbridge).
         ///
         /// Update type: _Mutable_.
@@ -2979,6 +4851,11 @@ pub mod flow {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub lookout_metrics: Option<::Value<LookoutMetricsDestinationProperties>>,
+        /// Property [`Marketo`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-destinationconnectorproperties.html#cfn-appflow-flow-destinationconnectorproperties-marketo).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub marketo: Option<::Value<MarketoDestinationProperties>>,
         /// Property [`Redshift`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-destinationconnectorproperties.html#cfn-appflow-flow-destinationconnectorproperties-redshift).
         ///
         /// Update type: _Mutable_.
@@ -2989,6 +4866,11 @@ pub mod flow {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub s3: Option<::Value<S3DestinationProperties>>,
+        /// Property [`SAPOData`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-destinationconnectorproperties.html#cfn-appflow-flow-destinationconnectorproperties-sapodata).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub sapo_data: Option<::Value<SAPODataDestinationProperties>>,
         /// Property [`Salesforce`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-destinationconnectorproperties.html#cfn-appflow-flow-destinationconnectorproperties-salesforce).
         ///
         /// Update type: _Mutable_.
@@ -3014,17 +4896,26 @@ pub mod flow {
     impl ::codec::SerializeValue for DestinationConnectorProperties {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref custom_connector) = self.custom_connector {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomConnector", custom_connector)?;
+            }
             if let Some(ref event_bridge) = self.event_bridge {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventBridge", event_bridge)?;
             }
             if let Some(ref lookout_metrics) = self.lookout_metrics {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "LookoutMetrics", lookout_metrics)?;
             }
+            if let Some(ref marketo) = self.marketo {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Marketo", marketo)?;
+            }
             if let Some(ref redshift) = self.redshift {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Redshift", redshift)?;
             }
             if let Some(ref s3) = self.s3 {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3", s3)?;
+            }
+            if let Some(ref sapo_data) = self.sapo_data {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SAPOData", sapo_data)?;
             }
             if let Some(ref salesforce) = self.salesforce {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Salesforce", salesforce)?;
@@ -3054,10 +4945,13 @@ pub mod flow {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut custom_connector: Option<::Value<CustomConnectorDestinationProperties>> = None;
                     let mut event_bridge: Option<::Value<EventBridgeDestinationProperties>> = None;
                     let mut lookout_metrics: Option<::Value<LookoutMetricsDestinationProperties>> = None;
+                    let mut marketo: Option<::Value<MarketoDestinationProperties>> = None;
                     let mut redshift: Option<::Value<RedshiftDestinationProperties>> = None;
                     let mut s3: Option<::Value<S3DestinationProperties>> = None;
+                    let mut sapo_data: Option<::Value<SAPODataDestinationProperties>> = None;
                     let mut salesforce: Option<::Value<SalesforceDestinationProperties>> = None;
                     let mut snowflake: Option<::Value<SnowflakeDestinationProperties>> = None;
                     let mut upsolver: Option<::Value<UpsolverDestinationProperties>> = None;
@@ -3065,17 +4959,26 @@ pub mod flow {
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "CustomConnector" => {
+                                custom_connector = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "EventBridge" => {
                                 event_bridge = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "LookoutMetrics" => {
                                 lookout_metrics = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Marketo" => {
+                                marketo = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Redshift" => {
                                 redshift = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "S3" => {
                                 s3 = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SAPOData" => {
+                                sapo_data = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Salesforce" => {
                                 salesforce = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -3094,10 +4997,13 @@ pub mod flow {
                     }
 
                     Ok(DestinationConnectorProperties {
+                        custom_connector: custom_connector,
                         event_bridge: event_bridge,
                         lookout_metrics: lookout_metrics,
+                        marketo: marketo,
                         redshift: redshift,
                         s3: s3,
+                        sapo_data: sapo_data,
                         salesforce: salesforce,
                         snowflake: snowflake,
                         upsolver: upsolver,
@@ -3113,6 +5019,11 @@ pub mod flow {
     /// The [`AWS::AppFlow::Flow.DestinationFlowConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-destinationflowconfig.html) property type.
     #[derive(Debug, Default)]
     pub struct DestinationFlowConfig {
+        /// Property [`ApiVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-destinationflowconfig.html#cfn-appflow-flow-destinationflowconfig-apiversion).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub api_version: Option<::Value<String>>,
         /// Property [`ConnectorProfileName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-destinationflowconfig.html#cfn-appflow-flow-destinationflowconfig-connectorprofilename).
         ///
         /// Update type: _Mutable_.
@@ -3133,6 +5044,9 @@ pub mod flow {
     impl ::codec::SerializeValue for DestinationFlowConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref api_version) = self.api_version {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApiVersion", api_version)?;
+            }
             if let Some(ref connector_profile_name) = self.connector_profile_name {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectorProfileName", connector_profile_name)?;
             }
@@ -3154,12 +5068,16 @@ pub mod flow {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut api_version: Option<::Value<String>> = None;
                     let mut connector_profile_name: Option<::Value<String>> = None;
                     let mut connector_type: Option<::Value<String>> = None;
                     let mut destination_connector_properties: Option<::Value<DestinationConnectorProperties>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "ApiVersion" => {
+                                api_version = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "ConnectorProfileName" => {
                                 connector_profile_name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -3174,6 +5092,7 @@ pub mod flow {
                     }
 
                     Ok(DestinationFlowConfig {
+                        api_version: api_version,
                         connector_profile_name: connector_profile_name,
                         connector_type: connector_type.ok_or(::serde::de::Error::missing_field("ConnectorType"))?,
                         destination_connector_properties: destination_connector_properties.ok_or(::serde::de::Error::missing_field("DestinationConnectorProperties"))?,
@@ -3371,6 +5290,79 @@ pub mod flow {
                     Ok(EventBridgeDestinationProperties {
                         error_handling_config: error_handling_config,
                         object: object.ok_or(::serde::de::Error::missing_field("Object"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppFlow::Flow.GlueDataCatalog`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-gluedatacatalog.html) property type.
+    #[derive(Debug, Default)]
+    pub struct GlueDataCatalog {
+        /// Property [`DatabaseName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-gluedatacatalog.html#cfn-appflow-flow-gluedatacatalog-databasename).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub database_name: ::Value<String>,
+        /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-gluedatacatalog.html#cfn-appflow-flow-gluedatacatalog-rolearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub role_arn: ::Value<String>,
+        /// Property [`TablePrefix`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-gluedatacatalog.html#cfn-appflow-flow-gluedatacatalog-tableprefix).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub table_prefix: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for GlueDataCatalog {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseName", &self.database_name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TablePrefix", &self.table_prefix)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for GlueDataCatalog {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<GlueDataCatalog, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = GlueDataCatalog;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type GlueDataCatalog")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut database_name: Option<::Value<String>> = None;
+                    let mut role_arn: Option<::Value<String>> = None;
+                    let mut table_prefix: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DatabaseName" => {
+                                database_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RoleArn" => {
+                                role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TablePrefix" => {
+                                table_prefix = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(GlueDataCatalog {
+                        database_name: database_name.ok_or(::serde::de::Error::missing_field("DatabaseName"))?,
+                        role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
+                        table_prefix: table_prefix.ok_or(::serde::de::Error::missing_field("TablePrefix"))?,
                     })
                 }
             }
@@ -3587,6 +5579,70 @@ pub mod flow {
         }
     }
 
+    /// The [`AWS::AppFlow::Flow.MarketoDestinationProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-marketodestinationproperties.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MarketoDestinationProperties {
+        /// Property [`ErrorHandlingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-marketodestinationproperties.html#cfn-appflow-flow-marketodestinationproperties-errorhandlingconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub error_handling_config: Option<::Value<ErrorHandlingConfig>>,
+        /// Property [`Object`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-marketodestinationproperties.html#cfn-appflow-flow-marketodestinationproperties-object).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub object: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for MarketoDestinationProperties {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref error_handling_config) = self.error_handling_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ErrorHandlingConfig", error_handling_config)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Object", &self.object)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MarketoDestinationProperties {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MarketoDestinationProperties, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MarketoDestinationProperties;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MarketoDestinationProperties")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut error_handling_config: Option<::Value<ErrorHandlingConfig>> = None;
+                    let mut object: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ErrorHandlingConfig" => {
+                                error_handling_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Object" => {
+                                object = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MarketoDestinationProperties {
+                        error_handling_config: error_handling_config,
+                        object: object.ok_or(::serde::de::Error::missing_field("Object"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::AppFlow::Flow.MarketoSourceProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-marketosourceproperties.html) property type.
     #[derive(Debug, Default)]
     pub struct MarketoSourceProperties {
@@ -3638,9 +5694,118 @@ pub mod flow {
         }
     }
 
+    /// The [`AWS::AppFlow::Flow.MetadataCatalogConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-metadatacatalogconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MetadataCatalogConfig {
+        /// Property [`GlueDataCatalog`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-metadatacatalogconfig.html#cfn-appflow-flow-metadatacatalogconfig-gluedatacatalog).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub glue_data_catalog: Option<::Value<GlueDataCatalog>>,
+    }
+
+    impl ::codec::SerializeValue for MetadataCatalogConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref glue_data_catalog) = self.glue_data_catalog {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "GlueDataCatalog", glue_data_catalog)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MetadataCatalogConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MetadataCatalogConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MetadataCatalogConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MetadataCatalogConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut glue_data_catalog: Option<::Value<GlueDataCatalog>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "GlueDataCatalog" => {
+                                glue_data_catalog = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MetadataCatalogConfig {
+                        glue_data_catalog: glue_data_catalog,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppFlow::Flow.PardotSourceProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-pardotsourceproperties.html) property type.
+    #[derive(Debug, Default)]
+    pub struct PardotSourceProperties {
+        /// Property [`Object`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-pardotsourceproperties.html#cfn-appflow-flow-pardotsourceproperties-object).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub object: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for PardotSourceProperties {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Object", &self.object)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for PardotSourceProperties {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<PardotSourceProperties, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = PardotSourceProperties;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type PardotSourceProperties")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut object: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Object" => {
+                                object = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(PardotSourceProperties {
+                        object: object.ok_or(::serde::de::Error::missing_field("Object"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::AppFlow::Flow.PrefixConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-prefixconfig.html) property type.
     #[derive(Debug, Default)]
     pub struct PrefixConfig {
+        /// Property [`PathPrefixHierarchy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-prefixconfig.html#cfn-appflow-flow-prefixconfig-pathprefixhierarchy).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub path_prefix_hierarchy: Option<::ValueList<String>>,
         /// Property [`PrefixFormat`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-prefixconfig.html#cfn-appflow-flow-prefixconfig-prefixformat).
         ///
         /// Update type: _Mutable_.
@@ -3656,6 +5821,9 @@ pub mod flow {
     impl ::codec::SerializeValue for PrefixConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref path_prefix_hierarchy) = self.path_prefix_hierarchy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PathPrefixHierarchy", path_prefix_hierarchy)?;
+            }
             if let Some(ref prefix_format) = self.prefix_format {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrefixFormat", prefix_format)?;
             }
@@ -3678,11 +5846,15 @@ pub mod flow {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut path_prefix_hierarchy: Option<::ValueList<String>> = None;
                     let mut prefix_format: Option<::Value<String>> = None;
                     let mut prefix_type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "PathPrefixHierarchy" => {
+                                path_prefix_hierarchy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "PrefixFormat" => {
                                 prefix_format = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -3694,6 +5866,7 @@ pub mod flow {
                     }
 
                     Ok(PrefixConfig {
+                        path_prefix_hierarchy: path_prefix_hierarchy,
                         prefix_format: prefix_format,
                         prefix_type: prefix_type,
                     })
@@ -3869,6 +6042,59 @@ pub mod flow {
         }
     }
 
+    /// The [`AWS::AppFlow::Flow.S3InputFormatConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-s3inputformatconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct S3InputFormatConfig {
+        /// Property [`S3InputFileType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-s3inputformatconfig.html#cfn-appflow-flow-s3inputformatconfig-s3inputfiletype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub s3_input_file_type: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for S3InputFormatConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref s3_input_file_type) = self.s3_input_file_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3InputFileType", s3_input_file_type)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for S3InputFormatConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<S3InputFormatConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = S3InputFormatConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type S3InputFormatConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut s3_input_file_type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "S3InputFileType" => {
+                                s3_input_file_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(S3InputFormatConfig {
+                        s3_input_file_type: s3_input_file_type,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::AppFlow::Flow.S3OutputFormatConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-s3outputformatconfig.html) property type.
     #[derive(Debug, Default)]
     pub struct S3OutputFormatConfig {
@@ -3887,6 +6113,11 @@ pub mod flow {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub prefix_config: Option<::Value<PrefixConfig>>,
+        /// Property [`PreserveSourceDataTyping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-s3outputformatconfig.html#cfn-appflow-flow-s3outputformatconfig-preservesourcedatatyping).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub preserve_source_data_typing: Option<::Value<bool>>,
     }
 
     impl ::codec::SerializeValue for S3OutputFormatConfig {
@@ -3900,6 +6131,9 @@ pub mod flow {
             }
             if let Some(ref prefix_config) = self.prefix_config {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrefixConfig", prefix_config)?;
+            }
+            if let Some(ref preserve_source_data_typing) = self.preserve_source_data_typing {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreserveSourceDataTyping", preserve_source_data_typing)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -3920,6 +6154,7 @@ pub mod flow {
                     let mut aggregation_config: Option<::Value<AggregationConfig>> = None;
                     let mut file_type: Option<::Value<String>> = None;
                     let mut prefix_config: Option<::Value<PrefixConfig>> = None;
+                    let mut preserve_source_data_typing: Option<::Value<bool>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -3932,6 +6167,9 @@ pub mod flow {
                             "PrefixConfig" => {
                                 prefix_config = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "PreserveSourceDataTyping" => {
+                                preserve_source_data_typing = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
@@ -3940,6 +6178,7 @@ pub mod flow {
                         aggregation_config: aggregation_config,
                         file_type: file_type,
                         prefix_config: prefix_config,
+                        preserve_source_data_typing: preserve_source_data_typing,
                     })
                 }
             }
@@ -3961,6 +6200,11 @@ pub mod flow {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub bucket_prefix: ::Value<String>,
+        /// Property [`S3InputFormatConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-s3sourceproperties.html#cfn-appflow-flow-s3sourceproperties-s3inputformatconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub s3_input_format_config: Option<::Value<S3InputFormatConfig>>,
     }
 
     impl ::codec::SerializeValue for S3SourceProperties {
@@ -3968,6 +6212,9 @@ pub mod flow {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketName", &self.bucket_name)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketPrefix", &self.bucket_prefix)?;
+            if let Some(ref s3_input_format_config) = self.s3_input_format_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3InputFormatConfig", s3_input_format_config)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -3986,6 +6233,7 @@ pub mod flow {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut bucket_name: Option<::Value<String>> = None;
                     let mut bucket_prefix: Option<::Value<String>> = None;
+                    let mut s3_input_format_config: Option<::Value<S3InputFormatConfig>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -3995,6 +6243,9 @@ pub mod flow {
                             "BucketPrefix" => {
                                 bucket_prefix = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "S3InputFormatConfig" => {
+                                s3_input_format_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
@@ -4002,6 +6253,289 @@ pub mod flow {
                     Ok(S3SourceProperties {
                         bucket_name: bucket_name.ok_or(::serde::de::Error::missing_field("BucketName"))?,
                         bucket_prefix: bucket_prefix.ok_or(::serde::de::Error::missing_field("BucketPrefix"))?,
+                        s3_input_format_config: s3_input_format_config,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppFlow::Flow.SAPODataDestinationProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sapodatadestinationproperties.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SAPODataDestinationProperties {
+        /// Property [`ErrorHandlingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sapodatadestinationproperties.html#cfn-appflow-flow-sapodatadestinationproperties-errorhandlingconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub error_handling_config: Option<::Value<ErrorHandlingConfig>>,
+        /// Property [`IdFieldNames`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sapodatadestinationproperties.html#cfn-appflow-flow-sapodatadestinationproperties-idfieldnames).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub id_field_names: Option<::ValueList<String>>,
+        /// Property [`ObjectPath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sapodatadestinationproperties.html#cfn-appflow-flow-sapodatadestinationproperties-objectpath).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub object_path: ::Value<String>,
+        /// Property [`SuccessResponseHandlingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sapodatadestinationproperties.html#cfn-appflow-flow-sapodatadestinationproperties-successresponsehandlingconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub success_response_handling_config: Option<::Value<SuccessResponseHandlingConfig>>,
+        /// Property [`WriteOperationType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sapodatadestinationproperties.html#cfn-appflow-flow-sapodatadestinationproperties-writeoperationtype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub write_operation_type: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for SAPODataDestinationProperties {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref error_handling_config) = self.error_handling_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ErrorHandlingConfig", error_handling_config)?;
+            }
+            if let Some(ref id_field_names) = self.id_field_names {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IdFieldNames", id_field_names)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ObjectPath", &self.object_path)?;
+            if let Some(ref success_response_handling_config) = self.success_response_handling_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SuccessResponseHandlingConfig", success_response_handling_config)?;
+            }
+            if let Some(ref write_operation_type) = self.write_operation_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "WriteOperationType", write_operation_type)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SAPODataDestinationProperties {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SAPODataDestinationProperties, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SAPODataDestinationProperties;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SAPODataDestinationProperties")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut error_handling_config: Option<::Value<ErrorHandlingConfig>> = None;
+                    let mut id_field_names: Option<::ValueList<String>> = None;
+                    let mut object_path: Option<::Value<String>> = None;
+                    let mut success_response_handling_config: Option<::Value<SuccessResponseHandlingConfig>> = None;
+                    let mut write_operation_type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ErrorHandlingConfig" => {
+                                error_handling_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IdFieldNames" => {
+                                id_field_names = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ObjectPath" => {
+                                object_path = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SuccessResponseHandlingConfig" => {
+                                success_response_handling_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "WriteOperationType" => {
+                                write_operation_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SAPODataDestinationProperties {
+                        error_handling_config: error_handling_config,
+                        id_field_names: id_field_names,
+                        object_path: object_path.ok_or(::serde::de::Error::missing_field("ObjectPath"))?,
+                        success_response_handling_config: success_response_handling_config,
+                        write_operation_type: write_operation_type,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppFlow::Flow.SAPODataPaginationConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sapodatapaginationconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SAPODataPaginationConfig {
+        /// Property [`maxPageSize`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sapodatapaginationconfig.html#cfn-appflow-flow-sapodatapaginationconfig-maxpagesize).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub max_page_size: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for SAPODataPaginationConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "maxPageSize", &self.max_page_size)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SAPODataPaginationConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SAPODataPaginationConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SAPODataPaginationConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SAPODataPaginationConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut max_page_size: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "maxPageSize" => {
+                                max_page_size = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SAPODataPaginationConfig {
+                        max_page_size: max_page_size.ok_or(::serde::de::Error::missing_field("maxPageSize"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppFlow::Flow.SAPODataParallelismConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sapodataparallelismconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SAPODataParallelismConfig {
+        /// Property [`maxParallelism`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sapodataparallelismconfig.html#cfn-appflow-flow-sapodataparallelismconfig-maxparallelism).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub max_parallelism: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for SAPODataParallelismConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "maxParallelism", &self.max_parallelism)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SAPODataParallelismConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SAPODataParallelismConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SAPODataParallelismConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SAPODataParallelismConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut max_parallelism: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "maxParallelism" => {
+                                max_parallelism = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SAPODataParallelismConfig {
+                        max_parallelism: max_parallelism.ok_or(::serde::de::Error::missing_field("maxParallelism"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppFlow::Flow.SAPODataSourceProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sapodatasourceproperties.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SAPODataSourceProperties {
+        /// Property [`ObjectPath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sapodatasourceproperties.html#cfn-appflow-flow-sapodatasourceproperties-objectpath).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub object_path: ::Value<String>,
+        /// Property [`paginationConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sapodatasourceproperties.html#cfn-appflow-flow-sapodatasourceproperties-paginationconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub pagination_config: Option<::Value<SAPODataPaginationConfig>>,
+        /// Property [`parallelismConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sapodatasourceproperties.html#cfn-appflow-flow-sapodatasourceproperties-parallelismconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub parallelism_config: Option<::Value<SAPODataParallelismConfig>>,
+    }
+
+    impl ::codec::SerializeValue for SAPODataSourceProperties {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ObjectPath", &self.object_path)?;
+            if let Some(ref pagination_config) = self.pagination_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "paginationConfig", pagination_config)?;
+            }
+            if let Some(ref parallelism_config) = self.parallelism_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "parallelismConfig", parallelism_config)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SAPODataSourceProperties {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SAPODataSourceProperties, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SAPODataSourceProperties;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SAPODataSourceProperties")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut object_path: Option<::Value<String>> = None;
+                    let mut pagination_config: Option<::Value<SAPODataPaginationConfig>> = None;
+                    let mut parallelism_config: Option<::Value<SAPODataParallelismConfig>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ObjectPath" => {
+                                object_path = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "paginationConfig" => {
+                                pagination_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "parallelismConfig" => {
+                                parallelism_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SAPODataSourceProperties {
+                        object_path: object_path.ok_or(::serde::de::Error::missing_field("ObjectPath"))?,
+                        pagination_config: pagination_config,
+                        parallelism_config: parallelism_config,
                     })
                 }
             }
@@ -4013,6 +6547,11 @@ pub mod flow {
     /// The [`AWS::AppFlow::Flow.SalesforceDestinationProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-salesforcedestinationproperties.html) property type.
     #[derive(Debug, Default)]
     pub struct SalesforceDestinationProperties {
+        /// Property [`DataTransferApi`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-salesforcedestinationproperties.html#cfn-appflow-flow-salesforcedestinationproperties-datatransferapi).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub data_transfer_api: Option<::Value<String>>,
         /// Property [`ErrorHandlingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-salesforcedestinationproperties.html#cfn-appflow-flow-salesforcedestinationproperties-errorhandlingconfig).
         ///
         /// Update type: _Mutable_.
@@ -4038,6 +6577,9 @@ pub mod flow {
     impl ::codec::SerializeValue for SalesforceDestinationProperties {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref data_transfer_api) = self.data_transfer_api {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataTransferApi", data_transfer_api)?;
+            }
             if let Some(ref error_handling_config) = self.error_handling_config {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ErrorHandlingConfig", error_handling_config)?;
             }
@@ -4064,6 +6606,7 @@ pub mod flow {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut data_transfer_api: Option<::Value<String>> = None;
                     let mut error_handling_config: Option<::Value<ErrorHandlingConfig>> = None;
                     let mut id_field_names: Option<::ValueList<String>> = None;
                     let mut object: Option<::Value<String>> = None;
@@ -4071,6 +6614,9 @@ pub mod flow {
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "DataTransferApi" => {
+                                data_transfer_api = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "ErrorHandlingConfig" => {
                                 error_handling_config = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -4088,6 +6634,7 @@ pub mod flow {
                     }
 
                     Ok(SalesforceDestinationProperties {
+                        data_transfer_api: data_transfer_api,
                         error_handling_config: error_handling_config,
                         id_field_names: id_field_names,
                         object: object.ok_or(::serde::de::Error::missing_field("Object"))?,
@@ -4103,6 +6650,11 @@ pub mod flow {
     /// The [`AWS::AppFlow::Flow.SalesforceSourceProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-salesforcesourceproperties.html) property type.
     #[derive(Debug, Default)]
     pub struct SalesforceSourceProperties {
+        /// Property [`DataTransferApi`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-salesforcesourceproperties.html#cfn-appflow-flow-salesforcesourceproperties-datatransferapi).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub data_transfer_api: Option<::Value<String>>,
         /// Property [`EnableDynamicFieldUpdate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-salesforcesourceproperties.html#cfn-appflow-flow-salesforcesourceproperties-enabledynamicfieldupdate).
         ///
         /// Update type: _Mutable_.
@@ -4123,6 +6675,9 @@ pub mod flow {
     impl ::codec::SerializeValue for SalesforceSourceProperties {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref data_transfer_api) = self.data_transfer_api {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataTransferApi", data_transfer_api)?;
+            }
             if let Some(ref enable_dynamic_field_update) = self.enable_dynamic_field_update {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableDynamicFieldUpdate", enable_dynamic_field_update)?;
             }
@@ -4146,12 +6701,16 @@ pub mod flow {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut data_transfer_api: Option<::Value<String>> = None;
                     let mut enable_dynamic_field_update: Option<::Value<bool>> = None;
                     let mut include_deleted_records: Option<::Value<bool>> = None;
                     let mut object: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "DataTransferApi" => {
+                                data_transfer_api = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "EnableDynamicFieldUpdate" => {
                                 enable_dynamic_field_update = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -4166,6 +6725,7 @@ pub mod flow {
                     }
 
                     Ok(SalesforceSourceProperties {
+                        data_transfer_api: data_transfer_api,
                         enable_dynamic_field_update: enable_dynamic_field_update,
                         include_deleted_records: include_deleted_records,
                         object: object.ok_or(::serde::de::Error::missing_field("Object"))?,
@@ -4185,6 +6745,16 @@ pub mod flow {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub data_pull_mode: Option<::Value<String>>,
+        /// Property [`FirstExecutionFrom`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-scheduledtriggerproperties.html#cfn-appflow-flow-scheduledtriggerproperties-firstexecutionfrom).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub first_execution_from: Option<::Value<f64>>,
+        /// Property [`FlowErrorDeactivationThreshold`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-scheduledtriggerproperties.html#cfn-appflow-flow-scheduledtriggerproperties-flowerrordeactivationthreshold).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub flow_error_deactivation_threshold: Option<::Value<u32>>,
         /// Property [`ScheduleEndTime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-scheduledtriggerproperties.html#cfn-appflow-flow-scheduledtriggerproperties-scheduleendtime).
         ///
         /// Update type: _Mutable_.
@@ -4195,6 +6765,11 @@ pub mod flow {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub schedule_expression: ::Value<String>,
+        /// Property [`ScheduleOffset`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-scheduledtriggerproperties.html#cfn-appflow-flow-scheduledtriggerproperties-scheduleoffset).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub schedule_offset: Option<::Value<f64>>,
         /// Property [`ScheduleStartTime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-scheduledtriggerproperties.html#cfn-appflow-flow-scheduledtriggerproperties-schedulestarttime).
         ///
         /// Update type: _Mutable_.
@@ -4213,10 +6788,19 @@ pub mod flow {
             if let Some(ref data_pull_mode) = self.data_pull_mode {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataPullMode", data_pull_mode)?;
             }
+            if let Some(ref first_execution_from) = self.first_execution_from {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FirstExecutionFrom", first_execution_from)?;
+            }
+            if let Some(ref flow_error_deactivation_threshold) = self.flow_error_deactivation_threshold {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FlowErrorDeactivationThreshold", flow_error_deactivation_threshold)?;
+            }
             if let Some(ref schedule_end_time) = self.schedule_end_time {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScheduleEndTime", schedule_end_time)?;
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScheduleExpression", &self.schedule_expression)?;
+            if let Some(ref schedule_offset) = self.schedule_offset {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScheduleOffset", schedule_offset)?;
+            }
             if let Some(ref schedule_start_time) = self.schedule_start_time {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScheduleStartTime", schedule_start_time)?;
             }
@@ -4240,8 +6824,11 @@ pub mod flow {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut data_pull_mode: Option<::Value<String>> = None;
+                    let mut first_execution_from: Option<::Value<f64>> = None;
+                    let mut flow_error_deactivation_threshold: Option<::Value<u32>> = None;
                     let mut schedule_end_time: Option<::Value<f64>> = None;
                     let mut schedule_expression: Option<::Value<String>> = None;
+                    let mut schedule_offset: Option<::Value<f64>> = None;
                     let mut schedule_start_time: Option<::Value<f64>> = None;
                     let mut time_zone: Option<::Value<String>> = None;
 
@@ -4250,11 +6837,20 @@ pub mod flow {
                             "DataPullMode" => {
                                 data_pull_mode = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "FirstExecutionFrom" => {
+                                first_execution_from = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "FlowErrorDeactivationThreshold" => {
+                                flow_error_deactivation_threshold = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "ScheduleEndTime" => {
                                 schedule_end_time = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "ScheduleExpression" => {
                                 schedule_expression = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ScheduleOffset" => {
+                                schedule_offset = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "ScheduleStartTime" => {
                                 schedule_start_time = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -4268,8 +6864,11 @@ pub mod flow {
 
                     Ok(ScheduledTriggerProperties {
                         data_pull_mode: data_pull_mode,
+                        first_execution_from: first_execution_from,
+                        flow_error_deactivation_threshold: flow_error_deactivation_threshold,
                         schedule_end_time: schedule_end_time,
                         schedule_expression: schedule_expression.ok_or(::serde::de::Error::missing_field("ScheduleExpression"))?,
+                        schedule_offset: schedule_offset,
                         schedule_start_time: schedule_start_time,
                         time_zone: time_zone,
                     })
@@ -4529,6 +7128,11 @@ pub mod flow {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub amplitude: Option<::Value<AmplitudeSourceProperties>>,
+        /// Property [`CustomConnector`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sourceconnectorproperties.html#cfn-appflow-flow-sourceconnectorproperties-customconnector).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub custom_connector: Option<::Value<CustomConnectorSourceProperties>>,
         /// Property [`Datadog`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sourceconnectorproperties.html#cfn-appflow-flow-sourceconnectorproperties-datadog).
         ///
         /// Update type: _Mutable_.
@@ -4554,11 +7158,21 @@ pub mod flow {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub marketo: Option<::Value<MarketoSourceProperties>>,
+        /// Property [`Pardot`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sourceconnectorproperties.html#cfn-appflow-flow-sourceconnectorproperties-pardot).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub pardot: Option<::Value<PardotSourceProperties>>,
         /// Property [`S3`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sourceconnectorproperties.html#cfn-appflow-flow-sourceconnectorproperties-s3).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub s3: Option<::Value<S3SourceProperties>>,
+        /// Property [`SAPOData`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sourceconnectorproperties.html#cfn-appflow-flow-sourceconnectorproperties-sapodata).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub sapo_data: Option<::Value<SAPODataSourceProperties>>,
         /// Property [`Salesforce`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sourceconnectorproperties.html#cfn-appflow-flow-sourceconnectorproperties-salesforce).
         ///
         /// Update type: _Mutable_.
@@ -4602,6 +7216,9 @@ pub mod flow {
             if let Some(ref amplitude) = self.amplitude {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Amplitude", amplitude)?;
             }
+            if let Some(ref custom_connector) = self.custom_connector {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomConnector", custom_connector)?;
+            }
             if let Some(ref datadog) = self.datadog {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Datadog", datadog)?;
             }
@@ -4617,8 +7234,14 @@ pub mod flow {
             if let Some(ref marketo) = self.marketo {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Marketo", marketo)?;
             }
+            if let Some(ref pardot) = self.pardot {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Pardot", pardot)?;
+            }
             if let Some(ref s3) = self.s3 {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3", s3)?;
+            }
+            if let Some(ref sapo_data) = self.sapo_data {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SAPOData", sapo_data)?;
             }
             if let Some(ref salesforce) = self.salesforce {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Salesforce", salesforce)?;
@@ -4658,12 +7281,15 @@ pub mod flow {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut amplitude: Option<::Value<AmplitudeSourceProperties>> = None;
+                    let mut custom_connector: Option<::Value<CustomConnectorSourceProperties>> = None;
                     let mut datadog: Option<::Value<DatadogSourceProperties>> = None;
                     let mut dynatrace: Option<::Value<DynatraceSourceProperties>> = None;
                     let mut google_analytics: Option<::Value<GoogleAnalyticsSourceProperties>> = None;
                     let mut infor_nexus: Option<::Value<InforNexusSourceProperties>> = None;
                     let mut marketo: Option<::Value<MarketoSourceProperties>> = None;
+                    let mut pardot: Option<::Value<PardotSourceProperties>> = None;
                     let mut s3: Option<::Value<S3SourceProperties>> = None;
+                    let mut sapo_data: Option<::Value<SAPODataSourceProperties>> = None;
                     let mut salesforce: Option<::Value<SalesforceSourceProperties>> = None;
                     let mut service_now: Option<::Value<ServiceNowSourceProperties>> = None;
                     let mut singular: Option<::Value<SingularSourceProperties>> = None;
@@ -4676,6 +7302,9 @@ pub mod flow {
                         match __cfn_key.as_ref() {
                             "Amplitude" => {
                                 amplitude = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CustomConnector" => {
+                                custom_connector = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Datadog" => {
                                 datadog = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -4692,8 +7321,14 @@ pub mod flow {
                             "Marketo" => {
                                 marketo = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Pardot" => {
+                                pardot = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "S3" => {
                                 s3 = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SAPOData" => {
+                                sapo_data = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Salesforce" => {
                                 salesforce = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -4722,12 +7357,15 @@ pub mod flow {
 
                     Ok(SourceConnectorProperties {
                         amplitude: amplitude,
+                        custom_connector: custom_connector,
                         datadog: datadog,
                         dynatrace: dynatrace,
                         google_analytics: google_analytics,
                         infor_nexus: infor_nexus,
                         marketo: marketo,
+                        pardot: pardot,
                         s3: s3,
+                        sapo_data: sapo_data,
                         salesforce: salesforce,
                         service_now: service_now,
                         singular: singular,
@@ -4746,6 +7384,11 @@ pub mod flow {
     /// The [`AWS::AppFlow::Flow.SourceFlowConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sourceflowconfig.html) property type.
     #[derive(Debug, Default)]
     pub struct SourceFlowConfig {
+        /// Property [`ApiVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sourceflowconfig.html#cfn-appflow-flow-sourceflowconfig-apiversion).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub api_version: Option<::Value<String>>,
         /// Property [`ConnectorProfileName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-sourceflowconfig.html#cfn-appflow-flow-sourceflowconfig-connectorprofilename).
         ///
         /// Update type: _Mutable_.
@@ -4771,6 +7414,9 @@ pub mod flow {
     impl ::codec::SerializeValue for SourceFlowConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref api_version) = self.api_version {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApiVersion", api_version)?;
+            }
             if let Some(ref connector_profile_name) = self.connector_profile_name {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectorProfileName", connector_profile_name)?;
             }
@@ -4795,6 +7441,7 @@ pub mod flow {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut api_version: Option<::Value<String>> = None;
                     let mut connector_profile_name: Option<::Value<String>> = None;
                     let mut connector_type: Option<::Value<String>> = None;
                     let mut incremental_pull_config: Option<::Value<IncrementalPullConfig>> = None;
@@ -4802,6 +7449,9 @@ pub mod flow {
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "ApiVersion" => {
+                                api_version = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "ConnectorProfileName" => {
                                 connector_profile_name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -4819,10 +7469,77 @@ pub mod flow {
                     }
 
                     Ok(SourceFlowConfig {
+                        api_version: api_version,
                         connector_profile_name: connector_profile_name,
                         connector_type: connector_type.ok_or(::serde::de::Error::missing_field("ConnectorType"))?,
                         incremental_pull_config: incremental_pull_config,
                         source_connector_properties: source_connector_properties.ok_or(::serde::de::Error::missing_field("SourceConnectorProperties"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::AppFlow::Flow.SuccessResponseHandlingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-successresponsehandlingconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SuccessResponseHandlingConfig {
+        /// Property [`BucketName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-successresponsehandlingconfig.html#cfn-appflow-flow-successresponsehandlingconfig-bucketname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub bucket_name: Option<::Value<String>>,
+        /// Property [`BucketPrefix`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-successresponsehandlingconfig.html#cfn-appflow-flow-successresponsehandlingconfig-bucketprefix).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub bucket_prefix: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for SuccessResponseHandlingConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref bucket_name) = self.bucket_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketName", bucket_name)?;
+            }
+            if let Some(ref bucket_prefix) = self.bucket_prefix {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketPrefix", bucket_prefix)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SuccessResponseHandlingConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SuccessResponseHandlingConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SuccessResponseHandlingConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SuccessResponseHandlingConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut bucket_name: Option<::Value<String>> = None;
+                    let mut bucket_prefix: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "BucketName" => {
+                                bucket_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "BucketPrefix" => {
+                                bucket_prefix = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SuccessResponseHandlingConfig {
+                        bucket_name: bucket_name,
+                        bucket_prefix: bucket_prefix,
                     })
                 }
             }
@@ -5264,6 +7981,26 @@ pub mod flow {
     /// The [`AWS::AppFlow::Flow.VeevaSourceProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-veevasourceproperties.html) property type.
     #[derive(Debug, Default)]
     pub struct VeevaSourceProperties {
+        /// Property [`DocumentType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-veevasourceproperties.html#cfn-appflow-flow-veevasourceproperties-documenttype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub document_type: Option<::Value<String>>,
+        /// Property [`IncludeAllVersions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-veevasourceproperties.html#cfn-appflow-flow-veevasourceproperties-includeallversions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub include_all_versions: Option<::Value<bool>>,
+        /// Property [`IncludeRenditions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-veevasourceproperties.html#cfn-appflow-flow-veevasourceproperties-includerenditions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub include_renditions: Option<::Value<bool>>,
+        /// Property [`IncludeSourceFiles`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-veevasourceproperties.html#cfn-appflow-flow-veevasourceproperties-includesourcefiles).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub include_source_files: Option<::Value<bool>>,
         /// Property [`Object`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-appflow-flow-veevasourceproperties.html#cfn-appflow-flow-veevasourceproperties-object).
         ///
         /// Update type: _Mutable_.
@@ -5274,6 +8011,18 @@ pub mod flow {
     impl ::codec::SerializeValue for VeevaSourceProperties {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref document_type) = self.document_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentType", document_type)?;
+            }
+            if let Some(ref include_all_versions) = self.include_all_versions {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncludeAllVersions", include_all_versions)?;
+            }
+            if let Some(ref include_renditions) = self.include_renditions {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncludeRenditions", include_renditions)?;
+            }
+            if let Some(ref include_source_files) = self.include_source_files {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncludeSourceFiles", include_source_files)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Object", &self.object)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -5291,10 +8040,26 @@ pub mod flow {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut document_type: Option<::Value<String>> = None;
+                    let mut include_all_versions: Option<::Value<bool>> = None;
+                    let mut include_renditions: Option<::Value<bool>> = None;
+                    let mut include_source_files: Option<::Value<bool>> = None;
                     let mut object: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "DocumentType" => {
+                                document_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IncludeAllVersions" => {
+                                include_all_versions = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IncludeRenditions" => {
+                                include_renditions = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IncludeSourceFiles" => {
+                                include_source_files = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Object" => {
                                 object = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -5303,6 +8068,10 @@ pub mod flow {
                     }
 
                     Ok(VeevaSourceProperties {
+                        document_type: document_type,
+                        include_all_versions: include_all_versions,
+                        include_renditions: include_renditions,
+                        include_source_files: include_source_files,
                         object: object.ok_or(::serde::de::Error::missing_field("Object"))?,
                     })
                 }

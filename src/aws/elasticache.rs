@@ -55,11 +55,21 @@ pub struct CacheClusterProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub engine_version: Option<::Value<String>>,
+    /// Property [`IpDiscovery`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html#cfn-elasticache-cachecluster-ipdiscovery).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub ip_discovery: Option<::Value<String>>,
     /// Property [`LogDeliveryConfigurations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html#cfn-elasticache-cachecluster-logdeliveryconfigurations).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub log_delivery_configurations: Option<::ValueList<self::cache_cluster::LogDeliveryConfigurationRequest>>,
+    /// Property [`NetworkType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html#cfn-elasticache-cachecluster-networktype).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub network_type: Option<::Value<String>>,
     /// Property [`NotificationTopicArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html#cfn-elasticache-cachecluster-notificationtopicarn).
     ///
     /// Update type: _Mutable_.
@@ -118,6 +128,11 @@ pub struct CacheClusterProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`TransitEncryptionEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html#cfn-elasticache-cachecluster-transitencryptionenabled).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub transit_encryption_enabled: Option<::Value<bool>>,
     /// Property [`VpcSecurityGroupIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cache-cluster.html#cfn-elasticache-cachecluster-vpcsecuritygroupids).
     ///
     /// Update type: _Mutable_.
@@ -151,8 +166,14 @@ impl ::serde::Serialize for CacheClusterProperties {
         if let Some(ref engine_version) = self.engine_version {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EngineVersion", engine_version)?;
         }
+        if let Some(ref ip_discovery) = self.ip_discovery {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IpDiscovery", ip_discovery)?;
+        }
         if let Some(ref log_delivery_configurations) = self.log_delivery_configurations {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogDeliveryConfigurations", log_delivery_configurations)?;
+        }
+        if let Some(ref network_type) = self.network_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkType", network_type)?;
         }
         if let Some(ref notification_topic_arn) = self.notification_topic_arn {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationTopicArn", notification_topic_arn)?;
@@ -185,6 +206,9 @@ impl ::serde::Serialize for CacheClusterProperties {
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
+        if let Some(ref transit_encryption_enabled) = self.transit_encryption_enabled {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitEncryptionEnabled", transit_encryption_enabled)?;
+        }
         if let Some(ref vpc_security_group_ids) = self.vpc_security_group_ids {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcSecurityGroupIds", vpc_security_group_ids)?;
         }
@@ -213,7 +237,9 @@ impl<'de> ::serde::Deserialize<'de> for CacheClusterProperties {
                 let mut cluster_name: Option<::Value<String>> = None;
                 let mut engine: Option<::Value<String>> = None;
                 let mut engine_version: Option<::Value<String>> = None;
+                let mut ip_discovery: Option<::Value<String>> = None;
                 let mut log_delivery_configurations: Option<::ValueList<self::cache_cluster::LogDeliveryConfigurationRequest>> = None;
+                let mut network_type: Option<::Value<String>> = None;
                 let mut notification_topic_arn: Option<::Value<String>> = None;
                 let mut num_cache_nodes: Option<::Value<u32>> = None;
                 let mut port: Option<::Value<u32>> = None;
@@ -225,6 +251,7 @@ impl<'de> ::serde::Deserialize<'de> for CacheClusterProperties {
                 let mut snapshot_retention_limit: Option<::Value<u32>> = None;
                 let mut snapshot_window: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut transit_encryption_enabled: Option<::Value<bool>> = None;
                 let mut vpc_security_group_ids: Option<::ValueList<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -256,8 +283,14 @@ impl<'de> ::serde::Deserialize<'de> for CacheClusterProperties {
                         "EngineVersion" => {
                             engine_version = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "IpDiscovery" => {
+                            ip_discovery = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "LogDeliveryConfigurations" => {
                             log_delivery_configurations = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "NetworkType" => {
+                            network_type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "NotificationTopicArn" => {
                             notification_topic_arn = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -292,6 +325,9 @@ impl<'de> ::serde::Deserialize<'de> for CacheClusterProperties {
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "TransitEncryptionEnabled" => {
+                            transit_encryption_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "VpcSecurityGroupIds" => {
                             vpc_security_group_ids = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -309,7 +345,9 @@ impl<'de> ::serde::Deserialize<'de> for CacheClusterProperties {
                     cluster_name: cluster_name,
                     engine: engine.ok_or(::serde::de::Error::missing_field("Engine"))?,
                     engine_version: engine_version,
+                    ip_discovery: ip_discovery,
                     log_delivery_configurations: log_delivery_configurations,
+                    network_type: network_type,
                     notification_topic_arn: notification_topic_arn,
                     num_cache_nodes: num_cache_nodes.ok_or(::serde::de::Error::missing_field("NumCacheNodes"))?,
                     port: port,
@@ -321,6 +359,7 @@ impl<'de> ::serde::Deserialize<'de> for CacheClusterProperties {
                     snapshot_retention_limit: snapshot_retention_limit,
                     snapshot_window: snapshot_window,
                     tags: tags,
+                    transit_encryption_enabled: transit_encryption_enabled,
                     vpc_security_group_ids: vpc_security_group_ids,
                 })
             }
@@ -692,6 +731,16 @@ pub struct ReplicationGroupProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub cache_subnet_group_name: Option<::Value<String>>,
+    /// Property [`ClusterMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html#cfn-elasticache-replicationgroup-clustermode).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub cluster_mode: Option<::Value<String>>,
+    /// Property [`DataTieringEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html#cfn-elasticache-replicationgroup-datatieringenabled).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub data_tiering_enabled: Option<::Value<bool>>,
     /// Property [`Engine`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html#cfn-elasticache-replicationgroup-engine).
     ///
     /// Update type: _Immutable_.
@@ -707,6 +756,11 @@ pub struct ReplicationGroupProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub global_replication_group_id: Option<::Value<String>>,
+    /// Property [`IpDiscovery`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html#cfn-elasticache-replicationgroup-ipdiscovery).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub ip_discovery: Option<::Value<String>>,
     /// Property [`KmsKeyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html#cfn-elasticache-replicationgroup-kmskeyid).
     ///
     /// Update type: _Immutable_.
@@ -722,6 +776,11 @@ pub struct ReplicationGroupProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub multi_az_enabled: Option<::Value<bool>>,
+    /// Property [`NetworkType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html#cfn-elasticache-replicationgroup-networktype).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub network_type: Option<::Value<String>>,
     /// Property [`NodeGroupConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html#cfn-elasticache-replicationgroup-nodegroupconfiguration).
     ///
     /// Update type: _Conditional_.
@@ -816,9 +875,14 @@ pub struct ReplicationGroupProperties {
     pub tags: Option<::ValueList<::Tag>>,
     /// Property [`TransitEncryptionEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html#cfn-elasticache-replicationgroup-transitencryptionenabled).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub transit_encryption_enabled: Option<::Value<bool>>,
+    /// Property [`TransitEncryptionMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html#cfn-elasticache-replicationgroup-transitencryptionmode).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub transit_encryption_mode: Option<::Value<String>>,
     /// Property [`UserGroupIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html#cfn-elasticache-replicationgroup-usergroupids).
     ///
     /// Update type: _Mutable_.
@@ -853,6 +917,12 @@ impl ::serde::Serialize for ReplicationGroupProperties {
         if let Some(ref cache_subnet_group_name) = self.cache_subnet_group_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CacheSubnetGroupName", cache_subnet_group_name)?;
         }
+        if let Some(ref cluster_mode) = self.cluster_mode {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClusterMode", cluster_mode)?;
+        }
+        if let Some(ref data_tiering_enabled) = self.data_tiering_enabled {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataTieringEnabled", data_tiering_enabled)?;
+        }
         if let Some(ref engine) = self.engine {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Engine", engine)?;
         }
@@ -862,6 +932,9 @@ impl ::serde::Serialize for ReplicationGroupProperties {
         if let Some(ref global_replication_group_id) = self.global_replication_group_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "GlobalReplicationGroupId", global_replication_group_id)?;
         }
+        if let Some(ref ip_discovery) = self.ip_discovery {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IpDiscovery", ip_discovery)?;
+        }
         if let Some(ref kms_key_id) = self.kms_key_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", kms_key_id)?;
         }
@@ -870,6 +943,9 @@ impl ::serde::Serialize for ReplicationGroupProperties {
         }
         if let Some(ref multi_az_enabled) = self.multi_az_enabled {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MultiAZEnabled", multi_az_enabled)?;
+        }
+        if let Some(ref network_type) = self.network_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkType", network_type)?;
         }
         if let Some(ref node_group_configuration) = self.node_group_configuration {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "NodeGroupConfiguration", node_group_configuration)?;
@@ -926,6 +1002,9 @@ impl ::serde::Serialize for ReplicationGroupProperties {
         if let Some(ref transit_encryption_enabled) = self.transit_encryption_enabled {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitEncryptionEnabled", transit_encryption_enabled)?;
         }
+        if let Some(ref transit_encryption_mode) = self.transit_encryption_mode {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitEncryptionMode", transit_encryption_mode)?;
+        }
         if let Some(ref user_group_ids) = self.user_group_ids {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserGroupIds", user_group_ids)?;
         }
@@ -953,12 +1032,16 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationGroupProperties {
                 let mut cache_parameter_group_name: Option<::Value<String>> = None;
                 let mut cache_security_group_names: Option<::ValueList<String>> = None;
                 let mut cache_subnet_group_name: Option<::Value<String>> = None;
+                let mut cluster_mode: Option<::Value<String>> = None;
+                let mut data_tiering_enabled: Option<::Value<bool>> = None;
                 let mut engine: Option<::Value<String>> = None;
                 let mut engine_version: Option<::Value<String>> = None;
                 let mut global_replication_group_id: Option<::Value<String>> = None;
+                let mut ip_discovery: Option<::Value<String>> = None;
                 let mut kms_key_id: Option<::Value<String>> = None;
                 let mut log_delivery_configurations: Option<::ValueList<self::replication_group::LogDeliveryConfigurationRequest>> = None;
                 let mut multi_az_enabled: Option<::Value<bool>> = None;
+                let mut network_type: Option<::Value<String>> = None;
                 let mut node_group_configuration: Option<::ValueList<self::replication_group::NodeGroupConfiguration>> = None;
                 let mut notification_topic_arn: Option<::Value<String>> = None;
                 let mut num_cache_clusters: Option<::Value<u32>> = None;
@@ -978,6 +1061,7 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationGroupProperties {
                 let mut snapshotting_cluster_id: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut transit_encryption_enabled: Option<::Value<bool>> = None;
+                let mut transit_encryption_mode: Option<::Value<String>> = None;
                 let mut user_group_ids: Option<::ValueList<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -1006,6 +1090,12 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationGroupProperties {
                         "CacheSubnetGroupName" => {
                             cache_subnet_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ClusterMode" => {
+                            cluster_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DataTieringEnabled" => {
+                            data_tiering_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Engine" => {
                             engine = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -1015,6 +1105,9 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationGroupProperties {
                         "GlobalReplicationGroupId" => {
                             global_replication_group_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "IpDiscovery" => {
+                            ip_discovery = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "KmsKeyId" => {
                             kms_key_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -1023,6 +1116,9 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationGroupProperties {
                         }
                         "MultiAZEnabled" => {
                             multi_az_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "NetworkType" => {
+                            network_type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "NodeGroupConfiguration" => {
                             node_group_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1081,6 +1177,9 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationGroupProperties {
                         "TransitEncryptionEnabled" => {
                             transit_encryption_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "TransitEncryptionMode" => {
+                            transit_encryption_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "UserGroupIds" => {
                             user_group_ids = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -1097,12 +1196,16 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationGroupProperties {
                     cache_parameter_group_name: cache_parameter_group_name,
                     cache_security_group_names: cache_security_group_names,
                     cache_subnet_group_name: cache_subnet_group_name,
+                    cluster_mode: cluster_mode,
+                    data_tiering_enabled: data_tiering_enabled,
                     engine: engine,
                     engine_version: engine_version,
                     global_replication_group_id: global_replication_group_id,
+                    ip_discovery: ip_discovery,
                     kms_key_id: kms_key_id,
                     log_delivery_configurations: log_delivery_configurations,
                     multi_az_enabled: multi_az_enabled,
+                    network_type: network_type,
                     node_group_configuration: node_group_configuration,
                     notification_topic_arn: notification_topic_arn,
                     num_cache_clusters: num_cache_clusters,
@@ -1122,6 +1225,7 @@ impl<'de> ::serde::Deserialize<'de> for ReplicationGroupProperties {
                     snapshotting_cluster_id: snapshotting_cluster_id,
                     tags: tags,
                     transit_encryption_enabled: transit_encryption_enabled,
+                    transit_encryption_mode: transit_encryption_mode,
                     user_group_ids: user_group_ids,
                 })
             }
@@ -1339,7 +1443,276 @@ impl From<SecurityGroupIngressProperties> for SecurityGroupIngress {
     }
 }
 
-/// The [`AWS::ElastiCache::SubnetGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-subnetgroup.html) resource type.
+/// The [`AWS::ElastiCache::ServerlessCache`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-serverlesscache.html) resource type.
+#[derive(Debug, Default)]
+pub struct ServerlessCache {
+    properties: ServerlessCacheProperties
+}
+
+/// Properties for the `ServerlessCache` resource.
+#[derive(Debug, Default)]
+pub struct ServerlessCacheProperties {
+    /// Property [`CacheUsageLimits`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-serverlesscache.html#cfn-elasticache-serverlesscache-cacheusagelimits).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub cache_usage_limits: Option<::Value<self::serverless_cache::CacheUsageLimits>>,
+    /// Property [`DailySnapshotTime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-serverlesscache.html#cfn-elasticache-serverlesscache-dailysnapshottime).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub daily_snapshot_time: Option<::Value<String>>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-serverlesscache.html#cfn-elasticache-serverlesscache-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`Endpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-serverlesscache.html#cfn-elasticache-serverlesscache-endpoint).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub endpoint: Option<::Value<self::serverless_cache::Endpoint>>,
+    /// Property [`Engine`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-serverlesscache.html#cfn-elasticache-serverlesscache-engine).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub engine: ::Value<String>,
+    /// Property [`FinalSnapshotName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-serverlesscache.html#cfn-elasticache-serverlesscache-finalsnapshotname).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub final_snapshot_name: Option<::Value<String>>,
+    /// Property [`KmsKeyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-serverlesscache.html#cfn-elasticache-serverlesscache-kmskeyid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub kms_key_id: Option<::Value<String>>,
+    /// Property [`MajorEngineVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-serverlesscache.html#cfn-elasticache-serverlesscache-majorengineversion).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub major_engine_version: Option<::Value<String>>,
+    /// Property [`ReaderEndpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-serverlesscache.html#cfn-elasticache-serverlesscache-readerendpoint).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub reader_endpoint: Option<::Value<self::serverless_cache::Endpoint>>,
+    /// Property [`SecurityGroupIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-serverlesscache.html#cfn-elasticache-serverlesscache-securitygroupids).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub security_group_ids: Option<::ValueList<String>>,
+    /// Property [`ServerlessCacheName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-serverlesscache.html#cfn-elasticache-serverlesscache-serverlesscachename).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub serverless_cache_name: ::Value<String>,
+    /// Property [`SnapshotArnsToRestore`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-serverlesscache.html#cfn-elasticache-serverlesscache-snapshotarnstorestore).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub snapshot_arns_to_restore: Option<::ValueList<String>>,
+    /// Property [`SnapshotRetentionLimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-serverlesscache.html#cfn-elasticache-serverlesscache-snapshotretentionlimit).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub snapshot_retention_limit: Option<::Value<u32>>,
+    /// Property [`SubnetIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-serverlesscache.html#cfn-elasticache-serverlesscache-subnetids).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub subnet_ids: Option<::ValueList<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-serverlesscache.html#cfn-elasticache-serverlesscache-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`UserGroupId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-serverlesscache.html#cfn-elasticache-serverlesscache-usergroupid).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub user_group_id: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for ServerlessCacheProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref cache_usage_limits) = self.cache_usage_limits {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CacheUsageLimits", cache_usage_limits)?;
+        }
+        if let Some(ref daily_snapshot_time) = self.daily_snapshot_time {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DailySnapshotTime", daily_snapshot_time)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref endpoint) = self.endpoint {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Endpoint", endpoint)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Engine", &self.engine)?;
+        if let Some(ref final_snapshot_name) = self.final_snapshot_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FinalSnapshotName", final_snapshot_name)?;
+        }
+        if let Some(ref kms_key_id) = self.kms_key_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", kms_key_id)?;
+        }
+        if let Some(ref major_engine_version) = self.major_engine_version {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MajorEngineVersion", major_engine_version)?;
+        }
+        if let Some(ref reader_endpoint) = self.reader_endpoint {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReaderEndpoint", reader_endpoint)?;
+        }
+        if let Some(ref security_group_ids) = self.security_group_ids {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIds", security_group_ids)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServerlessCacheName", &self.serverless_cache_name)?;
+        if let Some(ref snapshot_arns_to_restore) = self.snapshot_arns_to_restore {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotArnsToRestore", snapshot_arns_to_restore)?;
+        }
+        if let Some(ref snapshot_retention_limit) = self.snapshot_retention_limit {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotRetentionLimit", snapshot_retention_limit)?;
+        }
+        if let Some(ref subnet_ids) = self.subnet_ids {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetIds", subnet_ids)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref user_group_id) = self.user_group_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserGroupId", user_group_id)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ServerlessCacheProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ServerlessCacheProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ServerlessCacheProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ServerlessCacheProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut cache_usage_limits: Option<::Value<self::serverless_cache::CacheUsageLimits>> = None;
+                let mut daily_snapshot_time: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut endpoint: Option<::Value<self::serverless_cache::Endpoint>> = None;
+                let mut engine: Option<::Value<String>> = None;
+                let mut final_snapshot_name: Option<::Value<String>> = None;
+                let mut kms_key_id: Option<::Value<String>> = None;
+                let mut major_engine_version: Option<::Value<String>> = None;
+                let mut reader_endpoint: Option<::Value<self::serverless_cache::Endpoint>> = None;
+                let mut security_group_ids: Option<::ValueList<String>> = None;
+                let mut serverless_cache_name: Option<::Value<String>> = None;
+                let mut snapshot_arns_to_restore: Option<::ValueList<String>> = None;
+                let mut snapshot_retention_limit: Option<::Value<u32>> = None;
+                let mut subnet_ids: Option<::ValueList<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut user_group_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "CacheUsageLimits" => {
+                            cache_usage_limits = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DailySnapshotTime" => {
+                            daily_snapshot_time = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Endpoint" => {
+                            endpoint = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Engine" => {
+                            engine = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "FinalSnapshotName" => {
+                            final_snapshot_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "KmsKeyId" => {
+                            kms_key_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MajorEngineVersion" => {
+                            major_engine_version = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ReaderEndpoint" => {
+                            reader_endpoint = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SecurityGroupIds" => {
+                            security_group_ids = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ServerlessCacheName" => {
+                            serverless_cache_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SnapshotArnsToRestore" => {
+                            snapshot_arns_to_restore = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SnapshotRetentionLimit" => {
+                            snapshot_retention_limit = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SubnetIds" => {
+                            subnet_ids = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "UserGroupId" => {
+                            user_group_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ServerlessCacheProperties {
+                    cache_usage_limits: cache_usage_limits,
+                    daily_snapshot_time: daily_snapshot_time,
+                    description: description,
+                    endpoint: endpoint,
+                    engine: engine.ok_or(::serde::de::Error::missing_field("Engine"))?,
+                    final_snapshot_name: final_snapshot_name,
+                    kms_key_id: kms_key_id,
+                    major_engine_version: major_engine_version,
+                    reader_endpoint: reader_endpoint,
+                    security_group_ids: security_group_ids,
+                    serverless_cache_name: serverless_cache_name.ok_or(::serde::de::Error::missing_field("ServerlessCacheName"))?,
+                    snapshot_arns_to_restore: snapshot_arns_to_restore,
+                    snapshot_retention_limit: snapshot_retention_limit,
+                    subnet_ids: subnet_ids,
+                    tags: tags,
+                    user_group_id: user_group_id,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for ServerlessCache {
+    type Properties = ServerlessCacheProperties;
+    const TYPE: &'static str = "AWS::ElastiCache::ServerlessCache";
+    fn properties(&self) -> &ServerlessCacheProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut ServerlessCacheProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for ServerlessCache {}
+
+impl From<ServerlessCacheProperties> for ServerlessCache {
+    fn from(properties: ServerlessCacheProperties) -> ServerlessCache {
+        ServerlessCache { properties }
+    }
+}
+
+/// The [`AWS::ElastiCache::SubnetGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-subnetgroup.html) resource type.
 #[derive(Debug, Default)]
 pub struct SubnetGroup {
     properties: SubnetGroupProperties
@@ -1348,22 +1721,22 @@ pub struct SubnetGroup {
 /// Properties for the `SubnetGroup` resource.
 #[derive(Debug, Default)]
 pub struct SubnetGroupProperties {
-    /// Property [`CacheSubnetGroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-subnetgroup.html#cfn-elasticache-subnetgroup-cachesubnetgroupname).
+    /// Property [`CacheSubnetGroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-subnetgroup.html#cfn-elasticache-subnetgroup-cachesubnetgroupname).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub cache_subnet_group_name: Option<::Value<String>>,
-    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-subnetgroup.html#cfn-elasticache-subnetgroup-description).
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-subnetgroup.html#cfn-elasticache-subnetgroup-description).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub description: ::Value<String>,
-    /// Property [`SubnetIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-subnetgroup.html#cfn-elasticache-subnetgroup-subnetids).
+    /// Property [`SubnetIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-subnetgroup.html#cfn-elasticache-subnetgroup-subnetids).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub subnet_ids: ::ValueList<String>,
-    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-subnetgroup.html#cfn-elasticache-subnetgroup-tags).
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-subnetgroup.html#cfn-elasticache-subnetgroup-tags).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -1466,6 +1839,11 @@ pub struct UserProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub access_string: Option<::Value<String>>,
+    /// Property [`AuthenticationMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-user.html#cfn-elasticache-user-authenticationmode).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub authentication_mode: Option<::Value<self::user::AuthenticationMode>>,
     /// Property [`Engine`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-user.html#cfn-elasticache-user-engine).
     ///
     /// Update type: _Immutable_.
@@ -1481,6 +1859,11 @@ pub struct UserProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub passwords: Option<::ValueList<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-user.html#cfn-elasticache-user-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
     /// Property [`UserId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-user.html#cfn-elasticache-user-userid).
     ///
     /// Update type: _Immutable_.
@@ -1499,12 +1882,18 @@ impl ::serde::Serialize for UserProperties {
         if let Some(ref access_string) = self.access_string {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessString", access_string)?;
         }
+        if let Some(ref authentication_mode) = self.authentication_mode {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthenticationMode", authentication_mode)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Engine", &self.engine)?;
         if let Some(ref no_password_required) = self.no_password_required {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "NoPasswordRequired", no_password_required)?;
         }
         if let Some(ref passwords) = self.passwords {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Passwords", passwords)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserId", &self.user_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserName", &self.user_name)?;
@@ -1525,9 +1914,11 @@ impl<'de> ::serde::Deserialize<'de> for UserProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut access_string: Option<::Value<String>> = None;
+                let mut authentication_mode: Option<::Value<self::user::AuthenticationMode>> = None;
                 let mut engine: Option<::Value<String>> = None;
                 let mut no_password_required: Option<::Value<bool>> = None;
                 let mut passwords: Option<::ValueList<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut user_id: Option<::Value<String>> = None;
                 let mut user_name: Option<::Value<String>> = None;
 
@@ -1535,6 +1926,9 @@ impl<'de> ::serde::Deserialize<'de> for UserProperties {
                     match __cfn_key.as_ref() {
                         "AccessString" => {
                             access_string = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "AuthenticationMode" => {
+                            authentication_mode = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Engine" => {
                             engine = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1544,6 +1938,9 @@ impl<'de> ::serde::Deserialize<'de> for UserProperties {
                         }
                         "Passwords" => {
                             passwords = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "UserId" => {
                             user_id = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1557,9 +1954,11 @@ impl<'de> ::serde::Deserialize<'de> for UserProperties {
 
                 Ok(UserProperties {
                     access_string: access_string,
+                    authentication_mode: authentication_mode,
                     engine: engine.ok_or(::serde::de::Error::missing_field("Engine"))?,
                     no_password_required: no_password_required,
                     passwords: passwords,
+                    tags: tags,
                     user_id: user_id.ok_or(::serde::de::Error::missing_field("UserId"))?,
                     user_name: user_name.ok_or(::serde::de::Error::missing_field("UserName"))?,
                 })
@@ -1603,6 +2002,11 @@ pub struct UserGroupProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub engine: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-usergroup.html#cfn-elasticache-usergroup-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
     /// Property [`UserGroupId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-usergroup.html#cfn-elasticache-usergroup-usergroupid).
     ///
     /// Update type: _Immutable_.
@@ -1612,17 +2016,18 @@ pub struct UserGroupProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub user_ids: Option<::ValueList<String>>,
+    pub user_ids: ::ValueList<String>,
 }
 
 impl ::serde::Serialize for UserGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Engine", &self.engine)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserGroupId", &self.user_group_id)?;
-        if let Some(ref user_ids) = self.user_ids {
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserIds", user_ids)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserGroupId", &self.user_group_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserIds", &self.user_ids)?;
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -1640,6 +2045,7 @@ impl<'de> ::serde::Deserialize<'de> for UserGroupProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut engine: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut user_group_id: Option<::Value<String>> = None;
                 let mut user_ids: Option<::ValueList<String>> = None;
 
@@ -1647,6 +2053,9 @@ impl<'de> ::serde::Deserialize<'de> for UserGroupProperties {
                     match __cfn_key.as_ref() {
                         "Engine" => {
                             engine = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "UserGroupId" => {
                             user_group_id = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1660,8 +2069,9 @@ impl<'de> ::serde::Deserialize<'de> for UserGroupProperties {
 
                 Ok(UserGroupProperties {
                     engine: engine.ok_or(::serde::de::Error::missing_field("Engine"))?,
+                    tags: tags,
                     user_group_id: user_group_id.ok_or(::serde::de::Error::missing_field("UserGroupId"))?,
-                    user_ids: user_ids,
+                    user_ids: user_ids.ok_or(::serde::de::Error::missing_field("UserIds"))?,
                 })
             }
         }
@@ -1699,15 +2109,13 @@ pub mod cache_cluster {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub log_group: Option<::Value<String>>,
+        pub log_group: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for CloudWatchLogsDestinationDetails {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref log_group) = self.log_group {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroup", log_group)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroup", &self.log_group)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1736,7 +2144,7 @@ pub mod cache_cluster {
                     }
 
                     Ok(CloudWatchLogsDestinationDetails {
-                        log_group: log_group,
+                        log_group: log_group.ok_or(::serde::de::Error::missing_field("LogGroup"))?,
                     })
                 }
             }
@@ -1818,15 +2226,13 @@ pub mod cache_cluster {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub delivery_stream: Option<::Value<String>>,
+        pub delivery_stream: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for KinesisFirehoseDestinationDetails {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref delivery_stream) = self.delivery_stream {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeliveryStream", delivery_stream)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeliveryStream", &self.delivery_stream)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1855,7 +2261,7 @@ pub mod cache_cluster {
                     }
 
                     Ok(KinesisFirehoseDestinationDetails {
-                        delivery_stream: delivery_stream,
+                        delivery_stream: delivery_stream.ok_or(::serde::de::Error::missing_field("DeliveryStream"))?,
                     })
                 }
             }
@@ -1871,39 +2277,31 @@ pub mod cache_cluster {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub destination_details: Option<::Value<DestinationDetails>>,
+        pub destination_details: ::Value<DestinationDetails>,
         /// Property [`DestinationType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cachecluster-logdeliveryconfigurationrequest.html#cfn-elasticache-cachecluster-logdeliveryconfigurationrequest-destinationtype).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub destination_type: Option<::Value<String>>,
+        pub destination_type: ::Value<String>,
         /// Property [`LogFormat`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cachecluster-logdeliveryconfigurationrequest.html#cfn-elasticache-cachecluster-logdeliveryconfigurationrequest-logformat).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub log_format: Option<::Value<String>>,
+        pub log_format: ::Value<String>,
         /// Property [`LogType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-cachecluster-logdeliveryconfigurationrequest.html#cfn-elasticache-cachecluster-logdeliveryconfigurationrequest-logtype).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub log_type: Option<::Value<String>>,
+        pub log_type: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for LogDeliveryConfigurationRequest {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref destination_details) = self.destination_details {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationDetails", destination_details)?;
-            }
-            if let Some(ref destination_type) = self.destination_type {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationType", destination_type)?;
-            }
-            if let Some(ref log_format) = self.log_format {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogFormat", log_format)?;
-            }
-            if let Some(ref log_type) = self.log_type {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogType", log_type)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationDetails", &self.destination_details)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationType", &self.destination_type)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogFormat", &self.log_format)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogType", &self.log_type)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1944,10 +2342,10 @@ pub mod cache_cluster {
                     }
 
                     Ok(LogDeliveryConfigurationRequest {
-                        destination_details: destination_details,
-                        destination_type: destination_type,
-                        log_format: log_format,
-                        log_type: log_type,
+                        destination_details: destination_details.ok_or(::serde::de::Error::missing_field("DestinationDetails"))?,
+                        destination_type: destination_type.ok_or(::serde::de::Error::missing_field("DestinationType"))?,
+                        log_format: log_format.ok_or(::serde::de::Error::missing_field("LogFormat"))?,
+                        log_type: log_type.ok_or(::serde::de::Error::missing_field("LogType"))?,
                     })
                 }
             }
@@ -2195,15 +2593,13 @@ pub mod replication_group {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub log_group: Option<::Value<String>>,
+        pub log_group: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for CloudWatchLogsDestinationDetails {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref log_group) = self.log_group {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroup", log_group)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroup", &self.log_group)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -2232,7 +2628,7 @@ pub mod replication_group {
                     }
 
                     Ok(CloudWatchLogsDestinationDetails {
-                        log_group: log_group,
+                        log_group: log_group.ok_or(::serde::de::Error::missing_field("LogGroup"))?,
                     })
                 }
             }
@@ -2314,15 +2710,13 @@ pub mod replication_group {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub delivery_stream: Option<::Value<String>>,
+        pub delivery_stream: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for KinesisFirehoseDestinationDetails {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref delivery_stream) = self.delivery_stream {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeliveryStream", delivery_stream)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeliveryStream", &self.delivery_stream)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -2351,7 +2745,7 @@ pub mod replication_group {
                     }
 
                     Ok(KinesisFirehoseDestinationDetails {
-                        delivery_stream: delivery_stream,
+                        delivery_stream: delivery_stream.ok_or(::serde::de::Error::missing_field("DeliveryStream"))?,
                     })
                 }
             }
@@ -2367,39 +2761,31 @@ pub mod replication_group {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub destination_details: Option<::Value<DestinationDetails>>,
+        pub destination_details: ::Value<DestinationDetails>,
         /// Property [`DestinationType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-replicationgroup-logdeliveryconfigurationrequest.html#cfn-elasticache-replicationgroup-logdeliveryconfigurationrequest-destinationtype).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub destination_type: Option<::Value<String>>,
+        pub destination_type: ::Value<String>,
         /// Property [`LogFormat`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-replicationgroup-logdeliveryconfigurationrequest.html#cfn-elasticache-replicationgroup-logdeliveryconfigurationrequest-logformat).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub log_format: Option<::Value<String>>,
+        pub log_format: ::Value<String>,
         /// Property [`LogType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-replicationgroup-logdeliveryconfigurationrequest.html#cfn-elasticache-replicationgroup-logdeliveryconfigurationrequest-logtype).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub log_type: Option<::Value<String>>,
+        pub log_type: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for LogDeliveryConfigurationRequest {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            if let Some(ref destination_details) = self.destination_details {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationDetails", destination_details)?;
-            }
-            if let Some(ref destination_type) = self.destination_type {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationType", destination_type)?;
-            }
-            if let Some(ref log_format) = self.log_format {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogFormat", log_format)?;
-            }
-            if let Some(ref log_type) = self.log_type {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogType", log_type)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationDetails", &self.destination_details)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationType", &self.destination_type)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogFormat", &self.log_format)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogType", &self.log_type)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -2440,10 +2826,10 @@ pub mod replication_group {
                     }
 
                     Ok(LogDeliveryConfigurationRequest {
-                        destination_details: destination_details,
-                        destination_type: destination_type,
-                        log_format: log_format,
-                        log_type: log_type,
+                        destination_details: destination_details.ok_or(::serde::de::Error::missing_field("DestinationDetails"))?,
+                        destination_type: destination_type.ok_or(::serde::de::Error::missing_field("DestinationType"))?,
+                        log_format: log_format.ok_or(::serde::de::Error::missing_field("LogFormat"))?,
+                        log_type: log_type.ok_or(::serde::de::Error::missing_field("LogType"))?,
                     })
                 }
             }
@@ -2550,6 +2936,323 @@ pub mod replication_group {
                         replica_availability_zones: replica_availability_zones,
                         replica_count: replica_count,
                         slots: slots,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod serverless_cache {
+    //! Property types for the `ServerlessCache` resource.
+
+    /// The [`AWS::ElastiCache::ServerlessCache.CacheUsageLimits`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-serverlesscache-cacheusagelimits.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CacheUsageLimits {
+        /// Property [`DataStorage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-serverlesscache-cacheusagelimits.html#cfn-elasticache-serverlesscache-cacheusagelimits-datastorage).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub data_storage: Option<::Value<DataStorage>>,
+        /// Property [`ECPUPerSecond`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-serverlesscache-cacheusagelimits.html#cfn-elasticache-serverlesscache-cacheusagelimits-ecpupersecond).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ecpu_per_second: Option<::Value<ECPUPerSecond>>,
+    }
+
+    impl ::codec::SerializeValue for CacheUsageLimits {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref data_storage) = self.data_storage {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataStorage", data_storage)?;
+            }
+            if let Some(ref ecpu_per_second) = self.ecpu_per_second {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ECPUPerSecond", ecpu_per_second)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CacheUsageLimits {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CacheUsageLimits, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CacheUsageLimits;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CacheUsageLimits")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut data_storage: Option<::Value<DataStorage>> = None;
+                    let mut ecpu_per_second: Option<::Value<ECPUPerSecond>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DataStorage" => {
+                                data_storage = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ECPUPerSecond" => {
+                                ecpu_per_second = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CacheUsageLimits {
+                        data_storage: data_storage,
+                        ecpu_per_second: ecpu_per_second,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ElastiCache::ServerlessCache.DataStorage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-serverlesscache-datastorage.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DataStorage {
+        /// Property [`Maximum`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-serverlesscache-datastorage.html#cfn-elasticache-serverlesscache-datastorage-maximum).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub maximum: ::Value<u32>,
+        /// Property [`Unit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-serverlesscache-datastorage.html#cfn-elasticache-serverlesscache-datastorage-unit).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub unit: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for DataStorage {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Maximum", &self.maximum)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Unit", &self.unit)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DataStorage {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DataStorage, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DataStorage;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DataStorage")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut maximum: Option<::Value<u32>> = None;
+                    let mut unit: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Maximum" => {
+                                maximum = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Unit" => {
+                                unit = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DataStorage {
+                        maximum: maximum.ok_or(::serde::de::Error::missing_field("Maximum"))?,
+                        unit: unit.ok_or(::serde::de::Error::missing_field("Unit"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ElastiCache::ServerlessCache.ECPUPerSecond`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-serverlesscache-ecpupersecond.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ECPUPerSecond {
+        /// Property [`Maximum`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-serverlesscache-ecpupersecond.html#cfn-elasticache-serverlesscache-ecpupersecond-maximum).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub maximum: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for ECPUPerSecond {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Maximum", &self.maximum)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ECPUPerSecond {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ECPUPerSecond, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ECPUPerSecond;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ECPUPerSecond")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut maximum: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Maximum" => {
+                                maximum = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ECPUPerSecond {
+                        maximum: maximum.ok_or(::serde::de::Error::missing_field("Maximum"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ElastiCache::ServerlessCache.Endpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-serverlesscache-endpoint.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Endpoint {
+        /// Property [`Address`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-serverlesscache-endpoint.html#cfn-elasticache-serverlesscache-endpoint-address).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub address: Option<::Value<String>>,
+        /// Property [`Port`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-serverlesscache-endpoint.html#cfn-elasticache-serverlesscache-endpoint-port).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub port: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for Endpoint {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref address) = self.address {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Address", address)?;
+            }
+            if let Some(ref port) = self.port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", port)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Endpoint {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Endpoint, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Endpoint;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Endpoint")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut address: Option<::Value<String>> = None;
+                    let mut port: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Address" => {
+                                address = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Port" => {
+                                port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Endpoint {
+                        address: address,
+                        port: port,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod user {
+    //! Property types for the `User` resource.
+
+    /// The [`AWS::ElastiCache::User.AuthenticationMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-user-authenticationmode.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AuthenticationMode {
+        /// Property [`Passwords`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-user-authenticationmode.html#cfn-elasticache-user-authenticationmode-passwords).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub passwords: Option<::ValueList<String>>,
+        /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-user-authenticationmode.html#cfn-elasticache-user-authenticationmode-type).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub r#type: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for AuthenticationMode {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref passwords) = self.passwords {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Passwords", passwords)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AuthenticationMode {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AuthenticationMode, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AuthenticationMode;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AuthenticationMode")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut passwords: Option<::ValueList<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Passwords" => {
+                                passwords = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Type" => {
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AuthenticationMode {
+                        passwords: passwords,
+                        r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
                     })
                 }
             }

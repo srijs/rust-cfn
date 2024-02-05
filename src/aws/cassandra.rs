@@ -14,6 +14,11 @@ pub struct KeyspaceProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub keyspace_name: Option<::Value<String>>,
+    /// Property [`ReplicationSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cassandra-keyspace.html#cfn-cassandra-keyspace-replicationspecification).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub replication_specification: Option<::Value<self::keyspace::ReplicationSpecification>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cassandra-keyspace.html#cfn-cassandra-keyspace-tags).
     ///
     /// Update type: _Mutable_.
@@ -26,6 +31,9 @@ impl ::serde::Serialize for KeyspaceProperties {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         if let Some(ref keyspace_name) = self.keyspace_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyspaceName", keyspace_name)?;
+        }
+        if let Some(ref replication_specification) = self.replication_specification {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicationSpecification", replication_specification)?;
         }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
@@ -47,12 +55,16 @@ impl<'de> ::serde::Deserialize<'de> for KeyspaceProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut keyspace_name: Option<::Value<String>> = None;
+                let mut replication_specification: Option<::Value<self::keyspace::ReplicationSpecification>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "KeyspaceName" => {
                             keyspace_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ReplicationSpecification" => {
+                            replication_specification = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -63,6 +75,7 @@ impl<'de> ::serde::Deserialize<'de> for KeyspaceProperties {
 
                 Ok(KeyspaceProperties {
                     keyspace_name: keyspace_name,
+                    replication_specification: replication_specification,
                     tags: tags,
                 })
             }
@@ -105,11 +118,26 @@ pub struct TableProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub billing_mode: Option<::Value<self::table::BillingMode>>,
+    /// Property [`ClientSideTimestampsEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cassandra-table.html#cfn-cassandra-table-clientsidetimestampsenabled).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub client_side_timestamps_enabled: Option<::Value<bool>>,
     /// Property [`ClusteringKeyColumns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cassandra-table.html#cfn-cassandra-table-clusteringkeycolumns).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub clustering_key_columns: Option<::ValueList<self::table::ClusteringKeyColumn>>,
+    /// Property [`DefaultTimeToLive`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cassandra-table.html#cfn-cassandra-table-defaulttimetolive).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub default_time_to_live: Option<::Value<u32>>,
+    /// Property [`EncryptionSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cassandra-table.html#cfn-cassandra-table-encryptionspecification).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub encryption_specification: Option<::Value<self::table::EncryptionSpecification>>,
     /// Property [`KeyspaceName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cassandra-table.html#cfn-cassandra-table-keyspacename).
     ///
     /// Update type: _Immutable_.
@@ -148,8 +176,17 @@ impl ::serde::Serialize for TableProperties {
         if let Some(ref billing_mode) = self.billing_mode {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BillingMode", billing_mode)?;
         }
+        if let Some(ref client_side_timestamps_enabled) = self.client_side_timestamps_enabled {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientSideTimestampsEnabled", client_side_timestamps_enabled)?;
+        }
         if let Some(ref clustering_key_columns) = self.clustering_key_columns {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClusteringKeyColumns", clustering_key_columns)?;
+        }
+        if let Some(ref default_time_to_live) = self.default_time_to_live {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultTimeToLive", default_time_to_live)?;
+        }
+        if let Some(ref encryption_specification) = self.encryption_specification {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EncryptionSpecification", encryption_specification)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyspaceName", &self.keyspace_name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "PartitionKeyColumns", &self.partition_key_columns)?;
@@ -182,7 +219,10 @@ impl<'de> ::serde::Deserialize<'de> for TableProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut billing_mode: Option<::Value<self::table::BillingMode>> = None;
+                let mut client_side_timestamps_enabled: Option<::Value<bool>> = None;
                 let mut clustering_key_columns: Option<::ValueList<self::table::ClusteringKeyColumn>> = None;
+                let mut default_time_to_live: Option<::Value<u32>> = None;
+                let mut encryption_specification: Option<::Value<self::table::EncryptionSpecification>> = None;
                 let mut keyspace_name: Option<::Value<String>> = None;
                 let mut partition_key_columns: Option<::ValueList<self::table::Column>> = None;
                 let mut point_in_time_recovery_enabled: Option<::Value<bool>> = None;
@@ -195,8 +235,17 @@ impl<'de> ::serde::Deserialize<'de> for TableProperties {
                         "BillingMode" => {
                             billing_mode = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ClientSideTimestampsEnabled" => {
+                            client_side_timestamps_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "ClusteringKeyColumns" => {
                             clustering_key_columns = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DefaultTimeToLive" => {
+                            default_time_to_live = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "EncryptionSpecification" => {
+                            encryption_specification = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "KeyspaceName" => {
                             keyspace_name = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -222,7 +271,10 @@ impl<'de> ::serde::Deserialize<'de> for TableProperties {
 
                 Ok(TableProperties {
                     billing_mode: billing_mode,
+                    client_side_timestamps_enabled: client_side_timestamps_enabled,
                     clustering_key_columns: clustering_key_columns,
+                    default_time_to_live: default_time_to_live,
+                    encryption_specification: encryption_specification,
                     keyspace_name: keyspace_name.ok_or(::serde::de::Error::missing_field("KeyspaceName"))?,
                     partition_key_columns: partition_key_columns.ok_or(::serde::de::Error::missing_field("PartitionKeyColumns"))?,
                     point_in_time_recovery_enabled: point_in_time_recovery_enabled,
@@ -253,6 +305,76 @@ impl ::private::Sealed for Table {}
 impl From<TableProperties> for Table {
     fn from(properties: TableProperties) -> Table {
         Table { properties }
+    }
+}
+
+pub mod keyspace {
+    //! Property types for the `Keyspace` resource.
+
+    /// The [`AWS::Cassandra::Keyspace.ReplicationSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-keyspace-replicationspecification.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ReplicationSpecification {
+        /// Property [`RegionList`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-keyspace-replicationspecification.html#cfn-cassandra-keyspace-replicationspecification-regionlist).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub region_list: Option<::ValueList<String>>,
+        /// Property [`ReplicationStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-keyspace-replicationspecification.html#cfn-cassandra-keyspace-replicationspecification-replicationstrategy).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub replication_strategy: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for ReplicationSpecification {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref region_list) = self.region_list {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RegionList", region_list)?;
+            }
+            if let Some(ref replication_strategy) = self.replication_strategy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicationStrategy", replication_strategy)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ReplicationSpecification {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ReplicationSpecification, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ReplicationSpecification;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ReplicationSpecification")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut region_list: Option<::ValueList<String>> = None;
+                    let mut replication_strategy: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "RegionList" => {
+                                region_list = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ReplicationStrategy" => {
+                                replication_strategy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ReplicationSpecification {
+                        region_list: region_list,
+                        replication_strategy: replication_strategy,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
     }
 }
 
@@ -392,13 +514,15 @@ pub mod table {
     pub struct Column {
         /// Property [`ColumnName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-column.html#cfn-cassandra-table-column-columnname).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Conditional_.
+        /// Conditional updates can be mutable or immutable, depending on, for example, which other properties you updated.
+        /// For more information, see the relevant resource type documentation.
         pub column_name: ::Value<String>,
         /// Property [`ColumnType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-column.html#cfn-cassandra-table-column-columntype).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Conditional_.
+        /// Conditional updates can be mutable or immutable, depending on, for example, which other properties you updated.
+        /// For more information, see the relevant resource type documentation.
         pub column_type: ::Value<String>,
     }
 
@@ -441,6 +565,70 @@ pub mod table {
                     Ok(Column {
                         column_name: column_name.ok_or(::serde::de::Error::missing_field("ColumnName"))?,
                         column_type: column_type.ok_or(::serde::de::Error::missing_field("ColumnType"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Cassandra::Table.EncryptionSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-encryptionspecification.html) property type.
+    #[derive(Debug, Default)]
+    pub struct EncryptionSpecification {
+        /// Property [`EncryptionType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-encryptionspecification.html#cfn-cassandra-table-encryptionspecification-encryptiontype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub encryption_type: ::Value<String>,
+        /// Property [`KmsKeyIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cassandra-table-encryptionspecification.html#cfn-cassandra-table-encryptionspecification-kmskeyidentifier).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub kms_key_identifier: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for EncryptionSpecification {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EncryptionType", &self.encryption_type)?;
+            if let Some(ref kms_key_identifier) = self.kms_key_identifier {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyIdentifier", kms_key_identifier)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for EncryptionSpecification {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<EncryptionSpecification, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = EncryptionSpecification;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type EncryptionSpecification")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut encryption_type: Option<::Value<String>> = None;
+                    let mut kms_key_identifier: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "EncryptionType" => {
+                                encryption_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "KmsKeyIdentifier" => {
+                                kms_key_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(EncryptionSpecification {
+                        encryption_type: encryption_type.ok_or(::serde::de::Error::missing_field("EncryptionType"))?,
+                        kms_key_identifier: kms_key_identifier,
                     })
                 }
             }

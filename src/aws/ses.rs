@@ -9,18 +9,66 @@ pub struct ConfigurationSet {
 /// Properties for the `ConfigurationSet` resource.
 #[derive(Debug, Default)]
 pub struct ConfigurationSetProperties {
+    /// Property [`DeliveryOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-configurationset.html#cfn-ses-configurationset-deliveryoptions).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub delivery_options: Option<::Value<self::configuration_set::DeliveryOptions>>,
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-configurationset.html#cfn-ses-configurationset-name).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub name: Option<::Value<String>>,
+    /// Property [`ReputationOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-configurationset.html#cfn-ses-configurationset-reputationoptions).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub reputation_options: Option<::Value<self::configuration_set::ReputationOptions>>,
+    /// Property [`SendingOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-configurationset.html#cfn-ses-configurationset-sendingoptions).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub sending_options: Option<::Value<self::configuration_set::SendingOptions>>,
+    /// Property [`SuppressionOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-configurationset.html#cfn-ses-configurationset-suppressionoptions).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub suppression_options: Option<::Value<self::configuration_set::SuppressionOptions>>,
+    /// Property [`TrackingOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-configurationset.html#cfn-ses-configurationset-trackingoptions).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tracking_options: Option<::Value<self::configuration_set::TrackingOptions>>,
+    /// Property [`VdmOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-configurationset.html#cfn-ses-configurationset-vdmoptions).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub vdm_options: Option<::Value<self::configuration_set::VdmOptions>>,
 }
 
 impl ::serde::Serialize for ConfigurationSetProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref delivery_options) = self.delivery_options {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeliveryOptions", delivery_options)?;
+        }
         if let Some(ref name) = self.name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
+        if let Some(ref reputation_options) = self.reputation_options {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReputationOptions", reputation_options)?;
+        }
+        if let Some(ref sending_options) = self.sending_options {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SendingOptions", sending_options)?;
+        }
+        if let Some(ref suppression_options) = self.suppression_options {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SuppressionOptions", suppression_options)?;
+        }
+        if let Some(ref tracking_options) = self.tracking_options {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrackingOptions", tracking_options)?;
+        }
+        if let Some(ref vdm_options) = self.vdm_options {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VdmOptions", vdm_options)?;
         }
         ::serde::ser::SerializeMap::end(map)
     }
@@ -38,19 +86,49 @@ impl<'de> ::serde::Deserialize<'de> for ConfigurationSetProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut delivery_options: Option<::Value<self::configuration_set::DeliveryOptions>> = None;
                 let mut name: Option<::Value<String>> = None;
+                let mut reputation_options: Option<::Value<self::configuration_set::ReputationOptions>> = None;
+                let mut sending_options: Option<::Value<self::configuration_set::SendingOptions>> = None;
+                let mut suppression_options: Option<::Value<self::configuration_set::SuppressionOptions>> = None;
+                let mut tracking_options: Option<::Value<self::configuration_set::TrackingOptions>> = None;
+                let mut vdm_options: Option<::Value<self::configuration_set::VdmOptions>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "DeliveryOptions" => {
+                            delivery_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ReputationOptions" => {
+                            reputation_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SendingOptions" => {
+                            sending_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SuppressionOptions" => {
+                            suppression_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TrackingOptions" => {
+                            tracking_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "VdmOptions" => {
+                            vdm_options = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
                 }
 
                 Ok(ConfigurationSetProperties {
+                    delivery_options: delivery_options,
                     name: name,
+                    reputation_options: reputation_options,
+                    sending_options: sending_options,
+                    suppression_options: suppression_options,
+                    tracking_options: tracking_options,
+                    vdm_options: vdm_options,
                 })
             }
         }
@@ -279,6 +357,239 @@ impl ::private::Sealed for ContactList {}
 impl From<ContactListProperties> for ContactList {
     fn from(properties: ContactListProperties) -> ContactList {
         ContactList { properties }
+    }
+}
+
+/// The [`AWS::SES::DedicatedIpPool`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-dedicatedippool.html) resource type.
+#[derive(Debug, Default)]
+pub struct DedicatedIpPool {
+    properties: DedicatedIpPoolProperties
+}
+
+/// Properties for the `DedicatedIpPool` resource.
+#[derive(Debug, Default)]
+pub struct DedicatedIpPoolProperties {
+    /// Property [`PoolName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-dedicatedippool.html#cfn-ses-dedicatedippool-poolname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub pool_name: Option<::Value<String>>,
+    /// Property [`ScalingMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-dedicatedippool.html#cfn-ses-dedicatedippool-scalingmode).
+    ///
+    /// Update type: _Conditional_.
+    /// Conditional updates can be mutable or immutable, depending on, for example, which other properties you updated.
+    /// For more information, see the relevant resource type documentation.
+    pub scaling_mode: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for DedicatedIpPoolProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref pool_name) = self.pool_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PoolName", pool_name)?;
+        }
+        if let Some(ref scaling_mode) = self.scaling_mode {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScalingMode", scaling_mode)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for DedicatedIpPoolProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<DedicatedIpPoolProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = DedicatedIpPoolProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type DedicatedIpPoolProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut pool_name: Option<::Value<String>> = None;
+                let mut scaling_mode: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "PoolName" => {
+                            pool_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ScalingMode" => {
+                            scaling_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(DedicatedIpPoolProperties {
+                    pool_name: pool_name,
+                    scaling_mode: scaling_mode,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for DedicatedIpPool {
+    type Properties = DedicatedIpPoolProperties;
+    const TYPE: &'static str = "AWS::SES::DedicatedIpPool";
+    fn properties(&self) -> &DedicatedIpPoolProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut DedicatedIpPoolProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for DedicatedIpPool {}
+
+impl From<DedicatedIpPoolProperties> for DedicatedIpPool {
+    fn from(properties: DedicatedIpPoolProperties) -> DedicatedIpPool {
+        DedicatedIpPool { properties }
+    }
+}
+
+/// The [`AWS::SES::EmailIdentity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-emailidentity.html) resource type.
+#[derive(Debug, Default)]
+pub struct EmailIdentity {
+    properties: EmailIdentityProperties
+}
+
+/// Properties for the `EmailIdentity` resource.
+#[derive(Debug, Default)]
+pub struct EmailIdentityProperties {
+    /// Property [`ConfigurationSetAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-emailidentity.html#cfn-ses-emailidentity-configurationsetattributes).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub configuration_set_attributes: Option<::Value<self::email_identity::ConfigurationSetAttributes>>,
+    /// Property [`DkimAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-emailidentity.html#cfn-ses-emailidentity-dkimattributes).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub dkim_attributes: Option<::Value<self::email_identity::DkimAttributes>>,
+    /// Property [`DkimSigningAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-emailidentity.html#cfn-ses-emailidentity-dkimsigningattributes).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub dkim_signing_attributes: Option<::Value<self::email_identity::DkimSigningAttributes>>,
+    /// Property [`EmailIdentity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-emailidentity.html#cfn-ses-emailidentity-emailidentity).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub email_identity: ::Value<String>,
+    /// Property [`FeedbackAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-emailidentity.html#cfn-ses-emailidentity-feedbackattributes).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub feedback_attributes: Option<::Value<self::email_identity::FeedbackAttributes>>,
+    /// Property [`MailFromAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-emailidentity.html#cfn-ses-emailidentity-mailfromattributes).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub mail_from_attributes: Option<::Value<self::email_identity::MailFromAttributes>>,
+}
+
+impl ::serde::Serialize for EmailIdentityProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref configuration_set_attributes) = self.configuration_set_attributes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConfigurationSetAttributes", configuration_set_attributes)?;
+        }
+        if let Some(ref dkim_attributes) = self.dkim_attributes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DkimAttributes", dkim_attributes)?;
+        }
+        if let Some(ref dkim_signing_attributes) = self.dkim_signing_attributes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DkimSigningAttributes", dkim_signing_attributes)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EmailIdentity", &self.email_identity)?;
+        if let Some(ref feedback_attributes) = self.feedback_attributes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FeedbackAttributes", feedback_attributes)?;
+        }
+        if let Some(ref mail_from_attributes) = self.mail_from_attributes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MailFromAttributes", mail_from_attributes)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for EmailIdentityProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<EmailIdentityProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = EmailIdentityProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type EmailIdentityProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut configuration_set_attributes: Option<::Value<self::email_identity::ConfigurationSetAttributes>> = None;
+                let mut dkim_attributes: Option<::Value<self::email_identity::DkimAttributes>> = None;
+                let mut dkim_signing_attributes: Option<::Value<self::email_identity::DkimSigningAttributes>> = None;
+                let mut email_identity: Option<::Value<String>> = None;
+                let mut feedback_attributes: Option<::Value<self::email_identity::FeedbackAttributes>> = None;
+                let mut mail_from_attributes: Option<::Value<self::email_identity::MailFromAttributes>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "ConfigurationSetAttributes" => {
+                            configuration_set_attributes = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DkimAttributes" => {
+                            dkim_attributes = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DkimSigningAttributes" => {
+                            dkim_signing_attributes = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "EmailIdentity" => {
+                            email_identity = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "FeedbackAttributes" => {
+                            feedback_attributes = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MailFromAttributes" => {
+                            mail_from_attributes = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(EmailIdentityProperties {
+                    configuration_set_attributes: configuration_set_attributes,
+                    dkim_attributes: dkim_attributes,
+                    dkim_signing_attributes: dkim_signing_attributes,
+                    email_identity: email_identity.ok_or(::serde::de::Error::missing_field("EmailIdentity"))?,
+                    feedback_attributes: feedback_attributes,
+                    mail_from_attributes: mail_from_attributes,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for EmailIdentity {
+    type Properties = EmailIdentityProperties;
+    const TYPE: &'static str = "AWS::SES::EmailIdentity";
+    fn properties(&self) -> &EmailIdentityProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut EmailIdentityProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for EmailIdentity {}
+
+impl From<EmailIdentityProperties> for EmailIdentity {
+    fn from(properties: EmailIdentityProperties) -> EmailIdentity {
+        EmailIdentity { properties }
     }
 }
 
@@ -614,6 +925,547 @@ impl From<TemplateProperties> for Template {
     }
 }
 
+/// The [`AWS::SES::VdmAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-vdmattributes.html) resource type.
+#[derive(Debug, Default)]
+pub struct VdmAttributes {
+    properties: VdmAttributesProperties
+}
+
+/// Properties for the `VdmAttributes` resource.
+#[derive(Debug, Default)]
+pub struct VdmAttributesProperties {
+    /// Property [`DashboardAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-vdmattributes.html#cfn-ses-vdmattributes-dashboardattributes).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub dashboard_attributes: Option<::Value<self::vdm_attributes::DashboardAttributes>>,
+    /// Property [`GuardianAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ses-vdmattributes.html#cfn-ses-vdmattributes-guardianattributes).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub guardian_attributes: Option<::Value<self::vdm_attributes::GuardianAttributes>>,
+}
+
+impl ::serde::Serialize for VdmAttributesProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref dashboard_attributes) = self.dashboard_attributes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DashboardAttributes", dashboard_attributes)?;
+        }
+        if let Some(ref guardian_attributes) = self.guardian_attributes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GuardianAttributes", guardian_attributes)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for VdmAttributesProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<VdmAttributesProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = VdmAttributesProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type VdmAttributesProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut dashboard_attributes: Option<::Value<self::vdm_attributes::DashboardAttributes>> = None;
+                let mut guardian_attributes: Option<::Value<self::vdm_attributes::GuardianAttributes>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "DashboardAttributes" => {
+                            dashboard_attributes = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "GuardianAttributes" => {
+                            guardian_attributes = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(VdmAttributesProperties {
+                    dashboard_attributes: dashboard_attributes,
+                    guardian_attributes: guardian_attributes,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for VdmAttributes {
+    type Properties = VdmAttributesProperties;
+    const TYPE: &'static str = "AWS::SES::VdmAttributes";
+    fn properties(&self) -> &VdmAttributesProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut VdmAttributesProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for VdmAttributes {}
+
+impl From<VdmAttributesProperties> for VdmAttributes {
+    fn from(properties: VdmAttributesProperties) -> VdmAttributes {
+        VdmAttributes { properties }
+    }
+}
+
+pub mod configuration_set {
+    //! Property types for the `ConfigurationSet` resource.
+
+    /// The [`AWS::SES::ConfigurationSet.DashboardOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-dashboardoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DashboardOptions {
+        /// Property [`EngagementMetrics`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-dashboardoptions.html#cfn-ses-configurationset-dashboardoptions-engagementmetrics).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub engagement_metrics: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for DashboardOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EngagementMetrics", &self.engagement_metrics)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DashboardOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DashboardOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DashboardOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DashboardOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut engagement_metrics: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "EngagementMetrics" => {
+                                engagement_metrics = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DashboardOptions {
+                        engagement_metrics: engagement_metrics.ok_or(::serde::de::Error::missing_field("EngagementMetrics"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::SES::ConfigurationSet.DeliveryOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-deliveryoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DeliveryOptions {
+        /// Property [`SendingPoolName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-deliveryoptions.html#cfn-ses-configurationset-deliveryoptions-sendingpoolname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub sending_pool_name: Option<::Value<String>>,
+        /// Property [`TlsPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-deliveryoptions.html#cfn-ses-configurationset-deliveryoptions-tlspolicy).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tls_policy: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for DeliveryOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref sending_pool_name) = self.sending_pool_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SendingPoolName", sending_pool_name)?;
+            }
+            if let Some(ref tls_policy) = self.tls_policy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TlsPolicy", tls_policy)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DeliveryOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DeliveryOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DeliveryOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DeliveryOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut sending_pool_name: Option<::Value<String>> = None;
+                    let mut tls_policy: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SendingPoolName" => {
+                                sending_pool_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TlsPolicy" => {
+                                tls_policy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DeliveryOptions {
+                        sending_pool_name: sending_pool_name,
+                        tls_policy: tls_policy,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::SES::ConfigurationSet.GuardianOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-guardianoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct GuardianOptions {
+        /// Property [`OptimizedSharedDelivery`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-guardianoptions.html#cfn-ses-configurationset-guardianoptions-optimizedshareddelivery).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub optimized_shared_delivery: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for GuardianOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OptimizedSharedDelivery", &self.optimized_shared_delivery)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for GuardianOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<GuardianOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = GuardianOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type GuardianOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut optimized_shared_delivery: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "OptimizedSharedDelivery" => {
+                                optimized_shared_delivery = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(GuardianOptions {
+                        optimized_shared_delivery: optimized_shared_delivery.ok_or(::serde::de::Error::missing_field("OptimizedSharedDelivery"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::SES::ConfigurationSet.ReputationOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-reputationoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ReputationOptions {
+        /// Property [`ReputationMetricsEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-reputationoptions.html#cfn-ses-configurationset-reputationoptions-reputationmetricsenabled).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub reputation_metrics_enabled: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for ReputationOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref reputation_metrics_enabled) = self.reputation_metrics_enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReputationMetricsEnabled", reputation_metrics_enabled)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ReputationOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ReputationOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ReputationOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ReputationOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut reputation_metrics_enabled: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ReputationMetricsEnabled" => {
+                                reputation_metrics_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ReputationOptions {
+                        reputation_metrics_enabled: reputation_metrics_enabled,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::SES::ConfigurationSet.SendingOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-sendingoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SendingOptions {
+        /// Property [`SendingEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-sendingoptions.html#cfn-ses-configurationset-sendingoptions-sendingenabled).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub sending_enabled: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for SendingOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref sending_enabled) = self.sending_enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SendingEnabled", sending_enabled)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SendingOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SendingOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SendingOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SendingOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut sending_enabled: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SendingEnabled" => {
+                                sending_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SendingOptions {
+                        sending_enabled: sending_enabled,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::SES::ConfigurationSet.SuppressionOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-suppressionoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SuppressionOptions {
+        /// Property [`SuppressedReasons`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-suppressionoptions.html#cfn-ses-configurationset-suppressionoptions-suppressedreasons).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub suppressed_reasons: Option<::ValueList<String>>,
+    }
+
+    impl ::codec::SerializeValue for SuppressionOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref suppressed_reasons) = self.suppressed_reasons {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SuppressedReasons", suppressed_reasons)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SuppressionOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SuppressionOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SuppressionOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SuppressionOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut suppressed_reasons: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SuppressedReasons" => {
+                                suppressed_reasons = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SuppressionOptions {
+                        suppressed_reasons: suppressed_reasons,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::SES::ConfigurationSet.TrackingOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-trackingoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TrackingOptions {
+        /// Property [`CustomRedirectDomain`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-trackingoptions.html#cfn-ses-configurationset-trackingoptions-customredirectdomain).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub custom_redirect_domain: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for TrackingOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref custom_redirect_domain) = self.custom_redirect_domain {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomRedirectDomain", custom_redirect_domain)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TrackingOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TrackingOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TrackingOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TrackingOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut custom_redirect_domain: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CustomRedirectDomain" => {
+                                custom_redirect_domain = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TrackingOptions {
+                        custom_redirect_domain: custom_redirect_domain,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::SES::ConfigurationSet.VdmOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-vdmoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct VdmOptions {
+        /// Property [`DashboardOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-vdmoptions.html#cfn-ses-configurationset-vdmoptions-dashboardoptions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub dashboard_options: Option<::Value<DashboardOptions>>,
+        /// Property [`GuardianOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationset-vdmoptions.html#cfn-ses-configurationset-vdmoptions-guardianoptions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub guardian_options: Option<::Value<GuardianOptions>>,
+    }
+
+    impl ::codec::SerializeValue for VdmOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref dashboard_options) = self.dashboard_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DashboardOptions", dashboard_options)?;
+            }
+            if let Some(ref guardian_options) = self.guardian_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "GuardianOptions", guardian_options)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for VdmOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<VdmOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = VdmOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type VdmOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut dashboard_options: Option<::Value<DashboardOptions>> = None;
+                    let mut guardian_options: Option<::Value<GuardianOptions>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DashboardOptions" => {
+                                dashboard_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "GuardianOptions" => {
+                                guardian_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(VdmOptions {
+                        dashboard_options: dashboard_options,
+                        guardian_options: guardian_options,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
 pub mod configuration_set_event_destination {
     //! Property types for the `ConfigurationSetEventDestination` resource.
 
@@ -771,6 +1623,11 @@ pub mod configuration_set_event_destination {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub name: Option<::Value<String>>,
+        /// Property [`SnsDestination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-eventdestination.html#cfn-ses-configurationseteventdestination-eventdestination-snsdestination).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub sns_destination: Option<::Value<SnsDestination>>,
     }
 
     impl ::codec::SerializeValue for EventDestination {
@@ -788,6 +1645,9 @@ pub mod configuration_set_event_destination {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MatchingEventTypes", &self.matching_event_types)?;
             if let Some(ref name) = self.name {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            if let Some(ref sns_destination) = self.sns_destination {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnsDestination", sns_destination)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -810,6 +1670,7 @@ pub mod configuration_set_event_destination {
                     let mut kinesis_firehose_destination: Option<::Value<KinesisFirehoseDestination>> = None;
                     let mut matching_event_types: Option<::ValueList<String>> = None;
                     let mut name: Option<::Value<String>> = None;
+                    let mut sns_destination: Option<::Value<SnsDestination>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -828,6 +1689,9 @@ pub mod configuration_set_event_destination {
                             "Name" => {
                                 name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "SnsDestination" => {
+                                sns_destination = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
@@ -838,6 +1702,7 @@ pub mod configuration_set_event_destination {
                         kinesis_firehose_destination: kinesis_firehose_destination,
                         matching_event_types: matching_event_types.ok_or(::serde::de::Error::missing_field("MatchingEventTypes"))?,
                         name: name,
+                        sns_destination: sns_destination,
                     })
                 }
             }
@@ -900,6 +1765,57 @@ pub mod configuration_set_event_destination {
                     Ok(KinesisFirehoseDestination {
                         delivery_stream_arn: delivery_stream_arn.ok_or(::serde::de::Error::missing_field("DeliveryStreamARN"))?,
                         iam_role_arn: iam_role_arn.ok_or(::serde::de::Error::missing_field("IAMRoleARN"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::SES::ConfigurationSetEventDestination.SnsDestination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-snsdestination.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SnsDestination {
+        /// Property [`TopicARN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-configurationseteventdestination-snsdestination.html#cfn-ses-configurationseteventdestination-snsdestination-topicarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub topic_arn: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for SnsDestination {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TopicARN", &self.topic_arn)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SnsDestination {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SnsDestination, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SnsDestination;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SnsDestination")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut topic_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "TopicARN" => {
+                                topic_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SnsDestination {
+                        topic_arn: topic_arn.ok_or(::serde::de::Error::missing_field("TopicARN"))?,
                     })
                 }
             }
@@ -990,6 +1906,314 @@ pub mod contact_list {
                         description: description,
                         display_name: display_name.ok_or(::serde::de::Error::missing_field("DisplayName"))?,
                         topic_name: topic_name.ok_or(::serde::de::Error::missing_field("TopicName"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod email_identity {
+    //! Property types for the `EmailIdentity` resource.
+
+    /// The [`AWS::SES::EmailIdentity.ConfigurationSetAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-emailidentity-configurationsetattributes.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ConfigurationSetAttributes {
+        /// Property [`ConfigurationSetName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-emailidentity-configurationsetattributes.html#cfn-ses-emailidentity-configurationsetattributes-configurationsetname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub configuration_set_name: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for ConfigurationSetAttributes {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref configuration_set_name) = self.configuration_set_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConfigurationSetName", configuration_set_name)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ConfigurationSetAttributes {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ConfigurationSetAttributes, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ConfigurationSetAttributes;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ConfigurationSetAttributes")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut configuration_set_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ConfigurationSetName" => {
+                                configuration_set_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ConfigurationSetAttributes {
+                        configuration_set_name: configuration_set_name,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::SES::EmailIdentity.DkimAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-emailidentity-dkimattributes.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DkimAttributes {
+        /// Property [`SigningEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-emailidentity-dkimattributes.html#cfn-ses-emailidentity-dkimattributes-signingenabled).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub signing_enabled: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for DkimAttributes {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref signing_enabled) = self.signing_enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SigningEnabled", signing_enabled)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DkimAttributes {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DkimAttributes, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DkimAttributes;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DkimAttributes")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut signing_enabled: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SigningEnabled" => {
+                                signing_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DkimAttributes {
+                        signing_enabled: signing_enabled,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::SES::EmailIdentity.DkimSigningAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-emailidentity-dkimsigningattributes.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DkimSigningAttributes {
+        /// Property [`DomainSigningPrivateKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-emailidentity-dkimsigningattributes.html#cfn-ses-emailidentity-dkimsigningattributes-domainsigningprivatekey).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub domain_signing_private_key: Option<::Value<String>>,
+        /// Property [`DomainSigningSelector`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-emailidentity-dkimsigningattributes.html#cfn-ses-emailidentity-dkimsigningattributes-domainsigningselector).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub domain_signing_selector: Option<::Value<String>>,
+        /// Property [`NextSigningKeyLength`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-emailidentity-dkimsigningattributes.html#cfn-ses-emailidentity-dkimsigningattributes-nextsigningkeylength).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub next_signing_key_length: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for DkimSigningAttributes {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref domain_signing_private_key) = self.domain_signing_private_key {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainSigningPrivateKey", domain_signing_private_key)?;
+            }
+            if let Some(ref domain_signing_selector) = self.domain_signing_selector {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainSigningSelector", domain_signing_selector)?;
+            }
+            if let Some(ref next_signing_key_length) = self.next_signing_key_length {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NextSigningKeyLength", next_signing_key_length)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DkimSigningAttributes {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DkimSigningAttributes, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DkimSigningAttributes;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DkimSigningAttributes")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut domain_signing_private_key: Option<::Value<String>> = None;
+                    let mut domain_signing_selector: Option<::Value<String>> = None;
+                    let mut next_signing_key_length: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DomainSigningPrivateKey" => {
+                                domain_signing_private_key = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DomainSigningSelector" => {
+                                domain_signing_selector = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "NextSigningKeyLength" => {
+                                next_signing_key_length = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DkimSigningAttributes {
+                        domain_signing_private_key: domain_signing_private_key,
+                        domain_signing_selector: domain_signing_selector,
+                        next_signing_key_length: next_signing_key_length,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::SES::EmailIdentity.FeedbackAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-emailidentity-feedbackattributes.html) property type.
+    #[derive(Debug, Default)]
+    pub struct FeedbackAttributes {
+        /// Property [`EmailForwardingEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-emailidentity-feedbackattributes.html#cfn-ses-emailidentity-feedbackattributes-emailforwardingenabled).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub email_forwarding_enabled: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for FeedbackAttributes {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref email_forwarding_enabled) = self.email_forwarding_enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EmailForwardingEnabled", email_forwarding_enabled)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for FeedbackAttributes {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<FeedbackAttributes, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = FeedbackAttributes;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type FeedbackAttributes")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut email_forwarding_enabled: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "EmailForwardingEnabled" => {
+                                email_forwarding_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(FeedbackAttributes {
+                        email_forwarding_enabled: email_forwarding_enabled,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::SES::EmailIdentity.MailFromAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-emailidentity-mailfromattributes.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MailFromAttributes {
+        /// Property [`BehaviorOnMxFailure`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-emailidentity-mailfromattributes.html#cfn-ses-emailidentity-mailfromattributes-behavioronmxfailure).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub behavior_on_mx_failure: Option<::Value<String>>,
+        /// Property [`MailFromDomain`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-emailidentity-mailfromattributes.html#cfn-ses-emailidentity-mailfromattributes-mailfromdomain).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub mail_from_domain: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for MailFromAttributes {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref behavior_on_mx_failure) = self.behavior_on_mx_failure {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BehaviorOnMxFailure", behavior_on_mx_failure)?;
+            }
+            if let Some(ref mail_from_domain) = self.mail_from_domain {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MailFromDomain", mail_from_domain)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MailFromAttributes {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MailFromAttributes, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MailFromAttributes;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MailFromAttributes")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut behavior_on_mx_failure: Option<::Value<String>> = None;
+                    let mut mail_from_domain: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "BehaviorOnMxFailure" => {
+                                behavior_on_mx_failure = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MailFromDomain" => {
+                                mail_from_domain = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MailFromAttributes {
+                        behavior_on_mx_failure: behavior_on_mx_failure,
+                        mail_from_domain: mail_from_domain,
                     })
                 }
             }
@@ -1919,7 +3143,7 @@ pub mod template {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub subject_part: Option<::Value<String>>,
+        pub subject_part: ::Value<String>,
         /// Property [`TemplateName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-template-template.html#cfn-ses-template-template-templatename).
         ///
         /// Update type: _Immutable_.
@@ -1938,9 +3162,7 @@ pub mod template {
             if let Some(ref html_part) = self.html_part {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "HtmlPart", html_part)?;
             }
-            if let Some(ref subject_part) = self.subject_part {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubjectPart", subject_part)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubjectPart", &self.subject_part)?;
             if let Some(ref template_name) = self.template_name {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "TemplateName", template_name)?;
             }
@@ -1988,9 +3210,119 @@ pub mod template {
 
                     Ok(Template {
                         html_part: html_part,
-                        subject_part: subject_part,
+                        subject_part: subject_part.ok_or(::serde::de::Error::missing_field("SubjectPart"))?,
                         template_name: template_name,
                         text_part: text_part,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod vdm_attributes {
+    //! Property types for the `VdmAttributes` resource.
+
+    /// The [`AWS::SES::VdmAttributes.DashboardAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-vdmattributes-dashboardattributes.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DashboardAttributes {
+        /// Property [`EngagementMetrics`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-vdmattributes-dashboardattributes.html#cfn-ses-vdmattributes-dashboardattributes-engagementmetrics).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub engagement_metrics: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for DashboardAttributes {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref engagement_metrics) = self.engagement_metrics {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EngagementMetrics", engagement_metrics)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DashboardAttributes {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DashboardAttributes, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DashboardAttributes;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DashboardAttributes")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut engagement_metrics: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "EngagementMetrics" => {
+                                engagement_metrics = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DashboardAttributes {
+                        engagement_metrics: engagement_metrics,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::SES::VdmAttributes.GuardianAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-vdmattributes-guardianattributes.html) property type.
+    #[derive(Debug, Default)]
+    pub struct GuardianAttributes {
+        /// Property [`OptimizedSharedDelivery`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ses-vdmattributes-guardianattributes.html#cfn-ses-vdmattributes-guardianattributes-optimizedshareddelivery).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub optimized_shared_delivery: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for GuardianAttributes {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref optimized_shared_delivery) = self.optimized_shared_delivery {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OptimizedSharedDelivery", optimized_shared_delivery)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for GuardianAttributes {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<GuardianAttributes, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = GuardianAttributes;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type GuardianAttributes")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut optimized_shared_delivery: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "OptimizedSharedDelivery" => {
+                                optimized_shared_delivery = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(GuardianAttributes {
+                        optimized_shared_delivery: optimized_shared_delivery,
                     })
                 }
             }

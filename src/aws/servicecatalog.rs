@@ -123,16 +123,26 @@ pub struct CloudFormationProductProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub owner: ::Value<String>,
+    /// Property [`ProductType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationproduct.html#cfn-servicecatalog-cloudformationproduct-producttype).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub product_type: Option<::Value<String>>,
     /// Property [`ProvisioningArtifactParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationproduct.html#cfn-servicecatalog-cloudformationproduct-provisioningartifactparameters).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub provisioning_artifact_parameters: ::ValueList<self::cloud_formation_product::ProvisioningArtifactProperties>,
+    pub provisioning_artifact_parameters: Option<::ValueList<self::cloud_formation_product::ProvisioningArtifactProperties>>,
     /// Property [`ReplaceProvisioningArtifacts`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationproduct.html#cfn-servicecatalog-cloudformationproduct-replaceprovisioningartifacts).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub replace_provisioning_artifacts: Option<::Value<bool>>,
+    /// Property [`SourceConnection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationproduct.html#cfn-servicecatalog-cloudformationproduct-sourceconnection).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub source_connection: Option<::Value<self::cloud_formation_product::SourceConnection>>,
     /// Property [`SupportDescription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicecatalog-cloudformationproduct.html#cfn-servicecatalog-cloudformationproduct-supportdescription).
     ///
     /// Update type: _Mutable_.
@@ -169,9 +179,17 @@ impl ::serde::Serialize for CloudFormationProductProperties {
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Owner", &self.owner)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProvisioningArtifactParameters", &self.provisioning_artifact_parameters)?;
+        if let Some(ref product_type) = self.product_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProductType", product_type)?;
+        }
+        if let Some(ref provisioning_artifact_parameters) = self.provisioning_artifact_parameters {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProvisioningArtifactParameters", provisioning_artifact_parameters)?;
+        }
         if let Some(ref replace_provisioning_artifacts) = self.replace_provisioning_artifacts {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplaceProvisioningArtifacts", replace_provisioning_artifacts)?;
+        }
+        if let Some(ref source_connection) = self.source_connection {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceConnection", source_connection)?;
         }
         if let Some(ref support_description) = self.support_description {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SupportDescription", support_description)?;
@@ -206,8 +224,10 @@ impl<'de> ::serde::Deserialize<'de> for CloudFormationProductProperties {
                 let mut distributor: Option<::Value<String>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut owner: Option<::Value<String>> = None;
+                let mut product_type: Option<::Value<String>> = None;
                 let mut provisioning_artifact_parameters: Option<::ValueList<self::cloud_formation_product::ProvisioningArtifactProperties>> = None;
                 let mut replace_provisioning_artifacts: Option<::Value<bool>> = None;
+                let mut source_connection: Option<::Value<self::cloud_formation_product::SourceConnection>> = None;
                 let mut support_description: Option<::Value<String>> = None;
                 let mut support_email: Option<::Value<String>> = None;
                 let mut support_url: Option<::Value<String>> = None;
@@ -230,11 +250,17 @@ impl<'de> ::serde::Deserialize<'de> for CloudFormationProductProperties {
                         "Owner" => {
                             owner = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ProductType" => {
+                            product_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "ProvisioningArtifactParameters" => {
                             provisioning_artifact_parameters = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ReplaceProvisioningArtifacts" => {
                             replace_provisioning_artifacts = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SourceConnection" => {
+                            source_connection = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SupportDescription" => {
                             support_description = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -258,8 +284,10 @@ impl<'de> ::serde::Deserialize<'de> for CloudFormationProductProperties {
                     distributor: distributor,
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     owner: owner.ok_or(::serde::de::Error::missing_field("Owner"))?,
-                    provisioning_artifact_parameters: provisioning_artifact_parameters.ok_or(::serde::de::Error::missing_field("ProvisioningArtifactParameters"))?,
+                    product_type: product_type,
+                    provisioning_artifact_parameters: provisioning_artifact_parameters,
                     replace_provisioning_artifacts: replace_provisioning_artifacts,
+                    source_connection: source_connection,
                     support_description: support_description,
                     support_email: support_email,
                     support_url: support_url,
@@ -2064,6 +2092,143 @@ impl From<TagOptionAssociationProperties> for TagOptionAssociation {
 pub mod cloud_formation_product {
     //! Property types for the `CloudFormationProduct` resource.
 
+    /// The [`AWS::ServiceCatalog::CloudFormationProduct.CodeStarParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationproduct-codestarparameters.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CodeStarParameters {
+        /// Property [`ArtifactPath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationproduct-codestarparameters.html#cfn-servicecatalog-cloudformationproduct-codestarparameters-artifactpath).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub artifact_path: ::Value<String>,
+        /// Property [`Branch`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationproduct-codestarparameters.html#cfn-servicecatalog-cloudformationproduct-codestarparameters-branch).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub branch: ::Value<String>,
+        /// Property [`ConnectionArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationproduct-codestarparameters.html#cfn-servicecatalog-cloudformationproduct-codestarparameters-connectionarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub connection_arn: ::Value<String>,
+        /// Property [`Repository`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationproduct-codestarparameters.html#cfn-servicecatalog-cloudformationproduct-codestarparameters-repository).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub repository: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for CodeStarParameters {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ArtifactPath", &self.artifact_path)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Branch", &self.branch)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionArn", &self.connection_arn)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Repository", &self.repository)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CodeStarParameters {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CodeStarParameters, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CodeStarParameters;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CodeStarParameters")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut artifact_path: Option<::Value<String>> = None;
+                    let mut branch: Option<::Value<String>> = None;
+                    let mut connection_arn: Option<::Value<String>> = None;
+                    let mut repository: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ArtifactPath" => {
+                                artifact_path = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Branch" => {
+                                branch = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ConnectionArn" => {
+                                connection_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Repository" => {
+                                repository = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CodeStarParameters {
+                        artifact_path: artifact_path.ok_or(::serde::de::Error::missing_field("ArtifactPath"))?,
+                        branch: branch.ok_or(::serde::de::Error::missing_field("Branch"))?,
+                        connection_arn: connection_arn.ok_or(::serde::de::Error::missing_field("ConnectionArn"))?,
+                        repository: repository.ok_or(::serde::de::Error::missing_field("Repository"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ServiceCatalog::CloudFormationProduct.ConnectionParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationproduct-sourceconnection-connectionparameters.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ConnectionParameters {
+        /// Property [`CodeStar`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationproduct-sourceconnection-connectionparameters.html#cfn-servicecatalog-cloudformationproduct-sourceconnection-connectionparameters-codestar).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub code_star: Option<::Value<CodeStarParameters>>,
+    }
+
+    impl ::codec::SerializeValue for ConnectionParameters {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref code_star) = self.code_star {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CodeStar", code_star)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ConnectionParameters {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ConnectionParameters, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ConnectionParameters;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ConnectionParameters")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut code_star: Option<::Value<CodeStarParameters>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CodeStar" => {
+                                code_star = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ConnectionParameters {
+                        code_star: code_star,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::ServiceCatalog::CloudFormationProduct.ProvisioningArtifactProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationproduct-provisioningartifactproperties.html) property type.
     #[derive(Debug, Default)]
     pub struct ProvisioningArtifactProperties {
@@ -2087,6 +2252,11 @@ pub mod cloud_formation_product {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub name: Option<::Value<String>>,
+        /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationproduct-provisioningartifactproperties.html#cfn-servicecatalog-cloudformationproduct-provisioningartifactproperties-type).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub r#type: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for ProvisioningArtifactProperties {
@@ -2101,6 +2271,9 @@ pub mod cloud_formation_product {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Info", &self.info)?;
             if let Some(ref name) = self.name {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            if let Some(ref r#type) = self.r#type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", r#type)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -2122,6 +2295,7 @@ pub mod cloud_formation_product {
                     let mut disable_template_validation: Option<::Value<bool>> = None;
                     let mut info: Option<::Value<::json::Value>> = None;
                     let mut name: Option<::Value<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2137,6 +2311,9 @@ pub mod cloud_formation_product {
                             "Name" => {
                                 name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Type" => {
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
@@ -2146,6 +2323,69 @@ pub mod cloud_formation_product {
                         disable_template_validation: disable_template_validation,
                         info: info.ok_or(::serde::de::Error::missing_field("Info"))?,
                         name: name,
+                        r#type: r#type,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ServiceCatalog::CloudFormationProduct.SourceConnection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationproduct-sourceconnection.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SourceConnection {
+        /// Property [`ConnectionParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationproduct-sourceconnection.html#cfn-servicecatalog-cloudformationproduct-sourceconnection-connectionparameters).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub connection_parameters: ::Value<ConnectionParameters>,
+        /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-servicecatalog-cloudformationproduct-sourceconnection.html#cfn-servicecatalog-cloudformationproduct-sourceconnection-type).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub r#type: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for SourceConnection {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConnectionParameters", &self.connection_parameters)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SourceConnection {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SourceConnection, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SourceConnection;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SourceConnection")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut connection_parameters: Option<::Value<ConnectionParameters>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ConnectionParameters" => {
+                                connection_parameters = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Type" => {
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SourceConnection {
+                        connection_parameters: connection_parameters.ok_or(::serde::de::Error::missing_field("ConnectionParameters"))?,
+                        r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
                     })
                 }
             }

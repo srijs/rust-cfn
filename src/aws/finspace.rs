@@ -21,8 +21,8 @@ pub struct EnvironmentProperties {
     pub federation_mode: Option<::Value<String>>,
     /// Property [`FederationParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-finspace-environment.html#cfn-finspace-environment-federationparameters).
     ///
-    /// Update type: _Mutable_.
-    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub federation_parameters: Option<::Value<self::environment::FederationParameters>>,
     /// Property [`KmsKeyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-finspace-environment.html#cfn-finspace-environment-kmskeyid).
     ///
@@ -34,6 +34,16 @@ pub struct EnvironmentProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub name: ::Value<String>,
+    /// Property [`SuperuserParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-finspace-environment.html#cfn-finspace-environment-superuserparameters).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub superuser_parameters: Option<::Value<self::environment::SuperuserParameters>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-finspace-environment.html#cfn-finspace-environment-tags).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
 }
 
 impl ::serde::Serialize for EnvironmentProperties {
@@ -52,6 +62,12 @@ impl ::serde::Serialize for EnvironmentProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", kms_key_id)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref superuser_parameters) = self.superuser_parameters {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SuperuserParameters", superuser_parameters)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -73,6 +89,8 @@ impl<'de> ::serde::Deserialize<'de> for EnvironmentProperties {
                 let mut federation_parameters: Option<::Value<self::environment::FederationParameters>> = None;
                 let mut kms_key_id: Option<::Value<String>> = None;
                 let mut name: Option<::Value<String>> = None;
+                let mut superuser_parameters: Option<::Value<self::environment::SuperuserParameters>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -91,6 +109,12 @@ impl<'de> ::serde::Deserialize<'de> for EnvironmentProperties {
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "SuperuserParameters" => {
+                            superuser_parameters = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
@@ -101,6 +125,8 @@ impl<'de> ::serde::Deserialize<'de> for EnvironmentProperties {
                     federation_parameters: federation_parameters,
                     kms_key_id: kms_key_id,
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    superuser_parameters: superuser_parameters,
+                    tags: tags,
                 })
             }
         }
@@ -131,38 +157,104 @@ impl From<EnvironmentProperties> for Environment {
 pub mod environment {
     //! Property types for the `Environment` resource.
 
+    /// The [`AWS::FinSpace::Environment.AttributeMapItems`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-finspace-environment-attributemapitems.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AttributeMapItems {
+        /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-finspace-environment-attributemapitems.html#cfn-finspace-environment-attributemapitems-key).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub key: Option<::Value<String>>,
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-finspace-environment-attributemapitems.html#cfn-finspace-environment-attributemapitems-value).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub value: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for AttributeMapItems {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref key) = self.key {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", key)?;
+            }
+            if let Some(ref value) = self.value {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", value)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AttributeMapItems {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AttributeMapItems, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AttributeMapItems;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AttributeMapItems")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut key: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Key" => {
+                                key = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Value" => {
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AttributeMapItems {
+                        key: key,
+                        value: value,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::FinSpace::Environment.FederationParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-finspace-environment-federationparameters.html) property type.
     #[derive(Debug, Default)]
     pub struct FederationParameters {
         /// Property [`ApplicationCallBackURL`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-finspace-environment-federationparameters.html#cfn-finspace-environment-federationparameters-applicationcallbackurl).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub application_call_back_url: Option<::Value<String>>,
         /// Property [`AttributeMap`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-finspace-environment-federationparameters.html#cfn-finspace-environment-federationparameters-attributemap).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub attribute_map: Option<::Value<::json::Value>>,
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub attribute_map: Option<::ValueList<AttributeMapItems>>,
         /// Property [`FederationProviderName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-finspace-environment-federationparameters.html#cfn-finspace-environment-federationparameters-federationprovidername).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub federation_provider_name: Option<::Value<String>>,
         /// Property [`FederationURN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-finspace-environment-federationparameters.html#cfn-finspace-environment-federationparameters-federationurn).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub federation_urn: Option<::Value<String>>,
         /// Property [`SamlMetadataDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-finspace-environment-federationparameters.html#cfn-finspace-environment-federationparameters-samlmetadatadocument).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub saml_metadata_document: Option<::Value<String>>,
         /// Property [`SamlMetadataURL`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-finspace-environment-federationparameters.html#cfn-finspace-environment-federationparameters-samlmetadataurl).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub saml_metadata_url: Option<::Value<String>>,
     }
 
@@ -204,7 +296,7 @@ pub mod environment {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut application_call_back_url: Option<::Value<String>> = None;
-                    let mut attribute_map: Option<::Value<::json::Value>> = None;
+                    let mut attribute_map: Option<::ValueList<AttributeMapItems>> = None;
                     let mut federation_provider_name: Option<::Value<String>> = None;
                     let mut federation_urn: Option<::Value<String>> = None;
                     let mut saml_metadata_document: Option<::Value<String>> = None;
@@ -241,6 +333,85 @@ pub mod environment {
                         federation_urn: federation_urn,
                         saml_metadata_document: saml_metadata_document,
                         saml_metadata_url: saml_metadata_url,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::FinSpace::Environment.SuperuserParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-finspace-environment-superuserparameters.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SuperuserParameters {
+        /// Property [`EmailAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-finspace-environment-superuserparameters.html#cfn-finspace-environment-superuserparameters-emailaddress).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub email_address: Option<::Value<String>>,
+        /// Property [`FirstName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-finspace-environment-superuserparameters.html#cfn-finspace-environment-superuserparameters-firstname).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub first_name: Option<::Value<String>>,
+        /// Property [`LastName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-finspace-environment-superuserparameters.html#cfn-finspace-environment-superuserparameters-lastname).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub last_name: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for SuperuserParameters {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref email_address) = self.email_address {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EmailAddress", email_address)?;
+            }
+            if let Some(ref first_name) = self.first_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FirstName", first_name)?;
+            }
+            if let Some(ref last_name) = self.last_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LastName", last_name)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SuperuserParameters {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SuperuserParameters, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SuperuserParameters;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SuperuserParameters")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut email_address: Option<::Value<String>> = None;
+                    let mut first_name: Option<::Value<String>> = None;
+                    let mut last_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "EmailAddress" => {
+                                email_address = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "FirstName" => {
+                                first_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LastName" => {
+                                last_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SuperuserParameters {
+                        email_address: email_address,
+                        first_name: first_name,
+                        last_name: last_name,
                     })
                 }
             }

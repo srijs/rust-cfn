@@ -14,6 +14,11 @@ pub struct RepositoryProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub code: Option<::Value<self::repository::Code>>,
+    /// Property [`KmsKeyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codecommit-repository.html#cfn-codecommit-repository-kmskeyid).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub kms_key_id: Option<::Value<String>>,
     /// Property [`RepositoryDescription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codecommit-repository.html#cfn-codecommit-repository-repositorydescription).
     ///
     /// Update type: _Mutable_.
@@ -43,6 +48,9 @@ impl ::serde::Serialize for RepositoryProperties {
         if let Some(ref code) = self.code {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Code", code)?;
         }
+        if let Some(ref kms_key_id) = self.kms_key_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", kms_key_id)?;
+        }
         if let Some(ref repository_description) = self.repository_description {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RepositoryDescription", repository_description)?;
         }
@@ -70,6 +78,7 @@ impl<'de> ::serde::Deserialize<'de> for RepositoryProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut code: Option<::Value<self::repository::Code>> = None;
+                let mut kms_key_id: Option<::Value<String>> = None;
                 let mut repository_description: Option<::Value<String>> = None;
                 let mut repository_name: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
@@ -79,6 +88,9 @@ impl<'de> ::serde::Deserialize<'de> for RepositoryProperties {
                     match __cfn_key.as_ref() {
                         "Code" => {
                             code = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "KmsKeyId" => {
+                            kms_key_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "RepositoryDescription" => {
                             repository_description = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -98,6 +110,7 @@ impl<'de> ::serde::Deserialize<'de> for RepositoryProperties {
 
                 Ok(RepositoryProperties {
                     code: code,
+                    kms_key_id: kms_key_id,
                     repository_description: repository_description,
                     repository_name: repository_name.ok_or(::serde::de::Error::missing_field("RepositoryName"))?,
                     tags: tags,

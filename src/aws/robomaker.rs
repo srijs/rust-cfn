@@ -18,7 +18,7 @@ pub struct FleetProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub tags: Option<::Value<::json::Value>>,
+    pub tags: Option<::ValueMap<String>>,
 }
 
 impl ::serde::Serialize for FleetProperties {
@@ -47,7 +47,7 @@ impl<'de> ::serde::Deserialize<'de> for FleetProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut name: Option<::Value<String>> = None;
-                let mut tags: Option<::Value<::json::Value>> = None;
+                let mut tags: Option<::ValueMap<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -124,7 +124,7 @@ pub struct RobotProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub tags: Option<::Value<::json::Value>>,
+    pub tags: Option<::ValueMap<String>>,
 }
 
 impl ::serde::Serialize for RobotProperties {
@@ -161,7 +161,7 @@ impl<'de> ::serde::Deserialize<'de> for RobotProperties {
                 let mut fleet: Option<::Value<String>> = None;
                 let mut greengrass_group_id: Option<::Value<String>> = None;
                 let mut name: Option<::Value<String>> = None;
-                let mut tags: Option<::Value<::json::Value>> = None;
+                let mut tags: Option<::ValueMap<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -231,6 +231,11 @@ pub struct RobotApplicationProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub current_revision_id: Option<::Value<String>>,
+    /// Property [`Environment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-robotapplication.html#cfn-robomaker-robotapplication-environment).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub environment: Option<::Value<String>>,
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-robotapplication.html#cfn-robomaker-robotapplication-name).
     ///
     /// Update type: _Immutable_.
@@ -238,19 +243,19 @@ pub struct RobotApplicationProperties {
     pub name: Option<::Value<String>>,
     /// Property [`RobotSoftwareSuite`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-robotapplication.html#cfn-robomaker-robotapplication-robotsoftwaresuite).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub robot_software_suite: ::Value<self::robot_application::RobotSoftwareSuite>,
     /// Property [`Sources`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-robotapplication.html#cfn-robomaker-robotapplication-sources).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub sources: ::ValueList<self::robot_application::SourceConfig>,
+    pub sources: Option<::ValueList<self::robot_application::SourceConfig>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-robotapplication.html#cfn-robomaker-robotapplication-tags).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub tags: Option<::Value<::json::Value>>,
+    pub tags: Option<::ValueMap<String>>,
 }
 
 impl ::serde::Serialize for RobotApplicationProperties {
@@ -259,11 +264,16 @@ impl ::serde::Serialize for RobotApplicationProperties {
         if let Some(ref current_revision_id) = self.current_revision_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CurrentRevisionId", current_revision_id)?;
         }
+        if let Some(ref environment) = self.environment {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Environment", environment)?;
+        }
         if let Some(ref name) = self.name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RobotSoftwareSuite", &self.robot_software_suite)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Sources", &self.sources)?;
+        if let Some(ref sources) = self.sources {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Sources", sources)?;
+        }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
@@ -284,15 +294,19 @@ impl<'de> ::serde::Deserialize<'de> for RobotApplicationProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut current_revision_id: Option<::Value<String>> = None;
+                let mut environment: Option<::Value<String>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut robot_software_suite: Option<::Value<self::robot_application::RobotSoftwareSuite>> = None;
                 let mut sources: Option<::ValueList<self::robot_application::SourceConfig>> = None;
-                let mut tags: Option<::Value<::json::Value>> = None;
+                let mut tags: Option<::ValueMap<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "CurrentRevisionId" => {
                             current_revision_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Environment" => {
+                            environment = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -312,9 +326,10 @@ impl<'de> ::serde::Deserialize<'de> for RobotApplicationProperties {
 
                 Ok(RobotApplicationProperties {
                     current_revision_id: current_revision_id,
+                    environment: environment,
                     name: name,
                     robot_software_suite: robot_software_suite.ok_or(::serde::de::Error::missing_field("RobotSoftwareSuite"))?,
-                    sources: sources.ok_or(::serde::de::Error::missing_field("Sources"))?,
+                    sources: sources,
                     tags: tags,
                 })
             }
@@ -446,6 +461,11 @@ pub struct SimulationApplicationProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub current_revision_id: Option<::Value<String>>,
+    /// Property [`Environment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-simulationapplication.html#cfn-robomaker-simulationapplication-environment).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub environment: Option<::Value<String>>,
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-simulationapplication.html#cfn-robomaker-simulationapplication-name).
     ///
     /// Update type: _Immutable_.
@@ -453,29 +473,29 @@ pub struct SimulationApplicationProperties {
     pub name: Option<::Value<String>>,
     /// Property [`RenderingEngine`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-simulationapplication.html#cfn-robomaker-simulationapplication-renderingengine).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
-    pub rendering_engine: ::Value<self::simulation_application::RenderingEngine>,
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub rendering_engine: Option<::Value<self::simulation_application::RenderingEngine>>,
     /// Property [`RobotSoftwareSuite`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-simulationapplication.html#cfn-robomaker-simulationapplication-robotsoftwaresuite).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub robot_software_suite: ::Value<self::simulation_application::RobotSoftwareSuite>,
     /// Property [`SimulationSoftwareSuite`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-simulationapplication.html#cfn-robomaker-simulationapplication-simulationsoftwaresuite).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub simulation_software_suite: ::Value<self::simulation_application::SimulationSoftwareSuite>,
     /// Property [`Sources`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-simulationapplication.html#cfn-robomaker-simulationapplication-sources).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub sources: ::ValueList<self::simulation_application::SourceConfig>,
+    pub sources: Option<::ValueList<self::simulation_application::SourceConfig>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-robomaker-simulationapplication.html#cfn-robomaker-simulationapplication-tags).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub tags: Option<::Value<::json::Value>>,
+    pub tags: Option<::ValueMap<String>>,
 }
 
 impl ::serde::Serialize for SimulationApplicationProperties {
@@ -484,13 +504,20 @@ impl ::serde::Serialize for SimulationApplicationProperties {
         if let Some(ref current_revision_id) = self.current_revision_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CurrentRevisionId", current_revision_id)?;
         }
+        if let Some(ref environment) = self.environment {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Environment", environment)?;
+        }
         if let Some(ref name) = self.name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
         }
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RenderingEngine", &self.rendering_engine)?;
+        if let Some(ref rendering_engine) = self.rendering_engine {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RenderingEngine", rendering_engine)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RobotSoftwareSuite", &self.robot_software_suite)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SimulationSoftwareSuite", &self.simulation_software_suite)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Sources", &self.sources)?;
+        if let Some(ref sources) = self.sources {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Sources", sources)?;
+        }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
@@ -511,17 +538,21 @@ impl<'de> ::serde::Deserialize<'de> for SimulationApplicationProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut current_revision_id: Option<::Value<String>> = None;
+                let mut environment: Option<::Value<String>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut rendering_engine: Option<::Value<self::simulation_application::RenderingEngine>> = None;
                 let mut robot_software_suite: Option<::Value<self::simulation_application::RobotSoftwareSuite>> = None;
                 let mut simulation_software_suite: Option<::Value<self::simulation_application::SimulationSoftwareSuite>> = None;
                 let mut sources: Option<::ValueList<self::simulation_application::SourceConfig>> = None;
-                let mut tags: Option<::Value<::json::Value>> = None;
+                let mut tags: Option<::ValueMap<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "CurrentRevisionId" => {
                             current_revision_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Environment" => {
+                            environment = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -547,11 +578,12 @@ impl<'de> ::serde::Deserialize<'de> for SimulationApplicationProperties {
 
                 Ok(SimulationApplicationProperties {
                     current_revision_id: current_revision_id,
+                    environment: environment,
                     name: name,
-                    rendering_engine: rendering_engine.ok_or(::serde::de::Error::missing_field("RenderingEngine"))?,
+                    rendering_engine: rendering_engine,
                     robot_software_suite: robot_software_suite.ok_or(::serde::de::Error::missing_field("RobotSoftwareSuite"))?,
                     simulation_software_suite: simulation_software_suite.ok_or(::serde::de::Error::missing_field("SimulationSoftwareSuite"))?,
-                    sources: sources.ok_or(::serde::de::Error::missing_field("Sources"))?,
+                    sources: sources,
                     tags: tags,
                 })
             }
@@ -684,14 +716,16 @@ pub mod robot_application {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub version: ::Value<String>,
+        pub version: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for RobotSoftwareSuite {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Version", &self.version)?;
+            if let Some(ref version) = self.version {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Version", version)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -725,7 +759,7 @@ pub mod robot_application {
 
                     Ok(RobotSoftwareSuite {
                         name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
-                        version: version.ok_or(::serde::de::Error::missing_field("Version"))?,
+                        version: version,
                     })
                 }
             }
@@ -885,14 +919,16 @@ pub mod simulation_application {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub version: ::Value<String>,
+        pub version: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for RobotSoftwareSuite {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Version", &self.version)?;
+            if let Some(ref version) = self.version {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Version", version)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -926,7 +962,7 @@ pub mod simulation_application {
 
                     Ok(RobotSoftwareSuite {
                         name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
-                        version: version.ok_or(::serde::de::Error::missing_field("Version"))?,
+                        version: version,
                     })
                 }
             }
@@ -947,14 +983,16 @@ pub mod simulation_application {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub version: ::Value<String>,
+        pub version: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for SimulationSoftwareSuite {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Version", &self.version)?;
+            if let Some(ref version) = self.version {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Version", version)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -988,7 +1026,7 @@ pub mod simulation_application {
 
                     Ok(SimulationSoftwareSuite {
                         name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
-                        version: version.ok_or(::serde::de::Error::missing_field("Version"))?,
+                        version: version,
                     })
                 }
             }

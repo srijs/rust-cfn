@@ -24,6 +24,11 @@ pub struct DBClusterProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub backup_retention_period: Option<::Value<u32>>,
+    /// Property [`CopyTagsToSnapshot`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbcluster.html#cfn-neptune-dbcluster-copytagstosnapshot).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub copy_tags_to_snapshot: Option<::Value<bool>>,
     /// Property [`DBClusterIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbcluster.html#cfn-neptune-dbcluster-dbclusteridentifier).
     ///
     /// Update type: _Immutable_.
@@ -34,6 +39,16 @@ pub struct DBClusterProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub db_cluster_parameter_group_name: Option<::Value<String>>,
+    /// Property [`DBInstanceParameterGroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbcluster.html#cfn-neptune-dbcluster-dbinstanceparametergroupname).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub db_instance_parameter_group_name: Option<::Value<String>>,
+    /// Property [`DBPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbcluster.html#cfn-neptune-dbcluster-dbport).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub db_port: Option<::Value<u32>>,
     /// Property [`DBSubnetGroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbcluster.html#cfn-neptune-dbcluster-dbsubnetgroupname).
     ///
     /// Update type: _Immutable_.
@@ -51,8 +66,8 @@ pub struct DBClusterProperties {
     pub enable_cloudwatch_logs_exports: Option<::ValueList<String>>,
     /// Property [`EngineVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbcluster.html#cfn-neptune-dbcluster-engineversion).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub engine_version: Option<::Value<String>>,
     /// Property [`IamAuthEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbcluster.html#cfn-neptune-dbcluster-iamauthenabled).
     ///
@@ -64,11 +79,6 @@ pub struct DBClusterProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub kms_key_id: Option<::Value<String>>,
-    /// Property [`Port`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbcluster.html#cfn-neptune-dbcluster-port).
-    ///
-    /// Update type: _Mutable_.
-    /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub port: Option<::Value<u32>>,
     /// Property [`PreferredBackupWindow`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbcluster.html#cfn-neptune-dbcluster-preferredbackupwindow).
     ///
     /// Update type: _Mutable_.
@@ -89,6 +99,11 @@ pub struct DBClusterProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub restore_type: Option<::Value<String>>,
+    /// Property [`ServerlessScalingConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbcluster.html#cfn-neptune-dbcluster-serverlessscalingconfiguration).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub serverless_scaling_configuration: Option<::Value<self::db_cluster::ServerlessScalingConfiguration>>,
     /// Property [`SnapshotIdentifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbcluster.html#cfn-neptune-dbcluster-snapshotidentifier).
     ///
     /// Update type: _Immutable_.
@@ -133,11 +148,20 @@ impl ::serde::Serialize for DBClusterProperties {
         if let Some(ref backup_retention_period) = self.backup_retention_period {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BackupRetentionPeriod", backup_retention_period)?;
         }
+        if let Some(ref copy_tags_to_snapshot) = self.copy_tags_to_snapshot {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CopyTagsToSnapshot", copy_tags_to_snapshot)?;
+        }
         if let Some(ref db_cluster_identifier) = self.db_cluster_identifier {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBClusterIdentifier", db_cluster_identifier)?;
         }
         if let Some(ref db_cluster_parameter_group_name) = self.db_cluster_parameter_group_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBClusterParameterGroupName", db_cluster_parameter_group_name)?;
+        }
+        if let Some(ref db_instance_parameter_group_name) = self.db_instance_parameter_group_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBInstanceParameterGroupName", db_instance_parameter_group_name)?;
+        }
+        if let Some(ref db_port) = self.db_port {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBPort", db_port)?;
         }
         if let Some(ref db_subnet_group_name) = self.db_subnet_group_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DBSubnetGroupName", db_subnet_group_name)?;
@@ -157,9 +181,6 @@ impl ::serde::Serialize for DBClusterProperties {
         if let Some(ref kms_key_id) = self.kms_key_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", kms_key_id)?;
         }
-        if let Some(ref port) = self.port {
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", port)?;
-        }
         if let Some(ref preferred_backup_window) = self.preferred_backup_window {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreferredBackupWindow", preferred_backup_window)?;
         }
@@ -171,6 +192,9 @@ impl ::serde::Serialize for DBClusterProperties {
         }
         if let Some(ref restore_type) = self.restore_type {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RestoreType", restore_type)?;
+        }
+        if let Some(ref serverless_scaling_configuration) = self.serverless_scaling_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServerlessScalingConfiguration", serverless_scaling_configuration)?;
         }
         if let Some(ref snapshot_identifier) = self.snapshot_identifier {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotIdentifier", snapshot_identifier)?;
@@ -209,19 +233,22 @@ impl<'de> ::serde::Deserialize<'de> for DBClusterProperties {
                 let mut associated_roles: Option<::ValueList<self::db_cluster::DBClusterRole>> = None;
                 let mut availability_zones: Option<::ValueList<String>> = None;
                 let mut backup_retention_period: Option<::Value<u32>> = None;
+                let mut copy_tags_to_snapshot: Option<::Value<bool>> = None;
                 let mut db_cluster_identifier: Option<::Value<String>> = None;
                 let mut db_cluster_parameter_group_name: Option<::Value<String>> = None;
+                let mut db_instance_parameter_group_name: Option<::Value<String>> = None;
+                let mut db_port: Option<::Value<u32>> = None;
                 let mut db_subnet_group_name: Option<::Value<String>> = None;
                 let mut deletion_protection: Option<::Value<bool>> = None;
                 let mut enable_cloudwatch_logs_exports: Option<::ValueList<String>> = None;
                 let mut engine_version: Option<::Value<String>> = None;
                 let mut iam_auth_enabled: Option<::Value<bool>> = None;
                 let mut kms_key_id: Option<::Value<String>> = None;
-                let mut port: Option<::Value<u32>> = None;
                 let mut preferred_backup_window: Option<::Value<String>> = None;
                 let mut preferred_maintenance_window: Option<::Value<String>> = None;
                 let mut restore_to_time: Option<::Value<String>> = None;
                 let mut restore_type: Option<::Value<String>> = None;
+                let mut serverless_scaling_configuration: Option<::Value<self::db_cluster::ServerlessScalingConfiguration>> = None;
                 let mut snapshot_identifier: Option<::Value<String>> = None;
                 let mut source_db_cluster_identifier: Option<::Value<String>> = None;
                 let mut storage_encrypted: Option<::Value<bool>> = None;
@@ -240,11 +267,20 @@ impl<'de> ::serde::Deserialize<'de> for DBClusterProperties {
                         "BackupRetentionPeriod" => {
                             backup_retention_period = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "CopyTagsToSnapshot" => {
+                            copy_tags_to_snapshot = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "DBClusterIdentifier" => {
                             db_cluster_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "DBClusterParameterGroupName" => {
                             db_cluster_parameter_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DBInstanceParameterGroupName" => {
+                            db_instance_parameter_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DBPort" => {
+                            db_port = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "DBSubnetGroupName" => {
                             db_subnet_group_name = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -264,9 +300,6 @@ impl<'de> ::serde::Deserialize<'de> for DBClusterProperties {
                         "KmsKeyId" => {
                             kms_key_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
-                        "Port" => {
-                            port = ::serde::de::MapAccess::next_value(&mut map)?;
-                        }
                         "PreferredBackupWindow" => {
                             preferred_backup_window = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -278,6 +311,9 @@ impl<'de> ::serde::Deserialize<'de> for DBClusterProperties {
                         }
                         "RestoreType" => {
                             restore_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ServerlessScalingConfiguration" => {
+                            serverless_scaling_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SnapshotIdentifier" => {
                             snapshot_identifier = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -305,19 +341,22 @@ impl<'de> ::serde::Deserialize<'de> for DBClusterProperties {
                     associated_roles: associated_roles,
                     availability_zones: availability_zones,
                     backup_retention_period: backup_retention_period,
+                    copy_tags_to_snapshot: copy_tags_to_snapshot,
                     db_cluster_identifier: db_cluster_identifier,
                     db_cluster_parameter_group_name: db_cluster_parameter_group_name,
+                    db_instance_parameter_group_name: db_instance_parameter_group_name,
+                    db_port: db_port,
                     db_subnet_group_name: db_subnet_group_name,
                     deletion_protection: deletion_protection,
                     enable_cloudwatch_logs_exports: enable_cloudwatch_logs_exports,
                     engine_version: engine_version,
                     iam_auth_enabled: iam_auth_enabled,
                     kms_key_id: kms_key_id,
-                    port: port,
                     preferred_backup_window: preferred_backup_window,
                     preferred_maintenance_window: preferred_maintenance_window,
                     restore_to_time: restore_to_time,
                     restore_type: restore_type,
+                    serverless_scaling_configuration: serverless_scaling_configuration,
                     snapshot_identifier: snapshot_identifier,
                     source_db_cluster_identifier: source_db_cluster_identifier,
                     storage_encrypted: storage_encrypted,
@@ -977,6 +1016,68 @@ pub mod db_cluster {
                     Ok(DBClusterRole {
                         feature_name: feature_name,
                         role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Neptune::DBCluster.ServerlessScalingConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-neptune-dbcluster-serverlessscalingconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ServerlessScalingConfiguration {
+        /// Property [`MaxCapacity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-neptune-dbcluster-serverlessscalingconfiguration.html#cfn-neptune-dbcluster-serverlessscalingconfiguration-maxcapacity).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub max_capacity: ::Value<f64>,
+        /// Property [`MinCapacity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-neptune-dbcluster-serverlessscalingconfiguration.html#cfn-neptune-dbcluster-serverlessscalingconfiguration-mincapacity).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub min_capacity: ::Value<f64>,
+    }
+
+    impl ::codec::SerializeValue for ServerlessScalingConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxCapacity", &self.max_capacity)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinCapacity", &self.min_capacity)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ServerlessScalingConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ServerlessScalingConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ServerlessScalingConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ServerlessScalingConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut max_capacity: Option<::Value<f64>> = None;
+                    let mut min_capacity: Option<::Value<f64>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "MaxCapacity" => {
+                                max_capacity = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MinCapacity" => {
+                                min_capacity = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ServerlessScalingConfiguration {
+                        max_capacity: max_capacity.ok_or(::serde::de::Error::missing_field("MaxCapacity"))?,
+                        min_capacity: min_capacity.ok_or(::serde::de::Error::missing_field("MinCapacity"))?,
                     })
                 }
             }

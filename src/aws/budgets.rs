@@ -137,7 +137,7 @@ pub struct BudgetsActionProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub subscribers: Option<::ValueList<self::budgets_action::Subscriber>>,
+    pub subscribers: ::ValueList<self::budgets_action::Subscriber>,
 }
 
 impl ::serde::Serialize for BudgetsActionProperties {
@@ -152,9 +152,7 @@ impl ::serde::Serialize for BudgetsActionProperties {
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Definition", &self.definition)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExecutionRoleArn", &self.execution_role_arn)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "NotificationType", &self.notification_type)?;
-        if let Some(ref subscribers) = self.subscribers {
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Subscribers", subscribers)?;
-        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Subscribers", &self.subscribers)?;
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -218,7 +216,7 @@ impl<'de> ::serde::Deserialize<'de> for BudgetsActionProperties {
                     definition: definition.ok_or(::serde::de::Error::missing_field("Definition"))?,
                     execution_role_arn: execution_role_arn.ok_or(::serde::de::Error::missing_field("ExecutionRoleArn"))?,
                     notification_type: notification_type.ok_or(::serde::de::Error::missing_field("NotificationType"))?,
-                    subscribers: subscribers,
+                    subscribers: subscribers.ok_or(::serde::de::Error::missing_field("Subscribers"))?,
                 })
             }
         }
@@ -249,9 +247,78 @@ impl From<BudgetsActionProperties> for BudgetsAction {
 pub mod budget {
     //! Property types for the `Budget` resource.
 
+    /// The [`AWS::Budgets::Budget.AutoAdjustData`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-autoadjustdata.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AutoAdjustData {
+        /// Property [`AutoAdjustType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-autoadjustdata.html#cfn-budgets-budget-autoadjustdata-autoadjusttype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub auto_adjust_type: ::Value<String>,
+        /// Property [`HistoricalOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-autoadjustdata.html#cfn-budgets-budget-autoadjustdata-historicaloptions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub historical_options: Option<::Value<HistoricalOptions>>,
+    }
+
+    impl ::codec::SerializeValue for AutoAdjustData {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoAdjustType", &self.auto_adjust_type)?;
+            if let Some(ref historical_options) = self.historical_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HistoricalOptions", historical_options)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AutoAdjustData {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AutoAdjustData, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AutoAdjustData;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AutoAdjustData")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut auto_adjust_type: Option<::Value<String>> = None;
+                    let mut historical_options: Option<::Value<HistoricalOptions>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AutoAdjustType" => {
+                                auto_adjust_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HistoricalOptions" => {
+                                historical_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AutoAdjustData {
+                        auto_adjust_type: auto_adjust_type.ok_or(::serde::de::Error::missing_field("AutoAdjustType"))?,
+                        historical_options: historical_options,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::Budgets::Budget.BudgetData`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-budgetdata.html) property type.
     #[derive(Debug, Default)]
     pub struct BudgetData {
+        /// Property [`AutoAdjustData`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-budgetdata.html#cfn-budgets-budget-budgetdata-autoadjustdata).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub auto_adjust_data: Option<::Value<AutoAdjustData>>,
         /// Property [`BudgetLimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-budgetdata.html#cfn-budgets-budget-budgetdata-budgetlimit).
         ///
         /// Update type: _Mutable_.
@@ -297,6 +364,9 @@ pub mod budget {
     impl ::codec::SerializeValue for BudgetData {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref auto_adjust_data) = self.auto_adjust_data {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoAdjustData", auto_adjust_data)?;
+            }
             if let Some(ref budget_limit) = self.budget_limit {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "BudgetLimit", budget_limit)?;
             }
@@ -333,6 +403,7 @@ pub mod budget {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut auto_adjust_data: Option<::Value<AutoAdjustData>> = None;
                     let mut budget_limit: Option<::Value<Spend>> = None;
                     let mut budget_name: Option<::Value<String>> = None;
                     let mut budget_type: Option<::Value<String>> = None;
@@ -344,6 +415,9 @@ pub mod budget {
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "AutoAdjustData" => {
+                                auto_adjust_data = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "BudgetLimit" => {
                                 budget_limit = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -373,6 +447,7 @@ pub mod budget {
                     }
 
                     Ok(BudgetData {
+                        auto_adjust_data: auto_adjust_data,
                         budget_limit: budget_limit,
                         budget_name: budget_name,
                         budget_type: budget_type.ok_or(::serde::de::Error::missing_field("BudgetType"))?,
@@ -564,6 +639,57 @@ pub mod budget {
                         include_upfront: include_upfront,
                         use_amortized: use_amortized,
                         use_blended: use_blended,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Budgets::Budget.HistoricalOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-historicaloptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct HistoricalOptions {
+        /// Property [`BudgetAdjustmentPeriod`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-budgets-budget-historicaloptions.html#cfn-budgets-budget-historicaloptions-budgetadjustmentperiod).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub budget_adjustment_period: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for HistoricalOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BudgetAdjustmentPeriod", &self.budget_adjustment_period)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for HistoricalOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<HistoricalOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = HistoricalOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type HistoricalOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut budget_adjustment_period: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "BudgetAdjustmentPeriod" => {
+                                budget_adjustment_period = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(HistoricalOptions {
+                        budget_adjustment_period: budget_adjustment_period.ok_or(::serde::de::Error::missing_field("BudgetAdjustmentPeriod"))?,
                     })
                 }
             }

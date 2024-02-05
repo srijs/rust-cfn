@@ -102,7 +102,7 @@ impl From<AccessKeyProperties> for AccessKey {
     }
 }
 
-/// The [`AWS::IAM::Group`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html) resource type.
+/// The [`AWS::IAM::Group`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-group.html) resource type.
 #[derive(Debug, Default)]
 pub struct Group {
     properties: GroupProperties
@@ -111,22 +111,22 @@ pub struct Group {
 /// Properties for the `Group` resource.
 #[derive(Debug, Default)]
 pub struct GroupProperties {
-    /// Property [`GroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html#cfn-iam-group-groupname).
+    /// Property [`GroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-group.html#cfn-iam-group-groupname).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub group_name: Option<::Value<String>>,
-    /// Property [`ManagedPolicyArns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html#cfn-iam-group-managepolicyarns).
+    /// Property [`ManagedPolicyArns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-group.html#cfn-iam-group-managedpolicyarns).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub managed_policy_arns: Option<::ValueList<String>>,
-    /// Property [`Path`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html#cfn-iam-group-path).
+    /// Property [`Path`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-group.html#cfn-iam-group-path).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub path: Option<::Value<String>>,
-    /// Property [`Policies`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html#cfn-iam-group-policies).
+    /// Property [`Policies`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-group.html#cfn-iam-group-policies).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -216,6 +216,106 @@ impl ::private::Sealed for Group {}
 impl From<GroupProperties> for Group {
     fn from(properties: GroupProperties) -> Group {
         Group { properties }
+    }
+}
+
+/// The [`AWS::IAM::GroupPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-grouppolicy.html) resource type.
+#[derive(Debug, Default)]
+pub struct GroupPolicy {
+    properties: GroupPolicyProperties
+}
+
+/// Properties for the `GroupPolicy` resource.
+#[derive(Debug, Default)]
+pub struct GroupPolicyProperties {
+    /// Property [`GroupName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-grouppolicy.html#cfn-iam-grouppolicy-groupname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub group_name: ::Value<String>,
+    /// Property [`PolicyDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-grouppolicy.html#cfn-iam-grouppolicy-policydocument).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub policy_document: Option<::Value<::json::Value>>,
+    /// Property [`PolicyName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-grouppolicy.html#cfn-iam-grouppolicy-policyname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub policy_name: ::Value<String>,
+}
+
+impl ::serde::Serialize for GroupPolicyProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupName", &self.group_name)?;
+        if let Some(ref policy_document) = self.policy_document {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyDocument", policy_document)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyName", &self.policy_name)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for GroupPolicyProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<GroupPolicyProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = GroupPolicyProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type GroupPolicyProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut group_name: Option<::Value<String>> = None;
+                let mut policy_document: Option<::Value<::json::Value>> = None;
+                let mut policy_name: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "GroupName" => {
+                            group_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PolicyDocument" => {
+                            policy_document = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PolicyName" => {
+                            policy_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(GroupPolicyProperties {
+                    group_name: group_name.ok_or(::serde::de::Error::missing_field("GroupName"))?,
+                    policy_document: policy_document,
+                    policy_name: policy_name.ok_or(::serde::de::Error::missing_field("PolicyName"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for GroupPolicy {
+    type Properties = GroupPolicyProperties;
+    const TYPE: &'static str = "AWS::IAM::GroupPolicy";
+    fn properties(&self) -> &GroupPolicyProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut GroupPolicyProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for GroupPolicy {}
+
+impl From<GroupPolicyProperties> for GroupPolicy {
+    fn from(properties: GroupPolicyProperties) -> GroupPolicy {
+        GroupPolicy { properties }
     }
 }
 
@@ -345,7 +445,7 @@ pub struct ManagedPolicyProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub managed_policy_name: Option<::Value<String>>,
-    /// Property [`Path`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-managedpolicy.html#cfn-ec2-dhcpoptions-path).
+    /// Property [`Path`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-managedpolicy.html#cfn-iam-managedpolicy-path).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
@@ -735,7 +835,7 @@ pub struct RoleProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub description: Option<::Value<String>>,
-    /// Property [`ManagedPolicyArns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html#cfn-iam-role-managepolicyarns).
+    /// Property [`ManagedPolicyArns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html#cfn-iam-role-managedpolicyarns).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -893,6 +993,106 @@ impl ::private::Sealed for Role {}
 impl From<RoleProperties> for Role {
     fn from(properties: RoleProperties) -> Role {
         Role { properties }
+    }
+}
+
+/// The [`AWS::IAM::RolePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-rolepolicy.html) resource type.
+#[derive(Debug, Default)]
+pub struct RolePolicy {
+    properties: RolePolicyProperties
+}
+
+/// Properties for the `RolePolicy` resource.
+#[derive(Debug, Default)]
+pub struct RolePolicyProperties {
+    /// Property [`PolicyDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-rolepolicy.html#cfn-iam-rolepolicy-policydocument).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub policy_document: Option<::Value<::json::Value>>,
+    /// Property [`PolicyName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-rolepolicy.html#cfn-iam-rolepolicy-policyname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub policy_name: ::Value<String>,
+    /// Property [`RoleName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-rolepolicy.html#cfn-iam-rolepolicy-rolename).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub role_name: ::Value<String>,
+}
+
+impl ::serde::Serialize for RolePolicyProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref policy_document) = self.policy_document {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyDocument", policy_document)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyName", &self.policy_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleName", &self.role_name)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for RolePolicyProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<RolePolicyProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = RolePolicyProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type RolePolicyProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut policy_document: Option<::Value<::json::Value>> = None;
+                let mut policy_name: Option<::Value<String>> = None;
+                let mut role_name: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "PolicyDocument" => {
+                            policy_document = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PolicyName" => {
+                            policy_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "RoleName" => {
+                            role_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(RolePolicyProperties {
+                    policy_document: policy_document,
+                    policy_name: policy_name.ok_or(::serde::de::Error::missing_field("PolicyName"))?,
+                    role_name: role_name.ok_or(::serde::de::Error::missing_field("RoleName"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for RolePolicy {
+    type Properties = RolePolicyProperties;
+    const TYPE: &'static str = "AWS::IAM::RolePolicy";
+    fn properties(&self) -> &RolePolicyProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut RolePolicyProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for RolePolicy {}
+
+impl From<RolePolicyProperties> for RolePolicy {
+    fn from(properties: RolePolicyProperties) -> RolePolicy {
+        RolePolicy { properties }
     }
 }
 
@@ -1154,7 +1354,7 @@ pub struct ServiceLinkedRoleProperties {
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub aws_service_name: ::Value<String>,
+    pub aws_service_name: Option<::Value<String>>,
     /// Property [`CustomSuffix`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-servicelinkedrole.html#cfn-iam-servicelinkedrole-customsuffix).
     ///
     /// Update type: _Immutable_.
@@ -1170,7 +1370,9 @@ pub struct ServiceLinkedRoleProperties {
 impl ::serde::Serialize for ServiceLinkedRoleProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AWSServiceName", &self.aws_service_name)?;
+        if let Some(ref aws_service_name) = self.aws_service_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AWSServiceName", aws_service_name)?;
+        }
         if let Some(ref custom_suffix) = self.custom_suffix {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomSuffix", custom_suffix)?;
         }
@@ -1213,7 +1415,7 @@ impl<'de> ::serde::Deserialize<'de> for ServiceLinkedRoleProperties {
                 }
 
                 Ok(ServiceLinkedRoleProperties {
-                    aws_service_name: aws_service_name.ok_or(::serde::de::Error::missing_field("AWSServiceName"))?,
+                    aws_service_name: aws_service_name,
                     custom_suffix: custom_suffix,
                     description: description,
                 })
@@ -1243,7 +1445,7 @@ impl From<ServiceLinkedRoleProperties> for ServiceLinkedRole {
     }
 }
 
-/// The [`AWS::IAM::User`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html) resource type.
+/// The [`AWS::IAM::User`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-user.html) resource type.
 #[derive(Debug, Default)]
 pub struct User {
     properties: UserProperties
@@ -1252,42 +1454,42 @@ pub struct User {
 /// Properties for the `User` resource.
 #[derive(Debug, Default)]
 pub struct UserProperties {
-    /// Property [`Groups`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html#cfn-iam-user-groups).
+    /// Property [`Groups`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-user.html#cfn-iam-user-groups).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub groups: Option<::ValueList<String>>,
-    /// Property [`LoginProfile`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html#cfn-iam-user-loginprofile).
+    /// Property [`LoginProfile`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-user.html#cfn-iam-user-loginprofile).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub login_profile: Option<::Value<self::user::LoginProfile>>,
-    /// Property [`ManagedPolicyArns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html#cfn-iam-user-managepolicyarns).
+    /// Property [`ManagedPolicyArns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-user.html#cfn-iam-user-managedpolicyarns).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub managed_policy_arns: Option<::ValueList<String>>,
-    /// Property [`Path`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html#cfn-iam-user-path).
+    /// Property [`Path`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-user.html#cfn-iam-user-path).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub path: Option<::Value<String>>,
-    /// Property [`PermissionsBoundary`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html#cfn-iam-user-permissionsboundary).
+    /// Property [`PermissionsBoundary`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-user.html#cfn-iam-user-permissionsboundary).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub permissions_boundary: Option<::Value<String>>,
-    /// Property [`Policies`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html#cfn-iam-user-policies).
+    /// Property [`Policies`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-user.html#cfn-iam-user-policies).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub policies: Option<::ValueList<self::user::Policy>>,
-    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html#cfn-iam-user-tags).
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-user.html#cfn-iam-user-tags).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub tags: Option<::ValueList<::Tag>>,
-    /// Property [`UserName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html#cfn-iam-user-username).
+    /// Property [`UserName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-user.html#cfn-iam-user-username).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
@@ -1409,6 +1611,106 @@ impl ::private::Sealed for User {}
 impl From<UserProperties> for User {
     fn from(properties: UserProperties) -> User {
         User { properties }
+    }
+}
+
+/// The [`AWS::IAM::UserPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-userpolicy.html) resource type.
+#[derive(Debug, Default)]
+pub struct UserPolicy {
+    properties: UserPolicyProperties
+}
+
+/// Properties for the `UserPolicy` resource.
+#[derive(Debug, Default)]
+pub struct UserPolicyProperties {
+    /// Property [`PolicyDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-userpolicy.html#cfn-iam-userpolicy-policydocument).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub policy_document: Option<::Value<::json::Value>>,
+    /// Property [`PolicyName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-userpolicy.html#cfn-iam-userpolicy-policyname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub policy_name: ::Value<String>,
+    /// Property [`UserName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-userpolicy.html#cfn-iam-userpolicy-username).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub user_name: ::Value<String>,
+}
+
+impl ::serde::Serialize for UserPolicyProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref policy_document) = self.policy_document {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyDocument", policy_document)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyName", &self.policy_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserName", &self.user_name)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for UserPolicyProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<UserPolicyProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = UserPolicyProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type UserPolicyProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut policy_document: Option<::Value<::json::Value>> = None;
+                let mut policy_name: Option<::Value<String>> = None;
+                let mut user_name: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "PolicyDocument" => {
+                            policy_document = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PolicyName" => {
+                            policy_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "UserName" => {
+                            user_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(UserPolicyProperties {
+                    policy_document: policy_document,
+                    policy_name: policy_name.ok_or(::serde::de::Error::missing_field("PolicyName"))?,
+                    user_name: user_name.ok_or(::serde::de::Error::missing_field("UserName"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for UserPolicy {
+    type Properties = UserPolicyProperties;
+    const TYPE: &'static str = "AWS::IAM::UserPolicy";
+    fn properties(&self) -> &UserPolicyProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut UserPolicyProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for UserPolicy {}
+
+impl From<UserPolicyProperties> for UserPolicy {
+    fn from(properties: UserPolicyProperties) -> UserPolicy {
+        UserPolicy { properties }
     }
 }
 
@@ -1617,15 +1919,15 @@ impl From<VirtualMFADeviceProperties> for VirtualMFADevice {
 pub mod group {
     //! Property types for the `Group` resource.
 
-    /// The [`AWS::IAM::Group.Policy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html) property type.
+    /// The [`AWS::IAM::Group.Policy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group-policy.html) property type.
     #[derive(Debug, Default)]
     pub struct Policy {
-        /// Property [`PolicyDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html#cfn-iam-policies-policydocument).
+        /// Property [`PolicyDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group-policy.html#cfn-iam-group-policy-policydocument).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub policy_document: ::Value<::json::Value>,
-        /// Property [`PolicyName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html#cfn-iam-policies-policyname).
+        /// Property [`PolicyName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group-policy.html#cfn-iam-group-policy-policyname).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -1683,15 +1985,15 @@ pub mod group {
 pub mod role {
     //! Property types for the `Role` resource.
 
-    /// The [`AWS::IAM::Role.Policy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html) property type.
+    /// The [`AWS::IAM::Role.Policy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-role-policy.html) property type.
     #[derive(Debug, Default)]
     pub struct Policy {
-        /// Property [`PolicyDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html#cfn-iam-policies-policydocument).
+        /// Property [`PolicyDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-role-policy.html#cfn-iam-role-policy-policydocument).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub policy_document: ::Value<::json::Value>,
-        /// Property [`PolicyName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html#cfn-iam-policies-policyname).
+        /// Property [`PolicyName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-role-policy.html#cfn-iam-role-policy-policyname).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -1813,15 +2115,15 @@ pub mod user {
         }
     }
 
-    /// The [`AWS::IAM::User.Policy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html) property type.
+    /// The [`AWS::IAM::User.Policy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user-policy.html) property type.
     #[derive(Debug, Default)]
     pub struct Policy {
-        /// Property [`PolicyDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html#cfn-iam-policies-policydocument).
+        /// Property [`PolicyDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user-policy.html#cfn-iam-user-policy-policydocument).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub policy_document: ::Value<::json::Value>,
-        /// Property [`PolicyName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html#cfn-iam-policies-policyname).
+        /// Property [`PolicyName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user-policy.html#cfn-iam-user-policy-policyname).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.

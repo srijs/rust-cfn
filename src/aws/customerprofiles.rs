@@ -1,5 +1,166 @@
 //! Types for the `CustomerProfiles` service.
 
+/// The [`AWS::CustomerProfiles::CalculatedAttributeDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-calculatedattributedefinition.html) resource type.
+#[derive(Debug, Default)]
+pub struct CalculatedAttributeDefinition {
+    properties: CalculatedAttributeDefinitionProperties
+}
+
+/// Properties for the `CalculatedAttributeDefinition` resource.
+#[derive(Debug, Default)]
+pub struct CalculatedAttributeDefinitionProperties {
+    /// Property [`AttributeDetails`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-calculatedattributedefinition.html#cfn-customerprofiles-calculatedattributedefinition-attributedetails).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub attribute_details: ::Value<self::calculated_attribute_definition::AttributeDetails>,
+    /// Property [`CalculatedAttributeName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-calculatedattributedefinition.html#cfn-customerprofiles-calculatedattributedefinition-calculatedattributename).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub calculated_attribute_name: ::Value<String>,
+    /// Property [`Conditions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-calculatedattributedefinition.html#cfn-customerprofiles-calculatedattributedefinition-conditions).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub conditions: Option<::Value<self::calculated_attribute_definition::Conditions>>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-calculatedattributedefinition.html#cfn-customerprofiles-calculatedattributedefinition-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`DisplayName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-calculatedattributedefinition.html#cfn-customerprofiles-calculatedattributedefinition-displayname).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub display_name: Option<::Value<String>>,
+    /// Property [`DomainName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-calculatedattributedefinition.html#cfn-customerprofiles-calculatedattributedefinition-domainname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub domain_name: ::Value<String>,
+    /// Property [`Statistic`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-calculatedattributedefinition.html#cfn-customerprofiles-calculatedattributedefinition-statistic).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub statistic: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-calculatedattributedefinition.html#cfn-customerprofiles-calculatedattributedefinition-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for CalculatedAttributeDefinitionProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AttributeDetails", &self.attribute_details)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "CalculatedAttributeName", &self.calculated_attribute_name)?;
+        if let Some(ref conditions) = self.conditions {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Conditions", conditions)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref display_name) = self.display_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DisplayName", display_name)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainName", &self.domain_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Statistic", &self.statistic)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for CalculatedAttributeDefinitionProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<CalculatedAttributeDefinitionProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = CalculatedAttributeDefinitionProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type CalculatedAttributeDefinitionProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut attribute_details: Option<::Value<self::calculated_attribute_definition::AttributeDetails>> = None;
+                let mut calculated_attribute_name: Option<::Value<String>> = None;
+                let mut conditions: Option<::Value<self::calculated_attribute_definition::Conditions>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut display_name: Option<::Value<String>> = None;
+                let mut domain_name: Option<::Value<String>> = None;
+                let mut statistic: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AttributeDetails" => {
+                            attribute_details = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "CalculatedAttributeName" => {
+                            calculated_attribute_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Conditions" => {
+                            conditions = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DisplayName" => {
+                            display_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DomainName" => {
+                            domain_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Statistic" => {
+                            statistic = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(CalculatedAttributeDefinitionProperties {
+                    attribute_details: attribute_details.ok_or(::serde::de::Error::missing_field("AttributeDetails"))?,
+                    calculated_attribute_name: calculated_attribute_name.ok_or(::serde::de::Error::missing_field("CalculatedAttributeName"))?,
+                    conditions: conditions,
+                    description: description,
+                    display_name: display_name,
+                    domain_name: domain_name.ok_or(::serde::de::Error::missing_field("DomainName"))?,
+                    statistic: statistic.ok_or(::serde::de::Error::missing_field("Statistic"))?,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for CalculatedAttributeDefinition {
+    type Properties = CalculatedAttributeDefinitionProperties;
+    const TYPE: &'static str = "AWS::CustomerProfiles::CalculatedAttributeDefinition";
+    fn properties(&self) -> &CalculatedAttributeDefinitionProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut CalculatedAttributeDefinitionProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for CalculatedAttributeDefinition {}
+
+impl From<CalculatedAttributeDefinitionProperties> for CalculatedAttributeDefinition {
+    fn from(properties: CalculatedAttributeDefinitionProperties) -> CalculatedAttributeDefinition {
+        CalculatedAttributeDefinition { properties }
+    }
+}
+
 /// The [`AWS::CustomerProfiles::Domain`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-domain.html) resource type.
 #[derive(Debug, Default)]
 pub struct Domain {
@@ -29,6 +190,16 @@ pub struct DomainProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub domain_name: ::Value<String>,
+    /// Property [`Matching`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-domain.html#cfn-customerprofiles-domain-matching).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub matching: Option<::Value<self::domain::Matching>>,
+    /// Property [`RuleBasedMatching`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-domain.html#cfn-customerprofiles-domain-rulebasedmatching).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub rule_based_matching: Option<::Value<self::domain::RuleBasedMatching>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-domain.html#cfn-customerprofiles-domain-tags).
     ///
     /// Update type: _Mutable_.
@@ -49,6 +220,12 @@ impl ::serde::Serialize for DomainProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultExpirationDays", default_expiration_days)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainName", &self.domain_name)?;
+        if let Some(ref matching) = self.matching {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Matching", matching)?;
+        }
+        if let Some(ref rule_based_matching) = self.rule_based_matching {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuleBasedMatching", rule_based_matching)?;
+        }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
@@ -72,6 +249,8 @@ impl<'de> ::serde::Deserialize<'de> for DomainProperties {
                 let mut default_encryption_key: Option<::Value<String>> = None;
                 let mut default_expiration_days: Option<::Value<u32>> = None;
                 let mut domain_name: Option<::Value<String>> = None;
+                let mut matching: Option<::Value<self::domain::Matching>> = None;
+                let mut rule_based_matching: Option<::Value<self::domain::RuleBasedMatching>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -88,6 +267,12 @@ impl<'de> ::serde::Deserialize<'de> for DomainProperties {
                         "DomainName" => {
                             domain_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Matching" => {
+                            matching = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "RuleBasedMatching" => {
+                            rule_based_matching = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -100,6 +285,8 @@ impl<'de> ::serde::Deserialize<'de> for DomainProperties {
                     default_encryption_key: default_encryption_key,
                     default_expiration_days: default_expiration_days,
                     domain_name: domain_name.ok_or(::serde::de::Error::missing_field("DomainName"))?,
+                    matching: matching,
+                    rule_based_matching: rule_based_matching,
                     tags: tags,
                 })
             }
@@ -128,6 +315,117 @@ impl From<DomainProperties> for Domain {
     }
 }
 
+/// The [`AWS::CustomerProfiles::EventStream`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-eventstream.html) resource type.
+#[derive(Debug, Default)]
+pub struct EventStream {
+    properties: EventStreamProperties
+}
+
+/// Properties for the `EventStream` resource.
+#[derive(Debug, Default)]
+pub struct EventStreamProperties {
+    /// Property [`DomainName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-eventstream.html#cfn-customerprofiles-eventstream-domainname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub domain_name: ::Value<String>,
+    /// Property [`EventStreamName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-eventstream.html#cfn-customerprofiles-eventstream-eventstreamname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub event_stream_name: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-eventstream.html#cfn-customerprofiles-eventstream-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`Uri`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-eventstream.html#cfn-customerprofiles-eventstream-uri).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub uri: ::Value<String>,
+}
+
+impl ::serde::Serialize for EventStreamProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainName", &self.domain_name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventStreamName", &self.event_stream_name)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Uri", &self.uri)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for EventStreamProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<EventStreamProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = EventStreamProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type EventStreamProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut domain_name: Option<::Value<String>> = None;
+                let mut event_stream_name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut uri: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "DomainName" => {
+                            domain_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "EventStreamName" => {
+                            event_stream_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Uri" => {
+                            uri = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(EventStreamProperties {
+                    domain_name: domain_name.ok_or(::serde::de::Error::missing_field("DomainName"))?,
+                    event_stream_name: event_stream_name.ok_or(::serde::de::Error::missing_field("EventStreamName"))?,
+                    tags: tags,
+                    uri: uri.ok_or(::serde::de::Error::missing_field("Uri"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for EventStream {
+    type Properties = EventStreamProperties;
+    const TYPE: &'static str = "AWS::CustomerProfiles::EventStream";
+    fn properties(&self) -> &EventStreamProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut EventStreamProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for EventStream {}
+
+impl From<EventStreamProperties> for EventStream {
+    fn from(properties: EventStreamProperties) -> EventStream {
+        EventStream { properties }
+    }
+}
+
 /// The [`AWS::CustomerProfiles::Integration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-integration.html) resource type.
 #[derive(Debug, Default)]
 pub struct Integration {
@@ -151,7 +449,12 @@ pub struct IntegrationProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub object_type_name: ::Value<String>,
+    pub object_type_name: Option<::Value<String>>,
+    /// Property [`ObjectTypeNames`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-integration.html#cfn-customerprofiles-integration-objecttypenames).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub object_type_names: Option<::ValueList<self::integration::ObjectTypeMapping>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-integration.html#cfn-customerprofiles-integration-tags).
     ///
     /// Update type: _Mutable_.
@@ -171,7 +474,12 @@ impl ::serde::Serialize for IntegrationProperties {
         if let Some(ref flow_definition) = self.flow_definition {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "FlowDefinition", flow_definition)?;
         }
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ObjectTypeName", &self.object_type_name)?;
+        if let Some(ref object_type_name) = self.object_type_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ObjectTypeName", object_type_name)?;
+        }
+        if let Some(ref object_type_names) = self.object_type_names {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ObjectTypeNames", object_type_names)?;
+        }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
@@ -197,6 +505,7 @@ impl<'de> ::serde::Deserialize<'de> for IntegrationProperties {
                 let mut domain_name: Option<::Value<String>> = None;
                 let mut flow_definition: Option<::Value<self::integration::FlowDefinition>> = None;
                 let mut object_type_name: Option<::Value<String>> = None;
+                let mut object_type_names: Option<::ValueList<self::integration::ObjectTypeMapping>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut uri: Option<::Value<String>> = None;
 
@@ -211,6 +520,9 @@ impl<'de> ::serde::Deserialize<'de> for IntegrationProperties {
                         "ObjectTypeName" => {
                             object_type_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ObjectTypeNames" => {
+                            object_type_names = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -224,7 +536,8 @@ impl<'de> ::serde::Deserialize<'de> for IntegrationProperties {
                 Ok(IntegrationProperties {
                     domain_name: domain_name.ok_or(::serde::de::Error::missing_field("DomainName"))?,
                     flow_definition: flow_definition,
-                    object_type_name: object_type_name.ok_or(::serde::de::Error::missing_field("ObjectTypeName"))?,
+                    object_type_name: object_type_name,
+                    object_type_names: object_type_names,
                     tags: tags,
                     uri: uri,
                 })
@@ -303,6 +616,11 @@ pub struct ObjectTypeProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub object_type_name: Option<::Value<String>>,
+    /// Property [`SourceLastUpdatedTimestampFormat`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-objecttype.html#cfn-customerprofiles-objecttype-sourcelastupdatedtimestampformat).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub source_last_updated_timestamp_format: Option<::Value<String>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-customerprofiles-objecttype.html#cfn-customerprofiles-objecttype-tags).
     ///
     /// Update type: _Mutable_.
@@ -340,6 +658,9 @@ impl ::serde::Serialize for ObjectTypeProperties {
         if let Some(ref object_type_name) = self.object_type_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ObjectTypeName", object_type_name)?;
         }
+        if let Some(ref source_last_updated_timestamp_format) = self.source_last_updated_timestamp_format {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceLastUpdatedTimestampFormat", source_last_updated_timestamp_format)?;
+        }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
@@ -370,6 +691,7 @@ impl<'de> ::serde::Deserialize<'de> for ObjectTypeProperties {
                 let mut fields: Option<::ValueList<self::object_type::FieldMap>> = None;
                 let mut keys: Option<::ValueList<self::object_type::KeyMap>> = None;
                 let mut object_type_name: Option<::Value<String>> = None;
+                let mut source_last_updated_timestamp_format: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut template_id: Option<::Value<String>> = None;
 
@@ -399,6 +721,9 @@ impl<'de> ::serde::Deserialize<'de> for ObjectTypeProperties {
                         "ObjectTypeName" => {
                             object_type_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "SourceLastUpdatedTimestampFormat" => {
+                            source_last_updated_timestamp_format = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -418,6 +743,7 @@ impl<'de> ::serde::Deserialize<'de> for ObjectTypeProperties {
                     fields: fields,
                     keys: keys,
                     object_type_name: object_type_name,
+                    source_last_updated_timestamp_format: source_last_updated_timestamp_format,
                     tags: tags,
                     template_id: template_id,
                 })
@@ -444,6 +770,1245 @@ impl ::private::Sealed for ObjectType {}
 impl From<ObjectTypeProperties> for ObjectType {
     fn from(properties: ObjectTypeProperties) -> ObjectType {
         ObjectType { properties }
+    }
+}
+
+pub mod calculated_attribute_definition {
+    //! Property types for the `CalculatedAttributeDefinition` resource.
+
+    /// The [`AWS::CustomerProfiles::CalculatedAttributeDefinition.AttributeDetails`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-attributedetails.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AttributeDetails {
+        /// Property [`Attributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-attributedetails.html#cfn-customerprofiles-calculatedattributedefinition-attributedetails-attributes).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub attributes: ::ValueList<AttributeItem>,
+        /// Property [`Expression`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-attributedetails.html#cfn-customerprofiles-calculatedattributedefinition-attributedetails-expression).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub expression: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for AttributeDetails {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Attributes", &self.attributes)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Expression", &self.expression)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AttributeDetails {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AttributeDetails, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AttributeDetails;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AttributeDetails")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut attributes: Option<::ValueList<AttributeItem>> = None;
+                    let mut expression: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Attributes" => {
+                                attributes = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Expression" => {
+                                expression = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AttributeDetails {
+                        attributes: attributes.ok_or(::serde::de::Error::missing_field("Attributes"))?,
+                        expression: expression.ok_or(::serde::de::Error::missing_field("Expression"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CustomerProfiles::CalculatedAttributeDefinition.AttributeItem`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-attributeitem.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AttributeItem {
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-attributeitem.html#cfn-customerprofiles-calculatedattributedefinition-attributeitem-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for AttributeItem {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AttributeItem {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AttributeItem, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AttributeItem;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AttributeItem")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AttributeItem {
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CustomerProfiles::CalculatedAttributeDefinition.Conditions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-conditions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Conditions {
+        /// Property [`ObjectCount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-conditions.html#cfn-customerprofiles-calculatedattributedefinition-conditions-objectcount).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub object_count: Option<::Value<u32>>,
+        /// Property [`Range`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-conditions.html#cfn-customerprofiles-calculatedattributedefinition-conditions-range).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub range: Option<::Value<Range>>,
+        /// Property [`Threshold`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-conditions.html#cfn-customerprofiles-calculatedattributedefinition-conditions-threshold).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub threshold: Option<::Value<Threshold>>,
+    }
+
+    impl ::codec::SerializeValue for Conditions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref object_count) = self.object_count {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ObjectCount", object_count)?;
+            }
+            if let Some(ref range) = self.range {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Range", range)?;
+            }
+            if let Some(ref threshold) = self.threshold {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Threshold", threshold)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Conditions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Conditions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Conditions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Conditions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut object_count: Option<::Value<u32>> = None;
+                    let mut range: Option<::Value<Range>> = None;
+                    let mut threshold: Option<::Value<Threshold>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ObjectCount" => {
+                                object_count = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Range" => {
+                                range = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Threshold" => {
+                                threshold = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Conditions {
+                        object_count: object_count,
+                        range: range,
+                        threshold: threshold,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CustomerProfiles::CalculatedAttributeDefinition.Range`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-range.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Range {
+        /// Property [`Unit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-range.html#cfn-customerprofiles-calculatedattributedefinition-range-unit).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub unit: ::Value<String>,
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-range.html#cfn-customerprofiles-calculatedattributedefinition-range-value).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub value: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for Range {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Unit", &self.unit)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Range {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Range, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Range;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Range")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut unit: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Unit" => {
+                                unit = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Value" => {
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Range {
+                        unit: unit.ok_or(::serde::de::Error::missing_field("Unit"))?,
+                        value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CustomerProfiles::CalculatedAttributeDefinition.Threshold`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-threshold.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Threshold {
+        /// Property [`Operator`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-threshold.html#cfn-customerprofiles-calculatedattributedefinition-threshold-operator).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub operator: ::Value<String>,
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-calculatedattributedefinition-threshold.html#cfn-customerprofiles-calculatedattributedefinition-threshold-value).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub value: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for Threshold {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Operator", &self.operator)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Threshold {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Threshold, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Threshold;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Threshold")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut operator: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Operator" => {
+                                operator = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Value" => {
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Threshold {
+                        operator: operator.ok_or(::serde::de::Error::missing_field("Operator"))?,
+                        value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod domain {
+    //! Property types for the `Domain` resource.
+
+    /// The [`AWS::CustomerProfiles::Domain.AttributeTypesSelector`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-attributetypesselector.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AttributeTypesSelector {
+        /// Property [`Address`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-attributetypesselector.html#cfn-customerprofiles-domain-attributetypesselector-address).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub address: Option<::ValueList<String>>,
+        /// Property [`AttributeMatchingModel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-attributetypesselector.html#cfn-customerprofiles-domain-attributetypesselector-attributematchingmodel).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub attribute_matching_model: ::Value<String>,
+        /// Property [`EmailAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-attributetypesselector.html#cfn-customerprofiles-domain-attributetypesselector-emailaddress).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub email_address: Option<::ValueList<String>>,
+        /// Property [`PhoneNumber`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-attributetypesselector.html#cfn-customerprofiles-domain-attributetypesselector-phonenumber).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub phone_number: Option<::ValueList<String>>,
+    }
+
+    impl ::codec::SerializeValue for AttributeTypesSelector {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref address) = self.address {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Address", address)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AttributeMatchingModel", &self.attribute_matching_model)?;
+            if let Some(ref email_address) = self.email_address {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EmailAddress", email_address)?;
+            }
+            if let Some(ref phone_number) = self.phone_number {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PhoneNumber", phone_number)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AttributeTypesSelector {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AttributeTypesSelector, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AttributeTypesSelector;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AttributeTypesSelector")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut address: Option<::ValueList<String>> = None;
+                    let mut attribute_matching_model: Option<::Value<String>> = None;
+                    let mut email_address: Option<::ValueList<String>> = None;
+                    let mut phone_number: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Address" => {
+                                address = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "AttributeMatchingModel" => {
+                                attribute_matching_model = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "EmailAddress" => {
+                                email_address = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PhoneNumber" => {
+                                phone_number = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AttributeTypesSelector {
+                        address: address,
+                        attribute_matching_model: attribute_matching_model.ok_or(::serde::de::Error::missing_field("AttributeMatchingModel"))?,
+                        email_address: email_address,
+                        phone_number: phone_number,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CustomerProfiles::Domain.AutoMerging`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-automerging.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AutoMerging {
+        /// Property [`ConflictResolution`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-automerging.html#cfn-customerprofiles-domain-automerging-conflictresolution).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub conflict_resolution: Option<::Value<ConflictResolution>>,
+        /// Property [`Consolidation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-automerging.html#cfn-customerprofiles-domain-automerging-consolidation).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub consolidation: Option<::Value<Consolidation>>,
+        /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-automerging.html#cfn-customerprofiles-domain-automerging-enabled).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub enabled: ::Value<bool>,
+        /// Property [`MinAllowedConfidenceScoreForMerging`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-automerging.html#cfn-customerprofiles-domain-automerging-minallowedconfidencescoreformerging).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub min_allowed_confidence_score_for_merging: Option<::Value<f64>>,
+    }
+
+    impl ::codec::SerializeValue for AutoMerging {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref conflict_resolution) = self.conflict_resolution {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConflictResolution", conflict_resolution)?;
+            }
+            if let Some(ref consolidation) = self.consolidation {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Consolidation", consolidation)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
+            if let Some(ref min_allowed_confidence_score_for_merging) = self.min_allowed_confidence_score_for_merging {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinAllowedConfidenceScoreForMerging", min_allowed_confidence_score_for_merging)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AutoMerging {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AutoMerging, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AutoMerging;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AutoMerging")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut conflict_resolution: Option<::Value<ConflictResolution>> = None;
+                    let mut consolidation: Option<::Value<Consolidation>> = None;
+                    let mut enabled: Option<::Value<bool>> = None;
+                    let mut min_allowed_confidence_score_for_merging: Option<::Value<f64>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ConflictResolution" => {
+                                conflict_resolution = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Consolidation" => {
+                                consolidation = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Enabled" => {
+                                enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MinAllowedConfidenceScoreForMerging" => {
+                                min_allowed_confidence_score_for_merging = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AutoMerging {
+                        conflict_resolution: conflict_resolution,
+                        consolidation: consolidation,
+                        enabled: enabled.ok_or(::serde::de::Error::missing_field("Enabled"))?,
+                        min_allowed_confidence_score_for_merging: min_allowed_confidence_score_for_merging,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CustomerProfiles::Domain.ConflictResolution`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-conflictresolution.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ConflictResolution {
+        /// Property [`ConflictResolvingModel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-conflictresolution.html#cfn-customerprofiles-domain-conflictresolution-conflictresolvingmodel).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub conflict_resolving_model: ::Value<String>,
+        /// Property [`SourceName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-conflictresolution.html#cfn-customerprofiles-domain-conflictresolution-sourcename).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub source_name: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for ConflictResolution {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConflictResolvingModel", &self.conflict_resolving_model)?;
+            if let Some(ref source_name) = self.source_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceName", source_name)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ConflictResolution {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ConflictResolution, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ConflictResolution;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ConflictResolution")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut conflict_resolving_model: Option<::Value<String>> = None;
+                    let mut source_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ConflictResolvingModel" => {
+                                conflict_resolving_model = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SourceName" => {
+                                source_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ConflictResolution {
+                        conflict_resolving_model: conflict_resolving_model.ok_or(::serde::de::Error::missing_field("ConflictResolvingModel"))?,
+                        source_name: source_name,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CustomerProfiles::Domain.Consolidation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-consolidation.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Consolidation {
+        /// Property [`MatchingAttributesList`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-consolidation.html#cfn-customerprofiles-domain-consolidation-matchingattributeslist).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub matching_attributes_list: ::Value<::json::Value>,
+    }
+
+    impl ::codec::SerializeValue for Consolidation {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MatchingAttributesList", &self.matching_attributes_list)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Consolidation {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Consolidation, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Consolidation;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Consolidation")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut matching_attributes_list: Option<::Value<::json::Value>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "MatchingAttributesList" => {
+                                matching_attributes_list = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Consolidation {
+                        matching_attributes_list: matching_attributes_list.ok_or(::serde::de::Error::missing_field("MatchingAttributesList"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CustomerProfiles::Domain.DomainStats`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-domainstats.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DomainStats {
+        /// Property [`MeteringProfileCount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-domainstats.html#cfn-customerprofiles-domain-domainstats-meteringprofilecount).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub metering_profile_count: Option<::Value<f64>>,
+        /// Property [`ObjectCount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-domainstats.html#cfn-customerprofiles-domain-domainstats-objectcount).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub object_count: Option<::Value<f64>>,
+        /// Property [`ProfileCount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-domainstats.html#cfn-customerprofiles-domain-domainstats-profilecount).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub profile_count: Option<::Value<f64>>,
+        /// Property [`TotalSize`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-domainstats.html#cfn-customerprofiles-domain-domainstats-totalsize).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub total_size: Option<::Value<f64>>,
+    }
+
+    impl ::codec::SerializeValue for DomainStats {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref metering_profile_count) = self.metering_profile_count {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MeteringProfileCount", metering_profile_count)?;
+            }
+            if let Some(ref object_count) = self.object_count {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ObjectCount", object_count)?;
+            }
+            if let Some(ref profile_count) = self.profile_count {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProfileCount", profile_count)?;
+            }
+            if let Some(ref total_size) = self.total_size {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TotalSize", total_size)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DomainStats {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DomainStats, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DomainStats;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DomainStats")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut metering_profile_count: Option<::Value<f64>> = None;
+                    let mut object_count: Option<::Value<f64>> = None;
+                    let mut profile_count: Option<::Value<f64>> = None;
+                    let mut total_size: Option<::Value<f64>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "MeteringProfileCount" => {
+                                metering_profile_count = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ObjectCount" => {
+                                object_count = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ProfileCount" => {
+                                profile_count = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TotalSize" => {
+                                total_size = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DomainStats {
+                        metering_profile_count: metering_profile_count,
+                        object_count: object_count,
+                        profile_count: profile_count,
+                        total_size: total_size,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CustomerProfiles::Domain.ExportingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-exportingconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ExportingConfig {
+        /// Property [`S3Exporting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-exportingconfig.html#cfn-customerprofiles-domain-exportingconfig-s3exporting).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub s3_exporting: Option<::Value<S3ExportingConfig>>,
+    }
+
+    impl ::codec::SerializeValue for ExportingConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref s3_exporting) = self.s3_exporting {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Exporting", s3_exporting)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ExportingConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ExportingConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ExportingConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ExportingConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut s3_exporting: Option<::Value<S3ExportingConfig>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "S3Exporting" => {
+                                s3_exporting = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ExportingConfig {
+                        s3_exporting: s3_exporting,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CustomerProfiles::Domain.JobSchedule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-jobschedule.html) property type.
+    #[derive(Debug, Default)]
+    pub struct JobSchedule {
+        /// Property [`DayOfTheWeek`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-jobschedule.html#cfn-customerprofiles-domain-jobschedule-dayoftheweek).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub day_of_the_week: ::Value<String>,
+        /// Property [`Time`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-jobschedule.html#cfn-customerprofiles-domain-jobschedule-time).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub time: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for JobSchedule {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DayOfTheWeek", &self.day_of_the_week)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Time", &self.time)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for JobSchedule {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<JobSchedule, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = JobSchedule;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type JobSchedule")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut day_of_the_week: Option<::Value<String>> = None;
+                    let mut time: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DayOfTheWeek" => {
+                                day_of_the_week = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Time" => {
+                                time = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(JobSchedule {
+                        day_of_the_week: day_of_the_week.ok_or(::serde::de::Error::missing_field("DayOfTheWeek"))?,
+                        time: time.ok_or(::serde::de::Error::missing_field("Time"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CustomerProfiles::Domain.Matching`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-matching.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Matching {
+        /// Property [`AutoMerging`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-matching.html#cfn-customerprofiles-domain-matching-automerging).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub auto_merging: Option<::Value<AutoMerging>>,
+        /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-matching.html#cfn-customerprofiles-domain-matching-enabled).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub enabled: ::Value<bool>,
+        /// Property [`ExportingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-matching.html#cfn-customerprofiles-domain-matching-exportingconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub exporting_config: Option<::Value<ExportingConfig>>,
+        /// Property [`JobSchedule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-matching.html#cfn-customerprofiles-domain-matching-jobschedule).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub job_schedule: Option<::Value<JobSchedule>>,
+    }
+
+    impl ::codec::SerializeValue for Matching {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref auto_merging) = self.auto_merging {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoMerging", auto_merging)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
+            if let Some(ref exporting_config) = self.exporting_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExportingConfig", exporting_config)?;
+            }
+            if let Some(ref job_schedule) = self.job_schedule {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "JobSchedule", job_schedule)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Matching {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Matching, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Matching;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Matching")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut auto_merging: Option<::Value<AutoMerging>> = None;
+                    let mut enabled: Option<::Value<bool>> = None;
+                    let mut exporting_config: Option<::Value<ExportingConfig>> = None;
+                    let mut job_schedule: Option<::Value<JobSchedule>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AutoMerging" => {
+                                auto_merging = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Enabled" => {
+                                enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ExportingConfig" => {
+                                exporting_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "JobSchedule" => {
+                                job_schedule = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Matching {
+                        auto_merging: auto_merging,
+                        enabled: enabled.ok_or(::serde::de::Error::missing_field("Enabled"))?,
+                        exporting_config: exporting_config,
+                        job_schedule: job_schedule,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CustomerProfiles::Domain.MatchingRule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-matchingrule.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MatchingRule {
+        /// Property [`Rule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-matchingrule.html#cfn-customerprofiles-domain-matchingrule-rule).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub rule: ::ValueList<String>,
+    }
+
+    impl ::codec::SerializeValue for MatchingRule {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Rule", &self.rule)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MatchingRule {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MatchingRule, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MatchingRule;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MatchingRule")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut rule: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Rule" => {
+                                rule = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MatchingRule {
+                        rule: rule.ok_or(::serde::de::Error::missing_field("Rule"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CustomerProfiles::Domain.RuleBasedMatching`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-rulebasedmatching.html) property type.
+    #[derive(Debug, Default)]
+    pub struct RuleBasedMatching {
+        /// Property [`AttributeTypesSelector`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-rulebasedmatching.html#cfn-customerprofiles-domain-rulebasedmatching-attributetypesselector).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub attribute_types_selector: Option<::Value<AttributeTypesSelector>>,
+        /// Property [`ConflictResolution`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-rulebasedmatching.html#cfn-customerprofiles-domain-rulebasedmatching-conflictresolution).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub conflict_resolution: Option<::Value<ConflictResolution>>,
+        /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-rulebasedmatching.html#cfn-customerprofiles-domain-rulebasedmatching-enabled).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub enabled: ::Value<bool>,
+        /// Property [`ExportingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-rulebasedmatching.html#cfn-customerprofiles-domain-rulebasedmatching-exportingconfig).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub exporting_config: Option<::Value<ExportingConfig>>,
+        /// Property [`MatchingRules`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-rulebasedmatching.html#cfn-customerprofiles-domain-rulebasedmatching-matchingrules).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub matching_rules: Option<::ValueList<MatchingRule>>,
+        /// Property [`MaxAllowedRuleLevelForMatching`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-rulebasedmatching.html#cfn-customerprofiles-domain-rulebasedmatching-maxallowedrulelevelformatching).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub max_allowed_rule_level_for_matching: Option<::Value<u32>>,
+        /// Property [`MaxAllowedRuleLevelForMerging`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-rulebasedmatching.html#cfn-customerprofiles-domain-rulebasedmatching-maxallowedrulelevelformerging).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub max_allowed_rule_level_for_merging: Option<::Value<u32>>,
+        /// Property [`Status`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-rulebasedmatching.html#cfn-customerprofiles-domain-rulebasedmatching-status).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub status: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for RuleBasedMatching {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref attribute_types_selector) = self.attribute_types_selector {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AttributeTypesSelector", attribute_types_selector)?;
+            }
+            if let Some(ref conflict_resolution) = self.conflict_resolution {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConflictResolution", conflict_resolution)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
+            if let Some(ref exporting_config) = self.exporting_config {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExportingConfig", exporting_config)?;
+            }
+            if let Some(ref matching_rules) = self.matching_rules {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MatchingRules", matching_rules)?;
+            }
+            if let Some(ref max_allowed_rule_level_for_matching) = self.max_allowed_rule_level_for_matching {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxAllowedRuleLevelForMatching", max_allowed_rule_level_for_matching)?;
+            }
+            if let Some(ref max_allowed_rule_level_for_merging) = self.max_allowed_rule_level_for_merging {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxAllowedRuleLevelForMerging", max_allowed_rule_level_for_merging)?;
+            }
+            if let Some(ref status) = self.status {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Status", status)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for RuleBasedMatching {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<RuleBasedMatching, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = RuleBasedMatching;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type RuleBasedMatching")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut attribute_types_selector: Option<::Value<AttributeTypesSelector>> = None;
+                    let mut conflict_resolution: Option<::Value<ConflictResolution>> = None;
+                    let mut enabled: Option<::Value<bool>> = None;
+                    let mut exporting_config: Option<::Value<ExportingConfig>> = None;
+                    let mut matching_rules: Option<::ValueList<MatchingRule>> = None;
+                    let mut max_allowed_rule_level_for_matching: Option<::Value<u32>> = None;
+                    let mut max_allowed_rule_level_for_merging: Option<::Value<u32>> = None;
+                    let mut status: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AttributeTypesSelector" => {
+                                attribute_types_selector = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ConflictResolution" => {
+                                conflict_resolution = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Enabled" => {
+                                enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ExportingConfig" => {
+                                exporting_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MatchingRules" => {
+                                matching_rules = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MaxAllowedRuleLevelForMatching" => {
+                                max_allowed_rule_level_for_matching = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MaxAllowedRuleLevelForMerging" => {
+                                max_allowed_rule_level_for_merging = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Status" => {
+                                status = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(RuleBasedMatching {
+                        attribute_types_selector: attribute_types_selector,
+                        conflict_resolution: conflict_resolution,
+                        enabled: enabled.ok_or(::serde::de::Error::missing_field("Enabled"))?,
+                        exporting_config: exporting_config,
+                        matching_rules: matching_rules,
+                        max_allowed_rule_level_for_matching: max_allowed_rule_level_for_matching,
+                        max_allowed_rule_level_for_merging: max_allowed_rule_level_for_merging,
+                        status: status,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CustomerProfiles::Domain.S3ExportingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-s3exportingconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct S3ExportingConfig {
+        /// Property [`S3BucketName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-s3exportingconfig.html#cfn-customerprofiles-domain-s3exportingconfig-s3bucketname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub s3_bucket_name: ::Value<String>,
+        /// Property [`S3KeyName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-domain-s3exportingconfig.html#cfn-customerprofiles-domain-s3exportingconfig-s3keyname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub s3_key_name: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for S3ExportingConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3BucketName", &self.s3_bucket_name)?;
+            if let Some(ref s3_key_name) = self.s3_key_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3KeyName", s3_key_name)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for S3ExportingConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<S3ExportingConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = S3ExportingConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type S3ExportingConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut s3_bucket_name: Option<::Value<String>> = None;
+                    let mut s3_key_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "S3BucketName" => {
+                                s3_bucket_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "S3KeyName" => {
+                                s3_key_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(S3ExportingConfig {
+                        s3_bucket_name: s3_bucket_name.ok_or(::serde::de::Error::missing_field("S3BucketName"))?,
+                        s3_key_name: s3_key_name,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod event_stream {
+    //! Property types for the `EventStream` resource.
+
+    /// The [`AWS::CustomerProfiles::EventStream.DestinationDetails`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-eventstream-destinationdetails.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DestinationDetails {
+        /// Property [`Status`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-eventstream-destinationdetails.html#cfn-customerprofiles-eventstream-destinationdetails-status).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub status: ::Value<String>,
+        /// Property [`Uri`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-eventstream-destinationdetails.html#cfn-customerprofiles-eventstream-destinationdetails-uri).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub uri: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for DestinationDetails {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Status", &self.status)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Uri", &self.uri)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DestinationDetails {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DestinationDetails, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DestinationDetails;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DestinationDetails")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut status: Option<::Value<String>> = None;
+                    let mut uri: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Status" => {
+                                status = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Uri" => {
+                                uri = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DestinationDetails {
+                        status: status.ok_or(::serde::de::Error::missing_field("Status"))?,
+                        uri: uri.ok_or(::serde::de::Error::missing_field("Uri"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
     }
 }
 
@@ -759,6 +2324,68 @@ pub mod integration {
 
                     Ok(MarketoSourceProperties {
                         object: object.ok_or(::serde::de::Error::missing_field("Object"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CustomerProfiles::Integration.ObjectTypeMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-objecttypemapping.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ObjectTypeMapping {
+        /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-objecttypemapping.html#cfn-customerprofiles-integration-objecttypemapping-key).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub key: ::Value<String>,
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-customerprofiles-integration-objecttypemapping.html#cfn-customerprofiles-integration-objecttypemapping-value).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub value: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for ObjectTypeMapping {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ObjectTypeMapping {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ObjectTypeMapping, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ObjectTypeMapping;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ObjectTypeMapping")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut key: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Key" => {
+                                key = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Value" => {
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ObjectTypeMapping {
+                        key: key.ok_or(::serde::de::Error::missing_field("Key"))?,
+                        value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
                     })
                 }
             }

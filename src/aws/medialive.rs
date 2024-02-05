@@ -44,6 +44,11 @@ pub struct ChannelProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub log_level: Option<::Value<String>>,
+    /// Property [`Maintenance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-channel.html#cfn-medialive-channel-maintenance).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub maintenance: Option<::Value<self::channel::MaintenanceCreateSettings>>,
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-channel.html#cfn-medialive-channel-name).
     ///
     /// Update type: _Mutable_.
@@ -90,6 +95,9 @@ impl ::serde::Serialize for ChannelProperties {
         if let Some(ref log_level) = self.log_level {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogLevel", log_level)?;
         }
+        if let Some(ref maintenance) = self.maintenance {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Maintenance", maintenance)?;
+        }
         if let Some(ref name) = self.name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
         }
@@ -125,6 +133,7 @@ impl<'de> ::serde::Deserialize<'de> for ChannelProperties {
                 let mut input_attachments: Option<::ValueList<self::channel::InputAttachment>> = None;
                 let mut input_specification: Option<::Value<self::channel::InputSpecification>> = None;
                 let mut log_level: Option<::Value<String>> = None;
+                let mut maintenance: Option<::Value<self::channel::MaintenanceCreateSettings>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut role_arn: Option<::Value<String>> = None;
                 let mut tags: Option<::Value<::json::Value>> = None;
@@ -153,6 +162,9 @@ impl<'de> ::serde::Deserialize<'de> for ChannelProperties {
                         "LogLevel" => {
                             log_level = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Maintenance" => {
+                            maintenance = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -177,6 +189,7 @@ impl<'de> ::serde::Deserialize<'de> for ChannelProperties {
                     input_attachments: input_attachments,
                     input_specification: input_specification,
                     log_level: log_level,
+                    maintenance: maintenance,
                     name: name,
                     role_arn: role_arn,
                     tags: tags,
@@ -494,6 +507,286 @@ impl From<InputSecurityGroupProperties> for InputSecurityGroup {
     }
 }
 
+/// The [`AWS::MediaLive::Multiplex`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-multiplex.html) resource type.
+#[derive(Debug, Default)]
+pub struct Multiplex {
+    properties: MultiplexProperties
+}
+
+/// Properties for the `Multiplex` resource.
+#[derive(Debug, Default)]
+pub struct MultiplexProperties {
+    /// Property [`AvailabilityZones`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-multiplex.html#cfn-medialive-multiplex-availabilityzones).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub availability_zones: ::ValueList<String>,
+    /// Property [`Destinations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-multiplex.html#cfn-medialive-multiplex-destinations).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub destinations: Option<::ValueList<self::multiplex::MultiplexOutputDestination>>,
+    /// Property [`MultiplexSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-multiplex.html#cfn-medialive-multiplex-multiplexsettings).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub multiplex_settings: ::Value<self::multiplex::MultiplexSettings>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-multiplex.html#cfn-medialive-multiplex-name).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub name: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-multiplex.html#cfn-medialive-multiplex-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<self::multiplex::Tags>>,
+}
+
+impl ::serde::Serialize for MultiplexProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZones", &self.availability_zones)?;
+        if let Some(ref destinations) = self.destinations {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Destinations", destinations)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "MultiplexSettings", &self.multiplex_settings)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for MultiplexProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<MultiplexProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = MultiplexProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type MultiplexProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut availability_zones: Option<::ValueList<String>> = None;
+                let mut destinations: Option<::ValueList<self::multiplex::MultiplexOutputDestination>> = None;
+                let mut multiplex_settings: Option<::Value<self::multiplex::MultiplexSettings>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<self::multiplex::Tags>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AvailabilityZones" => {
+                            availability_zones = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Destinations" => {
+                            destinations = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MultiplexSettings" => {
+                            multiplex_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(MultiplexProperties {
+                    availability_zones: availability_zones.ok_or(::serde::de::Error::missing_field("AvailabilityZones"))?,
+                    destinations: destinations,
+                    multiplex_settings: multiplex_settings.ok_or(::serde::de::Error::missing_field("MultiplexSettings"))?,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for Multiplex {
+    type Properties = MultiplexProperties;
+    const TYPE: &'static str = "AWS::MediaLive::Multiplex";
+    fn properties(&self) -> &MultiplexProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut MultiplexProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for Multiplex {}
+
+impl From<MultiplexProperties> for Multiplex {
+    fn from(properties: MultiplexProperties) -> Multiplex {
+        Multiplex { properties }
+    }
+}
+
+/// The [`AWS::MediaLive::Multiplexprogram`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-multiplexprogram.html) resource type.
+#[derive(Debug, Default)]
+pub struct Multiplexprogram {
+    properties: MultiplexprogramProperties
+}
+
+/// Properties for the `Multiplexprogram` resource.
+#[derive(Debug, Default)]
+pub struct MultiplexprogramProperties {
+    /// Property [`ChannelId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-multiplexprogram.html#cfn-medialive-multiplexprogram-channelid).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub channel_id: Option<::Value<String>>,
+    /// Property [`MultiplexId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-multiplexprogram.html#cfn-medialive-multiplexprogram-multiplexid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub multiplex_id: Option<::Value<String>>,
+    /// Property [`MultiplexProgramSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-multiplexprogram.html#cfn-medialive-multiplexprogram-multiplexprogramsettings).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub multiplex_program_settings: Option<::Value<self::multiplexprogram::MultiplexProgramSettings>>,
+    /// Property [`PacketIdentifiersMap`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-multiplexprogram.html#cfn-medialive-multiplexprogram-packetidentifiersmap).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub packet_identifiers_map: Option<::Value<self::multiplexprogram::MultiplexProgramPacketIdentifiersMap>>,
+    /// Property [`PipelineDetails`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-multiplexprogram.html#cfn-medialive-multiplexprogram-pipelinedetails).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub pipeline_details: Option<::ValueList<self::multiplexprogram::MultiplexProgramPipelineDetail>>,
+    /// Property [`PreferredChannelPipeline`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-multiplexprogram.html#cfn-medialive-multiplexprogram-preferredchannelpipeline).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub preferred_channel_pipeline: Option<::Value<String>>,
+    /// Property [`ProgramName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-medialive-multiplexprogram.html#cfn-medialive-multiplexprogram-programname).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub program_name: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for MultiplexprogramProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref channel_id) = self.channel_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ChannelId", channel_id)?;
+        }
+        if let Some(ref multiplex_id) = self.multiplex_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MultiplexId", multiplex_id)?;
+        }
+        if let Some(ref multiplex_program_settings) = self.multiplex_program_settings {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MultiplexProgramSettings", multiplex_program_settings)?;
+        }
+        if let Some(ref packet_identifiers_map) = self.packet_identifiers_map {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PacketIdentifiersMap", packet_identifiers_map)?;
+        }
+        if let Some(ref pipeline_details) = self.pipeline_details {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PipelineDetails", pipeline_details)?;
+        }
+        if let Some(ref preferred_channel_pipeline) = self.preferred_channel_pipeline {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreferredChannelPipeline", preferred_channel_pipeline)?;
+        }
+        if let Some(ref program_name) = self.program_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProgramName", program_name)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for MultiplexprogramProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<MultiplexprogramProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = MultiplexprogramProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type MultiplexprogramProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut channel_id: Option<::Value<String>> = None;
+                let mut multiplex_id: Option<::Value<String>> = None;
+                let mut multiplex_program_settings: Option<::Value<self::multiplexprogram::MultiplexProgramSettings>> = None;
+                let mut packet_identifiers_map: Option<::Value<self::multiplexprogram::MultiplexProgramPacketIdentifiersMap>> = None;
+                let mut pipeline_details: Option<::ValueList<self::multiplexprogram::MultiplexProgramPipelineDetail>> = None;
+                let mut preferred_channel_pipeline: Option<::Value<String>> = None;
+                let mut program_name: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "ChannelId" => {
+                            channel_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MultiplexId" => {
+                            multiplex_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MultiplexProgramSettings" => {
+                            multiplex_program_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PacketIdentifiersMap" => {
+                            packet_identifiers_map = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PipelineDetails" => {
+                            pipeline_details = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PreferredChannelPipeline" => {
+                            preferred_channel_pipeline = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ProgramName" => {
+                            program_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(MultiplexprogramProperties {
+                    channel_id: channel_id,
+                    multiplex_id: multiplex_id,
+                    multiplex_program_settings: multiplex_program_settings,
+                    packet_identifiers_map: packet_identifiers_map,
+                    pipeline_details: pipeline_details,
+                    preferred_channel_pipeline: preferred_channel_pipeline,
+                    program_name: program_name,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for Multiplexprogram {
+    type Properties = MultiplexprogramProperties;
+    const TYPE: &'static str = "AWS::MediaLive::Multiplexprogram";
+    fn properties(&self) -> &MultiplexprogramProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut MultiplexprogramProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for Multiplexprogram {}
+
+impl From<MultiplexprogramProperties> for Multiplexprogram {
+    fn from(properties: MultiplexprogramProperties) -> Multiplexprogram {
+        Multiplexprogram { properties }
+    }
+}
+
 pub mod channel {
     //! Property types for the `Channel` resource.
 
@@ -657,6 +950,11 @@ pub mod channel {
     /// The [`AWS::MediaLive::Channel.Ac3Settings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-ac3settings.html) property type.
     #[derive(Debug, Default)]
     pub struct Ac3Settings {
+        /// Property [`AttenuationControl`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-ac3settings.html#cfn-medialive-channel-ac3settings-attenuationcontrol).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub attenuation_control: Option<::Value<String>>,
         /// Property [`Bitrate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-ac3settings.html#cfn-medialive-channel-ac3settings-bitrate).
         ///
         /// Update type: _Mutable_.
@@ -697,6 +995,9 @@ pub mod channel {
     impl ::codec::SerializeValue for Ac3Settings {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref attenuation_control) = self.attenuation_control {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AttenuationControl", attenuation_control)?;
+            }
             if let Some(ref bitrate) = self.bitrate {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Bitrate", bitrate)?;
             }
@@ -734,6 +1035,7 @@ pub mod channel {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut attenuation_control: Option<::Value<String>> = None;
                     let mut bitrate: Option<::Value<f64>> = None;
                     let mut bitstream_mode: Option<::Value<String>> = None;
                     let mut coding_mode: Option<::Value<String>> = None;
@@ -744,6 +1046,9 @@ pub mod channel {
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "AttenuationControl" => {
+                                attenuation_control = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Bitrate" => {
                                 bitrate = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -770,6 +1075,7 @@ pub mod channel {
                     }
 
                     Ok(Ac3Settings {
+                        attenuation_control: attenuation_control,
                         bitrate: bitrate,
                         bitstream_mode: bitstream_mode,
                         coding_mode: coding_mode,
@@ -1311,6 +1617,11 @@ pub mod channel {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub ac3_settings: Option<::Value<Ac3Settings>>,
+        /// Property [`Eac3AtmosSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiocodecsettings.html#cfn-medialive-channel-audiocodecsettings-eac3atmossettings).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub eac3_atmos_settings: Option<::Value<Eac3AtmosSettings>>,
         /// Property [`Eac3Settings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiocodecsettings.html#cfn-medialive-channel-audiocodecsettings-eac3settings).
         ///
         /// Update type: _Mutable_.
@@ -1342,6 +1653,9 @@ pub mod channel {
             if let Some(ref ac3_settings) = self.ac3_settings {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ac3Settings", ac3_settings)?;
             }
+            if let Some(ref eac3_atmos_settings) = self.eac3_atmos_settings {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Eac3AtmosSettings", eac3_atmos_settings)?;
+            }
             if let Some(ref eac3_settings) = self.eac3_settings {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Eac3Settings", eac3_settings)?;
             }
@@ -1372,6 +1686,7 @@ pub mod channel {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut aac_settings: Option<::Value<AacSettings>> = None;
                     let mut ac3_settings: Option<::Value<Ac3Settings>> = None;
+                    let mut eac3_atmos_settings: Option<::Value<Eac3AtmosSettings>> = None;
                     let mut eac3_settings: Option<::Value<Eac3Settings>> = None;
                     let mut mp2_settings: Option<::Value<Mp2Settings>> = None;
                     let mut pass_through_settings: Option<::Value<PassThroughSettings>> = None;
@@ -1384,6 +1699,9 @@ pub mod channel {
                             }
                             "Ac3Settings" => {
                                 ac3_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Eac3AtmosSettings" => {
+                                eac3_atmos_settings = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Eac3Settings" => {
                                 eac3_settings = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1404,6 +1722,7 @@ pub mod channel {
                     Ok(AudioCodecSettings {
                         aac_settings: aac_settings,
                         ac3_settings: ac3_settings,
+                        eac3_atmos_settings: eac3_atmos_settings,
                         eac3_settings: eac3_settings,
                         mp2_settings: mp2_settings,
                         pass_through_settings: pass_through_settings,
@@ -1439,6 +1758,11 @@ pub mod channel {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub audio_type_control: Option<::Value<String>>,
+        /// Property [`AudioWatermarkingSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiodescription.html#cfn-medialive-channel-audiodescription-audiowatermarkingsettings).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub audio_watermarking_settings: Option<::Value<AudioWatermarkSettings>>,
         /// Property [`CodecSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiodescription.html#cfn-medialive-channel-audiodescription-codecsettings).
         ///
         /// Update type: _Mutable_.
@@ -1486,6 +1810,9 @@ pub mod channel {
             if let Some(ref audio_type_control) = self.audio_type_control {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "AudioTypeControl", audio_type_control)?;
             }
+            if let Some(ref audio_watermarking_settings) = self.audio_watermarking_settings {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AudioWatermarkingSettings", audio_watermarking_settings)?;
+            }
             if let Some(ref codec_settings) = self.codec_settings {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "CodecSettings", codec_settings)?;
             }
@@ -1524,6 +1851,7 @@ pub mod channel {
                     let mut audio_selector_name: Option<::Value<String>> = None;
                     let mut audio_type: Option<::Value<String>> = None;
                     let mut audio_type_control: Option<::Value<String>> = None;
+                    let mut audio_watermarking_settings: Option<::Value<AudioWatermarkSettings>> = None;
                     let mut codec_settings: Option<::Value<AudioCodecSettings>> = None;
                     let mut language_code: Option<::Value<String>> = None;
                     let mut language_code_control: Option<::Value<String>> = None;
@@ -1544,6 +1872,9 @@ pub mod channel {
                             }
                             "AudioTypeControl" => {
                                 audio_type_control = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "AudioWatermarkingSettings" => {
+                                audio_watermarking_settings = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "CodecSettings" => {
                                 codec_settings = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1572,12 +1903,132 @@ pub mod channel {
                         audio_selector_name: audio_selector_name,
                         audio_type: audio_type,
                         audio_type_control: audio_type_control,
+                        audio_watermarking_settings: audio_watermarking_settings,
                         codec_settings: codec_settings,
                         language_code: language_code,
                         language_code_control: language_code_control,
                         name: name,
                         remix_settings: remix_settings,
                         stream_name: stream_name,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaLive::Channel.AudioDolbyEDecode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiodolbyedecode.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AudioDolbyEDecode {
+        /// Property [`ProgramSelection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiodolbyedecode.html#cfn-medialive-channel-audiodolbyedecode-programselection).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub program_selection: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for AudioDolbyEDecode {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref program_selection) = self.program_selection {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProgramSelection", program_selection)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AudioDolbyEDecode {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AudioDolbyEDecode, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AudioDolbyEDecode;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AudioDolbyEDecode")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut program_selection: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ProgramSelection" => {
+                                program_selection = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AudioDolbyEDecode {
+                        program_selection: program_selection,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaLive::Channel.AudioHlsRenditionSelection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiohlsrenditionselection.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AudioHlsRenditionSelection {
+        /// Property [`GroupId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiohlsrenditionselection.html#cfn-medialive-channel-audiohlsrenditionselection-groupid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub group_id: Option<::Value<String>>,
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiohlsrenditionselection.html#cfn-medialive-channel-audiohlsrenditionselection-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for AudioHlsRenditionSelection {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref group_id) = self.group_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "GroupId", group_id)?;
+            }
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AudioHlsRenditionSelection {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AudioHlsRenditionSelection, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AudioHlsRenditionSelection;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AudioHlsRenditionSelection")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut group_id: Option<::Value<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "GroupId" => {
+                                group_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AudioHlsRenditionSelection {
+                        group_id: group_id,
+                        name: name,
                     })
                 }
             }
@@ -1945,6 +2396,11 @@ pub mod channel {
     /// The [`AWS::MediaLive::Channel.AudioSelectorSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audioselectorsettings.html) property type.
     #[derive(Debug, Default)]
     pub struct AudioSelectorSettings {
+        /// Property [`AudioHlsRenditionSelection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audioselectorsettings.html#cfn-medialive-channel-audioselectorsettings-audiohlsrenditionselection).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub audio_hls_rendition_selection: Option<::Value<AudioHlsRenditionSelection>>,
         /// Property [`AudioLanguageSelection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audioselectorsettings.html#cfn-medialive-channel-audioselectorsettings-audiolanguageselection).
         ///
         /// Update type: _Mutable_.
@@ -1965,6 +2421,9 @@ pub mod channel {
     impl ::codec::SerializeValue for AudioSelectorSettings {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref audio_hls_rendition_selection) = self.audio_hls_rendition_selection {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AudioHlsRenditionSelection", audio_hls_rendition_selection)?;
+            }
             if let Some(ref audio_language_selection) = self.audio_language_selection {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "AudioLanguageSelection", audio_language_selection)?;
             }
@@ -1990,12 +2449,16 @@ pub mod channel {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut audio_hls_rendition_selection: Option<::Value<AudioHlsRenditionSelection>> = None;
                     let mut audio_language_selection: Option<::Value<AudioLanguageSelection>> = None;
                     let mut audio_pid_selection: Option<::Value<AudioPidSelection>> = None;
                     let mut audio_track_selection: Option<::Value<AudioTrackSelection>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "AudioHlsRenditionSelection" => {
+                                audio_hls_rendition_selection = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "AudioLanguageSelection" => {
                                 audio_language_selection = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -2010,6 +2473,7 @@ pub mod channel {
                     }
 
                     Ok(AudioSelectorSettings {
+                        audio_hls_rendition_selection: audio_hls_rendition_selection,
                         audio_language_selection: audio_language_selection,
                         audio_pid_selection: audio_pid_selection,
                         audio_track_selection: audio_track_selection,
@@ -2143,6 +2607,11 @@ pub mod channel {
     /// The [`AWS::MediaLive::Channel.AudioTrackSelection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiotrackselection.html) property type.
     #[derive(Debug, Default)]
     pub struct AudioTrackSelection {
+        /// Property [`DolbyEDecode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiotrackselection.html#cfn-medialive-channel-audiotrackselection-dolbyedecode).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub dolby_e_decode: Option<::Value<AudioDolbyEDecode>>,
         /// Property [`Tracks`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiotrackselection.html#cfn-medialive-channel-audiotrackselection-tracks).
         ///
         /// Update type: _Mutable_.
@@ -2153,6 +2622,9 @@ pub mod channel {
     impl ::codec::SerializeValue for AudioTrackSelection {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref dolby_e_decode) = self.dolby_e_decode {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DolbyEDecode", dolby_e_decode)?;
+            }
             if let Some(ref tracks) = self.tracks {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tracks", tracks)?;
             }
@@ -2172,10 +2644,14 @@ pub mod channel {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut dolby_e_decode: Option<::Value<AudioDolbyEDecode>> = None;
                     let mut tracks: Option<::ValueList<AudioTrack>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "DolbyEDecode" => {
+                                dolby_e_decode = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Tracks" => {
                                 tracks = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -2184,7 +2660,61 @@ pub mod channel {
                     }
 
                     Ok(AudioTrackSelection {
+                        dolby_e_decode: dolby_e_decode,
                         tracks: tracks,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaLive::Channel.AudioWatermarkSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiowatermarksettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AudioWatermarkSettings {
+        /// Property [`NielsenWatermarksSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-audiowatermarksettings.html#cfn-medialive-channel-audiowatermarksettings-nielsenwatermarkssettings).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub nielsen_watermarks_settings: Option<::Value<NielsenWatermarksSettings>>,
+    }
+
+    impl ::codec::SerializeValue for AudioWatermarkSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref nielsen_watermarks_settings) = self.nielsen_watermarks_settings {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NielsenWatermarksSettings", nielsen_watermarks_settings)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AudioWatermarkSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AudioWatermarkSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AudioWatermarkSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AudioWatermarkSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut nielsen_watermarks_settings: Option<::Value<NielsenWatermarksSettings>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "NielsenWatermarksSettings" => {
+                                nielsen_watermarks_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AudioWatermarkSettings {
+                        nielsen_watermarks_settings: nielsen_watermarks_settings,
                     })
                 }
             }
@@ -2407,6 +2937,11 @@ pub mod channel {
     /// The [`AWS::MediaLive::Channel.AvailSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-availsettings.html) property type.
     #[derive(Debug, Default)]
     pub struct AvailSettings {
+        /// Property [`Esam`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-availsettings.html#cfn-medialive-channel-availsettings-esam).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub esam: Option<::Value<Esam>>,
         /// Property [`Scte35SpliceInsert`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-availsettings.html#cfn-medialive-channel-availsettings-scte35spliceinsert).
         ///
         /// Update type: _Mutable_.
@@ -2422,6 +2957,9 @@ pub mod channel {
     impl ::codec::SerializeValue for AvailSettings {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref esam) = self.esam {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Esam", esam)?;
+            }
             if let Some(ref scte35_splice_insert) = self.scte35_splice_insert {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Scte35SpliceInsert", scte35_splice_insert)?;
             }
@@ -2444,11 +2982,15 @@ pub mod channel {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut esam: Option<::Value<Esam>> = None;
                     let mut scte35_splice_insert: Option<::Value<Scte35SpliceInsert>> = None;
                     let mut scte35_time_signal_apos: Option<::Value<Scte35TimeSignalApos>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "Esam" => {
+                                esam = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Scte35SpliceInsert" => {
                                 scte35_splice_insert = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -2460,6 +3002,7 @@ pub mod channel {
                     }
 
                     Ok(AvailSettings {
+                        esam: esam,
                         scte35_splice_insert: scte35_splice_insert,
                         scte35_time_signal_apos: scte35_time_signal_apos,
                     })
@@ -2839,6 +3382,11 @@ pub mod channel {
     /// The [`AWS::MediaLive::Channel.CaptionDescription`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-captiondescription.html) property type.
     #[derive(Debug, Default)]
     pub struct CaptionDescription {
+        /// Property [`Accessibility`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-captiondescription.html#cfn-medialive-channel-captiondescription-accessibility).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub accessibility: Option<::Value<String>>,
         /// Property [`CaptionSelectorName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-captiondescription.html#cfn-medialive-channel-captiondescription-captionselectorname).
         ///
         /// Update type: _Mutable_.
@@ -2869,6 +3417,9 @@ pub mod channel {
     impl ::codec::SerializeValue for CaptionDescription {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref accessibility) = self.accessibility {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Accessibility", accessibility)?;
+            }
             if let Some(ref caption_selector_name) = self.caption_selector_name {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "CaptionSelectorName", caption_selector_name)?;
             }
@@ -2900,6 +3451,7 @@ pub mod channel {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut accessibility: Option<::Value<String>> = None;
                     let mut caption_selector_name: Option<::Value<String>> = None;
                     let mut destination_settings: Option<::Value<CaptionDestinationSettings>> = None;
                     let mut language_code: Option<::Value<String>> = None;
@@ -2908,6 +3460,9 @@ pub mod channel {
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "Accessibility" => {
+                                accessibility = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "CaptionSelectorName" => {
                                 caption_selector_name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -2928,6 +3483,7 @@ pub mod channel {
                     }
 
                     Ok(CaptionDescription {
+                        accessibility: accessibility,
                         caption_selector_name: caption_selector_name,
                         destination_settings: destination_settings,
                         language_code: language_code,
@@ -3584,6 +4140,138 @@ pub mod channel {
         }
     }
 
+    /// The [`AWS::MediaLive::Channel.ColorCorrection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-colorcorrection.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ColorCorrection {
+        /// Property [`InputColorSpace`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-colorcorrection.html#cfn-medialive-channel-colorcorrection-inputcolorspace).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub input_color_space: Option<::Value<String>>,
+        /// Property [`OutputColorSpace`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-colorcorrection.html#cfn-medialive-channel-colorcorrection-outputcolorspace).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub output_color_space: Option<::Value<String>>,
+        /// Property [`Uri`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-colorcorrection.html#cfn-medialive-channel-colorcorrection-uri).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub uri: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for ColorCorrection {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref input_color_space) = self.input_color_space {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputColorSpace", input_color_space)?;
+            }
+            if let Some(ref output_color_space) = self.output_color_space {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutputColorSpace", output_color_space)?;
+            }
+            if let Some(ref uri) = self.uri {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Uri", uri)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ColorCorrection {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ColorCorrection, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ColorCorrection;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ColorCorrection")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut input_color_space: Option<::Value<String>> = None;
+                    let mut output_color_space: Option<::Value<String>> = None;
+                    let mut uri: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "InputColorSpace" => {
+                                input_color_space = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OutputColorSpace" => {
+                                output_color_space = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Uri" => {
+                                uri = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ColorCorrection {
+                        input_color_space: input_color_space,
+                        output_color_space: output_color_space,
+                        uri: uri,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaLive::Channel.ColorCorrectionSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-colorcorrectionsettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ColorCorrectionSettings {
+        /// Property [`GlobalColorCorrections`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-colorcorrectionsettings.html#cfn-medialive-channel-colorcorrectionsettings-globalcolorcorrections).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub global_color_corrections: Option<::ValueList<ColorCorrection>>,
+    }
+
+    impl ::codec::SerializeValue for ColorCorrectionSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref global_color_corrections) = self.global_color_corrections {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "GlobalColorCorrections", global_color_corrections)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ColorCorrectionSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ColorCorrectionSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ColorCorrectionSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ColorCorrectionSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut global_color_corrections: Option<::ValueList<ColorCorrection>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "GlobalColorCorrections" => {
+                                global_color_corrections = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ColorCorrectionSettings {
+                        global_color_corrections: global_color_corrections,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::MediaLive::Channel.ColorSpacePassthroughSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-colorspacepassthroughsettings.html) property type.
     #[derive(Debug, Default)]
     pub struct ColorSpacePassthroughSettings {
@@ -3609,6 +4297,38 @@ pub mod channel {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, _map: A) -> Result<Self::Value, A::Error> {
                     Ok(ColorSpacePassthroughSettings {})
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaLive::Channel.DolbyVision81Settings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-dolbyvision81settings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DolbyVision81Settings {
+    }
+
+    impl ::codec::SerializeValue for DolbyVision81Settings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DolbyVision81Settings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DolbyVision81Settings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DolbyVision81Settings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DolbyVision81Settings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, _map: A) -> Result<Self::Value, A::Error> {
+                    Ok(DolbyVision81Settings {})
                 }
             }
 
@@ -4051,6 +4771,11 @@ pub mod channel {
     /// The [`AWS::MediaLive::Channel.DvbSubSourceSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-dvbsubsourcesettings.html) property type.
     #[derive(Debug, Default)]
     pub struct DvbSubSourceSettings {
+        /// Property [`OcrLanguage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-dvbsubsourcesettings.html#cfn-medialive-channel-dvbsubsourcesettings-ocrlanguage).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ocr_language: Option<::Value<String>>,
         /// Property [`Pid`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-dvbsubsourcesettings.html#cfn-medialive-channel-dvbsubsourcesettings-pid).
         ///
         /// Update type: _Mutable_.
@@ -4061,6 +4786,9 @@ pub mod channel {
     impl ::codec::SerializeValue for DvbSubSourceSettings {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref ocr_language) = self.ocr_language {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OcrLanguage", ocr_language)?;
+            }
             if let Some(ref pid) = self.pid {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Pid", pid)?;
             }
@@ -4080,10 +4808,14 @@ pub mod channel {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut ocr_language: Option<::Value<String>> = None;
                     let mut pid: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "OcrLanguage" => {
+                                ocr_language = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Pid" => {
                                 pid = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -4092,6 +4824,7 @@ pub mod channel {
                     }
 
                     Ok(DvbSubSourceSettings {
+                        ocr_language: ocr_language,
                         pid: pid,
                     })
                 }
@@ -4146,6 +4879,137 @@ pub mod channel {
 
                     Ok(DvbTdtSettings {
                         rep_interval: rep_interval,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaLive::Channel.Eac3AtmosSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-eac3atmossettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Eac3AtmosSettings {
+        /// Property [`Bitrate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-eac3atmossettings.html#cfn-medialive-channel-eac3atmossettings-bitrate).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub bitrate: Option<::Value<f64>>,
+        /// Property [`CodingMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-eac3atmossettings.html#cfn-medialive-channel-eac3atmossettings-codingmode).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub coding_mode: Option<::Value<String>>,
+        /// Property [`Dialnorm`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-eac3atmossettings.html#cfn-medialive-channel-eac3atmossettings-dialnorm).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub dialnorm: Option<::Value<u32>>,
+        /// Property [`DrcLine`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-eac3atmossettings.html#cfn-medialive-channel-eac3atmossettings-drcline).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub drc_line: Option<::Value<String>>,
+        /// Property [`DrcRf`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-eac3atmossettings.html#cfn-medialive-channel-eac3atmossettings-drcrf).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub drc_rf: Option<::Value<String>>,
+        /// Property [`HeightTrim`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-eac3atmossettings.html#cfn-medialive-channel-eac3atmossettings-heighttrim).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub height_trim: Option<::Value<f64>>,
+        /// Property [`SurroundTrim`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-eac3atmossettings.html#cfn-medialive-channel-eac3atmossettings-surroundtrim).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub surround_trim: Option<::Value<f64>>,
+    }
+
+    impl ::codec::SerializeValue for Eac3AtmosSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref bitrate) = self.bitrate {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Bitrate", bitrate)?;
+            }
+            if let Some(ref coding_mode) = self.coding_mode {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CodingMode", coding_mode)?;
+            }
+            if let Some(ref dialnorm) = self.dialnorm {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Dialnorm", dialnorm)?;
+            }
+            if let Some(ref drc_line) = self.drc_line {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DrcLine", drc_line)?;
+            }
+            if let Some(ref drc_rf) = self.drc_rf {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DrcRf", drc_rf)?;
+            }
+            if let Some(ref height_trim) = self.height_trim {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HeightTrim", height_trim)?;
+            }
+            if let Some(ref surround_trim) = self.surround_trim {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SurroundTrim", surround_trim)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Eac3AtmosSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Eac3AtmosSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Eac3AtmosSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Eac3AtmosSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut bitrate: Option<::Value<f64>> = None;
+                    let mut coding_mode: Option<::Value<String>> = None;
+                    let mut dialnorm: Option<::Value<u32>> = None;
+                    let mut drc_line: Option<::Value<String>> = None;
+                    let mut drc_rf: Option<::Value<String>> = None;
+                    let mut height_trim: Option<::Value<f64>> = None;
+                    let mut surround_trim: Option<::Value<f64>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Bitrate" => {
+                                bitrate = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CodingMode" => {
+                                coding_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Dialnorm" => {
+                                dialnorm = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DrcLine" => {
+                                drc_line = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DrcRf" => {
+                                drc_rf = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HeightTrim" => {
+                                height_trim = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SurroundTrim" => {
+                                surround_trim = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Eac3AtmosSettings {
+                        bitrate: bitrate,
+                        coding_mode: coding_mode,
+                        dialnorm: dialnorm,
+                        drc_line: drc_line,
+                        drc_rf: drc_rf,
+                        height_trim: height_trim,
+                        surround_trim: surround_trim,
                     })
                 }
             }
@@ -4730,6 +5594,11 @@ pub mod channel {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub caption_descriptions: Option<::ValueList<CaptionDescription>>,
+        /// Property [`ColorCorrectionSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-encodersettings.html#cfn-medialive-channel-encodersettings-colorcorrectionsettings).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub color_correction_settings: Option<::Value<ColorCorrectionSettings>>,
         /// Property [`FeatureActivations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-encodersettings.html#cfn-medialive-channel-encodersettings-featureactivations).
         ///
         /// Update type: _Mutable_.
@@ -4755,6 +5624,11 @@ pub mod channel {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub output_groups: Option<::ValueList<OutputGroup>>,
+        /// Property [`ThumbnailConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-encodersettings.html#cfn-medialive-channel-encodersettings-thumbnailconfiguration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub thumbnail_configuration: Option<::Value<ThumbnailConfiguration>>,
         /// Property [`TimecodeConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-encodersettings.html#cfn-medialive-channel-encodersettings-timecodeconfig).
         ///
         /// Update type: _Mutable_.
@@ -4785,6 +5659,9 @@ pub mod channel {
             if let Some(ref caption_descriptions) = self.caption_descriptions {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "CaptionDescriptions", caption_descriptions)?;
             }
+            if let Some(ref color_correction_settings) = self.color_correction_settings {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ColorCorrectionSettings", color_correction_settings)?;
+            }
             if let Some(ref feature_activations) = self.feature_activations {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "FeatureActivations", feature_activations)?;
             }
@@ -4799,6 +5676,9 @@ pub mod channel {
             }
             if let Some(ref output_groups) = self.output_groups {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutputGroups", output_groups)?;
+            }
+            if let Some(ref thumbnail_configuration) = self.thumbnail_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThumbnailConfiguration", thumbnail_configuration)?;
             }
             if let Some(ref timecode_config) = self.timecode_config {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimecodeConfig", timecode_config)?;
@@ -4827,11 +5707,13 @@ pub mod channel {
                     let mut avail_configuration: Option<::Value<AvailConfiguration>> = None;
                     let mut blackout_slate: Option<::Value<BlackoutSlate>> = None;
                     let mut caption_descriptions: Option<::ValueList<CaptionDescription>> = None;
+                    let mut color_correction_settings: Option<::Value<ColorCorrectionSettings>> = None;
                     let mut feature_activations: Option<::Value<FeatureActivations>> = None;
                     let mut global_configuration: Option<::Value<GlobalConfiguration>> = None;
                     let mut motion_graphics_configuration: Option<::Value<MotionGraphicsConfiguration>> = None;
                     let mut nielsen_configuration: Option<::Value<NielsenConfiguration>> = None;
                     let mut output_groups: Option<::ValueList<OutputGroup>> = None;
+                    let mut thumbnail_configuration: Option<::Value<ThumbnailConfiguration>> = None;
                     let mut timecode_config: Option<::Value<TimecodeConfig>> = None;
                     let mut video_descriptions: Option<::ValueList<VideoDescription>> = None;
 
@@ -4852,6 +5734,9 @@ pub mod channel {
                             "CaptionDescriptions" => {
                                 caption_descriptions = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "ColorCorrectionSettings" => {
+                                color_correction_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "FeatureActivations" => {
                                 feature_activations = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -4866,6 +5751,9 @@ pub mod channel {
                             }
                             "OutputGroups" => {
                                 output_groups = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ThumbnailConfiguration" => {
+                                thumbnail_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "TimecodeConfig" => {
                                 timecode_config = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -4883,13 +5771,199 @@ pub mod channel {
                         avail_configuration: avail_configuration,
                         blackout_slate: blackout_slate,
                         caption_descriptions: caption_descriptions,
+                        color_correction_settings: color_correction_settings,
                         feature_activations: feature_activations,
                         global_configuration: global_configuration,
                         motion_graphics_configuration: motion_graphics_configuration,
                         nielsen_configuration: nielsen_configuration,
                         output_groups: output_groups,
+                        thumbnail_configuration: thumbnail_configuration,
                         timecode_config: timecode_config,
                         video_descriptions: video_descriptions,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaLive::Channel.EpochLockingSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-epochlockingsettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct EpochLockingSettings {
+        /// Property [`CustomEpoch`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-epochlockingsettings.html#cfn-medialive-channel-epochlockingsettings-customepoch).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub custom_epoch: Option<::Value<String>>,
+        /// Property [`JamSyncTime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-epochlockingsettings.html#cfn-medialive-channel-epochlockingsettings-jamsynctime).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub jam_sync_time: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for EpochLockingSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref custom_epoch) = self.custom_epoch {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomEpoch", custom_epoch)?;
+            }
+            if let Some(ref jam_sync_time) = self.jam_sync_time {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "JamSyncTime", jam_sync_time)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for EpochLockingSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<EpochLockingSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = EpochLockingSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type EpochLockingSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut custom_epoch: Option<::Value<String>> = None;
+                    let mut jam_sync_time: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CustomEpoch" => {
+                                custom_epoch = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "JamSyncTime" => {
+                                jam_sync_time = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(EpochLockingSettings {
+                        custom_epoch: custom_epoch,
+                        jam_sync_time: jam_sync_time,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaLive::Channel.Esam`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-esam.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Esam {
+        /// Property [`AcquisitionPointId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-esam.html#cfn-medialive-channel-esam-acquisitionpointid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub acquisition_point_id: Option<::Value<String>>,
+        /// Property [`AdAvailOffset`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-esam.html#cfn-medialive-channel-esam-adavailoffset).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ad_avail_offset: Option<::Value<u32>>,
+        /// Property [`PasswordParam`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-esam.html#cfn-medialive-channel-esam-passwordparam).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub password_param: Option<::Value<String>>,
+        /// Property [`PoisEndpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-esam.html#cfn-medialive-channel-esam-poisendpoint).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub pois_endpoint: Option<::Value<String>>,
+        /// Property [`Username`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-esam.html#cfn-medialive-channel-esam-username).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub username: Option<::Value<String>>,
+        /// Property [`ZoneIdentity`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-esam.html#cfn-medialive-channel-esam-zoneidentity).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub zone_identity: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for Esam {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref acquisition_point_id) = self.acquisition_point_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AcquisitionPointId", acquisition_point_id)?;
+            }
+            if let Some(ref ad_avail_offset) = self.ad_avail_offset {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AdAvailOffset", ad_avail_offset)?;
+            }
+            if let Some(ref password_param) = self.password_param {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PasswordParam", password_param)?;
+            }
+            if let Some(ref pois_endpoint) = self.pois_endpoint {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PoisEndpoint", pois_endpoint)?;
+            }
+            if let Some(ref username) = self.username {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Username", username)?;
+            }
+            if let Some(ref zone_identity) = self.zone_identity {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ZoneIdentity", zone_identity)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Esam {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Esam, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Esam;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Esam")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut acquisition_point_id: Option<::Value<String>> = None;
+                    let mut ad_avail_offset: Option<::Value<u32>> = None;
+                    let mut password_param: Option<::Value<String>> = None;
+                    let mut pois_endpoint: Option<::Value<String>> = None;
+                    let mut username: Option<::Value<String>> = None;
+                    let mut zone_identity: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AcquisitionPointId" => {
+                                acquisition_point_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "AdAvailOffset" => {
+                                ad_avail_offset = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PasswordParam" => {
+                                password_param = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PoisEndpoint" => {
+                                pois_endpoint = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Username" => {
+                                username = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ZoneIdentity" => {
+                                zone_identity = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Esam {
+                        acquisition_point_id: acquisition_point_id,
+                        ad_avail_offset: ad_avail_offset,
+                        password_param: password_param,
+                        pois_endpoint: pois_endpoint,
+                        username: username,
+                        zone_identity: zone_identity,
                     })
                 }
             }
@@ -5038,6 +6112,11 @@ pub mod channel {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub input_prepare_schedule_actions: Option<::Value<String>>,
+        /// Property [`OutputStaticImageOverlayScheduleActions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-featureactivations.html#cfn-medialive-channel-featureactivations-outputstaticimageoverlayscheduleactions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub output_static_image_overlay_schedule_actions: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for FeatureActivations {
@@ -5045,6 +6124,9 @@ pub mod channel {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             if let Some(ref input_prepare_schedule_actions) = self.input_prepare_schedule_actions {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputPrepareScheduleActions", input_prepare_schedule_actions)?;
+            }
+            if let Some(ref output_static_image_overlay_schedule_actions) = self.output_static_image_overlay_schedule_actions {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutputStaticImageOverlayScheduleActions", output_static_image_overlay_schedule_actions)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -5063,11 +6145,15 @@ pub mod channel {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut input_prepare_schedule_actions: Option<::Value<String>> = None;
+                    let mut output_static_image_overlay_schedule_actions: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "InputPrepareScheduleActions" => {
                                 input_prepare_schedule_actions = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OutputStaticImageOverlayScheduleActions" => {
+                                output_static_image_overlay_schedule_actions = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
@@ -5075,6 +6161,7 @@ pub mod channel {
 
                     Ok(FeatureActivations {
                         input_prepare_schedule_actions: input_prepare_schedule_actions,
+                        output_static_image_overlay_schedule_actions: output_static_image_overlay_schedule_actions,
                     })
                 }
             }
@@ -5511,6 +6598,11 @@ pub mod channel {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub capture_interval_units: Option<::Value<String>>,
+        /// Property [`TimecodeBurninSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-framecapturesettings.html#cfn-medialive-channel-framecapturesettings-timecodeburninsettings).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub timecode_burnin_settings: Option<::Value<TimecodeBurninSettings>>,
     }
 
     impl ::codec::SerializeValue for FrameCaptureSettings {
@@ -5521,6 +6613,9 @@ pub mod channel {
             }
             if let Some(ref capture_interval_units) = self.capture_interval_units {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "CaptureIntervalUnits", capture_interval_units)?;
+            }
+            if let Some(ref timecode_burnin_settings) = self.timecode_burnin_settings {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimecodeBurninSettings", timecode_burnin_settings)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -5540,6 +6635,7 @@ pub mod channel {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut capture_interval: Option<::Value<u32>> = None;
                     let mut capture_interval_units: Option<::Value<String>> = None;
+                    let mut timecode_burnin_settings: Option<::Value<TimecodeBurninSettings>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -5549,6 +6645,9 @@ pub mod channel {
                             "CaptureIntervalUnits" => {
                                 capture_interval_units = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "TimecodeBurninSettings" => {
+                                timecode_burnin_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
@@ -5556,6 +6655,7 @@ pub mod channel {
                     Ok(FrameCaptureSettings {
                         capture_interval: capture_interval,
                         capture_interval_units: capture_interval_units,
+                        timecode_burnin_settings: timecode_burnin_settings,
                     })
                 }
             }
@@ -5587,6 +6687,11 @@ pub mod channel {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub output_locking_mode: Option<::Value<String>>,
+        /// Property [`OutputLockingSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-globalconfiguration.html#cfn-medialive-channel-globalconfiguration-outputlockingsettings).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub output_locking_settings: Option<::Value<OutputLockingSettings>>,
         /// Property [`OutputTimingSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-globalconfiguration.html#cfn-medialive-channel-globalconfiguration-outputtimingsource).
         ///
         /// Update type: _Mutable_.
@@ -5614,6 +6719,9 @@ pub mod channel {
             if let Some(ref output_locking_mode) = self.output_locking_mode {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutputLockingMode", output_locking_mode)?;
             }
+            if let Some(ref output_locking_settings) = self.output_locking_settings {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutputLockingSettings", output_locking_settings)?;
+            }
             if let Some(ref output_timing_source) = self.output_timing_source {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutputTimingSource", output_timing_source)?;
             }
@@ -5640,6 +6748,7 @@ pub mod channel {
                     let mut input_end_action: Option<::Value<String>> = None;
                     let mut input_loss_behavior: Option<::Value<InputLossBehavior>> = None;
                     let mut output_locking_mode: Option<::Value<String>> = None;
+                    let mut output_locking_settings: Option<::Value<OutputLockingSettings>> = None;
                     let mut output_timing_source: Option<::Value<String>> = None;
                     let mut support_low_framerate_inputs: Option<::Value<String>> = None;
 
@@ -5657,6 +6766,9 @@ pub mod channel {
                             "OutputLockingMode" => {
                                 output_locking_mode = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "OutputLockingSettings" => {
+                                output_locking_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "OutputTimingSource" => {
                                 output_timing_source = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -5672,6 +6784,7 @@ pub mod channel {
                         input_end_action: input_end_action,
                         input_loss_behavior: input_loss_behavior,
                         output_locking_mode: output_locking_mode,
+                        output_locking_settings: output_locking_settings,
                         output_timing_source: output_timing_source,
                         support_low_framerate_inputs: support_low_framerate_inputs,
                     })
@@ -6017,6 +7130,11 @@ pub mod channel {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub temporal_aq: Option<::Value<String>>,
+        /// Property [`TimecodeBurninSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-h264settings.html#cfn-medialive-channel-h264settings-timecodeburninsettings).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub timecode_burnin_settings: Option<::Value<TimecodeBurninSettings>>,
         /// Property [`TimecodeInsertion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-h264settings.html#cfn-medialive-channel-h264settings-timecodeinsertion).
         ///
         /// Update type: _Mutable_.
@@ -6147,6 +7265,9 @@ pub mod channel {
             if let Some(ref temporal_aq) = self.temporal_aq {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "TemporalAq", temporal_aq)?;
             }
+            if let Some(ref timecode_burnin_settings) = self.timecode_burnin_settings {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimecodeBurninSettings", timecode_burnin_settings)?;
+            }
             if let Some(ref timecode_insertion) = self.timecode_insertion {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimecodeInsertion", timecode_insertion)?;
             }
@@ -6206,6 +7327,7 @@ pub mod channel {
                     let mut subgop_length: Option<::Value<String>> = None;
                     let mut syntax: Option<::Value<String>> = None;
                     let mut temporal_aq: Option<::Value<String>> = None;
+                    let mut timecode_burnin_settings: Option<::Value<TimecodeBurninSettings>> = None;
                     let mut timecode_insertion: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -6330,6 +7452,9 @@ pub mod channel {
                             "TemporalAq" => {
                                 temporal_aq = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "TimecodeBurninSettings" => {
+                                timecode_burnin_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "TimecodeInsertion" => {
                                 timecode_insertion = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -6378,6 +7503,7 @@ pub mod channel {
                         subgop_length: subgop_length,
                         syntax: syntax,
                         temporal_aq: temporal_aq,
+                        timecode_burnin_settings: timecode_burnin_settings,
                         timecode_insertion: timecode_insertion,
                     })
                 }
@@ -6395,6 +7521,11 @@ pub mod channel {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub color_space_passthrough_settings: Option<::Value<ColorSpacePassthroughSettings>>,
+        /// Property [`DolbyVision81Settings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-h265colorspacesettings.html#cfn-medialive-channel-h265colorspacesettings-dolbyvision81settings).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub dolby_vision81_settings: Option<::Value<DolbyVision81Settings>>,
         /// Property [`Hdr10Settings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-h265colorspacesettings.html#cfn-medialive-channel-h265colorspacesettings-hdr10settings).
         ///
         /// Update type: _Mutable_.
@@ -6417,6 +7548,9 @@ pub mod channel {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             if let Some(ref color_space_passthrough_settings) = self.color_space_passthrough_settings {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ColorSpacePassthroughSettings", color_space_passthrough_settings)?;
+            }
+            if let Some(ref dolby_vision81_settings) = self.dolby_vision81_settings {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DolbyVision81Settings", dolby_vision81_settings)?;
             }
             if let Some(ref hdr10_settings) = self.hdr10_settings {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Hdr10Settings", hdr10_settings)?;
@@ -6444,6 +7578,7 @@ pub mod channel {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut color_space_passthrough_settings: Option<::Value<ColorSpacePassthroughSettings>> = None;
+                    let mut dolby_vision81_settings: Option<::Value<DolbyVision81Settings>> = None;
                     let mut hdr10_settings: Option<::Value<Hdr10Settings>> = None;
                     let mut rec601_settings: Option<::Value<Rec601Settings>> = None;
                     let mut rec709_settings: Option<::Value<Rec709Settings>> = None;
@@ -6452,6 +7587,9 @@ pub mod channel {
                         match __cfn_key.as_ref() {
                             "ColorSpacePassthroughSettings" => {
                                 color_space_passthrough_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DolbyVision81Settings" => {
+                                dolby_vision81_settings = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Hdr10Settings" => {
                                 hdr10_settings = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -6468,6 +7606,7 @@ pub mod channel {
 
                     Ok(H265ColorSpaceSettings {
                         color_space_passthrough_settings: color_space_passthrough_settings,
+                        dolby_vision81_settings: dolby_vision81_settings,
                         hdr10_settings: hdr10_settings,
                         rec601_settings: rec601_settings,
                         rec709_settings: rec709_settings,
@@ -6675,6 +7814,11 @@ pub mod channel {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub tier: Option<::Value<String>>,
+        /// Property [`TimecodeBurninSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-h265settings.html#cfn-medialive-channel-h265settings-timecodeburninsettings).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub timecode_burnin_settings: Option<::Value<TimecodeBurninSettings>>,
         /// Property [`TimecodeInsertion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-h265settings.html#cfn-medialive-channel-h265settings-timecodeinsertion).
         ///
         /// Update type: _Mutable_.
@@ -6769,6 +7913,9 @@ pub mod channel {
             if let Some(ref tier) = self.tier {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tier", tier)?;
             }
+            if let Some(ref timecode_burnin_settings) = self.timecode_burnin_settings {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimecodeBurninSettings", timecode_burnin_settings)?;
+            }
             if let Some(ref timecode_insertion) = self.timecode_insertion {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimecodeInsertion", timecode_insertion)?;
             }
@@ -6816,6 +7963,7 @@ pub mod channel {
                     let mut scene_change_detect: Option<::Value<String>> = None;
                     let mut slices: Option<::Value<u32>> = None;
                     let mut tier: Option<::Value<String>> = None;
+                    let mut timecode_burnin_settings: Option<::Value<TimecodeBurninSettings>> = None;
                     let mut timecode_insertion: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -6904,6 +8052,9 @@ pub mod channel {
                             "Tier" => {
                                 tier = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "TimecodeBurninSettings" => {
+                                timecode_burnin_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "TimecodeInsertion" => {
                                 timecode_insertion = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -6940,6 +8091,7 @@ pub mod channel {
                         scene_change_detect: scene_change_detect,
                         slices: slices,
                         tier: tier,
+                        timecode_burnin_settings: timecode_burnin_settings,
                         timecode_insertion: timecode_insertion,
                     })
                 }
@@ -7506,6 +8658,11 @@ pub mod channel {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub program_date_time: Option<::Value<String>>,
+        /// Property [`ProgramDateTimeClock`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlsgroupsettings.html#cfn-medialive-channel-hlsgroupsettings-programdatetimeclock).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub program_date_time_clock: Option<::Value<String>>,
         /// Property [`ProgramDateTimePeriod`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlsgroupsettings.html#cfn-medialive-channel-hlsgroupsettings-programdatetimeperiod).
         ///
         /// Update type: _Mutable_.
@@ -7657,6 +8814,9 @@ pub mod channel {
             if let Some(ref program_date_time) = self.program_date_time {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProgramDateTime", program_date_time)?;
             }
+            if let Some(ref program_date_time_clock) = self.program_date_time_clock {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProgramDateTimeClock", program_date_time_clock)?;
+            }
             if let Some(ref program_date_time_period) = self.program_date_time_period {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProgramDateTimePeriod", program_date_time_period)?;
             }
@@ -7735,6 +8895,7 @@ pub mod channel {
                     let mut mode: Option<::Value<String>> = None;
                     let mut output_selection: Option<::Value<String>> = None;
                     let mut program_date_time: Option<::Value<String>> = None;
+                    let mut program_date_time_clock: Option<::Value<String>> = None;
                     let mut program_date_time_period: Option<::Value<u32>> = None;
                     let mut redundant_manifest: Option<::Value<String>> = None;
                     let mut segment_length: Option<::Value<u32>> = None;
@@ -7844,6 +9005,9 @@ pub mod channel {
                             "ProgramDateTime" => {
                                 program_date_time = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "ProgramDateTimeClock" => {
+                                program_date_time_clock = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "ProgramDateTimePeriod" => {
                                 program_date_time_period = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -7911,6 +9075,7 @@ pub mod channel {
                         mode: mode,
                         output_selection: output_selection,
                         program_date_time: program_date_time,
+                        program_date_time_clock: program_date_time_clock,
                         program_date_time_period: program_date_time_period,
                         redundant_manifest: redundant_manifest,
                         segment_length: segment_length,
@@ -7952,6 +9117,11 @@ pub mod channel {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub retry_interval: Option<::Value<u32>>,
+        /// Property [`Scte35Source`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-hlsinputsettings.html#cfn-medialive-channel-hlsinputsettings-scte35source).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub scte35_source: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for HlsInputSettings {
@@ -7968,6 +9138,9 @@ pub mod channel {
             }
             if let Some(ref retry_interval) = self.retry_interval {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "RetryInterval", retry_interval)?;
+            }
+            if let Some(ref scte35_source) = self.scte35_source {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Scte35Source", scte35_source)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -7989,6 +9162,7 @@ pub mod channel {
                     let mut buffer_segments: Option<::Value<u32>> = None;
                     let mut retries: Option<::Value<u32>> = None;
                     let mut retry_interval: Option<::Value<u32>> = None;
+                    let mut scte35_source: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -8004,6 +9178,9 @@ pub mod channel {
                             "RetryInterval" => {
                                 retry_interval = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Scte35Source" => {
+                                scte35_source = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
@@ -8013,6 +9190,7 @@ pub mod channel {
                         buffer_segments: buffer_segments,
                         retries: retries,
                         retry_interval: retry_interval,
+                        scte35_source: scte35_source,
                     })
                 }
             }
@@ -8933,6 +10111,11 @@ pub mod channel {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub network_input_settings: Option<::Value<NetworkInputSettings>>,
+        /// Property [`Scte35Pid`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-inputsettings.html#cfn-medialive-channel-inputsettings-scte35pid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub scte35_pid: Option<::Value<u32>>,
         /// Property [`Smpte2038DataPreference`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-inputsettings.html#cfn-medialive-channel-inputsettings-smpte2038datapreference).
         ///
         /// Update type: _Mutable_.
@@ -8974,6 +10157,9 @@ pub mod channel {
             if let Some(ref network_input_settings) = self.network_input_settings {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkInputSettings", network_input_settings)?;
             }
+            if let Some(ref scte35_pid) = self.scte35_pid {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Scte35Pid", scte35_pid)?;
+            }
             if let Some(ref smpte2038_data_preference) = self.smpte2038_data_preference {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Smpte2038DataPreference", smpte2038_data_preference)?;
             }
@@ -9006,6 +10192,7 @@ pub mod channel {
                     let mut filter_strength: Option<::Value<u32>> = None;
                     let mut input_filter: Option<::Value<String>> = None;
                     let mut network_input_settings: Option<::Value<NetworkInputSettings>> = None;
+                    let mut scte35_pid: Option<::Value<u32>> = None;
                     let mut smpte2038_data_preference: Option<::Value<String>> = None;
                     let mut source_end_behavior: Option<::Value<String>> = None;
                     let mut video_selector: Option<::Value<VideoSelector>> = None;
@@ -9033,6 +10220,9 @@ pub mod channel {
                             "NetworkInputSettings" => {
                                 network_input_settings = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Scte35Pid" => {
+                                scte35_pid = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Smpte2038DataPreference" => {
                                 smpte2038_data_preference = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -9054,6 +10244,7 @@ pub mod channel {
                         filter_strength: filter_strength,
                         input_filter: input_filter,
                         network_input_settings: network_input_settings,
+                        scte35_pid: scte35_pid,
                         smpte2038_data_preference: smpte2038_data_preference,
                         source_end_behavior: source_end_behavior,
                         video_selector: video_selector,
@@ -9400,6 +10591,11 @@ pub mod channel {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub scte35_pid: Option<::Value<String>>,
+        /// Property [`Scte35PrerollPullupMilliseconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-m2tssettings.html#cfn-medialive-channel-m2tssettings-scte35prerollpullupmilliseconds).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub scte35_preroll_pullup_milliseconds: Option<::Value<f64>>,
         /// Property [`SegmentationMarkers`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-m2tssettings.html#cfn-medialive-channel-m2tssettings-segmentationmarkers).
         ///
         /// Update type: _Mutable_.
@@ -9560,6 +10756,9 @@ pub mod channel {
             if let Some(ref scte35_pid) = self.scte35_pid {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Scte35Pid", scte35_pid)?;
             }
+            if let Some(ref scte35_preroll_pullup_milliseconds) = self.scte35_preroll_pullup_milliseconds {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Scte35PrerollPullupMilliseconds", scte35_preroll_pullup_milliseconds)?;
+            }
             if let Some(ref segmentation_markers) = self.segmentation_markers {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SegmentationMarkers", segmentation_markers)?;
             }
@@ -9637,6 +10836,7 @@ pub mod channel {
                     let mut scte27_pids: Option<::Value<String>> = None;
                     let mut scte35_control: Option<::Value<String>> = None;
                     let mut scte35_pid: Option<::Value<String>> = None;
+                    let mut scte35_preroll_pullup_milliseconds: Option<::Value<f64>> = None;
                     let mut segmentation_markers: Option<::Value<String>> = None;
                     let mut segmentation_style: Option<::Value<String>> = None;
                     let mut segmentation_time: Option<::Value<f64>> = None;
@@ -9767,6 +10967,9 @@ pub mod channel {
                             "Scte35Pid" => {
                                 scte35_pid = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Scte35PrerollPullupMilliseconds" => {
+                                scte35_preroll_pullup_milliseconds = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "SegmentationMarkers" => {
                                 segmentation_markers = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -9833,6 +11036,7 @@ pub mod channel {
                         scte27_pids: scte27_pids,
                         scte35_control: scte35_control,
                         scte35_pid: scte35_pid,
+                        scte35_preroll_pullup_milliseconds: scte35_preroll_pullup_milliseconds,
                         segmentation_markers: segmentation_markers,
                         segmentation_style: segmentation_style,
                         segmentation_time: segmentation_time,
@@ -9866,6 +11070,16 @@ pub mod channel {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub ecm_pid: Option<::Value<String>>,
+        /// Property [`KlvBehavior`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-m3u8settings.html#cfn-medialive-channel-m3u8settings-klvbehavior).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub klv_behavior: Option<::Value<String>>,
+        /// Property [`KlvDataPids`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-m3u8settings.html#cfn-medialive-channel-m3u8settings-klvdatapids).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub klv_data_pids: Option<::Value<String>>,
         /// Property [`NielsenId3Behavior`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-m3u8settings.html#cfn-medialive-channel-m3u8settings-nielsenid3behavior).
         ///
         /// Update type: _Mutable_.
@@ -9950,6 +11164,12 @@ pub mod channel {
             if let Some(ref ecm_pid) = self.ecm_pid {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "EcmPid", ecm_pid)?;
             }
+            if let Some(ref klv_behavior) = self.klv_behavior {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KlvBehavior", klv_behavior)?;
+            }
+            if let Some(ref klv_data_pids) = self.klv_data_pids {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KlvDataPids", klv_data_pids)?;
+            }
             if let Some(ref nielsen_id3_behavior) = self.nielsen_id3_behavior {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "NielsenId3Behavior", nielsen_id3_behavior)?;
             }
@@ -10011,6 +11231,8 @@ pub mod channel {
                     let mut audio_frames_per_pes: Option<::Value<u32>> = None;
                     let mut audio_pids: Option<::Value<String>> = None;
                     let mut ecm_pid: Option<::Value<String>> = None;
+                    let mut klv_behavior: Option<::Value<String>> = None;
+                    let mut klv_data_pids: Option<::Value<String>> = None;
                     let mut nielsen_id3_behavior: Option<::Value<String>> = None;
                     let mut pat_interval: Option<::Value<u32>> = None;
                     let mut pcr_control: Option<::Value<String>> = None;
@@ -10036,6 +11258,12 @@ pub mod channel {
                             }
                             "EcmPid" => {
                                 ecm_pid = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "KlvBehavior" => {
+                                klv_behavior = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "KlvDataPids" => {
+                                klv_data_pids = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "NielsenId3Behavior" => {
                                 nielsen_id3_behavior = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -10087,6 +11315,8 @@ pub mod channel {
                         audio_frames_per_pes: audio_frames_per_pes,
                         audio_pids: audio_pids,
                         ecm_pid: ecm_pid,
+                        klv_behavior: klv_behavior,
+                        klv_data_pids: klv_data_pids,
                         nielsen_id3_behavior: nielsen_id3_behavior,
                         pat_interval: pat_interval,
                         pcr_control: pcr_control,
@@ -10101,6 +11331,151 @@ pub mod channel {
                         timed_metadata_pid: timed_metadata_pid,
                         transport_stream_id: transport_stream_id,
                         video_pid: video_pid,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaLive::Channel.MaintenanceCreateSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-maintenancecreatesettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MaintenanceCreateSettings {
+        /// Property [`MaintenanceDay`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-maintenancecreatesettings.html#cfn-medialive-channel-maintenancecreatesettings-maintenanceday).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub maintenance_day: Option<::Value<String>>,
+        /// Property [`MaintenanceStartTime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-maintenancecreatesettings.html#cfn-medialive-channel-maintenancecreatesettings-maintenancestarttime).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub maintenance_start_time: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for MaintenanceCreateSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref maintenance_day) = self.maintenance_day {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaintenanceDay", maintenance_day)?;
+            }
+            if let Some(ref maintenance_start_time) = self.maintenance_start_time {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaintenanceStartTime", maintenance_start_time)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MaintenanceCreateSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MaintenanceCreateSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MaintenanceCreateSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MaintenanceCreateSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut maintenance_day: Option<::Value<String>> = None;
+                    let mut maintenance_start_time: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "MaintenanceDay" => {
+                                maintenance_day = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MaintenanceStartTime" => {
+                                maintenance_start_time = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MaintenanceCreateSettings {
+                        maintenance_day: maintenance_day,
+                        maintenance_start_time: maintenance_start_time,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaLive::Channel.MaintenanceUpdateSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-maintenanceupdatesettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MaintenanceUpdateSettings {
+        /// Property [`MaintenanceDay`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-maintenanceupdatesettings.html#cfn-medialive-channel-maintenanceupdatesettings-maintenanceday).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub maintenance_day: Option<::Value<String>>,
+        /// Property [`MaintenanceScheduledDate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-maintenanceupdatesettings.html#cfn-medialive-channel-maintenanceupdatesettings-maintenancescheduleddate).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub maintenance_scheduled_date: Option<::Value<String>>,
+        /// Property [`MaintenanceStartTime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-maintenanceupdatesettings.html#cfn-medialive-channel-maintenanceupdatesettings-maintenancestarttime).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub maintenance_start_time: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for MaintenanceUpdateSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref maintenance_day) = self.maintenance_day {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaintenanceDay", maintenance_day)?;
+            }
+            if let Some(ref maintenance_scheduled_date) = self.maintenance_scheduled_date {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaintenanceScheduledDate", maintenance_scheduled_date)?;
+            }
+            if let Some(ref maintenance_start_time) = self.maintenance_start_time {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaintenanceStartTime", maintenance_start_time)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MaintenanceUpdateSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MaintenanceUpdateSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MaintenanceUpdateSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MaintenanceUpdateSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut maintenance_day: Option<::Value<String>> = None;
+                    let mut maintenance_scheduled_date: Option<::Value<String>> = None;
+                    let mut maintenance_start_time: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "MaintenanceDay" => {
+                                maintenance_day = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MaintenanceScheduledDate" => {
+                                maintenance_scheduled_date = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MaintenanceStartTime" => {
+                                maintenance_start_time = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MaintenanceUpdateSettings {
+                        maintenance_day: maintenance_day,
+                        maintenance_scheduled_date: maintenance_scheduled_date,
+                        maintenance_start_time: maintenance_start_time,
                     })
                 }
             }
@@ -10576,6 +11951,11 @@ pub mod channel {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub subgop_length: Option<::Value<String>>,
+        /// Property [`TimecodeBurninSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mpeg2settings.html#cfn-medialive-channel-mpeg2settings-timecodeburninsettings).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub timecode_burnin_settings: Option<::Value<TimecodeBurninSettings>>,
         /// Property [`TimecodeInsertion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-mpeg2settings.html#cfn-medialive-channel-mpeg2settings-timecodeinsertion).
         ///
         /// Update type: _Mutable_.
@@ -10631,6 +12011,9 @@ pub mod channel {
             if let Some(ref subgop_length) = self.subgop_length {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubgopLength", subgop_length)?;
             }
+            if let Some(ref timecode_burnin_settings) = self.timecode_burnin_settings {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimecodeBurninSettings", timecode_burnin_settings)?;
+            }
             if let Some(ref timecode_insertion) = self.timecode_insertion {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimecodeInsertion", timecode_insertion)?;
             }
@@ -10665,6 +12048,7 @@ pub mod channel {
                     let mut gop_size_units: Option<::Value<String>> = None;
                     let mut scan_type: Option<::Value<String>> = None;
                     let mut subgop_length: Option<::Value<String>> = None;
+                    let mut timecode_burnin_settings: Option<::Value<TimecodeBurninSettings>> = None;
                     let mut timecode_insertion: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -10714,6 +12098,9 @@ pub mod channel {
                             "SubgopLength" => {
                                 subgop_length = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "TimecodeBurninSettings" => {
+                                timecode_burnin_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "TimecodeInsertion" => {
                                 timecode_insertion = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -10737,6 +12124,7 @@ pub mod channel {
                         gop_size_units: gop_size_units,
                         scan_type: scan_type,
                         subgop_length: subgop_length,
+                        timecode_burnin_settings: timecode_burnin_settings,
                         timecode_insertion: timecode_insertion,
                     })
                 }
@@ -11316,6 +12704,85 @@ pub mod channel {
         }
     }
 
+    /// The [`AWS::MediaLive::Channel.NielsenCBET`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-nielsencbet.html) property type.
+    #[derive(Debug, Default)]
+    pub struct NielsenCBET {
+        /// Property [`CbetCheckDigitString`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-nielsencbet.html#cfn-medialive-channel-nielsencbet-cbetcheckdigitstring).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cbet_check_digit_string: Option<::Value<String>>,
+        /// Property [`CbetStepaside`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-nielsencbet.html#cfn-medialive-channel-nielsencbet-cbetstepaside).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cbet_stepaside: Option<::Value<String>>,
+        /// Property [`Csid`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-nielsencbet.html#cfn-medialive-channel-nielsencbet-csid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub csid: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for NielsenCBET {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref cbet_check_digit_string) = self.cbet_check_digit_string {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CbetCheckDigitString", cbet_check_digit_string)?;
+            }
+            if let Some(ref cbet_stepaside) = self.cbet_stepaside {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CbetStepaside", cbet_stepaside)?;
+            }
+            if let Some(ref csid) = self.csid {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Csid", csid)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for NielsenCBET {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<NielsenCBET, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = NielsenCBET;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type NielsenCBET")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut cbet_check_digit_string: Option<::Value<String>> = None;
+                    let mut cbet_stepaside: Option<::Value<String>> = None;
+                    let mut csid: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CbetCheckDigitString" => {
+                                cbet_check_digit_string = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CbetStepaside" => {
+                                cbet_stepaside = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Csid" => {
+                                csid = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(NielsenCBET {
+                        cbet_check_digit_string: cbet_check_digit_string,
+                        cbet_stepaside: cbet_stepaside,
+                        csid: csid,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::MediaLive::Channel.NielsenConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-nielsenconfiguration.html) property type.
     #[derive(Debug, Default)]
     pub struct NielsenConfiguration {
@@ -11374,6 +12841,164 @@ pub mod channel {
                     Ok(NielsenConfiguration {
                         distributor_id: distributor_id,
                         nielsen_pcm_to_id3_tagging: nielsen_pcm_to_id3_tagging,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaLive::Channel.NielsenNaesIiNw`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-nielsennaesiinw.html) property type.
+    #[derive(Debug, Default)]
+    pub struct NielsenNaesIiNw {
+        /// Property [`CheckDigitString`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-nielsennaesiinw.html#cfn-medialive-channel-nielsennaesiinw-checkdigitstring).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub check_digit_string: Option<::Value<String>>,
+        /// Property [`Sid`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-nielsennaesiinw.html#cfn-medialive-channel-nielsennaesiinw-sid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub sid: Option<::Value<f64>>,
+        /// Property [`Timezone`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-nielsennaesiinw.html#cfn-medialive-channel-nielsennaesiinw-timezone).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub timezone: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for NielsenNaesIiNw {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref check_digit_string) = self.check_digit_string {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CheckDigitString", check_digit_string)?;
+            }
+            if let Some(ref sid) = self.sid {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Sid", sid)?;
+            }
+            if let Some(ref timezone) = self.timezone {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Timezone", timezone)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for NielsenNaesIiNw {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<NielsenNaesIiNw, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = NielsenNaesIiNw;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type NielsenNaesIiNw")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut check_digit_string: Option<::Value<String>> = None;
+                    let mut sid: Option<::Value<f64>> = None;
+                    let mut timezone: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CheckDigitString" => {
+                                check_digit_string = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Sid" => {
+                                sid = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Timezone" => {
+                                timezone = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(NielsenNaesIiNw {
+                        check_digit_string: check_digit_string,
+                        sid: sid,
+                        timezone: timezone,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaLive::Channel.NielsenWatermarksSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-nielsenwatermarkssettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct NielsenWatermarksSettings {
+        /// Property [`NielsenCbetSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-nielsenwatermarkssettings.html#cfn-medialive-channel-nielsenwatermarkssettings-nielsencbetsettings).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub nielsen_cbet_settings: Option<::Value<NielsenCBET>>,
+        /// Property [`NielsenDistributionType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-nielsenwatermarkssettings.html#cfn-medialive-channel-nielsenwatermarkssettings-nielsendistributiontype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub nielsen_distribution_type: Option<::Value<String>>,
+        /// Property [`NielsenNaesIiNwSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-nielsenwatermarkssettings.html#cfn-medialive-channel-nielsenwatermarkssettings-nielsennaesiinwsettings).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub nielsen_naes_ii_nw_settings: Option<::Value<NielsenNaesIiNw>>,
+    }
+
+    impl ::codec::SerializeValue for NielsenWatermarksSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref nielsen_cbet_settings) = self.nielsen_cbet_settings {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NielsenCbetSettings", nielsen_cbet_settings)?;
+            }
+            if let Some(ref nielsen_distribution_type) = self.nielsen_distribution_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NielsenDistributionType", nielsen_distribution_type)?;
+            }
+            if let Some(ref nielsen_naes_ii_nw_settings) = self.nielsen_naes_ii_nw_settings {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NielsenNaesIiNwSettings", nielsen_naes_ii_nw_settings)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for NielsenWatermarksSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<NielsenWatermarksSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = NielsenWatermarksSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type NielsenWatermarksSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut nielsen_cbet_settings: Option<::Value<NielsenCBET>> = None;
+                    let mut nielsen_distribution_type: Option<::Value<String>> = None;
+                    let mut nielsen_naes_ii_nw_settings: Option<::Value<NielsenNaesIiNw>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "NielsenCbetSettings" => {
+                                nielsen_cbet_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "NielsenDistributionType" => {
+                                nielsen_distribution_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "NielsenNaesIiNwSettings" => {
+                                nielsen_naes_ii_nw_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(NielsenWatermarksSettings {
+                        nielsen_cbet_settings: nielsen_cbet_settings,
+                        nielsen_distribution_type: nielsen_distribution_type,
+                        nielsen_naes_ii_nw_settings: nielsen_naes_ii_nw_settings,
                     })
                 }
             }
@@ -11947,6 +13572,72 @@ pub mod channel {
         }
     }
 
+    /// The [`AWS::MediaLive::Channel.OutputLockingSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-outputlockingsettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OutputLockingSettings {
+        /// Property [`EpochLockingSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-outputlockingsettings.html#cfn-medialive-channel-outputlockingsettings-epochlockingsettings).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub epoch_locking_settings: Option<::Value<EpochLockingSettings>>,
+        /// Property [`PipelineLockingSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-outputlockingsettings.html#cfn-medialive-channel-outputlockingsettings-pipelinelockingsettings).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub pipeline_locking_settings: Option<::Value<PipelineLockingSettings>>,
+    }
+
+    impl ::codec::SerializeValue for OutputLockingSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref epoch_locking_settings) = self.epoch_locking_settings {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EpochLockingSettings", epoch_locking_settings)?;
+            }
+            if let Some(ref pipeline_locking_settings) = self.pipeline_locking_settings {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PipelineLockingSettings", pipeline_locking_settings)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OutputLockingSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OutputLockingSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OutputLockingSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OutputLockingSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut epoch_locking_settings: Option<::Value<EpochLockingSettings>> = None;
+                    let mut pipeline_locking_settings: Option<::Value<PipelineLockingSettings>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "EpochLockingSettings" => {
+                                epoch_locking_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PipelineLockingSettings" => {
+                                pipeline_locking_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OutputLockingSettings {
+                        epoch_locking_settings: epoch_locking_settings,
+                        pipeline_locking_settings: pipeline_locking_settings,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::MediaLive::Channel.OutputSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-outputsettings.html) property type.
     #[derive(Debug, Default)]
     pub struct OutputSettings {
@@ -12116,6 +13807,38 @@ pub mod channel {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, _map: A) -> Result<Self::Value, A::Error> {
                     Ok(PassThroughSettings {})
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaLive::Channel.PipelineLockingSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-pipelinelockingsettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct PipelineLockingSettings {
+    }
+
+    impl ::codec::SerializeValue for PipelineLockingSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for PipelineLockingSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<PipelineLockingSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = PipelineLockingSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type PipelineLockingSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, _map: A) -> Result<Self::Value, A::Error> {
+                    Ok(PipelineLockingSettings {})
                 }
             }
 
@@ -12358,6 +14081,11 @@ pub mod channel {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub caption_data: Option<::Value<String>>,
+        /// Property [`IncludeFillerNalUnits`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-rtmpgroupsettings.html#cfn-medialive-channel-rtmpgroupsettings-includefillernalunits).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub include_filler_nal_units: Option<::Value<String>>,
         /// Property [`InputLossAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-rtmpgroupsettings.html#cfn-medialive-channel-rtmpgroupsettings-inputlossaction).
         ///
         /// Update type: _Mutable_.
@@ -12388,6 +14116,9 @@ pub mod channel {
             if let Some(ref caption_data) = self.caption_data {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "CaptionData", caption_data)?;
             }
+            if let Some(ref include_filler_nal_units) = self.include_filler_nal_units {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncludeFillerNalUnits", include_filler_nal_units)?;
+            }
             if let Some(ref input_loss_action) = self.input_loss_action {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputLossAction", input_loss_action)?;
             }
@@ -12415,6 +14146,7 @@ pub mod channel {
                     let mut cache_full_behavior: Option<::Value<String>> = None;
                     let mut cache_length: Option<::Value<u32>> = None;
                     let mut caption_data: Option<::Value<String>> = None;
+                    let mut include_filler_nal_units: Option<::Value<String>> = None;
                     let mut input_loss_action: Option<::Value<String>> = None;
                     let mut restart_delay: Option<::Value<u32>> = None;
 
@@ -12435,6 +14167,9 @@ pub mod channel {
                             "CaptionData" => {
                                 caption_data = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "IncludeFillerNalUnits" => {
+                                include_filler_nal_units = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "InputLossAction" => {
                                 input_loss_action = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -12451,6 +14186,7 @@ pub mod channel {
                         cache_full_behavior: cache_full_behavior,
                         cache_length: cache_length,
                         caption_data: caption_data,
+                        include_filler_nal_units: include_filler_nal_units,
                         input_loss_action: input_loss_action,
                         restart_delay: restart_delay,
                     })
@@ -12686,6 +14422,11 @@ pub mod channel {
     /// The [`AWS::MediaLive::Channel.Scte27SourceSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-scte27sourcesettings.html) property type.
     #[derive(Debug, Default)]
     pub struct Scte27SourceSettings {
+        /// Property [`OcrLanguage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-scte27sourcesettings.html#cfn-medialive-channel-scte27sourcesettings-ocrlanguage).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ocr_language: Option<::Value<String>>,
         /// Property [`Pid`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-scte27sourcesettings.html#cfn-medialive-channel-scte27sourcesettings-pid).
         ///
         /// Update type: _Mutable_.
@@ -12696,6 +14437,9 @@ pub mod channel {
     impl ::codec::SerializeValue for Scte27SourceSettings {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref ocr_language) = self.ocr_language {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OcrLanguage", ocr_language)?;
+            }
             if let Some(ref pid) = self.pid {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Pid", pid)?;
             }
@@ -12715,10 +14459,14 @@ pub mod channel {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut ocr_language: Option<::Value<String>> = None;
                     let mut pid: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "OcrLanguage" => {
+                                ocr_language = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Pid" => {
                                 pid = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -12727,6 +14475,7 @@ pub mod channel {
                     }
 
                     Ok(Scte27SourceSettings {
+                        ocr_language: ocr_language,
                         pid: pid,
                     })
                 }
@@ -13214,6 +14963,138 @@ pub mod channel {
                     Ok(TemporalFilterSettings {
                         post_filter_sharpening: post_filter_sharpening,
                         strength: strength,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaLive::Channel.ThumbnailConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-thumbnailconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ThumbnailConfiguration {
+        /// Property [`State`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-thumbnailconfiguration.html#cfn-medialive-channel-thumbnailconfiguration-state).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub state: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for ThumbnailConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref state) = self.state {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "State", state)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ThumbnailConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ThumbnailConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ThumbnailConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ThumbnailConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut state: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "State" => {
+                                state = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ThumbnailConfiguration {
+                        state: state,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaLive::Channel.TimecodeBurninSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-timecodeburninsettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TimecodeBurninSettings {
+        /// Property [`FontSize`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-timecodeburninsettings.html#cfn-medialive-channel-timecodeburninsettings-fontsize).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub font_size: Option<::Value<String>>,
+        /// Property [`Position`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-timecodeburninsettings.html#cfn-medialive-channel-timecodeburninsettings-position).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub position: Option<::Value<String>>,
+        /// Property [`Prefix`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-timecodeburninsettings.html#cfn-medialive-channel-timecodeburninsettings-prefix).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub prefix: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for TimecodeBurninSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref font_size) = self.font_size {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FontSize", font_size)?;
+            }
+            if let Some(ref position) = self.position {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Position", position)?;
+            }
+            if let Some(ref prefix) = self.prefix {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Prefix", prefix)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TimecodeBurninSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TimecodeBurninSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TimecodeBurninSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TimecodeBurninSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut font_size: Option<::Value<String>> = None;
+                    let mut position: Option<::Value<String>> = None;
+                    let mut prefix: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "FontSize" => {
+                                font_size = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Position" => {
+                                position = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Prefix" => {
+                                prefix = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TimecodeBurninSettings {
+                        font_size: font_size,
+                        position: position,
+                        prefix: prefix,
                     })
                 }
             }
@@ -14332,11 +16213,19 @@ pub mod channel {
     /// The [`AWS::MediaLive::Channel.WebvttDestinationSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-webvttdestinationsettings.html) property type.
     #[derive(Debug, Default)]
     pub struct WebvttDestinationSettings {
+        /// Property [`StyleControl`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-channel-webvttdestinationsettings.html#cfn-medialive-channel-webvttdestinationsettings-stylecontrol).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub style_control: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for WebvttDestinationSettings {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            let map = ::serde::Serializer::serialize_map(s, None)?;
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref style_control) = self.style_control {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StyleControl", style_control)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -14352,8 +16241,21 @@ pub mod channel {
                     write!(f, "a struct of type WebvttDestinationSettings")
                 }
 
-                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, _map: A) -> Result<Self::Value, A::Error> {
-                    Ok(WebvttDestinationSettings {})
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut style_control: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "StyleControl" => {
+                                style_control = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(WebvttDestinationSettings {
+                        style_control: style_control,
+                    })
                 }
             }
 
@@ -14771,6 +16673,846 @@ pub mod input_security_group {
 
                     Ok(InputWhitelistRuleCidr {
                         cidr: cidr,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod multiplex {
+    //! Property types for the `Multiplex` resource.
+
+    /// The [`AWS::MediaLive::Multiplex.MultiplexMediaConnectOutputDestinationSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplex-multiplexmediaconnectoutputdestinationsettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MultiplexMediaConnectOutputDestinationSettings {
+        /// Property [`EntitlementArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplex-multiplexmediaconnectoutputdestinationsettings.html#cfn-medialive-multiplex-multiplexmediaconnectoutputdestinationsettings-entitlementarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub entitlement_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for MultiplexMediaConnectOutputDestinationSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref entitlement_arn) = self.entitlement_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EntitlementArn", entitlement_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MultiplexMediaConnectOutputDestinationSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MultiplexMediaConnectOutputDestinationSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MultiplexMediaConnectOutputDestinationSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MultiplexMediaConnectOutputDestinationSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut entitlement_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "EntitlementArn" => {
+                                entitlement_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MultiplexMediaConnectOutputDestinationSettings {
+                        entitlement_arn: entitlement_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaLive::Multiplex.MultiplexOutputDestination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplex-multiplexoutputdestination.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MultiplexOutputDestination {
+        /// Property [`MultiplexMediaConnectOutputDestinationSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplex-multiplexoutputdestination.html#cfn-medialive-multiplex-multiplexoutputdestination-multiplexmediaconnectoutputdestinationsettings).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub multiplex_media_connect_output_destination_settings: Option<::Value<MultiplexMediaConnectOutputDestinationSettings>>,
+    }
+
+    impl ::codec::SerializeValue for MultiplexOutputDestination {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref multiplex_media_connect_output_destination_settings) = self.multiplex_media_connect_output_destination_settings {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MultiplexMediaConnectOutputDestinationSettings", multiplex_media_connect_output_destination_settings)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MultiplexOutputDestination {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MultiplexOutputDestination, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MultiplexOutputDestination;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MultiplexOutputDestination")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut multiplex_media_connect_output_destination_settings: Option<::Value<MultiplexMediaConnectOutputDestinationSettings>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "MultiplexMediaConnectOutputDestinationSettings" => {
+                                multiplex_media_connect_output_destination_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MultiplexOutputDestination {
+                        multiplex_media_connect_output_destination_settings: multiplex_media_connect_output_destination_settings,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaLive::Multiplex.MultiplexSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplex-multiplexsettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MultiplexSettings {
+        /// Property [`MaximumVideoBufferDelayMilliseconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplex-multiplexsettings.html#cfn-medialive-multiplex-multiplexsettings-maximumvideobufferdelaymilliseconds).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub maximum_video_buffer_delay_milliseconds: Option<::Value<u32>>,
+        /// Property [`TransportStreamBitrate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplex-multiplexsettings.html#cfn-medialive-multiplex-multiplexsettings-transportstreambitrate).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub transport_stream_bitrate: ::Value<u32>,
+        /// Property [`TransportStreamId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplex-multiplexsettings.html#cfn-medialive-multiplex-multiplexsettings-transportstreamid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub transport_stream_id: ::Value<u32>,
+        /// Property [`TransportStreamReservedBitrate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplex-multiplexsettings.html#cfn-medialive-multiplex-multiplexsettings-transportstreamreservedbitrate).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub transport_stream_reserved_bitrate: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for MultiplexSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref maximum_video_buffer_delay_milliseconds) = self.maximum_video_buffer_delay_milliseconds {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaximumVideoBufferDelayMilliseconds", maximum_video_buffer_delay_milliseconds)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransportStreamBitrate", &self.transport_stream_bitrate)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransportStreamId", &self.transport_stream_id)?;
+            if let Some(ref transport_stream_reserved_bitrate) = self.transport_stream_reserved_bitrate {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransportStreamReservedBitrate", transport_stream_reserved_bitrate)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MultiplexSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MultiplexSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MultiplexSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MultiplexSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut maximum_video_buffer_delay_milliseconds: Option<::Value<u32>> = None;
+                    let mut transport_stream_bitrate: Option<::Value<u32>> = None;
+                    let mut transport_stream_id: Option<::Value<u32>> = None;
+                    let mut transport_stream_reserved_bitrate: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "MaximumVideoBufferDelayMilliseconds" => {
+                                maximum_video_buffer_delay_milliseconds = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TransportStreamBitrate" => {
+                                transport_stream_bitrate = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TransportStreamId" => {
+                                transport_stream_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TransportStreamReservedBitrate" => {
+                                transport_stream_reserved_bitrate = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MultiplexSettings {
+                        maximum_video_buffer_delay_milliseconds: maximum_video_buffer_delay_milliseconds,
+                        transport_stream_bitrate: transport_stream_bitrate.ok_or(::serde::de::Error::missing_field("TransportStreamBitrate"))?,
+                        transport_stream_id: transport_stream_id.ok_or(::serde::de::Error::missing_field("TransportStreamId"))?,
+                        transport_stream_reserved_bitrate: transport_stream_reserved_bitrate,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaLive::Multiplex.Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplex-tags.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Tags {
+        /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplex-tags.html#cfn-medialive-multiplex-tags-key).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub key: Option<::Value<String>>,
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplex-tags.html#cfn-medialive-multiplex-tags-value).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub value: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for Tags {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref key) = self.key {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", key)?;
+            }
+            if let Some(ref value) = self.value {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", value)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Tags {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Tags, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Tags;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Tags")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut key: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Key" => {
+                                key = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Value" => {
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Tags {
+                        key: key,
+                        value: value,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod multiplexprogram {
+    //! Property types for the `Multiplexprogram` resource.
+
+    /// The [`AWS::MediaLive::Multiplexprogram.MultiplexProgramPacketIdentifiersMap`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MultiplexProgramPacketIdentifiersMap {
+        /// Property [`AudioPids`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap.html#cfn-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap-audiopids).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub audio_pids: Option<::ValueList<u32>>,
+        /// Property [`DvbSubPids`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap.html#cfn-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap-dvbsubpids).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub dvb_sub_pids: Option<::ValueList<u32>>,
+        /// Property [`DvbTeletextPid`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap.html#cfn-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap-dvbteletextpid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub dvb_teletext_pid: Option<::Value<u32>>,
+        /// Property [`EtvPlatformPid`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap.html#cfn-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap-etvplatformpid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub etv_platform_pid: Option<::Value<u32>>,
+        /// Property [`EtvSignalPid`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap.html#cfn-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap-etvsignalpid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub etv_signal_pid: Option<::Value<u32>>,
+        /// Property [`KlvDataPids`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap.html#cfn-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap-klvdatapids).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub klv_data_pids: Option<::ValueList<u32>>,
+        /// Property [`PcrPid`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap.html#cfn-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap-pcrpid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub pcr_pid: Option<::Value<u32>>,
+        /// Property [`PmtPid`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap.html#cfn-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap-pmtpid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub pmt_pid: Option<::Value<u32>>,
+        /// Property [`PrivateMetadataPid`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap.html#cfn-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap-privatemetadatapid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub private_metadata_pid: Option<::Value<u32>>,
+        /// Property [`Scte27Pids`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap.html#cfn-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap-scte27pids).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub scte27_pids: Option<::ValueList<u32>>,
+        /// Property [`Scte35Pid`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap.html#cfn-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap-scte35pid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub scte35_pid: Option<::Value<u32>>,
+        /// Property [`TimedMetadataPid`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap.html#cfn-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap-timedmetadatapid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub timed_metadata_pid: Option<::Value<u32>>,
+        /// Property [`VideoPid`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap.html#cfn-medialive-multiplexprogram-multiplexprogrampacketidentifiersmap-videopid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub video_pid: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for MultiplexProgramPacketIdentifiersMap {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref audio_pids) = self.audio_pids {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AudioPids", audio_pids)?;
+            }
+            if let Some(ref dvb_sub_pids) = self.dvb_sub_pids {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DvbSubPids", dvb_sub_pids)?;
+            }
+            if let Some(ref dvb_teletext_pid) = self.dvb_teletext_pid {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DvbTeletextPid", dvb_teletext_pid)?;
+            }
+            if let Some(ref etv_platform_pid) = self.etv_platform_pid {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EtvPlatformPid", etv_platform_pid)?;
+            }
+            if let Some(ref etv_signal_pid) = self.etv_signal_pid {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EtvSignalPid", etv_signal_pid)?;
+            }
+            if let Some(ref klv_data_pids) = self.klv_data_pids {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KlvDataPids", klv_data_pids)?;
+            }
+            if let Some(ref pcr_pid) = self.pcr_pid {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PcrPid", pcr_pid)?;
+            }
+            if let Some(ref pmt_pid) = self.pmt_pid {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PmtPid", pmt_pid)?;
+            }
+            if let Some(ref private_metadata_pid) = self.private_metadata_pid {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrivateMetadataPid", private_metadata_pid)?;
+            }
+            if let Some(ref scte27_pids) = self.scte27_pids {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Scte27Pids", scte27_pids)?;
+            }
+            if let Some(ref scte35_pid) = self.scte35_pid {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Scte35Pid", scte35_pid)?;
+            }
+            if let Some(ref timed_metadata_pid) = self.timed_metadata_pid {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TimedMetadataPid", timed_metadata_pid)?;
+            }
+            if let Some(ref video_pid) = self.video_pid {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VideoPid", video_pid)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MultiplexProgramPacketIdentifiersMap {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MultiplexProgramPacketIdentifiersMap, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MultiplexProgramPacketIdentifiersMap;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MultiplexProgramPacketIdentifiersMap")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut audio_pids: Option<::ValueList<u32>> = None;
+                    let mut dvb_sub_pids: Option<::ValueList<u32>> = None;
+                    let mut dvb_teletext_pid: Option<::Value<u32>> = None;
+                    let mut etv_platform_pid: Option<::Value<u32>> = None;
+                    let mut etv_signal_pid: Option<::Value<u32>> = None;
+                    let mut klv_data_pids: Option<::ValueList<u32>> = None;
+                    let mut pcr_pid: Option<::Value<u32>> = None;
+                    let mut pmt_pid: Option<::Value<u32>> = None;
+                    let mut private_metadata_pid: Option<::Value<u32>> = None;
+                    let mut scte27_pids: Option<::ValueList<u32>> = None;
+                    let mut scte35_pid: Option<::Value<u32>> = None;
+                    let mut timed_metadata_pid: Option<::Value<u32>> = None;
+                    let mut video_pid: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AudioPids" => {
+                                audio_pids = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DvbSubPids" => {
+                                dvb_sub_pids = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DvbTeletextPid" => {
+                                dvb_teletext_pid = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "EtvPlatformPid" => {
+                                etv_platform_pid = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "EtvSignalPid" => {
+                                etv_signal_pid = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "KlvDataPids" => {
+                                klv_data_pids = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PcrPid" => {
+                                pcr_pid = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PmtPid" => {
+                                pmt_pid = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PrivateMetadataPid" => {
+                                private_metadata_pid = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Scte27Pids" => {
+                                scte27_pids = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Scte35Pid" => {
+                                scte35_pid = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TimedMetadataPid" => {
+                                timed_metadata_pid = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "VideoPid" => {
+                                video_pid = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MultiplexProgramPacketIdentifiersMap {
+                        audio_pids: audio_pids,
+                        dvb_sub_pids: dvb_sub_pids,
+                        dvb_teletext_pid: dvb_teletext_pid,
+                        etv_platform_pid: etv_platform_pid,
+                        etv_signal_pid: etv_signal_pid,
+                        klv_data_pids: klv_data_pids,
+                        pcr_pid: pcr_pid,
+                        pmt_pid: pmt_pid,
+                        private_metadata_pid: private_metadata_pid,
+                        scte27_pids: scte27_pids,
+                        scte35_pid: scte35_pid,
+                        timed_metadata_pid: timed_metadata_pid,
+                        video_pid: video_pid,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaLive::Multiplexprogram.MultiplexProgramPipelineDetail`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogrampipelinedetail.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MultiplexProgramPipelineDetail {
+        /// Property [`ActiveChannelPipeline`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogrampipelinedetail.html#cfn-medialive-multiplexprogram-multiplexprogrampipelinedetail-activechannelpipeline).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub active_channel_pipeline: Option<::Value<String>>,
+        /// Property [`PipelineId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogrampipelinedetail.html#cfn-medialive-multiplexprogram-multiplexprogrampipelinedetail-pipelineid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub pipeline_id: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for MultiplexProgramPipelineDetail {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref active_channel_pipeline) = self.active_channel_pipeline {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ActiveChannelPipeline", active_channel_pipeline)?;
+            }
+            if let Some(ref pipeline_id) = self.pipeline_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PipelineId", pipeline_id)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MultiplexProgramPipelineDetail {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MultiplexProgramPipelineDetail, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MultiplexProgramPipelineDetail;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MultiplexProgramPipelineDetail")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut active_channel_pipeline: Option<::Value<String>> = None;
+                    let mut pipeline_id: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ActiveChannelPipeline" => {
+                                active_channel_pipeline = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PipelineId" => {
+                                pipeline_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MultiplexProgramPipelineDetail {
+                        active_channel_pipeline: active_channel_pipeline,
+                        pipeline_id: pipeline_id,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaLive::Multiplexprogram.MultiplexProgramServiceDescriptor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogramservicedescriptor.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MultiplexProgramServiceDescriptor {
+        /// Property [`ProviderName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogramservicedescriptor.html#cfn-medialive-multiplexprogram-multiplexprogramservicedescriptor-providername).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub provider_name: ::Value<String>,
+        /// Property [`ServiceName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogramservicedescriptor.html#cfn-medialive-multiplexprogram-multiplexprogramservicedescriptor-servicename).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub service_name: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for MultiplexProgramServiceDescriptor {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProviderName", &self.provider_name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceName", &self.service_name)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MultiplexProgramServiceDescriptor {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MultiplexProgramServiceDescriptor, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MultiplexProgramServiceDescriptor;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MultiplexProgramServiceDescriptor")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut provider_name: Option<::Value<String>> = None;
+                    let mut service_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ProviderName" => {
+                                provider_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ServiceName" => {
+                                service_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MultiplexProgramServiceDescriptor {
+                        provider_name: provider_name.ok_or(::serde::de::Error::missing_field("ProviderName"))?,
+                        service_name: service_name.ok_or(::serde::de::Error::missing_field("ServiceName"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaLive::Multiplexprogram.MultiplexProgramSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogramsettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MultiplexProgramSettings {
+        /// Property [`PreferredChannelPipeline`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogramsettings.html#cfn-medialive-multiplexprogram-multiplexprogramsettings-preferredchannelpipeline).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub preferred_channel_pipeline: Option<::Value<String>>,
+        /// Property [`ProgramNumber`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogramsettings.html#cfn-medialive-multiplexprogram-multiplexprogramsettings-programnumber).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub program_number: ::Value<u32>,
+        /// Property [`ServiceDescriptor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogramsettings.html#cfn-medialive-multiplexprogram-multiplexprogramsettings-servicedescriptor).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub service_descriptor: Option<::Value<MultiplexProgramServiceDescriptor>>,
+        /// Property [`VideoSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexprogramsettings.html#cfn-medialive-multiplexprogram-multiplexprogramsettings-videosettings).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub video_settings: Option<::Value<MultiplexVideoSettings>>,
+    }
+
+    impl ::codec::SerializeValue for MultiplexProgramSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref preferred_channel_pipeline) = self.preferred_channel_pipeline {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreferredChannelPipeline", preferred_channel_pipeline)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProgramNumber", &self.program_number)?;
+            if let Some(ref service_descriptor) = self.service_descriptor {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceDescriptor", service_descriptor)?;
+            }
+            if let Some(ref video_settings) = self.video_settings {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VideoSettings", video_settings)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MultiplexProgramSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MultiplexProgramSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MultiplexProgramSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MultiplexProgramSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut preferred_channel_pipeline: Option<::Value<String>> = None;
+                    let mut program_number: Option<::Value<u32>> = None;
+                    let mut service_descriptor: Option<::Value<MultiplexProgramServiceDescriptor>> = None;
+                    let mut video_settings: Option<::Value<MultiplexVideoSettings>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "PreferredChannelPipeline" => {
+                                preferred_channel_pipeline = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ProgramNumber" => {
+                                program_number = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ServiceDescriptor" => {
+                                service_descriptor = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "VideoSettings" => {
+                                video_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MultiplexProgramSettings {
+                        preferred_channel_pipeline: preferred_channel_pipeline,
+                        program_number: program_number.ok_or(::serde::de::Error::missing_field("ProgramNumber"))?,
+                        service_descriptor: service_descriptor,
+                        video_settings: video_settings,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaLive::Multiplexprogram.MultiplexStatmuxVideoSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexstatmuxvideosettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MultiplexStatmuxVideoSettings {
+        /// Property [`MaximumBitrate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexstatmuxvideosettings.html#cfn-medialive-multiplexprogram-multiplexstatmuxvideosettings-maximumbitrate).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub maximum_bitrate: Option<::Value<u32>>,
+        /// Property [`MinimumBitrate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexstatmuxvideosettings.html#cfn-medialive-multiplexprogram-multiplexstatmuxvideosettings-minimumbitrate).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub minimum_bitrate: Option<::Value<u32>>,
+        /// Property [`Priority`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexstatmuxvideosettings.html#cfn-medialive-multiplexprogram-multiplexstatmuxvideosettings-priority).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub priority: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for MultiplexStatmuxVideoSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref maximum_bitrate) = self.maximum_bitrate {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaximumBitrate", maximum_bitrate)?;
+            }
+            if let Some(ref minimum_bitrate) = self.minimum_bitrate {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinimumBitrate", minimum_bitrate)?;
+            }
+            if let Some(ref priority) = self.priority {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Priority", priority)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MultiplexStatmuxVideoSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MultiplexStatmuxVideoSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MultiplexStatmuxVideoSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MultiplexStatmuxVideoSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut maximum_bitrate: Option<::Value<u32>> = None;
+                    let mut minimum_bitrate: Option<::Value<u32>> = None;
+                    let mut priority: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "MaximumBitrate" => {
+                                maximum_bitrate = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MinimumBitrate" => {
+                                minimum_bitrate = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Priority" => {
+                                priority = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MultiplexStatmuxVideoSettings {
+                        maximum_bitrate: maximum_bitrate,
+                        minimum_bitrate: minimum_bitrate,
+                        priority: priority,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaLive::Multiplexprogram.MultiplexVideoSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexvideosettings.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MultiplexVideoSettings {
+        /// Property [`ConstantBitrate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexvideosettings.html#cfn-medialive-multiplexprogram-multiplexvideosettings-constantbitrate).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub constant_bitrate: Option<::Value<u32>>,
+        /// Property [`StatmuxSettings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-medialive-multiplexprogram-multiplexvideosettings.html#cfn-medialive-multiplexprogram-multiplexvideosettings-statmuxsettings).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub statmux_settings: Option<::Value<MultiplexStatmuxVideoSettings>>,
+    }
+
+    impl ::codec::SerializeValue for MultiplexVideoSettings {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref constant_bitrate) = self.constant_bitrate {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConstantBitrate", constant_bitrate)?;
+            }
+            if let Some(ref statmux_settings) = self.statmux_settings {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StatmuxSettings", statmux_settings)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MultiplexVideoSettings {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MultiplexVideoSettings, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MultiplexVideoSettings;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MultiplexVideoSettings")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut constant_bitrate: Option<::Value<u32>> = None;
+                    let mut statmux_settings: Option<::Value<MultiplexStatmuxVideoSettings>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ConstantBitrate" => {
+                                constant_bitrate = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "StatmuxSettings" => {
+                                statmux_settings = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MultiplexVideoSettings {
+                        constant_bitrate: constant_bitrate,
+                        statmux_settings: statmux_settings,
                     })
                 }
             }

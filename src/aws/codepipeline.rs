@@ -188,6 +188,11 @@ pub struct PipelineProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub name: Option<::Value<String>>,
+    /// Property [`PipelineType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-pipeline.html#cfn-codepipeline-pipeline-pipelinetype).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub pipeline_type: Option<::Value<String>>,
     /// Property [`RestartExecutionOnUpdate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-pipeline.html#cfn-codepipeline-pipeline-restartexecutiononupdate).
     ///
     /// Update type: _Mutable_.
@@ -208,6 +213,16 @@ pub struct PipelineProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`Triggers`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-pipeline.html#cfn-codepipeline-pipeline-triggers).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub triggers: Option<::ValueList<self::pipeline::PipelineTriggerDeclaration>>,
+    /// Property [`Variables`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-pipeline.html#cfn-codepipeline-pipeline-variables).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub variables: Option<::ValueList<self::pipeline::VariableDeclaration>>,
 }
 
 impl ::serde::Serialize for PipelineProperties {
@@ -225,6 +240,9 @@ impl ::serde::Serialize for PipelineProperties {
         if let Some(ref name) = self.name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
         }
+        if let Some(ref pipeline_type) = self.pipeline_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PipelineType", pipeline_type)?;
+        }
         if let Some(ref restart_execution_on_update) = self.restart_execution_on_update {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RestartExecutionOnUpdate", restart_execution_on_update)?;
         }
@@ -232,6 +250,12 @@ impl ::serde::Serialize for PipelineProperties {
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Stages", &self.stages)?;
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref triggers) = self.triggers {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Triggers", triggers)?;
+        }
+        if let Some(ref variables) = self.variables {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Variables", variables)?;
         }
         ::serde::ser::SerializeMap::end(map)
     }
@@ -253,10 +277,13 @@ impl<'de> ::serde::Deserialize<'de> for PipelineProperties {
                 let mut artifact_stores: Option<::ValueList<self::pipeline::ArtifactStoreMap>> = None;
                 let mut disable_inbound_stage_transitions: Option<::ValueList<self::pipeline::StageTransition>> = None;
                 let mut name: Option<::Value<String>> = None;
+                let mut pipeline_type: Option<::Value<String>> = None;
                 let mut restart_execution_on_update: Option<::Value<bool>> = None;
                 let mut role_arn: Option<::Value<String>> = None;
                 let mut stages: Option<::ValueList<self::pipeline::StageDeclaration>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut triggers: Option<::ValueList<self::pipeline::PipelineTriggerDeclaration>> = None;
+                let mut variables: Option<::ValueList<self::pipeline::VariableDeclaration>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -272,6 +299,9 @@ impl<'de> ::serde::Deserialize<'de> for PipelineProperties {
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "PipelineType" => {
+                            pipeline_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "RestartExecutionOnUpdate" => {
                             restart_execution_on_update = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -284,6 +314,12 @@ impl<'de> ::serde::Deserialize<'de> for PipelineProperties {
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Triggers" => {
+                            triggers = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Variables" => {
+                            variables = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
@@ -293,10 +329,13 @@ impl<'de> ::serde::Deserialize<'de> for PipelineProperties {
                     artifact_stores: artifact_stores,
                     disable_inbound_stage_transitions: disable_inbound_stage_transitions,
                     name: name,
+                    pipeline_type: pipeline_type,
                     restart_execution_on_update: restart_execution_on_update,
                     role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
                     stages: stages.ok_or(::serde::de::Error::missing_field("Stages"))?,
                     tags: tags,
+                    triggers: triggers,
+                    variables: variables,
                 })
             }
         }
@@ -489,13 +528,13 @@ pub mod custom_action_type {
     pub struct ArtifactDetails {
         /// Property [`MaximumCount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-artifactdetails.html#cfn-codepipeline-customactiontype-artifactdetails-maximumcount).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub maximum_count: ::Value<u32>,
         /// Property [`MinimumCount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-artifactdetails.html#cfn-codepipeline-customactiontype-artifactdetails-minimumcount).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub minimum_count: ::Value<u32>,
     }
 
@@ -551,38 +590,38 @@ pub mod custom_action_type {
     pub struct ConfigurationProperties {
         /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-configurationproperties.html#cfn-codepipeline-customactiontype-configurationproperties-description).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub description: Option<::Value<String>>,
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-configurationproperties.html#cfn-codepipeline-customactiontype-configurationproperties-key).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub key: ::Value<bool>,
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-configurationproperties.html#cfn-codepipeline-customactiontype-configurationproperties-name).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub name: ::Value<String>,
         /// Property [`Queryable`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-configurationproperties.html#cfn-codepipeline-customactiontype-configurationproperties-queryable).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub queryable: Option<::Value<bool>>,
         /// Property [`Required`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-configurationproperties.html#cfn-codepipeline-customactiontype-configurationproperties-required).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub required: ::Value<bool>,
         /// Property [`Secret`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-configurationproperties.html#cfn-codepipeline-customactiontype-configurationproperties-secret).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub secret: ::Value<bool>,
         /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-configurationproperties.html#cfn-codepipeline-customactiontype-configurationproperties-type).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub r#type: Option<::Value<String>>,
     }
 
@@ -674,23 +713,23 @@ pub mod custom_action_type {
     pub struct Settings {
         /// Property [`EntityUrlTemplate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-settings.html#cfn-codepipeline-customactiontype-settings-entityurltemplate).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub entity_url_template: Option<::Value<String>>,
         /// Property [`ExecutionUrlTemplate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-settings.html#cfn-codepipeline-customactiontype-settings-executionurltemplate).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub execution_url_template: Option<::Value<String>>,
         /// Property [`RevisionUrlTemplate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-settings.html#cfn-codepipeline-customactiontype-settings-revisionurltemplate).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub revision_url_template: Option<::Value<String>>,
         /// Property [`ThirdPartyConfigurationUrl`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-customactiontype-settings.html#cfn-codepipeline-customactiontype-settings-thirdpartyconfigurationurl).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub third_party_configuration_url: Option<::Value<String>>,
     }
 
@@ -1263,6 +1302,189 @@ pub mod pipeline {
         }
     }
 
+    /// The [`AWS::CodePipeline::Pipeline.GitConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-triggers-git-configuration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct GitConfiguration {
+        /// Property [`Push`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-triggers-git-configuration.html#aws-properties-codepipeline-pipeline-triggers-git-configuration-push).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub push: Option<::ValueList<GitPushFilter>>,
+        /// Property [`SourceActionName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-triggers-git-configuration.html#aws-properties-codepipeline-pipeline-triggers-git-configuration-source-action-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub source_action_name: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for GitConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref push) = self.push {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Push", push)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceActionName", &self.source_action_name)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for GitConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<GitConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = GitConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type GitConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut push: Option<::ValueList<GitPushFilter>> = None;
+                    let mut source_action_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Push" => {
+                                push = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SourceActionName" => {
+                                source_action_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(GitConfiguration {
+                        push: push,
+                        source_action_name: source_action_name.ok_or(::serde::de::Error::missing_field("SourceActionName"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CodePipeline::Pipeline.GitPushFilter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-triggers-git-push-filter.html) property type.
+    #[derive(Debug, Default)]
+    pub struct GitPushFilter {
+        /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-triggers-git-push-filter.html#aws-properties-codepipeline-pipeline-triggers-git-tag-filter-criteria).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tags: Option<::Value<GitTagFilterCriteria>>,
+    }
+
+    impl ::codec::SerializeValue for GitPushFilter {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref tags) = self.tags {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for GitPushFilter {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<GitPushFilter, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = GitPushFilter;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type GitPushFilter")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut tags: Option<::Value<GitTagFilterCriteria>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Tags" => {
+                                tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(GitPushFilter {
+                        tags: tags,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CodePipeline::Pipeline.GitTagFilterCriteria`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-triggers-git-tag-filter-criteria.html) property type.
+    #[derive(Debug, Default)]
+    pub struct GitTagFilterCriteria {
+        /// Property [`Excludes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-triggers-git-tag-filter-criteria.html#aws-properties-codepipeline-pipeline-triggers-git-tag-pattern).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub excludes: Option<::ValueList<String>>,
+        /// Property [`Includes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-triggers-git-tag-filter-criteria.html#aws-properties-codepipeline-pipeline-triggers-git-tag-pattern).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub includes: Option<::ValueList<String>>,
+    }
+
+    impl ::codec::SerializeValue for GitTagFilterCriteria {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref excludes) = self.excludes {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Excludes", excludes)?;
+            }
+            if let Some(ref includes) = self.includes {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Includes", includes)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for GitTagFilterCriteria {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<GitTagFilterCriteria, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = GitTagFilterCriteria;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type GitTagFilterCriteria")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut excludes: Option<::ValueList<String>> = None;
+                    let mut includes: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Excludes" => {
+                                excludes = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Includes" => {
+                                includes = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(GitTagFilterCriteria {
+                        excludes: excludes,
+                        includes: includes,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::CodePipeline::Pipeline.InputArtifact`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stages-actions-inputartifacts.html) property type.
     #[derive(Debug, Default)]
     pub struct InputArtifact {
@@ -1357,6 +1579,70 @@ pub mod pipeline {
 
                     Ok(OutputArtifact {
                         name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CodePipeline::Pipeline.PipelineTriggerDeclaration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-triggers.html) property type.
+    #[derive(Debug, Default)]
+    pub struct PipelineTriggerDeclaration {
+        /// Property [`GitConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-triggers.html#cfn-codepipeline-pipeline-triggers-git-configuration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub git_configuration: Option<::Value<GitConfiguration>>,
+        /// Property [`ProviderType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-triggers.html#cfn-codepipeline-pipeline-triggers-provider-type).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub provider_type: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for PipelineTriggerDeclaration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref git_configuration) = self.git_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "GitConfiguration", git_configuration)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProviderType", &self.provider_type)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for PipelineTriggerDeclaration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<PipelineTriggerDeclaration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = PipelineTriggerDeclaration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type PipelineTriggerDeclaration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut git_configuration: Option<::Value<GitConfiguration>> = None;
+                    let mut provider_type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "GitConfiguration" => {
+                                git_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ProviderType" => {
+                                provider_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(PipelineTriggerDeclaration {
+                        git_configuration: git_configuration,
+                        provider_type: provider_type.ok_or(::serde::de::Error::missing_field("ProviderType"))?,
                     })
                 }
             }
@@ -1494,6 +1780,83 @@ pub mod pipeline {
                     Ok(StageTransition {
                         reason: reason.ok_or(::serde::de::Error::missing_field("Reason"))?,
                         stage_name: stage_name.ok_or(::serde::de::Error::missing_field("StageName"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::CodePipeline::Pipeline.VariableDeclaration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-variables.html) property type.
+    #[derive(Debug, Default)]
+    pub struct VariableDeclaration {
+        /// Property [`DefaultValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-variables.html#cfn-codepipeline-pipeline-variables-value).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub default_value: Option<::Value<String>>,
+        /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-variables.html#cfn-codepipeline-pipeline-variables-description).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub description: Option<::Value<String>>,
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-variables.html#cfn-codepipeline-pipeline-variables-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for VariableDeclaration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref default_value) = self.default_value {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultValue", default_value)?;
+            }
+            if let Some(ref description) = self.description {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for VariableDeclaration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<VariableDeclaration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = VariableDeclaration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type VariableDeclaration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut default_value: Option<::Value<String>> = None;
+                    let mut description: Option<::Value<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DefaultValue" => {
+                                default_value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Description" => {
+                                description = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(VariableDeclaration {
+                        default_value: default_value,
+                        description: description,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     })
                 }
             }
