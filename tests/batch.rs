@@ -46,7 +46,9 @@ fn managed_ec2_batch_environment() {
     assert_eq!(&2000, container_props.memory.as_ref().unwrap().as_value().unwrap());
     let image_expr = container_props.image.as_expression().unwrap();
     {
-        let &Expr::Join { ref delimiter, ref values } = image_expr;
+        let &Expr::Join { ref delimiter, ref values } = image_expr else {
+            panic!("Expected Join expression");
+        };
         assert_eq!("", delimiter);
         assert_eq!(3, values.len());
         assert_eq!("137112412989.dkr.ecr.", values[0].as_value().unwrap());
