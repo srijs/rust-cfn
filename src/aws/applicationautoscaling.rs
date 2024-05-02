@@ -28,7 +28,7 @@ pub struct ScalableTargetProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub role_arn: ::Value<String>,
+    pub role_arn: Option<::Value<String>>,
     /// Property [`ScalableDimension`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-applicationautoscaling-scalabletarget.html#cfn-applicationautoscaling-scalabletarget-scalabledimension).
     ///
     /// Update type: _Immutable_.
@@ -57,7 +57,9 @@ impl ::serde::Serialize for ScalableTargetProperties {
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxCapacity", &self.max_capacity)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinCapacity", &self.min_capacity)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceId", &self.resource_id)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleARN", &self.role_arn)?;
+        if let Some(ref role_arn) = self.role_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleARN", role_arn)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScalableDimension", &self.scalable_dimension)?;
         if let Some(ref scheduled_actions) = self.scheduled_actions {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScheduledActions", scheduled_actions)?;
@@ -125,7 +127,7 @@ impl<'de> ::serde::Deserialize<'de> for ScalableTargetProperties {
                     max_capacity: max_capacity.ok_or(::serde::de::Error::missing_field("MaxCapacity"))?,
                     min_capacity: min_capacity.ok_or(::serde::de::Error::missing_field("MinCapacity"))?,
                     resource_id: resource_id.ok_or(::serde::de::Error::missing_field("ResourceId"))?,
-                    role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleARN"))?,
+                    role_arn: role_arn,
                     scalable_dimension: scalable_dimension.ok_or(::serde::de::Error::missing_field("ScalableDimension"))?,
                     scheduled_actions: scheduled_actions,
                     service_namespace: service_namespace.ok_or(::serde::de::Error::missing_field("ServiceNamespace"))?,
@@ -600,17 +602,22 @@ pub mod scaling_policy {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub metric_name: ::Value<String>,
+        pub metric_name: Option<::Value<String>>,
+        /// Property [`Metrics`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-customizedmetricspecification.html#cfn-applicationautoscaling-scalingpolicy-customizedmetricspecification-metrics).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub metrics: Option<::ValueList<TargetTrackingMetricDataQuery>>,
         /// Property [`Namespace`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-customizedmetricspecification.html#cfn-applicationautoscaling-scalingpolicy-customizedmetricspecification-namespace).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub namespace: ::Value<String>,
+        pub namespace: Option<::Value<String>>,
         /// Property [`Statistic`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-customizedmetricspecification.html#cfn-applicationautoscaling-scalingpolicy-customizedmetricspecification-statistic).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub statistic: ::Value<String>,
+        pub statistic: Option<::Value<String>>,
         /// Property [`Unit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-customizedmetricspecification.html#cfn-applicationautoscaling-scalingpolicy-customizedmetricspecification-unit).
         ///
         /// Update type: _Mutable_.
@@ -624,9 +631,18 @@ pub mod scaling_policy {
             if let Some(ref dimensions) = self.dimensions {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Dimensions", dimensions)?;
             }
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricName", &self.metric_name)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Namespace", &self.namespace)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Statistic", &self.statistic)?;
+            if let Some(ref metric_name) = self.metric_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricName", metric_name)?;
+            }
+            if let Some(ref metrics) = self.metrics {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Metrics", metrics)?;
+            }
+            if let Some(ref namespace) = self.namespace {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Namespace", namespace)?;
+            }
+            if let Some(ref statistic) = self.statistic {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Statistic", statistic)?;
+            }
             if let Some(ref unit) = self.unit {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Unit", unit)?;
             }
@@ -648,6 +664,7 @@ pub mod scaling_policy {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut dimensions: Option<::ValueList<MetricDimension>> = None;
                     let mut metric_name: Option<::Value<String>> = None;
+                    let mut metrics: Option<::ValueList<TargetTrackingMetricDataQuery>> = None;
                     let mut namespace: Option<::Value<String>> = None;
                     let mut statistic: Option<::Value<String>> = None;
                     let mut unit: Option<::Value<String>> = None;
@@ -659,6 +676,9 @@ pub mod scaling_policy {
                             }
                             "MetricName" => {
                                 metric_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Metrics" => {
+                                metrics = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Namespace" => {
                                 namespace = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -675,9 +695,10 @@ pub mod scaling_policy {
 
                     Ok(CustomizedMetricSpecification {
                         dimensions: dimensions,
-                        metric_name: metric_name.ok_or(::serde::de::Error::missing_field("MetricName"))?,
-                        namespace: namespace.ok_or(::serde::de::Error::missing_field("Namespace"))?,
-                        statistic: statistic.ok_or(::serde::de::Error::missing_field("Statistic"))?,
+                        metric_name: metric_name,
+                        metrics: metrics,
+                        namespace: namespace,
+                        statistic: statistic,
                         unit: unit,
                     })
                 }
@@ -813,20 +834,20 @@ pub mod scaling_policy {
         }
     }
 
-    /// The [`AWS::ApplicationAutoScaling::ScalingPolicy.StepAdjustment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration-stepadjustment.html) property type.
+    /// The [`AWS::ApplicationAutoScaling::ScalingPolicy.StepAdjustment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepadjustment.html) property type.
     #[derive(Debug, Default)]
     pub struct StepAdjustment {
-        /// Property [`MetricIntervalLowerBound`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration-stepadjustment.html#cfn-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration-stepadjustment-metricintervallowerbound).
+        /// Property [`MetricIntervalLowerBound`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepadjustment.html#cfn-applicationautoscaling-scalingpolicy-stepadjustment-metricintervallowerbound).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub metric_interval_lower_bound: Option<::Value<f64>>,
-        /// Property [`MetricIntervalUpperBound`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration-stepadjustment.html#cfn-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration-stepadjustment-metricintervalupperbound).
+        /// Property [`MetricIntervalUpperBound`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepadjustment.html#cfn-applicationautoscaling-scalingpolicy-stepadjustment-metricintervalupperbound).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub metric_interval_upper_bound: Option<::Value<f64>>,
-        /// Property [`ScalingAdjustment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration-stepadjustment.html#cfn-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration-stepadjustment-scalingadjustment).
+        /// Property [`ScalingAdjustment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepadjustment.html#cfn-applicationautoscaling-scalingpolicy-stepadjustment-scalingadjustment).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -987,6 +1008,335 @@ pub mod scaling_policy {
                         metric_aggregation_type: metric_aggregation_type,
                         min_adjustment_magnitude: min_adjustment_magnitude,
                         step_adjustments: step_adjustments,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ApplicationAutoScaling::ScalingPolicy.TargetTrackingMetric`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetric.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TargetTrackingMetric {
+        /// Property [`Dimensions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetric.html#cfn-applicationautoscaling-scalingpolicy-targettrackingmetric-dimensions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub dimensions: Option<::ValueList<TargetTrackingMetricDimension>>,
+        /// Property [`MetricName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetric.html#cfn-applicationautoscaling-scalingpolicy-targettrackingmetric-metricname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub metric_name: Option<::Value<String>>,
+        /// Property [`Namespace`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetric.html#cfn-applicationautoscaling-scalingpolicy-targettrackingmetric-namespace).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub namespace: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for TargetTrackingMetric {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref dimensions) = self.dimensions {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Dimensions", dimensions)?;
+            }
+            if let Some(ref metric_name) = self.metric_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricName", metric_name)?;
+            }
+            if let Some(ref namespace) = self.namespace {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Namespace", namespace)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TargetTrackingMetric {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TargetTrackingMetric, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TargetTrackingMetric;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TargetTrackingMetric")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut dimensions: Option<::ValueList<TargetTrackingMetricDimension>> = None;
+                    let mut metric_name: Option<::Value<String>> = None;
+                    let mut namespace: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Dimensions" => {
+                                dimensions = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MetricName" => {
+                                metric_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Namespace" => {
+                                namespace = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TargetTrackingMetric {
+                        dimensions: dimensions,
+                        metric_name: metric_name,
+                        namespace: namespace,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ApplicationAutoScaling::ScalingPolicy.TargetTrackingMetricDataQuery`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetricdataquery.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TargetTrackingMetricDataQuery {
+        /// Property [`Expression`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetricdataquery.html#cfn-applicationautoscaling-scalingpolicy-targettrackingmetricdataquery-expression).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub expression: Option<::Value<String>>,
+        /// Property [`Id`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetricdataquery.html#cfn-applicationautoscaling-scalingpolicy-targettrackingmetricdataquery-id).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub id: Option<::Value<String>>,
+        /// Property [`Label`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetricdataquery.html#cfn-applicationautoscaling-scalingpolicy-targettrackingmetricdataquery-label).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub label: Option<::Value<String>>,
+        /// Property [`MetricStat`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetricdataquery.html#cfn-applicationautoscaling-scalingpolicy-targettrackingmetricdataquery-metricstat).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub metric_stat: Option<::Value<TargetTrackingMetricStat>>,
+        /// Property [`ReturnData`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetricdataquery.html#cfn-applicationautoscaling-scalingpolicy-targettrackingmetricdataquery-returndata).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub return_data: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for TargetTrackingMetricDataQuery {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref expression) = self.expression {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Expression", expression)?;
+            }
+            if let Some(ref id) = self.id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Id", id)?;
+            }
+            if let Some(ref label) = self.label {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Label", label)?;
+            }
+            if let Some(ref metric_stat) = self.metric_stat {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MetricStat", metric_stat)?;
+            }
+            if let Some(ref return_data) = self.return_data {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReturnData", return_data)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TargetTrackingMetricDataQuery {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TargetTrackingMetricDataQuery, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TargetTrackingMetricDataQuery;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TargetTrackingMetricDataQuery")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut expression: Option<::Value<String>> = None;
+                    let mut id: Option<::Value<String>> = None;
+                    let mut label: Option<::Value<String>> = None;
+                    let mut metric_stat: Option<::Value<TargetTrackingMetricStat>> = None;
+                    let mut return_data: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Expression" => {
+                                expression = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Id" => {
+                                id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Label" => {
+                                label = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MetricStat" => {
+                                metric_stat = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ReturnData" => {
+                                return_data = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TargetTrackingMetricDataQuery {
+                        expression: expression,
+                        id: id,
+                        label: label,
+                        metric_stat: metric_stat,
+                        return_data: return_data,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ApplicationAutoScaling::ScalingPolicy.TargetTrackingMetricDimension`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetricdimension.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TargetTrackingMetricDimension {
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetricdimension.html#cfn-applicationautoscaling-scalingpolicy-targettrackingmetricdimension-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: Option<::Value<String>>,
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetricdimension.html#cfn-applicationautoscaling-scalingpolicy-targettrackingmetricdimension-value).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub value: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for TargetTrackingMetricDimension {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            if let Some(ref value) = self.value {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", value)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TargetTrackingMetricDimension {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TargetTrackingMetricDimension, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TargetTrackingMetricDimension;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TargetTrackingMetricDimension")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut name: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Value" => {
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TargetTrackingMetricDimension {
+                        name: name,
+                        value: value,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ApplicationAutoScaling::ScalingPolicy.TargetTrackingMetricStat`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetricstat.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TargetTrackingMetricStat {
+        /// Property [`Metric`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetricstat.html#cfn-applicationautoscaling-scalingpolicy-targettrackingmetricstat-metric).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub metric: Option<::Value<TargetTrackingMetric>>,
+        /// Property [`Stat`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetricstat.html#cfn-applicationautoscaling-scalingpolicy-targettrackingmetricstat-stat).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub stat: Option<::Value<String>>,
+        /// Property [`Unit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-targettrackingmetricstat.html#cfn-applicationautoscaling-scalingpolicy-targettrackingmetricstat-unit).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub unit: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for TargetTrackingMetricStat {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref metric) = self.metric {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Metric", metric)?;
+            }
+            if let Some(ref stat) = self.stat {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Stat", stat)?;
+            }
+            if let Some(ref unit) = self.unit {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Unit", unit)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TargetTrackingMetricStat {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TargetTrackingMetricStat, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TargetTrackingMetricStat;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TargetTrackingMetricStat")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut metric: Option<::Value<TargetTrackingMetric>> = None;
+                    let mut stat: Option<::Value<String>> = None;
+                    let mut unit: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Metric" => {
+                                metric = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Stat" => {
+                                stat = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Unit" => {
+                                unit = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TargetTrackingMetricStat {
+                        metric: metric,
+                        stat: stat,
+                        unit: unit,
                     })
                 }
             }

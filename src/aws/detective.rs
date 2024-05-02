@@ -9,6 +9,11 @@ pub struct Graph {
 /// Properties for the `Graph` resource.
 #[derive(Debug, Default)]
 pub struct GraphProperties {
+    /// Property [`AutoEnableMembers`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-detective-graph.html#cfn-detective-graph-autoenablemembers).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub auto_enable_members: Option<::Value<bool>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-detective-graph.html#cfn-detective-graph-tags).
     ///
     /// Update type: _Mutable_.
@@ -19,6 +24,9 @@ pub struct GraphProperties {
 impl ::serde::Serialize for GraphProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref auto_enable_members) = self.auto_enable_members {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoEnableMembers", auto_enable_members)?;
+        }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
@@ -38,10 +46,14 @@ impl<'de> ::serde::Deserialize<'de> for GraphProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut auto_enable_members: Option<::Value<bool>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "AutoEnableMembers" => {
+                            auto_enable_members = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -50,6 +62,7 @@ impl<'de> ::serde::Deserialize<'de> for GraphProperties {
                 }
 
                 Ok(GraphProperties {
+                    auto_enable_members: auto_enable_members,
                     tags: tags,
                 })
             }
@@ -199,5 +212,81 @@ impl ::private::Sealed for MemberInvitation {}
 impl From<MemberInvitationProperties> for MemberInvitation {
     fn from(properties: MemberInvitationProperties) -> MemberInvitation {
         MemberInvitation { properties }
+    }
+}
+
+/// The [`AWS::Detective::OrganizationAdmin`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-detective-organizationadmin.html) resource type.
+#[derive(Debug, Default)]
+pub struct OrganizationAdmin {
+    properties: OrganizationAdminProperties
+}
+
+/// Properties for the `OrganizationAdmin` resource.
+#[derive(Debug, Default)]
+pub struct OrganizationAdminProperties {
+    /// Property [`AccountId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-detective-organizationadmin.html#cfn-detective-organizationadmin-accountid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub account_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for OrganizationAdminProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccountId", &self.account_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for OrganizationAdminProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<OrganizationAdminProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = OrganizationAdminProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type OrganizationAdminProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut account_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AccountId" => {
+                            account_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(OrganizationAdminProperties {
+                    account_id: account_id.ok_or(::serde::de::Error::missing_field("AccountId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for OrganizationAdmin {
+    type Properties = OrganizationAdminProperties;
+    const TYPE: &'static str = "AWS::Detective::OrganizationAdmin";
+    fn properties(&self) -> &OrganizationAdminProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut OrganizationAdminProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for OrganizationAdmin {}
+
+impl From<OrganizationAdminProperties> for OrganizationAdmin {
+    fn from(properties: OrganizationAdminProperties) -> OrganizationAdmin {
+        OrganizationAdmin { properties }
     }
 }

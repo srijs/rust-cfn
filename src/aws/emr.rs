@@ -24,6 +24,11 @@ pub struct ClusterProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub auto_scaling_role: Option<::Value<String>>,
+    /// Property [`AutoTerminationPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html#cfn-elasticmapreduce-cluster-autoterminationpolicy).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub auto_termination_policy: Option<::Value<self::cluster::AutoTerminationPolicy>>,
     /// Property [`BootstrapActions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html#cfn-elasticmapreduce-cluster-bootstrapactions).
     ///
     /// Update type: _Immutable_.
@@ -39,11 +44,21 @@ pub struct ClusterProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub custom_ami_id: Option<::Value<String>>,
+    /// Property [`EbsRootVolumeIops`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html#cfn-elasticmapreduce-cluster-ebsrootvolumeiops).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub ebs_root_volume_iops: Option<::Value<u32>>,
     /// Property [`EbsRootVolumeSize`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html#cfn-elasticmapreduce-cluster-ebsrootvolumesize).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub ebs_root_volume_size: Option<::Value<u32>>,
+    /// Property [`EbsRootVolumeThroughput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html#cfn-elasticmapreduce-cluster-ebsrootvolumethroughput).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub ebs_root_volume_throughput: Option<::Value<u32>>,
     /// Property [`Instances`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html#cfn-elasticmapreduce-cluster-instances).
     ///
     /// Update type: _Conditional_.
@@ -80,6 +95,16 @@ pub struct ClusterProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub name: ::Value<String>,
+    /// Property [`OSReleaseLabel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html#cfn-elasticmapreduce-cluster-osreleaselabel).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub os_release_label: Option<::Value<String>>,
+    /// Property [`PlacementGroupConfigs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html#cfn-elasticmapreduce-cluster-placementgroupconfigs).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub placement_group_configs: Option<::ValueList<self::cluster::PlacementGroupConfig>>,
     /// Property [`ReleaseLabel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticmapreduce-cluster.html#cfn-elasticmapreduce-cluster-releaselabel).
     ///
     /// Update type: _Immutable_.
@@ -134,6 +159,9 @@ impl ::serde::Serialize for ClusterProperties {
         if let Some(ref auto_scaling_role) = self.auto_scaling_role {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoScalingRole", auto_scaling_role)?;
         }
+        if let Some(ref auto_termination_policy) = self.auto_termination_policy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoTerminationPolicy", auto_termination_policy)?;
+        }
         if let Some(ref bootstrap_actions) = self.bootstrap_actions {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BootstrapActions", bootstrap_actions)?;
         }
@@ -143,8 +171,14 @@ impl ::serde::Serialize for ClusterProperties {
         if let Some(ref custom_ami_id) = self.custom_ami_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomAmiId", custom_ami_id)?;
         }
+        if let Some(ref ebs_root_volume_iops) = self.ebs_root_volume_iops {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsRootVolumeIops", ebs_root_volume_iops)?;
+        }
         if let Some(ref ebs_root_volume_size) = self.ebs_root_volume_size {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsRootVolumeSize", ebs_root_volume_size)?;
+        }
+        if let Some(ref ebs_root_volume_throughput) = self.ebs_root_volume_throughput {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsRootVolumeThroughput", ebs_root_volume_throughput)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Instances", &self.instances)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "JobFlowRole", &self.job_flow_role)?;
@@ -161,6 +195,12 @@ impl ::serde::Serialize for ClusterProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ManagedScalingPolicy", managed_scaling_policy)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref os_release_label) = self.os_release_label {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OSReleaseLabel", os_release_label)?;
+        }
+        if let Some(ref placement_group_configs) = self.placement_group_configs {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PlacementGroupConfigs", placement_group_configs)?;
+        }
         if let Some(ref release_label) = self.release_label {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReleaseLabel", release_label)?;
         }
@@ -202,10 +242,13 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                 let mut additional_info: Option<::Value<::json::Value>> = None;
                 let mut applications: Option<::ValueList<self::cluster::Application>> = None;
                 let mut auto_scaling_role: Option<::Value<String>> = None;
+                let mut auto_termination_policy: Option<::Value<self::cluster::AutoTerminationPolicy>> = None;
                 let mut bootstrap_actions: Option<::ValueList<self::cluster::BootstrapActionConfig>> = None;
                 let mut configurations: Option<::ValueList<self::cluster::Configuration>> = None;
                 let mut custom_ami_id: Option<::Value<String>> = None;
+                let mut ebs_root_volume_iops: Option<::Value<u32>> = None;
                 let mut ebs_root_volume_size: Option<::Value<u32>> = None;
+                let mut ebs_root_volume_throughput: Option<::Value<u32>> = None;
                 let mut instances: Option<::Value<self::cluster::JobFlowInstancesConfig>> = None;
                 let mut job_flow_role: Option<::Value<String>> = None;
                 let mut kerberos_attributes: Option<::Value<self::cluster::KerberosAttributes>> = None;
@@ -213,6 +256,8 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                 let mut log_uri: Option<::Value<String>> = None;
                 let mut managed_scaling_policy: Option<::Value<self::cluster::ManagedScalingPolicy>> = None;
                 let mut name: Option<::Value<String>> = None;
+                let mut os_release_label: Option<::Value<String>> = None;
+                let mut placement_group_configs: Option<::ValueList<self::cluster::PlacementGroupConfig>> = None;
                 let mut release_label: Option<::Value<String>> = None;
                 let mut scale_down_behavior: Option<::Value<String>> = None;
                 let mut security_configuration: Option<::Value<String>> = None;
@@ -233,6 +278,9 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                         "AutoScalingRole" => {
                             auto_scaling_role = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "AutoTerminationPolicy" => {
+                            auto_termination_policy = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "BootstrapActions" => {
                             bootstrap_actions = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -242,8 +290,14 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                         "CustomAmiId" => {
                             custom_ami_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "EbsRootVolumeIops" => {
+                            ebs_root_volume_iops = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "EbsRootVolumeSize" => {
                             ebs_root_volume_size = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "EbsRootVolumeThroughput" => {
+                            ebs_root_volume_throughput = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Instances" => {
                             instances = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -265,6 +319,12 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                         }
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "OSReleaseLabel" => {
+                            os_release_label = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PlacementGroupConfigs" => {
+                            placement_group_configs = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "ReleaseLabel" => {
                             release_label = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -298,10 +358,13 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                     additional_info: additional_info,
                     applications: applications,
                     auto_scaling_role: auto_scaling_role,
+                    auto_termination_policy: auto_termination_policy,
                     bootstrap_actions: bootstrap_actions,
                     configurations: configurations,
                     custom_ami_id: custom_ami_id,
+                    ebs_root_volume_iops: ebs_root_volume_iops,
                     ebs_root_volume_size: ebs_root_volume_size,
+                    ebs_root_volume_throughput: ebs_root_volume_throughput,
                     instances: instances.ok_or(::serde::de::Error::missing_field("Instances"))?,
                     job_flow_role: job_flow_role.ok_or(::serde::de::Error::missing_field("JobFlowRole"))?,
                     kerberos_attributes: kerberos_attributes,
@@ -309,6 +372,8 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                     log_uri: log_uri,
                     managed_scaling_policy: managed_scaling_policy,
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    os_release_label: os_release_label,
+                    placement_group_configs: placement_group_configs,
                     release_label: release_label,
                     scale_down_behavior: scale_down_behavior,
                     security_configuration: security_configuration,
@@ -520,6 +585,11 @@ pub struct InstanceGroupConfigProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub configurations: Option<::ValueList<self::instance_group_config::Configuration>>,
+    /// Property [`CustomAmiId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-instancegroupconfig.html#cfn-emr-instancegroupconfig-customamiid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub custom_ami_id: Option<::Value<String>>,
     /// Property [`EbsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-instancegroupconfig.html#cfn-emr-instancegroupconfig-ebsconfiguration).
     ///
     /// Update type: _Immutable_.
@@ -569,6 +639,9 @@ impl ::serde::Serialize for InstanceGroupConfigProperties {
         if let Some(ref configurations) = self.configurations {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Configurations", configurations)?;
         }
+        if let Some(ref custom_ami_id) = self.custom_ami_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomAmiId", custom_ami_id)?;
+        }
         if let Some(ref ebs_configuration) = self.ebs_configuration {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsConfiguration", ebs_configuration)?;
         }
@@ -601,6 +674,7 @@ impl<'de> ::serde::Deserialize<'de> for InstanceGroupConfigProperties {
                 let mut auto_scaling_policy: Option<::Value<self::instance_group_config::AutoScalingPolicy>> = None;
                 let mut bid_price: Option<::Value<String>> = None;
                 let mut configurations: Option<::ValueList<self::instance_group_config::Configuration>> = None;
+                let mut custom_ami_id: Option<::Value<String>> = None;
                 let mut ebs_configuration: Option<::Value<self::instance_group_config::EbsConfiguration>> = None;
                 let mut instance_count: Option<::Value<u32>> = None;
                 let mut instance_role: Option<::Value<String>> = None;
@@ -619,6 +693,9 @@ impl<'de> ::serde::Deserialize<'de> for InstanceGroupConfigProperties {
                         }
                         "Configurations" => {
                             configurations = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "CustomAmiId" => {
+                            custom_ami_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "EbsConfiguration" => {
                             ebs_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -649,6 +726,7 @@ impl<'de> ::serde::Deserialize<'de> for InstanceGroupConfigProperties {
                     auto_scaling_policy: auto_scaling_policy,
                     bid_price: bid_price,
                     configurations: configurations,
+                    custom_ami_id: custom_ami_id,
                     ebs_configuration: ebs_configuration,
                     instance_count: instance_count.ok_or(::serde::de::Error::missing_field("InstanceCount"))?,
                     instance_role: instance_role.ok_or(::serde::de::Error::missing_field("InstanceRole"))?,
@@ -781,22 +859,22 @@ pub struct Step {
 /// Properties for the `Step` resource.
 #[derive(Debug, Default)]
 pub struct StepProperties {
-    /// Property [`ActionOnFailure`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-step.html#cfn-elasticmapreduce-step-actiononfailure).
+    /// Property [`ActionOnFailure`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-step.html#cfn-emr-step-actiononfailure).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub action_on_failure: ::Value<String>,
-    /// Property [`HadoopJarStep`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-step.html#cfn-elasticmapreduce-step-hadoopjarstep).
+    /// Property [`HadoopJarStep`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-step.html#cfn-emr-step-hadoopjarstep).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub hadoop_jar_step: ::Value<self::step::HadoopJarStepConfig>,
-    /// Property [`JobFlowId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-step.html#cfn-elasticmapreduce-step-jobflowid).
+    /// Property [`JobFlowId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-step.html#cfn-emr-step-jobflowid).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub job_flow_id: ::Value<String>,
-    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-step.html#cfn-elasticmapreduce-step-name).
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-step.html#cfn-emr-step-name).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
@@ -905,11 +983,36 @@ pub struct StudioProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub description: Option<::Value<String>>,
+    /// Property [`EncryptionKeyArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-encryptionkeyarn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub encryption_key_arn: Option<::Value<String>>,
     /// Property [`EngineSecurityGroupId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-enginesecuritygroupid).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub engine_security_group_id: ::Value<String>,
+    /// Property [`IdcInstanceArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-idcinstancearn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub idc_instance_arn: Option<::Value<String>>,
+    /// Property [`IdcUserAssignment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-idcuserassignment).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub idc_user_assignment: Option<::Value<String>>,
+    /// Property [`IdpAuthUrl`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-idpauthurl).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub idp_auth_url: Option<::Value<String>>,
+    /// Property [`IdpRelayStateParameterName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-idprelaystateparametername).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub idp_relay_state_parameter_name: Option<::Value<String>>,
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-name).
     ///
     /// Update type: _Mutable_.
@@ -930,11 +1033,16 @@ pub struct StudioProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`TrustedIdentityPropagationEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-trustedidentitypropagationenabled).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub trusted_identity_propagation_enabled: Option<::Value<bool>>,
     /// Property [`UserRole`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-userrole).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub user_role: ::Value<String>,
+    pub user_role: Option<::Value<String>>,
     /// Property [`VpcId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-studio.html#cfn-emr-studio-vpcid).
     ///
     /// Update type: _Immutable_.
@@ -955,14 +1063,34 @@ impl ::serde::Serialize for StudioProperties {
         if let Some(ref description) = self.description {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
         }
+        if let Some(ref encryption_key_arn) = self.encryption_key_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EncryptionKeyArn", encryption_key_arn)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "EngineSecurityGroupId", &self.engine_security_group_id)?;
+        if let Some(ref idc_instance_arn) = self.idc_instance_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IdcInstanceArn", idc_instance_arn)?;
+        }
+        if let Some(ref idc_user_assignment) = self.idc_user_assignment {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IdcUserAssignment", idc_user_assignment)?;
+        }
+        if let Some(ref idp_auth_url) = self.idp_auth_url {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IdpAuthUrl", idp_auth_url)?;
+        }
+        if let Some(ref idp_relay_state_parameter_name) = self.idp_relay_state_parameter_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IdpRelayStateParameterName", idp_relay_state_parameter_name)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceRole", &self.service_role)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetIds", &self.subnet_ids)?;
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserRole", &self.user_role)?;
+        if let Some(ref trusted_identity_propagation_enabled) = self.trusted_identity_propagation_enabled {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrustedIdentityPropagationEnabled", trusted_identity_propagation_enabled)?;
+        }
+        if let Some(ref user_role) = self.user_role {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserRole", user_role)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcId", &self.vpc_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "WorkspaceSecurityGroupId", &self.workspace_security_group_id)?;
         ::serde::ser::SerializeMap::end(map)
@@ -984,11 +1112,17 @@ impl<'de> ::serde::Deserialize<'de> for StudioProperties {
                 let mut auth_mode: Option<::Value<String>> = None;
                 let mut default_s3_location: Option<::Value<String>> = None;
                 let mut description: Option<::Value<String>> = None;
+                let mut encryption_key_arn: Option<::Value<String>> = None;
                 let mut engine_security_group_id: Option<::Value<String>> = None;
+                let mut idc_instance_arn: Option<::Value<String>> = None;
+                let mut idc_user_assignment: Option<::Value<String>> = None;
+                let mut idp_auth_url: Option<::Value<String>> = None;
+                let mut idp_relay_state_parameter_name: Option<::Value<String>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut service_role: Option<::Value<String>> = None;
                 let mut subnet_ids: Option<::ValueList<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut trusted_identity_propagation_enabled: Option<::Value<bool>> = None;
                 let mut user_role: Option<::Value<String>> = None;
                 let mut vpc_id: Option<::Value<String>> = None;
                 let mut workspace_security_group_id: Option<::Value<String>> = None;
@@ -1004,8 +1138,23 @@ impl<'de> ::serde::Deserialize<'de> for StudioProperties {
                         "Description" => {
                             description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "EncryptionKeyArn" => {
+                            encryption_key_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "EngineSecurityGroupId" => {
                             engine_security_group_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "IdcInstanceArn" => {
+                            idc_instance_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "IdcUserAssignment" => {
+                            idc_user_assignment = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "IdpAuthUrl" => {
+                            idp_auth_url = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "IdpRelayStateParameterName" => {
+                            idp_relay_state_parameter_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1018,6 +1167,9 @@ impl<'de> ::serde::Deserialize<'de> for StudioProperties {
                         }
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TrustedIdentityPropagationEnabled" => {
+                            trusted_identity_propagation_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "UserRole" => {
                             user_role = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1036,12 +1188,18 @@ impl<'de> ::serde::Deserialize<'de> for StudioProperties {
                     auth_mode: auth_mode.ok_or(::serde::de::Error::missing_field("AuthMode"))?,
                     default_s3_location: default_s3_location.ok_or(::serde::de::Error::missing_field("DefaultS3Location"))?,
                     description: description,
+                    encryption_key_arn: encryption_key_arn,
                     engine_security_group_id: engine_security_group_id.ok_or(::serde::de::Error::missing_field("EngineSecurityGroupId"))?,
+                    idc_instance_arn: idc_instance_arn,
+                    idc_user_assignment: idc_user_assignment,
+                    idp_auth_url: idp_auth_url,
+                    idp_relay_state_parameter_name: idp_relay_state_parameter_name,
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     service_role: service_role.ok_or(::serde::de::Error::missing_field("ServiceRole"))?,
                     subnet_ids: subnet_ids.ok_or(::serde::de::Error::missing_field("SubnetIds"))?,
                     tags: tags,
-                    user_role: user_role.ok_or(::serde::de::Error::missing_field("UserRole"))?,
+                    trusted_identity_propagation_enabled: trusted_identity_propagation_enabled,
+                    user_role: user_role,
                     vpc_id: vpc_id.ok_or(::serde::de::Error::missing_field("VpcId"))?,
                     workspace_security_group_id: workspace_security_group_id.ok_or(::serde::de::Error::missing_field("WorkspaceSecurityGroupId"))?,
                 })
@@ -1177,6 +1335,97 @@ impl ::private::Sealed for StudioSessionMapping {}
 impl From<StudioSessionMappingProperties> for StudioSessionMapping {
     fn from(properties: StudioSessionMappingProperties) -> StudioSessionMapping {
         StudioSessionMapping { properties }
+    }
+}
+
+/// The [`AWS::EMR::WALWorkspace`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-walworkspace.html) resource type.
+#[derive(Debug, Default)]
+pub struct WALWorkspace {
+    properties: WALWorkspaceProperties
+}
+
+/// Properties for the `WALWorkspace` resource.
+#[derive(Debug, Default)]
+pub struct WALWorkspaceProperties {
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-walworkspace.html#cfn-emr-walworkspace-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`WALWorkspaceName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-emr-walworkspace.html#cfn-emr-walworkspace-walworkspacename).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub wal_workspace_name: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for WALWorkspaceProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        if let Some(ref wal_workspace_name) = self.wal_workspace_name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "WALWorkspaceName", wal_workspace_name)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for WALWorkspaceProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<WALWorkspaceProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = WALWorkspaceProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type WALWorkspaceProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut wal_workspace_name: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "WALWorkspaceName" => {
+                            wal_workspace_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(WALWorkspaceProperties {
+                    tags: tags,
+                    wal_workspace_name: wal_workspace_name,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for WALWorkspace {
+    type Properties = WALWorkspaceProperties;
+    const TYPE: &'static str = "AWS::EMR::WALWorkspace";
+    fn properties(&self) -> &WALWorkspaceProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut WALWorkspaceProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for WALWorkspace {}
+
+impl From<WALWorkspaceProperties> for WALWorkspace {
+    fn from(properties: WALWorkspaceProperties) -> WALWorkspace {
+        WALWorkspace { properties }
     }
 }
 
@@ -1329,6 +1578,59 @@ pub mod cluster {
                     Ok(AutoScalingPolicy {
                         constraints: constraints.ok_or(::serde::de::Error::missing_field("Constraints"))?,
                         rules: rules.ok_or(::serde::de::Error::missing_field("Rules"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EMR::Cluster.AutoTerminationPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-autoterminationpolicy.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AutoTerminationPolicy {
+        /// Property [`IdleTimeout`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-autoterminationpolicy.html#cfn-elasticmapreduce-cluster-autoterminationpolicy-idletimeout).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub idle_timeout: Option<::Value<u64>>,
+    }
+
+    impl ::codec::SerializeValue for AutoTerminationPolicy {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref idle_timeout) = self.idle_timeout {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IdleTimeout", idle_timeout)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AutoTerminationPolicy {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AutoTerminationPolicy, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AutoTerminationPolicy;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AutoTerminationPolicy")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut idle_timeout: Option<::Value<u64>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "IdleTimeout" => {
+                                idle_timeout = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AutoTerminationPolicy {
+                        idle_timeout: idle_timeout,
                     })
                 }
             }
@@ -2135,6 +2437,11 @@ pub mod cluster {
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub configurations: Option<::ValueList<Configuration>>,
+        /// Property [`CustomAmiId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancegroupconfig.html#cfn-elasticmapreduce-cluster-instancegroupconfig-customamiid).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub custom_ami_id: Option<::Value<String>>,
         /// Property [`EbsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancegroupconfig.html#cfn-elasticmapreduce-cluster-instancegroupconfig-ebsconfiguration).
         ///
         /// Update type: _Immutable_.
@@ -2174,6 +2481,9 @@ pub mod cluster {
             if let Some(ref configurations) = self.configurations {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Configurations", configurations)?;
             }
+            if let Some(ref custom_ami_id) = self.custom_ami_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomAmiId", custom_ami_id)?;
+            }
             if let Some(ref ebs_configuration) = self.ebs_configuration {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsConfiguration", ebs_configuration)?;
             }
@@ -2204,6 +2514,7 @@ pub mod cluster {
                     let mut auto_scaling_policy: Option<::Value<AutoScalingPolicy>> = None;
                     let mut bid_price: Option<::Value<String>> = None;
                     let mut configurations: Option<::ValueList<Configuration>> = None;
+                    let mut custom_ami_id: Option<::Value<String>> = None;
                     let mut ebs_configuration: Option<::Value<EbsConfiguration>> = None;
                     let mut instance_count: Option<::Value<u32>> = None;
                     let mut instance_type: Option<::Value<String>> = None;
@@ -2220,6 +2531,9 @@ pub mod cluster {
                             }
                             "Configurations" => {
                                 configurations = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CustomAmiId" => {
+                                custom_ami_id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "EbsConfiguration" => {
                                 ebs_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -2244,6 +2558,7 @@ pub mod cluster {
                         auto_scaling_policy: auto_scaling_policy,
                         bid_price: bid_price,
                         configurations: configurations,
+                        custom_ami_id: custom_ami_id,
                         ebs_configuration: ebs_configuration,
                         instance_count: instance_count.ok_or(::serde::de::Error::missing_field("InstanceCount"))?,
                         instance_type: instance_type.ok_or(::serde::de::Error::missing_field("InstanceType"))?,
@@ -2275,6 +2590,11 @@ pub mod cluster {
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub configurations: Option<::ValueList<Configuration>>,
+        /// Property [`CustomAmiId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancetypeconfig.html#cfn-elasticmapreduce-cluster-instancetypeconfig-customamiid).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub custom_ami_id: Option<::Value<String>>,
         /// Property [`EbsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-instancetypeconfig.html#cfn-elasticmapreduce-cluster-instancetypeconfig-ebsconfiguration).
         ///
         /// Update type: _Immutable_.
@@ -2304,6 +2624,9 @@ pub mod cluster {
             if let Some(ref configurations) = self.configurations {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Configurations", configurations)?;
             }
+            if let Some(ref custom_ami_id) = self.custom_ami_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomAmiId", custom_ami_id)?;
+            }
             if let Some(ref ebs_configuration) = self.ebs_configuration {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsConfiguration", ebs_configuration)?;
             }
@@ -2330,6 +2653,7 @@ pub mod cluster {
                     let mut bid_price: Option<::Value<String>> = None;
                     let mut bid_price_as_percentage_of_on_demand_price: Option<::Value<f64>> = None;
                     let mut configurations: Option<::ValueList<Configuration>> = None;
+                    let mut custom_ami_id: Option<::Value<String>> = None;
                     let mut ebs_configuration: Option<::Value<EbsConfiguration>> = None;
                     let mut instance_type: Option<::Value<String>> = None;
                     let mut weighted_capacity: Option<::Value<u32>> = None;
@@ -2344,6 +2668,9 @@ pub mod cluster {
                             }
                             "Configurations" => {
                                 configurations = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CustomAmiId" => {
+                                custom_ami_id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "EbsConfiguration" => {
                                 ebs_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -2362,6 +2689,7 @@ pub mod cluster {
                         bid_price: bid_price,
                         bid_price_as_percentage_of_on_demand_price: bid_price_as_percentage_of_on_demand_price,
                         configurations: configurations,
+                        custom_ami_id: custom_ami_id,
                         ebs_configuration: ebs_configuration,
                         instance_type: instance_type.ok_or(::serde::de::Error::missing_field("InstanceType"))?,
                         weighted_capacity: weighted_capacity,
@@ -2451,6 +2779,18 @@ pub mod cluster {
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub service_access_security_group: Option<::Value<String>>,
+        /// Property [`TaskInstanceFleets`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-jobflowinstancesconfig.html#cfn-elasticmapreduce-cluster-jobflowinstancesconfig-taskinstancefleets).
+        ///
+        /// Update type: _Conditional_.
+        /// Conditional updates can be mutable or immutable, depending on, for example, which other properties you updated.
+        /// For more information, see the relevant resource type documentation.
+        pub task_instance_fleets: Option<::ValueList<InstanceFleetConfig>>,
+        /// Property [`TaskInstanceGroups`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-jobflowinstancesconfig.html#cfn-elasticmapreduce-cluster-jobflowinstancesconfig-taskinstancegroups).
+        ///
+        /// Update type: _Conditional_.
+        /// Conditional updates can be mutable or immutable, depending on, for example, which other properties you updated.
+        /// For more information, see the relevant resource type documentation.
+        pub task_instance_groups: Option<::ValueList<InstanceGroupConfig>>,
         /// Property [`TerminationProtected`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-jobflowinstancesconfig.html#cfn-elasticmapreduce-cluster-jobflowinstancesconfig-terminationprotected).
         ///
         /// Update type: _Mutable_.
@@ -2506,6 +2846,12 @@ pub mod cluster {
             if let Some(ref service_access_security_group) = self.service_access_security_group {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceAccessSecurityGroup", service_access_security_group)?;
             }
+            if let Some(ref task_instance_fleets) = self.task_instance_fleets {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TaskInstanceFleets", task_instance_fleets)?;
+            }
+            if let Some(ref task_instance_groups) = self.task_instance_groups {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TaskInstanceGroups", task_instance_groups)?;
+            }
             if let Some(ref termination_protected) = self.termination_protected {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "TerminationProtected", termination_protected)?;
             }
@@ -2540,6 +2886,8 @@ pub mod cluster {
                     let mut master_instance_group: Option<::Value<InstanceGroupConfig>> = None;
                     let mut placement: Option<::Value<PlacementType>> = None;
                     let mut service_access_security_group: Option<::Value<String>> = None;
+                    let mut task_instance_fleets: Option<::ValueList<InstanceFleetConfig>> = None;
+                    let mut task_instance_groups: Option<::ValueList<InstanceGroupConfig>> = None;
                     let mut termination_protected: Option<::Value<bool>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -2589,6 +2937,12 @@ pub mod cluster {
                             "ServiceAccessSecurityGroup" => {
                                 service_access_security_group = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "TaskInstanceFleets" => {
+                                task_instance_fleets = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TaskInstanceGroups" => {
+                                task_instance_groups = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "TerminationProtected" => {
                                 termination_protected = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -2612,6 +2966,8 @@ pub mod cluster {
                         master_instance_group: master_instance_group,
                         placement: placement,
                         service_access_security_group: service_access_security_group,
+                        task_instance_fleets: task_instance_fleets,
+                        task_instance_groups: task_instance_groups,
                         termination_protected: termination_protected,
                     })
                 }
@@ -2946,6 +3302,70 @@ pub mod cluster {
 
                     Ok(OnDemandProvisioningSpecification {
                         allocation_strategy: allocation_strategy.ok_or(::serde::de::Error::missing_field("AllocationStrategy"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EMR::Cluster.PlacementGroupConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-placementgroupconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct PlacementGroupConfig {
+        /// Property [`InstanceRole`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-placementgroupconfig.html#cfn-elasticmapreduce-cluster-placementgroupconfig-instancerole).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub instance_role: ::Value<String>,
+        /// Property [`PlacementStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-placementgroupconfig.html#cfn-elasticmapreduce-cluster-placementgroupconfig-placementstrategy).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub placement_strategy: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for PlacementGroupConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceRole", &self.instance_role)?;
+            if let Some(ref placement_strategy) = self.placement_strategy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PlacementStrategy", placement_strategy)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for PlacementGroupConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<PlacementGroupConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = PlacementGroupConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type PlacementGroupConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut instance_role: Option<::Value<String>> = None;
+                    let mut placement_strategy: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "InstanceRole" => {
+                                instance_role = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PlacementStrategy" => {
+                                placement_strategy = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(PlacementGroupConfig {
+                        instance_role: instance_role.ok_or(::serde::de::Error::missing_field("InstanceRole"))?,
+                        placement_strategy: placement_strategy,
                     })
                 }
             }
@@ -3585,6 +4005,11 @@ pub mod cluster {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub size_in_gb: ::Value<u32>,
+        /// Property [`Throughput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-volumespecification.html#cfn-elasticmapreduce-cluster-volumespecification-throughput).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub throughput: Option<::Value<u32>>,
         /// Property [`VolumeType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-volumespecification.html#cfn-elasticmapreduce-cluster-volumespecification-volumetype).
         ///
         /// Update type: _Mutable_.
@@ -3599,6 +4024,9 @@ pub mod cluster {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", iops)?;
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SizeInGB", &self.size_in_gb)?;
+            if let Some(ref throughput) = self.throughput {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Throughput", throughput)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeType", &self.volume_type)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -3618,6 +4046,7 @@ pub mod cluster {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut iops: Option<::Value<u32>> = None;
                     let mut size_in_gb: Option<::Value<u32>> = None;
+                    let mut throughput: Option<::Value<u32>> = None;
                     let mut volume_type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -3627,6 +4056,9 @@ pub mod cluster {
                             }
                             "SizeInGB" => {
                                 size_in_gb = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Throughput" => {
+                                throughput = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "VolumeType" => {
                                 volume_type = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -3638,6 +4070,7 @@ pub mod cluster {
                     Ok(VolumeSpecification {
                         iops: iops,
                         size_in_gb: size_in_gb.ok_or(::serde::de::Error::missing_field("SizeInGB"))?,
+                        throughput: throughput,
                         volume_type: volume_type.ok_or(::serde::de::Error::missing_field("VolumeType"))?,
                     })
                 }
@@ -3944,6 +4377,11 @@ pub mod instance_fleet_config {
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub configurations: Option<::ValueList<Configuration>>,
+        /// Property [`CustomAmiId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-instancetypeconfig.html#cfn-elasticmapreduce-instancefleetconfig-instancetypeconfig-customamiid).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub custom_ami_id: Option<::Value<String>>,
         /// Property [`EbsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-instancetypeconfig.html#cfn-elasticmapreduce-instancefleetconfig-instancetypeconfig-ebsconfiguration).
         ///
         /// Update type: _Immutable_.
@@ -3973,6 +4411,9 @@ pub mod instance_fleet_config {
             if let Some(ref configurations) = self.configurations {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Configurations", configurations)?;
             }
+            if let Some(ref custom_ami_id) = self.custom_ami_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomAmiId", custom_ami_id)?;
+            }
             if let Some(ref ebs_configuration) = self.ebs_configuration {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "EbsConfiguration", ebs_configuration)?;
             }
@@ -3999,6 +4440,7 @@ pub mod instance_fleet_config {
                     let mut bid_price: Option<::Value<String>> = None;
                     let mut bid_price_as_percentage_of_on_demand_price: Option<::Value<f64>> = None;
                     let mut configurations: Option<::ValueList<Configuration>> = None;
+                    let mut custom_ami_id: Option<::Value<String>> = None;
                     let mut ebs_configuration: Option<::Value<EbsConfiguration>> = None;
                     let mut instance_type: Option<::Value<String>> = None;
                     let mut weighted_capacity: Option<::Value<u32>> = None;
@@ -4013,6 +4455,9 @@ pub mod instance_fleet_config {
                             }
                             "Configurations" => {
                                 configurations = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CustomAmiId" => {
+                                custom_ami_id = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "EbsConfiguration" => {
                                 ebs_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -4031,6 +4476,7 @@ pub mod instance_fleet_config {
                         bid_price: bid_price,
                         bid_price_as_percentage_of_on_demand_price: bid_price_as_percentage_of_on_demand_price,
                         configurations: configurations,
+                        custom_ami_id: custom_ami_id,
                         ebs_configuration: ebs_configuration,
                         instance_type: instance_type.ok_or(::serde::de::Error::missing_field("InstanceType"))?,
                         weighted_capacity: weighted_capacity,
@@ -4194,6 +4640,11 @@ pub mod instance_fleet_config {
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub size_in_gb: ::Value<u32>,
+        /// Property [`Throughput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-volumespecification.html#cfn-elasticmapreduce-instancefleetconfig-volumespecification-throughput).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub throughput: Option<::Value<u32>>,
         /// Property [`VolumeType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-instancefleetconfig-volumespecification.html#cfn-elasticmapreduce-instancefleetconfig-volumespecification-volumetype).
         ///
         /// Update type: _Immutable_.
@@ -4208,6 +4659,9 @@ pub mod instance_fleet_config {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", iops)?;
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SizeInGB", &self.size_in_gb)?;
+            if let Some(ref throughput) = self.throughput {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Throughput", throughput)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeType", &self.volume_type)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -4227,6 +4681,7 @@ pub mod instance_fleet_config {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut iops: Option<::Value<u32>> = None;
                     let mut size_in_gb: Option<::Value<u32>> = None;
+                    let mut throughput: Option<::Value<u32>> = None;
                     let mut volume_type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -4236,6 +4691,9 @@ pub mod instance_fleet_config {
                             }
                             "SizeInGB" => {
                                 size_in_gb = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Throughput" => {
+                                throughput = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "VolumeType" => {
                                 volume_type = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -4247,6 +4705,7 @@ pub mod instance_fleet_config {
                     Ok(VolumeSpecification {
                         iops: iops,
                         size_in_gb: size_in_gb.ok_or(::serde::de::Error::missing_field("SizeInGB"))?,
+                        throughput: throughput,
                         volume_type: volume_type.ok_or(::serde::de::Error::missing_field("VolumeType"))?,
                     })
                 }
@@ -5095,6 +5554,11 @@ pub mod instance_group_config {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub size_in_gb: ::Value<u32>,
+        /// Property [`Throughput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig-volumespecification.html#cfn-emr-ebsconfiguration-ebsblockdeviceconfig-volumespecification-throughput).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub throughput: Option<::Value<u32>>,
         /// Property [`VolumeType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig-volumespecification.html#cfn-emr-ebsconfiguration-ebsblockdeviceconfig-volumespecification-volumetype).
         ///
         /// Update type: _Mutable_.
@@ -5109,6 +5573,9 @@ pub mod instance_group_config {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", iops)?;
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SizeInGB", &self.size_in_gb)?;
+            if let Some(ref throughput) = self.throughput {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Throughput", throughput)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeType", &self.volume_type)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -5128,6 +5595,7 @@ pub mod instance_group_config {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut iops: Option<::Value<u32>> = None;
                     let mut size_in_gb: Option<::Value<u32>> = None;
+                    let mut throughput: Option<::Value<u32>> = None;
                     let mut volume_type: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -5137,6 +5605,9 @@ pub mod instance_group_config {
                             }
                             "SizeInGB" => {
                                 size_in_gb = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Throughput" => {
+                                throughput = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "VolumeType" => {
                                 volume_type = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -5148,6 +5619,7 @@ pub mod instance_group_config {
                     Ok(VolumeSpecification {
                         iops: iops,
                         size_in_gb: size_in_gb.ok_or(::serde::de::Error::missing_field("SizeInGB"))?,
+                        throughput: throughput,
                         volume_type: volume_type.ok_or(::serde::de::Error::missing_field("VolumeType"))?,
                     })
                 }
@@ -5161,25 +5633,25 @@ pub mod instance_group_config {
 pub mod step {
     //! Property types for the `Step` resource.
 
-    /// The [`AWS::EMR::Step.HadoopJarStepConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-step-hadoopjarstepconfig.html) property type.
+    /// The [`AWS::EMR::Step.HadoopJarStepConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-step-hadoopjarstepconfig.html) property type.
     #[derive(Debug, Default)]
     pub struct HadoopJarStepConfig {
-        /// Property [`Args`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-step-hadoopjarstepconfig.html#cfn-elasticmapreduce-step-hadoopjarstepconfig-args).
+        /// Property [`Args`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-step-hadoopjarstepconfig.html#cfn-emr-step-hadoopjarstepconfig-args).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub args: Option<::ValueList<String>>,
-        /// Property [`Jar`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-step-hadoopjarstepconfig.html#cfn-elasticmapreduce-step-hadoopjarstepconfig-jar).
+        /// Property [`Jar`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-step-hadoopjarstepconfig.html#cfn-emr-step-hadoopjarstepconfig-jar).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub jar: ::Value<String>,
-        /// Property [`MainClass`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-step-hadoopjarstepconfig.html#cfn-elasticmapreduce-step-hadoopjarstepconfig-mainclass).
+        /// Property [`MainClass`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-step-hadoopjarstepconfig.html#cfn-emr-step-hadoopjarstepconfig-mainclass).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub main_class: Option<::Value<String>>,
-        /// Property [`StepProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-step-hadoopjarstepconfig.html#cfn-elasticmapreduce-step-hadoopjarstepconfig-stepproperties).
+        /// Property [`StepProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-step-hadoopjarstepconfig.html#cfn-emr-step-hadoopjarstepconfig-stepproperties).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
@@ -5251,15 +5723,15 @@ pub mod step {
         }
     }
 
-    /// The [`AWS::EMR::Step.KeyValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-step-keyvalue.html) property type.
+    /// The [`AWS::EMR::Step.KeyValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-step-keyvalue.html) property type.
     #[derive(Debug, Default)]
     pub struct KeyValue {
-        /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-step-keyvalue.html#cfn-elasticmapreduce-step-keyvalue-key).
+        /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-step-keyvalue.html#cfn-emr-step-keyvalue-key).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub key: Option<::Value<String>>,
-        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-step-keyvalue.html#cfn-elasticmapreduce-step-keyvalue-value).
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-step-keyvalue.html#cfn-emr-step-keyvalue-value).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.

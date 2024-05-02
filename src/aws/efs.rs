@@ -162,6 +162,11 @@ pub struct FileSystemProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub file_system_policy: Option<::Value<::json::Value>>,
+    /// Property [`FileSystemProtection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html#cfn-efs-filesystem-filesystemprotection).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub file_system_protection: Option<::Value<self::file_system::FileSystemProtection>>,
     /// Property [`FileSystemTags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html#cfn-efs-filesystem-filesystemtags).
     ///
     /// Update type: _Mutable_.
@@ -187,6 +192,11 @@ pub struct FileSystemProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub provisioned_throughput_in_mibps: Option<::Value<f64>>,
+    /// Property [`ReplicationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html#cfn-efs-filesystem-replicationconfiguration).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub replication_configuration: Option<::Value<self::file_system::ReplicationConfiguration>>,
     /// Property [`ThroughputMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html#cfn-efs-filesystem-throughputmode).
     ///
     /// Update type: _Mutable_.
@@ -212,6 +222,9 @@ impl ::serde::Serialize for FileSystemProperties {
         if let Some(ref file_system_policy) = self.file_system_policy {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "FileSystemPolicy", file_system_policy)?;
         }
+        if let Some(ref file_system_protection) = self.file_system_protection {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FileSystemProtection", file_system_protection)?;
+        }
         if let Some(ref file_system_tags) = self.file_system_tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "FileSystemTags", file_system_tags)?;
         }
@@ -226,6 +239,9 @@ impl ::serde::Serialize for FileSystemProperties {
         }
         if let Some(ref provisioned_throughput_in_mibps) = self.provisioned_throughput_in_mibps {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProvisionedThroughputInMibps", provisioned_throughput_in_mibps)?;
+        }
+        if let Some(ref replication_configuration) = self.replication_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicationConfiguration", replication_configuration)?;
         }
         if let Some(ref throughput_mode) = self.throughput_mode {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ThroughputMode", throughput_mode)?;
@@ -251,11 +267,13 @@ impl<'de> ::serde::Deserialize<'de> for FileSystemProperties {
                 let mut bypass_policy_lockout_safety_check: Option<::Value<bool>> = None;
                 let mut encrypted: Option<::Value<bool>> = None;
                 let mut file_system_policy: Option<::Value<::json::Value>> = None;
+                let mut file_system_protection: Option<::Value<self::file_system::FileSystemProtection>> = None;
                 let mut file_system_tags: Option<::ValueList<self::file_system::ElasticFileSystemTag>> = None;
                 let mut kms_key_id: Option<::Value<String>> = None;
                 let mut lifecycle_policies: Option<::ValueList<self::file_system::LifecyclePolicy>> = None;
                 let mut performance_mode: Option<::Value<String>> = None;
                 let mut provisioned_throughput_in_mibps: Option<::Value<f64>> = None;
+                let mut replication_configuration: Option<::Value<self::file_system::ReplicationConfiguration>> = None;
                 let mut throughput_mode: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -275,6 +293,9 @@ impl<'de> ::serde::Deserialize<'de> for FileSystemProperties {
                         "FileSystemPolicy" => {
                             file_system_policy = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "FileSystemProtection" => {
+                            file_system_protection = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "FileSystemTags" => {
                             file_system_tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -290,6 +311,9 @@ impl<'de> ::serde::Deserialize<'de> for FileSystemProperties {
                         "ProvisionedThroughputInMibps" => {
                             provisioned_throughput_in_mibps = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ReplicationConfiguration" => {
+                            replication_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "ThroughputMode" => {
                             throughput_mode = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -303,11 +327,13 @@ impl<'de> ::serde::Deserialize<'de> for FileSystemProperties {
                     bypass_policy_lockout_safety_check: bypass_policy_lockout_safety_check,
                     encrypted: encrypted,
                     file_system_policy: file_system_policy,
+                    file_system_protection: file_system_protection,
                     file_system_tags: file_system_tags,
                     kms_key_id: kms_key_id,
                     lifecycle_policies: lifecycle_policies,
                     performance_mode: performance_mode,
                     provisioned_throughput_in_mibps: provisioned_throughput_in_mibps,
+                    replication_configuration: replication_configuration,
                     throughput_mode: throughput_mode,
                 })
             }
@@ -847,20 +873,91 @@ pub mod file_system {
         }
     }
 
+    /// The [`AWS::EFS::FileSystem.FileSystemProtection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-filesystemprotection.html) property type.
+    #[derive(Debug, Default)]
+    pub struct FileSystemProtection {
+        /// Property [`ReplicationOverwriteProtection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-filesystemprotection.html#cfn-efs-filesystem-filesystemprotection-replicationoverwriteprotection).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub replication_overwrite_protection: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for FileSystemProtection {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref replication_overwrite_protection) = self.replication_overwrite_protection {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicationOverwriteProtection", replication_overwrite_protection)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for FileSystemProtection {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<FileSystemProtection, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = FileSystemProtection;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type FileSystemProtection")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut replication_overwrite_protection: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ReplicationOverwriteProtection" => {
+                                replication_overwrite_protection = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(FileSystemProtection {
+                        replication_overwrite_protection: replication_overwrite_protection,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::EFS::FileSystem.LifecyclePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-lifecyclepolicy.html) property type.
     #[derive(Debug, Default)]
     pub struct LifecyclePolicy {
+        /// Property [`TransitionToArchive`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-lifecyclepolicy.html#cfn-efs-filesystem-lifecyclepolicy-transitiontoarchive).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub transition_to_archive: Option<::Value<String>>,
         /// Property [`TransitionToIA`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-lifecyclepolicy.html#cfn-efs-filesystem-lifecyclepolicy-transitiontoia).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub transition_to_ia: ::Value<String>,
+        pub transition_to_ia: Option<::Value<String>>,
+        /// Property [`TransitionToPrimaryStorageClass`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-lifecyclepolicy.html#cfn-efs-filesystem-lifecyclepolicy-transitiontoprimarystorageclass).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub transition_to_primary_storage_class: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for LifecyclePolicy {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitionToIA", &self.transition_to_ia)?;
+            if let Some(ref transition_to_archive) = self.transition_to_archive {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitionToArchive", transition_to_archive)?;
+            }
+            if let Some(ref transition_to_ia) = self.transition_to_ia {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitionToIA", transition_to_ia)?;
+            }
+            if let Some(ref transition_to_primary_storage_class) = self.transition_to_primary_storage_class {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TransitionToPrimaryStorageClass", transition_to_primary_storage_class)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -877,19 +974,174 @@ pub mod file_system {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut transition_to_archive: Option<::Value<String>> = None;
                     let mut transition_to_ia: Option<::Value<String>> = None;
+                    let mut transition_to_primary_storage_class: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "TransitionToArchive" => {
+                                transition_to_archive = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "TransitionToIA" => {
                                 transition_to_ia = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TransitionToPrimaryStorageClass" => {
+                                transition_to_primary_storage_class = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
                     }
 
                     Ok(LifecyclePolicy {
-                        transition_to_ia: transition_to_ia.ok_or(::serde::de::Error::missing_field("TransitionToIA"))?,
+                        transition_to_archive: transition_to_archive,
+                        transition_to_ia: transition_to_ia,
+                        transition_to_primary_storage_class: transition_to_primary_storage_class,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EFS::FileSystem.ReplicationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-replicationconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ReplicationConfiguration {
+        /// Property [`Destinations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-replicationconfiguration.html#cfn-efs-filesystem-replicationconfiguration-destinations).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub destinations: Option<::ValueList<ReplicationDestination>>,
+    }
+
+    impl ::codec::SerializeValue for ReplicationConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref destinations) = self.destinations {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Destinations", destinations)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ReplicationConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ReplicationConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ReplicationConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ReplicationConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut destinations: Option<::ValueList<ReplicationDestination>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Destinations" => {
+                                destinations = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ReplicationConfiguration {
+                        destinations: destinations,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::EFS::FileSystem.ReplicationDestination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-replicationdestination.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ReplicationDestination {
+        /// Property [`AvailabilityZoneName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-replicationdestination.html#cfn-efs-filesystem-replicationdestination-availabilityzonename).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub availability_zone_name: Option<::Value<String>>,
+        /// Property [`FileSystemId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-replicationdestination.html#cfn-efs-filesystem-replicationdestination-filesystemid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub file_system_id: Option<::Value<String>>,
+        /// Property [`KmsKeyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-replicationdestination.html#cfn-efs-filesystem-replicationdestination-kmskeyid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub kms_key_id: Option<::Value<String>>,
+        /// Property [`Region`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-efs-filesystem-replicationdestination.html#cfn-efs-filesystem-replicationdestination-region).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub region: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for ReplicationDestination {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref availability_zone_name) = self.availability_zone_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AvailabilityZoneName", availability_zone_name)?;
+            }
+            if let Some(ref file_system_id) = self.file_system_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FileSystemId", file_system_id)?;
+            }
+            if let Some(ref kms_key_id) = self.kms_key_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", kms_key_id)?;
+            }
+            if let Some(ref region) = self.region {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Region", region)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ReplicationDestination {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ReplicationDestination, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ReplicationDestination;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ReplicationDestination")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut availability_zone_name: Option<::Value<String>> = None;
+                    let mut file_system_id: Option<::Value<String>> = None;
+                    let mut kms_key_id: Option<::Value<String>> = None;
+                    let mut region: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AvailabilityZoneName" => {
+                                availability_zone_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "FileSystemId" => {
+                                file_system_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "KmsKeyId" => {
+                                kms_key_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Region" => {
+                                region = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ReplicationDestination {
+                        availability_zone_name: availability_zone_name,
+                        file_system_id: file_system_id,
+                        kms_key_id: kms_key_id,
+                        region: region,
                     })
                 }
             }

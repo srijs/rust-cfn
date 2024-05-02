@@ -1,5 +1,107 @@
 //! Types for the `ManagedBlockchain` service.
 
+/// The [`AWS::ManagedBlockchain::Accessor`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-managedblockchain-accessor.html) resource type.
+#[derive(Debug, Default)]
+pub struct Accessor {
+    properties: AccessorProperties
+}
+
+/// Properties for the `Accessor` resource.
+#[derive(Debug, Default)]
+pub struct AccessorProperties {
+    /// Property [`AccessorType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-managedblockchain-accessor.html#cfn-managedblockchain-accessor-accessortype).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub accessor_type: ::Value<String>,
+    /// Property [`NetworkType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-managedblockchain-accessor.html#cfn-managedblockchain-accessor-networktype).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub network_type: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-managedblockchain-accessor.html#cfn-managedblockchain-accessor-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for AccessorProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessorType", &self.accessor_type)?;
+        if let Some(ref network_type) = self.network_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkType", network_type)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for AccessorProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<AccessorProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = AccessorProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type AccessorProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut accessor_type: Option<::Value<String>> = None;
+                let mut network_type: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AccessorType" => {
+                            accessor_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "NetworkType" => {
+                            network_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(AccessorProperties {
+                    accessor_type: accessor_type.ok_or(::serde::de::Error::missing_field("AccessorType"))?,
+                    network_type: network_type,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for Accessor {
+    type Properties = AccessorProperties;
+    const TYPE: &'static str = "AWS::ManagedBlockchain::Accessor";
+    fn properties(&self) -> &AccessorProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut AccessorProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for Accessor {}
+
+impl From<AccessorProperties> for Accessor {
+    fn from(properties: AccessorProperties) -> Accessor {
+        Accessor { properties }
+    }
+}
+
 /// The [`AWS::ManagedBlockchain::Member`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-managedblockchain-member.html) resource type.
 #[derive(Debug, Default)]
 pub struct Member {

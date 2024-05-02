@@ -211,27 +211,36 @@ pub struct Table {
 /// Properties for the `Table` resource.
 #[derive(Debug, Default)]
 pub struct TableProperties {
-    /// Property [`AttributeDefinitions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-attributedef).
+    /// Property [`AttributeDefinitions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-attributedefinitions).
     ///
-    /// Update type: _Conditional_.
-    /// Conditional updates can be mutable or immutable, depending on, for example, which other properties you updated.
-    /// For more information, see the relevant resource type documentation.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub attribute_definitions: Option<::ValueList<self::table::AttributeDefinition>>,
     /// Property [`BillingMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-billingmode).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub billing_mode: Option<::Value<String>>,
-    /// Property [`ContributorInsightsSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-contributorinsightsspecification-enabled).
+    /// Property [`ContributorInsightsSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-contributorinsightsspecification).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub contributor_insights_specification: Option<::Value<self::table::ContributorInsightsSpecification>>,
-    /// Property [`GlobalSecondaryIndexes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-gsi).
+    /// Property [`DeletionProtectionEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-deletionprotectionenabled).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub deletion_protection_enabled: Option<::Value<bool>>,
+    /// Property [`GlobalSecondaryIndexes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-globalsecondaryindexes).
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub global_secondary_indexes: Option<::ValueList<self::table::GlobalSecondaryIndex>>,
+    /// Property [`ImportSourceSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-importsourcespecification).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub import_source_specification: Option<::Value<self::table::ImportSourceSpecification>>,
     /// Property [`KeySchema`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-keyschema).
     ///
     /// Update type: _Immutable_.
@@ -242,10 +251,10 @@ pub struct TableProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub kinesis_stream_specification: Option<::Value<self::table::KinesisStreamSpecification>>,
-    /// Property [`LocalSecondaryIndexes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-lsi).
+    /// Property [`LocalSecondaryIndexes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-localsecondaryindexes).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub local_secondary_indexes: Option<::ValueList<self::table::LocalSecondaryIndex>>,
     /// Property [`PointInTimeRecoverySpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-pointintimerecoveryspecification).
     ///
@@ -267,6 +276,11 @@ pub struct TableProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub stream_specification: Option<::Value<self::table::StreamSpecification>>,
+    /// Property [`TableClass`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-tableclass).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub table_class: Option<::Value<String>>,
     /// Property [`TableName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html#cfn-dynamodb-table-tablename).
     ///
     /// Update type: _Immutable_.
@@ -296,8 +310,14 @@ impl ::serde::Serialize for TableProperties {
         if let Some(ref contributor_insights_specification) = self.contributor_insights_specification {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContributorInsightsSpecification", contributor_insights_specification)?;
         }
+        if let Some(ref deletion_protection_enabled) = self.deletion_protection_enabled {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeletionProtectionEnabled", deletion_protection_enabled)?;
+        }
         if let Some(ref global_secondary_indexes) = self.global_secondary_indexes {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "GlobalSecondaryIndexes", global_secondary_indexes)?;
+        }
+        if let Some(ref import_source_specification) = self.import_source_specification {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ImportSourceSpecification", import_source_specification)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeySchema", &self.key_schema)?;
         if let Some(ref kinesis_stream_specification) = self.kinesis_stream_specification {
@@ -317,6 +337,9 @@ impl ::serde::Serialize for TableProperties {
         }
         if let Some(ref stream_specification) = self.stream_specification {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamSpecification", stream_specification)?;
+        }
+        if let Some(ref table_class) = self.table_class {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TableClass", table_class)?;
         }
         if let Some(ref table_name) = self.table_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TableName", table_name)?;
@@ -346,7 +369,9 @@ impl<'de> ::serde::Deserialize<'de> for TableProperties {
                 let mut attribute_definitions: Option<::ValueList<self::table::AttributeDefinition>> = None;
                 let mut billing_mode: Option<::Value<String>> = None;
                 let mut contributor_insights_specification: Option<::Value<self::table::ContributorInsightsSpecification>> = None;
+                let mut deletion_protection_enabled: Option<::Value<bool>> = None;
                 let mut global_secondary_indexes: Option<::ValueList<self::table::GlobalSecondaryIndex>> = None;
+                let mut import_source_specification: Option<::Value<self::table::ImportSourceSpecification>> = None;
                 let mut key_schema: Option<::ValueList<self::table::KeySchema>> = None;
                 let mut kinesis_stream_specification: Option<::Value<self::table::KinesisStreamSpecification>> = None;
                 let mut local_secondary_indexes: Option<::ValueList<self::table::LocalSecondaryIndex>> = None;
@@ -354,6 +379,7 @@ impl<'de> ::serde::Deserialize<'de> for TableProperties {
                 let mut provisioned_throughput: Option<::Value<self::table::ProvisionedThroughput>> = None;
                 let mut sse_specification: Option<::Value<self::table::SSESpecification>> = None;
                 let mut stream_specification: Option<::Value<self::table::StreamSpecification>> = None;
+                let mut table_class: Option<::Value<String>> = None;
                 let mut table_name: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut time_to_live_specification: Option<::Value<self::table::TimeToLiveSpecification>> = None;
@@ -369,8 +395,14 @@ impl<'de> ::serde::Deserialize<'de> for TableProperties {
                         "ContributorInsightsSpecification" => {
                             contributor_insights_specification = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "DeletionProtectionEnabled" => {
+                            deletion_protection_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "GlobalSecondaryIndexes" => {
                             global_secondary_indexes = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ImportSourceSpecification" => {
+                            import_source_specification = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "KeySchema" => {
                             key_schema = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -393,6 +425,9 @@ impl<'de> ::serde::Deserialize<'de> for TableProperties {
                         "StreamSpecification" => {
                             stream_specification = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "TableClass" => {
+                            table_class = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "TableName" => {
                             table_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -410,7 +445,9 @@ impl<'de> ::serde::Deserialize<'de> for TableProperties {
                     attribute_definitions: attribute_definitions,
                     billing_mode: billing_mode,
                     contributor_insights_specification: contributor_insights_specification,
+                    deletion_protection_enabled: deletion_protection_enabled,
                     global_secondary_indexes: global_secondary_indexes,
+                    import_source_specification: import_source_specification,
                     key_schema: key_schema.ok_or(::serde::de::Error::missing_field("KeySchema"))?,
                     kinesis_stream_specification: kinesis_stream_specification,
                     local_secondary_indexes: local_secondary_indexes,
@@ -418,6 +455,7 @@ impl<'de> ::serde::Deserialize<'de> for TableProperties {
                     provisioned_throughput: provisioned_throughput,
                     sse_specification: sse_specification,
                     stream_specification: stream_specification,
+                    table_class: table_class,
                     table_name: table_name,
                     tags: tags,
                     time_to_live_specification: time_to_live_specification,
@@ -741,13 +779,15 @@ pub mod global_table {
     pub struct KeySchema {
         /// Property [`AttributeName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-keyschema.html#cfn-dynamodb-globaltable-keyschema-attributename).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Conditional_.
+        /// Conditional updates can be mutable or immutable, depending on, for example, which other properties you updated.
+        /// For more information, see the relevant resource type documentation.
         pub attribute_name: ::Value<String>,
         /// Property [`KeyType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-keyschema.html#cfn-dynamodb-globaltable-keyschema-keytype).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Conditional_.
+        /// Conditional updates can be mutable or immutable, depending on, for example, which other properties you updated.
+        /// For more information, see the relevant resource type documentation.
         pub key_type: ::Value<String>,
     }
 
@@ -790,6 +830,57 @@ pub mod global_table {
                     Ok(KeySchema {
                         attribute_name: attribute_name.ok_or(::serde::de::Error::missing_field("AttributeName"))?,
                         key_type: key_type.ok_or(::serde::de::Error::missing_field("KeyType"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DynamoDB::GlobalTable.KinesisStreamSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-kinesisstreamspecification.html) property type.
+    #[derive(Debug, Default)]
+    pub struct KinesisStreamSpecification {
+        /// Property [`StreamArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-kinesisstreamspecification.html#cfn-dynamodb-globaltable-kinesisstreamspecification-streamarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub stream_arn: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for KinesisStreamSpecification {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamArn", &self.stream_arn)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for KinesisStreamSpecification {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<KinesisStreamSpecification, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = KinesisStreamSpecification;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type KinesisStreamSpecification")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut stream_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "StreamArn" => {
+                                stream_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(KinesisStreamSpecification {
+                        stream_arn: stream_arn.ok_or(::serde::de::Error::missing_field("StreamArn"))?,
                     })
                 }
             }
@@ -929,13 +1020,15 @@ pub mod global_table {
     pub struct Projection {
         /// Property [`NonKeyAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-projection.html#cfn-dynamodb-globaltable-projection-nonkeyattributes).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Conditional_.
+        /// Conditional updates can be mutable or immutable, depending on, for example, which other properties you updated.
+        /// For more information, see the relevant resource type documentation.
         pub non_key_attributes: Option<::ValueList<String>>,
         /// Property [`ProjectionType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-projection.html#cfn-dynamodb-globaltable-projection-projectiontype).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Conditional_.
+        /// Conditional updates can be mutable or immutable, depending on, for example, which other properties you updated.
+        /// For more information, see the relevant resource type documentation.
         pub projection_type: Option<::Value<String>>,
     }
 
@@ -1192,11 +1285,21 @@ pub mod global_table {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub contributor_insights_specification: Option<::Value<ContributorInsightsSpecification>>,
+        /// Property [`DeletionProtectionEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-replicaspecification.html#cfn-dynamodb-globaltable-replicaspecification-deletionprotectionenabled).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub deletion_protection_enabled: Option<::Value<bool>>,
         /// Property [`GlobalSecondaryIndexes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-replicaspecification.html#cfn-dynamodb-globaltable-replicaspecification-globalsecondaryindexes).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub global_secondary_indexes: Option<::ValueList<ReplicaGlobalSecondaryIndexSpecification>>,
+        /// Property [`KinesisStreamSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-replicaspecification.html#cfn-dynamodb-globaltable-replicaspecification-kinesisstreamspecification).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub kinesis_stream_specification: Option<::Value<KinesisStreamSpecification>>,
         /// Property [`PointInTimeRecoverySpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-replicaspecification.html#cfn-dynamodb-globaltable-replicaspecification-pointintimerecoveryspecification).
         ///
         /// Update type: _Mutable_.
@@ -1217,6 +1320,11 @@ pub mod global_table {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub sse_specification: Option<::Value<ReplicaSSESpecification>>,
+        /// Property [`TableClass`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-replicaspecification.html#cfn-dynamodb-globaltable-replicaspecification-tableclass).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub table_class: Option<::Value<String>>,
         /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-globaltable-replicaspecification.html#cfn-dynamodb-globaltable-replicaspecification-tags).
         ///
         /// Update type: _Mutable_.
@@ -1230,8 +1338,14 @@ pub mod global_table {
             if let Some(ref contributor_insights_specification) = self.contributor_insights_specification {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContributorInsightsSpecification", contributor_insights_specification)?;
             }
+            if let Some(ref deletion_protection_enabled) = self.deletion_protection_enabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeletionProtectionEnabled", deletion_protection_enabled)?;
+            }
             if let Some(ref global_secondary_indexes) = self.global_secondary_indexes {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "GlobalSecondaryIndexes", global_secondary_indexes)?;
+            }
+            if let Some(ref kinesis_stream_specification) = self.kinesis_stream_specification {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KinesisStreamSpecification", kinesis_stream_specification)?;
             }
             if let Some(ref point_in_time_recovery_specification) = self.point_in_time_recovery_specification {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "PointInTimeRecoverySpecification", point_in_time_recovery_specification)?;
@@ -1242,6 +1356,9 @@ pub mod global_table {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Region", &self.region)?;
             if let Some(ref sse_specification) = self.sse_specification {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SSESpecification", sse_specification)?;
+            }
+            if let Some(ref table_class) = self.table_class {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TableClass", table_class)?;
             }
             if let Some(ref tags) = self.tags {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
@@ -1263,11 +1380,14 @@ pub mod global_table {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut contributor_insights_specification: Option<::Value<ContributorInsightsSpecification>> = None;
+                    let mut deletion_protection_enabled: Option<::Value<bool>> = None;
                     let mut global_secondary_indexes: Option<::ValueList<ReplicaGlobalSecondaryIndexSpecification>> = None;
+                    let mut kinesis_stream_specification: Option<::Value<KinesisStreamSpecification>> = None;
                     let mut point_in_time_recovery_specification: Option<::Value<PointInTimeRecoverySpecification>> = None;
                     let mut read_provisioned_throughput_settings: Option<::Value<ReadProvisionedThroughputSettings>> = None;
                     let mut region: Option<::Value<String>> = None;
                     let mut sse_specification: Option<::Value<ReplicaSSESpecification>> = None;
+                    let mut table_class: Option<::Value<String>> = None;
                     let mut tags: Option<::ValueList<::Tag>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -1275,8 +1395,14 @@ pub mod global_table {
                             "ContributorInsightsSpecification" => {
                                 contributor_insights_specification = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "DeletionProtectionEnabled" => {
+                                deletion_protection_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "GlobalSecondaryIndexes" => {
                                 global_secondary_indexes = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "KinesisStreamSpecification" => {
+                                kinesis_stream_specification = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "PointInTimeRecoverySpecification" => {
                                 point_in_time_recovery_specification = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1290,6 +1416,9 @@ pub mod global_table {
                             "SSESpecification" => {
                                 sse_specification = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "TableClass" => {
+                                table_class = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Tags" => {
                                 tags = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1299,11 +1428,14 @@ pub mod global_table {
 
                     Ok(ReplicaSpecification {
                         contributor_insights_specification: contributor_insights_specification,
+                        deletion_protection_enabled: deletion_protection_enabled,
                         global_secondary_indexes: global_secondary_indexes,
+                        kinesis_stream_specification: kinesis_stream_specification,
                         point_in_time_recovery_specification: point_in_time_recovery_specification,
                         read_provisioned_throughput_settings: read_provisioned_throughput_settings,
                         region: region.ok_or(::serde::de::Error::missing_field("Region"))?,
                         sse_specification: sse_specification,
+                        table_class: table_class,
                         tags: tags,
                     })
                 }
@@ -1639,15 +1771,15 @@ pub mod global_table {
 pub mod table {
     //! Property types for the `Table` resource.
 
-    /// The [`AWS::DynamoDB::Table.AttributeDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-attributedef.html) property type.
+    /// The [`AWS::DynamoDB::Table.AttributeDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-attributedefinition.html) property type.
     #[derive(Debug, Default)]
     pub struct AttributeDefinition {
-        /// Property [`AttributeName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-attributedef.html#cfn-dynamodb-attributedef-attributename).
+        /// Property [`AttributeName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-attributedefinition.html#cfn-dynamodb-table-attributedefinition-attributename).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub attribute_name: ::Value<String>,
-        /// Property [`AttributeType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-attributedef.html#cfn-dynamodb-attributedef-attributename-attributetype).
+        /// Property [`AttributeType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-attributedefinition.html#cfn-dynamodb-table-attributedefinition-attributetype).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -1701,10 +1833,10 @@ pub mod table {
         }
     }
 
-    /// The [`AWS::DynamoDB::Table.ContributorInsightsSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-contributorinsightsspecification.html) property type.
+    /// The [`AWS::DynamoDB::Table.ContributorInsightsSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-contributorinsightsspecification.html) property type.
     #[derive(Debug, Default)]
     pub struct ContributorInsightsSpecification {
-        /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-contributorinsightsspecification.html#cfn-dynamodb-contributorinsightsspecification-enabled).
+        /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-contributorinsightsspecification.html#cfn-dynamodb-table-contributorinsightsspecification-enabled).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -1752,30 +1884,96 @@ pub mod table {
         }
     }
 
-    /// The [`AWS::DynamoDB::Table.GlobalSecondaryIndex`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-gsi.html) property type.
+    /// The [`AWS::DynamoDB::Table.Csv`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-csv.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Csv {
+        /// Property [`Delimiter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-csv.html#cfn-dynamodb-table-csv-delimiter).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub delimiter: Option<::Value<String>>,
+        /// Property [`HeaderList`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-csv.html#cfn-dynamodb-table-csv-headerlist).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub header_list: Option<::ValueList<String>>,
+    }
+
+    impl ::codec::SerializeValue for Csv {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref delimiter) = self.delimiter {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Delimiter", delimiter)?;
+            }
+            if let Some(ref header_list) = self.header_list {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "HeaderList", header_list)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Csv {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Csv, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Csv;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Csv")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut delimiter: Option<::Value<String>> = None;
+                    let mut header_list: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Delimiter" => {
+                                delimiter = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "HeaderList" => {
+                                header_list = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Csv {
+                        delimiter: delimiter,
+                        header_list: header_list,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DynamoDB::Table.GlobalSecondaryIndex`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-globalsecondaryindex.html) property type.
     #[derive(Debug, Default)]
     pub struct GlobalSecondaryIndex {
-        /// Property [`ContributorInsightsSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-gsi.html#cfn-dynamodb-contributorinsightsspecification-enabled).
+        /// Property [`ContributorInsightsSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-globalsecondaryindex.html#cfn-dynamodb-table-globalsecondaryindex-contributorinsightsspecification).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub contributor_insights_specification: Option<::Value<ContributorInsightsSpecification>>,
-        /// Property [`IndexName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-gsi.html#cfn-dynamodb-gsi-indexname).
+        /// Property [`IndexName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-globalsecondaryindex.html#cfn-dynamodb-table-globalsecondaryindex-indexname).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub index_name: ::Value<String>,
-        /// Property [`KeySchema`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-gsi.html#cfn-dynamodb-gsi-keyschema).
+        /// Property [`KeySchema`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-globalsecondaryindex.html#cfn-dynamodb-table-globalsecondaryindex-keyschema).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub key_schema: ::ValueList<KeySchema>,
-        /// Property [`Projection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-gsi.html#cfn-dynamodb-gsi-projection).
+        /// Property [`Projection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-globalsecondaryindex.html#cfn-dynamodb-table-globalsecondaryindex-projection).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub projection: ::Value<Projection>,
-        /// Property [`ProvisionedThroughput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-gsi.html#cfn-dynamodb-gsi-provisionedthroughput).
+        /// Property [`ProvisionedThroughput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-globalsecondaryindex.html#cfn-dynamodb-table-globalsecondaryindex-provisionedthroughput).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -1851,15 +2049,156 @@ pub mod table {
         }
     }
 
-    /// The [`AWS::DynamoDB::Table.KeySchema`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-keyschema.html) property type.
+    /// The [`AWS::DynamoDB::Table.ImportSourceSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-importsourcespecification.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ImportSourceSpecification {
+        /// Property [`InputCompressionType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-importsourcespecification.html#cfn-dynamodb-table-importsourcespecification-inputcompressiontype).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub input_compression_type: Option<::Value<String>>,
+        /// Property [`InputFormat`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-importsourcespecification.html#cfn-dynamodb-table-importsourcespecification-inputformat).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub input_format: ::Value<String>,
+        /// Property [`InputFormatOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-importsourcespecification.html#cfn-dynamodb-table-importsourcespecification-inputformatoptions).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub input_format_options: Option<::Value<InputFormatOptions>>,
+        /// Property [`S3BucketSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-importsourcespecification.html#cfn-dynamodb-table-importsourcespecification-s3bucketsource).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub s3_bucket_source: ::Value<S3BucketSource>,
+    }
+
+    impl ::codec::SerializeValue for ImportSourceSpecification {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref input_compression_type) = self.input_compression_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputCompressionType", input_compression_type)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputFormat", &self.input_format)?;
+            if let Some(ref input_format_options) = self.input_format_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputFormatOptions", input_format_options)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3BucketSource", &self.s3_bucket_source)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ImportSourceSpecification {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ImportSourceSpecification, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ImportSourceSpecification;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ImportSourceSpecification")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut input_compression_type: Option<::Value<String>> = None;
+                    let mut input_format: Option<::Value<String>> = None;
+                    let mut input_format_options: Option<::Value<InputFormatOptions>> = None;
+                    let mut s3_bucket_source: Option<::Value<S3BucketSource>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "InputCompressionType" => {
+                                input_compression_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "InputFormat" => {
+                                input_format = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "InputFormatOptions" => {
+                                input_format_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "S3BucketSource" => {
+                                s3_bucket_source = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ImportSourceSpecification {
+                        input_compression_type: input_compression_type,
+                        input_format: input_format.ok_or(::serde::de::Error::missing_field("InputFormat"))?,
+                        input_format_options: input_format_options,
+                        s3_bucket_source: s3_bucket_source.ok_or(::serde::de::Error::missing_field("S3BucketSource"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DynamoDB::Table.InputFormatOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-inputformatoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct InputFormatOptions {
+        /// Property [`Csv`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-inputformatoptions.html#cfn-dynamodb-table-inputformatoptions-csv).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub csv: Option<::Value<Csv>>,
+    }
+
+    impl ::codec::SerializeValue for InputFormatOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref csv) = self.csv {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Csv", csv)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for InputFormatOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<InputFormatOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = InputFormatOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type InputFormatOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut csv: Option<::Value<Csv>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Csv" => {
+                                csv = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(InputFormatOptions {
+                        csv: csv,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DynamoDB::Table.KeySchema`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-keyschema.html) property type.
     #[derive(Debug, Default)]
     pub struct KeySchema {
-        /// Property [`AttributeName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-keyschema.html#aws-properties-dynamodb-keyschema-attributename).
+        /// Property [`AttributeName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-keyschema.html#cfn-dynamodb-table-keyschema-attributename).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub attribute_name: ::Value<String>,
-        /// Property [`KeyType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-keyschema.html#aws-properties-dynamodb-keyschema-keytype).
+        /// Property [`KeyType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-keyschema.html#cfn-dynamodb-table-keyschema-keytype).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -1913,10 +2252,10 @@ pub mod table {
         }
     }
 
-    /// The [`AWS::DynamoDB::Table.KinesisStreamSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-kinesisstreamspecification.html) property type.
+    /// The [`AWS::DynamoDB::Table.KinesisStreamSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-kinesisstreamspecification.html) property type.
     #[derive(Debug, Default)]
     pub struct KinesisStreamSpecification {
-        /// Property [`StreamArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-kinesisstreamspecification.html#cfn-dynamodb-kinesisstreamspecification-streamarn).
+        /// Property [`StreamArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-kinesisstreamspecification.html#cfn-dynamodb-table-kinesisstreamspecification-streamarn).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -1964,20 +2303,20 @@ pub mod table {
         }
     }
 
-    /// The [`AWS::DynamoDB::Table.LocalSecondaryIndex`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-lsi.html) property type.
+    /// The [`AWS::DynamoDB::Table.LocalSecondaryIndex`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-localsecondaryindex.html) property type.
     #[derive(Debug, Default)]
     pub struct LocalSecondaryIndex {
-        /// Property [`IndexName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-lsi.html#cfn-dynamodb-lsi-indexname).
+        /// Property [`IndexName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-localsecondaryindex.html#cfn-dynamodb-table-localsecondaryindex-indexname).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub index_name: ::Value<String>,
-        /// Property [`KeySchema`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-lsi.html#cfn-dynamodb-lsi-keyschema).
+        /// Property [`KeySchema`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-localsecondaryindex.html#cfn-dynamodb-table-localsecondaryindex-keyschema).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub key_schema: ::ValueList<KeySchema>,
-        /// Property [`Projection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-lsi.html#cfn-dynamodb-lsi-projection).
+        /// Property [`Projection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-localsecondaryindex.html#cfn-dynamodb-table-localsecondaryindex-projection).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -2090,15 +2429,15 @@ pub mod table {
         }
     }
 
-    /// The [`AWS::DynamoDB::Table.Projection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-projectionobject.html) property type.
+    /// The [`AWS::DynamoDB::Table.Projection`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-projection.html) property type.
     #[derive(Debug, Default)]
     pub struct Projection {
-        /// Property [`NonKeyAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-projectionobject.html#cfn-dynamodb-projectionobj-nonkeyatt).
+        /// Property [`NonKeyAttributes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-projection.html#cfn-dynamodb-table-projection-nonkeyattributes).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub non_key_attributes: Option<::ValueList<String>>,
-        /// Property [`ProjectionType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-projectionobject.html#cfn-dynamodb-projectionobj-projtype).
+        /// Property [`ProjectionType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-projection.html#cfn-dynamodb-table-projection-projectiontype).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -2156,19 +2495,19 @@ pub mod table {
         }
     }
 
-    /// The [`AWS::DynamoDB::Table.ProvisionedThroughput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-provisionedthroughput.html) property type.
+    /// The [`AWS::DynamoDB::Table.ProvisionedThroughput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-provisionedthroughput.html) property type.
     #[derive(Debug, Default)]
     pub struct ProvisionedThroughput {
-        /// Property [`ReadCapacityUnits`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-provisionedthroughput.html#cfn-dynamodb-provisionedthroughput-readcapacityunits).
+        /// Property [`ReadCapacityUnits`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-provisionedthroughput.html#cfn-dynamodb-table-provisionedthroughput-readcapacityunits).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub read_capacity_units: ::Value<u64>,
-        /// Property [`WriteCapacityUnits`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-provisionedthroughput.html#cfn-dynamodb-provisionedthroughput-writecapacityunits).
+        pub read_capacity_units: ::Value<u32>,
+        /// Property [`WriteCapacityUnits`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-provisionedthroughput.html#cfn-dynamodb-table-provisionedthroughput-writecapacityunits).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub write_capacity_units: ::Value<u64>,
+        pub write_capacity_units: ::Value<u32>,
     }
 
     impl ::codec::SerializeValue for ProvisionedThroughput {
@@ -2192,8 +2531,8 @@ pub mod table {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut read_capacity_units: Option<::Value<u64>> = None;
-                    let mut write_capacity_units: Option<::Value<u64>> = None;
+                    let mut read_capacity_units: Option<::Value<u32>> = None;
+                    let mut write_capacity_units: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2210,6 +2549,83 @@ pub mod table {
                     Ok(ProvisionedThroughput {
                         read_capacity_units: read_capacity_units.ok_or(::serde::de::Error::missing_field("ReadCapacityUnits"))?,
                         write_capacity_units: write_capacity_units.ok_or(::serde::de::Error::missing_field("WriteCapacityUnits"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DynamoDB::Table.S3BucketSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-s3bucketsource.html) property type.
+    #[derive(Debug, Default)]
+    pub struct S3BucketSource {
+        /// Property [`S3Bucket`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-s3bucketsource.html#cfn-dynamodb-table-s3bucketsource-s3bucket).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub s3_bucket: ::Value<String>,
+        /// Property [`S3BucketOwner`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-s3bucketsource.html#cfn-dynamodb-table-s3bucketsource-s3bucketowner).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub s3_bucket_owner: Option<::Value<String>>,
+        /// Property [`S3KeyPrefix`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-s3bucketsource.html#cfn-dynamodb-table-s3bucketsource-s3keyprefix).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub s3_key_prefix: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for S3BucketSource {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Bucket", &self.s3_bucket)?;
+            if let Some(ref s3_bucket_owner) = self.s3_bucket_owner {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3BucketOwner", s3_bucket_owner)?;
+            }
+            if let Some(ref s3_key_prefix) = self.s3_key_prefix {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3KeyPrefix", s3_key_prefix)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for S3BucketSource {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<S3BucketSource, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = S3BucketSource;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type S3BucketSource")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut s3_bucket: Option<::Value<String>> = None;
+                    let mut s3_bucket_owner: Option<::Value<String>> = None;
+                    let mut s3_key_prefix: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "S3Bucket" => {
+                                s3_bucket = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "S3BucketOwner" => {
+                                s3_bucket_owner = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "S3KeyPrefix" => {
+                                s3_key_prefix = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(S3BucketSource {
+                        s3_bucket: s3_bucket.ok_or(::serde::de::Error::missing_field("S3Bucket"))?,
+                        s3_bucket_owner: s3_bucket_owner,
+                        s3_key_prefix: s3_key_prefix,
                     })
                 }
             }
@@ -2295,10 +2711,10 @@ pub mod table {
         }
     }
 
-    /// The [`AWS::DynamoDB::Table.StreamSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-streamspecification.html) property type.
+    /// The [`AWS::DynamoDB::Table.StreamSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-streamspecification.html) property type.
     #[derive(Debug, Default)]
     pub struct StreamSpecification {
-        /// Property [`StreamViewType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-streamspecification.html#cfn-dynamodb-streamspecification-streamviewtype).
+        /// Property [`StreamViewType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-streamspecification.html#cfn-dynamodb-table-streamspecification-streamviewtype).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -2346,15 +2762,15 @@ pub mod table {
         }
     }
 
-    /// The [`AWS::DynamoDB::Table.TimeToLiveSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-timetolivespecification.html) property type.
+    /// The [`AWS::DynamoDB::Table.TimeToLiveSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-timetolivespecification.html) property type.
     #[derive(Debug, Default)]
     pub struct TimeToLiveSpecification {
-        /// Property [`AttributeName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-timetolivespecification.html#cfn-dynamodb-timetolivespecification-attributename).
+        /// Property [`AttributeName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-timetolivespecification.html#cfn-dynamodb-table-timetolivespecification-attributename).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub attribute_name: ::Value<String>,
-        /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-timetolivespecification.html#cfn-dynamodb-timetolivespecification-enabled).
+        pub attribute_name: Option<::Value<String>>,
+        /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-timetolivespecification.html#cfn-dynamodb-table-timetolivespecification-enabled).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -2364,7 +2780,9 @@ pub mod table {
     impl ::codec::SerializeValue for TimeToLiveSpecification {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AttributeName", &self.attribute_name)?;
+            if let Some(ref attribute_name) = self.attribute_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AttributeName", attribute_name)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -2398,7 +2816,7 @@ pub mod table {
                     }
 
                     Ok(TimeToLiveSpecification {
-                        attribute_name: attribute_name.ok_or(::serde::de::Error::missing_field("AttributeName"))?,
+                        attribute_name: attribute_name,
                         enabled: enabled.ok_or(::serde::de::Error::missing_field("Enabled"))?,
                     })
                 }

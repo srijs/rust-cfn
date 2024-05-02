@@ -1,5 +1,366 @@
 //! Types for the `MediaConnect` service.
 
+/// The [`AWS::MediaConnect::Bridge`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridge.html) resource type.
+#[derive(Debug, Default)]
+pub struct Bridge {
+    properties: BridgeProperties
+}
+
+/// Properties for the `Bridge` resource.
+#[derive(Debug, Default)]
+pub struct BridgeProperties {
+    /// Property [`EgressGatewayBridge`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridge.html#cfn-mediaconnect-bridge-egressgatewaybridge).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub egress_gateway_bridge: Option<::Value<self::bridge::EgressGatewayBridge>>,
+    /// Property [`IngressGatewayBridge`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridge.html#cfn-mediaconnect-bridge-ingressgatewaybridge).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub ingress_gateway_bridge: Option<::Value<self::bridge::IngressGatewayBridge>>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridge.html#cfn-mediaconnect-bridge-name).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub name: ::Value<String>,
+    /// Property [`Outputs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridge.html#cfn-mediaconnect-bridge-outputs).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub outputs: Option<::ValueList<self::bridge::BridgeOutput>>,
+    /// Property [`PlacementArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridge.html#cfn-mediaconnect-bridge-placementarn).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub placement_arn: ::Value<String>,
+    /// Property [`SourceFailoverConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridge.html#cfn-mediaconnect-bridge-sourcefailoverconfig).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub source_failover_config: Option<::Value<self::bridge::FailoverConfig>>,
+    /// Property [`Sources`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridge.html#cfn-mediaconnect-bridge-sources).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub sources: ::ValueList<self::bridge::BridgeSource>,
+}
+
+impl ::serde::Serialize for BridgeProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref egress_gateway_bridge) = self.egress_gateway_bridge {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EgressGatewayBridge", egress_gateway_bridge)?;
+        }
+        if let Some(ref ingress_gateway_bridge) = self.ingress_gateway_bridge {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IngressGatewayBridge", ingress_gateway_bridge)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref outputs) = self.outputs {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Outputs", outputs)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PlacementArn", &self.placement_arn)?;
+        if let Some(ref source_failover_config) = self.source_failover_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceFailoverConfig", source_failover_config)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Sources", &self.sources)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for BridgeProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<BridgeProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = BridgeProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type BridgeProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut egress_gateway_bridge: Option<::Value<self::bridge::EgressGatewayBridge>> = None;
+                let mut ingress_gateway_bridge: Option<::Value<self::bridge::IngressGatewayBridge>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut outputs: Option<::ValueList<self::bridge::BridgeOutput>> = None;
+                let mut placement_arn: Option<::Value<String>> = None;
+                let mut source_failover_config: Option<::Value<self::bridge::FailoverConfig>> = None;
+                let mut sources: Option<::ValueList<self::bridge::BridgeSource>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "EgressGatewayBridge" => {
+                            egress_gateway_bridge = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "IngressGatewayBridge" => {
+                            ingress_gateway_bridge = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Outputs" => {
+                            outputs = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PlacementArn" => {
+                            placement_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SourceFailoverConfig" => {
+                            source_failover_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Sources" => {
+                            sources = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(BridgeProperties {
+                    egress_gateway_bridge: egress_gateway_bridge,
+                    ingress_gateway_bridge: ingress_gateway_bridge,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    outputs: outputs,
+                    placement_arn: placement_arn.ok_or(::serde::de::Error::missing_field("PlacementArn"))?,
+                    source_failover_config: source_failover_config,
+                    sources: sources.ok_or(::serde::de::Error::missing_field("Sources"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for Bridge {
+    type Properties = BridgeProperties;
+    const TYPE: &'static str = "AWS::MediaConnect::Bridge";
+    fn properties(&self) -> &BridgeProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut BridgeProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for Bridge {}
+
+impl From<BridgeProperties> for Bridge {
+    fn from(properties: BridgeProperties) -> Bridge {
+        Bridge { properties }
+    }
+}
+
+/// The [`AWS::MediaConnect::BridgeOutput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridgeoutput.html) resource type.
+#[derive(Debug, Default)]
+pub struct BridgeOutput {
+    properties: BridgeOutputProperties
+}
+
+/// Properties for the `BridgeOutput` resource.
+#[derive(Debug, Default)]
+pub struct BridgeOutputProperties {
+    /// Property [`BridgeArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridgeoutput.html#cfn-mediaconnect-bridgeoutput-bridgearn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub bridge_arn: ::Value<String>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridgeoutput.html#cfn-mediaconnect-bridgeoutput-name).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub name: ::Value<String>,
+    /// Property [`NetworkOutput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridgeoutput.html#cfn-mediaconnect-bridgeoutput-networkoutput).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub network_output: ::Value<self::bridge_output::BridgeNetworkOutput>,
+}
+
+impl ::serde::Serialize for BridgeOutputProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "BridgeArn", &self.bridge_arn)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkOutput", &self.network_output)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for BridgeOutputProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<BridgeOutputProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = BridgeOutputProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type BridgeOutputProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut bridge_arn: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut network_output: Option<::Value<self::bridge_output::BridgeNetworkOutput>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "BridgeArn" => {
+                            bridge_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "NetworkOutput" => {
+                            network_output = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(BridgeOutputProperties {
+                    bridge_arn: bridge_arn.ok_or(::serde::de::Error::missing_field("BridgeArn"))?,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    network_output: network_output.ok_or(::serde::de::Error::missing_field("NetworkOutput"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for BridgeOutput {
+    type Properties = BridgeOutputProperties;
+    const TYPE: &'static str = "AWS::MediaConnect::BridgeOutput";
+    fn properties(&self) -> &BridgeOutputProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut BridgeOutputProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for BridgeOutput {}
+
+impl From<BridgeOutputProperties> for BridgeOutput {
+    fn from(properties: BridgeOutputProperties) -> BridgeOutput {
+        BridgeOutput { properties }
+    }
+}
+
+/// The [`AWS::MediaConnect::BridgeSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridgesource.html) resource type.
+#[derive(Debug, Default)]
+pub struct BridgeSource {
+    properties: BridgeSourceProperties
+}
+
+/// Properties for the `BridgeSource` resource.
+#[derive(Debug, Default)]
+pub struct BridgeSourceProperties {
+    /// Property [`BridgeArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridgesource.html#cfn-mediaconnect-bridgesource-bridgearn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub bridge_arn: ::Value<String>,
+    /// Property [`FlowSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridgesource.html#cfn-mediaconnect-bridgesource-flowsource).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub flow_source: Option<::Value<self::bridge_source::BridgeFlowSource>>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridgesource.html#cfn-mediaconnect-bridgesource-name).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub name: ::Value<String>,
+    /// Property [`NetworkSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-bridgesource.html#cfn-mediaconnect-bridgesource-networksource).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub network_source: Option<::Value<self::bridge_source::BridgeNetworkSource>>,
+}
+
+impl ::serde::Serialize for BridgeSourceProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "BridgeArn", &self.bridge_arn)?;
+        if let Some(ref flow_source) = self.flow_source {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FlowSource", flow_source)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref network_source) = self.network_source {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkSource", network_source)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for BridgeSourceProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<BridgeSourceProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = BridgeSourceProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type BridgeSourceProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut bridge_arn: Option<::Value<String>> = None;
+                let mut flow_source: Option<::Value<self::bridge_source::BridgeFlowSource>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut network_source: Option<::Value<self::bridge_source::BridgeNetworkSource>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "BridgeArn" => {
+                            bridge_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "FlowSource" => {
+                            flow_source = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "NetworkSource" => {
+                            network_source = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(BridgeSourceProperties {
+                    bridge_arn: bridge_arn.ok_or(::serde::de::Error::missing_field("BridgeArn"))?,
+                    flow_source: flow_source,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    network_source: network_source,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for BridgeSource {
+    type Properties = BridgeSourceProperties;
+    const TYPE: &'static str = "AWS::MediaConnect::BridgeSource";
+    fn properties(&self) -> &BridgeSourceProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut BridgeSourceProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for BridgeSource {}
+
+impl From<BridgeSourceProperties> for BridgeSource {
+    fn from(properties: BridgeSourceProperties) -> BridgeSource {
+        BridgeSource { properties }
+    }
+}
+
 /// The [`AWS::MediaConnect::Flow`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flow.html) resource type.
 #[derive(Debug, Default)]
 pub struct Flow {
@@ -300,6 +661,11 @@ pub struct FlowOutputProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub max_latency: Option<::Value<u32>>,
+    /// Property [`MinLatency`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowoutput.html#cfn-mediaconnect-flowoutput-minlatency).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub min_latency: Option<::Value<u32>>,
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowoutput.html#cfn-mediaconnect-flowoutput-name).
     ///
     /// Update type: _Immutable_.
@@ -356,6 +722,9 @@ impl ::serde::Serialize for FlowOutputProperties {
         if let Some(ref max_latency) = self.max_latency {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxLatency", max_latency)?;
         }
+        if let Some(ref min_latency) = self.min_latency {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinLatency", min_latency)?;
+        }
         if let Some(ref name) = self.name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
         }
@@ -397,6 +766,7 @@ impl<'de> ::serde::Deserialize<'de> for FlowOutputProperties {
                 let mut encryption: Option<::Value<self::flow_output::Encryption>> = None;
                 let mut flow_arn: Option<::Value<String>> = None;
                 let mut max_latency: Option<::Value<u32>> = None;
+                let mut min_latency: Option<::Value<u32>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut port: Option<::Value<u32>> = None;
                 let mut protocol: Option<::Value<String>> = None;
@@ -424,6 +794,9 @@ impl<'de> ::serde::Deserialize<'de> for FlowOutputProperties {
                         }
                         "MaxLatency" => {
                             max_latency = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MinLatency" => {
+                            min_latency = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -457,6 +830,7 @@ impl<'de> ::serde::Deserialize<'de> for FlowOutputProperties {
                     encryption: encryption,
                     flow_arn: flow_arn.ok_or(::serde::de::Error::missing_field("FlowArn"))?,
                     max_latency: max_latency,
+                    min_latency: min_latency,
                     name: name,
                     port: port,
                     protocol: protocol.ok_or(::serde::de::Error::missing_field("Protocol"))?,
@@ -520,6 +894,11 @@ pub struct FlowSourceProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub flow_arn: Option<::Value<String>>,
+    /// Property [`GatewayBridgeSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowsource.html#cfn-mediaconnect-flowsource-gatewaybridgesource).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub gateway_bridge_source: Option<::Value<self::flow_source::GatewayBridgeSource>>,
     /// Property [`IngestPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowsource.html#cfn-mediaconnect-flowsource-ingestport).
     ///
     /// Update type: _Mutable_.
@@ -535,6 +914,11 @@ pub struct FlowSourceProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub max_latency: Option<::Value<u32>>,
+    /// Property [`MinLatency`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowsource.html#cfn-mediaconnect-flowsource-minlatency).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub min_latency: Option<::Value<u32>>,
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowsource.html#cfn-mediaconnect-flowsource-name).
     ///
     /// Update type: _Immutable_.
@@ -545,6 +929,26 @@ pub struct FlowSourceProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub protocol: Option<::Value<String>>,
+    /// Property [`SenderControlPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowsource.html#cfn-mediaconnect-flowsource-sendercontrolport).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub sender_control_port: Option<::Value<u32>>,
+    /// Property [`SenderIpAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowsource.html#cfn-mediaconnect-flowsource-senderipaddress).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub sender_ip_address: Option<::Value<String>>,
+    /// Property [`SourceListenerAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowsource.html#cfn-mediaconnect-flowsource-sourcelisteneraddress).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub source_listener_address: Option<::Value<String>>,
+    /// Property [`SourceListenerPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowsource.html#cfn-mediaconnect-flowsource-sourcelistenerport).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub source_listener_port: Option<::Value<u32>>,
     /// Property [`StreamId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-flowsource.html#cfn-mediaconnect-flowsource-streamid).
     ///
     /// Update type: _Mutable_.
@@ -575,6 +979,9 @@ impl ::serde::Serialize for FlowSourceProperties {
         if let Some(ref flow_arn) = self.flow_arn {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "FlowArn", flow_arn)?;
         }
+        if let Some(ref gateway_bridge_source) = self.gateway_bridge_source {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GatewayBridgeSource", gateway_bridge_source)?;
+        }
         if let Some(ref ingest_port) = self.ingest_port {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IngestPort", ingest_port)?;
         }
@@ -584,9 +991,24 @@ impl ::serde::Serialize for FlowSourceProperties {
         if let Some(ref max_latency) = self.max_latency {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxLatency", max_latency)?;
         }
+        if let Some(ref min_latency) = self.min_latency {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinLatency", min_latency)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         if let Some(ref protocol) = self.protocol {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", protocol)?;
+        }
+        if let Some(ref sender_control_port) = self.sender_control_port {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SenderControlPort", sender_control_port)?;
+        }
+        if let Some(ref sender_ip_address) = self.sender_ip_address {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SenderIpAddress", sender_ip_address)?;
+        }
+        if let Some(ref source_listener_address) = self.source_listener_address {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceListenerAddress", source_listener_address)?;
+        }
+        if let Some(ref source_listener_port) = self.source_listener_port {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceListenerPort", source_listener_port)?;
         }
         if let Some(ref stream_id) = self.stream_id {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamId", stream_id)?;
@@ -617,11 +1039,17 @@ impl<'de> ::serde::Deserialize<'de> for FlowSourceProperties {
                 let mut description: Option<::Value<String>> = None;
                 let mut entitlement_arn: Option<::Value<String>> = None;
                 let mut flow_arn: Option<::Value<String>> = None;
+                let mut gateway_bridge_source: Option<::Value<self::flow_source::GatewayBridgeSource>> = None;
                 let mut ingest_port: Option<::Value<u32>> = None;
                 let mut max_bitrate: Option<::Value<u32>> = None;
                 let mut max_latency: Option<::Value<u32>> = None;
+                let mut min_latency: Option<::Value<u32>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut protocol: Option<::Value<String>> = None;
+                let mut sender_control_port: Option<::Value<u32>> = None;
+                let mut sender_ip_address: Option<::Value<String>> = None;
+                let mut source_listener_address: Option<::Value<String>> = None;
+                let mut source_listener_port: Option<::Value<u32>> = None;
                 let mut stream_id: Option<::Value<String>> = None;
                 let mut vpc_interface_name: Option<::Value<String>> = None;
                 let mut whitelist_cidr: Option<::Value<String>> = None;
@@ -640,6 +1068,9 @@ impl<'de> ::serde::Deserialize<'de> for FlowSourceProperties {
                         "FlowArn" => {
                             flow_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "GatewayBridgeSource" => {
+                            gateway_bridge_source = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "IngestPort" => {
                             ingest_port = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -649,11 +1080,26 @@ impl<'de> ::serde::Deserialize<'de> for FlowSourceProperties {
                         "MaxLatency" => {
                             max_latency = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "MinLatency" => {
+                            min_latency = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Protocol" => {
                             protocol = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SenderControlPort" => {
+                            sender_control_port = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SenderIpAddress" => {
+                            sender_ip_address = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SourceListenerAddress" => {
+                            source_listener_address = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SourceListenerPort" => {
+                            source_listener_port = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "StreamId" => {
                             stream_id = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -673,11 +1119,17 @@ impl<'de> ::serde::Deserialize<'de> for FlowSourceProperties {
                     description: description.ok_or(::serde::de::Error::missing_field("Description"))?,
                     entitlement_arn: entitlement_arn,
                     flow_arn: flow_arn,
+                    gateway_bridge_source: gateway_bridge_source,
                     ingest_port: ingest_port,
                     max_bitrate: max_bitrate,
                     max_latency: max_latency,
+                    min_latency: min_latency,
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     protocol: protocol,
+                    sender_control_port: sender_control_port,
+                    sender_ip_address: sender_ip_address,
+                    source_listener_address: source_listener_address,
+                    source_listener_port: source_listener_port,
                     stream_id: stream_id,
                     vpc_interface_name: vpc_interface_name,
                     whitelist_cidr: whitelist_cidr,
@@ -828,6 +1280,1103 @@ impl From<FlowVpcInterfaceProperties> for FlowVpcInterface {
     }
 }
 
+/// The [`AWS::MediaConnect::Gateway`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-gateway.html) resource type.
+#[derive(Debug, Default)]
+pub struct Gateway {
+    properties: GatewayProperties
+}
+
+/// Properties for the `Gateway` resource.
+#[derive(Debug, Default)]
+pub struct GatewayProperties {
+    /// Property [`EgressCidrBlocks`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-gateway.html#cfn-mediaconnect-gateway-egresscidrblocks).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub egress_cidr_blocks: ::ValueList<String>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-gateway.html#cfn-mediaconnect-gateway-name).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub name: ::Value<String>,
+    /// Property [`Networks`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-mediaconnect-gateway.html#cfn-mediaconnect-gateway-networks).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub networks: ::ValueList<self::gateway::GatewayNetwork>,
+}
+
+impl ::serde::Serialize for GatewayProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "EgressCidrBlocks", &self.egress_cidr_blocks)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Networks", &self.networks)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for GatewayProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<GatewayProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = GatewayProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type GatewayProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut egress_cidr_blocks: Option<::ValueList<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut networks: Option<::ValueList<self::gateway::GatewayNetwork>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "EgressCidrBlocks" => {
+                            egress_cidr_blocks = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Networks" => {
+                            networks = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(GatewayProperties {
+                    egress_cidr_blocks: egress_cidr_blocks.ok_or(::serde::de::Error::missing_field("EgressCidrBlocks"))?,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    networks: networks.ok_or(::serde::de::Error::missing_field("Networks"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for Gateway {
+    type Properties = GatewayProperties;
+    const TYPE: &'static str = "AWS::MediaConnect::Gateway";
+    fn properties(&self) -> &GatewayProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut GatewayProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for Gateway {}
+
+impl From<GatewayProperties> for Gateway {
+    fn from(properties: GatewayProperties) -> Gateway {
+        Gateway { properties }
+    }
+}
+
+pub mod bridge {
+    //! Property types for the `Bridge` resource.
+
+    /// The [`AWS::MediaConnect::Bridge.BridgeFlowSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgeflowsource.html) property type.
+    #[derive(Debug, Default)]
+    pub struct BridgeFlowSource {
+        /// Property [`FlowArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgeflowsource.html#cfn-mediaconnect-bridge-bridgeflowsource-flowarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub flow_arn: ::Value<String>,
+        /// Property [`FlowVpcInterfaceAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgeflowsource.html#cfn-mediaconnect-bridge-bridgeflowsource-flowvpcinterfaceattachment).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub flow_vpc_interface_attachment: Option<::Value<VpcInterfaceAttachment>>,
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgeflowsource.html#cfn-mediaconnect-bridge-bridgeflowsource-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for BridgeFlowSource {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FlowArn", &self.flow_arn)?;
+            if let Some(ref flow_vpc_interface_attachment) = self.flow_vpc_interface_attachment {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FlowVpcInterfaceAttachment", flow_vpc_interface_attachment)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for BridgeFlowSource {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<BridgeFlowSource, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = BridgeFlowSource;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type BridgeFlowSource")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut flow_arn: Option<::Value<String>> = None;
+                    let mut flow_vpc_interface_attachment: Option<::Value<VpcInterfaceAttachment>> = None;
+                    let mut name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "FlowArn" => {
+                                flow_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "FlowVpcInterfaceAttachment" => {
+                                flow_vpc_interface_attachment = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(BridgeFlowSource {
+                        flow_arn: flow_arn.ok_or(::serde::de::Error::missing_field("FlowArn"))?,
+                        flow_vpc_interface_attachment: flow_vpc_interface_attachment,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaConnect::Bridge.BridgeNetworkOutput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgenetworkoutput.html) property type.
+    #[derive(Debug, Default)]
+    pub struct BridgeNetworkOutput {
+        /// Property [`IpAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgenetworkoutput.html#cfn-mediaconnect-bridge-bridgenetworkoutput-ipaddress).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ip_address: ::Value<String>,
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgenetworkoutput.html#cfn-mediaconnect-bridge-bridgenetworkoutput-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: ::Value<String>,
+        /// Property [`NetworkName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgenetworkoutput.html#cfn-mediaconnect-bridge-bridgenetworkoutput-networkname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub network_name: ::Value<String>,
+        /// Property [`Port`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgenetworkoutput.html#cfn-mediaconnect-bridge-bridgenetworkoutput-port).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub port: ::Value<u32>,
+        /// Property [`Protocol`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgenetworkoutput.html#cfn-mediaconnect-bridge-bridgenetworkoutput-protocol).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub protocol: ::Value<String>,
+        /// Property [`Ttl`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgenetworkoutput.html#cfn-mediaconnect-bridge-bridgenetworkoutput-ttl).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ttl: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for BridgeNetworkOutput {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IpAddress", &self.ip_address)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkName", &self.network_name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", &self.port)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", &self.protocol)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ttl", &self.ttl)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for BridgeNetworkOutput {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<BridgeNetworkOutput, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = BridgeNetworkOutput;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type BridgeNetworkOutput")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut ip_address: Option<::Value<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut network_name: Option<::Value<String>> = None;
+                    let mut port: Option<::Value<u32>> = None;
+                    let mut protocol: Option<::Value<String>> = None;
+                    let mut ttl: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "IpAddress" => {
+                                ip_address = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "NetworkName" => {
+                                network_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Port" => {
+                                port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Protocol" => {
+                                protocol = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Ttl" => {
+                                ttl = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(BridgeNetworkOutput {
+                        ip_address: ip_address.ok_or(::serde::de::Error::missing_field("IpAddress"))?,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                        network_name: network_name.ok_or(::serde::de::Error::missing_field("NetworkName"))?,
+                        port: port.ok_or(::serde::de::Error::missing_field("Port"))?,
+                        protocol: protocol.ok_or(::serde::de::Error::missing_field("Protocol"))?,
+                        ttl: ttl.ok_or(::serde::de::Error::missing_field("Ttl"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaConnect::Bridge.BridgeNetworkSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgenetworksource.html) property type.
+    #[derive(Debug, Default)]
+    pub struct BridgeNetworkSource {
+        /// Property [`MulticastIp`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgenetworksource.html#cfn-mediaconnect-bridge-bridgenetworksource-multicastip).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub multicast_ip: ::Value<String>,
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgenetworksource.html#cfn-mediaconnect-bridge-bridgenetworksource-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: ::Value<String>,
+        /// Property [`NetworkName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgenetworksource.html#cfn-mediaconnect-bridge-bridgenetworksource-networkname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub network_name: ::Value<String>,
+        /// Property [`Port`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgenetworksource.html#cfn-mediaconnect-bridge-bridgenetworksource-port).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub port: ::Value<u32>,
+        /// Property [`Protocol`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgenetworksource.html#cfn-mediaconnect-bridge-bridgenetworksource-protocol).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub protocol: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for BridgeNetworkSource {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MulticastIp", &self.multicast_ip)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkName", &self.network_name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", &self.port)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", &self.protocol)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for BridgeNetworkSource {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<BridgeNetworkSource, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = BridgeNetworkSource;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type BridgeNetworkSource")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut multicast_ip: Option<::Value<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut network_name: Option<::Value<String>> = None;
+                    let mut port: Option<::Value<u32>> = None;
+                    let mut protocol: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "MulticastIp" => {
+                                multicast_ip = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "NetworkName" => {
+                                network_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Port" => {
+                                port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Protocol" => {
+                                protocol = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(BridgeNetworkSource {
+                        multicast_ip: multicast_ip.ok_or(::serde::de::Error::missing_field("MulticastIp"))?,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                        network_name: network_name.ok_or(::serde::de::Error::missing_field("NetworkName"))?,
+                        port: port.ok_or(::serde::de::Error::missing_field("Port"))?,
+                        protocol: protocol.ok_or(::serde::de::Error::missing_field("Protocol"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaConnect::Bridge.BridgeOutput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgeoutput.html) property type.
+    #[derive(Debug, Default)]
+    pub struct BridgeOutput {
+        /// Property [`NetworkOutput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgeoutput.html#cfn-mediaconnect-bridge-bridgeoutput-networkoutput).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub network_output: Option<::Value<BridgeNetworkOutput>>,
+    }
+
+    impl ::codec::SerializeValue for BridgeOutput {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref network_output) = self.network_output {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkOutput", network_output)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for BridgeOutput {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<BridgeOutput, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = BridgeOutput;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type BridgeOutput")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut network_output: Option<::Value<BridgeNetworkOutput>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "NetworkOutput" => {
+                                network_output = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(BridgeOutput {
+                        network_output: network_output,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaConnect::Bridge.BridgeSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgesource.html) property type.
+    #[derive(Debug, Default)]
+    pub struct BridgeSource {
+        /// Property [`FlowSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgesource.html#cfn-mediaconnect-bridge-bridgesource-flowsource).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub flow_source: Option<::Value<BridgeFlowSource>>,
+        /// Property [`NetworkSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-bridgesource.html#cfn-mediaconnect-bridge-bridgesource-networksource).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub network_source: Option<::Value<BridgeNetworkSource>>,
+    }
+
+    impl ::codec::SerializeValue for BridgeSource {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref flow_source) = self.flow_source {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FlowSource", flow_source)?;
+            }
+            if let Some(ref network_source) = self.network_source {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkSource", network_source)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for BridgeSource {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<BridgeSource, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = BridgeSource;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type BridgeSource")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut flow_source: Option<::Value<BridgeFlowSource>> = None;
+                    let mut network_source: Option<::Value<BridgeNetworkSource>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "FlowSource" => {
+                                flow_source = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "NetworkSource" => {
+                                network_source = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(BridgeSource {
+                        flow_source: flow_source,
+                        network_source: network_source,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaConnect::Bridge.EgressGatewayBridge`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-egressgatewaybridge.html) property type.
+    #[derive(Debug, Default)]
+    pub struct EgressGatewayBridge {
+        /// Property [`MaxBitrate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-egressgatewaybridge.html#cfn-mediaconnect-bridge-egressgatewaybridge-maxbitrate).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub max_bitrate: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for EgressGatewayBridge {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxBitrate", &self.max_bitrate)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for EgressGatewayBridge {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<EgressGatewayBridge, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = EgressGatewayBridge;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type EgressGatewayBridge")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut max_bitrate: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "MaxBitrate" => {
+                                max_bitrate = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(EgressGatewayBridge {
+                        max_bitrate: max_bitrate.ok_or(::serde::de::Error::missing_field("MaxBitrate"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaConnect::Bridge.FailoverConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-failoverconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct FailoverConfig {
+        /// Property [`FailoverMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-failoverconfig.html#cfn-mediaconnect-bridge-failoverconfig-failovermode).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub failover_mode: ::Value<String>,
+        /// Property [`SourcePriority`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-failoverconfig.html#cfn-mediaconnect-bridge-failoverconfig-sourcepriority).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub source_priority: Option<::Value<SourcePriority>>,
+        /// Property [`State`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-failoverconfig.html#cfn-mediaconnect-bridge-failoverconfig-state).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub state: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for FailoverConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FailoverMode", &self.failover_mode)?;
+            if let Some(ref source_priority) = self.source_priority {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourcePriority", source_priority)?;
+            }
+            if let Some(ref state) = self.state {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "State", state)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for FailoverConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<FailoverConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = FailoverConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type FailoverConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut failover_mode: Option<::Value<String>> = None;
+                    let mut source_priority: Option<::Value<SourcePriority>> = None;
+                    let mut state: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "FailoverMode" => {
+                                failover_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SourcePriority" => {
+                                source_priority = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "State" => {
+                                state = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(FailoverConfig {
+                        failover_mode: failover_mode.ok_or(::serde::de::Error::missing_field("FailoverMode"))?,
+                        source_priority: source_priority,
+                        state: state,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaConnect::Bridge.IngressGatewayBridge`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-ingressgatewaybridge.html) property type.
+    #[derive(Debug, Default)]
+    pub struct IngressGatewayBridge {
+        /// Property [`MaxBitrate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-ingressgatewaybridge.html#cfn-mediaconnect-bridge-ingressgatewaybridge-maxbitrate).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub max_bitrate: ::Value<u32>,
+        /// Property [`MaxOutputs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-ingressgatewaybridge.html#cfn-mediaconnect-bridge-ingressgatewaybridge-maxoutputs).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub max_outputs: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for IngressGatewayBridge {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxBitrate", &self.max_bitrate)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxOutputs", &self.max_outputs)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for IngressGatewayBridge {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<IngressGatewayBridge, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = IngressGatewayBridge;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type IngressGatewayBridge")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut max_bitrate: Option<::Value<u32>> = None;
+                    let mut max_outputs: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "MaxBitrate" => {
+                                max_bitrate = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MaxOutputs" => {
+                                max_outputs = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(IngressGatewayBridge {
+                        max_bitrate: max_bitrate.ok_or(::serde::de::Error::missing_field("MaxBitrate"))?,
+                        max_outputs: max_outputs.ok_or(::serde::de::Error::missing_field("MaxOutputs"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaConnect::Bridge.SourcePriority`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-sourcepriority.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SourcePriority {
+        /// Property [`PrimarySource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-sourcepriority.html#cfn-mediaconnect-bridge-sourcepriority-primarysource).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub primary_source: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for SourcePriority {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref primary_source) = self.primary_source {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrimarySource", primary_source)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SourcePriority {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SourcePriority, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SourcePriority;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SourcePriority")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut primary_source: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "PrimarySource" => {
+                                primary_source = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SourcePriority {
+                        primary_source: primary_source,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaConnect::Bridge.VpcInterfaceAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-vpcinterfaceattachment.html) property type.
+    #[derive(Debug, Default)]
+    pub struct VpcInterfaceAttachment {
+        /// Property [`VpcInterfaceName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridge-vpcinterfaceattachment.html#cfn-mediaconnect-bridge-vpcinterfaceattachment-vpcinterfacename).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub vpc_interface_name: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for VpcInterfaceAttachment {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref vpc_interface_name) = self.vpc_interface_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcInterfaceName", vpc_interface_name)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for VpcInterfaceAttachment {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<VpcInterfaceAttachment, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = VpcInterfaceAttachment;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type VpcInterfaceAttachment")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut vpc_interface_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "VpcInterfaceName" => {
+                                vpc_interface_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(VpcInterfaceAttachment {
+                        vpc_interface_name: vpc_interface_name,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod bridge_output {
+    //! Property types for the `BridgeOutput` resource.
+
+    /// The [`AWS::MediaConnect::BridgeOutput.BridgeNetworkOutput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgeoutput-bridgenetworkoutput.html) property type.
+    #[derive(Debug, Default)]
+    pub struct BridgeNetworkOutput {
+        /// Property [`IpAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgeoutput-bridgenetworkoutput.html#cfn-mediaconnect-bridgeoutput-bridgenetworkoutput-ipaddress).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ip_address: ::Value<String>,
+        /// Property [`NetworkName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgeoutput-bridgenetworkoutput.html#cfn-mediaconnect-bridgeoutput-bridgenetworkoutput-networkname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub network_name: ::Value<String>,
+        /// Property [`Port`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgeoutput-bridgenetworkoutput.html#cfn-mediaconnect-bridgeoutput-bridgenetworkoutput-port).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub port: ::Value<u32>,
+        /// Property [`Protocol`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgeoutput-bridgenetworkoutput.html#cfn-mediaconnect-bridgeoutput-bridgenetworkoutput-protocol).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub protocol: ::Value<String>,
+        /// Property [`Ttl`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgeoutput-bridgenetworkoutput.html#cfn-mediaconnect-bridgeoutput-bridgenetworkoutput-ttl).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ttl: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for BridgeNetworkOutput {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IpAddress", &self.ip_address)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkName", &self.network_name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", &self.port)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", &self.protocol)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ttl", &self.ttl)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for BridgeNetworkOutput {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<BridgeNetworkOutput, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = BridgeNetworkOutput;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type BridgeNetworkOutput")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut ip_address: Option<::Value<String>> = None;
+                    let mut network_name: Option<::Value<String>> = None;
+                    let mut port: Option<::Value<u32>> = None;
+                    let mut protocol: Option<::Value<String>> = None;
+                    let mut ttl: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "IpAddress" => {
+                                ip_address = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "NetworkName" => {
+                                network_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Port" => {
+                                port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Protocol" => {
+                                protocol = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Ttl" => {
+                                ttl = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(BridgeNetworkOutput {
+                        ip_address: ip_address.ok_or(::serde::de::Error::missing_field("IpAddress"))?,
+                        network_name: network_name.ok_or(::serde::de::Error::missing_field("NetworkName"))?,
+                        port: port.ok_or(::serde::de::Error::missing_field("Port"))?,
+                        protocol: protocol.ok_or(::serde::de::Error::missing_field("Protocol"))?,
+                        ttl: ttl.ok_or(::serde::de::Error::missing_field("Ttl"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod bridge_source {
+    //! Property types for the `BridgeSource` resource.
+
+    /// The [`AWS::MediaConnect::BridgeSource.BridgeFlowSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgesource-bridgeflowsource.html) property type.
+    #[derive(Debug, Default)]
+    pub struct BridgeFlowSource {
+        /// Property [`FlowArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgesource-bridgeflowsource.html#cfn-mediaconnect-bridgesource-bridgeflowsource-flowarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub flow_arn: ::Value<String>,
+        /// Property [`FlowVpcInterfaceAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgesource-bridgeflowsource.html#cfn-mediaconnect-bridgesource-bridgeflowsource-flowvpcinterfaceattachment).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub flow_vpc_interface_attachment: Option<::Value<VpcInterfaceAttachment>>,
+    }
+
+    impl ::codec::SerializeValue for BridgeFlowSource {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FlowArn", &self.flow_arn)?;
+            if let Some(ref flow_vpc_interface_attachment) = self.flow_vpc_interface_attachment {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FlowVpcInterfaceAttachment", flow_vpc_interface_attachment)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for BridgeFlowSource {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<BridgeFlowSource, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = BridgeFlowSource;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type BridgeFlowSource")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut flow_arn: Option<::Value<String>> = None;
+                    let mut flow_vpc_interface_attachment: Option<::Value<VpcInterfaceAttachment>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "FlowArn" => {
+                                flow_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "FlowVpcInterfaceAttachment" => {
+                                flow_vpc_interface_attachment = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(BridgeFlowSource {
+                        flow_arn: flow_arn.ok_or(::serde::de::Error::missing_field("FlowArn"))?,
+                        flow_vpc_interface_attachment: flow_vpc_interface_attachment,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaConnect::BridgeSource.BridgeNetworkSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgesource-bridgenetworksource.html) property type.
+    #[derive(Debug, Default)]
+    pub struct BridgeNetworkSource {
+        /// Property [`MulticastIp`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgesource-bridgenetworksource.html#cfn-mediaconnect-bridgesource-bridgenetworksource-multicastip).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub multicast_ip: ::Value<String>,
+        /// Property [`NetworkName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgesource-bridgenetworksource.html#cfn-mediaconnect-bridgesource-bridgenetworksource-networkname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub network_name: ::Value<String>,
+        /// Property [`Port`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgesource-bridgenetworksource.html#cfn-mediaconnect-bridgesource-bridgenetworksource-port).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub port: ::Value<u32>,
+        /// Property [`Protocol`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgesource-bridgenetworksource.html#cfn-mediaconnect-bridgesource-bridgenetworksource-protocol).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub protocol: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for BridgeNetworkSource {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MulticastIp", &self.multicast_ip)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "NetworkName", &self.network_name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", &self.port)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", &self.protocol)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for BridgeNetworkSource {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<BridgeNetworkSource, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = BridgeNetworkSource;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type BridgeNetworkSource")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut multicast_ip: Option<::Value<String>> = None;
+                    let mut network_name: Option<::Value<String>> = None;
+                    let mut port: Option<::Value<u32>> = None;
+                    let mut protocol: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "MulticastIp" => {
+                                multicast_ip = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "NetworkName" => {
+                                network_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Port" => {
+                                port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Protocol" => {
+                                protocol = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(BridgeNetworkSource {
+                        multicast_ip: multicast_ip.ok_or(::serde::de::Error::missing_field("MulticastIp"))?,
+                        network_name: network_name.ok_or(::serde::de::Error::missing_field("NetworkName"))?,
+                        port: port.ok_or(::serde::de::Error::missing_field("Port"))?,
+                        protocol: protocol.ok_or(::serde::de::Error::missing_field("Protocol"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaConnect::BridgeSource.VpcInterfaceAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgesource-vpcinterfaceattachment.html) property type.
+    #[derive(Debug, Default)]
+    pub struct VpcInterfaceAttachment {
+        /// Property [`VpcInterfaceName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-bridgesource-vpcinterfaceattachment.html#cfn-mediaconnect-bridgesource-vpcinterfaceattachment-vpcinterfacename).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub vpc_interface_name: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for VpcInterfaceAttachment {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref vpc_interface_name) = self.vpc_interface_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcInterfaceName", vpc_interface_name)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for VpcInterfaceAttachment {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<VpcInterfaceAttachment, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = VpcInterfaceAttachment;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type VpcInterfaceAttachment")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut vpc_interface_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "VpcInterfaceName" => {
+                                vpc_interface_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(VpcInterfaceAttachment {
+                        vpc_interface_name: vpc_interface_name,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
 pub mod flow {
     //! Property types for the `Flow` resource.
 
@@ -838,7 +2387,7 @@ pub mod flow {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub algorithm: ::Value<String>,
+        pub algorithm: Option<::Value<String>>,
         /// Property [`ConstantInitializationVector`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-encryption.html#cfn-mediaconnect-flow-encryption-constantinitializationvector).
         ///
         /// Update type: _Mutable_.
@@ -884,7 +2433,9 @@ pub mod flow {
     impl ::codec::SerializeValue for Encryption {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Algorithm", &self.algorithm)?;
+            if let Some(ref algorithm) = self.algorithm {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Algorithm", algorithm)?;
+            }
             if let Some(ref constant_initialization_vector) = self.constant_initialization_vector {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConstantInitializationVector", constant_initialization_vector)?;
             }
@@ -967,7 +2518,7 @@ pub mod flow {
                     }
 
                     Ok(Encryption {
-                        algorithm: algorithm.ok_or(::serde::de::Error::missing_field("Algorithm"))?,
+                        algorithm: algorithm,
                         constant_initialization_vector: constant_initialization_vector,
                         device_id: device_id,
                         key_type: key_type,
@@ -987,11 +2538,21 @@ pub mod flow {
     /// The [`AWS::MediaConnect::Flow.FailoverConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-failoverconfig.html) property type.
     #[derive(Debug, Default)]
     pub struct FailoverConfig {
+        /// Property [`FailoverMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-failoverconfig.html#cfn-mediaconnect-flow-failoverconfig-failovermode).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub failover_mode: Option<::Value<String>>,
         /// Property [`RecoveryWindow`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-failoverconfig.html#cfn-mediaconnect-flow-failoverconfig-recoverywindow).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub recovery_window: Option<::Value<u32>>,
+        /// Property [`SourcePriority`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-failoverconfig.html#cfn-mediaconnect-flow-failoverconfig-sourcepriority).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub source_priority: Option<::Value<SourcePriority>>,
         /// Property [`State`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-failoverconfig.html#cfn-mediaconnect-flow-failoverconfig-state).
         ///
         /// Update type: _Mutable_.
@@ -1002,8 +2563,14 @@ pub mod flow {
     impl ::codec::SerializeValue for FailoverConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref failover_mode) = self.failover_mode {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FailoverMode", failover_mode)?;
+            }
             if let Some(ref recovery_window) = self.recovery_window {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecoveryWindow", recovery_window)?;
+            }
+            if let Some(ref source_priority) = self.source_priority {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourcePriority", source_priority)?;
             }
             if let Some(ref state) = self.state {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "State", state)?;
@@ -1024,13 +2591,21 @@ pub mod flow {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut failover_mode: Option<::Value<String>> = None;
                     let mut recovery_window: Option<::Value<u32>> = None;
+                    let mut source_priority: Option<::Value<SourcePriority>> = None;
                     let mut state: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "FailoverMode" => {
+                                failover_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "RecoveryWindow" => {
                                 recovery_window = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SourcePriority" => {
+                                source_priority = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "State" => {
                                 state = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1040,8 +2615,74 @@ pub mod flow {
                     }
 
                     Ok(FailoverConfig {
+                        failover_mode: failover_mode,
                         recovery_window: recovery_window,
+                        source_priority: source_priority,
                         state: state,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaConnect::Flow.GatewayBridgeSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-gatewaybridgesource.html) property type.
+    #[derive(Debug, Default)]
+    pub struct GatewayBridgeSource {
+        /// Property [`BridgeArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-gatewaybridgesource.html#cfn-mediaconnect-flow-gatewaybridgesource-bridgearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub bridge_arn: ::Value<String>,
+        /// Property [`VpcInterfaceAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-gatewaybridgesource.html#cfn-mediaconnect-flow-gatewaybridgesource-vpcinterfaceattachment).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub vpc_interface_attachment: Option<::Value<VpcInterfaceAttachment>>,
+    }
+
+    impl ::codec::SerializeValue for GatewayBridgeSource {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BridgeArn", &self.bridge_arn)?;
+            if let Some(ref vpc_interface_attachment) = self.vpc_interface_attachment {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcInterfaceAttachment", vpc_interface_attachment)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for GatewayBridgeSource {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<GatewayBridgeSource, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = GatewayBridgeSource;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type GatewayBridgeSource")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut bridge_arn: Option<::Value<String>> = None;
+                    let mut vpc_interface_attachment: Option<::Value<VpcInterfaceAttachment>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "BridgeArn" => {
+                                bridge_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "VpcInterfaceAttachment" => {
+                                vpc_interface_attachment = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(GatewayBridgeSource {
+                        bridge_arn: bridge_arn.ok_or(::serde::de::Error::missing_field("BridgeArn"))?,
+                        vpc_interface_attachment: vpc_interface_attachment,
                     })
                 }
             }
@@ -1068,6 +2709,11 @@ pub mod flow {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub entitlement_arn: Option<::Value<String>>,
+        /// Property [`GatewayBridgeSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-source.html#cfn-mediaconnect-flow-source-gatewaybridgesource).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub gateway_bridge_source: Option<::Value<GatewayBridgeSource>>,
         /// Property [`IngestIp`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-source.html#cfn-mediaconnect-flow-source-ingestip).
         ///
         /// Update type: _Mutable_.
@@ -1088,6 +2734,11 @@ pub mod flow {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub max_latency: Option<::Value<u32>>,
+        /// Property [`MinLatency`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-source.html#cfn-mediaconnect-flow-source-minlatency).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub min_latency: Option<::Value<u32>>,
         /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-source.html#cfn-mediaconnect-flow-source-name).
         ///
         /// Update type: _Immutable_.
@@ -1098,11 +2749,36 @@ pub mod flow {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub protocol: Option<::Value<String>>,
+        /// Property [`SenderControlPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-source.html#cfn-mediaconnect-flow-source-sendercontrolport).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub sender_control_port: Option<::Value<u32>>,
+        /// Property [`SenderIpAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-source.html#cfn-mediaconnect-flow-source-senderipaddress).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub sender_ip_address: Option<::Value<String>>,
         /// Property [`SourceArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-source.html#cfn-mediaconnect-flow-source-sourcearn).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub source_arn: Option<::Value<String>>,
+        /// Property [`SourceIngestPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-source.html#cfn-mediaconnect-flow-source-sourceingestport).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub source_ingest_port: Option<::Value<String>>,
+        /// Property [`SourceListenerAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-source.html#cfn-mediaconnect-flow-source-sourcelisteneraddress).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub source_listener_address: Option<::Value<String>>,
+        /// Property [`SourceListenerPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-source.html#cfn-mediaconnect-flow-source-sourcelistenerport).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub source_listener_port: Option<::Value<u32>>,
         /// Property [`StreamId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-source.html#cfn-mediaconnect-flow-source-streamid).
         ///
         /// Update type: _Mutable_.
@@ -1132,6 +2808,9 @@ pub mod flow {
             if let Some(ref entitlement_arn) = self.entitlement_arn {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "EntitlementArn", entitlement_arn)?;
             }
+            if let Some(ref gateway_bridge_source) = self.gateway_bridge_source {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "GatewayBridgeSource", gateway_bridge_source)?;
+            }
             if let Some(ref ingest_ip) = self.ingest_ip {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "IngestIp", ingest_ip)?;
             }
@@ -1144,14 +2823,32 @@ pub mod flow {
             if let Some(ref max_latency) = self.max_latency {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxLatency", max_latency)?;
             }
+            if let Some(ref min_latency) = self.min_latency {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinLatency", min_latency)?;
+            }
             if let Some(ref name) = self.name {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
             }
             if let Some(ref protocol) = self.protocol {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", protocol)?;
             }
+            if let Some(ref sender_control_port) = self.sender_control_port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SenderControlPort", sender_control_port)?;
+            }
+            if let Some(ref sender_ip_address) = self.sender_ip_address {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SenderIpAddress", sender_ip_address)?;
+            }
             if let Some(ref source_arn) = self.source_arn {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceArn", source_arn)?;
+            }
+            if let Some(ref source_ingest_port) = self.source_ingest_port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceIngestPort", source_ingest_port)?;
+            }
+            if let Some(ref source_listener_address) = self.source_listener_address {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceListenerAddress", source_listener_address)?;
+            }
+            if let Some(ref source_listener_port) = self.source_listener_port {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceListenerPort", source_listener_port)?;
             }
             if let Some(ref stream_id) = self.stream_id {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamId", stream_id)?;
@@ -1181,13 +2878,20 @@ pub mod flow {
                     let mut decryption: Option<::Value<Encryption>> = None;
                     let mut description: Option<::Value<String>> = None;
                     let mut entitlement_arn: Option<::Value<String>> = None;
+                    let mut gateway_bridge_source: Option<::Value<GatewayBridgeSource>> = None;
                     let mut ingest_ip: Option<::Value<String>> = None;
                     let mut ingest_port: Option<::Value<u32>> = None;
                     let mut max_bitrate: Option<::Value<u32>> = None;
                     let mut max_latency: Option<::Value<u32>> = None;
+                    let mut min_latency: Option<::Value<u32>> = None;
                     let mut name: Option<::Value<String>> = None;
                     let mut protocol: Option<::Value<String>> = None;
+                    let mut sender_control_port: Option<::Value<u32>> = None;
+                    let mut sender_ip_address: Option<::Value<String>> = None;
                     let mut source_arn: Option<::Value<String>> = None;
+                    let mut source_ingest_port: Option<::Value<String>> = None;
+                    let mut source_listener_address: Option<::Value<String>> = None;
+                    let mut source_listener_port: Option<::Value<u32>> = None;
                     let mut stream_id: Option<::Value<String>> = None;
                     let mut vpc_interface_name: Option<::Value<String>> = None;
                     let mut whitelist_cidr: Option<::Value<String>> = None;
@@ -1203,6 +2907,9 @@ pub mod flow {
                             "EntitlementArn" => {
                                 entitlement_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "GatewayBridgeSource" => {
+                                gateway_bridge_source = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "IngestIp" => {
                                 ingest_ip = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1215,14 +2922,32 @@ pub mod flow {
                             "MaxLatency" => {
                                 max_latency = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "MinLatency" => {
+                                min_latency = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Name" => {
                                 name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Protocol" => {
                                 protocol = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "SenderControlPort" => {
+                                sender_control_port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SenderIpAddress" => {
+                                sender_ip_address = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "SourceArn" => {
                                 source_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SourceIngestPort" => {
+                                source_ingest_port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SourceListenerAddress" => {
+                                source_listener_address = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SourceListenerPort" => {
+                                source_listener_port = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "StreamId" => {
                                 stream_id = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1241,16 +2966,127 @@ pub mod flow {
                         decryption: decryption,
                         description: description,
                         entitlement_arn: entitlement_arn,
+                        gateway_bridge_source: gateway_bridge_source,
                         ingest_ip: ingest_ip,
                         ingest_port: ingest_port,
                         max_bitrate: max_bitrate,
                         max_latency: max_latency,
+                        min_latency: min_latency,
                         name: name,
                         protocol: protocol,
+                        sender_control_port: sender_control_port,
+                        sender_ip_address: sender_ip_address,
                         source_arn: source_arn,
+                        source_ingest_port: source_ingest_port,
+                        source_listener_address: source_listener_address,
+                        source_listener_port: source_listener_port,
                         stream_id: stream_id,
                         vpc_interface_name: vpc_interface_name,
                         whitelist_cidr: whitelist_cidr,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaConnect::Flow.SourcePriority`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-sourcepriority.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SourcePriority {
+        /// Property [`PrimarySource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-sourcepriority.html#cfn-mediaconnect-flow-sourcepriority-primarysource).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub primary_source: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for SourcePriority {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrimarySource", &self.primary_source)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SourcePriority {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SourcePriority, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SourcePriority;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SourcePriority")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut primary_source: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "PrimarySource" => {
+                                primary_source = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SourcePriority {
+                        primary_source: primary_source.ok_or(::serde::de::Error::missing_field("PrimarySource"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaConnect::Flow.VpcInterfaceAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-vpcinterfaceattachment.html) property type.
+    #[derive(Debug, Default)]
+    pub struct VpcInterfaceAttachment {
+        /// Property [`VpcInterfaceName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flow-vpcinterfaceattachment.html#cfn-mediaconnect-flow-vpcinterfaceattachment-vpcinterfacename).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub vpc_interface_name: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for VpcInterfaceAttachment {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref vpc_interface_name) = self.vpc_interface_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcInterfaceName", vpc_interface_name)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for VpcInterfaceAttachment {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<VpcInterfaceAttachment, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = VpcInterfaceAttachment;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type VpcInterfaceAttachment")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut vpc_interface_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "VpcInterfaceName" => {
+                                vpc_interface_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(VpcInterfaceAttachment {
+                        vpc_interface_name: vpc_interface_name,
                     })
                 }
             }
@@ -1427,7 +3263,7 @@ pub mod flow_output {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub algorithm: ::Value<String>,
+        pub algorithm: Option<::Value<String>>,
         /// Property [`KeyType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowoutput-encryption.html#cfn-mediaconnect-flowoutput-encryption-keytype).
         ///
         /// Update type: _Mutable_.
@@ -1448,7 +3284,9 @@ pub mod flow_output {
     impl ::codec::SerializeValue for Encryption {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Algorithm", &self.algorithm)?;
+            if let Some(ref algorithm) = self.algorithm {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Algorithm", algorithm)?;
+            }
             if let Some(ref key_type) = self.key_type {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyType", key_type)?;
             }
@@ -1494,7 +3332,7 @@ pub mod flow_output {
                     }
 
                     Ok(Encryption {
-                        algorithm: algorithm.ok_or(::serde::de::Error::missing_field("Algorithm"))?,
+                        algorithm: algorithm,
                         key_type: key_type,
                         role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
                         secret_arn: secret_arn.ok_or(::serde::de::Error::missing_field("SecretArn"))?,
@@ -1570,7 +3408,7 @@ pub mod flow_source {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub algorithm: ::Value<String>,
+        pub algorithm: Option<::Value<String>>,
         /// Property [`ConstantInitializationVector`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowsource-encryption.html#cfn-mediaconnect-flowsource-encryption-constantinitializationvector).
         ///
         /// Update type: _Mutable_.
@@ -1616,7 +3454,9 @@ pub mod flow_source {
     impl ::codec::SerializeValue for Encryption {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Algorithm", &self.algorithm)?;
+            if let Some(ref algorithm) = self.algorithm {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Algorithm", algorithm)?;
+            }
             if let Some(ref constant_initialization_vector) = self.constant_initialization_vector {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConstantInitializationVector", constant_initialization_vector)?;
             }
@@ -1699,7 +3539,7 @@ pub mod flow_source {
                     }
 
                     Ok(Encryption {
-                        algorithm: algorithm.ok_or(::serde::de::Error::missing_field("Algorithm"))?,
+                        algorithm: algorithm,
                         constant_initialization_vector: constant_initialization_vector,
                         device_id: device_id,
                         key_type: key_type,
@@ -1708,6 +3548,189 @@ pub mod flow_source {
                         role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
                         secret_arn: secret_arn,
                         url: url,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaConnect::FlowSource.GatewayBridgeSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowsource-gatewaybridgesource.html) property type.
+    #[derive(Debug, Default)]
+    pub struct GatewayBridgeSource {
+        /// Property [`BridgeArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowsource-gatewaybridgesource.html#cfn-mediaconnect-flowsource-gatewaybridgesource-bridgearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub bridge_arn: ::Value<String>,
+        /// Property [`VpcInterfaceAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowsource-gatewaybridgesource.html#cfn-mediaconnect-flowsource-gatewaybridgesource-vpcinterfaceattachment).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub vpc_interface_attachment: Option<::Value<VpcInterfaceAttachment>>,
+    }
+
+    impl ::codec::SerializeValue for GatewayBridgeSource {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BridgeArn", &self.bridge_arn)?;
+            if let Some(ref vpc_interface_attachment) = self.vpc_interface_attachment {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcInterfaceAttachment", vpc_interface_attachment)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for GatewayBridgeSource {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<GatewayBridgeSource, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = GatewayBridgeSource;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type GatewayBridgeSource")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut bridge_arn: Option<::Value<String>> = None;
+                    let mut vpc_interface_attachment: Option<::Value<VpcInterfaceAttachment>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "BridgeArn" => {
+                                bridge_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "VpcInterfaceAttachment" => {
+                                vpc_interface_attachment = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(GatewayBridgeSource {
+                        bridge_arn: bridge_arn.ok_or(::serde::de::Error::missing_field("BridgeArn"))?,
+                        vpc_interface_attachment: vpc_interface_attachment,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::MediaConnect::FlowSource.VpcInterfaceAttachment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowsource-vpcinterfaceattachment.html) property type.
+    #[derive(Debug, Default)]
+    pub struct VpcInterfaceAttachment {
+        /// Property [`VpcInterfaceName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-flowsource-vpcinterfaceattachment.html#cfn-mediaconnect-flowsource-vpcinterfaceattachment-vpcinterfacename).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub vpc_interface_name: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for VpcInterfaceAttachment {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref vpc_interface_name) = self.vpc_interface_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VpcInterfaceName", vpc_interface_name)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for VpcInterfaceAttachment {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<VpcInterfaceAttachment, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = VpcInterfaceAttachment;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type VpcInterfaceAttachment")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut vpc_interface_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "VpcInterfaceName" => {
+                                vpc_interface_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(VpcInterfaceAttachment {
+                        vpc_interface_name: vpc_interface_name,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod gateway {
+    //! Property types for the `Gateway` resource.
+
+    /// The [`AWS::MediaConnect::Gateway.GatewayNetwork`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-gateway-gatewaynetwork.html) property type.
+    #[derive(Debug, Default)]
+    pub struct GatewayNetwork {
+        /// Property [`CidrBlock`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-gateway-gatewaynetwork.html#cfn-mediaconnect-gateway-gatewaynetwork-cidrblock).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub cidr_block: ::Value<String>,
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediaconnect-gateway-gatewaynetwork.html#cfn-mediaconnect-gateway-gatewaynetwork-name).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub name: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for GatewayNetwork {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CidrBlock", &self.cidr_block)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for GatewayNetwork {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<GatewayNetwork, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = GatewayNetwork;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type GatewayNetwork")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut cidr_block: Option<::Value<String>> = None;
+                    let mut name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CidrBlock" => {
+                                cidr_block = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(GatewayNetwork {
+                        cidr_block: cidr_block.ok_or(::serde::de::Error::missing_field("CidrBlock"))?,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     })
                 }
             }

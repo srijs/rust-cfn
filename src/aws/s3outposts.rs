@@ -320,6 +320,21 @@ pub struct Endpoint {
 /// Properties for the `Endpoint` resource.
 #[derive(Debug, Default)]
 pub struct EndpointProperties {
+    /// Property [`AccessType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-endpoint.html#cfn-s3outposts-endpoint-accesstype).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub access_type: Option<::Value<String>>,
+    /// Property [`CustomerOwnedIpv4Pool`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-endpoint.html#cfn-s3outposts-endpoint-customerownedipv4pool).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub customer_owned_ipv4_pool: Option<::Value<String>>,
+    /// Property [`FailedReason`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-endpoint.html#cfn-s3outposts-endpoint-failedreason).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub failed_reason: Option<::Value<self::endpoint::FailedReason>>,
     /// Property [`OutpostId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3outposts-endpoint.html#cfn-s3outposts-endpoint-outpostid).
     ///
     /// Update type: _Immutable_.
@@ -340,6 +355,15 @@ pub struct EndpointProperties {
 impl ::serde::Serialize for EndpointProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref access_type) = self.access_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccessType", access_type)?;
+        }
+        if let Some(ref customer_owned_ipv4_pool) = self.customer_owned_ipv4_pool {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomerOwnedIpv4Pool", customer_owned_ipv4_pool)?;
+        }
+        if let Some(ref failed_reason) = self.failed_reason {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FailedReason", failed_reason)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutpostId", &self.outpost_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupId", &self.security_group_id)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", &self.subnet_id)?;
@@ -359,12 +383,24 @@ impl<'de> ::serde::Deserialize<'de> for EndpointProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut access_type: Option<::Value<String>> = None;
+                let mut customer_owned_ipv4_pool: Option<::Value<String>> = None;
+                let mut failed_reason: Option<::Value<self::endpoint::FailedReason>> = None;
                 let mut outpost_id: Option<::Value<String>> = None;
                 let mut security_group_id: Option<::Value<String>> = None;
                 let mut subnet_id: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "AccessType" => {
+                            access_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "CustomerOwnedIpv4Pool" => {
+                            customer_owned_ipv4_pool = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "FailedReason" => {
+                            failed_reason = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "OutpostId" => {
                             outpost_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -379,6 +415,9 @@ impl<'de> ::serde::Deserialize<'de> for EndpointProperties {
                 }
 
                 Ok(EndpointProperties {
+                    access_type: access_type,
+                    customer_owned_ipv4_pool: customer_owned_ipv4_pool,
+                    failed_reason: failed_reason,
                     outpost_id: outpost_id.ok_or(::serde::de::Error::missing_field("OutpostId"))?,
                     security_group_id: security_group_id.ok_or(::serde::de::Error::missing_field("SecurityGroupId"))?,
                     subnet_id: subnet_id.ok_or(::serde::de::Error::missing_field("SubnetId"))?,
@@ -520,6 +559,211 @@ pub mod bucket {
         }
     }
 
+    /// The [`AWS::S3Outposts::Bucket.Filter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-filter.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Filter {
+        /// Property [`AndOperator`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-filter.html#cfn-s3outposts-bucket-filter-andoperator).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub and_operator: Option<::Value<FilterAndOperator>>,
+        /// Property [`Prefix`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-filter.html#cfn-s3outposts-bucket-filter-prefix).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub prefix: Option<::Value<String>>,
+        /// Property [`Tag`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-filter.html#cfn-s3outposts-bucket-filter-tag).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tag: Option<::Value<FilterTag>>,
+    }
+
+    impl ::codec::SerializeValue for Filter {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref and_operator) = self.and_operator {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AndOperator", and_operator)?;
+            }
+            if let Some(ref prefix) = self.prefix {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Prefix", prefix)?;
+            }
+            if let Some(ref tag) = self.tag {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tag", tag)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Filter {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Filter, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Filter;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Filter")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut and_operator: Option<::Value<FilterAndOperator>> = None;
+                    let mut prefix: Option<::Value<String>> = None;
+                    let mut tag: Option<::Value<FilterTag>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AndOperator" => {
+                                and_operator = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Prefix" => {
+                                prefix = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Tag" => {
+                                tag = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Filter {
+                        and_operator: and_operator,
+                        prefix: prefix,
+                        tag: tag,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::S3Outposts::Bucket.FilterAndOperator`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-filterandoperator.html) property type.
+    #[derive(Debug, Default)]
+    pub struct FilterAndOperator {
+        /// Property [`Prefix`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-filterandoperator.html#cfn-s3outposts-bucket-filterandoperator-prefix).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub prefix: Option<::Value<String>>,
+        /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-filterandoperator.html#cfn-s3outposts-bucket-filterandoperator-tags).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tags: ::ValueList<FilterTag>,
+    }
+
+    impl ::codec::SerializeValue for FilterAndOperator {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref prefix) = self.prefix {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Prefix", prefix)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for FilterAndOperator {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<FilterAndOperator, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = FilterAndOperator;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type FilterAndOperator")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut prefix: Option<::Value<String>> = None;
+                    let mut tags: Option<::ValueList<FilterTag>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Prefix" => {
+                                prefix = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Tags" => {
+                                tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(FilterAndOperator {
+                        prefix: prefix,
+                        tags: tags.ok_or(::serde::de::Error::missing_field("Tags"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::S3Outposts::Bucket.FilterTag`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-filtertag.html) property type.
+    #[derive(Debug, Default)]
+    pub struct FilterTag {
+        /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-filtertag.html#cfn-s3outposts-bucket-filtertag-key).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub key: ::Value<String>,
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-filtertag.html#cfn-s3outposts-bucket-filtertag-value).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub value: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for FilterTag {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", &self.key)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for FilterTag {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<FilterTag, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = FilterTag;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type FilterTag")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut key: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Key" => {
+                                key = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Value" => {
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(FilterTag {
+                        key: key.ok_or(::serde::de::Error::missing_field("Key"))?,
+                        value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::S3Outposts::Bucket.LifecycleConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-lifecycleconfiguration.html) property type.
     #[derive(Debug, Default)]
     pub struct LifecycleConfiguration {
@@ -593,7 +837,7 @@ pub mod bucket {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub filter: Option<::Value<::json::Value>>,
+        pub filter: Option<::Value<Filter>>,
         /// Property [`Id`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-bucket-rule.html#cfn-s3outposts-bucket-rule-id).
         ///
         /// Update type: _Mutable_.
@@ -603,7 +847,7 @@ pub mod bucket {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub status: Option<::Value<String>>,
+        pub status: ::Value<String>,
     }
 
     impl ::codec::SerializeValue for Rule {
@@ -624,9 +868,7 @@ pub mod bucket {
             if let Some(ref id) = self.id {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Id", id)?;
             }
-            if let Some(ref status) = self.status {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Status", status)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Status", &self.status)?;
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -646,7 +888,7 @@ pub mod bucket {
                     let mut abort_incomplete_multipart_upload: Option<::Value<AbortIncompleteMultipartUpload>> = None;
                     let mut expiration_date: Option<::Value<String>> = None;
                     let mut expiration_in_days: Option<::Value<u32>> = None;
-                    let mut filter: Option<::Value<::json::Value>> = None;
+                    let mut filter: Option<::Value<Filter>> = None;
                     let mut id: Option<::Value<String>> = None;
                     let mut status: Option<::Value<String>> = None;
 
@@ -680,7 +922,7 @@ pub mod bucket {
                         expiration_in_days: expiration_in_days,
                         filter: filter,
                         id: id,
-                        status: status,
+                        status: status.ok_or(::serde::de::Error::missing_field("Status"))?,
                     })
                 }
             }
@@ -692,6 +934,72 @@ pub mod bucket {
 
 pub mod endpoint {
     //! Property types for the `Endpoint` resource.
+
+    /// The [`AWS::S3Outposts::Endpoint.FailedReason`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-endpoint-failedreason.html) property type.
+    #[derive(Debug, Default)]
+    pub struct FailedReason {
+        /// Property [`ErrorCode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-endpoint-failedreason.html#cfn-s3outposts-endpoint-failedreason-errorcode).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub error_code: Option<::Value<String>>,
+        /// Property [`Message`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-endpoint-failedreason.html#cfn-s3outposts-endpoint-failedreason-message).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub message: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for FailedReason {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref error_code) = self.error_code {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ErrorCode", error_code)?;
+            }
+            if let Some(ref message) = self.message {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Message", message)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for FailedReason {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<FailedReason, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = FailedReason;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type FailedReason")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut error_code: Option<::Value<String>> = None;
+                    let mut message: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ErrorCode" => {
+                                error_code = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Message" => {
+                                message = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(FailedReason {
+                        error_code: error_code,
+                        message: message,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::S3Outposts::Endpoint.NetworkInterface`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3outposts-endpoint-networkinterface.html) property type.
     #[derive(Debug, Default)]

@@ -136,6 +136,11 @@ pub struct ClusterProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub default_capacity_provider_strategy: Option<::ValueList<self::cluster::CapacityProviderStrategyItem>>,
+    /// Property [`ServiceConnectDefaults`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-cluster.html#cfn-ecs-cluster-serviceconnectdefaults).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub service_connect_defaults: Option<::Value<self::cluster::ServiceConnectDefaults>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-cluster.html#cfn-ecs-cluster-tags).
     ///
     /// Update type: _Mutable_.
@@ -161,6 +166,9 @@ impl ::serde::Serialize for ClusterProperties {
         if let Some(ref default_capacity_provider_strategy) = self.default_capacity_provider_strategy {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultCapacityProviderStrategy", default_capacity_provider_strategy)?;
         }
+        if let Some(ref service_connect_defaults) = self.service_connect_defaults {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceConnectDefaults", service_connect_defaults)?;
+        }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
@@ -185,6 +193,7 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                 let mut cluster_settings: Option<::ValueList<self::cluster::ClusterSettings>> = None;
                 let mut configuration: Option<::Value<self::cluster::ClusterConfiguration>> = None;
                 let mut default_capacity_provider_strategy: Option<::ValueList<self::cluster::CapacityProviderStrategyItem>> = None;
+                let mut service_connect_defaults: Option<::Value<self::cluster::ServiceConnectDefaults>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -204,6 +213,9 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                         "DefaultCapacityProviderStrategy" => {
                             default_capacity_provider_strategy = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ServiceConnectDefaults" => {
+                            service_connect_defaults = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -217,6 +229,7 @@ impl<'de> ::serde::Deserialize<'de> for ClusterProperties {
                     cluster_settings: cluster_settings,
                     configuration: configuration,
                     default_capacity_provider_strategy: default_capacity_provider_strategy,
+                    service_connect_defaults: service_connect_defaults,
                     tags: tags,
                 })
             }
@@ -477,8 +490,8 @@ pub struct ServiceProperties {
     pub desired_count: Option<::Value<u32>>,
     /// Property [`EnableECSManagedTags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-enableecsmanagedtags).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub enable_ecs_managed_tags: Option<::Value<bool>>,
     /// Property [`EnableExecuteCommand`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-enableexecutecommand).
     ///
@@ -497,8 +510,8 @@ pub struct ServiceProperties {
     pub launch_type: Option<::Value<String>>,
     /// Property [`LoadBalancers`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-loadbalancers).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub load_balancers: Option<::ValueList<self::service::LoadBalancer>>,
     /// Property [`NetworkConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-networkconfiguration).
     ///
@@ -507,13 +520,13 @@ pub struct ServiceProperties {
     pub network_configuration: Option<::Value<self::service::NetworkConfiguration>>,
     /// Property [`PlacementConstraints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-placementconstraints).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub placement_constraints: Option<::ValueList<self::service::PlacementConstraint>>,
     /// Property [`PlacementStrategies`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-placementstrategies).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub placement_strategies: Option<::ValueList<self::service::PlacementStrategy>>,
     /// Property [`PlatformVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-platformversion).
     ///
@@ -522,8 +535,8 @@ pub struct ServiceProperties {
     pub platform_version: Option<::Value<String>>,
     /// Property [`PropagateTags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-propagatetags).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub propagate_tags: Option<::Value<String>>,
     /// Property [`Role`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-role).
     ///
@@ -535,6 +548,11 @@ pub struct ServiceProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub scheduling_strategy: Option<::Value<String>>,
+    /// Property [`ServiceConnectConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-serviceconnectconfiguration).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub service_connect_configuration: Option<::Value<self::service::ServiceConnectConfiguration>>,
     /// Property [`ServiceName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-servicename).
     ///
     /// Update type: _Immutable_.
@@ -542,8 +560,8 @@ pub struct ServiceProperties {
     pub service_name: Option<::Value<String>>,
     /// Property [`ServiceRegistries`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-serviceregistries).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub service_registries: Option<::ValueList<self::service::ServiceRegistry>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-tags).
     ///
@@ -555,6 +573,11 @@ pub struct ServiceProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub task_definition: Option<::Value<String>>,
+    /// Property [`VolumeConfigurations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html#cfn-ecs-service-volumeconfigurations).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub volume_configurations: Option<::ValueList<self::service::ServiceVolumeConfiguration>>,
 }
 
 impl ::serde::Serialize for ServiceProperties {
@@ -611,6 +634,9 @@ impl ::serde::Serialize for ServiceProperties {
         if let Some(ref scheduling_strategy) = self.scheduling_strategy {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SchedulingStrategy", scheduling_strategy)?;
         }
+        if let Some(ref service_connect_configuration) = self.service_connect_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceConnectConfiguration", service_connect_configuration)?;
+        }
         if let Some(ref service_name) = self.service_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceName", service_name)?;
         }
@@ -622,6 +648,9 @@ impl ::serde::Serialize for ServiceProperties {
         }
         if let Some(ref task_definition) = self.task_definition {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TaskDefinition", task_definition)?;
+        }
+        if let Some(ref volume_configurations) = self.volume_configurations {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeConfigurations", volume_configurations)?;
         }
         ::serde::ser::SerializeMap::end(map)
     }
@@ -656,10 +685,12 @@ impl<'de> ::serde::Deserialize<'de> for ServiceProperties {
                 let mut propagate_tags: Option<::Value<String>> = None;
                 let mut role: Option<::Value<String>> = None;
                 let mut scheduling_strategy: Option<::Value<String>> = None;
+                let mut service_connect_configuration: Option<::Value<self::service::ServiceConnectConfiguration>> = None;
                 let mut service_name: Option<::Value<String>> = None;
                 let mut service_registries: Option<::ValueList<self::service::ServiceRegistry>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut task_definition: Option<::Value<String>> = None;
+                let mut volume_configurations: Option<::ValueList<self::service::ServiceVolumeConfiguration>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -714,6 +745,9 @@ impl<'de> ::serde::Deserialize<'de> for ServiceProperties {
                         "SchedulingStrategy" => {
                             scheduling_strategy = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ServiceConnectConfiguration" => {
+                            service_connect_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "ServiceName" => {
                             service_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -725,6 +759,9 @@ impl<'de> ::serde::Deserialize<'de> for ServiceProperties {
                         }
                         "TaskDefinition" => {
                             task_definition = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "VolumeConfigurations" => {
+                            volume_configurations = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         _ => {}
                     }
@@ -748,10 +785,12 @@ impl<'de> ::serde::Deserialize<'de> for ServiceProperties {
                     propagate_tags: propagate_tags,
                     role: role,
                     scheduling_strategy: scheduling_strategy,
+                    service_connect_configuration: service_connect_configuration,
                     service_name: service_name,
                     service_registries: service_registries,
                     tags: tags,
                     task_definition: task_definition,
+                    volume_configurations: volume_configurations,
                 })
             }
         }
@@ -853,6 +892,11 @@ pub struct TaskDefinitionProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub requires_compatibilities: Option<::ValueList<String>>,
+    /// Property [`RuntimePlatform`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html#cfn-ecs-taskdefinition-runtimeplatform).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub runtime_platform: Option<::Value<self::task_definition::RuntimePlatform>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html#cfn-ecs-taskdefinition-tags).
     ///
     /// Update type: _Mutable_.
@@ -912,6 +956,9 @@ impl ::serde::Serialize for TaskDefinitionProperties {
         if let Some(ref requires_compatibilities) = self.requires_compatibilities {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RequiresCompatibilities", requires_compatibilities)?;
         }
+        if let Some(ref runtime_platform) = self.runtime_platform {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuntimePlatform", runtime_platform)?;
+        }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
@@ -950,6 +997,7 @@ impl<'de> ::serde::Deserialize<'de> for TaskDefinitionProperties {
                 let mut placement_constraints: Option<::ValueList<self::task_definition::TaskDefinitionPlacementConstraint>> = None;
                 let mut proxy_configuration: Option<::Value<self::task_definition::ProxyConfiguration>> = None;
                 let mut requires_compatibilities: Option<::ValueList<String>> = None;
+                let mut runtime_platform: Option<::Value<self::task_definition::RuntimePlatform>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut task_role_arn: Option<::Value<String>> = None;
                 let mut volumes: Option<::ValueList<self::task_definition::Volume>> = None;
@@ -995,6 +1043,9 @@ impl<'de> ::serde::Deserialize<'de> for TaskDefinitionProperties {
                         "RequiresCompatibilities" => {
                             requires_compatibilities = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "RuntimePlatform" => {
+                            runtime_platform = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -1022,6 +1073,7 @@ impl<'de> ::serde::Deserialize<'de> for TaskDefinitionProperties {
                     placement_constraints: placement_constraints,
                     proxy_configuration: proxy_configuration,
                     requires_compatibilities: requires_compatibilities,
+                    runtime_platform: runtime_platform,
                     tags: tags,
                     task_role_arn: task_role_arn,
                     volumes: volumes,
@@ -1252,6 +1304,11 @@ pub mod capacity_provider {
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub auto_scaling_group_arn: ::Value<String>,
+        /// Property [`ManagedDraining`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-capacityprovider-autoscalinggroupprovider.html#cfn-ecs-capacityprovider-autoscalinggroupprovider-manageddraining).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub managed_draining: Option<::Value<String>>,
         /// Property [`ManagedScaling`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-capacityprovider-autoscalinggroupprovider.html#cfn-ecs-capacityprovider-autoscalinggroupprovider-managedscaling).
         ///
         /// Update type: _Mutable_.
@@ -1268,6 +1325,9 @@ pub mod capacity_provider {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutoScalingGroupArn", &self.auto_scaling_group_arn)?;
+            if let Some(ref managed_draining) = self.managed_draining {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ManagedDraining", managed_draining)?;
+            }
             if let Some(ref managed_scaling) = self.managed_scaling {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ManagedScaling", managed_scaling)?;
             }
@@ -1291,6 +1351,7 @@ pub mod capacity_provider {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut auto_scaling_group_arn: Option<::Value<String>> = None;
+                    let mut managed_draining: Option<::Value<String>> = None;
                     let mut managed_scaling: Option<::Value<ManagedScaling>> = None;
                     let mut managed_termination_protection: Option<::Value<String>> = None;
 
@@ -1298,6 +1359,9 @@ pub mod capacity_provider {
                         match __cfn_key.as_ref() {
                             "AutoScalingGroupArn" => {
                                 auto_scaling_group_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ManagedDraining" => {
+                                managed_draining = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "ManagedScaling" => {
                                 managed_scaling = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1311,6 +1375,7 @@ pub mod capacity_provider {
 
                     Ok(AutoScalingGroupProvider {
                         auto_scaling_group_arn: auto_scaling_group_arn.ok_or(::serde::de::Error::missing_field("AutoScalingGroupArn"))?,
+                        managed_draining: managed_draining,
                         managed_scaling: managed_scaling,
                         managed_termination_protection: managed_termination_protection,
                     })
@@ -1811,6 +1876,59 @@ pub mod cluster {
             d.deserialize_map(Visitor)
         }
     }
+
+    /// The [`AWS::ECS::Cluster.ServiceConnectDefaults`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-cluster-serviceconnectdefaults.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ServiceConnectDefaults {
+        /// Property [`Namespace`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-cluster-serviceconnectdefaults.html#cfn-ecs-cluster-serviceconnectdefaults-namespace).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub namespace: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for ServiceConnectDefaults {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref namespace) = self.namespace {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Namespace", namespace)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ServiceConnectDefaults {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ServiceConnectDefaults, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ServiceConnectDefaults;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ServiceConnectDefaults")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut namespace: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Namespace" => {
+                                namespace = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ServiceConnectDefaults {
+                        namespace: namespace,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 }
 
 pub mod cluster_capacity_provider_associations {
@@ -2055,6 +2173,79 @@ pub mod service {
         }
     }
 
+    /// The [`AWS::ECS::Service.DeploymentAlarms`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-deploymentalarms.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DeploymentAlarms {
+        /// Property [`AlarmNames`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-deploymentalarms.html#cfn-ecs-service-deploymentalarms-alarmnames).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub alarm_names: ::ValueList<String>,
+        /// Property [`Enable`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-deploymentalarms.html#cfn-ecs-service-deploymentalarms-enable).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub enable: ::Value<bool>,
+        /// Property [`Rollback`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-deploymentalarms.html#cfn-ecs-service-deploymentalarms-rollback).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub rollback: ::Value<bool>,
+    }
+
+    impl ::codec::SerializeValue for DeploymentAlarms {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AlarmNames", &self.alarm_names)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enable", &self.enable)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Rollback", &self.rollback)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DeploymentAlarms {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DeploymentAlarms, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DeploymentAlarms;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DeploymentAlarms")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut alarm_names: Option<::ValueList<String>> = None;
+                    let mut enable: Option<::Value<bool>> = None;
+                    let mut rollback: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AlarmNames" => {
+                                alarm_names = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Enable" => {
+                                enable = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Rollback" => {
+                                rollback = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DeploymentAlarms {
+                        alarm_names: alarm_names.ok_or(::serde::de::Error::missing_field("AlarmNames"))?,
+                        enable: enable.ok_or(::serde::de::Error::missing_field("Enable"))?,
+                        rollback: rollback.ok_or(::serde::de::Error::missing_field("Rollback"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::ECS::Service.DeploymentCircuitBreaker`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-deploymentcircuitbreaker.html) property type.
     #[derive(Debug, Default)]
     pub struct DeploymentCircuitBreaker {
@@ -2120,6 +2311,11 @@ pub mod service {
     /// The [`AWS::ECS::Service.DeploymentConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-deploymentconfiguration.html) property type.
     #[derive(Debug, Default)]
     pub struct DeploymentConfiguration {
+        /// Property [`Alarms`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-deploymentconfiguration.html#cfn-ecs-service-deploymentconfiguration-alarms).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub alarms: Option<::Value<DeploymentAlarms>>,
         /// Property [`DeploymentCircuitBreaker`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-deploymentconfiguration.html#cfn-ecs-service-deploymentconfiguration-deploymentcircuitbreaker).
         ///
         /// Update type: _Mutable_.
@@ -2140,6 +2336,9 @@ pub mod service {
     impl ::codec::SerializeValue for DeploymentConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref alarms) = self.alarms {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Alarms", alarms)?;
+            }
             if let Some(ref deployment_circuit_breaker) = self.deployment_circuit_breaker {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeploymentCircuitBreaker", deployment_circuit_breaker)?;
             }
@@ -2165,12 +2364,16 @@ pub mod service {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut alarms: Option<::Value<DeploymentAlarms>> = None;
                     let mut deployment_circuit_breaker: Option<::Value<DeploymentCircuitBreaker>> = None;
                     let mut maximum_percent: Option<::Value<u32>> = None;
                     let mut minimum_healthy_percent: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "Alarms" => {
+                                alarms = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "DeploymentCircuitBreaker" => {
                                 deployment_circuit_breaker = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -2185,6 +2388,7 @@ pub mod service {
                     }
 
                     Ok(DeploymentConfiguration {
+                        alarms: alarms,
                         deployment_circuit_breaker: deployment_circuit_breaker,
                         maximum_percent: maximum_percent,
                         minimum_healthy_percent: minimum_healthy_percent,
@@ -2249,28 +2453,105 @@ pub mod service {
         }
     }
 
+    /// The [`AWS::ECS::Service.EBSTagSpecification`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-ebstagspecification.html) property type.
+    #[derive(Debug, Default)]
+    pub struct EBSTagSpecification {
+        /// Property [`PropagateTags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-ebstagspecification.html#cfn-ecs-service-ebstagspecification-propagatetags).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub propagate_tags: Option<::Value<String>>,
+        /// Property [`ResourceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-ebstagspecification.html#cfn-ecs-service-ebstagspecification-resourcetype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub resource_type: ::Value<String>,
+        /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-ebstagspecification.html#cfn-ecs-service-ebstagspecification-tags).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tags: Option<::ValueList<::Tag>>,
+    }
+
+    impl ::codec::SerializeValue for EBSTagSpecification {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref propagate_tags) = self.propagate_tags {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PropagateTags", propagate_tags)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceType", &self.resource_type)?;
+            if let Some(ref tags) = self.tags {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for EBSTagSpecification {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<EBSTagSpecification, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = EBSTagSpecification;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type EBSTagSpecification")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut propagate_tags: Option<::Value<String>> = None;
+                    let mut resource_type: Option<::Value<String>> = None;
+                    let mut tags: Option<::ValueList<::Tag>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "PropagateTags" => {
+                                propagate_tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ResourceType" => {
+                                resource_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Tags" => {
+                                tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(EBSTagSpecification {
+                        propagate_tags: propagate_tags,
+                        resource_type: resource_type.ok_or(::serde::de::Error::missing_field("ResourceType"))?,
+                        tags: tags,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::ECS::Service.LoadBalancer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-loadbalancer.html) property type.
     #[derive(Debug, Default)]
     pub struct LoadBalancer {
         /// Property [`ContainerName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-loadbalancer.html#cfn-ecs-service-loadbalancer-containername).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub container_name: Option<::Value<String>>,
         /// Property [`ContainerPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-loadbalancer.html#cfn-ecs-service-loadbalancer-containerport).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub container_port: Option<::Value<u32>>,
         /// Property [`LoadBalancerName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-loadbalancer.html#cfn-ecs-service-loadbalancer-loadbalancername).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub load_balancer_name: Option<::Value<String>>,
         /// Property [`TargetGroupArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-loadbalancer.html#cfn-ecs-service-loadbalancer-targetgrouparn).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub target_group_arn: Option<::Value<String>>,
     }
 
@@ -2341,6 +2622,85 @@ pub mod service {
         }
     }
 
+    /// The [`AWS::ECS::Service.LogConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-logconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LogConfiguration {
+        /// Property [`LogDriver`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-logconfiguration.html#cfn-ecs-service-logconfiguration-logdriver).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub log_driver: Option<::Value<String>>,
+        /// Property [`Options`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-logconfiguration.html#cfn-ecs-service-logconfiguration-options).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub options: Option<::ValueMap<String>>,
+        /// Property [`SecretOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-logconfiguration.html#cfn-ecs-service-logconfiguration-secretoptions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub secret_options: Option<::ValueList<Secret>>,
+    }
+
+    impl ::codec::SerializeValue for LogConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref log_driver) = self.log_driver {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogDriver", log_driver)?;
+            }
+            if let Some(ref options) = self.options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Options", options)?;
+            }
+            if let Some(ref secret_options) = self.secret_options {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecretOptions", secret_options)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LogConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LogConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LogConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LogConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut log_driver: Option<::Value<String>> = None;
+                    let mut options: Option<::ValueMap<String>> = None;
+                    let mut secret_options: Option<::ValueList<Secret>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "LogDriver" => {
+                                log_driver = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Options" => {
+                                options = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SecretOptions" => {
+                                secret_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LogConfiguration {
+                        log_driver: log_driver,
+                        options: options,
+                        secret_options: secret_options,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::ECS::Service.NetworkConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-networkconfiguration.html) property type.
     #[derive(Debug, Default)]
     pub struct NetworkConfiguration {
@@ -2399,13 +2759,13 @@ pub mod service {
     pub struct PlacementConstraint {
         /// Property [`Expression`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-placementconstraint.html#cfn-ecs-service-placementconstraint-expression).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub expression: Option<::Value<String>>,
         /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-placementconstraint.html#cfn-ecs-service-placementconstraint-type).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub r#type: ::Value<String>,
     }
 
@@ -2463,13 +2823,13 @@ pub mod service {
     pub struct PlacementStrategy {
         /// Property [`Field`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-placementstrategy.html#cfn-ecs-service-placementstrategy-field).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub field: Option<::Value<String>>,
         /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-placementstrategy.html#cfn-ecs-service-placementstrategy-type).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub r#type: ::Value<String>,
     }
 
@@ -2522,28 +2882,658 @@ pub mod service {
         }
     }
 
+    /// The [`AWS::ECS::Service.Secret`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-secret.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Secret {
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-secret.html#cfn-ecs-service-secret-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: ::Value<String>,
+        /// Property [`ValueFrom`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-secret.html#cfn-ecs-service-secret-valuefrom).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub value_from: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for Secret {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ValueFrom", &self.value_from)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Secret {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Secret, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Secret;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Secret")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut name: Option<::Value<String>> = None;
+                    let mut value_from: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ValueFrom" => {
+                                value_from = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Secret {
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                        value_from: value_from.ok_or(::serde::de::Error::missing_field("ValueFrom"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ECS::Service.ServiceConnectClientAlias`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnectclientalias.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ServiceConnectClientAlias {
+        /// Property [`DnsName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnectclientalias.html#cfn-ecs-service-serviceconnectclientalias-dnsname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub dns_name: Option<::Value<String>>,
+        /// Property [`Port`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnectclientalias.html#cfn-ecs-service-serviceconnectclientalias-port).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub port: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for ServiceConnectClientAlias {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref dns_name) = self.dns_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DnsName", dns_name)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", &self.port)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ServiceConnectClientAlias {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ServiceConnectClientAlias, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ServiceConnectClientAlias;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ServiceConnectClientAlias")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut dns_name: Option<::Value<String>> = None;
+                    let mut port: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DnsName" => {
+                                dns_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Port" => {
+                                port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ServiceConnectClientAlias {
+                        dns_name: dns_name,
+                        port: port.ok_or(::serde::de::Error::missing_field("Port"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ECS::Service.ServiceConnectConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnectconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ServiceConnectConfiguration {
+        /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnectconfiguration.html#cfn-ecs-service-serviceconnectconfiguration-enabled).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub enabled: ::Value<bool>,
+        /// Property [`LogConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnectconfiguration.html#cfn-ecs-service-serviceconnectconfiguration-logconfiguration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub log_configuration: Option<::Value<LogConfiguration>>,
+        /// Property [`Namespace`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnectconfiguration.html#cfn-ecs-service-serviceconnectconfiguration-namespace).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub namespace: Option<::Value<String>>,
+        /// Property [`Services`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnectconfiguration.html#cfn-ecs-service-serviceconnectconfiguration-services).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub services: Option<::ValueList<ServiceConnectService>>,
+    }
+
+    impl ::codec::SerializeValue for ServiceConnectConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", &self.enabled)?;
+            if let Some(ref log_configuration) = self.log_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogConfiguration", log_configuration)?;
+            }
+            if let Some(ref namespace) = self.namespace {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Namespace", namespace)?;
+            }
+            if let Some(ref services) = self.services {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Services", services)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ServiceConnectConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ServiceConnectConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ServiceConnectConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ServiceConnectConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut enabled: Option<::Value<bool>> = None;
+                    let mut log_configuration: Option<::Value<LogConfiguration>> = None;
+                    let mut namespace: Option<::Value<String>> = None;
+                    let mut services: Option<::ValueList<ServiceConnectService>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Enabled" => {
+                                enabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LogConfiguration" => {
+                                log_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Namespace" => {
+                                namespace = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Services" => {
+                                services = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ServiceConnectConfiguration {
+                        enabled: enabled.ok_or(::serde::de::Error::missing_field("Enabled"))?,
+                        log_configuration: log_configuration,
+                        namespace: namespace,
+                        services: services,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ECS::Service.ServiceConnectService`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnectservice.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ServiceConnectService {
+        /// Property [`ClientAliases`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnectservice.html#cfn-ecs-service-serviceconnectservice-clientaliases).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub client_aliases: Option<::ValueList<ServiceConnectClientAlias>>,
+        /// Property [`DiscoveryName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnectservice.html#cfn-ecs-service-serviceconnectservice-discoveryname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub discovery_name: Option<::Value<String>>,
+        /// Property [`IngressPortOverride`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnectservice.html#cfn-ecs-service-serviceconnectservice-ingressportoverride).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ingress_port_override: Option<::Value<u32>>,
+        /// Property [`PortName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnectservice.html#cfn-ecs-service-serviceconnectservice-portname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub port_name: ::Value<String>,
+        /// Property [`Timeout`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnectservice.html#cfn-ecs-service-serviceconnectservice-timeout).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub timeout: Option<::Value<TimeoutConfiguration>>,
+        /// Property [`Tls`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnectservice.html#cfn-ecs-service-serviceconnectservice-tls).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tls: Option<::Value<ServiceConnectTlsConfiguration>>,
+    }
+
+    impl ::codec::SerializeValue for ServiceConnectService {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref client_aliases) = self.client_aliases {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientAliases", client_aliases)?;
+            }
+            if let Some(ref discovery_name) = self.discovery_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DiscoveryName", discovery_name)?;
+            }
+            if let Some(ref ingress_port_override) = self.ingress_port_override {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IngressPortOverride", ingress_port_override)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PortName", &self.port_name)?;
+            if let Some(ref timeout) = self.timeout {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Timeout", timeout)?;
+            }
+            if let Some(ref tls) = self.tls {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tls", tls)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ServiceConnectService {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ServiceConnectService, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ServiceConnectService;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ServiceConnectService")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut client_aliases: Option<::ValueList<ServiceConnectClientAlias>> = None;
+                    let mut discovery_name: Option<::Value<String>> = None;
+                    let mut ingress_port_override: Option<::Value<u32>> = None;
+                    let mut port_name: Option<::Value<String>> = None;
+                    let mut timeout: Option<::Value<TimeoutConfiguration>> = None;
+                    let mut tls: Option<::Value<ServiceConnectTlsConfiguration>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ClientAliases" => {
+                                client_aliases = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DiscoveryName" => {
+                                discovery_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IngressPortOverride" => {
+                                ingress_port_override = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PortName" => {
+                                port_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Timeout" => {
+                                timeout = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Tls" => {
+                                tls = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ServiceConnectService {
+                        client_aliases: client_aliases,
+                        discovery_name: discovery_name,
+                        ingress_port_override: ingress_port_override,
+                        port_name: port_name.ok_or(::serde::de::Error::missing_field("PortName"))?,
+                        timeout: timeout,
+                        tls: tls,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ECS::Service.ServiceConnectTlsCertificateAuthority`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnecttlscertificateauthority.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ServiceConnectTlsCertificateAuthority {
+        /// Property [`AwsPcaAuthorityArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnecttlscertificateauthority.html#cfn-ecs-service-serviceconnecttlscertificateauthority-awspcaauthorityarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub aws_pca_authority_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for ServiceConnectTlsCertificateAuthority {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref aws_pca_authority_arn) = self.aws_pca_authority_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AwsPcaAuthorityArn", aws_pca_authority_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ServiceConnectTlsCertificateAuthority {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ServiceConnectTlsCertificateAuthority, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ServiceConnectTlsCertificateAuthority;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ServiceConnectTlsCertificateAuthority")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut aws_pca_authority_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AwsPcaAuthorityArn" => {
+                                aws_pca_authority_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ServiceConnectTlsCertificateAuthority {
+                        aws_pca_authority_arn: aws_pca_authority_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ECS::Service.ServiceConnectTlsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnecttlsconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ServiceConnectTlsConfiguration {
+        /// Property [`IssuerCertificateAuthority`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnecttlsconfiguration.html#cfn-ecs-service-serviceconnecttlsconfiguration-issuercertificateauthority).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub issuer_certificate_authority: ::Value<ServiceConnectTlsCertificateAuthority>,
+        /// Property [`KmsKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnecttlsconfiguration.html#cfn-ecs-service-serviceconnecttlsconfiguration-kmskey).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub kms_key: Option<::Value<String>>,
+        /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceconnecttlsconfiguration.html#cfn-ecs-service-serviceconnecttlsconfiguration-rolearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub role_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for ServiceConnectTlsConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IssuerCertificateAuthority", &self.issuer_certificate_authority)?;
+            if let Some(ref kms_key) = self.kms_key {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKey", kms_key)?;
+            }
+            if let Some(ref role_arn) = self.role_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", role_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ServiceConnectTlsConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ServiceConnectTlsConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ServiceConnectTlsConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ServiceConnectTlsConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut issuer_certificate_authority: Option<::Value<ServiceConnectTlsCertificateAuthority>> = None;
+                    let mut kms_key: Option<::Value<String>> = None;
+                    let mut role_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "IssuerCertificateAuthority" => {
+                                issuer_certificate_authority = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "KmsKey" => {
+                                kms_key = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RoleArn" => {
+                                role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ServiceConnectTlsConfiguration {
+                        issuer_certificate_authority: issuer_certificate_authority.ok_or(::serde::de::Error::missing_field("IssuerCertificateAuthority"))?,
+                        kms_key: kms_key,
+                        role_arn: role_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ECS::Service.ServiceManagedEBSVolumeConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-servicemanagedebsvolumeconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ServiceManagedEBSVolumeConfiguration {
+        /// Property [`Encrypted`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-servicemanagedebsvolumeconfiguration.html#cfn-ecs-service-servicemanagedebsvolumeconfiguration-encrypted).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub encrypted: Option<::Value<bool>>,
+        /// Property [`FilesystemType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-servicemanagedebsvolumeconfiguration.html#cfn-ecs-service-servicemanagedebsvolumeconfiguration-filesystemtype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub filesystem_type: Option<::Value<String>>,
+        /// Property [`Iops`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-servicemanagedebsvolumeconfiguration.html#cfn-ecs-service-servicemanagedebsvolumeconfiguration-iops).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub iops: Option<::Value<u32>>,
+        /// Property [`KmsKeyId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-servicemanagedebsvolumeconfiguration.html#cfn-ecs-service-servicemanagedebsvolumeconfiguration-kmskeyid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub kms_key_id: Option<::Value<String>>,
+        /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-servicemanagedebsvolumeconfiguration.html#cfn-ecs-service-servicemanagedebsvolumeconfiguration-rolearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub role_arn: ::Value<String>,
+        /// Property [`SizeInGiB`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-servicemanagedebsvolumeconfiguration.html#cfn-ecs-service-servicemanagedebsvolumeconfiguration-sizeingib).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub size_in_gi_b: Option<::Value<u32>>,
+        /// Property [`SnapshotId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-servicemanagedebsvolumeconfiguration.html#cfn-ecs-service-servicemanagedebsvolumeconfiguration-snapshotid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub snapshot_id: Option<::Value<String>>,
+        /// Property [`TagSpecifications`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-servicemanagedebsvolumeconfiguration.html#cfn-ecs-service-servicemanagedebsvolumeconfiguration-tagspecifications).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tag_specifications: Option<::ValueList<EBSTagSpecification>>,
+        /// Property [`Throughput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-servicemanagedebsvolumeconfiguration.html#cfn-ecs-service-servicemanagedebsvolumeconfiguration-throughput).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub throughput: Option<::Value<u32>>,
+        /// Property [`VolumeType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-servicemanagedebsvolumeconfiguration.html#cfn-ecs-service-servicemanagedebsvolumeconfiguration-volumetype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub volume_type: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for ServiceManagedEBSVolumeConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref encrypted) = self.encrypted {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Encrypted", encrypted)?;
+            }
+            if let Some(ref filesystem_type) = self.filesystem_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FilesystemType", filesystem_type)?;
+            }
+            if let Some(ref iops) = self.iops {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Iops", iops)?;
+            }
+            if let Some(ref kms_key_id) = self.kms_key_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyId", kms_key_id)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
+            if let Some(ref size_in_gi_b) = self.size_in_gi_b {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SizeInGiB", size_in_gi_b)?;
+            }
+            if let Some(ref snapshot_id) = self.snapshot_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapshotId", snapshot_id)?;
+            }
+            if let Some(ref tag_specifications) = self.tag_specifications {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TagSpecifications", tag_specifications)?;
+            }
+            if let Some(ref throughput) = self.throughput {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Throughput", throughput)?;
+            }
+            if let Some(ref volume_type) = self.volume_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "VolumeType", volume_type)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ServiceManagedEBSVolumeConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ServiceManagedEBSVolumeConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ServiceManagedEBSVolumeConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ServiceManagedEBSVolumeConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut encrypted: Option<::Value<bool>> = None;
+                    let mut filesystem_type: Option<::Value<String>> = None;
+                    let mut iops: Option<::Value<u32>> = None;
+                    let mut kms_key_id: Option<::Value<String>> = None;
+                    let mut role_arn: Option<::Value<String>> = None;
+                    let mut size_in_gi_b: Option<::Value<u32>> = None;
+                    let mut snapshot_id: Option<::Value<String>> = None;
+                    let mut tag_specifications: Option<::ValueList<EBSTagSpecification>> = None;
+                    let mut throughput: Option<::Value<u32>> = None;
+                    let mut volume_type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Encrypted" => {
+                                encrypted = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "FilesystemType" => {
+                                filesystem_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Iops" => {
+                                iops = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "KmsKeyId" => {
+                                kms_key_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RoleArn" => {
+                                role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SizeInGiB" => {
+                                size_in_gi_b = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SnapshotId" => {
+                                snapshot_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TagSpecifications" => {
+                                tag_specifications = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Throughput" => {
+                                throughput = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "VolumeType" => {
+                                volume_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ServiceManagedEBSVolumeConfiguration {
+                        encrypted: encrypted,
+                        filesystem_type: filesystem_type,
+                        iops: iops,
+                        kms_key_id: kms_key_id,
+                        role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
+                        size_in_gi_b: size_in_gi_b,
+                        snapshot_id: snapshot_id,
+                        tag_specifications: tag_specifications,
+                        throughput: throughput,
+                        volume_type: volume_type,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::ECS::Service.ServiceRegistry`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceregistry.html) property type.
     #[derive(Debug, Default)]
     pub struct ServiceRegistry {
         /// Property [`ContainerName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceregistry.html#cfn-ecs-service-serviceregistry-containername).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub container_name: Option<::Value<String>>,
         /// Property [`ContainerPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceregistry.html#cfn-ecs-service-serviceregistry-containerport).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub container_port: Option<::Value<u32>>,
         /// Property [`Port`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceregistry.html#cfn-ecs-service-serviceregistry-port).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub port: Option<::Value<u32>>,
         /// Property [`RegistryArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-serviceregistry.html#cfn-ecs-service-serviceregistry-registryarn).
         ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub registry_arn: Option<::Value<String>>,
     }
 
@@ -2606,6 +3596,136 @@ pub mod service {
                         container_port: container_port,
                         port: port,
                         registry_arn: registry_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ECS::Service.ServiceVolumeConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-servicevolumeconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ServiceVolumeConfiguration {
+        /// Property [`ManagedEBSVolume`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-servicevolumeconfiguration.html#cfn-ecs-service-servicevolumeconfiguration-managedebsvolume).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub managed_ebs_volume: Option<::Value<ServiceManagedEBSVolumeConfiguration>>,
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-servicevolumeconfiguration.html#cfn-ecs-service-servicevolumeconfiguration-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for ServiceVolumeConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref managed_ebs_volume) = self.managed_ebs_volume {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ManagedEBSVolume", managed_ebs_volume)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ServiceVolumeConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ServiceVolumeConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ServiceVolumeConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ServiceVolumeConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut managed_ebs_volume: Option<::Value<ServiceManagedEBSVolumeConfiguration>> = None;
+                    let mut name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ManagedEBSVolume" => {
+                                managed_ebs_volume = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ServiceVolumeConfiguration {
+                        managed_ebs_volume: managed_ebs_volume,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ECS::Service.TimeoutConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-timeoutconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TimeoutConfiguration {
+        /// Property [`IdleTimeoutSeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-timeoutconfiguration.html#cfn-ecs-service-timeoutconfiguration-idletimeoutseconds).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub idle_timeout_seconds: Option<::Value<u32>>,
+        /// Property [`PerRequestTimeoutSeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-service-timeoutconfiguration.html#cfn-ecs-service-timeoutconfiguration-perrequesttimeoutseconds).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub per_request_timeout_seconds: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for TimeoutConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref idle_timeout_seconds) = self.idle_timeout_seconds {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IdleTimeoutSeconds", idle_timeout_seconds)?;
+            }
+            if let Some(ref per_request_timeout_seconds) = self.per_request_timeout_seconds {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PerRequestTimeoutSeconds", per_request_timeout_seconds)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TimeoutConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TimeoutConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TimeoutConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TimeoutConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut idle_timeout_seconds: Option<::Value<u32>> = None;
+                    let mut per_request_timeout_seconds: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "IdleTimeoutSeconds" => {
+                                idle_timeout_seconds = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PerRequestTimeoutSeconds" => {
+                                per_request_timeout_seconds = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TimeoutConfiguration {
+                        idle_timeout_seconds: idle_timeout_seconds,
+                        per_request_timeout_seconds: per_request_timeout_seconds,
                     })
                 }
             }
@@ -2684,200 +3804,200 @@ pub mod task_definition {
         }
     }
 
-    /// The [`AWS::ECS::TaskDefinition.ContainerDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html) property type.
+    /// The [`AWS::ECS::TaskDefinition.ContainerDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html) property type.
     #[derive(Debug, Default)]
     pub struct ContainerDefinition {
-        /// Property [`Command`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-command).
+        /// Property [`Command`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-command).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub command: Option<::ValueList<String>>,
-        /// Property [`Cpu`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-cpu).
+        /// Property [`Cpu`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-cpu).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub cpu: Option<::Value<u32>>,
-        /// Property [`DependsOn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-dependson).
+        /// Property [`DependsOn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-dependson).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub depends_on: Option<::ValueList<ContainerDependency>>,
-        /// Property [`DisableNetworking`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-disablenetworking).
+        /// Property [`DisableNetworking`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-disablenetworking).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub disable_networking: Option<::Value<bool>>,
-        /// Property [`DnsSearchDomains`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-dnssearchdomains).
+        /// Property [`DnsSearchDomains`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-dnssearchdomains).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub dns_search_domains: Option<::ValueList<String>>,
-        /// Property [`DnsServers`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-dnsservers).
+        /// Property [`DnsServers`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-dnsservers).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub dns_servers: Option<::ValueList<String>>,
-        /// Property [`DockerLabels`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-dockerlabels).
+        /// Property [`DockerLabels`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-dockerlabels).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub docker_labels: Option<::ValueMap<String>>,
-        /// Property [`DockerSecurityOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-dockersecurityoptions).
+        /// Property [`DockerSecurityOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-dockersecurityoptions).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub docker_security_options: Option<::ValueList<String>>,
-        /// Property [`EntryPoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-entrypoint).
+        /// Property [`EntryPoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-entrypoint).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub entry_point: Option<::ValueList<String>>,
-        /// Property [`Environment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-environment).
+        /// Property [`Environment`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-environment).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub environment: Option<::ValueList<KeyValuePair>>,
-        /// Property [`EnvironmentFiles`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-environmentfiles).
+        /// Property [`EnvironmentFiles`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-environmentfiles).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub environment_files: Option<::ValueList<EnvironmentFile>>,
-        /// Property [`Essential`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-essential).
+        /// Property [`Essential`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-essential).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub essential: Option<::Value<bool>>,
-        /// Property [`ExtraHosts`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-extrahosts).
+        /// Property [`ExtraHosts`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-extrahosts).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub extra_hosts: Option<::ValueList<HostEntry>>,
-        /// Property [`FirelensConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-firelensconfiguration).
+        /// Property [`FirelensConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-firelensconfiguration).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub firelens_configuration: Option<::Value<FirelensConfiguration>>,
-        /// Property [`HealthCheck`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-healthcheck).
+        /// Property [`HealthCheck`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-healthcheck).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub health_check: Option<::Value<HealthCheck>>,
-        /// Property [`Hostname`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-hostname).
+        /// Property [`Hostname`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-hostname).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub hostname: Option<::Value<String>>,
-        /// Property [`Image`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-image).
+        /// Property [`Image`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-image).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
-        pub image: Option<::Value<String>>,
-        /// Property [`Interactive`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-interactive).
+        pub image: ::Value<String>,
+        /// Property [`Interactive`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-interactive).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub interactive: Option<::Value<bool>>,
-        /// Property [`Links`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-links).
+        /// Property [`Links`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-links).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub links: Option<::ValueList<String>>,
-        /// Property [`LinuxParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-linuxparameters).
+        /// Property [`LinuxParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-linuxparameters).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub linux_parameters: Option<::Value<LinuxParameters>>,
-        /// Property [`LogConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-logconfiguration).
+        /// Property [`LogConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-logconfiguration).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub log_configuration: Option<::Value<LogConfiguration>>,
-        /// Property [`Memory`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-memory).
+        /// Property [`Memory`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-memory).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub memory: Option<::Value<u32>>,
-        /// Property [`MemoryReservation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-memoryreservation).
+        /// Property [`MemoryReservation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-memoryreservation).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub memory_reservation: Option<::Value<u32>>,
-        /// Property [`MountPoints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-mountpoints).
+        /// Property [`MountPoints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-mountpoints).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub mount_points: Option<::ValueList<MountPoint>>,
-        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-name).
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-name).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
-        pub name: Option<::Value<String>>,
-        /// Property [`PortMappings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-portmappings).
+        pub name: ::Value<String>,
+        /// Property [`PortMappings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-portmappings).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub port_mappings: Option<::ValueList<PortMapping>>,
-        /// Property [`Privileged`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-privileged).
+        /// Property [`Privileged`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-privileged).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub privileged: Option<::Value<bool>>,
-        /// Property [`PseudoTerminal`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-pseudoterminal).
+        /// Property [`PseudoTerminal`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-pseudoterminal).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub pseudo_terminal: Option<::Value<bool>>,
-        /// Property [`ReadonlyRootFilesystem`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-readonlyrootfilesystem).
+        /// Property [`ReadonlyRootFilesystem`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-readonlyrootfilesystem).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub readonly_root_filesystem: Option<::Value<bool>>,
-        /// Property [`RepositoryCredentials`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-repositorycredentials).
+        /// Property [`RepositoryCredentials`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-repositorycredentials).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub repository_credentials: Option<::Value<RepositoryCredentials>>,
-        /// Property [`ResourceRequirements`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-resourcerequirements).
+        /// Property [`ResourceRequirements`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-resourcerequirements).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub resource_requirements: Option<::ValueList<ResourceRequirement>>,
-        /// Property [`Secrets`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-secrets).
+        /// Property [`Secrets`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-secrets).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub secrets: Option<::ValueList<Secret>>,
-        /// Property [`StartTimeout`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-starttimeout).
+        /// Property [`StartTimeout`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-starttimeout).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub start_timeout: Option<::Value<u32>>,
-        /// Property [`StopTimeout`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-stoptimeout).
+        /// Property [`StopTimeout`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-stoptimeout).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub stop_timeout: Option<::Value<u32>>,
-        /// Property [`SystemControls`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-systemcontrols).
+        /// Property [`SystemControls`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-systemcontrols).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub system_controls: Option<::ValueList<SystemControl>>,
-        /// Property [`Ulimits`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-ulimits).
+        /// Property [`Ulimits`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-ulimits).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub ulimits: Option<::ValueList<Ulimit>>,
-        /// Property [`User`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-user).
+        /// Property [`User`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-user).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub user: Option<::Value<String>>,
-        /// Property [`VolumesFrom`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-volumesfrom).
+        /// Property [`VolumesFrom`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-volumesfrom).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub volumes_from: Option<::ValueList<VolumeFrom>>,
-        /// Property [`WorkingDirectory`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html#cfn-ecs-taskdefinition-containerdefinition-workingdirectory).
+        /// Property [`WorkingDirectory`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinition.html#cfn-ecs-taskdefinition-containerdefinition-workingdirectory).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
@@ -2935,9 +4055,7 @@ pub mod task_definition {
             if let Some(ref hostname) = self.hostname {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Hostname", hostname)?;
             }
-            if let Some(ref image) = self.image {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Image", image)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Image", &self.image)?;
             if let Some(ref interactive) = self.interactive {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Interactive", interactive)?;
             }
@@ -2959,9 +4077,7 @@ pub mod task_definition {
             if let Some(ref mount_points) = self.mount_points {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "MountPoints", mount_points)?;
             }
-            if let Some(ref name) = self.name {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
-            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
             if let Some(ref port_mappings) = self.port_mappings {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "PortMappings", port_mappings)?;
             }
@@ -3200,7 +4316,7 @@ pub mod task_definition {
                         firelens_configuration: firelens_configuration,
                         health_check: health_check,
                         hostname: hostname,
-                        image: image,
+                        image: image.ok_or(::serde::de::Error::missing_field("Image"))?,
                         interactive: interactive,
                         links: links,
                         linux_parameters: linux_parameters,
@@ -3208,7 +4324,7 @@ pub mod task_definition {
                         memory: memory,
                         memory_reservation: memory_reservation,
                         mount_points: mount_points,
-                        name: name,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                         port_mappings: port_mappings,
                         privileged: privileged,
                         pseudo_terminal: pseudo_terminal,
@@ -3874,15 +4990,15 @@ pub mod task_definition {
         }
     }
 
-    /// The [`AWS::ECS::TaskDefinition.HostEntry`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-hostentry.html) property type.
+    /// The [`AWS::ECS::TaskDefinition.HostEntry`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-hostentry.html) property type.
     #[derive(Debug, Default)]
     pub struct HostEntry {
-        /// Property [`Hostname`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-hostentry.html#cfn-ecs-taskdefinition-containerdefinition-hostentry-hostname).
+        /// Property [`Hostname`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-hostentry.html#cfn-ecs-taskdefinition-hostentry-hostname).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub hostname: Option<::Value<String>>,
-        /// Property [`IpAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-hostentry.html#cfn-ecs-taskdefinition-containerdefinition-hostentry-ipaddress).
+        /// Property [`IpAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-hostentry.html#cfn-ecs-taskdefinition-hostentry-ipaddress).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
@@ -3940,10 +5056,10 @@ pub mod task_definition {
         }
     }
 
-    /// The [`AWS::ECS::TaskDefinition.HostVolumeProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volumes-host.html) property type.
+    /// The [`AWS::ECS::TaskDefinition.HostVolumeProperties`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-hostvolumeproperties.html) property type.
     #[derive(Debug, Default)]
     pub struct HostVolumeProperties {
-        /// Property [`SourcePath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volumes-host.html#cfn-ecs-taskdefinition-volumes-host-sourcepath).
+        /// Property [`SourcePath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-hostvolumeproperties.html#cfn-ecs-taskdefinition-hostvolumeproperties-sourcepath).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
@@ -4125,15 +5241,15 @@ pub mod task_definition {
         }
     }
 
-    /// The [`AWS::ECS::TaskDefinition.KeyValuePair`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-environment.html) property type.
+    /// The [`AWS::ECS::TaskDefinition.KeyValuePair`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-keyvaluepair.html) property type.
     #[derive(Debug, Default)]
     pub struct KeyValuePair {
-        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-environment.html#cfn-ecs-taskdefinition-containerdefinition-environment-name).
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-keyvaluepair.html#cfn-ecs-taskdefinition-keyvaluepair-name).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub name: Option<::Value<String>>,
-        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-environment.html#cfn-ecs-taskdefinition-containerdefinition-environment-value).
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-keyvaluepair.html#cfn-ecs-taskdefinition-keyvaluepair-value).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
@@ -4322,20 +5438,20 @@ pub mod task_definition {
         }
     }
 
-    /// The [`AWS::ECS::TaskDefinition.LogConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-logconfiguration.html) property type.
+    /// The [`AWS::ECS::TaskDefinition.LogConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-logconfiguration.html) property type.
     #[derive(Debug, Default)]
     pub struct LogConfiguration {
-        /// Property [`LogDriver`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-logconfiguration.html#cfn-ecs-taskdefinition-containerdefinition-logconfiguration-logdriver).
+        /// Property [`LogDriver`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-logconfiguration.html#cfn-ecs-taskdefinition-logconfiguration-logdriver).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub log_driver: ::Value<String>,
-        /// Property [`Options`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-logconfiguration.html#cfn-ecs-taskdefinition-containerdefinition-logconfiguration-options).
+        /// Property [`Options`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-logconfiguration.html#cfn-ecs-taskdefinition-logconfiguration-options).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub options: Option<::ValueMap<String>>,
-        /// Property [`SecretOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-logconfiguration.html#cfn-ecs-taskdefinition-logconfiguration-secretoptions).
+        /// Property [`SecretOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-logconfiguration.html#cfn-ecs-taskdefinition-logconfiguration-secretoptions).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
@@ -4399,20 +5515,20 @@ pub mod task_definition {
         }
     }
 
-    /// The [`AWS::ECS::TaskDefinition.MountPoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-mountpoints.html) property type.
+    /// The [`AWS::ECS::TaskDefinition.MountPoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-mountpoint.html) property type.
     #[derive(Debug, Default)]
     pub struct MountPoint {
-        /// Property [`ContainerPath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-mountpoints.html#cfn-ecs-taskdefinition-containerdefinition-mountpoints-containerpath).
+        /// Property [`ContainerPath`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-mountpoint.html#cfn-ecs-taskdefinition-mountpoint-containerpath).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub container_path: Option<::Value<String>>,
-        /// Property [`ReadOnly`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-mountpoints.html#cfn-ecs-taskdefinition-containerdefinition-mountpoints-readonly).
+        /// Property [`ReadOnly`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-mountpoint.html#cfn-ecs-taskdefinition-mountpoint-readonly).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub read_only: Option<::Value<bool>>,
-        /// Property [`SourceVolume`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-mountpoints.html#cfn-ecs-taskdefinition-containerdefinition-mountpoints-sourcevolume).
+        /// Property [`SourceVolume`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-mountpoint.html#cfn-ecs-taskdefinition-mountpoint-sourcevolume).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
@@ -4478,20 +5594,35 @@ pub mod task_definition {
         }
     }
 
-    /// The [`AWS::ECS::TaskDefinition.PortMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-portmappings.html) property type.
+    /// The [`AWS::ECS::TaskDefinition.PortMapping`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-portmapping.html) property type.
     #[derive(Debug, Default)]
     pub struct PortMapping {
-        /// Property [`ContainerPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-portmappings.html#cfn-ecs-taskdefinition-containerdefinition-portmappings-containerport).
+        /// Property [`AppProtocol`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-portmapping.html#cfn-ecs-taskdefinition-portmapping-appprotocol).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub app_protocol: Option<::Value<String>>,
+        /// Property [`ContainerPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-portmapping.html#cfn-ecs-taskdefinition-portmapping-containerport).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub container_port: Option<::Value<u32>>,
-        /// Property [`HostPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-portmappings.html#cfn-ecs-taskdefinition-containerdefinition-portmappings-readonly).
+        /// Property [`ContainerPortRange`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-portmapping.html#cfn-ecs-taskdefinition-portmapping-containerportrange).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub container_port_range: Option<::Value<String>>,
+        /// Property [`HostPort`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-portmapping.html#cfn-ecs-taskdefinition-portmapping-hostport).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub host_port: Option<::Value<u32>>,
-        /// Property [`Protocol`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-portmappings.html#cfn-ecs-taskdefinition-containerdefinition-portmappings-sourcevolume).
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-portmapping.html#cfn-ecs-taskdefinition-portmapping-name).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub name: Option<::Value<String>>,
+        /// Property [`Protocol`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-portmapping.html#cfn-ecs-taskdefinition-portmapping-protocol).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
@@ -4501,11 +5632,20 @@ pub mod task_definition {
     impl ::codec::SerializeValue for PortMapping {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref app_protocol) = self.app_protocol {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AppProtocol", app_protocol)?;
+            }
             if let Some(ref container_port) = self.container_port {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainerPort", container_port)?;
             }
+            if let Some(ref container_port_range) = self.container_port_range {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainerPortRange", container_port_range)?;
+            }
             if let Some(ref host_port) = self.host_port {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostPort", host_port)?;
+            }
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
             }
             if let Some(ref protocol) = self.protocol {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", protocol)?;
@@ -4526,17 +5666,29 @@ pub mod task_definition {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut app_protocol: Option<::Value<String>> = None;
                     let mut container_port: Option<::Value<u32>> = None;
+                    let mut container_port_range: Option<::Value<String>> = None;
                     let mut host_port: Option<::Value<u32>> = None;
+                    let mut name: Option<::Value<String>> = None;
                     let mut protocol: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "AppProtocol" => {
+                                app_protocol = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "ContainerPort" => {
                                 container_port = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "ContainerPortRange" => {
+                                container_port_range = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "HostPort" => {
                                 host_port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Protocol" => {
                                 protocol = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -4546,8 +5698,11 @@ pub mod task_definition {
                     }
 
                     Ok(PortMapping {
+                        app_protocol: app_protocol,
                         container_port: container_port,
+                        container_port_range: container_port_range,
                         host_port: host_port,
+                        name: name,
                         protocol: protocol,
                     })
                 }
@@ -4741,6 +5896,72 @@ pub mod task_definition {
                     Ok(ResourceRequirement {
                         r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
                         value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ECS::TaskDefinition.RuntimePlatform`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-runtimeplatform.html) property type.
+    #[derive(Debug, Default)]
+    pub struct RuntimePlatform {
+        /// Property [`CpuArchitecture`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-runtimeplatform.html#cfn-ecs-taskdefinition-runtimeplatform-cpuarchitecture).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub cpu_architecture: Option<::Value<String>>,
+        /// Property [`OperatingSystemFamily`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-runtimeplatform.html#cfn-ecs-taskdefinition-runtimeplatform-operatingsystemfamily).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub operating_system_family: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for RuntimePlatform {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref cpu_architecture) = self.cpu_architecture {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CpuArchitecture", cpu_architecture)?;
+            }
+            if let Some(ref operating_system_family) = self.operating_system_family {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OperatingSystemFamily", operating_system_family)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for RuntimePlatform {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<RuntimePlatform, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = RuntimePlatform;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type RuntimePlatform")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut cpu_architecture: Option<::Value<String>> = None;
+                    let mut operating_system_family: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CpuArchitecture" => {
+                                cpu_architecture = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OperatingSystemFamily" => {
+                                operating_system_family = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(RuntimePlatform {
+                        cpu_architecture: cpu_architecture,
+                        operating_system_family: operating_system_family,
                     })
                 }
             }
@@ -5018,20 +6239,20 @@ pub mod task_definition {
         }
     }
 
-    /// The [`AWS::ECS::TaskDefinition.Ulimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-ulimit.html) property type.
+    /// The [`AWS::ECS::TaskDefinition.Ulimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-ulimit.html) property type.
     #[derive(Debug, Default)]
     pub struct Ulimit {
-        /// Property [`HardLimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-ulimit.html#cfn-ecs-taskdefinition-containerdefinition-ulimit-hardlimit).
+        /// Property [`HardLimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-ulimit.html#cfn-ecs-taskdefinition-ulimit-hardlimit).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub hard_limit: ::Value<u32>,
-        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-ulimit.html#cfn-ecs-taskdefinition-containerdefinition-ulimit-name).
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-ulimit.html#cfn-ecs-taskdefinition-ulimit-name).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub name: ::Value<String>,
-        /// Property [`SoftLimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-ulimit.html#cfn-ecs-taskdefinition-containerdefinition-ulimit-softlimit).
+        /// Property [`SoftLimit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-ulimit.html#cfn-ecs-taskdefinition-ulimit-softlimit).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
@@ -5091,25 +6312,30 @@ pub mod task_definition {
         }
     }
 
-    /// The [`AWS::ECS::TaskDefinition.Volume`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volumes.html) property type.
+    /// The [`AWS::ECS::TaskDefinition.Volume`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volume.html) property type.
     #[derive(Debug, Default)]
     pub struct Volume {
-        /// Property [`DockerVolumeConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volumes.html#cfn-ecs-taskdefinition-volume-dockervolumeconfiguration).
+        /// Property [`ConfiguredAtLaunch`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volume.html#cfn-ecs-taskdefinition-volume-configuredatlaunch).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub configured_at_launch: Option<::Value<bool>>,
+        /// Property [`DockerVolumeConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volume.html#cfn-ecs-taskdefinition-volume-dockervolumeconfiguration).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub docker_volume_configuration: Option<::Value<DockerVolumeConfiguration>>,
-        /// Property [`EFSVolumeConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volumes.html#cfn-ecs-taskdefinition-volume-efsvolumeconfiguration).
+        /// Property [`EFSVolumeConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volume.html#cfn-ecs-taskdefinition-volume-efsvolumeconfiguration).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub efs_volume_configuration: Option<::Value<EFSVolumeConfiguration>>,
-        /// Property [`Host`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volumes.html#cfn-ecs-taskdefinition-volumes-host).
+        /// Property [`Host`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volume.html#cfn-ecs-taskdefinition-volume-host).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub host: Option<::Value<HostVolumeProperties>>,
-        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volumes.html#cfn-ecs-taskdefinition-volumes-name).
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volume.html#cfn-ecs-taskdefinition-volume-name).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
@@ -5119,6 +6345,9 @@ pub mod task_definition {
     impl ::codec::SerializeValue for Volume {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref configured_at_launch) = self.configured_at_launch {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConfiguredAtLaunch", configured_at_launch)?;
+            }
             if let Some(ref docker_volume_configuration) = self.docker_volume_configuration {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "DockerVolumeConfiguration", docker_volume_configuration)?;
             }
@@ -5147,6 +6376,7 @@ pub mod task_definition {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut configured_at_launch: Option<::Value<bool>> = None;
                     let mut docker_volume_configuration: Option<::Value<DockerVolumeConfiguration>> = None;
                     let mut efs_volume_configuration: Option<::Value<EFSVolumeConfiguration>> = None;
                     let mut host: Option<::Value<HostVolumeProperties>> = None;
@@ -5154,6 +6384,9 @@ pub mod task_definition {
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "ConfiguredAtLaunch" => {
+                                configured_at_launch = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "DockerVolumeConfiguration" => {
                                 docker_volume_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -5171,6 +6404,7 @@ pub mod task_definition {
                     }
 
                     Ok(Volume {
+                        configured_at_launch: configured_at_launch,
                         docker_volume_configuration: docker_volume_configuration,
                         efs_volume_configuration: efs_volume_configuration,
                         host: host,
@@ -5183,15 +6417,15 @@ pub mod task_definition {
         }
     }
 
-    /// The [`AWS::ECS::TaskDefinition.VolumeFrom`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-volumesfrom.html) property type.
+    /// The [`AWS::ECS::TaskDefinition.VolumeFrom`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volumefrom.html) property type.
     #[derive(Debug, Default)]
     pub struct VolumeFrom {
-        /// Property [`ReadOnly`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-volumesfrom.html#cfn-ecs-taskdefinition-containerdefinition-volumesfrom-readonly).
+        /// Property [`ReadOnly`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volumefrom.html#cfn-ecs-taskdefinition-volumefrom-readonly).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub read_only: Option<::Value<bool>>,
-        /// Property [`SourceContainer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions-volumesfrom.html#cfn-ecs-taskdefinition-containerdefinition-volumesfrom-sourcecontainer).
+        /// Property [`SourceContainer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-volumefrom.html#cfn-ecs-taskdefinition-volumefrom-sourcecontainer).
         ///
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
@@ -5343,11 +6577,6 @@ pub mod task_set {
         /// Update type: _Immutable_.
         /// AWS CloudFormation replaces the resource when you change this property.
         pub container_port: Option<::Value<u32>>,
-        /// Property [`LoadBalancerName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskset-loadbalancer.html#cfn-ecs-taskset-loadbalancer-loadbalancername).
-        ///
-        /// Update type: _Immutable_.
-        /// AWS CloudFormation replaces the resource when you change this property.
-        pub load_balancer_name: Option<::Value<String>>,
         /// Property [`TargetGroupArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskset-loadbalancer.html#cfn-ecs-taskset-loadbalancer-targetgrouparn).
         ///
         /// Update type: _Immutable_.
@@ -5363,9 +6592,6 @@ pub mod task_set {
             }
             if let Some(ref container_port) = self.container_port {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContainerPort", container_port)?;
-            }
-            if let Some(ref load_balancer_name) = self.load_balancer_name {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancerName", load_balancer_name)?;
             }
             if let Some(ref target_group_arn) = self.target_group_arn {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetGroupArn", target_group_arn)?;
@@ -5388,7 +6614,6 @@ pub mod task_set {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut container_name: Option<::Value<String>> = None;
                     let mut container_port: Option<::Value<u32>> = None;
-                    let mut load_balancer_name: Option<::Value<String>> = None;
                     let mut target_group_arn: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -5398,9 +6623,6 @@ pub mod task_set {
                             }
                             "ContainerPort" => {
                                 container_port = ::serde::de::MapAccess::next_value(&mut map)?;
-                            }
-                            "LoadBalancerName" => {
-                                load_balancer_name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "TargetGroupArn" => {
                                 target_group_arn = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -5412,7 +6634,6 @@ pub mod task_set {
                     Ok(LoadBalancer {
                         container_name: container_name,
                         container_port: container_port,
-                        load_balancer_name: load_balancer_name,
                         target_group_arn: target_group_arn,
                     })
                 }

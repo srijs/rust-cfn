@@ -102,7 +102,7 @@ pub struct StateMachineProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub definition: Option<::Value<self::state_machine::Definition>>,
+    pub definition: Option<::Value<::json::Value>>,
     /// Property [`DefinitionS3Location`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html#cfn-stepfunctions-statemachine-definitions3location).
     ///
     /// Update type: _Mutable_.
@@ -117,7 +117,7 @@ pub struct StateMachineProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub definition_substitutions: Option<::ValueMap<String>>,
+    pub definition_substitutions: Option<::ValueMap<::json::Value>>,
     /// Property [`LoggingConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html#cfn-stepfunctions-statemachine-loggingconfiguration).
     ///
     /// Update type: _Mutable_.
@@ -135,8 +135,8 @@ pub struct StateMachineProperties {
     pub state_machine_name: Option<::Value<String>>,
     /// Property [`StateMachineType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html#cfn-stepfunctions-statemachine-statemachinetype).
     ///
-    /// Update type: _Mutable_.
-    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub state_machine_type: Option<::Value<String>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html#cfn-stepfunctions-statemachine-tags).
     ///
@@ -197,10 +197,10 @@ impl<'de> ::serde::Deserialize<'de> for StateMachineProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                let mut definition: Option<::Value<self::state_machine::Definition>> = None;
+                let mut definition: Option<::Value<::json::Value>> = None;
                 let mut definition_s3_location: Option<::Value<self::state_machine::S3Location>> = None;
                 let mut definition_string: Option<::Value<String>> = None;
-                let mut definition_substitutions: Option<::ValueMap<String>> = None;
+                let mut definition_substitutions: Option<::ValueMap<::json::Value>> = None;
                 let mut logging_configuration: Option<::Value<self::state_machine::LoggingConfiguration>> = None;
                 let mut role_arn: Option<::Value<String>> = None;
                 let mut state_machine_name: Option<::Value<String>> = None;
@@ -279,6 +279,225 @@ impl ::private::Sealed for StateMachine {}
 impl From<StateMachineProperties> for StateMachine {
     fn from(properties: StateMachineProperties) -> StateMachine {
         StateMachine { properties }
+    }
+}
+
+/// The [`AWS::StepFunctions::StateMachineAlias`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachinealias.html) resource type.
+#[derive(Debug, Default)]
+pub struct StateMachineAlias {
+    properties: StateMachineAliasProperties
+}
+
+/// Properties for the `StateMachineAlias` resource.
+#[derive(Debug, Default)]
+pub struct StateMachineAliasProperties {
+    /// Property [`DeploymentPreference`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachinealias.html#cfn-stepfunctions-statemachinealias-deploymentpreference).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub deployment_preference: Option<::Value<self::state_machine_alias::DeploymentPreference>>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachinealias.html#cfn-stepfunctions-statemachinealias-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachinealias.html#cfn-stepfunctions-statemachinealias-name).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub name: Option<::Value<String>>,
+    /// Property [`RoutingConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachinealias.html#cfn-stepfunctions-statemachinealias-routingconfiguration).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub routing_configuration: Option<::ValueList<self::state_machine_alias::RoutingConfigurationVersion>>,
+}
+
+impl ::serde::Serialize for StateMachineAliasProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref deployment_preference) = self.deployment_preference {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeploymentPreference", deployment_preference)?;
+        }
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
+        if let Some(ref routing_configuration) = self.routing_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoutingConfiguration", routing_configuration)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for StateMachineAliasProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<StateMachineAliasProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = StateMachineAliasProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type StateMachineAliasProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut deployment_preference: Option<::Value<self::state_machine_alias::DeploymentPreference>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut routing_configuration: Option<::ValueList<self::state_machine_alias::RoutingConfigurationVersion>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "DeploymentPreference" => {
+                            deployment_preference = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "RoutingConfiguration" => {
+                            routing_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(StateMachineAliasProperties {
+                    deployment_preference: deployment_preference,
+                    description: description,
+                    name: name,
+                    routing_configuration: routing_configuration,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for StateMachineAlias {
+    type Properties = StateMachineAliasProperties;
+    const TYPE: &'static str = "AWS::StepFunctions::StateMachineAlias";
+    fn properties(&self) -> &StateMachineAliasProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut StateMachineAliasProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for StateMachineAlias {}
+
+impl From<StateMachineAliasProperties> for StateMachineAlias {
+    fn from(properties: StateMachineAliasProperties) -> StateMachineAlias {
+        StateMachineAlias { properties }
+    }
+}
+
+/// The [`AWS::StepFunctions::StateMachineVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachineversion.html) resource type.
+#[derive(Debug, Default)]
+pub struct StateMachineVersion {
+    properties: StateMachineVersionProperties
+}
+
+/// Properties for the `StateMachineVersion` resource.
+#[derive(Debug, Default)]
+pub struct StateMachineVersionProperties {
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachineversion.html#cfn-stepfunctions-statemachineversion-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`StateMachineArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachineversion.html#cfn-stepfunctions-statemachineversion-statemachinearn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub state_machine_arn: ::Value<String>,
+    /// Property [`StateMachineRevisionId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachineversion.html#cfn-stepfunctions-statemachineversion-statemachinerevisionid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub state_machine_revision_id: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for StateMachineVersionProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "StateMachineArn", &self.state_machine_arn)?;
+        if let Some(ref state_machine_revision_id) = self.state_machine_revision_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StateMachineRevisionId", state_machine_revision_id)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for StateMachineVersionProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<StateMachineVersionProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = StateMachineVersionProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type StateMachineVersionProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut description: Option<::Value<String>> = None;
+                let mut state_machine_arn: Option<::Value<String>> = None;
+                let mut state_machine_revision_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "StateMachineArn" => {
+                            state_machine_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "StateMachineRevisionId" => {
+                            state_machine_revision_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(StateMachineVersionProperties {
+                    description: description,
+                    state_machine_arn: state_machine_arn.ok_or(::serde::de::Error::missing_field("StateMachineArn"))?,
+                    state_machine_revision_id: state_machine_revision_id,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for StateMachineVersion {
+    type Properties = StateMachineVersionProperties;
+    const TYPE: &'static str = "AWS::StepFunctions::StateMachineVersion";
+    fn properties(&self) -> &StateMachineVersionProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut StateMachineVersionProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for StateMachineVersion {}
+
+impl From<StateMachineVersionProperties> for StateMachineVersion {
+    fn from(properties: StateMachineVersionProperties) -> StateMachineVersion {
+        StateMachineVersion { properties }
     }
 }
 
@@ -397,38 +616,6 @@ pub mod state_machine {
                     Ok(CloudWatchLogsLogGroup {
                         log_group_arn: log_group_arn,
                     })
-                }
-            }
-
-            d.deserialize_map(Visitor)
-        }
-    }
-
-    /// The [`AWS::StepFunctions::StateMachine.Definition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachine-definition.html) property type.
-    #[derive(Debug, Default)]
-    pub struct Definition {
-    }
-
-    impl ::codec::SerializeValue for Definition {
-        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            let map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::end(map)
-        }
-    }
-
-    impl ::codec::DeserializeValue for Definition {
-        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Definition, D::Error> {
-            struct Visitor;
-
-            impl<'de> ::serde::de::Visitor<'de> for Visitor {
-                type Value = Definition;
-
-                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-                    write!(f, "a struct of type Definition")
-                }
-
-                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, _map: A) -> Result<Self::Value, A::Error> {
-                    Ok(Definition {})
                 }
             }
 
@@ -750,6 +937,173 @@ pub mod state_machine {
 
                     Ok(TracingConfiguration {
                         enabled: enabled,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod state_machine_alias {
+    //! Property types for the `StateMachineAlias` resource.
+
+    /// The [`AWS::StepFunctions::StateMachineAlias.DeploymentPreference`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachinealias-deploymentpreference.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DeploymentPreference {
+        /// Property [`Alarms`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachinealias-deploymentpreference.html#cfn-stepfunctions-statemachinealias-deploymentpreference-alarms).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub alarms: Option<::ValueList<String>>,
+        /// Property [`Interval`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachinealias-deploymentpreference.html#cfn-stepfunctions-statemachinealias-deploymentpreference-interval).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub interval: Option<::Value<u32>>,
+        /// Property [`Percentage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachinealias-deploymentpreference.html#cfn-stepfunctions-statemachinealias-deploymentpreference-percentage).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub percentage: Option<::Value<u32>>,
+        /// Property [`StateMachineVersionArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachinealias-deploymentpreference.html#cfn-stepfunctions-statemachinealias-deploymentpreference-statemachineversionarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub state_machine_version_arn: ::Value<String>,
+        /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachinealias-deploymentpreference.html#cfn-stepfunctions-statemachinealias-deploymentpreference-type).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub r#type: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for DeploymentPreference {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref alarms) = self.alarms {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Alarms", alarms)?;
+            }
+            if let Some(ref interval) = self.interval {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Interval", interval)?;
+            }
+            if let Some(ref percentage) = self.percentage {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Percentage", percentage)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StateMachineVersionArn", &self.state_machine_version_arn)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DeploymentPreference {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DeploymentPreference, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DeploymentPreference;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DeploymentPreference")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut alarms: Option<::ValueList<String>> = None;
+                    let mut interval: Option<::Value<u32>> = None;
+                    let mut percentage: Option<::Value<u32>> = None;
+                    let mut state_machine_version_arn: Option<::Value<String>> = None;
+                    let mut r#type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Alarms" => {
+                                alarms = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Interval" => {
+                                interval = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Percentage" => {
+                                percentage = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "StateMachineVersionArn" => {
+                                state_machine_version_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Type" => {
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DeploymentPreference {
+                        alarms: alarms,
+                        interval: interval,
+                        percentage: percentage,
+                        state_machine_version_arn: state_machine_version_arn.ok_or(::serde::de::Error::missing_field("StateMachineVersionArn"))?,
+                        r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::StepFunctions::StateMachineAlias.RoutingConfigurationVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachinealias-routingconfigurationversion.html) property type.
+    #[derive(Debug, Default)]
+    pub struct RoutingConfigurationVersion {
+        /// Property [`StateMachineVersionArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachinealias-routingconfigurationversion.html#cfn-stepfunctions-statemachinealias-routingconfigurationversion-statemachineversionarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub state_machine_version_arn: ::Value<String>,
+        /// Property [`Weight`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stepfunctions-statemachinealias-routingconfigurationversion.html#cfn-stepfunctions-statemachinealias-routingconfigurationversion-weight).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub weight: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for RoutingConfigurationVersion {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StateMachineVersionArn", &self.state_machine_version_arn)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Weight", &self.weight)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for RoutingConfigurationVersion {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<RoutingConfigurationVersion, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = RoutingConfigurationVersion;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type RoutingConfigurationVersion")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut state_machine_version_arn: Option<::Value<String>> = None;
+                    let mut weight: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "StateMachineVersionArn" => {
+                                state_machine_version_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Weight" => {
+                                weight = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(RoutingConfigurationVersion {
+                        state_machine_version_arn: state_machine_version_arn.ok_or(::serde::de::Error::missing_field("StateMachineVersionArn"))?,
+                        weight: weight.ok_or(::serde::de::Error::missing_field("Weight"))?,
                     })
                 }
             }

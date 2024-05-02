@@ -109,6 +109,16 @@ pub struct DataflowEndpointGroup {
 /// Properties for the `DataflowEndpointGroup` resource.
 #[derive(Debug, Default)]
 pub struct DataflowEndpointGroupProperties {
+    /// Property [`ContactPostPassDurationSeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-groundstation-dataflowendpointgroup.html#cfn-groundstation-dataflowendpointgroup-contactpostpassdurationseconds).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub contact_post_pass_duration_seconds: Option<::Value<u32>>,
+    /// Property [`ContactPrePassDurationSeconds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-groundstation-dataflowendpointgroup.html#cfn-groundstation-dataflowendpointgroup-contactprepassdurationseconds).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub contact_pre_pass_duration_seconds: Option<::Value<u32>>,
     /// Property [`EndpointDetails`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-groundstation-dataflowendpointgroup.html#cfn-groundstation-dataflowendpointgroup-endpointdetails).
     ///
     /// Update type: _Mutable_.
@@ -124,6 +134,12 @@ pub struct DataflowEndpointGroupProperties {
 impl ::serde::Serialize for DataflowEndpointGroupProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref contact_post_pass_duration_seconds) = self.contact_post_pass_duration_seconds {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContactPostPassDurationSeconds", contact_post_pass_duration_seconds)?;
+        }
+        if let Some(ref contact_pre_pass_duration_seconds) = self.contact_pre_pass_duration_seconds {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ContactPrePassDurationSeconds", contact_pre_pass_duration_seconds)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndpointDetails", &self.endpoint_details)?;
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
@@ -144,11 +160,19 @@ impl<'de> ::serde::Deserialize<'de> for DataflowEndpointGroupProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut contact_post_pass_duration_seconds: Option<::Value<u32>> = None;
+                let mut contact_pre_pass_duration_seconds: Option<::Value<u32>> = None;
                 let mut endpoint_details: Option<::ValueList<self::dataflow_endpoint_group::EndpointDetails>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "ContactPostPassDurationSeconds" => {
+                            contact_post_pass_duration_seconds = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ContactPrePassDurationSeconds" => {
+                            contact_pre_pass_duration_seconds = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "EndpointDetails" => {
                             endpoint_details = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -160,6 +184,8 @@ impl<'de> ::serde::Deserialize<'de> for DataflowEndpointGroupProperties {
                 }
 
                 Ok(DataflowEndpointGroupProperties {
+                    contact_post_pass_duration_seconds: contact_post_pass_duration_seconds,
+                    contact_pre_pass_duration_seconds: contact_pre_pass_duration_seconds,
                     endpoint_details: endpoint_details.ok_or(::serde::de::Error::missing_field("EndpointDetails"))?,
                     tags: tags,
                 })
@@ -223,6 +249,16 @@ pub struct MissionProfileProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub name: ::Value<String>,
+    /// Property [`StreamsKmsKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-groundstation-missionprofile.html#cfn-groundstation-missionprofile-streamskmskey).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub streams_kms_key: Option<::Value<self::mission_profile::StreamsKmsKey>>,
+    /// Property [`StreamsKmsRole`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-groundstation-missionprofile.html#cfn-groundstation-missionprofile-streamskmsrole).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub streams_kms_role: Option<::Value<String>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-groundstation-missionprofile.html#cfn-groundstation-missionprofile-tags).
     ///
     /// Update type: _Mutable_.
@@ -247,6 +283,12 @@ impl ::serde::Serialize for MissionProfileProperties {
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataflowEdges", &self.dataflow_edges)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "MinimumViableContactDurationSeconds", &self.minimum_viable_contact_duration_seconds)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref streams_kms_key) = self.streams_kms_key {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamsKmsKey", streams_kms_key)?;
+        }
+        if let Some(ref streams_kms_role) = self.streams_kms_role {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "StreamsKmsRole", streams_kms_role)?;
+        }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
         }
@@ -272,6 +314,8 @@ impl<'de> ::serde::Deserialize<'de> for MissionProfileProperties {
                 let mut dataflow_edges: Option<::ValueList<self::mission_profile::DataflowEdge>> = None;
                 let mut minimum_viable_contact_duration_seconds: Option<::Value<u32>> = None;
                 let mut name: Option<::Value<String>> = None;
+                let mut streams_kms_key: Option<::Value<self::mission_profile::StreamsKmsKey>> = None;
+                let mut streams_kms_role: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut tracking_config_arn: Option<::Value<String>> = None;
 
@@ -292,6 +336,12 @@ impl<'de> ::serde::Deserialize<'de> for MissionProfileProperties {
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "StreamsKmsKey" => {
+                            streams_kms_key = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "StreamsKmsRole" => {
+                            streams_kms_role = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -308,6 +358,8 @@ impl<'de> ::serde::Deserialize<'de> for MissionProfileProperties {
                     dataflow_edges: dataflow_edges.ok_or(::serde::de::Error::missing_field("DataflowEdges"))?,
                     minimum_viable_contact_duration_seconds: minimum_viable_contact_duration_seconds.ok_or(::serde::de::Error::missing_field("MinimumViableContactDurationSeconds"))?,
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    streams_kms_key: streams_kms_key,
+                    streams_kms_role: streams_kms_role,
                     tags: tags,
                     tracking_config_arn: tracking_config_arn.ok_or(::serde::de::Error::missing_field("TrackingConfigArn"))?,
                 })
@@ -1399,6 +1451,177 @@ pub mod config {
 pub mod dataflow_endpoint_group {
     //! Property types for the `DataflowEndpointGroup` resource.
 
+    /// The [`AWS::GroundStation::DataflowEndpointGroup.AwsGroundStationAgentEndpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-awsgroundstationagentendpoint.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AwsGroundStationAgentEndpoint {
+        /// Property [`AgentStatus`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-awsgroundstationagentendpoint.html#cfn-groundstation-dataflowendpointgroup-awsgroundstationagentendpoint-agentstatus).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub agent_status: Option<::Value<String>>,
+        /// Property [`AuditResults`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-awsgroundstationagentendpoint.html#cfn-groundstation-dataflowendpointgroup-awsgroundstationagentendpoint-auditresults).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub audit_results: Option<::Value<String>>,
+        /// Property [`EgressAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-awsgroundstationagentendpoint.html#cfn-groundstation-dataflowendpointgroup-awsgroundstationagentendpoint-egressaddress).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub egress_address: Option<::Value<ConnectionDetails>>,
+        /// Property [`IngressAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-awsgroundstationagentendpoint.html#cfn-groundstation-dataflowendpointgroup-awsgroundstationagentendpoint-ingressaddress).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ingress_address: Option<::Value<RangedConnectionDetails>>,
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-awsgroundstationagentendpoint.html#cfn-groundstation-dataflowendpointgroup-awsgroundstationagentendpoint-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for AwsGroundStationAgentEndpoint {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref agent_status) = self.agent_status {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AgentStatus", agent_status)?;
+            }
+            if let Some(ref audit_results) = self.audit_results {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuditResults", audit_results)?;
+            }
+            if let Some(ref egress_address) = self.egress_address {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EgressAddress", egress_address)?;
+            }
+            if let Some(ref ingress_address) = self.ingress_address {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IngressAddress", ingress_address)?;
+            }
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AwsGroundStationAgentEndpoint {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AwsGroundStationAgentEndpoint, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AwsGroundStationAgentEndpoint;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AwsGroundStationAgentEndpoint")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut agent_status: Option<::Value<String>> = None;
+                    let mut audit_results: Option<::Value<String>> = None;
+                    let mut egress_address: Option<::Value<ConnectionDetails>> = None;
+                    let mut ingress_address: Option<::Value<RangedConnectionDetails>> = None;
+                    let mut name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AgentStatus" => {
+                                agent_status = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "AuditResults" => {
+                                audit_results = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "EgressAddress" => {
+                                egress_address = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "IngressAddress" => {
+                                ingress_address = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AwsGroundStationAgentEndpoint {
+                        agent_status: agent_status,
+                        audit_results: audit_results,
+                        egress_address: egress_address,
+                        ingress_address: ingress_address,
+                        name: name,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::GroundStation::DataflowEndpointGroup.ConnectionDetails`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-connectiondetails.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ConnectionDetails {
+        /// Property [`Mtu`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-connectiondetails.html#cfn-groundstation-dataflowendpointgroup-connectiondetails-mtu).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub mtu: Option<::Value<u32>>,
+        /// Property [`SocketAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-connectiondetails.html#cfn-groundstation-dataflowendpointgroup-connectiondetails-socketaddress).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub socket_address: Option<::Value<SocketAddress>>,
+    }
+
+    impl ::codec::SerializeValue for ConnectionDetails {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref mtu) = self.mtu {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Mtu", mtu)?;
+            }
+            if let Some(ref socket_address) = self.socket_address {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SocketAddress", socket_address)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ConnectionDetails {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ConnectionDetails, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ConnectionDetails;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ConnectionDetails")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut mtu: Option<::Value<u32>> = None;
+                    let mut socket_address: Option<::Value<SocketAddress>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Mtu" => {
+                                mtu = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SocketAddress" => {
+                                socket_address = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ConnectionDetails {
+                        mtu: mtu,
+                        socket_address: socket_address,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::GroundStation::DataflowEndpointGroup.DataflowEndpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-dataflowendpoint.html) property type.
     #[derive(Debug, Default)]
     pub struct DataflowEndpoint {
@@ -1481,6 +1704,11 @@ pub mod dataflow_endpoint_group {
     /// The [`AWS::GroundStation::DataflowEndpointGroup.EndpointDetails`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-endpointdetails.html) property type.
     #[derive(Debug, Default)]
     pub struct EndpointDetails {
+        /// Property [`AwsGroundStationAgentEndpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-endpointdetails.html#cfn-groundstation-dataflowendpointgroup-endpointdetails-awsgroundstationagentendpoint).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub aws_ground_station_agent_endpoint: Option<::Value<AwsGroundStationAgentEndpoint>>,
         /// Property [`Endpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-endpointdetails.html#cfn-groundstation-dataflowendpointgroup-endpointdetails-endpoint).
         ///
         /// Update type: _Mutable_.
@@ -1496,6 +1724,9 @@ pub mod dataflow_endpoint_group {
     impl ::codec::SerializeValue for EndpointDetails {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref aws_ground_station_agent_endpoint) = self.aws_ground_station_agent_endpoint {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AwsGroundStationAgentEndpoint", aws_ground_station_agent_endpoint)?;
+            }
             if let Some(ref endpoint) = self.endpoint {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Endpoint", endpoint)?;
             }
@@ -1518,11 +1749,15 @@ pub mod dataflow_endpoint_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut aws_ground_station_agent_endpoint: Option<::Value<AwsGroundStationAgentEndpoint>> = None;
                     let mut endpoint: Option<::Value<DataflowEndpoint>> = None;
                     let mut security_details: Option<::Value<SecurityDetails>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "AwsGroundStationAgentEndpoint" => {
+                                aws_ground_station_agent_endpoint = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Endpoint" => {
                                 endpoint = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1534,8 +1769,207 @@ pub mod dataflow_endpoint_group {
                     }
 
                     Ok(EndpointDetails {
+                        aws_ground_station_agent_endpoint: aws_ground_station_agent_endpoint,
                         endpoint: endpoint,
                         security_details: security_details,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::GroundStation::DataflowEndpointGroup.IntegerRange`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-integerrange.html) property type.
+    #[derive(Debug, Default)]
+    pub struct IntegerRange {
+        /// Property [`Maximum`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-integerrange.html#cfn-groundstation-dataflowendpointgroup-integerrange-maximum).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub maximum: Option<::Value<u32>>,
+        /// Property [`Minimum`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-integerrange.html#cfn-groundstation-dataflowendpointgroup-integerrange-minimum).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub minimum: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for IntegerRange {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref maximum) = self.maximum {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Maximum", maximum)?;
+            }
+            if let Some(ref minimum) = self.minimum {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Minimum", minimum)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for IntegerRange {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<IntegerRange, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = IntegerRange;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type IntegerRange")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut maximum: Option<::Value<u32>> = None;
+                    let mut minimum: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Maximum" => {
+                                maximum = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Minimum" => {
+                                minimum = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(IntegerRange {
+                        maximum: maximum,
+                        minimum: minimum,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::GroundStation::DataflowEndpointGroup.RangedConnectionDetails`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-rangedconnectiondetails.html) property type.
+    #[derive(Debug, Default)]
+    pub struct RangedConnectionDetails {
+        /// Property [`Mtu`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-rangedconnectiondetails.html#cfn-groundstation-dataflowendpointgroup-rangedconnectiondetails-mtu).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub mtu: Option<::Value<u32>>,
+        /// Property [`SocketAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-rangedconnectiondetails.html#cfn-groundstation-dataflowendpointgroup-rangedconnectiondetails-socketaddress).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub socket_address: Option<::Value<RangedSocketAddress>>,
+    }
+
+    impl ::codec::SerializeValue for RangedConnectionDetails {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref mtu) = self.mtu {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Mtu", mtu)?;
+            }
+            if let Some(ref socket_address) = self.socket_address {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SocketAddress", socket_address)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for RangedConnectionDetails {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<RangedConnectionDetails, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = RangedConnectionDetails;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type RangedConnectionDetails")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut mtu: Option<::Value<u32>> = None;
+                    let mut socket_address: Option<::Value<RangedSocketAddress>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Mtu" => {
+                                mtu = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SocketAddress" => {
+                                socket_address = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(RangedConnectionDetails {
+                        mtu: mtu,
+                        socket_address: socket_address,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::GroundStation::DataflowEndpointGroup.RangedSocketAddress`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-rangedsocketaddress.html) property type.
+    #[derive(Debug, Default)]
+    pub struct RangedSocketAddress {
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-rangedsocketaddress.html#cfn-groundstation-dataflowendpointgroup-rangedsocketaddress-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: Option<::Value<String>>,
+        /// Property [`PortRange`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-dataflowendpointgroup-rangedsocketaddress.html#cfn-groundstation-dataflowendpointgroup-rangedsocketaddress-portrange).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub port_range: Option<::Value<IntegerRange>>,
+    }
+
+    impl ::codec::SerializeValue for RangedSocketAddress {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            if let Some(ref port_range) = self.port_range {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PortRange", port_range)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for RangedSocketAddress {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<RangedSocketAddress, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = RangedSocketAddress;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type RangedSocketAddress")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut name: Option<::Value<String>> = None;
+                    let mut port_range: Option<::Value<IntegerRange>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PortRange" => {
+                                port_range = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(RangedSocketAddress {
+                        name: name,
+                        port_range: port_range,
                     })
                 }
             }
@@ -1751,6 +2185,72 @@ pub mod mission_profile {
                     Ok(DataflowEdge {
                         destination: destination,
                         source: source,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::GroundStation::MissionProfile.StreamsKmsKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-missionprofile-streamskmskey.html) property type.
+    #[derive(Debug, Default)]
+    pub struct StreamsKmsKey {
+        /// Property [`KmsAliasArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-missionprofile-streamskmskey.html#cfn-groundstation-missionprofile-streamskmskey-kmsaliasarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub kms_alias_arn: Option<::Value<String>>,
+        /// Property [`KmsKeyArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-groundstation-missionprofile-streamskmskey.html#cfn-groundstation-missionprofile-streamskmskey-kmskeyarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub kms_key_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for StreamsKmsKey {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref kms_alias_arn) = self.kms_alias_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsAliasArn", kms_alias_arn)?;
+            }
+            if let Some(ref kms_key_arn) = self.kms_key_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "KmsKeyArn", kms_key_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for StreamsKmsKey {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<StreamsKmsKey, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = StreamsKmsKey;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type StreamsKmsKey")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut kms_alias_arn: Option<::Value<String>> = None;
+                    let mut kms_key_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "KmsAliasArn" => {
+                                kms_alias_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "KmsKeyArn" => {
+                                kms_key_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(StreamsKmsKey {
+                        kms_alias_arn: kms_alias_arn,
+                        kms_key_arn: kms_key_arn,
                     })
                 }
             }

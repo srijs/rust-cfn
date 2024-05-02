@@ -358,6 +358,217 @@ impl From<FirewallRuleGroupAssociationProperties> for FirewallRuleGroupAssociati
     }
 }
 
+/// The [`AWS::Route53Resolver::OutpostResolver`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-outpostresolver.html) resource type.
+#[derive(Debug, Default)]
+pub struct OutpostResolver {
+    properties: OutpostResolverProperties
+}
+
+/// Properties for the `OutpostResolver` resource.
+#[derive(Debug, Default)]
+pub struct OutpostResolverProperties {
+    /// Property [`InstanceCount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-outpostresolver.html#cfn-route53resolver-outpostresolver-instancecount).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub instance_count: Option<::Value<u32>>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-outpostresolver.html#cfn-route53resolver-outpostresolver-name).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub name: ::Value<String>,
+    /// Property [`OutpostArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-outpostresolver.html#cfn-route53resolver-outpostresolver-outpostarn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub outpost_arn: ::Value<String>,
+    /// Property [`PreferredInstanceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-outpostresolver.html#cfn-route53resolver-outpostresolver-preferredinstancetype).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub preferred_instance_type: ::Value<String>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-outpostresolver.html#cfn-route53resolver-outpostresolver-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for OutpostResolverProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref instance_count) = self.instance_count {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InstanceCount", instance_count)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutpostArn", &self.outpost_arn)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreferredInstanceType", &self.preferred_instance_type)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for OutpostResolverProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<OutpostResolverProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = OutpostResolverProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type OutpostResolverProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut instance_count: Option<::Value<u32>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut outpost_arn: Option<::Value<String>> = None;
+                let mut preferred_instance_type: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "InstanceCount" => {
+                            instance_count = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "OutpostArn" => {
+                            outpost_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PreferredInstanceType" => {
+                            preferred_instance_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(OutpostResolverProperties {
+                    instance_count: instance_count,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    outpost_arn: outpost_arn.ok_or(::serde::de::Error::missing_field("OutpostArn"))?,
+                    preferred_instance_type: preferred_instance_type.ok_or(::serde::de::Error::missing_field("PreferredInstanceType"))?,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for OutpostResolver {
+    type Properties = OutpostResolverProperties;
+    const TYPE: &'static str = "AWS::Route53Resolver::OutpostResolver";
+    fn properties(&self) -> &OutpostResolverProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut OutpostResolverProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for OutpostResolver {}
+
+impl From<OutpostResolverProperties> for OutpostResolver {
+    fn from(properties: OutpostResolverProperties) -> OutpostResolver {
+        OutpostResolver { properties }
+    }
+}
+
+/// The [`AWS::Route53Resolver::ResolverConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverconfig.html) resource type.
+#[derive(Debug, Default)]
+pub struct ResolverConfig {
+    properties: ResolverConfigProperties
+}
+
+/// Properties for the `ResolverConfig` resource.
+#[derive(Debug, Default)]
+pub struct ResolverConfigProperties {
+    /// Property [`AutodefinedReverseFlag`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverconfig.html#cfn-route53resolver-resolverconfig-autodefinedreverseflag).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub autodefined_reverse_flag: ::Value<String>,
+    /// Property [`ResourceId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverconfig.html#cfn-route53resolver-resolverconfig-resourceid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub resource_id: ::Value<String>,
+}
+
+impl ::serde::Serialize for ResolverConfigProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AutodefinedReverseFlag", &self.autodefined_reverse_flag)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceId", &self.resource_id)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for ResolverConfigProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<ResolverConfigProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = ResolverConfigProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type ResolverConfigProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut autodefined_reverse_flag: Option<::Value<String>> = None;
+                let mut resource_id: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AutodefinedReverseFlag" => {
+                            autodefined_reverse_flag = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ResourceId" => {
+                            resource_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(ResolverConfigProperties {
+                    autodefined_reverse_flag: autodefined_reverse_flag.ok_or(::serde::de::Error::missing_field("AutodefinedReverseFlag"))?,
+                    resource_id: resource_id.ok_or(::serde::de::Error::missing_field("ResourceId"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for ResolverConfig {
+    type Properties = ResolverConfigProperties;
+    const TYPE: &'static str = "AWS::Route53Resolver::ResolverConfig";
+    fn properties(&self) -> &ResolverConfigProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut ResolverConfigProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for ResolverConfig {}
+
+impl From<ResolverConfigProperties> for ResolverConfig {
+    fn from(properties: ResolverConfigProperties) -> ResolverConfig {
+        ResolverConfig { properties }
+    }
+}
+
 /// The [`AWS::Route53Resolver::ResolverDNSSECConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverdnssecconfig.html) resource type.
 #[derive(Debug, Default)]
 pub struct ResolverDNSSECConfig {
@@ -460,6 +671,26 @@ pub struct ResolverEndpointProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub name: Option<::Value<String>>,
+    /// Property [`OutpostArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverendpoint.html#cfn-route53resolver-resolverendpoint-outpostarn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub outpost_arn: Option<::Value<String>>,
+    /// Property [`PreferredInstanceType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverendpoint.html#cfn-route53resolver-resolverendpoint-preferredinstancetype).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub preferred_instance_type: Option<::Value<String>>,
+    /// Property [`Protocols`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverendpoint.html#cfn-route53resolver-resolverendpoint-protocols).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub protocols: Option<::ValueList<String>>,
+    /// Property [`ResolverEndpointType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverendpoint.html#cfn-route53resolver-resolverendpoint-resolverendpointtype).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub resolver_endpoint_type: Option<::Value<String>>,
     /// Property [`SecurityGroupIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverendpoint.html#cfn-route53resolver-resolverendpoint-securitygroupids).
     ///
     /// Update type: _Immutable_.
@@ -479,6 +710,18 @@ impl ::serde::Serialize for ResolverEndpointProperties {
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "IpAddresses", &self.ip_addresses)?;
         if let Some(ref name) = self.name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
+        if let Some(ref outpost_arn) = self.outpost_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OutpostArn", outpost_arn)?;
+        }
+        if let Some(ref preferred_instance_type) = self.preferred_instance_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreferredInstanceType", preferred_instance_type)?;
+        }
+        if let Some(ref protocols) = self.protocols {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocols", protocols)?;
+        }
+        if let Some(ref resolver_endpoint_type) = self.resolver_endpoint_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResolverEndpointType", resolver_endpoint_type)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIds", &self.security_group_ids)?;
         if let Some(ref tags) = self.tags {
@@ -503,6 +746,10 @@ impl<'de> ::serde::Deserialize<'de> for ResolverEndpointProperties {
                 let mut direction: Option<::Value<String>> = None;
                 let mut ip_addresses: Option<::ValueList<self::resolver_endpoint::IpAddressRequest>> = None;
                 let mut name: Option<::Value<String>> = None;
+                let mut outpost_arn: Option<::Value<String>> = None;
+                let mut preferred_instance_type: Option<::Value<String>> = None;
+                let mut protocols: Option<::ValueList<String>> = None;
+                let mut resolver_endpoint_type: Option<::Value<String>> = None;
                 let mut security_group_ids: Option<::ValueList<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
 
@@ -516,6 +763,18 @@ impl<'de> ::serde::Deserialize<'de> for ResolverEndpointProperties {
                         }
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "OutpostArn" => {
+                            outpost_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PreferredInstanceType" => {
+                            preferred_instance_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Protocols" => {
+                            protocols = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ResolverEndpointType" => {
+                            resolver_endpoint_type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SecurityGroupIds" => {
                             security_group_ids = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -531,6 +790,10 @@ impl<'de> ::serde::Deserialize<'de> for ResolverEndpointProperties {
                     direction: direction.ok_or(::serde::de::Error::missing_field("Direction"))?,
                     ip_addresses: ip_addresses.ok_or(::serde::de::Error::missing_field("IpAddresses"))?,
                     name: name,
+                    outpost_arn: outpost_arn,
+                    preferred_instance_type: preferred_instance_type,
+                    protocols: protocols,
+                    resolver_endpoint_type: resolver_endpoint_type,
                     security_group_ids: security_group_ids.ok_or(::serde::de::Error::missing_field("SecurityGroupIds"))?,
                     tags: tags,
                 })
@@ -753,8 +1016,9 @@ pub struct ResolverRule {
 pub struct ResolverRuleProperties {
     /// Property [`DomainName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverrule.html#cfn-route53resolver-resolverrule-domainname).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Conditional_.
+    /// Conditional updates can be mutable or immutable, depending on, for example, which other properties you updated.
+    /// For more information, see the relevant resource type documentation.
     pub domain_name: ::Value<String>,
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53resolver-resolverrule.html#cfn-route53resolver-resolverrule-name).
     ///
@@ -1022,6 +1286,11 @@ pub mod firewall_rule_group {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub priority: ::Value<u32>,
+        /// Property [`Qtype`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53resolver-firewallrulegroup-firewallrule.html#cfn-route53resolver-firewallrulegroup-firewallrule-qtype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub qtype: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for FirewallRule {
@@ -1042,6 +1311,9 @@ pub mod firewall_rule_group {
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "FirewallDomainListId", &self.firewall_domain_list_id)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Priority", &self.priority)?;
+            if let Some(ref qtype) = self.qtype {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Qtype", qtype)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1065,6 +1337,7 @@ pub mod firewall_rule_group {
                     let mut block_response: Option<::Value<String>> = None;
                     let mut firewall_domain_list_id: Option<::Value<String>> = None;
                     let mut priority: Option<::Value<u32>> = None;
+                    let mut qtype: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1089,6 +1362,9 @@ pub mod firewall_rule_group {
                             "Priority" => {
                                 priority = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Qtype" => {
+                                qtype = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
@@ -1101,6 +1377,7 @@ pub mod firewall_rule_group {
                         block_response: block_response,
                         firewall_domain_list_id: firewall_domain_list_id.ok_or(::serde::de::Error::missing_field("FirewallDomainListId"))?,
                         priority: priority.ok_or(::serde::de::Error::missing_field("Priority"))?,
+                        qtype: qtype,
                     })
                 }
             }
@@ -1121,6 +1398,11 @@ pub mod resolver_endpoint {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub ip: Option<::Value<String>>,
+        /// Property [`Ipv6`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53resolver-resolverendpoint-ipaddressrequest.html#cfn-route53resolver-resolverendpoint-ipaddressrequest-ipv6).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ipv6: Option<::Value<String>>,
         /// Property [`SubnetId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53resolver-resolverendpoint-ipaddressrequest.html#cfn-route53resolver-resolverendpoint-ipaddressrequest-subnetid).
         ///
         /// Update type: _Mutable_.
@@ -1133,6 +1415,9 @@ pub mod resolver_endpoint {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             if let Some(ref ip) = self.ip {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ip", ip)?;
+            }
+            if let Some(ref ipv6) = self.ipv6 {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6", ipv6)?;
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetId", &self.subnet_id)?;
             ::serde::ser::SerializeMap::end(map)
@@ -1152,12 +1437,16 @@ pub mod resolver_endpoint {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut ip: Option<::Value<String>> = None;
+                    let mut ipv6: Option<::Value<String>> = None;
                     let mut subnet_id: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Ip" => {
                                 ip = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Ipv6" => {
+                                ipv6 = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "SubnetId" => {
                                 subnet_id = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1168,6 +1457,7 @@ pub mod resolver_endpoint {
 
                     Ok(IpAddressRequest {
                         ip: ip,
+                        ipv6: ipv6,
                         subnet_id: subnet_id.ok_or(::serde::de::Error::missing_field("SubnetId"))?,
                     })
                 }
@@ -1188,20 +1478,38 @@ pub mod resolver_rule {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub ip: ::Value<String>,
+        pub ip: Option<::Value<String>>,
+        /// Property [`Ipv6`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53resolver-resolverrule-targetaddress.html#cfn-route53resolver-resolverrule-targetaddress-ipv6).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ipv6: Option<::Value<String>>,
         /// Property [`Port`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53resolver-resolverrule-targetaddress.html#cfn-route53resolver-resolverrule-targetaddress-port).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub port: Option<::Value<String>>,
+        /// Property [`Protocol`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53resolver-resolverrule-targetaddress.html#cfn-route53resolver-resolverrule-targetaddress-protocol).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub protocol: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for TargetAddress {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ip", &self.ip)?;
+            if let Some(ref ip) = self.ip {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ip", ip)?;
+            }
+            if let Some(ref ipv6) = self.ipv6 {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6", ipv6)?;
+            }
             if let Some(ref port) = self.port {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", port)?;
+            }
+            if let Some(ref protocol) = self.protocol {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Protocol", protocol)?;
             }
             ::serde::ser::SerializeMap::end(map)
         }
@@ -1220,23 +1528,33 @@ pub mod resolver_rule {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut ip: Option<::Value<String>> = None;
+                    let mut ipv6: Option<::Value<String>> = None;
                     let mut port: Option<::Value<String>> = None;
+                    let mut protocol: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Ip" => {
                                 ip = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Ipv6" => {
+                                ipv6 = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Port" => {
                                 port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Protocol" => {
+                                protocol = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             _ => {}
                         }
                     }
 
                     Ok(TargetAddress {
-                        ip: ip.ok_or(::serde::de::Error::missing_field("Ip"))?,
+                        ip: ip,
+                        ipv6: ipv6,
                         port: port,
+                        protocol: protocol,
                     })
                 }
             }

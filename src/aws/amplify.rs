@@ -69,6 +69,11 @@ pub struct AppProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub oauth_token: Option<::Value<String>>,
+    /// Property [`Platform`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-app.html#cfn-amplify-app-platform).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub platform: Option<::Value<String>>,
     /// Property [`Repository`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-app.html#cfn-amplify-app-repository).
     ///
     /// Update type: _Mutable_.
@@ -118,6 +123,9 @@ impl ::serde::Serialize for AppProperties {
         if let Some(ref oauth_token) = self.oauth_token {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "OauthToken", oauth_token)?;
         }
+        if let Some(ref platform) = self.platform {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Platform", platform)?;
+        }
         if let Some(ref repository) = self.repository {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Repository", repository)?;
         }
@@ -152,6 +160,7 @@ impl<'de> ::serde::Deserialize<'de> for AppProperties {
                 let mut iam_service_role: Option<::Value<String>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut oauth_token: Option<::Value<String>> = None;
+                let mut platform: Option<::Value<String>> = None;
                 let mut repository: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
 
@@ -193,6 +202,9 @@ impl<'de> ::serde::Deserialize<'de> for AppProperties {
                         "OauthToken" => {
                             oauth_token = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Platform" => {
+                            platform = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Repository" => {
                             repository = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -216,6 +228,7 @@ impl<'de> ::serde::Deserialize<'de> for AppProperties {
                     iam_service_role: iam_service_role,
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     oauth_token: oauth_token,
+                    platform: platform,
                     repository: repository,
                     tags: tags,
                 })
@@ -259,6 +272,11 @@ pub struct BranchProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub app_id: ::Value<String>,
+    /// Property [`Backend`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-branch.html#cfn-amplify-branch-backend).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub backend: Option<::Value<self::branch::Backend>>,
     /// Property [`BasicAuthConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-branch.html#cfn-amplify-branch-basicauthconfig).
     ///
     /// Update type: _Mutable_.
@@ -299,6 +317,11 @@ pub struct BranchProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub environment_variables: Option<::ValueList<self::branch::EnvironmentVariable>>,
+    /// Property [`Framework`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-branch.html#cfn-amplify-branch-framework).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub framework: Option<::Value<String>>,
     /// Property [`PullRequestEnvironmentName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amplify-branch.html#cfn-amplify-branch-pullrequestenvironmentname).
     ///
     /// Update type: _Mutable_.
@@ -320,6 +343,9 @@ impl ::serde::Serialize for BranchProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "AppId", &self.app_id)?;
+        if let Some(ref backend) = self.backend {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Backend", backend)?;
+        }
         if let Some(ref basic_auth_config) = self.basic_auth_config {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BasicAuthConfig", basic_auth_config)?;
         }
@@ -341,6 +367,9 @@ impl ::serde::Serialize for BranchProperties {
         }
         if let Some(ref environment_variables) = self.environment_variables {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnvironmentVariables", environment_variables)?;
+        }
+        if let Some(ref framework) = self.framework {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Framework", framework)?;
         }
         if let Some(ref pull_request_environment_name) = self.pull_request_environment_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "PullRequestEnvironmentName", pull_request_environment_name)?;
@@ -368,6 +397,7 @@ impl<'de> ::serde::Deserialize<'de> for BranchProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut app_id: Option<::Value<String>> = None;
+                let mut backend: Option<::Value<self::branch::Backend>> = None;
                 let mut basic_auth_config: Option<::Value<self::branch::BasicAuthConfig>> = None;
                 let mut branch_name: Option<::Value<String>> = None;
                 let mut build_spec: Option<::Value<String>> = None;
@@ -376,6 +406,7 @@ impl<'de> ::serde::Deserialize<'de> for BranchProperties {
                 let mut enable_performance_mode: Option<::Value<bool>> = None;
                 let mut enable_pull_request_preview: Option<::Value<bool>> = None;
                 let mut environment_variables: Option<::ValueList<self::branch::EnvironmentVariable>> = None;
+                let mut framework: Option<::Value<String>> = None;
                 let mut pull_request_environment_name: Option<::Value<String>> = None;
                 let mut stage: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
@@ -384,6 +415,9 @@ impl<'de> ::serde::Deserialize<'de> for BranchProperties {
                     match __cfn_key.as_ref() {
                         "AppId" => {
                             app_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Backend" => {
+                            backend = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "BasicAuthConfig" => {
                             basic_auth_config = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -409,6 +443,9 @@ impl<'de> ::serde::Deserialize<'de> for BranchProperties {
                         "EnvironmentVariables" => {
                             environment_variables = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "Framework" => {
+                            framework = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "PullRequestEnvironmentName" => {
                             pull_request_environment_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -424,6 +461,7 @@ impl<'de> ::serde::Deserialize<'de> for BranchProperties {
 
                 Ok(BranchProperties {
                     app_id: app_id.ok_or(::serde::de::Error::missing_field("AppId"))?,
+                    backend: backend,
                     basic_auth_config: basic_auth_config,
                     branch_name: branch_name.ok_or(::serde::de::Error::missing_field("BranchName"))?,
                     build_spec: build_spec,
@@ -432,6 +470,7 @@ impl<'de> ::serde::Deserialize<'de> for BranchProperties {
                     enable_performance_mode: enable_performance_mode,
                     enable_pull_request_preview: enable_pull_request_preview,
                     environment_variables: environment_variables,
+                    framework: framework,
                     pull_request_environment_name: pull_request_environment_name,
                     stage: stage,
                     tags: tags,
@@ -645,6 +684,11 @@ pub mod app {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub environment_variables: Option<::ValueList<EnvironmentVariable>>,
+        /// Property [`Framework`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-app-autobranchcreationconfig.html#cfn-amplify-app-autobranchcreationconfig-framework).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub framework: Option<::Value<String>>,
         /// Property [`PullRequestEnvironmentName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-app-autobranchcreationconfig.html#cfn-amplify-app-autobranchcreationconfig-pullrequestenvironmentname).
         ///
         /// Update type: _Mutable_.
@@ -684,6 +728,9 @@ pub mod app {
             if let Some(ref environment_variables) = self.environment_variables {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnvironmentVariables", environment_variables)?;
             }
+            if let Some(ref framework) = self.framework {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Framework", framework)?;
+            }
             if let Some(ref pull_request_environment_name) = self.pull_request_environment_name {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "PullRequestEnvironmentName", pull_request_environment_name)?;
             }
@@ -714,6 +761,7 @@ pub mod app {
                     let mut enable_performance_mode: Option<::Value<bool>> = None;
                     let mut enable_pull_request_preview: Option<::Value<bool>> = None;
                     let mut environment_variables: Option<::ValueList<EnvironmentVariable>> = None;
+                    let mut framework: Option<::Value<String>> = None;
                     let mut pull_request_environment_name: Option<::Value<String>> = None;
                     let mut stage: Option<::Value<String>> = None;
 
@@ -743,6 +791,9 @@ pub mod app {
                             "EnvironmentVariables" => {
                                 environment_variables = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "Framework" => {
+                                framework = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "PullRequestEnvironmentName" => {
                                 pull_request_environment_name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -762,6 +813,7 @@ pub mod app {
                         enable_performance_mode: enable_performance_mode,
                         enable_pull_request_preview: enable_pull_request_preview,
                         environment_variables: environment_variables,
+                        framework: framework,
                         pull_request_environment_name: pull_request_environment_name,
                         stage: stage,
                     })
@@ -1004,6 +1056,59 @@ pub mod app {
 
 pub mod branch {
     //! Property types for the `Branch` resource.
+
+    /// The [`AWS::Amplify::Branch.Backend`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-branch-backend.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Backend {
+        /// Property [`StackArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-branch-backend.html#cfn-amplify-branch-backend-stackarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub stack_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for Backend {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref stack_arn) = self.stack_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StackArn", stack_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Backend {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Backend, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Backend;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Backend")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut stack_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "StackArn" => {
+                                stack_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Backend {
+                        stack_arn: stack_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::Amplify::Branch.BasicAuthConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amplify-branch-basicauthconfig.html) property type.
     #[derive(Debug, Default)]

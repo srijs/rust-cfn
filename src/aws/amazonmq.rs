@@ -29,6 +29,16 @@ pub struct BrokerProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub configuration: Option<::Value<self::broker::ConfigurationId>>,
+    /// Property [`DataReplicationMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amazonmq-broker.html#cfn-amazonmq-broker-datareplicationmode).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub data_replication_mode: Option<::Value<String>>,
+    /// Property [`DataReplicationPrimaryBrokerArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amazonmq-broker.html#cfn-amazonmq-broker-datareplicationprimarybrokerarn).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub data_replication_primary_broker_arn: Option<::Value<String>>,
     /// Property [`DeploymentMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amazonmq-broker.html#cfn-amazonmq-broker-deploymentmode).
     ///
     /// Update type: _Immutable_.
@@ -112,6 +122,12 @@ impl ::serde::Serialize for BrokerProperties {
         if let Some(ref configuration) = self.configuration {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Configuration", configuration)?;
         }
+        if let Some(ref data_replication_mode) = self.data_replication_mode {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataReplicationMode", data_replication_mode)?;
+        }
+        if let Some(ref data_replication_primary_broker_arn) = self.data_replication_primary_broker_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataReplicationPrimaryBrokerArn", data_replication_primary_broker_arn)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DeploymentMode", &self.deployment_mode)?;
         if let Some(ref encryption_options) = self.encryption_options {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EncryptionOptions", encryption_options)?;
@@ -162,6 +178,8 @@ impl<'de> ::serde::Deserialize<'de> for BrokerProperties {
                 let mut auto_minor_version_upgrade: Option<::Value<bool>> = None;
                 let mut broker_name: Option<::Value<String>> = None;
                 let mut configuration: Option<::Value<self::broker::ConfigurationId>> = None;
+                let mut data_replication_mode: Option<::Value<String>> = None;
+                let mut data_replication_primary_broker_arn: Option<::Value<String>> = None;
                 let mut deployment_mode: Option<::Value<String>> = None;
                 let mut encryption_options: Option<::Value<self::broker::EncryptionOptions>> = None;
                 let mut engine_type: Option<::Value<String>> = None;
@@ -190,6 +208,12 @@ impl<'de> ::serde::Deserialize<'de> for BrokerProperties {
                         }
                         "Configuration" => {
                             configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DataReplicationMode" => {
+                            data_replication_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DataReplicationPrimaryBrokerArn" => {
+                            data_replication_primary_broker_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "DeploymentMode" => {
                             deployment_mode = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -242,6 +266,8 @@ impl<'de> ::serde::Deserialize<'de> for BrokerProperties {
                     auto_minor_version_upgrade: auto_minor_version_upgrade.ok_or(::serde::de::Error::missing_field("AutoMinorVersionUpgrade"))?,
                     broker_name: broker_name.ok_or(::serde::de::Error::missing_field("BrokerName"))?,
                     configuration: configuration,
+                    data_replication_mode: data_replication_mode,
+                    data_replication_primary_broker_arn: data_replication_primary_broker_arn,
                     deployment_mode: deployment_mode.ok_or(::serde::de::Error::missing_field("DeploymentMode"))?,
                     encryption_options: encryption_options,
                     engine_type: engine_type.ok_or(::serde::de::Error::missing_field("EngineType"))?,
@@ -1035,6 +1061,11 @@ pub mod broker {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub password: ::Value<String>,
+        /// Property [`ReplicationUser`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amazonmq-broker-user.html#cfn-amazonmq-broker-user-replicationuser).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub replication_user: Option<::Value<bool>>,
         /// Property [`Username`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-amazonmq-broker-user.html#cfn-amazonmq-broker-user-username).
         ///
         /// Update type: _Mutable_.
@@ -1052,6 +1083,9 @@ pub mod broker {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Groups", groups)?;
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Password", &self.password)?;
+            if let Some(ref replication_user) = self.replication_user {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ReplicationUser", replication_user)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Username", &self.username)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -1072,6 +1106,7 @@ pub mod broker {
                     let mut console_access: Option<::Value<bool>> = None;
                     let mut groups: Option<::ValueList<String>> = None;
                     let mut password: Option<::Value<String>> = None;
+                    let mut replication_user: Option<::Value<bool>> = None;
                     let mut username: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -1085,6 +1120,9 @@ pub mod broker {
                             "Password" => {
                                 password = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "ReplicationUser" => {
+                                replication_user = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Username" => {
                                 username = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1096,6 +1134,7 @@ pub mod broker {
                         console_access: console_access,
                         groups: groups,
                         password: password.ok_or(::serde::de::Error::missing_field("Password"))?,
+                        replication_user: replication_user,
                         username: username.ok_or(::serde::de::Error::missing_field("Username"))?,
                     })
                 }

@@ -109,6 +109,11 @@ pub struct ConfigRule {
 /// Properties for the `ConfigRule` resource.
 #[derive(Debug, Default)]
 pub struct ConfigRuleProperties {
+    /// Property [`Compliance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configrule.html#cfn-config-configrule-compliance).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub compliance: Option<::Value<self::config_rule::Compliance>>,
     /// Property [`ConfigRuleName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configrule.html#cfn-config-configrule-configrulename).
     ///
     /// Update type: _Immutable_.
@@ -119,6 +124,11 @@ pub struct ConfigRuleProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub description: Option<::Value<String>>,
+    /// Property [`EvaluationModes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configrule.html#cfn-config-configrule-evaluationmodes).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub evaluation_modes: Option<::ValueList<self::config_rule::EvaluationModeConfiguration>>,
     /// Property [`InputParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configrule.html#cfn-config-configrule-inputparameters).
     ///
     /// Update type: _Mutable_.
@@ -144,11 +154,17 @@ pub struct ConfigRuleProperties {
 impl ::serde::Serialize for ConfigRuleProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref compliance) = self.compliance {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Compliance", compliance)?;
+        }
         if let Some(ref config_rule_name) = self.config_rule_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConfigRuleName", config_rule_name)?;
         }
         if let Some(ref description) = self.description {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        if let Some(ref evaluation_modes) = self.evaluation_modes {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EvaluationModes", evaluation_modes)?;
         }
         if let Some(ref input_parameters) = self.input_parameters {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputParameters", input_parameters)?;
@@ -176,8 +192,10 @@ impl<'de> ::serde::Deserialize<'de> for ConfigRuleProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut compliance: Option<::Value<self::config_rule::Compliance>> = None;
                 let mut config_rule_name: Option<::Value<String>> = None;
                 let mut description: Option<::Value<String>> = None;
+                let mut evaluation_modes: Option<::ValueList<self::config_rule::EvaluationModeConfiguration>> = None;
                 let mut input_parameters: Option<::Value<::json::Value>> = None;
                 let mut maximum_execution_frequency: Option<::Value<String>> = None;
                 let mut scope: Option<::Value<self::config_rule::Scope>> = None;
@@ -185,11 +203,17 @@ impl<'de> ::serde::Deserialize<'de> for ConfigRuleProperties {
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "Compliance" => {
+                            compliance = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "ConfigRuleName" => {
                             config_rule_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Description" => {
                             description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "EvaluationModes" => {
+                            evaluation_modes = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "InputParameters" => {
                             input_parameters = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -208,8 +232,10 @@ impl<'de> ::serde::Deserialize<'de> for ConfigRuleProperties {
                 }
 
                 Ok(ConfigRuleProperties {
+                    compliance: compliance,
                     config_rule_name: config_rule_name,
                     description: description,
+                    evaluation_modes: evaluation_modes,
                     input_parameters: input_parameters,
                     maximum_execution_frequency: maximum_execution_frequency,
                     scope: scope,
@@ -377,6 +403,11 @@ pub struct ConfigurationRecorderProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub recording_group: Option<::Value<self::configuration_recorder::RecordingGroup>>,
+    /// Property [`RecordingMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configurationrecorder.html#cfn-config-configurationrecorder-recordingmode).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub recording_mode: Option<::Value<self::configuration_recorder::RecordingMode>>,
     /// Property [`RoleARN`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-configurationrecorder.html#cfn-config-configurationrecorder-rolearn).
     ///
     /// Update type: _Mutable_.
@@ -392,6 +423,9 @@ impl ::serde::Serialize for ConfigurationRecorderProperties {
         }
         if let Some(ref recording_group) = self.recording_group {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordingGroup", recording_group)?;
+        }
+        if let Some(ref recording_mode) = self.recording_mode {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordingMode", recording_mode)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleARN", &self.role_arn)?;
         ::serde::ser::SerializeMap::end(map)
@@ -412,6 +446,7 @@ impl<'de> ::serde::Deserialize<'de> for ConfigurationRecorderProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut name: Option<::Value<String>> = None;
                 let mut recording_group: Option<::Value<self::configuration_recorder::RecordingGroup>> = None;
+                let mut recording_mode: Option<::Value<self::configuration_recorder::RecordingMode>> = None;
                 let mut role_arn: Option<::Value<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -421,6 +456,9 @@ impl<'de> ::serde::Deserialize<'de> for ConfigurationRecorderProperties {
                         }
                         "RecordingGroup" => {
                             recording_group = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "RecordingMode" => {
+                            recording_mode = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "RoleARN" => {
                             role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -432,6 +470,7 @@ impl<'de> ::serde::Deserialize<'de> for ConfigurationRecorderProperties {
                 Ok(ConfigurationRecorderProperties {
                     name: name,
                     recording_group: recording_group,
+                    recording_mode: recording_mode,
                     role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleARN"))?,
                 })
             }
@@ -499,6 +538,11 @@ pub struct ConformancePackProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub template_s3_uri: Option<::Value<String>>,
+    /// Property [`TemplateSSMDocumentDetails`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-conformancepack.html#cfn-config-conformancepack-templatessmdocumentdetails).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub template_ssm_document_details: Option<::Value<self::conformance_pack::TemplateSSMDocumentDetails>>,
 }
 
 impl ::serde::Serialize for ConformancePackProperties {
@@ -519,6 +563,9 @@ impl ::serde::Serialize for ConformancePackProperties {
         }
         if let Some(ref template_s3_uri) = self.template_s3_uri {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TemplateS3Uri", template_s3_uri)?;
+        }
+        if let Some(ref template_ssm_document_details) = self.template_ssm_document_details {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TemplateSSMDocumentDetails", template_ssm_document_details)?;
         }
         ::serde::ser::SerializeMap::end(map)
     }
@@ -542,6 +589,7 @@ impl<'de> ::serde::Deserialize<'de> for ConformancePackProperties {
                 let mut delivery_s3_key_prefix: Option<::Value<String>> = None;
                 let mut template_body: Option<::Value<String>> = None;
                 let mut template_s3_uri: Option<::Value<String>> = None;
+                let mut template_ssm_document_details: Option<::Value<self::conformance_pack::TemplateSSMDocumentDetails>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -563,6 +611,9 @@ impl<'de> ::serde::Deserialize<'de> for ConformancePackProperties {
                         "TemplateS3Uri" => {
                             template_s3_uri = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "TemplateSSMDocumentDetails" => {
+                            template_ssm_document_details = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
@@ -574,6 +625,7 @@ impl<'de> ::serde::Deserialize<'de> for ConformancePackProperties {
                     delivery_s3_key_prefix: delivery_s3_key_prefix,
                     template_body: template_body,
                     template_s3_uri: template_s3_uri,
+                    template_ssm_document_details: template_ssm_document_details,
                 })
             }
         }
@@ -761,6 +813,11 @@ pub struct OrganizationConfigRuleProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub organization_config_rule_name: ::Value<String>,
+    /// Property [`OrganizationCustomPolicyRuleMetadata`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-organizationconfigrule.html#cfn-config-organizationconfigrule-organizationcustompolicyrulemetadata).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub organization_custom_policy_rule_metadata: Option<::Value<self::organization_config_rule::OrganizationCustomPolicyRuleMetadata>>,
     /// Property [`OrganizationCustomRuleMetadata`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-config-organizationconfigrule.html#cfn-config-organizationconfigrule-organizationcustomrulemetadata).
     ///
     /// Update type: _Mutable_.
@@ -780,6 +837,9 @@ impl ::serde::Serialize for OrganizationConfigRuleProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExcludedAccounts", excluded_accounts)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "OrganizationConfigRuleName", &self.organization_config_rule_name)?;
+        if let Some(ref organization_custom_policy_rule_metadata) = self.organization_custom_policy_rule_metadata {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OrganizationCustomPolicyRuleMetadata", organization_custom_policy_rule_metadata)?;
+        }
         if let Some(ref organization_custom_rule_metadata) = self.organization_custom_rule_metadata {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "OrganizationCustomRuleMetadata", organization_custom_rule_metadata)?;
         }
@@ -804,6 +864,7 @@ impl<'de> ::serde::Deserialize<'de> for OrganizationConfigRuleProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut excluded_accounts: Option<::ValueList<String>> = None;
                 let mut organization_config_rule_name: Option<::Value<String>> = None;
+                let mut organization_custom_policy_rule_metadata: Option<::Value<self::organization_config_rule::OrganizationCustomPolicyRuleMetadata>> = None;
                 let mut organization_custom_rule_metadata: Option<::Value<self::organization_config_rule::OrganizationCustomRuleMetadata>> = None;
                 let mut organization_managed_rule_metadata: Option<::Value<self::organization_config_rule::OrganizationManagedRuleMetadata>> = None;
 
@@ -814,6 +875,9 @@ impl<'de> ::serde::Deserialize<'de> for OrganizationConfigRuleProperties {
                         }
                         "OrganizationConfigRuleName" => {
                             organization_config_rule_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "OrganizationCustomPolicyRuleMetadata" => {
+                            organization_custom_policy_rule_metadata = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "OrganizationCustomRuleMetadata" => {
                             organization_custom_rule_metadata = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -828,6 +892,7 @@ impl<'de> ::serde::Deserialize<'de> for OrganizationConfigRuleProperties {
                 Ok(OrganizationConfigRuleProperties {
                     excluded_accounts: excluded_accounts,
                     organization_config_rule_name: organization_config_rule_name.ok_or(::serde::de::Error::missing_field("OrganizationConfigRuleName"))?,
+                    organization_custom_policy_rule_metadata: organization_custom_policy_rule_metadata,
                     organization_custom_rule_metadata: organization_custom_rule_metadata,
                     organization_managed_rule_metadata: organization_managed_rule_metadata,
                 })
@@ -1316,6 +1381,191 @@ impl From<StoredQueryProperties> for StoredQuery {
 pub mod config_rule {
     //! Property types for the `ConfigRule` resource.
 
+    /// The [`AWS::Config::ConfigRule.Compliance`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-compliance.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Compliance {
+        /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-compliance.html#cfn-config-configrule-compliance-type).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub r#type: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for Compliance {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref r#type) = self.r#type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", r#type)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Compliance {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Compliance, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Compliance;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Compliance")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut r#type: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Type" => {
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Compliance {
+                        r#type: r#type,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Config::ConfigRule.CustomPolicyDetails`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-custompolicydetails.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CustomPolicyDetails {
+        /// Property [`EnableDebugLogDelivery`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-custompolicydetails.html#cfn-config-configrule-custompolicydetails-enabledebuglogdelivery).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub enable_debug_log_delivery: Option<::Value<bool>>,
+        /// Property [`PolicyRuntime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-custompolicydetails.html#cfn-config-configrule-custompolicydetails-policyruntime).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub policy_runtime: Option<::Value<String>>,
+        /// Property [`PolicyText`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-custompolicydetails.html#cfn-config-configrule-custompolicydetails-policytext).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub policy_text: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for CustomPolicyDetails {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref enable_debug_log_delivery) = self.enable_debug_log_delivery {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnableDebugLogDelivery", enable_debug_log_delivery)?;
+            }
+            if let Some(ref policy_runtime) = self.policy_runtime {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyRuntime", policy_runtime)?;
+            }
+            if let Some(ref policy_text) = self.policy_text {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyText", policy_text)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CustomPolicyDetails {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CustomPolicyDetails, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CustomPolicyDetails;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CustomPolicyDetails")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut enable_debug_log_delivery: Option<::Value<bool>> = None;
+                    let mut policy_runtime: Option<::Value<String>> = None;
+                    let mut policy_text: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "EnableDebugLogDelivery" => {
+                                enable_debug_log_delivery = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PolicyRuntime" => {
+                                policy_runtime = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PolicyText" => {
+                                policy_text = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CustomPolicyDetails {
+                        enable_debug_log_delivery: enable_debug_log_delivery,
+                        policy_runtime: policy_runtime,
+                        policy_text: policy_text,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Config::ConfigRule.EvaluationModeConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-evaluationmodeconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct EvaluationModeConfiguration {
+        /// Property [`Mode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-evaluationmodeconfiguration.html#cfn-config-configrule-evaluationmodeconfiguration-mode).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub mode: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for EvaluationModeConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref mode) = self.mode {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Mode", mode)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for EvaluationModeConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<EvaluationModeConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = EvaluationModeConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type EvaluationModeConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut mode: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Mode" => {
+                                mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(EvaluationModeConfiguration {
+                        mode: mode,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::Config::ConfigRule.Scope`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-scope.html) property type.
     #[derive(Debug, Default)]
     pub struct Scope {
@@ -1411,6 +1661,11 @@ pub mod config_rule {
     /// The [`AWS::Config::ConfigRule.Source`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-source.html) property type.
     #[derive(Debug, Default)]
     pub struct Source {
+        /// Property [`CustomPolicyDetails`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-source.html#cfn-config-configrule-source-custompolicydetails).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub custom_policy_details: Option<::Value<CustomPolicyDetails>>,
         /// Property [`Owner`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-source.html#cfn-config-configrule-source-owner).
         ///
         /// Update type: _Mutable_.
@@ -1425,17 +1680,22 @@ pub mod config_rule {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub source_identifier: ::Value<String>,
+        pub source_identifier: Option<::Value<String>>,
     }
 
     impl ::codec::SerializeValue for Source {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref custom_policy_details) = self.custom_policy_details {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomPolicyDetails", custom_policy_details)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Owner", &self.owner)?;
             if let Some(ref source_details) = self.source_details {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceDetails", source_details)?;
             }
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceIdentifier", &self.source_identifier)?;
+            if let Some(ref source_identifier) = self.source_identifier {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceIdentifier", source_identifier)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1452,12 +1712,16 @@ pub mod config_rule {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut custom_policy_details: Option<::Value<CustomPolicyDetails>> = None;
                     let mut owner: Option<::Value<String>> = None;
                     let mut source_details: Option<::ValueList<SourceDetail>> = None;
                     let mut source_identifier: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "CustomPolicyDetails" => {
+                                custom_policy_details = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Owner" => {
                                 owner = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1472,9 +1736,10 @@ pub mod config_rule {
                     }
 
                     Ok(Source {
+                        custom_policy_details: custom_policy_details,
                         owner: owner.ok_or(::serde::de::Error::missing_field("Owner"))?,
                         source_details: source_details,
-                        source_identifier: source_identifier.ok_or(::serde::de::Error::missing_field("SourceIdentifier"))?,
+                        source_identifier: source_identifier,
                     })
                 }
             }
@@ -1483,20 +1748,20 @@ pub mod config_rule {
         }
     }
 
-    /// The [`AWS::Config::ConfigRule.SourceDetail`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-source-sourcedetails.html) property type.
+    /// The [`AWS::Config::ConfigRule.SourceDetail`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-sourcedetail.html) property type.
     #[derive(Debug, Default)]
     pub struct SourceDetail {
-        /// Property [`EventSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-source-sourcedetails.html#cfn-config-configrule-source-sourcedetail-eventsource).
+        /// Property [`EventSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-sourcedetail.html#cfn-config-configrule-sourcedetail-eventsource).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub event_source: ::Value<String>,
-        /// Property [`MaximumExecutionFrequency`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-source-sourcedetails.html#cfn-config-configrule-sourcedetail-maximumexecutionfrequency).
+        /// Property [`MaximumExecutionFrequency`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-sourcedetail.html#cfn-config-configrule-sourcedetail-maximumexecutionfrequency).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub maximum_execution_frequency: Option<::Value<String>>,
-        /// Property [`MessageType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-source-sourcedetails.html#cfn-config-configrule-source-sourcedetail-messagetype).
+        /// Property [`MessageType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configrule-sourcedetail.html#cfn-config-configrule-sourcedetail-messagetype).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -1720,6 +1985,57 @@ pub mod configuration_aggregator {
 pub mod configuration_recorder {
     //! Property types for the `ConfigurationRecorder` resource.
 
+    /// The [`AWS::Config::ConfigurationRecorder.ExclusionByResourceTypes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-exclusionbyresourcetypes.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ExclusionByResourceTypes {
+        /// Property [`ResourceTypes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-exclusionbyresourcetypes.html#cfn-config-configurationrecorder-exclusionbyresourcetypes-resourcetypes).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub resource_types: ::ValueList<String>,
+    }
+
+    impl ::codec::SerializeValue for ExclusionByResourceTypes {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceTypes", &self.resource_types)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ExclusionByResourceTypes {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ExclusionByResourceTypes, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ExclusionByResourceTypes;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ExclusionByResourceTypes")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut resource_types: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ResourceTypes" => {
+                                resource_types = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ExclusionByResourceTypes {
+                        resource_types: resource_types.ok_or(::serde::de::Error::missing_field("ResourceTypes"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::Config::ConfigurationRecorder.RecordingGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordinggroup.html) property type.
     #[derive(Debug, Default)]
     pub struct RecordingGroup {
@@ -1728,11 +2044,21 @@ pub mod configuration_recorder {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub all_supported: Option<::Value<bool>>,
+        /// Property [`ExclusionByResourceTypes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordinggroup.html#cfn-config-configurationrecorder-recordinggroup-exclusionbyresourcetypes).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub exclusion_by_resource_types: Option<::Value<ExclusionByResourceTypes>>,
         /// Property [`IncludeGlobalResourceTypes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordinggroup.html#cfn-config-configurationrecorder-recordinggroup-includeglobalresourcetypes).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub include_global_resource_types: Option<::Value<bool>>,
+        /// Property [`RecordingStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordinggroup.html#cfn-config-configurationrecorder-recordinggroup-recordingstrategy).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub recording_strategy: Option<::Value<RecordingStrategy>>,
         /// Property [`ResourceTypes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordinggroup.html#cfn-config-configurationrecorder-recordinggroup-resourcetypes).
         ///
         /// Update type: _Mutable_.
@@ -1746,8 +2072,14 @@ pub mod configuration_recorder {
             if let Some(ref all_supported) = self.all_supported {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllSupported", all_supported)?;
             }
+            if let Some(ref exclusion_by_resource_types) = self.exclusion_by_resource_types {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExclusionByResourceTypes", exclusion_by_resource_types)?;
+            }
             if let Some(ref include_global_resource_types) = self.include_global_resource_types {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncludeGlobalResourceTypes", include_global_resource_types)?;
+            }
+            if let Some(ref recording_strategy) = self.recording_strategy {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordingStrategy", recording_strategy)?;
             }
             if let Some(ref resource_types) = self.resource_types {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceTypes", resource_types)?;
@@ -1769,7 +2101,9 @@ pub mod configuration_recorder {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut all_supported: Option<::Value<bool>> = None;
+                    let mut exclusion_by_resource_types: Option<::Value<ExclusionByResourceTypes>> = None;
                     let mut include_global_resource_types: Option<::Value<bool>> = None;
+                    let mut recording_strategy: Option<::Value<RecordingStrategy>> = None;
                     let mut resource_types: Option<::ValueList<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -1777,8 +2111,14 @@ pub mod configuration_recorder {
                             "AllSupported" => {
                                 all_supported = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "ExclusionByResourceTypes" => {
+                                exclusion_by_resource_types = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "IncludeGlobalResourceTypes" => {
                                 include_global_resource_types = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RecordingStrategy" => {
+                                recording_strategy = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "ResourceTypes" => {
                                 resource_types = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1789,8 +2129,200 @@ pub mod configuration_recorder {
 
                     Ok(RecordingGroup {
                         all_supported: all_supported,
+                        exclusion_by_resource_types: exclusion_by_resource_types,
                         include_global_resource_types: include_global_resource_types,
+                        recording_strategy: recording_strategy,
                         resource_types: resource_types,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Config::ConfigurationRecorder.RecordingMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordingmode.html) property type.
+    #[derive(Debug, Default)]
+    pub struct RecordingMode {
+        /// Property [`RecordingFrequency`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordingmode.html#cfn-config-configurationrecorder-recordingmode-recordingfrequency).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub recording_frequency: ::Value<String>,
+        /// Property [`RecordingModeOverrides`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordingmode.html#cfn-config-configurationrecorder-recordingmode-recordingmodeoverrides).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub recording_mode_overrides: Option<::ValueList<RecordingModeOverride>>,
+    }
+
+    impl ::codec::SerializeValue for RecordingMode {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordingFrequency", &self.recording_frequency)?;
+            if let Some(ref recording_mode_overrides) = self.recording_mode_overrides {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordingModeOverrides", recording_mode_overrides)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for RecordingMode {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<RecordingMode, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = RecordingMode;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type RecordingMode")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut recording_frequency: Option<::Value<String>> = None;
+                    let mut recording_mode_overrides: Option<::ValueList<RecordingModeOverride>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "RecordingFrequency" => {
+                                recording_frequency = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RecordingModeOverrides" => {
+                                recording_mode_overrides = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(RecordingMode {
+                        recording_frequency: recording_frequency.ok_or(::serde::de::Error::missing_field("RecordingFrequency"))?,
+                        recording_mode_overrides: recording_mode_overrides,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Config::ConfigurationRecorder.RecordingModeOverride`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordingmodeoverride.html) property type.
+    #[derive(Debug, Default)]
+    pub struct RecordingModeOverride {
+        /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordingmodeoverride.html#cfn-config-configurationrecorder-recordingmodeoverride-description).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub description: Option<::Value<String>>,
+        /// Property [`RecordingFrequency`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordingmodeoverride.html#cfn-config-configurationrecorder-recordingmodeoverride-recordingfrequency).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub recording_frequency: ::Value<String>,
+        /// Property [`ResourceTypes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordingmodeoverride.html#cfn-config-configurationrecorder-recordingmodeoverride-resourcetypes).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub resource_types: ::ValueList<String>,
+    }
+
+    impl ::codec::SerializeValue for RecordingModeOverride {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref description) = self.description {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RecordingFrequency", &self.recording_frequency)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceTypes", &self.resource_types)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for RecordingModeOverride {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<RecordingModeOverride, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = RecordingModeOverride;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type RecordingModeOverride")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut description: Option<::Value<String>> = None;
+                    let mut recording_frequency: Option<::Value<String>> = None;
+                    let mut resource_types: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Description" => {
+                                description = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RecordingFrequency" => {
+                                recording_frequency = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ResourceTypes" => {
+                                resource_types = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(RecordingModeOverride {
+                        description: description,
+                        recording_frequency: recording_frequency.ok_or(::serde::de::Error::missing_field("RecordingFrequency"))?,
+                        resource_types: resource_types.ok_or(::serde::de::Error::missing_field("ResourceTypes"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Config::ConfigurationRecorder.RecordingStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordingstrategy.html) property type.
+    #[derive(Debug, Default)]
+    pub struct RecordingStrategy {
+        /// Property [`UseOnly`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-configurationrecorder-recordingstrategy.html#cfn-config-configurationrecorder-recordingstrategy-useonly).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub use_only: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for RecordingStrategy {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UseOnly", &self.use_only)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for RecordingStrategy {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<RecordingStrategy, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = RecordingStrategy;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type RecordingStrategy")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut use_only: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "UseOnly" => {
+                                use_only = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(RecordingStrategy {
+                        use_only: use_only.ok_or(::serde::de::Error::missing_field("UseOnly"))?,
                     })
                 }
             }
@@ -1864,6 +2396,72 @@ pub mod conformance_pack {
             d.deserialize_map(Visitor)
         }
     }
+
+    /// The [`AWS::Config::ConformancePack.TemplateSSMDocumentDetails`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-conformancepack-templatessmdocumentdetails.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TemplateSSMDocumentDetails {
+        /// Property [`DocumentName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-conformancepack-templatessmdocumentdetails.html#cfn-config-conformancepack-templatessmdocumentdetails-documentname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub document_name: Option<::Value<String>>,
+        /// Property [`DocumentVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-conformancepack-templatessmdocumentdetails.html#cfn-config-conformancepack-templatessmdocumentdetails-documentversion).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub document_version: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for TemplateSSMDocumentDetails {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref document_name) = self.document_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentName", document_name)?;
+            }
+            if let Some(ref document_version) = self.document_version {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentVersion", document_version)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TemplateSSMDocumentDetails {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TemplateSSMDocumentDetails, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TemplateSSMDocumentDetails;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TemplateSSMDocumentDetails")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut document_name: Option<::Value<String>> = None;
+                    let mut document_version: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DocumentName" => {
+                                document_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DocumentVersion" => {
+                                document_version = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TemplateSSMDocumentDetails {
+                        document_name: document_name,
+                        document_version: document_version,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 }
 
 pub mod delivery_channel {
@@ -1925,6 +2523,185 @@ pub mod delivery_channel {
 
 pub mod organization_config_rule {
     //! Property types for the `OrganizationConfigRule` resource.
+
+    /// The [`AWS::Config::OrganizationConfigRule.OrganizationCustomPolicyRuleMetadata`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustompolicyrulemetadata.html) property type.
+    #[derive(Debug, Default)]
+    pub struct OrganizationCustomPolicyRuleMetadata {
+        /// Property [`DebugLogDeliveryAccounts`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustompolicyrulemetadata.html#cfn-config-organizationconfigrule-organizationcustompolicyrulemetadata-debuglogdeliveryaccounts).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub debug_log_delivery_accounts: Option<::ValueList<String>>,
+        /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustompolicyrulemetadata.html#cfn-config-organizationconfigrule-organizationcustompolicyrulemetadata-description).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub description: Option<::Value<String>>,
+        /// Property [`InputParameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustompolicyrulemetadata.html#cfn-config-organizationconfigrule-organizationcustompolicyrulemetadata-inputparameters).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub input_parameters: Option<::Value<String>>,
+        /// Property [`MaximumExecutionFrequency`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustompolicyrulemetadata.html#cfn-config-organizationconfigrule-organizationcustompolicyrulemetadata-maximumexecutionfrequency).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub maximum_execution_frequency: Option<::Value<String>>,
+        /// Property [`OrganizationConfigRuleTriggerTypes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustompolicyrulemetadata.html#cfn-config-organizationconfigrule-organizationcustompolicyrulemetadata-organizationconfigruletriggertypes).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub organization_config_rule_trigger_types: Option<::ValueList<String>>,
+        /// Property [`PolicyText`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustompolicyrulemetadata.html#cfn-config-organizationconfigrule-organizationcustompolicyrulemetadata-policytext).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub policy_text: ::Value<String>,
+        /// Property [`ResourceIdScope`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustompolicyrulemetadata.html#cfn-config-organizationconfigrule-organizationcustompolicyrulemetadata-resourceidscope).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub resource_id_scope: Option<::Value<String>>,
+        /// Property [`ResourceTypesScope`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustompolicyrulemetadata.html#cfn-config-organizationconfigrule-organizationcustompolicyrulemetadata-resourcetypesscope).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub resource_types_scope: Option<::ValueList<String>>,
+        /// Property [`Runtime`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustompolicyrulemetadata.html#cfn-config-organizationconfigrule-organizationcustompolicyrulemetadata-runtime).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub runtime: ::Value<String>,
+        /// Property [`TagKeyScope`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustompolicyrulemetadata.html#cfn-config-organizationconfigrule-organizationcustompolicyrulemetadata-tagkeyscope).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tag_key_scope: Option<::Value<String>>,
+        /// Property [`TagValueScope`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustompolicyrulemetadata.html#cfn-config-organizationconfigrule-organizationcustompolicyrulemetadata-tagvaluescope).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub tag_value_scope: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for OrganizationCustomPolicyRuleMetadata {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref debug_log_delivery_accounts) = self.debug_log_delivery_accounts {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DebugLogDeliveryAccounts", debug_log_delivery_accounts)?;
+            }
+            if let Some(ref description) = self.description {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+            }
+            if let Some(ref input_parameters) = self.input_parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InputParameters", input_parameters)?;
+            }
+            if let Some(ref maximum_execution_frequency) = self.maximum_execution_frequency {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaximumExecutionFrequency", maximum_execution_frequency)?;
+            }
+            if let Some(ref organization_config_rule_trigger_types) = self.organization_config_rule_trigger_types {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OrganizationConfigRuleTriggerTypes", organization_config_rule_trigger_types)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PolicyText", &self.policy_text)?;
+            if let Some(ref resource_id_scope) = self.resource_id_scope {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceIdScope", resource_id_scope)?;
+            }
+            if let Some(ref resource_types_scope) = self.resource_types_scope {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceTypesScope", resource_types_scope)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Runtime", &self.runtime)?;
+            if let Some(ref tag_key_scope) = self.tag_key_scope {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TagKeyScope", tag_key_scope)?;
+            }
+            if let Some(ref tag_value_scope) = self.tag_value_scope {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TagValueScope", tag_value_scope)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for OrganizationCustomPolicyRuleMetadata {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<OrganizationCustomPolicyRuleMetadata, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = OrganizationCustomPolicyRuleMetadata;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type OrganizationCustomPolicyRuleMetadata")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut debug_log_delivery_accounts: Option<::ValueList<String>> = None;
+                    let mut description: Option<::Value<String>> = None;
+                    let mut input_parameters: Option<::Value<String>> = None;
+                    let mut maximum_execution_frequency: Option<::Value<String>> = None;
+                    let mut organization_config_rule_trigger_types: Option<::ValueList<String>> = None;
+                    let mut policy_text: Option<::Value<String>> = None;
+                    let mut resource_id_scope: Option<::Value<String>> = None;
+                    let mut resource_types_scope: Option<::ValueList<String>> = None;
+                    let mut runtime: Option<::Value<String>> = None;
+                    let mut tag_key_scope: Option<::Value<String>> = None;
+                    let mut tag_value_scope: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DebugLogDeliveryAccounts" => {
+                                debug_log_delivery_accounts = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Description" => {
+                                description = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "InputParameters" => {
+                                input_parameters = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MaximumExecutionFrequency" => {
+                                maximum_execution_frequency = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OrganizationConfigRuleTriggerTypes" => {
+                                organization_config_rule_trigger_types = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PolicyText" => {
+                                policy_text = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ResourceIdScope" => {
+                                resource_id_scope = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ResourceTypesScope" => {
+                                resource_types_scope = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Runtime" => {
+                                runtime = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TagKeyScope" => {
+                                tag_key_scope = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TagValueScope" => {
+                                tag_value_scope = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(OrganizationCustomPolicyRuleMetadata {
+                        debug_log_delivery_accounts: debug_log_delivery_accounts,
+                        description: description,
+                        input_parameters: input_parameters,
+                        maximum_execution_frequency: maximum_execution_frequency,
+                        organization_config_rule_trigger_types: organization_config_rule_trigger_types,
+                        policy_text: policy_text.ok_or(::serde::de::Error::missing_field("PolicyText"))?,
+                        resource_id_scope: resource_id_scope,
+                        resource_types_scope: resource_types_scope,
+                        runtime: runtime.ok_or(::serde::de::Error::missing_field("Runtime"))?,
+                        tag_key_scope: tag_key_scope,
+                        tag_value_scope: tag_value_scope,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::Config::OrganizationConfigRule.OrganizationCustomRuleMetadata`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-config-organizationconfigrule-organizationcustomrulemetadata.html) property type.
     #[derive(Debug, Default)]

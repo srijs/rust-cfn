@@ -229,6 +229,11 @@ pub struct PermissionSet {
 /// Properties for the `PermissionSet` resource.
 #[derive(Debug, Default)]
 pub struct PermissionSetProperties {
+    /// Property [`CustomerManagedPolicyReferences`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-permissionset.html#cfn-sso-permissionset-customermanagedpolicyreferences).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub customer_managed_policy_references: Option<::ValueList<self::permission_set::CustomerManagedPolicyReference>>,
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-permissionset.html#cfn-sso-permissionset-description).
     ///
     /// Update type: _Mutable_.
@@ -254,6 +259,11 @@ pub struct PermissionSetProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub name: ::Value<String>,
+    /// Property [`PermissionsBoundary`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-permissionset.html#cfn-sso-permissionset-permissionsboundary).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub permissions_boundary: Option<::Value<self::permission_set::PermissionsBoundary>>,
     /// Property [`RelayStateType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sso-permissionset.html#cfn-sso-permissionset-relaystatetype).
     ///
     /// Update type: _Mutable_.
@@ -274,6 +284,9 @@ pub struct PermissionSetProperties {
 impl ::serde::Serialize for PermissionSetProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref customer_managed_policy_references) = self.customer_managed_policy_references {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomerManagedPolicyReferences", customer_managed_policy_references)?;
+        }
         if let Some(ref description) = self.description {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
         }
@@ -285,6 +298,9 @@ impl ::serde::Serialize for PermissionSetProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ManagedPolicies", managed_policies)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        if let Some(ref permissions_boundary) = self.permissions_boundary {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PermissionsBoundary", permissions_boundary)?;
+        }
         if let Some(ref relay_state_type) = self.relay_state_type {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RelayStateType", relay_state_type)?;
         }
@@ -310,17 +326,22 @@ impl<'de> ::serde::Deserialize<'de> for PermissionSetProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut customer_managed_policy_references: Option<::ValueList<self::permission_set::CustomerManagedPolicyReference>> = None;
                 let mut description: Option<::Value<String>> = None;
                 let mut inline_policy: Option<::Value<::json::Value>> = None;
                 let mut instance_arn: Option<::Value<String>> = None;
                 let mut managed_policies: Option<::ValueList<String>> = None;
                 let mut name: Option<::Value<String>> = None;
+                let mut permissions_boundary: Option<::Value<self::permission_set::PermissionsBoundary>> = None;
                 let mut relay_state_type: Option<::Value<String>> = None;
                 let mut session_duration: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "CustomerManagedPolicyReferences" => {
+                            customer_managed_policy_references = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Description" => {
                             description = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -336,6 +357,9 @@ impl<'de> ::serde::Deserialize<'de> for PermissionSetProperties {
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "PermissionsBoundary" => {
+                            permissions_boundary = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "RelayStateType" => {
                             relay_state_type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -350,11 +374,13 @@ impl<'de> ::serde::Deserialize<'de> for PermissionSetProperties {
                 }
 
                 Ok(PermissionSetProperties {
+                    customer_managed_policy_references: customer_managed_policy_references,
                     description: description,
                     inline_policy: inline_policy,
                     instance_arn: instance_arn.ok_or(::serde::de::Error::missing_field("InstanceArn"))?,
                     managed_policies: managed_policies,
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    permissions_boundary: permissions_boundary,
                     relay_state_type: relay_state_type,
                     session_duration: session_duration,
                     tags: tags,
@@ -493,6 +519,140 @@ pub mod instance_access_control_attribute_configuration {
 
                     Ok(AccessControlAttributeValue {
                         source: source.ok_or(::serde::de::Error::missing_field("Source"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod permission_set {
+    //! Property types for the `PermissionSet` resource.
+
+    /// The [`AWS::SSO::PermissionSet.CustomerManagedPolicyReference`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-permissionset-customermanagedpolicyreference.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CustomerManagedPolicyReference {
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-permissionset-customermanagedpolicyreference.html#cfn-sso-permissionset-customermanagedpolicyreference-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: ::Value<String>,
+        /// Property [`Path`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-permissionset-customermanagedpolicyreference.html#cfn-sso-permissionset-customermanagedpolicyreference-path).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub path: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for CustomerManagedPolicyReference {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            if let Some(ref path) = self.path {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Path", path)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CustomerManagedPolicyReference {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CustomerManagedPolicyReference, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CustomerManagedPolicyReference;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CustomerManagedPolicyReference")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut name: Option<::Value<String>> = None;
+                    let mut path: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Path" => {
+                                path = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CustomerManagedPolicyReference {
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                        path: path,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::SSO::PermissionSet.PermissionsBoundary`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-permissionset-permissionsboundary.html) property type.
+    #[derive(Debug, Default)]
+    pub struct PermissionsBoundary {
+        /// Property [`CustomerManagedPolicyReference`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-permissionset-permissionsboundary.html#cfn-sso-permissionset-permissionsboundary-customermanagedpolicyreference).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub customer_managed_policy_reference: Option<::Value<CustomerManagedPolicyReference>>,
+        /// Property [`ManagedPolicyArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-permissionset-permissionsboundary.html#cfn-sso-permissionset-permissionsboundary-managedpolicyarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub managed_policy_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for PermissionsBoundary {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref customer_managed_policy_reference) = self.customer_managed_policy_reference {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomerManagedPolicyReference", customer_managed_policy_reference)?;
+            }
+            if let Some(ref managed_policy_arn) = self.managed_policy_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ManagedPolicyArn", managed_policy_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for PermissionsBoundary {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<PermissionsBoundary, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = PermissionsBoundary;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type PermissionsBoundary")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut customer_managed_policy_reference: Option<::Value<CustomerManagedPolicyReference>> = None;
+                    let mut managed_policy_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CustomerManagedPolicyReference" => {
+                                customer_managed_policy_reference = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ManagedPolicyArn" => {
+                                managed_policy_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(PermissionsBoundary {
+                        customer_managed_policy_reference: customer_managed_policy_reference,
+                        managed_policy_arn: managed_policy_arn,
                     })
                 }
             }

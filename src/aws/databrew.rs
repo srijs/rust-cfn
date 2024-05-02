@@ -153,6 +153,11 @@ pub struct JobProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub data_catalog_outputs: Option<::ValueList<self::job::DataCatalogOutput>>,
+    /// Property [`DatabaseOutputs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-job.html#cfn-databrew-job-databaseoutputs).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub database_outputs: Option<::ValueList<self::job::DatabaseOutput>>,
     /// Property [`DatasetName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-job.html#cfn-databrew-job-datasetname).
     ///
     /// Update type: _Mutable_.
@@ -203,6 +208,11 @@ pub struct JobProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub outputs: Option<::ValueList<self::job::Output>>,
+    /// Property [`ProfileConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-job.html#cfn-databrew-job-profileconfiguration).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub profile_configuration: Option<::Value<self::job::ProfileConfiguration>>,
     /// Property [`ProjectName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-job.html#cfn-databrew-job-projectname).
     ///
     /// Update type: _Mutable_.
@@ -233,6 +243,11 @@ pub struct JobProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub r#type: ::Value<String>,
+    /// Property [`ValidationConfigurations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-job.html#cfn-databrew-job-validationconfigurations).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub validation_configurations: Option<::ValueList<self::job::ValidationConfiguration>>,
 }
 
 impl ::serde::Serialize for JobProperties {
@@ -240,6 +255,9 @@ impl ::serde::Serialize for JobProperties {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         if let Some(ref data_catalog_outputs) = self.data_catalog_outputs {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataCatalogOutputs", data_catalog_outputs)?;
+        }
+        if let Some(ref database_outputs) = self.database_outputs {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseOutputs", database_outputs)?;
         }
         if let Some(ref dataset_name) = self.dataset_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatasetName", dataset_name)?;
@@ -269,6 +287,9 @@ impl ::serde::Serialize for JobProperties {
         if let Some(ref outputs) = self.outputs {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Outputs", outputs)?;
         }
+        if let Some(ref profile_configuration) = self.profile_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProfileConfiguration", profile_configuration)?;
+        }
         if let Some(ref project_name) = self.project_name {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProjectName", project_name)?;
         }
@@ -283,6 +304,9 @@ impl ::serde::Serialize for JobProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Timeout", timeout)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", &self.r#type)?;
+        if let Some(ref validation_configurations) = self.validation_configurations {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ValidationConfigurations", validation_configurations)?;
+        }
         ::serde::ser::SerializeMap::end(map)
     }
 }
@@ -300,6 +324,7 @@ impl<'de> ::serde::Deserialize<'de> for JobProperties {
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut data_catalog_outputs: Option<::ValueList<self::job::DataCatalogOutput>> = None;
+                let mut database_outputs: Option<::ValueList<self::job::DatabaseOutput>> = None;
                 let mut dataset_name: Option<::Value<String>> = None;
                 let mut encryption_key_arn: Option<::Value<String>> = None;
                 let mut encryption_mode: Option<::Value<String>> = None;
@@ -310,17 +335,22 @@ impl<'de> ::serde::Deserialize<'de> for JobProperties {
                 let mut name: Option<::Value<String>> = None;
                 let mut output_location: Option<::Value<self::job::OutputLocation>> = None;
                 let mut outputs: Option<::ValueList<self::job::Output>> = None;
+                let mut profile_configuration: Option<::Value<self::job::ProfileConfiguration>> = None;
                 let mut project_name: Option<::Value<String>> = None;
                 let mut recipe: Option<::Value<self::job::Recipe>> = None;
                 let mut role_arn: Option<::Value<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut timeout: Option<::Value<u32>> = None;
                 let mut r#type: Option<::Value<String>> = None;
+                let mut validation_configurations: Option<::ValueList<self::job::ValidationConfiguration>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
                         "DataCatalogOutputs" => {
                             data_catalog_outputs = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "DatabaseOutputs" => {
+                            database_outputs = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "DatasetName" => {
                             dataset_name = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -352,6 +382,9 @@ impl<'de> ::serde::Deserialize<'de> for JobProperties {
                         "Outputs" => {
                             outputs = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ProfileConfiguration" => {
+                            profile_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "ProjectName" => {
                             project_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -370,12 +403,16 @@ impl<'de> ::serde::Deserialize<'de> for JobProperties {
                         "Type" => {
                             r#type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ValidationConfigurations" => {
+                            validation_configurations = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
 
                 Ok(JobProperties {
                     data_catalog_outputs: data_catalog_outputs,
+                    database_outputs: database_outputs,
                     dataset_name: dataset_name,
                     encryption_key_arn: encryption_key_arn,
                     encryption_mode: encryption_mode,
@@ -386,12 +423,14 @@ impl<'de> ::serde::Deserialize<'de> for JobProperties {
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     output_location: output_location,
                     outputs: outputs,
+                    profile_configuration: profile_configuration,
                     project_name: project_name,
                     recipe: recipe,
                     role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
                     tags: tags,
                     timeout: timeout,
                     r#type: r#type.ok_or(::serde::de::Error::missing_field("Type"))?,
+                    validation_configurations: validation_configurations,
                 })
             }
         }
@@ -664,6 +703,130 @@ impl ::private::Sealed for Recipe {}
 impl From<RecipeProperties> for Recipe {
     fn from(properties: RecipeProperties) -> Recipe {
         Recipe { properties }
+    }
+}
+
+/// The [`AWS::DataBrew::Ruleset`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-ruleset.html) resource type.
+#[derive(Debug, Default)]
+pub struct Ruleset {
+    properties: RulesetProperties
+}
+
+/// Properties for the `Ruleset` resource.
+#[derive(Debug, Default)]
+pub struct RulesetProperties {
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-ruleset.html#cfn-databrew-ruleset-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-ruleset.html#cfn-databrew-ruleset-name).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub name: ::Value<String>,
+    /// Property [`Rules`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-ruleset.html#cfn-databrew-ruleset-rules).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub rules: ::ValueList<self::ruleset::Rule>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-ruleset.html#cfn-databrew-ruleset-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+    /// Property [`TargetArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-databrew-ruleset.html#cfn-databrew-ruleset-targetarn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub target_arn: ::Value<String>,
+}
+
+impl ::serde::Serialize for RulesetProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "Rules", &self.rules)?;
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetArn", &self.target_arn)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for RulesetProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<RulesetProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = RulesetProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type RulesetProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut description: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut rules: Option<::ValueList<self::ruleset::Rule>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+                let mut target_arn: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Rules" => {
+                            rules = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TargetArn" => {
+                            target_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(RulesetProperties {
+                    description: description,
+                    name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                    rules: rules.ok_or(::serde::de::Error::missing_field("Rules"))?,
+                    tags: tags,
+                    target_arn: target_arn.ok_or(::serde::de::Error::missing_field("TargetArn"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for Ruleset {
+    type Properties = RulesetProperties;
+    const TYPE: &'static str = "AWS::DataBrew::Ruleset";
+    fn properties(&self) -> &RulesetProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut RulesetProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for Ruleset {}
+
+impl From<RulesetProperties> for Ruleset {
+    fn from(properties: RulesetProperties) -> Ruleset {
+        Ruleset { properties }
     }
 }
 
@@ -953,7 +1116,12 @@ pub mod dataset {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub glue_connection_name: Option<::Value<String>>,
+        pub glue_connection_name: ::Value<String>,
+        /// Property [`QueryString`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-databaseinputdefinition.html#cfn-databrew-dataset-databaseinputdefinition-querystring).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub query_string: Option<::Value<String>>,
         /// Property [`TempDirectory`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-databaseinputdefinition.html#cfn-databrew-dataset-databaseinputdefinition-tempdirectory).
         ///
         /// Update type: _Mutable_.
@@ -967,8 +1135,9 @@ pub mod dataset {
             if let Some(ref database_table_name) = self.database_table_name {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseTableName", database_table_name)?;
             }
-            if let Some(ref glue_connection_name) = self.glue_connection_name {
-                ::serde::ser::SerializeMap::serialize_entry(&mut map, "GlueConnectionName", glue_connection_name)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GlueConnectionName", &self.glue_connection_name)?;
+            if let Some(ref query_string) = self.query_string {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "QueryString", query_string)?;
             }
             if let Some(ref temp_directory) = self.temp_directory {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "TempDirectory", temp_directory)?;
@@ -991,6 +1160,7 @@ pub mod dataset {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut database_table_name: Option<::Value<String>> = None;
                     let mut glue_connection_name: Option<::Value<String>> = None;
+                    let mut query_string: Option<::Value<String>> = None;
                     let mut temp_directory: Option<::Value<S3Location>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -1001,6 +1171,9 @@ pub mod dataset {
                             "GlueConnectionName" => {
                                 glue_connection_name = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "QueryString" => {
+                                query_string = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "TempDirectory" => {
                                 temp_directory = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1010,7 +1183,8 @@ pub mod dataset {
 
                     Ok(DatabaseInputDefinition {
                         database_table_name: database_table_name,
-                        glue_connection_name: glue_connection_name,
+                        glue_connection_name: glue_connection_name.ok_or(::serde::de::Error::missing_field("GlueConnectionName"))?,
+                        query_string: query_string,
                         temp_directory: temp_directory,
                     })
                 }
@@ -1570,6 +1744,11 @@ pub mod dataset {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub database_input_definition: Option<::Value<DatabaseInputDefinition>>,
+        /// Property [`Metadata`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-input.html#cfn-databrew-dataset-input-metadata).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub metadata: Option<::Value<Metadata>>,
         /// Property [`S3InputDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-input.html#cfn-databrew-dataset-input-s3inputdefinition).
         ///
         /// Update type: _Mutable_.
@@ -1585,6 +1764,9 @@ pub mod dataset {
             }
             if let Some(ref database_input_definition) = self.database_input_definition {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseInputDefinition", database_input_definition)?;
+            }
+            if let Some(ref metadata) = self.metadata {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Metadata", metadata)?;
             }
             if let Some(ref s3_input_definition) = self.s3_input_definition {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3InputDefinition", s3_input_definition)?;
@@ -1607,6 +1789,7 @@ pub mod dataset {
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut data_catalog_input_definition: Option<::Value<DataCatalogInputDefinition>> = None;
                     let mut database_input_definition: Option<::Value<DatabaseInputDefinition>> = None;
+                    let mut metadata: Option<::Value<Metadata>> = None;
                     let mut s3_input_definition: Option<::Value<S3Location>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -1616,6 +1799,9 @@ pub mod dataset {
                             }
                             "DatabaseInputDefinition" => {
                                 database_input_definition = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Metadata" => {
+                                metadata = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "S3InputDefinition" => {
                                 s3_input_definition = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1627,6 +1813,7 @@ pub mod dataset {
                     Ok(Input {
                         data_catalog_input_definition: data_catalog_input_definition,
                         database_input_definition: database_input_definition,
+                        metadata: metadata,
                         s3_input_definition: s3_input_definition,
                     })
                 }
@@ -1681,6 +1868,59 @@ pub mod dataset {
 
                     Ok(JsonOptions {
                         multi_line: multi_line,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DataBrew::Dataset.Metadata`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-metadata.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Metadata {
+        /// Property [`SourceArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-dataset-metadata.html#cfn-databrew-dataset-metadata-sourcearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub source_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for Metadata {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref source_arn) = self.source_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceArn", source_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Metadata {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Metadata, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Metadata;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Metadata")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut source_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SourceArn" => {
+                                source_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Metadata {
+                        source_arn: source_arn,
                     })
                 }
             }
@@ -1898,6 +2138,187 @@ pub mod dataset {
 pub mod job {
     //! Property types for the `Job` resource.
 
+    /// The [`AWS::DataBrew::Job.AllowedStatistics`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-allowedstatistics.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AllowedStatistics {
+        /// Property [`Statistics`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-allowedstatistics.html#cfn-databrew-job-allowedstatistics-statistics).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub statistics: ::ValueList<String>,
+    }
+
+    impl ::codec::SerializeValue for AllowedStatistics {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Statistics", &self.statistics)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AllowedStatistics {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AllowedStatistics, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AllowedStatistics;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AllowedStatistics")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut statistics: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Statistics" => {
+                                statistics = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AllowedStatistics {
+                        statistics: statistics.ok_or(::serde::de::Error::missing_field("Statistics"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DataBrew::Job.ColumnSelector`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-columnselector.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ColumnSelector {
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-columnselector.html#cfn-databrew-job-columnselector-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: Option<::Value<String>>,
+        /// Property [`Regex`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-columnselector.html#cfn-databrew-job-columnselector-regex).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub regex: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for ColumnSelector {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            if let Some(ref regex) = self.regex {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Regex", regex)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ColumnSelector {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ColumnSelector, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ColumnSelector;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ColumnSelector")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut name: Option<::Value<String>> = None;
+                    let mut regex: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Regex" => {
+                                regex = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ColumnSelector {
+                        name: name,
+                        regex: regex,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DataBrew::Job.ColumnStatisticsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-columnstatisticsconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ColumnStatisticsConfiguration {
+        /// Property [`Selectors`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-columnstatisticsconfiguration.html#cfn-databrew-job-columnstatisticsconfiguration-selectors).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub selectors: Option<::ValueList<ColumnSelector>>,
+        /// Property [`Statistics`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-columnstatisticsconfiguration.html#cfn-databrew-job-columnstatisticsconfiguration-statistics).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub statistics: ::Value<StatisticsConfiguration>,
+    }
+
+    impl ::codec::SerializeValue for ColumnStatisticsConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref selectors) = self.selectors {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Selectors", selectors)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Statistics", &self.statistics)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ColumnStatisticsConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ColumnStatisticsConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ColumnStatisticsConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ColumnStatisticsConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut selectors: Option<::ValueList<ColumnSelector>> = None;
+                    let mut statistics: Option<::Value<StatisticsConfiguration>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Selectors" => {
+                                selectors = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Statistics" => {
+                                statistics = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ColumnStatisticsConfiguration {
+                        selectors: selectors,
+                        statistics: statistics.ok_or(::serde::de::Error::missing_field("Statistics"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::DataBrew::Job.CsvOutputOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-csvoutputoptions.html) property type.
     #[derive(Debug, Default)]
     pub struct CsvOutputOptions {
@@ -2065,6 +2486,81 @@ pub mod job {
         }
     }
 
+    /// The [`AWS::DataBrew::Job.DatabaseOutput`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-databaseoutput.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DatabaseOutput {
+        /// Property [`DatabaseOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-databaseoutput.html#cfn-databrew-job-databaseoutput-databaseoptions).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub database_options: ::Value<DatabaseTableOutputOptions>,
+        /// Property [`DatabaseOutputMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-databaseoutput.html#cfn-databrew-job-databaseoutput-databaseoutputmode).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub database_output_mode: Option<::Value<String>>,
+        /// Property [`GlueConnectionName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-databaseoutput.html#cfn-databrew-job-databaseoutput-glueconnectionname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub glue_connection_name: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for DatabaseOutput {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseOptions", &self.database_options)?;
+            if let Some(ref database_output_mode) = self.database_output_mode {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseOutputMode", database_output_mode)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "GlueConnectionName", &self.glue_connection_name)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DatabaseOutput {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DatabaseOutput, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DatabaseOutput;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DatabaseOutput")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut database_options: Option<::Value<DatabaseTableOutputOptions>> = None;
+                    let mut database_output_mode: Option<::Value<String>> = None;
+                    let mut glue_connection_name: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DatabaseOptions" => {
+                                database_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DatabaseOutputMode" => {
+                                database_output_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "GlueConnectionName" => {
+                                glue_connection_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DatabaseOutput {
+                        database_options: database_options.ok_or(::serde::de::Error::missing_field("DatabaseOptions"))?,
+                        database_output_mode: database_output_mode,
+                        glue_connection_name: glue_connection_name.ok_or(::serde::de::Error::missing_field("GlueConnectionName"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::DataBrew::Job.DatabaseTableOutputOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-databasetableoutputoptions.html) property type.
     #[derive(Debug, Default)]
     pub struct DatabaseTableOutputOptions {
@@ -2121,6 +2617,70 @@ pub mod job {
                     Ok(DatabaseTableOutputOptions {
                         table_name: table_name.ok_or(::serde::de::Error::missing_field("TableName"))?,
                         temp_directory: temp_directory,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DataBrew::Job.EntityDetectorConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-entitydetectorconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct EntityDetectorConfiguration {
+        /// Property [`AllowedStatistics`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-entitydetectorconfiguration.html#cfn-databrew-job-entitydetectorconfiguration-allowedstatistics).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub allowed_statistics: Option<::Value<AllowedStatistics>>,
+        /// Property [`EntityTypes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-entitydetectorconfiguration.html#cfn-databrew-job-entitydetectorconfiguration-entitytypes).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub entity_types: ::ValueList<String>,
+    }
+
+    impl ::codec::SerializeValue for EntityDetectorConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref allowed_statistics) = self.allowed_statistics {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowedStatistics", allowed_statistics)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EntityTypes", &self.entity_types)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for EntityDetectorConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<EntityDetectorConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = EntityDetectorConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type EntityDetectorConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut allowed_statistics: Option<::Value<AllowedStatistics>> = None;
+                    let mut entity_types: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AllowedStatistics" => {
+                                allowed_statistics = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "EntityTypes" => {
+                                entity_types = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(EntityDetectorConfiguration {
+                        allowed_statistics: allowed_statistics,
+                        entity_types: entity_types.ok_or(::serde::de::Error::missing_field("EntityTypes"))?,
                     })
                 }
             }
@@ -2218,6 +2778,11 @@ pub mod job {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub location: ::Value<S3Location>,
+        /// Property [`MaxOutputFiles`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-output.html#cfn-databrew-job-output-maxoutputfiles).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub max_output_files: Option<::Value<u32>>,
         /// Property [`Overwrite`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-output.html#cfn-databrew-job-output-overwrite).
         ///
         /// Update type: _Mutable_.
@@ -2243,6 +2808,9 @@ pub mod job {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "FormatOptions", format_options)?;
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Location", &self.location)?;
+            if let Some(ref max_output_files) = self.max_output_files {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxOutputFiles", max_output_files)?;
+            }
             if let Some(ref overwrite) = self.overwrite {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Overwrite", overwrite)?;
             }
@@ -2269,6 +2837,7 @@ pub mod job {
                     let mut format: Option<::Value<String>> = None;
                     let mut format_options: Option<::Value<OutputFormatOptions>> = None;
                     let mut location: Option<::Value<S3Location>> = None;
+                    let mut max_output_files: Option<::Value<u32>> = None;
                     let mut overwrite: Option<::Value<bool>> = None;
                     let mut partition_columns: Option<::ValueList<String>> = None;
 
@@ -2286,6 +2855,9 @@ pub mod job {
                             "Location" => {
                                 location = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "MaxOutputFiles" => {
+                                max_output_files = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Overwrite" => {
                                 overwrite = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -2301,6 +2873,7 @@ pub mod job {
                         format: format,
                         format_options: format_options,
                         location: location.ok_or(::serde::de::Error::missing_field("Location"))?,
+                        max_output_files: max_output_files,
                         overwrite: overwrite,
                         partition_columns: partition_columns,
                     })
@@ -2372,6 +2945,11 @@ pub mod job {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub bucket: ::Value<String>,
+        /// Property [`BucketOwner`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-outputlocation.html#cfn-databrew-job-outputlocation-bucketowner).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub bucket_owner: Option<::Value<String>>,
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-outputlocation.html#cfn-databrew-job-outputlocation-key).
         ///
         /// Update type: _Mutable_.
@@ -2383,6 +2961,9 @@ pub mod job {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Bucket", &self.bucket)?;
+            if let Some(ref bucket_owner) = self.bucket_owner {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketOwner", bucket_owner)?;
+            }
             if let Some(ref key) = self.key {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", key)?;
             }
@@ -2403,12 +2984,16 @@ pub mod job {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut bucket: Option<::Value<String>> = None;
+                    let mut bucket_owner: Option<::Value<String>> = None;
                     let mut key: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Bucket" => {
                                 bucket = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "BucketOwner" => {
+                                bucket_owner = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Key" => {
                                 key = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -2419,7 +3004,100 @@ pub mod job {
 
                     Ok(OutputLocation {
                         bucket: bucket.ok_or(::serde::de::Error::missing_field("Bucket"))?,
+                        bucket_owner: bucket_owner,
                         key: key,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DataBrew::Job.ProfileConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-profileconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ProfileConfiguration {
+        /// Property [`ColumnStatisticsConfigurations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-profileconfiguration.html#cfn-databrew-job-profileconfiguration-columnstatisticsconfigurations).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub column_statistics_configurations: Option<::ValueList<ColumnStatisticsConfiguration>>,
+        /// Property [`DatasetStatisticsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-profileconfiguration.html#cfn-databrew-job-profileconfiguration-datasetstatisticsconfiguration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub dataset_statistics_configuration: Option<::Value<StatisticsConfiguration>>,
+        /// Property [`EntityDetectorConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-profileconfiguration.html#cfn-databrew-job-profileconfiguration-entitydetectorconfiguration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub entity_detector_configuration: Option<::Value<EntityDetectorConfiguration>>,
+        /// Property [`ProfileColumns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-profileconfiguration.html#cfn-databrew-job-profileconfiguration-profilecolumns).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub profile_columns: Option<::ValueList<ColumnSelector>>,
+    }
+
+    impl ::codec::SerializeValue for ProfileConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref column_statistics_configurations) = self.column_statistics_configurations {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ColumnStatisticsConfigurations", column_statistics_configurations)?;
+            }
+            if let Some(ref dataset_statistics_configuration) = self.dataset_statistics_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatasetStatisticsConfiguration", dataset_statistics_configuration)?;
+            }
+            if let Some(ref entity_detector_configuration) = self.entity_detector_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EntityDetectorConfiguration", entity_detector_configuration)?;
+            }
+            if let Some(ref profile_columns) = self.profile_columns {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProfileColumns", profile_columns)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ProfileConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ProfileConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ProfileConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ProfileConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut column_statistics_configurations: Option<::ValueList<ColumnStatisticsConfiguration>> = None;
+                    let mut dataset_statistics_configuration: Option<::Value<StatisticsConfiguration>> = None;
+                    let mut entity_detector_configuration: Option<::Value<EntityDetectorConfiguration>> = None;
+                    let mut profile_columns: Option<::ValueList<ColumnSelector>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ColumnStatisticsConfigurations" => {
+                                column_statistics_configurations = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DatasetStatisticsConfiguration" => {
+                                dataset_statistics_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "EntityDetectorConfiguration" => {
+                                entity_detector_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ProfileColumns" => {
+                                profile_columns = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ProfileConfiguration {
+                        column_statistics_configurations: column_statistics_configurations,
+                        dataset_statistics_configuration: dataset_statistics_configuration,
+                        entity_detector_configuration: entity_detector_configuration,
+                        profile_columns: profile_columns,
                     })
                 }
             }
@@ -2500,6 +3178,11 @@ pub mod job {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub bucket: ::Value<String>,
+        /// Property [`BucketOwner`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-s3location.html#cfn-databrew-job-s3location-bucketowner).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub bucket_owner: Option<::Value<String>>,
         /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-s3location.html#cfn-databrew-job-s3location-key).
         ///
         /// Update type: _Mutable_.
@@ -2511,6 +3194,9 @@ pub mod job {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Bucket", &self.bucket)?;
+            if let Some(ref bucket_owner) = self.bucket_owner {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketOwner", bucket_owner)?;
+            }
             if let Some(ref key) = self.key {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Key", key)?;
             }
@@ -2531,12 +3217,16 @@ pub mod job {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut bucket: Option<::Value<String>> = None;
+                    let mut bucket_owner: Option<::Value<String>> = None;
                     let mut key: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
                             "Bucket" => {
                                 bucket = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "BucketOwner" => {
+                                bucket_owner = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "Key" => {
                                 key = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -2547,6 +3237,7 @@ pub mod job {
 
                     Ok(S3Location {
                         bucket: bucket.ok_or(::serde::de::Error::missing_field("Bucket"))?,
+                        bucket_owner: bucket_owner,
                         key: key,
                     })
                 }
@@ -2599,6 +3290,198 @@ pub mod job {
 
                     Ok(S3TableOutputOptions {
                         location: location.ok_or(::serde::de::Error::missing_field("Location"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DataBrew::Job.StatisticOverride`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-statisticoverride.html) property type.
+    #[derive(Debug, Default)]
+    pub struct StatisticOverride {
+        /// Property [`Parameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-statisticoverride.html#cfn-databrew-job-statisticoverride-parameters).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub parameters: ::ValueMap<String>,
+        /// Property [`Statistic`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-statisticoverride.html#cfn-databrew-job-statisticoverride-statistic).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub statistic: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for StatisticOverride {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", &self.parameters)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Statistic", &self.statistic)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for StatisticOverride {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<StatisticOverride, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = StatisticOverride;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type StatisticOverride")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut parameters: Option<::ValueMap<String>> = None;
+                    let mut statistic: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Parameters" => {
+                                parameters = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Statistic" => {
+                                statistic = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(StatisticOverride {
+                        parameters: parameters.ok_or(::serde::de::Error::missing_field("Parameters"))?,
+                        statistic: statistic.ok_or(::serde::de::Error::missing_field("Statistic"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DataBrew::Job.StatisticsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-statisticsconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct StatisticsConfiguration {
+        /// Property [`IncludedStatistics`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-statisticsconfiguration.html#cfn-databrew-job-statisticsconfiguration-includedstatistics).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub included_statistics: Option<::ValueList<String>>,
+        /// Property [`Overrides`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-statisticsconfiguration.html#cfn-databrew-job-statisticsconfiguration-overrides).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub overrides: Option<::ValueList<StatisticOverride>>,
+    }
+
+    impl ::codec::SerializeValue for StatisticsConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref included_statistics) = self.included_statistics {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncludedStatistics", included_statistics)?;
+            }
+            if let Some(ref overrides) = self.overrides {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Overrides", overrides)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for StatisticsConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<StatisticsConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = StatisticsConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type StatisticsConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut included_statistics: Option<::ValueList<String>> = None;
+                    let mut overrides: Option<::ValueList<StatisticOverride>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "IncludedStatistics" => {
+                                included_statistics = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Overrides" => {
+                                overrides = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(StatisticsConfiguration {
+                        included_statistics: included_statistics,
+                        overrides: overrides,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DataBrew::Job.ValidationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-validationconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ValidationConfiguration {
+        /// Property [`RulesetArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-validationconfiguration.html#cfn-databrew-job-validationconfiguration-rulesetarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ruleset_arn: ::Value<String>,
+        /// Property [`ValidationMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-job-validationconfiguration.html#cfn-databrew-job-validationconfiguration-validationmode).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub validation_mode: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for ValidationConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RulesetArn", &self.ruleset_arn)?;
+            if let Some(ref validation_mode) = self.validation_mode {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ValidationMode", validation_mode)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ValidationConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ValidationConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ValidationConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ValidationConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut ruleset_arn: Option<::Value<String>> = None;
+                    let mut validation_mode: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "RulesetArn" => {
+                                ruleset_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ValidationMode" => {
+                                validation_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ValidationConfiguration {
+                        ruleset_arn: ruleset_arn.ok_or(::serde::de::Error::missing_field("RulesetArn"))?,
+                        validation_mode: validation_mode,
                     })
                 }
             }
@@ -2691,7 +3574,7 @@ pub mod recipe {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub parameters: Option<::Value<ParameterMap>>,
+        pub parameters: Option<::Value<RecipeParameters>>,
     }
 
     impl ::codec::SerializeValue for Action {
@@ -2718,7 +3601,7 @@ pub mod recipe {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut operation: Option<::Value<String>> = None;
-                    let mut parameters: Option<::Value<ParameterMap>> = None;
+                    let mut parameters: Option<::Value<RecipeParameters>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -2910,31 +3793,65 @@ pub mod recipe {
         }
     }
 
-    /// The [`AWS::DataBrew::Recipe.ParameterMap`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-recipe-parametermap.html) property type.
+    /// The [`AWS::DataBrew::Recipe.Input`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-recipe-input.html) property type.
     #[derive(Debug, Default)]
-    pub struct ParameterMap {
+    pub struct Input {
+        /// Property [`DataCatalogInputDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-recipe-input.html#cfn-databrew-recipe-input-datacataloginputdefinition).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub data_catalog_input_definition: Option<::Value<DataCatalogInputDefinition>>,
+        /// Property [`S3InputDefinition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-recipe-input.html#cfn-databrew-recipe-input-s3inputdefinition).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub s3_input_definition: Option<::Value<S3Location>>,
     }
 
-    impl ::codec::SerializeValue for ParameterMap {
+    impl ::codec::SerializeValue for Input {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            let map = ::serde::Serializer::serialize_map(s, None)?;
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref data_catalog_input_definition) = self.data_catalog_input_definition {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataCatalogInputDefinition", data_catalog_input_definition)?;
+            }
+            if let Some(ref s3_input_definition) = self.s3_input_definition {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3InputDefinition", s3_input_definition)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
 
-    impl ::codec::DeserializeValue for ParameterMap {
-        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ParameterMap, D::Error> {
+    impl ::codec::DeserializeValue for Input {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Input, D::Error> {
             struct Visitor;
 
             impl<'de> ::serde::de::Visitor<'de> for Visitor {
-                type Value = ParameterMap;
+                type Value = Input;
 
                 fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-                    write!(f, "a struct of type ParameterMap")
+                    write!(f, "a struct of type Input")
                 }
 
-                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, _map: A) -> Result<Self::Value, A::Error> {
-                    Ok(ParameterMap {})
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut data_catalog_input_definition: Option<::Value<DataCatalogInputDefinition>> = None;
+                    let mut s3_input_definition: Option<::Value<S3Location>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DataCatalogInputDefinition" => {
+                                data_catalog_input_definition = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "S3InputDefinition" => {
+                                s3_input_definition = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Input {
+                        data_catalog_input_definition: data_catalog_input_definition,
+                        s3_input_definition: s3_input_definition,
+                    })
                 }
             }
 
@@ -3094,7 +4011,7 @@ pub mod recipe {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub input: Option<::Value<::json::Value>>,
+        pub input: Option<::Value<Input>>,
         /// Property [`Interval`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-recipe-recipeparameters.html#cfn-databrew-recipe-recipeparameters-interval).
         ///
         /// Update type: _Mutable_.
@@ -3803,7 +4720,7 @@ pub mod recipe {
                     let mut hidden_columns: Option<::Value<String>> = None;
                     let mut ignore_case: Option<::Value<String>> = None;
                     let mut include_in_split: Option<::Value<String>> = None;
-                    let mut input: Option<::Value<::json::Value>> = None;
+                    let mut input: Option<::Value<Input>> = None;
                     let mut interval: Option<::Value<String>> = None;
                     let mut is_text: Option<::Value<String>> = None;
                     let mut join_keys: Option<::Value<String>> = None;
@@ -4481,6 +5398,329 @@ pub mod recipe {
                     Ok(SecondaryInput {
                         data_catalog_input_definition: data_catalog_input_definition,
                         s3_input_definition: s3_input_definition,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod ruleset {
+    //! Property types for the `Ruleset` resource.
+
+    /// The [`AWS::DataBrew::Ruleset.ColumnSelector`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-columnselector.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ColumnSelector {
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-columnselector.html#cfn-databrew-ruleset-columnselector-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: Option<::Value<String>>,
+        /// Property [`Regex`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-columnselector.html#cfn-databrew-ruleset-columnselector-regex).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub regex: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for ColumnSelector {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref name) = self.name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+            }
+            if let Some(ref regex) = self.regex {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Regex", regex)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ColumnSelector {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ColumnSelector, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ColumnSelector;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ColumnSelector")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut name: Option<::Value<String>> = None;
+                    let mut regex: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Regex" => {
+                                regex = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ColumnSelector {
+                        name: name,
+                        regex: regex,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DataBrew::Ruleset.Rule`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-rule.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Rule {
+        /// Property [`CheckExpression`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-rule.html#cfn-databrew-ruleset-rule-checkexpression).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub check_expression: ::Value<String>,
+        /// Property [`ColumnSelectors`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-rule.html#cfn-databrew-ruleset-rule-columnselectors).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub column_selectors: Option<::ValueList<ColumnSelector>>,
+        /// Property [`Disabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-rule.html#cfn-databrew-ruleset-rule-disabled).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub disabled: Option<::Value<bool>>,
+        /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-rule.html#cfn-databrew-ruleset-rule-name).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub name: ::Value<String>,
+        /// Property [`SubstitutionMap`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-rule.html#cfn-databrew-ruleset-rule-substitutionmap).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub substitution_map: Option<::ValueList<SubstitutionValue>>,
+        /// Property [`Threshold`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-rule.html#cfn-databrew-ruleset-rule-threshold).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub threshold: Option<::Value<Threshold>>,
+    }
+
+    impl ::codec::SerializeValue for Rule {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CheckExpression", &self.check_expression)?;
+            if let Some(ref column_selectors) = self.column_selectors {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ColumnSelectors", column_selectors)?;
+            }
+            if let Some(ref disabled) = self.disabled {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Disabled", disabled)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
+            if let Some(ref substitution_map) = self.substitution_map {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubstitutionMap", substitution_map)?;
+            }
+            if let Some(ref threshold) = self.threshold {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Threshold", threshold)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Rule {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Rule, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Rule;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Rule")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut check_expression: Option<::Value<String>> = None;
+                    let mut column_selectors: Option<::ValueList<ColumnSelector>> = None;
+                    let mut disabled: Option<::Value<bool>> = None;
+                    let mut name: Option<::Value<String>> = None;
+                    let mut substitution_map: Option<::ValueList<SubstitutionValue>> = None;
+                    let mut threshold: Option<::Value<Threshold>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CheckExpression" => {
+                                check_expression = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ColumnSelectors" => {
+                                column_selectors = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Disabled" => {
+                                disabled = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Name" => {
+                                name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SubstitutionMap" => {
+                                substitution_map = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Threshold" => {
+                                threshold = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Rule {
+                        check_expression: check_expression.ok_or(::serde::de::Error::missing_field("CheckExpression"))?,
+                        column_selectors: column_selectors,
+                        disabled: disabled,
+                        name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
+                        substitution_map: substitution_map,
+                        threshold: threshold,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DataBrew::Ruleset.SubstitutionValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-substitutionvalue.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SubstitutionValue {
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-substitutionvalue.html#cfn-databrew-ruleset-substitutionvalue-value).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub value: ::Value<String>,
+        /// Property [`ValueReference`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-substitutionvalue.html#cfn-databrew-ruleset-substitutionvalue-valuereference).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub value_reference: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for SubstitutionValue {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ValueReference", &self.value_reference)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SubstitutionValue {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SubstitutionValue, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SubstitutionValue;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SubstitutionValue")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut value: Option<::Value<String>> = None;
+                    let mut value_reference: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Value" => {
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ValueReference" => {
+                                value_reference = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SubstitutionValue {
+                        value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
+                        value_reference: value_reference.ok_or(::serde::de::Error::missing_field("ValueReference"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::DataBrew::Ruleset.Threshold`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-threshold.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Threshold {
+        /// Property [`Type`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-threshold.html#cfn-databrew-ruleset-threshold-type).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub r#type: Option<::Value<String>>,
+        /// Property [`Unit`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-threshold.html#cfn-databrew-ruleset-threshold-unit).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub unit: Option<::Value<String>>,
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-ruleset-threshold.html#cfn-databrew-ruleset-threshold-value).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub value: ::Value<f64>,
+    }
+
+    impl ::codec::SerializeValue for Threshold {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref r#type) = self.r#type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Type", r#type)?;
+            }
+            if let Some(ref unit) = self.unit {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Unit", unit)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Value", &self.value)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Threshold {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Threshold, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Threshold;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Threshold")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut r#type: Option<::Value<String>> = None;
+                    let mut unit: Option<::Value<String>> = None;
+                    let mut value: Option<::Value<f64>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Type" => {
+                                r#type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Unit" => {
+                                unit = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Value" => {
+                                value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Threshold {
+                        r#type: r#type,
+                        unit: unit,
+                        value: value.ok_or(::serde::de::Error::missing_field("Value"))?,
                     })
                 }
             }

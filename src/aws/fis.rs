@@ -19,6 +19,16 @@ pub struct ExperimentTemplateProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub description: ::Value<String>,
+    /// Property [`ExperimentOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fis-experimenttemplate.html#cfn-fis-experimenttemplate-experimentoptions).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub experiment_options: Option<::Value<self::experiment_template::ExperimentTemplateExperimentOptions>>,
+    /// Property [`LogConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fis-experimenttemplate.html#cfn-fis-experimenttemplate-logconfiguration).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub log_configuration: Option<::Value<self::experiment_template::ExperimentTemplateLogConfiguration>>,
     /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fis-experimenttemplate.html#cfn-fis-experimenttemplate-rolearn).
     ///
     /// Update type: _Mutable_.
@@ -48,6 +58,12 @@ impl ::serde::Serialize for ExperimentTemplateProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Actions", actions)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", &self.description)?;
+        if let Some(ref experiment_options) = self.experiment_options {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExperimentOptions", experiment_options)?;
+        }
+        if let Some(ref log_configuration) = self.log_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogConfiguration", log_configuration)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "StopConditions", &self.stop_conditions)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", &self.tags)?;
@@ -70,6 +86,8 @@ impl<'de> ::serde::Deserialize<'de> for ExperimentTemplateProperties {
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                 let mut actions: Option<::ValueMap<self::experiment_template::ExperimentTemplateAction>> = None;
                 let mut description: Option<::Value<String>> = None;
+                let mut experiment_options: Option<::Value<self::experiment_template::ExperimentTemplateExperimentOptions>> = None;
+                let mut log_configuration: Option<::Value<self::experiment_template::ExperimentTemplateLogConfiguration>> = None;
                 let mut role_arn: Option<::Value<String>> = None;
                 let mut stop_conditions: Option<::ValueList<self::experiment_template::ExperimentTemplateStopCondition>> = None;
                 let mut tags: Option<::ValueMap<String>> = None;
@@ -82,6 +100,12 @@ impl<'de> ::serde::Deserialize<'de> for ExperimentTemplateProperties {
                         }
                         "Description" => {
                             description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ExperimentOptions" => {
+                            experiment_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "LogConfiguration" => {
+                            log_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "RoleArn" => {
                             role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -102,6 +126,8 @@ impl<'de> ::serde::Deserialize<'de> for ExperimentTemplateProperties {
                 Ok(ExperimentTemplateProperties {
                     actions: actions,
                     description: description.ok_or(::serde::de::Error::missing_field("Description"))?,
+                    experiment_options: experiment_options,
+                    log_configuration: log_configuration,
                     role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
                     stop_conditions: stop_conditions.ok_or(::serde::de::Error::missing_field("StopConditions"))?,
                     tags: tags.ok_or(::serde::de::Error::missing_field("Tags"))?,
@@ -133,8 +159,170 @@ impl From<ExperimentTemplateProperties> for ExperimentTemplate {
     }
 }
 
+/// The [`AWS::FIS::TargetAccountConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fis-targetaccountconfiguration.html) resource type.
+#[derive(Debug, Default)]
+pub struct TargetAccountConfiguration {
+    properties: TargetAccountConfigurationProperties
+}
+
+/// Properties for the `TargetAccountConfiguration` resource.
+#[derive(Debug, Default)]
+pub struct TargetAccountConfigurationProperties {
+    /// Property [`AccountId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fis-targetaccountconfiguration.html#cfn-fis-targetaccountconfiguration-accountid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub account_id: ::Value<String>,
+    /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fis-targetaccountconfiguration.html#cfn-fis-targetaccountconfiguration-description).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub description: Option<::Value<String>>,
+    /// Property [`ExperimentTemplateId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fis-targetaccountconfiguration.html#cfn-fis-targetaccountconfiguration-experimenttemplateid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub experiment_template_id: ::Value<String>,
+    /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-fis-targetaccountconfiguration.html#cfn-fis-targetaccountconfiguration-rolearn).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub role_arn: ::Value<String>,
+}
+
+impl ::serde::Serialize for TargetAccountConfigurationProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccountId", &self.account_id)?;
+        if let Some(ref description) = self.description {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExperimentTemplateId", &self.experiment_template_id)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", &self.role_arn)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for TargetAccountConfigurationProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<TargetAccountConfigurationProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = TargetAccountConfigurationProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type TargetAccountConfigurationProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut account_id: Option<::Value<String>> = None;
+                let mut description: Option<::Value<String>> = None;
+                let mut experiment_template_id: Option<::Value<String>> = None;
+                let mut role_arn: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AccountId" => {
+                            account_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Description" => {
+                            description = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "ExperimentTemplateId" => {
+                            experiment_template_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "RoleArn" => {
+                            role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(TargetAccountConfigurationProperties {
+                    account_id: account_id.ok_or(::serde::de::Error::missing_field("AccountId"))?,
+                    description: description,
+                    experiment_template_id: experiment_template_id.ok_or(::serde::de::Error::missing_field("ExperimentTemplateId"))?,
+                    role_arn: role_arn.ok_or(::serde::de::Error::missing_field("RoleArn"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for TargetAccountConfiguration {
+    type Properties = TargetAccountConfigurationProperties;
+    const TYPE: &'static str = "AWS::FIS::TargetAccountConfiguration";
+    fn properties(&self) -> &TargetAccountConfigurationProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut TargetAccountConfigurationProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for TargetAccountConfiguration {}
+
+impl From<TargetAccountConfigurationProperties> for TargetAccountConfiguration {
+    fn from(properties: TargetAccountConfigurationProperties) -> TargetAccountConfiguration {
+        TargetAccountConfiguration { properties }
+    }
+}
+
 pub mod experiment_template {
     //! Property types for the `ExperimentTemplate` resource.
+
+    /// The [`AWS::FIS::ExperimentTemplate.CloudWatchLogsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-cloudwatchlogsconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CloudWatchLogsConfiguration {
+        /// Property [`LogGroupArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-cloudwatchlogsconfiguration.html#cfn-fis-experimenttemplate-cloudwatchlogsconfiguration-loggrouparn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub log_group_arn: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for CloudWatchLogsConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroupArn", &self.log_group_arn)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CloudWatchLogsConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CloudWatchLogsConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CloudWatchLogsConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CloudWatchLogsConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut log_group_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "LogGroupArn" => {
+                                log_group_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CloudWatchLogsConfiguration {
+                        log_group_arn: log_group_arn.ok_or(::serde::de::Error::missing_field("LogGroupArn"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
 
     /// The [`AWS::FIS::ExperimentTemplate.ExperimentTemplateAction`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplateaction.html) property type.
     #[derive(Debug, Default)]
@@ -239,6 +427,149 @@ pub mod experiment_template {
         }
     }
 
+    /// The [`AWS::FIS::ExperimentTemplate.ExperimentTemplateExperimentOptions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplateexperimentoptions.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ExperimentTemplateExperimentOptions {
+        /// Property [`AccountTargeting`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplateexperimentoptions.html#cfn-fis-experimenttemplate-experimenttemplateexperimentoptions-accounttargeting).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub account_targeting: Option<::Value<String>>,
+        /// Property [`EmptyTargetResolutionMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplateexperimentoptions.html#cfn-fis-experimenttemplate-experimenttemplateexperimentoptions-emptytargetresolutionmode).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub empty_target_resolution_mode: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for ExperimentTemplateExperimentOptions {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref account_targeting) = self.account_targeting {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AccountTargeting", account_targeting)?;
+            }
+            if let Some(ref empty_target_resolution_mode) = self.empty_target_resolution_mode {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "EmptyTargetResolutionMode", empty_target_resolution_mode)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ExperimentTemplateExperimentOptions {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ExperimentTemplateExperimentOptions, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ExperimentTemplateExperimentOptions;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ExperimentTemplateExperimentOptions")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut account_targeting: Option<::Value<String>> = None;
+                    let mut empty_target_resolution_mode: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AccountTargeting" => {
+                                account_targeting = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "EmptyTargetResolutionMode" => {
+                                empty_target_resolution_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ExperimentTemplateExperimentOptions {
+                        account_targeting: account_targeting,
+                        empty_target_resolution_mode: empty_target_resolution_mode,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::FIS::ExperimentTemplate.ExperimentTemplateLogConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplatelogconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ExperimentTemplateLogConfiguration {
+        /// Property [`CloudWatchLogsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplatelogconfiguration.html#cfn-fis-experimenttemplate-experimenttemplatelogconfiguration-cloudwatchlogsconfiguration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub cloud_watch_logs_configuration: Option<::Value<CloudWatchLogsConfiguration>>,
+        /// Property [`LogSchemaVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplatelogconfiguration.html#cfn-fis-experimenttemplate-experimenttemplatelogconfiguration-logschemaversion).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub log_schema_version: ::Value<u32>,
+        /// Property [`S3Configuration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplatelogconfiguration.html#cfn-fis-experimenttemplate-experimenttemplatelogconfiguration-s3configuration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub s3_configuration: Option<::Value<S3Configuration>>,
+    }
+
+    impl ::codec::SerializeValue for ExperimentTemplateLogConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref cloud_watch_logs_configuration) = self.cloud_watch_logs_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CloudWatchLogsConfiguration", cloud_watch_logs_configuration)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogSchemaVersion", &self.log_schema_version)?;
+            if let Some(ref s3_configuration) = self.s3_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Configuration", s3_configuration)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ExperimentTemplateLogConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ExperimentTemplateLogConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ExperimentTemplateLogConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ExperimentTemplateLogConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut cloud_watch_logs_configuration: Option<::Value<CloudWatchLogsConfiguration>> = None;
+                    let mut log_schema_version: Option<::Value<u32>> = None;
+                    let mut s3_configuration: Option<::Value<S3Configuration>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CloudWatchLogsConfiguration" => {
+                                cloud_watch_logs_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LogSchemaVersion" => {
+                                log_schema_version = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "S3Configuration" => {
+                                s3_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ExperimentTemplateLogConfiguration {
+                        cloud_watch_logs_configuration: cloud_watch_logs_configuration,
+                        log_schema_version: log_schema_version.ok_or(::serde::de::Error::missing_field("LogSchemaVersion"))?,
+                        s3_configuration: s3_configuration,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::FIS::ExperimentTemplate.ExperimentTemplateStopCondition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplatestopcondition.html) property type.
     #[derive(Debug, Default)]
     pub struct ExperimentTemplateStopCondition {
@@ -311,6 +642,11 @@ pub mod experiment_template {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub filters: Option<::ValueList<ExperimentTemplateTargetFilter>>,
+        /// Property [`Parameters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplatetarget.html#cfn-fis-experimenttemplate-experimenttemplatetarget-parameters).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub parameters: Option<::ValueMap<String>>,
         /// Property [`ResourceArns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-experimenttemplatetarget.html#cfn-fis-experimenttemplate-experimenttemplatetarget-resourcearns).
         ///
         /// Update type: _Mutable_.
@@ -339,6 +675,9 @@ pub mod experiment_template {
             if let Some(ref filters) = self.filters {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "Filters", filters)?;
             }
+            if let Some(ref parameters) = self.parameters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Parameters", parameters)?;
+            }
             if let Some(ref resource_arns) = self.resource_arns {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ResourceArns", resource_arns)?;
             }
@@ -364,6 +703,7 @@ pub mod experiment_template {
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
                     let mut filters: Option<::ValueList<ExperimentTemplateTargetFilter>> = None;
+                    let mut parameters: Option<::ValueMap<String>> = None;
                     let mut resource_arns: Option<::ValueList<String>> = None;
                     let mut resource_tags: Option<::ValueMap<String>> = None;
                     let mut resource_type: Option<::Value<String>> = None;
@@ -373,6 +713,9 @@ pub mod experiment_template {
                         match __cfn_key.as_ref() {
                             "Filters" => {
                                 filters = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Parameters" => {
+                                parameters = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
                             "ResourceArns" => {
                                 resource_arns = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -392,6 +735,7 @@ pub mod experiment_template {
 
                     Ok(ExperimentTemplateTarget {
                         filters: filters,
+                        parameters: parameters,
                         resource_arns: resource_arns,
                         resource_tags: resource_tags,
                         resource_type: resource_type.ok_or(::serde::de::Error::missing_field("ResourceType"))?,
@@ -458,6 +802,70 @@ pub mod experiment_template {
                     Ok(ExperimentTemplateTargetFilter {
                         path: path.ok_or(::serde::de::Error::missing_field("Path"))?,
                         values: values.ok_or(::serde::de::Error::missing_field("Values"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::FIS::ExperimentTemplate.S3Configuration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-s3configuration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct S3Configuration {
+        /// Property [`BucketName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-s3configuration.html#cfn-fis-experimenttemplate-s3configuration-bucketname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub bucket_name: ::Value<String>,
+        /// Property [`Prefix`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-fis-experimenttemplate-s3configuration.html#cfn-fis-experimenttemplate-s3configuration-prefix).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub prefix: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for S3Configuration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "BucketName", &self.bucket_name)?;
+            if let Some(ref prefix) = self.prefix {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Prefix", prefix)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for S3Configuration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<S3Configuration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = S3Configuration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type S3Configuration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut bucket_name: Option<::Value<String>> = None;
+                    let mut prefix: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "BucketName" => {
+                                bucket_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Prefix" => {
+                                prefix = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(S3Configuration {
+                        bucket_name: bucket_name.ok_or(::serde::de::Error::missing_field("BucketName"))?,
+                        prefix: prefix,
                     })
                 }
             }

@@ -9,6 +9,11 @@ pub struct DataSource {
 /// Properties for the `DataSource` resource.
 #[derive(Debug, Default)]
 pub struct DataSourceProperties {
+    /// Property [`CustomDocumentEnrichmentConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-datasource.html#cfn-kendra-datasource-customdocumentenrichmentconfiguration).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub custom_document_enrichment_configuration: Option<::Value<self::data_source::CustomDocumentEnrichmentConfiguration>>,
     /// Property [`DataSourceConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-datasource.html#cfn-kendra-datasource-datasourceconfiguration).
     ///
     /// Update type: _Mutable_.
@@ -24,6 +29,11 @@ pub struct DataSourceProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub index_id: ::Value<String>,
+    /// Property [`LanguageCode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-datasource.html#cfn-kendra-datasource-languagecode).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub language_code: Option<::Value<String>>,
     /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kendra-datasource.html#cfn-kendra-datasource-name).
     ///
     /// Update type: _Mutable_.
@@ -54,6 +64,9 @@ pub struct DataSourceProperties {
 impl ::serde::Serialize for DataSourceProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref custom_document_enrichment_configuration) = self.custom_document_enrichment_configuration {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CustomDocumentEnrichmentConfiguration", custom_document_enrichment_configuration)?;
+        }
         if let Some(ref data_source_configuration) = self.data_source_configuration {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DataSourceConfiguration", data_source_configuration)?;
         }
@@ -61,6 +74,9 @@ impl ::serde::Serialize for DataSourceProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Description", description)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "IndexId", &self.index_id)?;
+        if let Some(ref language_code) = self.language_code {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LanguageCode", language_code)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", &self.name)?;
         if let Some(ref role_arn) = self.role_arn {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", role_arn)?;
@@ -88,9 +104,11 @@ impl<'de> ::serde::Deserialize<'de> for DataSourceProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut custom_document_enrichment_configuration: Option<::Value<self::data_source::CustomDocumentEnrichmentConfiguration>> = None;
                 let mut data_source_configuration: Option<::Value<self::data_source::DataSourceConfiguration>> = None;
                 let mut description: Option<::Value<String>> = None;
                 let mut index_id: Option<::Value<String>> = None;
+                let mut language_code: Option<::Value<String>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut role_arn: Option<::Value<String>> = None;
                 let mut schedule: Option<::Value<String>> = None;
@@ -99,6 +117,9 @@ impl<'de> ::serde::Deserialize<'de> for DataSourceProperties {
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "CustomDocumentEnrichmentConfiguration" => {
+                            custom_document_enrichment_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "DataSourceConfiguration" => {
                             data_source_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -107,6 +128,9 @@ impl<'de> ::serde::Deserialize<'de> for DataSourceProperties {
                         }
                         "IndexId" => {
                             index_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "LanguageCode" => {
+                            language_code = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Name" => {
                             name = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -128,9 +152,11 @@ impl<'de> ::serde::Deserialize<'de> for DataSourceProperties {
                 }
 
                 Ok(DataSourceProperties {
+                    custom_document_enrichment_configuration: custom_document_enrichment_configuration,
                     data_source_configuration: data_source_configuration,
                     description: description,
                     index_id: index_id.ok_or(::serde::de::Error::missing_field("IndexId"))?,
+                    language_code: language_code,
                     name: name.ok_or(::serde::de::Error::missing_field("Name"))?,
                     role_arn: role_arn,
                     schedule: schedule,
@@ -1542,6 +1568,98 @@ pub mod data_source {
         }
     }
 
+    /// The [`AWS::Kendra::DataSource.CustomDocumentEnrichmentConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-customdocumentenrichmentconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct CustomDocumentEnrichmentConfiguration {
+        /// Property [`InlineConfigurations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-customdocumentenrichmentconfiguration.html#cfn-kendra-datasource-customdocumentenrichmentconfiguration-inlineconfigurations).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub inline_configurations: Option<::ValueList<InlineCustomDocumentEnrichmentConfiguration>>,
+        /// Property [`PostExtractionHookConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-customdocumentenrichmentconfiguration.html#cfn-kendra-datasource-customdocumentenrichmentconfiguration-postextractionhookconfiguration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub post_extraction_hook_configuration: Option<::Value<HookConfiguration>>,
+        /// Property [`PreExtractionHookConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-customdocumentenrichmentconfiguration.html#cfn-kendra-datasource-customdocumentenrichmentconfiguration-preextractionhookconfiguration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub pre_extraction_hook_configuration: Option<::Value<HookConfiguration>>,
+        /// Property [`RoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-customdocumentenrichmentconfiguration.html#cfn-kendra-datasource-customdocumentenrichmentconfiguration-rolearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub role_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for CustomDocumentEnrichmentConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref inline_configurations) = self.inline_configurations {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InlineConfigurations", inline_configurations)?;
+            }
+            if let Some(ref post_extraction_hook_configuration) = self.post_extraction_hook_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PostExtractionHookConfiguration", post_extraction_hook_configuration)?;
+            }
+            if let Some(ref pre_extraction_hook_configuration) = self.pre_extraction_hook_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "PreExtractionHookConfiguration", pre_extraction_hook_configuration)?;
+            }
+            if let Some(ref role_arn) = self.role_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RoleArn", role_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for CustomDocumentEnrichmentConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<CustomDocumentEnrichmentConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = CustomDocumentEnrichmentConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type CustomDocumentEnrichmentConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut inline_configurations: Option<::ValueList<InlineCustomDocumentEnrichmentConfiguration>> = None;
+                    let mut post_extraction_hook_configuration: Option<::Value<HookConfiguration>> = None;
+                    let mut pre_extraction_hook_configuration: Option<::Value<HookConfiguration>> = None;
+                    let mut role_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "InlineConfigurations" => {
+                                inline_configurations = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PostExtractionHookConfiguration" => {
+                                post_extraction_hook_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "PreExtractionHookConfiguration" => {
+                                pre_extraction_hook_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RoleArn" => {
+                                role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(CustomDocumentEnrichmentConfiguration {
+                        inline_configurations: inline_configurations,
+                        post_extraction_hook_configuration: post_extraction_hook_configuration,
+                        pre_extraction_hook_configuration: pre_extraction_hook_configuration,
+                        role_arn: role_arn,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::Kendra::DataSource.DataSourceConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-datasourceconfiguration.html) property type.
     #[derive(Debug, Default)]
     pub struct DataSourceConfiguration {
@@ -1585,6 +1703,16 @@ pub mod data_source {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub share_point_configuration: Option<::Value<SharePointConfiguration>>,
+        /// Property [`WebCrawlerConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-datasourceconfiguration.html#cfn-kendra-datasource-datasourceconfiguration-webcrawlerconfiguration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub web_crawler_configuration: Option<::Value<WebCrawlerConfiguration>>,
+        /// Property [`WorkDocsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-datasourceconfiguration.html#cfn-kendra-datasource-datasourceconfiguration-workdocsconfiguration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub work_docs_configuration: Option<::Value<WorkDocsConfiguration>>,
     }
 
     impl ::codec::SerializeValue for DataSourceConfiguration {
@@ -1614,6 +1742,12 @@ pub mod data_source {
             if let Some(ref share_point_configuration) = self.share_point_configuration {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SharePointConfiguration", share_point_configuration)?;
             }
+            if let Some(ref web_crawler_configuration) = self.web_crawler_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "WebCrawlerConfiguration", web_crawler_configuration)?;
+            }
+            if let Some(ref work_docs_configuration) = self.work_docs_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "WorkDocsConfiguration", work_docs_configuration)?;
+            }
             ::serde::ser::SerializeMap::end(map)
         }
     }
@@ -1638,6 +1772,8 @@ pub mod data_source {
                     let mut salesforce_configuration: Option<::Value<SalesforceConfiguration>> = None;
                     let mut service_now_configuration: Option<::Value<ServiceNowConfiguration>> = None;
                     let mut share_point_configuration: Option<::Value<SharePointConfiguration>> = None;
+                    let mut web_crawler_configuration: Option<::Value<WebCrawlerConfiguration>> = None;
+                    let mut work_docs_configuration: Option<::Value<WorkDocsConfiguration>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
@@ -1665,6 +1801,12 @@ pub mod data_source {
                             "SharePointConfiguration" => {
                                 share_point_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "WebCrawlerConfiguration" => {
+                                web_crawler_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "WorkDocsConfiguration" => {
+                                work_docs_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             _ => {}
                         }
                     }
@@ -1678,6 +1820,8 @@ pub mod data_source {
                         salesforce_configuration: salesforce_configuration,
                         service_now_configuration: service_now_configuration,
                         share_point_configuration: share_point_configuration,
+                        web_crawler_configuration: web_crawler_configuration,
+                        work_docs_configuration: work_docs_configuration,
                     })
                 }
             }
@@ -1935,6 +2079,250 @@ pub mod data_source {
         }
     }
 
+    /// The [`AWS::Kendra::DataSource.DocumentAttributeCondition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-documentattributecondition.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DocumentAttributeCondition {
+        /// Property [`ConditionDocumentAttributeKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-documentattributecondition.html#cfn-kendra-datasource-documentattributecondition-conditiondocumentattributekey).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub condition_document_attribute_key: ::Value<String>,
+        /// Property [`ConditionOnValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-documentattributecondition.html#cfn-kendra-datasource-documentattributecondition-conditiononvalue).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub condition_on_value: Option<::Value<DocumentAttributeValue>>,
+        /// Property [`Operator`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-documentattributecondition.html#cfn-kendra-datasource-documentattributecondition-operator).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub operator: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for DocumentAttributeCondition {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConditionDocumentAttributeKey", &self.condition_document_attribute_key)?;
+            if let Some(ref condition_on_value) = self.condition_on_value {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConditionOnValue", condition_on_value)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Operator", &self.operator)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DocumentAttributeCondition {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DocumentAttributeCondition, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DocumentAttributeCondition;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DocumentAttributeCondition")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut condition_document_attribute_key: Option<::Value<String>> = None;
+                    let mut condition_on_value: Option<::Value<DocumentAttributeValue>> = None;
+                    let mut operator: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ConditionDocumentAttributeKey" => {
+                                condition_document_attribute_key = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ConditionOnValue" => {
+                                condition_on_value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Operator" => {
+                                operator = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DocumentAttributeCondition {
+                        condition_document_attribute_key: condition_document_attribute_key.ok_or(::serde::de::Error::missing_field("ConditionDocumentAttributeKey"))?,
+                        condition_on_value: condition_on_value,
+                        operator: operator.ok_or(::serde::de::Error::missing_field("Operator"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Kendra::DataSource.DocumentAttributeTarget`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-documentattributetarget.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DocumentAttributeTarget {
+        /// Property [`TargetDocumentAttributeKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-documentattributetarget.html#cfn-kendra-datasource-documentattributetarget-targetdocumentattributekey).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub target_document_attribute_key: ::Value<String>,
+        /// Property [`TargetDocumentAttributeValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-documentattributetarget.html#cfn-kendra-datasource-documentattributetarget-targetdocumentattributevalue).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub target_document_attribute_value: Option<::Value<DocumentAttributeValue>>,
+        /// Property [`TargetDocumentAttributeValueDeletion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-documentattributetarget.html#cfn-kendra-datasource-documentattributetarget-targetdocumentattributevaluedeletion).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub target_document_attribute_value_deletion: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for DocumentAttributeTarget {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetDocumentAttributeKey", &self.target_document_attribute_key)?;
+            if let Some(ref target_document_attribute_value) = self.target_document_attribute_value {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetDocumentAttributeValue", target_document_attribute_value)?;
+            }
+            if let Some(ref target_document_attribute_value_deletion) = self.target_document_attribute_value_deletion {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetDocumentAttributeValueDeletion", target_document_attribute_value_deletion)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DocumentAttributeTarget {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DocumentAttributeTarget, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DocumentAttributeTarget;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DocumentAttributeTarget")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut target_document_attribute_key: Option<::Value<String>> = None;
+                    let mut target_document_attribute_value: Option<::Value<DocumentAttributeValue>> = None;
+                    let mut target_document_attribute_value_deletion: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "TargetDocumentAttributeKey" => {
+                                target_document_attribute_key = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TargetDocumentAttributeValue" => {
+                                target_document_attribute_value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TargetDocumentAttributeValueDeletion" => {
+                                target_document_attribute_value_deletion = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DocumentAttributeTarget {
+                        target_document_attribute_key: target_document_attribute_key.ok_or(::serde::de::Error::missing_field("TargetDocumentAttributeKey"))?,
+                        target_document_attribute_value: target_document_attribute_value,
+                        target_document_attribute_value_deletion: target_document_attribute_value_deletion,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Kendra::DataSource.DocumentAttributeValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-documentattributevalue.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DocumentAttributeValue {
+        /// Property [`DateValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-documentattributevalue.html#cfn-kendra-datasource-documentattributevalue-datevalue).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub date_value: Option<::Value<String>>,
+        /// Property [`LongValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-documentattributevalue.html#cfn-kendra-datasource-documentattributevalue-longvalue).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub long_value: Option<::Value<u32>>,
+        /// Property [`StringListValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-documentattributevalue.html#cfn-kendra-datasource-documentattributevalue-stringlistvalue).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub string_list_value: Option<::ValueList<String>>,
+        /// Property [`StringValue`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-documentattributevalue.html#cfn-kendra-datasource-documentattributevalue-stringvalue).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub string_value: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for DocumentAttributeValue {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref date_value) = self.date_value {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DateValue", date_value)?;
+            }
+            if let Some(ref long_value) = self.long_value {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LongValue", long_value)?;
+            }
+            if let Some(ref string_list_value) = self.string_list_value {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StringListValue", string_list_value)?;
+            }
+            if let Some(ref string_value) = self.string_value {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "StringValue", string_value)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DocumentAttributeValue {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DocumentAttributeValue, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DocumentAttributeValue;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DocumentAttributeValue")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut date_value: Option<::Value<String>> = None;
+                    let mut long_value: Option<::Value<u32>> = None;
+                    let mut string_list_value: Option<::ValueList<String>> = None;
+                    let mut string_value: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "DateValue" => {
+                                date_value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LongValue" => {
+                                long_value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "StringListValue" => {
+                                string_list_value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "StringValue" => {
+                                string_value = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DocumentAttributeValue {
+                        date_value: date_value,
+                        long_value: long_value,
+                        string_list_value: string_list_value,
+                        string_value: string_value,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::Kendra::DataSource.DocumentsMetadataConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-documentsmetadataconfiguration.html) property type.
     #[derive(Debug, Default)]
     pub struct DocumentsMetadataConfiguration {
@@ -2109,6 +2497,160 @@ pub mod data_source {
                         field_mappings: field_mappings,
                         inclusion_patterns: inclusion_patterns,
                         secret_arn: secret_arn.ok_or(::serde::de::Error::missing_field("SecretArn"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Kendra::DataSource.HookConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-hookconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct HookConfiguration {
+        /// Property [`InvocationCondition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-hookconfiguration.html#cfn-kendra-datasource-hookconfiguration-invocationcondition).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub invocation_condition: Option<::Value<DocumentAttributeCondition>>,
+        /// Property [`LambdaArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-hookconfiguration.html#cfn-kendra-datasource-hookconfiguration-lambdaarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub lambda_arn: ::Value<String>,
+        /// Property [`S3Bucket`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-hookconfiguration.html#cfn-kendra-datasource-hookconfiguration-s3bucket).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub s3_bucket: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for HookConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref invocation_condition) = self.invocation_condition {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InvocationCondition", invocation_condition)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LambdaArn", &self.lambda_arn)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Bucket", &self.s3_bucket)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for HookConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<HookConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = HookConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type HookConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut invocation_condition: Option<::Value<DocumentAttributeCondition>> = None;
+                    let mut lambda_arn: Option<::Value<String>> = None;
+                    let mut s3_bucket: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "InvocationCondition" => {
+                                invocation_condition = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LambdaArn" => {
+                                lambda_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "S3Bucket" => {
+                                s3_bucket = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(HookConfiguration {
+                        invocation_condition: invocation_condition,
+                        lambda_arn: lambda_arn.ok_or(::serde::de::Error::missing_field("LambdaArn"))?,
+                        s3_bucket: s3_bucket.ok_or(::serde::de::Error::missing_field("S3Bucket"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Kendra::DataSource.InlineCustomDocumentEnrichmentConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-inlinecustomdocumentenrichmentconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct InlineCustomDocumentEnrichmentConfiguration {
+        /// Property [`Condition`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-inlinecustomdocumentenrichmentconfiguration.html#cfn-kendra-datasource-inlinecustomdocumentenrichmentconfiguration-condition).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub condition: Option<::Value<DocumentAttributeCondition>>,
+        /// Property [`DocumentContentDeletion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-inlinecustomdocumentenrichmentconfiguration.html#cfn-kendra-datasource-inlinecustomdocumentenrichmentconfiguration-documentcontentdeletion).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub document_content_deletion: Option<::Value<bool>>,
+        /// Property [`Target`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-inlinecustomdocumentenrichmentconfiguration.html#cfn-kendra-datasource-inlinecustomdocumentenrichmentconfiguration-target).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub target: Option<::Value<DocumentAttributeTarget>>,
+    }
+
+    impl ::codec::SerializeValue for InlineCustomDocumentEnrichmentConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref condition) = self.condition {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Condition", condition)?;
+            }
+            if let Some(ref document_content_deletion) = self.document_content_deletion {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentContentDeletion", document_content_deletion)?;
+            }
+            if let Some(ref target) = self.target {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Target", target)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for InlineCustomDocumentEnrichmentConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<InlineCustomDocumentEnrichmentConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = InlineCustomDocumentEnrichmentConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type InlineCustomDocumentEnrichmentConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut condition: Option<::Value<DocumentAttributeCondition>> = None;
+                    let mut document_content_deletion: Option<::Value<bool>> = None;
+                    let mut target: Option<::Value<DocumentAttributeTarget>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Condition" => {
+                                condition = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DocumentContentDeletion" => {
+                                document_content_deletion = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Target" => {
+                                target = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(InlineCustomDocumentEnrichmentConfiguration {
+                        condition: condition,
+                        document_content_deletion: document_content_deletion,
+                        target: target,
                     })
                 }
             }
@@ -2300,6 +2842,81 @@ pub mod data_source {
                     Ok(OneDriveUsers {
                         one_drive_user_list: one_drive_user_list,
                         one_drive_user_s3_path: one_drive_user_s3_path,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Kendra::DataSource.ProxyConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-proxyconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ProxyConfiguration {
+        /// Property [`Credentials`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-proxyconfiguration.html#cfn-kendra-datasource-proxyconfiguration-credentials).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub credentials: Option<::Value<String>>,
+        /// Property [`Host`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-proxyconfiguration.html#cfn-kendra-datasource-proxyconfiguration-host).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub host: ::Value<String>,
+        /// Property [`Port`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-proxyconfiguration.html#cfn-kendra-datasource-proxyconfiguration-port).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub port: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for ProxyConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref credentials) = self.credentials {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Credentials", credentials)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Host", &self.host)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", &self.port)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ProxyConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ProxyConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ProxyConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ProxyConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut credentials: Option<::Value<String>> = None;
+                    let mut host: Option<::Value<String>> = None;
+                    let mut port: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Credentials" => {
+                                credentials = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Host" => {
+                                host = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Port" => {
+                                port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ProxyConfiguration {
+                        credentials: credentials,
+                        host: host.ok_or(::serde::de::Error::missing_field("Host"))?,
+                        port: port.ok_or(::serde::de::Error::missing_field("Port"))?,
                     })
                 }
             }
@@ -3128,6 +3745,11 @@ pub mod data_source {
     /// The [`AWS::Kendra::DataSource.ServiceNowConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-servicenowconfiguration.html) property type.
     #[derive(Debug, Default)]
     pub struct ServiceNowConfiguration {
+        /// Property [`AuthenticationType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-servicenowconfiguration.html#cfn-kendra-datasource-servicenowconfiguration-authenticationtype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub authentication_type: Option<::Value<String>>,
         /// Property [`HostUrl`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-servicenowconfiguration.html#cfn-kendra-datasource-servicenowconfiguration-hosturl).
         ///
         /// Update type: _Mutable_.
@@ -3158,6 +3780,9 @@ pub mod data_source {
     impl ::codec::SerializeValue for ServiceNowConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref authentication_type) = self.authentication_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthenticationType", authentication_type)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "HostUrl", &self.host_url)?;
             if let Some(ref knowledge_article_configuration) = self.knowledge_article_configuration {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "KnowledgeArticleConfiguration", knowledge_article_configuration)?;
@@ -3183,6 +3808,7 @@ pub mod data_source {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut authentication_type: Option<::Value<String>> = None;
                     let mut host_url: Option<::Value<String>> = None;
                     let mut knowledge_article_configuration: Option<::Value<ServiceNowKnowledgeArticleConfiguration>> = None;
                     let mut secret_arn: Option<::Value<String>> = None;
@@ -3191,6 +3817,9 @@ pub mod data_source {
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "AuthenticationType" => {
+                                authentication_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "HostUrl" => {
                                 host_url = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -3211,6 +3840,7 @@ pub mod data_source {
                     }
 
                     Ok(ServiceNowConfiguration {
+                        authentication_type: authentication_type,
                         host_url: host_url.ok_or(::serde::de::Error::missing_field("HostUrl"))?,
                         knowledge_article_configuration: knowledge_article_configuration,
                         secret_arn: secret_arn.ok_or(::serde::de::Error::missing_field("SecretArn"))?,
@@ -3252,6 +3882,11 @@ pub mod data_source {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub field_mappings: Option<::ValueList<DataSourceToIndexFieldMapping>>,
+        /// Property [`FilterQuery`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-servicenowknowledgearticleconfiguration.html#cfn-kendra-datasource-servicenowknowledgearticleconfiguration-filterquery).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub filter_query: Option<::Value<String>>,
         /// Property [`IncludeAttachmentFilePatterns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-servicenowknowledgearticleconfiguration.html#cfn-kendra-datasource-servicenowknowledgearticleconfiguration-includeattachmentfilepatterns).
         ///
         /// Update type: _Mutable_.
@@ -3274,6 +3909,9 @@ pub mod data_source {
             }
             if let Some(ref field_mappings) = self.field_mappings {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "FieldMappings", field_mappings)?;
+            }
+            if let Some(ref filter_query) = self.filter_query {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FilterQuery", filter_query)?;
             }
             if let Some(ref include_attachment_file_patterns) = self.include_attachment_file_patterns {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "IncludeAttachmentFilePatterns", include_attachment_file_patterns)?;
@@ -3299,6 +3937,7 @@ pub mod data_source {
                     let mut document_title_field_name: Option<::Value<String>> = None;
                     let mut exclude_attachment_file_patterns: Option<::ValueList<String>> = None;
                     let mut field_mappings: Option<::ValueList<DataSourceToIndexFieldMapping>> = None;
+                    let mut filter_query: Option<::Value<String>> = None;
                     let mut include_attachment_file_patterns: Option<::ValueList<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -3318,6 +3957,9 @@ pub mod data_source {
                             "FieldMappings" => {
                                 field_mappings = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "FilterQuery" => {
+                                filter_query = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "IncludeAttachmentFilePatterns" => {
                                 include_attachment_file_patterns = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -3331,6 +3973,7 @@ pub mod data_source {
                         document_title_field_name: document_title_field_name,
                         exclude_attachment_file_patterns: exclude_attachment_file_patterns,
                         field_mappings: field_mappings,
+                        filter_query: filter_query,
                         include_attachment_file_patterns: include_attachment_file_patterns,
                     })
                 }
@@ -3499,6 +4142,11 @@ pub mod data_source {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub share_point_version: ::Value<String>,
+        /// Property [`SslCertificateS3Path`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-sharepointconfiguration.html#cfn-kendra-datasource-sharepointconfiguration-sslcertificates3path).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ssl_certificate_s3_path: Option<::Value<S3Path>>,
         /// Property [`Urls`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-sharepointconfiguration.html#cfn-kendra-datasource-sharepointconfiguration-urls).
         ///
         /// Update type: _Mutable_.
@@ -3539,6 +4187,9 @@ pub mod data_source {
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecretArn", &self.secret_arn)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SharePointVersion", &self.share_point_version)?;
+            if let Some(ref ssl_certificate_s3_path) = self.ssl_certificate_s3_path {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SslCertificateS3Path", ssl_certificate_s3_path)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Urls", &self.urls)?;
             if let Some(ref use_change_log) = self.use_change_log {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "UseChangeLog", use_change_log)?;
@@ -3570,6 +4221,7 @@ pub mod data_source {
                     let mut inclusion_patterns: Option<::ValueList<String>> = None;
                     let mut secret_arn: Option<::Value<String>> = None;
                     let mut share_point_version: Option<::Value<String>> = None;
+                    let mut ssl_certificate_s3_path: Option<::Value<S3Path>> = None;
                     let mut urls: Option<::ValueList<String>> = None;
                     let mut use_change_log: Option<::Value<bool>> = None;
                     let mut vpc_configuration: Option<::Value<DataSourceVpcConfiguration>> = None;
@@ -3600,6 +4252,9 @@ pub mod data_source {
                             "SharePointVersion" => {
                                 share_point_version = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "SslCertificateS3Path" => {
+                                ssl_certificate_s3_path = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "Urls" => {
                                 urls = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -3622,6 +4277,7 @@ pub mod data_source {
                         inclusion_patterns: inclusion_patterns,
                         secret_arn: secret_arn.ok_or(::serde::de::Error::missing_field("SecretArn"))?,
                         share_point_version: share_point_version.ok_or(::serde::de::Error::missing_field("SharePointVersion"))?,
+                        ssl_certificate_s3_path: ssl_certificate_s3_path,
                         urls: urls.ok_or(::serde::de::Error::missing_field("Urls"))?,
                         use_change_log: use_change_log,
                         vpc_configuration: vpc_configuration,
@@ -3678,6 +4334,584 @@ pub mod data_source {
 
                     Ok(SqlConfiguration {
                         query_identifiers_enclosing_option: query_identifiers_enclosing_option,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Kendra::DataSource.WebCrawlerAuthenticationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlerauthenticationconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct WebCrawlerAuthenticationConfiguration {
+        /// Property [`BasicAuthentication`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlerauthenticationconfiguration.html#cfn-kendra-datasource-webcrawlerauthenticationconfiguration-basicauthentication).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub basic_authentication: Option<::ValueList<WebCrawlerBasicAuthentication>>,
+    }
+
+    impl ::codec::SerializeValue for WebCrawlerAuthenticationConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref basic_authentication) = self.basic_authentication {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "BasicAuthentication", basic_authentication)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for WebCrawlerAuthenticationConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<WebCrawlerAuthenticationConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = WebCrawlerAuthenticationConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type WebCrawlerAuthenticationConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut basic_authentication: Option<::ValueList<WebCrawlerBasicAuthentication>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "BasicAuthentication" => {
+                                basic_authentication = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(WebCrawlerAuthenticationConfiguration {
+                        basic_authentication: basic_authentication,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Kendra::DataSource.WebCrawlerBasicAuthentication`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlerbasicauthentication.html) property type.
+    #[derive(Debug, Default)]
+    pub struct WebCrawlerBasicAuthentication {
+        /// Property [`Credentials`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlerbasicauthentication.html#cfn-kendra-datasource-webcrawlerbasicauthentication-credentials).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub credentials: ::Value<String>,
+        /// Property [`Host`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlerbasicauthentication.html#cfn-kendra-datasource-webcrawlerbasicauthentication-host).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub host: ::Value<String>,
+        /// Property [`Port`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlerbasicauthentication.html#cfn-kendra-datasource-webcrawlerbasicauthentication-port).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub port: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for WebCrawlerBasicAuthentication {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Credentials", &self.credentials)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Host", &self.host)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", &self.port)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for WebCrawlerBasicAuthentication {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<WebCrawlerBasicAuthentication, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = WebCrawlerBasicAuthentication;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type WebCrawlerBasicAuthentication")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut credentials: Option<::Value<String>> = None;
+                    let mut host: Option<::Value<String>> = None;
+                    let mut port: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Credentials" => {
+                                credentials = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Host" => {
+                                host = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Port" => {
+                                port = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(WebCrawlerBasicAuthentication {
+                        credentials: credentials.ok_or(::serde::de::Error::missing_field("Credentials"))?,
+                        host: host.ok_or(::serde::de::Error::missing_field("Host"))?,
+                        port: port.ok_or(::serde::de::Error::missing_field("Port"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Kendra::DataSource.WebCrawlerConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlerconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct WebCrawlerConfiguration {
+        /// Property [`AuthenticationConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlerconfiguration.html#cfn-kendra-datasource-webcrawlerconfiguration-authenticationconfiguration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub authentication_configuration: Option<::Value<WebCrawlerAuthenticationConfiguration>>,
+        /// Property [`CrawlDepth`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlerconfiguration.html#cfn-kendra-datasource-webcrawlerconfiguration-crawldepth).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub crawl_depth: Option<::Value<u32>>,
+        /// Property [`MaxContentSizePerPageInMegaBytes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlerconfiguration.html#cfn-kendra-datasource-webcrawlerconfiguration-maxcontentsizeperpageinmegabytes).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub max_content_size_per_page_in_mega_bytes: Option<::Value<f64>>,
+        /// Property [`MaxLinksPerPage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlerconfiguration.html#cfn-kendra-datasource-webcrawlerconfiguration-maxlinksperpage).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub max_links_per_page: Option<::Value<u32>>,
+        /// Property [`MaxUrlsPerMinuteCrawlRate`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlerconfiguration.html#cfn-kendra-datasource-webcrawlerconfiguration-maxurlsperminutecrawlrate).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub max_urls_per_minute_crawl_rate: Option<::Value<u32>>,
+        /// Property [`ProxyConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlerconfiguration.html#cfn-kendra-datasource-webcrawlerconfiguration-proxyconfiguration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub proxy_configuration: Option<::Value<ProxyConfiguration>>,
+        /// Property [`UrlExclusionPatterns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlerconfiguration.html#cfn-kendra-datasource-webcrawlerconfiguration-urlexclusionpatterns).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub url_exclusion_patterns: Option<::ValueList<String>>,
+        /// Property [`UrlInclusionPatterns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlerconfiguration.html#cfn-kendra-datasource-webcrawlerconfiguration-urlinclusionpatterns).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub url_inclusion_patterns: Option<::ValueList<String>>,
+        /// Property [`Urls`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlerconfiguration.html#cfn-kendra-datasource-webcrawlerconfiguration-urls).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub urls: ::Value<WebCrawlerUrls>,
+    }
+
+    impl ::codec::SerializeValue for WebCrawlerConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref authentication_configuration) = self.authentication_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthenticationConfiguration", authentication_configuration)?;
+            }
+            if let Some(ref crawl_depth) = self.crawl_depth {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CrawlDepth", crawl_depth)?;
+            }
+            if let Some(ref max_content_size_per_page_in_mega_bytes) = self.max_content_size_per_page_in_mega_bytes {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxContentSizePerPageInMegaBytes", max_content_size_per_page_in_mega_bytes)?;
+            }
+            if let Some(ref max_links_per_page) = self.max_links_per_page {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxLinksPerPage", max_links_per_page)?;
+            }
+            if let Some(ref max_urls_per_minute_crawl_rate) = self.max_urls_per_minute_crawl_rate {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxUrlsPerMinuteCrawlRate", max_urls_per_minute_crawl_rate)?;
+            }
+            if let Some(ref proxy_configuration) = self.proxy_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProxyConfiguration", proxy_configuration)?;
+            }
+            if let Some(ref url_exclusion_patterns) = self.url_exclusion_patterns {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UrlExclusionPatterns", url_exclusion_patterns)?;
+            }
+            if let Some(ref url_inclusion_patterns) = self.url_inclusion_patterns {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UrlInclusionPatterns", url_inclusion_patterns)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Urls", &self.urls)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for WebCrawlerConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<WebCrawlerConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = WebCrawlerConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type WebCrawlerConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut authentication_configuration: Option<::Value<WebCrawlerAuthenticationConfiguration>> = None;
+                    let mut crawl_depth: Option<::Value<u32>> = None;
+                    let mut max_content_size_per_page_in_mega_bytes: Option<::Value<f64>> = None;
+                    let mut max_links_per_page: Option<::Value<u32>> = None;
+                    let mut max_urls_per_minute_crawl_rate: Option<::Value<u32>> = None;
+                    let mut proxy_configuration: Option<::Value<ProxyConfiguration>> = None;
+                    let mut url_exclusion_patterns: Option<::ValueList<String>> = None;
+                    let mut url_inclusion_patterns: Option<::ValueList<String>> = None;
+                    let mut urls: Option<::Value<WebCrawlerUrls>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AuthenticationConfiguration" => {
+                                authentication_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "CrawlDepth" => {
+                                crawl_depth = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MaxContentSizePerPageInMegaBytes" => {
+                                max_content_size_per_page_in_mega_bytes = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MaxLinksPerPage" => {
+                                max_links_per_page = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MaxUrlsPerMinuteCrawlRate" => {
+                                max_urls_per_minute_crawl_rate = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ProxyConfiguration" => {
+                                proxy_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "UrlExclusionPatterns" => {
+                                url_exclusion_patterns = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "UrlInclusionPatterns" => {
+                                url_inclusion_patterns = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Urls" => {
+                                urls = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(WebCrawlerConfiguration {
+                        authentication_configuration: authentication_configuration,
+                        crawl_depth: crawl_depth,
+                        max_content_size_per_page_in_mega_bytes: max_content_size_per_page_in_mega_bytes,
+                        max_links_per_page: max_links_per_page,
+                        max_urls_per_minute_crawl_rate: max_urls_per_minute_crawl_rate,
+                        proxy_configuration: proxy_configuration,
+                        url_exclusion_patterns: url_exclusion_patterns,
+                        url_inclusion_patterns: url_inclusion_patterns,
+                        urls: urls.ok_or(::serde::de::Error::missing_field("Urls"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Kendra::DataSource.WebCrawlerSeedUrlConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlerseedurlconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct WebCrawlerSeedUrlConfiguration {
+        /// Property [`SeedUrls`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlerseedurlconfiguration.html#cfn-kendra-datasource-webcrawlerseedurlconfiguration-seedurls).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub seed_urls: ::ValueList<String>,
+        /// Property [`WebCrawlerMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlerseedurlconfiguration.html#cfn-kendra-datasource-webcrawlerseedurlconfiguration-webcrawlermode).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub web_crawler_mode: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for WebCrawlerSeedUrlConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SeedUrls", &self.seed_urls)?;
+            if let Some(ref web_crawler_mode) = self.web_crawler_mode {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "WebCrawlerMode", web_crawler_mode)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for WebCrawlerSeedUrlConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<WebCrawlerSeedUrlConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = WebCrawlerSeedUrlConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type WebCrawlerSeedUrlConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut seed_urls: Option<::ValueList<String>> = None;
+                    let mut web_crawler_mode: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SeedUrls" => {
+                                seed_urls = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "WebCrawlerMode" => {
+                                web_crawler_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(WebCrawlerSeedUrlConfiguration {
+                        seed_urls: seed_urls.ok_or(::serde::de::Error::missing_field("SeedUrls"))?,
+                        web_crawler_mode: web_crawler_mode,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Kendra::DataSource.WebCrawlerSiteMapsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlersitemapsconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct WebCrawlerSiteMapsConfiguration {
+        /// Property [`SiteMaps`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlersitemapsconfiguration.html#cfn-kendra-datasource-webcrawlersitemapsconfiguration-sitemaps).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub site_maps: ::ValueList<String>,
+    }
+
+    impl ::codec::SerializeValue for WebCrawlerSiteMapsConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SiteMaps", &self.site_maps)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for WebCrawlerSiteMapsConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<WebCrawlerSiteMapsConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = WebCrawlerSiteMapsConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type WebCrawlerSiteMapsConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut site_maps: Option<::ValueList<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SiteMaps" => {
+                                site_maps = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(WebCrawlerSiteMapsConfiguration {
+                        site_maps: site_maps.ok_or(::serde::de::Error::missing_field("SiteMaps"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Kendra::DataSource.WebCrawlerUrls`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlerurls.html) property type.
+    #[derive(Debug, Default)]
+    pub struct WebCrawlerUrls {
+        /// Property [`SeedUrlConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlerurls.html#cfn-kendra-datasource-webcrawlerurls-seedurlconfiguration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub seed_url_configuration: Option<::Value<WebCrawlerSeedUrlConfiguration>>,
+        /// Property [`SiteMapsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-webcrawlerurls.html#cfn-kendra-datasource-webcrawlerurls-sitemapsconfiguration).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub site_maps_configuration: Option<::Value<WebCrawlerSiteMapsConfiguration>>,
+    }
+
+    impl ::codec::SerializeValue for WebCrawlerUrls {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref seed_url_configuration) = self.seed_url_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SeedUrlConfiguration", seed_url_configuration)?;
+            }
+            if let Some(ref site_maps_configuration) = self.site_maps_configuration {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SiteMapsConfiguration", site_maps_configuration)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for WebCrawlerUrls {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<WebCrawlerUrls, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = WebCrawlerUrls;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type WebCrawlerUrls")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut seed_url_configuration: Option<::Value<WebCrawlerSeedUrlConfiguration>> = None;
+                    let mut site_maps_configuration: Option<::Value<WebCrawlerSiteMapsConfiguration>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "SeedUrlConfiguration" => {
+                                seed_url_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SiteMapsConfiguration" => {
+                                site_maps_configuration = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(WebCrawlerUrls {
+                        seed_url_configuration: seed_url_configuration,
+                        site_maps_configuration: site_maps_configuration,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Kendra::DataSource.WorkDocsConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-workdocsconfiguration.html) property type.
+    #[derive(Debug, Default)]
+    pub struct WorkDocsConfiguration {
+        /// Property [`CrawlComments`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-workdocsconfiguration.html#cfn-kendra-datasource-workdocsconfiguration-crawlcomments).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub crawl_comments: Option<::Value<bool>>,
+        /// Property [`ExclusionPatterns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-workdocsconfiguration.html#cfn-kendra-datasource-workdocsconfiguration-exclusionpatterns).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub exclusion_patterns: Option<::ValueList<String>>,
+        /// Property [`FieldMappings`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-workdocsconfiguration.html#cfn-kendra-datasource-workdocsconfiguration-fieldmappings).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub field_mappings: Option<::ValueList<DataSourceToIndexFieldMapping>>,
+        /// Property [`InclusionPatterns`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-workdocsconfiguration.html#cfn-kendra-datasource-workdocsconfiguration-inclusionpatterns).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub inclusion_patterns: Option<::ValueList<String>>,
+        /// Property [`OrganizationId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-workdocsconfiguration.html#cfn-kendra-datasource-workdocsconfiguration-organizationid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub organization_id: ::Value<String>,
+        /// Property [`UseChangeLog`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kendra-datasource-workdocsconfiguration.html#cfn-kendra-datasource-workdocsconfiguration-usechangelog).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub use_change_log: Option<::Value<bool>>,
+    }
+
+    impl ::codec::SerializeValue for WorkDocsConfiguration {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref crawl_comments) = self.crawl_comments {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CrawlComments", crawl_comments)?;
+            }
+            if let Some(ref exclusion_patterns) = self.exclusion_patterns {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExclusionPatterns", exclusion_patterns)?;
+            }
+            if let Some(ref field_mappings) = self.field_mappings {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FieldMappings", field_mappings)?;
+            }
+            if let Some(ref inclusion_patterns) = self.inclusion_patterns {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "InclusionPatterns", inclusion_patterns)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "OrganizationId", &self.organization_id)?;
+            if let Some(ref use_change_log) = self.use_change_log {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UseChangeLog", use_change_log)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for WorkDocsConfiguration {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<WorkDocsConfiguration, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = WorkDocsConfiguration;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type WorkDocsConfiguration")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut crawl_comments: Option<::Value<bool>> = None;
+                    let mut exclusion_patterns: Option<::ValueList<String>> = None;
+                    let mut field_mappings: Option<::ValueList<DataSourceToIndexFieldMapping>> = None;
+                    let mut inclusion_patterns: Option<::ValueList<String>> = None;
+                    let mut organization_id: Option<::Value<String>> = None;
+                    let mut use_change_log: Option<::Value<bool>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CrawlComments" => {
+                                crawl_comments = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ExclusionPatterns" => {
+                                exclusion_patterns = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "FieldMappings" => {
+                                field_mappings = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "InclusionPatterns" => {
+                                inclusion_patterns = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OrganizationId" => {
+                                organization_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "UseChangeLog" => {
+                                use_change_log = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(WorkDocsConfiguration {
+                        crawl_comments: crawl_comments,
+                        exclusion_patterns: exclusion_patterns,
+                        field_mappings: field_mappings,
+                        inclusion_patterns: inclusion_patterns,
+                        organization_id: organization_id.ok_or(::serde::de::Error::missing_field("OrganizationId"))?,
+                        use_change_log: use_change_log,
                     })
                 }
             }

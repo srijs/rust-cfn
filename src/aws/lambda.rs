@@ -374,6 +374,11 @@ pub struct EventSourceMapping {
 /// Properties for the `EventSourceMapping` resource.
 #[derive(Debug, Default)]
 pub struct EventSourceMappingProperties {
+    /// Property [`AmazonManagedKafkaEventSourceConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html#cfn-lambda-eventsourcemapping-amazonmanagedkafkaeventsourceconfig).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub amazon_managed_kafka_event_source_config: Option<::Value<self::event_source_mapping::AmazonManagedKafkaEventSourceConfig>>,
     /// Property [`BatchSize`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html#cfn-lambda-eventsourcemapping-batchsize).
     ///
     /// Update type: _Mutable_.
@@ -389,6 +394,11 @@ pub struct EventSourceMappingProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub destination_config: Option<::Value<self::event_source_mapping::DestinationConfig>>,
+    /// Property [`DocumentDBEventSourceConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html#cfn-lambda-eventsourcemapping-documentdbeventsourceconfig).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub document_db_event_source_config: Option<::Value<self::event_source_mapping::DocumentDBEventSourceConfig>>,
     /// Property [`Enabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html#cfn-lambda-eventsourcemapping-enabled).
     ///
     /// Update type: _Mutable_.
@@ -399,6 +409,11 @@ pub struct EventSourceMappingProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub event_source_arn: Option<::Value<String>>,
+    /// Property [`FilterCriteria`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html#cfn-lambda-eventsourcemapping-filtercriteria).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub filter_criteria: Option<::Value<self::event_source_mapping::FilterCriteria>>,
     /// Property [`FunctionName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html#cfn-lambda-eventsourcemapping-functionname).
     ///
     /// Update type: _Mutable_.
@@ -434,11 +449,21 @@ pub struct EventSourceMappingProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub queues: Option<::ValueList<String>>,
+    /// Property [`ScalingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html#cfn-lambda-eventsourcemapping-scalingconfig).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub scaling_config: Option<::Value<self::event_source_mapping::ScalingConfig>>,
     /// Property [`SelfManagedEventSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html#cfn-lambda-eventsourcemapping-selfmanagedeventsource).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub self_managed_event_source: Option<::Value<self::event_source_mapping::SelfManagedEventSource>>,
+    /// Property [`SelfManagedKafkaEventSourceConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html#cfn-lambda-eventsourcemapping-selfmanagedkafkaeventsourceconfig).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub self_managed_kafka_event_source_config: Option<::Value<self::event_source_mapping::SelfManagedKafkaEventSourceConfig>>,
     /// Property [`SourceAccessConfigurations`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html#cfn-lambda-eventsourcemapping-sourceaccessconfigurations).
     ///
     /// Update type: _Mutable_.
@@ -451,8 +476,8 @@ pub struct EventSourceMappingProperties {
     pub starting_position: Option<::Value<String>>,
     /// Property [`StartingPositionTimestamp`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html#cfn-lambda-eventsourcemapping-startingpositiontimestamp).
     ///
-    /// Update type: _Mutable_.
-    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub starting_position_timestamp: Option<::Value<f64>>,
     /// Property [`Topics`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html#cfn-lambda-eventsourcemapping-topics).
     ///
@@ -469,6 +494,9 @@ pub struct EventSourceMappingProperties {
 impl ::serde::Serialize for EventSourceMappingProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref amazon_managed_kafka_event_source_config) = self.amazon_managed_kafka_event_source_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "AmazonManagedKafkaEventSourceConfig", amazon_managed_kafka_event_source_config)?;
+        }
         if let Some(ref batch_size) = self.batch_size {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "BatchSize", batch_size)?;
         }
@@ -478,11 +506,17 @@ impl ::serde::Serialize for EventSourceMappingProperties {
         if let Some(ref destination_config) = self.destination_config {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DestinationConfig", destination_config)?;
         }
+        if let Some(ref document_db_event_source_config) = self.document_db_event_source_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "DocumentDBEventSourceConfig", document_db_event_source_config)?;
+        }
         if let Some(ref enabled) = self.enabled {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Enabled", enabled)?;
         }
         if let Some(ref event_source_arn) = self.event_source_arn {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventSourceArn", event_source_arn)?;
+        }
+        if let Some(ref filter_criteria) = self.filter_criteria {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FilterCriteria", filter_criteria)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "FunctionName", &self.function_name)?;
         if let Some(ref function_response_types) = self.function_response_types {
@@ -503,8 +537,14 @@ impl ::serde::Serialize for EventSourceMappingProperties {
         if let Some(ref queues) = self.queues {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Queues", queues)?;
         }
+        if let Some(ref scaling_config) = self.scaling_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ScalingConfig", scaling_config)?;
+        }
         if let Some(ref self_managed_event_source) = self.self_managed_event_source {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SelfManagedEventSource", self_managed_event_source)?;
+        }
+        if let Some(ref self_managed_kafka_event_source_config) = self.self_managed_kafka_event_source_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SelfManagedKafkaEventSourceConfig", self_managed_kafka_event_source_config)?;
         }
         if let Some(ref source_access_configurations) = self.source_access_configurations {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceAccessConfigurations", source_access_configurations)?;
@@ -537,11 +577,14 @@ impl<'de> ::serde::Deserialize<'de> for EventSourceMappingProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut amazon_managed_kafka_event_source_config: Option<::Value<self::event_source_mapping::AmazonManagedKafkaEventSourceConfig>> = None;
                 let mut batch_size: Option<::Value<u32>> = None;
                 let mut bisect_batch_on_function_error: Option<::Value<bool>> = None;
                 let mut destination_config: Option<::Value<self::event_source_mapping::DestinationConfig>> = None;
+                let mut document_db_event_source_config: Option<::Value<self::event_source_mapping::DocumentDBEventSourceConfig>> = None;
                 let mut enabled: Option<::Value<bool>> = None;
                 let mut event_source_arn: Option<::Value<String>> = None;
+                let mut filter_criteria: Option<::Value<self::event_source_mapping::FilterCriteria>> = None;
                 let mut function_name: Option<::Value<String>> = None;
                 let mut function_response_types: Option<::ValueList<String>> = None;
                 let mut maximum_batching_window_in_seconds: Option<::Value<u32>> = None;
@@ -549,7 +592,9 @@ impl<'de> ::serde::Deserialize<'de> for EventSourceMappingProperties {
                 let mut maximum_retry_attempts: Option<::Value<u32>> = None;
                 let mut parallelization_factor: Option<::Value<u32>> = None;
                 let mut queues: Option<::ValueList<String>> = None;
+                let mut scaling_config: Option<::Value<self::event_source_mapping::ScalingConfig>> = None;
                 let mut self_managed_event_source: Option<::Value<self::event_source_mapping::SelfManagedEventSource>> = None;
+                let mut self_managed_kafka_event_source_config: Option<::Value<self::event_source_mapping::SelfManagedKafkaEventSourceConfig>> = None;
                 let mut source_access_configurations: Option<::ValueList<self::event_source_mapping::SourceAccessConfiguration>> = None;
                 let mut starting_position: Option<::Value<String>> = None;
                 let mut starting_position_timestamp: Option<::Value<f64>> = None;
@@ -558,6 +603,9 @@ impl<'de> ::serde::Deserialize<'de> for EventSourceMappingProperties {
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "AmazonManagedKafkaEventSourceConfig" => {
+                            amazon_managed_kafka_event_source_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "BatchSize" => {
                             batch_size = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -567,11 +615,17 @@ impl<'de> ::serde::Deserialize<'de> for EventSourceMappingProperties {
                         "DestinationConfig" => {
                             destination_config = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "DocumentDBEventSourceConfig" => {
+                            document_db_event_source_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Enabled" => {
                             enabled = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "EventSourceArn" => {
                             event_source_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "FilterCriteria" => {
+                            filter_criteria = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "FunctionName" => {
                             function_name = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -594,8 +648,14 @@ impl<'de> ::serde::Deserialize<'de> for EventSourceMappingProperties {
                         "Queues" => {
                             queues = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "ScalingConfig" => {
+                            scaling_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "SelfManagedEventSource" => {
                             self_managed_event_source = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SelfManagedKafkaEventSourceConfig" => {
+                            self_managed_kafka_event_source_config = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SourceAccessConfigurations" => {
                             source_access_configurations = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -617,11 +677,14 @@ impl<'de> ::serde::Deserialize<'de> for EventSourceMappingProperties {
                 }
 
                 Ok(EventSourceMappingProperties {
+                    amazon_managed_kafka_event_source_config: amazon_managed_kafka_event_source_config,
                     batch_size: batch_size,
                     bisect_batch_on_function_error: bisect_batch_on_function_error,
                     destination_config: destination_config,
+                    document_db_event_source_config: document_db_event_source_config,
                     enabled: enabled,
                     event_source_arn: event_source_arn,
+                    filter_criteria: filter_criteria,
                     function_name: function_name.ok_or(::serde::de::Error::missing_field("FunctionName"))?,
                     function_response_types: function_response_types,
                     maximum_batching_window_in_seconds: maximum_batching_window_in_seconds,
@@ -629,7 +692,9 @@ impl<'de> ::serde::Deserialize<'de> for EventSourceMappingProperties {
                     maximum_retry_attempts: maximum_retry_attempts,
                     parallelization_factor: parallelization_factor,
                     queues: queues,
+                    scaling_config: scaling_config,
                     self_managed_event_source: self_managed_event_source,
+                    self_managed_kafka_event_source_config: self_managed_kafka_event_source_config,
                     source_access_configurations: source_access_configurations,
                     starting_position: starting_position,
                     starting_position_timestamp: starting_position_timestamp,
@@ -671,6 +736,11 @@ pub struct Function {
 /// Properties for the `Function` resource.
 #[derive(Debug, Default)]
 pub struct FunctionProperties {
+    /// Property [`Architectures`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-architectures).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub architectures: Option<::ValueList<String>>,
     /// Property [`Code`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-code).
     ///
     /// Update type: _Mutable_.
@@ -696,6 +766,11 @@ pub struct FunctionProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub environment: Option<::Value<self::function::Environment>>,
+    /// Property [`EphemeralStorage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-ephemeralstorage).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub ephemeral_storage: Option<::Value<self::function::EphemeralStorage>>,
     /// Property [`FileSystemConfigs`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-filesystemconfigs).
     ///
     /// Update type: _Mutable_.
@@ -726,6 +801,11 @@ pub struct FunctionProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub layers: Option<::ValueList<String>>,
+    /// Property [`LoggingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-loggingconfig).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub logging_config: Option<::Value<self::function::LoggingConfig>>,
     /// Property [`MemorySize`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-memorysize).
     ///
     /// Update type: _Mutable_.
@@ -751,6 +831,16 @@ pub struct FunctionProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub runtime: Option<::Value<String>>,
+    /// Property [`RuntimeManagementConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-runtimemanagementconfig).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub runtime_management_config: Option<::Value<self::function::RuntimeManagementConfig>>,
+    /// Property [`SnapStart`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-snapstart).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub snap_start: Option<::Value<self::function::SnapStart>>,
     /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-tags).
     ///
     /// Update type: _Mutable_.
@@ -776,6 +866,9 @@ pub struct FunctionProperties {
 impl ::serde::Serialize for FunctionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref architectures) = self.architectures {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Architectures", architectures)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Code", &self.code)?;
         if let Some(ref code_signing_config_arn) = self.code_signing_config_arn {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CodeSigningConfigArn", code_signing_config_arn)?;
@@ -788,6 +881,9 @@ impl ::serde::Serialize for FunctionProperties {
         }
         if let Some(ref environment) = self.environment {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Environment", environment)?;
+        }
+        if let Some(ref ephemeral_storage) = self.ephemeral_storage {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EphemeralStorage", ephemeral_storage)?;
         }
         if let Some(ref file_system_configs) = self.file_system_configs {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "FileSystemConfigs", file_system_configs)?;
@@ -807,6 +903,9 @@ impl ::serde::Serialize for FunctionProperties {
         if let Some(ref layers) = self.layers {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Layers", layers)?;
         }
+        if let Some(ref logging_config) = self.logging_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoggingConfig", logging_config)?;
+        }
         if let Some(ref memory_size) = self.memory_size {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "MemorySize", memory_size)?;
         }
@@ -819,6 +918,12 @@ impl ::serde::Serialize for FunctionProperties {
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Role", &self.role)?;
         if let Some(ref runtime) = self.runtime {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Runtime", runtime)?;
+        }
+        if let Some(ref runtime_management_config) = self.runtime_management_config {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuntimeManagementConfig", runtime_management_config)?;
+        }
+        if let Some(ref snap_start) = self.snap_start {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "SnapStart", snap_start)?;
         }
         if let Some(ref tags) = self.tags {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
@@ -848,22 +953,27 @@ impl<'de> ::serde::Deserialize<'de> for FunctionProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut architectures: Option<::ValueList<String>> = None;
                 let mut code: Option<::Value<self::function::Code>> = None;
                 let mut code_signing_config_arn: Option<::Value<String>> = None;
                 let mut dead_letter_config: Option<::Value<self::function::DeadLetterConfig>> = None;
                 let mut description: Option<::Value<String>> = None;
                 let mut environment: Option<::Value<self::function::Environment>> = None;
+                let mut ephemeral_storage: Option<::Value<self::function::EphemeralStorage>> = None;
                 let mut file_system_configs: Option<::ValueList<self::function::FileSystemConfig>> = None;
                 let mut function_name: Option<::Value<String>> = None;
                 let mut handler: Option<::Value<String>> = None;
                 let mut image_config: Option<::Value<self::function::ImageConfig>> = None;
                 let mut kms_key_arn: Option<::Value<String>> = None;
                 let mut layers: Option<::ValueList<String>> = None;
+                let mut logging_config: Option<::Value<self::function::LoggingConfig>> = None;
                 let mut memory_size: Option<::Value<u32>> = None;
                 let mut package_type: Option<::Value<String>> = None;
                 let mut reserved_concurrent_executions: Option<::Value<u32>> = None;
                 let mut role: Option<::Value<String>> = None;
                 let mut runtime: Option<::Value<String>> = None;
+                let mut runtime_management_config: Option<::Value<self::function::RuntimeManagementConfig>> = None;
+                let mut snap_start: Option<::Value<self::function::SnapStart>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut timeout: Option<::Value<u32>> = None;
                 let mut tracing_config: Option<::Value<self::function::TracingConfig>> = None;
@@ -871,6 +981,9 @@ impl<'de> ::serde::Deserialize<'de> for FunctionProperties {
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "Architectures" => {
+                            architectures = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Code" => {
                             code = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -885,6 +998,9 @@ impl<'de> ::serde::Deserialize<'de> for FunctionProperties {
                         }
                         "Environment" => {
                             environment = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "EphemeralStorage" => {
+                            ephemeral_storage = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "FileSystemConfigs" => {
                             file_system_configs = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -904,6 +1020,9 @@ impl<'de> ::serde::Deserialize<'de> for FunctionProperties {
                         "Layers" => {
                             layers = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "LoggingConfig" => {
+                            logging_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "MemorySize" => {
                             memory_size = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -918,6 +1037,12 @@ impl<'de> ::serde::Deserialize<'de> for FunctionProperties {
                         }
                         "Runtime" => {
                             runtime = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "RuntimeManagementConfig" => {
+                            runtime_management_config = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "SnapStart" => {
+                            snap_start = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Tags" => {
                             tags = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -936,22 +1061,27 @@ impl<'de> ::serde::Deserialize<'de> for FunctionProperties {
                 }
 
                 Ok(FunctionProperties {
+                    architectures: architectures,
                     code: code.ok_or(::serde::de::Error::missing_field("Code"))?,
                     code_signing_config_arn: code_signing_config_arn,
                     dead_letter_config: dead_letter_config,
                     description: description,
                     environment: environment,
+                    ephemeral_storage: ephemeral_storage,
                     file_system_configs: file_system_configs,
                     function_name: function_name,
                     handler: handler,
                     image_config: image_config,
                     kms_key_arn: kms_key_arn,
                     layers: layers,
+                    logging_config: logging_config,
                     memory_size: memory_size,
                     package_type: package_type,
                     reserved_concurrent_executions: reserved_concurrent_executions,
                     role: role.ok_or(::serde::de::Error::missing_field("Role"))?,
                     runtime: runtime,
+                    runtime_management_config: runtime_management_config,
+                    snap_start: snap_start,
                     tags: tags,
                     timeout: timeout,
                     tracing_config: tracing_config,
@@ -992,6 +1122,11 @@ pub struct LayerVersion {
 /// Properties for the `LayerVersion` resource.
 #[derive(Debug, Default)]
 pub struct LayerVersionProperties {
+    /// Property [`CompatibleArchitectures`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-layerversion.html#cfn-lambda-layerversion-compatiblearchitectures).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub compatible_architectures: Option<::ValueList<String>>,
     /// Property [`CompatibleRuntimes`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-layerversion.html#cfn-lambda-layerversion-compatibleruntimes).
     ///
     /// Update type: _Immutable_.
@@ -1022,6 +1157,9 @@ pub struct LayerVersionProperties {
 impl ::serde::Serialize for LayerVersionProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref compatible_architectures) = self.compatible_architectures {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CompatibleArchitectures", compatible_architectures)?;
+        }
         if let Some(ref compatible_runtimes) = self.compatible_runtimes {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "CompatibleRuntimes", compatible_runtimes)?;
         }
@@ -1051,6 +1189,7 @@ impl<'de> ::serde::Deserialize<'de> for LayerVersionProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut compatible_architectures: Option<::ValueList<String>> = None;
                 let mut compatible_runtimes: Option<::ValueList<String>> = None;
                 let mut content: Option<::Value<self::layer_version::Content>> = None;
                 let mut description: Option<::Value<String>> = None;
@@ -1059,6 +1198,9 @@ impl<'de> ::serde::Deserialize<'de> for LayerVersionProperties {
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "CompatibleArchitectures" => {
+                            compatible_architectures = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "CompatibleRuntimes" => {
                             compatible_runtimes = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -1079,6 +1221,7 @@ impl<'de> ::serde::Deserialize<'de> for LayerVersionProperties {
                 }
 
                 Ok(LayerVersionProperties {
+                    compatible_architectures: compatible_architectures,
                     compatible_runtimes: compatible_runtimes,
                     content: content.ok_or(::serde::de::Error::missing_field("Content"))?,
                     description: description,
@@ -1246,11 +1389,21 @@ pub struct PermissionProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub function_name: ::Value<String>,
+    /// Property [`FunctionUrlAuthType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html#cfn-lambda-permission-functionurlauthtype).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub function_url_auth_type: Option<::Value<String>>,
     /// Property [`Principal`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html#cfn-lambda-permission-principal).
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub principal: ::Value<String>,
+    /// Property [`PrincipalOrgID`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html#cfn-lambda-permission-principalorgid).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub principal_org_id: Option<::Value<String>>,
     /// Property [`SourceAccount`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html#cfn-lambda-permission-sourceaccount).
     ///
     /// Update type: _Immutable_.
@@ -1271,7 +1424,13 @@ impl ::serde::Serialize for PermissionProperties {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "EventSourceToken", event_source_token)?;
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "FunctionName", &self.function_name)?;
+        if let Some(ref function_url_auth_type) = self.function_url_auth_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "FunctionUrlAuthType", function_url_auth_type)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Principal", &self.principal)?;
+        if let Some(ref principal_org_id) = self.principal_org_id {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "PrincipalOrgID", principal_org_id)?;
+        }
         if let Some(ref source_account) = self.source_account {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SourceAccount", source_account)?;
         }
@@ -1297,7 +1456,9 @@ impl<'de> ::serde::Deserialize<'de> for PermissionProperties {
                 let mut action: Option<::Value<String>> = None;
                 let mut event_source_token: Option<::Value<String>> = None;
                 let mut function_name: Option<::Value<String>> = None;
+                let mut function_url_auth_type: Option<::Value<String>> = None;
                 let mut principal: Option<::Value<String>> = None;
+                let mut principal_org_id: Option<::Value<String>> = None;
                 let mut source_account: Option<::Value<String>> = None;
                 let mut source_arn: Option<::Value<String>> = None;
 
@@ -1312,8 +1473,14 @@ impl<'de> ::serde::Deserialize<'de> for PermissionProperties {
                         "FunctionName" => {
                             function_name = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "FunctionUrlAuthType" => {
+                            function_url_auth_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "Principal" => {
                             principal = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "PrincipalOrgID" => {
+                            principal_org_id = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SourceAccount" => {
                             source_account = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -1329,7 +1496,9 @@ impl<'de> ::serde::Deserialize<'de> for PermissionProperties {
                     action: action.ok_or(::serde::de::Error::missing_field("Action"))?,
                     event_source_token: event_source_token,
                     function_name: function_name.ok_or(::serde::de::Error::missing_field("FunctionName"))?,
+                    function_url_auth_type: function_url_auth_type,
                     principal: principal.ok_or(::serde::de::Error::missing_field("Principal"))?,
+                    principal_org_id: principal_org_id,
                     source_account: source_account,
                     source_arn: source_arn,
                 })
@@ -1359,6 +1528,132 @@ impl From<PermissionProperties> for Permission {
     }
 }
 
+/// The [`AWS::Lambda::Url`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-url.html) resource type.
+#[derive(Debug, Default)]
+pub struct Url {
+    properties: UrlProperties
+}
+
+/// Properties for the `Url` resource.
+#[derive(Debug, Default)]
+pub struct UrlProperties {
+    /// Property [`AuthType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-url.html#cfn-lambda-url-authtype).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub auth_type: ::Value<String>,
+    /// Property [`Cors`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-url.html#cfn-lambda-url-cors).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub cors: Option<::Value<self::url::Cors>>,
+    /// Property [`InvokeMode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-url.html#cfn-lambda-url-invokemode).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub invoke_mode: Option<::Value<String>>,
+    /// Property [`Qualifier`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-url.html#cfn-lambda-url-qualifier).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub qualifier: Option<::Value<String>>,
+    /// Property [`TargetFunctionArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-url.html#cfn-lambda-url-targetfunctionarn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub target_function_arn: ::Value<String>,
+}
+
+impl ::serde::Serialize for UrlProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthType", &self.auth_type)?;
+        if let Some(ref cors) = self.cors {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Cors", cors)?;
+        }
+        if let Some(ref invoke_mode) = self.invoke_mode {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "InvokeMode", invoke_mode)?;
+        }
+        if let Some(ref qualifier) = self.qualifier {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Qualifier", qualifier)?;
+        }
+        ::serde::ser::SerializeMap::serialize_entry(&mut map, "TargetFunctionArn", &self.target_function_arn)?;
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for UrlProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<UrlProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = UrlProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type UrlProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut auth_type: Option<::Value<String>> = None;
+                let mut cors: Option<::Value<self::url::Cors>> = None;
+                let mut invoke_mode: Option<::Value<String>> = None;
+                let mut qualifier: Option<::Value<String>> = None;
+                let mut target_function_arn: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "AuthType" => {
+                            auth_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Cors" => {
+                            cors = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "InvokeMode" => {
+                            invoke_mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Qualifier" => {
+                            qualifier = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TargetFunctionArn" => {
+                            target_function_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(UrlProperties {
+                    auth_type: auth_type.ok_or(::serde::de::Error::missing_field("AuthType"))?,
+                    cors: cors,
+                    invoke_mode: invoke_mode,
+                    qualifier: qualifier,
+                    target_function_arn: target_function_arn.ok_or(::serde::de::Error::missing_field("TargetFunctionArn"))?,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for Url {
+    type Properties = UrlProperties;
+    const TYPE: &'static str = "AWS::Lambda::Url";
+    fn properties(&self) -> &UrlProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut UrlProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for Url {}
+
+impl From<UrlProperties> for Url {
+    fn from(properties: UrlProperties) -> Url {
+        Url { properties }
+    }
+}
+
 /// The [`AWS::Lambda::Version`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-version.html) resource type.
 #[derive(Debug, Default)]
 pub struct Version {
@@ -1370,13 +1665,13 @@ pub struct Version {
 pub struct VersionProperties {
     /// Property [`CodeSha256`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-version.html#cfn-lambda-version-codesha256).
     ///
-    /// Update type: _Mutable_.
-    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub code_sha256: Option<::Value<String>>,
     /// Property [`Description`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-version.html#cfn-lambda-version-description).
     ///
-    /// Update type: _Mutable_.
-    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub description: Option<::Value<String>>,
     /// Property [`FunctionName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-version.html#cfn-lambda-version-functionname).
     ///
@@ -1385,9 +1680,14 @@ pub struct VersionProperties {
     pub function_name: ::Value<String>,
     /// Property [`ProvisionedConcurrencyConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-version.html#cfn-lambda-version-provisionedconcurrencyconfig).
     ///
-    /// Update type: _Mutable_.
-    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub provisioned_concurrency_config: Option<::Value<self::version::ProvisionedConcurrencyConfiguration>>,
+    /// Property [`RuntimePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-version.html#cfn-lambda-version-runtimepolicy).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub runtime_policy: Option<::Value<self::version::RuntimePolicy>>,
 }
 
 impl ::serde::Serialize for VersionProperties {
@@ -1402,6 +1702,9 @@ impl ::serde::Serialize for VersionProperties {
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "FunctionName", &self.function_name)?;
         if let Some(ref provisioned_concurrency_config) = self.provisioned_concurrency_config {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ProvisionedConcurrencyConfig", provisioned_concurrency_config)?;
+        }
+        if let Some(ref runtime_policy) = self.runtime_policy {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuntimePolicy", runtime_policy)?;
         }
         ::serde::ser::SerializeMap::end(map)
     }
@@ -1423,6 +1726,7 @@ impl<'de> ::serde::Deserialize<'de> for VersionProperties {
                 let mut description: Option<::Value<String>> = None;
                 let mut function_name: Option<::Value<String>> = None;
                 let mut provisioned_concurrency_config: Option<::Value<self::version::ProvisionedConcurrencyConfiguration>> = None;
+                let mut runtime_policy: Option<::Value<self::version::RuntimePolicy>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1438,6 +1742,9 @@ impl<'de> ::serde::Deserialize<'de> for VersionProperties {
                         "ProvisionedConcurrencyConfig" => {
                             provisioned_concurrency_config = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
+                        "RuntimePolicy" => {
+                            runtime_policy = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         _ => {}
                     }
                 }
@@ -1447,6 +1754,7 @@ impl<'de> ::serde::Deserialize<'de> for VersionProperties {
                     description: description,
                     function_name: function_name.ok_or(::serde::de::Error::missing_field("FunctionName"))?,
                     provisioned_concurrency_config: provisioned_concurrency_config,
+                    runtime_policy: runtime_policy,
                 })
             }
         }
@@ -1817,10 +2125,10 @@ pub mod event_invoke_config {
         }
     }
 
-    /// The [`AWS::Lambda::EventInvokeConfig.OnFailure`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventinvokeconfig-destinationconfig-onfailure.html) property type.
+    /// The [`AWS::Lambda::EventInvokeConfig.OnFailure`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventinvokeconfig-onfailure.html) property type.
     #[derive(Debug, Default)]
     pub struct OnFailure {
-        /// Property [`Destination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventinvokeconfig-destinationconfig-onfailure.html#cfn-lambda-eventinvokeconfig-destinationconfig-onfailure-destination).
+        /// Property [`Destination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventinvokeconfig-onfailure.html#cfn-lambda-eventinvokeconfig-onfailure-destination).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -1868,10 +2176,10 @@ pub mod event_invoke_config {
         }
     }
 
-    /// The [`AWS::Lambda::EventInvokeConfig.OnSuccess`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventinvokeconfig-destinationconfig-onsuccess.html) property type.
+    /// The [`AWS::Lambda::EventInvokeConfig.OnSuccess`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventinvokeconfig-onsuccess.html) property type.
     #[derive(Debug, Default)]
     pub struct OnSuccess {
-        /// Property [`Destination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventinvokeconfig-destinationconfig-onsuccess.html#cfn-lambda-eventinvokeconfig-destinationconfig-onsuccess-destination).
+        /// Property [`Destination`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventinvokeconfig-onsuccess.html#cfn-lambda-eventinvokeconfig-onsuccess-destination).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -1923,6 +2231,59 @@ pub mod event_invoke_config {
 pub mod event_source_mapping {
     //! Property types for the `EventSourceMapping` resource.
 
+    /// The [`AWS::Lambda::EventSourceMapping.AmazonManagedKafkaEventSourceConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-amazonmanagedkafkaeventsourceconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct AmazonManagedKafkaEventSourceConfig {
+        /// Property [`ConsumerGroupId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-amazonmanagedkafkaeventsourceconfig.html#cfn-lambda-eventsourcemapping-amazonmanagedkafkaeventsourceconfig-consumergroupid).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub consumer_group_id: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for AmazonManagedKafkaEventSourceConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref consumer_group_id) = self.consumer_group_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConsumerGroupId", consumer_group_id)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for AmazonManagedKafkaEventSourceConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<AmazonManagedKafkaEventSourceConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = AmazonManagedKafkaEventSourceConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type AmazonManagedKafkaEventSourceConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut consumer_group_id: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ConsumerGroupId" => {
+                                consumer_group_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(AmazonManagedKafkaEventSourceConfig {
+                        consumer_group_id: consumer_group_id,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::Lambda::EventSourceMapping.DestinationConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-destinationconfig.html) property type.
     #[derive(Debug, Default)]
     pub struct DestinationConfig {
@@ -1968,6 +2329,85 @@ pub mod event_source_mapping {
 
                     Ok(DestinationConfig {
                         on_failure: on_failure,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Lambda::EventSourceMapping.DocumentDBEventSourceConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-documentdbeventsourceconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct DocumentDBEventSourceConfig {
+        /// Property [`CollectionName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-documentdbeventsourceconfig.html#cfn-lambda-eventsourcemapping-documentdbeventsourceconfig-collectionname).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub collection_name: Option<::Value<String>>,
+        /// Property [`DatabaseName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-documentdbeventsourceconfig.html#cfn-lambda-eventsourcemapping-documentdbeventsourceconfig-databasename).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub database_name: Option<::Value<String>>,
+        /// Property [`FullDocument`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-documentdbeventsourceconfig.html#cfn-lambda-eventsourcemapping-documentdbeventsourceconfig-fulldocument).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub full_document: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for DocumentDBEventSourceConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref collection_name) = self.collection_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "CollectionName", collection_name)?;
+            }
+            if let Some(ref database_name) = self.database_name {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "DatabaseName", database_name)?;
+            }
+            if let Some(ref full_document) = self.full_document {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "FullDocument", full_document)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for DocumentDBEventSourceConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<DocumentDBEventSourceConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = DocumentDBEventSourceConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type DocumentDBEventSourceConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut collection_name: Option<::Value<String>> = None;
+                    let mut database_name: Option<::Value<String>> = None;
+                    let mut full_document: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "CollectionName" => {
+                                collection_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "DatabaseName" => {
+                                database_name = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "FullDocument" => {
+                                full_document = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(DocumentDBEventSourceConfig {
+                        collection_name: collection_name,
+                        database_name: database_name,
+                        full_document: full_document,
                     })
                 }
             }
@@ -2029,6 +2469,112 @@ pub mod event_source_mapping {
         }
     }
 
+    /// The [`AWS::Lambda::EventSourceMapping.Filter`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-filter.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Filter {
+        /// Property [`Pattern`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-filter.html#cfn-lambda-eventsourcemapping-filter-pattern).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub pattern: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for Filter {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref pattern) = self.pattern {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Pattern", pattern)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Filter {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Filter, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Filter;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Filter")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut pattern: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Pattern" => {
+                                pattern = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Filter {
+                        pattern: pattern,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Lambda::EventSourceMapping.FilterCriteria`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-filtercriteria.html) property type.
+    #[derive(Debug, Default)]
+    pub struct FilterCriteria {
+        /// Property [`Filters`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-filtercriteria.html#cfn-lambda-eventsourcemapping-filtercriteria-filters).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub filters: Option<::ValueList<Filter>>,
+    }
+
+    impl ::codec::SerializeValue for FilterCriteria {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref filters) = self.filters {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Filters", filters)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for FilterCriteria {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<FilterCriteria, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = FilterCriteria;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type FilterCriteria")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut filters: Option<::ValueList<Filter>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Filters" => {
+                                filters = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(FilterCriteria {
+                        filters: filters,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::Lambda::EventSourceMapping.OnFailure`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-onfailure.html) property type.
     #[derive(Debug, Default)]
     pub struct OnFailure {
@@ -2082,6 +2628,59 @@ pub mod event_source_mapping {
         }
     }
 
+    /// The [`AWS::Lambda::EventSourceMapping.ScalingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-scalingconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct ScalingConfig {
+        /// Property [`MaximumConcurrency`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-scalingconfig.html#cfn-lambda-eventsourcemapping-scalingconfig-maximumconcurrency).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub maximum_concurrency: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for ScalingConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref maximum_concurrency) = self.maximum_concurrency {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaximumConcurrency", maximum_concurrency)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for ScalingConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ScalingConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = ScalingConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type ScalingConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut maximum_concurrency: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "MaximumConcurrency" => {
+                                maximum_concurrency = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(ScalingConfig {
+                        maximum_concurrency: maximum_concurrency,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::Lambda::EventSourceMapping.SelfManagedEventSource`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-selfmanagedeventsource.html) property type.
     #[derive(Debug, Default)]
     pub struct SelfManagedEventSource {
@@ -2127,6 +2726,59 @@ pub mod event_source_mapping {
 
                     Ok(SelfManagedEventSource {
                         endpoints: endpoints,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Lambda::EventSourceMapping.SelfManagedKafkaEventSourceConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-selfmanagedkafkaeventsourceconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SelfManagedKafkaEventSourceConfig {
+        /// Property [`ConsumerGroupId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-eventsourcemapping-selfmanagedkafkaeventsourceconfig.html#cfn-lambda-eventsourcemapping-selfmanagedkafkaeventsourceconfig-consumergroupid).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub consumer_group_id: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for SelfManagedKafkaEventSourceConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref consumer_group_id) = self.consumer_group_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ConsumerGroupId", consumer_group_id)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SelfManagedKafkaEventSourceConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SelfManagedKafkaEventSourceConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SelfManagedKafkaEventSourceConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SelfManagedKafkaEventSourceConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut consumer_group_id: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ConsumerGroupId" => {
+                                consumer_group_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SelfManagedKafkaEventSourceConfig {
+                        consumer_group_id: consumer_group_id,
                     })
                 }
             }
@@ -2416,6 +3068,57 @@ pub mod function {
         }
     }
 
+    /// The [`AWS::Lambda::Function.EphemeralStorage`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-ephemeralstorage.html) property type.
+    #[derive(Debug, Default)]
+    pub struct EphemeralStorage {
+        /// Property [`Size`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-ephemeralstorage.html#cfn-lambda-function-ephemeralstorage-size).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub size: ::Value<u32>,
+    }
+
+    impl ::codec::SerializeValue for EphemeralStorage {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Size", &self.size)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for EphemeralStorage {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<EphemeralStorage, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = EphemeralStorage;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type EphemeralStorage")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut size: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "Size" => {
+                                size = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(EphemeralStorage {
+                        size: size.ok_or(::serde::de::Error::missing_field("Size"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::Lambda::Function.FileSystemConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-filesystemconfig.html) property type.
     #[derive(Debug, Default)]
     pub struct FileSystemConfig {
@@ -2557,6 +3260,279 @@ pub mod function {
         }
     }
 
+    /// The [`AWS::Lambda::Function.LoggingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-loggingconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct LoggingConfig {
+        /// Property [`ApplicationLogLevel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-loggingconfig.html#cfn-lambda-function-loggingconfig-applicationloglevel).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub application_log_level: Option<::Value<String>>,
+        /// Property [`LogFormat`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-loggingconfig.html#cfn-lambda-function-loggingconfig-logformat).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub log_format: Option<::Value<String>>,
+        /// Property [`LogGroup`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-loggingconfig.html#cfn-lambda-function-loggingconfig-loggroup).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub log_group: Option<::Value<String>>,
+        /// Property [`SystemLogLevel`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-loggingconfig.html#cfn-lambda-function-loggingconfig-systemloglevel).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub system_log_level: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for LoggingConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref application_log_level) = self.application_log_level {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplicationLogLevel", application_log_level)?;
+            }
+            if let Some(ref log_format) = self.log_format {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogFormat", log_format)?;
+            }
+            if let Some(ref log_group) = self.log_group {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "LogGroup", log_group)?;
+            }
+            if let Some(ref system_log_level) = self.system_log_level {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "SystemLogLevel", system_log_level)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for LoggingConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<LoggingConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = LoggingConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type LoggingConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut application_log_level: Option<::Value<String>> = None;
+                    let mut log_format: Option<::Value<String>> = None;
+                    let mut log_group: Option<::Value<String>> = None;
+                    let mut system_log_level: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ApplicationLogLevel" => {
+                                application_log_level = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LogFormat" => {
+                                log_format = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "LogGroup" => {
+                                log_group = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "SystemLogLevel" => {
+                                system_log_level = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(LoggingConfig {
+                        application_log_level: application_log_level,
+                        log_format: log_format,
+                        log_group: log_group,
+                        system_log_level: system_log_level,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Lambda::Function.RuntimeManagementConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-runtimemanagementconfig.html) property type.
+    #[derive(Debug, Default)]
+    pub struct RuntimeManagementConfig {
+        /// Property [`RuntimeVersionArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-runtimemanagementconfig.html#cfn-lambda-function-runtimemanagementconfig-runtimeversionarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub runtime_version_arn: Option<::Value<String>>,
+        /// Property [`UpdateRuntimeOn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-runtimemanagementconfig.html#cfn-lambda-function-runtimemanagementconfig-updateruntimeon).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub update_runtime_on: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for RuntimeManagementConfig {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref runtime_version_arn) = self.runtime_version_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuntimeVersionArn", runtime_version_arn)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UpdateRuntimeOn", &self.update_runtime_on)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for RuntimeManagementConfig {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<RuntimeManagementConfig, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = RuntimeManagementConfig;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type RuntimeManagementConfig")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut runtime_version_arn: Option<::Value<String>> = None;
+                    let mut update_runtime_on: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "RuntimeVersionArn" => {
+                                runtime_version_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "UpdateRuntimeOn" => {
+                                update_runtime_on = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(RuntimeManagementConfig {
+                        runtime_version_arn: runtime_version_arn,
+                        update_runtime_on: update_runtime_on.ok_or(::serde::de::Error::missing_field("UpdateRuntimeOn"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Lambda::Function.SnapStart`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-snapstart.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SnapStart {
+        /// Property [`ApplyOn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-snapstart.html#cfn-lambda-function-snapstart-applyon).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub apply_on: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for SnapStart {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplyOn", &self.apply_on)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SnapStart {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SnapStart, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SnapStart;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SnapStart")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut apply_on: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ApplyOn" => {
+                                apply_on = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SnapStart {
+                        apply_on: apply_on.ok_or(::serde::de::Error::missing_field("ApplyOn"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Lambda::Function.SnapStartResponse`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-snapstartresponse.html) property type.
+    #[derive(Debug, Default)]
+    pub struct SnapStartResponse {
+        /// Property [`ApplyOn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-snapstartresponse.html#cfn-lambda-function-snapstartresponse-applyon).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub apply_on: Option<::Value<String>>,
+        /// Property [`OptimizationStatus`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-snapstartresponse.html#cfn-lambda-function-snapstartresponse-optimizationstatus).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub optimization_status: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for SnapStartResponse {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref apply_on) = self.apply_on {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ApplyOn", apply_on)?;
+            }
+            if let Some(ref optimization_status) = self.optimization_status {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OptimizationStatus", optimization_status)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for SnapStartResponse {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<SnapStartResponse, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = SnapStartResponse;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type SnapStartResponse")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut apply_on: Option<::Value<String>> = None;
+                    let mut optimization_status: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "ApplyOn" => {
+                                apply_on = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "OptimizationStatus" => {
+                                optimization_status = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(SnapStartResponse {
+                        apply_on: apply_on,
+                        optimization_status: optimization_status,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
     /// The [`AWS::Lambda::Function.TracingConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-tracingconfig.html) property type.
     #[derive(Debug, Default)]
     pub struct TracingConfig {
@@ -2613,6 +3589,11 @@ pub mod function {
     /// The [`AWS::Lambda::Function.VpcConfig`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-vpcconfig.html) property type.
     #[derive(Debug, Default)]
     pub struct VpcConfig {
+        /// Property [`Ipv6AllowedForDualStack`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-vpcconfig.html#cfn-lambda-function-vpcconfig-ipv6allowedfordualstack).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ipv6_allowed_for_dual_stack: Option<::Value<bool>>,
         /// Property [`SecurityGroupIds`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-vpcconfig.html#cfn-lambda-function-vpcconfig-securitygroupids).
         ///
         /// Update type: _Mutable_.
@@ -2628,6 +3609,9 @@ pub mod function {
     impl ::codec::SerializeValue for VpcConfig {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref ipv6_allowed_for_dual_stack) = self.ipv6_allowed_for_dual_stack {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Ipv6AllowedForDualStack", ipv6_allowed_for_dual_stack)?;
+            }
             if let Some(ref security_group_ids) = self.security_group_ids {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIds", security_group_ids)?;
             }
@@ -2650,11 +3634,15 @@ pub mod function {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut ipv6_allowed_for_dual_stack: Option<::Value<bool>> = None;
                     let mut security_group_ids: Option<::ValueList<String>> = None;
                     let mut subnet_ids: Option<::ValueList<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "Ipv6AllowedForDualStack" => {
+                                ipv6_allowed_for_dual_stack = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "SecurityGroupIds" => {
                                 security_group_ids = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -2666,6 +3654,7 @@ pub mod function {
                     }
 
                     Ok(VpcConfig {
+                        ipv6_allowed_for_dual_stack: ipv6_allowed_for_dual_stack,
                         security_group_ids: security_group_ids,
                         subnet_ids: subnet_ids,
                     })
@@ -2756,6 +3745,128 @@ pub mod layer_version {
     }
 }
 
+pub mod url {
+    //! Property types for the `Url` resource.
+
+    /// The [`AWS::Lambda::Url.Cors`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-url-cors.html) property type.
+    #[derive(Debug, Default)]
+    pub struct Cors {
+        /// Property [`AllowCredentials`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-url-cors.html#cfn-lambda-url-cors-allowcredentials).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub allow_credentials: Option<::Value<bool>>,
+        /// Property [`AllowHeaders`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-url-cors.html#cfn-lambda-url-cors-allowheaders).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub allow_headers: Option<::ValueList<String>>,
+        /// Property [`AllowMethods`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-url-cors.html#cfn-lambda-url-cors-allowmethods).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub allow_methods: Option<::ValueList<String>>,
+        /// Property [`AllowOrigins`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-url-cors.html#cfn-lambda-url-cors-alloworigins).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub allow_origins: Option<::ValueList<String>>,
+        /// Property [`ExposeHeaders`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-url-cors.html#cfn-lambda-url-cors-exposeheaders).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub expose_headers: Option<::ValueList<String>>,
+        /// Property [`MaxAge`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-url-cors.html#cfn-lambda-url-cors-maxage).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub max_age: Option<::Value<u32>>,
+    }
+
+    impl ::codec::SerializeValue for Cors {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref allow_credentials) = self.allow_credentials {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowCredentials", allow_credentials)?;
+            }
+            if let Some(ref allow_headers) = self.allow_headers {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowHeaders", allow_headers)?;
+            }
+            if let Some(ref allow_methods) = self.allow_methods {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowMethods", allow_methods)?;
+            }
+            if let Some(ref allow_origins) = self.allow_origins {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AllowOrigins", allow_origins)?;
+            }
+            if let Some(ref expose_headers) = self.expose_headers {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ExposeHeaders", expose_headers)?;
+            }
+            if let Some(ref max_age) = self.max_age {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "MaxAge", max_age)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for Cors {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<Cors, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = Cors;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type Cors")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut allow_credentials: Option<::Value<bool>> = None;
+                    let mut allow_headers: Option<::ValueList<String>> = None;
+                    let mut allow_methods: Option<::ValueList<String>> = None;
+                    let mut allow_origins: Option<::ValueList<String>> = None;
+                    let mut expose_headers: Option<::ValueList<String>> = None;
+                    let mut max_age: Option<::Value<u32>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "AllowCredentials" => {
+                                allow_credentials = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "AllowHeaders" => {
+                                allow_headers = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "AllowMethods" => {
+                                allow_methods = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "AllowOrigins" => {
+                                allow_origins = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "ExposeHeaders" => {
+                                expose_headers = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "MaxAge" => {
+                                max_age = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(Cors {
+                        allow_credentials: allow_credentials,
+                        allow_headers: allow_headers,
+                        allow_methods: allow_methods,
+                        allow_origins: allow_origins,
+                        expose_headers: expose_headers,
+                        max_age: max_age,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
 pub mod version {
     //! Property types for the `Version` resource.
 
@@ -2764,8 +3875,8 @@ pub mod version {
     pub struct ProvisionedConcurrencyConfiguration {
         /// Property [`ProvisionedConcurrentExecutions`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-version-provisionedconcurrencyconfiguration.html#cfn-lambda-version-provisionedconcurrencyconfiguration-provisionedconcurrentexecutions).
         ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
         pub provisioned_concurrent_executions: ::Value<u32>,
     }
 
@@ -2802,6 +3913,70 @@ pub mod version {
 
                     Ok(ProvisionedConcurrencyConfiguration {
                         provisioned_concurrent_executions: provisioned_concurrent_executions.ok_or(::serde::de::Error::missing_field("ProvisionedConcurrentExecutions"))?,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::Lambda::Version.RuntimePolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-version-runtimepolicy.html) property type.
+    #[derive(Debug, Default)]
+    pub struct RuntimePolicy {
+        /// Property [`RuntimeVersionArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-version-runtimepolicy.html#cfn-lambda-version-runtimepolicy-runtimeversionarn).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub runtime_version_arn: Option<::Value<String>>,
+        /// Property [`UpdateRuntimeOn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-version-runtimepolicy.html#cfn-lambda-version-runtimepolicy-updateruntimeon).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub update_runtime_on: ::Value<String>,
+    }
+
+    impl ::codec::SerializeValue for RuntimePolicy {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref runtime_version_arn) = self.runtime_version_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RuntimeVersionArn", runtime_version_arn)?;
+            }
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "UpdateRuntimeOn", &self.update_runtime_on)?;
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for RuntimePolicy {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<RuntimePolicy, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = RuntimePolicy;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type RuntimePolicy")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut runtime_version_arn: Option<::Value<String>> = None;
+                    let mut update_runtime_on: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "RuntimeVersionArn" => {
+                                runtime_version_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "UpdateRuntimeOn" => {
+                                update_runtime_on = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(RuntimePolicy {
+                        runtime_version_arn: runtime_version_arn,
+                        update_runtime_on: update_runtime_on.ok_or(::serde::de::Error::missing_field("UpdateRuntimeOn"))?,
                     })
                 }
             }

@@ -29,6 +29,11 @@ pub struct ListenerProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub load_balancer_arn: ::Value<String>,
+    /// Property [`MutualAuthentication`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listener.html#cfn-elasticloadbalancingv2-listener-mutualauthentication).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub mutual_authentication: Option<::Value<self::listener::MutualAuthentication>>,
     /// Property [`Port`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listener.html#cfn-elasticloadbalancingv2-listener-port).
     ///
     /// Update type: _Mutable_.
@@ -57,6 +62,9 @@ impl ::serde::Serialize for ListenerProperties {
         }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "DefaultActions", &self.default_actions)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "LoadBalancerArn", &self.load_balancer_arn)?;
+        if let Some(ref mutual_authentication) = self.mutual_authentication {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "MutualAuthentication", mutual_authentication)?;
+        }
         if let Some(ref port) = self.port {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Port", port)?;
         }
@@ -86,6 +94,7 @@ impl<'de> ::serde::Deserialize<'de> for ListenerProperties {
                 let mut certificates: Option<::ValueList<self::listener::Certificate>> = None;
                 let mut default_actions: Option<::ValueList<self::listener::Action>> = None;
                 let mut load_balancer_arn: Option<::Value<String>> = None;
+                let mut mutual_authentication: Option<::Value<self::listener::MutualAuthentication>> = None;
                 let mut port: Option<::Value<u32>> = None;
                 let mut protocol: Option<::Value<String>> = None;
                 let mut ssl_policy: Option<::Value<String>> = None;
@@ -103,6 +112,9 @@ impl<'de> ::serde::Deserialize<'de> for ListenerProperties {
                         }
                         "LoadBalancerArn" => {
                             load_balancer_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "MutualAuthentication" => {
+                            mutual_authentication = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Port" => {
                             port = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -122,6 +134,7 @@ impl<'de> ::serde::Deserialize<'de> for ListenerProperties {
                     certificates: certificates,
                     default_actions: default_actions.ok_or(::serde::de::Error::missing_field("DefaultActions"))?,
                     load_balancer_arn: load_balancer_arn.ok_or(::serde::de::Error::missing_field("LoadBalancerArn"))?,
+                    mutual_authentication: mutual_authentication,
                     port: port,
                     protocol: protocol,
                     ssl_policy: ssl_policy,
@@ -163,8 +176,8 @@ pub struct ListenerCertificate {
 pub struct ListenerCertificateProperties {
     /// Property [`Certificates`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenercertificate.html#cfn-elasticloadbalancingv2-listenercertificate-certificates).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub certificates: ::ValueList<self::listener_certificate::Certificate>,
     /// Property [`ListenerArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenercertificate.html#cfn-elasticloadbalancingv2-listenercertificate-listenerarn).
     ///
@@ -262,7 +275,7 @@ pub struct ListenerRuleProperties {
     ///
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
-    pub listener_arn: ::Value<String>,
+    pub listener_arn: Option<::Value<String>>,
     /// Property [`Priority`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html#cfn-elasticloadbalancingv2-listenerrule-priority).
     ///
     /// Update type: _Mutable_.
@@ -275,7 +288,9 @@ impl ::serde::Serialize for ListenerRuleProperties {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Actions", &self.actions)?;
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Conditions", &self.conditions)?;
-        ::serde::ser::SerializeMap::serialize_entry(&mut map, "ListenerArn", &self.listener_arn)?;
+        if let Some(ref listener_arn) = self.listener_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ListenerArn", listener_arn)?;
+        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "Priority", &self.priority)?;
         ::serde::ser::SerializeMap::end(map)
     }
@@ -319,7 +334,7 @@ impl<'de> ::serde::Deserialize<'de> for ListenerRuleProperties {
                 Ok(ListenerRuleProperties {
                     actions: actions.ok_or(::serde::de::Error::missing_field("Actions"))?,
                     conditions: conditions.ok_or(::serde::de::Error::missing_field("Conditions"))?,
-                    listener_arn: listener_arn.ok_or(::serde::de::Error::missing_field("ListenerArn"))?,
+                    listener_arn: listener_arn,
                     priority: priority.ok_or(::serde::de::Error::missing_field("Priority"))?,
                 })
             }
@@ -357,6 +372,11 @@ pub struct LoadBalancer {
 /// Properties for the `LoadBalancer` resource.
 #[derive(Debug, Default)]
 pub struct LoadBalancerProperties {
+    /// Property [`EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html#cfn-elasticloadbalancingv2-loadbalancer-enforcesecuritygroupinboundrulesonprivatelinktraffic).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub enforce_security_group_inbound_rules_on_private_link_traffic: Option<::Value<String>>,
     /// Property [`IpAddressType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-loadbalancer.html#cfn-elasticloadbalancingv2-loadbalancer-ipaddresstype).
     ///
     /// Update type: _Mutable_.
@@ -407,6 +427,9 @@ pub struct LoadBalancerProperties {
 impl ::serde::Serialize for LoadBalancerProperties {
     fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
         let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref enforce_security_group_inbound_rules_on_private_link_traffic) = self.enforce_security_group_inbound_rules_on_private_link_traffic {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic", enforce_security_group_inbound_rules_on_private_link_traffic)?;
+        }
         if let Some(ref ip_address_type) = self.ip_address_type {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "IpAddressType", ip_address_type)?;
         }
@@ -450,6 +473,7 @@ impl<'de> ::serde::Deserialize<'de> for LoadBalancerProperties {
             }
 
             fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut enforce_security_group_inbound_rules_on_private_link_traffic: Option<::Value<String>> = None;
                 let mut ip_address_type: Option<::Value<String>> = None;
                 let mut load_balancer_attributes: Option<::ValueList<self::load_balancer::LoadBalancerAttribute>> = None;
                 let mut name: Option<::Value<String>> = None;
@@ -462,6 +486,9 @@ impl<'de> ::serde::Deserialize<'de> for LoadBalancerProperties {
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
+                        "EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic" => {
+                            enforce_security_group_inbound_rules_on_private_link_traffic = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
                         "IpAddressType" => {
                             ip_address_type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -494,6 +521,7 @@ impl<'de> ::serde::Deserialize<'de> for LoadBalancerProperties {
                 }
 
                 Ok(LoadBalancerProperties {
+                    enforce_security_group_inbound_rules_on_private_link_traffic: enforce_security_group_inbound_rules_on_private_link_traffic,
                     ip_address_type: ip_address_type,
                     load_balancer_attributes: load_balancer_attributes,
                     name: name,
@@ -574,6 +602,11 @@ pub struct TargetGroupProperties {
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub healthy_threshold_count: Option<::Value<u32>>,
+    /// Property [`IpAddressType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html#cfn-elasticloadbalancingv2-targetgroup-ipaddresstype).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub ip_address_type: Option<::Value<String>>,
     /// Property [`Matcher`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html#cfn-elasticloadbalancingv2-targetgroup-matcher).
     ///
     /// Update type: _Mutable_.
@@ -655,6 +688,9 @@ impl ::serde::Serialize for TargetGroupProperties {
         if let Some(ref healthy_threshold_count) = self.healthy_threshold_count {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "HealthyThresholdCount", healthy_threshold_count)?;
         }
+        if let Some(ref ip_address_type) = self.ip_address_type {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "IpAddressType", ip_address_type)?;
+        }
         if let Some(ref matcher) = self.matcher {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Matcher", matcher)?;
         }
@@ -711,6 +747,7 @@ impl<'de> ::serde::Deserialize<'de> for TargetGroupProperties {
                 let mut health_check_protocol: Option<::Value<String>> = None;
                 let mut health_check_timeout_seconds: Option<::Value<u32>> = None;
                 let mut healthy_threshold_count: Option<::Value<u32>> = None;
+                let mut ip_address_type: Option<::Value<String>> = None;
                 let mut matcher: Option<::Value<self::target_group::Matcher>> = None;
                 let mut name: Option<::Value<String>> = None;
                 let mut port: Option<::Value<u32>> = None;
@@ -745,6 +782,9 @@ impl<'de> ::serde::Deserialize<'de> for TargetGroupProperties {
                         }
                         "HealthyThresholdCount" => {
                             healthy_threshold_count = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "IpAddressType" => {
+                            ip_address_type = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "Matcher" => {
                             matcher = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -791,6 +831,7 @@ impl<'de> ::serde::Deserialize<'de> for TargetGroupProperties {
                     health_check_protocol: health_check_protocol,
                     health_check_timeout_seconds: health_check_timeout_seconds,
                     healthy_threshold_count: healthy_threshold_count,
+                    ip_address_type: ip_address_type,
                     matcher: matcher,
                     name: name,
                     port: port,
@@ -826,6 +867,227 @@ impl ::private::Sealed for TargetGroup {}
 impl From<TargetGroupProperties> for TargetGroup {
     fn from(properties: TargetGroupProperties) -> TargetGroup {
         TargetGroup { properties }
+    }
+}
+
+/// The [`AWS::ElasticLoadBalancingV2::TrustStore`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-truststore.html) resource type.
+#[derive(Debug, Default)]
+pub struct TrustStore {
+    properties: TrustStoreProperties
+}
+
+/// Properties for the `TrustStore` resource.
+#[derive(Debug, Default)]
+pub struct TrustStoreProperties {
+    /// Property [`CaCertificatesBundleS3Bucket`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-truststore.html#cfn-elasticloadbalancingv2-truststore-cacertificatesbundles3bucket).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub ca_certificates_bundle_s3_bucket: Option<::Value<String>>,
+    /// Property [`CaCertificatesBundleS3Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-truststore.html#cfn-elasticloadbalancingv2-truststore-cacertificatesbundles3key).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub ca_certificates_bundle_s3_key: Option<::Value<String>>,
+    /// Property [`CaCertificatesBundleS3ObjectVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-truststore.html#cfn-elasticloadbalancingv2-truststore-cacertificatesbundles3objectversion).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub ca_certificates_bundle_s3_object_version: Option<::Value<String>>,
+    /// Property [`Name`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-truststore.html#cfn-elasticloadbalancingv2-truststore-name).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub name: Option<::Value<String>>,
+    /// Property [`Tags`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-truststore.html#cfn-elasticloadbalancingv2-truststore-tags).
+    ///
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    pub tags: Option<::ValueList<::Tag>>,
+}
+
+impl ::serde::Serialize for TrustStoreProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref ca_certificates_bundle_s3_bucket) = self.ca_certificates_bundle_s3_bucket {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CaCertificatesBundleS3Bucket", ca_certificates_bundle_s3_bucket)?;
+        }
+        if let Some(ref ca_certificates_bundle_s3_key) = self.ca_certificates_bundle_s3_key {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CaCertificatesBundleS3Key", ca_certificates_bundle_s3_key)?;
+        }
+        if let Some(ref ca_certificates_bundle_s3_object_version) = self.ca_certificates_bundle_s3_object_version {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "CaCertificatesBundleS3ObjectVersion", ca_certificates_bundle_s3_object_version)?;
+        }
+        if let Some(ref name) = self.name {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Name", name)?;
+        }
+        if let Some(ref tags) = self.tags {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Tags", tags)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for TrustStoreProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<TrustStoreProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = TrustStoreProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type TrustStoreProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut ca_certificates_bundle_s3_bucket: Option<::Value<String>> = None;
+                let mut ca_certificates_bundle_s3_key: Option<::Value<String>> = None;
+                let mut ca_certificates_bundle_s3_object_version: Option<::Value<String>> = None;
+                let mut name: Option<::Value<String>> = None;
+                let mut tags: Option<::ValueList<::Tag>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "CaCertificatesBundleS3Bucket" => {
+                            ca_certificates_bundle_s3_bucket = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "CaCertificatesBundleS3Key" => {
+                            ca_certificates_bundle_s3_key = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "CaCertificatesBundleS3ObjectVersion" => {
+                            ca_certificates_bundle_s3_object_version = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Name" => {
+                            name = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "Tags" => {
+                            tags = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(TrustStoreProperties {
+                    ca_certificates_bundle_s3_bucket: ca_certificates_bundle_s3_bucket,
+                    ca_certificates_bundle_s3_key: ca_certificates_bundle_s3_key,
+                    ca_certificates_bundle_s3_object_version: ca_certificates_bundle_s3_object_version,
+                    name: name,
+                    tags: tags,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for TrustStore {
+    type Properties = TrustStoreProperties;
+    const TYPE: &'static str = "AWS::ElasticLoadBalancingV2::TrustStore";
+    fn properties(&self) -> &TrustStoreProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut TrustStoreProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for TrustStore {}
+
+impl From<TrustStoreProperties> for TrustStore {
+    fn from(properties: TrustStoreProperties) -> TrustStore {
+        TrustStore { properties }
+    }
+}
+
+/// The [`AWS::ElasticLoadBalancingV2::TrustStoreRevocation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-truststorerevocation.html) resource type.
+#[derive(Debug, Default)]
+pub struct TrustStoreRevocation {
+    properties: TrustStoreRevocationProperties
+}
+
+/// Properties for the `TrustStoreRevocation` resource.
+#[derive(Debug, Default)]
+pub struct TrustStoreRevocationProperties {
+    /// Property [`RevocationContents`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-truststorerevocation.html#cfn-elasticloadbalancingv2-truststorerevocation-revocationcontents).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub revocation_contents: Option<::ValueList<self::trust_store_revocation::RevocationContent>>,
+    /// Property [`TrustStoreArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-truststorerevocation.html#cfn-elasticloadbalancingv2-truststorerevocation-truststorearn).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub trust_store_arn: Option<::Value<String>>,
+}
+
+impl ::serde::Serialize for TrustStoreRevocationProperties {
+    fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+        let mut map = ::serde::Serializer::serialize_map(s, None)?;
+        if let Some(ref revocation_contents) = self.revocation_contents {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "RevocationContents", revocation_contents)?;
+        }
+        if let Some(ref trust_store_arn) = self.trust_store_arn {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrustStoreArn", trust_store_arn)?;
+        }
+        ::serde::ser::SerializeMap::end(map)
+    }
+}
+
+impl<'de> ::serde::Deserialize<'de> for TrustStoreRevocationProperties {
+    fn deserialize<D: ::serde::Deserializer<'de>>(d: D) -> Result<TrustStoreRevocationProperties, D::Error> {
+        struct Visitor;
+
+        impl<'de> ::serde::de::Visitor<'de> for Visitor {
+            type Value = TrustStoreRevocationProperties;
+
+            fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                write!(f, "a struct of type TrustStoreRevocationProperties")
+            }
+
+            fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                let mut revocation_contents: Option<::ValueList<self::trust_store_revocation::RevocationContent>> = None;
+                let mut trust_store_arn: Option<::Value<String>> = None;
+
+                while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                    match __cfn_key.as_ref() {
+                        "RevocationContents" => {
+                            revocation_contents = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "TrustStoreArn" => {
+                            trust_store_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        _ => {}
+                    }
+                }
+
+                Ok(TrustStoreRevocationProperties {
+                    revocation_contents: revocation_contents,
+                    trust_store_arn: trust_store_arn,
+                })
+            }
+        }
+
+        d.deserialize_map(Visitor)
+    }
+}
+
+impl ::Resource for TrustStoreRevocation {
+    type Properties = TrustStoreRevocationProperties;
+    const TYPE: &'static str = "AWS::ElasticLoadBalancingV2::TrustStoreRevocation";
+    fn properties(&self) -> &TrustStoreRevocationProperties {
+        &self.properties
+    }
+    fn properties_mut(&mut self) -> &mut TrustStoreRevocationProperties {
+        &mut self.properties
+    }
+}
+
+impl ::private::Sealed for TrustStoreRevocation {}
+
+impl From<TrustStoreRevocationProperties> for TrustStoreRevocation {
+    fn from(properties: TrustStoreRevocationProperties) -> TrustStoreRevocation {
+        TrustStoreRevocation { properties }
     }
 }
 
@@ -1134,7 +1396,7 @@ pub mod listener {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub client_secret: ::Value<String>,
+        pub client_secret: Option<::Value<String>>,
         /// Property [`Issuer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-authenticateoidcconfig.html#cfn-elasticloadbalancingv2-listener-authenticateoidcconfig-issuer).
         ///
         /// Update type: _Mutable_.
@@ -1165,6 +1427,11 @@ pub mod listener {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub token_endpoint: ::Value<String>,
+        /// Property [`UseExistingClientSecret`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-authenticateoidcconfig.html#cfn-elasticloadbalancingv2-listener-authenticateoidcconfig-useexistingclientsecret).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub use_existing_client_secret: Option<::Value<bool>>,
         /// Property [`UserInfoEndpoint`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-authenticateoidcconfig.html#cfn-elasticloadbalancingv2-listener-authenticateoidcconfig-userinfoendpoint).
         ///
         /// Update type: _Mutable_.
@@ -1180,7 +1447,9 @@ pub mod listener {
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthorizationEndpoint", &self.authorization_endpoint)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientId", &self.client_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientSecret", &self.client_secret)?;
+            if let Some(ref client_secret) = self.client_secret {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientSecret", client_secret)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Issuer", &self.issuer)?;
             if let Some(ref on_unauthenticated_request) = self.on_unauthenticated_request {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "OnUnauthenticatedRequest", on_unauthenticated_request)?;
@@ -1195,6 +1464,9 @@ pub mod listener {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SessionTimeout", session_timeout)?;
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "TokenEndpoint", &self.token_endpoint)?;
+            if let Some(ref use_existing_client_secret) = self.use_existing_client_secret {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "UseExistingClientSecret", use_existing_client_secret)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "UserInfoEndpoint", &self.user_info_endpoint)?;
             ::serde::ser::SerializeMap::end(map)
         }
@@ -1222,6 +1494,7 @@ pub mod listener {
                     let mut session_cookie_name: Option<::Value<String>> = None;
                     let mut session_timeout: Option<::Value<String>> = None;
                     let mut token_endpoint: Option<::Value<String>> = None;
+                    let mut use_existing_client_secret: Option<::Value<bool>> = None;
                     let mut user_info_endpoint: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -1256,6 +1529,9 @@ pub mod listener {
                             "TokenEndpoint" => {
                                 token_endpoint = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "UseExistingClientSecret" => {
+                                use_existing_client_secret = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "UserInfoEndpoint" => {
                                 user_info_endpoint = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -1267,13 +1543,14 @@ pub mod listener {
                         authentication_request_extra_params: authentication_request_extra_params,
                         authorization_endpoint: authorization_endpoint.ok_or(::serde::de::Error::missing_field("AuthorizationEndpoint"))?,
                         client_id: client_id.ok_or(::serde::de::Error::missing_field("ClientId"))?,
-                        client_secret: client_secret.ok_or(::serde::de::Error::missing_field("ClientSecret"))?,
+                        client_secret: client_secret,
                         issuer: issuer.ok_or(::serde::de::Error::missing_field("Issuer"))?,
                         on_unauthenticated_request: on_unauthenticated_request,
                         scope: scope,
                         session_cookie_name: session_cookie_name,
                         session_timeout: session_timeout,
                         token_endpoint: token_endpoint.ok_or(::serde::de::Error::missing_field("TokenEndpoint"))?,
+                        use_existing_client_secret: use_existing_client_secret,
                         user_info_endpoint: user_info_endpoint.ok_or(::serde::de::Error::missing_field("UserInfoEndpoint"))?,
                     })
                 }
@@ -1471,6 +1748,85 @@ pub mod listener {
                     Ok(ForwardConfig {
                         target_group_stickiness_config: target_group_stickiness_config,
                         target_groups: target_groups,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ElasticLoadBalancingV2::Listener.MutualAuthentication`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-mutualauthentication.html) property type.
+    #[derive(Debug, Default)]
+    pub struct MutualAuthentication {
+        /// Property [`IgnoreClientCertificateExpiry`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-mutualauthentication.html#cfn-elasticloadbalancingv2-listener-mutualauthentication-ignoreclientcertificateexpiry).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ignore_client_certificate_expiry: Option<::Value<bool>>,
+        /// Property [`Mode`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-mutualauthentication.html#cfn-elasticloadbalancingv2-listener-mutualauthentication-mode).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub mode: Option<::Value<String>>,
+        /// Property [`TrustStoreArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-mutualauthentication.html#cfn-elasticloadbalancingv2-listener-mutualauthentication-truststorearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub trust_store_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for MutualAuthentication {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref ignore_client_certificate_expiry) = self.ignore_client_certificate_expiry {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "IgnoreClientCertificateExpiry", ignore_client_certificate_expiry)?;
+            }
+            if let Some(ref mode) = self.mode {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "Mode", mode)?;
+            }
+            if let Some(ref trust_store_arn) = self.trust_store_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrustStoreArn", trust_store_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for MutualAuthentication {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<MutualAuthentication, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = MutualAuthentication;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type MutualAuthentication")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut ignore_client_certificate_expiry: Option<::Value<bool>> = None;
+                    let mut mode: Option<::Value<String>> = None;
+                    let mut trust_store_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "IgnoreClientCertificateExpiry" => {
+                                ignore_client_certificate_expiry = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "Mode" => {
+                                mode = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TrustStoreArn" => {
+                                trust_store_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(MutualAuthentication {
+                        ignore_client_certificate_expiry: ignore_client_certificate_expiry,
+                        mode: mode,
+                        trust_store_arn: trust_store_arn,
                     })
                 }
             }
@@ -2090,7 +2446,7 @@ pub mod listener_rule {
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub client_secret: ::Value<String>,
+        pub client_secret: Option<::Value<String>>,
         /// Property [`Issuer`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-authenticateoidcconfig.html#cfn-elasticloadbalancingv2-listenerrule-authenticateoidcconfig-issuer).
         ///
         /// Update type: _Mutable_.
@@ -2141,7 +2497,9 @@ pub mod listener_rule {
             }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "AuthorizationEndpoint", &self.authorization_endpoint)?;
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientId", &self.client_id)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientSecret", &self.client_secret)?;
+            if let Some(ref client_secret) = self.client_secret {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientSecret", client_secret)?;
+            }
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "Issuer", &self.issuer)?;
             if let Some(ref on_unauthenticated_request) = self.on_unauthenticated_request {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "OnUnauthenticatedRequest", on_unauthenticated_request)?;
@@ -2235,7 +2593,7 @@ pub mod listener_rule {
                         authentication_request_extra_params: authentication_request_extra_params,
                         authorization_endpoint: authorization_endpoint.ok_or(::serde::de::Error::missing_field("AuthorizationEndpoint"))?,
                         client_id: client_id.ok_or(::serde::de::Error::missing_field("ClientId"))?,
-                        client_secret: client_secret.ok_or(::serde::de::Error::missing_field("ClientSecret"))?,
+                        client_secret: client_secret,
                         issuer: issuer.ok_or(::serde::de::Error::missing_field("Issuer"))?,
                         on_unauthenticated_request: on_unauthenticated_request,
                         scope: scope,
@@ -3188,15 +3546,15 @@ pub mod listener_rule {
 pub mod load_balancer {
     //! Property types for the `LoadBalancer` resource.
 
-    /// The [`AWS::ElasticLoadBalancingV2::LoadBalancer.LoadBalancerAttribute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattributes.html) property type.
+    /// The [`AWS::ElasticLoadBalancingV2::LoadBalancer.LoadBalancerAttribute`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattribute.html) property type.
     #[derive(Debug, Default)]
     pub struct LoadBalancerAttribute {
-        /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattributes.html#cfn-elasticloadbalancingv2-loadbalancer-loadbalancerattributes-key).
+        /// Property [`Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattribute.html#cfn-elasticloadbalancingv2-loadbalancer-loadbalancerattribute-key).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub key: Option<::Value<String>>,
-        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattributes.html#cfn-elasticloadbalancingv2-loadbalancer-loadbalancerattributes-value).
+        /// Property [`Value`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattribute.html#cfn-elasticloadbalancingv2-loadbalancer-loadbalancerattribute-value).
         ///
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
@@ -3549,6 +3907,194 @@ pub mod target_group {
                     Ok(TargetGroupAttribute {
                         key: key,
                         value: value,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+}
+
+pub mod trust_store_revocation {
+    //! Property types for the `TrustStoreRevocation` resource.
+
+    /// The [`AWS::ElasticLoadBalancingV2::TrustStoreRevocation.RevocationContent`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-truststorerevocation-revocationcontent.html) property type.
+    #[derive(Debug, Default)]
+    pub struct RevocationContent {
+        /// Property [`RevocationType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-truststorerevocation-revocationcontent.html#cfn-elasticloadbalancingv2-truststorerevocation-revocationcontent-revocationtype).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub revocation_type: Option<::Value<String>>,
+        /// Property [`S3Bucket`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-truststorerevocation-revocationcontent.html#cfn-elasticloadbalancingv2-truststorerevocation-revocationcontent-s3bucket).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub s3_bucket: Option<::Value<String>>,
+        /// Property [`S3Key`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-truststorerevocation-revocationcontent.html#cfn-elasticloadbalancingv2-truststorerevocation-revocationcontent-s3key).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub s3_key: Option<::Value<String>>,
+        /// Property [`S3ObjectVersion`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-truststorerevocation-revocationcontent.html#cfn-elasticloadbalancingv2-truststorerevocation-revocationcontent-s3objectversion).
+        ///
+        /// Update type: _Immutable_.
+        /// AWS CloudFormation replaces the resource when you change this property.
+        pub s3_object_version: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for RevocationContent {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref revocation_type) = self.revocation_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RevocationType", revocation_type)?;
+            }
+            if let Some(ref s3_bucket) = self.s3_bucket {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Bucket", s3_bucket)?;
+            }
+            if let Some(ref s3_key) = self.s3_key {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3Key", s3_key)?;
+            }
+            if let Some(ref s3_object_version) = self.s3_object_version {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "S3ObjectVersion", s3_object_version)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for RevocationContent {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<RevocationContent, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = RevocationContent;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type RevocationContent")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut revocation_type: Option<::Value<String>> = None;
+                    let mut s3_bucket: Option<::Value<String>> = None;
+                    let mut s3_key: Option<::Value<String>> = None;
+                    let mut s3_object_version: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "RevocationType" => {
+                                revocation_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "S3Bucket" => {
+                                s3_bucket = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "S3Key" => {
+                                s3_key = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "S3ObjectVersion" => {
+                                s3_object_version = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(RevocationContent {
+                        revocation_type: revocation_type,
+                        s3_bucket: s3_bucket,
+                        s3_key: s3_key,
+                        s3_object_version: s3_object_version,
+                    })
+                }
+            }
+
+            d.deserialize_map(Visitor)
+        }
+    }
+
+    /// The [`AWS::ElasticLoadBalancingV2::TrustStoreRevocation.TrustStoreRevocation`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-truststorerevocation-truststorerevocation.html) property type.
+    #[derive(Debug, Default)]
+    pub struct TrustStoreRevocation {
+        /// Property [`NumberOfRevokedEntries`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-truststorerevocation-truststorerevocation.html#cfn-elasticloadbalancingv2-truststorerevocation-truststorerevocation-numberofrevokedentries).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub number_of_revoked_entries: Option<::Value<u32>>,
+        /// Property [`RevocationId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-truststorerevocation-truststorerevocation.html#cfn-elasticloadbalancingv2-truststorerevocation-truststorerevocation-revocationid).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub revocation_id: Option<::Value<String>>,
+        /// Property [`RevocationType`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-truststorerevocation-truststorerevocation.html#cfn-elasticloadbalancingv2-truststorerevocation-truststorerevocation-revocationtype).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub revocation_type: Option<::Value<String>>,
+        /// Property [`TrustStoreArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-truststorerevocation-truststorerevocation.html#cfn-elasticloadbalancingv2-truststorerevocation-truststorerevocation-truststorearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub trust_store_arn: Option<::Value<String>>,
+    }
+
+    impl ::codec::SerializeValue for TrustStoreRevocation {
+        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
+            let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref number_of_revoked_entries) = self.number_of_revoked_entries {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "NumberOfRevokedEntries", number_of_revoked_entries)?;
+            }
+            if let Some(ref revocation_id) = self.revocation_id {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RevocationId", revocation_id)?;
+            }
+            if let Some(ref revocation_type) = self.revocation_type {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "RevocationType", revocation_type)?;
+            }
+            if let Some(ref trust_store_arn) = self.trust_store_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "TrustStoreArn", trust_store_arn)?;
+            }
+            ::serde::ser::SerializeMap::end(map)
+        }
+    }
+
+    impl ::codec::DeserializeValue for TrustStoreRevocation {
+        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<TrustStoreRevocation, D::Error> {
+            struct Visitor;
+
+            impl<'de> ::serde::de::Visitor<'de> for Visitor {
+                type Value = TrustStoreRevocation;
+
+                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+                    write!(f, "a struct of type TrustStoreRevocation")
+                }
+
+                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut number_of_revoked_entries: Option<::Value<u32>> = None;
+                    let mut revocation_id: Option<::Value<String>> = None;
+                    let mut revocation_type: Option<::Value<String>> = None;
+                    let mut trust_store_arn: Option<::Value<String>> = None;
+
+                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
+                        match __cfn_key.as_ref() {
+                            "NumberOfRevokedEntries" => {
+                                number_of_revoked_entries = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RevocationId" => {
+                                revocation_id = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "RevocationType" => {
+                                revocation_type = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            "TrustStoreArn" => {
+                                trust_store_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
+                            _ => {}
+                        }
+                    }
+
+                    Ok(TrustStoreRevocation {
+                        number_of_revoked_entries: number_of_revoked_entries,
+                        revocation_id: revocation_id,
+                        revocation_type: revocation_type,
+                        trust_store_arn: trust_store_arn,
                     })
                 }
             }

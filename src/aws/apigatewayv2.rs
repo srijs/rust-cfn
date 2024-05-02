@@ -83,7 +83,7 @@ pub struct ApiProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub tags: Option<::Value<::json::Value>>,
+    pub tags: Option<::ValueMap<String>>,
     /// Property [`Target`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-api.html#cfn-apigatewayv2-api-target).
     ///
     /// Update type: _Mutable_.
@@ -180,7 +180,7 @@ impl<'de> ::serde::Deserialize<'de> for ApiProperties {
                 let mut protocol_type: Option<::Value<String>> = None;
                 let mut route_key: Option<::Value<String>> = None;
                 let mut route_selection_expression: Option<::Value<String>> = None;
-                let mut tags: Option<::Value<::json::Value>> = None;
+                let mut tags: Option<::ValueMap<String>> = None;
                 let mut target: Option<::Value<String>> = None;
                 let mut version: Option<::Value<String>> = None;
 
@@ -412,8 +412,8 @@ pub struct ApiMapping {
 pub struct ApiMappingProperties {
     /// Property [`ApiId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-apimapping.html#cfn-apigatewayv2-apimapping-apiid).
     ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
+    /// Update type: _Mutable_.
+    /// AWS CloudFormation doesn't replace the resource when you change this property.
     pub api_id: ::Value<String>,
     /// Property [`ApiMappingKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-apimapping.html#cfn-apigatewayv2-apimapping-apimappingkey).
     ///
@@ -844,7 +844,7 @@ pub struct DomainNameProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub tags: Option<::Value<::json::Value>>,
+    pub tags: Option<::ValueMap<String>>,
 }
 
 impl ::serde::Serialize for DomainNameProperties {
@@ -879,7 +879,7 @@ impl<'de> ::serde::Deserialize<'de> for DomainNameProperties {
                 let mut domain_name: Option<::Value<String>> = None;
                 let mut domain_name_configurations: Option<::ValueList<self::domain_name::DomainNameConfiguration>> = None;
                 let mut mutual_tls_authentication: Option<::Value<self::domain_name::MutualTlsAuthentication>> = None;
-                let mut tags: Option<::Value<::json::Value>> = None;
+                let mut tags: Option<::ValueMap<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -1237,8 +1237,8 @@ pub struct IntegrationResponse {
 pub struct IntegrationResponseProperties {
     /// Property [`ApiId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-integrationresponse.html#cfn-apigatewayv2-integrationresponse-apiid).
     ///
-    /// Update type: _Mutable_.
-    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub api_id: ::Value<String>,
     /// Property [`ContentHandlingStrategy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-integrationresponse.html#cfn-apigatewayv2-integrationresponse-contenthandlingstrategy).
     ///
@@ -1247,8 +1247,8 @@ pub struct IntegrationResponseProperties {
     pub content_handling_strategy: Option<::Value<String>>,
     /// Property [`IntegrationId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-integrationresponse.html#cfn-apigatewayv2-integrationresponse-integrationid).
     ///
-    /// Update type: _Mutable_.
-    /// AWS CloudFormation doesn't replace the resource when you change this property.
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
     pub integration_id: ::Value<String>,
     /// Property [`IntegrationResponseKey`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-integrationresponse.html#cfn-apigatewayv2-integrationresponse-integrationresponsekey).
     ///
@@ -1745,7 +1745,7 @@ pub struct RouteResponseProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub response_parameters: Option<::Value<::json::Value>>,
+    pub response_parameters: Option<::ValueMap<self::route_response::ParameterConstraints>>,
     /// Property [`RouteId`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-routeresponse.html#cfn-apigatewayv2-routeresponse-routeid).
     ///
     /// Update type: _Immutable_.
@@ -1792,7 +1792,7 @@ impl<'de> ::serde::Deserialize<'de> for RouteResponseProperties {
                 let mut api_id: Option<::Value<String>> = None;
                 let mut model_selection_expression: Option<::Value<String>> = None;
                 let mut response_models: Option<::Value<::json::Value>> = None;
-                let mut response_parameters: Option<::Value<::json::Value>> = None;
+                let mut response_parameters: Option<::ValueMap<self::route_response::ParameterConstraints>> = None;
                 let mut route_id: Option<::Value<String>> = None;
                 let mut route_response_key: Option<::Value<String>> = None;
 
@@ -2099,7 +2099,7 @@ pub struct VpcLinkProperties {
     ///
     /// Update type: _Mutable_.
     /// AWS CloudFormation doesn't replace the resource when you change this property.
-    pub tags: Option<::Value<::json::Value>>,
+    pub tags: Option<::ValueMap<String>>,
 }
 
 impl ::serde::Serialize for VpcLinkProperties {
@@ -2132,7 +2132,7 @@ impl<'de> ::serde::Deserialize<'de> for VpcLinkProperties {
                 let mut name: Option<::Value<String>> = None;
                 let mut security_group_ids: Option<::ValueList<String>> = None;
                 let mut subnet_ids: Option<::ValueList<String>> = None;
-                let mut tags: Option<::Value<::json::Value>> = None;
+                let mut tags: Option<::ValueMap<String>> = None;
 
                 while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                     match __cfn_key.as_ref() {
@@ -2979,6 +2979,11 @@ pub mod domain_name {
         /// Update type: _Mutable_.
         /// AWS CloudFormation doesn't replace the resource when you change this property.
         pub endpoint_type: Option<::Value<String>>,
+        /// Property [`OwnershipVerificationCertificateArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-domainname-domainnameconfiguration.html#cfn-apigatewayv2-domainname-domainnameconfiguration-ownershipverificationcertificatearn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub ownership_verification_certificate_arn: Option<::Value<String>>,
         /// Property [`SecurityPolicy`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-domainname-domainnameconfiguration.html#cfn-apigatewayv2-domainname-domainnameconfiguration-securitypolicy).
         ///
         /// Update type: _Mutable_.
@@ -2997,6 +3002,9 @@ pub mod domain_name {
             }
             if let Some(ref endpoint_type) = self.endpoint_type {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "EndpointType", endpoint_type)?;
+            }
+            if let Some(ref ownership_verification_certificate_arn) = self.ownership_verification_certificate_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "OwnershipVerificationCertificateArn", ownership_verification_certificate_arn)?;
             }
             if let Some(ref security_policy) = self.security_policy {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityPolicy", security_policy)?;
@@ -3020,6 +3028,7 @@ pub mod domain_name {
                     let mut certificate_arn: Option<::Value<String>> = None;
                     let mut certificate_name: Option<::Value<String>> = None;
                     let mut endpoint_type: Option<::Value<String>> = None;
+                    let mut ownership_verification_certificate_arn: Option<::Value<String>> = None;
                     let mut security_policy: Option<::Value<String>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
@@ -3033,6 +3042,9 @@ pub mod domain_name {
                             "EndpointType" => {
                                 endpoint_type = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
+                            "OwnershipVerificationCertificateArn" => {
+                                ownership_verification_certificate_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "SecurityPolicy" => {
                                 security_policy = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -3044,6 +3056,7 @@ pub mod domain_name {
                         certificate_arn: certificate_arn,
                         certificate_name: certificate_name,
                         endpoint_type: endpoint_type,
+                        ownership_verification_certificate_arn: ownership_verification_certificate_arn,
                         security_policy: security_policy,
                     })
                 }
@@ -3283,61 +3296,6 @@ pub mod integration {
 
                     Ok(TlsConfig {
                         server_name_to_verify: server_name_to_verify,
-                    })
-                }
-            }
-
-            d.deserialize_map(Visitor)
-        }
-    }
-}
-
-pub mod route {
-    //! Property types for the `Route` resource.
-
-    /// The [`AWS::ApiGatewayV2::Route.ParameterConstraints`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-route-parameterconstraints.html) property type.
-    #[derive(Debug, Default)]
-    pub struct ParameterConstraints {
-        /// Property [`Required`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigatewayv2-route-parameterconstraints.html#cfn-apigatewayv2-route-parameterconstraints-required).
-        ///
-        /// Update type: _Mutable_.
-        /// AWS CloudFormation doesn't replace the resource when you change this property.
-        pub required: ::Value<bool>,
-    }
-
-    impl ::codec::SerializeValue for ParameterConstraints {
-        fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
-            let mut map = ::serde::Serializer::serialize_map(s, None)?;
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "Required", &self.required)?;
-            ::serde::ser::SerializeMap::end(map)
-        }
-    }
-
-    impl ::codec::DeserializeValue for ParameterConstraints {
-        fn deserialize<'de, D: ::serde::Deserializer<'de>>(d: D) -> Result<ParameterConstraints, D::Error> {
-            struct Visitor;
-
-            impl<'de> ::serde::de::Visitor<'de> for Visitor {
-                type Value = ParameterConstraints;
-
-                fn expecting(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-                    write!(f, "a struct of type ParameterConstraints")
-                }
-
-                fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
-                    let mut required: Option<::Value<bool>> = None;
-
-                    while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
-                        match __cfn_key.as_ref() {
-                            "Required" => {
-                                required = ::serde::de::MapAccess::next_value(&mut map)?;
-                            }
-                            _ => {}
-                        }
-                    }
-
-                    Ok(ParameterConstraints {
-                        required: required.ok_or(::serde::de::Error::missing_field("Required"))?,
                     })
                 }
             }

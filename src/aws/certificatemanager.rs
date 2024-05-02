@@ -105,6 +105,11 @@ pub struct CertificateProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub domain_validation_options: Option<::ValueList<self::certificate::DomainValidationOption>>,
+    /// Property [`KeyAlgorithm`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-certificatemanager-certificate.html#cfn-certificatemanager-certificate-keyalgorithm).
+    ///
+    /// Update type: _Immutable_.
+    /// AWS CloudFormation replaces the resource when you change this property.
+    pub key_algorithm: Option<::Value<String>>,
     /// Property [`SubjectAlternativeNames`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-certificatemanager-certificate.html#cfn-certificatemanager-certificate-subjectalternativenames).
     ///
     /// Update type: _Immutable_.
@@ -135,6 +140,9 @@ impl ::serde::Serialize for CertificateProperties {
         if let Some(ref domain_validation_options) = self.domain_validation_options {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "DomainValidationOptions", domain_validation_options)?;
         }
+        if let Some(ref key_algorithm) = self.key_algorithm {
+            ::serde::ser::SerializeMap::serialize_entry(&mut map, "KeyAlgorithm", key_algorithm)?;
+        }
         if let Some(ref subject_alternative_names) = self.subject_alternative_names {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubjectAlternativeNames", subject_alternative_names)?;
         }
@@ -164,6 +172,7 @@ impl<'de> ::serde::Deserialize<'de> for CertificateProperties {
                 let mut certificate_transparency_logging_preference: Option<::Value<String>> = None;
                 let mut domain_name: Option<::Value<String>> = None;
                 let mut domain_validation_options: Option<::ValueList<self::certificate::DomainValidationOption>> = None;
+                let mut key_algorithm: Option<::Value<String>> = None;
                 let mut subject_alternative_names: Option<::ValueList<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
                 let mut validation_method: Option<::Value<String>> = None;
@@ -181,6 +190,9 @@ impl<'de> ::serde::Deserialize<'de> for CertificateProperties {
                         }
                         "DomainValidationOptions" => {
                             domain_validation_options = ::serde::de::MapAccess::next_value(&mut map)?;
+                        }
+                        "KeyAlgorithm" => {
+                            key_algorithm = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
                         "SubjectAlternativeNames" => {
                             subject_alternative_names = ::serde::de::MapAccess::next_value(&mut map)?;
@@ -200,6 +212,7 @@ impl<'de> ::serde::Deserialize<'de> for CertificateProperties {
                     certificate_transparency_logging_preference: certificate_transparency_logging_preference,
                     domain_name: domain_name.ok_or(::serde::de::Error::missing_field("DomainName"))?,
                     domain_validation_options: domain_validation_options,
+                    key_algorithm: key_algorithm,
                     subject_alternative_names: subject_alternative_names,
                     tags: tags,
                     validation_method: validation_method,

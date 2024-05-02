@@ -94,11 +94,6 @@ pub struct ServerProperties {
     /// Update type: _Immutable_.
     /// AWS CloudFormation replaces the resource when you change this property.
     pub security_group_ids: Option<::ValueList<String>>,
-    /// Property [`ServerName`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworkscm-server.html#cfn-opsworkscm-server-servername).
-    ///
-    /// Update type: _Immutable_.
-    /// AWS CloudFormation replaces the resource when you change this property.
-    pub server_name: Option<::Value<String>>,
     /// Property [`ServiceRoleArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-opsworkscm-server.html#cfn-opsworkscm-server-servicerolearn).
     ///
     /// Update type: _Immutable_.
@@ -166,9 +161,6 @@ impl ::serde::Serialize for ServerProperties {
         if let Some(ref security_group_ids) = self.security_group_ids {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SecurityGroupIds", security_group_ids)?;
         }
-        if let Some(ref server_name) = self.server_name {
-            ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServerName", server_name)?;
-        }
         ::serde::ser::SerializeMap::serialize_entry(&mut map, "ServiceRoleArn", &self.service_role_arn)?;
         if let Some(ref subnet_ids) = self.subnet_ids {
             ::serde::ser::SerializeMap::serialize_entry(&mut map, "SubnetIds", subnet_ids)?;
@@ -209,7 +201,6 @@ impl<'de> ::serde::Deserialize<'de> for ServerProperties {
                 let mut preferred_backup_window: Option<::Value<String>> = None;
                 let mut preferred_maintenance_window: Option<::Value<String>> = None;
                 let mut security_group_ids: Option<::ValueList<String>> = None;
-                let mut server_name: Option<::Value<String>> = None;
                 let mut service_role_arn: Option<::Value<String>> = None;
                 let mut subnet_ids: Option<::ValueList<String>> = None;
                 let mut tags: Option<::ValueList<::Tag>> = None;
@@ -267,9 +258,6 @@ impl<'de> ::serde::Deserialize<'de> for ServerProperties {
                         "SecurityGroupIds" => {
                             security_group_ids = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
-                        "ServerName" => {
-                            server_name = ::serde::de::MapAccess::next_value(&mut map)?;
-                        }
                         "ServiceRoleArn" => {
                             service_role_arn = ::serde::de::MapAccess::next_value(&mut map)?;
                         }
@@ -301,7 +289,6 @@ impl<'de> ::serde::Deserialize<'de> for ServerProperties {
                     preferred_backup_window: preferred_backup_window,
                     preferred_maintenance_window: preferred_maintenance_window,
                     security_group_ids: security_group_ids,
-                    server_name: server_name,
                     service_role_arn: service_role_arn.ok_or(::serde::de::Error::missing_field("ServiceRoleArn"))?,
                     subnet_ids: subnet_ids,
                     tags: tags,

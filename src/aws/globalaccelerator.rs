@@ -436,6 +436,11 @@ pub mod endpoint_group {
     /// The [`AWS::GlobalAccelerator::EndpointGroup.EndpointConfiguration`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-globalaccelerator-endpointgroup-endpointconfiguration.html) property type.
     #[derive(Debug, Default)]
     pub struct EndpointConfiguration {
+        /// Property [`AttachmentArn`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-globalaccelerator-endpointgroup-endpointconfiguration.html#cfn-globalaccelerator-endpointgroup-endpointconfiguration-attachmentarn).
+        ///
+        /// Update type: _Mutable_.
+        /// AWS CloudFormation doesn't replace the resource when you change this property.
+        pub attachment_arn: Option<::Value<String>>,
         /// Property [`ClientIPPreservationEnabled`](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-globalaccelerator-endpointgroup-endpointconfiguration.html#cfn-globalaccelerator-endpointgroup-endpointconfiguration-clientippreservationenabled).
         ///
         /// Update type: _Mutable_.
@@ -456,6 +461,9 @@ pub mod endpoint_group {
     impl ::codec::SerializeValue for EndpointConfiguration {
         fn serialize<S: ::serde::Serializer>(&self, s: S) -> Result<S::Ok, S::Error> {
             let mut map = ::serde::Serializer::serialize_map(s, None)?;
+            if let Some(ref attachment_arn) = self.attachment_arn {
+                ::serde::ser::SerializeMap::serialize_entry(&mut map, "AttachmentArn", attachment_arn)?;
+            }
             if let Some(ref client_ip_preservation_enabled) = self.client_ip_preservation_enabled {
                 ::serde::ser::SerializeMap::serialize_entry(&mut map, "ClientIPPreservationEnabled", client_ip_preservation_enabled)?;
             }
@@ -479,12 +487,16 @@ pub mod endpoint_group {
                 }
 
                 fn visit_map<A: ::serde::de::MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+                    let mut attachment_arn: Option<::Value<String>> = None;
                     let mut client_ip_preservation_enabled: Option<::Value<bool>> = None;
                     let mut endpoint_id: Option<::Value<String>> = None;
                     let mut weight: Option<::Value<u32>> = None;
 
                     while let Some(__cfn_key) = ::serde::de::MapAccess::next_key::<String>(&mut map)? {
                         match __cfn_key.as_ref() {
+                            "AttachmentArn" => {
+                                attachment_arn = ::serde::de::MapAccess::next_value(&mut map)?;
+                            }
                             "ClientIPPreservationEnabled" => {
                                 client_ip_preservation_enabled = ::serde::de::MapAccess::next_value(&mut map)?;
                             }
@@ -499,6 +511,7 @@ pub mod endpoint_group {
                     }
 
                     Ok(EndpointConfiguration {
+                        attachment_arn: attachment_arn,
                         client_ip_preservation_enabled: client_ip_preservation_enabled,
                         endpoint_id: endpoint_id.ok_or(::serde::de::Error::missing_field("EndpointId"))?,
                         weight: weight,

@@ -235,6 +235,18 @@ fn mutate_field_name(name: &str) -> String {
         field_name = "r#match".into();
     }
 
+    if field_name == "static" {
+        field_name = "r#static".into();
+    }
+
+    if field_name == "else" {
+        field_name = "r#else".into();
+    }
+
+    if field_name == "override" {
+        field_name = "r#override".into();
+    }
+
     field_name
 }
 

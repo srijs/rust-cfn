@@ -12,10 +12,12 @@ mod codegen;
 
 fn main() {
     let bytes = include_bytes!("../CloudFormationResourceSpecification.json.gz");
-    let mut data = String::new();
-    let mut gz = flate2::read::GzDecoder::new(&bytes[..]);
-    gz.read_to_string(&mut data)
-        .expect("failed to decompress specification file");
+    let mut gz = flate2::read::GzDecoder::new(&bytes[..]);    
+    let mut buf = Vec::new();
+    gz.read_to_end(&mut buf).unwrap();
+
+    let data = std::str::from_utf8(&buf).unwrap();
+    
     let specification = serde_json::from_str::<model::Specification>(&data)
         .expect("failed to parse specification data");
     codegen::generate(specification, "../src/aws")
